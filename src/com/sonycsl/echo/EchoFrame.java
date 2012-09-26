@@ -84,8 +84,8 @@ public final class EchoFrame {
 				p.edt = null;
 			} else {
 				if(data.length < j+(p.pdc & 0xFF)) return;
-				p.edt = new byte[p.pdc];
-				System.arraycopy(data, j, p.edt, 0, p.pdc);
+				p.edt = new byte[(int)(p.pdc & 0xFF)];
+				System.arraycopy(data, j, p.edt, 0, (int)(p.pdc & 0xFF));
 				j += (p.pdc & 0xFF);
 			}
 			mPropertyList.add(p);

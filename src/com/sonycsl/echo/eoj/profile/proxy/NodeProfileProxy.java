@@ -123,14 +123,14 @@ public class NodeProfileProxy extends NodeProfile {
 		@Override
 		protected void onGetInstanceList(EchoObject eoj, short tid, byte pdc, byte[] edt) {
 			super.onGetInstanceList(eoj, tid, pdc, edt);
-			if(pdc > 0)
+			if(pdc != 0)
 				putDevices(eoj, edt);
 		}
 
 		@Override
 		protected void onGetInstanceListS(EchoObject eoj, short tid, byte pdc, byte[] edt) {
 			super.onGetInstanceListS(eoj, tid, pdc, edt);
-			if(pdc > 0)
+			if(pdc != 0)
 				putDevices(eoj, edt);
 		}
 		
