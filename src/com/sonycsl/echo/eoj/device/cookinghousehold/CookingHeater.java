@@ -36,7 +36,6 @@ public abstract class CookingHeater extends DeviceObject {
 	protected static final byte EPC_CHILD_LOCK_SETTING = (byte)0xA1;
 	protected static final byte EPC_RADIANT_HEATER_LOCK_SETTING = (byte)0xA2;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

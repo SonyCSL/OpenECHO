@@ -36,7 +36,6 @@ public abstract class WaterFlowmeter extends DeviceObject {
 	protected static final byte EPC_ID_NUMBER_SETTING = (byte)0xE5;
 	protected static final byte EPC_VERIFICATION_EXPIRATION_INFORMATION = (byte)0xE6;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

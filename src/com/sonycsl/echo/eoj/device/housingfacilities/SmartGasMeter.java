@@ -42,7 +42,6 @@ public abstract class SmartGasMeter extends DeviceObject {
 	protected static final byte EPC_ID_NUMBER_SETTING = (byte)0xED;
 	protected static final byte EPC_VERIFICATION_EXPIRATION_INFORMATION = (byte)0xEE;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

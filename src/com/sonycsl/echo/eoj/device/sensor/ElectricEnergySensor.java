@@ -32,7 +32,6 @@ public abstract class ElectricEnergySensor extends DeviceObject {
 	protected static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG = (byte)0xE4;
 	protected static final byte EPC_EFFECTIVE_VOLTAGE_VALUE = (byte)0xE5;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

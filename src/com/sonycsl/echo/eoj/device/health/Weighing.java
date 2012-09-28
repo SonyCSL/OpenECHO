@@ -29,7 +29,6 @@ public abstract class Weighing extends DeviceObject {
 	protected static final byte EPC_MEASURED_VALUE_OF_BODY_WEIGHT = (byte)0xE0;
 	protected static final byte EPC_MEASURED_VALUE_OF_BODY_FAT = (byte)0xE1;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

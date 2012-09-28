@@ -34,7 +34,6 @@ public abstract class ElectricShutter extends DeviceObject {
 	protected static final byte EPC_ELECTRIC_LOCK_SETTING = (byte)0xE5;
 	protected static final byte EPC_OPEN_CLOSE_SETTING2 = (byte)0xE7;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

@@ -36,7 +36,6 @@ public abstract class GeneralLighting extends DeviceObject {
 	protected static final byte EPC_OFF_TIMER_RESERVATION_SETTING = (byte)0x94;
 	protected static final byte EPC_OFF_TIMER_SETTING = (byte)0x95;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

@@ -34,7 +34,6 @@ public abstract class ClothesDryer extends DeviceObject {
 	protected static final byte EPC_ON_TIMER_SETTING = (byte)0x91;
 	protected static final byte EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING = (byte)0x92;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;
@@ -50,27 +49,27 @@ public abstract class ClothesDryer extends DeviceObject {
 	 */
 	protected byte[] getDoorCoverOpenCloseStatus() {return null;}
 	/**
-	 * Drying setting<br>Start/restart drying��0x41, Suspend drying��0x42, Stop drying��0x43
+	 * Drying setting<br>Start/restart drying  0x41, Suspend drying  0x42, Stop drying  0x43
 	 */
 	protected boolean setDryingSetting(byte[] edt) {return false;}
 	/**
-	 * Drying setting<br>Start/restart drying��0x41, Suspend drying��0x42, Stop drying��0x43
+	 * Drying setting<br>Start/restart drying  0x41, Suspend drying  0x42, Stop drying  0x43
 	 */
 	protected byte[] getDryingSetting() {return null;}
 	/**
-	 * Drying status<br>Drying in progress��0x41 Drying suspended��0x42 Drying completed/stopped��0x43
+	 * Drying status<br>Drying in progress  0x41 Drying suspended  0x42 Drying completed/stopped  0x43
 	 */
 	protected byte[] getDryingStatus() {return null;}
 	/**
-	 * This property indicates the remaining drying time in the �gHH:MM:SS�h .format.<br>0-0x17: 0-0x3B : 0-0x3B (=0-23):(=0-59):(=0-59)
+	 * This property indicates the remaining drying time in the  gHH:MM:SS h .format.<br>0-0x17: 0-0x3B : 0-0x3B (=0-23):(=0-59):(=0-59)
 	 */
 	protected byte[] getRemainingDryingTime() {return null;}
 	/**
-	 * Reservation ON/OFF<br>Reservation ON��0x41 Reservation OFF��0x42
+	 * Reservation ON/OFF<br>Reservation ON  0x41 Reservation OFF  0x42
 	 */
 	protected boolean setOnTimerReservationSetting(byte[] edt) {return false;}
 	/**
-	 * Reservation ON/OFF<br>Reservation ON��0x41 Reservation OFF��0x42
+	 * Reservation ON/OFF<br>Reservation ON  0x41 Reservation OFF  0x42
 	 */
 	protected byte[] getOnTimerReservationSetting() {return null;}
 	/**
@@ -226,27 +225,27 @@ public abstract class ClothesDryer extends DeviceObject {
 		 */
 		protected void onGetDoorCoverOpenCloseStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Drying setting<br>Start/restart drying��0x41, Suspend drying��0x42, Stop drying��0x43
+		 * Drying setting<br>Start/restart drying  0x41, Suspend drying  0x42, Stop drying  0x43
 		 */
 		protected void onSetDryingSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Drying setting<br>Start/restart drying��0x41, Suspend drying��0x42, Stop drying��0x43
+		 * Drying setting<br>Start/restart drying  0x41, Suspend drying  0x42, Stop drying  0x43
 		 */
 		protected void onGetDryingSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Drying status<br>Drying in progress��0x41 Drying suspended��0x42 Drying completed/stopped��0x43
+		 * Drying status<br>Drying in progress  0x41 Drying suspended  0x42 Drying completed/stopped  0x43
 		 */
 		protected void onGetDryingStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * This property indicates the remaining drying time in the �gHH:MM:SS�h .format.<br>0-0x17: 0-0x3B : 0-0x3B (=0-23):(=0-59):(=0-59)
+		 * This property indicates the remaining drying time in the  gHH:MM:SS h .format.<br>0-0x17: 0-0x3B : 0-0x3B (=0-23):(=0-59):(=0-59)
 		 */
 		protected void onGetRemainingDryingTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Reservation ON/OFF<br>Reservation ON��0x41 Reservation OFF��0x42
+		 * Reservation ON/OFF<br>Reservation ON  0x41 Reservation OFF  0x42
 		 */
 		protected void onSetOnTimerReservationSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Reservation ON/OFF<br>Reservation ON��0x41 Reservation OFF��0x42
+		 * Reservation ON/OFF<br>Reservation ON  0x41 Reservation OFF  0x42
 		 */
 		protected void onGetOnTimerReservationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
@@ -279,11 +278,11 @@ public abstract class ClothesDryer extends DeviceObject {
 		public Setter reqSetPowerLimitation(byte[] edt);
 		
 		/**
-		 * Drying setting<br>Start/restart drying��0x41, Suspend drying��0x42, Stop drying��0x43
+		 * Drying setting<br>Start/restart drying  0x41, Suspend drying  0x42, Stop drying  0x43
 		 */
 		public Setter reqSetDryingSetting(byte[] edt);
 		/**
-		 * Reservation ON/OFF<br>Reservation ON��0x41 Reservation OFF��0x42
+		 * Reservation ON/OFF<br>Reservation ON  0x41 Reservation OFF  0x42
 		 */
 		public Setter reqSetOnTimerReservationSetting(byte[] edt);
 		/**
@@ -467,19 +466,19 @@ public abstract class ClothesDryer extends DeviceObject {
 		 */
 		public Getter reqGetDoorCoverOpenCloseStatus();
 		/**
-		 * Drying setting<br>Start/restart drying��0x41, Suspend drying��0x42, Stop drying��0x43
+		 * Drying setting<br>Start/restart drying  0x41, Suspend drying  0x42, Stop drying  0x43
 		 */
 		public Getter reqGetDryingSetting();
 		/**
-		 * Drying status<br>Drying in progress��0x41 Drying suspended��0x42 Drying completed/stopped��0x43
+		 * Drying status<br>Drying in progress  0x41 Drying suspended  0x42 Drying completed/stopped  0x43
 		 */
 		public Getter reqGetDryingStatus();
 		/**
-		 * This property indicates the remaining drying time in the �gHH:MM:SS�h .format.<br>0-0x17: 0-0x3B : 0-0x3B (=0-23):(=0-59):(=0-59)
+		 * This property indicates the remaining drying time in the  gHH:MM:SS h .format.<br>0-0x17: 0-0x3B : 0-0x3B (=0-23):(=0-59):(=0-59)
 		 */
 		public Getter reqGetRemainingDryingTime();
 		/**
-		 * Reservation ON/OFF<br>Reservation ON��0x41 Reservation OFF��0x42
+		 * Reservation ON/OFF<br>Reservation ON  0x41 Reservation OFF  0x42
 		 */
 		public Getter reqGetOnTimerReservationSetting();
 		/**
@@ -851,19 +850,19 @@ public abstract class ClothesDryer extends DeviceObject {
 		 */
 		public Informer reqInformDoorCoverOpenCloseStatus();
 		/**
-		 * Drying setting<br>Start/restart drying��0x41, Suspend drying��0x42, Stop drying��0x43
+		 * Drying setting<br>Start/restart drying  0x41, Suspend drying  0x42, Stop drying  0x43
 		 */
 		public Informer reqInformDryingSetting();
 		/**
-		 * Drying status<br>Drying in progress��0x41 Drying suspended��0x42 Drying completed/stopped��0x43
+		 * Drying status<br>Drying in progress  0x41 Drying suspended  0x42 Drying completed/stopped  0x43
 		 */
 		public Informer reqInformDryingStatus();
 		/**
-		 * This property indicates the remaining drying time in the �gHH:MM:SS�h .format.<br>0-0x17: 0-0x3B : 0-0x3B (=0-23):(=0-59):(=0-59)
+		 * This property indicates the remaining drying time in the  gHH:MM:SS h .format.<br>0-0x17: 0-0x3B : 0-0x3B (=0-23):(=0-59):(=0-59)
 		 */
 		public Informer reqInformRemainingDryingTime();
 		/**
-		 * Reservation ON/OFF<br>Reservation ON��0x41 Reservation OFF��0x42
+		 * Reservation ON/OFF<br>Reservation ON  0x41 Reservation OFF  0x42
 		 */
 		public Informer reqInformOnTimerReservationSetting();
 		/**

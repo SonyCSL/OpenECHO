@@ -34,7 +34,6 @@ public abstract class WashingMachine extends DeviceObject {
 	protected static final byte EPC_ON_TIMER_SETTING = (byte)0x91;
 	protected static final byte EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING = (byte)0x92;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

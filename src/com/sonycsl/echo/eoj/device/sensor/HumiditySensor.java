@@ -28,7 +28,6 @@ public abstract class HumiditySensor extends DeviceObject {
 
 	protected static final byte EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY = (byte)0xE0;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

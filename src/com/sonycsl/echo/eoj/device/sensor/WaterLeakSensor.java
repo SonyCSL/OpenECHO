@@ -29,7 +29,6 @@ public abstract class WaterLeakSensor extends DeviceObject {
 	protected static final byte EPC_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;
 	protected static final byte EPC_WATER_LEAK_DETECTION_STATUS = (byte)0xB1;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

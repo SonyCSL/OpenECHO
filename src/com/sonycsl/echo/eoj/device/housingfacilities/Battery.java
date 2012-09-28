@@ -44,7 +44,6 @@ public abstract class Battery extends DeviceObject {
 	protected static final byte EPC_REMAINING_STORED_ELECTRICITY3_SEE_NOTE3_BATERY_STARE_OF_HEALTH = (byte)0xE4;
 	protected static final byte EPC_BATTERY_TYPE = (byte)0xE6;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

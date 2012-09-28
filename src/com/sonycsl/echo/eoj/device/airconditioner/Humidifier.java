@@ -36,7 +36,6 @@ public abstract class Humidifier extends DeviceObject {
 	protected static final byte EPC_SPECIAL_OPERATION_MODE_SETTING = (byte)0xC4;
 	protected static final byte EPC_WATER_AMOUNT_LEVEL = (byte)0xC5;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

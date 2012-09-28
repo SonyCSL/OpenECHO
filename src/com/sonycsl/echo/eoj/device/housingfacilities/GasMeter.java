@@ -29,7 +29,6 @@ public abstract class GasMeter extends DeviceObject {
 	protected static final byte EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_VALUE = (byte)0xE0;
 	protected static final byte EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_LOG = (byte)0xE2;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

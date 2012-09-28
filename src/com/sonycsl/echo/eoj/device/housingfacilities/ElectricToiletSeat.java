@@ -41,7 +41,6 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	protected static final byte EPC_HUMAN_DETECTION_STATUS = (byte)0xEB;
 	protected static final byte EPC_SEATING_DETECTION_STATUS = (byte)0xEC;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

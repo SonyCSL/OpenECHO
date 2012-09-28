@@ -26,11 +26,9 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x2A;
 
-	protected static final byte EPC_ACTIVITY_AMOUNT_LEVEL1 = (byte)0xE0;
 	protected static final byte EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS = (byte)0xE1;
 	protected static final byte EPC_ACTIVITY_AMOUNT_LEVEL2 = (byte)0xE2;
 	protected static final byte EPC_HUMAN_BODY_EXISTENCE_INFORMATION = (byte)0xE3;
-
 
 	@Override
 	public byte getClassGroupCode() {
@@ -42,10 +40,6 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 		return CLASS_CODE;
 	}
 
-	/**
-	 * This property indicates 8 different activity mount levels. The array element number represents a human body ID.<br>0x31.0x38
-	 */
-	protected abstract byte[] getActivityAmountLevel1();
 	/**
 	 * This property indicates maximum number of human body IDs that can be registered for activity amount level 1.<br>0x0001.0x0080 (= 1.128)
 	 */
@@ -73,10 +67,6 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 		super.onReceiveGet(res, epc);
 		byte[] edt;
 		switch(epc) {
-		case EPC_ACTIVITY_AMOUNT_LEVEL1:
-			edt = getActivityAmountLevel1();
-			res.addProperty(epc, edt, (edt != null && (edt.length <= 128)));
-			break;
 		case EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS:
 			edt = getMaximumNumberOfHumanBodyIdFs();
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
@@ -129,9 +119,6 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 				byte pdc, byte[] edt) {
 			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
 			switch(epc) {
-			case EPC_ACTIVITY_AMOUNT_LEVEL1:
-				onGetActivityAmountLevel1(eoj, tid, pdc, edt);
-				break;
 			case EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS:
 				onGetMaximumNumberOfHumanBodyIdFs(eoj, tid, pdc, edt);
 				break;
@@ -145,10 +132,6 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 			}
 		}
 		
-		/**
-		 * This property indicates 8 different activity mount levels. The array element number represents a human body ID.<br>0x31.0x38
-		 */
-		protected void onGetActivityAmountLevel1(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
 		 * This property indicates maximum number of human body IDs that can be registered for activity amount level 1.<br>0x0001.0x0080 (= 1.128)
 		 */
@@ -303,10 +286,6 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 		public Getter reqGetGetPropertyMap();
 		
 		/**
-		 * This property indicates 8 different activity mount levels. The array element number represents a human body ID.<br>0x31.0x38
-		 */
-		public Getter reqGetActivityAmountLevel1();
-		/**
 		 * This property indicates maximum number of human body IDs that can be registered for activity amount level 1.<br>0x0001.0x0080 (= 1.128)
 		 */
 		public Getter reqGetMaximumNumberOfHumanBodyIdFs();
@@ -443,12 +422,6 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 			return (Getter)super.reqGetGetPropertyMap();
 		}
 
-		@Override
-		public Getter reqGetActivityAmountLevel1() {
-			byte[] edt = getActivityAmountLevel1();
-			addProperty(EPC_ACTIVITY_AMOUNT_LEVEL1, edt, (edt != null && (edt.length <= 128)));
-			return this;
-		}
 		@Override
 		public Getter reqGetMaximumNumberOfHumanBodyIdFs() {
 			byte[] edt = getMaximumNumberOfHumanBodyIdFs();
@@ -593,11 +566,6 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 		}
 
 		@Override
-		public Getter reqGetActivityAmountLevel1() {
-			addProperty(EPC_ACTIVITY_AMOUNT_LEVEL1);
-			return this;
-		}
-		@Override
 		public Getter reqGetMaximumNumberOfHumanBodyIdFs() {
 			addProperty(EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS);
 			return this;
@@ -641,10 +609,6 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 		public Informer reqInformSetPropertyMap();
 		public Informer reqInformGetPropertyMap();
 		
-		/**
-		 * This property indicates 8 different activity mount levels. The array element number represents a human body ID.<br>0x31.0x38
-		 */
-		public Informer reqInformActivityAmountLevel1();
 		/**
 		 * This property indicates maximum number of human body IDs that can be registered for activity amount level 1.<br>0x0001.0x0080 (= 1.128)
 		 */
@@ -782,12 +746,6 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 			return (Informer)super.reqInformGetPropertyMap();
 		}
 
-		@Override
-		public Informer reqInformActivityAmountLevel1() {
-			byte[] edt = getActivityAmountLevel1();
-			addProperty(EPC_ACTIVITY_AMOUNT_LEVEL1, edt, (edt != null && (edt.length <= 128)));
-			return this;
-		}
 		@Override
 		public Informer reqInformMaximumNumberOfHumanBodyIdFs() {
 			byte[] edt = getMaximumNumberOfHumanBodyIdFs();
@@ -931,11 +889,6 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 			return (Informer)super.reqInformGetPropertyMap();
 		}
 
-		@Override
-		public Informer reqInformActivityAmountLevel1() {
-			addProperty(EPC_ACTIVITY_AMOUNT_LEVEL1);
-			return this;
-		}
 		@Override
 		public Informer reqInformMaximumNumberOfHumanBodyIdFs() {
 			addProperty(EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS);

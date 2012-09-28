@@ -28,7 +28,6 @@ public abstract class TemperatureSensor extends DeviceObject {
 
 	protected static final byte EPC_MEASURED_TEMPERATURE_VALUE = (byte)0xE0;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

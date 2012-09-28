@@ -30,7 +30,6 @@ public abstract class FlameSensor extends DeviceObject {
 	protected static final byte EPC_FLAME_DETECTION_STATUS = (byte)0xB1;
 	protected static final byte EPC_FLAME_DETECTION_STATUS_RESETTING = (byte)0xBF;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

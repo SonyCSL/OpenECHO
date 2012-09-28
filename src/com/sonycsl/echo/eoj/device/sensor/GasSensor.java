@@ -30,7 +30,6 @@ public abstract class GasSensor extends DeviceObject {
 	protected static final byte EPC_GAS_DETECTION_STATUS = (byte)0xB1;
 	protected static final byte EPC_MEASURED_VALUE_OF_GAS_CONCENTRATION = (byte)0xE0;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

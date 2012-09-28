@@ -29,7 +29,6 @@ public abstract class VentilationFan extends DeviceObject {
 	protected static final byte EPC_VENTILATION_AUTO_SETTING = (byte)0xBF;
 	protected static final byte EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE = (byte)0xA0;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

@@ -31,7 +31,6 @@ public abstract class HumanBodyLocationSensor extends DeviceObject {
 	protected static final byte EPC_HUMAN_BODY_DETECTION_LOCATION2 = (byte)0xE2;
 	protected static final byte EPC_HUMAN_BODY_EXISTENCE_INFORMATION = (byte)0xE3;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

@@ -51,7 +51,6 @@ public abstract class LPGasMeter extends DeviceObject {
 	protected static final byte EPC_NUMBER_OF_BLOCK_PRESSURE_SUPPLY_PRESSURE_ERROR_DAYS_TIME = (byte)0xD6;
 	protected static final byte EPC_TEST_CALL_SETTING = (byte)0xD7;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

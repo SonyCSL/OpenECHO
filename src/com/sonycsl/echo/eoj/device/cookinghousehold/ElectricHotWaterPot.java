@@ -34,7 +34,6 @@ public abstract class ElectricHotWaterPot extends DeviceObject {
 	protected static final byte EPC_HOT_WATER_DISCHARGE_STATUS = (byte)0xE2;
 	protected static final byte EPC_LOCK_STATUS = (byte)0xE3;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

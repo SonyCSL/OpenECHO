@@ -32,7 +32,6 @@ public abstract class MicromotionSensor extends DeviceObject {
 	protected static final byte EPC_SAMPLING_COUNT = (byte)0xBC;
 	protected static final byte EPC_SAMPLING_CYCLE = (byte)0xBD;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

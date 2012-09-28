@@ -29,7 +29,6 @@ public abstract class Buzzer extends DeviceObject {
 	protected static final byte EPC_SOUND_GENERATION_SETTING = (byte)0xB1;
 	protected static final byte EPC_BUZZER_SOUND_TYPE = (byte)0xE0;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

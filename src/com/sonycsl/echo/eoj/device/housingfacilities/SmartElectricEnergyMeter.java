@@ -43,7 +43,6 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 	protected static final byte EPC_MEASURED_INSTANTANEOUS_CURRENTS = (byte)0xE8;
 	protected static final byte EPC_MEASURED_INSTANTANEOUS_VOLTAGES = (byte)0xE9;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

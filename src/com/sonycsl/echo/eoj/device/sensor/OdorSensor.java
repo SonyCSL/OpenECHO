@@ -30,7 +30,6 @@ public abstract class OdorSensor extends DeviceObject {
 	protected static final byte EPC_ODOR_DETECTION_STATUS = (byte)0xB1;
 	protected static final byte EPC_MEASURED_ODOR_VALUE = (byte)0xE0;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

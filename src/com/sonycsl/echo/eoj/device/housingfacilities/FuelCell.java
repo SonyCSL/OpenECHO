@@ -53,7 +53,6 @@ public abstract class FuelCell extends DeviceObject {
 	protected static final byte EPC_ON_TIMER_RESERVATION_SETTING = (byte)0x90;
 	protected static final byte EPC_ON_TIMER_SETTING = (byte)0x91;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

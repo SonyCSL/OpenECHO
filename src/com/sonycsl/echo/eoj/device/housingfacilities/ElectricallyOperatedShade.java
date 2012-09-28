@@ -31,7 +31,6 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	protected static final byte EPC_SET_VALUE_OF_SHADE_ANGLE = (byte)0xE2;
 	protected static final byte EPC_SHADE_OPEN_CLOSE_SPEED = (byte)0xE3;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

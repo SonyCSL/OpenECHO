@@ -34,7 +34,6 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 	protected static final byte EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION = (byte)0xC0;
 	protected static final byte EPC_SMOKE_CIGARETTE_DETECTION_STATUS = (byte)0xC1;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

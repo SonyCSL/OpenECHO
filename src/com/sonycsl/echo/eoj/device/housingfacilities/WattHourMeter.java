@@ -31,7 +31,6 @@ public abstract class WattHourMeter extends DeviceObject {
 	protected static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG1 = (byte)0xE3;
 	protected static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG2 = (byte)0xE4;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

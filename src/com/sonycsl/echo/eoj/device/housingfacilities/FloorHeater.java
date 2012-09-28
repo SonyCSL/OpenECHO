@@ -42,7 +42,6 @@ public abstract class FloorHeater extends DeviceObject {
 	protected static final byte EPC_TIME_SET_BY_OFF_TIMER = (byte)0x95;
 	protected static final byte EPC_RELATIVE_OFF_TIMER_SETTING = (byte)0x96;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

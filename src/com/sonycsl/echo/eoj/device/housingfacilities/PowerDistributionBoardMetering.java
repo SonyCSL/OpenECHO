@@ -68,7 +68,6 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 	protected static final byte EPC_MEASUREMENT_CHANNEL31 = (byte)0xEE;
 	protected static final byte EPC_MEASUREMENT_CHANNEL32 = (byte)0xEF;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

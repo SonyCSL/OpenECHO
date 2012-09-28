@@ -37,7 +37,6 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	protected static final byte EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD = (byte)0xE7;
 	protected static final byte EPC_RATED_POWER_GENERATION_OUTPUT = (byte)0xE8;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

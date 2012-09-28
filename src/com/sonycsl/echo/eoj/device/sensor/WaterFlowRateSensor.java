@@ -29,7 +29,6 @@ public abstract class WaterFlowRateSensor extends DeviceObject {
 	protected static final byte EPC_INTEGRAL_FLOW_RATE = (byte)0xE0;
 	protected static final byte EPC_FLOW_RATE = (byte)0xE2;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

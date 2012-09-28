@@ -33,7 +33,6 @@ public abstract class Sprinkler extends DeviceObject {
 	protected static final byte EPC_SPRINKLE_TIME_SETTING2 = (byte)0xE4;
 	protected static final byte EPC_SPRINKLE_DURATION_SETTING = (byte)0xE5;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

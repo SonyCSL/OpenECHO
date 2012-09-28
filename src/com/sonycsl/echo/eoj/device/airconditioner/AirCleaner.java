@@ -32,7 +32,6 @@ public abstract class AirCleaner extends DeviceObject {
 	protected static final byte EPC_OPTICAL_CATALYST_OPERATION_SETTING = (byte)0xC2;
 	protected static final byte EPC_AIR_POLLUTION_DETECTION_STATUS = (byte)0xC0;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

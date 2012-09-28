@@ -29,7 +29,6 @@ public abstract class IlluminanceSensor extends DeviceObject {
 	protected static final byte EPC_MEASURED_ILLUMINANCE_VALUE1 = (byte)0xE0;
 	protected static final byte EPC_MEASURED_ILLUMINANCE_VALUE2 = (byte)0xE1;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

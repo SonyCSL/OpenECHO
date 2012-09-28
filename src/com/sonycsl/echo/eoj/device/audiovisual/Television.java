@@ -31,7 +31,6 @@ public abstract class Television extends DeviceObject {
 	protected static final byte EPC_SUPPORTED_CHARACTER_CODES = (byte)0xB2;
 	protected static final byte EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER = (byte)0xB3;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

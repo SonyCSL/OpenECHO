@@ -38,10 +38,12 @@ public abstract class Controller extends DeviceObject {
 	}
 
 
+
 	@Override
 	protected void onReceiveSet(EchoFrame res, byte epc, byte pdc, byte[] edt) {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
+
 		}
 	}
 
@@ -50,6 +52,7 @@ public abstract class Controller extends DeviceObject {
 		super.onReceiveGet(res, epc);
 		byte[] edt;
 		switch(epc) {
+
 		}
 	}
 	
@@ -80,6 +83,7 @@ public abstract class Controller extends DeviceObject {
 				byte pdc, byte[] edt) {
 			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
 			switch(epc) {
+
 			}
 		}
 
@@ -88,9 +92,11 @@ public abstract class Controller extends DeviceObject {
 				byte pdc, byte[] edt) {
 			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
 			switch(epc) {
+
 			}
 		}
 		
+
 	}
 	
 	public interface Setter extends DeviceObject.Setter {
@@ -103,6 +109,7 @@ public abstract class Controller extends DeviceObject {
 		public Setter reqSetCurrentDate(byte[] edt);
 		public Setter reqSetPowerLimitation(byte[] edt);
 		
+
 	}
 
 	public class SetterImpl extends DeviceObject.SetterImpl implements Setter {
@@ -150,6 +157,7 @@ public abstract class Controller extends DeviceObject {
 		public Setter reqSetPowerLimitation(byte[] edt) {
 			return (Setter)super.reqSetPowerLimitation(edt);
 		}
+
 
 	}
 	
@@ -200,6 +208,7 @@ public abstract class Controller extends DeviceObject {
 			return (Setter)super.reqSetPowerLimitation(edt);
 		}
 
+
 	}
 
 	public interface Getter extends DeviceObject.Getter {
@@ -228,6 +237,7 @@ public abstract class Controller extends DeviceObject {
 		public Getter reqGetSetPropertyMap();
 		public Getter reqGetGetPropertyMap();
 		
+
 	}
 	
 	public class GetterImpl extends DeviceObject.GetterImpl implements Getter {
@@ -351,6 +361,7 @@ public abstract class Controller extends DeviceObject {
 		public Getter reqGetGetPropertyMap() {
 			return (Getter)super.reqGetGetPropertyMap();
 		}
+
 
 	}
 
@@ -476,6 +487,7 @@ public abstract class Controller extends DeviceObject {
 			return (Getter)super.reqGetGetPropertyMap();
 		}
 
+
 	}
 	
 	public interface Informer extends DeviceObject.Informer {
@@ -504,6 +516,7 @@ public abstract class Controller extends DeviceObject {
 		public Informer reqInformSetPropertyMap();
 		public Informer reqInformGetPropertyMap();
 		
+
 	}
 
 	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
@@ -628,6 +641,7 @@ public abstract class Controller extends DeviceObject {
 			return (Informer)super.reqInformGetPropertyMap();
 		}
 
+
 	}
 	
 	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
@@ -751,6 +765,7 @@ public abstract class Controller extends DeviceObject {
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
 		}
+
 
 	}
 }

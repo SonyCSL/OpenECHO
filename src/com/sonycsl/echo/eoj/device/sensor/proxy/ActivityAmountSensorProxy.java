@@ -52,8 +52,6 @@ public class ActivityAmountSensorProxy extends ActivityAmountSensor {
 	protected byte[] getGetPropertyMap() {return null;}
 	
 	@Override
-	protected byte[] getActivityAmountLevel1() {return null;}
-	@Override
 	protected byte[] getActivityAmountLevel2() {return null;}
 
 	@Override

@@ -30,7 +30,6 @@ public abstract class CallSensor extends DeviceObject {
 	protected static final byte EPC_CALL_STATUS = (byte)0xB1;
 	protected static final byte EPC_CALL_HOLDING_TIME = (byte)0xBE;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

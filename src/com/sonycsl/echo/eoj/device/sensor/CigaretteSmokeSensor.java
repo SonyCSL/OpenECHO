@@ -29,7 +29,6 @@ public abstract class CigaretteSmokeSensor extends DeviceObject {
 	protected static final byte EPC_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;
 	protected static final byte EPC_SMOKE_CIGARETTE_DETECTION_STATUS = (byte)0xB1;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

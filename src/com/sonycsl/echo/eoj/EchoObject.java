@@ -55,7 +55,20 @@ public abstract class EchoObject {
 	
 	private Receiver mReceiver = null;
 	
-	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(getClass().getSimpleName());
+		sb.append("[group:");
+		sb.append(String.format("%02x", getClassGroupCode()));
+		sb.append(",class:");
+		sb.append(String.format("%02x", getClassCode()));
+		sb.append(",instance:");
+		sb.append(String.format("%02x", getInstanceCode()));
+		sb.append("]");
+		return new String(sb);
+	}
+
 	public abstract byte getClassGroupCode();
 	
 	public abstract byte getClassCode();

@@ -30,7 +30,6 @@ public abstract class PassageSensor extends DeviceObject {
 	protected static final byte EPC_PASSAGE_DETECTION_HOLD_TIME = (byte)0xBE;
 	protected static final byte EPC_PASSAGE_DETECTION_DIRECTION = (byte)0xE0;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

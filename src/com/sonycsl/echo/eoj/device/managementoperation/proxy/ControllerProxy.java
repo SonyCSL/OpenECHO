@@ -51,6 +51,7 @@ public class ControllerProxy extends Controller {
 	@Override
 	protected byte[] getGetPropertyMap() {return null;}
 	
+
 	@Override
 	public Setter set() {
 		return new SetterProxy(ESV_SETI);

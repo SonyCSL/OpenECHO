@@ -30,7 +30,6 @@ public abstract class VisitorSensor extends DeviceObject {
 	protected static final byte EPC_VISITOR_DETECTION_STATUS = (byte)0xB1;
 	protected static final byte EPC_VISITOR_DETECTION_HOLDING_TIME = (byte)0xBE;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

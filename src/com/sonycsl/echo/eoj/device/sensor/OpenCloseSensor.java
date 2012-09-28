@@ -30,7 +30,6 @@ public abstract class OpenCloseSensor extends DeviceObject {
 	protected static final byte EPC_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;
 	protected static final byte EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS2 = (byte)0xB1;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

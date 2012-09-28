@@ -34,7 +34,6 @@ public abstract class ElectricLock extends DeviceObject {
 	protected static final byte EPC_ALARM_STATUS = (byte)0xE5;
 	protected static final byte EPC_AUTO_LOCK_MODE_SETTING = (byte)0xE6;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

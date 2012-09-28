@@ -49,7 +49,6 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 	protected static final byte EPC_SET_VALUE_OF_ON_TIMER_TIME = (byte)0x91;
 	protected static final byte EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME = (byte)0x92;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

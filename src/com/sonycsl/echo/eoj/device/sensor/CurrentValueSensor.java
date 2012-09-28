@@ -30,7 +30,6 @@ public abstract class CurrentValueSensor extends DeviceObject {
 	protected static final byte EPC_RATED_VOLTAGE_TO_BE_MEASURED = (byte)0xE1;
 	protected static final byte EPC_MEASURED_CURRENT_VALUE2 = (byte)0xE2;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

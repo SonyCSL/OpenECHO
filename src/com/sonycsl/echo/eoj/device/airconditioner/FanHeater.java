@@ -41,7 +41,6 @@ public abstract class FanHeater extends DeviceObject {
 	protected static final byte EPC_IMPLEMENTED_ION_EMISSION_METHOD = (byte)0xC3;
 	protected static final byte EPC_OIL_AMOUNT_LEVEL = (byte)0xC4;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

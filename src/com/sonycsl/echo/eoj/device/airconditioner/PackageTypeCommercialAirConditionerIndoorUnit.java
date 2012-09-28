@@ -65,7 +65,6 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 	protected static final byte EPC_OFF_TIMER_SETTING_TIME = (byte)0x95;
 	protected static final byte EPC_OFF_TIMER_SETTING_RELATIVE_TIME = (byte)0x96;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

@@ -29,7 +29,6 @@ public abstract class AirSpeedSensor extends DeviceObject {
 	protected static final byte EPC_MEASURED_VALUE_OF_AIR_SPEED = (byte)0xE0;
 	protected static final byte EPC_AIR_FLOW_DIRECTION = (byte)0xE1;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

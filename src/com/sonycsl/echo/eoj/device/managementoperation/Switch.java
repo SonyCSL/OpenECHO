@@ -28,7 +28,6 @@ public abstract class Switch extends DeviceObject {
 
 	protected static final byte EPC_CONNECTED_DEVICE = (byte)0xE0;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

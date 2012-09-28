@@ -61,7 +61,6 @@ public abstract class Refrigerator extends DeviceObject {
 	protected static final byte EPC_VEGETABLE_COMPARTMENT_HUMIDIFICATION_FUNCTION_SETTING = (byte)0xA9;
 	protected static final byte EPC_DEODORIZATION_FUNCTION_SETTING = (byte)0xAD;
 
-
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;
