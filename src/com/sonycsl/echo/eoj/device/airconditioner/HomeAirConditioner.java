@@ -81,11 +81,11 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	}
 
 	/**
-	 * Used to specify the operation mode (�gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+	 * Used to specify the operation mode ( gautomatic, h  gcooling, h  gheating, h  gdehumidification, h  gair circulator h or  gother h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 	 */
 	protected abstract boolean setOperationModeSetting(byte[] edt);
 	/**
-	 * Used to specify the operation mode (�gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+	 * Used to specify the operation mode ( gautomatic, h  gcooling, h  gheating, h  gdehumidification, h  gair circulator h or  gother h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 	 */
 	protected abstract byte[] getOperationModeSetting();
 	/**
@@ -97,51 +97,51 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 */
 	protected byte[] getAutomaticTemperatureControlSetting() {return null;}
 	/**
-	 * Used to specify the type of operation (�gnormal,�h �ghigh-speed�h or �gsilent�h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the type of operation ( gnormal, h  ghigh-speed h or  gsilent h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setNormalHighSpeedSilentOperationSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify the type of operation (�gnormal,�h �ghigh-speed�h or �gsilent�h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the type of operation ( gnormal, h  ghigh-speed h or  gsilent h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getNormalHighSpeedSilentOperationSetting() {return null;}
 	/**
-	 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
+	 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract boolean setSetTemperatureValue(byte[] edt);
 	/**
-	 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
+	 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract byte[] getSetTemperatureValue();
 	/**
-	 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to set the relative humidity for the  gdehumidification h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetValueOfRelativeHumidityInDehumidifyingMode(byte[] edt) {return false;}
 	/**
-	 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to set the relative humidity for the  gdehumidification h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetValueOfRelativeHumidityInDehumidifyingMode() {return null;}
 	/**
-	 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to set the temperature for the  gcooling h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetTemperatureValueInCoolingMode(byte[] edt) {return false;}
 	/**
-	 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to set the temperature for the  gcooling h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetTemperatureValueInCoolingMode() {return null;}
 	/**
-	 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to set the temperature for the  gheating h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetTemperatureValueInHeatingMode(byte[] edt) {return false;}
 	/**
-	 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to set the temperature for the  gheating h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetTemperatureValueInHeatingMode() {return null;}
 	/**
-	 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to set the temperature for the  gdehumidification h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetTemperatureValueInDehumidifyingMode(byte[] edt) {return false;}
 	/**
-	 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to set the temperature for the  gdehumidification h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetTemperatureValueInDehumidifyingMode() {return null;}
 	/**
@@ -165,19 +165,19 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 */
 	protected byte[] getSetTemperatureValueOfUserRemoteControl() {return null;}
 	/**
-	 * This property indicates the measured cooled air temperature at the outlet.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+	 * This property indicates the measured cooled air temperature at the outlet.<br>0x81 to 0x7D (-127 to 125  C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredCooledAirTemperature() {return null;}
 	/**
-	 * This property indicates the measured outdoor air temperature.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+	 * This property indicates the measured outdoor air temperature.<br>0x81 to 0x7D (-127 to 125  C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredOutdoorAirTemperature() {return null;}
 	/**
-	 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7  C to 12.5  C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setRelativeTemperatureSetting(byte[] edt) {return false;}
 	/**
-	 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7  C to 12.5  C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getRelativeTemperatureSetting() {return null;}
 	/**
@@ -221,11 +221,11 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 */
 	protected byte[] getAirFlowDirectionHorizontalSetting() {return null;}
 	/**
-	 * This property indicates if the air conditioner is in a �gspecial�h state (i.e. the �gdefrosting,�h �gpreheating,�h or �gheat removal�h state).<br>�gNormal operation�h state = 0x40, �gDefrosting�h state = 0x41, �gPreheating�h state = 0x42, �gHeat removal�h state = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+	 * This property indicates if the air conditioner is in a  gspecial h state (i.e. the  gdefrosting, h  gpreheating, h or  gheat removal h state).<br> gNormal operation h state = 0x40,  gDefrosting h state = 0x41,  gPreheating h state = 0x42,  gHeat removal h state = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getSpecialState() {return null;}
 	/**
-	 * Used to indicate when the air conditioner is in a �gnon-priority�h state.<br>�gNormal operation�h state = 0x40, �gNon-priority�h state = 0x41<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+	 * Used to indicate when the air conditioner is in a  gnon-priority h state.<br> gNormal operation h state = 0x40,  gNon-priority h state = 0x41<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getNonPriorityState() {return null;}
 	/**
@@ -265,11 +265,11 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 */
 	protected byte[] getMountedAirCleaningMethod() {return null;}
 	/**
-	 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
+	 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAirPurifierFunctionSetting(byte[] edt) {return false;}
 	/**
-	 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
+	 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAirPurifierFunctionSetting() {return null;}
 	/**
@@ -277,11 +277,11 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 */
 	protected byte[] getMountedAirRefreshMethod() {return null;}
 	/**
-	 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
+	 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAirRefresherFunctionSetting(byte[] edt) {return false;}
 	/**
-	 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
+	 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAirRefresherFunctionSetting() {return null;}
 	/**
@@ -289,19 +289,19 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 */
 	protected byte[] getMountedSelfCleaningMethod() {return null;}
 	/**
-	 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
+	 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSelfCleaningFunctionSetting(byte[] edt) {return false;}
 	/**
-	 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
+	 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSelfCleaningFunctionSetting() {return null;}
 	/**
-	 * Used to specify the �gspecial function�h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the  gspecial function h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSpecialFunctionSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify the �gspecial function�h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the  gspecial function h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSpecialFunctionSetting() {return null;}
 	/**
@@ -313,11 +313,11 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 */
 	protected boolean setThermostatSettingOverrideFunction(byte[] edt) {return false;}
 	/**
-	 * Used to set the air purification mode seting ON/OFF and to acquire the current setting.�B<br>Air purification ON��0x41,OFF�� 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to set the air purification mode seting ON/OFF and to acquire the current setting. B<br>Air purification ON  0x41,OFF   0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAirPurificationModeSetting(byte[] edt) {return false;}
 	/**
-	 * Used to set the air purification mode seting ON/OFF and to acquire the current setting.�B<br>Air purification ON��0x41,OFF�� 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to set the air purification mode seting ON/OFF and to acquire the current setting. B<br>Air purification ON  0x41,OFF   0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAirPurificationModeSetting() {return null;}
 	/**
@@ -587,7 +587,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 			break;
 		case EPC_AIR_PURIFIER_FUNCTION_SETTING:
 			edt = getAirPurifierFunctionSetting();
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
+			res.addProperty(epc, edt, (edt != null && (edt.length == 8)));
 			break;
 		case EPC_MOUNTED_AIR_REFRESH_METHOD:
 			edt = getMountedAirRefreshMethod();
@@ -595,7 +595,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 			break;
 		case EPC_AIR_REFRESHER_FUNCTION_SETTING:
 			edt = getAirRefresherFunctionSetting();
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
+			res.addProperty(epc, edt, (edt != null && (edt.length == 8)));
 			break;
 		case EPC_MOUNTED_SELF_CLEANING_METHOD:
 			edt = getMountedSelfCleaningMethod();
@@ -603,7 +603,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 			break;
 		case EPC_SELF_CLEANING_FUNCTION_SETTING:
 			edt = getSelfCleaningFunctionSetting();
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
+			res.addProperty(epc, edt, (edt != null && (edt.length == 8)));
 			break;
 		case EPC_SPECIAL_FUNCTION_SETTING:
 			edt = getSpecialFunctionSetting();
@@ -902,11 +902,11 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		}
 		
 		/**
-		 * Used to specify the operation mode (�gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+		 * Used to specify the operation mode ( gautomatic, h  gcooling, h  gheating, h  gdehumidification, h  gair circulator h or  gother h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
 		protected void onSetOperationModeSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the operation mode (�gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+		 * Used to specify the operation mode ( gautomatic, h  gcooling, h  gheating, h  gdehumidification, h  gair circulator h or  gother h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
 		protected void onGetOperationModeSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
@@ -918,51 +918,51 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 */
 		protected void onGetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the type of operation (�gnormal,�h �ghigh-speed�h or �gsilent�h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the type of operation ( gnormal, h  ghigh-speed h or  gsilent h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetNormalHighSpeedSilentOperationSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the type of operation (�gnormal,�h �ghigh-speed�h or �gsilent�h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the type of operation ( gnormal, h  ghigh-speed h or  gsilent h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetNormalHighSpeedSilentOperationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
+		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		protected void onSetSetTemperatureValue(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
+		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		protected void onGetSetTemperatureValue(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the relative humidity for the  gdehumidification h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetSetValueOfRelativeHumidityInDehumidifyingMode(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the relative humidity for the  gdehumidification h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetSetValueOfRelativeHumidityInDehumidifyingMode(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the  gcooling h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetSetTemperatureValueInCoolingMode(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the  gcooling h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetSetTemperatureValueInCoolingMode(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the  gheating h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetSetTemperatureValueInHeatingMode(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the  gheating h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetSetTemperatureValueInHeatingMode(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the  gdehumidification h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetSetTemperatureValueInDehumidifyingMode(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the  gdehumidification h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetSetTemperatureValueInDehumidifyingMode(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
@@ -986,19 +986,19 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 */
 		protected void onGetSetTemperatureValueOfUserRemoteControl(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * This property indicates the measured cooled air temperature at the outlet.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the measured cooled air temperature at the outlet.<br>0x81 to 0x7D (-127 to 125  C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMeasuredCooledAirTemperature(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * This property indicates the measured outdoor air temperature.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the measured outdoor air temperature.<br>0x81 to 0x7D (-127 to 125  C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMeasuredOutdoorAirTemperature(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7  C to 12.5  C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetRelativeTemperatureSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7  C to 12.5  C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetRelativeTemperatureSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
@@ -1042,11 +1042,11 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 */
 		protected void onGetAirFlowDirectionHorizontalSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * This property indicates if the air conditioner is in a �gspecial�h state (i.e. the �gdefrosting,�h �gpreheating,�h or �gheat removal�h state).<br>�gNormal operation�h state = 0x40, �gDefrosting�h state = 0x41, �gPreheating�h state = 0x42, �gHeat removal�h state = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * This property indicates if the air conditioner is in a  gspecial h state (i.e. the  gdefrosting, h  gpreheating, h or  gheat removal h state).<br> gNormal operation h state = 0x40,  gDefrosting h state = 0x41,  gPreheating h state = 0x42,  gHeat removal h state = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetSpecialState(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to indicate when the air conditioner is in a �gnon-priority�h state.<br>�gNormal operation�h state = 0x40, �gNon-priority�h state = 0x41<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * Used to indicate when the air conditioner is in a  gnon-priority h state.<br> gNormal operation h state = 0x40,  gNon-priority h state = 0x41<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetNonPriorityState(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
@@ -1086,11 +1086,11 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 */
 		protected void onGetMountedAirCleaningMethod(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
+		 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetAirPurifierFunctionSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
+		 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetAirPurifierFunctionSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
@@ -1098,11 +1098,11 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 */
 		protected void onGetMountedAirRefreshMethod(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
+		 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetAirRefresherFunctionSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
+		 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetAirRefresherFunctionSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
@@ -1110,19 +1110,19 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 */
 		protected void onGetMountedSelfCleaningMethod(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
+		 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetSelfCleaningFunctionSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
+		 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetSelfCleaningFunctionSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the �gspecial function�h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the  gspecial function h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetSpecialFunctionSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the �gspecial function�h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the  gspecial function h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetSpecialFunctionSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
@@ -1134,11 +1134,11 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 */
 		protected void onSetThermostatSettingOverrideFunction(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting.�B<br>Air purification ON��0x41,OFF�� 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting. B<br>Air purification ON  0x41,OFF   0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetAirPurificationModeSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting.�B<br>Air purification ON��0x41,OFF�� 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting. B<br>Air purification ON  0x41,OFF   0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetAirPurificationModeSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
@@ -1203,7 +1203,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		public Setter reqSetPowerLimitSetting(byte[] edt);
 		
 		/**
-		 * Used to specify the operation mode (�gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+		 * Used to specify the operation mode ( gautomatic, h  gcooling, h  gheating, h  gdehumidification, h  gair circulator h or  gother h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
 		public Setter reqSetOperationModeSetting(byte[] edt);
 		/**
@@ -1211,31 +1211,31 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 */
 		public Setter reqSetAutomaticTemperatureControlSetting(byte[] edt);
 		/**
-		 * Used to specify the type of operation (�gnormal,�h �ghigh-speed�h or �gsilent�h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the type of operation ( gnormal, h  ghigh-speed h or  gsilent h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetNormalHighSpeedSilentOperationSetting(byte[] edt);
 		/**
-		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
+		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		public Setter reqSetSetTemperatureValue(byte[] edt);
 		/**
-		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the relative humidity for the  gdehumidification h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetSetValueOfRelativeHumidityInDehumidifyingMode(byte[] edt);
 		/**
-		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the  gcooling h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetSetTemperatureValueInCoolingMode(byte[] edt);
 		/**
-		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the  gheating h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetSetTemperatureValueInHeatingMode(byte[] edt);
 		/**
-		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the  gdehumidification h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetSetTemperatureValueInDehumidifyingMode(byte[] edt);
 		/**
-		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7  C to 12.5  C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetRelativeTemperatureSetting(byte[] edt);
 		/**
@@ -1275,19 +1275,19 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 */
 		public Setter reqSetDegreeOfHumidificationSetting(byte[] edt);
 		/**
-		 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
+		 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetAirPurifierFunctionSetting(byte[] edt);
 		/**
-		 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
+		 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetAirRefresherFunctionSetting(byte[] edt);
 		/**
-		 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
+		 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetSelfCleaningFunctionSetting(byte[] edt);
 		/**
-		 * Used to specify the �gspecial function�h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the  gspecial function h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetSpecialFunctionSetting(byte[] edt);
 		/**
@@ -1295,7 +1295,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 */
 		public Setter reqSetThermostatSettingOverrideFunction(byte[] edt);
 		/**
-		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting.�B<br>Air purification ON��0x41,OFF�� 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting. B<br>Air purification ON  0x41,OFF   0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetAirPurificationModeSetting(byte[] edt);
 		/**
@@ -1646,17 +1646,17 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		}
 		@Override
 		public Setter reqSetAirPurifierFunctionSetting(byte[] edt) {
-			addProperty(EPC_AIR_PURIFIER_FUNCTION_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_AIR_PURIFIER_FUNCTION_SETTING, edt, (edt != null && (edt.length == 8)));
 			return this;
 		}
 		@Override
 		public Setter reqSetAirRefresherFunctionSetting(byte[] edt) {
-			addProperty(EPC_AIR_REFRESHER_FUNCTION_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_AIR_REFRESHER_FUNCTION_SETTING, edt, (edt != null && (edt.length == 8)));
 			return this;
 		}
 		@Override
 		public Setter reqSetSelfCleaningFunctionSetting(byte[] edt) {
-			addProperty(EPC_SELF_CLEANING_FUNCTION_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_SELF_CLEANING_FUNCTION_SETTING, edt, (edt != null && (edt.length == 8)));
 			return this;
 		}
 		@Override
@@ -1733,7 +1733,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		public Getter reqGetGetPropertyMap();
 		
 		/**
-		 * Used to specify the operation mode (�gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+		 * Used to specify the operation mode ( gautomatic, h  gcooling, h  gheating, h  gdehumidification, h  gair circulator h or  gother h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
 		public Getter reqGetOperationModeSetting();
 		/**
@@ -1741,27 +1741,27 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 */
 		public Getter reqGetAutomaticTemperatureControlSetting();
 		/**
-		 * Used to specify the type of operation (�gnormal,�h �ghigh-speed�h or �gsilent�h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the type of operation ( gnormal, h  ghigh-speed h or  gsilent h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetNormalHighSpeedSilentOperationSetting();
 		/**
-		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
+		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		public Getter reqGetSetTemperatureValue();
 		/**
-		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the relative humidity for the  gdehumidification h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetSetValueOfRelativeHumidityInDehumidifyingMode();
 		/**
-		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the  gcooling h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetSetTemperatureValueInCoolingMode();
 		/**
-		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the  gheating h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetSetTemperatureValueInHeatingMode();
 		/**
-		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the  gdehumidification h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetSetTemperatureValueInDehumidifyingMode();
 		/**
@@ -1785,15 +1785,15 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 */
 		public Getter reqGetSetTemperatureValueOfUserRemoteControl();
 		/**
-		 * This property indicates the measured cooled air temperature at the outlet.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the measured cooled air temperature at the outlet.<br>0x81 to 0x7D (-127 to 125  C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMeasuredCooledAirTemperature();
 		/**
-		 * This property indicates the measured outdoor air temperature.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the measured outdoor air temperature.<br>0x81 to 0x7D (-127 to 125  C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMeasuredOutdoorAirTemperature();
 		/**
-		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7  C to 12.5  C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetRelativeTemperatureSetting();
 		/**
@@ -1817,11 +1817,11 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 */
 		public Getter reqGetAirFlowDirectionHorizontalSetting();
 		/**
-		 * This property indicates if the air conditioner is in a �gspecial�h state (i.e. the �gdefrosting,�h �gpreheating,�h or �gheat removal�h state).<br>�gNormal operation�h state = 0x40, �gDefrosting�h state = 0x41, �gPreheating�h state = 0x42, �gHeat removal�h state = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * This property indicates if the air conditioner is in a  gspecial h state (i.e. the  gdefrosting, h  gpreheating, h or  gheat removal h state).<br> gNormal operation h state = 0x40,  gDefrosting h state = 0x41,  gPreheating h state = 0x42,  gHeat removal h state = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetSpecialState();
 		/**
-		 * Used to indicate when the air conditioner is in a �gnon-priority�h state.<br>�gNormal operation�h state = 0x40, �gNon-priority�h state = 0x41<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * Used to indicate when the air conditioner is in a  gnon-priority h state.<br> gNormal operation h state = 0x40,  gNon-priority h state = 0x41<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetNonPriorityState();
 		/**
@@ -1845,7 +1845,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 */
 		public Getter reqGetMountedAirCleaningMethod();
 		/**
-		 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
+		 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetAirPurifierFunctionSetting();
 		/**
@@ -1853,7 +1853,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 */
 		public Getter reqGetMountedAirRefreshMethod();
 		/**
-		 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
+		 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetAirRefresherFunctionSetting();
 		/**
@@ -1861,11 +1861,11 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 */
 		public Getter reqGetMountedSelfCleaningMethod();
 		/**
-		 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
+		 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetSelfCleaningFunctionSetting();
 		/**
-		 * Used to specify the �gspecial function�h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the  gspecial function h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetSpecialFunctionSetting();
 		/**
@@ -1873,7 +1873,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 */
 		public Getter reqGetOperationStatusOfComponents();
 		/**
-		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting.�B<br>Air purification ON��0x41,OFF�� 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting. B<br>Air purification ON  0x41,OFF   0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetAirPurificationModeSetting();
 		/**
@@ -2172,7 +2172,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		@Override
 		public Getter reqGetAirPurifierFunctionSetting() {
 			byte[] edt = getAirPurifierFunctionSetting();
-			addProperty(EPC_AIR_PURIFIER_FUNCTION_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_AIR_PURIFIER_FUNCTION_SETTING, edt, (edt != null && (edt.length == 8)));
 			return this;
 		}
 		@Override
@@ -2184,7 +2184,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		@Override
 		public Getter reqGetAirRefresherFunctionSetting() {
 			byte[] edt = getAirRefresherFunctionSetting();
-			addProperty(EPC_AIR_REFRESHER_FUNCTION_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_AIR_REFRESHER_FUNCTION_SETTING, edt, (edt != null && (edt.length == 8)));
 			return this;
 		}
 		@Override
@@ -2196,7 +2196,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		@Override
 		public Getter reqGetSelfCleaningFunctionSetting() {
 			byte[] edt = getSelfCleaningFunctionSetting();
-			addProperty(EPC_SELF_CLEANING_FUNCTION_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_SELF_CLEANING_FUNCTION_SETTING, edt, (edt != null && (edt.length == 8)));
 			return this;
 		}
 		@Override
@@ -2593,7 +2593,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		public Informer reqInformGetPropertyMap();
 		
 		/**
-		 * Used to specify the operation mode (�gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+		 * Used to specify the operation mode ( gautomatic, h  gcooling, h  gheating, h  gdehumidification, h  gair circulator h or  gother h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
 		public Informer reqInformOperationModeSetting();
 		/**
@@ -2601,27 +2601,27 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 */
 		public Informer reqInformAutomaticTemperatureControlSetting();
 		/**
-		 * Used to specify the type of operation (�gnormal,�h �ghigh-speed�h or �gsilent�h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the type of operation ( gnormal, h  ghigh-speed h or  gsilent h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformNormalHighSpeedSilentOperationSetting();
 		/**
-		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
+		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		public Informer reqInformSetTemperatureValue();
 		/**
-		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the relative humidity for the  gdehumidification h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformSetValueOfRelativeHumidityInDehumidifyingMode();
 		/**
-		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the  gcooling h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformSetTemperatureValueInCoolingMode();
 		/**
-		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the  gheating h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformSetTemperatureValueInHeatingMode();
 		/**
-		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the  gdehumidification h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformSetTemperatureValueInDehumidifyingMode();
 		/**
@@ -2645,15 +2645,15 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 */
 		public Informer reqInformSetTemperatureValueOfUserRemoteControl();
 		/**
-		 * This property indicates the measured cooled air temperature at the outlet.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the measured cooled air temperature at the outlet.<br>0x81 to 0x7D (-127 to 125  C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMeasuredCooledAirTemperature();
 		/**
-		 * This property indicates the measured outdoor air temperature.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the measured outdoor air temperature.<br>0x81 to 0x7D (-127 to 125  C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMeasuredOutdoorAirTemperature();
 		/**
-		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7  C to 12.5  C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformRelativeTemperatureSetting();
 		/**
@@ -2677,11 +2677,11 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 */
 		public Informer reqInformAirFlowDirectionHorizontalSetting();
 		/**
-		 * This property indicates if the air conditioner is in a �gspecial�h state (i.e. the �gdefrosting,�h �gpreheating,�h or �gheat removal�h state).<br>�gNormal operation�h state = 0x40, �gDefrosting�h state = 0x41, �gPreheating�h state = 0x42, �gHeat removal�h state = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * This property indicates if the air conditioner is in a  gspecial h state (i.e. the  gdefrosting, h  gpreheating, h or  gheat removal h state).<br> gNormal operation h state = 0x40,  gDefrosting h state = 0x41,  gPreheating h state = 0x42,  gHeat removal h state = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformSpecialState();
 		/**
-		 * Used to indicate when the air conditioner is in a �gnon-priority�h state.<br>�gNormal operation�h state = 0x40, �gNon-priority�h state = 0x41<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * Used to indicate when the air conditioner is in a  gnon-priority h state.<br> gNormal operation h state = 0x40,  gNon-priority h state = 0x41<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformNonPriorityState();
 		/**
@@ -2705,7 +2705,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 */
 		public Informer reqInformMountedAirCleaningMethod();
 		/**
-		 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
+		 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformAirPurifierFunctionSetting();
 		/**
@@ -2713,7 +2713,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 */
 		public Informer reqInformMountedAirRefreshMethod();
 		/**
-		 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
+		 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformAirRefresherFunctionSetting();
 		/**
@@ -2721,11 +2721,11 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 */
 		public Informer reqInformMountedSelfCleaningMethod();
 		/**
-		 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
+		 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformSelfCleaningFunctionSetting();
 		/**
-		 * Used to specify the �gspecial function�h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the  gspecial function h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformSpecialFunctionSetting();
 		/**
@@ -2733,7 +2733,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		 */
 		public Informer reqInformOperationStatusOfComponents();
 		/**
-		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting.�B<br>Air purification ON��0x41,OFF�� 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting. B<br>Air purification ON  0x41,OFF   0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformAirPurificationModeSetting();
 		/**
@@ -3032,7 +3032,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		@Override
 		public Informer reqInformAirPurifierFunctionSetting() {
 			byte[] edt = getAirPurifierFunctionSetting();
-			addProperty(EPC_AIR_PURIFIER_FUNCTION_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_AIR_PURIFIER_FUNCTION_SETTING, edt, (edt != null && (edt.length == 8)));
 			return this;
 		}
 		@Override
@@ -3044,7 +3044,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		@Override
 		public Informer reqInformAirRefresherFunctionSetting() {
 			byte[] edt = getAirRefresherFunctionSetting();
-			addProperty(EPC_AIR_REFRESHER_FUNCTION_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_AIR_REFRESHER_FUNCTION_SETTING, edt, (edt != null && (edt.length == 8)));
 			return this;
 		}
 		@Override
@@ -3056,7 +3056,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		@Override
 		public Informer reqInformSelfCleaningFunctionSetting() {
 			byte[] edt = getSelfCleaningFunctionSetting();
-			addProperty(EPC_SELF_CLEANING_FUNCTION_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_SELF_CLEANING_FUNCTION_SETTING, edt, (edt != null && (edt.length == 8)));
 			return this;
 		}
 		@Override
