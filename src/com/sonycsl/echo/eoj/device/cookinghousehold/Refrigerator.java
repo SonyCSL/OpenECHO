@@ -72,203 +72,203 @@ public abstract class Refrigerator extends DeviceObject {
 	}
 
 	/**
-	 * Door open/close status<br>Door open = 0x41, Door close = 0x42
+	 * Door open/close status<br>Door open = 0x41, Door close = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getDoorOpenCloseStatus();
 	/**
-	 * Door open warning status<br>Door open warning found = 0x41 Door open warning not found = 0x42
+	 * Door open warning status<br>Door open warning found = 0x41 Door open warning not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
 	 */
 	protected byte[] getDoorOpenWarning() {return null;}
 	/**
-	 * Used to acquire the status (i.e. open or closed) of the refrigerator compartment door.<br>Open = 0x41, closed = 0x42
+	 * Used to acquire the status (i.e. open or closed) of the refrigerator compartment door.<br>Open = 0x41, closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getRefrigeratorCompartmentDoorStatus() {return null;}
 	/**
-	 * Used to acquire the status (i.e. open or closed) of the freezer compartment door.<br>Open = 0x41, closed = 0x42
+	 * Used to acquire the status (i.e. open or closed) of the freezer compartment door.<br>Open = 0x41, closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getFreezerCompartmentDoorStatus() {return null;}
 	/**
-	 * Used to acquire the status (i.e. open or closed) of the ice compartment door.<br>Open = 0x41, closed = 0x42
+	 * Used to acquire the status (i.e. open or closed) of the ice compartment door.<br>Open = 0x41, closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getIceCompartmentDoorStatus() {return null;}
 	/**
-	 * Used to acquire the status (i.e. open or closed) of the vegetable compartment door.<br>Open = 0x41, closed = 0x42
+	 * Used to acquire the status (i.e. open or closed) of the vegetable compartment door.<br>Open = 0x41, closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getVegetableCompartmentDoorStatus() {return null;}
 	/**
-	 * Used to acquire the status (i.e. open or closed) of the multi-refrigerating mode compartment door.<br>Open = 0x41, closed = 0x42
+	 * Used to acquire the status (i.e. open or closed) of the multi-refrigerating mode compartment door.<br>Open = 0x41, closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMultiRefrigeraTingModeCompartmentDoor() {return null;}
 	/**
-	 * Used to acquire the maximum allowable temperature setting levels for the individual compartments of the refrigerator.<br>First byte: Refrigerator compartment Second byte: Freezer compartment Third byte:subzero-fresh compartment Fourth byte: Vegetable compartment Fifth byte: Multi-refrigerating mode compartment Sixth to eighth bytes: Reserved for future use. 0x01 to 0xFF (Level 1 to 255) 0x00 = no compartment
+	 * Used to acquire the maximum allowable temperature setting levels for the individual compartments of the refrigerator.<br>First byte: Refrigerator compartment Second byte: Freezer compartment Third byte:subzero-fresh compartment Fourth byte: Vegetable compartment Fifth byte: Multi-refrigerating mode compartment Sixth to eighth bytes: Reserved for future use. 0x01 to 0xFF (Level 1 to 255) 0x00 = no compartment<br><br>Data type : unsigned char x 8<br>Data size : 8 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMaximumAllowableTemperatureSettingLevel() {return null;}
 	/**
-	 * Used to specify the refrigerator compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+	 * Used to specify the refrigerator compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setRefrigeratorCompartmentTemperatureSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify the refrigerator compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+	 * Used to specify the refrigerator compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getRefrigeratorCompartmentTemperatureSetting() {return null;}
 	/**
-	 * Used to specify the freezer compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+	 * Used to specify the freezer compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setFreezerCompartmentTemperatureSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify the freezer compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+	 * Used to specify the freezer compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getFreezerCompartmentTemperatureSetting() {return null;}
 	/**
-	 * Used to specify the ice compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+	 * Used to specify the ice compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setIceTemperatureSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify the ice compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+	 * Used to specify the ice compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getIceTemperatureSetting() {return null;}
 	/**
-	 * Used to specify the vegetable compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+	 * Used to specify the vegetable compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setVegetableCompartmentTemperatureSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify the vegetable compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+	 * Used to specify the vegetable compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getVegetableCompartmentTemperatureSetting() {return null;}
 	/**
-	 * Used to specify the multi-refrigerating mode compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+	 * Used to specify the multi-refrigerating mode compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setMultiRefrigeraTingModeCompartmentTemperatureSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify the multi-refrigerating mode compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+	 * Used to specify the multi-refrigerating mode compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getMultiRefrigeraTingModeCompartmentTemperatureSetting() {return null;}
 	/**
-	 * Used to specify the refrigerator compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+	 * Used to specify the refrigerator compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setRefrigeratorCompartmentTemperatureLevelSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify the refrigerator compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+	 * Used to specify the refrigerator compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getRefrigeratorCompartmentTemperatureLevelSetting() {return null;}
 	/**
-	 * Used to specify the freezer compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+	 * Used to specify the freezer compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setFreezerCompartmentTemperatureLevelSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify the freezer compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+	 * Used to specify the freezer compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getFreezerCompartmentTemperatureLevelSetting() {return null;}
 	/**
-	 * Used to specify ice compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+	 * Used to specify ice compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setIceCompartmentTemperatureLevelSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify ice compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+	 * Used to specify ice compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getIceCompartmentTemperatureLevelSetting() {return null;}
 	/**
-	 * Used to specify the vegetable compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+	 * Used to specify the vegetable compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setVegetableCompartmentTemperatureLevelSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify the vegetable compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+	 * Used to specify the vegetable compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getVegetableCompartmentTemperatureLevelSetting() {return null;}
 	/**
-	 * Used to specify the multi-refrigerating mode compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+	 * Used to specify the multi-refrigerating mode compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setMultiRefrigeraTingModeCompartmentTemperatureLevelSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify the multi-refrigerating mode compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+	 * Used to specify the multi-refrigerating mode compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getMultiRefrigeraTingModeCompartmentTemperatureLevelSetting() {return null;}
 	/**
-	 * Used to acquire the measured refrigerator compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)
+	 * Used to acquire the measured refrigerator compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredRefrigeratorCompartmentTemperature() {return null;}
 	/**
-	 * Used to acquire the measured freezer compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)
+	 * Used to acquire the measured freezer compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredFreezerCompartmentTemperature() {return null;}
 	/**
-	 * Used to acquire the measured meat and fish compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)
+	 * Used to acquire the measured meat and fish compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredSubzeroFreshCompartmentTemperature() {return null;}
 	/**
-	 * Used to acquire the measured vegetable compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)
+	 * Used to acquire the measured vegetable compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredVegetableCompartmentTemperature() {return null;}
 	/**
-	 * Used to acquire the measured multi-refrigerating mode compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)
+	 * Used to acquire the measured multi-refrigerating mode compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredMultiRefrigeratinGModeCompartmentTemperature() {return null;}
 	/**
-	 * Used to acquire the rotation speed of the compressor. The rotation speed is expressed in terms of a level.<br>First byte: Maximum rotation speed L (0x01 to 0xFF (1 to 255)) Second byte: Rotation speed of the actual compressor: 0x00 to L (zero speed to highest speed)
+	 * Used to acquire the rotation speed of the compressor. The rotation speed is expressed in terms of a level.<br>First byte: Maximum rotation speed L (0x01 to 0xFF (1 to 255)) Second byte: Rotation speed of the actual compressor: 0x00 to L (zero speed to highest speed)<br><br>Data type : unsigned char<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getCompressorRotationSpeed() {return null;}
 	/**
-	 * Used to acquire the measured electric current consumption.<br>0x0000 to 0xFFFD (0 to 6553.3A)
+	 * Used to acquire the measured electric current consumption.<br>0x0000 to 0xFFFD (0 to 6553.3A)<br><br>Data type : unsigned char<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredElectricCurrentConsumption() {return null;}
 	/**
-	 * Used to acquire the rated power consumption.<br>0x0000 to 0xFFFD (0 to 65533W)
+	 * Used to acquire the rated power consumption.<br>0x0000 to 0xFFFD (0 to 65533W)<br><br>Data type : unsigned char<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getRatedPowerConsumption() {return null;}
 	/**
-	 * Used to specify whether or not to use the �gQuick freeze�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick freeze�h mode: 0x42 �gStandby for fast freezing�h mode: 0x43
+	 * Used to specify whether or not to use the �gQuick freeze�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick freeze�h mode: 0x42 �gStandby for fast freezing�h mode: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setQuickFreezeFunctionSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify whether or not to use the �gQuick freeze�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick freeze�h mode: 0x42 �gStandby for fast freezing�h mode: 0x43
+	 * Used to specify whether or not to use the �gQuick freeze�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick freeze�h mode: 0x42 �gStandby for fast freezing�h mode: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getQuickFreezeFunctionSetting() {return null;}
 	/**
-	 * Used to specify whether or not to use the �gquick refrigeration�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick refrigeration�h mode: 0x42 �gStandby for quick refrigeration�h mode: 0x43
+	 * Used to specify whether or not to use the �gquick refrigeration�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick refrigeration�h mode: 0x42 �gStandby for quick refrigeration�h mode: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setQuickRefrigerationFunctionSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify whether or not to use the �gquick refrigeration�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick refrigeration�h mode: 0x42 �gStandby for quick refrigeration�h mode: 0x43
+	 * Used to specify whether or not to use the �gquick refrigeration�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick refrigeration�h mode: 0x42 �gStandby for quick refrigeration�h mode: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getQuickRefrigerationFunctionSetting() {return null;}
 	/**
-	 * Used to specify whether or not to enable the automatic icemaker of the refrigerator, and to acquire the current setting.<br>�gEnable icemaker�h option: 0x41 �gDisable icemaker�h option: 0x42 �gTemporarily disable icemaker�h option: 0x43
+	 * Used to specify whether or not to enable the automatic icemaker of the refrigerator, and to acquire the current setting.<br>�gEnable icemaker�h option: 0x41 �gDisable icemaker�h option: 0x42 �gTemporarily disable icemaker�h option: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setIcemakerSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify whether or not to enable the automatic icemaker of the refrigerator, and to acquire the current setting.<br>�gEnable icemaker�h option: 0x41 �gDisable icemaker�h option: 0x42 �gTemporarily disable icemaker�h option: 0x43
+	 * Used to specify whether or not to enable the automatic icemaker of the refrigerator, and to acquire the current setting.<br>�gEnable icemaker�h option: 0x41 �gDisable icemaker�h option: 0x42 �gTemporarily disable icemaker�h option: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getIcemakerSetting() {return null;}
 	/**
-	 * Used to acquire the status of the automatic icemaker of the refrigerator.<br>�gIce-making in progress�h state: 0x41 �gIce-making stopped�h state: 0x42
+	 * Used to acquire the status of the automatic icemaker of the refrigerator.<br>�gIce-making in progress�h state: 0x41 �gIce-making stopped�h state: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getIcemakerOperationStatus() {return null;}
 	/**
-	 * Used to acquire the status of the tank of the automatic icemaker of the refrigerator in terms of whether it contains water or not.<br>Icemaker tank contains water: 0x41 There is no water left in the icemaker tank or the icemaker tank has not been positioned correctly in the refrigerator: 0x42
+	 * Used to acquire the status of the tank of the automatic icemaker of the refrigerator in terms of whether it contains water or not.<br>Icemaker tank contains water: 0x41 There is no water left in the icemaker tank or the icemaker tank has not been positioned correctly in the refrigerator: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getIcemakerTankStatus() {return null;}
 	/**
-	 * Used to specify whether or not to use the refrigerator compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42
+	 * Used to specify whether or not to use the refrigerator compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setRefrigeratorCompartmentHumidificationFunctionSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify whether or not to use the refrigerator compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42
+	 * Used to specify whether or not to use the refrigerator compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getRefrigeratorCompartmentHumidificationFunctionSetting() {return null;}
 	/**
-	 * Used to specify whether or not to use the vegetable compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42
+	 * Used to specify whether or not to use the vegetable compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setVegetableCompartmentHumidificationFunctionSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify whether or not to use the vegetable compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42
+	 * Used to specify whether or not to use the vegetable compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getVegetableCompartmentHumidificationFunctionSetting() {return null;}
 	/**
-	 * Used to specify whether or not to use the deodorization function of the refrigerator, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42
+	 * Used to specify whether or not to use the deodorization function of the refrigerator, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setDeodorizationFunctionSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify whether or not to use the deodorization function of the refrigerator, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42
+	 * Used to specify whether or not to use the deodorization function of the refrigerator, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getDeodorizationFunctionSetting() {return null;}
 
@@ -665,283 +665,282 @@ public abstract class Refrigerator extends DeviceObject {
 		}
 		
 		/**
-		 * Door open/close status<br>Door open = 0x41, Door close = 0x42
+		 * Door open/close status<br>Door open = 0x41, Door close = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 		 */
 		protected void onGetDoorOpenCloseStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Door open warning status<br>Door open warning found = 0x41 Door open warning not found = 0x42
+		 * Door open warning status<br>Door open warning found = 0x41 Door open warning not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
 		 */
 		protected void onGetDoorOpenWarning(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to acquire the status (i.e. open or closed) of the refrigerator compartment door.<br>Open = 0x41, closed = 0x42
+		 * Used to acquire the status (i.e. open or closed) of the refrigerator compartment door.<br>Open = 0x41, closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetRefrigeratorCompartmentDoorStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to acquire the status (i.e. open or closed) of the freezer compartment door.<br>Open = 0x41, closed = 0x42
+		 * Used to acquire the status (i.e. open or closed) of the freezer compartment door.<br>Open = 0x41, closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetFreezerCompartmentDoorStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to acquire the status (i.e. open or closed) of the ice compartment door.<br>Open = 0x41, closed = 0x42
+		 * Used to acquire the status (i.e. open or closed) of the ice compartment door.<br>Open = 0x41, closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetIceCompartmentDoorStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to acquire the status (i.e. open or closed) of the vegetable compartment door.<br>Open = 0x41, closed = 0x42
+		 * Used to acquire the status (i.e. open or closed) of the vegetable compartment door.<br>Open = 0x41, closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetVegetableCompartmentDoorStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to acquire the status (i.e. open or closed) of the multi-refrigerating mode compartment door.<br>Open = 0x41, closed = 0x42
+		 * Used to acquire the status (i.e. open or closed) of the multi-refrigerating mode compartment door.<br>Open = 0x41, closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMultiRefrigeraTingModeCompartmentDoor(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to acquire the maximum allowable temperature setting levels for the individual compartments of the refrigerator.<br>First byte: Refrigerator compartment Second byte: Freezer compartment Third byte:subzero-fresh compartment Fourth byte: Vegetable compartment Fifth byte: Multi-refrigerating mode compartment Sixth to eighth bytes: Reserved for future use. 0x01 to 0xFF (Level 1 to 255) 0x00 = no compartment
+		 * Used to acquire the maximum allowable temperature setting levels for the individual compartments of the refrigerator.<br>First byte: Refrigerator compartment Second byte: Freezer compartment Third byte:subzero-fresh compartment Fourth byte: Vegetable compartment Fifth byte: Multi-refrigerating mode compartment Sixth to eighth bytes: Reserved for future use. 0x01 to 0xFF (Level 1 to 255) 0x00 = no compartment<br><br>Data type : unsigned char x 8<br>Data size : 8 bytes<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMaximumAllowableTemperatureSettingLevel(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the refrigerator compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to specify the refrigerator compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetRefrigeratorCompartmentTemperatureSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the refrigerator compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to specify the refrigerator compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetRefrigeratorCompartmentTemperatureSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the freezer compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to specify the freezer compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetFreezerCompartmentTemperatureSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the freezer compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to specify the freezer compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetFreezerCompartmentTemperatureSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the ice compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to specify the ice compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetIceTemperatureSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the ice compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to specify the ice compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetIceTemperatureSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the vegetable compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to specify the vegetable compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetVegetableCompartmentTemperatureSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the vegetable compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to specify the vegetable compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetVegetableCompartmentTemperatureSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the multi-refrigerating mode compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to specify the multi-refrigerating mode compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetMultiRefrigeraTingModeCompartmentTemperatureSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the multi-refrigerating mode compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to specify the multi-refrigerating mode compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetMultiRefrigeraTingModeCompartmentTemperatureSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the refrigerator compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+		 * Used to specify the refrigerator compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetRefrigeratorCompartmentTemperatureLevelSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the refrigerator compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+		 * Used to specify the refrigerator compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetRefrigeratorCompartmentTemperatureLevelSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the freezer compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+		 * Used to specify the freezer compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetFreezerCompartmentTemperatureLevelSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the freezer compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+		 * Used to specify the freezer compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetFreezerCompartmentTemperatureLevelSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify ice compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+		 * Used to specify ice compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetIceCompartmentTemperatureLevelSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify ice compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+		 * Used to specify ice compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetIceCompartmentTemperatureLevelSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the vegetable compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+		 * Used to specify the vegetable compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetVegetableCompartmentTemperatureLevelSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the vegetable compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+		 * Used to specify the vegetable compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetVegetableCompartmentTemperatureLevelSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the multi-refrigerating mode compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+		 * Used to specify the multi-refrigerating mode compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetMultiRefrigeraTingModeCompartmentTemperatureLevelSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the multi-refrigerating mode compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+		 * Used to specify the multi-refrigerating mode compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetMultiRefrigeraTingModeCompartmentTemperatureLevelSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to acquire the measured refrigerator compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to acquire the measured refrigerator compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMeasuredRefrigeratorCompartmentTemperature(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to acquire the measured freezer compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to acquire the measured freezer compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMeasuredFreezerCompartmentTemperature(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to acquire the measured meat and fish compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to acquire the measured meat and fish compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMeasuredSubzeroFreshCompartmentTemperature(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to acquire the measured vegetable compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to acquire the measured vegetable compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMeasuredVegetableCompartmentTemperature(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to acquire the measured multi-refrigerating mode compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to acquire the measured multi-refrigerating mode compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMeasuredMultiRefrigeratinGModeCompartmentTemperature(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to acquire the rotation speed of the compressor. The rotation speed is expressed in terms of a level.<br>First byte: Maximum rotation speed L (0x01 to 0xFF (1 to 255)) Second byte: Rotation speed of the actual compressor: 0x00 to L (zero speed to highest speed)
+		 * Used to acquire the rotation speed of the compressor. The rotation speed is expressed in terms of a level.<br>First byte: Maximum rotation speed L (0x01 to 0xFF (1 to 255)) Second byte: Rotation speed of the actual compressor: 0x00 to L (zero speed to highest speed)<br><br>Data type : unsigned char<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetCompressorRotationSpeed(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to acquire the measured electric current consumption.<br>0x0000 to 0xFFFD (0 to 6553.3A)
+		 * Used to acquire the measured electric current consumption.<br>0x0000 to 0xFFFD (0 to 6553.3A)<br><br>Data type : unsigned char<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMeasuredElectricCurrentConsumption(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to acquire the rated power consumption.<br>0x0000 to 0xFFFD (0 to 65533W)
+		 * Used to acquire the rated power consumption.<br>0x0000 to 0xFFFD (0 to 65533W)<br><br>Data type : unsigned char<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetRatedPowerConsumption(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify whether or not to use the �gQuick freeze�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick freeze�h mode: 0x42 �gStandby for fast freezing�h mode: 0x43
+		 * Used to specify whether or not to use the �gQuick freeze�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick freeze�h mode: 0x42 �gStandby for fast freezing�h mode: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetQuickFreezeFunctionSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify whether or not to use the �gQuick freeze�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick freeze�h mode: 0x42 �gStandby for fast freezing�h mode: 0x43
+		 * Used to specify whether or not to use the �gQuick freeze�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick freeze�h mode: 0x42 �gStandby for fast freezing�h mode: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetQuickFreezeFunctionSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify whether or not to use the �gquick refrigeration�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick refrigeration�h mode: 0x42 �gStandby for quick refrigeration�h mode: 0x43
+		 * Used to specify whether or not to use the �gquick refrigeration�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick refrigeration�h mode: 0x42 �gStandby for quick refrigeration�h mode: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetQuickRefrigerationFunctionSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify whether or not to use the �gquick refrigeration�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick refrigeration�h mode: 0x42 �gStandby for quick refrigeration�h mode: 0x43
+		 * Used to specify whether or not to use the �gquick refrigeration�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick refrigeration�h mode: 0x42 �gStandby for quick refrigeration�h mode: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetQuickRefrigerationFunctionSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify whether or not to enable the automatic icemaker of the refrigerator, and to acquire the current setting.<br>�gEnable icemaker�h option: 0x41 �gDisable icemaker�h option: 0x42 �gTemporarily disable icemaker�h option: 0x43
+		 * Used to specify whether or not to enable the automatic icemaker of the refrigerator, and to acquire the current setting.<br>�gEnable icemaker�h option: 0x41 �gDisable icemaker�h option: 0x42 �gTemporarily disable icemaker�h option: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetIcemakerSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify whether or not to enable the automatic icemaker of the refrigerator, and to acquire the current setting.<br>�gEnable icemaker�h option: 0x41 �gDisable icemaker�h option: 0x42 �gTemporarily disable icemaker�h option: 0x43
+		 * Used to specify whether or not to enable the automatic icemaker of the refrigerator, and to acquire the current setting.<br>�gEnable icemaker�h option: 0x41 �gDisable icemaker�h option: 0x42 �gTemporarily disable icemaker�h option: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetIcemakerSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to acquire the status of the automatic icemaker of the refrigerator.<br>�gIce-making in progress�h state: 0x41 �gIce-making stopped�h state: 0x42
+		 * Used to acquire the status of the automatic icemaker of the refrigerator.<br>�gIce-making in progress�h state: 0x41 �gIce-making stopped�h state: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetIcemakerOperationStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to acquire the status of the tank of the automatic icemaker of the refrigerator in terms of whether it contains water or not.<br>Icemaker tank contains water: 0x41 There is no water left in the icemaker tank or the icemaker tank has not been positioned correctly in the refrigerator: 0x42
+		 * Used to acquire the status of the tank of the automatic icemaker of the refrigerator in terms of whether it contains water or not.<br>Icemaker tank contains water: 0x41 There is no water left in the icemaker tank or the icemaker tank has not been positioned correctly in the refrigerator: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetIcemakerTankStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify whether or not to use the refrigerator compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42
+		 * Used to specify whether or not to use the refrigerator compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetRefrigeratorCompartmentHumidificationFunctionSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify whether or not to use the refrigerator compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42
+		 * Used to specify whether or not to use the refrigerator compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetRefrigeratorCompartmentHumidificationFunctionSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify whether or not to use the vegetable compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42
+		 * Used to specify whether or not to use the vegetable compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetVegetableCompartmentHumidificationFunctionSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify whether or not to use the vegetable compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42
+		 * Used to specify whether or not to use the vegetable compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetVegetableCompartmentHumidificationFunctionSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify whether or not to use the deodorization function of the refrigerator, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42
+		 * Used to specify whether or not to use the deodorization function of the refrigerator, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetDeodorizationFunctionSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify whether or not to use the deodorization function of the refrigerator, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42
+		 * Used to specify whether or not to use the deodorization function of the refrigerator, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetDeodorizationFunctionSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 
 	}
 	
 	public interface Setter extends DeviceObject.Setter {
-		public Setter reqSetPower(byte[] edt);
+		public Setter reqSetOperationStatus(byte[] edt);
 		public Setter reqSetInstallationLocation(byte[] edt);
-		public Setter reqSetCurrentLimiting(byte[] edt);
-		public Setter reqSetPowerSaving(byte[] edt);
-		public Setter reqSetLocation(byte[] edt);
-		public Setter reqSetCurrentTime(byte[] edt);
-		public Setter reqSetCurrentDate(byte[] edt);
-		public Setter reqSetPowerLimitation(byte[] edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
+		public Setter reqSetPositionInformation(byte[] edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt);
 		
 		/**
-		 * Used to specify the refrigerator compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to specify the refrigerator compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetRefrigeratorCompartmentTemperatureSetting(byte[] edt);
 		/**
-		 * Used to specify the freezer compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to specify the freezer compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetFreezerCompartmentTemperatureSetting(byte[] edt);
 		/**
-		 * Used to specify the ice compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to specify the ice compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetIceTemperatureSetting(byte[] edt);
 		/**
-		 * Used to specify the vegetable compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to specify the vegetable compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetVegetableCompartmentTemperatureSetting(byte[] edt);
 		/**
-		 * Used to specify the multi-refrigerating mode compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to specify the multi-refrigerating mode compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetMultiRefrigeraTingModeCompartmentTemperatureSetting(byte[] edt);
 		/**
-		 * Used to specify the refrigerator compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+		 * Used to specify the refrigerator compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetRefrigeratorCompartmentTemperatureLevelSetting(byte[] edt);
 		/**
-		 * Used to specify the freezer compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+		 * Used to specify the freezer compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetFreezerCompartmentTemperatureLevelSetting(byte[] edt);
 		/**
-		 * Used to specify ice compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+		 * Used to specify ice compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetIceCompartmentTemperatureLevelSetting(byte[] edt);
 		/**
-		 * Used to specify the vegetable compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+		 * Used to specify the vegetable compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetVegetableCompartmentTemperatureLevelSetting(byte[] edt);
 		/**
-		 * Used to specify the multi-refrigerating mode compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+		 * Used to specify the multi-refrigerating mode compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetMultiRefrigeraTingModeCompartmentTemperatureLevelSetting(byte[] edt);
 		/**
-		 * Used to specify whether or not to use the �gQuick freeze�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick freeze�h mode: 0x42 �gStandby for fast freezing�h mode: 0x43
+		 * Used to specify whether or not to use the �gQuick freeze�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick freeze�h mode: 0x42 �gStandby for fast freezing�h mode: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetQuickFreezeFunctionSetting(byte[] edt);
 		/**
-		 * Used to specify whether or not to use the �gquick refrigeration�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick refrigeration�h mode: 0x42 �gStandby for quick refrigeration�h mode: 0x43
+		 * Used to specify whether or not to use the �gquick refrigeration�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick refrigeration�h mode: 0x42 �gStandby for quick refrigeration�h mode: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetQuickRefrigerationFunctionSetting(byte[] edt);
 		/**
-		 * Used to specify whether or not to enable the automatic icemaker of the refrigerator, and to acquire the current setting.<br>�gEnable icemaker�h option: 0x41 �gDisable icemaker�h option: 0x42 �gTemporarily disable icemaker�h option: 0x43
+		 * Used to specify whether or not to enable the automatic icemaker of the refrigerator, and to acquire the current setting.<br>�gEnable icemaker�h option: 0x41 �gDisable icemaker�h option: 0x42 �gTemporarily disable icemaker�h option: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetIcemakerSetting(byte[] edt);
 		/**
-		 * Used to specify whether or not to use the refrigerator compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42
+		 * Used to specify whether or not to use the refrigerator compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetRefrigeratorCompartmentHumidificationFunctionSetting(byte[] edt);
 		/**
-		 * Used to specify whether or not to use the vegetable compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42
+		 * Used to specify whether or not to use the vegetable compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetVegetableCompartmentHumidificationFunctionSetting(byte[] edt);
 		/**
-		 * Used to specify whether or not to use the deodorization function of the refrigerator, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42
+		 * Used to specify whether or not to use the deodorization function of the refrigerator, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetDeodorizationFunctionSetting(byte[] edt);
-
 	}
 
 	public class SetterImpl extends DeviceObject.SetterImpl implements Setter {
@@ -951,43 +950,36 @@ public abstract class Refrigerator extends DeviceObject {
 		}
 		
 		@Override
-		public Setter reqSetPower(byte[] edt) {
-			return (Setter)super.reqSetPower(edt);
+		public Setter reqSetOperationStatus(byte[] edt) {
+			return (Setter)super.reqSetOperationStatus(edt);
 		}
-
 		@Override
 		public Setter reqSetInstallationLocation(byte[] edt) {
 			return (Setter)super.reqSetInstallationLocation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentLimiting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimiting(edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentLimitSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerSaving(byte[] edt) {
-			return (Setter)super.reqSetPowerSaving(edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetLocation(byte[] edt) {
-			return (Setter)super.reqSetLocation(edt);
+		public Setter reqSetPositionInformation(byte[] edt) {
+			return (Setter)super.reqSetPositionInformation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentTime(byte[] edt) {
-			return (Setter)super.reqSetCurrentTime(edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentTimeSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentDate(byte[] edt) {
-			return (Setter)super.reqSetCurrentDate(edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentDateSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerLimitation(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitation(edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
 		@Override
@@ -1070,7 +1062,6 @@ public abstract class Refrigerator extends DeviceObject {
 			addProperty(EPC_DEODORIZATION_FUNCTION_SETTING, edt, setDeodorizationFunctionSetting(edt));
 			return this;
 		}
-
 	}
 	
 	public class SetterProxy extends DeviceObject.SetterProxy implements Setter {
@@ -1079,45 +1070,37 @@ public abstract class Refrigerator extends DeviceObject {
 			super(esv);
 		}
 
-		
 		@Override
-		public Setter reqSetPower(byte[] edt) {
-			return (Setter)super.reqSetPower(edt);
+		public Setter reqSetOperationStatus(byte[] edt) {
+			return (Setter)super.reqSetOperationStatus(edt);
 		}
-
 		@Override
 		public Setter reqSetInstallationLocation(byte[] edt) {
 			return (Setter)super.reqSetInstallationLocation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentLimiting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimiting(edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentLimitSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerSaving(byte[] edt) {
-			return (Setter)super.reqSetPowerSaving(edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetLocation(byte[] edt) {
-			return (Setter)super.reqSetLocation(edt);
+		public Setter reqSetPositionInformation(byte[] edt) {
+			return (Setter)super.reqSetPositionInformation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentTime(byte[] edt) {
-			return (Setter)super.reqSetCurrentTime(edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentTimeSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentDate(byte[] edt) {
-			return (Setter)super.reqSetCurrentDate(edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentDateSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerLimitation(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitation(edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
 		@Override
@@ -1200,291 +1183,266 @@ public abstract class Refrigerator extends DeviceObject {
 			addProperty(EPC_DEODORIZATION_FUNCTION_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-
 	}
 
 	public interface Getter extends DeviceObject.Getter {
-		public Getter reqGetPower();
+		public Getter reqGetOperationStatus();
 		public Getter reqGetInstallationLocation();
-		public Getter reqGetVersion();
-		public Getter reqGetIdNumber();
-		public Getter reqGetElectricityConsumption();
-		public Getter reqGetPowerConsumption();
-		public Getter reqGetMakerErrorCode();
-		public Getter reqGetCurrentLimiting();
-		public Getter reqGetError();
-		public Getter reqGetErrorInfo();
-		public Getter reqGetMakerCode();
-		public Getter reqGetWorkplaceCode();
+		public Getter reqGetStandardVersionInformation();
+		public Getter reqGetIdentificationNumber();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption();
+		public Getter reqGetManufacturersFaultCode();
+		public Getter reqGetCurrentLimitSetting();
+		public Getter reqGetFaultStatus();
+		public Getter reqGetFaultDescription();
+		public Getter reqGetManufacturerCode();
+		public Getter reqGetBusinessFacilityCode();
 		public Getter reqGetProductCode();
-		public Getter reqGetManufacturingNumber();
-		public Getter reqGetDateOfManufacture();
-		public Getter reqGetPowerSaving();
-		public Getter reqGetLocation();
-		public Getter reqGetCurrentTime();
-		public Getter reqGetCurrentDate();
-		public Getter reqGetPowerLimitation();
-		public Getter reqGetWorkingTime();
-		public Getter reqGetAnnoPropertyMap();
+		public Getter reqGetProductionNumber();
+		public Getter reqGetProductionDate();
+		public Getter reqGetPowerSavingOperationSetting();
+		public Getter reqGetPositionInformation();
+		public Getter reqGetCurrentTimeSetting();
+		public Getter reqGetCurrentDateSetting();
+		public Getter reqGetPowerLimitSetting();
+		public Getter reqGetCumulativeOperatingTime();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap();
 		public Getter reqGetSetPropertyMap();
 		public Getter reqGetGetPropertyMap();
 		
 		/**
-		 * Door open/close status<br>Door open = 0x41, Door close = 0x42
+		 * Door open/close status<br>Door open = 0x41, Door close = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 		 */
 		public Getter reqGetDoorOpenCloseStatus();
 		/**
-		 * Door open warning status<br>Door open warning found = 0x41 Door open warning not found = 0x42
+		 * Door open warning status<br>Door open warning found = 0x41 Door open warning not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
 		 */
 		public Getter reqGetDoorOpenWarning();
 		/**
-		 * Used to acquire the status (i.e. open or closed) of the refrigerator compartment door.<br>Open = 0x41, closed = 0x42
+		 * Used to acquire the status (i.e. open or closed) of the refrigerator compartment door.<br>Open = 0x41, closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetRefrigeratorCompartmentDoorStatus();
 		/**
-		 * Used to acquire the status (i.e. open or closed) of the freezer compartment door.<br>Open = 0x41, closed = 0x42
+		 * Used to acquire the status (i.e. open or closed) of the freezer compartment door.<br>Open = 0x41, closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetFreezerCompartmentDoorStatus();
 		/**
-		 * Used to acquire the status (i.e. open or closed) of the ice compartment door.<br>Open = 0x41, closed = 0x42
+		 * Used to acquire the status (i.e. open or closed) of the ice compartment door.<br>Open = 0x41, closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetIceCompartmentDoorStatus();
 		/**
-		 * Used to acquire the status (i.e. open or closed) of the vegetable compartment door.<br>Open = 0x41, closed = 0x42
+		 * Used to acquire the status (i.e. open or closed) of the vegetable compartment door.<br>Open = 0x41, closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetVegetableCompartmentDoorStatus();
 		/**
-		 * Used to acquire the status (i.e. open or closed) of the multi-refrigerating mode compartment door.<br>Open = 0x41, closed = 0x42
+		 * Used to acquire the status (i.e. open or closed) of the multi-refrigerating mode compartment door.<br>Open = 0x41, closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMultiRefrigeraTingModeCompartmentDoor();
 		/**
-		 * Used to acquire the maximum allowable temperature setting levels for the individual compartments of the refrigerator.<br>First byte: Refrigerator compartment Second byte: Freezer compartment Third byte:subzero-fresh compartment Fourth byte: Vegetable compartment Fifth byte: Multi-refrigerating mode compartment Sixth to eighth bytes: Reserved for future use. 0x01 to 0xFF (Level 1 to 255) 0x00 = no compartment
+		 * Used to acquire the maximum allowable temperature setting levels for the individual compartments of the refrigerator.<br>First byte: Refrigerator compartment Second byte: Freezer compartment Third byte:subzero-fresh compartment Fourth byte: Vegetable compartment Fifth byte: Multi-refrigerating mode compartment Sixth to eighth bytes: Reserved for future use. 0x01 to 0xFF (Level 1 to 255) 0x00 = no compartment<br><br>Data type : unsigned char x 8<br>Data size : 8 bytes<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMaximumAllowableTemperatureSettingLevel();
 		/**
-		 * Used to specify the refrigerator compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to specify the refrigerator compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetRefrigeratorCompartmentTemperatureSetting();
 		/**
-		 * Used to specify the freezer compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to specify the freezer compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetFreezerCompartmentTemperatureSetting();
 		/**
-		 * Used to specify the ice compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to specify the ice compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetIceTemperatureSetting();
 		/**
-		 * Used to specify the vegetable compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to specify the vegetable compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetVegetableCompartmentTemperatureSetting();
 		/**
-		 * Used to specify the multi-refrigerating mode compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to specify the multi-refrigerating mode compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetMultiRefrigeraTingModeCompartmentTemperatureSetting();
 		/**
-		 * Used to specify the refrigerator compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+		 * Used to specify the refrigerator compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetRefrigeratorCompartmentTemperatureLevelSetting();
 		/**
-		 * Used to specify the freezer compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+		 * Used to specify the freezer compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetFreezerCompartmentTemperatureLevelSetting();
 		/**
-		 * Used to specify ice compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+		 * Used to specify ice compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetIceCompartmentTemperatureLevelSetting();
 		/**
-		 * Used to specify the vegetable compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+		 * Used to specify the vegetable compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetVegetableCompartmentTemperatureLevelSetting();
 		/**
-		 * Used to specify the multi-refrigerating mode compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+		 * Used to specify the multi-refrigerating mode compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetMultiRefrigeraTingModeCompartmentTemperatureLevelSetting();
 		/**
-		 * Used to acquire the measured refrigerator compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to acquire the measured refrigerator compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMeasuredRefrigeratorCompartmentTemperature();
 		/**
-		 * Used to acquire the measured freezer compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to acquire the measured freezer compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMeasuredFreezerCompartmentTemperature();
 		/**
-		 * Used to acquire the measured meat and fish compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to acquire the measured meat and fish compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMeasuredSubzeroFreshCompartmentTemperature();
 		/**
-		 * Used to acquire the measured vegetable compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to acquire the measured vegetable compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMeasuredVegetableCompartmentTemperature();
 		/**
-		 * Used to acquire the measured multi-refrigerating mode compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to acquire the measured multi-refrigerating mode compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMeasuredMultiRefrigeratinGModeCompartmentTemperature();
 		/**
-		 * Used to acquire the rotation speed of the compressor. The rotation speed is expressed in terms of a level.<br>First byte: Maximum rotation speed L (0x01 to 0xFF (1 to 255)) Second byte: Rotation speed of the actual compressor: 0x00 to L (zero speed to highest speed)
+		 * Used to acquire the rotation speed of the compressor. The rotation speed is expressed in terms of a level.<br>First byte: Maximum rotation speed L (0x01 to 0xFF (1 to 255)) Second byte: Rotation speed of the actual compressor: 0x00 to L (zero speed to highest speed)<br><br>Data type : unsigned char<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetCompressorRotationSpeed();
 		/**
-		 * Used to acquire the measured electric current consumption.<br>0x0000 to 0xFFFD (0 to 6553.3A)
+		 * Used to acquire the measured electric current consumption.<br>0x0000 to 0xFFFD (0 to 6553.3A)<br><br>Data type : unsigned char<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMeasuredElectricCurrentConsumption();
 		/**
-		 * Used to acquire the rated power consumption.<br>0x0000 to 0xFFFD (0 to 65533W)
+		 * Used to acquire the rated power consumption.<br>0x0000 to 0xFFFD (0 to 65533W)<br><br>Data type : unsigned char<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetRatedPowerConsumption();
 		/**
-		 * Used to specify whether or not to use the �gQuick freeze�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick freeze�h mode: 0x42 �gStandby for fast freezing�h mode: 0x43
+		 * Used to specify whether or not to use the �gQuick freeze�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick freeze�h mode: 0x42 �gStandby for fast freezing�h mode: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetQuickFreezeFunctionSetting();
 		/**
-		 * Used to specify whether or not to use the �gquick refrigeration�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick refrigeration�h mode: 0x42 �gStandby for quick refrigeration�h mode: 0x43
+		 * Used to specify whether or not to use the �gquick refrigeration�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick refrigeration�h mode: 0x42 �gStandby for quick refrigeration�h mode: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetQuickRefrigerationFunctionSetting();
 		/**
-		 * Used to specify whether or not to enable the automatic icemaker of the refrigerator, and to acquire the current setting.<br>�gEnable icemaker�h option: 0x41 �gDisable icemaker�h option: 0x42 �gTemporarily disable icemaker�h option: 0x43
+		 * Used to specify whether or not to enable the automatic icemaker of the refrigerator, and to acquire the current setting.<br>�gEnable icemaker�h option: 0x41 �gDisable icemaker�h option: 0x42 �gTemporarily disable icemaker�h option: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetIcemakerSetting();
 		/**
-		 * Used to acquire the status of the automatic icemaker of the refrigerator.<br>�gIce-making in progress�h state: 0x41 �gIce-making stopped�h state: 0x42
+		 * Used to acquire the status of the automatic icemaker of the refrigerator.<br>�gIce-making in progress�h state: 0x41 �gIce-making stopped�h state: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetIcemakerOperationStatus();
 		/**
-		 * Used to acquire the status of the tank of the automatic icemaker of the refrigerator in terms of whether it contains water or not.<br>Icemaker tank contains water: 0x41 There is no water left in the icemaker tank or the icemaker tank has not been positioned correctly in the refrigerator: 0x42
+		 * Used to acquire the status of the tank of the automatic icemaker of the refrigerator in terms of whether it contains water or not.<br>Icemaker tank contains water: 0x41 There is no water left in the icemaker tank or the icemaker tank has not been positioned correctly in the refrigerator: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetIcemakerTankStatus();
 		/**
-		 * Used to specify whether or not to use the refrigerator compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42
+		 * Used to specify whether or not to use the refrigerator compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetRefrigeratorCompartmentHumidificationFunctionSetting();
 		/**
-		 * Used to specify whether or not to use the vegetable compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42
+		 * Used to specify whether or not to use the vegetable compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetVegetableCompartmentHumidificationFunctionSetting();
 		/**
-		 * Used to specify whether or not to use the deodorization function of the refrigerator, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42
+		 * Used to specify whether or not to use the deodorization function of the refrigerator, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetDeodorizationFunctionSetting();
-
 	}
 	
 	public class GetterImpl extends DeviceObject.GetterImpl implements Getter {
 
 		@Override
-		public Getter reqGetPower() {
-			return (Getter)super.reqGetPower();
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
 		}
-
 		@Override
 		public Getter reqGetInstallationLocation() {
 			return (Getter)super.reqGetInstallationLocation();
 		}
-
 		@Override
-		public Getter reqGetVersion() {
-			return (Getter)super.reqGetVersion();
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
 		}
-
 		@Override
-		public Getter reqGetIdNumber() {
-			return (Getter)super.reqGetIdNumber();
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
 		}
-
 		@Override
-		public Getter reqGetElectricityConsumption() {
-			return (Getter)super.reqGetElectricityConsumption();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetPowerConsumption() {
-			return (Getter)super.reqGetPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetMakerErrorCode() {
-			return (Getter)super.reqGetMakerErrorCode();
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
 		}
-
 		@Override
-		public Getter reqGetCurrentLimiting() {
-			return (Getter)super.reqGetCurrentLimiting();
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetError() {
-			return (Getter)super.reqGetError();
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
 		}
-
 		@Override
-		public Getter reqGetErrorInfo() {
-			return (Getter)super.reqGetErrorInfo();
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
 		}
-
 		@Override
-		public Getter reqGetMakerCode() {
-			return (Getter)super.reqGetMakerCode();
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
 		}
-
 		@Override
-		public Getter reqGetWorkplaceCode() {
-			return (Getter)super.reqGetWorkplaceCode();
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
 		}
-
 		@Override
 		public Getter reqGetProductCode() {
 			return (Getter)super.reqGetProductCode();
 		}
-
 		@Override
-		public Getter reqGetManufacturingNumber() {
-			return (Getter)super.reqGetManufacturingNumber();
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
 		}
-
 		@Override
-		public Getter reqGetDateOfManufacture() {
-			return (Getter)super.reqGetDateOfManufacture();
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
 		}
-
 		@Override
-		public Getter reqGetPowerSaving() {
-			return (Getter)super.reqGetPowerSaving();
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Getter reqGetLocation() {
-			return (Getter)super.reqGetLocation();
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
 		}
-
 		@Override
-		public Getter reqGetCurrentTime() {
-			return (Getter)super.reqGetCurrentTime();
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
 		}
-
 		@Override
-		public Getter reqGetCurrentDate() {
-			return (Getter)super.reqGetCurrentDate();
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
 		}
-
 		@Override
-		public Getter reqGetPowerLimitation() {
-			return (Getter)super.reqGetPowerLimitation();
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetWorkingTime() {
-			return (Getter)super.reqGetWorkingTime();
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
 		}
-
 		@Override
-		public Getter reqGetAnnoPropertyMap() {
-			return (Getter)super.reqGetAnnoPropertyMap();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetSetPropertyMap() {
 			return (Getter)super.reqGetSetPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetGetPropertyMap() {
 			return (Getter)super.reqGetGetPropertyMap();
@@ -1694,126 +1652,102 @@ public abstract class Refrigerator extends DeviceObject {
 			addProperty(EPC_DEODORIZATION_FUNCTION_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-
 	}
 
 	public class GetterProxy extends DeviceObject.GetterProxy implements Getter {
 
 		@Override
-		public Getter reqGetPower() {
-			return (Getter)super.reqGetPower();
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
 		}
-
 		@Override
 		public Getter reqGetInstallationLocation() {
 			return (Getter)super.reqGetInstallationLocation();
 		}
-
 		@Override
-		public Getter reqGetVersion() {
-			return (Getter)super.reqGetVersion();
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
 		}
-
 		@Override
-		public Getter reqGetIdNumber() {
-			return (Getter)super.reqGetIdNumber();
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
 		}
-
 		@Override
-		public Getter reqGetElectricityConsumption() {
-			return (Getter)super.reqGetElectricityConsumption();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetPowerConsumption() {
-			return (Getter)super.reqGetPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetMakerErrorCode() {
-			return (Getter)super.reqGetMakerErrorCode();
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
 		}
-
 		@Override
-		public Getter reqGetCurrentLimiting() {
-			return (Getter)super.reqGetCurrentLimiting();
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetError() {
-			return (Getter)super.reqGetError();
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
 		}
-
 		@Override
-		public Getter reqGetErrorInfo() {
-			return (Getter)super.reqGetErrorInfo();
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
 		}
-
 		@Override
-		public Getter reqGetMakerCode() {
-			return (Getter)super.reqGetMakerCode();
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
 		}
-
 		@Override
-		public Getter reqGetWorkplaceCode() {
-			return (Getter)super.reqGetWorkplaceCode();
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
 		}
-
 		@Override
 		public Getter reqGetProductCode() {
 			return (Getter)super.reqGetProductCode();
 		}
-
 		@Override
-		public Getter reqGetManufacturingNumber() {
-			return (Getter)super.reqGetManufacturingNumber();
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
 		}
-
 		@Override
-		public Getter reqGetDateOfManufacture() {
-			return (Getter)super.reqGetDateOfManufacture();
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
 		}
-
 		@Override
-		public Getter reqGetPowerSaving() {
-			return (Getter)super.reqGetPowerSaving();
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Getter reqGetLocation() {
-			return (Getter)super.reqGetLocation();
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
 		}
-
 		@Override
-		public Getter reqGetCurrentTime() {
-			return (Getter)super.reqGetCurrentTime();
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
 		}
-
 		@Override
-		public Getter reqGetCurrentDate() {
-			return (Getter)super.reqGetCurrentDate();
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
 		}
-
 		@Override
-		public Getter reqGetPowerLimitation() {
-			return (Getter)super.reqGetPowerLimitation();
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetWorkingTime() {
-			return (Getter)super.reqGetWorkingTime();
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
 		}
-
 		@Override
-		public Getter reqGetAnnoPropertyMap() {
-			return (Getter)super.reqGetAnnoPropertyMap();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetSetPropertyMap() {
 			return (Getter)super.reqGetSetPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetGetPropertyMap() {
 			return (Getter)super.reqGetGetPropertyMap();
@@ -1989,291 +1923,266 @@ public abstract class Refrigerator extends DeviceObject {
 			addProperty(EPC_DEODORIZATION_FUNCTION_SETTING);
 			return this;
 		}
-
 	}
 	
 	public interface Informer extends DeviceObject.Informer {
-		public Informer reqInformPower();
+		public Informer reqInformOperationStatus();
 		public Informer reqInformInstallationLocation();
-		public Informer reqInformVersion();
-		public Informer reqInformIdNumber();
-		public Informer reqInformElectricityConsumption();
-		public Informer reqInformPowerConsumption();
-		public Informer reqInformMakerErrorCode();
-		public Informer reqInformCurrentLimiting();
-		public Informer reqInformError();
-		public Informer reqInformErrorInfo();
-		public Informer reqInformMakerCode();
-		public Informer reqInformWorkplaceCode();
+		public Informer reqInformStandardVersionInformation();
+		public Informer reqInformIdentificationNumber();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption();
+		public Informer reqInformManufacturersFaultCode();
+		public Informer reqInformCurrentLimitSetting();
+		public Informer reqInformFaultStatus();
+		public Informer reqInformFaultDescription();
+		public Informer reqInformManufacturerCode();
+		public Informer reqInformBusinessFacilityCode();
 		public Informer reqInformProductCode();
-		public Informer reqInformManufacturingNumber();
-		public Informer reqInformDateOfManufacture();
-		public Informer reqInformPowerSaving();
-		public Informer reqInformLocation();
-		public Informer reqInformCurrentTime();
-		public Informer reqInformCurrentDate();
-		public Informer reqInformPowerLimitation();
-		public Informer reqInformWorkingTime();
-		public Informer reqInformAnnoPropertyMap();
+		public Informer reqInformProductionNumber();
+		public Informer reqInformProductionDate();
+		public Informer reqInformPowerSavingOperationSetting();
+		public Informer reqInformPositionInformation();
+		public Informer reqInformCurrentTimeSetting();
+		public Informer reqInformCurrentDateSetting();
+		public Informer reqInformPowerLimitSetting();
+		public Informer reqInformCumulativeOperatingTime();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap();
 		public Informer reqInformSetPropertyMap();
 		public Informer reqInformGetPropertyMap();
 		
 		/**
-		 * Door open/close status<br>Door open = 0x41, Door close = 0x42
+		 * Door open/close status<br>Door open = 0x41, Door close = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 		 */
 		public Informer reqInformDoorOpenCloseStatus();
 		/**
-		 * Door open warning status<br>Door open warning found = 0x41 Door open warning not found = 0x42
+		 * Door open warning status<br>Door open warning found = 0x41 Door open warning not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
 		 */
 		public Informer reqInformDoorOpenWarning();
 		/**
-		 * Used to acquire the status (i.e. open or closed) of the refrigerator compartment door.<br>Open = 0x41, closed = 0x42
+		 * Used to acquire the status (i.e. open or closed) of the refrigerator compartment door.<br>Open = 0x41, closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformRefrigeratorCompartmentDoorStatus();
 		/**
-		 * Used to acquire the status (i.e. open or closed) of the freezer compartment door.<br>Open = 0x41, closed = 0x42
+		 * Used to acquire the status (i.e. open or closed) of the freezer compartment door.<br>Open = 0x41, closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformFreezerCompartmentDoorStatus();
 		/**
-		 * Used to acquire the status (i.e. open or closed) of the ice compartment door.<br>Open = 0x41, closed = 0x42
+		 * Used to acquire the status (i.e. open or closed) of the ice compartment door.<br>Open = 0x41, closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformIceCompartmentDoorStatus();
 		/**
-		 * Used to acquire the status (i.e. open or closed) of the vegetable compartment door.<br>Open = 0x41, closed = 0x42
+		 * Used to acquire the status (i.e. open or closed) of the vegetable compartment door.<br>Open = 0x41, closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformVegetableCompartmentDoorStatus();
 		/**
-		 * Used to acquire the status (i.e. open or closed) of the multi-refrigerating mode compartment door.<br>Open = 0x41, closed = 0x42
+		 * Used to acquire the status (i.e. open or closed) of the multi-refrigerating mode compartment door.<br>Open = 0x41, closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMultiRefrigeraTingModeCompartmentDoor();
 		/**
-		 * Used to acquire the maximum allowable temperature setting levels for the individual compartments of the refrigerator.<br>First byte: Refrigerator compartment Second byte: Freezer compartment Third byte:subzero-fresh compartment Fourth byte: Vegetable compartment Fifth byte: Multi-refrigerating mode compartment Sixth to eighth bytes: Reserved for future use. 0x01 to 0xFF (Level 1 to 255) 0x00 = no compartment
+		 * Used to acquire the maximum allowable temperature setting levels for the individual compartments of the refrigerator.<br>First byte: Refrigerator compartment Second byte: Freezer compartment Third byte:subzero-fresh compartment Fourth byte: Vegetable compartment Fifth byte: Multi-refrigerating mode compartment Sixth to eighth bytes: Reserved for future use. 0x01 to 0xFF (Level 1 to 255) 0x00 = no compartment<br><br>Data type : unsigned char x 8<br>Data size : 8 bytes<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMaximumAllowableTemperatureSettingLevel();
 		/**
-		 * Used to specify the refrigerator compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to specify the refrigerator compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformRefrigeratorCompartmentTemperatureSetting();
 		/**
-		 * Used to specify the freezer compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to specify the freezer compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformFreezerCompartmentTemperatureSetting();
 		/**
-		 * Used to specify the ice compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to specify the ice compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformIceTemperatureSetting();
 		/**
-		 * Used to specify the vegetable compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to specify the vegetable compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformVegetableCompartmentTemperatureSetting();
 		/**
-		 * Used to specify the multi-refrigerating mode compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to specify the multi-refrigerating mode compartment temperature in ��C, and to acquire the current setting.<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformMultiRefrigeraTingModeCompartmentTemperatureSetting();
 		/**
-		 * Used to specify the refrigerator compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+		 * Used to specify the refrigerator compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformRefrigeratorCompartmentTemperatureLevelSetting();
 		/**
-		 * Used to specify the freezer compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+		 * Used to specify the freezer compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformFreezerCompartmentTemperatureLevelSetting();
 		/**
-		 * Used to specify ice compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+		 * Used to specify ice compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformIceCompartmentTemperatureLevelSetting();
 		/**
-		 * Used to specify the vegetable compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+		 * Used to specify the vegetable compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformVegetableCompartmentTemperatureLevelSetting();
 		/**
-		 * Used to specify the multi-refrigerating mode compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)
+		 * Used to specify the multi-refrigerating mode compartment temperature by selecting a level from among the predefined levels, and to acquire the current setting.<br>0x01 to maximum allowable temperature setting level (highest to lowest temperature)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformMultiRefrigeraTingModeCompartmentTemperatureLevelSetting();
 		/**
-		 * Used to acquire the measured refrigerator compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to acquire the measured refrigerator compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMeasuredRefrigeratorCompartmentTemperature();
 		/**
-		 * Used to acquire the measured freezer compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to acquire the measured freezer compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMeasuredFreezerCompartmentTemperature();
 		/**
-		 * Used to acquire the measured meat and fish compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to acquire the measured meat and fish compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMeasuredSubzeroFreshCompartmentTemperature();
 		/**
-		 * Used to acquire the measured vegetable compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to acquire the measured vegetable compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMeasuredVegetableCompartmentTemperature();
 		/**
-		 * Used to acquire the measured multi-refrigerating mode compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)
+		 * Used to acquire the measured multi-refrigerating mode compartment temperature (��C).<br>0x81 to 0x7E (-127 to 126��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMeasuredMultiRefrigeratinGModeCompartmentTemperature();
 		/**
-		 * Used to acquire the rotation speed of the compressor. The rotation speed is expressed in terms of a level.<br>First byte: Maximum rotation speed L (0x01 to 0xFF (1 to 255)) Second byte: Rotation speed of the actual compressor: 0x00 to L (zero speed to highest speed)
+		 * Used to acquire the rotation speed of the compressor. The rotation speed is expressed in terms of a level.<br>First byte: Maximum rotation speed L (0x01 to 0xFF (1 to 255)) Second byte: Rotation speed of the actual compressor: 0x00 to L (zero speed to highest speed)<br><br>Data type : unsigned char<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformCompressorRotationSpeed();
 		/**
-		 * Used to acquire the measured electric current consumption.<br>0x0000 to 0xFFFD (0 to 6553.3A)
+		 * Used to acquire the measured electric current consumption.<br>0x0000 to 0xFFFD (0 to 6553.3A)<br><br>Data type : unsigned char<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMeasuredElectricCurrentConsumption();
 		/**
-		 * Used to acquire the rated power consumption.<br>0x0000 to 0xFFFD (0 to 65533W)
+		 * Used to acquire the rated power consumption.<br>0x0000 to 0xFFFD (0 to 65533W)<br><br>Data type : unsigned char<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformRatedPowerConsumption();
 		/**
-		 * Used to specify whether or not to use the �gQuick freeze�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick freeze�h mode: 0x42 �gStandby for fast freezing�h mode: 0x43
+		 * Used to specify whether or not to use the �gQuick freeze�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick freeze�h mode: 0x42 �gStandby for fast freezing�h mode: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformQuickFreezeFunctionSetting();
 		/**
-		 * Used to specify whether or not to use the �gquick refrigeration�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick refrigeration�h mode: 0x42 �gStandby for quick refrigeration�h mode: 0x43
+		 * Used to specify whether or not to use the �gquick refrigeration�h function of the refrigerator, and to acquire the current setting.<br>�gNormal operation�h mode: 0x41 �gQuick refrigeration�h mode: 0x42 �gStandby for quick refrigeration�h mode: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformQuickRefrigerationFunctionSetting();
 		/**
-		 * Used to specify whether or not to enable the automatic icemaker of the refrigerator, and to acquire the current setting.<br>�gEnable icemaker�h option: 0x41 �gDisable icemaker�h option: 0x42 �gTemporarily disable icemaker�h option: 0x43
+		 * Used to specify whether or not to enable the automatic icemaker of the refrigerator, and to acquire the current setting.<br>�gEnable icemaker�h option: 0x41 �gDisable icemaker�h option: 0x42 �gTemporarily disable icemaker�h option: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformIcemakerSetting();
 		/**
-		 * Used to acquire the status of the automatic icemaker of the refrigerator.<br>�gIce-making in progress�h state: 0x41 �gIce-making stopped�h state: 0x42
+		 * Used to acquire the status of the automatic icemaker of the refrigerator.<br>�gIce-making in progress�h state: 0x41 �gIce-making stopped�h state: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformIcemakerOperationStatus();
 		/**
-		 * Used to acquire the status of the tank of the automatic icemaker of the refrigerator in terms of whether it contains water or not.<br>Icemaker tank contains water: 0x41 There is no water left in the icemaker tank or the icemaker tank has not been positioned correctly in the refrigerator: 0x42
+		 * Used to acquire the status of the tank of the automatic icemaker of the refrigerator in terms of whether it contains water or not.<br>Icemaker tank contains water: 0x41 There is no water left in the icemaker tank or the icemaker tank has not been positioned correctly in the refrigerator: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformIcemakerTankStatus();
 		/**
-		 * Used to specify whether or not to use the refrigerator compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42
+		 * Used to specify whether or not to use the refrigerator compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformRefrigeratorCompartmentHumidificationFunctionSetting();
 		/**
-		 * Used to specify whether or not to use the vegetable compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42
+		 * Used to specify whether or not to use the vegetable compartment humidification function, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformVegetableCompartmentHumidificationFunctionSetting();
 		/**
-		 * Used to specify whether or not to use the deodorization function of the refrigerator, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42
+		 * Used to specify whether or not to use the deodorization function of the refrigerator, and to acquire the current setting.<br>ON = 0x41 OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformDeodorizationFunctionSetting();
-
 	}
 
 	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
 
 		@Override
-		public Informer reqInformPower() {
-			return (Informer)super.reqInformPower();
+		public Informer reqInformOperationStatus() {
+			return (Informer)super.reqInformOperationStatus();
 		}
-
 		@Override
 		public Informer reqInformInstallationLocation() {
 			return (Informer)super.reqInformInstallationLocation();
 		}
-
 		@Override
-		public Informer reqInformVersion() {
-			return (Informer)super.reqInformVersion();
+		public Informer reqInformStandardVersionInformation() {
+			return (Informer)super.reqInformStandardVersionInformation();
 		}
-
 		@Override
-		public Informer reqInformIdNumber() {
-			return (Informer)super.reqInformIdNumber();
+		public Informer reqInformIdentificationNumber() {
+			return (Informer)super.reqInformIdentificationNumber();
 		}
-
 		@Override
-		public Informer reqInformElectricityConsumption() {
-			return (Informer)super.reqInformElectricityConsumption();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
+			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformPowerConsumption() {
-			return (Informer)super.reqInformPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption() {
+			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformMakerErrorCode() {
-			return (Informer)super.reqInformMakerErrorCode();
+		public Informer reqInformManufacturersFaultCode() {
+			return (Informer)super.reqInformManufacturersFaultCode();
 		}
-
 		@Override
-		public Informer reqInformCurrentLimiting() {
-			return (Informer)super.reqInformCurrentLimiting();
+		public Informer reqInformCurrentLimitSetting() {
+			return (Informer)super.reqInformCurrentLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformError() {
-			return (Informer)super.reqInformError();
+		public Informer reqInformFaultStatus() {
+			return (Informer)super.reqInformFaultStatus();
 		}
-
 		@Override
-		public Informer reqInformErrorInfo() {
-			return (Informer)super.reqInformErrorInfo();
+		public Informer reqInformFaultDescription() {
+			return (Informer)super.reqInformFaultDescription();
 		}
-
 		@Override
-		public Informer reqInformMakerCode() {
-			return (Informer)super.reqInformMakerCode();
+		public Informer reqInformManufacturerCode() {
+			return (Informer)super.reqInformManufacturerCode();
 		}
-
 		@Override
-		public Informer reqInformWorkplaceCode() {
-			return (Informer)super.reqInformWorkplaceCode();
+		public Informer reqInformBusinessFacilityCode() {
+			return (Informer)super.reqInformBusinessFacilityCode();
 		}
-
 		@Override
 		public Informer reqInformProductCode() {
 			return (Informer)super.reqInformProductCode();
 		}
-
 		@Override
-		public Informer reqInformManufacturingNumber() {
-			return (Informer)super.reqInformManufacturingNumber();
+		public Informer reqInformProductionNumber() {
+			return (Informer)super.reqInformProductionNumber();
 		}
-
 		@Override
-		public Informer reqInformDateOfManufacture() {
-			return (Informer)super.reqInformDateOfManufacture();
+		public Informer reqInformProductionDate() {
+			return (Informer)super.reqInformProductionDate();
 		}
-
 		@Override
-		public Informer reqInformPowerSaving() {
-			return (Informer)super.reqInformPowerSaving();
+		public Informer reqInformPowerSavingOperationSetting() {
+			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Informer reqInformLocation() {
-			return (Informer)super.reqInformLocation();
+		public Informer reqInformPositionInformation() {
+			return (Informer)super.reqInformPositionInformation();
 		}
-
 		@Override
-		public Informer reqInformCurrentTime() {
-			return (Informer)super.reqInformCurrentTime();
+		public Informer reqInformCurrentTimeSetting() {
+			return (Informer)super.reqInformCurrentTimeSetting();
 		}
-
 		@Override
-		public Informer reqInformCurrentDate() {
-			return (Informer)super.reqInformCurrentDate();
+		public Informer reqInformCurrentDateSetting() {
+			return (Informer)super.reqInformCurrentDateSetting();
 		}
-
 		@Override
-		public Informer reqInformPowerLimitation() {
-			return (Informer)super.reqInformPowerLimitation();
+		public Informer reqInformPowerLimitSetting() {
+			return (Informer)super.reqInformPowerLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformWorkingTime() {
-			return (Informer)super.reqInformWorkingTime();
+		public Informer reqInformCumulativeOperatingTime() {
+			return (Informer)super.reqInformCumulativeOperatingTime();
 		}
-
 		@Override
-		public Informer reqInformAnnoPropertyMap() {
-			return (Informer)super.reqInformAnnoPropertyMap();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
+			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformSetPropertyMap() {
 			return (Informer)super.reqInformSetPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
@@ -2483,126 +2392,102 @@ public abstract class Refrigerator extends DeviceObject {
 			addProperty(EPC_DEODORIZATION_FUNCTION_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-
 	}
 	
 	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
 
 		@Override
-		public Informer reqInformPower() {
-			return (Informer)super.reqInformPower();
+		public Informer reqInformOperationStatus() {
+			return (Informer)super.reqInformOperationStatus();
 		}
-
 		@Override
 		public Informer reqInformInstallationLocation() {
 			return (Informer)super.reqInformInstallationLocation();
 		}
-
 		@Override
-		public Informer reqInformVersion() {
-			return (Informer)super.reqInformVersion();
+		public Informer reqInformStandardVersionInformation() {
+			return (Informer)super.reqInformStandardVersionInformation();
 		}
-
 		@Override
-		public Informer reqInformIdNumber() {
-			return (Informer)super.reqInformIdNumber();
+		public Informer reqInformIdentificationNumber() {
+			return (Informer)super.reqInformIdentificationNumber();
 		}
-
 		@Override
-		public Informer reqInformElectricityConsumption() {
-			return (Informer)super.reqInformElectricityConsumption();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
+			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformPowerConsumption() {
-			return (Informer)super.reqInformPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption() {
+			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformMakerErrorCode() {
-			return (Informer)super.reqInformMakerErrorCode();
+		public Informer reqInformManufacturersFaultCode() {
+			return (Informer)super.reqInformManufacturersFaultCode();
 		}
-
 		@Override
-		public Informer reqInformCurrentLimiting() {
-			return (Informer)super.reqInformCurrentLimiting();
+		public Informer reqInformCurrentLimitSetting() {
+			return (Informer)super.reqInformCurrentLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformError() {
-			return (Informer)super.reqInformError();
+		public Informer reqInformFaultStatus() {
+			return (Informer)super.reqInformFaultStatus();
 		}
-
 		@Override
-		public Informer reqInformErrorInfo() {
-			return (Informer)super.reqInformErrorInfo();
+		public Informer reqInformFaultDescription() {
+			return (Informer)super.reqInformFaultDescription();
 		}
-
 		@Override
-		public Informer reqInformMakerCode() {
-			return (Informer)super.reqInformMakerCode();
+		public Informer reqInformManufacturerCode() {
+			return (Informer)super.reqInformManufacturerCode();
 		}
-
 		@Override
-		public Informer reqInformWorkplaceCode() {
-			return (Informer)super.reqInformWorkplaceCode();
+		public Informer reqInformBusinessFacilityCode() {
+			return (Informer)super.reqInformBusinessFacilityCode();
 		}
-
 		@Override
 		public Informer reqInformProductCode() {
 			return (Informer)super.reqInformProductCode();
 		}
-
 		@Override
-		public Informer reqInformManufacturingNumber() {
-			return (Informer)super.reqInformManufacturingNumber();
+		public Informer reqInformProductionNumber() {
+			return (Informer)super.reqInformProductionNumber();
 		}
-
 		@Override
-		public Informer reqInformDateOfManufacture() {
-			return (Informer)super.reqInformDateOfManufacture();
+		public Informer reqInformProductionDate() {
+			return (Informer)super.reqInformProductionDate();
 		}
-
 		@Override
-		public Informer reqInformPowerSaving() {
-			return (Informer)super.reqInformPowerSaving();
+		public Informer reqInformPowerSavingOperationSetting() {
+			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Informer reqInformLocation() {
-			return (Informer)super.reqInformLocation();
+		public Informer reqInformPositionInformation() {
+			return (Informer)super.reqInformPositionInformation();
 		}
-
 		@Override
-		public Informer reqInformCurrentTime() {
-			return (Informer)super.reqInformCurrentTime();
+		public Informer reqInformCurrentTimeSetting() {
+			return (Informer)super.reqInformCurrentTimeSetting();
 		}
-
 		@Override
-		public Informer reqInformCurrentDate() {
-			return (Informer)super.reqInformCurrentDate();
+		public Informer reqInformCurrentDateSetting() {
+			return (Informer)super.reqInformCurrentDateSetting();
 		}
-
 		@Override
-		public Informer reqInformPowerLimitation() {
-			return (Informer)super.reqInformPowerLimitation();
+		public Informer reqInformPowerLimitSetting() {
+			return (Informer)super.reqInformPowerLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformWorkingTime() {
-			return (Informer)super.reqInformWorkingTime();
+		public Informer reqInformCumulativeOperatingTime() {
+			return (Informer)super.reqInformCumulativeOperatingTime();
 		}
-
 		@Override
-		public Informer reqInformAnnoPropertyMap() {
-			return (Informer)super.reqInformAnnoPropertyMap();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
+			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformSetPropertyMap() {
 			return (Informer)super.reqInformSetPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
@@ -2778,6 +2663,5 @@ public abstract class Refrigerator extends DeviceObject {
 			addProperty(EPC_DEODORIZATION_FUNCTION_SETTING);
 			return this;
 		}
-
 	}
 }

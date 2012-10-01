@@ -47,71 +47,71 @@ public abstract class GeneralLighting extends DeviceObject {
 	}
 
 	/**
-	 * This property indicates illuminance level in %.<br>0x00.0x64 (0.100%)
+	 * This property indicates illuminance level in %.<br>0x00.0x64 (0.100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setIlluminanceLevel(byte[] edt) {return false;}
 	/**
-	 * This property indicates illuminance level in %.<br>0x00.0x64 (0.100%)
+	 * This property indicates illuminance level in %.<br>0x00.0x64 (0.100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getIlluminanceLevel() {return null;}
 	/**
-	 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)
+	 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setIlluminanceLevelStepSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)
+	 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getIlluminanceLevelStepSetting() {return null;}
 	/**
-	 * Used to specify the light color in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)
+	 * Used to specify the light color in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setLightColorStepSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify the light color in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)
+	 * Used to specify the light color in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getLightColorStepSetting() {return null;}
 	/**
-	 * Used to acquire the maximum specifiable illuminance level value and the maximum specifiable light color value.<br>First byte: illuminance Second byte: light color 0x01-0xFF(Step 1 -Step 255) 0x00(when the function is not implemented)
+	 * Used to acquire the maximum specifiable illuminance level value and the maximum specifiable light color value.<br>First byte: illuminance Second byte: light color 0x01-0xFF(Step 1 -Step 255) 0x00(when the function is not implemented)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMaximumSpecifiableValues() {return null;}
 	/**
-	 * Used to specify the light color.<br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44
+	 * Used to specify the light color.<br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setLightColorSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify the light color.<br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44
+	 * Used to specify the light color.<br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getLightColorSetting() {return null;}
 	/**
-	 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42
+	 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOnTimerReservationSetting(byte[] edt) {return false;}
 	/**
-	 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42
+	 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOnTimerReservationSetting() {return null;}
 	/**
-	 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)
+	 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOnTimerSetting(byte[] edt) {return false;}
 	/**
-	 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)
+	 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOnTimerSetting() {return null;}
 	/**
-	 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42
+	 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOffTimerReservationSetting(byte[] edt) {return false;}
 	/**
-	 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42
+	 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOffTimerReservationSetting() {return null;}
 	/**
-	 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)
+	 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOffTimerSetting(byte[] edt) {return false;}
 	/**
-	 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)
+	 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOffTimerSetting() {return null;}
 
@@ -285,119 +285,118 @@ public abstract class GeneralLighting extends DeviceObject {
 		}
 		
 		/**
-		 * This property indicates illuminance level in %.<br>0x00.0x64 (0.100%)
+		 * This property indicates illuminance level in %.<br>0x00.0x64 (0.100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetIlluminanceLevel(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * This property indicates illuminance level in %.<br>0x00.0x64 (0.100%)
+		 * This property indicates illuminance level in %.<br>0x00.0x64 (0.100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetIlluminanceLevel(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)
+		 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetIlluminanceLevelStepSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)
+		 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetIlluminanceLevelStepSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the light color in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)
+		 * Used to specify the light color in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetLightColorStepSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the light color in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)
+		 * Used to specify the light color in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetLightColorStepSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to acquire the maximum specifiable illuminance level value and the maximum specifiable light color value.<br>First byte: illuminance Second byte: light color 0x01-0xFF(Step 1 -Step 255) 0x00(when the function is not implemented)
+		 * Used to acquire the maximum specifiable illuminance level value and the maximum specifiable light color value.<br>First byte: illuminance Second byte: light color 0x01-0xFF(Step 1 -Step 255) 0x00(when the function is not implemented)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMaximumSpecifiableValues(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the light color.<br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44
+		 * Used to specify the light color.<br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetLightColorSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the light color.<br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44
+		 * Used to specify the light color.<br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetLightColorSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42
+		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetOnTimerReservationSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42
+		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetOnTimerReservationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)
+		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetOnTimerSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)
+		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetOnTimerSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42
+		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetOffTimerReservationSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42
+		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetOffTimerReservationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)
+		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetOffTimerSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)
+		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetOffTimerSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 
 	}
 	
 	public interface Setter extends DeviceObject.Setter {
-		public Setter reqSetPower(byte[] edt);
+		public Setter reqSetOperationStatus(byte[] edt);
 		public Setter reqSetInstallationLocation(byte[] edt);
-		public Setter reqSetCurrentLimiting(byte[] edt);
-		public Setter reqSetPowerSaving(byte[] edt);
-		public Setter reqSetLocation(byte[] edt);
-		public Setter reqSetCurrentTime(byte[] edt);
-		public Setter reqSetCurrentDate(byte[] edt);
-		public Setter reqSetPowerLimitation(byte[] edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
+		public Setter reqSetPositionInformation(byte[] edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt);
 		
 		/**
-		 * This property indicates illuminance level in %.<br>0x00.0x64 (0.100%)
+		 * This property indicates illuminance level in %.<br>0x00.0x64 (0.100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetIlluminanceLevel(byte[] edt);
 		/**
-		 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)
+		 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetIlluminanceLevelStepSetting(byte[] edt);
 		/**
-		 * Used to specify the light color in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)
+		 * Used to specify the light color in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetLightColorStepSetting(byte[] edt);
 		/**
-		 * Used to specify the light color.<br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44
+		 * Used to specify the light color.<br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetLightColorSetting(byte[] edt);
 		/**
-		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42
+		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetOnTimerReservationSetting(byte[] edt);
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)
+		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetOnTimerSetting(byte[] edt);
 		/**
-		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42
+		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetOffTimerReservationSetting(byte[] edt);
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)
+		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetOffTimerSetting(byte[] edt);
-
 	}
 
 	public class SetterImpl extends DeviceObject.SetterImpl implements Setter {
@@ -407,43 +406,36 @@ public abstract class GeneralLighting extends DeviceObject {
 		}
 		
 		@Override
-		public Setter reqSetPower(byte[] edt) {
-			return (Setter)super.reqSetPower(edt);
+		public Setter reqSetOperationStatus(byte[] edt) {
+			return (Setter)super.reqSetOperationStatus(edt);
 		}
-
 		@Override
 		public Setter reqSetInstallationLocation(byte[] edt) {
 			return (Setter)super.reqSetInstallationLocation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentLimiting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimiting(edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentLimitSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerSaving(byte[] edt) {
-			return (Setter)super.reqSetPowerSaving(edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetLocation(byte[] edt) {
-			return (Setter)super.reqSetLocation(edt);
+		public Setter reqSetPositionInformation(byte[] edt) {
+			return (Setter)super.reqSetPositionInformation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentTime(byte[] edt) {
-			return (Setter)super.reqSetCurrentTime(edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentTimeSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentDate(byte[] edt) {
-			return (Setter)super.reqSetCurrentDate(edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentDateSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerLimitation(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitation(edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
 		@Override
@@ -486,7 +478,6 @@ public abstract class GeneralLighting extends DeviceObject {
 			addProperty(EPC_OFF_TIMER_SETTING, edt, setOffTimerSetting(edt));
 			return this;
 		}
-
 	}
 	
 	public class SetterProxy extends DeviceObject.SetterProxy implements Setter {
@@ -495,45 +486,37 @@ public abstract class GeneralLighting extends DeviceObject {
 			super(esv);
 		}
 
-		
 		@Override
-		public Setter reqSetPower(byte[] edt) {
-			return (Setter)super.reqSetPower(edt);
+		public Setter reqSetOperationStatus(byte[] edt) {
+			return (Setter)super.reqSetOperationStatus(edt);
 		}
-
 		@Override
 		public Setter reqSetInstallationLocation(byte[] edt) {
 			return (Setter)super.reqSetInstallationLocation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentLimiting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimiting(edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentLimitSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerSaving(byte[] edt) {
-			return (Setter)super.reqSetPowerSaving(edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetLocation(byte[] edt) {
-			return (Setter)super.reqSetLocation(edt);
+		public Setter reqSetPositionInformation(byte[] edt) {
+			return (Setter)super.reqSetPositionInformation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentTime(byte[] edt) {
-			return (Setter)super.reqSetCurrentTime(edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentTimeSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentDate(byte[] edt) {
-			return (Setter)super.reqSetCurrentDate(edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentDateSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerLimitation(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitation(edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
 		@Override
@@ -576,191 +559,166 @@ public abstract class GeneralLighting extends DeviceObject {
 			addProperty(EPC_OFF_TIMER_SETTING, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-
 	}
 
 	public interface Getter extends DeviceObject.Getter {
-		public Getter reqGetPower();
+		public Getter reqGetOperationStatus();
 		public Getter reqGetInstallationLocation();
-		public Getter reqGetVersion();
-		public Getter reqGetIdNumber();
-		public Getter reqGetElectricityConsumption();
-		public Getter reqGetPowerConsumption();
-		public Getter reqGetMakerErrorCode();
-		public Getter reqGetCurrentLimiting();
-		public Getter reqGetError();
-		public Getter reqGetErrorInfo();
-		public Getter reqGetMakerCode();
-		public Getter reqGetWorkplaceCode();
+		public Getter reqGetStandardVersionInformation();
+		public Getter reqGetIdentificationNumber();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption();
+		public Getter reqGetManufacturersFaultCode();
+		public Getter reqGetCurrentLimitSetting();
+		public Getter reqGetFaultStatus();
+		public Getter reqGetFaultDescription();
+		public Getter reqGetManufacturerCode();
+		public Getter reqGetBusinessFacilityCode();
 		public Getter reqGetProductCode();
-		public Getter reqGetManufacturingNumber();
-		public Getter reqGetDateOfManufacture();
-		public Getter reqGetPowerSaving();
-		public Getter reqGetLocation();
-		public Getter reqGetCurrentTime();
-		public Getter reqGetCurrentDate();
-		public Getter reqGetPowerLimitation();
-		public Getter reqGetWorkingTime();
-		public Getter reqGetAnnoPropertyMap();
+		public Getter reqGetProductionNumber();
+		public Getter reqGetProductionDate();
+		public Getter reqGetPowerSavingOperationSetting();
+		public Getter reqGetPositionInformation();
+		public Getter reqGetCurrentTimeSetting();
+		public Getter reqGetCurrentDateSetting();
+		public Getter reqGetPowerLimitSetting();
+		public Getter reqGetCumulativeOperatingTime();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap();
 		public Getter reqGetSetPropertyMap();
 		public Getter reqGetGetPropertyMap();
 		
 		/**
-		 * This property indicates illuminance level in %.<br>0x00.0x64 (0.100%)
+		 * This property indicates illuminance level in %.<br>0x00.0x64 (0.100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetIlluminanceLevel();
 		/**
-		 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)
+		 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetIlluminanceLevelStepSetting();
 		/**
-		 * Used to specify the light color in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)
+		 * Used to specify the light color in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetLightColorStepSetting();
 		/**
-		 * Used to acquire the maximum specifiable illuminance level value and the maximum specifiable light color value.<br>First byte: illuminance Second byte: light color 0x01-0xFF(Step 1 -Step 255) 0x00(when the function is not implemented)
+		 * Used to acquire the maximum specifiable illuminance level value and the maximum specifiable light color value.<br>First byte: illuminance Second byte: light color 0x01-0xFF(Step 1 -Step 255) 0x00(when the function is not implemented)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMaximumSpecifiableValues();
 		/**
-		 * Used to specify the light color.<br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44
+		 * Used to specify the light color.<br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetLightColorSetting();
 		/**
-		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42
+		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetOnTimerReservationSetting();
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)
+		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetOnTimerSetting();
 		/**
-		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42
+		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetOffTimerReservationSetting();
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)
+		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetOffTimerSetting();
-
 	}
 	
 	public class GetterImpl extends DeviceObject.GetterImpl implements Getter {
 
 		@Override
-		public Getter reqGetPower() {
-			return (Getter)super.reqGetPower();
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
 		}
-
 		@Override
 		public Getter reqGetInstallationLocation() {
 			return (Getter)super.reqGetInstallationLocation();
 		}
-
 		@Override
-		public Getter reqGetVersion() {
-			return (Getter)super.reqGetVersion();
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
 		}
-
 		@Override
-		public Getter reqGetIdNumber() {
-			return (Getter)super.reqGetIdNumber();
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
 		}
-
 		@Override
-		public Getter reqGetElectricityConsumption() {
-			return (Getter)super.reqGetElectricityConsumption();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetPowerConsumption() {
-			return (Getter)super.reqGetPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetMakerErrorCode() {
-			return (Getter)super.reqGetMakerErrorCode();
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
 		}
-
 		@Override
-		public Getter reqGetCurrentLimiting() {
-			return (Getter)super.reqGetCurrentLimiting();
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetError() {
-			return (Getter)super.reqGetError();
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
 		}
-
 		@Override
-		public Getter reqGetErrorInfo() {
-			return (Getter)super.reqGetErrorInfo();
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
 		}
-
 		@Override
-		public Getter reqGetMakerCode() {
-			return (Getter)super.reqGetMakerCode();
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
 		}
-
 		@Override
-		public Getter reqGetWorkplaceCode() {
-			return (Getter)super.reqGetWorkplaceCode();
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
 		}
-
 		@Override
 		public Getter reqGetProductCode() {
 			return (Getter)super.reqGetProductCode();
 		}
-
 		@Override
-		public Getter reqGetManufacturingNumber() {
-			return (Getter)super.reqGetManufacturingNumber();
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
 		}
-
 		@Override
-		public Getter reqGetDateOfManufacture() {
-			return (Getter)super.reqGetDateOfManufacture();
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
 		}
-
 		@Override
-		public Getter reqGetPowerSaving() {
-			return (Getter)super.reqGetPowerSaving();
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Getter reqGetLocation() {
-			return (Getter)super.reqGetLocation();
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
 		}
-
 		@Override
-		public Getter reqGetCurrentTime() {
-			return (Getter)super.reqGetCurrentTime();
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
 		}
-
 		@Override
-		public Getter reqGetCurrentDate() {
-			return (Getter)super.reqGetCurrentDate();
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
 		}
-
 		@Override
-		public Getter reqGetPowerLimitation() {
-			return (Getter)super.reqGetPowerLimitation();
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetWorkingTime() {
-			return (Getter)super.reqGetWorkingTime();
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
 		}
-
 		@Override
-		public Getter reqGetAnnoPropertyMap() {
-			return (Getter)super.reqGetAnnoPropertyMap();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetSetPropertyMap() {
 			return (Getter)super.reqGetSetPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetGetPropertyMap() {
 			return (Getter)super.reqGetGetPropertyMap();
@@ -820,126 +778,102 @@ public abstract class GeneralLighting extends DeviceObject {
 			addProperty(EPC_OFF_TIMER_SETTING, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-
 	}
 
 	public class GetterProxy extends DeviceObject.GetterProxy implements Getter {
 
 		@Override
-		public Getter reqGetPower() {
-			return (Getter)super.reqGetPower();
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
 		}
-
 		@Override
 		public Getter reqGetInstallationLocation() {
 			return (Getter)super.reqGetInstallationLocation();
 		}
-
 		@Override
-		public Getter reqGetVersion() {
-			return (Getter)super.reqGetVersion();
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
 		}
-
 		@Override
-		public Getter reqGetIdNumber() {
-			return (Getter)super.reqGetIdNumber();
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
 		}
-
 		@Override
-		public Getter reqGetElectricityConsumption() {
-			return (Getter)super.reqGetElectricityConsumption();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetPowerConsumption() {
-			return (Getter)super.reqGetPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetMakerErrorCode() {
-			return (Getter)super.reqGetMakerErrorCode();
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
 		}
-
 		@Override
-		public Getter reqGetCurrentLimiting() {
-			return (Getter)super.reqGetCurrentLimiting();
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetError() {
-			return (Getter)super.reqGetError();
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
 		}
-
 		@Override
-		public Getter reqGetErrorInfo() {
-			return (Getter)super.reqGetErrorInfo();
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
 		}
-
 		@Override
-		public Getter reqGetMakerCode() {
-			return (Getter)super.reqGetMakerCode();
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
 		}
-
 		@Override
-		public Getter reqGetWorkplaceCode() {
-			return (Getter)super.reqGetWorkplaceCode();
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
 		}
-
 		@Override
 		public Getter reqGetProductCode() {
 			return (Getter)super.reqGetProductCode();
 		}
-
 		@Override
-		public Getter reqGetManufacturingNumber() {
-			return (Getter)super.reqGetManufacturingNumber();
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
 		}
-
 		@Override
-		public Getter reqGetDateOfManufacture() {
-			return (Getter)super.reqGetDateOfManufacture();
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
 		}
-
 		@Override
-		public Getter reqGetPowerSaving() {
-			return (Getter)super.reqGetPowerSaving();
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Getter reqGetLocation() {
-			return (Getter)super.reqGetLocation();
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
 		}
-
 		@Override
-		public Getter reqGetCurrentTime() {
-			return (Getter)super.reqGetCurrentTime();
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
 		}
-
 		@Override
-		public Getter reqGetCurrentDate() {
-			return (Getter)super.reqGetCurrentDate();
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
 		}
-
 		@Override
-		public Getter reqGetPowerLimitation() {
-			return (Getter)super.reqGetPowerLimitation();
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetWorkingTime() {
-			return (Getter)super.reqGetWorkingTime();
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
 		}
-
 		@Override
-		public Getter reqGetAnnoPropertyMap() {
-			return (Getter)super.reqGetAnnoPropertyMap();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetSetPropertyMap() {
 			return (Getter)super.reqGetSetPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetGetPropertyMap() {
 			return (Getter)super.reqGetGetPropertyMap();
@@ -990,191 +924,166 @@ public abstract class GeneralLighting extends DeviceObject {
 			addProperty(EPC_OFF_TIMER_SETTING);
 			return this;
 		}
-
 	}
 	
 	public interface Informer extends DeviceObject.Informer {
-		public Informer reqInformPower();
+		public Informer reqInformOperationStatus();
 		public Informer reqInformInstallationLocation();
-		public Informer reqInformVersion();
-		public Informer reqInformIdNumber();
-		public Informer reqInformElectricityConsumption();
-		public Informer reqInformPowerConsumption();
-		public Informer reqInformMakerErrorCode();
-		public Informer reqInformCurrentLimiting();
-		public Informer reqInformError();
-		public Informer reqInformErrorInfo();
-		public Informer reqInformMakerCode();
-		public Informer reqInformWorkplaceCode();
+		public Informer reqInformStandardVersionInformation();
+		public Informer reqInformIdentificationNumber();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption();
+		public Informer reqInformManufacturersFaultCode();
+		public Informer reqInformCurrentLimitSetting();
+		public Informer reqInformFaultStatus();
+		public Informer reqInformFaultDescription();
+		public Informer reqInformManufacturerCode();
+		public Informer reqInformBusinessFacilityCode();
 		public Informer reqInformProductCode();
-		public Informer reqInformManufacturingNumber();
-		public Informer reqInformDateOfManufacture();
-		public Informer reqInformPowerSaving();
-		public Informer reqInformLocation();
-		public Informer reqInformCurrentTime();
-		public Informer reqInformCurrentDate();
-		public Informer reqInformPowerLimitation();
-		public Informer reqInformWorkingTime();
-		public Informer reqInformAnnoPropertyMap();
+		public Informer reqInformProductionNumber();
+		public Informer reqInformProductionDate();
+		public Informer reqInformPowerSavingOperationSetting();
+		public Informer reqInformPositionInformation();
+		public Informer reqInformCurrentTimeSetting();
+		public Informer reqInformCurrentDateSetting();
+		public Informer reqInformPowerLimitSetting();
+		public Informer reqInformCumulativeOperatingTime();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap();
 		public Informer reqInformSetPropertyMap();
 		public Informer reqInformGetPropertyMap();
 		
 		/**
-		 * This property indicates illuminance level in %.<br>0x00.0x64 (0.100%)
+		 * This property indicates illuminance level in %.<br>0x00.0x64 (0.100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformIlluminanceLevel();
 		/**
-		 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)
+		 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformIlluminanceLevelStepSetting();
 		/**
-		 * Used to specify the light color in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)
+		 * Used to specify the light color in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformLightColorStepSetting();
 		/**
-		 * Used to acquire the maximum specifiable illuminance level value and the maximum specifiable light color value.<br>First byte: illuminance Second byte: light color 0x01-0xFF(Step 1 -Step 255) 0x00(when the function is not implemented)
+		 * Used to acquire the maximum specifiable illuminance level value and the maximum specifiable light color value.<br>First byte: illuminance Second byte: light color 0x01-0xFF(Step 1 -Step 255) 0x00(when the function is not implemented)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMaximumSpecifiableValues();
 		/**
-		 * Used to specify the light color.<br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44
+		 * Used to specify the light color.<br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformLightColorSetting();
 		/**
-		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42
+		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformOnTimerReservationSetting();
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)
+		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformOnTimerSetting();
 		/**
-		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42
+		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformOffTimerReservationSetting();
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)
+		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformOffTimerSetting();
-
 	}
 
 	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
 
 		@Override
-		public Informer reqInformPower() {
-			return (Informer)super.reqInformPower();
+		public Informer reqInformOperationStatus() {
+			return (Informer)super.reqInformOperationStatus();
 		}
-
 		@Override
 		public Informer reqInformInstallationLocation() {
 			return (Informer)super.reqInformInstallationLocation();
 		}
-
 		@Override
-		public Informer reqInformVersion() {
-			return (Informer)super.reqInformVersion();
+		public Informer reqInformStandardVersionInformation() {
+			return (Informer)super.reqInformStandardVersionInformation();
 		}
-
 		@Override
-		public Informer reqInformIdNumber() {
-			return (Informer)super.reqInformIdNumber();
+		public Informer reqInformIdentificationNumber() {
+			return (Informer)super.reqInformIdentificationNumber();
 		}
-
 		@Override
-		public Informer reqInformElectricityConsumption() {
-			return (Informer)super.reqInformElectricityConsumption();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
+			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformPowerConsumption() {
-			return (Informer)super.reqInformPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption() {
+			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformMakerErrorCode() {
-			return (Informer)super.reqInformMakerErrorCode();
+		public Informer reqInformManufacturersFaultCode() {
+			return (Informer)super.reqInformManufacturersFaultCode();
 		}
-
 		@Override
-		public Informer reqInformCurrentLimiting() {
-			return (Informer)super.reqInformCurrentLimiting();
+		public Informer reqInformCurrentLimitSetting() {
+			return (Informer)super.reqInformCurrentLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformError() {
-			return (Informer)super.reqInformError();
+		public Informer reqInformFaultStatus() {
+			return (Informer)super.reqInformFaultStatus();
 		}
-
 		@Override
-		public Informer reqInformErrorInfo() {
-			return (Informer)super.reqInformErrorInfo();
+		public Informer reqInformFaultDescription() {
+			return (Informer)super.reqInformFaultDescription();
 		}
-
 		@Override
-		public Informer reqInformMakerCode() {
-			return (Informer)super.reqInformMakerCode();
+		public Informer reqInformManufacturerCode() {
+			return (Informer)super.reqInformManufacturerCode();
 		}
-
 		@Override
-		public Informer reqInformWorkplaceCode() {
-			return (Informer)super.reqInformWorkplaceCode();
+		public Informer reqInformBusinessFacilityCode() {
+			return (Informer)super.reqInformBusinessFacilityCode();
 		}
-
 		@Override
 		public Informer reqInformProductCode() {
 			return (Informer)super.reqInformProductCode();
 		}
-
 		@Override
-		public Informer reqInformManufacturingNumber() {
-			return (Informer)super.reqInformManufacturingNumber();
+		public Informer reqInformProductionNumber() {
+			return (Informer)super.reqInformProductionNumber();
 		}
-
 		@Override
-		public Informer reqInformDateOfManufacture() {
-			return (Informer)super.reqInformDateOfManufacture();
+		public Informer reqInformProductionDate() {
+			return (Informer)super.reqInformProductionDate();
 		}
-
 		@Override
-		public Informer reqInformPowerSaving() {
-			return (Informer)super.reqInformPowerSaving();
+		public Informer reqInformPowerSavingOperationSetting() {
+			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Informer reqInformLocation() {
-			return (Informer)super.reqInformLocation();
+		public Informer reqInformPositionInformation() {
+			return (Informer)super.reqInformPositionInformation();
 		}
-
 		@Override
-		public Informer reqInformCurrentTime() {
-			return (Informer)super.reqInformCurrentTime();
+		public Informer reqInformCurrentTimeSetting() {
+			return (Informer)super.reqInformCurrentTimeSetting();
 		}
-
 		@Override
-		public Informer reqInformCurrentDate() {
-			return (Informer)super.reqInformCurrentDate();
+		public Informer reqInformCurrentDateSetting() {
+			return (Informer)super.reqInformCurrentDateSetting();
 		}
-
 		@Override
-		public Informer reqInformPowerLimitation() {
-			return (Informer)super.reqInformPowerLimitation();
+		public Informer reqInformPowerLimitSetting() {
+			return (Informer)super.reqInformPowerLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformWorkingTime() {
-			return (Informer)super.reqInformWorkingTime();
+		public Informer reqInformCumulativeOperatingTime() {
+			return (Informer)super.reqInformCumulativeOperatingTime();
 		}
-
 		@Override
-		public Informer reqInformAnnoPropertyMap() {
-			return (Informer)super.reqInformAnnoPropertyMap();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
+			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformSetPropertyMap() {
 			return (Informer)super.reqInformSetPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
@@ -1234,126 +1143,102 @@ public abstract class GeneralLighting extends DeviceObject {
 			addProperty(EPC_OFF_TIMER_SETTING, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-
 	}
 	
 	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
 
 		@Override
-		public Informer reqInformPower() {
-			return (Informer)super.reqInformPower();
+		public Informer reqInformOperationStatus() {
+			return (Informer)super.reqInformOperationStatus();
 		}
-
 		@Override
 		public Informer reqInformInstallationLocation() {
 			return (Informer)super.reqInformInstallationLocation();
 		}
-
 		@Override
-		public Informer reqInformVersion() {
-			return (Informer)super.reqInformVersion();
+		public Informer reqInformStandardVersionInformation() {
+			return (Informer)super.reqInformStandardVersionInformation();
 		}
-
 		@Override
-		public Informer reqInformIdNumber() {
-			return (Informer)super.reqInformIdNumber();
+		public Informer reqInformIdentificationNumber() {
+			return (Informer)super.reqInformIdentificationNumber();
 		}
-
 		@Override
-		public Informer reqInformElectricityConsumption() {
-			return (Informer)super.reqInformElectricityConsumption();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
+			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformPowerConsumption() {
-			return (Informer)super.reqInformPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption() {
+			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformMakerErrorCode() {
-			return (Informer)super.reqInformMakerErrorCode();
+		public Informer reqInformManufacturersFaultCode() {
+			return (Informer)super.reqInformManufacturersFaultCode();
 		}
-
 		@Override
-		public Informer reqInformCurrentLimiting() {
-			return (Informer)super.reqInformCurrentLimiting();
+		public Informer reqInformCurrentLimitSetting() {
+			return (Informer)super.reqInformCurrentLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformError() {
-			return (Informer)super.reqInformError();
+		public Informer reqInformFaultStatus() {
+			return (Informer)super.reqInformFaultStatus();
 		}
-
 		@Override
-		public Informer reqInformErrorInfo() {
-			return (Informer)super.reqInformErrorInfo();
+		public Informer reqInformFaultDescription() {
+			return (Informer)super.reqInformFaultDescription();
 		}
-
 		@Override
-		public Informer reqInformMakerCode() {
-			return (Informer)super.reqInformMakerCode();
+		public Informer reqInformManufacturerCode() {
+			return (Informer)super.reqInformManufacturerCode();
 		}
-
 		@Override
-		public Informer reqInformWorkplaceCode() {
-			return (Informer)super.reqInformWorkplaceCode();
+		public Informer reqInformBusinessFacilityCode() {
+			return (Informer)super.reqInformBusinessFacilityCode();
 		}
-
 		@Override
 		public Informer reqInformProductCode() {
 			return (Informer)super.reqInformProductCode();
 		}
-
 		@Override
-		public Informer reqInformManufacturingNumber() {
-			return (Informer)super.reqInformManufacturingNumber();
+		public Informer reqInformProductionNumber() {
+			return (Informer)super.reqInformProductionNumber();
 		}
-
 		@Override
-		public Informer reqInformDateOfManufacture() {
-			return (Informer)super.reqInformDateOfManufacture();
+		public Informer reqInformProductionDate() {
+			return (Informer)super.reqInformProductionDate();
 		}
-
 		@Override
-		public Informer reqInformPowerSaving() {
-			return (Informer)super.reqInformPowerSaving();
+		public Informer reqInformPowerSavingOperationSetting() {
+			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Informer reqInformLocation() {
-			return (Informer)super.reqInformLocation();
+		public Informer reqInformPositionInformation() {
+			return (Informer)super.reqInformPositionInformation();
 		}
-
 		@Override
-		public Informer reqInformCurrentTime() {
-			return (Informer)super.reqInformCurrentTime();
+		public Informer reqInformCurrentTimeSetting() {
+			return (Informer)super.reqInformCurrentTimeSetting();
 		}
-
 		@Override
-		public Informer reqInformCurrentDate() {
-			return (Informer)super.reqInformCurrentDate();
+		public Informer reqInformCurrentDateSetting() {
+			return (Informer)super.reqInformCurrentDateSetting();
 		}
-
 		@Override
-		public Informer reqInformPowerLimitation() {
-			return (Informer)super.reqInformPowerLimitation();
+		public Informer reqInformPowerLimitSetting() {
+			return (Informer)super.reqInformPowerLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformWorkingTime() {
-			return (Informer)super.reqInformWorkingTime();
+		public Informer reqInformCumulativeOperatingTime() {
+			return (Informer)super.reqInformCumulativeOperatingTime();
 		}
-
 		@Override
-		public Informer reqInformAnnoPropertyMap() {
-			return (Informer)super.reqInformAnnoPropertyMap();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
+			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformSetPropertyMap() {
 			return (Informer)super.reqInformSetPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
@@ -1404,6 +1289,5 @@ public abstract class GeneralLighting extends DeviceObject {
 			addProperty(EPC_OFF_TIMER_SETTING);
 			return this;
 		}
-
 	}
 }

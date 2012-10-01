@@ -26,61 +26,61 @@ public class NodeProfileProxy extends NodeProfile {
 	}
 	
 	@Override
-	public byte[] getPower() {
+	public byte[] getOperatingStatus() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public byte[] getVersion() {
+	public byte[] getVersionInformation() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public byte[] getIdNumber() {
+	public byte[] getIdentificationNumber() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	protected byte[] getIdInfo() {
+	protected byte[] getUniqueIdentifierData() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	protected boolean setIdInfo(byte[] args) {
+	protected boolean setUniqueIdentifierData(byte[] args) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	protected byte[] getInstanceListSize() {
+	protected byte[] getNumberOfSelfNodeInstances() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	protected byte[] getClassListSize() {
+	protected byte[] getNumberOfSelfNodeClasses() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	protected byte[] getClassListS() {
+	protected byte[] getSelfNodeClassList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	protected byte[] getMakerCode() {
+	protected byte[] getManufacturerCode() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	protected byte[] getAnnoPropertyMap() {
+	protected byte[] getStatusChangeAnnouncementPropertyMap() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -121,15 +121,15 @@ public class NodeProfileProxy extends NodeProfile {
 	public static class Receiver extends NodeProfile.Receiver {
 
 		@Override
-		protected void onGetInstanceList(EchoObject eoj, short tid, byte pdc, byte[] edt) {
-			super.onGetInstanceList(eoj, tid, pdc, edt);
+		protected void onGetInstanceListNotification(EchoObject eoj, short tid, byte pdc, byte[] edt) {
+			super.onGetInstanceListNotification(eoj, tid, pdc, edt);
 			if(pdc != 0)
 				putDevices(eoj, edt);
 		}
 
 		@Override
-		protected void onGetInstanceListS(EchoObject eoj, short tid, byte pdc, byte[] edt) {
-			super.onGetInstanceListS(eoj, tid, pdc, edt);
+		protected void onGetSelfNodeInstanceListS(EchoObject eoj, short tid, byte pdc, byte[] edt) {
+			super.onGetSelfNodeInstanceListS(eoj, tid, pdc, edt);
 			if(pdc != 0)
 				putDevices(eoj, edt);
 		}

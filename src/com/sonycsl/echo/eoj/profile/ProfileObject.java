@@ -20,13 +20,13 @@ import com.sonycsl.echo.eoj.EchoObject;
 
 public abstract class ProfileObject extends EchoObject {
 
-	protected static final byte EPC_ERROR = (byte)0x88;
-	protected static final byte EPC_MAKER_CODE = (byte)0x8A;
-	protected static final byte EPC_WORKPLACE_CODE = (byte)0x8B;
+	protected static final byte EPC_FAULT_STATUS = (byte)0x88;
+	protected static final byte EPC_MANUFACTURER_CODE = (byte)0x8A;
+	protected static final byte EPC_PLACE_OF_BUSINESS_CODE = (byte)0x8B;
 	protected static final byte EPC_PRODUCT_CODE =  (byte)0x8C;
-	protected static final byte EPC_MANUFACTURING_NUMBER = (byte)0x8D;
+	protected static final byte EPC_SERIAL_NUMBER = (byte)0x8D;
 	protected static final byte EPC_DATE_OF_MANUFACTURE = (byte)0x8E;
-	protected static final byte EPC_ANNO_PROPERTY_MAP = (byte)0x9D;
+	protected static final byte EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP = (byte)0x9D;
 	protected static final byte EPC_SET_PROPERTY_MAP = (byte)0x9E;
 	protected static final byte EPC_GET_PROPERTY_MAP = (byte)0x9F;
 	
@@ -39,7 +39,7 @@ public abstract class ProfileObject extends EchoObject {
 	 * EPC:0x88
 	 * アクセスルール:Get
 	 */
-	protected byte[] getError() {
+	protected byte[] getFaultStatus() {
 		return null;
 	}
 
@@ -48,14 +48,14 @@ public abstract class ProfileObject extends EchoObject {
 	 * EPC:0x8A
 	 * アクセスルール:Get(必須)
 	 */ 
-	protected abstract byte[] getMakerCode();
+	protected abstract byte[] getManufacturerCode();
 	
 	/**
 	 * プロパティ名称:事業場コード
 	 * EPC:0x8B
 	 * アクセスルール:Get
 	 */
-	protected byte[] getWorkplaceCode() {
+	protected byte[] getPlaceOfBusinessCode() {
 		return null;
 	}
 	
@@ -73,7 +73,7 @@ public abstract class ProfileObject extends EchoObject {
 	 * EPC:0x8D
 	 * アクセスルール:Get
 	 */
-	protected byte[] getManufacturingNumber() {
+	protected byte[] getSerialNumber() {
 		return null;
 	}
 	
@@ -91,7 +91,7 @@ public abstract class ProfileObject extends EchoObject {
 	 * EPC:0x9D
 	 * アクセスルール:Get(必須)
 	 */
-	protected abstract byte[] getAnnoPropertyMap() ;
+	protected abstract byte[] getStatusChangeAnnouncementPropertyMap() ;
 	
 	/**
 	 * プロパティ名称:Setプロパティマップ
@@ -119,32 +119,32 @@ public abstract class ProfileObject extends EchoObject {
 		super.onReceiveGet(res, epc);
 		byte[] edt;
 		switch(epc) {
-		case EPC_ERROR:
-			edt = getError();
+		case EPC_FAULT_STATUS:
+			edt = getFaultStatus();
 			res.addProperty(epc, edt, (edt != null && edt.length == 1));
 			break;
-		case EPC_MAKER_CODE:
-			edt = getMakerCode();
+		case EPC_MANUFACTURER_CODE:
+			edt = getManufacturerCode();
 			res.addProperty(epc, edt, (edt != null && edt.length == 3));
 			break;
-		case EPC_WORKPLACE_CODE:
-			edt = getWorkplaceCode();
+		case EPC_PLACE_OF_BUSINESS_CODE:
+			edt = getPlaceOfBusinessCode();
 			res.addProperty(epc, edt, (edt != null && edt.length == 3));
 			break;
 		case EPC_PRODUCT_CODE:
 			edt = getProductCode();
 			res.addProperty(epc, edt, (edt != null && edt.length == 12));
 			break;
-		case EPC_MANUFACTURING_NUMBER:
-			edt = getManufacturingNumber();
+		case EPC_SERIAL_NUMBER:
+			edt = getSerialNumber();
 			res.addProperty(epc, edt, (edt != null && edt.length == 12));
 			break;
 		case EPC_DATE_OF_MANUFACTURE:
 			edt = getDateOfManufacture();
 			res.addProperty(epc, edt, (edt != null && edt.length == 4));
 			break;
-		case EPC_ANNO_PROPERTY_MAP:
-			edt = getAnnoPropertyMap();
+		case EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP:
+			edt = getStatusChangeAnnouncementPropertyMap();
 			res.addProperty(epc, edt, (edt != null && edt.length <= 17));
 			break;
 		case EPC_SET_PROPERTY_MAP:
@@ -196,26 +196,26 @@ public abstract class ProfileObject extends EchoObject {
 		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc, byte pdc, byte[] edt) {
 			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
 			switch(epc) {
-			case EPC_ERROR:
-				onGetError(eoj, tid, pdc, edt);
+			case EPC_FAULT_STATUS:
+				onGetFaultStatus(eoj, tid, pdc, edt);
 				break;
-			case EPC_MAKER_CODE:
-				onGetMakerCode(eoj, tid, pdc, edt);
+			case EPC_MANUFACTURER_CODE:
+				onGetManufacturerCode(eoj, tid, pdc, edt);
 				break;
-			case EPC_WORKPLACE_CODE:
-				onGetWorkplaceCode(eoj, tid, pdc, edt);
+			case EPC_PLACE_OF_BUSINESS_CODE:
+				onGetPlaceOfBusinessCode(eoj, tid, pdc, edt);
 				break;
 			case EPC_PRODUCT_CODE:
 				onGetProductCode(eoj, tid, pdc, edt);
 				break;
-			case EPC_MANUFACTURING_NUMBER:
-				onGetManufacturingNumber(eoj, tid, pdc, edt);
+			case EPC_SERIAL_NUMBER:
+				onGetSerialNumber(eoj, tid, pdc, edt);
 				break;
 			case EPC_DATE_OF_MANUFACTURE:
 				onGetDateOfManufacture(eoj, tid, pdc, edt);
 				break;
-			case EPC_ANNO_PROPERTY_MAP:
-				onGetAnnoPropertyMap(eoj, tid, pdc, edt);
+			case EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP:
+				onGetStatusChangeAnnouncementPropertyMap(eoj, tid, pdc, edt);
 				break;
 			case EPC_SET_PROPERTY_MAP:
 				onGetSetPropertyMap(eoj, tid, pdc, edt);
@@ -237,15 +237,15 @@ public abstract class ProfileObject extends EchoObject {
 			super.onReceiveInfCRes(eoj, tid, epc, pdc, edt);
 		}
 		
-		protected void onGetError(EchoObject eoj, short tid, byte pdc, byte[] edt) {
+		protected void onGetFaultStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {
 			
 		}
 
-		protected void onGetMakerCode(EchoObject eoj, short tid, byte pdc, byte[] edt) {
+		protected void onGetManufacturerCode(EchoObject eoj, short tid, byte pdc, byte[] edt) {
 			
 		}
 
-		protected void onGetWorkplaceCode(EchoObject eoj, short tid, byte pdc, byte[] edt) {
+		protected void onGetPlaceOfBusinessCode(EchoObject eoj, short tid, byte pdc, byte[] edt) {
 			
 		}
 		
@@ -253,7 +253,7 @@ public abstract class ProfileObject extends EchoObject {
 			
 		}
 
-		protected void onGetManufacturingNumber(EchoObject eoj, short tid, byte pdc, byte[] edt) {
+		protected void onGetSerialNumber(EchoObject eoj, short tid, byte pdc, byte[] edt) {
 			
 		}
 		
@@ -261,7 +261,7 @@ public abstract class ProfileObject extends EchoObject {
 			
 		}
 
-		protected void onGetAnnoPropertyMap(EchoObject eoj, short tid, byte pdc, byte[] edt) {
+		protected void onGetStatusChangeAnnouncementPropertyMap(EchoObject eoj, short tid, byte pdc, byte[] edt) {
 			
 		}
 		
@@ -291,13 +291,13 @@ public abstract class ProfileObject extends EchoObject {
 	}
 	
 	public interface Getter extends EchoObject.Getter {
-		public Getter reqGetError();
-		public Getter reqGetMakerCode();
-		public Getter reqGetWorkplaceCode();
+		public Getter reqGetFaultStatus();
+		public Getter reqGetManufacturerCode();
+		public Getter reqGetPlaceOfBusinessCode();
 		public Getter reqGetProductCode();
-		public Getter reqGetManufacturingNumber();
+		public Getter reqGetSerialNumber();
 		public Getter reqGetDateOfManufacture();
-		public Getter reqGetAnnoPropertyMap();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap();
 		public Getter reqGetSetPropertyMap();
 		public Getter reqGetGetPropertyMap();
 	}
@@ -305,23 +305,23 @@ public abstract class ProfileObject extends EchoObject {
 	public class GetterImpl extends EchoObject.GetterImpl implements Getter {
 		
 		@Override
-		public Getter reqGetError() {
-			byte[] edt = getError();
-			addProperty(EPC_ERROR, edt, (edt != null && edt.length == 1));
+		public Getter reqGetFaultStatus() {
+			byte[] edt = getFaultStatus();
+			addProperty(EPC_FAULT_STATUS, edt, (edt != null && edt.length == 1));
 			return this;
 		}
 		
 		@Override
-		public Getter reqGetMakerCode() {
-			byte[] edt = getMakerCode();
-			addProperty(EPC_MAKER_CODE, edt, (edt != null && edt.length == 3));
+		public Getter reqGetManufacturerCode() {
+			byte[] edt = getManufacturerCode();
+			addProperty(EPC_MANUFACTURER_CODE, edt, (edt != null && edt.length == 3));
 			return this;
 		}
 
 		@Override
-		public Getter reqGetWorkplaceCode() {
-			byte[] edt = getWorkplaceCode();
-			addProperty(EPC_WORKPLACE_CODE, edt, (edt != null && edt.length == 3));
+		public Getter reqGetPlaceOfBusinessCode() {
+			byte[] edt = getPlaceOfBusinessCode();
+			addProperty(EPC_PLACE_OF_BUSINESS_CODE, edt, (edt != null && edt.length == 3));
 			return this;
 		}
 
@@ -333,9 +333,9 @@ public abstract class ProfileObject extends EchoObject {
 		}
 
 		@Override
-		public Getter reqGetManufacturingNumber() {
-			byte[] edt = getManufacturingNumber();
-			addProperty(EPC_MANUFACTURING_NUMBER, edt, (edt != null && edt.length == 12));
+		public Getter reqGetSerialNumber() {
+			byte[] edt = getSerialNumber();
+			addProperty(EPC_SERIAL_NUMBER, edt, (edt != null && edt.length == 12));
 			return this;
 		}
 
@@ -347,9 +347,9 @@ public abstract class ProfileObject extends EchoObject {
 		}
 
 		@Override
-		public Getter reqGetAnnoPropertyMap() {
-			byte[] edt = getAnnoPropertyMap();
-			addProperty(EPC_ANNO_PROPERTY_MAP, edt, (edt != null && edt.length <= 17));
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			byte[] edt = getStatusChangeAnnouncementPropertyMap();
+			addProperty(EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP, edt, (edt != null && edt.length <= 17));
 			return this;
 		}
 
@@ -372,20 +372,20 @@ public abstract class ProfileObject extends EchoObject {
 	public class GetterProxy extends EchoObject.GetterProxy implements Getter {
 		
 		@Override
-		public Getter reqGetError() {
-			addProperty(EPC_ERROR);
+		public Getter reqGetFaultStatus() {
+			addProperty(EPC_FAULT_STATUS);
 			return this;
 		}
 
 		@Override
-		public Getter reqGetMakerCode() {
-			addProperty(EPC_MAKER_CODE);
+		public Getter reqGetManufacturerCode() {
+			addProperty(EPC_MANUFACTURER_CODE);
 			return this;
 		}
 
 		@Override
-		public Getter reqGetWorkplaceCode() {
-			addProperty(EPC_WORKPLACE_CODE);
+		public Getter reqGetPlaceOfBusinessCode() {
+			addProperty(EPC_PLACE_OF_BUSINESS_CODE);
 			return this;
 		}
 
@@ -396,8 +396,8 @@ public abstract class ProfileObject extends EchoObject {
 		}
 
 		@Override
-		public Getter reqGetManufacturingNumber() {
-			addProperty(EPC_MANUFACTURING_NUMBER);
+		public Getter reqGetSerialNumber() {
+			addProperty(EPC_SERIAL_NUMBER);
 			return this;
 		}
 
@@ -408,8 +408,8 @@ public abstract class ProfileObject extends EchoObject {
 		}
 
 		@Override
-		public Getter reqGetAnnoPropertyMap() {
-			addProperty(EPC_ANNO_PROPERTY_MAP);
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			addProperty(EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP);
 			return this;
 		}
 
@@ -428,13 +428,13 @@ public abstract class ProfileObject extends EchoObject {
 	}
 	
 	public interface Informer extends EchoObject.Informer {
-		public Informer reqInformError();
-		public Informer reqInformMakerCode();
-		public Informer reqInformWorkplaceCode();
+		public Informer reqInformFaultStatus();
+		public Informer reqInformManufacturerCode();
+		public Informer reqInformPlaceOfBusinessCode();
 		public Informer reqInformProductCode();
-		public Informer reqInformManufacturingNumber();
+		public Informer reqInformSerialNumber();
 		public Informer reqInformDateOfManufacture();
-		public Informer reqInformAnnoPropertyMap();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap();
 		public Informer reqInformSetPropetyMap();
 		public Informer reqInformGetPropetyMap();
 	}
@@ -442,23 +442,23 @@ public abstract class ProfileObject extends EchoObject {
 	public class InformerImpl extends EchoObject.InformerImpl implements Informer {
 
 		@Override
-		public Informer reqInformError() {
-			byte[] edt = getError();
-			addProperty(EPC_ERROR, edt, (edt != null && edt.length == 1));
+		public Informer reqInformFaultStatus() {
+			byte[] edt = getFaultStatus();
+			addProperty(EPC_FAULT_STATUS, edt, (edt != null && edt.length == 1));
 			return this;
 		}
 
 		@Override
-		public Informer reqInformMakerCode() {
-			byte[] edt = getMakerCode();
-			addProperty(EPC_MAKER_CODE, edt, (edt != null && edt.length == 3));
+		public Informer reqInformManufacturerCode() {
+			byte[] edt = getManufacturerCode();
+			addProperty(EPC_MANUFACTURER_CODE, edt, (edt != null && edt.length == 3));
 			return this;
 		}
 
 		@Override
-		public Informer reqInformWorkplaceCode() {
-			byte[] edt = getWorkplaceCode();
-			addProperty(EPC_WORKPLACE_CODE, edt, (edt != null && edt.length == 3));
+		public Informer reqInformPlaceOfBusinessCode() {
+			byte[] edt = getPlaceOfBusinessCode();
+			addProperty(EPC_PLACE_OF_BUSINESS_CODE, edt, (edt != null && edt.length == 3));
 			return this;
 		}
 
@@ -470,9 +470,9 @@ public abstract class ProfileObject extends EchoObject {
 		}
 
 		@Override
-		public Informer reqInformManufacturingNumber() {
-			byte[] edt = getManufacturingNumber();
-			addProperty(EPC_MANUFACTURING_NUMBER, edt, (edt != null && edt.length == 12));
+		public Informer reqInformSerialNumber() {
+			byte[] edt = getSerialNumber();
+			addProperty(EPC_SERIAL_NUMBER, edt, (edt != null && edt.length == 12));
 			return this;
 		}
 
@@ -484,9 +484,9 @@ public abstract class ProfileObject extends EchoObject {
 		}
 
 		@Override
-		public Informer reqInformAnnoPropertyMap() {
-			byte[] edt = getAnnoPropertyMap();
-			addProperty(EPC_ANNO_PROPERTY_MAP, edt, (edt != null && edt.length <= 17));
+		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
+			byte[] edt = getStatusChangeAnnouncementPropertyMap();
+			addProperty(EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP, edt, (edt != null && edt.length <= 17));
 			return this;
 		}
 
@@ -509,20 +509,20 @@ public abstract class ProfileObject extends EchoObject {
 	public class InformerProxy extends EchoObject.InformerProxy implements Informer {
 
 		@Override
-		public Informer reqInformError() {
-			addProperty(EPC_ERROR);
+		public Informer reqInformFaultStatus() {
+			addProperty(EPC_FAULT_STATUS);
 			return this;
 		}
 
 		@Override
-		public Informer reqInformMakerCode() {
-			addProperty(EPC_MAKER_CODE);
+		public Informer reqInformManufacturerCode() {
+			addProperty(EPC_MANUFACTURER_CODE);
 			return this;
 		}
 
 		@Override
-		public Informer reqInformWorkplaceCode() {
-			addProperty(EPC_WORKPLACE_CODE);
+		public Informer reqInformPlaceOfBusinessCode() {
+			addProperty(EPC_PLACE_OF_BUSINESS_CODE);
 			return this;
 		}
 
@@ -533,8 +533,8 @@ public abstract class ProfileObject extends EchoObject {
 		}
 
 		@Override
-		public Informer reqInformManufacturingNumber() {
-			addProperty(EPC_MANUFACTURING_NUMBER);
+		public Informer reqInformSerialNumber() {
+			addProperty(EPC_SERIAL_NUMBER);
 			return this;
 		}
 
@@ -545,8 +545,8 @@ public abstract class ProfileObject extends EchoObject {
 		}
 
 		@Override
-		public Informer reqInformAnnoPropertyMap() {
-			addProperty(EPC_ANNO_PROPERTY_MAP);
+		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
+			addProperty(EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP);
 			return this;
 		}
 

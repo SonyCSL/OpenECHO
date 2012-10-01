@@ -56,135 +56,135 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	}
 
 	/**
-	 * Used to set the operation mode (ventilation mode, bathroom pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>Ventilation operation             : 0x10 Bathroom pre-warmer operation : 0x20 Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00
+	 * Used to set the operation mode (ventilation mode, bathroom pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>Ventilation operation             : 0x10 Bathroom pre-warmer operation : 0x20 Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract boolean setOperationSetting(byte[] edt);
 	/**
-	 * Used to set the operation mode (ventilation mode, bathroom pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>Ventilation operation             : 0x10 Bathroom pre-warmer operation : 0x20 Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00
+	 * Used to set the operation mode (ventilation mode, bathroom pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>Ventilation operation             : 0x10 Bathroom pre-warmer operation : 0x20 Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract byte[] getOperationSetting();
 	/**
-	 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Air flow rate level    : 0x31 to 0x38
+	 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Air flow rate level    : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setVentilationOperationSetting(byte[] edt) {return false;}
 	/**
-	 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Air flow rate level    : 0x31 to 0x38
+	 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Air flow rate level    : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getVentilationOperationSetting() {return null;}
 	/**
-	 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom pre-warming level : 0x31 to 0x38
+	 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom pre-warming level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract boolean setBathroomPreWarmerOperationSetting(byte[] edt);
 	/**
-	 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom pre-warming level : 0x31 to 0x38
+	 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom pre-warming level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract byte[] getBathroomPreWarmerOperationSetting();
 	/**
-	 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom heating level : 0x31 to 0x38
+	 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom heating level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setBathroomHeaterOperationSetting(byte[] edt) {return false;}
 	/**
-	 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom heating level : 0x31 to 0x38
+	 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom heating level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getBathroomHeaterOperationSetting() {return null;}
 	/**
-	 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom drying level : 0x31 to 0x38
+	 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom drying level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract boolean setBathroomDryerOperationSetting(byte[] edt);
 	/**
-	 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom drying level : 0x31 to 0x38
+	 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom drying level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract byte[] getBathroomDryerOperationSetting();
 	/**
-	 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Cool air circulation level : 0x31 to 0x38
+	 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Cool air circulation level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setCoolAirCirculatorOperationSetting(byte[] edt) {return false;}
 	/**
-	 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Cool air circulation level : 0x31 to 0x38
+	 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Cool air circulation level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getCoolAirCirculatorOperationSetting() {return null;}
 	/**
-	 * Used to acquire the measured relative humidity of the bathroom.<br>0x00 to 0x64 (0 to 100%)
+	 * Used to acquire the measured relative humidity of the bathroom.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredRelativeBathroomHumidity() {return null;}
 	/**
-	 * Used to acquire the measured temperature of the bathroom.<br>0x81 to 0x7D (.127 to �{125��)
+	 * Used to acquire the measured temperature of the bathroom.<br>0x81 to 0x7D (.127 to �{125��)<br><br>Data type : signed char<br>Data size : 1 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredBathroomTemperature() {return null;}
 	/**
-	 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br>Automatic: 0x41 Air flow rate level: 0x31 to 0x38
+	 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br>Automatic: 0x41 Air flow rate level: 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setVentilationAirFlowRateSetting(byte[] edt) {return false;}
 	/**
-	 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br>Automatic: 0x41 Air flow rate level: 0x31 to 0x38
+	 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br>Automatic: 0x41 Air flow rate level: 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getVentilationAirFlowRateSetting() {return null;}
 	/**
-	 * Used to set the filter cleaning reminder sign status (lit/not lit) and to acquire the current setting.<br>Lit: 0x41 Not lit: 0x42
+	 * Used to set the filter cleaning reminder sign status (lit/not lit) and to acquire the current setting.<br>Lit: 0x41 Not lit: 0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setFilterCleaningReminderSignSetting(byte[] edt) {return false;}
 	/**
-	 * Used to set the filter cleaning reminder sign status (lit/not lit) and to acquire the current setting.<br>Lit: 0x41 Not lit: 0x42
+	 * Used to set the filter cleaning reminder sign status (lit/not lit) and to acquire the current setting.<br>Lit: 0x41 Not lit: 0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getFilterCleaningReminderSignSetting() {return null;}
 	/**
-	 * Used to acquire the human body detection status.<br>Detected: 0x41 Not detected: 0x42
+	 * Used to acquire the human body detection status.<br>Detected: 0x41 Not detected: 0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getHumanBodyDetectionStatus() {return null;}
 	/**
-	 * Used to set the ON/OFF status of the ON timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42
+	 * Used to set the ON/OFF status of the ON timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setGonTimerBasedReservationHSetting1(byte[] edt) {return false;}
 	/**
-	 * Used to set the ON/OFF status of the ON timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42
+	 * Used to set the ON/OFF status of the ON timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getGonTimerBasedReservationHSetting1() {return null;}
 	/**
-	 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>Reservation function ON for the ventilation mode                      : 0x10 Reservation function ON for the bathroom pre-warmer mode : 0x20 Reservation function ON for the bathroom heater mode          : 0x30 Reservation function ON for the bathroom dryer mode            : 0x40 Reservation function ON for the cool air circulator mode       : 0x50 Reservation function OFF : 0x00
+	 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>Reservation function ON for the ventilation mode                      : 0x10 Reservation function ON for the bathroom pre-warmer mode : 0x20 Reservation function ON for the bathroom heater mode          : 0x30 Reservation function ON for the bathroom dryer mode            : 0x40 Reservation function ON for the cool air circulator mode       : 0x50 Reservation function OFF : 0x00<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setGonTimerBasedReservationHSetting2(byte[] edt) {return false;}
 	/**
-	 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>Reservation function ON for the ventilation mode                      : 0x10 Reservation function ON for the bathroom pre-warmer mode : 0x20 Reservation function ON for the bathroom heater mode          : 0x30 Reservation function ON for the bathroom dryer mode            : 0x40 Reservation function ON for the cool air circulator mode       : 0x50 Reservation function OFF : 0x00
+	 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>Reservation function ON for the ventilation mode                      : 0x10 Reservation function ON for the bathroom pre-warmer mode : 0x20 Reservation function ON for the bathroom heater mode          : 0x30 Reservation function ON for the bathroom dryer mode            : 0x40 Reservation function ON for the cool air circulator mode       : 0x50 Reservation function OFF : 0x00<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getGonTimerBasedReservationHSetting2() {return null;}
 	/**
-	 * Used to set the time setting for the time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+	 * Used to set the time setting for the time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOnTimerSettingTime(byte[] edt) {return false;}
 	/**
-	 * Used to set the time setting for the time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+	 * Used to set the time setting for the time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOnTimerSettingTime() {return null;}
 	/**
-	 * Used to set the relative time setting for the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+	 * Used to set the relative time setting for the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOnTimerSettingRelativeTime(byte[] edt) {return false;}
 	/**
-	 * Used to set the relative time setting for the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+	 * Used to set the relative time setting for the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOnTimerSettingRelativeTime() {return null;}
 	/**
-	 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42
+	 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setGoffTimerBasedReservationHSetting(byte[] edt) {return false;}
 	/**
-	 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42
+	 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getGoffTimerBasedReservationHSetting() {return null;}
 	/**
-	 * Used to set the time setting for the time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+	 * Used to set the time setting for the time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOffTimerSettingTime(byte[] edt) {return false;}
 	/**
-	 * Used to set the time setting for the time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+	 * Used to set the time setting for the time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOffTimerSettingTime() {return null;}
 	/**
-	 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+	 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOffTimerSettingRelativeTime(byte[] edt) {return false;}
 	/**
-	 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+	 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOffTimerSettingRelativeTime() {return null;}
 
@@ -463,211 +463,210 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 		}
 		
 		/**
-		 * Used to set the operation mode (ventilation mode, bathroom pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>Ventilation operation             : 0x10 Bathroom pre-warmer operation : 0x20 Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00
+		 * Used to set the operation mode (ventilation mode, bathroom pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>Ventilation operation             : 0x10 Bathroom pre-warmer operation : 0x20 Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		protected void onSetOperationSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the operation mode (ventilation mode, bathroom pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>Ventilation operation             : 0x10 Bathroom pre-warmer operation : 0x20 Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00
+		 * Used to set the operation mode (ventilation mode, bathroom pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>Ventilation operation             : 0x10 Bathroom pre-warmer operation : 0x20 Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		protected void onGetOperationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Air flow rate level    : 0x31 to 0x38
+		 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Air flow rate level    : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetVentilationOperationSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Air flow rate level    : 0x31 to 0x38
+		 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Air flow rate level    : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetVentilationOperationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom pre-warming level : 0x31 to 0x38
+		 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom pre-warming level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : mandatory<br>Get : mandatory
 		 */
 		protected void onSetBathroomPreWarmerOperationSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom pre-warming level : 0x31 to 0x38
+		 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom pre-warming level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : mandatory<br>Get : mandatory
 		 */
 		protected void onGetBathroomPreWarmerOperationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom heating level : 0x31 to 0x38
+		 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom heating level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetBathroomHeaterOperationSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom heating level : 0x31 to 0x38
+		 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom heating level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetBathroomHeaterOperationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom drying level : 0x31 to 0x38
+		 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom drying level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : mandatory<br>Get : mandatory
 		 */
 		protected void onSetBathroomDryerOperationSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom drying level : 0x31 to 0x38
+		 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom drying level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : mandatory<br>Get : mandatory
 		 */
 		protected void onGetBathroomDryerOperationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Cool air circulation level : 0x31 to 0x38
+		 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Cool air circulation level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetCoolAirCirculatorOperationSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Cool air circulation level : 0x31 to 0x38
+		 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Cool air circulation level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetCoolAirCirculatorOperationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to acquire the measured relative humidity of the bathroom.<br>0x00 to 0x64 (0 to 100%)
+		 * Used to acquire the measured relative humidity of the bathroom.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMeasuredRelativeBathroomHumidity(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to acquire the measured temperature of the bathroom.<br>0x81 to 0x7D (.127 to �{125��)
+		 * Used to acquire the measured temperature of the bathroom.<br>0x81 to 0x7D (.127 to �{125��)<br><br>Data type : signed char<br>Data size : 1 bytes<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMeasuredBathroomTemperature(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br>Automatic: 0x41 Air flow rate level: 0x31 to 0x38
+		 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br>Automatic: 0x41 Air flow rate level: 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetVentilationAirFlowRateSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br>Automatic: 0x41 Air flow rate level: 0x31 to 0x38
+		 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br>Automatic: 0x41 Air flow rate level: 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetVentilationAirFlowRateSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the filter cleaning reminder sign status (lit/not lit) and to acquire the current setting.<br>Lit: 0x41 Not lit: 0x42
+		 * Used to set the filter cleaning reminder sign status (lit/not lit) and to acquire the current setting.<br>Lit: 0x41 Not lit: 0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetFilterCleaningReminderSignSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the filter cleaning reminder sign status (lit/not lit) and to acquire the current setting.<br>Lit: 0x41 Not lit: 0x42
+		 * Used to set the filter cleaning reminder sign status (lit/not lit) and to acquire the current setting.<br>Lit: 0x41 Not lit: 0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetFilterCleaningReminderSignSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to acquire the human body detection status.<br>Detected: 0x41 Not detected: 0x42
+		 * Used to acquire the human body detection status.<br>Detected: 0x41 Not detected: 0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetHumanBodyDetectionStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the ON/OFF status of the ON timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42
+		 * Used to set the ON/OFF status of the ON timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetGonTimerBasedReservationHSetting1(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the ON/OFF status of the ON timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42
+		 * Used to set the ON/OFF status of the ON timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetGonTimerBasedReservationHSetting1(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>Reservation function ON for the ventilation mode                      : 0x10 Reservation function ON for the bathroom pre-warmer mode : 0x20 Reservation function ON for the bathroom heater mode          : 0x30 Reservation function ON for the bathroom dryer mode            : 0x40 Reservation function ON for the cool air circulator mode       : 0x50 Reservation function OFF : 0x00
+		 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>Reservation function ON for the ventilation mode                      : 0x10 Reservation function ON for the bathroom pre-warmer mode : 0x20 Reservation function ON for the bathroom heater mode          : 0x30 Reservation function ON for the bathroom dryer mode            : 0x40 Reservation function ON for the cool air circulator mode       : 0x50 Reservation function OFF : 0x00<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetGonTimerBasedReservationHSetting2(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>Reservation function ON for the ventilation mode                      : 0x10 Reservation function ON for the bathroom pre-warmer mode : 0x20 Reservation function ON for the bathroom heater mode          : 0x30 Reservation function ON for the bathroom dryer mode            : 0x40 Reservation function ON for the cool air circulator mode       : 0x50 Reservation function OFF : 0x00
+		 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>Reservation function ON for the ventilation mode                      : 0x10 Reservation function ON for the bathroom pre-warmer mode : 0x20 Reservation function ON for the bathroom heater mode          : 0x30 Reservation function ON for the bathroom dryer mode            : 0x40 Reservation function ON for the cool air circulator mode       : 0x50 Reservation function OFF : 0x00<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetGonTimerBasedReservationHSetting2(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the time setting for the time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to set the time setting for the time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetOnTimerSettingTime(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the time setting for the time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to set the time setting for the time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetOnTimerSettingTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the relative time setting for the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to set the relative time setting for the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetOnTimerSettingRelativeTime(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the relative time setting for the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to set the relative time setting for the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42
+		 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetGoffTimerBasedReservationHSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42
+		 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetGoffTimerBasedReservationHSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the time setting for the time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to set the time setting for the time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetOffTimerSettingTime(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the time setting for the time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to set the time setting for the time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetOffTimerSettingTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetOffTimerSettingRelativeTime(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetOffTimerSettingRelativeTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 
 	}
 	
 	public interface Setter extends DeviceObject.Setter {
-		public Setter reqSetPower(byte[] edt);
+		public Setter reqSetOperationStatus(byte[] edt);
 		public Setter reqSetInstallationLocation(byte[] edt);
-		public Setter reqSetCurrentLimiting(byte[] edt);
-		public Setter reqSetPowerSaving(byte[] edt);
-		public Setter reqSetLocation(byte[] edt);
-		public Setter reqSetCurrentTime(byte[] edt);
-		public Setter reqSetCurrentDate(byte[] edt);
-		public Setter reqSetPowerLimitation(byte[] edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
+		public Setter reqSetPositionInformation(byte[] edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt);
 		
 		/**
-		 * Used to set the operation mode (ventilation mode, bathroom pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>Ventilation operation             : 0x10 Bathroom pre-warmer operation : 0x20 Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00
+		 * Used to set the operation mode (ventilation mode, bathroom pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>Ventilation operation             : 0x10 Bathroom pre-warmer operation : 0x20 Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		public Setter reqSetOperationSetting(byte[] edt);
 		/**
-		 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Air flow rate level    : 0x31 to 0x38
+		 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Air flow rate level    : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetVentilationOperationSetting(byte[] edt);
 		/**
-		 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom pre-warming level : 0x31 to 0x38
+		 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom pre-warming level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : mandatory<br>Get : mandatory
 		 */
 		public Setter reqSetBathroomPreWarmerOperationSetting(byte[] edt);
 		/**
-		 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom heating level : 0x31 to 0x38
+		 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom heating level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetBathroomHeaterOperationSetting(byte[] edt);
 		/**
-		 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom drying level : 0x31 to 0x38
+		 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom drying level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : mandatory<br>Get : mandatory
 		 */
 		public Setter reqSetBathroomDryerOperationSetting(byte[] edt);
 		/**
-		 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Cool air circulation level : 0x31 to 0x38
+		 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Cool air circulation level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetCoolAirCirculatorOperationSetting(byte[] edt);
 		/**
-		 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br>Automatic: 0x41 Air flow rate level: 0x31 to 0x38
+		 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br>Automatic: 0x41 Air flow rate level: 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetVentilationAirFlowRateSetting(byte[] edt);
 		/**
-		 * Used to set the filter cleaning reminder sign status (lit/not lit) and to acquire the current setting.<br>Lit: 0x41 Not lit: 0x42
+		 * Used to set the filter cleaning reminder sign status (lit/not lit) and to acquire the current setting.<br>Lit: 0x41 Not lit: 0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetFilterCleaningReminderSignSetting(byte[] edt);
 		/**
-		 * Used to set the ON/OFF status of the ON timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42
+		 * Used to set the ON/OFF status of the ON timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetGonTimerBasedReservationHSetting1(byte[] edt);
 		/**
-		 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>Reservation function ON for the ventilation mode                      : 0x10 Reservation function ON for the bathroom pre-warmer mode : 0x20 Reservation function ON for the bathroom heater mode          : 0x30 Reservation function ON for the bathroom dryer mode            : 0x40 Reservation function ON for the cool air circulator mode       : 0x50 Reservation function OFF : 0x00
+		 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>Reservation function ON for the ventilation mode                      : 0x10 Reservation function ON for the bathroom pre-warmer mode : 0x20 Reservation function ON for the bathroom heater mode          : 0x30 Reservation function ON for the bathroom dryer mode            : 0x40 Reservation function ON for the cool air circulator mode       : 0x50 Reservation function OFF : 0x00<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetGonTimerBasedReservationHSetting2(byte[] edt);
 		/**
-		 * Used to set the time setting for the time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to set the time setting for the time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetOnTimerSettingTime(byte[] edt);
 		/**
-		 * Used to set the relative time setting for the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to set the relative time setting for the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetOnTimerSettingRelativeTime(byte[] edt);
 		/**
-		 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42
+		 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetGoffTimerBasedReservationHSetting(byte[] edt);
 		/**
-		 * Used to set the time setting for the time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to set the time setting for the time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetOffTimerSettingTime(byte[] edt);
 		/**
-		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetOffTimerSettingRelativeTime(byte[] edt);
-
 	}
 
 	public class SetterImpl extends DeviceObject.SetterImpl implements Setter {
@@ -677,43 +676,36 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 		}
 		
 		@Override
-		public Setter reqSetPower(byte[] edt) {
-			return (Setter)super.reqSetPower(edt);
+		public Setter reqSetOperationStatus(byte[] edt) {
+			return (Setter)super.reqSetOperationStatus(edt);
 		}
-
 		@Override
 		public Setter reqSetInstallationLocation(byte[] edt) {
 			return (Setter)super.reqSetInstallationLocation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentLimiting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimiting(edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentLimitSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerSaving(byte[] edt) {
-			return (Setter)super.reqSetPowerSaving(edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetLocation(byte[] edt) {
-			return (Setter)super.reqSetLocation(edt);
+		public Setter reqSetPositionInformation(byte[] edt) {
+			return (Setter)super.reqSetPositionInformation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentTime(byte[] edt) {
-			return (Setter)super.reqSetCurrentTime(edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentTimeSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentDate(byte[] edt) {
-			return (Setter)super.reqSetCurrentDate(edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentDateSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerLimitation(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitation(edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
 		@Override
@@ -791,7 +783,6 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME, edt, setOffTimerSettingRelativeTime(edt));
 			return this;
 		}
-
 	}
 	
 	public class SetterProxy extends DeviceObject.SetterProxy implements Setter {
@@ -800,45 +791,37 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 			super(esv);
 		}
 
-		
 		@Override
-		public Setter reqSetPower(byte[] edt) {
-			return (Setter)super.reqSetPower(edt);
+		public Setter reqSetOperationStatus(byte[] edt) {
+			return (Setter)super.reqSetOperationStatus(edt);
 		}
-
 		@Override
 		public Setter reqSetInstallationLocation(byte[] edt) {
 			return (Setter)super.reqSetInstallationLocation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentLimiting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimiting(edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentLimitSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerSaving(byte[] edt) {
-			return (Setter)super.reqSetPowerSaving(edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetLocation(byte[] edt) {
-			return (Setter)super.reqSetLocation(edt);
+		public Setter reqSetPositionInformation(byte[] edt) {
+			return (Setter)super.reqSetPositionInformation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentTime(byte[] edt) {
-			return (Setter)super.reqSetCurrentTime(edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentTimeSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentDate(byte[] edt) {
-			return (Setter)super.reqSetCurrentDate(edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentDateSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerLimitation(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitation(edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
 		@Override
@@ -916,227 +899,202 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-
 	}
 
 	public interface Getter extends DeviceObject.Getter {
-		public Getter reqGetPower();
+		public Getter reqGetOperationStatus();
 		public Getter reqGetInstallationLocation();
-		public Getter reqGetVersion();
-		public Getter reqGetIdNumber();
-		public Getter reqGetElectricityConsumption();
-		public Getter reqGetPowerConsumption();
-		public Getter reqGetMakerErrorCode();
-		public Getter reqGetCurrentLimiting();
-		public Getter reqGetError();
-		public Getter reqGetErrorInfo();
-		public Getter reqGetMakerCode();
-		public Getter reqGetWorkplaceCode();
+		public Getter reqGetStandardVersionInformation();
+		public Getter reqGetIdentificationNumber();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption();
+		public Getter reqGetManufacturersFaultCode();
+		public Getter reqGetCurrentLimitSetting();
+		public Getter reqGetFaultStatus();
+		public Getter reqGetFaultDescription();
+		public Getter reqGetManufacturerCode();
+		public Getter reqGetBusinessFacilityCode();
 		public Getter reqGetProductCode();
-		public Getter reqGetManufacturingNumber();
-		public Getter reqGetDateOfManufacture();
-		public Getter reqGetPowerSaving();
-		public Getter reqGetLocation();
-		public Getter reqGetCurrentTime();
-		public Getter reqGetCurrentDate();
-		public Getter reqGetPowerLimitation();
-		public Getter reqGetWorkingTime();
-		public Getter reqGetAnnoPropertyMap();
+		public Getter reqGetProductionNumber();
+		public Getter reqGetProductionDate();
+		public Getter reqGetPowerSavingOperationSetting();
+		public Getter reqGetPositionInformation();
+		public Getter reqGetCurrentTimeSetting();
+		public Getter reqGetCurrentDateSetting();
+		public Getter reqGetPowerLimitSetting();
+		public Getter reqGetCumulativeOperatingTime();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap();
 		public Getter reqGetSetPropertyMap();
 		public Getter reqGetGetPropertyMap();
 		
 		/**
-		 * Used to set the operation mode (ventilation mode, bathroom pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>Ventilation operation             : 0x10 Bathroom pre-warmer operation : 0x20 Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00
+		 * Used to set the operation mode (ventilation mode, bathroom pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>Ventilation operation             : 0x10 Bathroom pre-warmer operation : 0x20 Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		public Getter reqGetOperationSetting();
 		/**
-		 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Air flow rate level    : 0x31 to 0x38
+		 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Air flow rate level    : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetVentilationOperationSetting();
 		/**
-		 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom pre-warming level : 0x31 to 0x38
+		 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom pre-warming level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : mandatory<br>Get : mandatory
 		 */
 		public Getter reqGetBathroomPreWarmerOperationSetting();
 		/**
-		 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom heating level : 0x31 to 0x38
+		 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom heating level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetBathroomHeaterOperationSetting();
 		/**
-		 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom drying level : 0x31 to 0x38
+		 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom drying level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : mandatory<br>Get : mandatory
 		 */
 		public Getter reqGetBathroomDryerOperationSetting();
 		/**
-		 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Cool air circulation level : 0x31 to 0x38
+		 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Cool air circulation level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetCoolAirCirculatorOperationSetting();
 		/**
-		 * Used to acquire the measured relative humidity of the bathroom.<br>0x00 to 0x64 (0 to 100%)
+		 * Used to acquire the measured relative humidity of the bathroom.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMeasuredRelativeBathroomHumidity();
 		/**
-		 * Used to acquire the measured temperature of the bathroom.<br>0x81 to 0x7D (.127 to �{125��)
+		 * Used to acquire the measured temperature of the bathroom.<br>0x81 to 0x7D (.127 to �{125��)<br><br>Data type : signed char<br>Data size : 1 bytes<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMeasuredBathroomTemperature();
 		/**
-		 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br>Automatic: 0x41 Air flow rate level: 0x31 to 0x38
+		 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br>Automatic: 0x41 Air flow rate level: 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetVentilationAirFlowRateSetting();
 		/**
-		 * Used to set the filter cleaning reminder sign status (lit/not lit) and to acquire the current setting.<br>Lit: 0x41 Not lit: 0x42
+		 * Used to set the filter cleaning reminder sign status (lit/not lit) and to acquire the current setting.<br>Lit: 0x41 Not lit: 0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetFilterCleaningReminderSignSetting();
 		/**
-		 * Used to acquire the human body detection status.<br>Detected: 0x41 Not detected: 0x42
+		 * Used to acquire the human body detection status.<br>Detected: 0x41 Not detected: 0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetHumanBodyDetectionStatus();
 		/**
-		 * Used to set the ON/OFF status of the ON timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42
+		 * Used to set the ON/OFF status of the ON timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetGonTimerBasedReservationHSetting1();
 		/**
-		 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>Reservation function ON for the ventilation mode                      : 0x10 Reservation function ON for the bathroom pre-warmer mode : 0x20 Reservation function ON for the bathroom heater mode          : 0x30 Reservation function ON for the bathroom dryer mode            : 0x40 Reservation function ON for the cool air circulator mode       : 0x50 Reservation function OFF : 0x00
+		 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>Reservation function ON for the ventilation mode                      : 0x10 Reservation function ON for the bathroom pre-warmer mode : 0x20 Reservation function ON for the bathroom heater mode          : 0x30 Reservation function ON for the bathroom dryer mode            : 0x40 Reservation function ON for the cool air circulator mode       : 0x50 Reservation function OFF : 0x00<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetGonTimerBasedReservationHSetting2();
 		/**
-		 * Used to set the time setting for the time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to set the time setting for the time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetOnTimerSettingTime();
 		/**
-		 * Used to set the relative time setting for the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to set the relative time setting for the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetOnTimerSettingRelativeTime();
 		/**
-		 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42
+		 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetGoffTimerBasedReservationHSetting();
 		/**
-		 * Used to set the time setting for the time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to set the time setting for the time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetOffTimerSettingTime();
 		/**
-		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetOffTimerSettingRelativeTime();
-
 	}
 	
 	public class GetterImpl extends DeviceObject.GetterImpl implements Getter {
 
 		@Override
-		public Getter reqGetPower() {
-			return (Getter)super.reqGetPower();
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
 		}
-
 		@Override
 		public Getter reqGetInstallationLocation() {
 			return (Getter)super.reqGetInstallationLocation();
 		}
-
 		@Override
-		public Getter reqGetVersion() {
-			return (Getter)super.reqGetVersion();
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
 		}
-
 		@Override
-		public Getter reqGetIdNumber() {
-			return (Getter)super.reqGetIdNumber();
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
 		}
-
 		@Override
-		public Getter reqGetElectricityConsumption() {
-			return (Getter)super.reqGetElectricityConsumption();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetPowerConsumption() {
-			return (Getter)super.reqGetPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetMakerErrorCode() {
-			return (Getter)super.reqGetMakerErrorCode();
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
 		}
-
 		@Override
-		public Getter reqGetCurrentLimiting() {
-			return (Getter)super.reqGetCurrentLimiting();
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetError() {
-			return (Getter)super.reqGetError();
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
 		}
-
 		@Override
-		public Getter reqGetErrorInfo() {
-			return (Getter)super.reqGetErrorInfo();
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
 		}
-
 		@Override
-		public Getter reqGetMakerCode() {
-			return (Getter)super.reqGetMakerCode();
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
 		}
-
 		@Override
-		public Getter reqGetWorkplaceCode() {
-			return (Getter)super.reqGetWorkplaceCode();
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
 		}
-
 		@Override
 		public Getter reqGetProductCode() {
 			return (Getter)super.reqGetProductCode();
 		}
-
 		@Override
-		public Getter reqGetManufacturingNumber() {
-			return (Getter)super.reqGetManufacturingNumber();
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
 		}
-
 		@Override
-		public Getter reqGetDateOfManufacture() {
-			return (Getter)super.reqGetDateOfManufacture();
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
 		}
-
 		@Override
-		public Getter reqGetPowerSaving() {
-			return (Getter)super.reqGetPowerSaving();
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Getter reqGetLocation() {
-			return (Getter)super.reqGetLocation();
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
 		}
-
 		@Override
-		public Getter reqGetCurrentTime() {
-			return (Getter)super.reqGetCurrentTime();
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
 		}
-
 		@Override
-		public Getter reqGetCurrentDate() {
-			return (Getter)super.reqGetCurrentDate();
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
 		}
-
 		@Override
-		public Getter reqGetPowerLimitation() {
-			return (Getter)super.reqGetPowerLimitation();
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetWorkingTime() {
-			return (Getter)super.reqGetWorkingTime();
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
 		}
-
 		@Override
-		public Getter reqGetAnnoPropertyMap() {
-			return (Getter)super.reqGetAnnoPropertyMap();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetSetPropertyMap() {
 			return (Getter)super.reqGetSetPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetGetPropertyMap() {
 			return (Getter)super.reqGetGetPropertyMap();
@@ -1250,126 +1208,102 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-
 	}
 
 	public class GetterProxy extends DeviceObject.GetterProxy implements Getter {
 
 		@Override
-		public Getter reqGetPower() {
-			return (Getter)super.reqGetPower();
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
 		}
-
 		@Override
 		public Getter reqGetInstallationLocation() {
 			return (Getter)super.reqGetInstallationLocation();
 		}
-
 		@Override
-		public Getter reqGetVersion() {
-			return (Getter)super.reqGetVersion();
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
 		}
-
 		@Override
-		public Getter reqGetIdNumber() {
-			return (Getter)super.reqGetIdNumber();
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
 		}
-
 		@Override
-		public Getter reqGetElectricityConsumption() {
-			return (Getter)super.reqGetElectricityConsumption();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetPowerConsumption() {
-			return (Getter)super.reqGetPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetMakerErrorCode() {
-			return (Getter)super.reqGetMakerErrorCode();
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
 		}
-
 		@Override
-		public Getter reqGetCurrentLimiting() {
-			return (Getter)super.reqGetCurrentLimiting();
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetError() {
-			return (Getter)super.reqGetError();
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
 		}
-
 		@Override
-		public Getter reqGetErrorInfo() {
-			return (Getter)super.reqGetErrorInfo();
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
 		}
-
 		@Override
-		public Getter reqGetMakerCode() {
-			return (Getter)super.reqGetMakerCode();
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
 		}
-
 		@Override
-		public Getter reqGetWorkplaceCode() {
-			return (Getter)super.reqGetWorkplaceCode();
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
 		}
-
 		@Override
 		public Getter reqGetProductCode() {
 			return (Getter)super.reqGetProductCode();
 		}
-
 		@Override
-		public Getter reqGetManufacturingNumber() {
-			return (Getter)super.reqGetManufacturingNumber();
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
 		}
-
 		@Override
-		public Getter reqGetDateOfManufacture() {
-			return (Getter)super.reqGetDateOfManufacture();
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
 		}
-
 		@Override
-		public Getter reqGetPowerSaving() {
-			return (Getter)super.reqGetPowerSaving();
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Getter reqGetLocation() {
-			return (Getter)super.reqGetLocation();
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
 		}
-
 		@Override
-		public Getter reqGetCurrentTime() {
-			return (Getter)super.reqGetCurrentTime();
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
 		}
-
 		@Override
-		public Getter reqGetCurrentDate() {
-			return (Getter)super.reqGetCurrentDate();
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
 		}
-
 		@Override
-		public Getter reqGetPowerLimitation() {
-			return (Getter)super.reqGetPowerLimitation();
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetWorkingTime() {
-			return (Getter)super.reqGetWorkingTime();
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
 		}
-
 		@Override
-		public Getter reqGetAnnoPropertyMap() {
-			return (Getter)super.reqGetAnnoPropertyMap();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetSetPropertyMap() {
 			return (Getter)super.reqGetSetPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetGetPropertyMap() {
 			return (Getter)super.reqGetGetPropertyMap();
@@ -1465,227 +1399,202 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
-
 	}
 	
 	public interface Informer extends DeviceObject.Informer {
-		public Informer reqInformPower();
+		public Informer reqInformOperationStatus();
 		public Informer reqInformInstallationLocation();
-		public Informer reqInformVersion();
-		public Informer reqInformIdNumber();
-		public Informer reqInformElectricityConsumption();
-		public Informer reqInformPowerConsumption();
-		public Informer reqInformMakerErrorCode();
-		public Informer reqInformCurrentLimiting();
-		public Informer reqInformError();
-		public Informer reqInformErrorInfo();
-		public Informer reqInformMakerCode();
-		public Informer reqInformWorkplaceCode();
+		public Informer reqInformStandardVersionInformation();
+		public Informer reqInformIdentificationNumber();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption();
+		public Informer reqInformManufacturersFaultCode();
+		public Informer reqInformCurrentLimitSetting();
+		public Informer reqInformFaultStatus();
+		public Informer reqInformFaultDescription();
+		public Informer reqInformManufacturerCode();
+		public Informer reqInformBusinessFacilityCode();
 		public Informer reqInformProductCode();
-		public Informer reqInformManufacturingNumber();
-		public Informer reqInformDateOfManufacture();
-		public Informer reqInformPowerSaving();
-		public Informer reqInformLocation();
-		public Informer reqInformCurrentTime();
-		public Informer reqInformCurrentDate();
-		public Informer reqInformPowerLimitation();
-		public Informer reqInformWorkingTime();
-		public Informer reqInformAnnoPropertyMap();
+		public Informer reqInformProductionNumber();
+		public Informer reqInformProductionDate();
+		public Informer reqInformPowerSavingOperationSetting();
+		public Informer reqInformPositionInformation();
+		public Informer reqInformCurrentTimeSetting();
+		public Informer reqInformCurrentDateSetting();
+		public Informer reqInformPowerLimitSetting();
+		public Informer reqInformCumulativeOperatingTime();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap();
 		public Informer reqInformSetPropertyMap();
 		public Informer reqInformGetPropertyMap();
 		
 		/**
-		 * Used to set the operation mode (ventilation mode, bathroom pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>Ventilation operation             : 0x10 Bathroom pre-warmer operation : 0x20 Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00
+		 * Used to set the operation mode (ventilation mode, bathroom pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>Ventilation operation             : 0x10 Bathroom pre-warmer operation : 0x20 Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		public Informer reqInformOperationSetting();
 		/**
-		 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Air flow rate level    : 0x31 to 0x38
+		 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Air flow rate level    : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformVentilationOperationSetting();
 		/**
-		 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom pre-warming level : 0x31 to 0x38
+		 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom pre-warming level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : mandatory<br>Get : mandatory
 		 */
 		public Informer reqInformBathroomPreWarmerOperationSetting();
 		/**
-		 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom heating level : 0x31 to 0x38
+		 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom heating level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformBathroomHeaterOperationSetting();
 		/**
-		 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom drying level : 0x31 to 0x38
+		 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Bathroom drying level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : mandatory<br>Get : mandatory
 		 */
 		public Informer reqInformBathroomDryerOperationSetting();
 		/**
-		 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Cool air circulation level : 0x31 to 0x38
+		 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br>Automatic        : 0x41 Standard          : 0x42 Cool air circulation level : 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformCoolAirCirculatorOperationSetting();
 		/**
-		 * Used to acquire the measured relative humidity of the bathroom.<br>0x00 to 0x64 (0 to 100%)
+		 * Used to acquire the measured relative humidity of the bathroom.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMeasuredRelativeBathroomHumidity();
 		/**
-		 * Used to acquire the measured temperature of the bathroom.<br>0x81 to 0x7D (.127 to �{125��)
+		 * Used to acquire the measured temperature of the bathroom.<br>0x81 to 0x7D (.127 to �{125��)<br><br>Data type : signed char<br>Data size : 1 bytes<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMeasuredBathroomTemperature();
 		/**
-		 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br>Automatic: 0x41 Air flow rate level: 0x31 to 0x38
+		 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br>Automatic: 0x41 Air flow rate level: 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformVentilationAirFlowRateSetting();
 		/**
-		 * Used to set the filter cleaning reminder sign status (lit/not lit) and to acquire the current setting.<br>Lit: 0x41 Not lit: 0x42
+		 * Used to set the filter cleaning reminder sign status (lit/not lit) and to acquire the current setting.<br>Lit: 0x41 Not lit: 0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformFilterCleaningReminderSignSetting();
 		/**
-		 * Used to acquire the human body detection status.<br>Detected: 0x41 Not detected: 0x42
+		 * Used to acquire the human body detection status.<br>Detected: 0x41 Not detected: 0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformHumanBodyDetectionStatus();
 		/**
-		 * Used to set the ON/OFF status of the ON timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42
+		 * Used to set the ON/OFF status of the ON timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformGonTimerBasedReservationHSetting1();
 		/**
-		 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>Reservation function ON for the ventilation mode                      : 0x10 Reservation function ON for the bathroom pre-warmer mode : 0x20 Reservation function ON for the bathroom heater mode          : 0x30 Reservation function ON for the bathroom dryer mode            : 0x40 Reservation function ON for the cool air circulator mode       : 0x50 Reservation function OFF : 0x00
+		 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>Reservation function ON for the ventilation mode                      : 0x10 Reservation function ON for the bathroom pre-warmer mode : 0x20 Reservation function ON for the bathroom heater mode          : 0x30 Reservation function ON for the bathroom dryer mode            : 0x40 Reservation function ON for the cool air circulator mode       : 0x50 Reservation function OFF : 0x00<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformGonTimerBasedReservationHSetting2();
 		/**
-		 * Used to set the time setting for the time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to set the time setting for the time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformOnTimerSettingTime();
 		/**
-		 * Used to set the relative time setting for the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to set the relative time setting for the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformOnTimerSettingRelativeTime();
 		/**
-		 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42
+		 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformGoffTimerBasedReservationHSetting();
 		/**
-		 * Used to set the time setting for the time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to set the time setting for the time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformOffTimerSettingTime();
 		/**
-		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformOffTimerSettingRelativeTime();
-
 	}
 
 	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
 
 		@Override
-		public Informer reqInformPower() {
-			return (Informer)super.reqInformPower();
+		public Informer reqInformOperationStatus() {
+			return (Informer)super.reqInformOperationStatus();
 		}
-
 		@Override
 		public Informer reqInformInstallationLocation() {
 			return (Informer)super.reqInformInstallationLocation();
 		}
-
 		@Override
-		public Informer reqInformVersion() {
-			return (Informer)super.reqInformVersion();
+		public Informer reqInformStandardVersionInformation() {
+			return (Informer)super.reqInformStandardVersionInformation();
 		}
-
 		@Override
-		public Informer reqInformIdNumber() {
-			return (Informer)super.reqInformIdNumber();
+		public Informer reqInformIdentificationNumber() {
+			return (Informer)super.reqInformIdentificationNumber();
 		}
-
 		@Override
-		public Informer reqInformElectricityConsumption() {
-			return (Informer)super.reqInformElectricityConsumption();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
+			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformPowerConsumption() {
-			return (Informer)super.reqInformPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption() {
+			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformMakerErrorCode() {
-			return (Informer)super.reqInformMakerErrorCode();
+		public Informer reqInformManufacturersFaultCode() {
+			return (Informer)super.reqInformManufacturersFaultCode();
 		}
-
 		@Override
-		public Informer reqInformCurrentLimiting() {
-			return (Informer)super.reqInformCurrentLimiting();
+		public Informer reqInformCurrentLimitSetting() {
+			return (Informer)super.reqInformCurrentLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformError() {
-			return (Informer)super.reqInformError();
+		public Informer reqInformFaultStatus() {
+			return (Informer)super.reqInformFaultStatus();
 		}
-
 		@Override
-		public Informer reqInformErrorInfo() {
-			return (Informer)super.reqInformErrorInfo();
+		public Informer reqInformFaultDescription() {
+			return (Informer)super.reqInformFaultDescription();
 		}
-
 		@Override
-		public Informer reqInformMakerCode() {
-			return (Informer)super.reqInformMakerCode();
+		public Informer reqInformManufacturerCode() {
+			return (Informer)super.reqInformManufacturerCode();
 		}
-
 		@Override
-		public Informer reqInformWorkplaceCode() {
-			return (Informer)super.reqInformWorkplaceCode();
+		public Informer reqInformBusinessFacilityCode() {
+			return (Informer)super.reqInformBusinessFacilityCode();
 		}
-
 		@Override
 		public Informer reqInformProductCode() {
 			return (Informer)super.reqInformProductCode();
 		}
-
 		@Override
-		public Informer reqInformManufacturingNumber() {
-			return (Informer)super.reqInformManufacturingNumber();
+		public Informer reqInformProductionNumber() {
+			return (Informer)super.reqInformProductionNumber();
 		}
-
 		@Override
-		public Informer reqInformDateOfManufacture() {
-			return (Informer)super.reqInformDateOfManufacture();
+		public Informer reqInformProductionDate() {
+			return (Informer)super.reqInformProductionDate();
 		}
-
 		@Override
-		public Informer reqInformPowerSaving() {
-			return (Informer)super.reqInformPowerSaving();
+		public Informer reqInformPowerSavingOperationSetting() {
+			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Informer reqInformLocation() {
-			return (Informer)super.reqInformLocation();
+		public Informer reqInformPositionInformation() {
+			return (Informer)super.reqInformPositionInformation();
 		}
-
 		@Override
-		public Informer reqInformCurrentTime() {
-			return (Informer)super.reqInformCurrentTime();
+		public Informer reqInformCurrentTimeSetting() {
+			return (Informer)super.reqInformCurrentTimeSetting();
 		}
-
 		@Override
-		public Informer reqInformCurrentDate() {
-			return (Informer)super.reqInformCurrentDate();
+		public Informer reqInformCurrentDateSetting() {
+			return (Informer)super.reqInformCurrentDateSetting();
 		}
-
 		@Override
-		public Informer reqInformPowerLimitation() {
-			return (Informer)super.reqInformPowerLimitation();
+		public Informer reqInformPowerLimitSetting() {
+			return (Informer)super.reqInformPowerLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformWorkingTime() {
-			return (Informer)super.reqInformWorkingTime();
+		public Informer reqInformCumulativeOperatingTime() {
+			return (Informer)super.reqInformCumulativeOperatingTime();
 		}
-
 		@Override
-		public Informer reqInformAnnoPropertyMap() {
-			return (Informer)super.reqInformAnnoPropertyMap();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
+			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformSetPropertyMap() {
 			return (Informer)super.reqInformSetPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
@@ -1799,126 +1708,102 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-
 	}
 	
 	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
 
 		@Override
-		public Informer reqInformPower() {
-			return (Informer)super.reqInformPower();
+		public Informer reqInformOperationStatus() {
+			return (Informer)super.reqInformOperationStatus();
 		}
-
 		@Override
 		public Informer reqInformInstallationLocation() {
 			return (Informer)super.reqInformInstallationLocation();
 		}
-
 		@Override
-		public Informer reqInformVersion() {
-			return (Informer)super.reqInformVersion();
+		public Informer reqInformStandardVersionInformation() {
+			return (Informer)super.reqInformStandardVersionInformation();
 		}
-
 		@Override
-		public Informer reqInformIdNumber() {
-			return (Informer)super.reqInformIdNumber();
+		public Informer reqInformIdentificationNumber() {
+			return (Informer)super.reqInformIdentificationNumber();
 		}
-
 		@Override
-		public Informer reqInformElectricityConsumption() {
-			return (Informer)super.reqInformElectricityConsumption();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
+			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformPowerConsumption() {
-			return (Informer)super.reqInformPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption() {
+			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformMakerErrorCode() {
-			return (Informer)super.reqInformMakerErrorCode();
+		public Informer reqInformManufacturersFaultCode() {
+			return (Informer)super.reqInformManufacturersFaultCode();
 		}
-
 		@Override
-		public Informer reqInformCurrentLimiting() {
-			return (Informer)super.reqInformCurrentLimiting();
+		public Informer reqInformCurrentLimitSetting() {
+			return (Informer)super.reqInformCurrentLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformError() {
-			return (Informer)super.reqInformError();
+		public Informer reqInformFaultStatus() {
+			return (Informer)super.reqInformFaultStatus();
 		}
-
 		@Override
-		public Informer reqInformErrorInfo() {
-			return (Informer)super.reqInformErrorInfo();
+		public Informer reqInformFaultDescription() {
+			return (Informer)super.reqInformFaultDescription();
 		}
-
 		@Override
-		public Informer reqInformMakerCode() {
-			return (Informer)super.reqInformMakerCode();
+		public Informer reqInformManufacturerCode() {
+			return (Informer)super.reqInformManufacturerCode();
 		}
-
 		@Override
-		public Informer reqInformWorkplaceCode() {
-			return (Informer)super.reqInformWorkplaceCode();
+		public Informer reqInformBusinessFacilityCode() {
+			return (Informer)super.reqInformBusinessFacilityCode();
 		}
-
 		@Override
 		public Informer reqInformProductCode() {
 			return (Informer)super.reqInformProductCode();
 		}
-
 		@Override
-		public Informer reqInformManufacturingNumber() {
-			return (Informer)super.reqInformManufacturingNumber();
+		public Informer reqInformProductionNumber() {
+			return (Informer)super.reqInformProductionNumber();
 		}
-
 		@Override
-		public Informer reqInformDateOfManufacture() {
-			return (Informer)super.reqInformDateOfManufacture();
+		public Informer reqInformProductionDate() {
+			return (Informer)super.reqInformProductionDate();
 		}
-
 		@Override
-		public Informer reqInformPowerSaving() {
-			return (Informer)super.reqInformPowerSaving();
+		public Informer reqInformPowerSavingOperationSetting() {
+			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Informer reqInformLocation() {
-			return (Informer)super.reqInformLocation();
+		public Informer reqInformPositionInformation() {
+			return (Informer)super.reqInformPositionInformation();
 		}
-
 		@Override
-		public Informer reqInformCurrentTime() {
-			return (Informer)super.reqInformCurrentTime();
+		public Informer reqInformCurrentTimeSetting() {
+			return (Informer)super.reqInformCurrentTimeSetting();
 		}
-
 		@Override
-		public Informer reqInformCurrentDate() {
-			return (Informer)super.reqInformCurrentDate();
+		public Informer reqInformCurrentDateSetting() {
+			return (Informer)super.reqInformCurrentDateSetting();
 		}
-
 		@Override
-		public Informer reqInformPowerLimitation() {
-			return (Informer)super.reqInformPowerLimitation();
+		public Informer reqInformPowerLimitSetting() {
+			return (Informer)super.reqInformPowerLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformWorkingTime() {
-			return (Informer)super.reqInformWorkingTime();
+		public Informer reqInformCumulativeOperatingTime() {
+			return (Informer)super.reqInformCumulativeOperatingTime();
 		}
-
 		@Override
-		public Informer reqInformAnnoPropertyMap() {
-			return (Informer)super.reqInformAnnoPropertyMap();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
+			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformSetPropertyMap() {
 			return (Informer)super.reqInformSetPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
@@ -2014,6 +1899,5 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
-
 	}
 }

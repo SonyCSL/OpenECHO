@@ -53,115 +53,115 @@ public abstract class FloorHeater extends DeviceObject {
 	}
 
 	/**
-	 * This property indicates set temperature<br>0x00-0x32�i0-50���j AUTO��0x71
+	 * This property indicates set temperature<br>0x00-0x32�i0-50���j AUTO��0x71<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract boolean setTemperatureSetting1(byte[] edt);
 	/**
-	 * This property indicates set temperature<br>0x00-0x32�i0-50���j AUTO��0x71
+	 * This property indicates set temperature<br>0x00-0x32�i0-50���j AUTO��0x71<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract byte[] getTemperatureSetting1();
 	/**
-	 * This property indicates set temperature level by 15 steps<br>0x31-0x3F 0x31 indicates the minimum level, 0x3F indicates the maximumlevel AUTO=0x41
+	 * This property indicates set temperature level by 15 steps<br>0x31-0x3F 0x31 indicates the minimum level, 0x3F indicates the maximumlevel AUTO=0x41<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract boolean setTemperatureSetting2(byte[] edt);
 	/**
-	 * This property indicates set temperature level by 15 steps<br>0x31-0x3F 0x31 indicates the minimum level, 0x3F indicates the maximumlevel AUTO=0x41
+	 * This property indicates set temperature level by 15 steps<br>0x31-0x3F 0x31 indicates the minimum level, 0x3F indicates the maximumlevel AUTO=0x41<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract byte[] getTemperatureSetting2();
 	/**
-	 * Measured room temperature<br>0x81-0x7D�i-127-125���j
+	 * Measured room temperature<br>0x81-0x7D�i-127-125���j<br><br>Data type : signed char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredRoomTeemperature() {return null;}
 	/**
-	 * Measured floor temperature<br>0x00-0x32�i0-50���j
+	 * Measured floor temperature<br>0x00-0x32�i0-50���j<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredFloorTemperature() {return null;}
 	/**
-	 * Sets the target zone for control and gets the number of controllable zones<br>b0-b7 is allocated to 0 to 7 Each bit 1: with control, 0: without control
+	 * Sets the target zone for control and gets the number of controllable zones<br>b0-b7 is allocated to 0 to 7 Each bit 1: with control, 0: without control<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setZoneChangeSetting(byte[] edt) {return false;}
 	/**
-	 * Sets the target zone for control and gets the number of controllable zones<br>b0-b7 is allocated to 0 to 7 Each bit 1: with control, 0: without control
+	 * Sets the target zone for control and gets the number of controllable zones<br>b0-b7 is allocated to 0 to 7 Each bit 1: with control, 0: without control<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getZoneChangeSetting() {return null;}
 	/**
-	 * Sets Nornal Operation/modest operation/high power operation and gets the status<br>Nornal Operation=0x41, modest operation=0x42�high power operation=0x43
+	 * Sets Nornal Operation/modest operation/high power operation and gets the status<br>Nornal Operation=0x41, modest operation=0x42�high power operation=0x43<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSpecialOperationSetting(byte[] edt) {return false;}
 	/**
-	 * Sets Nornal Operation/modest operation/high power operation and gets the status<br>Nornal Operation=0x41, modest operation=0x42�high power operation=0x43
+	 * Sets Nornal Operation/modest operation/high power operation and gets the status<br>Nornal Operation=0x41, modest operation=0x42�high power operation=0x43<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSpecialOperationSetting() {return null;}
 	/**
-	 * Daily timer ON/OFF Up tp 2 kinds of timers can be used<br>Timer OFF=0x40, timer 1=0x41, timer 2=0x42
+	 * Daily timer ON/OFF Up tp 2 kinds of timers can be used<br>Timer OFF=0x40, timer 1=0x41, timer 2=0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setDailyTimerSetting(byte[] edt) {return false;}
 	/**
-	 * Daily timer ON/OFF Up tp 2 kinds of timers can be used<br>Timer OFF=0x40, timer 1=0x41, timer 2=0x42
+	 * Daily timer ON/OFF Up tp 2 kinds of timers can be used<br>Timer OFF=0x40, timer 1=0x41, timer 2=0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getDailyTimerSetting() {return null;}
 	/**
-	 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped
+	 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped<br><br>Data type : unsigned char x 6<br>Data size : 6 Bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setDailyTimerSetting1(byte[] edt) {return false;}
 	/**
-	 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped
+	 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped<br><br>Data type : unsigned char x 6<br>Data size : 6 Bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getDailyTimerSetting1() {return null;}
 	/**
-	 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped
+	 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped<br><br>Data type : unsigned char x 6<br>Data size : 6 Bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setDailyTimerSetting2(byte[] edt) {return false;}
 	/**
-	 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped
+	 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped<br><br>Data type : unsigned char x 6<br>Data size : 6 Bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getDailyTimerSetting2() {return null;}
 	/**
-	 * Reservation ON/OFF<br>ON=0x41, OFF=0x42
+	 * Reservation ON/OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOnTimerReservationSetting(byte[] edt) {return false;}
 	/**
-	 * Reservation ON/OFF<br>ON=0x41, OFF=0x42
+	 * Reservation ON/OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOnTimerReservationSetting() {return null;}
 	/**
-	 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)
+	 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char x 2<br>Data size : 2 Bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setTimeSetByOnTimer(byte[] edt) {return false;}
 	/**
-	 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)
+	 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char x 2<br>Data size : 2 Bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getTimeSetByOnTimer() {return null;}
 	/**
-	 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)
+	 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char x 2<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setRelativeOnTimerSetting(byte[] edt) {return false;}
 	/**
-	 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)
+	 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char x 2<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getRelativeOnTimerSetting() {return null;}
 	/**
-	 * Reservation ON/OFF<br>ON��0x41, OFF��0x42
+	 * Reservation ON/OFF<br>ON��0x41, OFF��0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOffTimerReservationSetting(byte[] edt) {return false;}
 	/**
-	 * Reservation ON/OFF<br>ON��0x41, OFF��0x42
+	 * Reservation ON/OFF<br>ON��0x41, OFF��0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOffTimerReservationSetting() {return null;}
 	/**
-	 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)
+	 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char �~2<br>Data size : 2 Bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setTimeSetByOffTimer(byte[] edt) {return false;}
 	/**
-	 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)
+	 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char �~2<br>Data size : 2 Bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getTimeSetByOffTimer() {return null;}
 	/**
-	 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)
+	 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char �~2<br>Data size : 2 Bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setRelativeOffTimerSetting(byte[] edt) {return false;}
 	/**
-	 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)
+	 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char �~2<br>Data size : 2 Bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getRelativeOffTimerSetting() {return null;}
 
@@ -407,183 +407,182 @@ public abstract class FloorHeater extends DeviceObject {
 		}
 		
 		/**
-		 * This property indicates set temperature<br>0x00-0x32�i0-50���j AUTO��0x71
+		 * This property indicates set temperature<br>0x00-0x32�i0-50���j AUTO��0x71<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		protected void onSetTemperatureSetting1(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * This property indicates set temperature<br>0x00-0x32�i0-50���j AUTO��0x71
+		 * This property indicates set temperature<br>0x00-0x32�i0-50���j AUTO��0x71<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		protected void onGetTemperatureSetting1(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * This property indicates set temperature level by 15 steps<br>0x31-0x3F 0x31 indicates the minimum level, 0x3F indicates the maximumlevel AUTO=0x41
+		 * This property indicates set temperature level by 15 steps<br>0x31-0x3F 0x31 indicates the minimum level, 0x3F indicates the maximumlevel AUTO=0x41<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		protected void onSetTemperatureSetting2(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * This property indicates set temperature level by 15 steps<br>0x31-0x3F 0x31 indicates the minimum level, 0x3F indicates the maximumlevel AUTO=0x41
+		 * This property indicates set temperature level by 15 steps<br>0x31-0x3F 0x31 indicates the minimum level, 0x3F indicates the maximumlevel AUTO=0x41<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		protected void onGetTemperatureSetting2(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Measured room temperature<br>0x81-0x7D�i-127-125���j
+		 * Measured room temperature<br>0x81-0x7D�i-127-125���j<br><br>Data type : signed char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMeasuredRoomTeemperature(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Measured floor temperature<br>0x00-0x32�i0-50���j
+		 * Measured floor temperature<br>0x00-0x32�i0-50���j<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMeasuredFloorTemperature(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Sets the target zone for control and gets the number of controllable zones<br>b0-b7 is allocated to 0 to 7 Each bit 1: with control, 0: without control
+		 * Sets the target zone for control and gets the number of controllable zones<br>b0-b7 is allocated to 0 to 7 Each bit 1: with control, 0: without control<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetZoneChangeSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Sets the target zone for control and gets the number of controllable zones<br>b0-b7 is allocated to 0 to 7 Each bit 1: with control, 0: without control
+		 * Sets the target zone for control and gets the number of controllable zones<br>b0-b7 is allocated to 0 to 7 Each bit 1: with control, 0: without control<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetZoneChangeSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Sets Nornal Operation/modest operation/high power operation and gets the status<br>Nornal Operation=0x41, modest operation=0x42�high power operation=0x43
+		 * Sets Nornal Operation/modest operation/high power operation and gets the status<br>Nornal Operation=0x41, modest operation=0x42�high power operation=0x43<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetSpecialOperationSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Sets Nornal Operation/modest operation/high power operation and gets the status<br>Nornal Operation=0x41, modest operation=0x42�high power operation=0x43
+		 * Sets Nornal Operation/modest operation/high power operation and gets the status<br>Nornal Operation=0x41, modest operation=0x42�high power operation=0x43<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetSpecialOperationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Daily timer ON/OFF Up tp 2 kinds of timers can be used<br>Timer OFF=0x40, timer 1=0x41, timer 2=0x42
+		 * Daily timer ON/OFF Up tp 2 kinds of timers can be used<br>Timer OFF=0x40, timer 1=0x41, timer 2=0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetDailyTimerSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Daily timer ON/OFF Up tp 2 kinds of timers can be used<br>Timer OFF=0x40, timer 1=0x41, timer 2=0x42
+		 * Daily timer ON/OFF Up tp 2 kinds of timers can be used<br>Timer OFF=0x40, timer 1=0x41, timer 2=0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetDailyTimerSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped
+		 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped<br><br>Data type : unsigned char x 6<br>Data size : 6 Bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetDailyTimerSetting1(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped
+		 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped<br><br>Data type : unsigned char x 6<br>Data size : 6 Bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetDailyTimerSetting1(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped
+		 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped<br><br>Data type : unsigned char x 6<br>Data size : 6 Bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetDailyTimerSetting2(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped
+		 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped<br><br>Data type : unsigned char x 6<br>Data size : 6 Bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetDailyTimerSetting2(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Reservation ON/OFF<br>ON=0x41, OFF=0x42
+		 * Reservation ON/OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetOnTimerReservationSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Reservation ON/OFF<br>ON=0x41, OFF=0x42
+		 * Reservation ON/OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetOnTimerReservationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)
+		 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char x 2<br>Data size : 2 Bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetTimeSetByOnTimer(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)
+		 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char x 2<br>Data size : 2 Bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetTimeSetByOnTimer(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)
+		 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char x 2<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetRelativeOnTimerSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)
+		 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char x 2<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetRelativeOnTimerSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Reservation ON/OFF<br>ON��0x41, OFF��0x42
+		 * Reservation ON/OFF<br>ON��0x41, OFF��0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetOffTimerReservationSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Reservation ON/OFF<br>ON��0x41, OFF��0x42
+		 * Reservation ON/OFF<br>ON��0x41, OFF��0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetOffTimerReservationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)
+		 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char �~2<br>Data size : 2 Bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetTimeSetByOffTimer(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)
+		 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char �~2<br>Data size : 2 Bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetTimeSetByOffTimer(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)
+		 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char �~2<br>Data size : 2 Bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetRelativeOffTimerSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)
+		 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char �~2<br>Data size : 2 Bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetRelativeOffTimerSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 
 	}
 	
 	public interface Setter extends DeviceObject.Setter {
-		public Setter reqSetPower(byte[] edt);
+		public Setter reqSetOperationStatus(byte[] edt);
 		public Setter reqSetInstallationLocation(byte[] edt);
-		public Setter reqSetCurrentLimiting(byte[] edt);
-		public Setter reqSetPowerSaving(byte[] edt);
-		public Setter reqSetLocation(byte[] edt);
-		public Setter reqSetCurrentTime(byte[] edt);
-		public Setter reqSetCurrentDate(byte[] edt);
-		public Setter reqSetPowerLimitation(byte[] edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
+		public Setter reqSetPositionInformation(byte[] edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt);
 		
 		/**
-		 * This property indicates set temperature<br>0x00-0x32�i0-50���j AUTO��0x71
+		 * This property indicates set temperature<br>0x00-0x32�i0-50���j AUTO��0x71<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		public Setter reqSetTemperatureSetting1(byte[] edt);
 		/**
-		 * This property indicates set temperature level by 15 steps<br>0x31-0x3F 0x31 indicates the minimum level, 0x3F indicates the maximumlevel AUTO=0x41
+		 * This property indicates set temperature level by 15 steps<br>0x31-0x3F 0x31 indicates the minimum level, 0x3F indicates the maximumlevel AUTO=0x41<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		public Setter reqSetTemperatureSetting2(byte[] edt);
 		/**
-		 * Sets the target zone for control and gets the number of controllable zones<br>b0-b7 is allocated to 0 to 7 Each bit 1: with control, 0: without control
+		 * Sets the target zone for control and gets the number of controllable zones<br>b0-b7 is allocated to 0 to 7 Each bit 1: with control, 0: without control<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetZoneChangeSetting(byte[] edt);
 		/**
-		 * Sets Nornal Operation/modest operation/high power operation and gets the status<br>Nornal Operation=0x41, modest operation=0x42�high power operation=0x43
+		 * Sets Nornal Operation/modest operation/high power operation and gets the status<br>Nornal Operation=0x41, modest operation=0x42�high power operation=0x43<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetSpecialOperationSetting(byte[] edt);
 		/**
-		 * Daily timer ON/OFF Up tp 2 kinds of timers can be used<br>Timer OFF=0x40, timer 1=0x41, timer 2=0x42
+		 * Daily timer ON/OFF Up tp 2 kinds of timers can be used<br>Timer OFF=0x40, timer 1=0x41, timer 2=0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetDailyTimerSetting(byte[] edt);
 		/**
-		 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped
+		 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped<br><br>Data type : unsigned char x 6<br>Data size : 6 Bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetDailyTimerSetting1(byte[] edt);
 		/**
-		 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped
+		 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped<br><br>Data type : unsigned char x 6<br>Data size : 6 Bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetDailyTimerSetting2(byte[] edt);
 		/**
-		 * Reservation ON/OFF<br>ON=0x41, OFF=0x42
+		 * Reservation ON/OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetOnTimerReservationSetting(byte[] edt);
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)
+		 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char x 2<br>Data size : 2 Bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetTimeSetByOnTimer(byte[] edt);
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)
+		 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char x 2<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetRelativeOnTimerSetting(byte[] edt);
 		/**
-		 * Reservation ON/OFF<br>ON��0x41, OFF��0x42
+		 * Reservation ON/OFF<br>ON��0x41, OFF��0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetOffTimerReservationSetting(byte[] edt);
 		/**
-		 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)
+		 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char �~2<br>Data size : 2 Bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetTimeSetByOffTimer(byte[] edt);
 		/**
-		 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)
+		 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char �~2<br>Data size : 2 Bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetRelativeOffTimerSetting(byte[] edt);
-
 	}
 
 	public class SetterImpl extends DeviceObject.SetterImpl implements Setter {
@@ -593,43 +592,36 @@ public abstract class FloorHeater extends DeviceObject {
 		}
 		
 		@Override
-		public Setter reqSetPower(byte[] edt) {
-			return (Setter)super.reqSetPower(edt);
+		public Setter reqSetOperationStatus(byte[] edt) {
+			return (Setter)super.reqSetOperationStatus(edt);
 		}
-
 		@Override
 		public Setter reqSetInstallationLocation(byte[] edt) {
 			return (Setter)super.reqSetInstallationLocation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentLimiting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimiting(edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentLimitSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerSaving(byte[] edt) {
-			return (Setter)super.reqSetPowerSaving(edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetLocation(byte[] edt) {
-			return (Setter)super.reqSetLocation(edt);
+		public Setter reqSetPositionInformation(byte[] edt) {
+			return (Setter)super.reqSetPositionInformation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentTime(byte[] edt) {
-			return (Setter)super.reqSetCurrentTime(edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentTimeSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentDate(byte[] edt) {
-			return (Setter)super.reqSetCurrentDate(edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentDateSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerLimitation(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitation(edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
 		@Override
@@ -697,7 +689,6 @@ public abstract class FloorHeater extends DeviceObject {
 			addProperty(EPC_RELATIVE_OFF_TIMER_SETTING, edt, setRelativeOffTimerSetting(edt));
 			return this;
 		}
-
 	}
 	
 	public class SetterProxy extends DeviceObject.SetterProxy implements Setter {
@@ -706,45 +697,37 @@ public abstract class FloorHeater extends DeviceObject {
 			super(esv);
 		}
 
-		
 		@Override
-		public Setter reqSetPower(byte[] edt) {
-			return (Setter)super.reqSetPower(edt);
+		public Setter reqSetOperationStatus(byte[] edt) {
+			return (Setter)super.reqSetOperationStatus(edt);
 		}
-
 		@Override
 		public Setter reqSetInstallationLocation(byte[] edt) {
 			return (Setter)super.reqSetInstallationLocation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentLimiting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimiting(edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentLimitSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerSaving(byte[] edt) {
-			return (Setter)super.reqSetPowerSaving(edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetLocation(byte[] edt) {
-			return (Setter)super.reqSetLocation(edt);
+		public Setter reqSetPositionInformation(byte[] edt) {
+			return (Setter)super.reqSetPositionInformation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentTime(byte[] edt) {
-			return (Setter)super.reqSetCurrentTime(edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentTimeSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentDate(byte[] edt) {
-			return (Setter)super.reqSetCurrentDate(edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentDateSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerLimitation(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitation(edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
 		@Override
@@ -812,215 +795,190 @@ public abstract class FloorHeater extends DeviceObject {
 			addProperty(EPC_RELATIVE_OFF_TIMER_SETTING, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-
 	}
 
 	public interface Getter extends DeviceObject.Getter {
-		public Getter reqGetPower();
+		public Getter reqGetOperationStatus();
 		public Getter reqGetInstallationLocation();
-		public Getter reqGetVersion();
-		public Getter reqGetIdNumber();
-		public Getter reqGetElectricityConsumption();
-		public Getter reqGetPowerConsumption();
-		public Getter reqGetMakerErrorCode();
-		public Getter reqGetCurrentLimiting();
-		public Getter reqGetError();
-		public Getter reqGetErrorInfo();
-		public Getter reqGetMakerCode();
-		public Getter reqGetWorkplaceCode();
+		public Getter reqGetStandardVersionInformation();
+		public Getter reqGetIdentificationNumber();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption();
+		public Getter reqGetManufacturersFaultCode();
+		public Getter reqGetCurrentLimitSetting();
+		public Getter reqGetFaultStatus();
+		public Getter reqGetFaultDescription();
+		public Getter reqGetManufacturerCode();
+		public Getter reqGetBusinessFacilityCode();
 		public Getter reqGetProductCode();
-		public Getter reqGetManufacturingNumber();
-		public Getter reqGetDateOfManufacture();
-		public Getter reqGetPowerSaving();
-		public Getter reqGetLocation();
-		public Getter reqGetCurrentTime();
-		public Getter reqGetCurrentDate();
-		public Getter reqGetPowerLimitation();
-		public Getter reqGetWorkingTime();
-		public Getter reqGetAnnoPropertyMap();
+		public Getter reqGetProductionNumber();
+		public Getter reqGetProductionDate();
+		public Getter reqGetPowerSavingOperationSetting();
+		public Getter reqGetPositionInformation();
+		public Getter reqGetCurrentTimeSetting();
+		public Getter reqGetCurrentDateSetting();
+		public Getter reqGetPowerLimitSetting();
+		public Getter reqGetCumulativeOperatingTime();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap();
 		public Getter reqGetSetPropertyMap();
 		public Getter reqGetGetPropertyMap();
 		
 		/**
-		 * This property indicates set temperature<br>0x00-0x32�i0-50���j AUTO��0x71
+		 * This property indicates set temperature<br>0x00-0x32�i0-50���j AUTO��0x71<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		public Getter reqGetTemperatureSetting1();
 		/**
-		 * This property indicates set temperature level by 15 steps<br>0x31-0x3F 0x31 indicates the minimum level, 0x3F indicates the maximumlevel AUTO=0x41
+		 * This property indicates set temperature level by 15 steps<br>0x31-0x3F 0x31 indicates the minimum level, 0x3F indicates the maximumlevel AUTO=0x41<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		public Getter reqGetTemperatureSetting2();
 		/**
-		 * Measured room temperature<br>0x81-0x7D�i-127-125���j
+		 * Measured room temperature<br>0x81-0x7D�i-127-125���j<br><br>Data type : signed char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMeasuredRoomTeemperature();
 		/**
-		 * Measured floor temperature<br>0x00-0x32�i0-50���j
+		 * Measured floor temperature<br>0x00-0x32�i0-50���j<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMeasuredFloorTemperature();
 		/**
-		 * Sets the target zone for control and gets the number of controllable zones<br>b0-b7 is allocated to 0 to 7 Each bit 1: with control, 0: without control
+		 * Sets the target zone for control and gets the number of controllable zones<br>b0-b7 is allocated to 0 to 7 Each bit 1: with control, 0: without control<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetZoneChangeSetting();
 		/**
-		 * Sets Nornal Operation/modest operation/high power operation and gets the status<br>Nornal Operation=0x41, modest operation=0x42�high power operation=0x43
+		 * Sets Nornal Operation/modest operation/high power operation and gets the status<br>Nornal Operation=0x41, modest operation=0x42�high power operation=0x43<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetSpecialOperationSetting();
 		/**
-		 * Daily timer ON/OFF Up tp 2 kinds of timers can be used<br>Timer OFF=0x40, timer 1=0x41, timer 2=0x42
+		 * Daily timer ON/OFF Up tp 2 kinds of timers can be used<br>Timer OFF=0x40, timer 1=0x41, timer 2=0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetDailyTimerSetting();
 		/**
-		 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped
+		 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped<br><br>Data type : unsigned char x 6<br>Data size : 6 Bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetDailyTimerSetting1();
 		/**
-		 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped
+		 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped<br><br>Data type : unsigned char x 6<br>Data size : 6 Bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetDailyTimerSetting2();
 		/**
-		 * Reservation ON/OFF<br>ON=0x41, OFF=0x42
+		 * Reservation ON/OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetOnTimerReservationSetting();
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)
+		 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char x 2<br>Data size : 2 Bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetTimeSetByOnTimer();
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)
+		 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char x 2<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetRelativeOnTimerSetting();
 		/**
-		 * Reservation ON/OFF<br>ON��0x41, OFF��0x42
+		 * Reservation ON/OFF<br>ON��0x41, OFF��0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetOffTimerReservationSetting();
 		/**
-		 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)
+		 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char �~2<br>Data size : 2 Bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetTimeSetByOffTimer();
 		/**
-		 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)
+		 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char �~2<br>Data size : 2 Bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetRelativeOffTimerSetting();
-
 	}
 	
 	public class GetterImpl extends DeviceObject.GetterImpl implements Getter {
 
 		@Override
-		public Getter reqGetPower() {
-			return (Getter)super.reqGetPower();
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
 		}
-
 		@Override
 		public Getter reqGetInstallationLocation() {
 			return (Getter)super.reqGetInstallationLocation();
 		}
-
 		@Override
-		public Getter reqGetVersion() {
-			return (Getter)super.reqGetVersion();
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
 		}
-
 		@Override
-		public Getter reqGetIdNumber() {
-			return (Getter)super.reqGetIdNumber();
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
 		}
-
 		@Override
-		public Getter reqGetElectricityConsumption() {
-			return (Getter)super.reqGetElectricityConsumption();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetPowerConsumption() {
-			return (Getter)super.reqGetPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetMakerErrorCode() {
-			return (Getter)super.reqGetMakerErrorCode();
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
 		}
-
 		@Override
-		public Getter reqGetCurrentLimiting() {
-			return (Getter)super.reqGetCurrentLimiting();
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetError() {
-			return (Getter)super.reqGetError();
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
 		}
-
 		@Override
-		public Getter reqGetErrorInfo() {
-			return (Getter)super.reqGetErrorInfo();
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
 		}
-
 		@Override
-		public Getter reqGetMakerCode() {
-			return (Getter)super.reqGetMakerCode();
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
 		}
-
 		@Override
-		public Getter reqGetWorkplaceCode() {
-			return (Getter)super.reqGetWorkplaceCode();
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
 		}
-
 		@Override
 		public Getter reqGetProductCode() {
 			return (Getter)super.reqGetProductCode();
 		}
-
 		@Override
-		public Getter reqGetManufacturingNumber() {
-			return (Getter)super.reqGetManufacturingNumber();
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
 		}
-
 		@Override
-		public Getter reqGetDateOfManufacture() {
-			return (Getter)super.reqGetDateOfManufacture();
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
 		}
-
 		@Override
-		public Getter reqGetPowerSaving() {
-			return (Getter)super.reqGetPowerSaving();
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Getter reqGetLocation() {
-			return (Getter)super.reqGetLocation();
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
 		}
-
 		@Override
-		public Getter reqGetCurrentTime() {
-			return (Getter)super.reqGetCurrentTime();
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
 		}
-
 		@Override
-		public Getter reqGetCurrentDate() {
-			return (Getter)super.reqGetCurrentDate();
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
 		}
-
 		@Override
-		public Getter reqGetPowerLimitation() {
-			return (Getter)super.reqGetPowerLimitation();
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetWorkingTime() {
-			return (Getter)super.reqGetWorkingTime();
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
 		}
-
 		@Override
-		public Getter reqGetAnnoPropertyMap() {
-			return (Getter)super.reqGetAnnoPropertyMap();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetSetPropertyMap() {
 			return (Getter)super.reqGetSetPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetGetPropertyMap() {
 			return (Getter)super.reqGetGetPropertyMap();
@@ -1116,126 +1074,102 @@ public abstract class FloorHeater extends DeviceObject {
 			addProperty(EPC_RELATIVE_OFF_TIMER_SETTING, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-
 	}
 
 	public class GetterProxy extends DeviceObject.GetterProxy implements Getter {
 
 		@Override
-		public Getter reqGetPower() {
-			return (Getter)super.reqGetPower();
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
 		}
-
 		@Override
 		public Getter reqGetInstallationLocation() {
 			return (Getter)super.reqGetInstallationLocation();
 		}
-
 		@Override
-		public Getter reqGetVersion() {
-			return (Getter)super.reqGetVersion();
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
 		}
-
 		@Override
-		public Getter reqGetIdNumber() {
-			return (Getter)super.reqGetIdNumber();
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
 		}
-
 		@Override
-		public Getter reqGetElectricityConsumption() {
-			return (Getter)super.reqGetElectricityConsumption();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetPowerConsumption() {
-			return (Getter)super.reqGetPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetMakerErrorCode() {
-			return (Getter)super.reqGetMakerErrorCode();
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
 		}
-
 		@Override
-		public Getter reqGetCurrentLimiting() {
-			return (Getter)super.reqGetCurrentLimiting();
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetError() {
-			return (Getter)super.reqGetError();
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
 		}
-
 		@Override
-		public Getter reqGetErrorInfo() {
-			return (Getter)super.reqGetErrorInfo();
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
 		}
-
 		@Override
-		public Getter reqGetMakerCode() {
-			return (Getter)super.reqGetMakerCode();
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
 		}
-
 		@Override
-		public Getter reqGetWorkplaceCode() {
-			return (Getter)super.reqGetWorkplaceCode();
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
 		}
-
 		@Override
 		public Getter reqGetProductCode() {
 			return (Getter)super.reqGetProductCode();
 		}
-
 		@Override
-		public Getter reqGetManufacturingNumber() {
-			return (Getter)super.reqGetManufacturingNumber();
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
 		}
-
 		@Override
-		public Getter reqGetDateOfManufacture() {
-			return (Getter)super.reqGetDateOfManufacture();
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
 		}
-
 		@Override
-		public Getter reqGetPowerSaving() {
-			return (Getter)super.reqGetPowerSaving();
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Getter reqGetLocation() {
-			return (Getter)super.reqGetLocation();
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
 		}
-
 		@Override
-		public Getter reqGetCurrentTime() {
-			return (Getter)super.reqGetCurrentTime();
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
 		}
-
 		@Override
-		public Getter reqGetCurrentDate() {
-			return (Getter)super.reqGetCurrentDate();
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
 		}
-
 		@Override
-		public Getter reqGetPowerLimitation() {
-			return (Getter)super.reqGetPowerLimitation();
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetWorkingTime() {
-			return (Getter)super.reqGetWorkingTime();
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
 		}
-
 		@Override
-		public Getter reqGetAnnoPropertyMap() {
-			return (Getter)super.reqGetAnnoPropertyMap();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetSetPropertyMap() {
 			return (Getter)super.reqGetSetPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetGetPropertyMap() {
 			return (Getter)super.reqGetGetPropertyMap();
@@ -1316,215 +1250,190 @@ public abstract class FloorHeater extends DeviceObject {
 			addProperty(EPC_RELATIVE_OFF_TIMER_SETTING);
 			return this;
 		}
-
 	}
 	
 	public interface Informer extends DeviceObject.Informer {
-		public Informer reqInformPower();
+		public Informer reqInformOperationStatus();
 		public Informer reqInformInstallationLocation();
-		public Informer reqInformVersion();
-		public Informer reqInformIdNumber();
-		public Informer reqInformElectricityConsumption();
-		public Informer reqInformPowerConsumption();
-		public Informer reqInformMakerErrorCode();
-		public Informer reqInformCurrentLimiting();
-		public Informer reqInformError();
-		public Informer reqInformErrorInfo();
-		public Informer reqInformMakerCode();
-		public Informer reqInformWorkplaceCode();
+		public Informer reqInformStandardVersionInformation();
+		public Informer reqInformIdentificationNumber();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption();
+		public Informer reqInformManufacturersFaultCode();
+		public Informer reqInformCurrentLimitSetting();
+		public Informer reqInformFaultStatus();
+		public Informer reqInformFaultDescription();
+		public Informer reqInformManufacturerCode();
+		public Informer reqInformBusinessFacilityCode();
 		public Informer reqInformProductCode();
-		public Informer reqInformManufacturingNumber();
-		public Informer reqInformDateOfManufacture();
-		public Informer reqInformPowerSaving();
-		public Informer reqInformLocation();
-		public Informer reqInformCurrentTime();
-		public Informer reqInformCurrentDate();
-		public Informer reqInformPowerLimitation();
-		public Informer reqInformWorkingTime();
-		public Informer reqInformAnnoPropertyMap();
+		public Informer reqInformProductionNumber();
+		public Informer reqInformProductionDate();
+		public Informer reqInformPowerSavingOperationSetting();
+		public Informer reqInformPositionInformation();
+		public Informer reqInformCurrentTimeSetting();
+		public Informer reqInformCurrentDateSetting();
+		public Informer reqInformPowerLimitSetting();
+		public Informer reqInformCumulativeOperatingTime();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap();
 		public Informer reqInformSetPropertyMap();
 		public Informer reqInformGetPropertyMap();
 		
 		/**
-		 * This property indicates set temperature<br>0x00-0x32�i0-50���j AUTO��0x71
+		 * This property indicates set temperature<br>0x00-0x32�i0-50���j AUTO��0x71<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		public Informer reqInformTemperatureSetting1();
 		/**
-		 * This property indicates set temperature level by 15 steps<br>0x31-0x3F 0x31 indicates the minimum level, 0x3F indicates the maximumlevel AUTO=0x41
+		 * This property indicates set temperature level by 15 steps<br>0x31-0x3F 0x31 indicates the minimum level, 0x3F indicates the maximumlevel AUTO=0x41<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		public Informer reqInformTemperatureSetting2();
 		/**
-		 * Measured room temperature<br>0x81-0x7D�i-127-125���j
+		 * Measured room temperature<br>0x81-0x7D�i-127-125���j<br><br>Data type : signed char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMeasuredRoomTeemperature();
 		/**
-		 * Measured floor temperature<br>0x00-0x32�i0-50���j
+		 * Measured floor temperature<br>0x00-0x32�i0-50���j<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMeasuredFloorTemperature();
 		/**
-		 * Sets the target zone for control and gets the number of controllable zones<br>b0-b7 is allocated to 0 to 7 Each bit 1: with control, 0: without control
+		 * Sets the target zone for control and gets the number of controllable zones<br>b0-b7 is allocated to 0 to 7 Each bit 1: with control, 0: without control<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformZoneChangeSetting();
 		/**
-		 * Sets Nornal Operation/modest operation/high power operation and gets the status<br>Nornal Operation=0x41, modest operation=0x42�high power operation=0x43
+		 * Sets Nornal Operation/modest operation/high power operation and gets the status<br>Nornal Operation=0x41, modest operation=0x42�high power operation=0x43<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformSpecialOperationSetting();
 		/**
-		 * Daily timer ON/OFF Up tp 2 kinds of timers can be used<br>Timer OFF=0x40, timer 1=0x41, timer 2=0x42
+		 * Daily timer ON/OFF Up tp 2 kinds of timers can be used<br>Timer OFF=0x40, timer 1=0x41, timer 2=0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformDailyTimerSetting();
 		/**
-		 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped
+		 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped<br><br>Data type : unsigned char x 6<br>Data size : 6 Bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformDailyTimerSetting1();
 		/**
-		 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped
+		 * Time set by daily timer<br>Set the time in the unit of 30 minutes, deviding 24 hours by 30 minutes and allocated to 6 bytes. Each bit 1: worked 0: stopped<br><br>Data type : unsigned char x 6<br>Data size : 6 Bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformDailyTimerSetting2();
 		/**
-		 * Reservation ON/OFF<br>ON=0x41, OFF=0x42
+		 * Reservation ON/OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformOnTimerReservationSetting();
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)
+		 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char x 2<br>Data size : 2 Bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformTimeSetByOnTimer();
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)
+		 * Timer value HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char x 2<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformRelativeOnTimerSetting();
 		/**
-		 * Reservation ON/OFF<br>ON��0x41, OFF��0x42
+		 * Reservation ON/OFF<br>ON��0x41, OFF��0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformOffTimerReservationSetting();
 		/**
-		 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)
+		 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char �~2<br>Data size : 2 Bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformTimeSetByOffTimer();
 		/**
-		 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)
+		 * Timer value HH:MM<br>0-0x17:  0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char �~2<br>Data size : 2 Bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformRelativeOffTimerSetting();
-
 	}
 
 	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
 
 		@Override
-		public Informer reqInformPower() {
-			return (Informer)super.reqInformPower();
+		public Informer reqInformOperationStatus() {
+			return (Informer)super.reqInformOperationStatus();
 		}
-
 		@Override
 		public Informer reqInformInstallationLocation() {
 			return (Informer)super.reqInformInstallationLocation();
 		}
-
 		@Override
-		public Informer reqInformVersion() {
-			return (Informer)super.reqInformVersion();
+		public Informer reqInformStandardVersionInformation() {
+			return (Informer)super.reqInformStandardVersionInformation();
 		}
-
 		@Override
-		public Informer reqInformIdNumber() {
-			return (Informer)super.reqInformIdNumber();
+		public Informer reqInformIdentificationNumber() {
+			return (Informer)super.reqInformIdentificationNumber();
 		}
-
 		@Override
-		public Informer reqInformElectricityConsumption() {
-			return (Informer)super.reqInformElectricityConsumption();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
+			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformPowerConsumption() {
-			return (Informer)super.reqInformPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption() {
+			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformMakerErrorCode() {
-			return (Informer)super.reqInformMakerErrorCode();
+		public Informer reqInformManufacturersFaultCode() {
+			return (Informer)super.reqInformManufacturersFaultCode();
 		}
-
 		@Override
-		public Informer reqInformCurrentLimiting() {
-			return (Informer)super.reqInformCurrentLimiting();
+		public Informer reqInformCurrentLimitSetting() {
+			return (Informer)super.reqInformCurrentLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformError() {
-			return (Informer)super.reqInformError();
+		public Informer reqInformFaultStatus() {
+			return (Informer)super.reqInformFaultStatus();
 		}
-
 		@Override
-		public Informer reqInformErrorInfo() {
-			return (Informer)super.reqInformErrorInfo();
+		public Informer reqInformFaultDescription() {
+			return (Informer)super.reqInformFaultDescription();
 		}
-
 		@Override
-		public Informer reqInformMakerCode() {
-			return (Informer)super.reqInformMakerCode();
+		public Informer reqInformManufacturerCode() {
+			return (Informer)super.reqInformManufacturerCode();
 		}
-
 		@Override
-		public Informer reqInformWorkplaceCode() {
-			return (Informer)super.reqInformWorkplaceCode();
+		public Informer reqInformBusinessFacilityCode() {
+			return (Informer)super.reqInformBusinessFacilityCode();
 		}
-
 		@Override
 		public Informer reqInformProductCode() {
 			return (Informer)super.reqInformProductCode();
 		}
-
 		@Override
-		public Informer reqInformManufacturingNumber() {
-			return (Informer)super.reqInformManufacturingNumber();
+		public Informer reqInformProductionNumber() {
+			return (Informer)super.reqInformProductionNumber();
 		}
-
 		@Override
-		public Informer reqInformDateOfManufacture() {
-			return (Informer)super.reqInformDateOfManufacture();
+		public Informer reqInformProductionDate() {
+			return (Informer)super.reqInformProductionDate();
 		}
-
 		@Override
-		public Informer reqInformPowerSaving() {
-			return (Informer)super.reqInformPowerSaving();
+		public Informer reqInformPowerSavingOperationSetting() {
+			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Informer reqInformLocation() {
-			return (Informer)super.reqInformLocation();
+		public Informer reqInformPositionInformation() {
+			return (Informer)super.reqInformPositionInformation();
 		}
-
 		@Override
-		public Informer reqInformCurrentTime() {
-			return (Informer)super.reqInformCurrentTime();
+		public Informer reqInformCurrentTimeSetting() {
+			return (Informer)super.reqInformCurrentTimeSetting();
 		}
-
 		@Override
-		public Informer reqInformCurrentDate() {
-			return (Informer)super.reqInformCurrentDate();
+		public Informer reqInformCurrentDateSetting() {
+			return (Informer)super.reqInformCurrentDateSetting();
 		}
-
 		@Override
-		public Informer reqInformPowerLimitation() {
-			return (Informer)super.reqInformPowerLimitation();
+		public Informer reqInformPowerLimitSetting() {
+			return (Informer)super.reqInformPowerLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformWorkingTime() {
-			return (Informer)super.reqInformWorkingTime();
+		public Informer reqInformCumulativeOperatingTime() {
+			return (Informer)super.reqInformCumulativeOperatingTime();
 		}
-
 		@Override
-		public Informer reqInformAnnoPropertyMap() {
-			return (Informer)super.reqInformAnnoPropertyMap();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
+			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformSetPropertyMap() {
 			return (Informer)super.reqInformSetPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
@@ -1620,126 +1529,102 @@ public abstract class FloorHeater extends DeviceObject {
 			addProperty(EPC_RELATIVE_OFF_TIMER_SETTING, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-
 	}
 	
 	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
 
 		@Override
-		public Informer reqInformPower() {
-			return (Informer)super.reqInformPower();
+		public Informer reqInformOperationStatus() {
+			return (Informer)super.reqInformOperationStatus();
 		}
-
 		@Override
 		public Informer reqInformInstallationLocation() {
 			return (Informer)super.reqInformInstallationLocation();
 		}
-
 		@Override
-		public Informer reqInformVersion() {
-			return (Informer)super.reqInformVersion();
+		public Informer reqInformStandardVersionInformation() {
+			return (Informer)super.reqInformStandardVersionInformation();
 		}
-
 		@Override
-		public Informer reqInformIdNumber() {
-			return (Informer)super.reqInformIdNumber();
+		public Informer reqInformIdentificationNumber() {
+			return (Informer)super.reqInformIdentificationNumber();
 		}
-
 		@Override
-		public Informer reqInformElectricityConsumption() {
-			return (Informer)super.reqInformElectricityConsumption();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
+			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformPowerConsumption() {
-			return (Informer)super.reqInformPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption() {
+			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformMakerErrorCode() {
-			return (Informer)super.reqInformMakerErrorCode();
+		public Informer reqInformManufacturersFaultCode() {
+			return (Informer)super.reqInformManufacturersFaultCode();
 		}
-
 		@Override
-		public Informer reqInformCurrentLimiting() {
-			return (Informer)super.reqInformCurrentLimiting();
+		public Informer reqInformCurrentLimitSetting() {
+			return (Informer)super.reqInformCurrentLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformError() {
-			return (Informer)super.reqInformError();
+		public Informer reqInformFaultStatus() {
+			return (Informer)super.reqInformFaultStatus();
 		}
-
 		@Override
-		public Informer reqInformErrorInfo() {
-			return (Informer)super.reqInformErrorInfo();
+		public Informer reqInformFaultDescription() {
+			return (Informer)super.reqInformFaultDescription();
 		}
-
 		@Override
-		public Informer reqInformMakerCode() {
-			return (Informer)super.reqInformMakerCode();
+		public Informer reqInformManufacturerCode() {
+			return (Informer)super.reqInformManufacturerCode();
 		}
-
 		@Override
-		public Informer reqInformWorkplaceCode() {
-			return (Informer)super.reqInformWorkplaceCode();
+		public Informer reqInformBusinessFacilityCode() {
+			return (Informer)super.reqInformBusinessFacilityCode();
 		}
-
 		@Override
 		public Informer reqInformProductCode() {
 			return (Informer)super.reqInformProductCode();
 		}
-
 		@Override
-		public Informer reqInformManufacturingNumber() {
-			return (Informer)super.reqInformManufacturingNumber();
+		public Informer reqInformProductionNumber() {
+			return (Informer)super.reqInformProductionNumber();
 		}
-
 		@Override
-		public Informer reqInformDateOfManufacture() {
-			return (Informer)super.reqInformDateOfManufacture();
+		public Informer reqInformProductionDate() {
+			return (Informer)super.reqInformProductionDate();
 		}
-
 		@Override
-		public Informer reqInformPowerSaving() {
-			return (Informer)super.reqInformPowerSaving();
+		public Informer reqInformPowerSavingOperationSetting() {
+			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Informer reqInformLocation() {
-			return (Informer)super.reqInformLocation();
+		public Informer reqInformPositionInformation() {
+			return (Informer)super.reqInformPositionInformation();
 		}
-
 		@Override
-		public Informer reqInformCurrentTime() {
-			return (Informer)super.reqInformCurrentTime();
+		public Informer reqInformCurrentTimeSetting() {
+			return (Informer)super.reqInformCurrentTimeSetting();
 		}
-
 		@Override
-		public Informer reqInformCurrentDate() {
-			return (Informer)super.reqInformCurrentDate();
+		public Informer reqInformCurrentDateSetting() {
+			return (Informer)super.reqInformCurrentDateSetting();
 		}
-
 		@Override
-		public Informer reqInformPowerLimitation() {
-			return (Informer)super.reqInformPowerLimitation();
+		public Informer reqInformPowerLimitSetting() {
+			return (Informer)super.reqInformPowerLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformWorkingTime() {
-			return (Informer)super.reqInformWorkingTime();
+		public Informer reqInformCumulativeOperatingTime() {
+			return (Informer)super.reqInformCumulativeOperatingTime();
 		}
-
 		@Override
-		public Informer reqInformAnnoPropertyMap() {
-			return (Informer)super.reqInformAnnoPropertyMap();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
+			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformSetPropertyMap() {
 			return (Informer)super.reqInformSetPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
@@ -1820,6 +1705,5 @@ public abstract class FloorHeater extends DeviceObject {
 			addProperty(EPC_RELATIVE_OFF_TIMER_SETTING);
 			return this;
 		}
-
 	}
 }

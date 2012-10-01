@@ -60,159 +60,159 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 	}
 
 	/**
-	 * This property indicates hot water heating status.<br>Hot water heating status found = 0x41 Hot water heating status not found = 0x42
+	 * This property indicates hot water heating status.<br>Hot water heating status found = 0x41 Hot water heating status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getHotWaterHeatingStatus();
 	/**
-	 * This property indicates set value of hot water temperature in .C.<br>0x00.0x64 (0.100)
+	 * This property indicates set value of hot water temperature in .C.<br>0x00.0x64 (0.100)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetValueOfHotWaterTemperature(byte[] edt) {return false;}
 	/**
-	 * This property indicates set value of hot water temperature in .C.<br>0x00.0x64 (0.100)
+	 * This property indicates set value of hot water temperature in .C.<br>0x00.0x64 (0.100)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetValueOfHotWaterTemperature() {return null;}
 	/**
-	 * Hot water warmer setting<br>Hot water warmer operation = 0x41 Hot water warmer operation resetting = 0x42
+	 * Hot water warmer setting<br>Hot water warmer operation = 0x41 Hot water warmer operation resetting = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setHotWaterWarmerSetting(byte[] edt) {return false;}
 	/**
-	 * Hot water warmer setting<br>Hot water warmer operation = 0x41 Hot water warmer operation resetting = 0x42
+	 * Hot water warmer setting<br>Hot water warmer operation = 0x41 Hot water warmer operation resetting = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getHotWaterWarmerSetting() {return null;}
 	/**
-	 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF
+	 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setGdurationOfAutomaticOperationHSetting(byte[] edt) {return false;}
 	/**
-	 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF
+	 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getGdurationOfAutomaticOperationHSetting() {return null;}
 	/**
-	 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Infinite: 0xFFFF
+	 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Infinite: 0xFFFF<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getRemainingAutomaticOperationTime() {return null;}
 	/**
-	 * This property indicates set value of bath temperature in .C.<br>0x00.0x64 (0.100)
+	 * This property indicates set value of bath temperature in .C.<br>0x00.0x64 (0.100)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetValueOfBathTemperature(byte[] edt) {return false;}
 	/**
-	 * This property indicates set value of bath temperature in .C.<br>0x00.0x64 (0.100)
+	 * This property indicates set value of bath temperature in .C.<br>0x00.0x64 (0.100)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetValueOfBathTemperature() {return null;}
 	/**
-	 * This property indicates whether or not the bath water heater is heating bath water.<br>Heating = 0x41 Not heating = 0x42
+	 * This property indicates whether or not the bath water heater is heating bath water.<br>Heating = 0x41 Not heating = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getBathWaterHeaterStatus();
 	/**
-	 * Bath auto mode ON/OFF<br>Auto ON = 0x41 Auto OFF = 0x42
+	 * Bath auto mode ON/OFF<br>Auto ON = 0x41 Auto OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setBathAutoModeSetting(byte[] edt) {return false;}
 	/**
-	 * Bath auto mode ON/OFF<br>Auto ON = 0x41 Auto OFF = 0x42
+	 * Bath auto mode ON/OFF<br>Auto ON = 0x41 Auto OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getBathAutoModeSetting() {return null;}
 	/**
-	 * Additional boil-up ON/OFF<br>Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42
+	 * Additional boil-up ON/OFF<br>Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setBathAdditionalBoilUpOperationSetting(byte[] edt) {return false;}
 	/**
-	 * Additional boil-up ON/OFF<br>Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42
+	 * Additional boil-up ON/OFF<br>Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getBathAdditionalBoilUpOperationSetting() {return null;}
 	/**
-	 * Hot water addition ON/OFF<br>Hot water addition ON = 0x41 Hot water addition OFF = 0x42
+	 * Hot water addition ON/OFF<br>Hot water addition ON = 0x41 Hot water addition OFF = 0x42<br><br>Data type : unsigned<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setBathHotWaterAddingOperationSetting(byte[] edt) {return false;}
 	/**
-	 * Hot water addition ON/OFF<br>Hot water addition ON = 0x41 Hot water addition OFF = 0x42
+	 * Hot water addition ON/OFF<br>Hot water addition ON = 0x41 Hot water addition OFF = 0x42<br><br>Data type : unsigned<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getBathHotWaterAddingOperationSetting() {return null;}
 	/**
-	 * Hot water temperature lowering ON/OFF<br>Hot water temperature lowering ON = 0x41 Hot water temperature lowering OFF = 0x42
+	 * Hot water temperature lowering ON/OFF<br>Hot water temperature lowering ON = 0x41 Hot water temperature lowering OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setBathWaterTemperatureLoweringOperationSetting(byte[] edt) {return false;}
 	/**
-	 * Hot water temperature lowering ON/OFF<br>Hot water temperature lowering ON = 0x41 Hot water temperature lowering OFF = 0x42
+	 * Hot water temperature lowering ON/OFF<br>Hot water temperature lowering ON = 0x41 Hot water temperature lowering OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getBathWaterTemperatureLoweringOperationSetting() {return null;}
 	/**
-	 * This property indicates bath hot water volume in liters.<br>0x00.0xFD (0 to 253 liters)
+	 * This property indicates bath hot water volume in liters.<br>0x00.0xFD (0 to 253 liters)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setBathHotWaterVolumeSetting1(byte[] edt) {return false;}
 	/**
-	 * This property indicates bath hot water volume in liters.<br>0x00.0xFD (0 to 253 liters)
+	 * This property indicates bath hot water volume in liters.<br>0x00.0xFD (0 to 253 liters)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getBathHotWaterVolumeSetting1() {return null;}
 	/**
-	 * Specifies bath hot water volume (8-step).<br>0x31.0x38
+	 * Specifies bath hot water volume (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setBathHotWaterVolumeSetting2(byte[] edt) {return false;}
 	/**
-	 * Specifies bath hot water volume (8-step).<br>0x31.0x38
+	 * Specifies bath hot water volume (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getBathHotWaterVolumeSetting2() {return null;}
 	/**
-	 * This property indicates bath hot water volume in liters.<br>0x0000.0xFFFD (0 to 65533 liters)
+	 * This property indicates bath hot water volume in liters.<br>0x0000.0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setBathHotWaterVolumeSetting3(byte[] edt) {return false;}
 	/**
-	 * This property indicates bath hot water volume in liters.<br>0x0000.0xFFFD (0 to 65533 liters)
+	 * This property indicates bath hot water volume in liters.<br>0x0000.0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getBathHotWaterVolumeSetting3() {return null;}
 	/**
-	 * Bathroom priority ON/OFF<br>Bathroom priority ON = 0x41, bathroom priority OFF = 0x42
+	 * Bathroom priority ON/OFF<br>Bathroom priority ON = 0x41, bathroom priority OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setBathroomPrioritySetting(byte[] edt) {return false;}
 	/**
-	 * Bathroom priority ON/OFF<br>Bathroom priority ON = 0x41, bathroom priority OFF = 0x42
+	 * Bathroom priority ON/OFF<br>Bathroom priority ON = 0x41, bathroom priority OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getBathroomPrioritySetting() {return null;}
 	/**
-	 * Shower hot water supply ON/OFF<br>Shower hot water supply ON = 0x41 Shower hot water supply OFF = 0x42
+	 * Shower hot water supply ON/OFF<br>Shower hot water supply ON = 0x41 Shower hot water supply OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getShowerHotWaterSupplyStatus() {return null;}
 	/**
-	 * Kitchen hot water supply ON/OFF<br>Kitchen hot water supply ON = 0x41 kitchen hot water supply OFF = 0x42
+	 * Kitchen hot water supply ON/OFF<br>Kitchen hot water supply ON = 0x41 kitchen hot water supply OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getKitchenHotWaterSupplyStatus() {return null;}
 	/**
-	 * Reservation ON/OFF<br>Reservation ON = 0x41, reservation OFF = 0x42
+	 * Reservation ON/OFF<br>Reservation ON = 0x41, reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setHotWaterWarmerOnTimerReservationSetting(byte[] edt) {return false;}
 	/**
-	 * Reservation ON/OFF<br>Reservation ON = 0x41, reservation OFF = 0x42
+	 * Reservation ON/OFF<br>Reservation ON = 0x41, reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getHotWaterWarmerOnTimerReservationSetting() {return null;}
 	/**
-	 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)
+	 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetValueOfHotWaterWarmerOnTimerTime(byte[] edt) {return false;}
 	/**
-	 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)
+	 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetValueOfHotWaterWarmerOnTimerTime() {return null;}
 	/**
-	 * Reservation ON/Reservation OFF<br>Reservation ON = 0x41 Reservation OFF = 0x42
+	 * Reservation ON/Reservation OFF<br>Reservation ON = 0x41 Reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOnTimerReservationSetting(byte[] edt) {return false;}
 	/**
-	 * Reservation ON/Reservation OFF<br>Reservation ON = 0x41 Reservation OFF = 0x42
+	 * Reservation ON/Reservation OFF<br>Reservation ON = 0x41 Reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOnTimerReservationSetting() {return null;}
 	/**
-	 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)
+	 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetValueOfOnTimerTime(byte[] edt) {return false;}
 	/**
-	 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)
+	 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetValueOfOnTimerTime() {return null;}
 	/**
-	 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)
+	 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetValueOfOnTimerRelativeTime(byte[] edt) {return false;}
 	/**
-	 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)
+	 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetValueOfOnTimerRelativeTime() {return null;}
 
@@ -531,243 +531,242 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		}
 		
 		/**
-		 * This property indicates hot water heating status.<br>Hot water heating status found = 0x41 Hot water heating status not found = 0x42
+		 * This property indicates hot water heating status.<br>Hot water heating status found = 0x41 Hot water heating status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 		 */
 		protected void onGetHotWaterHeatingStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * This property indicates set value of hot water temperature in .C.<br>0x00.0x64 (0.100)
+		 * This property indicates set value of hot water temperature in .C.<br>0x00.0x64 (0.100)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetSetValueOfHotWaterTemperature(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * This property indicates set value of hot water temperature in .C.<br>0x00.0x64 (0.100)
+		 * This property indicates set value of hot water temperature in .C.<br>0x00.0x64 (0.100)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetSetValueOfHotWaterTemperature(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Hot water warmer setting<br>Hot water warmer operation = 0x41 Hot water warmer operation resetting = 0x42
+		 * Hot water warmer setting<br>Hot water warmer operation = 0x41 Hot water warmer operation resetting = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetHotWaterWarmerSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Hot water warmer setting<br>Hot water warmer operation = 0x41 Hot water warmer operation resetting = 0x42
+		 * Hot water warmer setting<br>Hot water warmer operation = 0x41 Hot water warmer operation resetting = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetHotWaterWarmerSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF
+		 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetGdurationOfAutomaticOperationHSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF
+		 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetGdurationOfAutomaticOperationHSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Infinite: 0xFFFF
+		 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Infinite: 0xFFFF<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetRemainingAutomaticOperationTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * This property indicates set value of bath temperature in .C.<br>0x00.0x64 (0.100)
+		 * This property indicates set value of bath temperature in .C.<br>0x00.0x64 (0.100)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetSetValueOfBathTemperature(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * This property indicates set value of bath temperature in .C.<br>0x00.0x64 (0.100)
+		 * This property indicates set value of bath temperature in .C.<br>0x00.0x64 (0.100)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetSetValueOfBathTemperature(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * This property indicates whether or not the bath water heater is heating bath water.<br>Heating = 0x41 Not heating = 0x42
+		 * This property indicates whether or not the bath water heater is heating bath water.<br>Heating = 0x41 Not heating = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 		 */
 		protected void onGetBathWaterHeaterStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Bath auto mode ON/OFF<br>Auto ON = 0x41 Auto OFF = 0x42
+		 * Bath auto mode ON/OFF<br>Auto ON = 0x41 Auto OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetBathAutoModeSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Bath auto mode ON/OFF<br>Auto ON = 0x41 Auto OFF = 0x42
+		 * Bath auto mode ON/OFF<br>Auto ON = 0x41 Auto OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetBathAutoModeSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Additional boil-up ON/OFF<br>Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42
+		 * Additional boil-up ON/OFF<br>Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetBathAdditionalBoilUpOperationSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Additional boil-up ON/OFF<br>Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42
+		 * Additional boil-up ON/OFF<br>Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetBathAdditionalBoilUpOperationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Hot water addition ON/OFF<br>Hot water addition ON = 0x41 Hot water addition OFF = 0x42
+		 * Hot water addition ON/OFF<br>Hot water addition ON = 0x41 Hot water addition OFF = 0x42<br><br>Data type : unsigned<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetBathHotWaterAddingOperationSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Hot water addition ON/OFF<br>Hot water addition ON = 0x41 Hot water addition OFF = 0x42
+		 * Hot water addition ON/OFF<br>Hot water addition ON = 0x41 Hot water addition OFF = 0x42<br><br>Data type : unsigned<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetBathHotWaterAddingOperationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Hot water temperature lowering ON/OFF<br>Hot water temperature lowering ON = 0x41 Hot water temperature lowering OFF = 0x42
+		 * Hot water temperature lowering ON/OFF<br>Hot water temperature lowering ON = 0x41 Hot water temperature lowering OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetBathWaterTemperatureLoweringOperationSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Hot water temperature lowering ON/OFF<br>Hot water temperature lowering ON = 0x41 Hot water temperature lowering OFF = 0x42
+		 * Hot water temperature lowering ON/OFF<br>Hot water temperature lowering ON = 0x41 Hot water temperature lowering OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetBathWaterTemperatureLoweringOperationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * This property indicates bath hot water volume in liters.<br>0x00.0xFD (0 to 253 liters)
+		 * This property indicates bath hot water volume in liters.<br>0x00.0xFD (0 to 253 liters)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetBathHotWaterVolumeSetting1(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * This property indicates bath hot water volume in liters.<br>0x00.0xFD (0 to 253 liters)
+		 * This property indicates bath hot water volume in liters.<br>0x00.0xFD (0 to 253 liters)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetBathHotWaterVolumeSetting1(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Specifies bath hot water volume (8-step).<br>0x31.0x38
+		 * Specifies bath hot water volume (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetBathHotWaterVolumeSetting2(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Specifies bath hot water volume (8-step).<br>0x31.0x38
+		 * Specifies bath hot water volume (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetBathHotWaterVolumeSetting2(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * This property indicates bath hot water volume in liters.<br>0x0000.0xFFFD (0 to 65533 liters)
+		 * This property indicates bath hot water volume in liters.<br>0x0000.0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetBathHotWaterVolumeSetting3(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * This property indicates bath hot water volume in liters.<br>0x0000.0xFFFD (0 to 65533 liters)
+		 * This property indicates bath hot water volume in liters.<br>0x0000.0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetBathHotWaterVolumeSetting3(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Bathroom priority ON/OFF<br>Bathroom priority ON = 0x41, bathroom priority OFF = 0x42
+		 * Bathroom priority ON/OFF<br>Bathroom priority ON = 0x41, bathroom priority OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetBathroomPrioritySetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Bathroom priority ON/OFF<br>Bathroom priority ON = 0x41, bathroom priority OFF = 0x42
+		 * Bathroom priority ON/OFF<br>Bathroom priority ON = 0x41, bathroom priority OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetBathroomPrioritySetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Shower hot water supply ON/OFF<br>Shower hot water supply ON = 0x41 Shower hot water supply OFF = 0x42
+		 * Shower hot water supply ON/OFF<br>Shower hot water supply ON = 0x41 Shower hot water supply OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetShowerHotWaterSupplyStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Kitchen hot water supply ON/OFF<br>Kitchen hot water supply ON = 0x41 kitchen hot water supply OFF = 0x42
+		 * Kitchen hot water supply ON/OFF<br>Kitchen hot water supply ON = 0x41 kitchen hot water supply OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetKitchenHotWaterSupplyStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Reservation ON/OFF<br>Reservation ON = 0x41, reservation OFF = 0x42
+		 * Reservation ON/OFF<br>Reservation ON = 0x41, reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetHotWaterWarmerOnTimerReservationSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Reservation ON/OFF<br>Reservation ON = 0x41, reservation OFF = 0x42
+		 * Reservation ON/OFF<br>Reservation ON = 0x41, reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetHotWaterWarmerOnTimerReservationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)
+		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetSetValueOfHotWaterWarmerOnTimerTime(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)
+		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetSetValueOfHotWaterWarmerOnTimerTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Reservation ON/Reservation OFF<br>Reservation ON = 0x41 Reservation OFF = 0x42
+		 * Reservation ON/Reservation OFF<br>Reservation ON = 0x41 Reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetOnTimerReservationSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Reservation ON/Reservation OFF<br>Reservation ON = 0x41 Reservation OFF = 0x42
+		 * Reservation ON/Reservation OFF<br>Reservation ON = 0x41 Reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetOnTimerReservationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)
+		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetSetValueOfOnTimerTime(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)
+		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetSetValueOfOnTimerTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)
+		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetSetValueOfOnTimerRelativeTime(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)
+		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetSetValueOfOnTimerRelativeTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 
 	}
 	
 	public interface Setter extends DeviceObject.Setter {
-		public Setter reqSetPower(byte[] edt);
+		public Setter reqSetOperationStatus(byte[] edt);
 		public Setter reqSetInstallationLocation(byte[] edt);
-		public Setter reqSetCurrentLimiting(byte[] edt);
-		public Setter reqSetPowerSaving(byte[] edt);
-		public Setter reqSetLocation(byte[] edt);
-		public Setter reqSetCurrentTime(byte[] edt);
-		public Setter reqSetCurrentDate(byte[] edt);
-		public Setter reqSetPowerLimitation(byte[] edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
+		public Setter reqSetPositionInformation(byte[] edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt);
 		
 		/**
-		 * This property indicates set value of hot water temperature in .C.<br>0x00.0x64 (0.100)
+		 * This property indicates set value of hot water temperature in .C.<br>0x00.0x64 (0.100)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetSetValueOfHotWaterTemperature(byte[] edt);
 		/**
-		 * Hot water warmer setting<br>Hot water warmer operation = 0x41 Hot water warmer operation resetting = 0x42
+		 * Hot water warmer setting<br>Hot water warmer operation = 0x41 Hot water warmer operation resetting = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetHotWaterWarmerSetting(byte[] edt);
 		/**
-		 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF
+		 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetGdurationOfAutomaticOperationHSetting(byte[] edt);
 		/**
-		 * This property indicates set value of bath temperature in .C.<br>0x00.0x64 (0.100)
+		 * This property indicates set value of bath temperature in .C.<br>0x00.0x64 (0.100)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetSetValueOfBathTemperature(byte[] edt);
 		/**
-		 * Bath auto mode ON/OFF<br>Auto ON = 0x41 Auto OFF = 0x42
+		 * Bath auto mode ON/OFF<br>Auto ON = 0x41 Auto OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetBathAutoModeSetting(byte[] edt);
 		/**
-		 * Additional boil-up ON/OFF<br>Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42
+		 * Additional boil-up ON/OFF<br>Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetBathAdditionalBoilUpOperationSetting(byte[] edt);
 		/**
-		 * Hot water addition ON/OFF<br>Hot water addition ON = 0x41 Hot water addition OFF = 0x42
+		 * Hot water addition ON/OFF<br>Hot water addition ON = 0x41 Hot water addition OFF = 0x42<br><br>Data type : unsigned<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetBathHotWaterAddingOperationSetting(byte[] edt);
 		/**
-		 * Hot water temperature lowering ON/OFF<br>Hot water temperature lowering ON = 0x41 Hot water temperature lowering OFF = 0x42
+		 * Hot water temperature lowering ON/OFF<br>Hot water temperature lowering ON = 0x41 Hot water temperature lowering OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetBathWaterTemperatureLoweringOperationSetting(byte[] edt);
 		/**
-		 * This property indicates bath hot water volume in liters.<br>0x00.0xFD (0 to 253 liters)
+		 * This property indicates bath hot water volume in liters.<br>0x00.0xFD (0 to 253 liters)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetBathHotWaterVolumeSetting1(byte[] edt);
 		/**
-		 * Specifies bath hot water volume (8-step).<br>0x31.0x38
+		 * Specifies bath hot water volume (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetBathHotWaterVolumeSetting2(byte[] edt);
 		/**
-		 * This property indicates bath hot water volume in liters.<br>0x0000.0xFFFD (0 to 65533 liters)
+		 * This property indicates bath hot water volume in liters.<br>0x0000.0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetBathHotWaterVolumeSetting3(byte[] edt);
 		/**
-		 * Bathroom priority ON/OFF<br>Bathroom priority ON = 0x41, bathroom priority OFF = 0x42
+		 * Bathroom priority ON/OFF<br>Bathroom priority ON = 0x41, bathroom priority OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetBathroomPrioritySetting(byte[] edt);
 		/**
-		 * Reservation ON/OFF<br>Reservation ON = 0x41, reservation OFF = 0x42
+		 * Reservation ON/OFF<br>Reservation ON = 0x41, reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetHotWaterWarmerOnTimerReservationSetting(byte[] edt);
 		/**
-		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)
+		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetSetValueOfHotWaterWarmerOnTimerTime(byte[] edt);
 		/**
-		 * Reservation ON/Reservation OFF<br>Reservation ON = 0x41 Reservation OFF = 0x42
+		 * Reservation ON/Reservation OFF<br>Reservation ON = 0x41 Reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetOnTimerReservationSetting(byte[] edt);
 		/**
-		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)
+		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetSetValueOfOnTimerTime(byte[] edt);
 		/**
-		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)
+		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetSetValueOfOnTimerRelativeTime(byte[] edt);
-
 	}
 
 	public class SetterImpl extends DeviceObject.SetterImpl implements Setter {
@@ -777,43 +776,36 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		}
 		
 		@Override
-		public Setter reqSetPower(byte[] edt) {
-			return (Setter)super.reqSetPower(edt);
+		public Setter reqSetOperationStatus(byte[] edt) {
+			return (Setter)super.reqSetOperationStatus(edt);
 		}
-
 		@Override
 		public Setter reqSetInstallationLocation(byte[] edt) {
 			return (Setter)super.reqSetInstallationLocation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentLimiting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimiting(edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentLimitSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerSaving(byte[] edt) {
-			return (Setter)super.reqSetPowerSaving(edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetLocation(byte[] edt) {
-			return (Setter)super.reqSetLocation(edt);
+		public Setter reqSetPositionInformation(byte[] edt) {
+			return (Setter)super.reqSetPositionInformation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentTime(byte[] edt) {
-			return (Setter)super.reqSetCurrentTime(edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentTimeSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentDate(byte[] edt) {
-			return (Setter)super.reqSetCurrentDate(edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentDateSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerLimitation(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitation(edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
 		@Override
@@ -901,7 +893,6 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 			addProperty(EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME, edt, setSetValueOfOnTimerRelativeTime(edt));
 			return this;
 		}
-
 	}
 	
 	public class SetterProxy extends DeviceObject.SetterProxy implements Setter {
@@ -910,45 +901,37 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 			super(esv);
 		}
 
-		
 		@Override
-		public Setter reqSetPower(byte[] edt) {
-			return (Setter)super.reqSetPower(edt);
+		public Setter reqSetOperationStatus(byte[] edt) {
+			return (Setter)super.reqSetOperationStatus(edt);
 		}
-
 		@Override
 		public Setter reqSetInstallationLocation(byte[] edt) {
 			return (Setter)super.reqSetInstallationLocation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentLimiting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimiting(edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentLimitSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerSaving(byte[] edt) {
-			return (Setter)super.reqSetPowerSaving(edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetLocation(byte[] edt) {
-			return (Setter)super.reqSetLocation(edt);
+		public Setter reqSetPositionInformation(byte[] edt) {
+			return (Setter)super.reqSetPositionInformation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentTime(byte[] edt) {
-			return (Setter)super.reqSetCurrentTime(edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentTimeSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentDate(byte[] edt) {
-			return (Setter)super.reqSetCurrentDate(edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentDateSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerLimitation(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitation(edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
 		@Override
@@ -1036,243 +1019,218 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 			addProperty(EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-
 	}
 
 	public interface Getter extends DeviceObject.Getter {
-		public Getter reqGetPower();
+		public Getter reqGetOperationStatus();
 		public Getter reqGetInstallationLocation();
-		public Getter reqGetVersion();
-		public Getter reqGetIdNumber();
-		public Getter reqGetElectricityConsumption();
-		public Getter reqGetPowerConsumption();
-		public Getter reqGetMakerErrorCode();
-		public Getter reqGetCurrentLimiting();
-		public Getter reqGetError();
-		public Getter reqGetErrorInfo();
-		public Getter reqGetMakerCode();
-		public Getter reqGetWorkplaceCode();
+		public Getter reqGetStandardVersionInformation();
+		public Getter reqGetIdentificationNumber();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption();
+		public Getter reqGetManufacturersFaultCode();
+		public Getter reqGetCurrentLimitSetting();
+		public Getter reqGetFaultStatus();
+		public Getter reqGetFaultDescription();
+		public Getter reqGetManufacturerCode();
+		public Getter reqGetBusinessFacilityCode();
 		public Getter reqGetProductCode();
-		public Getter reqGetManufacturingNumber();
-		public Getter reqGetDateOfManufacture();
-		public Getter reqGetPowerSaving();
-		public Getter reqGetLocation();
-		public Getter reqGetCurrentTime();
-		public Getter reqGetCurrentDate();
-		public Getter reqGetPowerLimitation();
-		public Getter reqGetWorkingTime();
-		public Getter reqGetAnnoPropertyMap();
+		public Getter reqGetProductionNumber();
+		public Getter reqGetProductionDate();
+		public Getter reqGetPowerSavingOperationSetting();
+		public Getter reqGetPositionInformation();
+		public Getter reqGetCurrentTimeSetting();
+		public Getter reqGetCurrentDateSetting();
+		public Getter reqGetPowerLimitSetting();
+		public Getter reqGetCumulativeOperatingTime();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap();
 		public Getter reqGetSetPropertyMap();
 		public Getter reqGetGetPropertyMap();
 		
 		/**
-		 * This property indicates hot water heating status.<br>Hot water heating status found = 0x41 Hot water heating status not found = 0x42
+		 * This property indicates hot water heating status.<br>Hot water heating status found = 0x41 Hot water heating status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 		 */
 		public Getter reqGetHotWaterHeatingStatus();
 		/**
-		 * This property indicates set value of hot water temperature in .C.<br>0x00.0x64 (0.100)
+		 * This property indicates set value of hot water temperature in .C.<br>0x00.0x64 (0.100)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetSetValueOfHotWaterTemperature();
 		/**
-		 * Hot water warmer setting<br>Hot water warmer operation = 0x41 Hot water warmer operation resetting = 0x42
+		 * Hot water warmer setting<br>Hot water warmer operation = 0x41 Hot water warmer operation resetting = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetHotWaterWarmerSetting();
 		/**
-		 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF
+		 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetGdurationOfAutomaticOperationHSetting();
 		/**
-		 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Infinite: 0xFFFF
+		 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Infinite: 0xFFFF<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetRemainingAutomaticOperationTime();
 		/**
-		 * This property indicates set value of bath temperature in .C.<br>0x00.0x64 (0.100)
+		 * This property indicates set value of bath temperature in .C.<br>0x00.0x64 (0.100)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetSetValueOfBathTemperature();
 		/**
-		 * This property indicates whether or not the bath water heater is heating bath water.<br>Heating = 0x41 Not heating = 0x42
+		 * This property indicates whether or not the bath water heater is heating bath water.<br>Heating = 0x41 Not heating = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 		 */
 		public Getter reqGetBathWaterHeaterStatus();
 		/**
-		 * Bath auto mode ON/OFF<br>Auto ON = 0x41 Auto OFF = 0x42
+		 * Bath auto mode ON/OFF<br>Auto ON = 0x41 Auto OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetBathAutoModeSetting();
 		/**
-		 * Additional boil-up ON/OFF<br>Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42
+		 * Additional boil-up ON/OFF<br>Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetBathAdditionalBoilUpOperationSetting();
 		/**
-		 * Hot water addition ON/OFF<br>Hot water addition ON = 0x41 Hot water addition OFF = 0x42
+		 * Hot water addition ON/OFF<br>Hot water addition ON = 0x41 Hot water addition OFF = 0x42<br><br>Data type : unsigned<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetBathHotWaterAddingOperationSetting();
 		/**
-		 * Hot water temperature lowering ON/OFF<br>Hot water temperature lowering ON = 0x41 Hot water temperature lowering OFF = 0x42
+		 * Hot water temperature lowering ON/OFF<br>Hot water temperature lowering ON = 0x41 Hot water temperature lowering OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetBathWaterTemperatureLoweringOperationSetting();
 		/**
-		 * This property indicates bath hot water volume in liters.<br>0x00.0xFD (0 to 253 liters)
+		 * This property indicates bath hot water volume in liters.<br>0x00.0xFD (0 to 253 liters)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetBathHotWaterVolumeSetting1();
 		/**
-		 * Specifies bath hot water volume (8-step).<br>0x31.0x38
+		 * Specifies bath hot water volume (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetBathHotWaterVolumeSetting2();
 		/**
-		 * This property indicates bath hot water volume in liters.<br>0x0000.0xFFFD (0 to 65533 liters)
+		 * This property indicates bath hot water volume in liters.<br>0x0000.0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetBathHotWaterVolumeSetting3();
 		/**
-		 * Bathroom priority ON/OFF<br>Bathroom priority ON = 0x41, bathroom priority OFF = 0x42
+		 * Bathroom priority ON/OFF<br>Bathroom priority ON = 0x41, bathroom priority OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetBathroomPrioritySetting();
 		/**
-		 * Shower hot water supply ON/OFF<br>Shower hot water supply ON = 0x41 Shower hot water supply OFF = 0x42
+		 * Shower hot water supply ON/OFF<br>Shower hot water supply ON = 0x41 Shower hot water supply OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetShowerHotWaterSupplyStatus();
 		/**
-		 * Kitchen hot water supply ON/OFF<br>Kitchen hot water supply ON = 0x41 kitchen hot water supply OFF = 0x42
+		 * Kitchen hot water supply ON/OFF<br>Kitchen hot water supply ON = 0x41 kitchen hot water supply OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetKitchenHotWaterSupplyStatus();
 		/**
-		 * Reservation ON/OFF<br>Reservation ON = 0x41, reservation OFF = 0x42
+		 * Reservation ON/OFF<br>Reservation ON = 0x41, reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetHotWaterWarmerOnTimerReservationSetting();
 		/**
-		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)
+		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetSetValueOfHotWaterWarmerOnTimerTime();
 		/**
-		 * Reservation ON/Reservation OFF<br>Reservation ON = 0x41 Reservation OFF = 0x42
+		 * Reservation ON/Reservation OFF<br>Reservation ON = 0x41 Reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetOnTimerReservationSetting();
 		/**
-		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)
+		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetSetValueOfOnTimerTime();
 		/**
-		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)
+		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetSetValueOfOnTimerRelativeTime();
-
 	}
 	
 	public class GetterImpl extends DeviceObject.GetterImpl implements Getter {
 
 		@Override
-		public Getter reqGetPower() {
-			return (Getter)super.reqGetPower();
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
 		}
-
 		@Override
 		public Getter reqGetInstallationLocation() {
 			return (Getter)super.reqGetInstallationLocation();
 		}
-
 		@Override
-		public Getter reqGetVersion() {
-			return (Getter)super.reqGetVersion();
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
 		}
-
 		@Override
-		public Getter reqGetIdNumber() {
-			return (Getter)super.reqGetIdNumber();
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
 		}
-
 		@Override
-		public Getter reqGetElectricityConsumption() {
-			return (Getter)super.reqGetElectricityConsumption();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetPowerConsumption() {
-			return (Getter)super.reqGetPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetMakerErrorCode() {
-			return (Getter)super.reqGetMakerErrorCode();
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
 		}
-
 		@Override
-		public Getter reqGetCurrentLimiting() {
-			return (Getter)super.reqGetCurrentLimiting();
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetError() {
-			return (Getter)super.reqGetError();
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
 		}
-
 		@Override
-		public Getter reqGetErrorInfo() {
-			return (Getter)super.reqGetErrorInfo();
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
 		}
-
 		@Override
-		public Getter reqGetMakerCode() {
-			return (Getter)super.reqGetMakerCode();
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
 		}
-
 		@Override
-		public Getter reqGetWorkplaceCode() {
-			return (Getter)super.reqGetWorkplaceCode();
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
 		}
-
 		@Override
 		public Getter reqGetProductCode() {
 			return (Getter)super.reqGetProductCode();
 		}
-
 		@Override
-		public Getter reqGetManufacturingNumber() {
-			return (Getter)super.reqGetManufacturingNumber();
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
 		}
-
 		@Override
-		public Getter reqGetDateOfManufacture() {
-			return (Getter)super.reqGetDateOfManufacture();
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
 		}
-
 		@Override
-		public Getter reqGetPowerSaving() {
-			return (Getter)super.reqGetPowerSaving();
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Getter reqGetLocation() {
-			return (Getter)super.reqGetLocation();
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
 		}
-
 		@Override
-		public Getter reqGetCurrentTime() {
-			return (Getter)super.reqGetCurrentTime();
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
 		}
-
 		@Override
-		public Getter reqGetCurrentDate() {
-			return (Getter)super.reqGetCurrentDate();
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
 		}
-
 		@Override
-		public Getter reqGetPowerLimitation() {
-			return (Getter)super.reqGetPowerLimitation();
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetWorkingTime() {
-			return (Getter)super.reqGetWorkingTime();
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
 		}
-
 		@Override
-		public Getter reqGetAnnoPropertyMap() {
-			return (Getter)super.reqGetAnnoPropertyMap();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetSetPropertyMap() {
 			return (Getter)super.reqGetSetPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetGetPropertyMap() {
 			return (Getter)super.reqGetGetPropertyMap();
@@ -1410,126 +1368,102 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 			addProperty(EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-
 	}
 
 	public class GetterProxy extends DeviceObject.GetterProxy implements Getter {
 
 		@Override
-		public Getter reqGetPower() {
-			return (Getter)super.reqGetPower();
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
 		}
-
 		@Override
 		public Getter reqGetInstallationLocation() {
 			return (Getter)super.reqGetInstallationLocation();
 		}
-
 		@Override
-		public Getter reqGetVersion() {
-			return (Getter)super.reqGetVersion();
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
 		}
-
 		@Override
-		public Getter reqGetIdNumber() {
-			return (Getter)super.reqGetIdNumber();
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
 		}
-
 		@Override
-		public Getter reqGetElectricityConsumption() {
-			return (Getter)super.reqGetElectricityConsumption();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetPowerConsumption() {
-			return (Getter)super.reqGetPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetMakerErrorCode() {
-			return (Getter)super.reqGetMakerErrorCode();
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
 		}
-
 		@Override
-		public Getter reqGetCurrentLimiting() {
-			return (Getter)super.reqGetCurrentLimiting();
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetError() {
-			return (Getter)super.reqGetError();
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
 		}
-
 		@Override
-		public Getter reqGetErrorInfo() {
-			return (Getter)super.reqGetErrorInfo();
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
 		}
-
 		@Override
-		public Getter reqGetMakerCode() {
-			return (Getter)super.reqGetMakerCode();
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
 		}
-
 		@Override
-		public Getter reqGetWorkplaceCode() {
-			return (Getter)super.reqGetWorkplaceCode();
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
 		}
-
 		@Override
 		public Getter reqGetProductCode() {
 			return (Getter)super.reqGetProductCode();
 		}
-
 		@Override
-		public Getter reqGetManufacturingNumber() {
-			return (Getter)super.reqGetManufacturingNumber();
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
 		}
-
 		@Override
-		public Getter reqGetDateOfManufacture() {
-			return (Getter)super.reqGetDateOfManufacture();
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
 		}
-
 		@Override
-		public Getter reqGetPowerSaving() {
-			return (Getter)super.reqGetPowerSaving();
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Getter reqGetLocation() {
-			return (Getter)super.reqGetLocation();
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
 		}
-
 		@Override
-		public Getter reqGetCurrentTime() {
-			return (Getter)super.reqGetCurrentTime();
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
 		}
-
 		@Override
-		public Getter reqGetCurrentDate() {
-			return (Getter)super.reqGetCurrentDate();
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
 		}
-
 		@Override
-		public Getter reqGetPowerLimitation() {
-			return (Getter)super.reqGetPowerLimitation();
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetWorkingTime() {
-			return (Getter)super.reqGetWorkingTime();
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
 		}
-
 		@Override
-		public Getter reqGetAnnoPropertyMap() {
-			return (Getter)super.reqGetAnnoPropertyMap();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetSetPropertyMap() {
 			return (Getter)super.reqGetSetPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetGetPropertyMap() {
 			return (Getter)super.reqGetGetPropertyMap();
@@ -1645,243 +1579,218 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 			addProperty(EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME);
 			return this;
 		}
-
 	}
 	
 	public interface Informer extends DeviceObject.Informer {
-		public Informer reqInformPower();
+		public Informer reqInformOperationStatus();
 		public Informer reqInformInstallationLocation();
-		public Informer reqInformVersion();
-		public Informer reqInformIdNumber();
-		public Informer reqInformElectricityConsumption();
-		public Informer reqInformPowerConsumption();
-		public Informer reqInformMakerErrorCode();
-		public Informer reqInformCurrentLimiting();
-		public Informer reqInformError();
-		public Informer reqInformErrorInfo();
-		public Informer reqInformMakerCode();
-		public Informer reqInformWorkplaceCode();
+		public Informer reqInformStandardVersionInformation();
+		public Informer reqInformIdentificationNumber();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption();
+		public Informer reqInformManufacturersFaultCode();
+		public Informer reqInformCurrentLimitSetting();
+		public Informer reqInformFaultStatus();
+		public Informer reqInformFaultDescription();
+		public Informer reqInformManufacturerCode();
+		public Informer reqInformBusinessFacilityCode();
 		public Informer reqInformProductCode();
-		public Informer reqInformManufacturingNumber();
-		public Informer reqInformDateOfManufacture();
-		public Informer reqInformPowerSaving();
-		public Informer reqInformLocation();
-		public Informer reqInformCurrentTime();
-		public Informer reqInformCurrentDate();
-		public Informer reqInformPowerLimitation();
-		public Informer reqInformWorkingTime();
-		public Informer reqInformAnnoPropertyMap();
+		public Informer reqInformProductionNumber();
+		public Informer reqInformProductionDate();
+		public Informer reqInformPowerSavingOperationSetting();
+		public Informer reqInformPositionInformation();
+		public Informer reqInformCurrentTimeSetting();
+		public Informer reqInformCurrentDateSetting();
+		public Informer reqInformPowerLimitSetting();
+		public Informer reqInformCumulativeOperatingTime();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap();
 		public Informer reqInformSetPropertyMap();
 		public Informer reqInformGetPropertyMap();
 		
 		/**
-		 * This property indicates hot water heating status.<br>Hot water heating status found = 0x41 Hot water heating status not found = 0x42
+		 * This property indicates hot water heating status.<br>Hot water heating status found = 0x41 Hot water heating status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 		 */
 		public Informer reqInformHotWaterHeatingStatus();
 		/**
-		 * This property indicates set value of hot water temperature in .C.<br>0x00.0x64 (0.100)
+		 * This property indicates set value of hot water temperature in .C.<br>0x00.0x64 (0.100)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformSetValueOfHotWaterTemperature();
 		/**
-		 * Hot water warmer setting<br>Hot water warmer operation = 0x41 Hot water warmer operation resetting = 0x42
+		 * Hot water warmer setting<br>Hot water warmer operation = 0x41 Hot water warmer operation resetting = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformHotWaterWarmerSetting();
 		/**
-		 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF
+		 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformGdurationOfAutomaticOperationHSetting();
 		/**
-		 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Infinite: 0xFFFF
+		 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Infinite: 0xFFFF<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformRemainingAutomaticOperationTime();
 		/**
-		 * This property indicates set value of bath temperature in .C.<br>0x00.0x64 (0.100)
+		 * This property indicates set value of bath temperature in .C.<br>0x00.0x64 (0.100)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformSetValueOfBathTemperature();
 		/**
-		 * This property indicates whether or not the bath water heater is heating bath water.<br>Heating = 0x41 Not heating = 0x42
+		 * This property indicates whether or not the bath water heater is heating bath water.<br>Heating = 0x41 Not heating = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 		 */
 		public Informer reqInformBathWaterHeaterStatus();
 		/**
-		 * Bath auto mode ON/OFF<br>Auto ON = 0x41 Auto OFF = 0x42
+		 * Bath auto mode ON/OFF<br>Auto ON = 0x41 Auto OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformBathAutoModeSetting();
 		/**
-		 * Additional boil-up ON/OFF<br>Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42
+		 * Additional boil-up ON/OFF<br>Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformBathAdditionalBoilUpOperationSetting();
 		/**
-		 * Hot water addition ON/OFF<br>Hot water addition ON = 0x41 Hot water addition OFF = 0x42
+		 * Hot water addition ON/OFF<br>Hot water addition ON = 0x41 Hot water addition OFF = 0x42<br><br>Data type : unsigned<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformBathHotWaterAddingOperationSetting();
 		/**
-		 * Hot water temperature lowering ON/OFF<br>Hot water temperature lowering ON = 0x41 Hot water temperature lowering OFF = 0x42
+		 * Hot water temperature lowering ON/OFF<br>Hot water temperature lowering ON = 0x41 Hot water temperature lowering OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformBathWaterTemperatureLoweringOperationSetting();
 		/**
-		 * This property indicates bath hot water volume in liters.<br>0x00.0xFD (0 to 253 liters)
+		 * This property indicates bath hot water volume in liters.<br>0x00.0xFD (0 to 253 liters)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformBathHotWaterVolumeSetting1();
 		/**
-		 * Specifies bath hot water volume (8-step).<br>0x31.0x38
+		 * Specifies bath hot water volume (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformBathHotWaterVolumeSetting2();
 		/**
-		 * This property indicates bath hot water volume in liters.<br>0x0000.0xFFFD (0 to 65533 liters)
+		 * This property indicates bath hot water volume in liters.<br>0x0000.0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformBathHotWaterVolumeSetting3();
 		/**
-		 * Bathroom priority ON/OFF<br>Bathroom priority ON = 0x41, bathroom priority OFF = 0x42
+		 * Bathroom priority ON/OFF<br>Bathroom priority ON = 0x41, bathroom priority OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformBathroomPrioritySetting();
 		/**
-		 * Shower hot water supply ON/OFF<br>Shower hot water supply ON = 0x41 Shower hot water supply OFF = 0x42
+		 * Shower hot water supply ON/OFF<br>Shower hot water supply ON = 0x41 Shower hot water supply OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformShowerHotWaterSupplyStatus();
 		/**
-		 * Kitchen hot water supply ON/OFF<br>Kitchen hot water supply ON = 0x41 kitchen hot water supply OFF = 0x42
+		 * Kitchen hot water supply ON/OFF<br>Kitchen hot water supply ON = 0x41 kitchen hot water supply OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformKitchenHotWaterSupplyStatus();
 		/**
-		 * Reservation ON/OFF<br>Reservation ON = 0x41, reservation OFF = 0x42
+		 * Reservation ON/OFF<br>Reservation ON = 0x41, reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformHotWaterWarmerOnTimerReservationSetting();
 		/**
-		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)
+		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformSetValueOfHotWaterWarmerOnTimerTime();
 		/**
-		 * Reservation ON/Reservation OFF<br>Reservation ON = 0x41 Reservation OFF = 0x42
+		 * Reservation ON/Reservation OFF<br>Reservation ON = 0x41 Reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformOnTimerReservationSetting();
 		/**
-		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)
+		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformSetValueOfOnTimerTime();
 		/**
-		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)
+		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformSetValueOfOnTimerRelativeTime();
-
 	}
 
 	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
 
 		@Override
-		public Informer reqInformPower() {
-			return (Informer)super.reqInformPower();
+		public Informer reqInformOperationStatus() {
+			return (Informer)super.reqInformOperationStatus();
 		}
-
 		@Override
 		public Informer reqInformInstallationLocation() {
 			return (Informer)super.reqInformInstallationLocation();
 		}
-
 		@Override
-		public Informer reqInformVersion() {
-			return (Informer)super.reqInformVersion();
+		public Informer reqInformStandardVersionInformation() {
+			return (Informer)super.reqInformStandardVersionInformation();
 		}
-
 		@Override
-		public Informer reqInformIdNumber() {
-			return (Informer)super.reqInformIdNumber();
+		public Informer reqInformIdentificationNumber() {
+			return (Informer)super.reqInformIdentificationNumber();
 		}
-
 		@Override
-		public Informer reqInformElectricityConsumption() {
-			return (Informer)super.reqInformElectricityConsumption();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
+			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformPowerConsumption() {
-			return (Informer)super.reqInformPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption() {
+			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformMakerErrorCode() {
-			return (Informer)super.reqInformMakerErrorCode();
+		public Informer reqInformManufacturersFaultCode() {
+			return (Informer)super.reqInformManufacturersFaultCode();
 		}
-
 		@Override
-		public Informer reqInformCurrentLimiting() {
-			return (Informer)super.reqInformCurrentLimiting();
+		public Informer reqInformCurrentLimitSetting() {
+			return (Informer)super.reqInformCurrentLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformError() {
-			return (Informer)super.reqInformError();
+		public Informer reqInformFaultStatus() {
+			return (Informer)super.reqInformFaultStatus();
 		}
-
 		@Override
-		public Informer reqInformErrorInfo() {
-			return (Informer)super.reqInformErrorInfo();
+		public Informer reqInformFaultDescription() {
+			return (Informer)super.reqInformFaultDescription();
 		}
-
 		@Override
-		public Informer reqInformMakerCode() {
-			return (Informer)super.reqInformMakerCode();
+		public Informer reqInformManufacturerCode() {
+			return (Informer)super.reqInformManufacturerCode();
 		}
-
 		@Override
-		public Informer reqInformWorkplaceCode() {
-			return (Informer)super.reqInformWorkplaceCode();
+		public Informer reqInformBusinessFacilityCode() {
+			return (Informer)super.reqInformBusinessFacilityCode();
 		}
-
 		@Override
 		public Informer reqInformProductCode() {
 			return (Informer)super.reqInformProductCode();
 		}
-
 		@Override
-		public Informer reqInformManufacturingNumber() {
-			return (Informer)super.reqInformManufacturingNumber();
+		public Informer reqInformProductionNumber() {
+			return (Informer)super.reqInformProductionNumber();
 		}
-
 		@Override
-		public Informer reqInformDateOfManufacture() {
-			return (Informer)super.reqInformDateOfManufacture();
+		public Informer reqInformProductionDate() {
+			return (Informer)super.reqInformProductionDate();
 		}
-
 		@Override
-		public Informer reqInformPowerSaving() {
-			return (Informer)super.reqInformPowerSaving();
+		public Informer reqInformPowerSavingOperationSetting() {
+			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Informer reqInformLocation() {
-			return (Informer)super.reqInformLocation();
+		public Informer reqInformPositionInformation() {
+			return (Informer)super.reqInformPositionInformation();
 		}
-
 		@Override
-		public Informer reqInformCurrentTime() {
-			return (Informer)super.reqInformCurrentTime();
+		public Informer reqInformCurrentTimeSetting() {
+			return (Informer)super.reqInformCurrentTimeSetting();
 		}
-
 		@Override
-		public Informer reqInformCurrentDate() {
-			return (Informer)super.reqInformCurrentDate();
+		public Informer reqInformCurrentDateSetting() {
+			return (Informer)super.reqInformCurrentDateSetting();
 		}
-
 		@Override
-		public Informer reqInformPowerLimitation() {
-			return (Informer)super.reqInformPowerLimitation();
+		public Informer reqInformPowerLimitSetting() {
+			return (Informer)super.reqInformPowerLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformWorkingTime() {
-			return (Informer)super.reqInformWorkingTime();
+		public Informer reqInformCumulativeOperatingTime() {
+			return (Informer)super.reqInformCumulativeOperatingTime();
 		}
-
 		@Override
-		public Informer reqInformAnnoPropertyMap() {
-			return (Informer)super.reqInformAnnoPropertyMap();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
+			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformSetPropertyMap() {
 			return (Informer)super.reqInformSetPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
@@ -2019,126 +1928,102 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 			addProperty(EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-
 	}
 	
 	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
 
 		@Override
-		public Informer reqInformPower() {
-			return (Informer)super.reqInformPower();
+		public Informer reqInformOperationStatus() {
+			return (Informer)super.reqInformOperationStatus();
 		}
-
 		@Override
 		public Informer reqInformInstallationLocation() {
 			return (Informer)super.reqInformInstallationLocation();
 		}
-
 		@Override
-		public Informer reqInformVersion() {
-			return (Informer)super.reqInformVersion();
+		public Informer reqInformStandardVersionInformation() {
+			return (Informer)super.reqInformStandardVersionInformation();
 		}
-
 		@Override
-		public Informer reqInformIdNumber() {
-			return (Informer)super.reqInformIdNumber();
+		public Informer reqInformIdentificationNumber() {
+			return (Informer)super.reqInformIdentificationNumber();
 		}
-
 		@Override
-		public Informer reqInformElectricityConsumption() {
-			return (Informer)super.reqInformElectricityConsumption();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
+			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformPowerConsumption() {
-			return (Informer)super.reqInformPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption() {
+			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformMakerErrorCode() {
-			return (Informer)super.reqInformMakerErrorCode();
+		public Informer reqInformManufacturersFaultCode() {
+			return (Informer)super.reqInformManufacturersFaultCode();
 		}
-
 		@Override
-		public Informer reqInformCurrentLimiting() {
-			return (Informer)super.reqInformCurrentLimiting();
+		public Informer reqInformCurrentLimitSetting() {
+			return (Informer)super.reqInformCurrentLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformError() {
-			return (Informer)super.reqInformError();
+		public Informer reqInformFaultStatus() {
+			return (Informer)super.reqInformFaultStatus();
 		}
-
 		@Override
-		public Informer reqInformErrorInfo() {
-			return (Informer)super.reqInformErrorInfo();
+		public Informer reqInformFaultDescription() {
+			return (Informer)super.reqInformFaultDescription();
 		}
-
 		@Override
-		public Informer reqInformMakerCode() {
-			return (Informer)super.reqInformMakerCode();
+		public Informer reqInformManufacturerCode() {
+			return (Informer)super.reqInformManufacturerCode();
 		}
-
 		@Override
-		public Informer reqInformWorkplaceCode() {
-			return (Informer)super.reqInformWorkplaceCode();
+		public Informer reqInformBusinessFacilityCode() {
+			return (Informer)super.reqInformBusinessFacilityCode();
 		}
-
 		@Override
 		public Informer reqInformProductCode() {
 			return (Informer)super.reqInformProductCode();
 		}
-
 		@Override
-		public Informer reqInformManufacturingNumber() {
-			return (Informer)super.reqInformManufacturingNumber();
+		public Informer reqInformProductionNumber() {
+			return (Informer)super.reqInformProductionNumber();
 		}
-
 		@Override
-		public Informer reqInformDateOfManufacture() {
-			return (Informer)super.reqInformDateOfManufacture();
+		public Informer reqInformProductionDate() {
+			return (Informer)super.reqInformProductionDate();
 		}
-
 		@Override
-		public Informer reqInformPowerSaving() {
-			return (Informer)super.reqInformPowerSaving();
+		public Informer reqInformPowerSavingOperationSetting() {
+			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Informer reqInformLocation() {
-			return (Informer)super.reqInformLocation();
+		public Informer reqInformPositionInformation() {
+			return (Informer)super.reqInformPositionInformation();
 		}
-
 		@Override
-		public Informer reqInformCurrentTime() {
-			return (Informer)super.reqInformCurrentTime();
+		public Informer reqInformCurrentTimeSetting() {
+			return (Informer)super.reqInformCurrentTimeSetting();
 		}
-
 		@Override
-		public Informer reqInformCurrentDate() {
-			return (Informer)super.reqInformCurrentDate();
+		public Informer reqInformCurrentDateSetting() {
+			return (Informer)super.reqInformCurrentDateSetting();
 		}
-
 		@Override
-		public Informer reqInformPowerLimitation() {
-			return (Informer)super.reqInformPowerLimitation();
+		public Informer reqInformPowerLimitSetting() {
+			return (Informer)super.reqInformPowerLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformWorkingTime() {
-			return (Informer)super.reqInformWorkingTime();
+		public Informer reqInformCumulativeOperatingTime() {
+			return (Informer)super.reqInformCumulativeOperatingTime();
 		}
-
 		@Override
-		public Informer reqInformAnnoPropertyMap() {
-			return (Informer)super.reqInformAnnoPropertyMap();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
+			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformSetPropertyMap() {
 			return (Informer)super.reqInformSetPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
@@ -2254,6 +2139,5 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 			addProperty(EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME);
 			return this;
 		}
-
 	}
 }

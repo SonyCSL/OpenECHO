@@ -20,31 +20,37 @@ import com.sonycsl.echo.EchoUtils;
 import com.sonycsl.echo.eoj.EchoObject;
 
 public abstract class NodeProfile extends ProfileObject {
+	@SuppressWarnings("unused")
+	private static final String TAG = NodeProfile.class.getSimpleName();
 	
-	protected static final byte EPC_POWER = (byte)0x80;
-	protected static final byte EPC_VERSION = (byte)0x82;
-	protected static final byte EPC_ID_NUMBER = (byte)0x83;
-	protected static final byte EPC_ERROR_INFO = (byte)0x89;
-	protected static final byte EPC_ID_INFO = (byte)0xBF;
-	protected static final byte EPC_INSTANCE_LIST_SIZE = (byte)0xD3;
-	protected static final byte EPC_CLASS_LIST_SIZE = (byte)0xD4;
-	protected static final byte EPC_INSTANCE_LIST = (byte)0xD5;
-	protected static final byte EPC_INSTANCE_LIST_S = (byte)0xD6;
-	protected static final byte EPC_CLASS_LIST_S = (byte)0xD7; 
+	public static final byte CLASS_GROUP_CODE = (byte)0x0E;
+	public static final byte CLASS_CODE = (byte)0xF0;
+	public static final byte INSTANCE_CODE = (byte)0x01;
+	
+	protected static final byte EPC_OPERATING_STATUS = (byte)0x80;
+	protected static final byte EPC_VERSION_INFORMATION = (byte)0x82;
+	protected static final byte EPC_IDENTIFICATION_NUMBER = (byte)0x83;
+	protected static final byte EPC_FAULT_CONTENT = (byte)0x89;
+	protected static final byte EPC_UNIQUE_IDENTIFIER_DATA = (byte)0xBF;
+	protected static final byte EPC_NUMBER_OF_SELF_NODE_INSTANCES = (byte)0xD3;
+	protected static final byte EPC_NUMBER_OF_SELF_NODE_CLASSES = (byte)0xD4;
+	protected static final byte EPC_INSTANCE_LIST_NOTIFICATION = (byte)0xD5;
+	protected static final byte EPC_SELF_NODE_INSTANCE_LIST_S = (byte)0xD6;
+	protected static final byte EPC_SELF_NODE_CLASS_LIST = (byte)0xD7; 
 
 	@Override
 	public byte getClassGroupCode() {
-		return (byte)0x0E;
+		return CLASS_GROUP_CODE;
 	}
 
 	@Override
 	public byte getClassCode() {
-		return (byte)0xF0;
+		return CLASS_CODE;
 	}
 
 	@Override
 	public byte getInstanceCode() {
-		return (byte)0x01;
+		return INSTANCE_CODE;
 	}
 
 	/**
@@ -53,32 +59,32 @@ public abstract class NodeProfile extends ProfileObject {
 	 * アクセスルール:Set/Get(必須)
 	 * 状態変化アナウンス必須
 	 */
-	protected boolean setPower(byte[] edt) {
+	protected boolean setOperatingStatus(byte[] edt) {
 		return false;
 	}
 	
-	protected abstract byte[] getPower();
+	protected abstract byte[] getOperatingStatus();
 	
 	/**
 	 * プロパティ名称:Version情報
 	 * EPC:0x82
 	 * アクセスルール:Get(必須)
 	 */ 
-	protected abstract byte[] getVersion() ;
+	protected abstract byte[] getVersionInformation() ;
 	
 	/**
 	 * プロパティ名称:識別番号
 	 * EPC:0x83
 	 * アクセスルール:Get(必須)
 	 */
-	protected abstract byte[] getIdNumber() ;
+	protected abstract byte[] getIdentificationNumber() ;
 	
 	/**
 	 * プロパティ名称:異常内容
 	 * EPC:0x89
 	 * アクセスルール:Get
 	 */
-	protected byte[] getErrorInfo() {
+	protected byte[] getFaultContent() {
 		return null;
 	}
 	
@@ -87,9 +93,9 @@ public abstract class NodeProfile extends ProfileObject {
 	 * EPC:0xBF
 	 * アクセスルール:Set(必須)/Get(必須)
 	 */
-	protected abstract boolean setIdInfo(byte[] edt);
+	protected abstract boolean setUniqueIdentifierData(byte[] edt);
 	
-	protected abstract byte[] getIdInfo();
+	protected abstract byte[] getUniqueIdentifierData();
 	
 	/**
 	 * プロパティ名称:自ノードインスタンス数
@@ -97,7 +103,7 @@ public abstract class NodeProfile extends ProfileObject {
 	 * アクセスルール:Get(必須)
 	 */
 	
-	protected byte[] getInstanceListSize() {
+	protected byte[] getNumberOfSelfNodeInstances() {
 		byte[] ret = new byte[3];
 		int num = getNode().getDevices().length;
 		// ビッグエンディアン??
@@ -113,14 +119,14 @@ public abstract class NodeProfile extends ProfileObject {
 	 * アクセスルール:Get(必須)
 	 */
 	
-	protected abstract byte[] getClassListSize();
+	protected abstract byte[] getNumberOfSelfNodeClasses();
 	
 	/**
 	 * プロパティ名称:インスタンスリスト通知
 	 * EPC:0xD5
 	 * アクセスルール:Anno(必須)
 	 */
-	protected byte[] getInstanceList() {
+	protected byte[] getInstanceListNotification() {
 		return EchoUtils.devicesToByteArray(getNode().getDevices());
 	}
 	
@@ -129,8 +135,8 @@ public abstract class NodeProfile extends ProfileObject {
 	 * EPC:0xD6
 	 * アクセスルール:Get(必須)
 	 */
-	protected byte[] getInstanceListS() {
-		return getInstanceList();
+	protected byte[] getSelfNodeInstanceListS() {
+		return getInstanceListNotification();
 	}
 	
 	
@@ -141,17 +147,17 @@ public abstract class NodeProfile extends ProfileObject {
 	 * アクセスルール:Get(必須)
 	 */
 	
-	protected abstract byte[] getClassListS();
+	protected abstract byte[] getSelfNodeClassList();
 
 	@Override
 	protected final void onReceiveSet(EchoFrame res, byte epc, byte pdc, byte[] edt) {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
-		case EPC_POWER:
-			res.addProperty(epc, edt, setPower(edt));
+		case EPC_OPERATING_STATUS:
+			res.addProperty(epc, edt, setOperatingStatus(edt));
 			break;
-		case EPC_ID_INFO:
-			res.addProperty(epc, edt, setIdInfo(edt));
+		case EPC_UNIQUE_IDENTIFIER_DATA:
+			res.addProperty(epc, edt, setUniqueIdentifierData(edt));
 			break;
 		}
 	}
@@ -161,40 +167,40 @@ public abstract class NodeProfile extends ProfileObject {
 		super.onReceiveGet(res, epc);
 		byte[] edt;
 		switch(epc) {
-		case EPC_POWER:
-			edt = getPower();
+		case EPC_OPERATING_STATUS:
+			edt = getOperatingStatus();
 			res.addProperty(epc, edt, (edt != null && edt.length == 1));
 			break;
-		case EPC_VERSION:
-			edt = getVersion();
+		case EPC_VERSION_INFORMATION:
+			edt = getVersionInformation();
 			res.addProperty(epc, edt, (edt != null && edt.length == 4));
 			break;
-		case EPC_ID_NUMBER:
-			edt = getIdNumber();
+		case EPC_IDENTIFICATION_NUMBER:
+			edt = getIdentificationNumber();
 			res.addProperty(epc, edt, (edt != null && (edt.length == 9 || edt.length == 17)));
 			break;
-		case EPC_ERROR_INFO:
-			edt = getErrorInfo();
+		case EPC_FAULT_CONTENT:
+			edt = getFaultContent();
 			res.addProperty(epc, edt, (edt != null && edt.length == 2));
 			break;
-		case EPC_ID_INFO:
-			edt = getIdInfo();
+		case EPC_UNIQUE_IDENTIFIER_DATA:
+			edt = getUniqueIdentifierData();
 			res.addProperty(epc, edt, (edt != null && edt.length == 2));
 			break;
-		case EPC_INSTANCE_LIST_SIZE:
-			edt = getInstanceListSize();
+		case EPC_NUMBER_OF_SELF_NODE_INSTANCES:
+			edt = getNumberOfSelfNodeInstances();
 			res.addProperty(epc, edt, (edt != null && edt.length == 3));
 			break;
-		case EPC_CLASS_LIST_SIZE:
-			edt = getClassListSize();
+		case EPC_NUMBER_OF_SELF_NODE_CLASSES:
+			edt = getNumberOfSelfNodeClasses();
 			res.addProperty(epc, edt, (edt != null && edt.length == 2));
 			break;
-		case EPC_INSTANCE_LIST_S:
-			edt = getInstanceListS();
+		case EPC_SELF_NODE_INSTANCE_LIST_S:
+			edt = getSelfNodeInstanceListS();
 			res.addProperty(epc, edt, (edt != null && edt.length <= 253));
 			break;
-		case EPC_CLASS_LIST_S:
-			edt = getClassListS();
+		case EPC_SELF_NODE_CLASS_LIST:
+			edt = getSelfNodeClassList();
 			res.addProperty(epc, edt, (edt != null && edt.length <= 253));
 			break;
 		}
@@ -205,8 +211,8 @@ public abstract class NodeProfile extends ProfileObject {
 		super.onReceiveInfReq(res, epc);
 		byte[] edt;
 		switch(epc) {
-		case EPC_INSTANCE_LIST:
-			edt = getInstanceList();
+		case EPC_INSTANCE_LIST_NOTIFICATION:
+			edt = getInstanceListNotification();
 			res.addProperty(epc, edt, (edt != null && edt.length <= 253));
 			break;
 		}
@@ -244,11 +250,11 @@ public abstract class NodeProfile extends ProfileObject {
 		protected final void onReceiveSetRes(EchoObject eoj, short tid, byte epc, byte pdc, byte[] edt) {
 			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
 			switch(epc) {
-			case EPC_POWER:
-				onSetPower(eoj, tid, (pdc != 0));
+			case EPC_OPERATING_STATUS:
+				onSetOperatingStatus(eoj, tid, (pdc != 0));
 				break;
-			case EPC_ID_INFO:
-				onSetIdInfo(eoj, tid, (pdc != 0));
+			case EPC_UNIQUE_IDENTIFIER_DATA:
+				onSetUniqueIdentifierData(eoj, tid, (pdc != 0));
 				break;
 			}
 		}
@@ -257,35 +263,35 @@ public abstract class NodeProfile extends ProfileObject {
 		protected final void onReceiveGetRes(EchoObject eoj, short tid, byte epc, byte pdc, byte[] edt) {
 			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
 			switch(epc) {
-			case EPC_POWER:
-				onGetPower(eoj, tid, pdc, edt);
+			case EPC_OPERATING_STATUS:
+				onGetOperatingStatus(eoj, tid, pdc, edt);
 				break;
-			case EPC_VERSION:
-				onGetVersion(eoj, tid, pdc, edt);
+			case EPC_VERSION_INFORMATION:
+				onGetVersionInformation(eoj, tid, pdc, edt);
 				break;
-			case EPC_ID_NUMBER:
-				onGetIdNumber(eoj, tid, pdc, edt);
+			case EPC_IDENTIFICATION_NUMBER:
+				onGetIdentificationNumber(eoj, tid, pdc, edt);
 				break;
-			case EPC_ERROR_INFO:
-				onGetErrorInfo(eoj, tid, pdc, edt);
+			case EPC_FAULT_CONTENT:
+				onGetFaultContent(eoj, tid, pdc, edt);
 				break;
-			case EPC_ID_INFO:
-				onGetIdInfo(eoj, tid, pdc, edt);
+			case EPC_UNIQUE_IDENTIFIER_DATA:
+				onGetUniqueIdentifierData(eoj, tid, pdc, edt);
 				break;
-			case EPC_INSTANCE_LIST_SIZE:
-				onGetInstanceListSize(eoj, tid, pdc, edt);
+			case EPC_NUMBER_OF_SELF_NODE_INSTANCES:
+				onGetNumberOfSelfNodeInstances(eoj, tid, pdc, edt);
 				break;
-			case EPC_CLASS_LIST_SIZE:
-				onGetClassListSize(eoj, tid, pdc, edt);
+			case EPC_NUMBER_OF_SELF_NODE_CLASSES:
+				onGetNumberOfSelfNodeClasses(eoj, tid, pdc, edt);
 				break;
-			case EPC_INSTANCE_LIST:
-				onGetInstanceList(eoj, tid, pdc, edt);
+			case EPC_INSTANCE_LIST_NOTIFICATION:
+				onGetInstanceListNotification(eoj, tid, pdc, edt);
 				break;
-			case EPC_INSTANCE_LIST_S:
-				onGetInstanceListS(eoj, tid, pdc, edt);
+			case EPC_SELF_NODE_INSTANCE_LIST_S:
+				onGetSelfNodeInstanceListS(eoj, tid, pdc, edt);
 				break;
-			case EPC_CLASS_LIST_S:
-				onGetClassListS(eoj, tid, pdc, edt);
+			case EPC_SELF_NODE_CLASS_LIST:
+				onGetSelfNodeClassList(eoj, tid, pdc, edt);
 				break;
 			}
 		}
@@ -294,8 +300,8 @@ public abstract class NodeProfile extends ProfileObject {
 		protected final void onReceiveInfC(EchoObject eoj, short tid, byte epc, byte pdc, byte[] edt) {
 			super.onReceiveInfC(eoj, tid, epc, pdc, edt);
 			switch(epc) {
-			case EPC_INSTANCE_LIST:
-				onGetInstanceList(eoj, tid, pdc, edt);
+			case EPC_INSTANCE_LIST_NOTIFICATION:
+				onGetInstanceListNotification(eoj, tid, pdc, edt);
 				break;
 			}
 		}
@@ -305,69 +311,69 @@ public abstract class NodeProfile extends ProfileObject {
 				byte[] edt) {
 			super.onReceiveInfCRes(eoj, tid, epc, pdc, edt);
 			switch(epc) {
-			case EPC_INSTANCE_LIST:
-				onInformInstanceList(eoj, tid);
+			case EPC_INSTANCE_LIST_NOTIFICATION:
+				onInformInstanceListNotification(eoj, tid);
 				break;
 			}
 		}
 		
-		protected void onSetPower(EchoObject eoj, short tid, boolean success) {
+		protected void onSetOperatingStatus(EchoObject eoj, short tid, boolean success) {
 			
 		}
 		
-		protected void onGetPower(EchoObject eoj, short tid, byte pdc, byte[] edt) {
+		protected void onGetOperatingStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {
 			
 		}
 
-		protected void onGetVersion(EchoObject eoj, short tid, byte pdc, byte[] edt) {
+		protected void onGetVersionInformation(EchoObject eoj, short tid, byte pdc, byte[] edt) {
 			
 		}
 
-		protected void onGetIdNumber(EchoObject eoj, short tid, byte pdc, byte[] edt) {
+		protected void onGetIdentificationNumber(EchoObject eoj, short tid, byte pdc, byte[] edt) {
 			
 		}
 
-		protected void onGetErrorInfo(EchoObject eoj, short tid, byte pdc, byte[] edt) {
+		protected void onGetFaultContent(EchoObject eoj, short tid, byte pdc, byte[] edt) {
 			
 		}
 
-		protected void onSetIdInfo(EchoObject eoj, short tid, boolean success) {
+		protected void onSetUniqueIdentifierData(EchoObject eoj, short tid, boolean success) {
 			
 		}
 
-		protected void onGetIdInfo(EchoObject eoj, short tid, byte pdc, byte[] edt) {
+		protected void onGetUniqueIdentifierData(EchoObject eoj, short tid, byte pdc, byte[] edt) {
 			
 		}
 
-		protected void onGetInstanceListSize(EchoObject eoj, short tid, byte pdc, byte[] edt) {
+		protected void onGetNumberOfSelfNodeInstances(EchoObject eoj, short tid, byte pdc, byte[] edt) {
 			
 		}
 
-		protected void onGetClassListSize(EchoObject eoj, short tid, byte pdc, byte[] edt) {
+		protected void onGetNumberOfSelfNodeClasses(EchoObject eoj, short tid, byte pdc, byte[] edt) {
 			
 		}
 
-		protected void onGetInstanceList(EchoObject eoj, short tid, byte pdc, byte[] edt) {
+		protected void onGetInstanceListNotification(EchoObject eoj, short tid, byte pdc, byte[] edt) {
 			
 		}
 
-		protected void onInformInstanceList(EchoObject eoj, short tid) {
+		protected void onInformInstanceListNotification(EchoObject eoj, short tid) {
 			
 		}
 		
-		protected void onGetInstanceListS(EchoObject eoj, short tid, byte pdc, byte[] edt) {
+		protected void onGetSelfNodeInstanceListS(EchoObject eoj, short tid, byte pdc, byte[] edt) {
 			
 		}
 
-		protected void onGetClassListS(EchoObject eoj, short tid, byte pdc, byte[] edt) {
+		protected void onGetSelfNodeClassList(EchoObject eoj, short tid, byte pdc, byte[] edt) {
 			
 		}
 		
 	}
 	
 	public interface Setter extends ProfileObject.Setter {
-		public Setter reqSetPower(byte[] edt);
-		public Setter reqSetIdInfo(byte[] edt);
+		public Setter reqSetOperatingStatus(byte[] edt);
+		public Setter reqSetUniqueIdentifierData(byte[] edt);
 	}
 	
 	public class SetterImpl extends ProfileObject.SetterImpl implements Setter {
@@ -377,14 +383,14 @@ public abstract class NodeProfile extends ProfileObject {
 		}
 
 		@Override
-		public Setter reqSetPower(byte[] edt) {
-			addProperty(EPC_POWER, edt, setPower(edt));
+		public Setter reqSetOperatingStatus(byte[] edt) {
+			addProperty(EPC_OPERATING_STATUS, edt, setOperatingStatus(edt));
 			return this;
 		}
 
 		@Override
-		public Setter reqSetIdInfo(byte[] edt) {
-			addProperty(EPC_ID_INFO, edt, setIdInfo(edt));
+		public Setter reqSetUniqueIdentifierData(byte[] edt) {
+			addProperty(EPC_UNIQUE_IDENTIFIER_DATA, edt, setUniqueIdentifierData(edt));
 			return this;
 		}
 	}
@@ -396,69 +402,69 @@ public abstract class NodeProfile extends ProfileObject {
 		}
 
 		@Override
-		public Setter reqSetPower(byte[] edt) {
-			addProperty(EPC_POWER, edt, (edt.length == 1));
+		public Setter reqSetOperatingStatus(byte[] edt) {
+			addProperty(EPC_OPERATING_STATUS, edt, (edt.length == 1));
 			return this;
 		}
 
 		@Override
-		public Setter reqSetIdInfo(byte[] edt) {
-			addProperty(EPC_ID_INFO, edt, (edt.length == 2));
+		public Setter reqSetUniqueIdentifierData(byte[] edt) {
+			addProperty(EPC_UNIQUE_IDENTIFIER_DATA, edt, (edt.length == 2));
 			return this;
 		}
 		
 	}
 	
 	public interface Getter extends ProfileObject.Getter {
-		public Getter reqGetError();
-		public Getter reqGetMakerCode();
-		public Getter reqGetWorkplaceCode();
+		public Getter reqGetFaultStatus();
+		public Getter reqGetManufacturerCode();
+		public Getter reqGetPlaceOfBusinessCode();
 		public Getter reqGetProductCode();
-		public Getter reqGetManufacturingNumber();
+		public Getter reqGetSerialNumber();
 		public Getter reqGetDateOfManufacture();
-		public Getter reqGetAnnoPropertyMap();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap();
 		public Getter reqGetSetPropertyMap();
 		public Getter reqGetGetPropertyMap();
 		
-		public Getter reqGetPower();
-		public Getter reqGetVersion();
-		public Getter reqGetIdNumber();
-		public Getter reqGetErrorInfo();
-		public Getter reqGetIdInfo();
-		public Getter reqGetInstanceListSize();
-		public Getter reqGetClassListSize();
-		public Getter reqGetInstanceListS();
-		public Getter reqGetClassListS();
+		public Getter reqGetOperatingStatus();
+		public Getter reqGetVersionInformation();
+		public Getter reqGetIdentificationNumber();
+		public Getter reqGetFaultContent();
+		public Getter reqGetUniqueIdentifierData();
+		public Getter reqGetNumberOfSelfNodeInstances();
+		public Getter reqGetNumberOfSelfNodeClasses();
+		public Getter reqGetSelfNodeInstanceListS();
+		public Getter reqGetSelfNodeClassList();
 	}
 	
 	public class GetterImpl extends ProfileObject.GetterImpl implements Getter {
 		@Override
-		public Getter reqGetError() {
-			return (Getter)super.reqGetError();
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
 		}
 		@Override
-		public Getter reqGetMakerCode() {
-			return (Getter)super.reqGetMakerCode();
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
 		}
 		@Override
-		public Getter reqGetWorkplaceCode() {
-			return (Getter)super.reqGetWorkplaceCode();
+		public Getter reqGetPlaceOfBusinessCode() {
+			return (Getter)super.reqGetPlaceOfBusinessCode();
 		}
 		@Override
 		public Getter reqGetProductCode() {
 			return (Getter)super.reqGetProductCode();
 		}
 		@Override
-		public Getter reqGetManufacturingNumber() {
-			return (Getter)super.reqGetManufacturingNumber();
+		public Getter reqGetSerialNumber() {
+			return (Getter)super.reqGetSerialNumber();
 		}
 		@Override
 		public Getter reqGetDateOfManufacture() {
 			return (Getter)super.reqGetDateOfManufacture();
 		}
 		@Override
-		public Getter reqGetAnnoPropertyMap() {
-			return (Getter)super.reqGetAnnoPropertyMap();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
 		}
 		@Override
 		public Getter reqGetSetPropertyMap() {
@@ -470,65 +476,65 @@ public abstract class NodeProfile extends ProfileObject {
 		}
 
 		@Override
-		public Getter reqGetPower() {
-			byte[] edt = getPower();
-			addProperty(EPC_POWER, edt, (edt != null && edt.length == 1));
+		public Getter reqGetOperatingStatus() {
+			byte[] edt = getOperatingStatus();
+			addProperty(EPC_OPERATING_STATUS, edt, (edt != null && edt.length == 1));
 			return this;
 		}
 
 		@Override
-		public Getter reqGetVersion() {
-			byte[] edt = getVersion();
-			addProperty(EPC_VERSION, edt, (edt != null && edt.length == 4));
+		public Getter reqGetVersionInformation() {
+			byte[] edt = getVersionInformation();
+			addProperty(EPC_VERSION_INFORMATION, edt, (edt != null && edt.length == 4));
 			return this;
 		}
 
 		@Override
-		public Getter reqGetIdNumber() {
-			byte[] edt = getIdNumber();
-			addProperty(EPC_ID_NUMBER, edt, (edt != null && (edt.length == 9 || edt.length == 11)));
+		public Getter reqGetIdentificationNumber() {
+			byte[] edt = getIdentificationNumber();
+			addProperty(EPC_IDENTIFICATION_NUMBER, edt, (edt != null && (edt.length == 9 || edt.length == 11)));
 			return this;
 		}
 
 		@Override
-		public Getter reqGetErrorInfo() {
-			byte[] edt = getErrorInfo();
-			addProperty(EPC_ERROR_INFO, edt, (edt != null && edt.length == 2));
+		public Getter reqGetFaultContent() {
+			byte[] edt = getFaultContent();
+			addProperty(EPC_FAULT_CONTENT, edt, (edt != null && edt.length == 2));
 			return this;
 		}
 
 		@Override
-		public Getter reqGetIdInfo() {
-			byte[] edt = getIdInfo();
-			addProperty(EPC_ID_INFO, edt, (edt != null && edt.length == 2));
+		public Getter reqGetUniqueIdentifierData() {
+			byte[] edt = getUniqueIdentifierData();
+			addProperty(EPC_UNIQUE_IDENTIFIER_DATA, edt, (edt != null && edt.length == 2));
 			return this;
 		}
 
 		@Override
-		public Getter reqGetInstanceListSize() {
-			byte[] edt = getInstanceListSize();
-			addProperty(EPC_INSTANCE_LIST_SIZE, edt, (edt != null && edt.length == 3));
+		public Getter reqGetNumberOfSelfNodeInstances() {
+			byte[] edt = getNumberOfSelfNodeInstances();
+			addProperty(EPC_NUMBER_OF_SELF_NODE_INSTANCES, edt, (edt != null && edt.length == 3));
 			return this;
 		}
 
 		@Override
-		public Getter reqGetClassListSize() {
-			byte[] edt = getClassListSize();
-			addProperty(EPC_CLASS_LIST_SIZE, edt, (edt != null && edt.length == 2));
+		public Getter reqGetNumberOfSelfNodeClasses() {
+			byte[] edt = getNumberOfSelfNodeClasses();
+			addProperty(EPC_NUMBER_OF_SELF_NODE_CLASSES, edt, (edt != null && edt.length == 2));
 			return this;
 		}
 
 		@Override
-		public Getter reqGetInstanceListS() {
-			byte[] edt = getInstanceListS();
-			addProperty(EPC_INSTANCE_LIST_S, edt, (edt != null && edt.length <= 253));
+		public Getter reqGetSelfNodeInstanceListS() {
+			byte[] edt = getSelfNodeInstanceListS();
+			addProperty(EPC_SELF_NODE_INSTANCE_LIST_S, edt, (edt != null && edt.length <= 253));
 			return this;
 		}
 
 		@Override
-		public Getter reqGetClassListS() {
-			byte[] edt = getClassListS();
-			addProperty(EPC_CLASS_LIST_S, edt, (edt != null && edt.length <= 17));
+		public Getter reqGetSelfNodeClassList() {
+			byte[] edt = getSelfNodeClassList();
+			addProperty(EPC_SELF_NODE_CLASS_LIST, edt, (edt != null && edt.length <= 17));
 			return this;
 		}
 		
@@ -536,32 +542,32 @@ public abstract class NodeProfile extends ProfileObject {
 
 	public class GetterProxy extends ProfileObject.GetterProxy implements Getter {
 		@Override
-		public Getter reqGetError() {
-			return (Getter)super.reqGetError();
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
 		}
 		@Override
-		public Getter reqGetMakerCode() {
-			return (Getter)super.reqGetMakerCode();
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
 		}
 		@Override
-		public Getter reqGetWorkplaceCode() {
-			return (Getter)super.reqGetWorkplaceCode();
+		public Getter reqGetPlaceOfBusinessCode() {
+			return (Getter)super.reqGetPlaceOfBusinessCode();
 		}
 		@Override
 		public Getter reqGetProductCode() {
 			return (Getter)super.reqGetProductCode();
 		}
 		@Override
-		public Getter reqGetManufacturingNumber() {
-			return (Getter)super.reqGetManufacturingNumber();
+		public Getter reqGetSerialNumber() {
+			return (Getter)super.reqGetSerialNumber();
 		}
 		@Override
 		public Getter reqGetDateOfManufacture() {
 			return (Getter)super.reqGetDateOfManufacture();
 		}
 		@Override
-		public Getter reqGetAnnoPropertyMap() {
-			return (Getter)super.reqGetAnnoPropertyMap();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
 		}
 		@Override
 		public Getter reqGetSetPropertyMap() {
@@ -573,112 +579,112 @@ public abstract class NodeProfile extends ProfileObject {
 		}
 
 		@Override
-		public Getter reqGetPower() {
-			addProperty(EPC_POWER);
+		public Getter reqGetOperatingStatus() {
+			addProperty(EPC_OPERATING_STATUS);
 			return this;
 		}
 
 		@Override
-		public Getter reqGetVersion() {
-			addProperty(EPC_VERSION);
+		public Getter reqGetVersionInformation() {
+			addProperty(EPC_VERSION_INFORMATION);
 			return this;
 		}
 
 		@Override
-		public Getter reqGetIdNumber() {
-			addProperty(EPC_ID_NUMBER);
+		public Getter reqGetIdentificationNumber() {
+			addProperty(EPC_IDENTIFICATION_NUMBER);
 			return this;
 		}
 
 		@Override
-		public Getter reqGetErrorInfo() {
-			addProperty(EPC_ERROR_INFO);
+		public Getter reqGetFaultContent() {
+			addProperty(EPC_FAULT_CONTENT);
 			return this;
 		}
 
 		@Override
-		public Getter reqGetIdInfo() {
-			addProperty(EPC_ID_INFO);
+		public Getter reqGetUniqueIdentifierData() {
+			addProperty(EPC_UNIQUE_IDENTIFIER_DATA);
 			return this;
 		}
 
 		@Override
-		public Getter reqGetInstanceListSize() {
-			addProperty(EPC_INSTANCE_LIST_SIZE);
+		public Getter reqGetNumberOfSelfNodeInstances() {
+			addProperty(EPC_NUMBER_OF_SELF_NODE_INSTANCES);
 			return this;
 		}
 
 		@Override
-		public Getter reqGetClassListSize() {
-			addProperty(EPC_CLASS_LIST_SIZE);
+		public Getter reqGetNumberOfSelfNodeClasses() {
+			addProperty(EPC_NUMBER_OF_SELF_NODE_CLASSES);
 			return this;
 		}
 
 		@Override
-		public Getter reqGetInstanceListS() {
-			addProperty(EPC_INSTANCE_LIST_S);
+		public Getter reqGetSelfNodeInstanceListS() {
+			addProperty(EPC_SELF_NODE_INSTANCE_LIST_S);
 			return this;
 		}
 
 		@Override
-		public Getter reqGetClassListS() {
-			addProperty(EPC_CLASS_LIST_S);
+		public Getter reqGetSelfNodeClassList() {
+			addProperty(EPC_SELF_NODE_CLASS_LIST);
 			return this;
 		}
 		
 	}
 	
 	public interface Informer extends ProfileObject.Informer {
-		public Informer reqInformError();
-		public Informer reqInformMakerCode();
-		public Informer reqInformWorkplaceCode();
+		public Informer reqInformFaultStatus();
+		public Informer reqInformManufacturerCode();
+		public Informer reqInformPlaceOfBusinessCode();
 		public Informer reqInformProductCode();
-		public Informer reqInformManufacturingNumber();
+		public Informer reqInformSerialNumber();
 		public Informer reqInformDateOfManufacture();
-		public Informer reqInformAnnoPropertyMap();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap();
 		public Informer reqInformSetPropetyMap();
 		public Informer reqInformGetPropetyMap();
 		
-		public Informer reqInformPower();
-		public Informer reqInformVersion();
-		public Informer reqInformIdNumber();
-		public Informer reqInformErrorInfo();
-		public Informer reqInformIdInfo();
-		public Informer reqInformInstanceListSize();
-		public Informer reqInformClassListSize();
-		public Informer reqInformInstanceList();
-		public Informer reqInformInstanceListS();
-		public Informer reqInformClassListS();
+		public Informer reqInformOperatingStatus();
+		public Informer reqInformVersionInformation();
+		public Informer reqInformIdentificationNumber();
+		public Informer reqInformFaultContent();
+		public Informer reqInformUniqueIdentifierData();
+		public Informer reqInformNumberOfSelfNodeInstances();
+		public Informer reqInformNumberOfSelfNodeClasses();
+		public Informer reqInformInstanceListNotification();
+		public Informer reqInformSelfNodeInstanceListS();
+		public Informer reqInformSelfNodeClassList();
 	}
 	
 	public class InformerImpl extends ProfileObject.InformerImpl implements Informer {
 		@Override
-		public Informer reqInformError() {
-			return (Informer)super.reqInformError();
+		public Informer reqInformFaultStatus() {
+			return (Informer)super.reqInformFaultStatus();
 		}
 		@Override
-		public Informer reqInformMakerCode() {
-			return (Informer)super.reqInformMakerCode();
+		public Informer reqInformManufacturerCode() {
+			return (Informer)super.reqInformManufacturerCode();
 		}
 		@Override
-		public Informer reqInformWorkplaceCode() {
-			return (Informer)super.reqInformWorkplaceCode();
+		public Informer reqInformPlaceOfBusinessCode() {
+			return (Informer)super.reqInformPlaceOfBusinessCode();
 		}
 		@Override
 		public Informer reqInformProductCode() {
 			return (Informer)super.reqInformProductCode();
 		}
 		@Override
-		public Informer reqInformManufacturingNumber() {
-			return (Informer)super.reqInformManufacturingNumber();
+		public Informer reqInformSerialNumber() {
+			return (Informer)super.reqInformSerialNumber();
 		}
 		@Override
 		public Informer reqInformDateOfManufacture() {
 			return (Informer)super.reqInformDateOfManufacture();
 		}
 		@Override
-		public Informer reqInformAnnoPropertyMap() {
-			return (Informer)super.reqInformAnnoPropertyMap();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
+			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
 		}
 		@Override
 		public Informer reqInformSetPropetyMap() {
@@ -690,72 +696,72 @@ public abstract class NodeProfile extends ProfileObject {
 		}
 
 		@Override
-		public Informer reqInformPower() {
-			byte[] edt = getPower();
-			addProperty(EPC_POWER, edt, (edt != null && edt.length == 1));
+		public Informer reqInformOperatingStatus() {
+			byte[] edt = getOperatingStatus();
+			addProperty(EPC_OPERATING_STATUS, edt, (edt != null && edt.length == 1));
 			return this;
 		}
 
 		@Override
-		public Informer reqInformVersion() {
-			byte[] edt = getVersion();
-			addProperty(EPC_VERSION, edt, (edt != null && edt.length == 4));
+		public Informer reqInformVersionInformation() {
+			byte[] edt = getVersionInformation();
+			addProperty(EPC_VERSION_INFORMATION, edt, (edt != null && edt.length == 4));
 			return this;
 		}
 
 		@Override
-		public Informer reqInformIdNumber() {
-			byte[] edt = getIdNumber();
-			addProperty(EPC_ID_NUMBER, edt, (edt != null && (edt.length == 9 || edt.length == 11)));
+		public Informer reqInformIdentificationNumber() {
+			byte[] edt = getIdentificationNumber();
+			addProperty(EPC_IDENTIFICATION_NUMBER, edt, (edt != null && (edt.length == 9 || edt.length == 11)));
 			return this;
 		}
 
 		@Override
-		public Informer reqInformErrorInfo() {
-			byte[] edt = getErrorInfo();
-			addProperty(EPC_ERROR_INFO, edt, (edt != null && edt.length == 2));
+		public Informer reqInformFaultContent() {
+			byte[] edt = getFaultContent();
+			addProperty(EPC_FAULT_CONTENT, edt, (edt != null && edt.length == 2));
 			return this;
 		}
 
 		@Override
-		public Informer reqInformIdInfo() {
-			byte[] edt = getIdInfo();
-			addProperty(EPC_ID_INFO, edt, (edt != null && edt.length == 2));
+		public Informer reqInformUniqueIdentifierData() {
+			byte[] edt = getUniqueIdentifierData();
+			addProperty(EPC_UNIQUE_IDENTIFIER_DATA, edt, (edt != null && edt.length == 2));
 			return this;
 		}
 
 		@Override
-		public Informer reqInformInstanceListSize() {
-			byte[] edt = getInstanceListSize();
-			addProperty(EPC_INSTANCE_LIST_SIZE, edt, (edt != null && edt.length == 3));
+		public Informer reqInformNumberOfSelfNodeInstances() {
+			byte[] edt = getNumberOfSelfNodeInstances();
+			addProperty(EPC_NUMBER_OF_SELF_NODE_INSTANCES, edt, (edt != null && edt.length == 3));
 			return this;
 		}
 
 		@Override
-		public Informer reqInformClassListSize() {
-			byte[] edt = getClassListSize();
-			addProperty(EPC_CLASS_LIST_SIZE, edt, (edt != null && edt.length == 2));
+		public Informer reqInformNumberOfSelfNodeClasses() {
+			byte[] edt = getNumberOfSelfNodeClasses();
+			addProperty(EPC_NUMBER_OF_SELF_NODE_CLASSES, edt, (edt != null && edt.length == 2));
 			return this;
 		}
 
 		@Override
-		public Informer reqInformInstanceList() {
-			byte[] edt = getInstanceList();
-			addProperty(EPC_INSTANCE_LIST, edt, (edt != null && edt.length <= 253));
+		public Informer reqInformInstanceListNotification() {
+			byte[] edt = getInstanceListNotification();
+			addProperty(EPC_INSTANCE_LIST_NOTIFICATION, edt, (edt != null && edt.length <= 253));
 			return this;
 		}
 
 		@Override
-		public Informer reqInformInstanceListS() {
-			byte[] edt = getInstanceListS();
-			addProperty(EPC_INSTANCE_LIST_S, edt, (edt != null && edt.length <= 253));
+		public Informer reqInformSelfNodeInstanceListS() {
+			byte[] edt = getSelfNodeInstanceListS();
+			addProperty(EPC_SELF_NODE_INSTANCE_LIST_S, edt, (edt != null && edt.length <= 253));
 			return this;
 		}
 
 		@Override
-		public Informer reqInformClassListS() {
-			byte[] edt = getClassListS();
-			addProperty(EPC_CLASS_LIST_S, edt, (edt != null && edt.length <= 17));
+		public Informer reqInformSelfNodeClassList() {
+			byte[] edt = getSelfNodeClassList();
+			addProperty(EPC_SELF_NODE_CLASS_LIST, edt, (edt != null && edt.length <= 17));
 			return this;
 		}
 		
@@ -763,32 +769,32 @@ public abstract class NodeProfile extends ProfileObject {
 	
 	public class InformerProxy extends ProfileObject.InformerProxy implements Informer {
 		@Override
-		public Informer reqInformError() {
-			return (Informer)super.reqInformError();
+		public Informer reqInformFaultStatus() {
+			return (Informer)super.reqInformFaultStatus();
 		}
 		@Override
-		public Informer reqInformMakerCode() {
-			return (Informer)super.reqInformMakerCode();
+		public Informer reqInformManufacturerCode() {
+			return (Informer)super.reqInformManufacturerCode();
 		}
 		@Override
-		public Informer reqInformWorkplaceCode() {
-			return (Informer)super.reqInformWorkplaceCode();
+		public Informer reqInformPlaceOfBusinessCode() {
+			return (Informer)super.reqInformPlaceOfBusinessCode();
 		}
 		@Override
 		public Informer reqInformProductCode() {
 			return (Informer)super.reqInformProductCode();
 		}
 		@Override
-		public Informer reqInformManufacturingNumber() {
-			return (Informer)super.reqInformManufacturingNumber();
+		public Informer reqInformSerialNumber() {
+			return (Informer)super.reqInformSerialNumber();
 		}
 		@Override
 		public Informer reqInformDateOfManufacture() {
 			return (Informer)super.reqInformDateOfManufacture();
 		}
 		@Override
-		public Informer reqInformAnnoPropertyMap() {
-			return (Informer)super.reqInformAnnoPropertyMap();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
+			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
 		}
 		@Override
 		public Informer reqInformSetPropetyMap() {
@@ -800,68 +806,68 @@ public abstract class NodeProfile extends ProfileObject {
 		}
 		
 		@Override
-		public Informer reqInformPower() {
-			addProperty(EPC_POWER);
+		public Informer reqInformOperatingStatus() {
+			addProperty(EPC_OPERATING_STATUS);
 			return this;
 		}
 		@Override
-		public Informer reqInformVersion() {
-			addProperty(EPC_VERSION);
+		public Informer reqInformVersionInformation() {
+			addProperty(EPC_VERSION_INFORMATION);
 			return this;
 		}
 		@Override
-		public Informer reqInformIdNumber() {
-			addProperty(EPC_ID_NUMBER);
+		public Informer reqInformIdentificationNumber() {
+			addProperty(EPC_IDENTIFICATION_NUMBER);
 			return this;
 		}
 		@Override
-		public Informer reqInformErrorInfo() {
-			addProperty(EPC_ERROR_INFO);
+		public Informer reqInformFaultContent() {
+			addProperty(EPC_FAULT_CONTENT);
 			return this;
 		}
 		@Override
-		public Informer reqInformIdInfo() {
-			addProperty(EPC_ID_INFO);
+		public Informer reqInformUniqueIdentifierData() {
+			addProperty(EPC_UNIQUE_IDENTIFIER_DATA);
 			return this;
 		}
 		@Override
-		public Informer reqInformInstanceListSize() {
-			addProperty(EPC_INSTANCE_LIST_SIZE);
+		public Informer reqInformNumberOfSelfNodeInstances() {
+			addProperty(EPC_NUMBER_OF_SELF_NODE_INSTANCES);
 			return this;
 		}
 		@Override
-		public Informer reqInformClassListSize() {
-			addProperty(EPC_CLASS_LIST_SIZE);
+		public Informer reqInformNumberOfSelfNodeClasses() {
+			addProperty(EPC_NUMBER_OF_SELF_NODE_CLASSES);
 			return this;
 		}
 		@Override
-		public Informer reqInformInstanceList() {
-			addProperty(EPC_INSTANCE_LIST);
+		public Informer reqInformInstanceListNotification() {
+			addProperty(EPC_INSTANCE_LIST_NOTIFICATION);
 			return this;
 		}
 		@Override
-		public Informer reqInformInstanceListS() {
-			addProperty(EPC_INSTANCE_LIST_S);
+		public Informer reqInformSelfNodeInstanceListS() {
+			addProperty(EPC_SELF_NODE_INSTANCE_LIST_S);
 			return this;
 		}
 		@Override
-		public Informer reqInformClassListS() {
-			addProperty(EPC_CLASS_LIST_S);
+		public Informer reqInformSelfNodeClassList() {
+			addProperty(EPC_SELF_NODE_CLASS_LIST);
 			return this;
 		}
 	}
 	
 
 	public interface InformerC extends EchoObject.InformerC {
-		public InformerC informInstanceList();
+		public InformerC informInstanceListNotification();
 	}
 
 	public class InformerCImpl extends ProfileObject.InformerCImpl implements InformerC {
 
 		@Override
-		public InformerC informInstanceList() {
-			byte[] edt = getInstanceList();
-			addProperty(EPC_INSTANCE_LIST, edt, (edt != null && edt.length <= 253));
+		public InformerC informInstanceListNotification() {
+			byte[] edt = getInstanceListNotification();
+			addProperty(EPC_INSTANCE_LIST_NOTIFICATION, edt, (edt != null && edt.length <= 253));
 			return this;
 		}
 		

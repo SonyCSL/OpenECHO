@@ -45,59 +45,59 @@ public abstract class ElectricStormWindow extends DeviceObject {
 	}
 
 	/**
-	 * Open(ed)/close(d)/stop(ped)<br>Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43
+	 * Open(ed)/close(d)/stop(ped)<br>Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 	 */
 	protected abstract boolean setOpenCloseSetting1(byte[] edt);
 	/**
-	 * Open(ed)/close(d)/stop(ped)<br>Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43
+	 * Open(ed)/close(d)/stop(ped)<br>Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 	 */
 	protected abstract byte[] getOpenCloseSetting1();
 	/**
-	 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38
+	 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setExtentOfOpening1(byte[] edt) {return false;}
 	/**
-	 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38
+	 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getExtentOfOpening1() {return null;}
 	/**
-	 * Blind angle<br>0x00 to 0xB4 (0 to 180  )
+	 * Blind angle<br>0x00 to 0xB4 (0 to 180  )<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setBlindAngleSetting(byte[] edt) {return false;}
 	/**
-	 * Blind angle<br>0x00 to 0xB4 (0 to 180  )
+	 * Blind angle<br>0x00 to 0xB4 (0 to 180  )<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getBlindAngleSetting() {return null;}
 	/**
-	 * Low/medium/high<br>Low = 0x41, medium = 0x42, high = 0x43
+	 * Low/medium/high<br>Low = 0x41, medium = 0x42, high = 0x43<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setShutterSpeed(byte[] edt) {return false;}
 	/**
-	 * Low/medium/high<br>Low = 0x41, medium = 0x42, high = 0x43
+	 * Low/medium/high<br>Low = 0x41, medium = 0x42, high = 0x43<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getShutterSpeed() {return null;}
 	/**
-	 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>0x00 to 0xFF (0 to 255)
+	 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>0x00 to 0xFF (0 to 255)<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setExtentOfOpening2(byte[] edt) {return false;}
 	/**
-	 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>0x00 to 0xFF (0 to 255)
+	 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>0x00 to 0xFF (0 to 255)<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getExtentOfOpening2() {return null;}
 	/**
-	 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>Activated = 0x41, deactivated = 0x42
+	 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>Activated = 0x41, deactivated = 0x42<br><br>Data type : unsign ed char unsign ed char<br>Data size : 1 byte 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 	 */
 	protected abstract boolean setElectricLockSetting(byte[] edt);
 	/**
-	 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>Activated = 0x41, deactivated = 0x42
+	 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>Activated = 0x41, deactivated = 0x42<br><br>Data type : unsign ed char unsign ed char<br>Data size : 1 byte 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 	 */
 	protected abstract byte[] getElectricLockSetting();
 	/**
-	 * Open/close<br>Open = 0x41, close = 0x42
+	 * Open/close<br>Open = 0x41, close = 0x42<br><br>Data type : unsign ed char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional<br>Announcement at status change
 	 */
 	protected boolean setOpenCloseSetting2(byte[] edt) {return false;}
 	/**
-	 * Open/close<br>Open = 0x41, close = 0x42
+	 * Open/close<br>Open = 0x41, close = 0x42<br><br>Data type : unsign ed char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional<br>Announcement at status change
 	 */
 	protected byte[] getOpenCloseSetting2() {return null;}
 
@@ -251,103 +251,102 @@ public abstract class ElectricStormWindow extends DeviceObject {
 		}
 		
 		/**
-		 * Open(ed)/close(d)/stop(ped)<br>Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43
+		 * Open(ed)/close(d)/stop(ped)<br>Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
 		protected void onSetOpenCloseSetting1(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Open(ed)/close(d)/stop(ped)<br>Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43
+		 * Open(ed)/close(d)/stop(ped)<br>Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
 		protected void onGetOpenCloseSetting1(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38
+		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetExtentOfOpening1(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38
+		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetExtentOfOpening1(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Blind angle<br>0x00 to 0xB4 (0 to 180  )
+		 * Blind angle<br>0x00 to 0xB4 (0 to 180  )<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetBlindAngleSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Blind angle<br>0x00 to 0xB4 (0 to 180  )
+		 * Blind angle<br>0x00 to 0xB4 (0 to 180  )<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetBlindAngleSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Low/medium/high<br>Low = 0x41, medium = 0x42, high = 0x43
+		 * Low/medium/high<br>Low = 0x41, medium = 0x42, high = 0x43<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetShutterSpeed(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Low/medium/high<br>Low = 0x41, medium = 0x42, high = 0x43
+		 * Low/medium/high<br>Low = 0x41, medium = 0x42, high = 0x43<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetShutterSpeed(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>0x00 to 0xFF (0 to 255)
+		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>0x00 to 0xFF (0 to 255)<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetExtentOfOpening2(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>0x00 to 0xFF (0 to 255)
+		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>0x00 to 0xFF (0 to 255)<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetExtentOfOpening2(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>Activated = 0x41, deactivated = 0x42
+		 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>Activated = 0x41, deactivated = 0x42<br><br>Data type : unsign ed char unsign ed char<br>Data size : 1 byte 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
 		protected void onSetElectricLockSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>Activated = 0x41, deactivated = 0x42
+		 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>Activated = 0x41, deactivated = 0x42<br><br>Data type : unsign ed char unsign ed char<br>Data size : 1 byte 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
 		protected void onGetElectricLockSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Open/close<br>Open = 0x41, close = 0x42
+		 * Open/close<br>Open = 0x41, close = 0x42<br><br>Data type : unsign ed char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional<br>Announcement at status change
 		 */
 		protected void onSetOpenCloseSetting2(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Open/close<br>Open = 0x41, close = 0x42
+		 * Open/close<br>Open = 0x41, close = 0x42<br><br>Data type : unsign ed char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional<br>Announcement at status change
 		 */
 		protected void onGetOpenCloseSetting2(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 
 	}
 	
 	public interface Setter extends DeviceObject.Setter {
-		public Setter reqSetPower(byte[] edt);
+		public Setter reqSetOperationStatus(byte[] edt);
 		public Setter reqSetInstallationLocation(byte[] edt);
-		public Setter reqSetCurrentLimiting(byte[] edt);
-		public Setter reqSetPowerSaving(byte[] edt);
-		public Setter reqSetLocation(byte[] edt);
-		public Setter reqSetCurrentTime(byte[] edt);
-		public Setter reqSetCurrentDate(byte[] edt);
-		public Setter reqSetPowerLimitation(byte[] edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
+		public Setter reqSetPositionInformation(byte[] edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt);
 		
 		/**
-		 * Open(ed)/close(d)/stop(ped)<br>Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43
+		 * Open(ed)/close(d)/stop(ped)<br>Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
 		public Setter reqSetOpenCloseSetting1(byte[] edt);
 		/**
-		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38
+		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetExtentOfOpening1(byte[] edt);
 		/**
-		 * Blind angle<br>0x00 to 0xB4 (0 to 180  )
+		 * Blind angle<br>0x00 to 0xB4 (0 to 180  )<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetBlindAngleSetting(byte[] edt);
 		/**
-		 * Low/medium/high<br>Low = 0x41, medium = 0x42, high = 0x43
+		 * Low/medium/high<br>Low = 0x41, medium = 0x42, high = 0x43<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetShutterSpeed(byte[] edt);
 		/**
-		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>0x00 to 0xFF (0 to 255)
+		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>0x00 to 0xFF (0 to 255)<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetExtentOfOpening2(byte[] edt);
 		/**
-		 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>Activated = 0x41, deactivated = 0x42
+		 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>Activated = 0x41, deactivated = 0x42<br><br>Data type : unsign ed char unsign ed char<br>Data size : 1 byte 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
 		public Setter reqSetElectricLockSetting(byte[] edt);
 		/**
-		 * Open/close<br>Open = 0x41, close = 0x42
+		 * Open/close<br>Open = 0x41, close = 0x42<br><br>Data type : unsign ed char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional<br>Announcement at status change
 		 */
 		public Setter reqSetOpenCloseSetting2(byte[] edt);
-
 	}
 
 	public class SetterImpl extends DeviceObject.SetterImpl implements Setter {
@@ -357,43 +356,36 @@ public abstract class ElectricStormWindow extends DeviceObject {
 		}
 		
 		@Override
-		public Setter reqSetPower(byte[] edt) {
-			return (Setter)super.reqSetPower(edt);
+		public Setter reqSetOperationStatus(byte[] edt) {
+			return (Setter)super.reqSetOperationStatus(edt);
 		}
-
 		@Override
 		public Setter reqSetInstallationLocation(byte[] edt) {
 			return (Setter)super.reqSetInstallationLocation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentLimiting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimiting(edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentLimitSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerSaving(byte[] edt) {
-			return (Setter)super.reqSetPowerSaving(edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetLocation(byte[] edt) {
-			return (Setter)super.reqSetLocation(edt);
+		public Setter reqSetPositionInformation(byte[] edt) {
+			return (Setter)super.reqSetPositionInformation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentTime(byte[] edt) {
-			return (Setter)super.reqSetCurrentTime(edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentTimeSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentDate(byte[] edt) {
-			return (Setter)super.reqSetCurrentDate(edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentDateSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerLimitation(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitation(edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
 		@Override
@@ -431,7 +423,6 @@ public abstract class ElectricStormWindow extends DeviceObject {
 			addProperty(EPC_OPEN_CLOSE_SETTING2, edt, setOpenCloseSetting2(edt));
 			return this;
 		}
-
 	}
 	
 	public class SetterProxy extends DeviceObject.SetterProxy implements Setter {
@@ -440,45 +431,37 @@ public abstract class ElectricStormWindow extends DeviceObject {
 			super(esv);
 		}
 
-		
 		@Override
-		public Setter reqSetPower(byte[] edt) {
-			return (Setter)super.reqSetPower(edt);
+		public Setter reqSetOperationStatus(byte[] edt) {
+			return (Setter)super.reqSetOperationStatus(edt);
 		}
-
 		@Override
 		public Setter reqSetInstallationLocation(byte[] edt) {
 			return (Setter)super.reqSetInstallationLocation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentLimiting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimiting(edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentLimitSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerSaving(byte[] edt) {
-			return (Setter)super.reqSetPowerSaving(edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetLocation(byte[] edt) {
-			return (Setter)super.reqSetLocation(edt);
+		public Setter reqSetPositionInformation(byte[] edt) {
+			return (Setter)super.reqSetPositionInformation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentTime(byte[] edt) {
-			return (Setter)super.reqSetCurrentTime(edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentTimeSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentDate(byte[] edt) {
-			return (Setter)super.reqSetCurrentDate(edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentDateSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerLimitation(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitation(edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
 		@Override
@@ -516,183 +499,158 @@ public abstract class ElectricStormWindow extends DeviceObject {
 			addProperty(EPC_OPEN_CLOSE_SETTING2, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-
 	}
 
 	public interface Getter extends DeviceObject.Getter {
-		public Getter reqGetPower();
+		public Getter reqGetOperationStatus();
 		public Getter reqGetInstallationLocation();
-		public Getter reqGetVersion();
-		public Getter reqGetIdNumber();
-		public Getter reqGetElectricityConsumption();
-		public Getter reqGetPowerConsumption();
-		public Getter reqGetMakerErrorCode();
-		public Getter reqGetCurrentLimiting();
-		public Getter reqGetError();
-		public Getter reqGetErrorInfo();
-		public Getter reqGetMakerCode();
-		public Getter reqGetWorkplaceCode();
+		public Getter reqGetStandardVersionInformation();
+		public Getter reqGetIdentificationNumber();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption();
+		public Getter reqGetManufacturersFaultCode();
+		public Getter reqGetCurrentLimitSetting();
+		public Getter reqGetFaultStatus();
+		public Getter reqGetFaultDescription();
+		public Getter reqGetManufacturerCode();
+		public Getter reqGetBusinessFacilityCode();
 		public Getter reqGetProductCode();
-		public Getter reqGetManufacturingNumber();
-		public Getter reqGetDateOfManufacture();
-		public Getter reqGetPowerSaving();
-		public Getter reqGetLocation();
-		public Getter reqGetCurrentTime();
-		public Getter reqGetCurrentDate();
-		public Getter reqGetPowerLimitation();
-		public Getter reqGetWorkingTime();
-		public Getter reqGetAnnoPropertyMap();
+		public Getter reqGetProductionNumber();
+		public Getter reqGetProductionDate();
+		public Getter reqGetPowerSavingOperationSetting();
+		public Getter reqGetPositionInformation();
+		public Getter reqGetCurrentTimeSetting();
+		public Getter reqGetCurrentDateSetting();
+		public Getter reqGetPowerLimitSetting();
+		public Getter reqGetCumulativeOperatingTime();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap();
 		public Getter reqGetSetPropertyMap();
 		public Getter reqGetGetPropertyMap();
 		
 		/**
-		 * Open(ed)/close(d)/stop(ped)<br>Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43
+		 * Open(ed)/close(d)/stop(ped)<br>Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
 		public Getter reqGetOpenCloseSetting1();
 		/**
-		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38
+		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetExtentOfOpening1();
 		/**
-		 * Blind angle<br>0x00 to 0xB4 (0 to 180  )
+		 * Blind angle<br>0x00 to 0xB4 (0 to 180  )<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetBlindAngleSetting();
 		/**
-		 * Low/medium/high<br>Low = 0x41, medium = 0x42, high = 0x43
+		 * Low/medium/high<br>Low = 0x41, medium = 0x42, high = 0x43<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetShutterSpeed();
 		/**
-		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>0x00 to 0xFF (0 to 255)
+		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>0x00 to 0xFF (0 to 255)<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetExtentOfOpening2();
 		/**
-		 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>Activated = 0x41, deactivated = 0x42
+		 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>Activated = 0x41, deactivated = 0x42<br><br>Data type : unsign ed char unsign ed char<br>Data size : 1 byte 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
 		public Getter reqGetElectricLockSetting();
 		/**
-		 * Open/close<br>Open = 0x41, close = 0x42
+		 * Open/close<br>Open = 0x41, close = 0x42<br><br>Data type : unsign ed char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional<br>Announcement at status change
 		 */
 		public Getter reqGetOpenCloseSetting2();
-
 	}
 	
 	public class GetterImpl extends DeviceObject.GetterImpl implements Getter {
 
 		@Override
-		public Getter reqGetPower() {
-			return (Getter)super.reqGetPower();
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
 		}
-
 		@Override
 		public Getter reqGetInstallationLocation() {
 			return (Getter)super.reqGetInstallationLocation();
 		}
-
 		@Override
-		public Getter reqGetVersion() {
-			return (Getter)super.reqGetVersion();
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
 		}
-
 		@Override
-		public Getter reqGetIdNumber() {
-			return (Getter)super.reqGetIdNumber();
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
 		}
-
 		@Override
-		public Getter reqGetElectricityConsumption() {
-			return (Getter)super.reqGetElectricityConsumption();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetPowerConsumption() {
-			return (Getter)super.reqGetPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetMakerErrorCode() {
-			return (Getter)super.reqGetMakerErrorCode();
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
 		}
-
 		@Override
-		public Getter reqGetCurrentLimiting() {
-			return (Getter)super.reqGetCurrentLimiting();
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetError() {
-			return (Getter)super.reqGetError();
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
 		}
-
 		@Override
-		public Getter reqGetErrorInfo() {
-			return (Getter)super.reqGetErrorInfo();
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
 		}
-
 		@Override
-		public Getter reqGetMakerCode() {
-			return (Getter)super.reqGetMakerCode();
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
 		}
-
 		@Override
-		public Getter reqGetWorkplaceCode() {
-			return (Getter)super.reqGetWorkplaceCode();
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
 		}
-
 		@Override
 		public Getter reqGetProductCode() {
 			return (Getter)super.reqGetProductCode();
 		}
-
 		@Override
-		public Getter reqGetManufacturingNumber() {
-			return (Getter)super.reqGetManufacturingNumber();
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
 		}
-
 		@Override
-		public Getter reqGetDateOfManufacture() {
-			return (Getter)super.reqGetDateOfManufacture();
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
 		}
-
 		@Override
-		public Getter reqGetPowerSaving() {
-			return (Getter)super.reqGetPowerSaving();
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Getter reqGetLocation() {
-			return (Getter)super.reqGetLocation();
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
 		}
-
 		@Override
-		public Getter reqGetCurrentTime() {
-			return (Getter)super.reqGetCurrentTime();
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
 		}
-
 		@Override
-		public Getter reqGetCurrentDate() {
-			return (Getter)super.reqGetCurrentDate();
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
 		}
-
 		@Override
-		public Getter reqGetPowerLimitation() {
-			return (Getter)super.reqGetPowerLimitation();
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetWorkingTime() {
-			return (Getter)super.reqGetWorkingTime();
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
 		}
-
 		@Override
-		public Getter reqGetAnnoPropertyMap() {
-			return (Getter)super.reqGetAnnoPropertyMap();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetSetPropertyMap() {
 			return (Getter)super.reqGetSetPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetGetPropertyMap() {
 			return (Getter)super.reqGetGetPropertyMap();
@@ -740,126 +698,102 @@ public abstract class ElectricStormWindow extends DeviceObject {
 			addProperty(EPC_OPEN_CLOSE_SETTING2, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-
 	}
 
 	public class GetterProxy extends DeviceObject.GetterProxy implements Getter {
 
 		@Override
-		public Getter reqGetPower() {
-			return (Getter)super.reqGetPower();
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
 		}
-
 		@Override
 		public Getter reqGetInstallationLocation() {
 			return (Getter)super.reqGetInstallationLocation();
 		}
-
 		@Override
-		public Getter reqGetVersion() {
-			return (Getter)super.reqGetVersion();
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
 		}
-
 		@Override
-		public Getter reqGetIdNumber() {
-			return (Getter)super.reqGetIdNumber();
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
 		}
-
 		@Override
-		public Getter reqGetElectricityConsumption() {
-			return (Getter)super.reqGetElectricityConsumption();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetPowerConsumption() {
-			return (Getter)super.reqGetPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetMakerErrorCode() {
-			return (Getter)super.reqGetMakerErrorCode();
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
 		}
-
 		@Override
-		public Getter reqGetCurrentLimiting() {
-			return (Getter)super.reqGetCurrentLimiting();
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetError() {
-			return (Getter)super.reqGetError();
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
 		}
-
 		@Override
-		public Getter reqGetErrorInfo() {
-			return (Getter)super.reqGetErrorInfo();
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
 		}
-
 		@Override
-		public Getter reqGetMakerCode() {
-			return (Getter)super.reqGetMakerCode();
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
 		}
-
 		@Override
-		public Getter reqGetWorkplaceCode() {
-			return (Getter)super.reqGetWorkplaceCode();
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
 		}
-
 		@Override
 		public Getter reqGetProductCode() {
 			return (Getter)super.reqGetProductCode();
 		}
-
 		@Override
-		public Getter reqGetManufacturingNumber() {
-			return (Getter)super.reqGetManufacturingNumber();
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
 		}
-
 		@Override
-		public Getter reqGetDateOfManufacture() {
-			return (Getter)super.reqGetDateOfManufacture();
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
 		}
-
 		@Override
-		public Getter reqGetPowerSaving() {
-			return (Getter)super.reqGetPowerSaving();
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Getter reqGetLocation() {
-			return (Getter)super.reqGetLocation();
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
 		}
-
 		@Override
-		public Getter reqGetCurrentTime() {
-			return (Getter)super.reqGetCurrentTime();
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
 		}
-
 		@Override
-		public Getter reqGetCurrentDate() {
-			return (Getter)super.reqGetCurrentDate();
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
 		}
-
 		@Override
-		public Getter reqGetPowerLimitation() {
-			return (Getter)super.reqGetPowerLimitation();
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetWorkingTime() {
-			return (Getter)super.reqGetWorkingTime();
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
 		}
-
 		@Override
-		public Getter reqGetAnnoPropertyMap() {
-			return (Getter)super.reqGetAnnoPropertyMap();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetSetPropertyMap() {
 			return (Getter)super.reqGetSetPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetGetPropertyMap() {
 			return (Getter)super.reqGetGetPropertyMap();
@@ -900,183 +834,158 @@ public abstract class ElectricStormWindow extends DeviceObject {
 			addProperty(EPC_OPEN_CLOSE_SETTING2);
 			return this;
 		}
-
 	}
 	
 	public interface Informer extends DeviceObject.Informer {
-		public Informer reqInformPower();
+		public Informer reqInformOperationStatus();
 		public Informer reqInformInstallationLocation();
-		public Informer reqInformVersion();
-		public Informer reqInformIdNumber();
-		public Informer reqInformElectricityConsumption();
-		public Informer reqInformPowerConsumption();
-		public Informer reqInformMakerErrorCode();
-		public Informer reqInformCurrentLimiting();
-		public Informer reqInformError();
-		public Informer reqInformErrorInfo();
-		public Informer reqInformMakerCode();
-		public Informer reqInformWorkplaceCode();
+		public Informer reqInformStandardVersionInformation();
+		public Informer reqInformIdentificationNumber();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption();
+		public Informer reqInformManufacturersFaultCode();
+		public Informer reqInformCurrentLimitSetting();
+		public Informer reqInformFaultStatus();
+		public Informer reqInformFaultDescription();
+		public Informer reqInformManufacturerCode();
+		public Informer reqInformBusinessFacilityCode();
 		public Informer reqInformProductCode();
-		public Informer reqInformManufacturingNumber();
-		public Informer reqInformDateOfManufacture();
-		public Informer reqInformPowerSaving();
-		public Informer reqInformLocation();
-		public Informer reqInformCurrentTime();
-		public Informer reqInformCurrentDate();
-		public Informer reqInformPowerLimitation();
-		public Informer reqInformWorkingTime();
-		public Informer reqInformAnnoPropertyMap();
+		public Informer reqInformProductionNumber();
+		public Informer reqInformProductionDate();
+		public Informer reqInformPowerSavingOperationSetting();
+		public Informer reqInformPositionInformation();
+		public Informer reqInformCurrentTimeSetting();
+		public Informer reqInformCurrentDateSetting();
+		public Informer reqInformPowerLimitSetting();
+		public Informer reqInformCumulativeOperatingTime();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap();
 		public Informer reqInformSetPropertyMap();
 		public Informer reqInformGetPropertyMap();
 		
 		/**
-		 * Open(ed)/close(d)/stop(ped)<br>Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43
+		 * Open(ed)/close(d)/stop(ped)<br>Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
 		public Informer reqInformOpenCloseSetting1();
 		/**
-		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38
+		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformExtentOfOpening1();
 		/**
-		 * Blind angle<br>0x00 to 0xB4 (0 to 180  )
+		 * Blind angle<br>0x00 to 0xB4 (0 to 180  )<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformBlindAngleSetting();
 		/**
-		 * Low/medium/high<br>Low = 0x41, medium = 0x42, high = 0x43
+		 * Low/medium/high<br>Low = 0x41, medium = 0x42, high = 0x43<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformShutterSpeed();
 		/**
-		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>0x00 to 0xFF (0 to 255)
+		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>0x00 to 0xFF (0 to 255)<br><br>Data type : unsign ed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformExtentOfOpening2();
 		/**
-		 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>Activated = 0x41, deactivated = 0x42
+		 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>Activated = 0x41, deactivated = 0x42<br><br>Data type : unsign ed char unsign ed char<br>Data size : 1 byte 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
 		public Informer reqInformElectricLockSetting();
 		/**
-		 * Open/close<br>Open = 0x41, close = 0x42
+		 * Open/close<br>Open = 0x41, close = 0x42<br><br>Data type : unsign ed char<br>Data size : 1 bytes<br>Set : optional<br>Get : optional<br>Announcement at status change
 		 */
 		public Informer reqInformOpenCloseSetting2();
-
 	}
 
 	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
 
 		@Override
-		public Informer reqInformPower() {
-			return (Informer)super.reqInformPower();
+		public Informer reqInformOperationStatus() {
+			return (Informer)super.reqInformOperationStatus();
 		}
-
 		@Override
 		public Informer reqInformInstallationLocation() {
 			return (Informer)super.reqInformInstallationLocation();
 		}
-
 		@Override
-		public Informer reqInformVersion() {
-			return (Informer)super.reqInformVersion();
+		public Informer reqInformStandardVersionInformation() {
+			return (Informer)super.reqInformStandardVersionInformation();
 		}
-
 		@Override
-		public Informer reqInformIdNumber() {
-			return (Informer)super.reqInformIdNumber();
+		public Informer reqInformIdentificationNumber() {
+			return (Informer)super.reqInformIdentificationNumber();
 		}
-
 		@Override
-		public Informer reqInformElectricityConsumption() {
-			return (Informer)super.reqInformElectricityConsumption();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
+			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformPowerConsumption() {
-			return (Informer)super.reqInformPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption() {
+			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformMakerErrorCode() {
-			return (Informer)super.reqInformMakerErrorCode();
+		public Informer reqInformManufacturersFaultCode() {
+			return (Informer)super.reqInformManufacturersFaultCode();
 		}
-
 		@Override
-		public Informer reqInformCurrentLimiting() {
-			return (Informer)super.reqInformCurrentLimiting();
+		public Informer reqInformCurrentLimitSetting() {
+			return (Informer)super.reqInformCurrentLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformError() {
-			return (Informer)super.reqInformError();
+		public Informer reqInformFaultStatus() {
+			return (Informer)super.reqInformFaultStatus();
 		}
-
 		@Override
-		public Informer reqInformErrorInfo() {
-			return (Informer)super.reqInformErrorInfo();
+		public Informer reqInformFaultDescription() {
+			return (Informer)super.reqInformFaultDescription();
 		}
-
 		@Override
-		public Informer reqInformMakerCode() {
-			return (Informer)super.reqInformMakerCode();
+		public Informer reqInformManufacturerCode() {
+			return (Informer)super.reqInformManufacturerCode();
 		}
-
 		@Override
-		public Informer reqInformWorkplaceCode() {
-			return (Informer)super.reqInformWorkplaceCode();
+		public Informer reqInformBusinessFacilityCode() {
+			return (Informer)super.reqInformBusinessFacilityCode();
 		}
-
 		@Override
 		public Informer reqInformProductCode() {
 			return (Informer)super.reqInformProductCode();
 		}
-
 		@Override
-		public Informer reqInformManufacturingNumber() {
-			return (Informer)super.reqInformManufacturingNumber();
+		public Informer reqInformProductionNumber() {
+			return (Informer)super.reqInformProductionNumber();
 		}
-
 		@Override
-		public Informer reqInformDateOfManufacture() {
-			return (Informer)super.reqInformDateOfManufacture();
+		public Informer reqInformProductionDate() {
+			return (Informer)super.reqInformProductionDate();
 		}
-
 		@Override
-		public Informer reqInformPowerSaving() {
-			return (Informer)super.reqInformPowerSaving();
+		public Informer reqInformPowerSavingOperationSetting() {
+			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Informer reqInformLocation() {
-			return (Informer)super.reqInformLocation();
+		public Informer reqInformPositionInformation() {
+			return (Informer)super.reqInformPositionInformation();
 		}
-
 		@Override
-		public Informer reqInformCurrentTime() {
-			return (Informer)super.reqInformCurrentTime();
+		public Informer reqInformCurrentTimeSetting() {
+			return (Informer)super.reqInformCurrentTimeSetting();
 		}
-
 		@Override
-		public Informer reqInformCurrentDate() {
-			return (Informer)super.reqInformCurrentDate();
+		public Informer reqInformCurrentDateSetting() {
+			return (Informer)super.reqInformCurrentDateSetting();
 		}
-
 		@Override
-		public Informer reqInformPowerLimitation() {
-			return (Informer)super.reqInformPowerLimitation();
+		public Informer reqInformPowerLimitSetting() {
+			return (Informer)super.reqInformPowerLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformWorkingTime() {
-			return (Informer)super.reqInformWorkingTime();
+		public Informer reqInformCumulativeOperatingTime() {
+			return (Informer)super.reqInformCumulativeOperatingTime();
 		}
-
 		@Override
-		public Informer reqInformAnnoPropertyMap() {
-			return (Informer)super.reqInformAnnoPropertyMap();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
+			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformSetPropertyMap() {
 			return (Informer)super.reqInformSetPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
@@ -1124,126 +1033,102 @@ public abstract class ElectricStormWindow extends DeviceObject {
 			addProperty(EPC_OPEN_CLOSE_SETTING2, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-
 	}
 	
 	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
 
 		@Override
-		public Informer reqInformPower() {
-			return (Informer)super.reqInformPower();
+		public Informer reqInformOperationStatus() {
+			return (Informer)super.reqInformOperationStatus();
 		}
-
 		@Override
 		public Informer reqInformInstallationLocation() {
 			return (Informer)super.reqInformInstallationLocation();
 		}
-
 		@Override
-		public Informer reqInformVersion() {
-			return (Informer)super.reqInformVersion();
+		public Informer reqInformStandardVersionInformation() {
+			return (Informer)super.reqInformStandardVersionInformation();
 		}
-
 		@Override
-		public Informer reqInformIdNumber() {
-			return (Informer)super.reqInformIdNumber();
+		public Informer reqInformIdentificationNumber() {
+			return (Informer)super.reqInformIdentificationNumber();
 		}
-
 		@Override
-		public Informer reqInformElectricityConsumption() {
-			return (Informer)super.reqInformElectricityConsumption();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
+			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformPowerConsumption() {
-			return (Informer)super.reqInformPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption() {
+			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformMakerErrorCode() {
-			return (Informer)super.reqInformMakerErrorCode();
+		public Informer reqInformManufacturersFaultCode() {
+			return (Informer)super.reqInformManufacturersFaultCode();
 		}
-
 		@Override
-		public Informer reqInformCurrentLimiting() {
-			return (Informer)super.reqInformCurrentLimiting();
+		public Informer reqInformCurrentLimitSetting() {
+			return (Informer)super.reqInformCurrentLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformError() {
-			return (Informer)super.reqInformError();
+		public Informer reqInformFaultStatus() {
+			return (Informer)super.reqInformFaultStatus();
 		}
-
 		@Override
-		public Informer reqInformErrorInfo() {
-			return (Informer)super.reqInformErrorInfo();
+		public Informer reqInformFaultDescription() {
+			return (Informer)super.reqInformFaultDescription();
 		}
-
 		@Override
-		public Informer reqInformMakerCode() {
-			return (Informer)super.reqInformMakerCode();
+		public Informer reqInformManufacturerCode() {
+			return (Informer)super.reqInformManufacturerCode();
 		}
-
 		@Override
-		public Informer reqInformWorkplaceCode() {
-			return (Informer)super.reqInformWorkplaceCode();
+		public Informer reqInformBusinessFacilityCode() {
+			return (Informer)super.reqInformBusinessFacilityCode();
 		}
-
 		@Override
 		public Informer reqInformProductCode() {
 			return (Informer)super.reqInformProductCode();
 		}
-
 		@Override
-		public Informer reqInformManufacturingNumber() {
-			return (Informer)super.reqInformManufacturingNumber();
+		public Informer reqInformProductionNumber() {
+			return (Informer)super.reqInformProductionNumber();
 		}
-
 		@Override
-		public Informer reqInformDateOfManufacture() {
-			return (Informer)super.reqInformDateOfManufacture();
+		public Informer reqInformProductionDate() {
+			return (Informer)super.reqInformProductionDate();
 		}
-
 		@Override
-		public Informer reqInformPowerSaving() {
-			return (Informer)super.reqInformPowerSaving();
+		public Informer reqInformPowerSavingOperationSetting() {
+			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Informer reqInformLocation() {
-			return (Informer)super.reqInformLocation();
+		public Informer reqInformPositionInformation() {
+			return (Informer)super.reqInformPositionInformation();
 		}
-
 		@Override
-		public Informer reqInformCurrentTime() {
-			return (Informer)super.reqInformCurrentTime();
+		public Informer reqInformCurrentTimeSetting() {
+			return (Informer)super.reqInformCurrentTimeSetting();
 		}
-
 		@Override
-		public Informer reqInformCurrentDate() {
-			return (Informer)super.reqInformCurrentDate();
+		public Informer reqInformCurrentDateSetting() {
+			return (Informer)super.reqInformCurrentDateSetting();
 		}
-
 		@Override
-		public Informer reqInformPowerLimitation() {
-			return (Informer)super.reqInformPowerLimitation();
+		public Informer reqInformPowerLimitSetting() {
+			return (Informer)super.reqInformPowerLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformWorkingTime() {
-			return (Informer)super.reqInformWorkingTime();
+		public Informer reqInformCumulativeOperatingTime() {
+			return (Informer)super.reqInformCumulativeOperatingTime();
 		}
-
 		@Override
-		public Informer reqInformAnnoPropertyMap() {
-			return (Informer)super.reqInformAnnoPropertyMap();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
+			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformSetPropertyMap() {
 			return (Informer)super.reqInformSetPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
@@ -1284,6 +1169,5 @@ public abstract class ElectricStormWindow extends DeviceObject {
 			addProperty(EPC_OPEN_CLOSE_SETTING2);
 			return this;
 		}
-
 	}
 }

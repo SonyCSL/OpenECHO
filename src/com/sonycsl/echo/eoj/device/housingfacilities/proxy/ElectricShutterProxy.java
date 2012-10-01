@@ -33,19 +33,19 @@ public class ElectricShutterProxy extends ElectricShutter {
 	}
 	
 	@Override
-	protected byte[] getPower() {return null;}
+	protected byte[] getOperationStatus() {return null;}
 	@Override
 	protected boolean setInstallationLocation(byte[] arg) {return false;}
 	@Override
 	protected byte[] getInstallationLocation() {return null;}
 	@Override
-	protected byte[] getVersion() {return null;}
+	protected byte[] getStandardVersionInformation() {return null;}
 	@Override
-	protected byte[] getError() {return null;}
+	protected byte[] getFaultStatus() {return null;}
 	@Override
-	protected byte[] getMakerCode() {return null;}
+	protected byte[] getManufacturerCode() {return null;}
 	@Override
-	protected byte[] getAnnoPropertyMap() {return null;}
+	protected byte[] getStatusChangeAnnouncementPropertyMap() {return null;}
 	@Override
 	protected byte[] getSetPropertyMap() {return null;}
 	@Override

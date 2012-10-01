@@ -81,291 +81,291 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	}
 
 	/**
-	 * Used to specify the operation mode (�gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40
+	 * Used to specify the operation mode (�gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 	 */
 	protected abstract boolean setOperationModeSetting(byte[] edt);
 	/**
-	 * Used to specify the operation mode (�gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40
+	 * Used to specify the operation mode (�gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 	 */
 	protected abstract byte[] getOperationModeSetting();
 	/**
-	 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>Automatic = 0x41 Non-automatic = 0x42
+	 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>Automatic = 0x41 Non-automatic = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAutomaticTemperatureControlSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>Automatic = 0x41 Non-automatic = 0x42
+	 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>Automatic = 0x41 Non-automatic = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAutomaticTemperatureControlSetting() {return null;}
 	/**
-	 * Used to specify the type of operation (�gnormal,�h �ghigh-speed�h or �gsilent�h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43
+	 * Used to specify the type of operation (�gnormal,�h �ghigh-speed�h or �gsilent�h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setNormalHighSpeedSilentOperationSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify the type of operation (�gnormal,�h �ghigh-speed�h or �gsilent�h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43
+	 * Used to specify the type of operation (�gnormal,�h �ghigh-speed�h or �gsilent�h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getNormalHighSpeedSilentOperationSetting() {return null;}
 	/**
-	 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+	 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract boolean setSetTemperatureValue(byte[] edt);
 	/**
-	 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+	 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract byte[] getSetTemperatureValue();
 	/**
-	 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)
+	 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetValueOfRelativeHumidityInDehumidifyingMode(byte[] edt) {return false;}
 	/**
-	 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)
+	 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetValueOfRelativeHumidityInDehumidifyingMode() {return null;}
 	/**
-	 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+	 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetTemperatureValueInCoolingMode(byte[] edt) {return false;}
 	/**
-	 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+	 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetTemperatureValueInCoolingMode() {return null;}
 	/**
-	 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+	 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetTemperatureValueInHeatingMode(byte[] edt) {return false;}
 	/**
-	 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+	 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetTemperatureValueInHeatingMode() {return null;}
 	/**
-	 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+	 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetTemperatureValueInDehumidifyingMode(byte[] edt) {return false;}
 	/**
-	 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+	 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetTemperatureValueInDehumidifyingMode() {return null;}
 	/**
-	 * Rated power consumption in each operation mode of cooling/heating/dehumidifying/blast<br>0x0000.0xFFFD (0.65533W) Cooling: heating: dehumidifying: blast
+	 * Rated power consumption in each operation mode of cooling/heating/dehumidifying/blast<br>0x0000.0xFFFD (0.65533W) Cooling: heating: dehumidifying: blast<br><br>Data type : unsigned short x 4<br>Data size : 8 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getRatedPowerConsumption() {return null;}
 	/**
-	 * Measured value of current consumption<br>0x0000.0xFFFD (0.6553.3A)
+	 * Measured value of current consumption<br>0x0000.0xFFFD (0.6553.3A)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredValueOfCurrentConsumption() {return null;}
 	/**
-	 * Measured value of room relative humidity<br>0x00.0x64 (0.100. C)
+	 * Measured value of room relative humidity<br>0x00.0x64 (0.100. C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredValueOfRoomRelativeHumidity() {return null;}
 	/**
-	 * Measured value of room temperature<br>0x80.0x7D (-127.125.C)
+	 * Measured value of room temperature<br>0x80.0x7D (-127.125.C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredValueOfRoomTemperature() {return null;}
 	/**
-	 * Set temperature value of user remote control<br>0x00.0x32 (0.50.C)
+	 * Set temperature value of user remote control<br>0x00.0x32 (0.50.C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getSetTemperatureValueOfUserRemoteControl() {return null;}
 	/**
-	 * This property indicates the measured cooled air temperature at the outlet.<br>0x81 to 0x7D (-127 to 125��C)
+	 * This property indicates the measured cooled air temperature at the outlet.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredCooledAirTemperature() {return null;}
 	/**
-	 * This property indicates the measured outdoor air temperature.<br>0x81 to 0x7D (-127 to 125��C)
+	 * This property indicates the measured outdoor air temperature.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredOutdoorAirTemperature() {return null;}
 	/**
-	 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)
+	 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setRelativeTemperatureSetting(byte[] edt) {return false;}
 	/**
-	 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)
+	 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getRelativeTemperatureSetting() {return null;}
 	/**
-	 * Used to specify the air flow rate or use the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38
+	 * Used to specify the air flow rate or use the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAirFlowRateSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify the air flow rate or use the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38
+	 * Used to specify the air flow rate or use the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAirFlowRateSetting() {return null;}
 	/**
-	 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44
+	 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAutomaticControlOfAirFlowDirectionSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44
+	 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAutomaticControlOfAirFlowDirectionSetting() {return null;}
 	/**
-	 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43
+	 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAutomaticSwingOfAirFlowSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43
+	 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAutomaticSwingOfAirFlowSetting() {return null;}
 	/**
-	 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 5 predefined patterns, and to acquire the current setting.<br>Uppermost = 0x41, lowermost = 0x42, central = 0x43, midpoint between uppermost and central = 0x44, midpoint between lowermost and central = 0x45
+	 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 5 predefined patterns, and to acquire the current setting.<br>Uppermost = 0x41, lowermost = 0x42, central = 0x43, midpoint between uppermost and central = 0x44, midpoint between lowermost and central = 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAirFlowDirectionVerticalSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 5 predefined patterns, and to acquire the current setting.<br>Uppermost = 0x41, lowermost = 0x42, central = 0x43, midpoint between uppermost and central = 0x44, midpoint between lowermost and central = 0x45
+	 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 5 predefined patterns, and to acquire the current setting.<br>Uppermost = 0x41, lowermost = 0x42, central = 0x43, midpoint between uppermost and central = 0x44, midpoint between lowermost and central = 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAirFlowDirectionVerticalSetting() {return null;}
 	/**
-	 * Used to specify the air flow direction(s) in the horizontal plane by selecting a pattern from among the 31 predefined patterns, and to acquire the current setting.<br>Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44 (for a full list of the predefined patterns, see the table in the subsection defining the detailed requirements for this property.
+	 * Used to specify the air flow direction(s) in the horizontal plane by selecting a pattern from among the 31 predefined patterns, and to acquire the current setting.<br>Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44 (for a full list of the predefined patterns, see the table in the subsection defining the detailed requirements for this property.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAirFlowDirectionHorizontalSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify the air flow direction(s) in the horizontal plane by selecting a pattern from among the 31 predefined patterns, and to acquire the current setting.<br>Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44 (for a full list of the predefined patterns, see the table in the subsection defining the detailed requirements for this property.
+	 * Used to specify the air flow direction(s) in the horizontal plane by selecting a pattern from among the 31 predefined patterns, and to acquire the current setting.<br>Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44 (for a full list of the predefined patterns, see the table in the subsection defining the detailed requirements for this property.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAirFlowDirectionHorizontalSetting() {return null;}
 	/**
-	 * This property indicates if the air conditioner is in a �gspecial�h state (i.e. the �gdefrosting,�h �gpreheating,�h or �gheat removal�h state).<br>�gNormal operation�h state = 0x40, �gDefrosting�h state = 0x41, �gPreheating�h state = 0x42, �gHeat removal�h state = 0x43
+	 * This property indicates if the air conditioner is in a �gspecial�h state (i.e. the �gdefrosting,�h �gpreheating,�h or �gheat removal�h state).<br>�gNormal operation�h state = 0x40, �gDefrosting�h state = 0x41, �gPreheating�h state = 0x42, �gHeat removal�h state = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getSpecialState() {return null;}
 	/**
-	 * Used to indicate when the air conditioner is in a �gnon-priority�h state.<br>�gNormal operation�h state = 0x40, �gNon-priority�h state = 0x41
+	 * Used to indicate when the air conditioner is in a �gnon-priority�h state.<br>�gNormal operation�h state = 0x40, �gNon-priority�h state = 0x41<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getNonPriorityState() {return null;}
 	/**
-	 * Used to specify whether or not to use the ventilation function, to specify the ventilation direction, and to acquire the current setting.<br>Ventilation function ON (outlet direction) = 0x41, ventilation function OFF = 0x42, ventilation function ON (intake direction) = 0x43
+	 * Used to specify whether or not to use the ventilation function, to specify the ventilation direction, and to acquire the current setting.<br>Ventilation function ON (outlet direction) = 0x41, ventilation function OFF = 0x42, ventilation function ON (intake direction) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setVentilationFunctionSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify whether or not to use the ventilation function, to specify the ventilation direction, and to acquire the current setting.<br>Ventilation function ON (outlet direction) = 0x41, ventilation function OFF = 0x42, ventilation function ON (intake direction) = 0x43
+	 * Used to specify whether or not to use the ventilation function, to specify the ventilation direction, and to acquire the current setting.<br>Ventilation function ON (outlet direction) = 0x41, ventilation function OFF = 0x42, ventilation function ON (intake direction) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getVentilationFunctionSetting() {return null;}
 	/**
-	 * Used to specify whether or not to use the humidifier function, and to acquire the current setting.<br>Humidifier function ON = 0x41, Humidifier function OFF = 0x42
+	 * Used to specify whether or not to use the humidifier function, and to acquire the current setting.<br>Humidifier function ON = 0x41, Humidifier function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setHumidifierFunctionSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify whether or not to use the humidifier function, and to acquire the current setting.<br>Humidifier function ON = 0x41, Humidifier function OFF = 0x42
+	 * Used to specify whether or not to use the humidifier function, and to acquire the current setting.<br>Humidifier function ON = 0x41, Humidifier function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getHumidifierFunctionSetting() {return null;}
 	/**
-	 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38
+	 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setVentilationAirFlowRateSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38
+	 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getVentilationAirFlowRateSetting() {return null;}
 	/**
-	 * Used to specify the degree of humidification to achieve by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of the degree of humidification = 0x41 Degree of humidification = 0x31 to 0x38
+	 * Used to specify the degree of humidification to achieve by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of the degree of humidification = 0x41 Degree of humidification = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setDegreeOfHumidificationSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify the degree of humidification to achieve by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of the degree of humidification = 0x41 Degree of humidification = 0x31 to 0x38
+	 * Used to specify the degree of humidification to achieve by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of the degree of humidification = 0x41 Degree of humidification = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getDegreeOfHumidificationSetting() {return null;}
 	/**
-	 * A bitmap indicates mounted method of exercising air cleaning function.<br>Bit 0: Information about electrical dust collection method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about cluster ion method mounting 0 - Not mounted 1 . Mounted
+	 * A bitmap indicates mounted method of exercising air cleaning function.<br>Bit 0: Information about electrical dust collection method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about cluster ion method mounting 0 - Not mounted 1 . Mounted<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMountedAirCleaningMethod() {return null;}
 	/**
-	 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.
+	 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAirPurifierFunctionSetting(byte[] edt) {return false;}
 	/**
-	 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.
+	 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAirPurifierFunctionSetting() {return null;}
 	/**
-	 * A bitmap indicates mounted method for exercising refresh function.<br>Bit 0: Information about minus ion method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about cluster ion method mounting 0 - Not mounted 1 . Mounted
+	 * A bitmap indicates mounted method for exercising refresh function.<br>Bit 0: Information about minus ion method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about cluster ion method mounting 0 - Not mounted 1 . Mounted<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMountedAirRefreshMethod() {return null;}
 	/**
-	 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.
+	 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAirRefresherFunctionSetting(byte[] edt) {return false;}
 	/**
-	 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.
+	 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAirRefresherFunctionSetting() {return null;}
 	/**
-	 * A bitmap indicates mounted method for exercising self-cleaning function.<br>Bit 0: Information about ozone cleaning method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about drying method mounting 0 - Not mounted 1 . Mounted
+	 * A bitmap indicates mounted method for exercising self-cleaning function.<br>Bit 0: Information about ozone cleaning method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about drying method mounting 0 - Not mounted 1 . Mounted<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMountedSelfCleaningMethod() {return null;}
 	/**
-	 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.
+	 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSelfCleaningFunctionSetting(byte[] edt) {return false;}
 	/**
-	 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.
+	 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSelfCleaningFunctionSetting() {return null;}
 	/**
-	 * Used to specify the �gspecial function�h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.
+	 * Used to specify the �gspecial function�h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSpecialFunctionSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify the �gspecial function�h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.
+	 * Used to specify the �gspecial function�h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSpecialFunctionSetting() {return null;}
 	/**
-	 * This property indicates the operation status of components of the air conditioner in a bitmap format.<br>Bit 0: Operation status of the compressor: 0: Not operating 1: In operation Bit 1: Operation status of the thermostat: 0: Thermostat OFF 1: Thermostat ON Bits 2 to 7: Reserved for future use.
+	 * This property indicates the operation status of components of the air conditioner in a bitmap format.<br>Bit 0: Operation status of the compressor: 0: Not operating 1: In operation Bit 1: Operation status of the thermostat: 0: Thermostat OFF 1: Thermostat ON Bits 2 to 7: Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getOperationStatusOfComponents() {return null;}
 	/**
-	 * Used to specify whether or not to allow the air conditioner to operate ignoring its thermostat setting.<br>Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42
+	 * Used to specify whether or not to allow the air conditioner to operate ignoring its thermostat setting.<br>Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : undefined
 	 */
 	protected boolean setThermostatSettingOverrideFunction(byte[] edt) {return false;}
 	/**
-	 * Used to set the air purification mode seting ON/OFF and to acquire the current setting.�B<br>Air purification ON��0x41,OFF�� 0x42
+	 * Used to set the air purification mode seting ON/OFF and to acquire the current setting.�B<br>Air purification ON��0x41,OFF�� 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAirPurificationModeSetting(byte[] edt) {return false;}
 	/**
-	 * Used to set the air purification mode seting ON/OFF and to acquire the current setting.�B<br>Air purification ON��0x41,OFF�� 0x42
+	 * Used to set the air purification mode seting ON/OFF and to acquire the current setting.�B<br>Air purification ON��0x41,OFF�� 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAirPurificationModeSetting() {return null;}
 	/**
-	 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44
+	 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOnTimerBasedReservationSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44
+	 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOnTimerBasedReservationSetting() {return null;}
 	/**
-	 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+	 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOnTimerSettingTime(byte[] edt) {return false;}
 	/**
-	 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+	 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOnTimerSettingTime() {return null;}
 	/**
-	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)
+	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOnTimerSettingRelativeTime(byte[] edt) {return false;}
 	/**
-	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)
+	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOnTimerSettingRelativeTime() {return null;}
 	/**
-	 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44
+	 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOffTimerBasedReservationSetting(byte[] edt) {return false;}
 	/**
-	 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44
+	 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOffTimerBasedReservationSetting() {return null;}
 	/**
-	 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+	 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOffTimerSettingTime(byte[] edt) {return false;}
 	/**
-	 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+	 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOffTimerSettingTime() {return null;}
 	/**
-	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)
+	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOffTimerSettingRelativeTime(byte[] edt) {return false;}
 	/**
-	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)
+	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOffTimerSettingRelativeTime() {return null;}
 
@@ -902,427 +902,426 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		}
 		
 		/**
-		 * Used to specify the operation mode (�gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40
+		 * Used to specify the operation mode (�gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
 		protected void onSetOperationModeSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the operation mode (�gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40
+		 * Used to specify the operation mode (�gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
 		protected void onGetOperationModeSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>Automatic = 0x41 Non-automatic = 0x42
+		 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>Automatic = 0x41 Non-automatic = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>Automatic = 0x41 Non-automatic = 0x42
+		 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>Automatic = 0x41 Non-automatic = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the type of operation (�gnormal,�h �ghigh-speed�h or �gsilent�h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43
+		 * Used to specify the type of operation (�gnormal,�h �ghigh-speed�h or �gsilent�h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetNormalHighSpeedSilentOperationSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the type of operation (�gnormal,�h �ghigh-speed�h or �gsilent�h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43
+		 * Used to specify the type of operation (�gnormal,�h �ghigh-speed�h or �gsilent�h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetNormalHighSpeedSilentOperationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		protected void onSetSetTemperatureValue(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		protected void onGetSetTemperatureValue(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)
+		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetSetValueOfRelativeHumidityInDehumidifyingMode(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)
+		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetSetValueOfRelativeHumidityInDehumidifyingMode(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetSetTemperatureValueInCoolingMode(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetSetTemperatureValueInCoolingMode(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetSetTemperatureValueInHeatingMode(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetSetTemperatureValueInHeatingMode(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetSetTemperatureValueInDehumidifyingMode(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetSetTemperatureValueInDehumidifyingMode(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Rated power consumption in each operation mode of cooling/heating/dehumidifying/blast<br>0x0000.0xFFFD (0.65533W) Cooling: heating: dehumidifying: blast
+		 * Rated power consumption in each operation mode of cooling/heating/dehumidifying/blast<br>0x0000.0xFFFD (0.65533W) Cooling: heating: dehumidifying: blast<br><br>Data type : unsigned short x 4<br>Data size : 8 bytes<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetRatedPowerConsumption(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Measured value of current consumption<br>0x0000.0xFFFD (0.6553.3A)
+		 * Measured value of current consumption<br>0x0000.0xFFFD (0.6553.3A)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMeasuredValueOfCurrentConsumption(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Measured value of room relative humidity<br>0x00.0x64 (0.100. C)
+		 * Measured value of room relative humidity<br>0x00.0x64 (0.100. C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMeasuredValueOfRoomRelativeHumidity(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Measured value of room temperature<br>0x80.0x7D (-127.125.C)
+		 * Measured value of room temperature<br>0x80.0x7D (-127.125.C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMeasuredValueOfRoomTemperature(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Set temperature value of user remote control<br>0x00.0x32 (0.50.C)
+		 * Set temperature value of user remote control<br>0x00.0x32 (0.50.C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetSetTemperatureValueOfUserRemoteControl(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * This property indicates the measured cooled air temperature at the outlet.<br>0x81 to 0x7D (-127 to 125��C)
+		 * This property indicates the measured cooled air temperature at the outlet.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMeasuredCooledAirTemperature(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * This property indicates the measured outdoor air temperature.<br>0x81 to 0x7D (-127 to 125��C)
+		 * This property indicates the measured outdoor air temperature.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMeasuredOutdoorAirTemperature(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)
+		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetRelativeTemperatureSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)
+		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetRelativeTemperatureSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the air flow rate or use the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38
+		 * Used to specify the air flow rate or use the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetAirFlowRateSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the air flow rate or use the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38
+		 * Used to specify the air flow rate or use the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetAirFlowRateSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44
+		 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetAutomaticControlOfAirFlowDirectionSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44
+		 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetAutomaticControlOfAirFlowDirectionSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43
+		 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetAutomaticSwingOfAirFlowSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43
+		 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetAutomaticSwingOfAirFlowSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 5 predefined patterns, and to acquire the current setting.<br>Uppermost = 0x41, lowermost = 0x42, central = 0x43, midpoint between uppermost and central = 0x44, midpoint between lowermost and central = 0x45
+		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 5 predefined patterns, and to acquire the current setting.<br>Uppermost = 0x41, lowermost = 0x42, central = 0x43, midpoint between uppermost and central = 0x44, midpoint between lowermost and central = 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetAirFlowDirectionVerticalSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 5 predefined patterns, and to acquire the current setting.<br>Uppermost = 0x41, lowermost = 0x42, central = 0x43, midpoint between uppermost and central = 0x44, midpoint between lowermost and central = 0x45
+		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 5 predefined patterns, and to acquire the current setting.<br>Uppermost = 0x41, lowermost = 0x42, central = 0x43, midpoint between uppermost and central = 0x44, midpoint between lowermost and central = 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetAirFlowDirectionVerticalSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the air flow direction(s) in the horizontal plane by selecting a pattern from among the 31 predefined patterns, and to acquire the current setting.<br>Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44 (for a full list of the predefined patterns, see the table in the subsection defining the detailed requirements for this property.
+		 * Used to specify the air flow direction(s) in the horizontal plane by selecting a pattern from among the 31 predefined patterns, and to acquire the current setting.<br>Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44 (for a full list of the predefined patterns, see the table in the subsection defining the detailed requirements for this property.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetAirFlowDirectionHorizontalSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the air flow direction(s) in the horizontal plane by selecting a pattern from among the 31 predefined patterns, and to acquire the current setting.<br>Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44 (for a full list of the predefined patterns, see the table in the subsection defining the detailed requirements for this property.
+		 * Used to specify the air flow direction(s) in the horizontal plane by selecting a pattern from among the 31 predefined patterns, and to acquire the current setting.<br>Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44 (for a full list of the predefined patterns, see the table in the subsection defining the detailed requirements for this property.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetAirFlowDirectionHorizontalSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * This property indicates if the air conditioner is in a �gspecial�h state (i.e. the �gdefrosting,�h �gpreheating,�h or �gheat removal�h state).<br>�gNormal operation�h state = 0x40, �gDefrosting�h state = 0x41, �gPreheating�h state = 0x42, �gHeat removal�h state = 0x43
+		 * This property indicates if the air conditioner is in a �gspecial�h state (i.e. the �gdefrosting,�h �gpreheating,�h or �gheat removal�h state).<br>�gNormal operation�h state = 0x40, �gDefrosting�h state = 0x41, �gPreheating�h state = 0x42, �gHeat removal�h state = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetSpecialState(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to indicate when the air conditioner is in a �gnon-priority�h state.<br>�gNormal operation�h state = 0x40, �gNon-priority�h state = 0x41
+		 * Used to indicate when the air conditioner is in a �gnon-priority�h state.<br>�gNormal operation�h state = 0x40, �gNon-priority�h state = 0x41<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetNonPriorityState(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify whether or not to use the ventilation function, to specify the ventilation direction, and to acquire the current setting.<br>Ventilation function ON (outlet direction) = 0x41, ventilation function OFF = 0x42, ventilation function ON (intake direction) = 0x43
+		 * Used to specify whether or not to use the ventilation function, to specify the ventilation direction, and to acquire the current setting.<br>Ventilation function ON (outlet direction) = 0x41, ventilation function OFF = 0x42, ventilation function ON (intake direction) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetVentilationFunctionSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify whether or not to use the ventilation function, to specify the ventilation direction, and to acquire the current setting.<br>Ventilation function ON (outlet direction) = 0x41, ventilation function OFF = 0x42, ventilation function ON (intake direction) = 0x43
+		 * Used to specify whether or not to use the ventilation function, to specify the ventilation direction, and to acquire the current setting.<br>Ventilation function ON (outlet direction) = 0x41, ventilation function OFF = 0x42, ventilation function ON (intake direction) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetVentilationFunctionSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify whether or not to use the humidifier function, and to acquire the current setting.<br>Humidifier function ON = 0x41, Humidifier function OFF = 0x42
+		 * Used to specify whether or not to use the humidifier function, and to acquire the current setting.<br>Humidifier function ON = 0x41, Humidifier function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetHumidifierFunctionSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify whether or not to use the humidifier function, and to acquire the current setting.<br>Humidifier function ON = 0x41, Humidifier function OFF = 0x42
+		 * Used to specify whether or not to use the humidifier function, and to acquire the current setting.<br>Humidifier function ON = 0x41, Humidifier function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetHumidifierFunctionSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38
+		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetVentilationAirFlowRateSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38
+		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetVentilationAirFlowRateSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the degree of humidification to achieve by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of the degree of humidification = 0x41 Degree of humidification = 0x31 to 0x38
+		 * Used to specify the degree of humidification to achieve by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of the degree of humidification = 0x41 Degree of humidification = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetDegreeOfHumidificationSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the degree of humidification to achieve by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of the degree of humidification = 0x41 Degree of humidification = 0x31 to 0x38
+		 * Used to specify the degree of humidification to achieve by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of the degree of humidification = 0x41 Degree of humidification = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetDegreeOfHumidificationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * A bitmap indicates mounted method of exercising air cleaning function.<br>Bit 0: Information about electrical dust collection method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about cluster ion method mounting 0 - Not mounted 1 . Mounted
+		 * A bitmap indicates mounted method of exercising air cleaning function.<br>Bit 0: Information about electrical dust collection method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about cluster ion method mounting 0 - Not mounted 1 . Mounted<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMountedAirCleaningMethod(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.
+		 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetAirPurifierFunctionSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.
+		 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetAirPurifierFunctionSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * A bitmap indicates mounted method for exercising refresh function.<br>Bit 0: Information about minus ion method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about cluster ion method mounting 0 - Not mounted 1 . Mounted
+		 * A bitmap indicates mounted method for exercising refresh function.<br>Bit 0: Information about minus ion method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about cluster ion method mounting 0 - Not mounted 1 . Mounted<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMountedAirRefreshMethod(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.
+		 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetAirRefresherFunctionSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.
+		 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetAirRefresherFunctionSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * A bitmap indicates mounted method for exercising self-cleaning function.<br>Bit 0: Information about ozone cleaning method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about drying method mounting 0 - Not mounted 1 . Mounted
+		 * A bitmap indicates mounted method for exercising self-cleaning function.<br>Bit 0: Information about ozone cleaning method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about drying method mounting 0 - Not mounted 1 . Mounted<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMountedSelfCleaningMethod(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.
+		 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetSelfCleaningFunctionSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.
+		 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetSelfCleaningFunctionSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the �gspecial function�h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.
+		 * Used to specify the �gspecial function�h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetSpecialFunctionSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the �gspecial function�h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.
+		 * Used to specify the �gspecial function�h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetSpecialFunctionSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * This property indicates the operation status of components of the air conditioner in a bitmap format.<br>Bit 0: Operation status of the compressor: 0: Not operating 1: In operation Bit 1: Operation status of the thermostat: 0: Thermostat OFF 1: Thermostat ON Bits 2 to 7: Reserved for future use.
+		 * This property indicates the operation status of components of the air conditioner in a bitmap format.<br>Bit 0: Operation status of the compressor: 0: Not operating 1: In operation Bit 1: Operation status of the thermostat: 0: Thermostat OFF 1: Thermostat ON Bits 2 to 7: Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetOperationStatusOfComponents(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify whether or not to allow the air conditioner to operate ignoring its thermostat setting.<br>Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42
+		 * Used to specify whether or not to allow the air conditioner to operate ignoring its thermostat setting.<br>Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : undefined
 		 */
 		protected void onSetThermostatSettingOverrideFunction(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting.�B<br>Air purification ON��0x41,OFF�� 0x42
+		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting.�B<br>Air purification ON��0x41,OFF�� 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetAirPurificationModeSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting.�B<br>Air purification ON��0x41,OFF�� 0x42
+		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting.�B<br>Air purification ON��0x41,OFF�� 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetAirPurificationModeSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44
+		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetOnTimerBasedReservationSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44
+		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetOnTimerBasedReservationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetOnTimerSettingTime(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetOnTimerSettingTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)
+		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetOnTimerSettingRelativeTime(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)
+		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44
+		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetOffTimerBasedReservationSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44
+		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetOffTimerBasedReservationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetOffTimerSettingTime(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetOffTimerSettingTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)
+		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetOffTimerSettingRelativeTime(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)
+		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetOffTimerSettingRelativeTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 
 	}
 	
 	public interface Setter extends DeviceObject.Setter {
-		public Setter reqSetPower(byte[] edt);
+		public Setter reqSetOperationStatus(byte[] edt);
 		public Setter reqSetInstallationLocation(byte[] edt);
-		public Setter reqSetCurrentLimiting(byte[] edt);
-		public Setter reqSetPowerSaving(byte[] edt);
-		public Setter reqSetLocation(byte[] edt);
-		public Setter reqSetCurrentTime(byte[] edt);
-		public Setter reqSetCurrentDate(byte[] edt);
-		public Setter reqSetPowerLimitation(byte[] edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
+		public Setter reqSetPositionInformation(byte[] edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt);
 		
 		/**
-		 * Used to specify the operation mode (�gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40
+		 * Used to specify the operation mode (�gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
 		public Setter reqSetOperationModeSetting(byte[] edt);
 		/**
-		 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>Automatic = 0x41 Non-automatic = 0x42
+		 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>Automatic = 0x41 Non-automatic = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetAutomaticTemperatureControlSetting(byte[] edt);
 		/**
-		 * Used to specify the type of operation (�gnormal,�h �ghigh-speed�h or �gsilent�h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43
+		 * Used to specify the type of operation (�gnormal,�h �ghigh-speed�h or �gsilent�h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetNormalHighSpeedSilentOperationSetting(byte[] edt);
 		/**
-		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		public Setter reqSetSetTemperatureValue(byte[] edt);
 		/**
-		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)
+		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetSetValueOfRelativeHumidityInDehumidifyingMode(byte[] edt);
 		/**
-		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetSetTemperatureValueInCoolingMode(byte[] edt);
 		/**
-		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetSetTemperatureValueInHeatingMode(byte[] edt);
 		/**
-		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetSetTemperatureValueInDehumidifyingMode(byte[] edt);
 		/**
-		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)
+		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetRelativeTemperatureSetting(byte[] edt);
 		/**
-		 * Used to specify the air flow rate or use the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38
+		 * Used to specify the air flow rate or use the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetAirFlowRateSetting(byte[] edt);
 		/**
-		 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44
+		 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetAutomaticControlOfAirFlowDirectionSetting(byte[] edt);
 		/**
-		 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43
+		 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetAutomaticSwingOfAirFlowSetting(byte[] edt);
 		/**
-		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 5 predefined patterns, and to acquire the current setting.<br>Uppermost = 0x41, lowermost = 0x42, central = 0x43, midpoint between uppermost and central = 0x44, midpoint between lowermost and central = 0x45
+		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 5 predefined patterns, and to acquire the current setting.<br>Uppermost = 0x41, lowermost = 0x42, central = 0x43, midpoint between uppermost and central = 0x44, midpoint between lowermost and central = 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetAirFlowDirectionVerticalSetting(byte[] edt);
 		/**
-		 * Used to specify the air flow direction(s) in the horizontal plane by selecting a pattern from among the 31 predefined patterns, and to acquire the current setting.<br>Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44 (for a full list of the predefined patterns, see the table in the subsection defining the detailed requirements for this property.
+		 * Used to specify the air flow direction(s) in the horizontal plane by selecting a pattern from among the 31 predefined patterns, and to acquire the current setting.<br>Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44 (for a full list of the predefined patterns, see the table in the subsection defining the detailed requirements for this property.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetAirFlowDirectionHorizontalSetting(byte[] edt);
 		/**
-		 * Used to specify whether or not to use the ventilation function, to specify the ventilation direction, and to acquire the current setting.<br>Ventilation function ON (outlet direction) = 0x41, ventilation function OFF = 0x42, ventilation function ON (intake direction) = 0x43
+		 * Used to specify whether or not to use the ventilation function, to specify the ventilation direction, and to acquire the current setting.<br>Ventilation function ON (outlet direction) = 0x41, ventilation function OFF = 0x42, ventilation function ON (intake direction) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetVentilationFunctionSetting(byte[] edt);
 		/**
-		 * Used to specify whether or not to use the humidifier function, and to acquire the current setting.<br>Humidifier function ON = 0x41, Humidifier function OFF = 0x42
+		 * Used to specify whether or not to use the humidifier function, and to acquire the current setting.<br>Humidifier function ON = 0x41, Humidifier function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetHumidifierFunctionSetting(byte[] edt);
 		/**
-		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38
+		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetVentilationAirFlowRateSetting(byte[] edt);
 		/**
-		 * Used to specify the degree of humidification to achieve by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of the degree of humidification = 0x41 Degree of humidification = 0x31 to 0x38
+		 * Used to specify the degree of humidification to achieve by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of the degree of humidification = 0x41 Degree of humidification = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetDegreeOfHumidificationSetting(byte[] edt);
 		/**
-		 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.
+		 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetAirPurifierFunctionSetting(byte[] edt);
 		/**
-		 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.
+		 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetAirRefresherFunctionSetting(byte[] edt);
 		/**
-		 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.
+		 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetSelfCleaningFunctionSetting(byte[] edt);
 		/**
-		 * Used to specify the �gspecial function�h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.
+		 * Used to specify the �gspecial function�h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetSpecialFunctionSetting(byte[] edt);
 		/**
-		 * Used to specify whether or not to allow the air conditioner to operate ignoring its thermostat setting.<br>Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42
+		 * Used to specify whether or not to allow the air conditioner to operate ignoring its thermostat setting.<br>Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : undefined
 		 */
 		public Setter reqSetThermostatSettingOverrideFunction(byte[] edt);
 		/**
-		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting.�B<br>Air purification ON��0x41,OFF�� 0x42
+		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting.�B<br>Air purification ON��0x41,OFF�� 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetAirPurificationModeSetting(byte[] edt);
 		/**
-		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44
+		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetOnTimerBasedReservationSetting(byte[] edt);
 		/**
-		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetOnTimerSettingTime(byte[] edt);
 		/**
-		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)
+		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetOnTimerSettingRelativeTime(byte[] edt);
 		/**
-		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44
+		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetOffTimerBasedReservationSetting(byte[] edt);
 		/**
-		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetOffTimerSettingTime(byte[] edt);
 		/**
-		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)
+		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetOffTimerSettingRelativeTime(byte[] edt);
-
 	}
 
 	public class SetterImpl extends DeviceObject.SetterImpl implements Setter {
@@ -1332,43 +1331,36 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		}
 		
 		@Override
-		public Setter reqSetPower(byte[] edt) {
-			return (Setter)super.reqSetPower(edt);
+		public Setter reqSetOperationStatus(byte[] edt) {
+			return (Setter)super.reqSetOperationStatus(edt);
 		}
-
 		@Override
 		public Setter reqSetInstallationLocation(byte[] edt) {
 			return (Setter)super.reqSetInstallationLocation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentLimiting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimiting(edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentLimitSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerSaving(byte[] edt) {
-			return (Setter)super.reqSetPowerSaving(edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetLocation(byte[] edt) {
-			return (Setter)super.reqSetLocation(edt);
+		public Setter reqSetPositionInformation(byte[] edt) {
+			return (Setter)super.reqSetPositionInformation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentTime(byte[] edt) {
-			return (Setter)super.reqSetCurrentTime(edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentTimeSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentDate(byte[] edt) {
-			return (Setter)super.reqSetCurrentDate(edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentDateSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerLimitation(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitation(edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
 		@Override
@@ -1521,7 +1513,6 @@ public abstract class HomeAirConditioner extends DeviceObject {
 			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME, edt, setOffTimerSettingRelativeTime(edt));
 			return this;
 		}
-
 	}
 	
 	public class SetterProxy extends DeviceObject.SetterProxy implements Setter {
@@ -1530,45 +1521,37 @@ public abstract class HomeAirConditioner extends DeviceObject {
 			super(esv);
 		}
 
-		
 		@Override
-		public Setter reqSetPower(byte[] edt) {
-			return (Setter)super.reqSetPower(edt);
+		public Setter reqSetOperationStatus(byte[] edt) {
+			return (Setter)super.reqSetOperationStatus(edt);
 		}
-
 		@Override
 		public Setter reqSetInstallationLocation(byte[] edt) {
 			return (Setter)super.reqSetInstallationLocation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentLimiting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimiting(edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentLimitSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerSaving(byte[] edt) {
-			return (Setter)super.reqSetPowerSaving(edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetLocation(byte[] edt) {
-			return (Setter)super.reqSetLocation(edt);
+		public Setter reqSetPositionInformation(byte[] edt) {
+			return (Setter)super.reqSetPositionInformation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentTime(byte[] edt) {
-			return (Setter)super.reqSetCurrentTime(edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentTimeSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentDate(byte[] edt) {
-			return (Setter)super.reqSetCurrentDate(edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentDateSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerLimitation(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitation(edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
 		@Override
@@ -1721,323 +1704,298 @@ public abstract class HomeAirConditioner extends DeviceObject {
 			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-
 	}
 
 	public interface Getter extends DeviceObject.Getter {
-		public Getter reqGetPower();
+		public Getter reqGetOperationStatus();
 		public Getter reqGetInstallationLocation();
-		public Getter reqGetVersion();
-		public Getter reqGetIdNumber();
-		public Getter reqGetElectricityConsumption();
-		public Getter reqGetPowerConsumption();
-		public Getter reqGetMakerErrorCode();
-		public Getter reqGetCurrentLimiting();
-		public Getter reqGetError();
-		public Getter reqGetErrorInfo();
-		public Getter reqGetMakerCode();
-		public Getter reqGetWorkplaceCode();
+		public Getter reqGetStandardVersionInformation();
+		public Getter reqGetIdentificationNumber();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption();
+		public Getter reqGetManufacturersFaultCode();
+		public Getter reqGetCurrentLimitSetting();
+		public Getter reqGetFaultStatus();
+		public Getter reqGetFaultDescription();
+		public Getter reqGetManufacturerCode();
+		public Getter reqGetBusinessFacilityCode();
 		public Getter reqGetProductCode();
-		public Getter reqGetManufacturingNumber();
-		public Getter reqGetDateOfManufacture();
-		public Getter reqGetPowerSaving();
-		public Getter reqGetLocation();
-		public Getter reqGetCurrentTime();
-		public Getter reqGetCurrentDate();
-		public Getter reqGetPowerLimitation();
-		public Getter reqGetWorkingTime();
-		public Getter reqGetAnnoPropertyMap();
+		public Getter reqGetProductionNumber();
+		public Getter reqGetProductionDate();
+		public Getter reqGetPowerSavingOperationSetting();
+		public Getter reqGetPositionInformation();
+		public Getter reqGetCurrentTimeSetting();
+		public Getter reqGetCurrentDateSetting();
+		public Getter reqGetPowerLimitSetting();
+		public Getter reqGetCumulativeOperatingTime();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap();
 		public Getter reqGetSetPropertyMap();
 		public Getter reqGetGetPropertyMap();
 		
 		/**
-		 * Used to specify the operation mode (�gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40
+		 * Used to specify the operation mode (�gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
 		public Getter reqGetOperationModeSetting();
 		/**
-		 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>Automatic = 0x41 Non-automatic = 0x42
+		 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>Automatic = 0x41 Non-automatic = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetAutomaticTemperatureControlSetting();
 		/**
-		 * Used to specify the type of operation (�gnormal,�h �ghigh-speed�h or �gsilent�h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43
+		 * Used to specify the type of operation (�gnormal,�h �ghigh-speed�h or �gsilent�h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetNormalHighSpeedSilentOperationSetting();
 		/**
-		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		public Getter reqGetSetTemperatureValue();
 		/**
-		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)
+		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetSetValueOfRelativeHumidityInDehumidifyingMode();
 		/**
-		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetSetTemperatureValueInCoolingMode();
 		/**
-		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetSetTemperatureValueInHeatingMode();
 		/**
-		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetSetTemperatureValueInDehumidifyingMode();
 		/**
-		 * Rated power consumption in each operation mode of cooling/heating/dehumidifying/blast<br>0x0000.0xFFFD (0.65533W) Cooling: heating: dehumidifying: blast
+		 * Rated power consumption in each operation mode of cooling/heating/dehumidifying/blast<br>0x0000.0xFFFD (0.65533W) Cooling: heating: dehumidifying: blast<br><br>Data type : unsigned short x 4<br>Data size : 8 bytes<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetRatedPowerConsumption();
 		/**
-		 * Measured value of current consumption<br>0x0000.0xFFFD (0.6553.3A)
+		 * Measured value of current consumption<br>0x0000.0xFFFD (0.6553.3A)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMeasuredValueOfCurrentConsumption();
 		/**
-		 * Measured value of room relative humidity<br>0x00.0x64 (0.100. C)
+		 * Measured value of room relative humidity<br>0x00.0x64 (0.100. C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMeasuredValueOfRoomRelativeHumidity();
 		/**
-		 * Measured value of room temperature<br>0x80.0x7D (-127.125.C)
+		 * Measured value of room temperature<br>0x80.0x7D (-127.125.C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMeasuredValueOfRoomTemperature();
 		/**
-		 * Set temperature value of user remote control<br>0x00.0x32 (0.50.C)
+		 * Set temperature value of user remote control<br>0x00.0x32 (0.50.C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetSetTemperatureValueOfUserRemoteControl();
 		/**
-		 * This property indicates the measured cooled air temperature at the outlet.<br>0x81 to 0x7D (-127 to 125��C)
+		 * This property indicates the measured cooled air temperature at the outlet.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMeasuredCooledAirTemperature();
 		/**
-		 * This property indicates the measured outdoor air temperature.<br>0x81 to 0x7D (-127 to 125��C)
+		 * This property indicates the measured outdoor air temperature.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMeasuredOutdoorAirTemperature();
 		/**
-		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)
+		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetRelativeTemperatureSetting();
 		/**
-		 * Used to specify the air flow rate or use the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38
+		 * Used to specify the air flow rate or use the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetAirFlowRateSetting();
 		/**
-		 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44
+		 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetAutomaticControlOfAirFlowDirectionSetting();
 		/**
-		 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43
+		 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetAutomaticSwingOfAirFlowSetting();
 		/**
-		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 5 predefined patterns, and to acquire the current setting.<br>Uppermost = 0x41, lowermost = 0x42, central = 0x43, midpoint between uppermost and central = 0x44, midpoint between lowermost and central = 0x45
+		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 5 predefined patterns, and to acquire the current setting.<br>Uppermost = 0x41, lowermost = 0x42, central = 0x43, midpoint between uppermost and central = 0x44, midpoint between lowermost and central = 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetAirFlowDirectionVerticalSetting();
 		/**
-		 * Used to specify the air flow direction(s) in the horizontal plane by selecting a pattern from among the 31 predefined patterns, and to acquire the current setting.<br>Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44 (for a full list of the predefined patterns, see the table in the subsection defining the detailed requirements for this property.
+		 * Used to specify the air flow direction(s) in the horizontal plane by selecting a pattern from among the 31 predefined patterns, and to acquire the current setting.<br>Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44 (for a full list of the predefined patterns, see the table in the subsection defining the detailed requirements for this property.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetAirFlowDirectionHorizontalSetting();
 		/**
-		 * This property indicates if the air conditioner is in a �gspecial�h state (i.e. the �gdefrosting,�h �gpreheating,�h or �gheat removal�h state).<br>�gNormal operation�h state = 0x40, �gDefrosting�h state = 0x41, �gPreheating�h state = 0x42, �gHeat removal�h state = 0x43
+		 * This property indicates if the air conditioner is in a �gspecial�h state (i.e. the �gdefrosting,�h �gpreheating,�h or �gheat removal�h state).<br>�gNormal operation�h state = 0x40, �gDefrosting�h state = 0x41, �gPreheating�h state = 0x42, �gHeat removal�h state = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetSpecialState();
 		/**
-		 * Used to indicate when the air conditioner is in a �gnon-priority�h state.<br>�gNormal operation�h state = 0x40, �gNon-priority�h state = 0x41
+		 * Used to indicate when the air conditioner is in a �gnon-priority�h state.<br>�gNormal operation�h state = 0x40, �gNon-priority�h state = 0x41<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetNonPriorityState();
 		/**
-		 * Used to specify whether or not to use the ventilation function, to specify the ventilation direction, and to acquire the current setting.<br>Ventilation function ON (outlet direction) = 0x41, ventilation function OFF = 0x42, ventilation function ON (intake direction) = 0x43
+		 * Used to specify whether or not to use the ventilation function, to specify the ventilation direction, and to acquire the current setting.<br>Ventilation function ON (outlet direction) = 0x41, ventilation function OFF = 0x42, ventilation function ON (intake direction) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetVentilationFunctionSetting();
 		/**
-		 * Used to specify whether or not to use the humidifier function, and to acquire the current setting.<br>Humidifier function ON = 0x41, Humidifier function OFF = 0x42
+		 * Used to specify whether or not to use the humidifier function, and to acquire the current setting.<br>Humidifier function ON = 0x41, Humidifier function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetHumidifierFunctionSetting();
 		/**
-		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38
+		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetVentilationAirFlowRateSetting();
 		/**
-		 * Used to specify the degree of humidification to achieve by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of the degree of humidification = 0x41 Degree of humidification = 0x31 to 0x38
+		 * Used to specify the degree of humidification to achieve by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of the degree of humidification = 0x41 Degree of humidification = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetDegreeOfHumidificationSetting();
 		/**
-		 * A bitmap indicates mounted method of exercising air cleaning function.<br>Bit 0: Information about electrical dust collection method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about cluster ion method mounting 0 - Not mounted 1 . Mounted
+		 * A bitmap indicates mounted method of exercising air cleaning function.<br>Bit 0: Information about electrical dust collection method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about cluster ion method mounting 0 - Not mounted 1 . Mounted<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMountedAirCleaningMethod();
 		/**
-		 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.
+		 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetAirPurifierFunctionSetting();
 		/**
-		 * A bitmap indicates mounted method for exercising refresh function.<br>Bit 0: Information about minus ion method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about cluster ion method mounting 0 - Not mounted 1 . Mounted
+		 * A bitmap indicates mounted method for exercising refresh function.<br>Bit 0: Information about minus ion method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about cluster ion method mounting 0 - Not mounted 1 . Mounted<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMountedAirRefreshMethod();
 		/**
-		 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.
+		 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetAirRefresherFunctionSetting();
 		/**
-		 * A bitmap indicates mounted method for exercising self-cleaning function.<br>Bit 0: Information about ozone cleaning method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about drying method mounting 0 - Not mounted 1 . Mounted
+		 * A bitmap indicates mounted method for exercising self-cleaning function.<br>Bit 0: Information about ozone cleaning method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about drying method mounting 0 - Not mounted 1 . Mounted<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMountedSelfCleaningMethod();
 		/**
-		 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.
+		 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetSelfCleaningFunctionSetting();
 		/**
-		 * Used to specify the �gspecial function�h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.
+		 * Used to specify the �gspecial function�h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetSpecialFunctionSetting();
 		/**
-		 * This property indicates the operation status of components of the air conditioner in a bitmap format.<br>Bit 0: Operation status of the compressor: 0: Not operating 1: In operation Bit 1: Operation status of the thermostat: 0: Thermostat OFF 1: Thermostat ON Bits 2 to 7: Reserved for future use.
+		 * This property indicates the operation status of components of the air conditioner in a bitmap format.<br>Bit 0: Operation status of the compressor: 0: Not operating 1: In operation Bit 1: Operation status of the thermostat: 0: Thermostat OFF 1: Thermostat ON Bits 2 to 7: Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetOperationStatusOfComponents();
 		/**
-		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting.�B<br>Air purification ON��0x41,OFF�� 0x42
+		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting.�B<br>Air purification ON��0x41,OFF�� 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetAirPurificationModeSetting();
 		/**
-		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44
+		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetOnTimerBasedReservationSetting();
 		/**
-		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetOnTimerSettingTime();
 		/**
-		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)
+		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetOnTimerSettingRelativeTime();
 		/**
-		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44
+		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetOffTimerBasedReservationSetting();
 		/**
-		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetOffTimerSettingTime();
 		/**
-		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)
+		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetOffTimerSettingRelativeTime();
-
 	}
 	
 	public class GetterImpl extends DeviceObject.GetterImpl implements Getter {
 
 		@Override
-		public Getter reqGetPower() {
-			return (Getter)super.reqGetPower();
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
 		}
-
 		@Override
 		public Getter reqGetInstallationLocation() {
 			return (Getter)super.reqGetInstallationLocation();
 		}
-
 		@Override
-		public Getter reqGetVersion() {
-			return (Getter)super.reqGetVersion();
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
 		}
-
 		@Override
-		public Getter reqGetIdNumber() {
-			return (Getter)super.reqGetIdNumber();
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
 		}
-
 		@Override
-		public Getter reqGetElectricityConsumption() {
-			return (Getter)super.reqGetElectricityConsumption();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetPowerConsumption() {
-			return (Getter)super.reqGetPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetMakerErrorCode() {
-			return (Getter)super.reqGetMakerErrorCode();
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
 		}
-
 		@Override
-		public Getter reqGetCurrentLimiting() {
-			return (Getter)super.reqGetCurrentLimiting();
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetError() {
-			return (Getter)super.reqGetError();
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
 		}
-
 		@Override
-		public Getter reqGetErrorInfo() {
-			return (Getter)super.reqGetErrorInfo();
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
 		}
-
 		@Override
-		public Getter reqGetMakerCode() {
-			return (Getter)super.reqGetMakerCode();
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
 		}
-
 		@Override
-		public Getter reqGetWorkplaceCode() {
-			return (Getter)super.reqGetWorkplaceCode();
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
 		}
-
 		@Override
 		public Getter reqGetProductCode() {
 			return (Getter)super.reqGetProductCode();
 		}
-
 		@Override
-		public Getter reqGetManufacturingNumber() {
-			return (Getter)super.reqGetManufacturingNumber();
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
 		}
-
 		@Override
-		public Getter reqGetDateOfManufacture() {
-			return (Getter)super.reqGetDateOfManufacture();
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
 		}
-
 		@Override
-		public Getter reqGetPowerSaving() {
-			return (Getter)super.reqGetPowerSaving();
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Getter reqGetLocation() {
-			return (Getter)super.reqGetLocation();
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
 		}
-
 		@Override
-		public Getter reqGetCurrentTime() {
-			return (Getter)super.reqGetCurrentTime();
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
 		}
-
 		@Override
-		public Getter reqGetCurrentDate() {
-			return (Getter)super.reqGetCurrentDate();
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
 		}
-
 		@Override
-		public Getter reqGetPowerLimitation() {
-			return (Getter)super.reqGetPowerLimitation();
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetWorkingTime() {
-			return (Getter)super.reqGetWorkingTime();
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
 		}
-
 		@Override
-		public Getter reqGetAnnoPropertyMap() {
-			return (Getter)super.reqGetAnnoPropertyMap();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetSetPropertyMap() {
 			return (Getter)super.reqGetSetPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetGetPropertyMap() {
 			return (Getter)super.reqGetGetPropertyMap();
@@ -2295,126 +2253,102 @@ public abstract class HomeAirConditioner extends DeviceObject {
 			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-
 	}
 
 	public class GetterProxy extends DeviceObject.GetterProxy implements Getter {
 
 		@Override
-		public Getter reqGetPower() {
-			return (Getter)super.reqGetPower();
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
 		}
-
 		@Override
 		public Getter reqGetInstallationLocation() {
 			return (Getter)super.reqGetInstallationLocation();
 		}
-
 		@Override
-		public Getter reqGetVersion() {
-			return (Getter)super.reqGetVersion();
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
 		}
-
 		@Override
-		public Getter reqGetIdNumber() {
-			return (Getter)super.reqGetIdNumber();
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
 		}
-
 		@Override
-		public Getter reqGetElectricityConsumption() {
-			return (Getter)super.reqGetElectricityConsumption();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetPowerConsumption() {
-			return (Getter)super.reqGetPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetMakerErrorCode() {
-			return (Getter)super.reqGetMakerErrorCode();
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
 		}
-
 		@Override
-		public Getter reqGetCurrentLimiting() {
-			return (Getter)super.reqGetCurrentLimiting();
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetError() {
-			return (Getter)super.reqGetError();
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
 		}
-
 		@Override
-		public Getter reqGetErrorInfo() {
-			return (Getter)super.reqGetErrorInfo();
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
 		}
-
 		@Override
-		public Getter reqGetMakerCode() {
-			return (Getter)super.reqGetMakerCode();
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
 		}
-
 		@Override
-		public Getter reqGetWorkplaceCode() {
-			return (Getter)super.reqGetWorkplaceCode();
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
 		}
-
 		@Override
 		public Getter reqGetProductCode() {
 			return (Getter)super.reqGetProductCode();
 		}
-
 		@Override
-		public Getter reqGetManufacturingNumber() {
-			return (Getter)super.reqGetManufacturingNumber();
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
 		}
-
 		@Override
-		public Getter reqGetDateOfManufacture() {
-			return (Getter)super.reqGetDateOfManufacture();
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
 		}
-
 		@Override
-		public Getter reqGetPowerSaving() {
-			return (Getter)super.reqGetPowerSaving();
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Getter reqGetLocation() {
-			return (Getter)super.reqGetLocation();
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
 		}
-
 		@Override
-		public Getter reqGetCurrentTime() {
-			return (Getter)super.reqGetCurrentTime();
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
 		}
-
 		@Override
-		public Getter reqGetCurrentDate() {
-			return (Getter)super.reqGetCurrentDate();
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
 		}
-
 		@Override
-		public Getter reqGetPowerLimitation() {
-			return (Getter)super.reqGetPowerLimitation();
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetWorkingTime() {
-			return (Getter)super.reqGetWorkingTime();
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
 		}
-
 		@Override
-		public Getter reqGetAnnoPropertyMap() {
-			return (Getter)super.reqGetAnnoPropertyMap();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetSetPropertyMap() {
 			return (Getter)super.reqGetSetPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetGetPropertyMap() {
 			return (Getter)super.reqGetGetPropertyMap();
@@ -2630,323 +2564,298 @@ public abstract class HomeAirConditioner extends DeviceObject {
 			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
-
 	}
 	
 	public interface Informer extends DeviceObject.Informer {
-		public Informer reqInformPower();
+		public Informer reqInformOperationStatus();
 		public Informer reqInformInstallationLocation();
-		public Informer reqInformVersion();
-		public Informer reqInformIdNumber();
-		public Informer reqInformElectricityConsumption();
-		public Informer reqInformPowerConsumption();
-		public Informer reqInformMakerErrorCode();
-		public Informer reqInformCurrentLimiting();
-		public Informer reqInformError();
-		public Informer reqInformErrorInfo();
-		public Informer reqInformMakerCode();
-		public Informer reqInformWorkplaceCode();
+		public Informer reqInformStandardVersionInformation();
+		public Informer reqInformIdentificationNumber();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption();
+		public Informer reqInformManufacturersFaultCode();
+		public Informer reqInformCurrentLimitSetting();
+		public Informer reqInformFaultStatus();
+		public Informer reqInformFaultDescription();
+		public Informer reqInformManufacturerCode();
+		public Informer reqInformBusinessFacilityCode();
 		public Informer reqInformProductCode();
-		public Informer reqInformManufacturingNumber();
-		public Informer reqInformDateOfManufacture();
-		public Informer reqInformPowerSaving();
-		public Informer reqInformLocation();
-		public Informer reqInformCurrentTime();
-		public Informer reqInformCurrentDate();
-		public Informer reqInformPowerLimitation();
-		public Informer reqInformWorkingTime();
-		public Informer reqInformAnnoPropertyMap();
+		public Informer reqInformProductionNumber();
+		public Informer reqInformProductionDate();
+		public Informer reqInformPowerSavingOperationSetting();
+		public Informer reqInformPositionInformation();
+		public Informer reqInformCurrentTimeSetting();
+		public Informer reqInformCurrentDateSetting();
+		public Informer reqInformPowerLimitSetting();
+		public Informer reqInformCumulativeOperatingTime();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap();
 		public Informer reqInformSetPropertyMap();
 		public Informer reqInformGetPropertyMap();
 		
 		/**
-		 * Used to specify the operation mode (�gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40
+		 * Used to specify the operation mode (�gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
 		public Informer reqInformOperationModeSetting();
 		/**
-		 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>Automatic = 0x41 Non-automatic = 0x42
+		 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>Automatic = 0x41 Non-automatic = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformAutomaticTemperatureControlSetting();
 		/**
-		 * Used to specify the type of operation (�gnormal,�h �ghigh-speed�h or �gsilent�h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43
+		 * Used to specify the type of operation (�gnormal,�h �ghigh-speed�h or �gsilent�h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformNormalHighSpeedSilentOperationSetting();
 		/**
-		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		public Informer reqInformSetTemperatureValue();
 		/**
-		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)
+		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformSetValueOfRelativeHumidityInDehumidifyingMode();
 		/**
-		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformSetTemperatureValueInCoolingMode();
 		/**
-		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformSetTemperatureValueInHeatingMode();
 		/**
-		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)
+		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformSetTemperatureValueInDehumidifyingMode();
 		/**
-		 * Rated power consumption in each operation mode of cooling/heating/dehumidifying/blast<br>0x0000.0xFFFD (0.65533W) Cooling: heating: dehumidifying: blast
+		 * Rated power consumption in each operation mode of cooling/heating/dehumidifying/blast<br>0x0000.0xFFFD (0.65533W) Cooling: heating: dehumidifying: blast<br><br>Data type : unsigned short x 4<br>Data size : 8 bytes<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformRatedPowerConsumption();
 		/**
-		 * Measured value of current consumption<br>0x0000.0xFFFD (0.6553.3A)
+		 * Measured value of current consumption<br>0x0000.0xFFFD (0.6553.3A)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMeasuredValueOfCurrentConsumption();
 		/**
-		 * Measured value of room relative humidity<br>0x00.0x64 (0.100. C)
+		 * Measured value of room relative humidity<br>0x00.0x64 (0.100. C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMeasuredValueOfRoomRelativeHumidity();
 		/**
-		 * Measured value of room temperature<br>0x80.0x7D (-127.125.C)
+		 * Measured value of room temperature<br>0x80.0x7D (-127.125.C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMeasuredValueOfRoomTemperature();
 		/**
-		 * Set temperature value of user remote control<br>0x00.0x32 (0.50.C)
+		 * Set temperature value of user remote control<br>0x00.0x32 (0.50.C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformSetTemperatureValueOfUserRemoteControl();
 		/**
-		 * This property indicates the measured cooled air temperature at the outlet.<br>0x81 to 0x7D (-127 to 125��C)
+		 * This property indicates the measured cooled air temperature at the outlet.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMeasuredCooledAirTemperature();
 		/**
-		 * This property indicates the measured outdoor air temperature.<br>0x81 to 0x7D (-127 to 125��C)
+		 * This property indicates the measured outdoor air temperature.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMeasuredOutdoorAirTemperature();
 		/**
-		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)
+		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformRelativeTemperatureSetting();
 		/**
-		 * Used to specify the air flow rate or use the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38
+		 * Used to specify the air flow rate or use the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformAirFlowRateSetting();
 		/**
-		 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44
+		 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformAutomaticControlOfAirFlowDirectionSetting();
 		/**
-		 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43
+		 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformAutomaticSwingOfAirFlowSetting();
 		/**
-		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 5 predefined patterns, and to acquire the current setting.<br>Uppermost = 0x41, lowermost = 0x42, central = 0x43, midpoint between uppermost and central = 0x44, midpoint between lowermost and central = 0x45
+		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 5 predefined patterns, and to acquire the current setting.<br>Uppermost = 0x41, lowermost = 0x42, central = 0x43, midpoint between uppermost and central = 0x44, midpoint between lowermost and central = 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformAirFlowDirectionVerticalSetting();
 		/**
-		 * Used to specify the air flow direction(s) in the horizontal plane by selecting a pattern from among the 31 predefined patterns, and to acquire the current setting.<br>Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44 (for a full list of the predefined patterns, see the table in the subsection defining the detailed requirements for this property.
+		 * Used to specify the air flow direction(s) in the horizontal plane by selecting a pattern from among the 31 predefined patterns, and to acquire the current setting.<br>Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44 (for a full list of the predefined patterns, see the table in the subsection defining the detailed requirements for this property.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformAirFlowDirectionHorizontalSetting();
 		/**
-		 * This property indicates if the air conditioner is in a �gspecial�h state (i.e. the �gdefrosting,�h �gpreheating,�h or �gheat removal�h state).<br>�gNormal operation�h state = 0x40, �gDefrosting�h state = 0x41, �gPreheating�h state = 0x42, �gHeat removal�h state = 0x43
+		 * This property indicates if the air conditioner is in a �gspecial�h state (i.e. the �gdefrosting,�h �gpreheating,�h or �gheat removal�h state).<br>�gNormal operation�h state = 0x40, �gDefrosting�h state = 0x41, �gPreheating�h state = 0x42, �gHeat removal�h state = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformSpecialState();
 		/**
-		 * Used to indicate when the air conditioner is in a �gnon-priority�h state.<br>�gNormal operation�h state = 0x40, �gNon-priority�h state = 0x41
+		 * Used to indicate when the air conditioner is in a �gnon-priority�h state.<br>�gNormal operation�h state = 0x40, �gNon-priority�h state = 0x41<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformNonPriorityState();
 		/**
-		 * Used to specify whether or not to use the ventilation function, to specify the ventilation direction, and to acquire the current setting.<br>Ventilation function ON (outlet direction) = 0x41, ventilation function OFF = 0x42, ventilation function ON (intake direction) = 0x43
+		 * Used to specify whether or not to use the ventilation function, to specify the ventilation direction, and to acquire the current setting.<br>Ventilation function ON (outlet direction) = 0x41, ventilation function OFF = 0x42, ventilation function ON (intake direction) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformVentilationFunctionSetting();
 		/**
-		 * Used to specify whether or not to use the humidifier function, and to acquire the current setting.<br>Humidifier function ON = 0x41, Humidifier function OFF = 0x42
+		 * Used to specify whether or not to use the humidifier function, and to acquire the current setting.<br>Humidifier function ON = 0x41, Humidifier function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformHumidifierFunctionSetting();
 		/**
-		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38
+		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformVentilationAirFlowRateSetting();
 		/**
-		 * Used to specify the degree of humidification to achieve by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of the degree of humidification = 0x41 Degree of humidification = 0x31 to 0x38
+		 * Used to specify the degree of humidification to achieve by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of the degree of humidification = 0x41 Degree of humidification = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformDegreeOfHumidificationSetting();
 		/**
-		 * A bitmap indicates mounted method of exercising air cleaning function.<br>Bit 0: Information about electrical dust collection method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about cluster ion method mounting 0 - Not mounted 1 . Mounted
+		 * A bitmap indicates mounted method of exercising air cleaning function.<br>Bit 0: Information about electrical dust collection method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about cluster ion method mounting 0 - Not mounted 1 . Mounted<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMountedAirCleaningMethod();
 		/**
-		 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.
+		 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformAirPurifierFunctionSetting();
 		/**
-		 * A bitmap indicates mounted method for exercising refresh function.<br>Bit 0: Information about minus ion method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about cluster ion method mounting 0 - Not mounted 1 . Mounted
+		 * A bitmap indicates mounted method for exercising refresh function.<br>Bit 0: Information about minus ion method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about cluster ion method mounting 0 - Not mounted 1 . Mounted<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMountedAirRefreshMethod();
 		/**
-		 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.
+		 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformAirRefresherFunctionSetting();
 		/**
-		 * A bitmap indicates mounted method for exercising self-cleaning function.<br>Bit 0: Information about ozone cleaning method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about drying method mounting 0 - Not mounted 1 . Mounted
+		 * A bitmap indicates mounted method for exercising self-cleaning function.<br>Bit 0: Information about ozone cleaning method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about drying method mounting 0 - Not mounted 1 . Mounted<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMountedSelfCleaningMethod();
 		/**
-		 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.
+		 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 1 byte x 8<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformSelfCleaningFunctionSetting();
 		/**
-		 * Used to specify the �gspecial function�h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.
+		 * Used to specify the �gspecial function�h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformSpecialFunctionSetting();
 		/**
-		 * This property indicates the operation status of components of the air conditioner in a bitmap format.<br>Bit 0: Operation status of the compressor: 0: Not operating 1: In operation Bit 1: Operation status of the thermostat: 0: Thermostat OFF 1: Thermostat ON Bits 2 to 7: Reserved for future use.
+		 * This property indicates the operation status of components of the air conditioner in a bitmap format.<br>Bit 0: Operation status of the compressor: 0: Not operating 1: In operation Bit 1: Operation status of the thermostat: 0: Thermostat OFF 1: Thermostat ON Bits 2 to 7: Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformOperationStatusOfComponents();
 		/**
-		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting.�B<br>Air purification ON��0x41,OFF�� 0x42
+		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting.�B<br>Air purification ON��0x41,OFF�� 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformAirPurificationModeSetting();
 		/**
-		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44
+		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformOnTimerBasedReservationSetting();
 		/**
-		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformOnTimerSettingTime();
 		/**
-		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)
+		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformOnTimerSettingRelativeTime();
 		/**
-		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44
+		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformOffTimerBasedReservationSetting();
 		/**
-		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)
+		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformOffTimerSettingTime();
 		/**
-		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)
+		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformOffTimerSettingRelativeTime();
-
 	}
 
 	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
 
 		@Override
-		public Informer reqInformPower() {
-			return (Informer)super.reqInformPower();
+		public Informer reqInformOperationStatus() {
+			return (Informer)super.reqInformOperationStatus();
 		}
-
 		@Override
 		public Informer reqInformInstallationLocation() {
 			return (Informer)super.reqInformInstallationLocation();
 		}
-
 		@Override
-		public Informer reqInformVersion() {
-			return (Informer)super.reqInformVersion();
+		public Informer reqInformStandardVersionInformation() {
+			return (Informer)super.reqInformStandardVersionInformation();
 		}
-
 		@Override
-		public Informer reqInformIdNumber() {
-			return (Informer)super.reqInformIdNumber();
+		public Informer reqInformIdentificationNumber() {
+			return (Informer)super.reqInformIdentificationNumber();
 		}
-
 		@Override
-		public Informer reqInformElectricityConsumption() {
-			return (Informer)super.reqInformElectricityConsumption();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
+			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformPowerConsumption() {
-			return (Informer)super.reqInformPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption() {
+			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformMakerErrorCode() {
-			return (Informer)super.reqInformMakerErrorCode();
+		public Informer reqInformManufacturersFaultCode() {
+			return (Informer)super.reqInformManufacturersFaultCode();
 		}
-
 		@Override
-		public Informer reqInformCurrentLimiting() {
-			return (Informer)super.reqInformCurrentLimiting();
+		public Informer reqInformCurrentLimitSetting() {
+			return (Informer)super.reqInformCurrentLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformError() {
-			return (Informer)super.reqInformError();
+		public Informer reqInformFaultStatus() {
+			return (Informer)super.reqInformFaultStatus();
 		}
-
 		@Override
-		public Informer reqInformErrorInfo() {
-			return (Informer)super.reqInformErrorInfo();
+		public Informer reqInformFaultDescription() {
+			return (Informer)super.reqInformFaultDescription();
 		}
-
 		@Override
-		public Informer reqInformMakerCode() {
-			return (Informer)super.reqInformMakerCode();
+		public Informer reqInformManufacturerCode() {
+			return (Informer)super.reqInformManufacturerCode();
 		}
-
 		@Override
-		public Informer reqInformWorkplaceCode() {
-			return (Informer)super.reqInformWorkplaceCode();
+		public Informer reqInformBusinessFacilityCode() {
+			return (Informer)super.reqInformBusinessFacilityCode();
 		}
-
 		@Override
 		public Informer reqInformProductCode() {
 			return (Informer)super.reqInformProductCode();
 		}
-
 		@Override
-		public Informer reqInformManufacturingNumber() {
-			return (Informer)super.reqInformManufacturingNumber();
+		public Informer reqInformProductionNumber() {
+			return (Informer)super.reqInformProductionNumber();
 		}
-
 		@Override
-		public Informer reqInformDateOfManufacture() {
-			return (Informer)super.reqInformDateOfManufacture();
+		public Informer reqInformProductionDate() {
+			return (Informer)super.reqInformProductionDate();
 		}
-
 		@Override
-		public Informer reqInformPowerSaving() {
-			return (Informer)super.reqInformPowerSaving();
+		public Informer reqInformPowerSavingOperationSetting() {
+			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Informer reqInformLocation() {
-			return (Informer)super.reqInformLocation();
+		public Informer reqInformPositionInformation() {
+			return (Informer)super.reqInformPositionInformation();
 		}
-
 		@Override
-		public Informer reqInformCurrentTime() {
-			return (Informer)super.reqInformCurrentTime();
+		public Informer reqInformCurrentTimeSetting() {
+			return (Informer)super.reqInformCurrentTimeSetting();
 		}
-
 		@Override
-		public Informer reqInformCurrentDate() {
-			return (Informer)super.reqInformCurrentDate();
+		public Informer reqInformCurrentDateSetting() {
+			return (Informer)super.reqInformCurrentDateSetting();
 		}
-
 		@Override
-		public Informer reqInformPowerLimitation() {
-			return (Informer)super.reqInformPowerLimitation();
+		public Informer reqInformPowerLimitSetting() {
+			return (Informer)super.reqInformPowerLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformWorkingTime() {
-			return (Informer)super.reqInformWorkingTime();
+		public Informer reqInformCumulativeOperatingTime() {
+			return (Informer)super.reqInformCumulativeOperatingTime();
 		}
-
 		@Override
-		public Informer reqInformAnnoPropertyMap() {
-			return (Informer)super.reqInformAnnoPropertyMap();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
+			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformSetPropertyMap() {
 			return (Informer)super.reqInformSetPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
@@ -3204,126 +3113,102 @@ public abstract class HomeAirConditioner extends DeviceObject {
 			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-
 	}
 	
 	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
 
 		@Override
-		public Informer reqInformPower() {
-			return (Informer)super.reqInformPower();
+		public Informer reqInformOperationStatus() {
+			return (Informer)super.reqInformOperationStatus();
 		}
-
 		@Override
 		public Informer reqInformInstallationLocation() {
 			return (Informer)super.reqInformInstallationLocation();
 		}
-
 		@Override
-		public Informer reqInformVersion() {
-			return (Informer)super.reqInformVersion();
+		public Informer reqInformStandardVersionInformation() {
+			return (Informer)super.reqInformStandardVersionInformation();
 		}
-
 		@Override
-		public Informer reqInformIdNumber() {
-			return (Informer)super.reqInformIdNumber();
+		public Informer reqInformIdentificationNumber() {
+			return (Informer)super.reqInformIdentificationNumber();
 		}
-
 		@Override
-		public Informer reqInformElectricityConsumption() {
-			return (Informer)super.reqInformElectricityConsumption();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
+			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformPowerConsumption() {
-			return (Informer)super.reqInformPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption() {
+			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformMakerErrorCode() {
-			return (Informer)super.reqInformMakerErrorCode();
+		public Informer reqInformManufacturersFaultCode() {
+			return (Informer)super.reqInformManufacturersFaultCode();
 		}
-
 		@Override
-		public Informer reqInformCurrentLimiting() {
-			return (Informer)super.reqInformCurrentLimiting();
+		public Informer reqInformCurrentLimitSetting() {
+			return (Informer)super.reqInformCurrentLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformError() {
-			return (Informer)super.reqInformError();
+		public Informer reqInformFaultStatus() {
+			return (Informer)super.reqInformFaultStatus();
 		}
-
 		@Override
-		public Informer reqInformErrorInfo() {
-			return (Informer)super.reqInformErrorInfo();
+		public Informer reqInformFaultDescription() {
+			return (Informer)super.reqInformFaultDescription();
 		}
-
 		@Override
-		public Informer reqInformMakerCode() {
-			return (Informer)super.reqInformMakerCode();
+		public Informer reqInformManufacturerCode() {
+			return (Informer)super.reqInformManufacturerCode();
 		}
-
 		@Override
-		public Informer reqInformWorkplaceCode() {
-			return (Informer)super.reqInformWorkplaceCode();
+		public Informer reqInformBusinessFacilityCode() {
+			return (Informer)super.reqInformBusinessFacilityCode();
 		}
-
 		@Override
 		public Informer reqInformProductCode() {
 			return (Informer)super.reqInformProductCode();
 		}
-
 		@Override
-		public Informer reqInformManufacturingNumber() {
-			return (Informer)super.reqInformManufacturingNumber();
+		public Informer reqInformProductionNumber() {
+			return (Informer)super.reqInformProductionNumber();
 		}
-
 		@Override
-		public Informer reqInformDateOfManufacture() {
-			return (Informer)super.reqInformDateOfManufacture();
+		public Informer reqInformProductionDate() {
+			return (Informer)super.reqInformProductionDate();
 		}
-
 		@Override
-		public Informer reqInformPowerSaving() {
-			return (Informer)super.reqInformPowerSaving();
+		public Informer reqInformPowerSavingOperationSetting() {
+			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Informer reqInformLocation() {
-			return (Informer)super.reqInformLocation();
+		public Informer reqInformPositionInformation() {
+			return (Informer)super.reqInformPositionInformation();
 		}
-
 		@Override
-		public Informer reqInformCurrentTime() {
-			return (Informer)super.reqInformCurrentTime();
+		public Informer reqInformCurrentTimeSetting() {
+			return (Informer)super.reqInformCurrentTimeSetting();
 		}
-
 		@Override
-		public Informer reqInformCurrentDate() {
-			return (Informer)super.reqInformCurrentDate();
+		public Informer reqInformCurrentDateSetting() {
+			return (Informer)super.reqInformCurrentDateSetting();
 		}
-
 		@Override
-		public Informer reqInformPowerLimitation() {
-			return (Informer)super.reqInformPowerLimitation();
+		public Informer reqInformPowerLimitSetting() {
+			return (Informer)super.reqInformPowerLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformWorkingTime() {
-			return (Informer)super.reqInformWorkingTime();
+		public Informer reqInformCumulativeOperatingTime() {
+			return (Informer)super.reqInformCumulativeOperatingTime();
 		}
-
 		@Override
-		public Informer reqInformAnnoPropertyMap() {
-			return (Informer)super.reqInformAnnoPropertyMap();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
+			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformSetPropertyMap() {
 			return (Informer)super.reqInformSetPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
@@ -3539,6 +3424,5 @@ public abstract class HomeAirConditioner extends DeviceObject {
 			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
-
 	}
 }

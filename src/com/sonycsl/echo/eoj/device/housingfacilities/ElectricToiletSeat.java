@@ -36,7 +36,6 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	protected static final byte EPC_ROOM_HEATING_STATUS = (byte)0xE7;
 	protected static final byte EPC_START_TIME_OF_ROOM_HEATING = (byte)0xE8;
 	protected static final byte EPC_DURATION_TIME_OF_ROOM_HREATING = (byte)0xE9;
-	protected static final byte EPC_POWER_SAVING_OPERATION_SETTING = (byte)0x8F;
 	protected static final byte EPC_SPECIAL_OPERATION_MODE_SETTING = (byte)0xEA;
 	protected static final byte EPC_HUMAN_DETECTION_STATUS = (byte)0xEB;
 	protected static final byte EPC_SEATING_DETECTION_STATUS = (byte)0xEC;
@@ -52,111 +51,103 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	}
 
 	/**
-	 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>0x31 to 0x3A
+	 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>0x31 to 0x3A<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setTemperatureLevelOfToiletSeat(byte[] edt) {return false;}
 	/**
-	 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>0x31 to 0x3A
+	 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>0x31 to 0x3A<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getTemperatureLevelOfToiletSeat() {return null;}
 	/**
-	 * ON/OFF<br>ON=0x41, OFF=0x42
+	 * ON/OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract boolean setHeaterSettingOfToiletSeat(byte[] edt);
 	/**
-	 * ON/OFF<br>ON=0x41, OFF=0x42
+	 * ON/OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract byte[] getHeaterSettingOfToiletSeat();
 	/**
-	 * Continuous setting / one time setting / no setting.<br>Continuous setting=0x41, one time setting=0x42, no setting=0x43
+	 * Continuous setting / one time setting / no setting.<br>Continuous setting=0x41, one time setting=0x42, no setting=0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setTemporalHaltSettingOfToiletSeat(byte[] edt) {return false;}
 	/**
-	 * Continuous setting / one time setting / no setting.<br>Continuous setting=0x41, one time setting=0x42, no setting=0x43
+	 * Continuous setting / one time setting / no setting.<br>Continuous setting=0x41, one time setting=0x42, no setting=0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getTemporalHaltSettingOfToiletSeat() {return null;}
 	/**
-	 * Temporal halt start time of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+	 * Temporal halt start time of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setTemporalHaltStartTimeOfToiletSeat(byte[] edt) {return false;}
 	/**
-	 * Temporal halt start time of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+	 * Temporal halt start time of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getTemporalHaltStartTimeOfToiletSeat() {return null;}
 	/**
-	 * Temporal stop time duration of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+	 * Temporal stop time duration of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setTemporalHaltTimeDurationOfToiletSeat(byte[] edt) {return false;}
 	/**
-	 * Temporal stop time duration of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+	 * Temporal stop time duration of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getTemporalHaltTimeDurationOfToiletSeat() {return null;}
 	/**
-	 * Low / midium / high temperature<br>0x31 / 0x32 / 0x33
+	 * Low / midium / high temperature<br>0x31 / 0x32 / 0x33<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setTemperatureLevelSettingOfRoomHeating(byte[] edt) {return false;}
 	/**
-	 * Low / midium / high temperature<br>0x31 / 0x32 / 0x33
+	 * Low / midium / high temperature<br>0x31 / 0x32 / 0x33<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getTemperatureLevelSettingOfRoomHeating() {return null;}
 	/**
-	 * Room heating ON / room heating OFF / timer mode setting<br>0x41 / 0x42 / 0x43
+	 * Room heating ON / room heating OFF / timer mode setting<br>0x41 / 0x42 / 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setRoomHeatingSetting(byte[] edt) {return false;}
 	/**
-	 * Room heating ON / room heating OFF / timer mode setting<br>0x41 / 0x42 / 0x43
+	 * Room heating ON / room heating OFF / timer mode setting<br>0x41 / 0x42 / 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getRoomHeatingSetting() {return null;}
 	/**
-	 * Room heating ON / room heating OFF<br>ON=0x41, OFF=0x42
+	 * Room heating ON / room heating OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getRoomHeatingStatus() {return null;}
 	/**
-	 * Timer value HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+	 * Timer value HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setStartTimeOfRoomHeating(byte[] edt) {return false;}
 	/**
-	 * Timer value HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+	 * Timer value HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getStartTimeOfRoomHeating() {return null;}
 	/**
-	 * Duration time HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+	 * Duration time HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setDurationTimeOfRoomHreating(byte[] edt) {return false;}
 	/**
-	 * Duration time HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+	 * Duration time HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getDurationTimeOfRoomHreating() {return null;}
 	/**
-	 * Power saving mode ON/OFF<br>ON=0x41, OFF=0x42
-	 */
-	protected boolean setPowerSavingOperationSetting(byte[] edt) {return false;}
-	/**
-	 * Power saving mode ON/OFF<br>ON=0x41, OFF=0x42
-	 */
-	protected byte[] getPowerSavingOperationSetting() {return null;}
-	/**
-	 * Used to set a special operation mode and get the status<br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-
+	 * Used to set a special operation mode and get the status<br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSpecialOperationModeSetting(byte[] edt) {return false;}
 	/**
-	 * Used to set a special operation mode and get the status<br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-
+	 * Used to set a special operation mode and get the status<br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSpecialOperationModeSetting() {return null;}
 	/**
-	 * Indicate detection of human body<br>Detected = 0x41 Non detecteed = 0x42
+	 * Indicate detection of human body<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setHumanDetectionStatus(byte[] edt) {return false;}
 	/**
-	 * Indicate detection of human body<br>Detected = 0x41 Non detecteed = 0x42
+	 * Indicate detection of human body<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getHumanDetectionStatus() {return null;}
 	/**
-	 * This property indicates detection of seating<br>Detected = 0x41 Non detecteed = 0x42
+	 * This property indicates detection of seating<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSeatingDetectionStatus(byte[] edt) {return false;}
 	/**
-	 * This property indicates detection of seating<br>Detected = 0x41 Non detecteed = 0x42
+	 * This property indicates detection of seating<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSeatingDetectionStatus() {return null;}
 
@@ -191,9 +182,6 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			break;
 		case EPC_DURATION_TIME_OF_ROOM_HREATING:
 			res.addProperty(epc, edt, setDurationTimeOfRoomHreating(edt));
-			break;
-		case EPC_POWER_SAVING_OPERATION_SETTING:
-			res.addProperty(epc, edt, setPowerSavingOperationSetting(edt));
 			break;
 		case EPC_SPECIAL_OPERATION_MODE_SETTING:
 			res.addProperty(epc, edt, setSpecialOperationModeSetting(edt));
@@ -252,10 +240,6 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		case EPC_DURATION_TIME_OF_ROOM_HREATING:
 			edt = getDurationTimeOfRoomHreating();
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			break;
-		case EPC_POWER_SAVING_OPERATION_SETTING:
-			edt = getPowerSavingOperationSetting();
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SPECIAL_OPERATION_MODE_SETTING:
 			edt = getSpecialOperationModeSetting();
@@ -327,9 +311,6 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			case EPC_DURATION_TIME_OF_ROOM_HREATING:
 				onSetDurationTimeOfRoomHreating(eoj, tid, (pdc != 0));
 				break;
-			case EPC_POWER_SAVING_OPERATION_SETTING:
-				onSetPowerSavingOperationSetting(eoj, tid, (pdc != 0));
-				break;
 			case EPC_SPECIAL_OPERATION_MODE_SETTING:
 				onSetSpecialOperationModeSetting(eoj, tid, (pdc != 0));
 				break;
@@ -378,9 +359,6 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			case EPC_DURATION_TIME_OF_ROOM_HREATING:
 				onGetDurationTimeOfRoomHreating(eoj, tid, pdc, edt);
 				break;
-			case EPC_POWER_SAVING_OPERATION_SETTING:
-				onGetPowerSavingOperationSetting(eoj, tid, pdc, edt);
-				break;
 			case EPC_SPECIAL_OPERATION_MODE_SETTING:
 				onGetSpecialOperationModeSetting(eoj, tid, pdc, edt);
 				break;
@@ -395,179 +373,166 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		}
 		
 		/**
-		 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>0x31 to 0x3A
+		 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>0x31 to 0x3A<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetTemperatureLevelOfToiletSeat(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>0x31 to 0x3A
+		 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>0x31 to 0x3A<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetTemperatureLevelOfToiletSeat(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * ON/OFF<br>ON=0x41, OFF=0x42
+		 * ON/OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		protected void onSetHeaterSettingOfToiletSeat(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * ON/OFF<br>ON=0x41, OFF=0x42
+		 * ON/OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		protected void onGetHeaterSettingOfToiletSeat(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Continuous setting / one time setting / no setting.<br>Continuous setting=0x41, one time setting=0x42, no setting=0x43
+		 * Continuous setting / one time setting / no setting.<br>Continuous setting=0x41, one time setting=0x42, no setting=0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetTemporalHaltSettingOfToiletSeat(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Continuous setting / one time setting / no setting.<br>Continuous setting=0x41, one time setting=0x42, no setting=0x43
+		 * Continuous setting / one time setting / no setting.<br>Continuous setting=0x41, one time setting=0x42, no setting=0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetTemporalHaltSettingOfToiletSeat(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Temporal halt start time of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+		 * Temporal halt start time of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetTemporalHaltStartTimeOfToiletSeat(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Temporal halt start time of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+		 * Temporal halt start time of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetTemporalHaltStartTimeOfToiletSeat(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Temporal stop time duration of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+		 * Temporal stop time duration of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetTemporalHaltTimeDurationOfToiletSeat(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Temporal stop time duration of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+		 * Temporal stop time duration of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetTemporalHaltTimeDurationOfToiletSeat(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Low / midium / high temperature<br>0x31 / 0x32 / 0x33
+		 * Low / midium / high temperature<br>0x31 / 0x32 / 0x33<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetTemperatureLevelSettingOfRoomHeating(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Low / midium / high temperature<br>0x31 / 0x32 / 0x33
+		 * Low / midium / high temperature<br>0x31 / 0x32 / 0x33<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetTemperatureLevelSettingOfRoomHeating(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Room heating ON / room heating OFF / timer mode setting<br>0x41 / 0x42 / 0x43
+		 * Room heating ON / room heating OFF / timer mode setting<br>0x41 / 0x42 / 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetRoomHeatingSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Room heating ON / room heating OFF / timer mode setting<br>0x41 / 0x42 / 0x43
+		 * Room heating ON / room heating OFF / timer mode setting<br>0x41 / 0x42 / 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetRoomHeatingSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Room heating ON / room heating OFF<br>ON=0x41, OFF=0x42
+		 * Room heating ON / room heating OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetRoomHeatingStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Timer value HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+		 * Timer value HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetStartTimeOfRoomHeating(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Timer value HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+		 * Timer value HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetStartTimeOfRoomHeating(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Duration time HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+		 * Duration time HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetDurationTimeOfRoomHreating(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Duration time HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+		 * Duration time HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetDurationTimeOfRoomHreating(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Power saving mode ON/OFF<br>ON=0x41, OFF=0x42
-		 */
-		protected void onSetPowerSavingOperationSetting(EchoObject eoj, short tid, boolean success) {}
-		/**
-		 * Power saving mode ON/OFF<br>ON=0x41, OFF=0x42
-		 */
-		protected void onGetPowerSavingOperationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
-		/**
-		 * Used to set a special operation mode and get the status<br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-
+		 * Used to set a special operation mode and get the status<br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetSpecialOperationModeSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Used to set a special operation mode and get the status<br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-
+		 * Used to set a special operation mode and get the status<br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetSpecialOperationModeSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Indicate detection of human body<br>Detected = 0x41 Non detecteed = 0x42
+		 * Indicate detection of human body<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetHumanDetectionStatus(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Indicate detection of human body<br>Detected = 0x41 Non detecteed = 0x42
+		 * Indicate detection of human body<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetHumanDetectionStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * This property indicates detection of seating<br>Detected = 0x41 Non detecteed = 0x42
+		 * This property indicates detection of seating<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetSeatingDetectionStatus(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * This property indicates detection of seating<br>Detected = 0x41 Non detecteed = 0x42
+		 * This property indicates detection of seating<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetSeatingDetectionStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 
 	}
 	
 	public interface Setter extends DeviceObject.Setter {
-		public Setter reqSetPower(byte[] edt);
+		public Setter reqSetOperationStatus(byte[] edt);
 		public Setter reqSetInstallationLocation(byte[] edt);
-		public Setter reqSetCurrentLimiting(byte[] edt);
-		public Setter reqSetPowerSaving(byte[] edt);
-		public Setter reqSetLocation(byte[] edt);
-		public Setter reqSetCurrentTime(byte[] edt);
-		public Setter reqSetCurrentDate(byte[] edt);
-		public Setter reqSetPowerLimitation(byte[] edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
+		public Setter reqSetPositionInformation(byte[] edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt);
 		
 		/**
-		 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>0x31 to 0x3A
+		 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>0x31 to 0x3A<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetTemperatureLevelOfToiletSeat(byte[] edt);
 		/**
-		 * ON/OFF<br>ON=0x41, OFF=0x42
+		 * ON/OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		public Setter reqSetHeaterSettingOfToiletSeat(byte[] edt);
 		/**
-		 * Continuous setting / one time setting / no setting.<br>Continuous setting=0x41, one time setting=0x42, no setting=0x43
+		 * Continuous setting / one time setting / no setting.<br>Continuous setting=0x41, one time setting=0x42, no setting=0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetTemporalHaltSettingOfToiletSeat(byte[] edt);
 		/**
-		 * Temporal halt start time of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+		 * Temporal halt start time of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetTemporalHaltStartTimeOfToiletSeat(byte[] edt);
 		/**
-		 * Temporal stop time duration of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+		 * Temporal stop time duration of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetTemporalHaltTimeDurationOfToiletSeat(byte[] edt);
 		/**
-		 * Low / midium / high temperature<br>0x31 / 0x32 / 0x33
+		 * Low / midium / high temperature<br>0x31 / 0x32 / 0x33<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetTemperatureLevelSettingOfRoomHeating(byte[] edt);
 		/**
-		 * Room heating ON / room heating OFF / timer mode setting<br>0x41 / 0x42 / 0x43
+		 * Room heating ON / room heating OFF / timer mode setting<br>0x41 / 0x42 / 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetRoomHeatingSetting(byte[] edt);
 		/**
-		 * Timer value HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+		 * Timer value HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetStartTimeOfRoomHeating(byte[] edt);
 		/**
-		 * Duration time HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+		 * Duration time HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetDurationTimeOfRoomHreating(byte[] edt);
 		/**
-		 * Power saving mode ON/OFF<br>ON=0x41, OFF=0x42
-		 */
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
-		/**
-		 * Used to set a special operation mode and get the status<br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-
+		 * Used to set a special operation mode and get the status<br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetSpecialOperationModeSetting(byte[] edt);
 		/**
-		 * Indicate detection of human body<br>Detected = 0x41 Non detecteed = 0x42
+		 * Indicate detection of human body<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetHumanDetectionStatus(byte[] edt);
 		/**
-		 * This property indicates detection of seating<br>Detected = 0x41 Non detecteed = 0x42
+		 * This property indicates detection of seating<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetSeatingDetectionStatus(byte[] edt);
-
 	}
 
 	public class SetterImpl extends DeviceObject.SetterImpl implements Setter {
@@ -577,43 +542,36 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		}
 		
 		@Override
-		public Setter reqSetPower(byte[] edt) {
-			return (Setter)super.reqSetPower(edt);
+		public Setter reqSetOperationStatus(byte[] edt) {
+			return (Setter)super.reqSetOperationStatus(edt);
 		}
-
 		@Override
 		public Setter reqSetInstallationLocation(byte[] edt) {
 			return (Setter)super.reqSetInstallationLocation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentLimiting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimiting(edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentLimitSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerSaving(byte[] edt) {
-			return (Setter)super.reqSetPowerSaving(edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetLocation(byte[] edt) {
-			return (Setter)super.reqSetLocation(edt);
+		public Setter reqSetPositionInformation(byte[] edt) {
+			return (Setter)super.reqSetPositionInformation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentTime(byte[] edt) {
-			return (Setter)super.reqSetCurrentTime(edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentTimeSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentDate(byte[] edt) {
-			return (Setter)super.reqSetCurrentDate(edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentDateSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerLimitation(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitation(edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
 		@Override
@@ -662,11 +620,6 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			return this;
 		}
 		@Override
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
-			addProperty(EPC_POWER_SAVING_OPERATION_SETTING, edt, setPowerSavingOperationSetting(edt));
-			return this;
-		}
-		@Override
 		public Setter reqSetSpecialOperationModeSetting(byte[] edt) {
 			addProperty(EPC_SPECIAL_OPERATION_MODE_SETTING, edt, setSpecialOperationModeSetting(edt));
 			return this;
@@ -681,7 +634,6 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			addProperty(EPC_SEATING_DETECTION_STATUS, edt, setSeatingDetectionStatus(edt));
 			return this;
 		}
-
 	}
 	
 	public class SetterProxy extends DeviceObject.SetterProxy implements Setter {
@@ -690,45 +642,37 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			super(esv);
 		}
 
-		
 		@Override
-		public Setter reqSetPower(byte[] edt) {
-			return (Setter)super.reqSetPower(edt);
+		public Setter reqSetOperationStatus(byte[] edt) {
+			return (Setter)super.reqSetOperationStatus(edt);
 		}
-
 		@Override
 		public Setter reqSetInstallationLocation(byte[] edt) {
 			return (Setter)super.reqSetInstallationLocation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentLimiting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimiting(edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentLimitSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerSaving(byte[] edt) {
-			return (Setter)super.reqSetPowerSaving(edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetLocation(byte[] edt) {
-			return (Setter)super.reqSetLocation(edt);
+		public Setter reqSetPositionInformation(byte[] edt) {
+			return (Setter)super.reqSetPositionInformation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentTime(byte[] edt) {
-			return (Setter)super.reqSetCurrentTime(edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentTimeSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentDate(byte[] edt) {
-			return (Setter)super.reqSetCurrentDate(edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentDateSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerLimitation(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitation(edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
 		@Override
@@ -777,11 +721,6 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			return this;
 		}
 		@Override
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
-			addProperty(EPC_POWER_SAVING_OPERATION_SETTING, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
 		public Setter reqSetSpecialOperationModeSetting(byte[] edt) {
 			addProperty(EPC_SPECIAL_OPERATION_MODE_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
@@ -796,211 +735,182 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			addProperty(EPC_SEATING_DETECTION_STATUS, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-
 	}
 
 	public interface Getter extends DeviceObject.Getter {
-		public Getter reqGetPower();
+		public Getter reqGetOperationStatus();
 		public Getter reqGetInstallationLocation();
-		public Getter reqGetVersion();
-		public Getter reqGetIdNumber();
-		public Getter reqGetElectricityConsumption();
-		public Getter reqGetPowerConsumption();
-		public Getter reqGetMakerErrorCode();
-		public Getter reqGetCurrentLimiting();
-		public Getter reqGetError();
-		public Getter reqGetErrorInfo();
-		public Getter reqGetMakerCode();
-		public Getter reqGetWorkplaceCode();
+		public Getter reqGetStandardVersionInformation();
+		public Getter reqGetIdentificationNumber();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption();
+		public Getter reqGetManufacturersFaultCode();
+		public Getter reqGetCurrentLimitSetting();
+		public Getter reqGetFaultStatus();
+		public Getter reqGetFaultDescription();
+		public Getter reqGetManufacturerCode();
+		public Getter reqGetBusinessFacilityCode();
 		public Getter reqGetProductCode();
-		public Getter reqGetManufacturingNumber();
-		public Getter reqGetDateOfManufacture();
-		public Getter reqGetPowerSaving();
-		public Getter reqGetLocation();
-		public Getter reqGetCurrentTime();
-		public Getter reqGetCurrentDate();
-		public Getter reqGetPowerLimitation();
-		public Getter reqGetWorkingTime();
-		public Getter reqGetAnnoPropertyMap();
+		public Getter reqGetProductionNumber();
+		public Getter reqGetProductionDate();
+		public Getter reqGetPowerSavingOperationSetting();
+		public Getter reqGetPositionInformation();
+		public Getter reqGetCurrentTimeSetting();
+		public Getter reqGetCurrentDateSetting();
+		public Getter reqGetPowerLimitSetting();
+		public Getter reqGetCumulativeOperatingTime();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap();
 		public Getter reqGetSetPropertyMap();
 		public Getter reqGetGetPropertyMap();
 		
 		/**
-		 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>0x31 to 0x3A
+		 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>0x31 to 0x3A<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetTemperatureLevelOfToiletSeat();
 		/**
-		 * ON/OFF<br>ON=0x41, OFF=0x42
+		 * ON/OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		public Getter reqGetHeaterSettingOfToiletSeat();
 		/**
-		 * Continuous setting / one time setting / no setting.<br>Continuous setting=0x41, one time setting=0x42, no setting=0x43
+		 * Continuous setting / one time setting / no setting.<br>Continuous setting=0x41, one time setting=0x42, no setting=0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetTemporalHaltSettingOfToiletSeat();
 		/**
-		 * Temporal halt start time of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+		 * Temporal halt start time of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetTemporalHaltStartTimeOfToiletSeat();
 		/**
-		 * Temporal stop time duration of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+		 * Temporal stop time duration of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetTemporalHaltTimeDurationOfToiletSeat();
 		/**
-		 * Low / midium / high temperature<br>0x31 / 0x32 / 0x33
+		 * Low / midium / high temperature<br>0x31 / 0x32 / 0x33<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetTemperatureLevelSettingOfRoomHeating();
 		/**
-		 * Room heating ON / room heating OFF / timer mode setting<br>0x41 / 0x42 / 0x43
+		 * Room heating ON / room heating OFF / timer mode setting<br>0x41 / 0x42 / 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetRoomHeatingSetting();
 		/**
-		 * Room heating ON / room heating OFF<br>ON=0x41, OFF=0x42
+		 * Room heating ON / room heating OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetRoomHeatingStatus();
 		/**
-		 * Timer value HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+		 * Timer value HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetStartTimeOfRoomHeating();
 		/**
-		 * Duration time HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+		 * Duration time HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetDurationTimeOfRoomHreating();
 		/**
-		 * Power saving mode ON/OFF<br>ON=0x41, OFF=0x42
-		 */
-		public Getter reqGetPowerSavingOperationSetting();
-		/**
-		 * Used to set a special operation mode and get the status<br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-
+		 * Used to set a special operation mode and get the status<br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetSpecialOperationModeSetting();
 		/**
-		 * Indicate detection of human body<br>Detected = 0x41 Non detecteed = 0x42
+		 * Indicate detection of human body<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetHumanDetectionStatus();
 		/**
-		 * This property indicates detection of seating<br>Detected = 0x41 Non detecteed = 0x42
+		 * This property indicates detection of seating<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetSeatingDetectionStatus();
-
 	}
 	
 	public class GetterImpl extends DeviceObject.GetterImpl implements Getter {
 
 		@Override
-		public Getter reqGetPower() {
-			return (Getter)super.reqGetPower();
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
 		}
-
 		@Override
 		public Getter reqGetInstallationLocation() {
 			return (Getter)super.reqGetInstallationLocation();
 		}
-
 		@Override
-		public Getter reqGetVersion() {
-			return (Getter)super.reqGetVersion();
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
 		}
-
 		@Override
-		public Getter reqGetIdNumber() {
-			return (Getter)super.reqGetIdNumber();
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
 		}
-
 		@Override
-		public Getter reqGetElectricityConsumption() {
-			return (Getter)super.reqGetElectricityConsumption();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetPowerConsumption() {
-			return (Getter)super.reqGetPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetMakerErrorCode() {
-			return (Getter)super.reqGetMakerErrorCode();
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
 		}
-
 		@Override
-		public Getter reqGetCurrentLimiting() {
-			return (Getter)super.reqGetCurrentLimiting();
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetError() {
-			return (Getter)super.reqGetError();
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
 		}
-
 		@Override
-		public Getter reqGetErrorInfo() {
-			return (Getter)super.reqGetErrorInfo();
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
 		}
-
 		@Override
-		public Getter reqGetMakerCode() {
-			return (Getter)super.reqGetMakerCode();
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
 		}
-
 		@Override
-		public Getter reqGetWorkplaceCode() {
-			return (Getter)super.reqGetWorkplaceCode();
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
 		}
-
 		@Override
 		public Getter reqGetProductCode() {
 			return (Getter)super.reqGetProductCode();
 		}
-
 		@Override
-		public Getter reqGetManufacturingNumber() {
-			return (Getter)super.reqGetManufacturingNumber();
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
 		}
-
 		@Override
-		public Getter reqGetDateOfManufacture() {
-			return (Getter)super.reqGetDateOfManufacture();
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
 		}
-
 		@Override
-		public Getter reqGetPowerSaving() {
-			return (Getter)super.reqGetPowerSaving();
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Getter reqGetLocation() {
-			return (Getter)super.reqGetLocation();
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
 		}
-
 		@Override
-		public Getter reqGetCurrentTime() {
-			return (Getter)super.reqGetCurrentTime();
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
 		}
-
 		@Override
-		public Getter reqGetCurrentDate() {
-			return (Getter)super.reqGetCurrentDate();
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
 		}
-
 		@Override
-		public Getter reqGetPowerLimitation() {
-			return (Getter)super.reqGetPowerLimitation();
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetWorkingTime() {
-			return (Getter)super.reqGetWorkingTime();
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
 		}
-
 		@Override
-		public Getter reqGetAnnoPropertyMap() {
-			return (Getter)super.reqGetAnnoPropertyMap();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetSetPropertyMap() {
 			return (Getter)super.reqGetSetPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetGetPropertyMap() {
 			return (Getter)super.reqGetGetPropertyMap();
@@ -1067,12 +977,6 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			return this;
 		}
 		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			byte[] edt = getPowerSavingOperationSetting();
-			addProperty(EPC_POWER_SAVING_OPERATION_SETTING, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
 		public Getter reqGetSpecialOperationModeSetting() {
 			byte[] edt = getSpecialOperationModeSetting();
 			addProperty(EPC_SPECIAL_OPERATION_MODE_SETTING, edt, (edt != null && (edt.length == 1)));
@@ -1090,126 +994,102 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			addProperty(EPC_SEATING_DETECTION_STATUS, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-
 	}
 
 	public class GetterProxy extends DeviceObject.GetterProxy implements Getter {
 
 		@Override
-		public Getter reqGetPower() {
-			return (Getter)super.reqGetPower();
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
 		}
-
 		@Override
 		public Getter reqGetInstallationLocation() {
 			return (Getter)super.reqGetInstallationLocation();
 		}
-
 		@Override
-		public Getter reqGetVersion() {
-			return (Getter)super.reqGetVersion();
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
 		}
-
 		@Override
-		public Getter reqGetIdNumber() {
-			return (Getter)super.reqGetIdNumber();
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
 		}
-
 		@Override
-		public Getter reqGetElectricityConsumption() {
-			return (Getter)super.reqGetElectricityConsumption();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetPowerConsumption() {
-			return (Getter)super.reqGetPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetMakerErrorCode() {
-			return (Getter)super.reqGetMakerErrorCode();
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
 		}
-
 		@Override
-		public Getter reqGetCurrentLimiting() {
-			return (Getter)super.reqGetCurrentLimiting();
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetError() {
-			return (Getter)super.reqGetError();
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
 		}
-
 		@Override
-		public Getter reqGetErrorInfo() {
-			return (Getter)super.reqGetErrorInfo();
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
 		}
-
 		@Override
-		public Getter reqGetMakerCode() {
-			return (Getter)super.reqGetMakerCode();
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
 		}
-
 		@Override
-		public Getter reqGetWorkplaceCode() {
-			return (Getter)super.reqGetWorkplaceCode();
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
 		}
-
 		@Override
 		public Getter reqGetProductCode() {
 			return (Getter)super.reqGetProductCode();
 		}
-
 		@Override
-		public Getter reqGetManufacturingNumber() {
-			return (Getter)super.reqGetManufacturingNumber();
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
 		}
-
 		@Override
-		public Getter reqGetDateOfManufacture() {
-			return (Getter)super.reqGetDateOfManufacture();
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
 		}
-
 		@Override
-		public Getter reqGetPowerSaving() {
-			return (Getter)super.reqGetPowerSaving();
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Getter reqGetLocation() {
-			return (Getter)super.reqGetLocation();
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
 		}
-
 		@Override
-		public Getter reqGetCurrentTime() {
-			return (Getter)super.reqGetCurrentTime();
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
 		}
-
 		@Override
-		public Getter reqGetCurrentDate() {
-			return (Getter)super.reqGetCurrentDate();
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
 		}
-
 		@Override
-		public Getter reqGetPowerLimitation() {
-			return (Getter)super.reqGetPowerLimitation();
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetWorkingTime() {
-			return (Getter)super.reqGetWorkingTime();
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
 		}
-
 		@Override
-		public Getter reqGetAnnoPropertyMap() {
-			return (Getter)super.reqGetAnnoPropertyMap();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetSetPropertyMap() {
 			return (Getter)super.reqGetSetPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetGetPropertyMap() {
 			return (Getter)super.reqGetGetPropertyMap();
@@ -1266,11 +1146,6 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			return this;
 		}
 		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			addProperty(EPC_POWER_SAVING_OPERATION_SETTING);
-			return this;
-		}
-		@Override
 		public Getter reqGetSpecialOperationModeSetting() {
 			addProperty(EPC_SPECIAL_OPERATION_MODE_SETTING);
 			return this;
@@ -1285,211 +1160,182 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			addProperty(EPC_SEATING_DETECTION_STATUS);
 			return this;
 		}
-
 	}
 	
 	public interface Informer extends DeviceObject.Informer {
-		public Informer reqInformPower();
+		public Informer reqInformOperationStatus();
 		public Informer reqInformInstallationLocation();
-		public Informer reqInformVersion();
-		public Informer reqInformIdNumber();
-		public Informer reqInformElectricityConsumption();
-		public Informer reqInformPowerConsumption();
-		public Informer reqInformMakerErrorCode();
-		public Informer reqInformCurrentLimiting();
-		public Informer reqInformError();
-		public Informer reqInformErrorInfo();
-		public Informer reqInformMakerCode();
-		public Informer reqInformWorkplaceCode();
+		public Informer reqInformStandardVersionInformation();
+		public Informer reqInformIdentificationNumber();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption();
+		public Informer reqInformManufacturersFaultCode();
+		public Informer reqInformCurrentLimitSetting();
+		public Informer reqInformFaultStatus();
+		public Informer reqInformFaultDescription();
+		public Informer reqInformManufacturerCode();
+		public Informer reqInformBusinessFacilityCode();
 		public Informer reqInformProductCode();
-		public Informer reqInformManufacturingNumber();
-		public Informer reqInformDateOfManufacture();
-		public Informer reqInformPowerSaving();
-		public Informer reqInformLocation();
-		public Informer reqInformCurrentTime();
-		public Informer reqInformCurrentDate();
-		public Informer reqInformPowerLimitation();
-		public Informer reqInformWorkingTime();
-		public Informer reqInformAnnoPropertyMap();
+		public Informer reqInformProductionNumber();
+		public Informer reqInformProductionDate();
+		public Informer reqInformPowerSavingOperationSetting();
+		public Informer reqInformPositionInformation();
+		public Informer reqInformCurrentTimeSetting();
+		public Informer reqInformCurrentDateSetting();
+		public Informer reqInformPowerLimitSetting();
+		public Informer reqInformCumulativeOperatingTime();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap();
 		public Informer reqInformSetPropertyMap();
 		public Informer reqInformGetPropertyMap();
 		
 		/**
-		 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>0x31 to 0x3A
+		 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>0x31 to 0x3A<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformTemperatureLevelOfToiletSeat();
 		/**
-		 * ON/OFF<br>ON=0x41, OFF=0x42
+		 * ON/OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
 		public Informer reqInformHeaterSettingOfToiletSeat();
 		/**
-		 * Continuous setting / one time setting / no setting.<br>Continuous setting=0x41, one time setting=0x42, no setting=0x43
+		 * Continuous setting / one time setting / no setting.<br>Continuous setting=0x41, one time setting=0x42, no setting=0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformTemporalHaltSettingOfToiletSeat();
 		/**
-		 * Temporal halt start time of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+		 * Temporal halt start time of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformTemporalHaltStartTimeOfToiletSeat();
 		/**
-		 * Temporal stop time duration of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+		 * Temporal stop time duration of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformTemporalHaltTimeDurationOfToiletSeat();
 		/**
-		 * Low / midium / high temperature<br>0x31 / 0x32 / 0x33
+		 * Low / midium / high temperature<br>0x31 / 0x32 / 0x33<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformTemperatureLevelSettingOfRoomHeating();
 		/**
-		 * Room heating ON / room heating OFF / timer mode setting<br>0x41 / 0x42 / 0x43
+		 * Room heating ON / room heating OFF / timer mode setting<br>0x41 / 0x42 / 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformRoomHeatingSetting();
 		/**
-		 * Room heating ON / room heating OFF<br>ON=0x41, OFF=0x42
+		 * Room heating ON / room heating OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformRoomHeatingStatus();
 		/**
-		 * Timer value HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+		 * Timer value HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformStartTimeOfRoomHeating();
 		/**
-		 * Duration time HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)
+		 * Duration time HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformDurationTimeOfRoomHreating();
 		/**
-		 * Power saving mode ON/OFF<br>ON=0x41, OFF=0x42
-		 */
-		public Informer reqInformPowerSavingOperationSetting();
-		/**
-		 * Used to set a special operation mode and get the status<br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-
+		 * Used to set a special operation mode and get the status<br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformSpecialOperationModeSetting();
 		/**
-		 * Indicate detection of human body<br>Detected = 0x41 Non detecteed = 0x42
+		 * Indicate detection of human body<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformHumanDetectionStatus();
 		/**
-		 * This property indicates detection of seating<br>Detected = 0x41 Non detecteed = 0x42
+		 * This property indicates detection of seating<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformSeatingDetectionStatus();
-
 	}
 
 	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
 
 		@Override
-		public Informer reqInformPower() {
-			return (Informer)super.reqInformPower();
+		public Informer reqInformOperationStatus() {
+			return (Informer)super.reqInformOperationStatus();
 		}
-
 		@Override
 		public Informer reqInformInstallationLocation() {
 			return (Informer)super.reqInformInstallationLocation();
 		}
-
 		@Override
-		public Informer reqInformVersion() {
-			return (Informer)super.reqInformVersion();
+		public Informer reqInformStandardVersionInformation() {
+			return (Informer)super.reqInformStandardVersionInformation();
 		}
-
 		@Override
-		public Informer reqInformIdNumber() {
-			return (Informer)super.reqInformIdNumber();
+		public Informer reqInformIdentificationNumber() {
+			return (Informer)super.reqInformIdentificationNumber();
 		}
-
 		@Override
-		public Informer reqInformElectricityConsumption() {
-			return (Informer)super.reqInformElectricityConsumption();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
+			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformPowerConsumption() {
-			return (Informer)super.reqInformPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption() {
+			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformMakerErrorCode() {
-			return (Informer)super.reqInformMakerErrorCode();
+		public Informer reqInformManufacturersFaultCode() {
+			return (Informer)super.reqInformManufacturersFaultCode();
 		}
-
 		@Override
-		public Informer reqInformCurrentLimiting() {
-			return (Informer)super.reqInformCurrentLimiting();
+		public Informer reqInformCurrentLimitSetting() {
+			return (Informer)super.reqInformCurrentLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformError() {
-			return (Informer)super.reqInformError();
+		public Informer reqInformFaultStatus() {
+			return (Informer)super.reqInformFaultStatus();
 		}
-
 		@Override
-		public Informer reqInformErrorInfo() {
-			return (Informer)super.reqInformErrorInfo();
+		public Informer reqInformFaultDescription() {
+			return (Informer)super.reqInformFaultDescription();
 		}
-
 		@Override
-		public Informer reqInformMakerCode() {
-			return (Informer)super.reqInformMakerCode();
+		public Informer reqInformManufacturerCode() {
+			return (Informer)super.reqInformManufacturerCode();
 		}
-
 		@Override
-		public Informer reqInformWorkplaceCode() {
-			return (Informer)super.reqInformWorkplaceCode();
+		public Informer reqInformBusinessFacilityCode() {
+			return (Informer)super.reqInformBusinessFacilityCode();
 		}
-
 		@Override
 		public Informer reqInformProductCode() {
 			return (Informer)super.reqInformProductCode();
 		}
-
 		@Override
-		public Informer reqInformManufacturingNumber() {
-			return (Informer)super.reqInformManufacturingNumber();
+		public Informer reqInformProductionNumber() {
+			return (Informer)super.reqInformProductionNumber();
 		}
-
 		@Override
-		public Informer reqInformDateOfManufacture() {
-			return (Informer)super.reqInformDateOfManufacture();
+		public Informer reqInformProductionDate() {
+			return (Informer)super.reqInformProductionDate();
 		}
-
 		@Override
-		public Informer reqInformPowerSaving() {
-			return (Informer)super.reqInformPowerSaving();
+		public Informer reqInformPowerSavingOperationSetting() {
+			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Informer reqInformLocation() {
-			return (Informer)super.reqInformLocation();
+		public Informer reqInformPositionInformation() {
+			return (Informer)super.reqInformPositionInformation();
 		}
-
 		@Override
-		public Informer reqInformCurrentTime() {
-			return (Informer)super.reqInformCurrentTime();
+		public Informer reqInformCurrentTimeSetting() {
+			return (Informer)super.reqInformCurrentTimeSetting();
 		}
-
 		@Override
-		public Informer reqInformCurrentDate() {
-			return (Informer)super.reqInformCurrentDate();
+		public Informer reqInformCurrentDateSetting() {
+			return (Informer)super.reqInformCurrentDateSetting();
 		}
-
 		@Override
-		public Informer reqInformPowerLimitation() {
-			return (Informer)super.reqInformPowerLimitation();
+		public Informer reqInformPowerLimitSetting() {
+			return (Informer)super.reqInformPowerLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformWorkingTime() {
-			return (Informer)super.reqInformWorkingTime();
+		public Informer reqInformCumulativeOperatingTime() {
+			return (Informer)super.reqInformCumulativeOperatingTime();
 		}
-
 		@Override
-		public Informer reqInformAnnoPropertyMap() {
-			return (Informer)super.reqInformAnnoPropertyMap();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
+			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformSetPropertyMap() {
 			return (Informer)super.reqInformSetPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
@@ -1556,12 +1402,6 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			return this;
 		}
 		@Override
-		public Informer reqInformPowerSavingOperationSetting() {
-			byte[] edt = getPowerSavingOperationSetting();
-			addProperty(EPC_POWER_SAVING_OPERATION_SETTING, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
 		public Informer reqInformSpecialOperationModeSetting() {
 			byte[] edt = getSpecialOperationModeSetting();
 			addProperty(EPC_SPECIAL_OPERATION_MODE_SETTING, edt, (edt != null && (edt.length == 1)));
@@ -1579,126 +1419,102 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			addProperty(EPC_SEATING_DETECTION_STATUS, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-
 	}
 	
 	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
 
 		@Override
-		public Informer reqInformPower() {
-			return (Informer)super.reqInformPower();
+		public Informer reqInformOperationStatus() {
+			return (Informer)super.reqInformOperationStatus();
 		}
-
 		@Override
 		public Informer reqInformInstallationLocation() {
 			return (Informer)super.reqInformInstallationLocation();
 		}
-
 		@Override
-		public Informer reqInformVersion() {
-			return (Informer)super.reqInformVersion();
+		public Informer reqInformStandardVersionInformation() {
+			return (Informer)super.reqInformStandardVersionInformation();
 		}
-
 		@Override
-		public Informer reqInformIdNumber() {
-			return (Informer)super.reqInformIdNumber();
+		public Informer reqInformIdentificationNumber() {
+			return (Informer)super.reqInformIdentificationNumber();
 		}
-
 		@Override
-		public Informer reqInformElectricityConsumption() {
-			return (Informer)super.reqInformElectricityConsumption();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
+			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformPowerConsumption() {
-			return (Informer)super.reqInformPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption() {
+			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformMakerErrorCode() {
-			return (Informer)super.reqInformMakerErrorCode();
+		public Informer reqInformManufacturersFaultCode() {
+			return (Informer)super.reqInformManufacturersFaultCode();
 		}
-
 		@Override
-		public Informer reqInformCurrentLimiting() {
-			return (Informer)super.reqInformCurrentLimiting();
+		public Informer reqInformCurrentLimitSetting() {
+			return (Informer)super.reqInformCurrentLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformError() {
-			return (Informer)super.reqInformError();
+		public Informer reqInformFaultStatus() {
+			return (Informer)super.reqInformFaultStatus();
 		}
-
 		@Override
-		public Informer reqInformErrorInfo() {
-			return (Informer)super.reqInformErrorInfo();
+		public Informer reqInformFaultDescription() {
+			return (Informer)super.reqInformFaultDescription();
 		}
-
 		@Override
-		public Informer reqInformMakerCode() {
-			return (Informer)super.reqInformMakerCode();
+		public Informer reqInformManufacturerCode() {
+			return (Informer)super.reqInformManufacturerCode();
 		}
-
 		@Override
-		public Informer reqInformWorkplaceCode() {
-			return (Informer)super.reqInformWorkplaceCode();
+		public Informer reqInformBusinessFacilityCode() {
+			return (Informer)super.reqInformBusinessFacilityCode();
 		}
-
 		@Override
 		public Informer reqInformProductCode() {
 			return (Informer)super.reqInformProductCode();
 		}
-
 		@Override
-		public Informer reqInformManufacturingNumber() {
-			return (Informer)super.reqInformManufacturingNumber();
+		public Informer reqInformProductionNumber() {
+			return (Informer)super.reqInformProductionNumber();
 		}
-
 		@Override
-		public Informer reqInformDateOfManufacture() {
-			return (Informer)super.reqInformDateOfManufacture();
+		public Informer reqInformProductionDate() {
+			return (Informer)super.reqInformProductionDate();
 		}
-
 		@Override
-		public Informer reqInformPowerSaving() {
-			return (Informer)super.reqInformPowerSaving();
+		public Informer reqInformPowerSavingOperationSetting() {
+			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Informer reqInformLocation() {
-			return (Informer)super.reqInformLocation();
+		public Informer reqInformPositionInformation() {
+			return (Informer)super.reqInformPositionInformation();
 		}
-
 		@Override
-		public Informer reqInformCurrentTime() {
-			return (Informer)super.reqInformCurrentTime();
+		public Informer reqInformCurrentTimeSetting() {
+			return (Informer)super.reqInformCurrentTimeSetting();
 		}
-
 		@Override
-		public Informer reqInformCurrentDate() {
-			return (Informer)super.reqInformCurrentDate();
+		public Informer reqInformCurrentDateSetting() {
+			return (Informer)super.reqInformCurrentDateSetting();
 		}
-
 		@Override
-		public Informer reqInformPowerLimitation() {
-			return (Informer)super.reqInformPowerLimitation();
+		public Informer reqInformPowerLimitSetting() {
+			return (Informer)super.reqInformPowerLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformWorkingTime() {
-			return (Informer)super.reqInformWorkingTime();
+		public Informer reqInformCumulativeOperatingTime() {
+			return (Informer)super.reqInformCumulativeOperatingTime();
 		}
-
 		@Override
-		public Informer reqInformAnnoPropertyMap() {
-			return (Informer)super.reqInformAnnoPropertyMap();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
+			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformSetPropertyMap() {
 			return (Informer)super.reqInformSetPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
@@ -1755,11 +1571,6 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			return this;
 		}
 		@Override
-		public Informer reqInformPowerSavingOperationSetting() {
-			addProperty(EPC_POWER_SAVING_OPERATION_SETTING);
-			return this;
-		}
-		@Override
 		public Informer reqInformSpecialOperationModeSetting() {
 			addProperty(EPC_SPECIAL_OPERATION_MODE_SETTING);
 			return this;
@@ -1774,6 +1585,5 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			addProperty(EPC_SEATING_DETECTION_STATUS);
 			return this;
 		}
-
 	}
 }

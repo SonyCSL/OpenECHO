@@ -144,7 +144,7 @@ public final class Echo {
 		
 		EchoSocket.getSocket().start();
 		mNode = new EchoNode(profile, devices);
-		mNode.getProfile().inform().reqInformInstanceList().sendGroup();
+		mNode.getProfile().inform().reqInformInstanceListNotification().sendGroup();
 		return mNode;
 	}
 	

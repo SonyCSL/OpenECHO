@@ -55,83 +55,83 @@ public abstract class Battery extends DeviceObject {
 	}
 
 	/**
-	 * This property indicates the rated electric energy of the battery in Wh.<br>0x00000000-0x3B9AC9FF �i0-999,999,999Wh�j
+	 * This property indicates the rated electric energy of the battery in Wh.<br>0x00000000-0x3B9AC9FF �i0-999,999,999Wh�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getRatedElectricEnergy() {return null;}
 	/**
-	 * This property indicates the rated charging capacity of the battery in increments of 0.1Ah.<br>0x0000-0x7FFE�i0-3,276.6Ah�j
+	 * This property indicates the rated charging capacity of the battery in increments of 0.1Ah.<br>0x0000-0x7FFE�i0-3,276.6Ah�j<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getRatedCapacity() {return null;}
 	/**
-	 * This property indicates the rated voltage of the battery in volts.<br>0x0000-0x7FFE�i0-32,766V�j
+	 * This property indicates the rated voltage of the battery in volts.<br>0x0000-0x7FFE�i0-32,766V�j<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getRatedVoltage() {return null;}
 	/**
-	 * This property indicates the measured instantaneous charge/discharge electric energy in watts (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999W�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999W)�Fduring discharging (negative value)
+	 * This property indicates the measured instantaneous charge/discharge electric energy in watts (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999W�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999W)�Fduring discharging (negative value)<br><br>Data type : signed long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredInstantaneousChargeDischargEElectricEnergy() {return null;}
 	/**
-	 * This property indicates the measured instantaneous charge/discharge current in increments of 0.1A (positive/negative).<br>0x0001-0x7FFE�i0.1-3,276.6A�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7A�j�Fduring discharging (negative value)
+	 * This property indicates the measured instantaneous charge/discharge current in increments of 0.1A (positive/negative).<br>0x0001-0x7FFE�i0.1-3,276.6A�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7A�j�Fduring discharging (negative value)<br><br>Data type : signed short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredInstantaneousChargeDischargECurrent() {return null;}
 	/**
-	 * This property indicates the measured instantaneous charge/discharge voltage in volts (positive/negative).<br>0x0001-0x7FFE�i1-32,766V�j�Fduring charging (positive value), 0xFFFF-0x8001�i.1-.32,767V�j�F during discharging (negative value)
+	 * This property indicates the measured instantaneous charge/discharge voltage in volts (positive/negative).<br>0x0001-0x7FFE�i1-32,766V�j�Fduring charging (positive value), 0xFFFF-0x8001�i.1-.32,767V�j�F during discharging (negative value)<br><br>Data type : signed short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredInstantaneousChargeDischargEVoltage() {return null;}
 	/**
-	 * This property indicates the measured cumulative discharge electric energy in increments of 0.001kWh.<br>0x00000000-0x3B9AC9FF �i0-999,999.999kWh�j
+	 * This property indicates the measured cumulative discharge electric energy in increments of 0.001kWh.<br>0x00000000-0x3B9AC9FF �i0-999,999.999kWh�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredCumulativeDischargeElectricEnergy() {return null;}
 	/**
-	 * Resets �gMeasured cumulative discharge electric energy�h to zero.<br>Reset��0x00
+	 * Resets �gMeasured cumulative discharge electric energy�h to zero.<br>Reset��0x00<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : undefined
 	 */
 	protected boolean setGmeasuredCumulativeDischargeElectricEnergyHResetSetting(byte[] edt) {return false;}
 	/**
-	 * This property indicates the measured cumulative charge electric energy in increments of 0.001kWh.<br>0x00000000-0x3B9AC9FF �i0-999,999.999kWh�j
+	 * This property indicates the measured cumulative charge electric energy in increments of 0.001kWh.<br>0x00000000-0x3B9AC9FF �i0-999,999.999kWh�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredCumulativeChargeElectricEnergy() {return null;}
 	/**
-	 * Resets �gMeasured cumulative charge electric energy�h to zero.<br>Reset��0x00
+	 * Resets �gMeasured cumulative charge electric energy�h to zero.<br>Reset��0x00<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : undefined
 	 */
 	protected boolean setGmeasuredCumulativeChargeElectricEnergyHResetSetting(byte[] edt) {return false;}
 	/**
-	 * Sets the battery to one of the following operation modes: �gRapid charging,�h �gCharging,�h �gDischarging,�h �gStandby�h or �gTest.�h<br>Rapid charging��0x41, Charging�� 0x42, Discharging��0x43, Standby�� 0x44, Test=0x45
+	 * Sets the battery to one of the following operation modes: �gRapid charging,�h �gCharging,�h �gDischarging,�h �gStandby�h or �gTest.�h<br>Rapid charging��0x41, Charging�� 0x42, Discharging��0x43, Standby�� 0x44, Test=0x45<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 	 */
 	protected abstract boolean setOperationModeSettingSeeNote1(byte[] edt);
 	/**
-	 * Sets the battery to one of the following operation modes: �gRapid charging,�h �gCharging,�h �gDischarging,�h �gStandby�h or �gTest.�h<br>Rapid charging��0x41, Charging�� 0x42, Discharging��0x43, Standby�� 0x44, Test=0x45
+	 * Sets the battery to one of the following operation modes: �gRapid charging,�h �gCharging,�h �gDischarging,�h �gStandby�h or �gTest.�h<br>Rapid charging��0x41, Charging�� 0x42, Discharging��0x43, Standby�� 0x44, Test=0x45<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 	 */
 	protected abstract byte[] getOperationModeSettingSeeNote1();
 	/**
-	 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999Wh�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999Wh�j�Fduring discharging (negative value)
+	 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999Wh�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999Wh�j�Fduring discharging (negative value)<br><br>Data type : signed long<br>Data size : 4 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setChargingDischaRgingAmountSetting1SeeNote2(byte[] edt) {return false;}
 	/**
-	 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999Wh�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999Wh�j�Fduring discharging (negative value)
+	 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999Wh�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999Wh�j�Fduring discharging (negative value)<br><br>Data type : signed long<br>Data size : 4 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getChargingDischaRgingAmountSetting1SeeNote2() {return null;}
 	/**
-	 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>0x0001-0x7FFD�i0.1-3,276.6Ah�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7Ah�j�Fduring discharging (negative value)
+	 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>0x0001-0x7FFD�i0.1-3,276.6Ah�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7Ah�j�Fduring discharging (negative value)<br><br>Data type : signed short<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setChargingDischaRgingAmountSetting2SeeNote2(byte[] edt) {return false;}
 	/**
-	 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>0x0001-0x7FFD�i0.1-3,276.6Ah�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7Ah�j�Fduring discharging (negative value)
+	 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>0x0001-0x7FFD�i0.1-3,276.6Ah�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7Ah�j�Fduring discharging (negative value)<br><br>Data type : signed short<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getChargingDischaRgingAmountSetting2SeeNote2() {return null;}
 	/**
-	 * This property indicates the remaining stored electric energy in Wh.<br>0x00000000-0x3B9AC9FF �i0-999,999,999Wh�j
+	 * This property indicates the remaining stored electric energy in Wh.<br>0x00000000-0x3B9AC9FF �i0-999,999,999Wh�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getRemainingStoredElectricity1SeeNote3();
 	/**
-	 * This property indicates the remaining capacity in increments of 0.1Ah.<br>0x0000-0x7FFE�i0-3,276.6Ah�j
+	 * This property indicates the remaining capacity in increments of 0.1Ah.<br>0x0000-0x7FFE�i0-3,276.6Ah�j<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getRemainingStoredElectricity2SeeNote3();
 	/**
-	 * This  property indicates the charging rate of the battery in terms of percentage. (0-100%)<br>This  property indicates the battery state of health in terms of percentage. (0-100%)
+	 * This  property indicates the charging rate of the battery in terms of percentage. (0-100%)<br>This  property indicates the battery state of health in terms of percentage. (0-100%)<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getRemainingStoredElectricity3SeeNote3BateryStareOfHealth();
 	/**
-	 * This property indicates the battery type.<br>Type=0x00-0xFF
+	 * This property indicates the battery type.<br>Type=0x00-0xFF<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getBatteryType();
 
@@ -329,119 +329,118 @@ public abstract class Battery extends DeviceObject {
 		}
 		
 		/**
-		 * This property indicates the rated electric energy of the battery in Wh.<br>0x00000000-0x3B9AC9FF �i0-999,999,999Wh�j
+		 * This property indicates the rated electric energy of the battery in Wh.<br>0x00000000-0x3B9AC9FF �i0-999,999,999Wh�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetRatedElectricEnergy(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * This property indicates the rated charging capacity of the battery in increments of 0.1Ah.<br>0x0000-0x7FFE�i0-3,276.6Ah�j
+		 * This property indicates the rated charging capacity of the battery in increments of 0.1Ah.<br>0x0000-0x7FFE�i0-3,276.6Ah�j<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetRatedCapacity(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * This property indicates the rated voltage of the battery in volts.<br>0x0000-0x7FFE�i0-32,766V�j
+		 * This property indicates the rated voltage of the battery in volts.<br>0x0000-0x7FFE�i0-32,766V�j<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetRatedVoltage(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * This property indicates the measured instantaneous charge/discharge electric energy in watts (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999W�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999W)�Fduring discharging (negative value)
+		 * This property indicates the measured instantaneous charge/discharge electric energy in watts (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999W�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999W)�Fduring discharging (negative value)<br><br>Data type : signed long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMeasuredInstantaneousChargeDischargEElectricEnergy(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * This property indicates the measured instantaneous charge/discharge current in increments of 0.1A (positive/negative).<br>0x0001-0x7FFE�i0.1-3,276.6A�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7A�j�Fduring discharging (negative value)
+		 * This property indicates the measured instantaneous charge/discharge current in increments of 0.1A (positive/negative).<br>0x0001-0x7FFE�i0.1-3,276.6A�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7A�j�Fduring discharging (negative value)<br><br>Data type : signed short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMeasuredInstantaneousChargeDischargECurrent(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * This property indicates the measured instantaneous charge/discharge voltage in volts (positive/negative).<br>0x0001-0x7FFE�i1-32,766V�j�Fduring charging (positive value), 0xFFFF-0x8001�i.1-.32,767V�j�F during discharging (negative value)
+		 * This property indicates the measured instantaneous charge/discharge voltage in volts (positive/negative).<br>0x0001-0x7FFE�i1-32,766V�j�Fduring charging (positive value), 0xFFFF-0x8001�i.1-.32,767V�j�F during discharging (negative value)<br><br>Data type : signed short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMeasuredInstantaneousChargeDischargEVoltage(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * This property indicates the measured cumulative discharge electric energy in increments of 0.001kWh.<br>0x00000000-0x3B9AC9FF �i0-999,999.999kWh�j
+		 * This property indicates the measured cumulative discharge electric energy in increments of 0.001kWh.<br>0x00000000-0x3B9AC9FF �i0-999,999.999kWh�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMeasuredCumulativeDischargeElectricEnergy(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Resets �gMeasured cumulative discharge electric energy�h to zero.<br>Reset��0x00
+		 * Resets �gMeasured cumulative discharge electric energy�h to zero.<br>Reset��0x00<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : undefined
 		 */
 		protected void onSetGmeasuredCumulativeDischargeElectricEnergyHResetSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * This property indicates the measured cumulative charge electric energy in increments of 0.001kWh.<br>0x00000000-0x3B9AC9FF �i0-999,999.999kWh�j
+		 * This property indicates the measured cumulative charge electric energy in increments of 0.001kWh.<br>0x00000000-0x3B9AC9FF �i0-999,999.999kWh�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
 		 */
 		protected void onGetMeasuredCumulativeChargeElectricEnergy(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Resets �gMeasured cumulative charge electric energy�h to zero.<br>Reset��0x00
+		 * Resets �gMeasured cumulative charge electric energy�h to zero.<br>Reset��0x00<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : undefined
 		 */
 		protected void onSetGmeasuredCumulativeChargeElectricEnergyHResetSetting(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Sets the battery to one of the following operation modes: �gRapid charging,�h �gCharging,�h �gDischarging,�h �gStandby�h or �gTest.�h<br>Rapid charging��0x41, Charging�� 0x42, Discharging��0x43, Standby�� 0x44, Test=0x45
+		 * Sets the battery to one of the following operation modes: �gRapid charging,�h �gCharging,�h �gDischarging,�h �gStandby�h or �gTest.�h<br>Rapid charging��0x41, Charging�� 0x42, Discharging��0x43, Standby�� 0x44, Test=0x45<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
 		protected void onSetOperationModeSettingSeeNote1(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Sets the battery to one of the following operation modes: �gRapid charging,�h �gCharging,�h �gDischarging,�h �gStandby�h or �gTest.�h<br>Rapid charging��0x41, Charging�� 0x42, Discharging��0x43, Standby�� 0x44, Test=0x45
+		 * Sets the battery to one of the following operation modes: �gRapid charging,�h �gCharging,�h �gDischarging,�h �gStandby�h or �gTest.�h<br>Rapid charging��0x41, Charging�� 0x42, Discharging��0x43, Standby�� 0x44, Test=0x45<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
 		protected void onGetOperationModeSettingSeeNote1(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999Wh�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999Wh�j�Fduring discharging (negative value)
+		 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999Wh�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999Wh�j�Fduring discharging (negative value)<br><br>Data type : signed long<br>Data size : 4 Byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetChargingDischaRgingAmountSetting1SeeNote2(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999Wh�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999Wh�j�Fduring discharging (negative value)
+		 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999Wh�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999Wh�j�Fduring discharging (negative value)<br><br>Data type : signed long<br>Data size : 4 Byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetChargingDischaRgingAmountSetting1SeeNote2(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>0x0001-0x7FFD�i0.1-3,276.6Ah�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7Ah�j�Fduring discharging (negative value)
+		 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>0x0001-0x7FFD�i0.1-3,276.6Ah�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7Ah�j�Fduring discharging (negative value)<br><br>Data type : signed short<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onSetChargingDischaRgingAmountSetting2SeeNote2(EchoObject eoj, short tid, boolean success) {}
 		/**
-		 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>0x0001-0x7FFD�i0.1-3,276.6Ah�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7Ah�j�Fduring discharging (negative value)
+		 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>0x0001-0x7FFD�i0.1-3,276.6Ah�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7Ah�j�Fduring discharging (negative value)<br><br>Data type : signed short<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
 		 */
 		protected void onGetChargingDischaRgingAmountSetting2SeeNote2(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * This property indicates the remaining stored electric energy in Wh.<br>0x00000000-0x3B9AC9FF �i0-999,999,999Wh�j
+		 * This property indicates the remaining stored electric energy in Wh.<br>0x00000000-0x3B9AC9FF �i0-999,999,999Wh�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : mandatory
 		 */
 		protected void onGetRemainingStoredElectricity1SeeNote3(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * This property indicates the remaining capacity in increments of 0.1Ah.<br>0x0000-0x7FFE�i0-3,276.6Ah�j
+		 * This property indicates the remaining capacity in increments of 0.1Ah.<br>0x0000-0x7FFE�i0-3,276.6Ah�j<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : mandatory
 		 */
 		protected void onGetRemainingStoredElectricity2SeeNote3(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * This  property indicates the charging rate of the battery in terms of percentage. (0-100%)<br>This  property indicates the battery state of health in terms of percentage. (0-100%)
+		 * This  property indicates the charging rate of the battery in terms of percentage. (0-100%)<br>This  property indicates the battery state of health in terms of percentage. (0-100%)<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : mandatory
 		 */
 		protected void onGetRemainingStoredElectricity3SeeNote3BateryStareOfHealth(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 		/**
-		 * This property indicates the battery type.<br>Type=0x00-0xFF
+		 * This property indicates the battery type.<br>Type=0x00-0xFF<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : mandatory
 		 */
 		protected void onGetBatteryType(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
 
 	}
 	
 	public interface Setter extends DeviceObject.Setter {
-		public Setter reqSetPower(byte[] edt);
+		public Setter reqSetOperationStatus(byte[] edt);
 		public Setter reqSetInstallationLocation(byte[] edt);
-		public Setter reqSetCurrentLimiting(byte[] edt);
-		public Setter reqSetPowerSaving(byte[] edt);
-		public Setter reqSetLocation(byte[] edt);
-		public Setter reqSetCurrentTime(byte[] edt);
-		public Setter reqSetCurrentDate(byte[] edt);
-		public Setter reqSetPowerLimitation(byte[] edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
+		public Setter reqSetPositionInformation(byte[] edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt);
 		
 		/**
-		 * Resets �gMeasured cumulative discharge electric energy�h to zero.<br>Reset��0x00
+		 * Resets �gMeasured cumulative discharge electric energy�h to zero.<br>Reset��0x00<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : undefined
 		 */
 		public Setter reqSetGmeasuredCumulativeDischargeElectricEnergyHResetSetting(byte[] edt);
 		/**
-		 * Resets �gMeasured cumulative charge electric energy�h to zero.<br>Reset��0x00
+		 * Resets �gMeasured cumulative charge electric energy�h to zero.<br>Reset��0x00<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : undefined
 		 */
 		public Setter reqSetGmeasuredCumulativeChargeElectricEnergyHResetSetting(byte[] edt);
 		/**
-		 * Sets the battery to one of the following operation modes: �gRapid charging,�h �gCharging,�h �gDischarging,�h �gStandby�h or �gTest.�h<br>Rapid charging��0x41, Charging�� 0x42, Discharging��0x43, Standby�� 0x44, Test=0x45
+		 * Sets the battery to one of the following operation modes: �gRapid charging,�h �gCharging,�h �gDischarging,�h �gStandby�h or �gTest.�h<br>Rapid charging��0x41, Charging�� 0x42, Discharging��0x43, Standby�� 0x44, Test=0x45<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
 		public Setter reqSetOperationModeSettingSeeNote1(byte[] edt);
 		/**
-		 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999Wh�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999Wh�j�Fduring discharging (negative value)
+		 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999Wh�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999Wh�j�Fduring discharging (negative value)<br><br>Data type : signed long<br>Data size : 4 Byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetChargingDischaRgingAmountSetting1SeeNote2(byte[] edt);
 		/**
-		 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>0x0001-0x7FFD�i0.1-3,276.6Ah�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7Ah�j�Fduring discharging (negative value)
+		 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>0x0001-0x7FFD�i0.1-3,276.6Ah�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7Ah�j�Fduring discharging (negative value)<br><br>Data type : signed short<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
 		 */
 		public Setter reqSetChargingDischaRgingAmountSetting2SeeNote2(byte[] edt);
-
 	}
 
 	public class SetterImpl extends DeviceObject.SetterImpl implements Setter {
@@ -451,43 +450,36 @@ public abstract class Battery extends DeviceObject {
 		}
 		
 		@Override
-		public Setter reqSetPower(byte[] edt) {
-			return (Setter)super.reqSetPower(edt);
+		public Setter reqSetOperationStatus(byte[] edt) {
+			return (Setter)super.reqSetOperationStatus(edt);
 		}
-
 		@Override
 		public Setter reqSetInstallationLocation(byte[] edt) {
 			return (Setter)super.reqSetInstallationLocation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentLimiting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimiting(edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentLimitSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerSaving(byte[] edt) {
-			return (Setter)super.reqSetPowerSaving(edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetLocation(byte[] edt) {
-			return (Setter)super.reqSetLocation(edt);
+		public Setter reqSetPositionInformation(byte[] edt) {
+			return (Setter)super.reqSetPositionInformation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentTime(byte[] edt) {
-			return (Setter)super.reqSetCurrentTime(edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentTimeSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentDate(byte[] edt) {
-			return (Setter)super.reqSetCurrentDate(edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentDateSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerLimitation(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitation(edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
 		@Override
@@ -515,7 +507,6 @@ public abstract class Battery extends DeviceObject {
 			addProperty(EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING2_SEE_NOTE2, edt, setChargingDischaRgingAmountSetting2SeeNote2(edt));
 			return this;
 		}
-
 	}
 	
 	public class SetterProxy extends DeviceObject.SetterProxy implements Setter {
@@ -524,45 +515,37 @@ public abstract class Battery extends DeviceObject {
 			super(esv);
 		}
 
-		
 		@Override
-		public Setter reqSetPower(byte[] edt) {
-			return (Setter)super.reqSetPower(edt);
+		public Setter reqSetOperationStatus(byte[] edt) {
+			return (Setter)super.reqSetOperationStatus(edt);
 		}
-
 		@Override
 		public Setter reqSetInstallationLocation(byte[] edt) {
 			return (Setter)super.reqSetInstallationLocation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentLimiting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimiting(edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentLimitSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerSaving(byte[] edt) {
-			return (Setter)super.reqSetPowerSaving(edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetLocation(byte[] edt) {
-			return (Setter)super.reqSetLocation(edt);
+		public Setter reqSetPositionInformation(byte[] edt) {
+			return (Setter)super.reqSetPositionInformation(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentTime(byte[] edt) {
-			return (Setter)super.reqSetCurrentTime(edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentTimeSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetCurrentDate(byte[] edt) {
-			return (Setter)super.reqSetCurrentDate(edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentDateSetting(edt);
 		}
-
 		@Override
-		public Setter reqSetPowerLimitation(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitation(edt);
+		public Setter reqSetPowerLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
 		@Override
@@ -590,215 +573,190 @@ public abstract class Battery extends DeviceObject {
 			addProperty(EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING2_SEE_NOTE2, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-
 	}
 
 	public interface Getter extends DeviceObject.Getter {
-		public Getter reqGetPower();
+		public Getter reqGetOperationStatus();
 		public Getter reqGetInstallationLocation();
-		public Getter reqGetVersion();
-		public Getter reqGetIdNumber();
-		public Getter reqGetElectricityConsumption();
-		public Getter reqGetPowerConsumption();
-		public Getter reqGetMakerErrorCode();
-		public Getter reqGetCurrentLimiting();
-		public Getter reqGetError();
-		public Getter reqGetErrorInfo();
-		public Getter reqGetMakerCode();
-		public Getter reqGetWorkplaceCode();
+		public Getter reqGetStandardVersionInformation();
+		public Getter reqGetIdentificationNumber();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption();
+		public Getter reqGetManufacturersFaultCode();
+		public Getter reqGetCurrentLimitSetting();
+		public Getter reqGetFaultStatus();
+		public Getter reqGetFaultDescription();
+		public Getter reqGetManufacturerCode();
+		public Getter reqGetBusinessFacilityCode();
 		public Getter reqGetProductCode();
-		public Getter reqGetManufacturingNumber();
-		public Getter reqGetDateOfManufacture();
-		public Getter reqGetPowerSaving();
-		public Getter reqGetLocation();
-		public Getter reqGetCurrentTime();
-		public Getter reqGetCurrentDate();
-		public Getter reqGetPowerLimitation();
-		public Getter reqGetWorkingTime();
-		public Getter reqGetAnnoPropertyMap();
+		public Getter reqGetProductionNumber();
+		public Getter reqGetProductionDate();
+		public Getter reqGetPowerSavingOperationSetting();
+		public Getter reqGetPositionInformation();
+		public Getter reqGetCurrentTimeSetting();
+		public Getter reqGetCurrentDateSetting();
+		public Getter reqGetPowerLimitSetting();
+		public Getter reqGetCumulativeOperatingTime();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap();
 		public Getter reqGetSetPropertyMap();
 		public Getter reqGetGetPropertyMap();
 		
 		/**
-		 * This property indicates the rated electric energy of the battery in Wh.<br>0x00000000-0x3B9AC9FF �i0-999,999,999Wh�j
+		 * This property indicates the rated electric energy of the battery in Wh.<br>0x00000000-0x3B9AC9FF �i0-999,999,999Wh�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetRatedElectricEnergy();
 		/**
-		 * This property indicates the rated charging capacity of the battery in increments of 0.1Ah.<br>0x0000-0x7FFE�i0-3,276.6Ah�j
+		 * This property indicates the rated charging capacity of the battery in increments of 0.1Ah.<br>0x0000-0x7FFE�i0-3,276.6Ah�j<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetRatedCapacity();
 		/**
-		 * This property indicates the rated voltage of the battery in volts.<br>0x0000-0x7FFE�i0-32,766V�j
+		 * This property indicates the rated voltage of the battery in volts.<br>0x0000-0x7FFE�i0-32,766V�j<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetRatedVoltage();
 		/**
-		 * This property indicates the measured instantaneous charge/discharge electric energy in watts (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999W�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999W)�Fduring discharging (negative value)
+		 * This property indicates the measured instantaneous charge/discharge electric energy in watts (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999W�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999W)�Fduring discharging (negative value)<br><br>Data type : signed long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMeasuredInstantaneousChargeDischargEElectricEnergy();
 		/**
-		 * This property indicates the measured instantaneous charge/discharge current in increments of 0.1A (positive/negative).<br>0x0001-0x7FFE�i0.1-3,276.6A�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7A�j�Fduring discharging (negative value)
+		 * This property indicates the measured instantaneous charge/discharge current in increments of 0.1A (positive/negative).<br>0x0001-0x7FFE�i0.1-3,276.6A�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7A�j�Fduring discharging (negative value)<br><br>Data type : signed short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMeasuredInstantaneousChargeDischargECurrent();
 		/**
-		 * This property indicates the measured instantaneous charge/discharge voltage in volts (positive/negative).<br>0x0001-0x7FFE�i1-32,766V�j�Fduring charging (positive value), 0xFFFF-0x8001�i.1-.32,767V�j�F during discharging (negative value)
+		 * This property indicates the measured instantaneous charge/discharge voltage in volts (positive/negative).<br>0x0001-0x7FFE�i1-32,766V�j�Fduring charging (positive value), 0xFFFF-0x8001�i.1-.32,767V�j�F during discharging (negative value)<br><br>Data type : signed short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMeasuredInstantaneousChargeDischargEVoltage();
 		/**
-		 * This property indicates the measured cumulative discharge electric energy in increments of 0.001kWh.<br>0x00000000-0x3B9AC9FF �i0-999,999.999kWh�j
+		 * This property indicates the measured cumulative discharge electric energy in increments of 0.001kWh.<br>0x00000000-0x3B9AC9FF �i0-999,999.999kWh�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMeasuredCumulativeDischargeElectricEnergy();
 		/**
-		 * This property indicates the measured cumulative charge electric energy in increments of 0.001kWh.<br>0x00000000-0x3B9AC9FF �i0-999,999.999kWh�j
+		 * This property indicates the measured cumulative charge electric energy in increments of 0.001kWh.<br>0x00000000-0x3B9AC9FF �i0-999,999.999kWh�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
 		 */
 		public Getter reqGetMeasuredCumulativeChargeElectricEnergy();
 		/**
-		 * Sets the battery to one of the following operation modes: �gRapid charging,�h �gCharging,�h �gDischarging,�h �gStandby�h or �gTest.�h<br>Rapid charging��0x41, Charging�� 0x42, Discharging��0x43, Standby�� 0x44, Test=0x45
+		 * Sets the battery to one of the following operation modes: �gRapid charging,�h �gCharging,�h �gDischarging,�h �gStandby�h or �gTest.�h<br>Rapid charging��0x41, Charging�� 0x42, Discharging��0x43, Standby�� 0x44, Test=0x45<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
 		public Getter reqGetOperationModeSettingSeeNote1();
 		/**
-		 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999Wh�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999Wh�j�Fduring discharging (negative value)
+		 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999Wh�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999Wh�j�Fduring discharging (negative value)<br><br>Data type : signed long<br>Data size : 4 Byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetChargingDischaRgingAmountSetting1SeeNote2();
 		/**
-		 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>0x0001-0x7FFD�i0.1-3,276.6Ah�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7Ah�j�Fduring discharging (negative value)
+		 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>0x0001-0x7FFD�i0.1-3,276.6Ah�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7Ah�j�Fduring discharging (negative value)<br><br>Data type : signed short<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
 		 */
 		public Getter reqGetChargingDischaRgingAmountSetting2SeeNote2();
 		/**
-		 * This property indicates the remaining stored electric energy in Wh.<br>0x00000000-0x3B9AC9FF �i0-999,999,999Wh�j
+		 * This property indicates the remaining stored electric energy in Wh.<br>0x00000000-0x3B9AC9FF �i0-999,999,999Wh�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : mandatory
 		 */
 		public Getter reqGetRemainingStoredElectricity1SeeNote3();
 		/**
-		 * This property indicates the remaining capacity in increments of 0.1Ah.<br>0x0000-0x7FFE�i0-3,276.6Ah�j
+		 * This property indicates the remaining capacity in increments of 0.1Ah.<br>0x0000-0x7FFE�i0-3,276.6Ah�j<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : mandatory
 		 */
 		public Getter reqGetRemainingStoredElectricity2SeeNote3();
 		/**
-		 * This  property indicates the charging rate of the battery in terms of percentage. (0-100%)<br>This  property indicates the battery state of health in terms of percentage. (0-100%)
+		 * This  property indicates the charging rate of the battery in terms of percentage. (0-100%)<br>This  property indicates the battery state of health in terms of percentage. (0-100%)<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : mandatory
 		 */
 		public Getter reqGetRemainingStoredElectricity3SeeNote3BateryStareOfHealth();
 		/**
-		 * This property indicates the battery type.<br>Type=0x00-0xFF
+		 * This property indicates the battery type.<br>Type=0x00-0xFF<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : mandatory
 		 */
 		public Getter reqGetBatteryType();
-
 	}
 	
 	public class GetterImpl extends DeviceObject.GetterImpl implements Getter {
 
 		@Override
-		public Getter reqGetPower() {
-			return (Getter)super.reqGetPower();
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
 		}
-
 		@Override
 		public Getter reqGetInstallationLocation() {
 			return (Getter)super.reqGetInstallationLocation();
 		}
-
 		@Override
-		public Getter reqGetVersion() {
-			return (Getter)super.reqGetVersion();
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
 		}
-
 		@Override
-		public Getter reqGetIdNumber() {
-			return (Getter)super.reqGetIdNumber();
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
 		}
-
 		@Override
-		public Getter reqGetElectricityConsumption() {
-			return (Getter)super.reqGetElectricityConsumption();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetPowerConsumption() {
-			return (Getter)super.reqGetPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetMakerErrorCode() {
-			return (Getter)super.reqGetMakerErrorCode();
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
 		}
-
 		@Override
-		public Getter reqGetCurrentLimiting() {
-			return (Getter)super.reqGetCurrentLimiting();
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetError() {
-			return (Getter)super.reqGetError();
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
 		}
-
 		@Override
-		public Getter reqGetErrorInfo() {
-			return (Getter)super.reqGetErrorInfo();
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
 		}
-
 		@Override
-		public Getter reqGetMakerCode() {
-			return (Getter)super.reqGetMakerCode();
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
 		}
-
 		@Override
-		public Getter reqGetWorkplaceCode() {
-			return (Getter)super.reqGetWorkplaceCode();
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
 		}
-
 		@Override
 		public Getter reqGetProductCode() {
 			return (Getter)super.reqGetProductCode();
 		}
-
 		@Override
-		public Getter reqGetManufacturingNumber() {
-			return (Getter)super.reqGetManufacturingNumber();
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
 		}
-
 		@Override
-		public Getter reqGetDateOfManufacture() {
-			return (Getter)super.reqGetDateOfManufacture();
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
 		}
-
 		@Override
-		public Getter reqGetPowerSaving() {
-			return (Getter)super.reqGetPowerSaving();
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Getter reqGetLocation() {
-			return (Getter)super.reqGetLocation();
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
 		}
-
 		@Override
-		public Getter reqGetCurrentTime() {
-			return (Getter)super.reqGetCurrentTime();
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
 		}
-
 		@Override
-		public Getter reqGetCurrentDate() {
-			return (Getter)super.reqGetCurrentDate();
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
 		}
-
 		@Override
-		public Getter reqGetPowerLimitation() {
-			return (Getter)super.reqGetPowerLimitation();
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetWorkingTime() {
-			return (Getter)super.reqGetWorkingTime();
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
 		}
-
 		@Override
-		public Getter reqGetAnnoPropertyMap() {
-			return (Getter)super.reqGetAnnoPropertyMap();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetSetPropertyMap() {
 			return (Getter)super.reqGetSetPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetGetPropertyMap() {
 			return (Getter)super.reqGetGetPropertyMap();
@@ -894,126 +852,102 @@ public abstract class Battery extends DeviceObject {
 			addProperty(EPC_BATTERY_TYPE, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-
 	}
 
 	public class GetterProxy extends DeviceObject.GetterProxy implements Getter {
 
 		@Override
-		public Getter reqGetPower() {
-			return (Getter)super.reqGetPower();
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
 		}
-
 		@Override
 		public Getter reqGetInstallationLocation() {
 			return (Getter)super.reqGetInstallationLocation();
 		}
-
 		@Override
-		public Getter reqGetVersion() {
-			return (Getter)super.reqGetVersion();
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
 		}
-
 		@Override
-		public Getter reqGetIdNumber() {
-			return (Getter)super.reqGetIdNumber();
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
 		}
-
 		@Override
-		public Getter reqGetElectricityConsumption() {
-			return (Getter)super.reqGetElectricityConsumption();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetPowerConsumption() {
-			return (Getter)super.reqGetPowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Getter reqGetMakerErrorCode() {
-			return (Getter)super.reqGetMakerErrorCode();
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
 		}
-
 		@Override
-		public Getter reqGetCurrentLimiting() {
-			return (Getter)super.reqGetCurrentLimiting();
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetError() {
-			return (Getter)super.reqGetError();
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
 		}
-
 		@Override
-		public Getter reqGetErrorInfo() {
-			return (Getter)super.reqGetErrorInfo();
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
 		}
-
 		@Override
-		public Getter reqGetMakerCode() {
-			return (Getter)super.reqGetMakerCode();
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
 		}
-
 		@Override
-		public Getter reqGetWorkplaceCode() {
-			return (Getter)super.reqGetWorkplaceCode();
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
 		}
-
 		@Override
 		public Getter reqGetProductCode() {
 			return (Getter)super.reqGetProductCode();
 		}
-
 		@Override
-		public Getter reqGetManufacturingNumber() {
-			return (Getter)super.reqGetManufacturingNumber();
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
 		}
-
 		@Override
-		public Getter reqGetDateOfManufacture() {
-			return (Getter)super.reqGetDateOfManufacture();
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
 		}
-
 		@Override
-		public Getter reqGetPowerSaving() {
-			return (Getter)super.reqGetPowerSaving();
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Getter reqGetLocation() {
-			return (Getter)super.reqGetLocation();
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
 		}
-
 		@Override
-		public Getter reqGetCurrentTime() {
-			return (Getter)super.reqGetCurrentTime();
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
 		}
-
 		@Override
-		public Getter reqGetCurrentDate() {
-			return (Getter)super.reqGetCurrentDate();
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
 		}
-
 		@Override
-		public Getter reqGetPowerLimitation() {
-			return (Getter)super.reqGetPowerLimitation();
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
 		}
-
 		@Override
-		public Getter reqGetWorkingTime() {
-			return (Getter)super.reqGetWorkingTime();
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
 		}
-
 		@Override
-		public Getter reqGetAnnoPropertyMap() {
-			return (Getter)super.reqGetAnnoPropertyMap();
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetSetPropertyMap() {
 			return (Getter)super.reqGetSetPropertyMap();
 		}
-
 		@Override
 		public Getter reqGetGetPropertyMap() {
 			return (Getter)super.reqGetGetPropertyMap();
@@ -1094,215 +1028,190 @@ public abstract class Battery extends DeviceObject {
 			addProperty(EPC_BATTERY_TYPE);
 			return this;
 		}
-
 	}
 	
 	public interface Informer extends DeviceObject.Informer {
-		public Informer reqInformPower();
+		public Informer reqInformOperationStatus();
 		public Informer reqInformInstallationLocation();
-		public Informer reqInformVersion();
-		public Informer reqInformIdNumber();
-		public Informer reqInformElectricityConsumption();
-		public Informer reqInformPowerConsumption();
-		public Informer reqInformMakerErrorCode();
-		public Informer reqInformCurrentLimiting();
-		public Informer reqInformError();
-		public Informer reqInformErrorInfo();
-		public Informer reqInformMakerCode();
-		public Informer reqInformWorkplaceCode();
+		public Informer reqInformStandardVersionInformation();
+		public Informer reqInformIdentificationNumber();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption();
+		public Informer reqInformManufacturersFaultCode();
+		public Informer reqInformCurrentLimitSetting();
+		public Informer reqInformFaultStatus();
+		public Informer reqInformFaultDescription();
+		public Informer reqInformManufacturerCode();
+		public Informer reqInformBusinessFacilityCode();
 		public Informer reqInformProductCode();
-		public Informer reqInformManufacturingNumber();
-		public Informer reqInformDateOfManufacture();
-		public Informer reqInformPowerSaving();
-		public Informer reqInformLocation();
-		public Informer reqInformCurrentTime();
-		public Informer reqInformCurrentDate();
-		public Informer reqInformPowerLimitation();
-		public Informer reqInformWorkingTime();
-		public Informer reqInformAnnoPropertyMap();
+		public Informer reqInformProductionNumber();
+		public Informer reqInformProductionDate();
+		public Informer reqInformPowerSavingOperationSetting();
+		public Informer reqInformPositionInformation();
+		public Informer reqInformCurrentTimeSetting();
+		public Informer reqInformCurrentDateSetting();
+		public Informer reqInformPowerLimitSetting();
+		public Informer reqInformCumulativeOperatingTime();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap();
 		public Informer reqInformSetPropertyMap();
 		public Informer reqInformGetPropertyMap();
 		
 		/**
-		 * This property indicates the rated electric energy of the battery in Wh.<br>0x00000000-0x3B9AC9FF �i0-999,999,999Wh�j
+		 * This property indicates the rated electric energy of the battery in Wh.<br>0x00000000-0x3B9AC9FF �i0-999,999,999Wh�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformRatedElectricEnergy();
 		/**
-		 * This property indicates the rated charging capacity of the battery in increments of 0.1Ah.<br>0x0000-0x7FFE�i0-3,276.6Ah�j
+		 * This property indicates the rated charging capacity of the battery in increments of 0.1Ah.<br>0x0000-0x7FFE�i0-3,276.6Ah�j<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformRatedCapacity();
 		/**
-		 * This property indicates the rated voltage of the battery in volts.<br>0x0000-0x7FFE�i0-32,766V�j
+		 * This property indicates the rated voltage of the battery in volts.<br>0x0000-0x7FFE�i0-32,766V�j<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformRatedVoltage();
 		/**
-		 * This property indicates the measured instantaneous charge/discharge electric energy in watts (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999W�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999W)�Fduring discharging (negative value)
+		 * This property indicates the measured instantaneous charge/discharge electric energy in watts (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999W�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999W)�Fduring discharging (negative value)<br><br>Data type : signed long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMeasuredInstantaneousChargeDischargEElectricEnergy();
 		/**
-		 * This property indicates the measured instantaneous charge/discharge current in increments of 0.1A (positive/negative).<br>0x0001-0x7FFE�i0.1-3,276.6A�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7A�j�Fduring discharging (negative value)
+		 * This property indicates the measured instantaneous charge/discharge current in increments of 0.1A (positive/negative).<br>0x0001-0x7FFE�i0.1-3,276.6A�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7A�j�Fduring discharging (negative value)<br><br>Data type : signed short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMeasuredInstantaneousChargeDischargECurrent();
 		/**
-		 * This property indicates the measured instantaneous charge/discharge voltage in volts (positive/negative).<br>0x0001-0x7FFE�i1-32,766V�j�Fduring charging (positive value), 0xFFFF-0x8001�i.1-.32,767V�j�F during discharging (negative value)
+		 * This property indicates the measured instantaneous charge/discharge voltage in volts (positive/negative).<br>0x0001-0x7FFE�i1-32,766V�j�Fduring charging (positive value), 0xFFFF-0x8001�i.1-.32,767V�j�F during discharging (negative value)<br><br>Data type : signed short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMeasuredInstantaneousChargeDischargEVoltage();
 		/**
-		 * This property indicates the measured cumulative discharge electric energy in increments of 0.001kWh.<br>0x00000000-0x3B9AC9FF �i0-999,999.999kWh�j
+		 * This property indicates the measured cumulative discharge electric energy in increments of 0.001kWh.<br>0x00000000-0x3B9AC9FF �i0-999,999.999kWh�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMeasuredCumulativeDischargeElectricEnergy();
 		/**
-		 * This property indicates the measured cumulative charge electric energy in increments of 0.001kWh.<br>0x00000000-0x3B9AC9FF �i0-999,999.999kWh�j
+		 * This property indicates the measured cumulative charge electric energy in increments of 0.001kWh.<br>0x00000000-0x3B9AC9FF �i0-999,999.999kWh�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
 		 */
 		public Informer reqInformMeasuredCumulativeChargeElectricEnergy();
 		/**
-		 * Sets the battery to one of the following operation modes: �gRapid charging,�h �gCharging,�h �gDischarging,�h �gStandby�h or �gTest.�h<br>Rapid charging��0x41, Charging�� 0x42, Discharging��0x43, Standby�� 0x44, Test=0x45
+		 * Sets the battery to one of the following operation modes: �gRapid charging,�h �gCharging,�h �gDischarging,�h �gStandby�h or �gTest.�h<br>Rapid charging��0x41, Charging�� 0x42, Discharging��0x43, Standby�� 0x44, Test=0x45<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
 		public Informer reqInformOperationModeSettingSeeNote1();
 		/**
-		 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999Wh�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999Wh�j�Fduring discharging (negative value)
+		 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999Wh�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999Wh�j�Fduring discharging (negative value)<br><br>Data type : signed long<br>Data size : 4 Byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformChargingDischaRgingAmountSetting1SeeNote2();
 		/**
-		 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>0x0001-0x7FFD�i0.1-3,276.6Ah�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7Ah�j�Fduring discharging (negative value)
+		 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>0x0001-0x7FFD�i0.1-3,276.6Ah�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7Ah�j�Fduring discharging (negative value)<br><br>Data type : signed short<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
 		 */
 		public Informer reqInformChargingDischaRgingAmountSetting2SeeNote2();
 		/**
-		 * This property indicates the remaining stored electric energy in Wh.<br>0x00000000-0x3B9AC9FF �i0-999,999,999Wh�j
+		 * This property indicates the remaining stored electric energy in Wh.<br>0x00000000-0x3B9AC9FF �i0-999,999,999Wh�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : mandatory
 		 */
 		public Informer reqInformRemainingStoredElectricity1SeeNote3();
 		/**
-		 * This property indicates the remaining capacity in increments of 0.1Ah.<br>0x0000-0x7FFE�i0-3,276.6Ah�j
+		 * This property indicates the remaining capacity in increments of 0.1Ah.<br>0x0000-0x7FFE�i0-3,276.6Ah�j<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : mandatory
 		 */
 		public Informer reqInformRemainingStoredElectricity2SeeNote3();
 		/**
-		 * This  property indicates the charging rate of the battery in terms of percentage. (0-100%)<br>This  property indicates the battery state of health in terms of percentage. (0-100%)
+		 * This  property indicates the charging rate of the battery in terms of percentage. (0-100%)<br>This  property indicates the battery state of health in terms of percentage. (0-100%)<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : mandatory
 		 */
 		public Informer reqInformRemainingStoredElectricity3SeeNote3BateryStareOfHealth();
 		/**
-		 * This property indicates the battery type.<br>Type=0x00-0xFF
+		 * This property indicates the battery type.<br>Type=0x00-0xFF<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : mandatory
 		 */
 		public Informer reqInformBatteryType();
-
 	}
 
 	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
 
 		@Override
-		public Informer reqInformPower() {
-			return (Informer)super.reqInformPower();
+		public Informer reqInformOperationStatus() {
+			return (Informer)super.reqInformOperationStatus();
 		}
-
 		@Override
 		public Informer reqInformInstallationLocation() {
 			return (Informer)super.reqInformInstallationLocation();
 		}
-
 		@Override
-		public Informer reqInformVersion() {
-			return (Informer)super.reqInformVersion();
+		public Informer reqInformStandardVersionInformation() {
+			return (Informer)super.reqInformStandardVersionInformation();
 		}
-
 		@Override
-		public Informer reqInformIdNumber() {
-			return (Informer)super.reqInformIdNumber();
+		public Informer reqInformIdentificationNumber() {
+			return (Informer)super.reqInformIdentificationNumber();
 		}
-
 		@Override
-		public Informer reqInformElectricityConsumption() {
-			return (Informer)super.reqInformElectricityConsumption();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
+			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformPowerConsumption() {
-			return (Informer)super.reqInformPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption() {
+			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformMakerErrorCode() {
-			return (Informer)super.reqInformMakerErrorCode();
+		public Informer reqInformManufacturersFaultCode() {
+			return (Informer)super.reqInformManufacturersFaultCode();
 		}
-
 		@Override
-		public Informer reqInformCurrentLimiting() {
-			return (Informer)super.reqInformCurrentLimiting();
+		public Informer reqInformCurrentLimitSetting() {
+			return (Informer)super.reqInformCurrentLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformError() {
-			return (Informer)super.reqInformError();
+		public Informer reqInformFaultStatus() {
+			return (Informer)super.reqInformFaultStatus();
 		}
-
 		@Override
-		public Informer reqInformErrorInfo() {
-			return (Informer)super.reqInformErrorInfo();
+		public Informer reqInformFaultDescription() {
+			return (Informer)super.reqInformFaultDescription();
 		}
-
 		@Override
-		public Informer reqInformMakerCode() {
-			return (Informer)super.reqInformMakerCode();
+		public Informer reqInformManufacturerCode() {
+			return (Informer)super.reqInformManufacturerCode();
 		}
-
 		@Override
-		public Informer reqInformWorkplaceCode() {
-			return (Informer)super.reqInformWorkplaceCode();
+		public Informer reqInformBusinessFacilityCode() {
+			return (Informer)super.reqInformBusinessFacilityCode();
 		}
-
 		@Override
 		public Informer reqInformProductCode() {
 			return (Informer)super.reqInformProductCode();
 		}
-
 		@Override
-		public Informer reqInformManufacturingNumber() {
-			return (Informer)super.reqInformManufacturingNumber();
+		public Informer reqInformProductionNumber() {
+			return (Informer)super.reqInformProductionNumber();
 		}
-
 		@Override
-		public Informer reqInformDateOfManufacture() {
-			return (Informer)super.reqInformDateOfManufacture();
+		public Informer reqInformProductionDate() {
+			return (Informer)super.reqInformProductionDate();
 		}
-
 		@Override
-		public Informer reqInformPowerSaving() {
-			return (Informer)super.reqInformPowerSaving();
+		public Informer reqInformPowerSavingOperationSetting() {
+			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Informer reqInformLocation() {
-			return (Informer)super.reqInformLocation();
+		public Informer reqInformPositionInformation() {
+			return (Informer)super.reqInformPositionInformation();
 		}
-
 		@Override
-		public Informer reqInformCurrentTime() {
-			return (Informer)super.reqInformCurrentTime();
+		public Informer reqInformCurrentTimeSetting() {
+			return (Informer)super.reqInformCurrentTimeSetting();
 		}
-
 		@Override
-		public Informer reqInformCurrentDate() {
-			return (Informer)super.reqInformCurrentDate();
+		public Informer reqInformCurrentDateSetting() {
+			return (Informer)super.reqInformCurrentDateSetting();
 		}
-
 		@Override
-		public Informer reqInformPowerLimitation() {
-			return (Informer)super.reqInformPowerLimitation();
+		public Informer reqInformPowerLimitSetting() {
+			return (Informer)super.reqInformPowerLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformWorkingTime() {
-			return (Informer)super.reqInformWorkingTime();
+		public Informer reqInformCumulativeOperatingTime() {
+			return (Informer)super.reqInformCumulativeOperatingTime();
 		}
-
 		@Override
-		public Informer reqInformAnnoPropertyMap() {
-			return (Informer)super.reqInformAnnoPropertyMap();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
+			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformSetPropertyMap() {
 			return (Informer)super.reqInformSetPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
@@ -1398,126 +1307,102 @@ public abstract class Battery extends DeviceObject {
 			addProperty(EPC_BATTERY_TYPE, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-
 	}
 	
 	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
 
 		@Override
-		public Informer reqInformPower() {
-			return (Informer)super.reqInformPower();
+		public Informer reqInformOperationStatus() {
+			return (Informer)super.reqInformOperationStatus();
 		}
-
 		@Override
 		public Informer reqInformInstallationLocation() {
 			return (Informer)super.reqInformInstallationLocation();
 		}
-
 		@Override
-		public Informer reqInformVersion() {
-			return (Informer)super.reqInformVersion();
+		public Informer reqInformStandardVersionInformation() {
+			return (Informer)super.reqInformStandardVersionInformation();
 		}
-
 		@Override
-		public Informer reqInformIdNumber() {
-			return (Informer)super.reqInformIdNumber();
+		public Informer reqInformIdentificationNumber() {
+			return (Informer)super.reqInformIdentificationNumber();
 		}
-
 		@Override
-		public Informer reqInformElectricityConsumption() {
-			return (Informer)super.reqInformElectricityConsumption();
+		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
+			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformPowerConsumption() {
-			return (Informer)super.reqInformPowerConsumption();
+		public Informer reqInformMeasuredCumulativePowerConsumption() {
+			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
 		}
-
 		@Override
-		public Informer reqInformMakerErrorCode() {
-			return (Informer)super.reqInformMakerErrorCode();
+		public Informer reqInformManufacturersFaultCode() {
+			return (Informer)super.reqInformManufacturersFaultCode();
 		}
-
 		@Override
-		public Informer reqInformCurrentLimiting() {
-			return (Informer)super.reqInformCurrentLimiting();
+		public Informer reqInformCurrentLimitSetting() {
+			return (Informer)super.reqInformCurrentLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformError() {
-			return (Informer)super.reqInformError();
+		public Informer reqInformFaultStatus() {
+			return (Informer)super.reqInformFaultStatus();
 		}
-
 		@Override
-		public Informer reqInformErrorInfo() {
-			return (Informer)super.reqInformErrorInfo();
+		public Informer reqInformFaultDescription() {
+			return (Informer)super.reqInformFaultDescription();
 		}
-
 		@Override
-		public Informer reqInformMakerCode() {
-			return (Informer)super.reqInformMakerCode();
+		public Informer reqInformManufacturerCode() {
+			return (Informer)super.reqInformManufacturerCode();
 		}
-
 		@Override
-		public Informer reqInformWorkplaceCode() {
-			return (Informer)super.reqInformWorkplaceCode();
+		public Informer reqInformBusinessFacilityCode() {
+			return (Informer)super.reqInformBusinessFacilityCode();
 		}
-
 		@Override
 		public Informer reqInformProductCode() {
 			return (Informer)super.reqInformProductCode();
 		}
-
 		@Override
-		public Informer reqInformManufacturingNumber() {
-			return (Informer)super.reqInformManufacturingNumber();
+		public Informer reqInformProductionNumber() {
+			return (Informer)super.reqInformProductionNumber();
 		}
-
 		@Override
-		public Informer reqInformDateOfManufacture() {
-			return (Informer)super.reqInformDateOfManufacture();
+		public Informer reqInformProductionDate() {
+			return (Informer)super.reqInformProductionDate();
 		}
-
 		@Override
-		public Informer reqInformPowerSaving() {
-			return (Informer)super.reqInformPowerSaving();
+		public Informer reqInformPowerSavingOperationSetting() {
+			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
-
 		@Override
-		public Informer reqInformLocation() {
-			return (Informer)super.reqInformLocation();
+		public Informer reqInformPositionInformation() {
+			return (Informer)super.reqInformPositionInformation();
 		}
-
 		@Override
-		public Informer reqInformCurrentTime() {
-			return (Informer)super.reqInformCurrentTime();
+		public Informer reqInformCurrentTimeSetting() {
+			return (Informer)super.reqInformCurrentTimeSetting();
 		}
-
 		@Override
-		public Informer reqInformCurrentDate() {
-			return (Informer)super.reqInformCurrentDate();
+		public Informer reqInformCurrentDateSetting() {
+			return (Informer)super.reqInformCurrentDateSetting();
 		}
-
 		@Override
-		public Informer reqInformPowerLimitation() {
-			return (Informer)super.reqInformPowerLimitation();
+		public Informer reqInformPowerLimitSetting() {
+			return (Informer)super.reqInformPowerLimitSetting();
 		}
-
 		@Override
-		public Informer reqInformWorkingTime() {
-			return (Informer)super.reqInformWorkingTime();
+		public Informer reqInformCumulativeOperatingTime() {
+			return (Informer)super.reqInformCumulativeOperatingTime();
 		}
-
 		@Override
-		public Informer reqInformAnnoPropertyMap() {
-			return (Informer)super.reqInformAnnoPropertyMap();
+		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
+			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformSetPropertyMap() {
 			return (Informer)super.reqInformSetPropertyMap();
 		}
-
 		@Override
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
@@ -1598,6 +1483,5 @@ public abstract class Battery extends DeviceObject {
 			addProperty(EPC_BATTERY_TYPE);
 			return this;
 		}
-
 	}
 }
