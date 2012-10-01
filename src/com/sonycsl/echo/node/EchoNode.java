@@ -159,6 +159,44 @@ public class EchoNode {
 		return (byte) ((list.indexOf(device) + 1) & 0xFF);
 	}
 	
+	public byte[] getNumberOfSelfNodeClasses() {
+		byte[] ret = new byte[2];
+		int size = getDeviceGroupList().size();
+		ret[0] = (byte)((size >> 8) & 0xFF);
+		ret[1] = (byte)(size & 0xFF);
+		return ret;
+	}
+	
+	public byte[] getSelfNodeClassList() {
+		List<DeviceObject[]>  groupList = getDeviceGroupList();
+		int size = groupList.size();
+		byte[] ret;
+		if(size > 8) {
+			ret = new byte[17];
+		} else {
+			ret = new byte[size * 2 + 1];
+		}
+		ret[0] = (byte)(size & 0xFF);
+		for(int i = 0; i < 8 && i < size; i++) {
+			ret[i*2+1] = groupList.get(i)[0].getClassGroupCode();
+			ret[i*2+2] = groupList.get(i)[1].getClassCode();
+		}
+		return ret;
+	}
+	
+	public List<DeviceObject[]> getDeviceGroupList() {
+
+		List<DeviceObject[]> ret = new ArrayList<DeviceObject[]>();
+		for(short code : mDeviceGroups.keySet()) {
+			List<DeviceObject> list = new ArrayList<DeviceObject>(mDeviceGroups.get(code));
+			list.remove(null);
+			if(!list.isEmpty()) {
+				ret.add(list.toArray(new DeviceObject[]{}));
+			}
+		}
+		return ret;
+	}
+	
 	public InetAddress getAddress() {
 		return mAddress;
 	}

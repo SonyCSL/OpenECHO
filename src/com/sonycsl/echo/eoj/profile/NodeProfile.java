@@ -119,7 +119,9 @@ public abstract class NodeProfile extends ProfileObject {
 	 * アクセスルール:Get(必須)
 	 */
 	
-	protected abstract byte[] getNumberOfSelfNodeClasses();
+	protected byte[] getNumberOfSelfNodeClasses() {
+		return getNode().getNumberOfSelfNodeClasses();
+	}
 	
 	/**
 	 * プロパティ名称:インスタンスリスト通知
@@ -147,7 +149,9 @@ public abstract class NodeProfile extends ProfileObject {
 	 * アクセスルール:Get(必須)
 	 */
 	
-	protected abstract byte[] getSelfNodeClassList();
+	protected byte[] getSelfNodeClassList() {
+		return getNode().getSelfNodeClassList();
+	}
 
 	@Override
 	protected final void onReceiveSet(EchoFrame res, byte epc, byte pdc, byte[] edt) {
