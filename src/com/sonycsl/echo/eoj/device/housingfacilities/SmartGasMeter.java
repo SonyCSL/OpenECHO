@@ -26,21 +26,21 @@ public abstract class SmartGasMeter extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x89;
 
-	protected static final byte EPC_GAS_METER_CLASSIFICATION = (byte)0xE0;
-	protected static final byte EPC_OWNER_CLASSIFICATION = (byte)0xE1;
-	protected static final byte EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION = (byte)0xE2;
-	protected static final byte EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS = (byte)0xE3;
-	protected static final byte EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS = (byte)0xE4;
-	protected static final byte EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED = (byte)0xE5;
-	protected static final byte EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA = (byte)0xE6;
-	protected static final byte EPC_SECURITY_DATA_INFORMATION = (byte)0xE7;
-	protected static final byte EPC_VALVE_CLOSURE_BY_THE_CENTER = (byte)0xE8;
-	protected static final byte EPC_PERMISSION_FROM_THE_CENTER_TO_REOPEN_THE_VALVE_CLOSED_BY_THE_CENTER = (byte)0xE9;
-	protected static final byte EPC_EMERGENCY_CLOSURE_OF_SHUTOFF_VALVE = (byte)0xEA;
-	protected static final byte EPC_SHUTOFF_VALVE_STATUS = (byte)0xEB;
-	protected static final byte EPC_HISTORICAL_DATA_OF_SHUTOFF_REASONS = (byte)0xEC;
-	protected static final byte EPC_ID_NUMBER_SETTING = (byte)0xED;
-	protected static final byte EPC_VERIFICATION_EXPIRATION_INFORMATION = (byte)0xEE;
+	public static final byte EPC_GAS_METER_CLASSIFICATION = (byte)0xE0;
+	public static final byte EPC_OWNER_CLASSIFICATION = (byte)0xE1;
+	public static final byte EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION = (byte)0xE2;
+	public static final byte EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS = (byte)0xE3;
+	public static final byte EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS = (byte)0xE4;
+	public static final byte EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED = (byte)0xE5;
+	public static final byte EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA = (byte)0xE6;
+	public static final byte EPC_SECURITY_DATA_INFORMATION = (byte)0xE7;
+	public static final byte EPC_VALVE_CLOSURE_BY_THE_CENTER = (byte)0xE8;
+	public static final byte EPC_PERMISSION_FROM_THE_CENTER_TO_REOPEN_THE_VALVE_CLOSED_BY_THE_CENTER = (byte)0xE9;
+	public static final byte EPC_EMERGENCY_CLOSURE_OF_SHUTOFF_VALVE = (byte)0xEA;
+	public static final byte EPC_SHUTOFF_VALVE_STATUS = (byte)0xEB;
+	public static final byte EPC_HISTORICAL_DATA_OF_SHUTOFF_REASONS = (byte)0xEC;
+	public static final byte EPC_ID_NUMBER_SETTING = (byte)0xED;
+	public static final byte EPC_VERIFICATION_EXPIRATION_INFORMATION = (byte)0xEE;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -56,82 +56,182 @@ public abstract class SmartGasMeter extends DeviceObject {
 	 * This property indicates the type of the gas meter.<br>0x30�Fcity gas 0x31�FLP gas 0x32�Fnatural gas 0x33�Fothers<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setGasMeterClassification(byte[] edt) {return false;}
+	private final boolean _setGasMeterClassification(byte epc, byte[] edt) {
+		boolean success = setGasMeterClassification(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * This property indicates the type of the gas meter.<br>0x30�Fcity gas 0x31�FLP gas 0x32�Fnatural gas 0x33�Fothers<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getGasMeterClassification() {return null;}
+	private final byte[] _getGasMeterClassification(byte epc) {
+		byte[] edt = getGasMeterClassification();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the type of the owner of the meter.<br>0x30�Fnot specified 0x31�Fcity gas 0x32�FLP gas 0x33�Fprivate-sector company 0x34�Findividual<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOwnerClassification(byte[] edt) {return false;}
+	private final boolean _setOwnerClassification(byte epc, byte[] edt) {
+		boolean success = setOwnerClassification(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * This property indicates the type of the owner of the meter.<br>0x30�Fnot specified 0x31�Fcity gas 0x32�FLP gas 0x33�Fprivate-sector company 0x34�Findividual<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOwnerClassification() {return null;}
+	private final byte[] _getOwnerClassification(byte epc) {
+		byte[] edt = getOwnerClassification();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the measured cumulative gas consumption in m3.<br>0-0x3B9AC9FF (0-999,999,999�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getMeasuredCumulativeGasConsumption();
+	private final byte[] _getMeasuredCumulativeGasConsumption(byte epc) {
+		byte[] edt = getMeasuredCumulativeGasConsumption();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the unit (multiplying factor) for the measured cumulative gas consumption and the historical data of measured cumulative gas consumptions.<br>0x00: 1��3 0x01: 0.1��3 0x02: 0.01��3 0x03: 0.001��3�iinitial value�j 0x04: 0.0001��3 0x05: 0.00001��3 0x06: 0.000001��3<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getUnitForMeasuredCumulativeGasConsumptions();
+	private final byte[] _getUnitForMeasuredCumulativeGasConsumptions(byte epc) {
+		byte[] edt = getUnitForMeasuredCumulativeGasConsumptions();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the day for which the historical data of measured cumulative gas consumptions is to be retrieved and the historical data of measured cumulative gas consumptions, which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>0x0000-0x0063: 0x0-0x3B9AC9FF (0-99) : (0-999,999.999�j<br><br>Data type : unsigned short �{ unsigned long �~48<br>Data size : 194 Byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getHistoricalDataOfMeasuredCumulativeGasConsumptions() {return null;}
+	private final byte[] _getHistoricalDataOfMeasuredCumulativeGasConsumptions(byte epc) {
+		byte[] edt = getHistoricalDataOfMeasuredCumulativeGasConsumptions();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the day for which the historical data of measured cumulative gas consumptions (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>0x00-0x63 ( 0-99) 0: current day 1 - 99: previous day - day that precedes the current day by 99 days<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(byte[] edt) {return false;}
+	private final boolean _setDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(byte epc, byte[] edt) {
+		boolean success = setDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * This property indicates the day for which the historical data of measured cumulative gas consumptions (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>0x00-0x63 ( 0-99) 0: current day 1 - 99: previous day - day that precedes the current day by 99 days<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved() {return null;}
+	private final byte[] _getDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(byte epc) {
+		byte[] edt = getDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates whether the meter has detected an abnormal value in the metering data.<br>Abnormal value detected: 0x41 No abnormal value detected: 0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
 	 */
 	protected byte[] getDetectionOfAbnormalValueInMeteringData() {return null;}
+	private final byte[] _getDetectionOfAbnormalValueInMeteringData(byte epc) {
+		byte[] edt = getDetectionOfAbnormalValueInMeteringData();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Provides security information about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>For details, refer to the explanations under (9).<br><br>Data type : unsigned char �~10<br>Data size : 10 Byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getSecurityDataInformation() {return null;}
+	private final byte[] _getSecurityDataInformation(byte epc) {
+		byte[] edt = getSecurityDataInformation();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates whether the Center has closed the gas shutoff valve of the meter.<br>Center has closed the valve: 0x41 Center has not closed the valve: 0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
 	 */
 	protected byte[] getValveClosureByTheCenter() {return null;}
+	private final byte[] _getValveClosureByTheCenter(byte epc) {
+		byte[] edt = getValveClosureByTheCenter();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates whether permission has been given by the Center to reopen the gas shutoff valve of the meter closed by the Center.<br>Permission has been given by the Center to reopen the gas shutoff valve closed by the Center: 0x41 Permission to reopen the gas shutoff valve closed by the Center has not been given by the Center: 0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getPermissionFromTheCenterToReopenTheValveClosedByTheCenter() {return null;}
+	private final byte[] _getPermissionFromTheCenterToReopenTheValveClosedByTheCenter(byte epc) {
+		byte[] edt = getPermissionFromTheCenterToReopenTheValveClosedByTheCenter();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates whether the gas shutoff valve of the meter has been closed in response to an emergency.<br>Emergency closure of the shutoff valve has occurred: 0x41 No emergency closure of the shutoff valve has occurred: 0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getEmergencyClosureOfShutoffValve() {return null;}
+	private final byte[] _getEmergencyClosureOfShutoffValve(byte epc) {
+		byte[] edt = getEmergencyClosureOfShutoffValve();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates whether the shutoff valve is open or closed.<br>Shutoff valve open: 0x41 Shutoff valve closed: 0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getShutoffValveStatus() {return null;}
+	private final byte[] _getShutoffValveStatus(byte epc) {
+		byte[] edt = getShutoffValveStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the reasons for the 3 past shutoff valve-based gas shutoffs by means of bit assignment with one byte used for each of the 3 shutoff reasons. Historical data3�FHistorical data2�FHistorical data 1<br>0xFF: 0xFF: 0xFF<br><br>Data type : unsigned char �~3<br>Data size : 3 Byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getHistoricalDataOfShutoffReasons() {return null;}
+	private final byte[] _getHistoricalDataOfShutoffReasons(byte epc) {
+		byte[] edt = getHistoricalDataOfShutoffReasons();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the ID number of the meter.<br>000000-FFFFFF �iInitial .value .: .�g000000�h�j<br><br>Data type : unsigned char<br>Data size : 6 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setIdNumberSetting(byte[] edt) {return false;}
+	private final boolean _setIdNumberSetting(byte epc, byte[] edt) {
+		boolean success = setIdNumberSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * This property indicates the ID number of the meter.<br>000000-FFFFFF �iInitial .value .: .�g000000�h�j<br><br>Data type : unsigned char<br>Data size : 6 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getIdNumberSetting() {return null;}
+	private final byte[] _getIdNumberSetting(byte epc) {
+		byte[] edt = getIdNumberSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the month and year in which the verification of the meter will expire.<br>YYYYMM YYYY�iYear�j�CMM�iMonth�j<br><br>Data type : unsigned char<br>Data size : 6 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setVerificationExpirationInformation(byte[] edt) {return false;}
+	private final boolean _setVerificationExpirationInformation(byte epc, byte[] edt) {
+		boolean success = setVerificationExpirationInformation(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * This property indicates the month and year in which the verification of the meter will expire.<br>YYYYMM YYYY�iYear�j�CMM�iMonth�j<br><br>Data type : unsigned char<br>Data size : 6 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getVerificationExpirationInformation() {return null;}
+	private final byte[] _getVerificationExpirationInformation(byte epc) {
+		byte[] edt = getVerificationExpirationInformation();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -139,19 +239,19 @@ public abstract class SmartGasMeter extends DeviceObject {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
 		case EPC_GAS_METER_CLASSIFICATION:
-			res.addProperty(epc, edt, setGasMeterClassification(edt));
+			res.addProperty(epc, edt, _setGasMeterClassification(epc, edt));
 			break;
 		case EPC_OWNER_CLASSIFICATION:
-			res.addProperty(epc, edt, setOwnerClassification(edt));
+			res.addProperty(epc, edt, _setOwnerClassification(epc, edt));
 			break;
 		case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED:
-			res.addProperty(epc, edt, setDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(edt));
+			res.addProperty(epc, edt, _setDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(epc, edt));
 			break;
 		case EPC_ID_NUMBER_SETTING:
-			res.addProperty(epc, edt, setIdNumberSetting(edt));
+			res.addProperty(epc, edt, _setIdNumberSetting(epc, edt));
 			break;
 		case EPC_VERIFICATION_EXPIRATION_INFORMATION:
-			res.addProperty(epc, edt, setVerificationExpirationInformation(edt));
+			res.addProperty(epc, edt, _setVerificationExpirationInformation(epc, edt));
 			break;
 
 		}
@@ -163,63 +263,63 @@ public abstract class SmartGasMeter extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_GAS_METER_CLASSIFICATION:
-			edt = getGasMeterClassification();
+			edt = _getGasMeterClassification(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_OWNER_CLASSIFICATION:
-			edt = getOwnerClassification();
+			edt = _getOwnerClassification(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION:
-			edt = getMeasuredCumulativeGasConsumption();
+			edt = _getMeasuredCumulativeGasConsumption(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			break;
 		case EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS:
-			edt = getUnitForMeasuredCumulativeGasConsumptions();
+			edt = _getUnitForMeasuredCumulativeGasConsumptions(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS:
-			edt = getHistoricalDataOfMeasuredCumulativeGasConsumptions();
+			edt = _getHistoricalDataOfMeasuredCumulativeGasConsumptions(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 194)));
 			break;
 		case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED:
-			edt = getDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved();
+			edt = _getDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA:
-			edt = getDetectionOfAbnormalValueInMeteringData();
+			edt = _getDetectionOfAbnormalValueInMeteringData(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SECURITY_DATA_INFORMATION:
-			edt = getSecurityDataInformation();
+			edt = _getSecurityDataInformation(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 10)));
 			break;
 		case EPC_VALVE_CLOSURE_BY_THE_CENTER:
-			edt = getValveClosureByTheCenter();
+			edt = _getValveClosureByTheCenter(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_PERMISSION_FROM_THE_CENTER_TO_REOPEN_THE_VALVE_CLOSED_BY_THE_CENTER:
-			edt = getPermissionFromTheCenterToReopenTheValveClosedByTheCenter();
+			edt = _getPermissionFromTheCenterToReopenTheValveClosedByTheCenter(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_EMERGENCY_CLOSURE_OF_SHUTOFF_VALVE:
-			edt = getEmergencyClosureOfShutoffValve();
+			edt = _getEmergencyClosureOfShutoffValve(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SHUTOFF_VALVE_STATUS:
-			edt = getShutoffValveStatus();
+			edt = _getShutoffValveStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_HISTORICAL_DATA_OF_SHUTOFF_REASONS:
-			edt = getHistoricalDataOfShutoffReasons();
+			edt = _getHistoricalDataOfShutoffReasons(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 3)));
 			break;
 		case EPC_ID_NUMBER_SETTING:
-			edt = getIdNumberSetting();
+			edt = _getIdNumberSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 6)));
 			break;
 		case EPC_VERIFICATION_EXPIRATION_INFORMATION:
-			edt = getVerificationExpirationInformation();
+			edt = _getVerificationExpirationInformation(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 6)));
 			break;
 
@@ -249,78 +349,76 @@ public abstract class SmartGasMeter extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_GAS_METER_CLASSIFICATION:
-				onSetGasMeterClassification(eoj, tid, (pdc != 0));
+				_onSetGasMeterClassification(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_OWNER_CLASSIFICATION:
-				onSetOwnerClassification(eoj, tid, (pdc != 0));
+				_onSetOwnerClassification(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED:
-				onSetDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(eoj, tid, (pdc != 0));
+				_onSetDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_ID_NUMBER_SETTING:
-				onSetIdNumberSetting(eoj, tid, (pdc != 0));
+				_onSetIdNumberSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_VERIFICATION_EXPIRATION_INFORMATION:
-				onSetVerificationExpirationInformation(eoj, tid, (pdc != 0));
+				_onSetVerificationExpirationInformation(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_GAS_METER_CLASSIFICATION:
-				onGetGasMeterClassification(eoj, tid, pdc, edt);
+				_onGetGasMeterClassification(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_OWNER_CLASSIFICATION:
-				onGetOwnerClassification(eoj, tid, pdc, edt);
+				_onGetOwnerClassification(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION:
-				onGetMeasuredCumulativeGasConsumption(eoj, tid, pdc, edt);
+				_onGetMeasuredCumulativeGasConsumption(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS:
-				onGetUnitForMeasuredCumulativeGasConsumptions(eoj, tid, pdc, edt);
+				_onGetUnitForMeasuredCumulativeGasConsumptions(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS:
-				onGetHistoricalDataOfMeasuredCumulativeGasConsumptions(eoj, tid, pdc, edt);
+				_onGetHistoricalDataOfMeasuredCumulativeGasConsumptions(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED:
-				onGetDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(eoj, tid, pdc, edt);
+				_onGetDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA:
-				onGetDetectionOfAbnormalValueInMeteringData(eoj, tid, pdc, edt);
+				_onGetDetectionOfAbnormalValueInMeteringData(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SECURITY_DATA_INFORMATION:
-				onGetSecurityDataInformation(eoj, tid, pdc, edt);
+				_onGetSecurityDataInformation(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_VALVE_CLOSURE_BY_THE_CENTER:
-				onGetValveClosureByTheCenter(eoj, tid, pdc, edt);
+				_onGetValveClosureByTheCenter(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_PERMISSION_FROM_THE_CENTER_TO_REOPEN_THE_VALVE_CLOSED_BY_THE_CENTER:
-				onGetPermissionFromTheCenterToReopenTheValveClosedByTheCenter(eoj, tid, pdc, edt);
+				_onGetPermissionFromTheCenterToReopenTheValveClosedByTheCenter(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_EMERGENCY_CLOSURE_OF_SHUTOFF_VALVE:
-				onGetEmergencyClosureOfShutoffValve(eoj, tid, pdc, edt);
+				_onGetEmergencyClosureOfShutoffValve(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SHUTOFF_VALVE_STATUS:
-				onGetShutoffValveStatus(eoj, tid, pdc, edt);
+				_onGetShutoffValveStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_HISTORICAL_DATA_OF_SHUTOFF_REASONS:
-				onGetHistoricalDataOfShutoffReasons(eoj, tid, pdc, edt);
+				_onGetHistoricalDataOfShutoffReasons(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_ID_NUMBER_SETTING:
-				onGetIdNumberSetting(eoj, tid, pdc, edt);
+				_onGetIdNumberSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_VERIFICATION_EXPIRATION_INFORMATION:
-				onGetVerificationExpirationInformation(eoj, tid, pdc, edt);
+				_onGetVerificationExpirationInformation(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -329,83 +427,163 @@ public abstract class SmartGasMeter extends DeviceObject {
 		/**
 		 * This property indicates the type of the gas meter.<br>0x30�Fcity gas 0x31�FLP gas 0x32�Fnatural gas 0x33�Fothers<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetGasMeterClassification(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetGasMeterClassification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetGasMeterClassification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetGasMeterClassification(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * This property indicates the type of the gas meter.<br>0x30�Fcity gas 0x31�FLP gas 0x32�Fnatural gas 0x33�Fothers<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetGasMeterClassification(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetGasMeterClassification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetGasMeterClassification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetGasMeterClassification(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the type of the owner of the meter.<br>0x30�Fnot specified 0x31�Fcity gas 0x32�FLP gas 0x33�Fprivate-sector company 0x34�Findividual<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetOwnerClassification(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetOwnerClassification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetOwnerClassification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetOwnerClassification(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * This property indicates the type of the owner of the meter.<br>0x30�Fnot specified 0x31�Fcity gas 0x32�FLP gas 0x33�Fprivate-sector company 0x34�Findividual<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetOwnerClassification(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOwnerClassification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOwnerClassification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOwnerClassification(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the measured cumulative gas consumption in m3.<br>0-0x3B9AC9FF (0-999,999,999�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetMeasuredCumulativeGasConsumption(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredCumulativeGasConsumption(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredCumulativeGasConsumption(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredCumulativeGasConsumption(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the unit (multiplying factor) for the measured cumulative gas consumption and the historical data of measured cumulative gas consumptions.<br>0x00: 1��3 0x01: 0.1��3 0x02: 0.01��3 0x03: 0.001��3�iinitial value�j 0x04: 0.0001��3 0x05: 0.00001��3 0x06: 0.000001��3<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetUnitForMeasuredCumulativeGasConsumptions(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetUnitForMeasuredCumulativeGasConsumptions(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetUnitForMeasuredCumulativeGasConsumptions(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetUnitForMeasuredCumulativeGasConsumptions(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the day for which the historical data of measured cumulative gas consumptions is to be retrieved and the historical data of measured cumulative gas consumptions, which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>0x0000-0x0063: 0x0-0x3B9AC9FF (0-99) : (0-999,999.999�j<br><br>Data type : unsigned short �{ unsigned long �~48<br>Data size : 194 Byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetHistoricalDataOfMeasuredCumulativeGasConsumptions(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetHistoricalDataOfMeasuredCumulativeGasConsumptions(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetHistoricalDataOfMeasuredCumulativeGasConsumptions(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetHistoricalDataOfMeasuredCumulativeGasConsumptions(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the day for which the historical data of measured cumulative gas consumptions (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>0x00-0x63 ( 0-99) 0: current day 1 - 99: previous day - day that precedes the current day by 99 days<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * This property indicates the day for which the historical data of measured cumulative gas consumptions (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>0x00-0x63 ( 0-99) 0: current day 1 - 99: previous day - day that precedes the current day by 99 days<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates whether the meter has detected an abnormal value in the metering data.<br>Abnormal value detected: 0x41 No abnormal value detected: 0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
 		 */
-		protected void onGetDetectionOfAbnormalValueInMeteringData(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetDetectionOfAbnormalValueInMeteringData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetDetectionOfAbnormalValueInMeteringData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetDetectionOfAbnormalValueInMeteringData(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Provides security information about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>For details, refer to the explanations under (9).<br><br>Data type : unsigned char �~10<br>Data size : 10 Byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetSecurityDataInformation(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSecurityDataInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSecurityDataInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSecurityDataInformation(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates whether the Center has closed the gas shutoff valve of the meter.<br>Center has closed the valve: 0x41 Center has not closed the valve: 0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
 		 */
-		protected void onGetValveClosureByTheCenter(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetValveClosureByTheCenter(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetValveClosureByTheCenter(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetValveClosureByTheCenter(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates whether permission has been given by the Center to reopen the gas shutoff valve of the meter closed by the Center.<br>Permission has been given by the Center to reopen the gas shutoff valve closed by the Center: 0x41 Permission to reopen the gas shutoff valve closed by the Center has not been given by the Center: 0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetPermissionFromTheCenterToReopenTheValveClosedByTheCenter(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetPermissionFromTheCenterToReopenTheValveClosedByTheCenter(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetPermissionFromTheCenterToReopenTheValveClosedByTheCenter(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetPermissionFromTheCenterToReopenTheValveClosedByTheCenter(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates whether the gas shutoff valve of the meter has been closed in response to an emergency.<br>Emergency closure of the shutoff valve has occurred: 0x41 No emergency closure of the shutoff valve has occurred: 0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetEmergencyClosureOfShutoffValve(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetEmergencyClosureOfShutoffValve(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetEmergencyClosureOfShutoffValve(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetEmergencyClosureOfShutoffValve(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates whether the shutoff valve is open or closed.<br>Shutoff valve open: 0x41 Shutoff valve closed: 0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetShutoffValveStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetShutoffValveStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetShutoffValveStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetShutoffValveStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the reasons for the 3 past shutoff valve-based gas shutoffs by means of bit assignment with one byte used for each of the 3 shutoff reasons. Historical data3�FHistorical data2�FHistorical data 1<br>0xFF: 0xFF: 0xFF<br><br>Data type : unsigned char �~3<br>Data size : 3 Byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetHistoricalDataOfShutoffReasons(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetHistoricalDataOfShutoffReasons(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetHistoricalDataOfShutoffReasons(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetHistoricalDataOfShutoffReasons(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the ID number of the meter.<br>000000-FFFFFF �iInitial .value .: .�g000000�h�j<br><br>Data type : unsigned char<br>Data size : 6 Byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetIdNumberSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetIdNumberSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetIdNumberSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetIdNumberSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * This property indicates the ID number of the meter.<br>000000-FFFFFF �iInitial .value .: .�g000000�h�j<br><br>Data type : unsigned char<br>Data size : 6 Byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetIdNumberSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetIdNumberSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetIdNumberSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetIdNumberSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the month and year in which the verification of the meter will expire.<br>YYYYMM YYYY�iYear�j�CMM�iMonth�j<br><br>Data type : unsigned char<br>Data size : 6 Byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetVerificationExpirationInformation(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetVerificationExpirationInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetVerificationExpirationInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetVerificationExpirationInformation(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * This property indicates the month and year in which the verification of the meter will expire.<br>YYYYMM YYYY�iYear�j�CMM�iMonth�j<br><br>Data type : unsigned char<br>Data size : 6 Byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetVerificationExpirationInformation(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetVerificationExpirationInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetVerificationExpirationInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetVerificationExpirationInformation(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -482,27 +660,32 @@ public abstract class SmartGasMeter extends DeviceObject {
 
 		@Override
 		public Setter reqSetGasMeterClassification(byte[] edt) {
-			addProperty(EPC_GAS_METER_CLASSIFICATION, edt, setGasMeterClassification(edt));
+			byte epc = EPC_GAS_METER_CLASSIFICATION;
+			addProperty(epc, edt, _setGasMeterClassification(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetOwnerClassification(byte[] edt) {
-			addProperty(EPC_OWNER_CLASSIFICATION, edt, setOwnerClassification(edt));
+			byte epc = EPC_OWNER_CLASSIFICATION;
+			addProperty(epc, edt, _setOwnerClassification(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(byte[] edt) {
-			addProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED, edt, setDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(edt));
+			byte epc = EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED;
+			addProperty(epc, edt, _setDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetIdNumberSetting(byte[] edt) {
-			addProperty(EPC_ID_NUMBER_SETTING, edt, setIdNumberSetting(edt));
+			byte epc = EPC_ID_NUMBER_SETTING;
+			addProperty(epc, edt, _setIdNumberSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetVerificationExpirationInformation(byte[] edt) {
-			addProperty(EPC_VERIFICATION_EXPIRATION_INFORMATION, edt, setVerificationExpirationInformation(edt));
+			byte epc = EPC_VERIFICATION_EXPIRATION_INFORMATION;
+			addProperty(epc, edt, _setVerificationExpirationInformation(epc, edt));
 			return this;
 		}
 	}
@@ -762,92 +945,107 @@ public abstract class SmartGasMeter extends DeviceObject {
 
 		@Override
 		public Getter reqGetGasMeterClassification() {
-			byte[] edt = getGasMeterClassification();
-			addProperty(EPC_GAS_METER_CLASSIFICATION, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_GAS_METER_CLASSIFICATION;
+			byte[] edt = _getGasMeterClassification(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOwnerClassification() {
-			byte[] edt = getOwnerClassification();
-			addProperty(EPC_OWNER_CLASSIFICATION, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OWNER_CLASSIFICATION;
+			byte[] edt = _getOwnerClassification(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredCumulativeGasConsumption() {
-			byte[] edt = getMeasuredCumulativeGasConsumption();
-			addProperty(EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION;
+			byte[] edt = _getMeasuredCumulativeGasConsumption(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Getter reqGetUnitForMeasuredCumulativeGasConsumptions() {
-			byte[] edt = getUnitForMeasuredCumulativeGasConsumptions();
-			addProperty(EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS;
+			byte[] edt = _getUnitForMeasuredCumulativeGasConsumptions(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetHistoricalDataOfMeasuredCumulativeGasConsumptions() {
-			byte[] edt = getHistoricalDataOfMeasuredCumulativeGasConsumptions();
-			addProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS, edt, (edt != null && (edt.length == 194)));
+			byte epc = EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS;
+			byte[] edt = _getHistoricalDataOfMeasuredCumulativeGasConsumptions(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 194)));
 			return this;
 		}
 		@Override
 		public Getter reqGetDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved() {
-			byte[] edt = getDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved();
-			addProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED;
+			byte[] edt = _getDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetDetectionOfAbnormalValueInMeteringData() {
-			byte[] edt = getDetectionOfAbnormalValueInMeteringData();
-			addProperty(EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA;
+			byte[] edt = _getDetectionOfAbnormalValueInMeteringData(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSecurityDataInformation() {
-			byte[] edt = getSecurityDataInformation();
-			addProperty(EPC_SECURITY_DATA_INFORMATION, edt, (edt != null && (edt.length == 10)));
+			byte epc = EPC_SECURITY_DATA_INFORMATION;
+			byte[] edt = _getSecurityDataInformation(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 10)));
 			return this;
 		}
 		@Override
 		public Getter reqGetValveClosureByTheCenter() {
-			byte[] edt = getValveClosureByTheCenter();
-			addProperty(EPC_VALVE_CLOSURE_BY_THE_CENTER, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_VALVE_CLOSURE_BY_THE_CENTER;
+			byte[] edt = _getValveClosureByTheCenter(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetPermissionFromTheCenterToReopenTheValveClosedByTheCenter() {
-			byte[] edt = getPermissionFromTheCenterToReopenTheValveClosedByTheCenter();
-			addProperty(EPC_PERMISSION_FROM_THE_CENTER_TO_REOPEN_THE_VALVE_CLOSED_BY_THE_CENTER, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_PERMISSION_FROM_THE_CENTER_TO_REOPEN_THE_VALVE_CLOSED_BY_THE_CENTER;
+			byte[] edt = _getPermissionFromTheCenterToReopenTheValveClosedByTheCenter(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetEmergencyClosureOfShutoffValve() {
-			byte[] edt = getEmergencyClosureOfShutoffValve();
-			addProperty(EPC_EMERGENCY_CLOSURE_OF_SHUTOFF_VALVE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_EMERGENCY_CLOSURE_OF_SHUTOFF_VALVE;
+			byte[] edt = _getEmergencyClosureOfShutoffValve(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetShutoffValveStatus() {
-			byte[] edt = getShutoffValveStatus();
-			addProperty(EPC_SHUTOFF_VALVE_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SHUTOFF_VALVE_STATUS;
+			byte[] edt = _getShutoffValveStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetHistoricalDataOfShutoffReasons() {
-			byte[] edt = getHistoricalDataOfShutoffReasons();
-			addProperty(EPC_HISTORICAL_DATA_OF_SHUTOFF_REASONS, edt, (edt != null && (edt.length == 3)));
+			byte epc = EPC_HISTORICAL_DATA_OF_SHUTOFF_REASONS;
+			byte[] edt = _getHistoricalDataOfShutoffReasons(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 3)));
 			return this;
 		}
 		@Override
 		public Getter reqGetIdNumberSetting() {
-			byte[] edt = getIdNumberSetting();
-			addProperty(EPC_ID_NUMBER_SETTING, edt, (edt != null && (edt.length == 6)));
+			byte epc = EPC_ID_NUMBER_SETTING;
+			byte[] edt = _getIdNumberSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 6)));
 			return this;
 		}
 		@Override
 		public Getter reqGetVerificationExpirationInformation() {
-			byte[] edt = getVerificationExpirationInformation();
-			addProperty(EPC_VERIFICATION_EXPIRATION_INFORMATION, edt, (edt != null && (edt.length == 6)));
+			byte epc = EPC_VERIFICATION_EXPIRATION_INFORMATION;
+			byte[] edt = _getVerificationExpirationInformation(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 6)));
 			return this;
 		}
 	}
@@ -1217,92 +1415,107 @@ public abstract class SmartGasMeter extends DeviceObject {
 
 		@Override
 		public Informer reqInformGasMeterClassification() {
-			byte[] edt = getGasMeterClassification();
-			addProperty(EPC_GAS_METER_CLASSIFICATION, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_GAS_METER_CLASSIFICATION;
+			byte[] edt = _getGasMeterClassification(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOwnerClassification() {
-			byte[] edt = getOwnerClassification();
-			addProperty(EPC_OWNER_CLASSIFICATION, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OWNER_CLASSIFICATION;
+			byte[] edt = _getOwnerClassification(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredCumulativeGasConsumption() {
-			byte[] edt = getMeasuredCumulativeGasConsumption();
-			addProperty(EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION;
+			byte[] edt = _getMeasuredCumulativeGasConsumption(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Informer reqInformUnitForMeasuredCumulativeGasConsumptions() {
-			byte[] edt = getUnitForMeasuredCumulativeGasConsumptions();
-			addProperty(EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS;
+			byte[] edt = _getUnitForMeasuredCumulativeGasConsumptions(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformHistoricalDataOfMeasuredCumulativeGasConsumptions() {
-			byte[] edt = getHistoricalDataOfMeasuredCumulativeGasConsumptions();
-			addProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS, edt, (edt != null && (edt.length == 194)));
+			byte epc = EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS;
+			byte[] edt = _getHistoricalDataOfMeasuredCumulativeGasConsumptions(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 194)));
 			return this;
 		}
 		@Override
 		public Informer reqInformDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved() {
-			byte[] edt = getDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved();
-			addProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED;
+			byte[] edt = _getDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformDetectionOfAbnormalValueInMeteringData() {
-			byte[] edt = getDetectionOfAbnormalValueInMeteringData();
-			addProperty(EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA;
+			byte[] edt = _getDetectionOfAbnormalValueInMeteringData(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSecurityDataInformation() {
-			byte[] edt = getSecurityDataInformation();
-			addProperty(EPC_SECURITY_DATA_INFORMATION, edt, (edt != null && (edt.length == 10)));
+			byte epc = EPC_SECURITY_DATA_INFORMATION;
+			byte[] edt = _getSecurityDataInformation(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 10)));
 			return this;
 		}
 		@Override
 		public Informer reqInformValveClosureByTheCenter() {
-			byte[] edt = getValveClosureByTheCenter();
-			addProperty(EPC_VALVE_CLOSURE_BY_THE_CENTER, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_VALVE_CLOSURE_BY_THE_CENTER;
+			byte[] edt = _getValveClosureByTheCenter(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformPermissionFromTheCenterToReopenTheValveClosedByTheCenter() {
-			byte[] edt = getPermissionFromTheCenterToReopenTheValveClosedByTheCenter();
-			addProperty(EPC_PERMISSION_FROM_THE_CENTER_TO_REOPEN_THE_VALVE_CLOSED_BY_THE_CENTER, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_PERMISSION_FROM_THE_CENTER_TO_REOPEN_THE_VALVE_CLOSED_BY_THE_CENTER;
+			byte[] edt = _getPermissionFromTheCenterToReopenTheValveClosedByTheCenter(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformEmergencyClosureOfShutoffValve() {
-			byte[] edt = getEmergencyClosureOfShutoffValve();
-			addProperty(EPC_EMERGENCY_CLOSURE_OF_SHUTOFF_VALVE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_EMERGENCY_CLOSURE_OF_SHUTOFF_VALVE;
+			byte[] edt = _getEmergencyClosureOfShutoffValve(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformShutoffValveStatus() {
-			byte[] edt = getShutoffValveStatus();
-			addProperty(EPC_SHUTOFF_VALVE_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SHUTOFF_VALVE_STATUS;
+			byte[] edt = _getShutoffValveStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformHistoricalDataOfShutoffReasons() {
-			byte[] edt = getHistoricalDataOfShutoffReasons();
-			addProperty(EPC_HISTORICAL_DATA_OF_SHUTOFF_REASONS, edt, (edt != null && (edt.length == 3)));
+			byte epc = EPC_HISTORICAL_DATA_OF_SHUTOFF_REASONS;
+			byte[] edt = _getHistoricalDataOfShutoffReasons(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 3)));
 			return this;
 		}
 		@Override
 		public Informer reqInformIdNumberSetting() {
-			byte[] edt = getIdNumberSetting();
-			addProperty(EPC_ID_NUMBER_SETTING, edt, (edt != null && (edt.length == 6)));
+			byte epc = EPC_ID_NUMBER_SETTING;
+			byte[] edt = _getIdNumberSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 6)));
 			return this;
 		}
 		@Override
 		public Informer reqInformVerificationExpirationInformation() {
-			byte[] edt = getVerificationExpirationInformation();
-			addProperty(EPC_VERIFICATION_EXPIRATION_INFORMATION, edt, (edt != null && (edt.length == 6)));
+			byte epc = EPC_VERIFICATION_EXPIRATION_INFORMATION;
+			byte[] edt = _getVerificationExpirationInformation(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 6)));
 			return this;
 		}
 	}

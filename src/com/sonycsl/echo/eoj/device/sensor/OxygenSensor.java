@@ -26,7 +26,7 @@ public abstract class OxygenSensor extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x0C;
 
-	protected static final byte EPC_MEASURED_VALUE_OF_OXYGEN_CONCENTRATION = (byte)0xE0;
+	public static final byte EPC_MEASURED_VALUE_OF_OXYGEN_CONCENTRATION = (byte)0xE0;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -42,6 +42,11 @@ public abstract class OxygenSensor extends DeviceObject {
 	 * This property indicates measured value of oxygen concentration in units of 0.01%.<br>0x0000.0x2710 (0.00.100.00%)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getMeasuredValueOfOxygenConcentration();
+	private final byte[] _getMeasuredValueOfOxygenConcentration(byte epc) {
+		byte[] edt = getMeasuredValueOfOxygenConcentration();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -58,7 +63,7 @@ public abstract class OxygenSensor extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_MEASURED_VALUE_OF_OXYGEN_CONCENTRATION:
-			edt = getMeasuredValueOfOxygenConcentration();
+			edt = _getMeasuredValueOfOxygenConcentration(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 
@@ -88,21 +93,19 @@ public abstract class OxygenSensor extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_MEASURED_VALUE_OF_OXYGEN_CONCENTRATION:
-				onGetMeasuredValueOfOxygenConcentration(eoj, tid, pdc, edt);
+				_onGetMeasuredValueOfOxygenConcentration(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -111,7 +114,11 @@ public abstract class OxygenSensor extends DeviceObject {
 		/**
 		 * This property indicates measured value of oxygen concentration in units of 0.01%.<br>0x0000.0x2710 (0.00.100.00%)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetMeasuredValueOfOxygenConcentration(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredValueOfOxygenConcentration(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredValueOfOxygenConcentration(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredValueOfOxygenConcentration(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -342,8 +349,9 @@ public abstract class OxygenSensor extends DeviceObject {
 
 		@Override
 		public Getter reqGetMeasuredValueOfOxygenConcentration() {
-			byte[] edt = getMeasuredValueOfOxygenConcentration();
-			addProperty(EPC_MEASURED_VALUE_OF_OXYGEN_CONCENTRATION, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_VALUE_OF_OXYGEN_CONCENTRATION;
+			byte[] edt = _getMeasuredValueOfOxygenConcentration(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}
@@ -587,8 +595,9 @@ public abstract class OxygenSensor extends DeviceObject {
 
 		@Override
 		public Informer reqInformMeasuredValueOfOxygenConcentration() {
-			byte[] edt = getMeasuredValueOfOxygenConcentration();
-			addProperty(EPC_MEASURED_VALUE_OF_OXYGEN_CONCENTRATION, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_VALUE_OF_OXYGEN_CONCENTRATION;
+			byte[] edt = _getMeasuredValueOfOxygenConcentration(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}

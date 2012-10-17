@@ -26,9 +26,9 @@ public abstract class CallSensor extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x09;
 
-	protected static final byte EPC_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;
-	protected static final byte EPC_CALL_STATUS = (byte)0xB1;
-	protected static final byte EPC_CALL_HOLDING_TIME = (byte)0xBE;
+	public static final byte EPC_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;
+	public static final byte EPC_CALL_STATUS = (byte)0xB1;
+	public static final byte EPC_CALL_HOLDING_TIME = (byte)0xBE;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -44,22 +44,47 @@ public abstract class CallSensor extends DeviceObject {
 	 * Specifies detection threshold level (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setDetectionThresholdLevel(byte[] edt) {return false;}
+	private final boolean _setDetectionThresholdLevel(byte epc, byte[] edt) {
+		boolean success = setDetectionThresholdLevel(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Specifies detection threshold level (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getDetectionThresholdLevel() {return null;}
+	private final byte[] _getDetectionThresholdLevel(byte epc) {
+		byte[] edt = getDetectionThresholdLevel();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates call status.<br>Call status found = 0x41 Call status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory<br>Announcement at status change
 	 */
 	protected abstract byte[] getCallStatus();
+	private final byte[] _getCallStatus(byte epc) {
+		byte[] edt = getCallStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the call holding time in units of 10 seconds.<br>0x0000.0xFFFD (0 sec. to 655,300 sec.)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setCallHoldingTime(byte[] edt) {return false;}
+	private final boolean _setCallHoldingTime(byte epc, byte[] edt) {
+		boolean success = setCallHoldingTime(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * This property indicates the call holding time in units of 10 seconds.<br>0x0000.0xFFFD (0 sec. to 655,300 sec.)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getCallHoldingTime() {return null;}
+	private final byte[] _getCallHoldingTime(byte epc) {
+		byte[] edt = getCallHoldingTime();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -67,10 +92,10 @@ public abstract class CallSensor extends DeviceObject {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
 		case EPC_DETECTION_THRESHOLD_LEVEL:
-			res.addProperty(epc, edt, setDetectionThresholdLevel(edt));
+			res.addProperty(epc, edt, _setDetectionThresholdLevel(epc, edt));
 			break;
 		case EPC_CALL_HOLDING_TIME:
-			res.addProperty(epc, edt, setCallHoldingTime(edt));
+			res.addProperty(epc, edt, _setCallHoldingTime(epc, edt));
 			break;
 
 		}
@@ -82,15 +107,15 @@ public abstract class CallSensor extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_DETECTION_THRESHOLD_LEVEL:
-			edt = getDetectionThresholdLevel();
+			edt = _getDetectionThresholdLevel(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_CALL_STATUS:
-			edt = getCallStatus();
+			edt = _getCallStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_CALL_HOLDING_TIME:
-			edt = getCallHoldingTime();
+			edt = _getCallHoldingTime(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 
@@ -120,33 +145,31 @@ public abstract class CallSensor extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_DETECTION_THRESHOLD_LEVEL:
-				onSetDetectionThresholdLevel(eoj, tid, (pdc != 0));
+				_onSetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_CALL_HOLDING_TIME:
-				onSetCallHoldingTime(eoj, tid, (pdc != 0));
+				_onSetCallHoldingTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_DETECTION_THRESHOLD_LEVEL:
-				onGetDetectionThresholdLevel(eoj, tid, pdc, edt);
+				_onGetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_CALL_STATUS:
-				onGetCallStatus(eoj, tid, pdc, edt);
+				_onGetCallStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_CALL_HOLDING_TIME:
-				onGetCallHoldingTime(eoj, tid, pdc, edt);
+				_onGetCallHoldingTime(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -155,23 +178,43 @@ public abstract class CallSensor extends DeviceObject {
 		/**
 		 * Specifies detection threshold level (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetDetectionThresholdLevel(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Specifies detection threshold level (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetDetectionThresholdLevel(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates call status.<br>Call status found = 0x41 Call status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory<br>Announcement at status change
 		 */
-		protected void onGetCallStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetCallStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetCallStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetCallStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the call holding time in units of 10 seconds.<br>0x0000.0xFFFD (0 sec. to 655,300 sec.)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetCallHoldingTime(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetCallHoldingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetCallHoldingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetCallHoldingTime(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * This property indicates the call holding time in units of 10 seconds.<br>0x0000.0xFFFD (0 sec. to 655,300 sec.)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetCallHoldingTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetCallHoldingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetCallHoldingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetCallHoldingTime(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -236,12 +279,14 @@ public abstract class CallSensor extends DeviceObject {
 
 		@Override
 		public Setter reqSetDetectionThresholdLevel(byte[] edt) {
-			addProperty(EPC_DETECTION_THRESHOLD_LEVEL, edt, setDetectionThresholdLevel(edt));
+			byte epc = EPC_DETECTION_THRESHOLD_LEVEL;
+			addProperty(epc, edt, _setDetectionThresholdLevel(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetCallHoldingTime(byte[] edt) {
-			addProperty(EPC_CALL_HOLDING_TIME, edt, setCallHoldingTime(edt));
+			byte epc = EPC_CALL_HOLDING_TIME;
+			addProperty(epc, edt, _setCallHoldingTime(epc, edt));
 			return this;
 		}
 	}
@@ -438,20 +483,23 @@ public abstract class CallSensor extends DeviceObject {
 
 		@Override
 		public Getter reqGetDetectionThresholdLevel() {
-			byte[] edt = getDetectionThresholdLevel();
-			addProperty(EPC_DETECTION_THRESHOLD_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DETECTION_THRESHOLD_LEVEL;
+			byte[] edt = _getDetectionThresholdLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetCallStatus() {
-			byte[] edt = getCallStatus();
-			addProperty(EPC_CALL_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_CALL_STATUS;
+			byte[] edt = _getCallStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetCallHoldingTime() {
-			byte[] edt = getCallHoldingTime();
-			addProperty(EPC_CALL_HOLDING_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_CALL_HOLDING_TIME;
+			byte[] edt = _getCallHoldingTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}
@@ -713,20 +761,23 @@ public abstract class CallSensor extends DeviceObject {
 
 		@Override
 		public Informer reqInformDetectionThresholdLevel() {
-			byte[] edt = getDetectionThresholdLevel();
-			addProperty(EPC_DETECTION_THRESHOLD_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DETECTION_THRESHOLD_LEVEL;
+			byte[] edt = _getDetectionThresholdLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformCallStatus() {
-			byte[] edt = getCallStatus();
-			addProperty(EPC_CALL_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_CALL_STATUS;
+			byte[] edt = _getCallStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformCallHoldingTime() {
-			byte[] edt = getCallHoldingTime();
-			addProperty(EPC_CALL_HOLDING_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_CALL_HOLDING_TIME;
+			byte[] edt = _getCallHoldingTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}

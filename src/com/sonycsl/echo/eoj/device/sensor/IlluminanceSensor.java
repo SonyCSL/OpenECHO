@@ -26,8 +26,8 @@ public abstract class IlluminanceSensor extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x0D;
 
-	protected static final byte EPC_MEASURED_ILLUMINANCE_VALUE1 = (byte)0xE0;
-	protected static final byte EPC_MEASURED_ILLUMINANCE_VALUE2 = (byte)0xE1;
+	public static final byte EPC_MEASURED_ILLUMINANCE_VALUE1 = (byte)0xE0;
+	public static final byte EPC_MEASURED_ILLUMINANCE_VALUE2 = (byte)0xE1;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -43,10 +43,20 @@ public abstract class IlluminanceSensor extends DeviceObject {
 	 * This property indicates measured illuminance value in lux.<br>0x0000.0xFFFD (0 to 65533 lux)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getMeasuredIlluminanceValue1();
+	private final byte[] _getMeasuredIlluminanceValue1(byte epc) {
+		byte[] edt = getMeasuredIlluminanceValue1();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates measured illuminance value in kilo lux.<br>0x0000.0xFFFD (0 to 65533 klux)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getMeasuredIlluminanceValue2();
+	private final byte[] _getMeasuredIlluminanceValue2(byte epc) {
+		byte[] edt = getMeasuredIlluminanceValue2();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -63,11 +73,11 @@ public abstract class IlluminanceSensor extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_MEASURED_ILLUMINANCE_VALUE1:
-			edt = getMeasuredIlluminanceValue1();
+			edt = _getMeasuredIlluminanceValue1(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_MEASURED_ILLUMINANCE_VALUE2:
-			edt = getMeasuredIlluminanceValue2();
+			edt = _getMeasuredIlluminanceValue2(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 
@@ -97,24 +107,22 @@ public abstract class IlluminanceSensor extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_MEASURED_ILLUMINANCE_VALUE1:
-				onGetMeasuredIlluminanceValue1(eoj, tid, pdc, edt);
+				_onGetMeasuredIlluminanceValue1(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_ILLUMINANCE_VALUE2:
-				onGetMeasuredIlluminanceValue2(eoj, tid, pdc, edt);
+				_onGetMeasuredIlluminanceValue2(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -123,11 +131,19 @@ public abstract class IlluminanceSensor extends DeviceObject {
 		/**
 		 * This property indicates measured illuminance value in lux.<br>0x0000.0xFFFD (0 to 65533 lux)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetMeasuredIlluminanceValue1(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredIlluminanceValue1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredIlluminanceValue1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredIlluminanceValue1(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates measured illuminance value in kilo lux.<br>0x0000.0xFFFD (0 to 65533 klux)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetMeasuredIlluminanceValue2(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredIlluminanceValue2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredIlluminanceValue2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredIlluminanceValue2(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -362,14 +378,16 @@ public abstract class IlluminanceSensor extends DeviceObject {
 
 		@Override
 		public Getter reqGetMeasuredIlluminanceValue1() {
-			byte[] edt = getMeasuredIlluminanceValue1();
-			addProperty(EPC_MEASURED_ILLUMINANCE_VALUE1, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_ILLUMINANCE_VALUE1;
+			byte[] edt = _getMeasuredIlluminanceValue1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredIlluminanceValue2() {
-			byte[] edt = getMeasuredIlluminanceValue2();
-			addProperty(EPC_MEASURED_ILLUMINANCE_VALUE2, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_ILLUMINANCE_VALUE2;
+			byte[] edt = _getMeasuredIlluminanceValue2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}
@@ -622,14 +640,16 @@ public abstract class IlluminanceSensor extends DeviceObject {
 
 		@Override
 		public Informer reqInformMeasuredIlluminanceValue1() {
-			byte[] edt = getMeasuredIlluminanceValue1();
-			addProperty(EPC_MEASURED_ILLUMINANCE_VALUE1, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_ILLUMINANCE_VALUE1;
+			byte[] edt = _getMeasuredIlluminanceValue1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredIlluminanceValue2() {
-			byte[] edt = getMeasuredIlluminanceValue2();
-			addProperty(EPC_MEASURED_ILLUMINANCE_VALUE2, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_ILLUMINANCE_VALUE2;
+			byte[] edt = _getMeasuredIlluminanceValue2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}

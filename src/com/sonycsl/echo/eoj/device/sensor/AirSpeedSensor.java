@@ -26,8 +26,8 @@ public abstract class AirSpeedSensor extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x1F;
 
-	protected static final byte EPC_MEASURED_VALUE_OF_AIR_SPEED = (byte)0xE0;
-	protected static final byte EPC_AIR_FLOW_DIRECTION = (byte)0xE1;
+	public static final byte EPC_MEASURED_VALUE_OF_AIR_SPEED = (byte)0xE0;
+	public static final byte EPC_AIR_FLOW_DIRECTION = (byte)0xE1;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -43,10 +43,20 @@ public abstract class AirSpeedSensor extends DeviceObject {
 	 * This property indicates the measured value of air speed in units of 0.01 m/sec.<br>0x0000.0xFFFD (0.65533) (0.655.33 m/sec)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getMeasuredValueOfAirSpeed();
+	private final byte[] _getMeasuredValueOfAirSpeed(byte epc) {
+		byte[] edt = getMeasuredValueOfAirSpeed();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates air flow direction in units of degrees.<br>0x0000-0x0168 (0-360degree)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getAirFlowDirection() {return null;}
+	private final byte[] _getAirFlowDirection(byte epc) {
+		byte[] edt = getAirFlowDirection();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -63,11 +73,11 @@ public abstract class AirSpeedSensor extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_MEASURED_VALUE_OF_AIR_SPEED:
-			edt = getMeasuredValueOfAirSpeed();
+			edt = _getMeasuredValueOfAirSpeed(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_AIR_FLOW_DIRECTION:
-			edt = getAirFlowDirection();
+			edt = _getAirFlowDirection(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 
@@ -97,24 +107,22 @@ public abstract class AirSpeedSensor extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_MEASURED_VALUE_OF_AIR_SPEED:
-				onGetMeasuredValueOfAirSpeed(eoj, tid, pdc, edt);
+				_onGetMeasuredValueOfAirSpeed(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_AIR_FLOW_DIRECTION:
-				onGetAirFlowDirection(eoj, tid, pdc, edt);
+				_onGetAirFlowDirection(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -123,11 +131,19 @@ public abstract class AirSpeedSensor extends DeviceObject {
 		/**
 		 * This property indicates the measured value of air speed in units of 0.01 m/sec.<br>0x0000.0xFFFD (0.65533) (0.655.33 m/sec)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetMeasuredValueOfAirSpeed(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredValueOfAirSpeed(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredValueOfAirSpeed(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredValueOfAirSpeed(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates air flow direction in units of degrees.<br>0x0000-0x0168 (0-360degree)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetAirFlowDirection(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetAirFlowDirection(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetAirFlowDirection(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetAirFlowDirection(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -362,14 +378,16 @@ public abstract class AirSpeedSensor extends DeviceObject {
 
 		@Override
 		public Getter reqGetMeasuredValueOfAirSpeed() {
-			byte[] edt = getMeasuredValueOfAirSpeed();
-			addProperty(EPC_MEASURED_VALUE_OF_AIR_SPEED, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_VALUE_OF_AIR_SPEED;
+			byte[] edt = _getMeasuredValueOfAirSpeed(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetAirFlowDirection() {
-			byte[] edt = getAirFlowDirection();
-			addProperty(EPC_AIR_FLOW_DIRECTION, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_AIR_FLOW_DIRECTION;
+			byte[] edt = _getAirFlowDirection(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}
@@ -622,14 +640,16 @@ public abstract class AirSpeedSensor extends DeviceObject {
 
 		@Override
 		public Informer reqInformMeasuredValueOfAirSpeed() {
-			byte[] edt = getMeasuredValueOfAirSpeed();
-			addProperty(EPC_MEASURED_VALUE_OF_AIR_SPEED, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_VALUE_OF_AIR_SPEED;
+			byte[] edt = _getMeasuredValueOfAirSpeed(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformAirFlowDirection() {
-			byte[] edt = getAirFlowDirection();
-			addProperty(EPC_AIR_FLOW_DIRECTION, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_AIR_FLOW_DIRECTION;
+			byte[] edt = _getAirFlowDirection(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}

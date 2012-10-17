@@ -26,9 +26,9 @@ public abstract class WaterLevelSensor extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x14;
 
-	protected static final byte EPC_WATER_LEVEL_OVER_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;
-	protected static final byte EPC_WATER_LEVEL_OVER_DETECTION_STATUS = (byte)0xB1;
-	protected static final byte EPC_MEASURED_VALUE_OF_WATER_LEVEL = (byte)0xE0;
+	public static final byte EPC_WATER_LEVEL_OVER_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;
+	public static final byte EPC_WATER_LEVEL_OVER_DETECTION_STATUS = (byte)0xB1;
+	public static final byte EPC_MEASURED_VALUE_OF_WATER_LEVEL = (byte)0xE0;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -44,14 +44,29 @@ public abstract class WaterLevelSensor extends DeviceObject {
 	 * This property indicates the water level over detection threshold level in cm.<br>0x00.0xFD (0.253)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getWaterLevelOverDetectionThresholdLevel() {return null;}
+	private final byte[] _getWaterLevelOverDetectionThresholdLevel(byte epc) {
+		byte[] edt = getWaterLevelOverDetectionThresholdLevel();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates if the water level exceeds detected water level threshold level.<br>Water level over detection status found = 0x41 Water level over detection status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
 	 */
 	protected byte[] getWaterLevelOverDetectionStatus() {return null;}
+	private final byte[] _getWaterLevelOverDetectionStatus(byte epc) {
+		byte[] edt = getWaterLevelOverDetectionStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates measured value of water level in cm.<br>0x00.0xFD (0.253)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getMeasuredValueOfWaterLevel();
+	private final byte[] _getMeasuredValueOfWaterLevel(byte epc) {
+		byte[] edt = getMeasuredValueOfWaterLevel();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -68,15 +83,15 @@ public abstract class WaterLevelSensor extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_WATER_LEVEL_OVER_DETECTION_THRESHOLD_LEVEL:
-			edt = getWaterLevelOverDetectionThresholdLevel();
+			edt = _getWaterLevelOverDetectionThresholdLevel(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_WATER_LEVEL_OVER_DETECTION_STATUS:
-			edt = getWaterLevelOverDetectionStatus();
+			edt = _getWaterLevelOverDetectionStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_MEASURED_VALUE_OF_WATER_LEVEL:
-			edt = getMeasuredValueOfWaterLevel();
+			edt = _getMeasuredValueOfWaterLevel(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 
@@ -106,27 +121,25 @@ public abstract class WaterLevelSensor extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_WATER_LEVEL_OVER_DETECTION_THRESHOLD_LEVEL:
-				onGetWaterLevelOverDetectionThresholdLevel(eoj, tid, pdc, edt);
+				_onGetWaterLevelOverDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_WATER_LEVEL_OVER_DETECTION_STATUS:
-				onGetWaterLevelOverDetectionStatus(eoj, tid, pdc, edt);
+				_onGetWaterLevelOverDetectionStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_VALUE_OF_WATER_LEVEL:
-				onGetMeasuredValueOfWaterLevel(eoj, tid, pdc, edt);
+				_onGetMeasuredValueOfWaterLevel(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -135,15 +148,27 @@ public abstract class WaterLevelSensor extends DeviceObject {
 		/**
 		 * This property indicates the water level over detection threshold level in cm.<br>0x00.0xFD (0.253)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetWaterLevelOverDetectionThresholdLevel(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetWaterLevelOverDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetWaterLevelOverDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetWaterLevelOverDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates if the water level exceeds detected water level threshold level.<br>Water level over detection status found = 0x41 Water level over detection status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
 		 */
-		protected void onGetWaterLevelOverDetectionStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetWaterLevelOverDetectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetWaterLevelOverDetectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetWaterLevelOverDetectionStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates measured value of water level in cm.<br>0x00.0xFD (0.253)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetMeasuredValueOfWaterLevel(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredValueOfWaterLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredValueOfWaterLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredValueOfWaterLevel(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -382,20 +407,23 @@ public abstract class WaterLevelSensor extends DeviceObject {
 
 		@Override
 		public Getter reqGetWaterLevelOverDetectionThresholdLevel() {
-			byte[] edt = getWaterLevelOverDetectionThresholdLevel();
-			addProperty(EPC_WATER_LEVEL_OVER_DETECTION_THRESHOLD_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_WATER_LEVEL_OVER_DETECTION_THRESHOLD_LEVEL;
+			byte[] edt = _getWaterLevelOverDetectionThresholdLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetWaterLevelOverDetectionStatus() {
-			byte[] edt = getWaterLevelOverDetectionStatus();
-			addProperty(EPC_WATER_LEVEL_OVER_DETECTION_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_WATER_LEVEL_OVER_DETECTION_STATUS;
+			byte[] edt = _getWaterLevelOverDetectionStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredValueOfWaterLevel() {
-			byte[] edt = getMeasuredValueOfWaterLevel();
-			addProperty(EPC_MEASURED_VALUE_OF_WATER_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MEASURED_VALUE_OF_WATER_LEVEL;
+			byte[] edt = _getMeasuredValueOfWaterLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}
@@ -657,20 +685,23 @@ public abstract class WaterLevelSensor extends DeviceObject {
 
 		@Override
 		public Informer reqInformWaterLevelOverDetectionThresholdLevel() {
-			byte[] edt = getWaterLevelOverDetectionThresholdLevel();
-			addProperty(EPC_WATER_LEVEL_OVER_DETECTION_THRESHOLD_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_WATER_LEVEL_OVER_DETECTION_THRESHOLD_LEVEL;
+			byte[] edt = _getWaterLevelOverDetectionThresholdLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformWaterLevelOverDetectionStatus() {
-			byte[] edt = getWaterLevelOverDetectionStatus();
-			addProperty(EPC_WATER_LEVEL_OVER_DETECTION_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_WATER_LEVEL_OVER_DETECTION_STATUS;
+			byte[] edt = _getWaterLevelOverDetectionStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredValueOfWaterLevel() {
-			byte[] edt = getMeasuredValueOfWaterLevel();
-			addProperty(EPC_MEASURED_VALUE_OF_WATER_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MEASURED_VALUE_OF_WATER_LEVEL;
+			byte[] edt = _getMeasuredValueOfWaterLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}

@@ -78,5 +78,22 @@ public final class EchoUtils {
 		return null;
 	}
 	
+	public static String byteArrayToString(byte[] data) {
+		StringBuilder sb = new StringBuilder();
+		for(byte b : data) {
+			sb.append(String.format("%02x ", b));
+		}
+		
+		return new String(sb);
+	}
+
+	public static String byteToHexString(byte b) {
+		return String.format("%02x", b);
+	}
+	
+	public static String shortToHexString(short s) {
+		return String.format("%04x", s);
+	}
+	
 }
 

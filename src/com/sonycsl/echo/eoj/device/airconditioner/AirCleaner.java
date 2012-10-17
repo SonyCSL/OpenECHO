@@ -26,11 +26,11 @@ public abstract class AirCleaner extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x01;
 	public static final byte CLASS_CODE = (byte)0x35;
 
-	protected static final byte EPC_FILTER_CHANGE_NOTICE = (byte)0xE1;
-	protected static final byte EPC_AIR_FLOW_RATE_SETTING = (byte)0xA0;
-	protected static final byte EPC_SMOKE_CIGARETTE_DETECTION_STATUS = (byte)0xC1;
-	protected static final byte EPC_OPTICAL_CATALYST_OPERATION_SETTING = (byte)0xC2;
-	protected static final byte EPC_AIR_POLLUTION_DETECTION_STATUS = (byte)0xC0;
+	public static final byte EPC_FILTER_CHANGE_NOTICE = (byte)0xE1;
+	public static final byte EPC_AIR_FLOW_RATE_SETTING = (byte)0xA0;
+	public static final byte EPC_SMOKE_CIGARETTE_DETECTION_STATUS = (byte)0xC1;
+	public static final byte EPC_OPTICAL_CATALYST_OPERATION_SETTING = (byte)0xC2;
+	public static final byte EPC_AIR_POLLUTION_DETECTION_STATUS = (byte)0xC0;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -46,30 +46,65 @@ public abstract class AirCleaner extends DeviceObject {
 	 * Filter change time notice found/not found<br>Found = 0x41, Not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getFilterChangeNotice() {return null;}
+	private final byte[] _getFilterChangeNotice(byte epc) {
+		byte[] edt = getFilterChangeNotice();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Sets air flow rate level and air flow rate auto status. The ventilation air flow rate is specified (8-step).<br>Ventilation air flow rate auto status = 0x41 Ventilation air flow rate level = 0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAirFlowRateSetting(byte[] edt) {return false;}
+	private final boolean _setAirFlowRateSetting(byte epc, byte[] edt) {
+		boolean success = setAirFlowRateSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets air flow rate level and air flow rate auto status. The ventilation air flow rate is specified (8-step).<br>Ventilation air flow rate auto status = 0x41 Ventilation air flow rate level = 0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAirFlowRateSetting() {return null;}
+	private final byte[] _getAirFlowRateSetting(byte epc) {
+		byte[] edt = getAirFlowRateSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates smoke (cigarette) detection status.<br>Smoke (cigarette) detection status found = 0x41 Smoke (cigarette) detection status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getSmokeCigaretteDetectionStatus() {return null;}
+	private final byte[] _getSmokeCigaretteDetectionStatus(byte epc) {
+		byte[] edt = getSmokeCigaretteDetectionStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Optical catalyst ON/OFF status<br>Optical catalyst ON = 0x41 Optical catalyst OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOpticalCatalystOperationSetting(byte[] edt) {return false;}
+	private final boolean _setOpticalCatalystOperationSetting(byte epc, byte[] edt) {
+		boolean success = setOpticalCatalystOperationSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Optical catalyst ON/OFF status<br>Optical catalyst ON = 0x41 Optical catalyst OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOpticalCatalystOperationSetting() {return null;}
+	private final byte[] _getOpticalCatalystOperationSetting(byte epc) {
+		byte[] edt = getOpticalCatalystOperationSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates air pollution detection status<br>Air pollution detected = 0x41 Air pollution non-detected = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getAirPollutionDetectionStatus() {return null;}
+	private final byte[] _getAirPollutionDetectionStatus(byte epc) {
+		byte[] edt = getAirPollutionDetectionStatus();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -77,10 +112,10 @@ public abstract class AirCleaner extends DeviceObject {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
 		case EPC_AIR_FLOW_RATE_SETTING:
-			res.addProperty(epc, edt, setAirFlowRateSetting(edt));
+			res.addProperty(epc, edt, _setAirFlowRateSetting(epc, edt));
 			break;
 		case EPC_OPTICAL_CATALYST_OPERATION_SETTING:
-			res.addProperty(epc, edt, setOpticalCatalystOperationSetting(edt));
+			res.addProperty(epc, edt, _setOpticalCatalystOperationSetting(epc, edt));
 			break;
 
 		}
@@ -92,23 +127,23 @@ public abstract class AirCleaner extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_FILTER_CHANGE_NOTICE:
-			edt = getFilterChangeNotice();
+			edt = _getFilterChangeNotice(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_AIR_FLOW_RATE_SETTING:
-			edt = getAirFlowRateSetting();
+			edt = _getAirFlowRateSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SMOKE_CIGARETTE_DETECTION_STATUS:
-			edt = getSmokeCigaretteDetectionStatus();
+			edt = _getSmokeCigaretteDetectionStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_OPTICAL_CATALYST_OPERATION_SETTING:
-			edt = getOpticalCatalystOperationSetting();
+			edt = _getOpticalCatalystOperationSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_AIR_POLLUTION_DETECTION_STATUS:
-			edt = getAirPollutionDetectionStatus();
+			edt = _getAirPollutionDetectionStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 
@@ -138,39 +173,37 @@ public abstract class AirCleaner extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_AIR_FLOW_RATE_SETTING:
-				onSetAirFlowRateSetting(eoj, tid, (pdc != 0));
+				_onSetAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_OPTICAL_CATALYST_OPERATION_SETTING:
-				onSetOpticalCatalystOperationSetting(eoj, tid, (pdc != 0));
+				_onSetOpticalCatalystOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_FILTER_CHANGE_NOTICE:
-				onGetFilterChangeNotice(eoj, tid, pdc, edt);
+				_onGetFilterChangeNotice(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_AIR_FLOW_RATE_SETTING:
-				onGetAirFlowRateSetting(eoj, tid, pdc, edt);
+				_onGetAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SMOKE_CIGARETTE_DETECTION_STATUS:
-				onGetSmokeCigaretteDetectionStatus(eoj, tid, pdc, edt);
+				_onGetSmokeCigaretteDetectionStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_OPTICAL_CATALYST_OPERATION_SETTING:
-				onGetOpticalCatalystOperationSetting(eoj, tid, pdc, edt);
+				_onGetOpticalCatalystOperationSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_AIR_POLLUTION_DETECTION_STATUS:
-				onGetAirPollutionDetectionStatus(eoj, tid, pdc, edt);
+				_onGetAirPollutionDetectionStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -179,31 +212,59 @@ public abstract class AirCleaner extends DeviceObject {
 		/**
 		 * Filter change time notice found/not found<br>Found = 0x41, Not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetFilterChangeNotice(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetFilterChangeNotice(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetFilterChangeNotice(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetFilterChangeNotice(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Sets air flow rate level and air flow rate auto status. The ventilation air flow rate is specified (8-step).<br>Ventilation air flow rate auto status = 0x41 Ventilation air flow rate level = 0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetAirFlowRateSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets air flow rate level and air flow rate auto status. The ventilation air flow rate is specified (8-step).<br>Ventilation air flow rate auto status = 0x41 Ventilation air flow rate level = 0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetAirFlowRateSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates smoke (cigarette) detection status.<br>Smoke (cigarette) detection status found = 0x41 Smoke (cigarette) detection status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetSmokeCigaretteDetectionStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSmokeCigaretteDetectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSmokeCigaretteDetectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSmokeCigaretteDetectionStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Optical catalyst ON/OFF status<br>Optical catalyst ON = 0x41 Optical catalyst OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetOpticalCatalystOperationSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetOpticalCatalystOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetOpticalCatalystOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetOpticalCatalystOperationSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Optical catalyst ON/OFF status<br>Optical catalyst ON = 0x41 Optical catalyst OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetOpticalCatalystOperationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOpticalCatalystOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOpticalCatalystOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOpticalCatalystOperationSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates air pollution detection status<br>Air pollution detected = 0x41 Air pollution non-detected = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetAirPollutionDetectionStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetAirPollutionDetectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetAirPollutionDetectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetAirPollutionDetectionStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -268,12 +329,14 @@ public abstract class AirCleaner extends DeviceObject {
 
 		@Override
 		public Setter reqSetAirFlowRateSetting(byte[] edt) {
-			addProperty(EPC_AIR_FLOW_RATE_SETTING, edt, setAirFlowRateSetting(edt));
+			byte epc = EPC_AIR_FLOW_RATE_SETTING;
+			addProperty(epc, edt, _setAirFlowRateSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetOpticalCatalystOperationSetting(byte[] edt) {
-			addProperty(EPC_OPTICAL_CATALYST_OPERATION_SETTING, edt, setOpticalCatalystOperationSetting(edt));
+			byte epc = EPC_OPTICAL_CATALYST_OPERATION_SETTING;
+			addProperty(epc, edt, _setOpticalCatalystOperationSetting(epc, edt));
 			return this;
 		}
 	}
@@ -478,32 +541,37 @@ public abstract class AirCleaner extends DeviceObject {
 
 		@Override
 		public Getter reqGetFilterChangeNotice() {
-			byte[] edt = getFilterChangeNotice();
-			addProperty(EPC_FILTER_CHANGE_NOTICE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_FILTER_CHANGE_NOTICE;
+			byte[] edt = _getFilterChangeNotice(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetAirFlowRateSetting() {
-			byte[] edt = getAirFlowRateSetting();
-			addProperty(EPC_AIR_FLOW_RATE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AIR_FLOW_RATE_SETTING;
+			byte[] edt = _getAirFlowRateSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSmokeCigaretteDetectionStatus() {
-			byte[] edt = getSmokeCigaretteDetectionStatus();
-			addProperty(EPC_SMOKE_CIGARETTE_DETECTION_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SMOKE_CIGARETTE_DETECTION_STATUS;
+			byte[] edt = _getSmokeCigaretteDetectionStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOpticalCatalystOperationSetting() {
-			byte[] edt = getOpticalCatalystOperationSetting();
-			addProperty(EPC_OPTICAL_CATALYST_OPERATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OPTICAL_CATALYST_OPERATION_SETTING;
+			byte[] edt = _getOpticalCatalystOperationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetAirPollutionDetectionStatus() {
-			byte[] edt = getAirPollutionDetectionStatus();
-			addProperty(EPC_AIR_POLLUTION_DETECTION_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AIR_POLLUTION_DETECTION_STATUS;
+			byte[] edt = _getAirPollutionDetectionStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}
@@ -783,32 +851,37 @@ public abstract class AirCleaner extends DeviceObject {
 
 		@Override
 		public Informer reqInformFilterChangeNotice() {
-			byte[] edt = getFilterChangeNotice();
-			addProperty(EPC_FILTER_CHANGE_NOTICE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_FILTER_CHANGE_NOTICE;
+			byte[] edt = _getFilterChangeNotice(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformAirFlowRateSetting() {
-			byte[] edt = getAirFlowRateSetting();
-			addProperty(EPC_AIR_FLOW_RATE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AIR_FLOW_RATE_SETTING;
+			byte[] edt = _getAirFlowRateSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSmokeCigaretteDetectionStatus() {
-			byte[] edt = getSmokeCigaretteDetectionStatus();
-			addProperty(EPC_SMOKE_CIGARETTE_DETECTION_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SMOKE_CIGARETTE_DETECTION_STATUS;
+			byte[] edt = _getSmokeCigaretteDetectionStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOpticalCatalystOperationSetting() {
-			byte[] edt = getOpticalCatalystOperationSetting();
-			addProperty(EPC_OPTICAL_CATALYST_OPERATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OPTICAL_CATALYST_OPERATION_SETTING;
+			byte[] edt = _getOpticalCatalystOperationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformAirPollutionDetectionStatus() {
-			byte[] edt = getAirPollutionDetectionStatus();
-			addProperty(EPC_AIR_POLLUTION_DETECTION_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AIR_POLLUTION_DETECTION_STATUS;
+			byte[] edt = _getAirPollutionDetectionStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}

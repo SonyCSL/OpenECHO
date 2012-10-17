@@ -26,9 +26,9 @@ public abstract class FireSensor extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x19;
 
-	protected static final byte EPC_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;
-	protected static final byte EPC_FIRE_OCCURRENCE_DETECTION_STATUS = (byte)0xB1;
-	protected static final byte EPC_FIRE_OCCURRENCE_DETECTION_STATUS_RESETTING = (byte)0xBF;
+	public static final byte EPC_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;
+	public static final byte EPC_FIRE_OCCURRENCE_DETECTION_STATUS = (byte)0xB1;
+	public static final byte EPC_FIRE_OCCURRENCE_DETECTION_STATUS_RESETTING = (byte)0xBF;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -44,18 +44,38 @@ public abstract class FireSensor extends DeviceObject {
 	 * Specifies detection threshold level (8-step). Concrete status of each level is not specified.<br>Level 0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setDetectionThresholdLevel(byte[] edt) {return false;}
+	private final boolean _setDetectionThresholdLevel(byte epc, byte[] edt) {
+		boolean success = setDetectionThresholdLevel(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Specifies detection threshold level (8-step). Concrete status of each level is not specified.<br>Level 0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getDetectionThresholdLevel() {return null;}
+	private final byte[] _getDetectionThresholdLevel(byte epc) {
+		byte[] edt = getDetectionThresholdLevel();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates fire occurrence detection status.<br>Fire occurrence detection status found = 0x41 Fire occurrence detection status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory<br>Announcement at status change
 	 */
 	protected abstract byte[] getFireOccurrenceDetectionStatus();
+	private final byte[] _getFireOccurrenceDetectionStatus(byte epc) {
+		byte[] edt = getFireOccurrenceDetectionStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Resets fire occurrence detection status by setting 0x00.<br>Reset = 0x00<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : undefined
 	 */
 	protected boolean setFireOccurrenceDetectionStatusResetting(byte[] edt) {return false;}
+	private final boolean _setFireOccurrenceDetectionStatusResetting(byte epc, byte[] edt) {
+		boolean success = setFireOccurrenceDetectionStatusResetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 
 
 	@Override
@@ -63,10 +83,10 @@ public abstract class FireSensor extends DeviceObject {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
 		case EPC_DETECTION_THRESHOLD_LEVEL:
-			res.addProperty(epc, edt, setDetectionThresholdLevel(edt));
+			res.addProperty(epc, edt, _setDetectionThresholdLevel(epc, edt));
 			break;
 		case EPC_FIRE_OCCURRENCE_DETECTION_STATUS_RESETTING:
-			res.addProperty(epc, edt, setFireOccurrenceDetectionStatusResetting(edt));
+			res.addProperty(epc, edt, _setFireOccurrenceDetectionStatusResetting(epc, edt));
 			break;
 
 		}
@@ -78,11 +98,11 @@ public abstract class FireSensor extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_DETECTION_THRESHOLD_LEVEL:
-			edt = getDetectionThresholdLevel();
+			edt = _getDetectionThresholdLevel(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_FIRE_OCCURRENCE_DETECTION_STATUS:
-			edt = getFireOccurrenceDetectionStatus();
+			edt = _getFireOccurrenceDetectionStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 
@@ -112,30 +132,28 @@ public abstract class FireSensor extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_DETECTION_THRESHOLD_LEVEL:
-				onSetDetectionThresholdLevel(eoj, tid, (pdc != 0));
+				_onSetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_FIRE_OCCURRENCE_DETECTION_STATUS_RESETTING:
-				onSetFireOccurrenceDetectionStatusResetting(eoj, tid, (pdc != 0));
+				_onSetFireOccurrenceDetectionStatusResetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_DETECTION_THRESHOLD_LEVEL:
-				onGetDetectionThresholdLevel(eoj, tid, pdc, edt);
+				_onGetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_FIRE_OCCURRENCE_DETECTION_STATUS:
-				onGetFireOccurrenceDetectionStatus(eoj, tid, pdc, edt);
+				_onGetFireOccurrenceDetectionStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -144,19 +162,35 @@ public abstract class FireSensor extends DeviceObject {
 		/**
 		 * Specifies detection threshold level (8-step). Concrete status of each level is not specified.<br>Level 0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetDetectionThresholdLevel(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Specifies detection threshold level (8-step). Concrete status of each level is not specified.<br>Level 0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetDetectionThresholdLevel(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates fire occurrence detection status.<br>Fire occurrence detection status found = 0x41 Fire occurrence detection status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory<br>Announcement at status change
 		 */
-		protected void onGetFireOccurrenceDetectionStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetFireOccurrenceDetectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetFireOccurrenceDetectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetFireOccurrenceDetectionStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Resets fire occurrence detection status by setting 0x00.<br>Reset = 0x00<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : undefined
 		 */
-		protected void onSetFireOccurrenceDetectionStatusResetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetFireOccurrenceDetectionStatusResetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetFireOccurrenceDetectionStatusResetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetFireOccurrenceDetectionStatusResetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 
 	}
 	
@@ -221,12 +255,14 @@ public abstract class FireSensor extends DeviceObject {
 
 		@Override
 		public Setter reqSetDetectionThresholdLevel(byte[] edt) {
-			addProperty(EPC_DETECTION_THRESHOLD_LEVEL, edt, setDetectionThresholdLevel(edt));
+			byte epc = EPC_DETECTION_THRESHOLD_LEVEL;
+			addProperty(epc, edt, _setDetectionThresholdLevel(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetFireOccurrenceDetectionStatusResetting(byte[] edt) {
-			addProperty(EPC_FIRE_OCCURRENCE_DETECTION_STATUS_RESETTING, edt, setFireOccurrenceDetectionStatusResetting(edt));
+			byte epc = EPC_FIRE_OCCURRENCE_DETECTION_STATUS_RESETTING;
+			addProperty(epc, edt, _setFireOccurrenceDetectionStatusResetting(epc, edt));
 			return this;
 		}
 	}
@@ -419,14 +455,16 @@ public abstract class FireSensor extends DeviceObject {
 
 		@Override
 		public Getter reqGetDetectionThresholdLevel() {
-			byte[] edt = getDetectionThresholdLevel();
-			addProperty(EPC_DETECTION_THRESHOLD_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DETECTION_THRESHOLD_LEVEL;
+			byte[] edt = _getDetectionThresholdLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetFireOccurrenceDetectionStatus() {
-			byte[] edt = getFireOccurrenceDetectionStatus();
-			addProperty(EPC_FIRE_OCCURRENCE_DETECTION_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_FIRE_OCCURRENCE_DETECTION_STATUS;
+			byte[] edt = _getFireOccurrenceDetectionStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}
@@ -679,14 +717,16 @@ public abstract class FireSensor extends DeviceObject {
 
 		@Override
 		public Informer reqInformDetectionThresholdLevel() {
-			byte[] edt = getDetectionThresholdLevel();
-			addProperty(EPC_DETECTION_THRESHOLD_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DETECTION_THRESHOLD_LEVEL;
+			byte[] edt = _getDetectionThresholdLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformFireOccurrenceDetectionStatus() {
-			byte[] edt = getFireOccurrenceDetectionStatus();
-			addProperty(EPC_FIRE_OCCURRENCE_DETECTION_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_FIRE_OCCURRENCE_DETECTION_STATUS;
+			byte[] edt = _getFireOccurrenceDetectionStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}

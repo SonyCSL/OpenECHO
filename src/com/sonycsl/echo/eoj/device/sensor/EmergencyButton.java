@@ -26,8 +26,8 @@ public abstract class EmergencyButton extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x03;
 
-	protected static final byte EPC_EMERGENCY_OCCURRENCE_STATUS = (byte)0xB1;
-	protected static final byte EPC_EMERGENCY_OCCURRENCE_STATUS_RESETTING = (byte)0xBF;
+	public static final byte EPC_EMERGENCY_OCCURRENCE_STATUS = (byte)0xB1;
+	public static final byte EPC_EMERGENCY_OCCURRENCE_STATUS_RESETTING = (byte)0xBF;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -43,10 +43,20 @@ public abstract class EmergencyButton extends DeviceObject {
 	 * This property indicates emergency occurrence status.<br>Emergency occurrence status found = 0x41 Emergency occurrence status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory<br>Announcement at status change
 	 */
 	protected abstract byte[] getEmergencyOccurrenceStatus();
+	private final byte[] _getEmergencyOccurrenceStatus(byte epc) {
+		byte[] edt = getEmergencyOccurrenceStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Resets emergency occurrence status by setting 0x00.<br>Reset = 0x00<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : undefined
 	 */
 	protected boolean setEmergencyOccurrenceStatusResetting(byte[] edt) {return false;}
+	private final boolean _setEmergencyOccurrenceStatusResetting(byte epc, byte[] edt) {
+		boolean success = setEmergencyOccurrenceStatusResetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 
 
 	@Override
@@ -54,7 +64,7 @@ public abstract class EmergencyButton extends DeviceObject {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
 		case EPC_EMERGENCY_OCCURRENCE_STATUS_RESETTING:
-			res.addProperty(epc, edt, setEmergencyOccurrenceStatusResetting(edt));
+			res.addProperty(epc, edt, _setEmergencyOccurrenceStatusResetting(epc, edt));
 			break;
 
 		}
@@ -66,7 +76,7 @@ public abstract class EmergencyButton extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_EMERGENCY_OCCURRENCE_STATUS:
-			edt = getEmergencyOccurrenceStatus();
+			edt = _getEmergencyOccurrenceStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 
@@ -96,24 +106,22 @@ public abstract class EmergencyButton extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_EMERGENCY_OCCURRENCE_STATUS_RESETTING:
-				onSetEmergencyOccurrenceStatusResetting(eoj, tid, (pdc != 0));
+				_onSetEmergencyOccurrenceStatusResetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_EMERGENCY_OCCURRENCE_STATUS:
-				onGetEmergencyOccurrenceStatus(eoj, tid, pdc, edt);
+				_onGetEmergencyOccurrenceStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -122,11 +130,19 @@ public abstract class EmergencyButton extends DeviceObject {
 		/**
 		 * This property indicates emergency occurrence status.<br>Emergency occurrence status found = 0x41 Emergency occurrence status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory<br>Announcement at status change
 		 */
-		protected void onGetEmergencyOccurrenceStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetEmergencyOccurrenceStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetEmergencyOccurrenceStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetEmergencyOccurrenceStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Resets emergency occurrence status by setting 0x00.<br>Reset = 0x00<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : undefined
 		 */
-		protected void onSetEmergencyOccurrenceStatusResetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetEmergencyOccurrenceStatusResetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetEmergencyOccurrenceStatusResetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetEmergencyOccurrenceStatusResetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 
 	}
 	
@@ -187,7 +203,8 @@ public abstract class EmergencyButton extends DeviceObject {
 
 		@Override
 		public Setter reqSetEmergencyOccurrenceStatusResetting(byte[] edt) {
-			addProperty(EPC_EMERGENCY_OCCURRENCE_STATUS_RESETTING, edt, setEmergencyOccurrenceStatusResetting(edt));
+			byte epc = EPC_EMERGENCY_OCCURRENCE_STATUS_RESETTING;
+			addProperty(epc, edt, _setEmergencyOccurrenceStatusResetting(epc, edt));
 			return this;
 		}
 	}
@@ -371,8 +388,9 @@ public abstract class EmergencyButton extends DeviceObject {
 
 		@Override
 		public Getter reqGetEmergencyOccurrenceStatus() {
-			byte[] edt = getEmergencyOccurrenceStatus();
-			addProperty(EPC_EMERGENCY_OCCURRENCE_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_EMERGENCY_OCCURRENCE_STATUS;
+			byte[] edt = _getEmergencyOccurrenceStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}
@@ -616,8 +634,9 @@ public abstract class EmergencyButton extends DeviceObject {
 
 		@Override
 		public Informer reqInformEmergencyOccurrenceStatus() {
-			byte[] edt = getEmergencyOccurrenceStatus();
-			addProperty(EPC_EMERGENCY_OCCURRENCE_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_EMERGENCY_OCCURRENCE_STATUS;
+			byte[] edt = _getEmergencyOccurrenceStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}

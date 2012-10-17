@@ -26,23 +26,23 @@ public abstract class Battery extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x7D;
 
-	protected static final byte EPC_RATED_ELECTRIC_ENERGY = (byte)0xD0;
-	protected static final byte EPC_RATED_CAPACITY = (byte)0xD1;
-	protected static final byte EPC_RATED_VOLTAGE = (byte)0xD2;
-	protected static final byte EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_ELECTRIC_ENERGY = (byte)0xD3;
-	protected static final byte EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_CURRENT = (byte)0xD4;
-	protected static final byte EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_VOLTAGE = (byte)0xD5;
-	protected static final byte EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY = (byte)0xD6;
-	protected static final byte EPC_GMEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_H_RESET_SETTING = (byte)0xD7;
-	protected static final byte EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY = (byte)0xD8;
-	protected static final byte EPC_GMEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_H_RESET_SETTING = (byte)0xD9;
-	protected static final byte EPC_OPERATION_MODE_SETTING_SEE_NOTE1 = (byte)0xDA;
-	protected static final byte EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING1_SEE_NOTE2 = (byte)0xE0;
-	protected static final byte EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING2_SEE_NOTE2 = (byte)0xE1;
-	protected static final byte EPC_REMAINING_STORED_ELECTRICITY1_SEE_NOTE3 = (byte)0xE2;
-	protected static final byte EPC_REMAINING_STORED_ELECTRICITY2_SEE_NOTE3 = (byte)0xE3;
-	protected static final byte EPC_REMAINING_STORED_ELECTRICITY3_SEE_NOTE3_BATERY_STARE_OF_HEALTH = (byte)0xE4;
-	protected static final byte EPC_BATTERY_TYPE = (byte)0xE6;
+	public static final byte EPC_RATED_ELECTRIC_ENERGY = (byte)0xD0;
+	public static final byte EPC_RATED_CAPACITY = (byte)0xD1;
+	public static final byte EPC_RATED_VOLTAGE = (byte)0xD2;
+	public static final byte EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_ELECTRIC_ENERGY = (byte)0xD3;
+	public static final byte EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_CURRENT = (byte)0xD4;
+	public static final byte EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_VOLTAGE = (byte)0xD5;
+	public static final byte EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY = (byte)0xD6;
+	public static final byte EPC_GMEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_H_RESET_SETTING = (byte)0xD7;
+	public static final byte EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY = (byte)0xD8;
+	public static final byte EPC_GMEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_H_RESET_SETTING = (byte)0xD9;
+	public static final byte EPC_OPERATION_MODE_SETTING_SEE_NOTE1 = (byte)0xDA;
+	public static final byte EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING1_SEE_NOTE2 = (byte)0xE0;
+	public static final byte EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING2_SEE_NOTE2 = (byte)0xE1;
+	public static final byte EPC_REMAINING_STORED_ELECTRICITY1_SEE_NOTE3 = (byte)0xE2;
+	public static final byte EPC_REMAINING_STORED_ELECTRICITY2_SEE_NOTE3 = (byte)0xE3;
+	public static final byte EPC_REMAINING_STORED_ELECTRICITY3_SEE_NOTE3_BATERY_STARE_OF_HEALTH = (byte)0xE4;
+	public static final byte EPC_BATTERY_TYPE = (byte)0xE6;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -58,82 +58,182 @@ public abstract class Battery extends DeviceObject {
 	 * This property indicates the rated electric energy of the battery in Wh.<br>0x00000000-0x3B9AC9FF �i0-999,999,999Wh�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getRatedElectricEnergy() {return null;}
+	private final byte[] _getRatedElectricEnergy(byte epc) {
+		byte[] edt = getRatedElectricEnergy();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the rated charging capacity of the battery in increments of 0.1Ah.<br>0x0000-0x7FFE�i0-3,276.6Ah�j<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getRatedCapacity() {return null;}
+	private final byte[] _getRatedCapacity(byte epc) {
+		byte[] edt = getRatedCapacity();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the rated voltage of the battery in volts.<br>0x0000-0x7FFE�i0-32,766V�j<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getRatedVoltage() {return null;}
+	private final byte[] _getRatedVoltage(byte epc) {
+		byte[] edt = getRatedVoltage();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the measured instantaneous charge/discharge electric energy in watts (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999W�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999W)�Fduring discharging (negative value)<br><br>Data type : signed long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredInstantaneousChargeDischargEElectricEnergy() {return null;}
+	private final byte[] _getMeasuredInstantaneousChargeDischargEElectricEnergy(byte epc) {
+		byte[] edt = getMeasuredInstantaneousChargeDischargEElectricEnergy();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the measured instantaneous charge/discharge current in increments of 0.1A (positive/negative).<br>0x0001-0x7FFE�i0.1-3,276.6A�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7A�j�Fduring discharging (negative value)<br><br>Data type : signed short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredInstantaneousChargeDischargECurrent() {return null;}
+	private final byte[] _getMeasuredInstantaneousChargeDischargECurrent(byte epc) {
+		byte[] edt = getMeasuredInstantaneousChargeDischargECurrent();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the measured instantaneous charge/discharge voltage in volts (positive/negative).<br>0x0001-0x7FFE�i1-32,766V�j�Fduring charging (positive value), 0xFFFF-0x8001�i.1-.32,767V�j�F during discharging (negative value)<br><br>Data type : signed short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredInstantaneousChargeDischargEVoltage() {return null;}
+	private final byte[] _getMeasuredInstantaneousChargeDischargEVoltage(byte epc) {
+		byte[] edt = getMeasuredInstantaneousChargeDischargEVoltage();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the measured cumulative discharge electric energy in increments of 0.001kWh.<br>0x00000000-0x3B9AC9FF �i0-999,999.999kWh�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredCumulativeDischargeElectricEnergy() {return null;}
+	private final byte[] _getMeasuredCumulativeDischargeElectricEnergy(byte epc) {
+		byte[] edt = getMeasuredCumulativeDischargeElectricEnergy();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Resets �gMeasured cumulative discharge electric energy�h to zero.<br>Reset��0x00<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : undefined
 	 */
 	protected boolean setGmeasuredCumulativeDischargeElectricEnergyHResetSetting(byte[] edt) {return false;}
+	private final boolean _setGmeasuredCumulativeDischargeElectricEnergyHResetSetting(byte epc, byte[] edt) {
+		boolean success = setGmeasuredCumulativeDischargeElectricEnergyHResetSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * This property indicates the measured cumulative charge electric energy in increments of 0.001kWh.<br>0x00000000-0x3B9AC9FF �i0-999,999.999kWh�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredCumulativeChargeElectricEnergy() {return null;}
+	private final byte[] _getMeasuredCumulativeChargeElectricEnergy(byte epc) {
+		byte[] edt = getMeasuredCumulativeChargeElectricEnergy();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Resets �gMeasured cumulative charge electric energy�h to zero.<br>Reset��0x00<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : undefined
 	 */
 	protected boolean setGmeasuredCumulativeChargeElectricEnergyHResetSetting(byte[] edt) {return false;}
+	private final boolean _setGmeasuredCumulativeChargeElectricEnergyHResetSetting(byte epc, byte[] edt) {
+		boolean success = setGmeasuredCumulativeChargeElectricEnergyHResetSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets the battery to one of the following operation modes: �gRapid charging,�h �gCharging,�h �gDischarging,�h �gStandby�h or �gTest.�h<br>Rapid charging��0x41, Charging�� 0x42, Discharging��0x43, Standby�� 0x44, Test=0x45<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 	 */
 	protected abstract boolean setOperationModeSettingSeeNote1(byte[] edt);
+	private final boolean _setOperationModeSettingSeeNote1(byte epc, byte[] edt) {
+		boolean success = setOperationModeSettingSeeNote1(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets the battery to one of the following operation modes: �gRapid charging,�h �gCharging,�h �gDischarging,�h �gStandby�h or �gTest.�h<br>Rapid charging��0x41, Charging�� 0x42, Discharging��0x43, Standby�� 0x44, Test=0x45<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 	 */
 	protected abstract byte[] getOperationModeSettingSeeNote1();
+	private final byte[] _getOperationModeSettingSeeNote1(byte epc) {
+		byte[] edt = getOperationModeSettingSeeNote1();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999Wh�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999Wh�j�Fduring discharging (negative value)<br><br>Data type : signed long<br>Data size : 4 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setChargingDischaRgingAmountSetting1SeeNote2(byte[] edt) {return false;}
+	private final boolean _setChargingDischaRgingAmountSetting1SeeNote2(byte epc, byte[] edt) {
+		boolean success = setChargingDischaRgingAmountSetting1SeeNote2(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999Wh�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999Wh�j�Fduring discharging (negative value)<br><br>Data type : signed long<br>Data size : 4 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getChargingDischaRgingAmountSetting1SeeNote2() {return null;}
+	private final byte[] _getChargingDischaRgingAmountSetting1SeeNote2(byte epc) {
+		byte[] edt = getChargingDischaRgingAmountSetting1SeeNote2();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>0x0001-0x7FFD�i0.1-3,276.6Ah�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7Ah�j�Fduring discharging (negative value)<br><br>Data type : signed short<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setChargingDischaRgingAmountSetting2SeeNote2(byte[] edt) {return false;}
+	private final boolean _setChargingDischaRgingAmountSetting2SeeNote2(byte epc, byte[] edt) {
+		boolean success = setChargingDischaRgingAmountSetting2SeeNote2(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>0x0001-0x7FFD�i0.1-3,276.6Ah�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7Ah�j�Fduring discharging (negative value)<br><br>Data type : signed short<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getChargingDischaRgingAmountSetting2SeeNote2() {return null;}
+	private final byte[] _getChargingDischaRgingAmountSetting2SeeNote2(byte epc) {
+		byte[] edt = getChargingDischaRgingAmountSetting2SeeNote2();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the remaining stored electric energy in Wh.<br>0x00000000-0x3B9AC9FF �i0-999,999,999Wh�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getRemainingStoredElectricity1SeeNote3();
+	private final byte[] _getRemainingStoredElectricity1SeeNote3(byte epc) {
+		byte[] edt = getRemainingStoredElectricity1SeeNote3();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the remaining capacity in increments of 0.1Ah.<br>0x0000-0x7FFE�i0-3,276.6Ah�j<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getRemainingStoredElectricity2SeeNote3();
+	private final byte[] _getRemainingStoredElectricity2SeeNote3(byte epc) {
+		byte[] edt = getRemainingStoredElectricity2SeeNote3();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This  property indicates the charging rate of the battery in terms of percentage. (0-100%)<br>This  property indicates the battery state of health in terms of percentage. (0-100%)<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getRemainingStoredElectricity3SeeNote3BateryStareOfHealth();
+	private final byte[] _getRemainingStoredElectricity3SeeNote3BateryStareOfHealth(byte epc) {
+		byte[] edt = getRemainingStoredElectricity3SeeNote3BateryStareOfHealth();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the battery type.<br>Type=0x00-0xFF<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getBatteryType();
+	private final byte[] _getBatteryType(byte epc) {
+		byte[] edt = getBatteryType();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -141,19 +241,19 @@ public abstract class Battery extends DeviceObject {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
 		case EPC_GMEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_H_RESET_SETTING:
-			res.addProperty(epc, edt, setGmeasuredCumulativeDischargeElectricEnergyHResetSetting(edt));
+			res.addProperty(epc, edt, _setGmeasuredCumulativeDischargeElectricEnergyHResetSetting(epc, edt));
 			break;
 		case EPC_GMEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_H_RESET_SETTING:
-			res.addProperty(epc, edt, setGmeasuredCumulativeChargeElectricEnergyHResetSetting(edt));
+			res.addProperty(epc, edt, _setGmeasuredCumulativeChargeElectricEnergyHResetSetting(epc, edt));
 			break;
 		case EPC_OPERATION_MODE_SETTING_SEE_NOTE1:
-			res.addProperty(epc, edt, setOperationModeSettingSeeNote1(edt));
+			res.addProperty(epc, edt, _setOperationModeSettingSeeNote1(epc, edt));
 			break;
 		case EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING1_SEE_NOTE2:
-			res.addProperty(epc, edt, setChargingDischaRgingAmountSetting1SeeNote2(edt));
+			res.addProperty(epc, edt, _setChargingDischaRgingAmountSetting1SeeNote2(epc, edt));
 			break;
 		case EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING2_SEE_NOTE2:
-			res.addProperty(epc, edt, setChargingDischaRgingAmountSetting2SeeNote2(edt));
+			res.addProperty(epc, edt, _setChargingDischaRgingAmountSetting2SeeNote2(epc, edt));
 			break;
 
 		}
@@ -165,63 +265,63 @@ public abstract class Battery extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_RATED_ELECTRIC_ENERGY:
-			edt = getRatedElectricEnergy();
+			edt = _getRatedElectricEnergy(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			break;
 		case EPC_RATED_CAPACITY:
-			edt = getRatedCapacity();
+			edt = _getRatedCapacity(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_RATED_VOLTAGE:
-			edt = getRatedVoltage();
+			edt = _getRatedVoltage(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_ELECTRIC_ENERGY:
-			edt = getMeasuredInstantaneousChargeDischargEElectricEnergy();
+			edt = _getMeasuredInstantaneousChargeDischargEElectricEnergy(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			break;
 		case EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_CURRENT:
-			edt = getMeasuredInstantaneousChargeDischargECurrent();
+			edt = _getMeasuredInstantaneousChargeDischargECurrent(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_VOLTAGE:
-			edt = getMeasuredInstantaneousChargeDischargEVoltage();
+			edt = _getMeasuredInstantaneousChargeDischargEVoltage(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY:
-			edt = getMeasuredCumulativeDischargeElectricEnergy();
+			edt = _getMeasuredCumulativeDischargeElectricEnergy(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			break;
 		case EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY:
-			edt = getMeasuredCumulativeChargeElectricEnergy();
+			edt = _getMeasuredCumulativeChargeElectricEnergy(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			break;
 		case EPC_OPERATION_MODE_SETTING_SEE_NOTE1:
-			edt = getOperationModeSettingSeeNote1();
+			edt = _getOperationModeSettingSeeNote1(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING1_SEE_NOTE2:
-			edt = getChargingDischaRgingAmountSetting1SeeNote2();
+			edt = _getChargingDischaRgingAmountSetting1SeeNote2(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			break;
 		case EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING2_SEE_NOTE2:
-			edt = getChargingDischaRgingAmountSetting2SeeNote2();
+			edt = _getChargingDischaRgingAmountSetting2SeeNote2(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_REMAINING_STORED_ELECTRICITY1_SEE_NOTE3:
-			edt = getRemainingStoredElectricity1SeeNote3();
+			edt = _getRemainingStoredElectricity1SeeNote3(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			break;
 		case EPC_REMAINING_STORED_ELECTRICITY2_SEE_NOTE3:
-			edt = getRemainingStoredElectricity2SeeNote3();
+			edt = _getRemainingStoredElectricity2SeeNote3(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_REMAINING_STORED_ELECTRICITY3_SEE_NOTE3_BATERY_STARE_OF_HEALTH:
-			edt = getRemainingStoredElectricity3SeeNote3BateryStareOfHealth();
+			edt = _getRemainingStoredElectricity3SeeNote3BateryStareOfHealth(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_BATTERY_TYPE:
-			edt = getBatteryType();
+			edt = _getBatteryType(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 
@@ -251,78 +351,76 @@ public abstract class Battery extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_GMEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_H_RESET_SETTING:
-				onSetGmeasuredCumulativeDischargeElectricEnergyHResetSetting(eoj, tid, (pdc != 0));
+				_onSetGmeasuredCumulativeDischargeElectricEnergyHResetSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_GMEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_H_RESET_SETTING:
-				onSetGmeasuredCumulativeChargeElectricEnergyHResetSetting(eoj, tid, (pdc != 0));
+				_onSetGmeasuredCumulativeChargeElectricEnergyHResetSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_OPERATION_MODE_SETTING_SEE_NOTE1:
-				onSetOperationModeSettingSeeNote1(eoj, tid, (pdc != 0));
+				_onSetOperationModeSettingSeeNote1(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING1_SEE_NOTE2:
-				onSetChargingDischaRgingAmountSetting1SeeNote2(eoj, tid, (pdc != 0));
+				_onSetChargingDischaRgingAmountSetting1SeeNote2(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING2_SEE_NOTE2:
-				onSetChargingDischaRgingAmountSetting2SeeNote2(eoj, tid, (pdc != 0));
+				_onSetChargingDischaRgingAmountSetting2SeeNote2(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_RATED_ELECTRIC_ENERGY:
-				onGetRatedElectricEnergy(eoj, tid, pdc, edt);
+				_onGetRatedElectricEnergy(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_RATED_CAPACITY:
-				onGetRatedCapacity(eoj, tid, pdc, edt);
+				_onGetRatedCapacity(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_RATED_VOLTAGE:
-				onGetRatedVoltage(eoj, tid, pdc, edt);
+				_onGetRatedVoltage(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_ELECTRIC_ENERGY:
-				onGetMeasuredInstantaneousChargeDischargEElectricEnergy(eoj, tid, pdc, edt);
+				_onGetMeasuredInstantaneousChargeDischargEElectricEnergy(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_CURRENT:
-				onGetMeasuredInstantaneousChargeDischargECurrent(eoj, tid, pdc, edt);
+				_onGetMeasuredInstantaneousChargeDischargECurrent(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_VOLTAGE:
-				onGetMeasuredInstantaneousChargeDischargEVoltage(eoj, tid, pdc, edt);
+				_onGetMeasuredInstantaneousChargeDischargEVoltage(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY:
-				onGetMeasuredCumulativeDischargeElectricEnergy(eoj, tid, pdc, edt);
+				_onGetMeasuredCumulativeDischargeElectricEnergy(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY:
-				onGetMeasuredCumulativeChargeElectricEnergy(eoj, tid, pdc, edt);
+				_onGetMeasuredCumulativeChargeElectricEnergy(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_OPERATION_MODE_SETTING_SEE_NOTE1:
-				onGetOperationModeSettingSeeNote1(eoj, tid, pdc, edt);
+				_onGetOperationModeSettingSeeNote1(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING1_SEE_NOTE2:
-				onGetChargingDischaRgingAmountSetting1SeeNote2(eoj, tid, pdc, edt);
+				_onGetChargingDischaRgingAmountSetting1SeeNote2(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING2_SEE_NOTE2:
-				onGetChargingDischaRgingAmountSetting2SeeNote2(eoj, tid, pdc, edt);
+				_onGetChargingDischaRgingAmountSetting2SeeNote2(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_REMAINING_STORED_ELECTRICITY1_SEE_NOTE3:
-				onGetRemainingStoredElectricity1SeeNote3(eoj, tid, pdc, edt);
+				_onGetRemainingStoredElectricity1SeeNote3(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_REMAINING_STORED_ELECTRICITY2_SEE_NOTE3:
-				onGetRemainingStoredElectricity2SeeNote3(eoj, tid, pdc, edt);
+				_onGetRemainingStoredElectricity2SeeNote3(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_REMAINING_STORED_ELECTRICITY3_SEE_NOTE3_BATERY_STARE_OF_HEALTH:
-				onGetRemainingStoredElectricity3SeeNote3BateryStareOfHealth(eoj, tid, pdc, edt);
+				_onGetRemainingStoredElectricity3SeeNote3BateryStareOfHealth(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_BATTERY_TYPE:
-				onGetBatteryType(eoj, tid, pdc, edt);
+				_onGetBatteryType(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -331,83 +429,163 @@ public abstract class Battery extends DeviceObject {
 		/**
 		 * This property indicates the rated electric energy of the battery in Wh.<br>0x00000000-0x3B9AC9FF �i0-999,999,999Wh�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetRatedElectricEnergy(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetRatedElectricEnergy(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetRatedElectricEnergy(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetRatedElectricEnergy(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the rated charging capacity of the battery in increments of 0.1Ah.<br>0x0000-0x7FFE�i0-3,276.6Ah�j<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetRatedCapacity(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetRatedCapacity(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetRatedCapacity(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetRatedCapacity(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the rated voltage of the battery in volts.<br>0x0000-0x7FFE�i0-32,766V�j<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetRatedVoltage(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetRatedVoltage(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetRatedVoltage(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetRatedVoltage(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the measured instantaneous charge/discharge electric energy in watts (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999W�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999W)�Fduring discharging (negative value)<br><br>Data type : signed long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMeasuredInstantaneousChargeDischargEElectricEnergy(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredInstantaneousChargeDischargEElectricEnergy(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredInstantaneousChargeDischargEElectricEnergy(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredInstantaneousChargeDischargEElectricEnergy(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the measured instantaneous charge/discharge current in increments of 0.1A (positive/negative).<br>0x0001-0x7FFE�i0.1-3,276.6A�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7A�j�Fduring discharging (negative value)<br><br>Data type : signed short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMeasuredInstantaneousChargeDischargECurrent(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredInstantaneousChargeDischargECurrent(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredInstantaneousChargeDischargECurrent(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredInstantaneousChargeDischargECurrent(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the measured instantaneous charge/discharge voltage in volts (positive/negative).<br>0x0001-0x7FFE�i1-32,766V�j�Fduring charging (positive value), 0xFFFF-0x8001�i.1-.32,767V�j�F during discharging (negative value)<br><br>Data type : signed short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMeasuredInstantaneousChargeDischargEVoltage(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredInstantaneousChargeDischargEVoltage(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredInstantaneousChargeDischargEVoltage(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredInstantaneousChargeDischargEVoltage(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the measured cumulative discharge electric energy in increments of 0.001kWh.<br>0x00000000-0x3B9AC9FF �i0-999,999.999kWh�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMeasuredCumulativeDischargeElectricEnergy(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredCumulativeDischargeElectricEnergy(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredCumulativeDischargeElectricEnergy(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredCumulativeDischargeElectricEnergy(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Resets �gMeasured cumulative discharge electric energy�h to zero.<br>Reset��0x00<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : undefined
 		 */
-		protected void onSetGmeasuredCumulativeDischargeElectricEnergyHResetSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetGmeasuredCumulativeDischargeElectricEnergyHResetSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetGmeasuredCumulativeDischargeElectricEnergyHResetSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetGmeasuredCumulativeDischargeElectricEnergyHResetSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * This property indicates the measured cumulative charge electric energy in increments of 0.001kWh.<br>0x00000000-0x3B9AC9FF �i0-999,999.999kWh�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMeasuredCumulativeChargeElectricEnergy(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredCumulativeChargeElectricEnergy(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredCumulativeChargeElectricEnergy(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredCumulativeChargeElectricEnergy(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Resets �gMeasured cumulative charge electric energy�h to zero.<br>Reset��0x00<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : undefined
 		 */
-		protected void onSetGmeasuredCumulativeChargeElectricEnergyHResetSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetGmeasuredCumulativeChargeElectricEnergyHResetSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetGmeasuredCumulativeChargeElectricEnergyHResetSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetGmeasuredCumulativeChargeElectricEnergyHResetSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets the battery to one of the following operation modes: �gRapid charging,�h �gCharging,�h �gDischarging,�h �gStandby�h or �gTest.�h<br>Rapid charging��0x41, Charging�� 0x42, Discharging��0x43, Standby�� 0x44, Test=0x45<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
-		protected void onSetOperationModeSettingSeeNote1(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetOperationModeSettingSeeNote1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetOperationModeSettingSeeNote1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetOperationModeSettingSeeNote1(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets the battery to one of the following operation modes: �gRapid charging,�h �gCharging,�h �gDischarging,�h �gStandby�h or �gTest.�h<br>Rapid charging��0x41, Charging�� 0x42, Discharging��0x43, Standby�� 0x44, Test=0x45<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
-		protected void onGetOperationModeSettingSeeNote1(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOperationModeSettingSeeNote1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOperationModeSettingSeeNote1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOperationModeSettingSeeNote1(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999Wh�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999Wh�j�Fduring discharging (negative value)<br><br>Data type : signed long<br>Data size : 4 Byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetChargingDischaRgingAmountSetting1SeeNote2(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetChargingDischaRgingAmountSetting1SeeNote2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetChargingDischaRgingAmountSetting1SeeNote2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetChargingDischaRgingAmountSetting1SeeNote2(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>0x00000001-0x3B9AC9FF �i1-999,999,999Wh�j�Fduring charging (positive value), 0xFFFFFFFF-0xC4653601 (.1-. 999,999,999Wh�j�Fduring discharging (negative value)<br><br>Data type : signed long<br>Data size : 4 Byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetChargingDischaRgingAmountSetting1SeeNote2(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetChargingDischaRgingAmountSetting1SeeNote2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetChargingDischaRgingAmountSetting1SeeNote2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetChargingDischaRgingAmountSetting1SeeNote2(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>0x0001-0x7FFD�i0.1-3,276.6Ah�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7Ah�j�Fduring discharging (negative value)<br><br>Data type : signed short<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetChargingDischaRgingAmountSetting2SeeNote2(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetChargingDischaRgingAmountSetting2SeeNote2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetChargingDischaRgingAmountSetting2SeeNote2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetChargingDischaRgingAmountSetting2SeeNote2(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>0x0001-0x7FFD�i0.1-3,276.6Ah�j�F during charging (positive value), 0xFFFF-0x8001�i.0.1-. 3,276.7Ah�j�Fduring discharging (negative value)<br><br>Data type : signed short<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetChargingDischaRgingAmountSetting2SeeNote2(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetChargingDischaRgingAmountSetting2SeeNote2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetChargingDischaRgingAmountSetting2SeeNote2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetChargingDischaRgingAmountSetting2SeeNote2(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the remaining stored electric energy in Wh.<br>0x00000000-0x3B9AC9FF �i0-999,999,999Wh�j<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetRemainingStoredElectricity1SeeNote3(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetRemainingStoredElectricity1SeeNote3(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetRemainingStoredElectricity1SeeNote3(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetRemainingStoredElectricity1SeeNote3(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the remaining capacity in increments of 0.1Ah.<br>0x0000-0x7FFE�i0-3,276.6Ah�j<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetRemainingStoredElectricity2SeeNote3(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetRemainingStoredElectricity2SeeNote3(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetRemainingStoredElectricity2SeeNote3(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetRemainingStoredElectricity2SeeNote3(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This  property indicates the charging rate of the battery in terms of percentage. (0-100%)<br>This  property indicates the battery state of health in terms of percentage. (0-100%)<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetRemainingStoredElectricity3SeeNote3BateryStareOfHealth(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetRemainingStoredElectricity3SeeNote3BateryStareOfHealth(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetRemainingStoredElectricity3SeeNote3BateryStareOfHealth(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetRemainingStoredElectricity3SeeNote3BateryStareOfHealth(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the battery type.<br>Type=0x00-0xFF<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetBatteryType(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetBatteryType(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetBatteryType(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetBatteryType(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -484,27 +662,32 @@ public abstract class Battery extends DeviceObject {
 
 		@Override
 		public Setter reqSetGmeasuredCumulativeDischargeElectricEnergyHResetSetting(byte[] edt) {
-			addProperty(EPC_GMEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_H_RESET_SETTING, edt, setGmeasuredCumulativeDischargeElectricEnergyHResetSetting(edt));
+			byte epc = EPC_GMEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_H_RESET_SETTING;
+			addProperty(epc, edt, _setGmeasuredCumulativeDischargeElectricEnergyHResetSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetGmeasuredCumulativeChargeElectricEnergyHResetSetting(byte[] edt) {
-			addProperty(EPC_GMEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_H_RESET_SETTING, edt, setGmeasuredCumulativeChargeElectricEnergyHResetSetting(edt));
+			byte epc = EPC_GMEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_H_RESET_SETTING;
+			addProperty(epc, edt, _setGmeasuredCumulativeChargeElectricEnergyHResetSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetOperationModeSettingSeeNote1(byte[] edt) {
-			addProperty(EPC_OPERATION_MODE_SETTING_SEE_NOTE1, edt, setOperationModeSettingSeeNote1(edt));
+			byte epc = EPC_OPERATION_MODE_SETTING_SEE_NOTE1;
+			addProperty(epc, edt, _setOperationModeSettingSeeNote1(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetChargingDischaRgingAmountSetting1SeeNote2(byte[] edt) {
-			addProperty(EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING1_SEE_NOTE2, edt, setChargingDischaRgingAmountSetting1SeeNote2(edt));
+			byte epc = EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING1_SEE_NOTE2;
+			addProperty(epc, edt, _setChargingDischaRgingAmountSetting1SeeNote2(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetChargingDischaRgingAmountSetting2SeeNote2(byte[] edt) {
-			addProperty(EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING2_SEE_NOTE2, edt, setChargingDischaRgingAmountSetting2SeeNote2(edt));
+			byte epc = EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING2_SEE_NOTE2;
+			addProperty(epc, edt, _setChargingDischaRgingAmountSetting2SeeNote2(epc, edt));
 			return this;
 		}
 	}
@@ -764,92 +947,107 @@ public abstract class Battery extends DeviceObject {
 
 		@Override
 		public Getter reqGetRatedElectricEnergy() {
-			byte[] edt = getRatedElectricEnergy();
-			addProperty(EPC_RATED_ELECTRIC_ENERGY, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_RATED_ELECTRIC_ENERGY;
+			byte[] edt = _getRatedElectricEnergy(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Getter reqGetRatedCapacity() {
-			byte[] edt = getRatedCapacity();
-			addProperty(EPC_RATED_CAPACITY, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_RATED_CAPACITY;
+			byte[] edt = _getRatedCapacity(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetRatedVoltage() {
-			byte[] edt = getRatedVoltage();
-			addProperty(EPC_RATED_VOLTAGE, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_RATED_VOLTAGE;
+			byte[] edt = _getRatedVoltage(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredInstantaneousChargeDischargEElectricEnergy() {
-			byte[] edt = getMeasuredInstantaneousChargeDischargEElectricEnergy();
-			addProperty(EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_ELECTRIC_ENERGY, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_ELECTRIC_ENERGY;
+			byte[] edt = _getMeasuredInstantaneousChargeDischargEElectricEnergy(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredInstantaneousChargeDischargECurrent() {
-			byte[] edt = getMeasuredInstantaneousChargeDischargECurrent();
-			addProperty(EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_CURRENT, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_CURRENT;
+			byte[] edt = _getMeasuredInstantaneousChargeDischargECurrent(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredInstantaneousChargeDischargEVoltage() {
-			byte[] edt = getMeasuredInstantaneousChargeDischargEVoltage();
-			addProperty(EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_VOLTAGE, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_VOLTAGE;
+			byte[] edt = _getMeasuredInstantaneousChargeDischargEVoltage(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredCumulativeDischargeElectricEnergy() {
-			byte[] edt = getMeasuredCumulativeDischargeElectricEnergy();
-			addProperty(EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY;
+			byte[] edt = _getMeasuredCumulativeDischargeElectricEnergy(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredCumulativeChargeElectricEnergy() {
-			byte[] edt = getMeasuredCumulativeChargeElectricEnergy();
-			addProperty(EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY;
+			byte[] edt = _getMeasuredCumulativeChargeElectricEnergy(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOperationModeSettingSeeNote1() {
-			byte[] edt = getOperationModeSettingSeeNote1();
-			addProperty(EPC_OPERATION_MODE_SETTING_SEE_NOTE1, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OPERATION_MODE_SETTING_SEE_NOTE1;
+			byte[] edt = _getOperationModeSettingSeeNote1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetChargingDischaRgingAmountSetting1SeeNote2() {
-			byte[] edt = getChargingDischaRgingAmountSetting1SeeNote2();
-			addProperty(EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING1_SEE_NOTE2, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING1_SEE_NOTE2;
+			byte[] edt = _getChargingDischaRgingAmountSetting1SeeNote2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Getter reqGetChargingDischaRgingAmountSetting2SeeNote2() {
-			byte[] edt = getChargingDischaRgingAmountSetting2SeeNote2();
-			addProperty(EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING2_SEE_NOTE2, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING2_SEE_NOTE2;
+			byte[] edt = _getChargingDischaRgingAmountSetting2SeeNote2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetRemainingStoredElectricity1SeeNote3() {
-			byte[] edt = getRemainingStoredElectricity1SeeNote3();
-			addProperty(EPC_REMAINING_STORED_ELECTRICITY1_SEE_NOTE3, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_REMAINING_STORED_ELECTRICITY1_SEE_NOTE3;
+			byte[] edt = _getRemainingStoredElectricity1SeeNote3(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Getter reqGetRemainingStoredElectricity2SeeNote3() {
-			byte[] edt = getRemainingStoredElectricity2SeeNote3();
-			addProperty(EPC_REMAINING_STORED_ELECTRICITY2_SEE_NOTE3, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_REMAINING_STORED_ELECTRICITY2_SEE_NOTE3;
+			byte[] edt = _getRemainingStoredElectricity2SeeNote3(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetRemainingStoredElectricity3SeeNote3BateryStareOfHealth() {
-			byte[] edt = getRemainingStoredElectricity3SeeNote3BateryStareOfHealth();
-			addProperty(EPC_REMAINING_STORED_ELECTRICITY3_SEE_NOTE3_BATERY_STARE_OF_HEALTH, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_REMAINING_STORED_ELECTRICITY3_SEE_NOTE3_BATERY_STARE_OF_HEALTH;
+			byte[] edt = _getRemainingStoredElectricity3SeeNote3BateryStareOfHealth(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetBatteryType() {
-			byte[] edt = getBatteryType();
-			addProperty(EPC_BATTERY_TYPE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_BATTERY_TYPE;
+			byte[] edt = _getBatteryType(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}
@@ -1219,92 +1417,107 @@ public abstract class Battery extends DeviceObject {
 
 		@Override
 		public Informer reqInformRatedElectricEnergy() {
-			byte[] edt = getRatedElectricEnergy();
-			addProperty(EPC_RATED_ELECTRIC_ENERGY, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_RATED_ELECTRIC_ENERGY;
+			byte[] edt = _getRatedElectricEnergy(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Informer reqInformRatedCapacity() {
-			byte[] edt = getRatedCapacity();
-			addProperty(EPC_RATED_CAPACITY, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_RATED_CAPACITY;
+			byte[] edt = _getRatedCapacity(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformRatedVoltage() {
-			byte[] edt = getRatedVoltage();
-			addProperty(EPC_RATED_VOLTAGE, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_RATED_VOLTAGE;
+			byte[] edt = _getRatedVoltage(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredInstantaneousChargeDischargEElectricEnergy() {
-			byte[] edt = getMeasuredInstantaneousChargeDischargEElectricEnergy();
-			addProperty(EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_ELECTRIC_ENERGY, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_ELECTRIC_ENERGY;
+			byte[] edt = _getMeasuredInstantaneousChargeDischargEElectricEnergy(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredInstantaneousChargeDischargECurrent() {
-			byte[] edt = getMeasuredInstantaneousChargeDischargECurrent();
-			addProperty(EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_CURRENT, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_CURRENT;
+			byte[] edt = _getMeasuredInstantaneousChargeDischargECurrent(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredInstantaneousChargeDischargEVoltage() {
-			byte[] edt = getMeasuredInstantaneousChargeDischargEVoltage();
-			addProperty(EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_VOLTAGE, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_VOLTAGE;
+			byte[] edt = _getMeasuredInstantaneousChargeDischargEVoltage(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredCumulativeDischargeElectricEnergy() {
-			byte[] edt = getMeasuredCumulativeDischargeElectricEnergy();
-			addProperty(EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY;
+			byte[] edt = _getMeasuredCumulativeDischargeElectricEnergy(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredCumulativeChargeElectricEnergy() {
-			byte[] edt = getMeasuredCumulativeChargeElectricEnergy();
-			addProperty(EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY;
+			byte[] edt = _getMeasuredCumulativeChargeElectricEnergy(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOperationModeSettingSeeNote1() {
-			byte[] edt = getOperationModeSettingSeeNote1();
-			addProperty(EPC_OPERATION_MODE_SETTING_SEE_NOTE1, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OPERATION_MODE_SETTING_SEE_NOTE1;
+			byte[] edt = _getOperationModeSettingSeeNote1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformChargingDischaRgingAmountSetting1SeeNote2() {
-			byte[] edt = getChargingDischaRgingAmountSetting1SeeNote2();
-			addProperty(EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING1_SEE_NOTE2, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING1_SEE_NOTE2;
+			byte[] edt = _getChargingDischaRgingAmountSetting1SeeNote2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Informer reqInformChargingDischaRgingAmountSetting2SeeNote2() {
-			byte[] edt = getChargingDischaRgingAmountSetting2SeeNote2();
-			addProperty(EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING2_SEE_NOTE2, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING2_SEE_NOTE2;
+			byte[] edt = _getChargingDischaRgingAmountSetting2SeeNote2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformRemainingStoredElectricity1SeeNote3() {
-			byte[] edt = getRemainingStoredElectricity1SeeNote3();
-			addProperty(EPC_REMAINING_STORED_ELECTRICITY1_SEE_NOTE3, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_REMAINING_STORED_ELECTRICITY1_SEE_NOTE3;
+			byte[] edt = _getRemainingStoredElectricity1SeeNote3(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Informer reqInformRemainingStoredElectricity2SeeNote3() {
-			byte[] edt = getRemainingStoredElectricity2SeeNote3();
-			addProperty(EPC_REMAINING_STORED_ELECTRICITY2_SEE_NOTE3, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_REMAINING_STORED_ELECTRICITY2_SEE_NOTE3;
+			byte[] edt = _getRemainingStoredElectricity2SeeNote3(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformRemainingStoredElectricity3SeeNote3BateryStareOfHealth() {
-			byte[] edt = getRemainingStoredElectricity3SeeNote3BateryStareOfHealth();
-			addProperty(EPC_REMAINING_STORED_ELECTRICITY3_SEE_NOTE3_BATERY_STARE_OF_HEALTH, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_REMAINING_STORED_ELECTRICITY3_SEE_NOTE3_BATERY_STARE_OF_HEALTH;
+			byte[] edt = _getRemainingStoredElectricity3SeeNote3BateryStareOfHealth(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformBatteryType() {
-			byte[] edt = getBatteryType();
-			addProperty(EPC_BATTERY_TYPE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_BATTERY_TYPE;
+			byte[] edt = _getBatteryType(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}

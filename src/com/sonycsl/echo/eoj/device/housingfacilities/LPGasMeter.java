@@ -26,30 +26,30 @@ public abstract class LPGasMeter extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x83;
 
-	protected static final byte EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1 = (byte)0xE0;
-	protected static final byte EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2 = (byte)0xE1;
-	protected static final byte EPC_ERROR_DETECTION_STATUSOF_METERING_DATA = (byte)0xE2;
-	protected static final byte EPC_SECURITY_DATA1 = (byte)0xE3;
-	protected static final byte EPC_SECURITY_DATA2 = (byte)0xE4;
-	protected static final byte EPC_CENTER_VALVE_SHUT_OFF_STATUS = (byte)0xE5;
-	protected static final byte EPC_CENTER_VALVE_SHUT_OFF_RECOVERY_PERMISSION_SETTING_STATUS = (byte)0xE6;
-	protected static final byte EPC_EMERGENCY_VALVE_SHUT_OFF_STATUS = (byte)0xE7;
-	protected static final byte EPC_SHUT_OFF_VALVE_OPEN_CLOSE_STATUS = (byte)0xE8;
-	protected static final byte EPC_RESIDUAL_VOLUME_CONTROL_WARNING = (byte)0xE9;
-	protected static final byte EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1 = (byte)0xEA;
-	protected static final byte EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2 = (byte)0xEB;
-	protected static final byte EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3 = (byte)0xEC;
-	protected static final byte EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION = (byte)0xED;
-	protected static final byte EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE = (byte)0xEE;
-	protected static final byte EPC_SHUT_OFF_REASON_LOG = (byte)0xEF;
-	protected static final byte EPC_MAXIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA = (byte)0xD0;
-	protected static final byte EPC_MINIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA = (byte)0xD1;
-	protected static final byte EPC_CURRENT_VALUE_OF_SUPPLY_PRESSURE_DATA = (byte)0xD2;
-	protected static final byte EPC_MAXIMUM_VALUE_OF_BLOCK_PRESSURE_DATA = (byte)0xD3;
-	protected static final byte EPC_MINIMUM_VALUE_OF_BLOCK_PRESSURE_DATA = (byte)0xD4;
-	protected static final byte EPC_CURRENT_VALUE_OF_BLOCK_PRESSURE_DATA = (byte)0xD5;
-	protected static final byte EPC_NUMBER_OF_BLOCK_PRESSURE_SUPPLY_PRESSURE_ERROR_DAYS_TIME = (byte)0xD6;
-	protected static final byte EPC_TEST_CALL_SETTING = (byte)0xD7;
+	public static final byte EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1 = (byte)0xE0;
+	public static final byte EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2 = (byte)0xE1;
+	public static final byte EPC_ERROR_DETECTION_STATUSOF_METERING_DATA = (byte)0xE2;
+	public static final byte EPC_SECURITY_DATA1 = (byte)0xE3;
+	public static final byte EPC_SECURITY_DATA2 = (byte)0xE4;
+	public static final byte EPC_CENTER_VALVE_SHUT_OFF_STATUS = (byte)0xE5;
+	public static final byte EPC_CENTER_VALVE_SHUT_OFF_RECOVERY_PERMISSION_SETTING_STATUS = (byte)0xE6;
+	public static final byte EPC_EMERGENCY_VALVE_SHUT_OFF_STATUS = (byte)0xE7;
+	public static final byte EPC_SHUT_OFF_VALVE_OPEN_CLOSE_STATUS = (byte)0xE8;
+	public static final byte EPC_RESIDUAL_VOLUME_CONTROL_WARNING = (byte)0xE9;
+	public static final byte EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1 = (byte)0xEA;
+	public static final byte EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2 = (byte)0xEB;
+	public static final byte EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3 = (byte)0xEC;
+	public static final byte EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION = (byte)0xED;
+	public static final byte EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE = (byte)0xEE;
+	public static final byte EPC_SHUT_OFF_REASON_LOG = (byte)0xEF;
+	public static final byte EPC_MAXIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA = (byte)0xD0;
+	public static final byte EPC_MINIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA = (byte)0xD1;
+	public static final byte EPC_CURRENT_VALUE_OF_SUPPLY_PRESSURE_DATA = (byte)0xD2;
+	public static final byte EPC_MAXIMUM_VALUE_OF_BLOCK_PRESSURE_DATA = (byte)0xD3;
+	public static final byte EPC_MINIMUM_VALUE_OF_BLOCK_PRESSURE_DATA = (byte)0xD4;
+	public static final byte EPC_CURRENT_VALUE_OF_BLOCK_PRESSURE_DATA = (byte)0xD5;
+	public static final byte EPC_NUMBER_OF_BLOCK_PRESSURE_SUPPLY_PRESSURE_ERROR_DAYS_TIME = (byte)0xD6;
+	public static final byte EPC_TEST_CALL_SETTING = (byte)0xD7;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -65,114 +65,254 @@ public abstract class LPGasMeter extends DeviceObject {
 	 * This property indicates integral gas consumption in units of 0.0001 m3.<br>0.0x005F5E0FF (0.9999,9999 m3)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getIntegralGasConsumptionOfMeteringData1();
+	private final byte[] _getIntegralGasConsumptionOfMeteringData1(byte epc) {
+		byte[] edt = getIntegralGasConsumptionOfMeteringData1();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates integral gas consumption in units of 0.001 m3.<br>0.0x005F5E0FF (0.99999,999 m3)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getIntegralGasConsumptionOfMeteringData2();
+	private final byte[] _getIntegralGasConsumptionOfMeteringData2(byte epc) {
+		byte[] edt = getIntegralGasConsumptionOfMeteringData2();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates status where meter detected metering data error.<br>Error detection status found = 0x41 Error detection status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
 	 */
 	protected byte[] getErrorDetectionStatusofMeteringData() {return null;}
+	private final byte[] _getErrorDetectionStatusofMeteringData(byte epc) {
+		byte[] edt = getErrorDetectionStatusofMeteringData();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates security data to define security information on meter operation by bit allocation.<br>0.0xFFFFFFFF<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getSecurityData1() {return null;}
+	private final byte[] _getSecurityData1(byte epc) {
+		byte[] edt = getSecurityData1();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates security data to define security information on meter operation by bit allocation.<br>0.0xFFFFFFFF<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getSecurityData2() {return null;}
+	private final byte[] _getSecurityData2(byte epc) {
+		byte[] edt = getSecurityData2();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br>Center valve shut-off status found = 0x41 Center valve shut-off status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
 	 */
 	protected byte[] getCenterValveShutOffStatus() {return null;}
+	private final byte[] _getCenterValveShutOffStatus(byte epc) {
+		byte[] edt = getCenterValveShutOffStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br>Center valve shut-off reset enable = 0x41 Center valve shut-off reset not enable = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getCenterValveShutOffRecoveryPermissionSettingStatus() {return null;}
+	private final byte[] _getCenterValveShutOffRecoveryPermissionSettingStatus(byte epc) {
+		byte[] edt = getCenterValveShutOffRecoveryPermissionSettingStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates status where gas shut-off valve of meter has been shut off.<br>Emergency valve shut-off status found = 0x41 Emergency valve shut-off status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getEmergencyValveShutOffStatus() {return null;}
+	private final byte[] _getEmergencyValveShutOffStatus(byte epc) {
+		byte[] edt = getEmergencyValveShutOffStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates open/close status of shut-off valve.<br>Shut-off valve open status = 0x41 Shut-off valve close status = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getShutOffValveOpenCloseStatus() {return null;}
+	private final byte[] _getShutOffValveOpenCloseStatus(byte epc) {
+		byte[] edt = getShutOffValveOpenCloseStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates status as warning where residual volume is very small.<br>Residual volume control warning level 1 0x31 Residual volume control warning level 2 0x32 Residual volume control warning level 3 0x33 No residual volume control warning 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
 	 */
 	protected byte[] getResidualVolumeControlWarning() {return null;}
+	private final byte[] _getResidualVolumeControlWarning(byte epc) {
+		byte[] edt = getResidualVolumeControlWarning();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Sets �gSmall residual volume detection level 1�h.<br>0.0xFFFFFF (0.16,777,215)<br><br>Data type : unsigned char x 3<br>Data size : 3 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetValueOfResidualVolumeControlWarningLevel1(byte[] edt) {return false;}
+	private final boolean _setSetValueOfResidualVolumeControlWarningLevel1(byte epc, byte[] edt) {
+		boolean success = setSetValueOfResidualVolumeControlWarningLevel1(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets �gSmall residual volume detection level 1�h.<br>0.0xFFFFFF (0.16,777,215)<br><br>Data type : unsigned char x 3<br>Data size : 3 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetValueOfResidualVolumeControlWarningLevel1() {return null;}
+	private final byte[] _getSetValueOfResidualVolumeControlWarningLevel1(byte epc) {
+		byte[] edt = getSetValueOfResidualVolumeControlWarningLevel1();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Sets �gSmall residual volume detection level 2�h.<br>0.0xFFFFFF (0.16,777,215)<br><br>Data type : unsigned char x 3<br>Data size : 3 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetValueOfResidualVolumeControlWarningLevel2(byte[] edt) {return false;}
+	private final boolean _setSetValueOfResidualVolumeControlWarningLevel2(byte epc, byte[] edt) {
+		boolean success = setSetValueOfResidualVolumeControlWarningLevel2(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets �gSmall residual volume detection level 2�h.<br>0.0xFFFFFF (0.16,777,215)<br><br>Data type : unsigned char x 3<br>Data size : 3 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetValueOfResidualVolumeControlWarningLevel2() {return null;}
+	private final byte[] _getSetValueOfResidualVolumeControlWarningLevel2(byte epc) {
+		byte[] edt = getSetValueOfResidualVolumeControlWarningLevel2();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Sets �gSmall residual volume detection level 3�h.<br>0.0xFFFFFF (0.16,777,215)<br><br>Data type : unsigned char x3<br>Data size : 3 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetValueOfResidualVolumeControlWarningLevel3(byte[] edt) {return false;}
+	private final boolean _setSetValueOfResidualVolumeControlWarningLevel3(byte epc, byte[] edt) {
+		boolean success = setSetValueOfResidualVolumeControlWarningLevel3(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets �gSmall residual volume detection level 3�h.<br>0.0xFFFFFF (0.16,777,215)<br><br>Data type : unsigned char x3<br>Data size : 3 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetValueOfResidualVolumeControlWarningLevel3() {return null;}
+	private final byte[] _getSetValueOfResidualVolumeControlWarningLevel3(byte epc) {
+		byte[] edt = getSetValueOfResidualVolumeControlWarningLevel3();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates number of days on which gas flow rate is continued.<br>0.0xFD (0.253) (0 to 253 days)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getSlightLeakTimerValueGasFlowRateContinuation() {return null;}
+	private final byte[] _getSlightLeakTimerValueGasFlowRateContinuation(byte epc) {
+		byte[] edt = getSlightLeakTimerValueGasFlowRateContinuation();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates number of days on which gas leak monitoring is performed without gas pressure increase.<br>0.0xFD (0.253) (0 to 253 days)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getSlightLeakTimerValueWithoutPressureIncrease() {return null;}
+	private final byte[] _getSlightLeakTimerValueWithoutPressureIncrease(byte epc) {
+		byte[] edt = getSlightLeakTimerValueWithoutPressureIncrease();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Defines log of reasons for gas shut-off by shut-off valve in 1 byte each with bits assigned. Shows the last three logs. Log 3: log 2: log 1<br>0xFF: 0xFF: 0xFF<br><br>Data type : unsigned char x 3<br>Data size : 3 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getShutOffReasonLog() {return null;}
+	private final byte[] _getShutOffReasonLog(byte epc) {
+		byte[] edt = getShutOffReasonLog();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates maximum value of supply pressure data in units of 0.01 kPa.<br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMaximumValueOfSupplyPressureData() {return null;}
+	private final byte[] _getMaximumValueOfSupplyPressureData(byte epc) {
+		byte[] edt = getMaximumValueOfSupplyPressureData();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMinimumValueOfSupplyPressureData() {return null;}
+	private final byte[] _getMinimumValueOfSupplyPressureData(byte epc) {
+		byte[] edt = getMinimumValueOfSupplyPressureData();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates current value of supply pressure data in units of 0.01 kPa.<br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getCurrentValueOfSupplyPressureData() {return null;}
+	private final byte[] _getCurrentValueOfSupplyPressureData(byte epc) {
+		byte[] edt = getCurrentValueOfSupplyPressureData();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMaximumValueOfBlockPressureData() {return null;}
+	private final byte[] _getMaximumValueOfBlockPressureData(byte epc) {
+		byte[] edt = getMaximumValueOfBlockPressureData();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMinimumValueOfBlockPressureData() {return null;}
+	private final byte[] _getMinimumValueOfBlockPressureData(byte epc) {
+		byte[] edt = getMinimumValueOfBlockPressureData();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates current value of block pressure data in units of 0.01 kPa.<br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getCurrentValueOfBlockPressureData() {return null;}
+	private final byte[] _getCurrentValueOfBlockPressureData(byte epc) {
+		byte[] edt = getCurrentValueOfBlockPressureData();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates number of days on which block pressure/supply pressure errors occurred in 1 byte each.<br>Number of block pressure error days: Number of supply pressure error days: Number of block pressure error times: Number of supply pressure error times<br><br>Data type : unsigned char x 4<br>Data size : 4 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getNumberOfBlockPressureSupplyPressureErrorDaysTime() {return null;}
+	private final byte[] _getNumberOfBlockPressureSupplyPressureErrorDaysTime(byte epc) {
+		byte[] edt = getNumberOfBlockPressureSupplyPressureErrorDaysTime();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Performs test call operation setup.<br>Test call operation ON 0x41 Test call operation OFF 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setTestCallSetting(byte[] edt) {return false;}
+	private final boolean _setTestCallSetting(byte epc, byte[] edt) {
+		boolean success = setTestCallSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Performs test call operation setup.<br>Test call operation ON 0x41 Test call operation OFF 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getTestCallSetting() {return null;}
+	private final byte[] _getTestCallSetting(byte epc) {
+		byte[] edt = getTestCallSetting();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -180,16 +320,16 @@ public abstract class LPGasMeter extends DeviceObject {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
 		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1:
-			res.addProperty(epc, edt, setSetValueOfResidualVolumeControlWarningLevel1(edt));
+			res.addProperty(epc, edt, _setSetValueOfResidualVolumeControlWarningLevel1(epc, edt));
 			break;
 		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2:
-			res.addProperty(epc, edt, setSetValueOfResidualVolumeControlWarningLevel2(edt));
+			res.addProperty(epc, edt, _setSetValueOfResidualVolumeControlWarningLevel2(epc, edt));
 			break;
 		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3:
-			res.addProperty(epc, edt, setSetValueOfResidualVolumeControlWarningLevel3(edt));
+			res.addProperty(epc, edt, _setSetValueOfResidualVolumeControlWarningLevel3(epc, edt));
 			break;
 		case EPC_TEST_CALL_SETTING:
-			res.addProperty(epc, edt, setTestCallSetting(edt));
+			res.addProperty(epc, edt, _setTestCallSetting(epc, edt));
 			break;
 
 		}
@@ -201,99 +341,99 @@ public abstract class LPGasMeter extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1:
-			edt = getIntegralGasConsumptionOfMeteringData1();
+			edt = _getIntegralGasConsumptionOfMeteringData1(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			break;
 		case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2:
-			edt = getIntegralGasConsumptionOfMeteringData2();
+			edt = _getIntegralGasConsumptionOfMeteringData2(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			break;
 		case EPC_ERROR_DETECTION_STATUSOF_METERING_DATA:
-			edt = getErrorDetectionStatusofMeteringData();
+			edt = _getErrorDetectionStatusofMeteringData(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SECURITY_DATA1:
-			edt = getSecurityData1();
+			edt = _getSecurityData1(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			break;
 		case EPC_SECURITY_DATA2:
-			edt = getSecurityData2();
+			edt = _getSecurityData2(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			break;
 		case EPC_CENTER_VALVE_SHUT_OFF_STATUS:
-			edt = getCenterValveShutOffStatus();
+			edt = _getCenterValveShutOffStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_CENTER_VALVE_SHUT_OFF_RECOVERY_PERMISSION_SETTING_STATUS:
-			edt = getCenterValveShutOffRecoveryPermissionSettingStatus();
+			edt = _getCenterValveShutOffRecoveryPermissionSettingStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_EMERGENCY_VALVE_SHUT_OFF_STATUS:
-			edt = getEmergencyValveShutOffStatus();
+			edt = _getEmergencyValveShutOffStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SHUT_OFF_VALVE_OPEN_CLOSE_STATUS:
-			edt = getShutOffValveOpenCloseStatus();
+			edt = _getShutOffValveOpenCloseStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_RESIDUAL_VOLUME_CONTROL_WARNING:
-			edt = getResidualVolumeControlWarning();
+			edt = _getResidualVolumeControlWarning(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1:
-			edt = getSetValueOfResidualVolumeControlWarningLevel1();
+			edt = _getSetValueOfResidualVolumeControlWarningLevel1(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 3)));
 			break;
 		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2:
-			edt = getSetValueOfResidualVolumeControlWarningLevel2();
+			edt = _getSetValueOfResidualVolumeControlWarningLevel2(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 3)));
 			break;
 		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3:
-			edt = getSetValueOfResidualVolumeControlWarningLevel3();
+			edt = _getSetValueOfResidualVolumeControlWarningLevel3(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 3)));
 			break;
 		case EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION:
-			edt = getSlightLeakTimerValueGasFlowRateContinuation();
+			edt = _getSlightLeakTimerValueGasFlowRateContinuation(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE:
-			edt = getSlightLeakTimerValueWithoutPressureIncrease();
+			edt = _getSlightLeakTimerValueWithoutPressureIncrease(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SHUT_OFF_REASON_LOG:
-			edt = getShutOffReasonLog();
+			edt = _getShutOffReasonLog(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 3)));
 			break;
 		case EPC_MAXIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA:
-			edt = getMaximumValueOfSupplyPressureData();
+			edt = _getMaximumValueOfSupplyPressureData(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_MINIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA:
-			edt = getMinimumValueOfSupplyPressureData();
+			edt = _getMinimumValueOfSupplyPressureData(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_CURRENT_VALUE_OF_SUPPLY_PRESSURE_DATA:
-			edt = getCurrentValueOfSupplyPressureData();
+			edt = _getCurrentValueOfSupplyPressureData(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_MAXIMUM_VALUE_OF_BLOCK_PRESSURE_DATA:
-			edt = getMaximumValueOfBlockPressureData();
+			edt = _getMaximumValueOfBlockPressureData(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_MINIMUM_VALUE_OF_BLOCK_PRESSURE_DATA:
-			edt = getMinimumValueOfBlockPressureData();
+			edt = _getMinimumValueOfBlockPressureData(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_CURRENT_VALUE_OF_BLOCK_PRESSURE_DATA:
-			edt = getCurrentValueOfBlockPressureData();
+			edt = _getCurrentValueOfBlockPressureData(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_NUMBER_OF_BLOCK_PRESSURE_SUPPLY_PRESSURE_ERROR_DAYS_TIME:
-			edt = getNumberOfBlockPressureSupplyPressureErrorDaysTime();
+			edt = _getNumberOfBlockPressureSupplyPressureErrorDaysTime(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			break;
 		case EPC_TEST_CALL_SETTING:
-			edt = getTestCallSetting();
+			edt = _getTestCallSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 
@@ -323,102 +463,100 @@ public abstract class LPGasMeter extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1:
-				onSetSetValueOfResidualVolumeControlWarningLevel1(eoj, tid, (pdc != 0));
+				_onSetSetValueOfResidualVolumeControlWarningLevel1(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2:
-				onSetSetValueOfResidualVolumeControlWarningLevel2(eoj, tid, (pdc != 0));
+				_onSetSetValueOfResidualVolumeControlWarningLevel2(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3:
-				onSetSetValueOfResidualVolumeControlWarningLevel3(eoj, tid, (pdc != 0));
+				_onSetSetValueOfResidualVolumeControlWarningLevel3(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_TEST_CALL_SETTING:
-				onSetTestCallSetting(eoj, tid, (pdc != 0));
+				_onSetTestCallSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1:
-				onGetIntegralGasConsumptionOfMeteringData1(eoj, tid, pdc, edt);
+				_onGetIntegralGasConsumptionOfMeteringData1(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2:
-				onGetIntegralGasConsumptionOfMeteringData2(eoj, tid, pdc, edt);
+				_onGetIntegralGasConsumptionOfMeteringData2(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_ERROR_DETECTION_STATUSOF_METERING_DATA:
-				onGetErrorDetectionStatusofMeteringData(eoj, tid, pdc, edt);
+				_onGetErrorDetectionStatusofMeteringData(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SECURITY_DATA1:
-				onGetSecurityData1(eoj, tid, pdc, edt);
+				_onGetSecurityData1(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SECURITY_DATA2:
-				onGetSecurityData2(eoj, tid, pdc, edt);
+				_onGetSecurityData2(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_CENTER_VALVE_SHUT_OFF_STATUS:
-				onGetCenterValveShutOffStatus(eoj, tid, pdc, edt);
+				_onGetCenterValveShutOffStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_CENTER_VALVE_SHUT_OFF_RECOVERY_PERMISSION_SETTING_STATUS:
-				onGetCenterValveShutOffRecoveryPermissionSettingStatus(eoj, tid, pdc, edt);
+				_onGetCenterValveShutOffRecoveryPermissionSettingStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_EMERGENCY_VALVE_SHUT_OFF_STATUS:
-				onGetEmergencyValveShutOffStatus(eoj, tid, pdc, edt);
+				_onGetEmergencyValveShutOffStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SHUT_OFF_VALVE_OPEN_CLOSE_STATUS:
-				onGetShutOffValveOpenCloseStatus(eoj, tid, pdc, edt);
+				_onGetShutOffValveOpenCloseStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_RESIDUAL_VOLUME_CONTROL_WARNING:
-				onGetResidualVolumeControlWarning(eoj, tid, pdc, edt);
+				_onGetResidualVolumeControlWarning(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1:
-				onGetSetValueOfResidualVolumeControlWarningLevel1(eoj, tid, pdc, edt);
+				_onGetSetValueOfResidualVolumeControlWarningLevel1(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2:
-				onGetSetValueOfResidualVolumeControlWarningLevel2(eoj, tid, pdc, edt);
+				_onGetSetValueOfResidualVolumeControlWarningLevel2(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3:
-				onGetSetValueOfResidualVolumeControlWarningLevel3(eoj, tid, pdc, edt);
+				_onGetSetValueOfResidualVolumeControlWarningLevel3(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION:
-				onGetSlightLeakTimerValueGasFlowRateContinuation(eoj, tid, pdc, edt);
+				_onGetSlightLeakTimerValueGasFlowRateContinuation(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE:
-				onGetSlightLeakTimerValueWithoutPressureIncrease(eoj, tid, pdc, edt);
+				_onGetSlightLeakTimerValueWithoutPressureIncrease(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SHUT_OFF_REASON_LOG:
-				onGetShutOffReasonLog(eoj, tid, pdc, edt);
+				_onGetShutOffReasonLog(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MAXIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA:
-				onGetMaximumValueOfSupplyPressureData(eoj, tid, pdc, edt);
+				_onGetMaximumValueOfSupplyPressureData(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MINIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA:
-				onGetMinimumValueOfSupplyPressureData(eoj, tid, pdc, edt);
+				_onGetMinimumValueOfSupplyPressureData(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_CURRENT_VALUE_OF_SUPPLY_PRESSURE_DATA:
-				onGetCurrentValueOfSupplyPressureData(eoj, tid, pdc, edt);
+				_onGetCurrentValueOfSupplyPressureData(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MAXIMUM_VALUE_OF_BLOCK_PRESSURE_DATA:
-				onGetMaximumValueOfBlockPressureData(eoj, tid, pdc, edt);
+				_onGetMaximumValueOfBlockPressureData(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MINIMUM_VALUE_OF_BLOCK_PRESSURE_DATA:
-				onGetMinimumValueOfBlockPressureData(eoj, tid, pdc, edt);
+				_onGetMinimumValueOfBlockPressureData(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_CURRENT_VALUE_OF_BLOCK_PRESSURE_DATA:
-				onGetCurrentValueOfBlockPressureData(eoj, tid, pdc, edt);
+				_onGetCurrentValueOfBlockPressureData(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_NUMBER_OF_BLOCK_PRESSURE_SUPPLY_PRESSURE_ERROR_DAYS_TIME:
-				onGetNumberOfBlockPressureSupplyPressureErrorDaysTime(eoj, tid, pdc, edt);
+				_onGetNumberOfBlockPressureSupplyPressureErrorDaysTime(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_TEST_CALL_SETTING:
-				onGetTestCallSetting(eoj, tid, pdc, edt);
+				_onGetTestCallSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -427,115 +565,227 @@ public abstract class LPGasMeter extends DeviceObject {
 		/**
 		 * This property indicates integral gas consumption in units of 0.0001 m3.<br>0.0x005F5E0FF (0.9999,9999 m3)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetIntegralGasConsumptionOfMeteringData1(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetIntegralGasConsumptionOfMeteringData1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetIntegralGasConsumptionOfMeteringData1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetIntegralGasConsumptionOfMeteringData1(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates integral gas consumption in units of 0.001 m3.<br>0.0x005F5E0FF (0.99999,999 m3)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetIntegralGasConsumptionOfMeteringData2(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetIntegralGasConsumptionOfMeteringData2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetIntegralGasConsumptionOfMeteringData2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetIntegralGasConsumptionOfMeteringData2(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates status where meter detected metering data error.<br>Error detection status found = 0x41 Error detection status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
 		 */
-		protected void onGetErrorDetectionStatusofMeteringData(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetErrorDetectionStatusofMeteringData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetErrorDetectionStatusofMeteringData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetErrorDetectionStatusofMeteringData(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates security data to define security information on meter operation by bit allocation.<br>0.0xFFFFFFFF<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetSecurityData1(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSecurityData1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSecurityData1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSecurityData1(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates security data to define security information on meter operation by bit allocation.<br>0.0xFFFFFFFF<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetSecurityData2(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSecurityData2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSecurityData2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSecurityData2(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br>Center valve shut-off status found = 0x41 Center valve shut-off status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
 		 */
-		protected void onGetCenterValveShutOffStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetCenterValveShutOffStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetCenterValveShutOffStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetCenterValveShutOffStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br>Center valve shut-off reset enable = 0x41 Center valve shut-off reset not enable = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetCenterValveShutOffRecoveryPermissionSettingStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetCenterValveShutOffRecoveryPermissionSettingStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetCenterValveShutOffRecoveryPermissionSettingStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetCenterValveShutOffRecoveryPermissionSettingStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates status where gas shut-off valve of meter has been shut off.<br>Emergency valve shut-off status found = 0x41 Emergency valve shut-off status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetEmergencyValveShutOffStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetEmergencyValveShutOffStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetEmergencyValveShutOffStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetEmergencyValveShutOffStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates open/close status of shut-off valve.<br>Shut-off valve open status = 0x41 Shut-off valve close status = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetShutOffValveOpenCloseStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetShutOffValveOpenCloseStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetShutOffValveOpenCloseStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetShutOffValveOpenCloseStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates status as warning where residual volume is very small.<br>Residual volume control warning level 1 0x31 Residual volume control warning level 2 0x32 Residual volume control warning level 3 0x33 No residual volume control warning 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
 		 */
-		protected void onGetResidualVolumeControlWarning(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetResidualVolumeControlWarning(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetResidualVolumeControlWarning(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetResidualVolumeControlWarning(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Sets �gSmall residual volume detection level 1�h.<br>0.0xFFFFFF (0.16,777,215)<br><br>Data type : unsigned char x 3<br>Data size : 3 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetSetValueOfResidualVolumeControlWarningLevel1(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetSetValueOfResidualVolumeControlWarningLevel1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetSetValueOfResidualVolumeControlWarningLevel1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetSetValueOfResidualVolumeControlWarningLevel1(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets �gSmall residual volume detection level 1�h.<br>0.0xFFFFFF (0.16,777,215)<br><br>Data type : unsigned char x 3<br>Data size : 3 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetSetValueOfResidualVolumeControlWarningLevel1(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSetValueOfResidualVolumeControlWarningLevel1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSetValueOfResidualVolumeControlWarningLevel1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSetValueOfResidualVolumeControlWarningLevel1(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Sets �gSmall residual volume detection level 2�h.<br>0.0xFFFFFF (0.16,777,215)<br><br>Data type : unsigned char x 3<br>Data size : 3 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetSetValueOfResidualVolumeControlWarningLevel2(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetSetValueOfResidualVolumeControlWarningLevel2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetSetValueOfResidualVolumeControlWarningLevel2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetSetValueOfResidualVolumeControlWarningLevel2(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets �gSmall residual volume detection level 2�h.<br>0.0xFFFFFF (0.16,777,215)<br><br>Data type : unsigned char x 3<br>Data size : 3 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetSetValueOfResidualVolumeControlWarningLevel2(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSetValueOfResidualVolumeControlWarningLevel2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSetValueOfResidualVolumeControlWarningLevel2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSetValueOfResidualVolumeControlWarningLevel2(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Sets �gSmall residual volume detection level 3�h.<br>0.0xFFFFFF (0.16,777,215)<br><br>Data type : unsigned char x3<br>Data size : 3 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetSetValueOfResidualVolumeControlWarningLevel3(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetSetValueOfResidualVolumeControlWarningLevel3(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetSetValueOfResidualVolumeControlWarningLevel3(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetSetValueOfResidualVolumeControlWarningLevel3(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets �gSmall residual volume detection level 3�h.<br>0.0xFFFFFF (0.16,777,215)<br><br>Data type : unsigned char x3<br>Data size : 3 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetSetValueOfResidualVolumeControlWarningLevel3(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSetValueOfResidualVolumeControlWarningLevel3(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSetValueOfResidualVolumeControlWarningLevel3(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSetValueOfResidualVolumeControlWarningLevel3(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates number of days on which gas flow rate is continued.<br>0.0xFD (0.253) (0 to 253 days)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetSlightLeakTimerValueGasFlowRateContinuation(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSlightLeakTimerValueGasFlowRateContinuation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSlightLeakTimerValueGasFlowRateContinuation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSlightLeakTimerValueGasFlowRateContinuation(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates number of days on which gas leak monitoring is performed without gas pressure increase.<br>0.0xFD (0.253) (0 to 253 days)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetSlightLeakTimerValueWithoutPressureIncrease(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSlightLeakTimerValueWithoutPressureIncrease(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSlightLeakTimerValueWithoutPressureIncrease(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSlightLeakTimerValueWithoutPressureIncrease(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Defines log of reasons for gas shut-off by shut-off valve in 1 byte each with bits assigned. Shows the last three logs. Log 3: log 2: log 1<br>0xFF: 0xFF: 0xFF<br><br>Data type : unsigned char x 3<br>Data size : 3 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetShutOffReasonLog(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetShutOffReasonLog(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetShutOffReasonLog(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetShutOffReasonLog(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates maximum value of supply pressure data in units of 0.01 kPa.<br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMaximumValueOfSupplyPressureData(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMaximumValueOfSupplyPressureData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMaximumValueOfSupplyPressureData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMaximumValueOfSupplyPressureData(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMinimumValueOfSupplyPressureData(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMinimumValueOfSupplyPressureData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMinimumValueOfSupplyPressureData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMinimumValueOfSupplyPressureData(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates current value of supply pressure data in units of 0.01 kPa.<br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetCurrentValueOfSupplyPressureData(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetCurrentValueOfSupplyPressureData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetCurrentValueOfSupplyPressureData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetCurrentValueOfSupplyPressureData(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMaximumValueOfBlockPressureData(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMaximumValueOfBlockPressureData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMaximumValueOfBlockPressureData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMaximumValueOfBlockPressureData(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMinimumValueOfBlockPressureData(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMinimumValueOfBlockPressureData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMinimumValueOfBlockPressureData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMinimumValueOfBlockPressureData(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates current value of block pressure data in units of 0.01 kPa.<br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetCurrentValueOfBlockPressureData(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetCurrentValueOfBlockPressureData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetCurrentValueOfBlockPressureData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetCurrentValueOfBlockPressureData(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates number of days on which block pressure/supply pressure errors occurred in 1 byte each.<br>Number of block pressure error days: Number of supply pressure error days: Number of block pressure error times: Number of supply pressure error times<br><br>Data type : unsigned char x 4<br>Data size : 4 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetNumberOfBlockPressureSupplyPressureErrorDaysTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetNumberOfBlockPressureSupplyPressureErrorDaysTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetNumberOfBlockPressureSupplyPressureErrorDaysTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetNumberOfBlockPressureSupplyPressureErrorDaysTime(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Performs test call operation setup.<br>Test call operation ON 0x41 Test call operation OFF 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetTestCallSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetTestCallSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetTestCallSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetTestCallSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Performs test call operation setup.<br>Test call operation ON 0x41 Test call operation OFF 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetTestCallSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetTestCallSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetTestCallSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetTestCallSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -608,22 +858,26 @@ public abstract class LPGasMeter extends DeviceObject {
 
 		@Override
 		public Setter reqSetSetValueOfResidualVolumeControlWarningLevel1(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1, edt, setSetValueOfResidualVolumeControlWarningLevel1(edt));
+			byte epc = EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1;
+			addProperty(epc, edt, _setSetValueOfResidualVolumeControlWarningLevel1(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetSetValueOfResidualVolumeControlWarningLevel2(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2, edt, setSetValueOfResidualVolumeControlWarningLevel2(edt));
+			byte epc = EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2;
+			addProperty(epc, edt, _setSetValueOfResidualVolumeControlWarningLevel2(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetSetValueOfResidualVolumeControlWarningLevel3(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3, edt, setSetValueOfResidualVolumeControlWarningLevel3(edt));
+			byte epc = EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3;
+			addProperty(epc, edt, _setSetValueOfResidualVolumeControlWarningLevel3(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetTestCallSetting(byte[] edt) {
-			addProperty(EPC_TEST_CALL_SETTING, edt, setTestCallSetting(edt));
+			byte epc = EPC_TEST_CALL_SETTING;
+			addProperty(epc, edt, _setTestCallSetting(epc, edt));
 			return this;
 		}
 	}
@@ -914,146 +1168,170 @@ public abstract class LPGasMeter extends DeviceObject {
 
 		@Override
 		public Getter reqGetIntegralGasConsumptionOfMeteringData1() {
-			byte[] edt = getIntegralGasConsumptionOfMeteringData1();
-			addProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1;
+			byte[] edt = _getIntegralGasConsumptionOfMeteringData1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Getter reqGetIntegralGasConsumptionOfMeteringData2() {
-			byte[] edt = getIntegralGasConsumptionOfMeteringData2();
-			addProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2;
+			byte[] edt = _getIntegralGasConsumptionOfMeteringData2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Getter reqGetErrorDetectionStatusofMeteringData() {
-			byte[] edt = getErrorDetectionStatusofMeteringData();
-			addProperty(EPC_ERROR_DETECTION_STATUSOF_METERING_DATA, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_ERROR_DETECTION_STATUSOF_METERING_DATA;
+			byte[] edt = _getErrorDetectionStatusofMeteringData(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSecurityData1() {
-			byte[] edt = getSecurityData1();
-			addProperty(EPC_SECURITY_DATA1, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_SECURITY_DATA1;
+			byte[] edt = _getSecurityData1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSecurityData2() {
-			byte[] edt = getSecurityData2();
-			addProperty(EPC_SECURITY_DATA2, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_SECURITY_DATA2;
+			byte[] edt = _getSecurityData2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Getter reqGetCenterValveShutOffStatus() {
-			byte[] edt = getCenterValveShutOffStatus();
-			addProperty(EPC_CENTER_VALVE_SHUT_OFF_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_CENTER_VALVE_SHUT_OFF_STATUS;
+			byte[] edt = _getCenterValveShutOffStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetCenterValveShutOffRecoveryPermissionSettingStatus() {
-			byte[] edt = getCenterValveShutOffRecoveryPermissionSettingStatus();
-			addProperty(EPC_CENTER_VALVE_SHUT_OFF_RECOVERY_PERMISSION_SETTING_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_CENTER_VALVE_SHUT_OFF_RECOVERY_PERMISSION_SETTING_STATUS;
+			byte[] edt = _getCenterValveShutOffRecoveryPermissionSettingStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetEmergencyValveShutOffStatus() {
-			byte[] edt = getEmergencyValveShutOffStatus();
-			addProperty(EPC_EMERGENCY_VALVE_SHUT_OFF_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_EMERGENCY_VALVE_SHUT_OFF_STATUS;
+			byte[] edt = _getEmergencyValveShutOffStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetShutOffValveOpenCloseStatus() {
-			byte[] edt = getShutOffValveOpenCloseStatus();
-			addProperty(EPC_SHUT_OFF_VALVE_OPEN_CLOSE_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SHUT_OFF_VALVE_OPEN_CLOSE_STATUS;
+			byte[] edt = _getShutOffValveOpenCloseStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetResidualVolumeControlWarning() {
-			byte[] edt = getResidualVolumeControlWarning();
-			addProperty(EPC_RESIDUAL_VOLUME_CONTROL_WARNING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_RESIDUAL_VOLUME_CONTROL_WARNING;
+			byte[] edt = _getResidualVolumeControlWarning(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSetValueOfResidualVolumeControlWarningLevel1() {
-			byte[] edt = getSetValueOfResidualVolumeControlWarningLevel1();
-			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1, edt, (edt != null && (edt.length == 3)));
+			byte epc = EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1;
+			byte[] edt = _getSetValueOfResidualVolumeControlWarningLevel1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 3)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSetValueOfResidualVolumeControlWarningLevel2() {
-			byte[] edt = getSetValueOfResidualVolumeControlWarningLevel2();
-			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2, edt, (edt != null && (edt.length == 3)));
+			byte epc = EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2;
+			byte[] edt = _getSetValueOfResidualVolumeControlWarningLevel2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 3)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSetValueOfResidualVolumeControlWarningLevel3() {
-			byte[] edt = getSetValueOfResidualVolumeControlWarningLevel3();
-			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3, edt, (edt != null && (edt.length == 3)));
+			byte epc = EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3;
+			byte[] edt = _getSetValueOfResidualVolumeControlWarningLevel3(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 3)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSlightLeakTimerValueGasFlowRateContinuation() {
-			byte[] edt = getSlightLeakTimerValueGasFlowRateContinuation();
-			addProperty(EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION;
+			byte[] edt = _getSlightLeakTimerValueGasFlowRateContinuation(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSlightLeakTimerValueWithoutPressureIncrease() {
-			byte[] edt = getSlightLeakTimerValueWithoutPressureIncrease();
-			addProperty(EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE;
+			byte[] edt = _getSlightLeakTimerValueWithoutPressureIncrease(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetShutOffReasonLog() {
-			byte[] edt = getShutOffReasonLog();
-			addProperty(EPC_SHUT_OFF_REASON_LOG, edt, (edt != null && (edt.length == 3)));
+			byte epc = EPC_SHUT_OFF_REASON_LOG;
+			byte[] edt = _getShutOffReasonLog(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 3)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMaximumValueOfSupplyPressureData() {
-			byte[] edt = getMaximumValueOfSupplyPressureData();
-			addProperty(EPC_MAXIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MAXIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA;
+			byte[] edt = _getMaximumValueOfSupplyPressureData(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMinimumValueOfSupplyPressureData() {
-			byte[] edt = getMinimumValueOfSupplyPressureData();
-			addProperty(EPC_MINIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MINIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA;
+			byte[] edt = _getMinimumValueOfSupplyPressureData(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetCurrentValueOfSupplyPressureData() {
-			byte[] edt = getCurrentValueOfSupplyPressureData();
-			addProperty(EPC_CURRENT_VALUE_OF_SUPPLY_PRESSURE_DATA, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_CURRENT_VALUE_OF_SUPPLY_PRESSURE_DATA;
+			byte[] edt = _getCurrentValueOfSupplyPressureData(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMaximumValueOfBlockPressureData() {
-			byte[] edt = getMaximumValueOfBlockPressureData();
-			addProperty(EPC_MAXIMUM_VALUE_OF_BLOCK_PRESSURE_DATA, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MAXIMUM_VALUE_OF_BLOCK_PRESSURE_DATA;
+			byte[] edt = _getMaximumValueOfBlockPressureData(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMinimumValueOfBlockPressureData() {
-			byte[] edt = getMinimumValueOfBlockPressureData();
-			addProperty(EPC_MINIMUM_VALUE_OF_BLOCK_PRESSURE_DATA, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MINIMUM_VALUE_OF_BLOCK_PRESSURE_DATA;
+			byte[] edt = _getMinimumValueOfBlockPressureData(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetCurrentValueOfBlockPressureData() {
-			byte[] edt = getCurrentValueOfBlockPressureData();
-			addProperty(EPC_CURRENT_VALUE_OF_BLOCK_PRESSURE_DATA, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_CURRENT_VALUE_OF_BLOCK_PRESSURE_DATA;
+			byte[] edt = _getCurrentValueOfBlockPressureData(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetNumberOfBlockPressureSupplyPressureErrorDaysTime() {
-			byte[] edt = getNumberOfBlockPressureSupplyPressureErrorDaysTime();
-			addProperty(EPC_NUMBER_OF_BLOCK_PRESSURE_SUPPLY_PRESSURE_ERROR_DAYS_TIME, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_NUMBER_OF_BLOCK_PRESSURE_SUPPLY_PRESSURE_ERROR_DAYS_TIME;
+			byte[] edt = _getNumberOfBlockPressureSupplyPressureErrorDaysTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Getter reqGetTestCallSetting() {
-			byte[] edt = getTestCallSetting();
-			addProperty(EPC_TEST_CALL_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_TEST_CALL_SETTING;
+			byte[] edt = _getTestCallSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}
@@ -1504,146 +1782,170 @@ public abstract class LPGasMeter extends DeviceObject {
 
 		@Override
 		public Informer reqInformIntegralGasConsumptionOfMeteringData1() {
-			byte[] edt = getIntegralGasConsumptionOfMeteringData1();
-			addProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1;
+			byte[] edt = _getIntegralGasConsumptionOfMeteringData1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Informer reqInformIntegralGasConsumptionOfMeteringData2() {
-			byte[] edt = getIntegralGasConsumptionOfMeteringData2();
-			addProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2;
+			byte[] edt = _getIntegralGasConsumptionOfMeteringData2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Informer reqInformErrorDetectionStatusofMeteringData() {
-			byte[] edt = getErrorDetectionStatusofMeteringData();
-			addProperty(EPC_ERROR_DETECTION_STATUSOF_METERING_DATA, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_ERROR_DETECTION_STATUSOF_METERING_DATA;
+			byte[] edt = _getErrorDetectionStatusofMeteringData(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSecurityData1() {
-			byte[] edt = getSecurityData1();
-			addProperty(EPC_SECURITY_DATA1, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_SECURITY_DATA1;
+			byte[] edt = _getSecurityData1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSecurityData2() {
-			byte[] edt = getSecurityData2();
-			addProperty(EPC_SECURITY_DATA2, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_SECURITY_DATA2;
+			byte[] edt = _getSecurityData2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Informer reqInformCenterValveShutOffStatus() {
-			byte[] edt = getCenterValveShutOffStatus();
-			addProperty(EPC_CENTER_VALVE_SHUT_OFF_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_CENTER_VALVE_SHUT_OFF_STATUS;
+			byte[] edt = _getCenterValveShutOffStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformCenterValveShutOffRecoveryPermissionSettingStatus() {
-			byte[] edt = getCenterValveShutOffRecoveryPermissionSettingStatus();
-			addProperty(EPC_CENTER_VALVE_SHUT_OFF_RECOVERY_PERMISSION_SETTING_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_CENTER_VALVE_SHUT_OFF_RECOVERY_PERMISSION_SETTING_STATUS;
+			byte[] edt = _getCenterValveShutOffRecoveryPermissionSettingStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformEmergencyValveShutOffStatus() {
-			byte[] edt = getEmergencyValveShutOffStatus();
-			addProperty(EPC_EMERGENCY_VALVE_SHUT_OFF_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_EMERGENCY_VALVE_SHUT_OFF_STATUS;
+			byte[] edt = _getEmergencyValveShutOffStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformShutOffValveOpenCloseStatus() {
-			byte[] edt = getShutOffValveOpenCloseStatus();
-			addProperty(EPC_SHUT_OFF_VALVE_OPEN_CLOSE_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SHUT_OFF_VALVE_OPEN_CLOSE_STATUS;
+			byte[] edt = _getShutOffValveOpenCloseStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformResidualVolumeControlWarning() {
-			byte[] edt = getResidualVolumeControlWarning();
-			addProperty(EPC_RESIDUAL_VOLUME_CONTROL_WARNING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_RESIDUAL_VOLUME_CONTROL_WARNING;
+			byte[] edt = _getResidualVolumeControlWarning(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSetValueOfResidualVolumeControlWarningLevel1() {
-			byte[] edt = getSetValueOfResidualVolumeControlWarningLevel1();
-			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1, edt, (edt != null && (edt.length == 3)));
+			byte epc = EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1;
+			byte[] edt = _getSetValueOfResidualVolumeControlWarningLevel1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 3)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSetValueOfResidualVolumeControlWarningLevel2() {
-			byte[] edt = getSetValueOfResidualVolumeControlWarningLevel2();
-			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2, edt, (edt != null && (edt.length == 3)));
+			byte epc = EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2;
+			byte[] edt = _getSetValueOfResidualVolumeControlWarningLevel2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 3)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSetValueOfResidualVolumeControlWarningLevel3() {
-			byte[] edt = getSetValueOfResidualVolumeControlWarningLevel3();
-			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3, edt, (edt != null && (edt.length == 3)));
+			byte epc = EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3;
+			byte[] edt = _getSetValueOfResidualVolumeControlWarningLevel3(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 3)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSlightLeakTimerValueGasFlowRateContinuation() {
-			byte[] edt = getSlightLeakTimerValueGasFlowRateContinuation();
-			addProperty(EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION;
+			byte[] edt = _getSlightLeakTimerValueGasFlowRateContinuation(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSlightLeakTimerValueWithoutPressureIncrease() {
-			byte[] edt = getSlightLeakTimerValueWithoutPressureIncrease();
-			addProperty(EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE;
+			byte[] edt = _getSlightLeakTimerValueWithoutPressureIncrease(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformShutOffReasonLog() {
-			byte[] edt = getShutOffReasonLog();
-			addProperty(EPC_SHUT_OFF_REASON_LOG, edt, (edt != null && (edt.length == 3)));
+			byte epc = EPC_SHUT_OFF_REASON_LOG;
+			byte[] edt = _getShutOffReasonLog(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 3)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMaximumValueOfSupplyPressureData() {
-			byte[] edt = getMaximumValueOfSupplyPressureData();
-			addProperty(EPC_MAXIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MAXIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA;
+			byte[] edt = _getMaximumValueOfSupplyPressureData(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMinimumValueOfSupplyPressureData() {
-			byte[] edt = getMinimumValueOfSupplyPressureData();
-			addProperty(EPC_MINIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MINIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA;
+			byte[] edt = _getMinimumValueOfSupplyPressureData(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformCurrentValueOfSupplyPressureData() {
-			byte[] edt = getCurrentValueOfSupplyPressureData();
-			addProperty(EPC_CURRENT_VALUE_OF_SUPPLY_PRESSURE_DATA, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_CURRENT_VALUE_OF_SUPPLY_PRESSURE_DATA;
+			byte[] edt = _getCurrentValueOfSupplyPressureData(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMaximumValueOfBlockPressureData() {
-			byte[] edt = getMaximumValueOfBlockPressureData();
-			addProperty(EPC_MAXIMUM_VALUE_OF_BLOCK_PRESSURE_DATA, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MAXIMUM_VALUE_OF_BLOCK_PRESSURE_DATA;
+			byte[] edt = _getMaximumValueOfBlockPressureData(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMinimumValueOfBlockPressureData() {
-			byte[] edt = getMinimumValueOfBlockPressureData();
-			addProperty(EPC_MINIMUM_VALUE_OF_BLOCK_PRESSURE_DATA, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MINIMUM_VALUE_OF_BLOCK_PRESSURE_DATA;
+			byte[] edt = _getMinimumValueOfBlockPressureData(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformCurrentValueOfBlockPressureData() {
-			byte[] edt = getCurrentValueOfBlockPressureData();
-			addProperty(EPC_CURRENT_VALUE_OF_BLOCK_PRESSURE_DATA, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_CURRENT_VALUE_OF_BLOCK_PRESSURE_DATA;
+			byte[] edt = _getCurrentValueOfBlockPressureData(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformNumberOfBlockPressureSupplyPressureErrorDaysTime() {
-			byte[] edt = getNumberOfBlockPressureSupplyPressureErrorDaysTime();
-			addProperty(EPC_NUMBER_OF_BLOCK_PRESSURE_SUPPLY_PRESSURE_ERROR_DAYS_TIME, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_NUMBER_OF_BLOCK_PRESSURE_SUPPLY_PRESSURE_ERROR_DAYS_TIME;
+			byte[] edt = _getNumberOfBlockPressureSupplyPressureErrorDaysTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Informer reqInformTestCallSetting() {
-			byte[] edt = getTestCallSetting();
-			addProperty(EPC_TEST_CALL_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_TEST_CALL_SETTING;
+			byte[] edt = _getTestCallSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}

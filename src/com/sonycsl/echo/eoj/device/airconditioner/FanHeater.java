@@ -26,20 +26,20 @@ public abstract class FanHeater extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x01;
 	public static final byte CLASS_CODE = (byte)0x43;
 
-	protected static final byte EPC_TEMPERATURE_SETTING_VALUE = (byte)0xB3;
-	protected static final byte EPC_MEASURED_TEMPERATURE = (byte)0xBB;
-	protected static final byte EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING = (byte)0xB1;
-	protected static final byte EPC_ON_TIMER_RESERVATION_SETTING = (byte)0x90;
-	protected static final byte EPC_ON_TIMER_SETTING_VALUE_TIME = (byte)0x91;
-	protected static final byte EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME = (byte)0x92;
-	protected static final byte EPC_OFF_TIMER_RESERVATION_SETTING = (byte)0x94;
-	protected static final byte EPC_OFF_TIMER_SETTING_VALUE_TIME = (byte)0x95;
-	protected static final byte EPC_OFF_TIMER_VALUE_RELATIVE_TIME = (byte)0x96;
-	protected static final byte EPC_EXTENTIONAL_OPERATION_SETTING = (byte)0xC0;
-	protected static final byte EPC_EXTENTIONAL_OPERATION_TIMER_TIME_SETTING_VALUE = (byte)0xC1;
-	protected static final byte EPC_ION_EMISSION_SETTING = (byte)0xC2;
-	protected static final byte EPC_IMPLEMENTED_ION_EMISSION_METHOD = (byte)0xC3;
-	protected static final byte EPC_OIL_AMOUNT_LEVEL = (byte)0xC4;
+	public static final byte EPC_TEMPERATURE_SETTING_VALUE = (byte)0xB3;
+	public static final byte EPC_MEASURED_TEMPERATURE = (byte)0xBB;
+	public static final byte EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING = (byte)0xB1;
+	public static final byte EPC_ON_TIMER_RESERVATION_SETTING = (byte)0x90;
+	public static final byte EPC_ON_TIMER_SETTING_VALUE_TIME = (byte)0x91;
+	public static final byte EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME = (byte)0x92;
+	public static final byte EPC_OFF_TIMER_RESERVATION_SETTING = (byte)0x94;
+	public static final byte EPC_OFF_TIMER_SETTING_VALUE_TIME = (byte)0x95;
+	public static final byte EPC_OFF_TIMER_VALUE_RELATIVE_TIME = (byte)0x96;
+	public static final byte EPC_EXTENTIONAL_OPERATION_SETTING = (byte)0xC0;
+	public static final byte EPC_EXTENTIONAL_OPERATION_TIMER_TIME_SETTING_VALUE = (byte)0xC1;
+	public static final byte EPC_ION_EMISSION_SETTING = (byte)0xC2;
+	public static final byte EPC_IMPLEMENTED_ION_EMISSION_METHOD = (byte)0xC3;
+	public static final byte EPC_OIL_AMOUNT_LEVEL = (byte)0xC4;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -55,102 +55,227 @@ public abstract class FanHeater extends DeviceObject {
 	 * Sets the temperature and gets the setting status.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract boolean setTemperatureSettingValue(byte[] edt);
+	private final boolean _setTemperatureSettingValue(byte epc, byte[] edt) {
+		boolean success = setTemperatureSettingValue(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets the temperature and gets the setting status.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract byte[] getTemperatureSettingValue();
+	private final byte[] _getTemperatureSettingValue(byte epc) {
+		byte[] edt = getTemperatureSettingValue();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the measured room temperature.<br>0x81 to 0x7D (-128 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredTemperature() {return null;}
+	private final byte[] _getMeasuredTemperature(byte epc) {
+		byte[] edt = getMeasuredTemperature();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Sets automatic / non-automatic and gets the setting status<br>Automatic = 0x41, non-automatic = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAutomaticTemperatureControlSetting(byte[] edt) {return false;}
+	private final boolean _setAutomaticTemperatureControlSetting(byte epc, byte[] edt) {
+		boolean success = setAutomaticTemperatureControlSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets automatic / non-automatic and gets the setting status<br>Automatic = 0x41, non-automatic = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAutomaticTemperatureControlSetting() {return null;}
+	private final byte[] _getAutomaticTemperatureControlSetting(byte epc) {
+		byte[] edt = getAutomaticTemperatureControlSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Sets ON/OFF of reservation and gets the setting status.<br>Reservation ON: 0x41, OFF:0x42 for both time and relative time Timer-based reservation ON:0x43, Relative time reservation ON:0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOnTimerReservationSetting(byte[] edt) {return false;}
+	private final boolean _setOnTimerReservationSetting(byte epc, byte[] edt) {
+		boolean success = setOnTimerReservationSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets ON/OFF of reservation and gets the setting status.<br>Reservation ON: 0x41, OFF:0x42 for both time and relative time Timer-based reservation ON:0x43, Relative time reservation ON:0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOnTimerReservationSetting() {return null;}
+	private final byte[] _getOnTimerReservationSetting(byte epc) {
+		byte[] edt = getOnTimerReservationSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Sets timer value HH:MM and gets setting status<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOnTimerSettingValueTime(byte[] edt) {return false;}
+	private final boolean _setOnTimerSettingValueTime(byte epc, byte[] edt) {
+		boolean success = setOnTimerSettingValueTime(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets timer value HH:MM and gets setting status<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOnTimerSettingValueTime() {return null;}
+	private final byte[] _getOnTimerSettingValueTime(byte epc) {
+		byte[] edt = getOnTimerSettingValueTime();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Sets timer value HH:MM and gets the updated time<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOnTimerSettingValueRelativeTime(byte[] edt) {return false;}
+	private final boolean _setOnTimerSettingValueRelativeTime(byte epc, byte[] edt) {
+		boolean success = setOnTimerSettingValueRelativeTime(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets timer value HH:MM and gets the updated time<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOnTimerSettingValueRelativeTime() {return null;}
+	private final byte[] _getOnTimerSettingValueRelativeTime(byte epc) {
+		byte[] edt = getOnTimerSettingValueRelativeTime();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Sets ON/OFF of reservation and gets setting status<br>Reservation ON: 0x41, OFF:0x42 for both time and relative time Timer-based reservation ON:0x43, Relative time reservation ON:0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOffTimerReservationSetting(byte[] edt) {return false;}
+	private final boolean _setOffTimerReservationSetting(byte epc, byte[] edt) {
+		boolean success = setOffTimerReservationSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets ON/OFF of reservation and gets setting status<br>Reservation ON: 0x41, OFF:0x42 for both time and relative time Timer-based reservation ON:0x43, Relative time reservation ON:0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOffTimerReservationSetting() {return null;}
+	private final byte[] _getOffTimerReservationSetting(byte epc) {
+		byte[] edt = getOffTimerReservationSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Sets timer value HH:MM and gets the setting status.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOffTimerSettingValueTime(byte[] edt) {return false;}
+	private final boolean _setOffTimerSettingValueTime(byte epc, byte[] edt) {
+		boolean success = setOffTimerSettingValueTime(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets timer value HH:MM and gets the setting status.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOffTimerSettingValueTime() {return null;}
+	private final byte[] _getOffTimerSettingValueTime(byte epc) {
+		byte[] edt = getOffTimerSettingValueTime();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Sets timer value HH:MM and gets updated time<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOffTimerValueRelativeTime(byte[] edt) {return false;}
+	private final boolean _setOffTimerValueRelativeTime(byte epc, byte[] edt) {
+		boolean success = setOffTimerValueRelativeTime(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets timer value HH:MM and gets updated time<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOffTimerValueRelativeTime() {return null;}
+	private final byte[] _getOffTimerValueRelativeTime(byte epc) {
+		byte[] edt = getOffTimerValueRelativeTime();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Sets ON/OFF of extensional operation and gets setting status.<br>Extension ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setExtentionalOperationSetting(byte[] edt) {return false;}
+	private final boolean _setExtentionalOperationSetting(byte epc, byte[] edt) {
+		boolean success = setExtentionalOperationSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets ON/OFF of extensional operation and gets setting status.<br>Extension ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getExtentionalOperationSetting() {return null;}
+	private final byte[] _getExtentionalOperationSetting(byte epc) {
+		byte[] edt = getExtentionalOperationSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Setsextension time HH:MM and gets the extended time<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setExtentionalOperationTimerTimeSettingValue(byte[] edt) {return false;}
+	private final boolean _setExtentionalOperationTimerTimeSettingValue(byte epc, byte[] edt) {
+		boolean success = setExtentionalOperationTimerTimeSettingValue(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Setsextension time HH:MM and gets the extended time<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getExtentionalOperationTimerTimeSettingValue() {return null;}
+	private final byte[] _getExtentionalOperationTimerTimeSettingValue(byte epc) {
+		byte[] edt = getExtentionalOperationTimerTimeSettingValue();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Sets ON/OFF of ion emission and gets setting status.<br>Emission ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setIonEmissionSetting(byte[] edt) {return false;}
+	private final boolean _setIonEmissionSetting(byte epc, byte[] edt) {
+		boolean success = setIonEmissionSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets ON/OFF of ion emission and gets setting status.<br>Emission ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getIonEmissionSetting() {return null;}
+	private final byte[] _getIonEmissionSetting(byte epc) {
+		byte[] edt = getIonEmissionSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Specifies ion emission method imlemented in humidifier by bit map<br>Extension ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getImplementedIonEmissionMethod() {return null;}
+	private final byte[] _getImplementedIonEmissionMethod(byte epc) {
+		byte[] edt = getImplementedIonEmissionMethod();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Specifies oil amount in the tank by 6 levels.<br>0x40: empty 0x41-0x45: minimum to maximum levels<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getOilAmountLevel() {return null;}
+	private final byte[] _getOilAmountLevel(byte epc) {
+		byte[] edt = getOilAmountLevel();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -158,37 +283,37 @@ public abstract class FanHeater extends DeviceObject {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
 		case EPC_TEMPERATURE_SETTING_VALUE:
-			res.addProperty(epc, edt, setTemperatureSettingValue(edt));
+			res.addProperty(epc, edt, _setTemperatureSettingValue(epc, edt));
 			break;
 		case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING:
-			res.addProperty(epc, edt, setAutomaticTemperatureControlSetting(edt));
+			res.addProperty(epc, edt, _setAutomaticTemperatureControlSetting(epc, edt));
 			break;
 		case EPC_ON_TIMER_RESERVATION_SETTING:
-			res.addProperty(epc, edt, setOnTimerReservationSetting(edt));
+			res.addProperty(epc, edt, _setOnTimerReservationSetting(epc, edt));
 			break;
 		case EPC_ON_TIMER_SETTING_VALUE_TIME:
-			res.addProperty(epc, edt, setOnTimerSettingValueTime(edt));
+			res.addProperty(epc, edt, _setOnTimerSettingValueTime(epc, edt));
 			break;
 		case EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME:
-			res.addProperty(epc, edt, setOnTimerSettingValueRelativeTime(edt));
+			res.addProperty(epc, edt, _setOnTimerSettingValueRelativeTime(epc, edt));
 			break;
 		case EPC_OFF_TIMER_RESERVATION_SETTING:
-			res.addProperty(epc, edt, setOffTimerReservationSetting(edt));
+			res.addProperty(epc, edt, _setOffTimerReservationSetting(epc, edt));
 			break;
 		case EPC_OFF_TIMER_SETTING_VALUE_TIME:
-			res.addProperty(epc, edt, setOffTimerSettingValueTime(edt));
+			res.addProperty(epc, edt, _setOffTimerSettingValueTime(epc, edt));
 			break;
 		case EPC_OFF_TIMER_VALUE_RELATIVE_TIME:
-			res.addProperty(epc, edt, setOffTimerValueRelativeTime(edt));
+			res.addProperty(epc, edt, _setOffTimerValueRelativeTime(epc, edt));
 			break;
 		case EPC_EXTENTIONAL_OPERATION_SETTING:
-			res.addProperty(epc, edt, setExtentionalOperationSetting(edt));
+			res.addProperty(epc, edt, _setExtentionalOperationSetting(epc, edt));
 			break;
 		case EPC_EXTENTIONAL_OPERATION_TIMER_TIME_SETTING_VALUE:
-			res.addProperty(epc, edt, setExtentionalOperationTimerTimeSettingValue(edt));
+			res.addProperty(epc, edt, _setExtentionalOperationTimerTimeSettingValue(epc, edt));
 			break;
 		case EPC_ION_EMISSION_SETTING:
-			res.addProperty(epc, edt, setIonEmissionSetting(edt));
+			res.addProperty(epc, edt, _setIonEmissionSetting(epc, edt));
 			break;
 
 		}
@@ -200,59 +325,59 @@ public abstract class FanHeater extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_TEMPERATURE_SETTING_VALUE:
-			edt = getTemperatureSettingValue();
+			edt = _getTemperatureSettingValue(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_MEASURED_TEMPERATURE:
-			edt = getMeasuredTemperature();
+			edt = _getMeasuredTemperature(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING:
-			edt = getAutomaticTemperatureControlSetting();
+			edt = _getAutomaticTemperatureControlSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_ON_TIMER_RESERVATION_SETTING:
-			edt = getOnTimerReservationSetting();
+			edt = _getOnTimerReservationSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_ON_TIMER_SETTING_VALUE_TIME:
-			edt = getOnTimerSettingValueTime();
+			edt = _getOnTimerSettingValueTime(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME:
-			edt = getOnTimerSettingValueRelativeTime();
+			edt = _getOnTimerSettingValueRelativeTime(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_OFF_TIMER_RESERVATION_SETTING:
-			edt = getOffTimerReservationSetting();
+			edt = _getOffTimerReservationSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_OFF_TIMER_SETTING_VALUE_TIME:
-			edt = getOffTimerSettingValueTime();
+			edt = _getOffTimerSettingValueTime(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_OFF_TIMER_VALUE_RELATIVE_TIME:
-			edt = getOffTimerValueRelativeTime();
+			edt = _getOffTimerValueRelativeTime(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_EXTENTIONAL_OPERATION_SETTING:
-			edt = getExtentionalOperationSetting();
+			edt = _getExtentionalOperationSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_EXTENTIONAL_OPERATION_TIMER_TIME_SETTING_VALUE:
-			edt = getExtentionalOperationTimerTimeSettingValue();
+			edt = _getExtentionalOperationTimerTimeSettingValue(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_ION_EMISSION_SETTING:
-			edt = getIonEmissionSetting();
+			edt = _getIonEmissionSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_IMPLEMENTED_ION_EMISSION_METHOD:
-			edt = getImplementedIonEmissionMethod();
+			edt = _getImplementedIonEmissionMethod(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_OIL_AMOUNT_LEVEL:
-			edt = getOilAmountLevel();
+			edt = _getOilAmountLevel(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 
@@ -282,93 +407,91 @@ public abstract class FanHeater extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_TEMPERATURE_SETTING_VALUE:
-				onSetTemperatureSettingValue(eoj, tid, (pdc != 0));
+				_onSetTemperatureSettingValue(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING:
-				onSetAutomaticTemperatureControlSetting(eoj, tid, (pdc != 0));
+				_onSetAutomaticTemperatureControlSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_ON_TIMER_RESERVATION_SETTING:
-				onSetOnTimerReservationSetting(eoj, tid, (pdc != 0));
+				_onSetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_ON_TIMER_SETTING_VALUE_TIME:
-				onSetOnTimerSettingValueTime(eoj, tid, (pdc != 0));
+				_onSetOnTimerSettingValueTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME:
-				onSetOnTimerSettingValueRelativeTime(eoj, tid, (pdc != 0));
+				_onSetOnTimerSettingValueRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_OFF_TIMER_RESERVATION_SETTING:
-				onSetOffTimerReservationSetting(eoj, tid, (pdc != 0));
+				_onSetOffTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_OFF_TIMER_SETTING_VALUE_TIME:
-				onSetOffTimerSettingValueTime(eoj, tid, (pdc != 0));
+				_onSetOffTimerSettingValueTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_OFF_TIMER_VALUE_RELATIVE_TIME:
-				onSetOffTimerValueRelativeTime(eoj, tid, (pdc != 0));
+				_onSetOffTimerValueRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_EXTENTIONAL_OPERATION_SETTING:
-				onSetExtentionalOperationSetting(eoj, tid, (pdc != 0));
+				_onSetExtentionalOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_EXTENTIONAL_OPERATION_TIMER_TIME_SETTING_VALUE:
-				onSetExtentionalOperationTimerTimeSettingValue(eoj, tid, (pdc != 0));
+				_onSetExtentionalOperationTimerTimeSettingValue(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_ION_EMISSION_SETTING:
-				onSetIonEmissionSetting(eoj, tid, (pdc != 0));
+				_onSetIonEmissionSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_TEMPERATURE_SETTING_VALUE:
-				onGetTemperatureSettingValue(eoj, tid, pdc, edt);
+				_onGetTemperatureSettingValue(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_TEMPERATURE:
-				onGetMeasuredTemperature(eoj, tid, pdc, edt);
+				_onGetMeasuredTemperature(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING:
-				onGetAutomaticTemperatureControlSetting(eoj, tid, pdc, edt);
+				_onGetAutomaticTemperatureControlSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_ON_TIMER_RESERVATION_SETTING:
-				onGetOnTimerReservationSetting(eoj, tid, pdc, edt);
+				_onGetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_ON_TIMER_SETTING_VALUE_TIME:
-				onGetOnTimerSettingValueTime(eoj, tid, pdc, edt);
+				_onGetOnTimerSettingValueTime(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME:
-				onGetOnTimerSettingValueRelativeTime(eoj, tid, pdc, edt);
+				_onGetOnTimerSettingValueRelativeTime(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_OFF_TIMER_RESERVATION_SETTING:
-				onGetOffTimerReservationSetting(eoj, tid, pdc, edt);
+				_onGetOffTimerReservationSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_OFF_TIMER_SETTING_VALUE_TIME:
-				onGetOffTimerSettingValueTime(eoj, tid, pdc, edt);
+				_onGetOffTimerSettingValueTime(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_OFF_TIMER_VALUE_RELATIVE_TIME:
-				onGetOffTimerValueRelativeTime(eoj, tid, pdc, edt);
+				_onGetOffTimerValueRelativeTime(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_EXTENTIONAL_OPERATION_SETTING:
-				onGetExtentionalOperationSetting(eoj, tid, pdc, edt);
+				_onGetExtentionalOperationSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_EXTENTIONAL_OPERATION_TIMER_TIME_SETTING_VALUE:
-				onGetExtentionalOperationTimerTimeSettingValue(eoj, tid, pdc, edt);
+				_onGetExtentionalOperationTimerTimeSettingValue(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_ION_EMISSION_SETTING:
-				onGetIonEmissionSetting(eoj, tid, pdc, edt);
+				_onGetIonEmissionSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_IMPLEMENTED_ION_EMISSION_METHOD:
-				onGetImplementedIonEmissionMethod(eoj, tid, pdc, edt);
+				_onGetImplementedIonEmissionMethod(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_OIL_AMOUNT_LEVEL:
-				onGetOilAmountLevel(eoj, tid, pdc, edt);
+				_onGetOilAmountLevel(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -377,103 +500,203 @@ public abstract class FanHeater extends DeviceObject {
 		/**
 		 * Sets the temperature and gets the setting status.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
-		protected void onSetTemperatureSettingValue(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetTemperatureSettingValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetTemperatureSettingValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetTemperatureSettingValue(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets the temperature and gets the setting status.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
-		protected void onGetTemperatureSettingValue(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetTemperatureSettingValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetTemperatureSettingValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetTemperatureSettingValue(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the measured room temperature.<br>0x81 to 0x7D (-128 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMeasuredTemperature(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredTemperature(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Sets automatic / non-automatic and gets the setting status<br>Automatic = 0x41, non-automatic = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetAutomaticTemperatureControlSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets automatic / non-automatic and gets the setting status<br>Automatic = 0x41, non-automatic = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetAutomaticTemperatureControlSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Sets ON/OFF of reservation and gets the setting status.<br>Reservation ON: 0x41, OFF:0x42 for both time and relative time Timer-based reservation ON:0x43, Relative time reservation ON:0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetOnTimerReservationSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets ON/OFF of reservation and gets the setting status.<br>Reservation ON: 0x41, OFF:0x42 for both time and relative time Timer-based reservation ON:0x43, Relative time reservation ON:0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetOnTimerReservationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Sets timer value HH:MM and gets setting status<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetOnTimerSettingValueTime(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetOnTimerSettingValueTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetOnTimerSettingValueTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetOnTimerSettingValueTime(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets timer value HH:MM and gets setting status<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetOnTimerSettingValueTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOnTimerSettingValueTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOnTimerSettingValueTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOnTimerSettingValueTime(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Sets timer value HH:MM and gets the updated time<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetOnTimerSettingValueRelativeTime(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetOnTimerSettingValueRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetOnTimerSettingValueRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetOnTimerSettingValueRelativeTime(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets timer value HH:MM and gets the updated time<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetOnTimerSettingValueRelativeTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOnTimerSettingValueRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOnTimerSettingValueRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOnTimerSettingValueRelativeTime(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Sets ON/OFF of reservation and gets setting status<br>Reservation ON: 0x41, OFF:0x42 for both time and relative time Timer-based reservation ON:0x43, Relative time reservation ON:0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetOffTimerReservationSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetOffTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetOffTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetOffTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets ON/OFF of reservation and gets setting status<br>Reservation ON: 0x41, OFF:0x42 for both time and relative time Timer-based reservation ON:0x43, Relative time reservation ON:0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetOffTimerReservationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOffTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOffTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOffTimerReservationSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Sets timer value HH:MM and gets the setting status.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetOffTimerSettingValueTime(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetOffTimerSettingValueTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetOffTimerSettingValueTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetOffTimerSettingValueTime(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets timer value HH:MM and gets the setting status.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetOffTimerSettingValueTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOffTimerSettingValueTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOffTimerSettingValueTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOffTimerSettingValueTime(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Sets timer value HH:MM and gets updated time<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetOffTimerValueRelativeTime(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetOffTimerValueRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetOffTimerValueRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetOffTimerValueRelativeTime(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets timer value HH:MM and gets updated time<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetOffTimerValueRelativeTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOffTimerValueRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOffTimerValueRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOffTimerValueRelativeTime(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Sets ON/OFF of extensional operation and gets setting status.<br>Extension ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetExtentionalOperationSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetExtentionalOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetExtentionalOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetExtentionalOperationSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets ON/OFF of extensional operation and gets setting status.<br>Extension ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetExtentionalOperationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetExtentionalOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetExtentionalOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetExtentionalOperationSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Setsextension time HH:MM and gets the extended time<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetExtentionalOperationTimerTimeSettingValue(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetExtentionalOperationTimerTimeSettingValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetExtentionalOperationTimerTimeSettingValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetExtentionalOperationTimerTimeSettingValue(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Setsextension time HH:MM and gets the extended time<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetExtentionalOperationTimerTimeSettingValue(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetExtentionalOperationTimerTimeSettingValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetExtentionalOperationTimerTimeSettingValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetExtentionalOperationTimerTimeSettingValue(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Sets ON/OFF of ion emission and gets setting status.<br>Emission ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetIonEmissionSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetIonEmissionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetIonEmissionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetIonEmissionSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets ON/OFF of ion emission and gets setting status.<br>Emission ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetIonEmissionSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetIonEmissionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetIonEmissionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetIonEmissionSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Specifies ion emission method imlemented in humidifier by bit map<br>Extension ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetImplementedIonEmissionMethod(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetImplementedIonEmissionMethod(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetImplementedIonEmissionMethod(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetImplementedIonEmissionMethod(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Specifies oil amount in the tank by 6 levels.<br>0x40: empty 0x41-0x45: minimum to maximum levels<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetOilAmountLevel(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOilAmountLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOilAmountLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOilAmountLevel(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -574,57 +797,68 @@ public abstract class FanHeater extends DeviceObject {
 
 		@Override
 		public Setter reqSetTemperatureSettingValue(byte[] edt) {
-			addProperty(EPC_TEMPERATURE_SETTING_VALUE, edt, setTemperatureSettingValue(edt));
+			byte epc = EPC_TEMPERATURE_SETTING_VALUE;
+			addProperty(epc, edt, _setTemperatureSettingValue(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetAutomaticTemperatureControlSetting(byte[] edt) {
-			addProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING, edt, setAutomaticTemperatureControlSetting(edt));
+			byte epc = EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING;
+			addProperty(epc, edt, _setAutomaticTemperatureControlSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetOnTimerReservationSetting(byte[] edt) {
-			addProperty(EPC_ON_TIMER_RESERVATION_SETTING, edt, setOnTimerReservationSetting(edt));
+			byte epc = EPC_ON_TIMER_RESERVATION_SETTING;
+			addProperty(epc, edt, _setOnTimerReservationSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetOnTimerSettingValueTime(byte[] edt) {
-			addProperty(EPC_ON_TIMER_SETTING_VALUE_TIME, edt, setOnTimerSettingValueTime(edt));
+			byte epc = EPC_ON_TIMER_SETTING_VALUE_TIME;
+			addProperty(epc, edt, _setOnTimerSettingValueTime(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetOnTimerSettingValueRelativeTime(byte[] edt) {
-			addProperty(EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME, edt, setOnTimerSettingValueRelativeTime(edt));
+			byte epc = EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME;
+			addProperty(epc, edt, _setOnTimerSettingValueRelativeTime(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetOffTimerReservationSetting(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_RESERVATION_SETTING, edt, setOffTimerReservationSetting(edt));
+			byte epc = EPC_OFF_TIMER_RESERVATION_SETTING;
+			addProperty(epc, edt, _setOffTimerReservationSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetOffTimerSettingValueTime(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_SETTING_VALUE_TIME, edt, setOffTimerSettingValueTime(edt));
+			byte epc = EPC_OFF_TIMER_SETTING_VALUE_TIME;
+			addProperty(epc, edt, _setOffTimerSettingValueTime(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetOffTimerValueRelativeTime(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_VALUE_RELATIVE_TIME, edt, setOffTimerValueRelativeTime(edt));
+			byte epc = EPC_OFF_TIMER_VALUE_RELATIVE_TIME;
+			addProperty(epc, edt, _setOffTimerValueRelativeTime(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetExtentionalOperationSetting(byte[] edt) {
-			addProperty(EPC_EXTENTIONAL_OPERATION_SETTING, edt, setExtentionalOperationSetting(edt));
+			byte epc = EPC_EXTENTIONAL_OPERATION_SETTING;
+			addProperty(epc, edt, _setExtentionalOperationSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetExtentionalOperationTimerTimeSettingValue(byte[] edt) {
-			addProperty(EPC_EXTENTIONAL_OPERATION_TIMER_TIME_SETTING_VALUE, edt, setExtentionalOperationTimerTimeSettingValue(edt));
+			byte epc = EPC_EXTENTIONAL_OPERATION_TIMER_TIME_SETTING_VALUE;
+			addProperty(epc, edt, _setExtentionalOperationTimerTimeSettingValue(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetIonEmissionSetting(byte[] edt) {
-			addProperty(EPC_ION_EMISSION_SETTING, edt, setIonEmissionSetting(edt));
+			byte epc = EPC_ION_EMISSION_SETTING;
+			addProperty(epc, edt, _setIonEmissionSetting(epc, edt));
 			return this;
 		}
 	}
@@ -910,86 +1144,100 @@ public abstract class FanHeater extends DeviceObject {
 
 		@Override
 		public Getter reqGetTemperatureSettingValue() {
-			byte[] edt = getTemperatureSettingValue();
-			addProperty(EPC_TEMPERATURE_SETTING_VALUE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_TEMPERATURE_SETTING_VALUE;
+			byte[] edt = _getTemperatureSettingValue(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredTemperature() {
-			byte[] edt = getMeasuredTemperature();
-			addProperty(EPC_MEASURED_TEMPERATURE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MEASURED_TEMPERATURE;
+			byte[] edt = _getMeasuredTemperature(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetAutomaticTemperatureControlSetting() {
-			byte[] edt = getAutomaticTemperatureControlSetting();
-			addProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING;
+			byte[] edt = _getAutomaticTemperatureControlSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOnTimerReservationSetting() {
-			byte[] edt = getOnTimerReservationSetting();
-			addProperty(EPC_ON_TIMER_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_ON_TIMER_RESERVATION_SETTING;
+			byte[] edt = _getOnTimerReservationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOnTimerSettingValueTime() {
-			byte[] edt = getOnTimerSettingValueTime();
-			addProperty(EPC_ON_TIMER_SETTING_VALUE_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_ON_TIMER_SETTING_VALUE_TIME;
+			byte[] edt = _getOnTimerSettingValueTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOnTimerSettingValueRelativeTime() {
-			byte[] edt = getOnTimerSettingValueRelativeTime();
-			addProperty(EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME;
+			byte[] edt = _getOnTimerSettingValueRelativeTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOffTimerReservationSetting() {
-			byte[] edt = getOffTimerReservationSetting();
-			addProperty(EPC_OFF_TIMER_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OFF_TIMER_RESERVATION_SETTING;
+			byte[] edt = _getOffTimerReservationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOffTimerSettingValueTime() {
-			byte[] edt = getOffTimerSettingValueTime();
-			addProperty(EPC_OFF_TIMER_SETTING_VALUE_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_OFF_TIMER_SETTING_VALUE_TIME;
+			byte[] edt = _getOffTimerSettingValueTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOffTimerValueRelativeTime() {
-			byte[] edt = getOffTimerValueRelativeTime();
-			addProperty(EPC_OFF_TIMER_VALUE_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_OFF_TIMER_VALUE_RELATIVE_TIME;
+			byte[] edt = _getOffTimerValueRelativeTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetExtentionalOperationSetting() {
-			byte[] edt = getExtentionalOperationSetting();
-			addProperty(EPC_EXTENTIONAL_OPERATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_EXTENTIONAL_OPERATION_SETTING;
+			byte[] edt = _getExtentionalOperationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetExtentionalOperationTimerTimeSettingValue() {
-			byte[] edt = getExtentionalOperationTimerTimeSettingValue();
-			addProperty(EPC_EXTENTIONAL_OPERATION_TIMER_TIME_SETTING_VALUE, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_EXTENTIONAL_OPERATION_TIMER_TIME_SETTING_VALUE;
+			byte[] edt = _getExtentionalOperationTimerTimeSettingValue(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetIonEmissionSetting() {
-			byte[] edt = getIonEmissionSetting();
-			addProperty(EPC_ION_EMISSION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_ION_EMISSION_SETTING;
+			byte[] edt = _getIonEmissionSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetImplementedIonEmissionMethod() {
-			byte[] edt = getImplementedIonEmissionMethod();
-			addProperty(EPC_IMPLEMENTED_ION_EMISSION_METHOD, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_IMPLEMENTED_ION_EMISSION_METHOD;
+			byte[] edt = _getImplementedIonEmissionMethod(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOilAmountLevel() {
-			byte[] edt = getOilAmountLevel();
-			addProperty(EPC_OIL_AMOUNT_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OIL_AMOUNT_LEVEL;
+			byte[] edt = _getOilAmountLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}
@@ -1350,86 +1598,100 @@ public abstract class FanHeater extends DeviceObject {
 
 		@Override
 		public Informer reqInformTemperatureSettingValue() {
-			byte[] edt = getTemperatureSettingValue();
-			addProperty(EPC_TEMPERATURE_SETTING_VALUE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_TEMPERATURE_SETTING_VALUE;
+			byte[] edt = _getTemperatureSettingValue(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredTemperature() {
-			byte[] edt = getMeasuredTemperature();
-			addProperty(EPC_MEASURED_TEMPERATURE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MEASURED_TEMPERATURE;
+			byte[] edt = _getMeasuredTemperature(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformAutomaticTemperatureControlSetting() {
-			byte[] edt = getAutomaticTemperatureControlSetting();
-			addProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING;
+			byte[] edt = _getAutomaticTemperatureControlSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOnTimerReservationSetting() {
-			byte[] edt = getOnTimerReservationSetting();
-			addProperty(EPC_ON_TIMER_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_ON_TIMER_RESERVATION_SETTING;
+			byte[] edt = _getOnTimerReservationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOnTimerSettingValueTime() {
-			byte[] edt = getOnTimerSettingValueTime();
-			addProperty(EPC_ON_TIMER_SETTING_VALUE_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_ON_TIMER_SETTING_VALUE_TIME;
+			byte[] edt = _getOnTimerSettingValueTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOnTimerSettingValueRelativeTime() {
-			byte[] edt = getOnTimerSettingValueRelativeTime();
-			addProperty(EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME;
+			byte[] edt = _getOnTimerSettingValueRelativeTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOffTimerReservationSetting() {
-			byte[] edt = getOffTimerReservationSetting();
-			addProperty(EPC_OFF_TIMER_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OFF_TIMER_RESERVATION_SETTING;
+			byte[] edt = _getOffTimerReservationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOffTimerSettingValueTime() {
-			byte[] edt = getOffTimerSettingValueTime();
-			addProperty(EPC_OFF_TIMER_SETTING_VALUE_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_OFF_TIMER_SETTING_VALUE_TIME;
+			byte[] edt = _getOffTimerSettingValueTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOffTimerValueRelativeTime() {
-			byte[] edt = getOffTimerValueRelativeTime();
-			addProperty(EPC_OFF_TIMER_VALUE_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_OFF_TIMER_VALUE_RELATIVE_TIME;
+			byte[] edt = _getOffTimerValueRelativeTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformExtentionalOperationSetting() {
-			byte[] edt = getExtentionalOperationSetting();
-			addProperty(EPC_EXTENTIONAL_OPERATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_EXTENTIONAL_OPERATION_SETTING;
+			byte[] edt = _getExtentionalOperationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformExtentionalOperationTimerTimeSettingValue() {
-			byte[] edt = getExtentionalOperationTimerTimeSettingValue();
-			addProperty(EPC_EXTENTIONAL_OPERATION_TIMER_TIME_SETTING_VALUE, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_EXTENTIONAL_OPERATION_TIMER_TIME_SETTING_VALUE;
+			byte[] edt = _getExtentionalOperationTimerTimeSettingValue(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformIonEmissionSetting() {
-			byte[] edt = getIonEmissionSetting();
-			addProperty(EPC_ION_EMISSION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_ION_EMISSION_SETTING;
+			byte[] edt = _getIonEmissionSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformImplementedIonEmissionMethod() {
-			byte[] edt = getImplementedIonEmissionMethod();
-			addProperty(EPC_IMPLEMENTED_ION_EMISSION_METHOD, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_IMPLEMENTED_ION_EMISSION_METHOD;
+			byte[] edt = _getImplementedIonEmissionMethod(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOilAmountLevel() {
-			byte[] edt = getOilAmountLevel();
-			addProperty(EPC_OIL_AMOUNT_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OIL_AMOUNT_LEVEL;
+			byte[] edt = _getOilAmountLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}

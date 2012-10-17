@@ -26,7 +26,7 @@ public abstract class CO2Sensor extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x1B;
 
-	protected static final byte EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION = (byte)0xE0;
+	public static final byte EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION = (byte)0xE0;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -42,6 +42,11 @@ public abstract class CO2Sensor extends DeviceObject {
 	 * This property indicates measured value of CO2 concentration in ppm.<br>0x0000.0xFFFD (0.65533)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getMeasuredValueOfCo2Concentration();
+	private final byte[] _getMeasuredValueOfCo2Concentration(byte epc) {
+		byte[] edt = getMeasuredValueOfCo2Concentration();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -58,7 +63,7 @@ public abstract class CO2Sensor extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION:
-			edt = getMeasuredValueOfCo2Concentration();
+			edt = _getMeasuredValueOfCo2Concentration(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 
@@ -88,21 +93,19 @@ public abstract class CO2Sensor extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION:
-				onGetMeasuredValueOfCo2Concentration(eoj, tid, pdc, edt);
+				_onGetMeasuredValueOfCo2Concentration(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -111,7 +114,11 @@ public abstract class CO2Sensor extends DeviceObject {
 		/**
 		 * This property indicates measured value of CO2 concentration in ppm.<br>0x0000.0xFFFD (0.65533)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetMeasuredValueOfCo2Concentration(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredValueOfCo2Concentration(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredValueOfCo2Concentration(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredValueOfCo2Concentration(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -342,8 +349,9 @@ public abstract class CO2Sensor extends DeviceObject {
 
 		@Override
 		public Getter reqGetMeasuredValueOfCo2Concentration() {
-			byte[] edt = getMeasuredValueOfCo2Concentration();
-			addProperty(EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION;
+			byte[] edt = _getMeasuredValueOfCo2Concentration(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}
@@ -587,8 +595,9 @@ public abstract class CO2Sensor extends DeviceObject {
 
 		@Override
 		public Informer reqInformMeasuredValueOfCo2Concentration() {
-			byte[] edt = getMeasuredValueOfCo2Concentration();
-			addProperty(EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION;
+			byte[] edt = _getMeasuredValueOfCo2Concentration(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}

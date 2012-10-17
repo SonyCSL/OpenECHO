@@ -26,49 +26,49 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x01;
 	public static final byte CLASS_CODE = (byte)0x30;
 
-	protected static final byte EPC_OPERATION_MODE_SETTING = (byte)0xB0;
-	protected static final byte EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING = (byte)0xB1;
-	protected static final byte EPC_NORMAL_HIGH_SPEED_SILENT_OPERATION_SETTING = (byte)0xB2;
-	protected static final byte EPC_SET_TEMPERATURE_VALUE = (byte)0xB3;
-	protected static final byte EPC_SET_VALUE_OF_RELATIVE_HUMIDITY_IN_DEHUMIDIFYING_MODE = (byte)0xB4;
-	protected static final byte EPC_SET_TEMPERATURE_VALUE_IN_COOLING_MODE = (byte)0xB5;
-	protected static final byte EPC_SET_TEMPERATURE_VALUE_IN_HEATING_MODE = (byte)0xB6;
-	protected static final byte EPC_SET_TEMPERATURE_VALUE_IN_DEHUMIDIFYING_MODE = (byte)0xB7;
-	protected static final byte EPC_RATED_POWER_CONSUMPTION = (byte)0xB8;
-	protected static final byte EPC_MEASURED_VALUE_OF_CURRENT_CONSUMPTION = (byte)0xB9;
-	protected static final byte EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY = (byte)0xBA;
-	protected static final byte EPC_MEASURED_VALUE_OF_ROOM_TEMPERATURE = (byte)0xBB;
-	protected static final byte EPC_SET_TEMPERATURE_VALUE_OF_USER_REMOTE_CONTROL = (byte)0xBC;
-	protected static final byte EPC_MEASURED_COOLED_AIR_TEMPERATURE = (byte)0xBD;
-	protected static final byte EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE = (byte)0xBE;
-	protected static final byte EPC_RELATIVE_TEMPERATURE_SETTING = (byte)0xBF;
-	protected static final byte EPC_AIR_FLOW_RATE_SETTING = (byte)0xA0;
-	protected static final byte EPC_AUTOMATIC_CONTROL_OF_AIR_FLOW_DIRECTION_SETTING = (byte)0xA1;
-	protected static final byte EPC_AUTOMATIC_SWING_OF_AIR_FLOW_SETTING = (byte)0xA3;
-	protected static final byte EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING = (byte)0xA4;
-	protected static final byte EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING = (byte)0xA5;
-	protected static final byte EPC_SPECIAL_STATE = (byte)0xAA;
-	protected static final byte EPC_NON_PRIORITY_STATE = (byte)0xAB;
-	protected static final byte EPC_VENTILATION_FUNCTION_SETTING = (byte)0xC0;
-	protected static final byte EPC_HUMIDIFIER_FUNCTION_SETTING = (byte)0xC1;
-	protected static final byte EPC_VENTILATION_AIR_FLOW_RATE_SETTING = (byte)0xC2;
-	protected static final byte EPC_DEGREE_OF_HUMIDIFICATION_SETTING = (byte)0xC4;
-	protected static final byte EPC_MOUNTED_AIR_CLEANING_METHOD = (byte)0xC6;
-	protected static final byte EPC_AIR_PURIFIER_FUNCTION_SETTING = (byte)0xC7;
-	protected static final byte EPC_MOUNTED_AIR_REFRESH_METHOD = (byte)0xC8;
-	protected static final byte EPC_AIR_REFRESHER_FUNCTION_SETTING = (byte)0xC9;
-	protected static final byte EPC_MOUNTED_SELF_CLEANING_METHOD = (byte)0xCA;
-	protected static final byte EPC_SELF_CLEANING_FUNCTION_SETTING = (byte)0xCB;
-	protected static final byte EPC_SPECIAL_FUNCTION_SETTING = (byte)0xCC;
-	protected static final byte EPC_OPERATION_STATUS_OF_COMPONENTS = (byte)0xCD;
-	protected static final byte EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION = (byte)0xCE;
-	protected static final byte EPC_AIR_PURIFICATION_MODE_SETTING = (byte)0xCF;
-	protected static final byte EPC_ON_TIMER_BASED_RESERVATION_SETTING = (byte)0x90;
-	protected static final byte EPC_ON_TIMER_SETTING_TIME = (byte)0x91;
-	protected static final byte EPC_ON_TIMER_SETTING_RELATIVE_TIME = (byte)0x92;
-	protected static final byte EPC_OFF_TIMER_BASED_RESERVATION_SETTING = (byte)0x94;
-	protected static final byte EPC_OFF_TIMER_SETTING_TIME = (byte)0x95;
-	protected static final byte EPC_OFF_TIMER_SETTING_RELATIVE_TIME = (byte)0x96;
+	public static final byte EPC_OPERATION_MODE_SETTING = (byte)0xB0;
+	public static final byte EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING = (byte)0xB1;
+	public static final byte EPC_NORMAL_HIGH_SPEED_SILENT_OPERATION_SETTING = (byte)0xB2;
+	public static final byte EPC_SET_TEMPERATURE_VALUE = (byte)0xB3;
+	public static final byte EPC_SET_VALUE_OF_RELATIVE_HUMIDITY_IN_DEHUMIDIFYING_MODE = (byte)0xB4;
+	public static final byte EPC_SET_TEMPERATURE_VALUE_IN_COOLING_MODE = (byte)0xB5;
+	public static final byte EPC_SET_TEMPERATURE_VALUE_IN_HEATING_MODE = (byte)0xB6;
+	public static final byte EPC_SET_TEMPERATURE_VALUE_IN_DEHUMIDIFYING_MODE = (byte)0xB7;
+	public static final byte EPC_RATED_POWER_CONSUMPTION = (byte)0xB8;
+	public static final byte EPC_MEASURED_VALUE_OF_CURRENT_CONSUMPTION = (byte)0xB9;
+	public static final byte EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY = (byte)0xBA;
+	public static final byte EPC_MEASURED_VALUE_OF_ROOM_TEMPERATURE = (byte)0xBB;
+	public static final byte EPC_SET_TEMPERATURE_VALUE_OF_USER_REMOTE_CONTROL = (byte)0xBC;
+	public static final byte EPC_MEASURED_COOLED_AIR_TEMPERATURE = (byte)0xBD;
+	public static final byte EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE = (byte)0xBE;
+	public static final byte EPC_RELATIVE_TEMPERATURE_SETTING = (byte)0xBF;
+	public static final byte EPC_AIR_FLOW_RATE_SETTING = (byte)0xA0;
+	public static final byte EPC_AUTOMATIC_CONTROL_OF_AIR_FLOW_DIRECTION_SETTING = (byte)0xA1;
+	public static final byte EPC_AUTOMATIC_SWING_OF_AIR_FLOW_SETTING = (byte)0xA3;
+	public static final byte EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING = (byte)0xA4;
+	public static final byte EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING = (byte)0xA5;
+	public static final byte EPC_SPECIAL_STATE = (byte)0xAA;
+	public static final byte EPC_NON_PRIORITY_STATE = (byte)0xAB;
+	public static final byte EPC_VENTILATION_FUNCTION_SETTING = (byte)0xC0;
+	public static final byte EPC_HUMIDIFIER_FUNCTION_SETTING = (byte)0xC1;
+	public static final byte EPC_VENTILATION_AIR_FLOW_RATE_SETTING = (byte)0xC2;
+	public static final byte EPC_DEGREE_OF_HUMIDIFICATION_SETTING = (byte)0xC4;
+	public static final byte EPC_MOUNTED_AIR_CLEANING_METHOD = (byte)0xC6;
+	public static final byte EPC_AIR_PURIFIER_FUNCTION_SETTING = (byte)0xC7;
+	public static final byte EPC_MOUNTED_AIR_REFRESH_METHOD = (byte)0xC8;
+	public static final byte EPC_AIR_REFRESHER_FUNCTION_SETTING = (byte)0xC9;
+	public static final byte EPC_MOUNTED_SELF_CLEANING_METHOD = (byte)0xCA;
+	public static final byte EPC_SELF_CLEANING_FUNCTION_SETTING = (byte)0xCB;
+	public static final byte EPC_SPECIAL_FUNCTION_SETTING = (byte)0xCC;
+	public static final byte EPC_OPERATION_STATUS_OF_COMPONENTS = (byte)0xCD;
+	public static final byte EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION = (byte)0xCE;
+	public static final byte EPC_AIR_PURIFICATION_MODE_SETTING = (byte)0xCF;
+	public static final byte EPC_ON_TIMER_BASED_RESERVATION_SETTING = (byte)0x90;
+	public static final byte EPC_ON_TIMER_SETTING_TIME = (byte)0x91;
+	public static final byte EPC_ON_TIMER_SETTING_RELATIVE_TIME = (byte)0x92;
+	public static final byte EPC_OFF_TIMER_BASED_RESERVATION_SETTING = (byte)0x94;
+	public static final byte EPC_OFF_TIMER_SETTING_TIME = (byte)0x95;
+	public static final byte EPC_OFF_TIMER_SETTING_RELATIVE_TIME = (byte)0x96;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -84,290 +84,650 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * Used to specify the operation mode ( gautomatic, h  gcooling, h  gheating, h  gdehumidification, h  gair circulator h or  gother h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 	 */
 	protected abstract boolean setOperationModeSetting(byte[] edt);
+	private final boolean _setOperationModeSetting(byte epc, byte[] edt) {
+		boolean success = setOperationModeSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify the operation mode ( gautomatic, h  gcooling, h  gheating, h  gdehumidification, h  gair circulator h or  gother h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 	 */
 	protected abstract byte[] getOperationModeSetting();
+	private final byte[] _getOperationModeSetting(byte epc) {
+		byte[] edt = getOperationModeSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>Automatic = 0x41 Non-automatic = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAutomaticTemperatureControlSetting(byte[] edt) {return false;}
+	private final boolean _setAutomaticTemperatureControlSetting(byte epc, byte[] edt) {
+		boolean success = setAutomaticTemperatureControlSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>Automatic = 0x41 Non-automatic = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAutomaticTemperatureControlSetting() {return null;}
+	private final byte[] _getAutomaticTemperatureControlSetting(byte epc) {
+		byte[] edt = getAutomaticTemperatureControlSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify the type of operation ( gnormal, h  ghigh-speed h or  gsilent h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setNormalHighSpeedSilentOperationSetting(byte[] edt) {return false;}
+	private final boolean _setNormalHighSpeedSilentOperationSetting(byte epc, byte[] edt) {
+		boolean success = setNormalHighSpeedSilentOperationSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify the type of operation ( gnormal, h  ghigh-speed h or  gsilent h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getNormalHighSpeedSilentOperationSetting() {return null;}
+	private final byte[] _getNormalHighSpeedSilentOperationSetting(byte epc) {
+		byte[] edt = getNormalHighSpeedSilentOperationSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract boolean setSetTemperatureValue(byte[] edt);
+	private final boolean _setSetTemperatureValue(byte epc, byte[] edt) {
+		boolean success = setSetTemperatureValue(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract byte[] getSetTemperatureValue();
+	private final byte[] _getSetTemperatureValue(byte epc) {
+		byte[] edt = getSetTemperatureValue();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to set the relative humidity for the  gdehumidification h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetValueOfRelativeHumidityInDehumidifyingMode(byte[] edt) {return false;}
+	private final boolean _setSetValueOfRelativeHumidityInDehumidifyingMode(byte epc, byte[] edt) {
+		boolean success = setSetValueOfRelativeHumidityInDehumidifyingMode(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to set the relative humidity for the  gdehumidification h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetValueOfRelativeHumidityInDehumidifyingMode() {return null;}
+	private final byte[] _getSetValueOfRelativeHumidityInDehumidifyingMode(byte epc) {
+		byte[] edt = getSetValueOfRelativeHumidityInDehumidifyingMode();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to set the temperature for the  gcooling h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetTemperatureValueInCoolingMode(byte[] edt) {return false;}
+	private final boolean _setSetTemperatureValueInCoolingMode(byte epc, byte[] edt) {
+		boolean success = setSetTemperatureValueInCoolingMode(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to set the temperature for the  gcooling h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetTemperatureValueInCoolingMode() {return null;}
+	private final byte[] _getSetTemperatureValueInCoolingMode(byte epc) {
+		byte[] edt = getSetTemperatureValueInCoolingMode();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to set the temperature for the  gheating h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetTemperatureValueInHeatingMode(byte[] edt) {return false;}
+	private final boolean _setSetTemperatureValueInHeatingMode(byte epc, byte[] edt) {
+		boolean success = setSetTemperatureValueInHeatingMode(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to set the temperature for the  gheating h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetTemperatureValueInHeatingMode() {return null;}
+	private final byte[] _getSetTemperatureValueInHeatingMode(byte epc) {
+		byte[] edt = getSetTemperatureValueInHeatingMode();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to set the temperature for the  gdehumidification h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetTemperatureValueInDehumidifyingMode(byte[] edt) {return false;}
+	private final boolean _setSetTemperatureValueInDehumidifyingMode(byte epc, byte[] edt) {
+		boolean success = setSetTemperatureValueInDehumidifyingMode(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to set the temperature for the  gdehumidification h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetTemperatureValueInDehumidifyingMode() {return null;}
+	private final byte[] _getSetTemperatureValueInDehumidifyingMode(byte epc) {
+		byte[] edt = getSetTemperatureValueInDehumidifyingMode();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Rated power consumption in each operation mode of cooling/heating/dehumidifying/blast<br>0x0000.0xFFFD (0.65533W) Cooling: heating: dehumidifying: blast<br><br>Data type : unsigned short x 4<br>Data size : 8 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getRatedPowerConsumption() {return null;}
+	private final byte[] _getRatedPowerConsumption(byte epc) {
+		byte[] edt = getRatedPowerConsumption();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Measured value of current consumption<br>0x0000.0xFFFD (0.6553.3A)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredValueOfCurrentConsumption() {return null;}
+	private final byte[] _getMeasuredValueOfCurrentConsumption(byte epc) {
+		byte[] edt = getMeasuredValueOfCurrentConsumption();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Measured value of room relative humidity<br>0x00.0x64 (0.100. C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredValueOfRoomRelativeHumidity() {return null;}
+	private final byte[] _getMeasuredValueOfRoomRelativeHumidity(byte epc) {
+		byte[] edt = getMeasuredValueOfRoomRelativeHumidity();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Measured value of room temperature<br>0x80.0x7D (-127.125.C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredValueOfRoomTemperature() {return null;}
+	private final byte[] _getMeasuredValueOfRoomTemperature(byte epc) {
+		byte[] edt = getMeasuredValueOfRoomTemperature();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Set temperature value of user remote control<br>0x00.0x32 (0.50.C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getSetTemperatureValueOfUserRemoteControl() {return null;}
+	private final byte[] _getSetTemperatureValueOfUserRemoteControl(byte epc) {
+		byte[] edt = getSetTemperatureValueOfUserRemoteControl();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the measured cooled air temperature at the outlet.<br>0x81 to 0x7D (-127 to 125  C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredCooledAirTemperature() {return null;}
+	private final byte[] _getMeasuredCooledAirTemperature(byte epc) {
+		byte[] edt = getMeasuredCooledAirTemperature();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the measured outdoor air temperature.<br>0x81 to 0x7D (-127 to 125  C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredOutdoorAirTemperature() {return null;}
+	private final byte[] _getMeasuredOutdoorAirTemperature(byte epc) {
+		byte[] edt = getMeasuredOutdoorAirTemperature();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7  C to 12.5  C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setRelativeTemperatureSetting(byte[] edt) {return false;}
+	private final boolean _setRelativeTemperatureSetting(byte epc, byte[] edt) {
+		boolean success = setRelativeTemperatureSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7  C to 12.5  C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getRelativeTemperatureSetting() {return null;}
+	private final byte[] _getRelativeTemperatureSetting(byte epc) {
+		byte[] edt = getRelativeTemperatureSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify the air flow rate or use the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAirFlowRateSetting(byte[] edt) {return false;}
+	private final boolean _setAirFlowRateSetting(byte epc, byte[] edt) {
+		boolean success = setAirFlowRateSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify the air flow rate or use the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAirFlowRateSetting() {return null;}
+	private final byte[] _getAirFlowRateSetting(byte epc) {
+		byte[] edt = getAirFlowRateSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAutomaticControlOfAirFlowDirectionSetting(byte[] edt) {return false;}
+	private final boolean _setAutomaticControlOfAirFlowDirectionSetting(byte epc, byte[] edt) {
+		boolean success = setAutomaticControlOfAirFlowDirectionSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAutomaticControlOfAirFlowDirectionSetting() {return null;}
+	private final byte[] _getAutomaticControlOfAirFlowDirectionSetting(byte epc) {
+		byte[] edt = getAutomaticControlOfAirFlowDirectionSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAutomaticSwingOfAirFlowSetting(byte[] edt) {return false;}
+	private final boolean _setAutomaticSwingOfAirFlowSetting(byte epc, byte[] edt) {
+		boolean success = setAutomaticSwingOfAirFlowSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAutomaticSwingOfAirFlowSetting() {return null;}
+	private final byte[] _getAutomaticSwingOfAirFlowSetting(byte epc) {
+		byte[] edt = getAutomaticSwingOfAirFlowSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 5 predefined patterns, and to acquire the current setting.<br>Uppermost = 0x41, lowermost = 0x42, central = 0x43, midpoint between uppermost and central = 0x44, midpoint between lowermost and central = 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAirFlowDirectionVerticalSetting(byte[] edt) {return false;}
+	private final boolean _setAirFlowDirectionVerticalSetting(byte epc, byte[] edt) {
+		boolean success = setAirFlowDirectionVerticalSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 5 predefined patterns, and to acquire the current setting.<br>Uppermost = 0x41, lowermost = 0x42, central = 0x43, midpoint between uppermost and central = 0x44, midpoint between lowermost and central = 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAirFlowDirectionVerticalSetting() {return null;}
+	private final byte[] _getAirFlowDirectionVerticalSetting(byte epc) {
+		byte[] edt = getAirFlowDirectionVerticalSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify the air flow direction(s) in the horizontal plane by selecting a pattern from among the 31 predefined patterns, and to acquire the current setting.<br>Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44 (for a full list of the predefined patterns, see the table in the subsection defining the detailed requirements for this property.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAirFlowDirectionHorizontalSetting(byte[] edt) {return false;}
+	private final boolean _setAirFlowDirectionHorizontalSetting(byte epc, byte[] edt) {
+		boolean success = setAirFlowDirectionHorizontalSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify the air flow direction(s) in the horizontal plane by selecting a pattern from among the 31 predefined patterns, and to acquire the current setting.<br>Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44 (for a full list of the predefined patterns, see the table in the subsection defining the detailed requirements for this property.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAirFlowDirectionHorizontalSetting() {return null;}
+	private final byte[] _getAirFlowDirectionHorizontalSetting(byte epc) {
+		byte[] edt = getAirFlowDirectionHorizontalSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates if the air conditioner is in a  gspecial h state (i.e. the  gdefrosting, h  gpreheating, h or  gheat removal h state).<br> gNormal operation h state = 0x40,  gDefrosting h state = 0x41,  gPreheating h state = 0x42,  gHeat removal h state = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getSpecialState() {return null;}
+	private final byte[] _getSpecialState(byte epc) {
+		byte[] edt = getSpecialState();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to indicate when the air conditioner is in a  gnon-priority h state.<br> gNormal operation h state = 0x40,  gNon-priority h state = 0x41<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getNonPriorityState() {return null;}
+	private final byte[] _getNonPriorityState(byte epc) {
+		byte[] edt = getNonPriorityState();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify whether or not to use the ventilation function, to specify the ventilation direction, and to acquire the current setting.<br>Ventilation function ON (outlet direction) = 0x41, ventilation function OFF = 0x42, ventilation function ON (intake direction) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setVentilationFunctionSetting(byte[] edt) {return false;}
+	private final boolean _setVentilationFunctionSetting(byte epc, byte[] edt) {
+		boolean success = setVentilationFunctionSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify whether or not to use the ventilation function, to specify the ventilation direction, and to acquire the current setting.<br>Ventilation function ON (outlet direction) = 0x41, ventilation function OFF = 0x42, ventilation function ON (intake direction) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getVentilationFunctionSetting() {return null;}
+	private final byte[] _getVentilationFunctionSetting(byte epc) {
+		byte[] edt = getVentilationFunctionSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify whether or not to use the humidifier function, and to acquire the current setting.<br>Humidifier function ON = 0x41, Humidifier function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setHumidifierFunctionSetting(byte[] edt) {return false;}
+	private final boolean _setHumidifierFunctionSetting(byte epc, byte[] edt) {
+		boolean success = setHumidifierFunctionSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify whether or not to use the humidifier function, and to acquire the current setting.<br>Humidifier function ON = 0x41, Humidifier function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getHumidifierFunctionSetting() {return null;}
+	private final byte[] _getHumidifierFunctionSetting(byte epc) {
+		byte[] edt = getHumidifierFunctionSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setVentilationAirFlowRateSetting(byte[] edt) {return false;}
+	private final boolean _setVentilationAirFlowRateSetting(byte epc, byte[] edt) {
+		boolean success = setVentilationAirFlowRateSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getVentilationAirFlowRateSetting() {return null;}
+	private final byte[] _getVentilationAirFlowRateSetting(byte epc) {
+		byte[] edt = getVentilationAirFlowRateSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify the degree of humidification to achieve by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of the degree of humidification = 0x41 Degree of humidification = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setDegreeOfHumidificationSetting(byte[] edt) {return false;}
+	private final boolean _setDegreeOfHumidificationSetting(byte epc, byte[] edt) {
+		boolean success = setDegreeOfHumidificationSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify the degree of humidification to achieve by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of the degree of humidification = 0x41 Degree of humidification = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getDegreeOfHumidificationSetting() {return null;}
+	private final byte[] _getDegreeOfHumidificationSetting(byte epc) {
+		byte[] edt = getDegreeOfHumidificationSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * A bitmap indicates mounted method of exercising air cleaning function.<br>Bit 0: Information about electrical dust collection method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about cluster ion method mounting 0 - Not mounted 1 . Mounted<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMountedAirCleaningMethod() {return null;}
+	private final byte[] _getMountedAirCleaningMethod(byte epc) {
+		byte[] edt = getMountedAirCleaningMethod();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAirPurifierFunctionSetting(byte[] edt) {return false;}
+	private final boolean _setAirPurifierFunctionSetting(byte epc, byte[] edt) {
+		boolean success = setAirPurifierFunctionSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAirPurifierFunctionSetting() {return null;}
+	private final byte[] _getAirPurifierFunctionSetting(byte epc) {
+		byte[] edt = getAirPurifierFunctionSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * A bitmap indicates mounted method for exercising refresh function.<br>Bit 0: Information about minus ion method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about cluster ion method mounting 0 - Not mounted 1 . Mounted<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMountedAirRefreshMethod() {return null;}
+	private final byte[] _getMountedAirRefreshMethod(byte epc) {
+		byte[] edt = getMountedAirRefreshMethod();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAirRefresherFunctionSetting(byte[] edt) {return false;}
+	private final boolean _setAirRefresherFunctionSetting(byte epc, byte[] edt) {
+		boolean success = setAirRefresherFunctionSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAirRefresherFunctionSetting() {return null;}
+	private final byte[] _getAirRefresherFunctionSetting(byte epc) {
+		byte[] edt = getAirRefresherFunctionSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * A bitmap indicates mounted method for exercising self-cleaning function.<br>Bit 0: Information about ozone cleaning method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about drying method mounting 0 - Not mounted 1 . Mounted<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMountedSelfCleaningMethod() {return null;}
+	private final byte[] _getMountedSelfCleaningMethod(byte epc) {
+		byte[] edt = getMountedSelfCleaningMethod();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSelfCleaningFunctionSetting(byte[] edt) {return false;}
+	private final boolean _setSelfCleaningFunctionSetting(byte epc, byte[] edt) {
+		boolean success = setSelfCleaningFunctionSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSelfCleaningFunctionSetting() {return null;}
+	private final byte[] _getSelfCleaningFunctionSetting(byte epc) {
+		byte[] edt = getSelfCleaningFunctionSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify the  gspecial function h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSpecialFunctionSetting(byte[] edt) {return false;}
+	private final boolean _setSpecialFunctionSetting(byte epc, byte[] edt) {
+		boolean success = setSpecialFunctionSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify the  gspecial function h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSpecialFunctionSetting() {return null;}
+	private final byte[] _getSpecialFunctionSetting(byte epc) {
+		byte[] edt = getSpecialFunctionSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the operation status of components of the air conditioner in a bitmap format.<br>Bit 0: Operation status of the compressor: 0: Not operating 1: In operation Bit 1: Operation status of the thermostat: 0: Thermostat OFF 1: Thermostat ON Bits 2 to 7: Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getOperationStatusOfComponents() {return null;}
+	private final byte[] _getOperationStatusOfComponents(byte epc) {
+		byte[] edt = getOperationStatusOfComponents();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify whether or not to allow the air conditioner to operate ignoring its thermostat setting.<br>Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : undefined
 	 */
 	protected boolean setThermostatSettingOverrideFunction(byte[] edt) {return false;}
+	private final boolean _setThermostatSettingOverrideFunction(byte epc, byte[] edt) {
+		boolean success = setThermostatSettingOverrideFunction(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to set the air purification mode seting ON/OFF and to acquire the current setting. B<br>Air purification ON  0x41,OFF   0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAirPurificationModeSetting(byte[] edt) {return false;}
+	private final boolean _setAirPurificationModeSetting(byte epc, byte[] edt) {
+		boolean success = setAirPurificationModeSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to set the air purification mode seting ON/OFF and to acquire the current setting. B<br>Air purification ON  0x41,OFF   0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAirPurificationModeSetting() {return null;}
+	private final byte[] _getAirPurificationModeSetting(byte epc) {
+		byte[] edt = getAirPurificationModeSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOnTimerBasedReservationSetting(byte[] edt) {return false;}
+	private final boolean _setOnTimerBasedReservationSetting(byte epc, byte[] edt) {
+		boolean success = setOnTimerBasedReservationSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOnTimerBasedReservationSetting() {return null;}
+	private final byte[] _getOnTimerBasedReservationSetting(byte epc) {
+		byte[] edt = getOnTimerBasedReservationSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOnTimerSettingTime(byte[] edt) {return false;}
+	private final boolean _setOnTimerSettingTime(byte epc, byte[] edt) {
+		boolean success = setOnTimerSettingTime(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOnTimerSettingTime() {return null;}
+	private final byte[] _getOnTimerSettingTime(byte epc) {
+		byte[] edt = getOnTimerSettingTime();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOnTimerSettingRelativeTime(byte[] edt) {return false;}
+	private final boolean _setOnTimerSettingRelativeTime(byte epc, byte[] edt) {
+		boolean success = setOnTimerSettingRelativeTime(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOnTimerSettingRelativeTime() {return null;}
+	private final byte[] _getOnTimerSettingRelativeTime(byte epc) {
+		byte[] edt = getOnTimerSettingRelativeTime();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOffTimerBasedReservationSetting(byte[] edt) {return false;}
+	private final boolean _setOffTimerBasedReservationSetting(byte epc, byte[] edt) {
+		boolean success = setOffTimerBasedReservationSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOffTimerBasedReservationSetting() {return null;}
+	private final byte[] _getOffTimerBasedReservationSetting(byte epc) {
+		byte[] edt = getOffTimerBasedReservationSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOffTimerSettingTime(byte[] edt) {return false;}
+	private final boolean _setOffTimerSettingTime(byte epc, byte[] edt) {
+		boolean success = setOffTimerSettingTime(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOffTimerSettingTime() {return null;}
+	private final byte[] _getOffTimerSettingTime(byte epc) {
+		byte[] edt = getOffTimerSettingTime();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOffTimerSettingRelativeTime(byte[] edt) {return false;}
+	private final boolean _setOffTimerSettingRelativeTime(byte epc, byte[] edt) {
+		boolean success = setOffTimerSettingRelativeTime(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOffTimerSettingRelativeTime() {return null;}
+	private final byte[] _getOffTimerSettingRelativeTime(byte epc) {
+		byte[] edt = getOffTimerSettingRelativeTime();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -375,94 +735,94 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
 		case EPC_OPERATION_MODE_SETTING:
-			res.addProperty(epc, edt, setOperationModeSetting(edt));
+			res.addProperty(epc, edt, _setOperationModeSetting(epc, edt));
 			break;
 		case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING:
-			res.addProperty(epc, edt, setAutomaticTemperatureControlSetting(edt));
+			res.addProperty(epc, edt, _setAutomaticTemperatureControlSetting(epc, edt));
 			break;
 		case EPC_NORMAL_HIGH_SPEED_SILENT_OPERATION_SETTING:
-			res.addProperty(epc, edt, setNormalHighSpeedSilentOperationSetting(edt));
+			res.addProperty(epc, edt, _setNormalHighSpeedSilentOperationSetting(epc, edt));
 			break;
 		case EPC_SET_TEMPERATURE_VALUE:
-			res.addProperty(epc, edt, setSetTemperatureValue(edt));
+			res.addProperty(epc, edt, _setSetTemperatureValue(epc, edt));
 			break;
 		case EPC_SET_VALUE_OF_RELATIVE_HUMIDITY_IN_DEHUMIDIFYING_MODE:
-			res.addProperty(epc, edt, setSetValueOfRelativeHumidityInDehumidifyingMode(edt));
+			res.addProperty(epc, edt, _setSetValueOfRelativeHumidityInDehumidifyingMode(epc, edt));
 			break;
 		case EPC_SET_TEMPERATURE_VALUE_IN_COOLING_MODE:
-			res.addProperty(epc, edt, setSetTemperatureValueInCoolingMode(edt));
+			res.addProperty(epc, edt, _setSetTemperatureValueInCoolingMode(epc, edt));
 			break;
 		case EPC_SET_TEMPERATURE_VALUE_IN_HEATING_MODE:
-			res.addProperty(epc, edt, setSetTemperatureValueInHeatingMode(edt));
+			res.addProperty(epc, edt, _setSetTemperatureValueInHeatingMode(epc, edt));
 			break;
 		case EPC_SET_TEMPERATURE_VALUE_IN_DEHUMIDIFYING_MODE:
-			res.addProperty(epc, edt, setSetTemperatureValueInDehumidifyingMode(edt));
+			res.addProperty(epc, edt, _setSetTemperatureValueInDehumidifyingMode(epc, edt));
 			break;
 		case EPC_RELATIVE_TEMPERATURE_SETTING:
-			res.addProperty(epc, edt, setRelativeTemperatureSetting(edt));
+			res.addProperty(epc, edt, _setRelativeTemperatureSetting(epc, edt));
 			break;
 		case EPC_AIR_FLOW_RATE_SETTING:
-			res.addProperty(epc, edt, setAirFlowRateSetting(edt));
+			res.addProperty(epc, edt, _setAirFlowRateSetting(epc, edt));
 			break;
 		case EPC_AUTOMATIC_CONTROL_OF_AIR_FLOW_DIRECTION_SETTING:
-			res.addProperty(epc, edt, setAutomaticControlOfAirFlowDirectionSetting(edt));
+			res.addProperty(epc, edt, _setAutomaticControlOfAirFlowDirectionSetting(epc, edt));
 			break;
 		case EPC_AUTOMATIC_SWING_OF_AIR_FLOW_SETTING:
-			res.addProperty(epc, edt, setAutomaticSwingOfAirFlowSetting(edt));
+			res.addProperty(epc, edt, _setAutomaticSwingOfAirFlowSetting(epc, edt));
 			break;
 		case EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING:
-			res.addProperty(epc, edt, setAirFlowDirectionVerticalSetting(edt));
+			res.addProperty(epc, edt, _setAirFlowDirectionVerticalSetting(epc, edt));
 			break;
 		case EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING:
-			res.addProperty(epc, edt, setAirFlowDirectionHorizontalSetting(edt));
+			res.addProperty(epc, edt, _setAirFlowDirectionHorizontalSetting(epc, edt));
 			break;
 		case EPC_VENTILATION_FUNCTION_SETTING:
-			res.addProperty(epc, edt, setVentilationFunctionSetting(edt));
+			res.addProperty(epc, edt, _setVentilationFunctionSetting(epc, edt));
 			break;
 		case EPC_HUMIDIFIER_FUNCTION_SETTING:
-			res.addProperty(epc, edt, setHumidifierFunctionSetting(edt));
+			res.addProperty(epc, edt, _setHumidifierFunctionSetting(epc, edt));
 			break;
 		case EPC_VENTILATION_AIR_FLOW_RATE_SETTING:
-			res.addProperty(epc, edt, setVentilationAirFlowRateSetting(edt));
+			res.addProperty(epc, edt, _setVentilationAirFlowRateSetting(epc, edt));
 			break;
 		case EPC_DEGREE_OF_HUMIDIFICATION_SETTING:
-			res.addProperty(epc, edt, setDegreeOfHumidificationSetting(edt));
+			res.addProperty(epc, edt, _setDegreeOfHumidificationSetting(epc, edt));
 			break;
 		case EPC_AIR_PURIFIER_FUNCTION_SETTING:
-			res.addProperty(epc, edt, setAirPurifierFunctionSetting(edt));
+			res.addProperty(epc, edt, _setAirPurifierFunctionSetting(epc, edt));
 			break;
 		case EPC_AIR_REFRESHER_FUNCTION_SETTING:
-			res.addProperty(epc, edt, setAirRefresherFunctionSetting(edt));
+			res.addProperty(epc, edt, _setAirRefresherFunctionSetting(epc, edt));
 			break;
 		case EPC_SELF_CLEANING_FUNCTION_SETTING:
-			res.addProperty(epc, edt, setSelfCleaningFunctionSetting(edt));
+			res.addProperty(epc, edt, _setSelfCleaningFunctionSetting(epc, edt));
 			break;
 		case EPC_SPECIAL_FUNCTION_SETTING:
-			res.addProperty(epc, edt, setSpecialFunctionSetting(edt));
+			res.addProperty(epc, edt, _setSpecialFunctionSetting(epc, edt));
 			break;
 		case EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION:
-			res.addProperty(epc, edt, setThermostatSettingOverrideFunction(edt));
+			res.addProperty(epc, edt, _setThermostatSettingOverrideFunction(epc, edt));
 			break;
 		case EPC_AIR_PURIFICATION_MODE_SETTING:
-			res.addProperty(epc, edt, setAirPurificationModeSetting(edt));
+			res.addProperty(epc, edt, _setAirPurificationModeSetting(epc, edt));
 			break;
 		case EPC_ON_TIMER_BASED_RESERVATION_SETTING:
-			res.addProperty(epc, edt, setOnTimerBasedReservationSetting(edt));
+			res.addProperty(epc, edt, _setOnTimerBasedReservationSetting(epc, edt));
 			break;
 		case EPC_ON_TIMER_SETTING_TIME:
-			res.addProperty(epc, edt, setOnTimerSettingTime(edt));
+			res.addProperty(epc, edt, _setOnTimerSettingTime(epc, edt));
 			break;
 		case EPC_ON_TIMER_SETTING_RELATIVE_TIME:
-			res.addProperty(epc, edt, setOnTimerSettingRelativeTime(edt));
+			res.addProperty(epc, edt, _setOnTimerSettingRelativeTime(epc, edt));
 			break;
 		case EPC_OFF_TIMER_BASED_RESERVATION_SETTING:
-			res.addProperty(epc, edt, setOffTimerBasedReservationSetting(edt));
+			res.addProperty(epc, edt, _setOffTimerBasedReservationSetting(epc, edt));
 			break;
 		case EPC_OFF_TIMER_SETTING_TIME:
-			res.addProperty(epc, edt, setOffTimerSettingTime(edt));
+			res.addProperty(epc, edt, _setOffTimerSettingTime(epc, edt));
 			break;
 		case EPC_OFF_TIMER_SETTING_RELATIVE_TIME:
-			res.addProperty(epc, edt, setOffTimerSettingRelativeTime(edt));
+			res.addProperty(epc, edt, _setOffTimerSettingRelativeTime(epc, edt));
 			break;
 
 		}
@@ -474,171 +834,171 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_OPERATION_MODE_SETTING:
-			edt = getOperationModeSetting();
+			edt = _getOperationModeSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING:
-			edt = getAutomaticTemperatureControlSetting();
+			edt = _getAutomaticTemperatureControlSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_NORMAL_HIGH_SPEED_SILENT_OPERATION_SETTING:
-			edt = getNormalHighSpeedSilentOperationSetting();
+			edt = _getNormalHighSpeedSilentOperationSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SET_TEMPERATURE_VALUE:
-			edt = getSetTemperatureValue();
+			edt = _getSetTemperatureValue(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SET_VALUE_OF_RELATIVE_HUMIDITY_IN_DEHUMIDIFYING_MODE:
-			edt = getSetValueOfRelativeHumidityInDehumidifyingMode();
+			edt = _getSetValueOfRelativeHumidityInDehumidifyingMode(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SET_TEMPERATURE_VALUE_IN_COOLING_MODE:
-			edt = getSetTemperatureValueInCoolingMode();
+			edt = _getSetTemperatureValueInCoolingMode(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SET_TEMPERATURE_VALUE_IN_HEATING_MODE:
-			edt = getSetTemperatureValueInHeatingMode();
+			edt = _getSetTemperatureValueInHeatingMode(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SET_TEMPERATURE_VALUE_IN_DEHUMIDIFYING_MODE:
-			edt = getSetTemperatureValueInDehumidifyingMode();
+			edt = _getSetTemperatureValueInDehumidifyingMode(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_RATED_POWER_CONSUMPTION:
-			edt = getRatedPowerConsumption();
+			edt = _getRatedPowerConsumption(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 8)));
 			break;
 		case EPC_MEASURED_VALUE_OF_CURRENT_CONSUMPTION:
-			edt = getMeasuredValueOfCurrentConsumption();
+			edt = _getMeasuredValueOfCurrentConsumption(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY:
-			edt = getMeasuredValueOfRoomRelativeHumidity();
+			edt = _getMeasuredValueOfRoomRelativeHumidity(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_MEASURED_VALUE_OF_ROOM_TEMPERATURE:
-			edt = getMeasuredValueOfRoomTemperature();
+			edt = _getMeasuredValueOfRoomTemperature(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SET_TEMPERATURE_VALUE_OF_USER_REMOTE_CONTROL:
-			edt = getSetTemperatureValueOfUserRemoteControl();
+			edt = _getSetTemperatureValueOfUserRemoteControl(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_MEASURED_COOLED_AIR_TEMPERATURE:
-			edt = getMeasuredCooledAirTemperature();
+			edt = _getMeasuredCooledAirTemperature(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE:
-			edt = getMeasuredOutdoorAirTemperature();
+			edt = _getMeasuredOutdoorAirTemperature(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_RELATIVE_TEMPERATURE_SETTING:
-			edt = getRelativeTemperatureSetting();
+			edt = _getRelativeTemperatureSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_AIR_FLOW_RATE_SETTING:
-			edt = getAirFlowRateSetting();
+			edt = _getAirFlowRateSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_AUTOMATIC_CONTROL_OF_AIR_FLOW_DIRECTION_SETTING:
-			edt = getAutomaticControlOfAirFlowDirectionSetting();
+			edt = _getAutomaticControlOfAirFlowDirectionSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_AUTOMATIC_SWING_OF_AIR_FLOW_SETTING:
-			edt = getAutomaticSwingOfAirFlowSetting();
+			edt = _getAutomaticSwingOfAirFlowSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING:
-			edt = getAirFlowDirectionVerticalSetting();
+			edt = _getAirFlowDirectionVerticalSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING:
-			edt = getAirFlowDirectionHorizontalSetting();
+			edt = _getAirFlowDirectionHorizontalSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SPECIAL_STATE:
-			edt = getSpecialState();
+			edt = _getSpecialState(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_NON_PRIORITY_STATE:
-			edt = getNonPriorityState();
+			edt = _getNonPriorityState(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_VENTILATION_FUNCTION_SETTING:
-			edt = getVentilationFunctionSetting();
+			edt = _getVentilationFunctionSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_HUMIDIFIER_FUNCTION_SETTING:
-			edt = getHumidifierFunctionSetting();
+			edt = _getHumidifierFunctionSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_VENTILATION_AIR_FLOW_RATE_SETTING:
-			edt = getVentilationAirFlowRateSetting();
+			edt = _getVentilationAirFlowRateSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_DEGREE_OF_HUMIDIFICATION_SETTING:
-			edt = getDegreeOfHumidificationSetting();
+			edt = _getDegreeOfHumidificationSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_MOUNTED_AIR_CLEANING_METHOD:
-			edt = getMountedAirCleaningMethod();
+			edt = _getMountedAirCleaningMethod(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_AIR_PURIFIER_FUNCTION_SETTING:
-			edt = getAirPurifierFunctionSetting();
+			edt = _getAirPurifierFunctionSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 8)));
 			break;
 		case EPC_MOUNTED_AIR_REFRESH_METHOD:
-			edt = getMountedAirRefreshMethod();
+			edt = _getMountedAirRefreshMethod(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_AIR_REFRESHER_FUNCTION_SETTING:
-			edt = getAirRefresherFunctionSetting();
+			edt = _getAirRefresherFunctionSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 8)));
 			break;
 		case EPC_MOUNTED_SELF_CLEANING_METHOD:
-			edt = getMountedSelfCleaningMethod();
+			edt = _getMountedSelfCleaningMethod(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SELF_CLEANING_FUNCTION_SETTING:
-			edt = getSelfCleaningFunctionSetting();
+			edt = _getSelfCleaningFunctionSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 8)));
 			break;
 		case EPC_SPECIAL_FUNCTION_SETTING:
-			edt = getSpecialFunctionSetting();
+			edt = _getSpecialFunctionSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_OPERATION_STATUS_OF_COMPONENTS:
-			edt = getOperationStatusOfComponents();
+			edt = _getOperationStatusOfComponents(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_AIR_PURIFICATION_MODE_SETTING:
-			edt = getAirPurificationModeSetting();
+			edt = _getAirPurificationModeSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_ON_TIMER_BASED_RESERVATION_SETTING:
-			edt = getOnTimerBasedReservationSetting();
+			edt = _getOnTimerBasedReservationSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_ON_TIMER_SETTING_TIME:
-			edt = getOnTimerSettingTime();
+			edt = _getOnTimerSettingTime(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_ON_TIMER_SETTING_RELATIVE_TIME:
-			edt = getOnTimerSettingRelativeTime();
+			edt = _getOnTimerSettingRelativeTime(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_OFF_TIMER_BASED_RESERVATION_SETTING:
-			edt = getOffTimerBasedReservationSetting();
+			edt = _getOffTimerBasedReservationSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_OFF_TIMER_SETTING_TIME:
-			edt = getOffTimerSettingTime();
+			edt = _getOffTimerSettingTime(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_OFF_TIMER_SETTING_RELATIVE_TIME:
-			edt = getOffTimerSettingRelativeTime();
+			edt = _getOffTimerSettingRelativeTime(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 
@@ -668,234 +1028,232 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_OPERATION_MODE_SETTING:
-				onSetOperationModeSetting(eoj, tid, (pdc != 0));
+				_onSetOperationModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING:
-				onSetAutomaticTemperatureControlSetting(eoj, tid, (pdc != 0));
+				_onSetAutomaticTemperatureControlSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_NORMAL_HIGH_SPEED_SILENT_OPERATION_SETTING:
-				onSetNormalHighSpeedSilentOperationSetting(eoj, tid, (pdc != 0));
+				_onSetNormalHighSpeedSilentOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_SET_TEMPERATURE_VALUE:
-				onSetSetTemperatureValue(eoj, tid, (pdc != 0));
+				_onSetSetTemperatureValue(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_SET_VALUE_OF_RELATIVE_HUMIDITY_IN_DEHUMIDIFYING_MODE:
-				onSetSetValueOfRelativeHumidityInDehumidifyingMode(eoj, tid, (pdc != 0));
+				_onSetSetValueOfRelativeHumidityInDehumidifyingMode(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_SET_TEMPERATURE_VALUE_IN_COOLING_MODE:
-				onSetSetTemperatureValueInCoolingMode(eoj, tid, (pdc != 0));
+				_onSetSetTemperatureValueInCoolingMode(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_SET_TEMPERATURE_VALUE_IN_HEATING_MODE:
-				onSetSetTemperatureValueInHeatingMode(eoj, tid, (pdc != 0));
+				_onSetSetTemperatureValueInHeatingMode(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_SET_TEMPERATURE_VALUE_IN_DEHUMIDIFYING_MODE:
-				onSetSetTemperatureValueInDehumidifyingMode(eoj, tid, (pdc != 0));
+				_onSetSetTemperatureValueInDehumidifyingMode(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_RELATIVE_TEMPERATURE_SETTING:
-				onSetRelativeTemperatureSetting(eoj, tid, (pdc != 0));
+				_onSetRelativeTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_AIR_FLOW_RATE_SETTING:
-				onSetAirFlowRateSetting(eoj, tid, (pdc != 0));
+				_onSetAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_AUTOMATIC_CONTROL_OF_AIR_FLOW_DIRECTION_SETTING:
-				onSetAutomaticControlOfAirFlowDirectionSetting(eoj, tid, (pdc != 0));
+				_onSetAutomaticControlOfAirFlowDirectionSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_AUTOMATIC_SWING_OF_AIR_FLOW_SETTING:
-				onSetAutomaticSwingOfAirFlowSetting(eoj, tid, (pdc != 0));
+				_onSetAutomaticSwingOfAirFlowSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING:
-				onSetAirFlowDirectionVerticalSetting(eoj, tid, (pdc != 0));
+				_onSetAirFlowDirectionVerticalSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING:
-				onSetAirFlowDirectionHorizontalSetting(eoj, tid, (pdc != 0));
+				_onSetAirFlowDirectionHorizontalSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_VENTILATION_FUNCTION_SETTING:
-				onSetVentilationFunctionSetting(eoj, tid, (pdc != 0));
+				_onSetVentilationFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_HUMIDIFIER_FUNCTION_SETTING:
-				onSetHumidifierFunctionSetting(eoj, tid, (pdc != 0));
+				_onSetHumidifierFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_VENTILATION_AIR_FLOW_RATE_SETTING:
-				onSetVentilationAirFlowRateSetting(eoj, tid, (pdc != 0));
+				_onSetVentilationAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_DEGREE_OF_HUMIDIFICATION_SETTING:
-				onSetDegreeOfHumidificationSetting(eoj, tid, (pdc != 0));
+				_onSetDegreeOfHumidificationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_AIR_PURIFIER_FUNCTION_SETTING:
-				onSetAirPurifierFunctionSetting(eoj, tid, (pdc != 0));
+				_onSetAirPurifierFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_AIR_REFRESHER_FUNCTION_SETTING:
-				onSetAirRefresherFunctionSetting(eoj, tid, (pdc != 0));
+				_onSetAirRefresherFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_SELF_CLEANING_FUNCTION_SETTING:
-				onSetSelfCleaningFunctionSetting(eoj, tid, (pdc != 0));
+				_onSetSelfCleaningFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_SPECIAL_FUNCTION_SETTING:
-				onSetSpecialFunctionSetting(eoj, tid, (pdc != 0));
+				_onSetSpecialFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION:
-				onSetThermostatSettingOverrideFunction(eoj, tid, (pdc != 0));
+				_onSetThermostatSettingOverrideFunction(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_AIR_PURIFICATION_MODE_SETTING:
-				onSetAirPurificationModeSetting(eoj, tid, (pdc != 0));
+				_onSetAirPurificationModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_ON_TIMER_BASED_RESERVATION_SETTING:
-				onSetOnTimerBasedReservationSetting(eoj, tid, (pdc != 0));
+				_onSetOnTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_ON_TIMER_SETTING_TIME:
-				onSetOnTimerSettingTime(eoj, tid, (pdc != 0));
+				_onSetOnTimerSettingTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_ON_TIMER_SETTING_RELATIVE_TIME:
-				onSetOnTimerSettingRelativeTime(eoj, tid, (pdc != 0));
+				_onSetOnTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_OFF_TIMER_BASED_RESERVATION_SETTING:
-				onSetOffTimerBasedReservationSetting(eoj, tid, (pdc != 0));
+				_onSetOffTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_OFF_TIMER_SETTING_TIME:
-				onSetOffTimerSettingTime(eoj, tid, (pdc != 0));
+				_onSetOffTimerSettingTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_OFF_TIMER_SETTING_RELATIVE_TIME:
-				onSetOffTimerSettingRelativeTime(eoj, tid, (pdc != 0));
+				_onSetOffTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_OPERATION_MODE_SETTING:
-				onGetOperationModeSetting(eoj, tid, pdc, edt);
+				_onGetOperationModeSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING:
-				onGetAutomaticTemperatureControlSetting(eoj, tid, pdc, edt);
+				_onGetAutomaticTemperatureControlSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_NORMAL_HIGH_SPEED_SILENT_OPERATION_SETTING:
-				onGetNormalHighSpeedSilentOperationSetting(eoj, tid, pdc, edt);
+				_onGetNormalHighSpeedSilentOperationSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SET_TEMPERATURE_VALUE:
-				onGetSetTemperatureValue(eoj, tid, pdc, edt);
+				_onGetSetTemperatureValue(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SET_VALUE_OF_RELATIVE_HUMIDITY_IN_DEHUMIDIFYING_MODE:
-				onGetSetValueOfRelativeHumidityInDehumidifyingMode(eoj, tid, pdc, edt);
+				_onGetSetValueOfRelativeHumidityInDehumidifyingMode(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SET_TEMPERATURE_VALUE_IN_COOLING_MODE:
-				onGetSetTemperatureValueInCoolingMode(eoj, tid, pdc, edt);
+				_onGetSetTemperatureValueInCoolingMode(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SET_TEMPERATURE_VALUE_IN_HEATING_MODE:
-				onGetSetTemperatureValueInHeatingMode(eoj, tid, pdc, edt);
+				_onGetSetTemperatureValueInHeatingMode(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SET_TEMPERATURE_VALUE_IN_DEHUMIDIFYING_MODE:
-				onGetSetTemperatureValueInDehumidifyingMode(eoj, tid, pdc, edt);
+				_onGetSetTemperatureValueInDehumidifyingMode(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_RATED_POWER_CONSUMPTION:
-				onGetRatedPowerConsumption(eoj, tid, pdc, edt);
+				_onGetRatedPowerConsumption(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_VALUE_OF_CURRENT_CONSUMPTION:
-				onGetMeasuredValueOfCurrentConsumption(eoj, tid, pdc, edt);
+				_onGetMeasuredValueOfCurrentConsumption(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY:
-				onGetMeasuredValueOfRoomRelativeHumidity(eoj, tid, pdc, edt);
+				_onGetMeasuredValueOfRoomRelativeHumidity(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_VALUE_OF_ROOM_TEMPERATURE:
-				onGetMeasuredValueOfRoomTemperature(eoj, tid, pdc, edt);
+				_onGetMeasuredValueOfRoomTemperature(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SET_TEMPERATURE_VALUE_OF_USER_REMOTE_CONTROL:
-				onGetSetTemperatureValueOfUserRemoteControl(eoj, tid, pdc, edt);
+				_onGetSetTemperatureValueOfUserRemoteControl(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_COOLED_AIR_TEMPERATURE:
-				onGetMeasuredCooledAirTemperature(eoj, tid, pdc, edt);
+				_onGetMeasuredCooledAirTemperature(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE:
-				onGetMeasuredOutdoorAirTemperature(eoj, tid, pdc, edt);
+				_onGetMeasuredOutdoorAirTemperature(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_RELATIVE_TEMPERATURE_SETTING:
-				onGetRelativeTemperatureSetting(eoj, tid, pdc, edt);
+				_onGetRelativeTemperatureSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_AIR_FLOW_RATE_SETTING:
-				onGetAirFlowRateSetting(eoj, tid, pdc, edt);
+				_onGetAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_AUTOMATIC_CONTROL_OF_AIR_FLOW_DIRECTION_SETTING:
-				onGetAutomaticControlOfAirFlowDirectionSetting(eoj, tid, pdc, edt);
+				_onGetAutomaticControlOfAirFlowDirectionSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_AUTOMATIC_SWING_OF_AIR_FLOW_SETTING:
-				onGetAutomaticSwingOfAirFlowSetting(eoj, tid, pdc, edt);
+				_onGetAutomaticSwingOfAirFlowSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING:
-				onGetAirFlowDirectionVerticalSetting(eoj, tid, pdc, edt);
+				_onGetAirFlowDirectionVerticalSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING:
-				onGetAirFlowDirectionHorizontalSetting(eoj, tid, pdc, edt);
+				_onGetAirFlowDirectionHorizontalSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SPECIAL_STATE:
-				onGetSpecialState(eoj, tid, pdc, edt);
+				_onGetSpecialState(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_NON_PRIORITY_STATE:
-				onGetNonPriorityState(eoj, tid, pdc, edt);
+				_onGetNonPriorityState(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_VENTILATION_FUNCTION_SETTING:
-				onGetVentilationFunctionSetting(eoj, tid, pdc, edt);
+				_onGetVentilationFunctionSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_HUMIDIFIER_FUNCTION_SETTING:
-				onGetHumidifierFunctionSetting(eoj, tid, pdc, edt);
+				_onGetHumidifierFunctionSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_VENTILATION_AIR_FLOW_RATE_SETTING:
-				onGetVentilationAirFlowRateSetting(eoj, tid, pdc, edt);
+				_onGetVentilationAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_DEGREE_OF_HUMIDIFICATION_SETTING:
-				onGetDegreeOfHumidificationSetting(eoj, tid, pdc, edt);
+				_onGetDegreeOfHumidificationSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MOUNTED_AIR_CLEANING_METHOD:
-				onGetMountedAirCleaningMethod(eoj, tid, pdc, edt);
+				_onGetMountedAirCleaningMethod(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_AIR_PURIFIER_FUNCTION_SETTING:
-				onGetAirPurifierFunctionSetting(eoj, tid, pdc, edt);
+				_onGetAirPurifierFunctionSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MOUNTED_AIR_REFRESH_METHOD:
-				onGetMountedAirRefreshMethod(eoj, tid, pdc, edt);
+				_onGetMountedAirRefreshMethod(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_AIR_REFRESHER_FUNCTION_SETTING:
-				onGetAirRefresherFunctionSetting(eoj, tid, pdc, edt);
+				_onGetAirRefresherFunctionSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MOUNTED_SELF_CLEANING_METHOD:
-				onGetMountedSelfCleaningMethod(eoj, tid, pdc, edt);
+				_onGetMountedSelfCleaningMethod(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SELF_CLEANING_FUNCTION_SETTING:
-				onGetSelfCleaningFunctionSetting(eoj, tid, pdc, edt);
+				_onGetSelfCleaningFunctionSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SPECIAL_FUNCTION_SETTING:
-				onGetSpecialFunctionSetting(eoj, tid, pdc, edt);
+				_onGetSpecialFunctionSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_OPERATION_STATUS_OF_COMPONENTS:
-				onGetOperationStatusOfComponents(eoj, tid, pdc, edt);
+				_onGetOperationStatusOfComponents(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_AIR_PURIFICATION_MODE_SETTING:
-				onGetAirPurificationModeSetting(eoj, tid, pdc, edt);
+				_onGetAirPurificationModeSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_ON_TIMER_BASED_RESERVATION_SETTING:
-				onGetOnTimerBasedReservationSetting(eoj, tid, pdc, edt);
+				_onGetOnTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_ON_TIMER_SETTING_TIME:
-				onGetOnTimerSettingTime(eoj, tid, pdc, edt);
+				_onGetOnTimerSettingTime(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_ON_TIMER_SETTING_RELATIVE_TIME:
-				onGetOnTimerSettingRelativeTime(eoj, tid, pdc, edt);
+				_onGetOnTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_OFF_TIMER_BASED_RESERVATION_SETTING:
-				onGetOffTimerBasedReservationSetting(eoj, tid, pdc, edt);
+				_onGetOffTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_OFF_TIMER_SETTING_TIME:
-				onGetOffTimerSettingTime(eoj, tid, pdc, edt);
+				_onGetOffTimerSettingTime(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_OFF_TIMER_SETTING_RELATIVE_TIME:
-				onGetOffTimerSettingRelativeTime(eoj, tid, pdc, edt);
+				_onGetOffTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -904,291 +1262,579 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		/**
 		 * Used to specify the operation mode ( gautomatic, h  gcooling, h  gheating, h  gdehumidification, h  gair circulator h or  gother h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
-		protected void onSetOperationModeSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetOperationModeSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify the operation mode ( gautomatic, h  gcooling, h  gheating, h  gdehumidification, h  gair circulator h or  gother h), and to acquire the current setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
-		protected void onGetOperationModeSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOperationModeSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>Automatic = 0x41 Non-automatic = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetAutomaticTemperatureControlSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>Automatic = 0x41 Non-automatic = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetAutomaticTemperatureControlSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify the type of operation ( gnormal, h  ghigh-speed h or  gsilent h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetNormalHighSpeedSilentOperationSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetNormalHighSpeedSilentOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetNormalHighSpeedSilentOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetNormalHighSpeedSilentOperationSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify the type of operation ( gnormal, h  ghigh-speed h or  gsilent h), and to acquire the current setting.<br>Normal operation: 0x41 High-speed operation: 0x42 Silent operation: 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetNormalHighSpeedSilentOperationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetNormalHighSpeedSilentOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetNormalHighSpeedSilentOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetNormalHighSpeedSilentOperationSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
-		protected void onSetSetTemperatureValue(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetSetTemperatureValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetSetTemperatureValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetSetTemperatureValue(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
-		protected void onGetSetTemperatureValue(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSetTemperatureValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSetTemperatureValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSetTemperatureValue(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to set the relative humidity for the  gdehumidification h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetSetValueOfRelativeHumidityInDehumidifyingMode(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetSetValueOfRelativeHumidityInDehumidifyingMode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetSetValueOfRelativeHumidityInDehumidifyingMode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetSetValueOfRelativeHumidityInDehumidifyingMode(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to set the relative humidity for the  gdehumidification h mode and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetSetValueOfRelativeHumidityInDehumidifyingMode(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSetValueOfRelativeHumidityInDehumidifyingMode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSetValueOfRelativeHumidityInDehumidifyingMode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSetValueOfRelativeHumidityInDehumidifyingMode(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to set the temperature for the  gcooling h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetSetTemperatureValueInCoolingMode(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetSetTemperatureValueInCoolingMode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetSetTemperatureValueInCoolingMode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetSetTemperatureValueInCoolingMode(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to set the temperature for the  gcooling h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetSetTemperatureValueInCoolingMode(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSetTemperatureValueInCoolingMode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSetTemperatureValueInCoolingMode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSetTemperatureValueInCoolingMode(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to set the temperature for the  gheating h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetSetTemperatureValueInHeatingMode(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetSetTemperatureValueInHeatingMode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetSetTemperatureValueInHeatingMode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetSetTemperatureValueInHeatingMode(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to set the temperature for the  gheating h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetSetTemperatureValueInHeatingMode(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSetTemperatureValueInHeatingMode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSetTemperatureValueInHeatingMode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSetTemperatureValueInHeatingMode(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to set the temperature for the  gdehumidification h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetSetTemperatureValueInDehumidifyingMode(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetSetTemperatureValueInDehumidifyingMode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetSetTemperatureValueInDehumidifyingMode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetSetTemperatureValueInDehumidifyingMode(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to set the temperature for the  gdehumidification h mode and to acquire the current setting.<br>0x00 to 0x32 (0 to 50  )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetSetTemperatureValueInDehumidifyingMode(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSetTemperatureValueInDehumidifyingMode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSetTemperatureValueInDehumidifyingMode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSetTemperatureValueInDehumidifyingMode(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Rated power consumption in each operation mode of cooling/heating/dehumidifying/blast<br>0x0000.0xFFFD (0.65533W) Cooling: heating: dehumidifying: blast<br><br>Data type : unsigned short x 4<br>Data size : 8 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetRatedPowerConsumption(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetRatedPowerConsumption(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetRatedPowerConsumption(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetRatedPowerConsumption(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Measured value of current consumption<br>0x0000.0xFFFD (0.6553.3A)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMeasuredValueOfCurrentConsumption(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredValueOfCurrentConsumption(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredValueOfCurrentConsumption(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredValueOfCurrentConsumption(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Measured value of room relative humidity<br>0x00.0x64 (0.100. C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMeasuredValueOfRoomRelativeHumidity(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredValueOfRoomRelativeHumidity(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredValueOfRoomRelativeHumidity(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredValueOfRoomRelativeHumidity(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Measured value of room temperature<br>0x80.0x7D (-127.125.C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMeasuredValueOfRoomTemperature(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredValueOfRoomTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredValueOfRoomTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredValueOfRoomTemperature(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Set temperature value of user remote control<br>0x00.0x32 (0.50.C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetSetTemperatureValueOfUserRemoteControl(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSetTemperatureValueOfUserRemoteControl(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSetTemperatureValueOfUserRemoteControl(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSetTemperatureValueOfUserRemoteControl(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the measured cooled air temperature at the outlet.<br>0x81 to 0x7D (-127 to 125  C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMeasuredCooledAirTemperature(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredCooledAirTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredCooledAirTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredCooledAirTemperature(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the measured outdoor air temperature.<br>0x81 to 0x7D (-127 to 125  C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMeasuredOutdoorAirTemperature(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredOutdoorAirTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredOutdoorAirTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredOutdoorAirTemperature(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7  C to 12.5  C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetRelativeTemperatureSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetRelativeTemperatureSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetRelativeTemperatureSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetRelativeTemperatureSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>0x81 to 0x7D (-12.7  C to 12.5  C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetRelativeTemperatureSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetRelativeTemperatureSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetRelativeTemperatureSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetRelativeTemperatureSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify the air flow rate or use the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetAirFlowRateSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify the air flow rate or use the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetAirFlowRateSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetAutomaticControlOfAirFlowDirectionSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetAutomaticControlOfAirFlowDirectionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetAutomaticControlOfAirFlowDirectionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetAutomaticControlOfAirFlowDirectionSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetAutomaticControlOfAirFlowDirectionSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetAutomaticControlOfAirFlowDirectionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetAutomaticControlOfAirFlowDirectionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetAutomaticControlOfAirFlowDirectionSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetAutomaticSwingOfAirFlowSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetAutomaticSwingOfAirFlowSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetAutomaticSwingOfAirFlowSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetAutomaticSwingOfAirFlowSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetAutomaticSwingOfAirFlowSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetAutomaticSwingOfAirFlowSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetAutomaticSwingOfAirFlowSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetAutomaticSwingOfAirFlowSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 5 predefined patterns, and to acquire the current setting.<br>Uppermost = 0x41, lowermost = 0x42, central = 0x43, midpoint between uppermost and central = 0x44, midpoint between lowermost and central = 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetAirFlowDirectionVerticalSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetAirFlowDirectionVerticalSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetAirFlowDirectionVerticalSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetAirFlowDirectionVerticalSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 5 predefined patterns, and to acquire the current setting.<br>Uppermost = 0x41, lowermost = 0x42, central = 0x43, midpoint between uppermost and central = 0x44, midpoint between lowermost and central = 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetAirFlowDirectionVerticalSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetAirFlowDirectionVerticalSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetAirFlowDirectionVerticalSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetAirFlowDirectionVerticalSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify the air flow direction(s) in the horizontal plane by selecting a pattern from among the 31 predefined patterns, and to acquire the current setting.<br>Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44 (for a full list of the predefined patterns, see the table in the subsection defining the detailed requirements for this property.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetAirFlowDirectionHorizontalSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetAirFlowDirectionHorizontalSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetAirFlowDirectionHorizontalSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetAirFlowDirectionHorizontalSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify the air flow direction(s) in the horizontal plane by selecting a pattern from among the 31 predefined patterns, and to acquire the current setting.<br>Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44 (for a full list of the predefined patterns, see the table in the subsection defining the detailed requirements for this property.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetAirFlowDirectionHorizontalSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetAirFlowDirectionHorizontalSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetAirFlowDirectionHorizontalSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetAirFlowDirectionHorizontalSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates if the air conditioner is in a  gspecial h state (i.e. the  gdefrosting, h  gpreheating, h or  gheat removal h state).<br> gNormal operation h state = 0x40,  gDefrosting h state = 0x41,  gPreheating h state = 0x42,  gHeat removal h state = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetSpecialState(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSpecialState(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSpecialState(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSpecialState(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to indicate when the air conditioner is in a  gnon-priority h state.<br> gNormal operation h state = 0x40,  gNon-priority h state = 0x41<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetNonPriorityState(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetNonPriorityState(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetNonPriorityState(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetNonPriorityState(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify whether or not to use the ventilation function, to specify the ventilation direction, and to acquire the current setting.<br>Ventilation function ON (outlet direction) = 0x41, ventilation function OFF = 0x42, ventilation function ON (intake direction) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetVentilationFunctionSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetVentilationFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetVentilationFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetVentilationFunctionSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify whether or not to use the ventilation function, to specify the ventilation direction, and to acquire the current setting.<br>Ventilation function ON (outlet direction) = 0x41, ventilation function OFF = 0x42, ventilation function ON (intake direction) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetVentilationFunctionSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetVentilationFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetVentilationFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetVentilationFunctionSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify whether or not to use the humidifier function, and to acquire the current setting.<br>Humidifier function ON = 0x41, Humidifier function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetHumidifierFunctionSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetHumidifierFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetHumidifierFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetHumidifierFunctionSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify whether or not to use the humidifier function, and to acquire the current setting.<br>Humidifier function ON = 0x41, Humidifier function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetHumidifierFunctionSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetHumidifierFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetHumidifierFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetHumidifierFunctionSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetVentilationAirFlowRateSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetVentilationAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetVentilationAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetVentilationAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetVentilationAirFlowRateSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetVentilationAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetVentilationAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetVentilationAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify the degree of humidification to achieve by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of the degree of humidification = 0x41 Degree of humidification = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetDegreeOfHumidificationSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetDegreeOfHumidificationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetDegreeOfHumidificationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetDegreeOfHumidificationSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify the degree of humidification to achieve by selecting a level from among the predefined levels, and to acquire the current setting.<br>Automatic control of the degree of humidification = 0x41 Degree of humidification = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetDegreeOfHumidificationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetDegreeOfHumidificationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetDegreeOfHumidificationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetDegreeOfHumidificationSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * A bitmap indicates mounted method of exercising air cleaning function.<br>Bit 0: Information about electrical dust collection method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about cluster ion method mounting 0 - Not mounted 1 . Mounted<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMountedAirCleaningMethod(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMountedAirCleaningMethod(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMountedAirCleaningMethod(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMountedAirCleaningMethod(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetAirPurifierFunctionSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetAirPurifierFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetAirPurifierFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetAirPurifierFunctionSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * An 8-byte array used to specify, for each type of air purifier function, whether or not to use the air purifier function and the degree of air purification to achieve with the air purifier function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the electrical dust collection-based air purifier function. Element 1: Indicates whether or not to use the cluster ion-based air purifier function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetAirPurifierFunctionSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetAirPurifierFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetAirPurifierFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetAirPurifierFunctionSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * A bitmap indicates mounted method for exercising refresh function.<br>Bit 0: Information about minus ion method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about cluster ion method mounting 0 - Not mounted 1 . Mounted<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMountedAirRefreshMethod(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMountedAirRefreshMethod(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMountedAirRefreshMethod(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMountedAirRefreshMethod(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetAirRefresherFunctionSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetAirRefresherFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetAirRefresherFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetAirRefresherFunctionSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * An 8-byte array used to specify, for each type of air refresher function, whether or not to use the air refresher function and the degree of air refreshing to achieve with the air refresher function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the minus ion-based air refresher function. Element 1: Indicates whether or not to use the cluster ion-based air refresher function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetAirRefresherFunctionSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetAirRefresherFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetAirRefresherFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetAirRefresherFunctionSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * A bitmap indicates mounted method for exercising self-cleaning function.<br>Bit 0: Information about ozone cleaning method mounting 0 - Not mounted 1 - Mounted Bit 1: Information about drying method mounting 0 - Not mounted 1 . Mounted<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMountedSelfCleaningMethod(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMountedSelfCleaningMethod(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMountedSelfCleaningMethod(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMountedSelfCleaningMethod(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetSelfCleaningFunctionSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetSelfCleaningFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetSelfCleaningFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetSelfCleaningFunctionSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * An 8-byte array used to specify, for each type of self-cleaning function, whether or not to use the self-cleaning function and the degree of self-cleaning to achieve with the self-cleaning function, and to acquire the current settings.<br>Element 0: Indicates whether or not to use the ozone-based self-cleaning function. Element 1: Indicates whether or not to use the drying-based self-cleaning function. Elements 2 to 7: Reserved for future use.<br><br>Data type : unsigned char x 8<br>Data size : 8 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetSelfCleaningFunctionSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSelfCleaningFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSelfCleaningFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSelfCleaningFunctionSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify the  gspecial function h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetSpecialFunctionSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetSpecialFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetSpecialFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetSpecialFunctionSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify the  gspecial function h to use, and to acquire the current setting.<br>No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44 0x45 . : Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetSpecialFunctionSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSpecialFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSpecialFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSpecialFunctionSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the operation status of components of the air conditioner in a bitmap format.<br>Bit 0: Operation status of the compressor: 0: Not operating 1: In operation Bit 1: Operation status of the thermostat: 0: Thermostat OFF 1: Thermostat ON Bits 2 to 7: Reserved for future use.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetOperationStatusOfComponents(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOperationStatusOfComponents(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOperationStatusOfComponents(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOperationStatusOfComponents(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify whether or not to allow the air conditioner to operate ignoring its thermostat setting.<br>Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : undefined
 		 */
-		protected void onSetThermostatSettingOverrideFunction(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetThermostatSettingOverrideFunction(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetThermostatSettingOverrideFunction(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetThermostatSettingOverrideFunction(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting. B<br>Air purification ON  0x41,OFF   0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetAirPurificationModeSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetAirPurificationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetAirPurificationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetAirPurificationModeSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting. B<br>Air purification ON  0x41,OFF   0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetAirPurificationModeSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetAirPurificationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetAirPurificationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetAirPurificationModeSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetOnTimerBasedReservationSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetOnTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetOnTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetOnTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetOnTimerBasedReservationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOnTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOnTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOnTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetOnTimerSettingTime(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetOnTimerSettingTime(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetOnTimerSettingTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOnTimerSettingTime(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetOnTimerSettingRelativeTime(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetOnTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOnTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetOffTimerBasedReservationSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetOffTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetOffTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetOffTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetOffTimerBasedReservationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOffTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOffTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOffTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetOffTimerSettingTime(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetOffTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetOffTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetOffTimerSettingTime(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetOffTimerSettingTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOffTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOffTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOffTimerSettingTime(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetOffTimerSettingRelativeTime(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetOffTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetOffTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetOffTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetOffTimerSettingRelativeTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOffTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOffTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOffTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -1365,152 +2011,182 @@ public abstract class HomeAirConditioner extends DeviceObject {
 
 		@Override
 		public Setter reqSetOperationModeSetting(byte[] edt) {
-			addProperty(EPC_OPERATION_MODE_SETTING, edt, setOperationModeSetting(edt));
+			byte epc = EPC_OPERATION_MODE_SETTING;
+			addProperty(epc, edt, _setOperationModeSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetAutomaticTemperatureControlSetting(byte[] edt) {
-			addProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING, edt, setAutomaticTemperatureControlSetting(edt));
+			byte epc = EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING;
+			addProperty(epc, edt, _setAutomaticTemperatureControlSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetNormalHighSpeedSilentOperationSetting(byte[] edt) {
-			addProperty(EPC_NORMAL_HIGH_SPEED_SILENT_OPERATION_SETTING, edt, setNormalHighSpeedSilentOperationSetting(edt));
+			byte epc = EPC_NORMAL_HIGH_SPEED_SILENT_OPERATION_SETTING;
+			addProperty(epc, edt, _setNormalHighSpeedSilentOperationSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetSetTemperatureValue(byte[] edt) {
-			addProperty(EPC_SET_TEMPERATURE_VALUE, edt, setSetTemperatureValue(edt));
+			byte epc = EPC_SET_TEMPERATURE_VALUE;
+			addProperty(epc, edt, _setSetTemperatureValue(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetSetValueOfRelativeHumidityInDehumidifyingMode(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_RELATIVE_HUMIDITY_IN_DEHUMIDIFYING_MODE, edt, setSetValueOfRelativeHumidityInDehumidifyingMode(edt));
+			byte epc = EPC_SET_VALUE_OF_RELATIVE_HUMIDITY_IN_DEHUMIDIFYING_MODE;
+			addProperty(epc, edt, _setSetValueOfRelativeHumidityInDehumidifyingMode(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetSetTemperatureValueInCoolingMode(byte[] edt) {
-			addProperty(EPC_SET_TEMPERATURE_VALUE_IN_COOLING_MODE, edt, setSetTemperatureValueInCoolingMode(edt));
+			byte epc = EPC_SET_TEMPERATURE_VALUE_IN_COOLING_MODE;
+			addProperty(epc, edt, _setSetTemperatureValueInCoolingMode(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetSetTemperatureValueInHeatingMode(byte[] edt) {
-			addProperty(EPC_SET_TEMPERATURE_VALUE_IN_HEATING_MODE, edt, setSetTemperatureValueInHeatingMode(edt));
+			byte epc = EPC_SET_TEMPERATURE_VALUE_IN_HEATING_MODE;
+			addProperty(epc, edt, _setSetTemperatureValueInHeatingMode(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetSetTemperatureValueInDehumidifyingMode(byte[] edt) {
-			addProperty(EPC_SET_TEMPERATURE_VALUE_IN_DEHUMIDIFYING_MODE, edt, setSetTemperatureValueInDehumidifyingMode(edt));
+			byte epc = EPC_SET_TEMPERATURE_VALUE_IN_DEHUMIDIFYING_MODE;
+			addProperty(epc, edt, _setSetTemperatureValueInDehumidifyingMode(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetRelativeTemperatureSetting(byte[] edt) {
-			addProperty(EPC_RELATIVE_TEMPERATURE_SETTING, edt, setRelativeTemperatureSetting(edt));
+			byte epc = EPC_RELATIVE_TEMPERATURE_SETTING;
+			addProperty(epc, edt, _setRelativeTemperatureSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetAirFlowRateSetting(byte[] edt) {
-			addProperty(EPC_AIR_FLOW_RATE_SETTING, edt, setAirFlowRateSetting(edt));
+			byte epc = EPC_AIR_FLOW_RATE_SETTING;
+			addProperty(epc, edt, _setAirFlowRateSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetAutomaticControlOfAirFlowDirectionSetting(byte[] edt) {
-			addProperty(EPC_AUTOMATIC_CONTROL_OF_AIR_FLOW_DIRECTION_SETTING, edt, setAutomaticControlOfAirFlowDirectionSetting(edt));
+			byte epc = EPC_AUTOMATIC_CONTROL_OF_AIR_FLOW_DIRECTION_SETTING;
+			addProperty(epc, edt, _setAutomaticControlOfAirFlowDirectionSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetAutomaticSwingOfAirFlowSetting(byte[] edt) {
-			addProperty(EPC_AUTOMATIC_SWING_OF_AIR_FLOW_SETTING, edt, setAutomaticSwingOfAirFlowSetting(edt));
+			byte epc = EPC_AUTOMATIC_SWING_OF_AIR_FLOW_SETTING;
+			addProperty(epc, edt, _setAutomaticSwingOfAirFlowSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetAirFlowDirectionVerticalSetting(byte[] edt) {
-			addProperty(EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING, edt, setAirFlowDirectionVerticalSetting(edt));
+			byte epc = EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING;
+			addProperty(epc, edt, _setAirFlowDirectionVerticalSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetAirFlowDirectionHorizontalSetting(byte[] edt) {
-			addProperty(EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING, edt, setAirFlowDirectionHorizontalSetting(edt));
+			byte epc = EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING;
+			addProperty(epc, edt, _setAirFlowDirectionHorizontalSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetVentilationFunctionSetting(byte[] edt) {
-			addProperty(EPC_VENTILATION_FUNCTION_SETTING, edt, setVentilationFunctionSetting(edt));
+			byte epc = EPC_VENTILATION_FUNCTION_SETTING;
+			addProperty(epc, edt, _setVentilationFunctionSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetHumidifierFunctionSetting(byte[] edt) {
-			addProperty(EPC_HUMIDIFIER_FUNCTION_SETTING, edt, setHumidifierFunctionSetting(edt));
+			byte epc = EPC_HUMIDIFIER_FUNCTION_SETTING;
+			addProperty(epc, edt, _setHumidifierFunctionSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetVentilationAirFlowRateSetting(byte[] edt) {
-			addProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING, edt, setVentilationAirFlowRateSetting(edt));
+			byte epc = EPC_VENTILATION_AIR_FLOW_RATE_SETTING;
+			addProperty(epc, edt, _setVentilationAirFlowRateSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetDegreeOfHumidificationSetting(byte[] edt) {
-			addProperty(EPC_DEGREE_OF_HUMIDIFICATION_SETTING, edt, setDegreeOfHumidificationSetting(edt));
+			byte epc = EPC_DEGREE_OF_HUMIDIFICATION_SETTING;
+			addProperty(epc, edt, _setDegreeOfHumidificationSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetAirPurifierFunctionSetting(byte[] edt) {
-			addProperty(EPC_AIR_PURIFIER_FUNCTION_SETTING, edt, setAirPurifierFunctionSetting(edt));
+			byte epc = EPC_AIR_PURIFIER_FUNCTION_SETTING;
+			addProperty(epc, edt, _setAirPurifierFunctionSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetAirRefresherFunctionSetting(byte[] edt) {
-			addProperty(EPC_AIR_REFRESHER_FUNCTION_SETTING, edt, setAirRefresherFunctionSetting(edt));
+			byte epc = EPC_AIR_REFRESHER_FUNCTION_SETTING;
+			addProperty(epc, edt, _setAirRefresherFunctionSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetSelfCleaningFunctionSetting(byte[] edt) {
-			addProperty(EPC_SELF_CLEANING_FUNCTION_SETTING, edt, setSelfCleaningFunctionSetting(edt));
+			byte epc = EPC_SELF_CLEANING_FUNCTION_SETTING;
+			addProperty(epc, edt, _setSelfCleaningFunctionSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetSpecialFunctionSetting(byte[] edt) {
-			addProperty(EPC_SPECIAL_FUNCTION_SETTING, edt, setSpecialFunctionSetting(edt));
+			byte epc = EPC_SPECIAL_FUNCTION_SETTING;
+			addProperty(epc, edt, _setSpecialFunctionSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetThermostatSettingOverrideFunction(byte[] edt) {
-			addProperty(EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION, edt, setThermostatSettingOverrideFunction(edt));
+			byte epc = EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION;
+			addProperty(epc, edt, _setThermostatSettingOverrideFunction(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetAirPurificationModeSetting(byte[] edt) {
-			addProperty(EPC_AIR_PURIFICATION_MODE_SETTING, edt, setAirPurificationModeSetting(edt));
+			byte epc = EPC_AIR_PURIFICATION_MODE_SETTING;
+			addProperty(epc, edt, _setAirPurificationModeSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetOnTimerBasedReservationSetting(byte[] edt) {
-			addProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING, edt, setOnTimerBasedReservationSetting(edt));
+			byte epc = EPC_ON_TIMER_BASED_RESERVATION_SETTING;
+			addProperty(epc, edt, _setOnTimerBasedReservationSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetOnTimerSettingTime(byte[] edt) {
-			addProperty(EPC_ON_TIMER_SETTING_TIME, edt, setOnTimerSettingTime(edt));
+			byte epc = EPC_ON_TIMER_SETTING_TIME;
+			addProperty(epc, edt, _setOnTimerSettingTime(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetOnTimerSettingRelativeTime(byte[] edt) {
-			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME, edt, setOnTimerSettingRelativeTime(edt));
+			byte epc = EPC_ON_TIMER_SETTING_RELATIVE_TIME;
+			addProperty(epc, edt, _setOnTimerSettingRelativeTime(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetOffTimerBasedReservationSetting(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING, edt, setOffTimerBasedReservationSetting(edt));
+			byte epc = EPC_OFF_TIMER_BASED_RESERVATION_SETTING;
+			addProperty(epc, edt, _setOffTimerBasedReservationSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetOffTimerSettingTime(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_SETTING_TIME, edt, setOffTimerSettingTime(edt));
+			byte epc = EPC_OFF_TIMER_SETTING_TIME;
+			addProperty(epc, edt, _setOffTimerSettingTime(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetOffTimerSettingRelativeTime(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME, edt, setOffTimerSettingRelativeTime(edt));
+			byte epc = EPC_OFF_TIMER_SETTING_RELATIVE_TIME;
+			addProperty(epc, edt, _setOffTimerSettingRelativeTime(epc, edt));
 			return this;
 		}
 	}
@@ -2003,254 +2679,296 @@ public abstract class HomeAirConditioner extends DeviceObject {
 
 		@Override
 		public Getter reqGetOperationModeSetting() {
-			byte[] edt = getOperationModeSetting();
-			addProperty(EPC_OPERATION_MODE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OPERATION_MODE_SETTING;
+			byte[] edt = _getOperationModeSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetAutomaticTemperatureControlSetting() {
-			byte[] edt = getAutomaticTemperatureControlSetting();
-			addProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING;
+			byte[] edt = _getAutomaticTemperatureControlSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetNormalHighSpeedSilentOperationSetting() {
-			byte[] edt = getNormalHighSpeedSilentOperationSetting();
-			addProperty(EPC_NORMAL_HIGH_SPEED_SILENT_OPERATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_NORMAL_HIGH_SPEED_SILENT_OPERATION_SETTING;
+			byte[] edt = _getNormalHighSpeedSilentOperationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSetTemperatureValue() {
-			byte[] edt = getSetTemperatureValue();
-			addProperty(EPC_SET_TEMPERATURE_VALUE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SET_TEMPERATURE_VALUE;
+			byte[] edt = _getSetTemperatureValue(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSetValueOfRelativeHumidityInDehumidifyingMode() {
-			byte[] edt = getSetValueOfRelativeHumidityInDehumidifyingMode();
-			addProperty(EPC_SET_VALUE_OF_RELATIVE_HUMIDITY_IN_DEHUMIDIFYING_MODE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SET_VALUE_OF_RELATIVE_HUMIDITY_IN_DEHUMIDIFYING_MODE;
+			byte[] edt = _getSetValueOfRelativeHumidityInDehumidifyingMode(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSetTemperatureValueInCoolingMode() {
-			byte[] edt = getSetTemperatureValueInCoolingMode();
-			addProperty(EPC_SET_TEMPERATURE_VALUE_IN_COOLING_MODE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SET_TEMPERATURE_VALUE_IN_COOLING_MODE;
+			byte[] edt = _getSetTemperatureValueInCoolingMode(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSetTemperatureValueInHeatingMode() {
-			byte[] edt = getSetTemperatureValueInHeatingMode();
-			addProperty(EPC_SET_TEMPERATURE_VALUE_IN_HEATING_MODE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SET_TEMPERATURE_VALUE_IN_HEATING_MODE;
+			byte[] edt = _getSetTemperatureValueInHeatingMode(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSetTemperatureValueInDehumidifyingMode() {
-			byte[] edt = getSetTemperatureValueInDehumidifyingMode();
-			addProperty(EPC_SET_TEMPERATURE_VALUE_IN_DEHUMIDIFYING_MODE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SET_TEMPERATURE_VALUE_IN_DEHUMIDIFYING_MODE;
+			byte[] edt = _getSetTemperatureValueInDehumidifyingMode(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetRatedPowerConsumption() {
-			byte[] edt = getRatedPowerConsumption();
-			addProperty(EPC_RATED_POWER_CONSUMPTION, edt, (edt != null && (edt.length == 8)));
+			byte epc = EPC_RATED_POWER_CONSUMPTION;
+			byte[] edt = _getRatedPowerConsumption(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 8)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredValueOfCurrentConsumption() {
-			byte[] edt = getMeasuredValueOfCurrentConsumption();
-			addProperty(EPC_MEASURED_VALUE_OF_CURRENT_CONSUMPTION, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_VALUE_OF_CURRENT_CONSUMPTION;
+			byte[] edt = _getMeasuredValueOfCurrentConsumption(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredValueOfRoomRelativeHumidity() {
-			byte[] edt = getMeasuredValueOfRoomRelativeHumidity();
-			addProperty(EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY;
+			byte[] edt = _getMeasuredValueOfRoomRelativeHumidity(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredValueOfRoomTemperature() {
-			byte[] edt = getMeasuredValueOfRoomTemperature();
-			addProperty(EPC_MEASURED_VALUE_OF_ROOM_TEMPERATURE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MEASURED_VALUE_OF_ROOM_TEMPERATURE;
+			byte[] edt = _getMeasuredValueOfRoomTemperature(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSetTemperatureValueOfUserRemoteControl() {
-			byte[] edt = getSetTemperatureValueOfUserRemoteControl();
-			addProperty(EPC_SET_TEMPERATURE_VALUE_OF_USER_REMOTE_CONTROL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SET_TEMPERATURE_VALUE_OF_USER_REMOTE_CONTROL;
+			byte[] edt = _getSetTemperatureValueOfUserRemoteControl(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredCooledAirTemperature() {
-			byte[] edt = getMeasuredCooledAirTemperature();
-			addProperty(EPC_MEASURED_COOLED_AIR_TEMPERATURE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MEASURED_COOLED_AIR_TEMPERATURE;
+			byte[] edt = _getMeasuredCooledAirTemperature(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredOutdoorAirTemperature() {
-			byte[] edt = getMeasuredOutdoorAirTemperature();
-			addProperty(EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE;
+			byte[] edt = _getMeasuredOutdoorAirTemperature(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetRelativeTemperatureSetting() {
-			byte[] edt = getRelativeTemperatureSetting();
-			addProperty(EPC_RELATIVE_TEMPERATURE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_RELATIVE_TEMPERATURE_SETTING;
+			byte[] edt = _getRelativeTemperatureSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetAirFlowRateSetting() {
-			byte[] edt = getAirFlowRateSetting();
-			addProperty(EPC_AIR_FLOW_RATE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AIR_FLOW_RATE_SETTING;
+			byte[] edt = _getAirFlowRateSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetAutomaticControlOfAirFlowDirectionSetting() {
-			byte[] edt = getAutomaticControlOfAirFlowDirectionSetting();
-			addProperty(EPC_AUTOMATIC_CONTROL_OF_AIR_FLOW_DIRECTION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AUTOMATIC_CONTROL_OF_AIR_FLOW_DIRECTION_SETTING;
+			byte[] edt = _getAutomaticControlOfAirFlowDirectionSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetAutomaticSwingOfAirFlowSetting() {
-			byte[] edt = getAutomaticSwingOfAirFlowSetting();
-			addProperty(EPC_AUTOMATIC_SWING_OF_AIR_FLOW_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AUTOMATIC_SWING_OF_AIR_FLOW_SETTING;
+			byte[] edt = _getAutomaticSwingOfAirFlowSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetAirFlowDirectionVerticalSetting() {
-			byte[] edt = getAirFlowDirectionVerticalSetting();
-			addProperty(EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING;
+			byte[] edt = _getAirFlowDirectionVerticalSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetAirFlowDirectionHorizontalSetting() {
-			byte[] edt = getAirFlowDirectionHorizontalSetting();
-			addProperty(EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING;
+			byte[] edt = _getAirFlowDirectionHorizontalSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSpecialState() {
-			byte[] edt = getSpecialState();
-			addProperty(EPC_SPECIAL_STATE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SPECIAL_STATE;
+			byte[] edt = _getSpecialState(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetNonPriorityState() {
-			byte[] edt = getNonPriorityState();
-			addProperty(EPC_NON_PRIORITY_STATE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_NON_PRIORITY_STATE;
+			byte[] edt = _getNonPriorityState(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetVentilationFunctionSetting() {
-			byte[] edt = getVentilationFunctionSetting();
-			addProperty(EPC_VENTILATION_FUNCTION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_VENTILATION_FUNCTION_SETTING;
+			byte[] edt = _getVentilationFunctionSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetHumidifierFunctionSetting() {
-			byte[] edt = getHumidifierFunctionSetting();
-			addProperty(EPC_HUMIDIFIER_FUNCTION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_HUMIDIFIER_FUNCTION_SETTING;
+			byte[] edt = _getHumidifierFunctionSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetVentilationAirFlowRateSetting() {
-			byte[] edt = getVentilationAirFlowRateSetting();
-			addProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_VENTILATION_AIR_FLOW_RATE_SETTING;
+			byte[] edt = _getVentilationAirFlowRateSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetDegreeOfHumidificationSetting() {
-			byte[] edt = getDegreeOfHumidificationSetting();
-			addProperty(EPC_DEGREE_OF_HUMIDIFICATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DEGREE_OF_HUMIDIFICATION_SETTING;
+			byte[] edt = _getDegreeOfHumidificationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMountedAirCleaningMethod() {
-			byte[] edt = getMountedAirCleaningMethod();
-			addProperty(EPC_MOUNTED_AIR_CLEANING_METHOD, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MOUNTED_AIR_CLEANING_METHOD;
+			byte[] edt = _getMountedAirCleaningMethod(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetAirPurifierFunctionSetting() {
-			byte[] edt = getAirPurifierFunctionSetting();
-			addProperty(EPC_AIR_PURIFIER_FUNCTION_SETTING, edt, (edt != null && (edt.length == 8)));
+			byte epc = EPC_AIR_PURIFIER_FUNCTION_SETTING;
+			byte[] edt = _getAirPurifierFunctionSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 8)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMountedAirRefreshMethod() {
-			byte[] edt = getMountedAirRefreshMethod();
-			addProperty(EPC_MOUNTED_AIR_REFRESH_METHOD, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MOUNTED_AIR_REFRESH_METHOD;
+			byte[] edt = _getMountedAirRefreshMethod(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetAirRefresherFunctionSetting() {
-			byte[] edt = getAirRefresherFunctionSetting();
-			addProperty(EPC_AIR_REFRESHER_FUNCTION_SETTING, edt, (edt != null && (edt.length == 8)));
+			byte epc = EPC_AIR_REFRESHER_FUNCTION_SETTING;
+			byte[] edt = _getAirRefresherFunctionSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 8)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMountedSelfCleaningMethod() {
-			byte[] edt = getMountedSelfCleaningMethod();
-			addProperty(EPC_MOUNTED_SELF_CLEANING_METHOD, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MOUNTED_SELF_CLEANING_METHOD;
+			byte[] edt = _getMountedSelfCleaningMethod(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSelfCleaningFunctionSetting() {
-			byte[] edt = getSelfCleaningFunctionSetting();
-			addProperty(EPC_SELF_CLEANING_FUNCTION_SETTING, edt, (edt != null && (edt.length == 8)));
+			byte epc = EPC_SELF_CLEANING_FUNCTION_SETTING;
+			byte[] edt = _getSelfCleaningFunctionSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 8)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSpecialFunctionSetting() {
-			byte[] edt = getSpecialFunctionSetting();
-			addProperty(EPC_SPECIAL_FUNCTION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SPECIAL_FUNCTION_SETTING;
+			byte[] edt = _getSpecialFunctionSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOperationStatusOfComponents() {
-			byte[] edt = getOperationStatusOfComponents();
-			addProperty(EPC_OPERATION_STATUS_OF_COMPONENTS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OPERATION_STATUS_OF_COMPONENTS;
+			byte[] edt = _getOperationStatusOfComponents(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetAirPurificationModeSetting() {
-			byte[] edt = getAirPurificationModeSetting();
-			addProperty(EPC_AIR_PURIFICATION_MODE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AIR_PURIFICATION_MODE_SETTING;
+			byte[] edt = _getAirPurificationModeSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOnTimerBasedReservationSetting() {
-			byte[] edt = getOnTimerBasedReservationSetting();
-			addProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_ON_TIMER_BASED_RESERVATION_SETTING;
+			byte[] edt = _getOnTimerBasedReservationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOnTimerSettingTime() {
-			byte[] edt = getOnTimerSettingTime();
-			addProperty(EPC_ON_TIMER_SETTING_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_ON_TIMER_SETTING_TIME;
+			byte[] edt = _getOnTimerSettingTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOnTimerSettingRelativeTime() {
-			byte[] edt = getOnTimerSettingRelativeTime();
-			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_ON_TIMER_SETTING_RELATIVE_TIME;
+			byte[] edt = _getOnTimerSettingRelativeTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOffTimerBasedReservationSetting() {
-			byte[] edt = getOffTimerBasedReservationSetting();
-			addProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OFF_TIMER_BASED_RESERVATION_SETTING;
+			byte[] edt = _getOffTimerBasedReservationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOffTimerSettingTime() {
-			byte[] edt = getOffTimerSettingTime();
-			addProperty(EPC_OFF_TIMER_SETTING_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_OFF_TIMER_SETTING_TIME;
+			byte[] edt = _getOffTimerSettingTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOffTimerSettingRelativeTime() {
-			byte[] edt = getOffTimerSettingRelativeTime();
-			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_OFF_TIMER_SETTING_RELATIVE_TIME;
+			byte[] edt = _getOffTimerSettingRelativeTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}
@@ -2863,254 +3581,296 @@ public abstract class HomeAirConditioner extends DeviceObject {
 
 		@Override
 		public Informer reqInformOperationModeSetting() {
-			byte[] edt = getOperationModeSetting();
-			addProperty(EPC_OPERATION_MODE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OPERATION_MODE_SETTING;
+			byte[] edt = _getOperationModeSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformAutomaticTemperatureControlSetting() {
-			byte[] edt = getAutomaticTemperatureControlSetting();
-			addProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING;
+			byte[] edt = _getAutomaticTemperatureControlSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformNormalHighSpeedSilentOperationSetting() {
-			byte[] edt = getNormalHighSpeedSilentOperationSetting();
-			addProperty(EPC_NORMAL_HIGH_SPEED_SILENT_OPERATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_NORMAL_HIGH_SPEED_SILENT_OPERATION_SETTING;
+			byte[] edt = _getNormalHighSpeedSilentOperationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSetTemperatureValue() {
-			byte[] edt = getSetTemperatureValue();
-			addProperty(EPC_SET_TEMPERATURE_VALUE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SET_TEMPERATURE_VALUE;
+			byte[] edt = _getSetTemperatureValue(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSetValueOfRelativeHumidityInDehumidifyingMode() {
-			byte[] edt = getSetValueOfRelativeHumidityInDehumidifyingMode();
-			addProperty(EPC_SET_VALUE_OF_RELATIVE_HUMIDITY_IN_DEHUMIDIFYING_MODE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SET_VALUE_OF_RELATIVE_HUMIDITY_IN_DEHUMIDIFYING_MODE;
+			byte[] edt = _getSetValueOfRelativeHumidityInDehumidifyingMode(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSetTemperatureValueInCoolingMode() {
-			byte[] edt = getSetTemperatureValueInCoolingMode();
-			addProperty(EPC_SET_TEMPERATURE_VALUE_IN_COOLING_MODE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SET_TEMPERATURE_VALUE_IN_COOLING_MODE;
+			byte[] edt = _getSetTemperatureValueInCoolingMode(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSetTemperatureValueInHeatingMode() {
-			byte[] edt = getSetTemperatureValueInHeatingMode();
-			addProperty(EPC_SET_TEMPERATURE_VALUE_IN_HEATING_MODE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SET_TEMPERATURE_VALUE_IN_HEATING_MODE;
+			byte[] edt = _getSetTemperatureValueInHeatingMode(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSetTemperatureValueInDehumidifyingMode() {
-			byte[] edt = getSetTemperatureValueInDehumidifyingMode();
-			addProperty(EPC_SET_TEMPERATURE_VALUE_IN_DEHUMIDIFYING_MODE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SET_TEMPERATURE_VALUE_IN_DEHUMIDIFYING_MODE;
+			byte[] edt = _getSetTemperatureValueInDehumidifyingMode(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformRatedPowerConsumption() {
-			byte[] edt = getRatedPowerConsumption();
-			addProperty(EPC_RATED_POWER_CONSUMPTION, edt, (edt != null && (edt.length == 8)));
+			byte epc = EPC_RATED_POWER_CONSUMPTION;
+			byte[] edt = _getRatedPowerConsumption(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 8)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredValueOfCurrentConsumption() {
-			byte[] edt = getMeasuredValueOfCurrentConsumption();
-			addProperty(EPC_MEASURED_VALUE_OF_CURRENT_CONSUMPTION, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_VALUE_OF_CURRENT_CONSUMPTION;
+			byte[] edt = _getMeasuredValueOfCurrentConsumption(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredValueOfRoomRelativeHumidity() {
-			byte[] edt = getMeasuredValueOfRoomRelativeHumidity();
-			addProperty(EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY;
+			byte[] edt = _getMeasuredValueOfRoomRelativeHumidity(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredValueOfRoomTemperature() {
-			byte[] edt = getMeasuredValueOfRoomTemperature();
-			addProperty(EPC_MEASURED_VALUE_OF_ROOM_TEMPERATURE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MEASURED_VALUE_OF_ROOM_TEMPERATURE;
+			byte[] edt = _getMeasuredValueOfRoomTemperature(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSetTemperatureValueOfUserRemoteControl() {
-			byte[] edt = getSetTemperatureValueOfUserRemoteControl();
-			addProperty(EPC_SET_TEMPERATURE_VALUE_OF_USER_REMOTE_CONTROL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SET_TEMPERATURE_VALUE_OF_USER_REMOTE_CONTROL;
+			byte[] edt = _getSetTemperatureValueOfUserRemoteControl(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredCooledAirTemperature() {
-			byte[] edt = getMeasuredCooledAirTemperature();
-			addProperty(EPC_MEASURED_COOLED_AIR_TEMPERATURE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MEASURED_COOLED_AIR_TEMPERATURE;
+			byte[] edt = _getMeasuredCooledAirTemperature(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredOutdoorAirTemperature() {
-			byte[] edt = getMeasuredOutdoorAirTemperature();
-			addProperty(EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE;
+			byte[] edt = _getMeasuredOutdoorAirTemperature(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformRelativeTemperatureSetting() {
-			byte[] edt = getRelativeTemperatureSetting();
-			addProperty(EPC_RELATIVE_TEMPERATURE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_RELATIVE_TEMPERATURE_SETTING;
+			byte[] edt = _getRelativeTemperatureSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformAirFlowRateSetting() {
-			byte[] edt = getAirFlowRateSetting();
-			addProperty(EPC_AIR_FLOW_RATE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AIR_FLOW_RATE_SETTING;
+			byte[] edt = _getAirFlowRateSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformAutomaticControlOfAirFlowDirectionSetting() {
-			byte[] edt = getAutomaticControlOfAirFlowDirectionSetting();
-			addProperty(EPC_AUTOMATIC_CONTROL_OF_AIR_FLOW_DIRECTION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AUTOMATIC_CONTROL_OF_AIR_FLOW_DIRECTION_SETTING;
+			byte[] edt = _getAutomaticControlOfAirFlowDirectionSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformAutomaticSwingOfAirFlowSetting() {
-			byte[] edt = getAutomaticSwingOfAirFlowSetting();
-			addProperty(EPC_AUTOMATIC_SWING_OF_AIR_FLOW_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AUTOMATIC_SWING_OF_AIR_FLOW_SETTING;
+			byte[] edt = _getAutomaticSwingOfAirFlowSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformAirFlowDirectionVerticalSetting() {
-			byte[] edt = getAirFlowDirectionVerticalSetting();
-			addProperty(EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING;
+			byte[] edt = _getAirFlowDirectionVerticalSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformAirFlowDirectionHorizontalSetting() {
-			byte[] edt = getAirFlowDirectionHorizontalSetting();
-			addProperty(EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING;
+			byte[] edt = _getAirFlowDirectionHorizontalSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSpecialState() {
-			byte[] edt = getSpecialState();
-			addProperty(EPC_SPECIAL_STATE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SPECIAL_STATE;
+			byte[] edt = _getSpecialState(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformNonPriorityState() {
-			byte[] edt = getNonPriorityState();
-			addProperty(EPC_NON_PRIORITY_STATE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_NON_PRIORITY_STATE;
+			byte[] edt = _getNonPriorityState(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformVentilationFunctionSetting() {
-			byte[] edt = getVentilationFunctionSetting();
-			addProperty(EPC_VENTILATION_FUNCTION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_VENTILATION_FUNCTION_SETTING;
+			byte[] edt = _getVentilationFunctionSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformHumidifierFunctionSetting() {
-			byte[] edt = getHumidifierFunctionSetting();
-			addProperty(EPC_HUMIDIFIER_FUNCTION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_HUMIDIFIER_FUNCTION_SETTING;
+			byte[] edt = _getHumidifierFunctionSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformVentilationAirFlowRateSetting() {
-			byte[] edt = getVentilationAirFlowRateSetting();
-			addProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_VENTILATION_AIR_FLOW_RATE_SETTING;
+			byte[] edt = _getVentilationAirFlowRateSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformDegreeOfHumidificationSetting() {
-			byte[] edt = getDegreeOfHumidificationSetting();
-			addProperty(EPC_DEGREE_OF_HUMIDIFICATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DEGREE_OF_HUMIDIFICATION_SETTING;
+			byte[] edt = _getDegreeOfHumidificationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMountedAirCleaningMethod() {
-			byte[] edt = getMountedAirCleaningMethod();
-			addProperty(EPC_MOUNTED_AIR_CLEANING_METHOD, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MOUNTED_AIR_CLEANING_METHOD;
+			byte[] edt = _getMountedAirCleaningMethod(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformAirPurifierFunctionSetting() {
-			byte[] edt = getAirPurifierFunctionSetting();
-			addProperty(EPC_AIR_PURIFIER_FUNCTION_SETTING, edt, (edt != null && (edt.length == 8)));
+			byte epc = EPC_AIR_PURIFIER_FUNCTION_SETTING;
+			byte[] edt = _getAirPurifierFunctionSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 8)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMountedAirRefreshMethod() {
-			byte[] edt = getMountedAirRefreshMethod();
-			addProperty(EPC_MOUNTED_AIR_REFRESH_METHOD, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MOUNTED_AIR_REFRESH_METHOD;
+			byte[] edt = _getMountedAirRefreshMethod(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformAirRefresherFunctionSetting() {
-			byte[] edt = getAirRefresherFunctionSetting();
-			addProperty(EPC_AIR_REFRESHER_FUNCTION_SETTING, edt, (edt != null && (edt.length == 8)));
+			byte epc = EPC_AIR_REFRESHER_FUNCTION_SETTING;
+			byte[] edt = _getAirRefresherFunctionSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 8)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMountedSelfCleaningMethod() {
-			byte[] edt = getMountedSelfCleaningMethod();
-			addProperty(EPC_MOUNTED_SELF_CLEANING_METHOD, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MOUNTED_SELF_CLEANING_METHOD;
+			byte[] edt = _getMountedSelfCleaningMethod(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSelfCleaningFunctionSetting() {
-			byte[] edt = getSelfCleaningFunctionSetting();
-			addProperty(EPC_SELF_CLEANING_FUNCTION_SETTING, edt, (edt != null && (edt.length == 8)));
+			byte epc = EPC_SELF_CLEANING_FUNCTION_SETTING;
+			byte[] edt = _getSelfCleaningFunctionSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 8)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSpecialFunctionSetting() {
-			byte[] edt = getSpecialFunctionSetting();
-			addProperty(EPC_SPECIAL_FUNCTION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SPECIAL_FUNCTION_SETTING;
+			byte[] edt = _getSpecialFunctionSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOperationStatusOfComponents() {
-			byte[] edt = getOperationStatusOfComponents();
-			addProperty(EPC_OPERATION_STATUS_OF_COMPONENTS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OPERATION_STATUS_OF_COMPONENTS;
+			byte[] edt = _getOperationStatusOfComponents(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformAirPurificationModeSetting() {
-			byte[] edt = getAirPurificationModeSetting();
-			addProperty(EPC_AIR_PURIFICATION_MODE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AIR_PURIFICATION_MODE_SETTING;
+			byte[] edt = _getAirPurificationModeSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOnTimerBasedReservationSetting() {
-			byte[] edt = getOnTimerBasedReservationSetting();
-			addProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_ON_TIMER_BASED_RESERVATION_SETTING;
+			byte[] edt = _getOnTimerBasedReservationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOnTimerSettingTime() {
-			byte[] edt = getOnTimerSettingTime();
-			addProperty(EPC_ON_TIMER_SETTING_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_ON_TIMER_SETTING_TIME;
+			byte[] edt = _getOnTimerSettingTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOnTimerSettingRelativeTime() {
-			byte[] edt = getOnTimerSettingRelativeTime();
-			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_ON_TIMER_SETTING_RELATIVE_TIME;
+			byte[] edt = _getOnTimerSettingRelativeTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOffTimerBasedReservationSetting() {
-			byte[] edt = getOffTimerBasedReservationSetting();
-			addProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OFF_TIMER_BASED_RESERVATION_SETTING;
+			byte[] edt = _getOffTimerBasedReservationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOffTimerSettingTime() {
-			byte[] edt = getOffTimerSettingTime();
-			addProperty(EPC_OFF_TIMER_SETTING_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_OFF_TIMER_SETTING_TIME;
+			byte[] edt = _getOffTimerSettingTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOffTimerSettingRelativeTime() {
-			byte[] edt = getOffTimerSettingRelativeTime();
-			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_OFF_TIMER_SETTING_RELATIVE_TIME;
+			byte[] edt = _getOffTimerSettingRelativeTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}

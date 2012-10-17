@@ -26,16 +26,16 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	public static final byte CLASS_GROUP_CODE = (byte)0x01;
 	public static final byte CLASS_CODE = (byte)0x46;
 
-	protected static final byte EPC_OPERATION_MODE_SETTING = (byte)0xB0;
-	protected static final byte EPC_RATED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT = (byte)0xB8;
-	protected static final byte EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_OUTDOOR_UNIT = (byte)0xB9;
-	protected static final byte EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE1 = (byte)0xBE;
-	protected static final byte EPC_GSPECIAL_H_STATE = (byte)0xAA;
-	protected static final byte EPC_OPERATION_STATUS_OF_COMPRESSOR = (byte)0xD0;
-	protected static final byte EPC_OPERATION_MODE_INFORMATION = (byte)0xD1;
-	protected static final byte EPC_FAN_ROTATION_SPEED = (byte)0xD2;
-	protected static final byte EPC_MEASURED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT = (byte)0xDB;
-	protected static final byte EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE2 = (byte)0xEE;
+	public static final byte EPC_OPERATION_MODE_SETTING = (byte)0xB0;
+	public static final byte EPC_RATED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT = (byte)0xB8;
+	public static final byte EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_OUTDOOR_UNIT = (byte)0xB9;
+	public static final byte EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE1 = (byte)0xBE;
+	public static final byte EPC_GSPECIAL_H_STATE = (byte)0xAA;
+	public static final byte EPC_OPERATION_STATUS_OF_COMPRESSOR = (byte)0xD0;
+	public static final byte EPC_OPERATION_MODE_INFORMATION = (byte)0xD1;
+	public static final byte EPC_FAN_ROTATION_SPEED = (byte)0xD2;
+	public static final byte EPC_MEASURED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT = (byte)0xDB;
+	public static final byte EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE2 = (byte)0xEE;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -51,46 +51,101 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
 	 */
 	protected boolean setOperationModeSetting(byte[] edt) {return false;}
+	private final boolean _setOperationModeSetting(byte epc, byte[] edt) {
+		boolean success = setOperationModeSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
 	 */
 	protected byte[] getOperationModeSetting() {return null;}
+	private final byte[] _getOperationModeSetting(byte epc) {
+		byte[] edt = getOperationModeSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to acquire the rated power consumption for the cooling, heating and dehumidification modes.<br>0x0000 to 0xFFFD (0 to 65533W) Cooling: heating: dehumidification<br><br>Data type : unsigned short x 3<br>Data size : 6 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getRatedPowerConsumptionOfOutdoorUnit() {return null;}
+	private final byte[] _getRatedPowerConsumptionOfOutdoorUnit(byte epc) {
+		byte[] edt = getRatedPowerConsumptionOfOutdoorUnit();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to acquire the measured electric current consumption.<br>0x0000 to 0xFFFD (0 to 6553.3A)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredElectricCurrentConsumptionOfOutdoorUnit() {return null;}
+	private final byte[] _getMeasuredElectricCurrentConsumptionOfOutdoorUnit(byte epc) {
+		byte[] edt = getMeasuredElectricCurrentConsumptionOfOutdoorUnit();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to acquire the measured temperature of the outdoor air.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredOutdoorAirTemperature1() {return null;}
+	private final byte[] _getMeasuredOutdoorAirTemperature1(byte epc) {
+		byte[] edt = getMeasuredOutdoorAirTemperature1();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates when the air conditioner is in the �gspecial�h state (i.e. �gdefrosting�h state).<br>�gNormal operation�h state = 0x40, �gdefrosting�h state = 0x41<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getGspecialHState() {return null;}
+	private final byte[] _getGspecialHState(byte epc) {
+		byte[] edt = getGspecialHState();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to acquire the operation status (i.e. ON or OFF) of the compressor.<br>Compressor ON: 0x41 Compressor OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getOperationStatusOfCompressor() {return null;}
+	private final byte[] _getOperationStatusOfCompressor(byte epc) {
+		byte[] edt = getOperationStatusOfCompressor();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to acquire the current operation mode (i.e. �gcooling,�h �gheating,�h �gdehumidification�h or �gother�h).<br>Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getOperationModeInformation();
+	private final byte[] _getOperationModeInformation(byte epc) {
+		byte[] edt = getOperationModeInformation();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to acquire the rotation speed of the fan of the outdoor unit (expressed in %).<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getFanRotationSpeed() {return null;}
+	private final byte[] _getFanRotationSpeed(byte epc) {
+		byte[] edt = getFanRotationSpeed();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to acquire the measured power consumption of the outdoor unit.<br>0x0000 to 0xFFFD (0 to 65533W)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredPowerConsumptionOfOutdoorUnit() {return null;}
+	private final byte[] _getMeasuredPowerConsumptionOfOutdoorUnit(byte epc) {
+		byte[] edt = getMeasuredPowerConsumptionOfOutdoorUnit();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to acquire the measured temperature of the outdoor air.<br>0xF554 to 0x7FFD (-273,2 to 3276.5��C)<br><br>Data type : signed short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredOutdoorAirTemperature2() {return null;}
+	private final byte[] _getMeasuredOutdoorAirTemperature2(byte epc) {
+		byte[] edt = getMeasuredOutdoorAirTemperature2();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -98,7 +153,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
 		case EPC_OPERATION_MODE_SETTING:
-			res.addProperty(epc, edt, setOperationModeSetting(edt));
+			res.addProperty(epc, edt, _setOperationModeSetting(epc, edt));
 			break;
 
 		}
@@ -110,43 +165,43 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		byte[] edt;
 		switch(epc) {
 		case EPC_OPERATION_MODE_SETTING:
-			edt = getOperationModeSetting();
+			edt = _getOperationModeSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_RATED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT:
-			edt = getRatedPowerConsumptionOfOutdoorUnit();
+			edt = _getRatedPowerConsumptionOfOutdoorUnit(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 6)));
 			break;
 		case EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_OUTDOOR_UNIT:
-			edt = getMeasuredElectricCurrentConsumptionOfOutdoorUnit();
+			edt = _getMeasuredElectricCurrentConsumptionOfOutdoorUnit(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE1:
-			edt = getMeasuredOutdoorAirTemperature1();
+			edt = _getMeasuredOutdoorAirTemperature1(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_GSPECIAL_H_STATE:
-			edt = getGspecialHState();
+			edt = _getGspecialHState(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_OPERATION_STATUS_OF_COMPRESSOR:
-			edt = getOperationStatusOfCompressor();
+			edt = _getOperationStatusOfCompressor(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_OPERATION_MODE_INFORMATION:
-			edt = getOperationModeInformation();
+			edt = _getOperationModeInformation(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_FAN_ROTATION_SPEED:
-			edt = getFanRotationSpeed();
+			edt = _getFanRotationSpeed(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_MEASURED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT:
-			edt = getMeasuredPowerConsumptionOfOutdoorUnit();
+			edt = _getMeasuredPowerConsumptionOfOutdoorUnit(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE2:
-			edt = getMeasuredOutdoorAirTemperature2();
+			edt = _getMeasuredOutdoorAirTemperature2(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 
@@ -176,51 +231,49 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_OPERATION_MODE_SETTING:
-				onSetOperationModeSetting(eoj, tid, (pdc != 0));
+				_onSetOperationModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_OPERATION_MODE_SETTING:
-				onGetOperationModeSetting(eoj, tid, pdc, edt);
+				_onGetOperationModeSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_RATED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT:
-				onGetRatedPowerConsumptionOfOutdoorUnit(eoj, tid, pdc, edt);
+				_onGetRatedPowerConsumptionOfOutdoorUnit(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_OUTDOOR_UNIT:
-				onGetMeasuredElectricCurrentConsumptionOfOutdoorUnit(eoj, tid, pdc, edt);
+				_onGetMeasuredElectricCurrentConsumptionOfOutdoorUnit(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE1:
-				onGetMeasuredOutdoorAirTemperature1(eoj, tid, pdc, edt);
+				_onGetMeasuredOutdoorAirTemperature1(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_GSPECIAL_H_STATE:
-				onGetGspecialHState(eoj, tid, pdc, edt);
+				_onGetGspecialHState(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_OPERATION_STATUS_OF_COMPRESSOR:
-				onGetOperationStatusOfCompressor(eoj, tid, pdc, edt);
+				_onGetOperationStatusOfCompressor(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_OPERATION_MODE_INFORMATION:
-				onGetOperationModeInformation(eoj, tid, pdc, edt);
+				_onGetOperationModeInformation(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_FAN_ROTATION_SPEED:
-				onGetFanRotationSpeed(eoj, tid, pdc, edt);
+				_onGetFanRotationSpeed(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT:
-				onGetMeasuredPowerConsumptionOfOutdoorUnit(eoj, tid, pdc, edt);
+				_onGetMeasuredPowerConsumptionOfOutdoorUnit(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE2:
-				onGetMeasuredOutdoorAirTemperature2(eoj, tid, pdc, edt);
+				_onGetMeasuredOutdoorAirTemperature2(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -229,47 +282,91 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		/**
 		 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
 		 */
-		protected void onSetOperationModeSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetOperationModeSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
 		 */
-		protected void onGetOperationModeSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOperationModeSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to acquire the rated power consumption for the cooling, heating and dehumidification modes.<br>0x0000 to 0xFFFD (0 to 65533W) Cooling: heating: dehumidification<br><br>Data type : unsigned short x 3<br>Data size : 6 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetRatedPowerConsumptionOfOutdoorUnit(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetRatedPowerConsumptionOfOutdoorUnit(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetRatedPowerConsumptionOfOutdoorUnit(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetRatedPowerConsumptionOfOutdoorUnit(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to acquire the measured electric current consumption.<br>0x0000 to 0xFFFD (0 to 6553.3A)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMeasuredElectricCurrentConsumptionOfOutdoorUnit(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredElectricCurrentConsumptionOfOutdoorUnit(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredElectricCurrentConsumptionOfOutdoorUnit(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredElectricCurrentConsumptionOfOutdoorUnit(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to acquire the measured temperature of the outdoor air.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMeasuredOutdoorAirTemperature1(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredOutdoorAirTemperature1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredOutdoorAirTemperature1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredOutdoorAirTemperature1(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates when the air conditioner is in the �gspecial�h state (i.e. �gdefrosting�h state).<br>�gNormal operation�h state = 0x40, �gdefrosting�h state = 0x41<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetGspecialHState(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetGspecialHState(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetGspecialHState(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetGspecialHState(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to acquire the operation status (i.e. ON or OFF) of the compressor.<br>Compressor ON: 0x41 Compressor OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetOperationStatusOfCompressor(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOperationStatusOfCompressor(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOperationStatusOfCompressor(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOperationStatusOfCompressor(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to acquire the current operation mode (i.e. �gcooling,�h �gheating,�h �gdehumidification�h or �gother�h).<br>Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetOperationModeInformation(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOperationModeInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOperationModeInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOperationModeInformation(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to acquire the rotation speed of the fan of the outdoor unit (expressed in %).<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetFanRotationSpeed(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetFanRotationSpeed(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetFanRotationSpeed(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetFanRotationSpeed(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to acquire the measured power consumption of the outdoor unit.<br>0x0000 to 0xFFFD (0 to 65533W)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMeasuredPowerConsumptionOfOutdoorUnit(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredPowerConsumptionOfOutdoorUnit(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredPowerConsumptionOfOutdoorUnit(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredPowerConsumptionOfOutdoorUnit(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to acquire the measured temperature of the outdoor air.<br>0xF554 to 0x7FFD (-273,2 to 3276.5��C)<br><br>Data type : signed short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMeasuredOutdoorAirTemperature2(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredOutdoorAirTemperature2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredOutdoorAirTemperature2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredOutdoorAirTemperature2(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -330,7 +427,8 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 
 		@Override
 		public Setter reqSetOperationModeSetting(byte[] edt) {
-			addProperty(EPC_OPERATION_MODE_SETTING, edt, setOperationModeSetting(edt));
+			byte epc = EPC_OPERATION_MODE_SETTING;
+			addProperty(epc, edt, _setOperationModeSetting(epc, edt));
 			return this;
 		}
 	}
@@ -550,62 +648,72 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 
 		@Override
 		public Getter reqGetOperationModeSetting() {
-			byte[] edt = getOperationModeSetting();
-			addProperty(EPC_OPERATION_MODE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OPERATION_MODE_SETTING;
+			byte[] edt = _getOperationModeSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetRatedPowerConsumptionOfOutdoorUnit() {
-			byte[] edt = getRatedPowerConsumptionOfOutdoorUnit();
-			addProperty(EPC_RATED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT, edt, (edt != null && (edt.length == 6)));
+			byte epc = EPC_RATED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT;
+			byte[] edt = _getRatedPowerConsumptionOfOutdoorUnit(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 6)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredElectricCurrentConsumptionOfOutdoorUnit() {
-			byte[] edt = getMeasuredElectricCurrentConsumptionOfOutdoorUnit();
-			addProperty(EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_OUTDOOR_UNIT, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_OUTDOOR_UNIT;
+			byte[] edt = _getMeasuredElectricCurrentConsumptionOfOutdoorUnit(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredOutdoorAirTemperature1() {
-			byte[] edt = getMeasuredOutdoorAirTemperature1();
-			addProperty(EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE1, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE1;
+			byte[] edt = _getMeasuredOutdoorAirTemperature1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetGspecialHState() {
-			byte[] edt = getGspecialHState();
-			addProperty(EPC_GSPECIAL_H_STATE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_GSPECIAL_H_STATE;
+			byte[] edt = _getGspecialHState(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOperationStatusOfCompressor() {
-			byte[] edt = getOperationStatusOfCompressor();
-			addProperty(EPC_OPERATION_STATUS_OF_COMPRESSOR, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OPERATION_STATUS_OF_COMPRESSOR;
+			byte[] edt = _getOperationStatusOfCompressor(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOperationModeInformation() {
-			byte[] edt = getOperationModeInformation();
-			addProperty(EPC_OPERATION_MODE_INFORMATION, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OPERATION_MODE_INFORMATION;
+			byte[] edt = _getOperationModeInformation(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetFanRotationSpeed() {
-			byte[] edt = getFanRotationSpeed();
-			addProperty(EPC_FAN_ROTATION_SPEED, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_FAN_ROTATION_SPEED;
+			byte[] edt = _getFanRotationSpeed(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredPowerConsumptionOfOutdoorUnit() {
-			byte[] edt = getMeasuredPowerConsumptionOfOutdoorUnit();
-			addProperty(EPC_MEASURED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT;
+			byte[] edt = _getMeasuredPowerConsumptionOfOutdoorUnit(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredOutdoorAirTemperature2() {
-			byte[] edt = getMeasuredOutdoorAirTemperature2();
-			addProperty(EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE2, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE2;
+			byte[] edt = _getMeasuredOutdoorAirTemperature2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}
@@ -930,62 +1038,72 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 
 		@Override
 		public Informer reqInformOperationModeSetting() {
-			byte[] edt = getOperationModeSetting();
-			addProperty(EPC_OPERATION_MODE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OPERATION_MODE_SETTING;
+			byte[] edt = _getOperationModeSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformRatedPowerConsumptionOfOutdoorUnit() {
-			byte[] edt = getRatedPowerConsumptionOfOutdoorUnit();
-			addProperty(EPC_RATED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT, edt, (edt != null && (edt.length == 6)));
+			byte epc = EPC_RATED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT;
+			byte[] edt = _getRatedPowerConsumptionOfOutdoorUnit(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 6)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredElectricCurrentConsumptionOfOutdoorUnit() {
-			byte[] edt = getMeasuredElectricCurrentConsumptionOfOutdoorUnit();
-			addProperty(EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_OUTDOOR_UNIT, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_OUTDOOR_UNIT;
+			byte[] edt = _getMeasuredElectricCurrentConsumptionOfOutdoorUnit(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredOutdoorAirTemperature1() {
-			byte[] edt = getMeasuredOutdoorAirTemperature1();
-			addProperty(EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE1, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE1;
+			byte[] edt = _getMeasuredOutdoorAirTemperature1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformGspecialHState() {
-			byte[] edt = getGspecialHState();
-			addProperty(EPC_GSPECIAL_H_STATE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_GSPECIAL_H_STATE;
+			byte[] edt = _getGspecialHState(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOperationStatusOfCompressor() {
-			byte[] edt = getOperationStatusOfCompressor();
-			addProperty(EPC_OPERATION_STATUS_OF_COMPRESSOR, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OPERATION_STATUS_OF_COMPRESSOR;
+			byte[] edt = _getOperationStatusOfCompressor(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOperationModeInformation() {
-			byte[] edt = getOperationModeInformation();
-			addProperty(EPC_OPERATION_MODE_INFORMATION, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OPERATION_MODE_INFORMATION;
+			byte[] edt = _getOperationModeInformation(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformFanRotationSpeed() {
-			byte[] edt = getFanRotationSpeed();
-			addProperty(EPC_FAN_ROTATION_SPEED, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_FAN_ROTATION_SPEED;
+			byte[] edt = _getFanRotationSpeed(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredPowerConsumptionOfOutdoorUnit() {
-			byte[] edt = getMeasuredPowerConsumptionOfOutdoorUnit();
-			addProperty(EPC_MEASURED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT;
+			byte[] edt = _getMeasuredPowerConsumptionOfOutdoorUnit(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredOutdoorAirTemperature2() {
-			byte[] edt = getMeasuredOutdoorAirTemperature2();
-			addProperty(EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE2, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE2;
+			byte[] edt = _getMeasuredOutdoorAirTemperature2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}

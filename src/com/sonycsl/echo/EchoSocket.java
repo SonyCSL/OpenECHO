@@ -30,31 +30,23 @@ import com.sonycsl.echo.eoj.device.DeviceObject;
 public final class EchoSocket {
 	@SuppressWarnings("unused")
 	private static final String TAG = EchoSocket.class.getSimpleName();
-	private static EchoSocket self;
 
 	public static int UDP_MAX_PACKET_SIZE = 65507;
 
 	private static final String ADDRESS = "224.0.23.0";
 	private static final int PORT = 3610;
-	private MulticastSocket mSocket;
-	private InetAddress mMulticastAddress;
-	private Receiver mReceiver;
+	private static MulticastSocket mSocket;
+	private static InetAddress mMulticastAddress;
+	private static Receiver mReceiver;
 	
 	private EchoSocket() {
 	}
 	
-	public static EchoSocket getSocket() {
-		if(self == null) {
-			self = new EchoSocket();
-		}
-		return self;
-	}
-	
-	public InetAddress getLocalAddress() {
+	public static InetAddress getLocalAddress() {
 		return mSocket.getLocalAddress();
 	}
 	
-	public void start() throws IOException {
+	public static void start() throws IOException {
 		mMulticastAddress = InetAddress.getByName(ADDRESS);
 		if(mSocket != null) {
 			stop();
@@ -67,24 +59,21 @@ public final class EchoSocket {
 		mSocket.joinGroup(mMulticastAddress);
 	}
 	
-	public void stop() throws IOException {
+	public static void stop() throws IOException {
 		mReceiver.close();
 		mSocket.leaveGroup(mMulticastAddress);
 		mSocket.close();
 		mSocket = null;
 	}
 	
-	public void send(InetAddress address, byte[] data) throws IOException {
+	public static void send(InetAddress address, byte[] data) throws IOException {
 		if(mSocket == null) {
 			return;
 		}
 		
-		if(Echo.getEcho().isTracing()) {
-			String s = "";
-			for(byte b : data) {
-				s += String.format("%02x ", b);
-			}
-			System.out.println("send\t\t:"+ s);
+		if(Echo.isTracing()) {
+			Echo.log("method:send,address:"+address.getHostAddress()+",data:"+EchoUtils.byteArrayToString(data)
+					+",class:com.sonycsl.echo.EchoSocket");
 		}
 		
 		DatagramPacket packet = new DatagramPacket(data, data.length,
@@ -92,17 +81,14 @@ public final class EchoSocket {
 		mSocket.send(packet);
 	}
 	
-	public void sendGroup(byte[] data) throws IOException {
+	public static void sendGroup(byte[] data) throws IOException {
 		if(mSocket == null) {
 			return;
 		}
 		
-		if(Echo.getEcho().isTracing()) {
-			String s = "";
-			for(byte b : data) {
-				s += String.format("%02x ", b);
-			}
-			System.out.println("sendGroup\t:"+ s);
+		if(Echo.isTracing()) {
+			Echo.log("method:sendGroup,address:"+ADDRESS+",data:"+EchoUtils.byteArrayToString(data)
+					+",class:com.sonycsl.echo.EchoSocket");
 		}
 		
 		DatagramPacket packet = new DatagramPacket(data, data.length, 
@@ -113,7 +99,7 @@ public final class EchoSocket {
 	
 
 	
-	private class Receiver extends Thread {
+	private static class Receiver extends Thread {
 		
 		MulticastSocket mReceiverSocket;
 		boolean mRunning = true;
@@ -140,18 +126,16 @@ public final class EchoSocket {
 				System.arraycopy(packet.getData(), 0, data, 0, packet.getLength());
 
 
-				if(Echo.getEcho().isTracing()) {
-					String s = "";
-					for(byte b : data) {
-						s += String.format("%02x ", b);
-					}
-					System.out.println("receive\t\t:"+ s);
+				if(Echo.isTracing()) {
+					Echo.log("method:receive,address:"+packet.getAddress().getHostAddress()
+							+",data:"+EchoUtils.byteArrayToString(data)
+							+",class:com.sonycsl.echo.EchoSocket");
 				}
 				
 				if(data.length < 12) continue;
 				List<EchoFrame> frameList = new ArrayList<EchoFrame>();
 				if(data[9] == 0) {
-					DeviceObject[] devices = Echo.getEcho().getNode().getDevices(data[7], data[8]);
+					DeviceObject[] devices = Echo.getNode().getDevices(data[7], data[8]);
 					for(DeviceObject dev : devices) {
 						byte[] d = data.clone();
 						d[9] = dev.getInstanceCode();

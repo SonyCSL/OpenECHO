@@ -56,7 +56,6 @@ public final class EchoFrame {
 	}
 	
 	public EchoFrame(InetAddress address, byte[] data) {
-		Echo echo = Echo.getEcho();
 		if(data.length < 11) return;
 		if(data[0] != EHD1) return;
 		if(data[1] != EHD2) return;
@@ -65,9 +64,9 @@ public final class EchoFrame {
 		buffer.put(data[2]);
 		buffer.put(data[3]);
 		mTID = buffer.getShort(0);
-		echo.putProxy(address, data[4], data[5], data[6]);
-		mSeoj = echo.getInstance(address, data[4], data[5], data[6]);
-		mDeoj = echo.getInstance(Echo.getEcho().getNode().getAddress(), 
+		Echo.putProxy(address, data[4], data[5], data[6]);
+		mSeoj = Echo.getInstance(address, data[4], data[5], data[6]);
+		mDeoj = Echo.getInstance(Echo.getNode().getAddress(), 
 				data[7], data[8], data[9]);
 		mEsv = data[10];
 		int size = data[11] & 0xFF;

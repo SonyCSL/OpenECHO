@@ -26,28 +26,28 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x72;
 
-	protected static final byte EPC_HOT_WATER_HEATING_STATUS = (byte)0xD0;
-	protected static final byte EPC_SET_VALUE_OF_HOT_WATER_TEMPERATURE = (byte)0xD1;
-	protected static final byte EPC_HOT_WATER_WARMER_SETTING = (byte)0xD2;
-	protected static final byte EPC_GDURATION_OF_AUTOMATIC_OPERATION_H_SETTING = (byte)0xDA;
-	protected static final byte EPC_REMAINING_AUTOMATIC_OPERATION_TIME = (byte)0xDB;
-	protected static final byte EPC_SET_VALUE_OF_BATH_TEMPERATURE = (byte)0xE1;
-	protected static final byte EPC_BATH_WATER_HEATER_STATUS = (byte)0xE2;
-	protected static final byte EPC_BATH_AUTO_MODE_SETTING = (byte)0xE3;
-	protected static final byte EPC_BATH_ADDITIONAL_BOIL_UP_OPERATION_SETTING = (byte)0xE4;
-	protected static final byte EPC_BATH_HOT_WATER_ADDING_OPERATION_SETTING = (byte)0xE5;
-	protected static final byte EPC_BATH_WATER_TEMPERATURE_LOWERING_OPERATION_SETTING = (byte)0xE6;
-	protected static final byte EPC_BATH_HOT_WATER_VOLUME_SETTING1 = (byte)0xE7;
-	protected static final byte EPC_BATH_HOT_WATER_VOLUME_SETTING2 = (byte)0xE8;
-	protected static final byte EPC_BATH_HOT_WATER_VOLUME_SETTING3 = (byte)0xEE;
-	protected static final byte EPC_BATHROOM_PRIORITY_SETTING = (byte)0xE9;
-	protected static final byte EPC_SHOWER_HOT_WATER_SUPPLY_STATUS = (byte)0xEA;
-	protected static final byte EPC_KITCHEN_HOT_WATER_SUPPLY_STATUS = (byte)0xEB;
-	protected static final byte EPC_HOT_WATER_WARMER_ON_TIMER_RESERVATION_SETTING = (byte)0xEC;
-	protected static final byte EPC_SET_VALUE_OF_HOT_WATER_WARMER_ON_TIMER_TIME = (byte)0xED;
-	protected static final byte EPC_ON_TIMER_RESERVATION_SETTING = (byte)0x90;
-	protected static final byte EPC_SET_VALUE_OF_ON_TIMER_TIME = (byte)0x91;
-	protected static final byte EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME = (byte)0x92;
+	public static final byte EPC_HOT_WATER_HEATING_STATUS = (byte)0xD0;
+	public static final byte EPC_SET_VALUE_OF_HOT_WATER_TEMPERATURE = (byte)0xD1;
+	public static final byte EPC_HOT_WATER_WARMER_SETTING = (byte)0xD2;
+	public static final byte EPC_GDURATION_OF_AUTOMATIC_OPERATION_H_SETTING = (byte)0xDA;
+	public static final byte EPC_REMAINING_AUTOMATIC_OPERATION_TIME = (byte)0xDB;
+	public static final byte EPC_SET_VALUE_OF_BATH_TEMPERATURE = (byte)0xE1;
+	public static final byte EPC_BATH_WATER_HEATER_STATUS = (byte)0xE2;
+	public static final byte EPC_BATH_AUTO_MODE_SETTING = (byte)0xE3;
+	public static final byte EPC_BATH_ADDITIONAL_BOIL_UP_OPERATION_SETTING = (byte)0xE4;
+	public static final byte EPC_BATH_HOT_WATER_ADDING_OPERATION_SETTING = (byte)0xE5;
+	public static final byte EPC_BATH_WATER_TEMPERATURE_LOWERING_OPERATION_SETTING = (byte)0xE6;
+	public static final byte EPC_BATH_HOT_WATER_VOLUME_SETTING1 = (byte)0xE7;
+	public static final byte EPC_BATH_HOT_WATER_VOLUME_SETTING2 = (byte)0xE8;
+	public static final byte EPC_BATH_HOT_WATER_VOLUME_SETTING3 = (byte)0xEE;
+	public static final byte EPC_BATHROOM_PRIORITY_SETTING = (byte)0xE9;
+	public static final byte EPC_SHOWER_HOT_WATER_SUPPLY_STATUS = (byte)0xEA;
+	public static final byte EPC_KITCHEN_HOT_WATER_SUPPLY_STATUS = (byte)0xEB;
+	public static final byte EPC_HOT_WATER_WARMER_ON_TIMER_RESERVATION_SETTING = (byte)0xEC;
+	public static final byte EPC_SET_VALUE_OF_HOT_WATER_WARMER_ON_TIMER_TIME = (byte)0xED;
+	public static final byte EPC_ON_TIMER_RESERVATION_SETTING = (byte)0x90;
+	public static final byte EPC_SET_VALUE_OF_ON_TIMER_TIME = (byte)0x91;
+	public static final byte EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME = (byte)0x92;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -63,158 +63,353 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 	 * This property indicates hot water heating status.<br>Hot water heating status found = 0x41 Hot water heating status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getHotWaterHeatingStatus();
+	private final byte[] _getHotWaterHeatingStatus(byte epc) {
+		byte[] edt = getHotWaterHeatingStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates set value of hot water temperature in .C.<br>0x00.0x64 (0.100)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetValueOfHotWaterTemperature(byte[] edt) {return false;}
+	private final boolean _setSetValueOfHotWaterTemperature(byte epc, byte[] edt) {
+		boolean success = setSetValueOfHotWaterTemperature(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * This property indicates set value of hot water temperature in .C.<br>0x00.0x64 (0.100)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetValueOfHotWaterTemperature() {return null;}
+	private final byte[] _getSetValueOfHotWaterTemperature(byte epc) {
+		byte[] edt = getSetValueOfHotWaterTemperature();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Hot water warmer setting<br>Hot water warmer operation = 0x41 Hot water warmer operation resetting = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setHotWaterWarmerSetting(byte[] edt) {return false;}
+	private final boolean _setHotWaterWarmerSetting(byte epc, byte[] edt) {
+		boolean success = setHotWaterWarmerSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Hot water warmer setting<br>Hot water warmer operation = 0x41 Hot water warmer operation resetting = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getHotWaterWarmerSetting() {return null;}
+	private final byte[] _getHotWaterWarmerSetting(byte epc) {
+		byte[] edt = getHotWaterWarmerSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setGdurationOfAutomaticOperationHSetting(byte[] edt) {return false;}
+	private final boolean _setGdurationOfAutomaticOperationHSetting(byte epc, byte[] edt) {
+		boolean success = setGdurationOfAutomaticOperationHSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getGdurationOfAutomaticOperationHSetting() {return null;}
+	private final byte[] _getGdurationOfAutomaticOperationHSetting(byte epc) {
+		byte[] edt = getGdurationOfAutomaticOperationHSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Infinite: 0xFFFF<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getRemainingAutomaticOperationTime() {return null;}
+	private final byte[] _getRemainingAutomaticOperationTime(byte epc) {
+		byte[] edt = getRemainingAutomaticOperationTime();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates set value of bath temperature in .C.<br>0x00.0x64 (0.100)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetValueOfBathTemperature(byte[] edt) {return false;}
+	private final boolean _setSetValueOfBathTemperature(byte epc, byte[] edt) {
+		boolean success = setSetValueOfBathTemperature(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * This property indicates set value of bath temperature in .C.<br>0x00.0x64 (0.100)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetValueOfBathTemperature() {return null;}
+	private final byte[] _getSetValueOfBathTemperature(byte epc) {
+		byte[] edt = getSetValueOfBathTemperature();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates whether or not the bath water heater is heating bath water.<br>Heating = 0x41 Not heating = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getBathWaterHeaterStatus();
+	private final byte[] _getBathWaterHeaterStatus(byte epc) {
+		byte[] edt = getBathWaterHeaterStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Bath auto mode ON/OFF<br>Auto ON = 0x41 Auto OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setBathAutoModeSetting(byte[] edt) {return false;}
+	private final boolean _setBathAutoModeSetting(byte epc, byte[] edt) {
+		boolean success = setBathAutoModeSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Bath auto mode ON/OFF<br>Auto ON = 0x41 Auto OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getBathAutoModeSetting() {return null;}
+	private final byte[] _getBathAutoModeSetting(byte epc) {
+		byte[] edt = getBathAutoModeSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Additional boil-up ON/OFF<br>Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setBathAdditionalBoilUpOperationSetting(byte[] edt) {return false;}
+	private final boolean _setBathAdditionalBoilUpOperationSetting(byte epc, byte[] edt) {
+		boolean success = setBathAdditionalBoilUpOperationSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Additional boil-up ON/OFF<br>Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getBathAdditionalBoilUpOperationSetting() {return null;}
+	private final byte[] _getBathAdditionalBoilUpOperationSetting(byte epc) {
+		byte[] edt = getBathAdditionalBoilUpOperationSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Hot water addition ON/OFF<br>Hot water addition ON = 0x41 Hot water addition OFF = 0x42<br><br>Data type : unsigned<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setBathHotWaterAddingOperationSetting(byte[] edt) {return false;}
+	private final boolean _setBathHotWaterAddingOperationSetting(byte epc, byte[] edt) {
+		boolean success = setBathHotWaterAddingOperationSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Hot water addition ON/OFF<br>Hot water addition ON = 0x41 Hot water addition OFF = 0x42<br><br>Data type : unsigned<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getBathHotWaterAddingOperationSetting() {return null;}
+	private final byte[] _getBathHotWaterAddingOperationSetting(byte epc) {
+		byte[] edt = getBathHotWaterAddingOperationSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Hot water temperature lowering ON/OFF<br>Hot water temperature lowering ON = 0x41 Hot water temperature lowering OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setBathWaterTemperatureLoweringOperationSetting(byte[] edt) {return false;}
+	private final boolean _setBathWaterTemperatureLoweringOperationSetting(byte epc, byte[] edt) {
+		boolean success = setBathWaterTemperatureLoweringOperationSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Hot water temperature lowering ON/OFF<br>Hot water temperature lowering ON = 0x41 Hot water temperature lowering OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getBathWaterTemperatureLoweringOperationSetting() {return null;}
+	private final byte[] _getBathWaterTemperatureLoweringOperationSetting(byte epc) {
+		byte[] edt = getBathWaterTemperatureLoweringOperationSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates bath hot water volume in liters.<br>0x00.0xFD (0 to 253 liters)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setBathHotWaterVolumeSetting1(byte[] edt) {return false;}
+	private final boolean _setBathHotWaterVolumeSetting1(byte epc, byte[] edt) {
+		boolean success = setBathHotWaterVolumeSetting1(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * This property indicates bath hot water volume in liters.<br>0x00.0xFD (0 to 253 liters)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getBathHotWaterVolumeSetting1() {return null;}
+	private final byte[] _getBathHotWaterVolumeSetting1(byte epc) {
+		byte[] edt = getBathHotWaterVolumeSetting1();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Specifies bath hot water volume (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setBathHotWaterVolumeSetting2(byte[] edt) {return false;}
+	private final boolean _setBathHotWaterVolumeSetting2(byte epc, byte[] edt) {
+		boolean success = setBathHotWaterVolumeSetting2(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Specifies bath hot water volume (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getBathHotWaterVolumeSetting2() {return null;}
+	private final byte[] _getBathHotWaterVolumeSetting2(byte epc) {
+		byte[] edt = getBathHotWaterVolumeSetting2();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates bath hot water volume in liters.<br>0x0000.0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setBathHotWaterVolumeSetting3(byte[] edt) {return false;}
+	private final boolean _setBathHotWaterVolumeSetting3(byte epc, byte[] edt) {
+		boolean success = setBathHotWaterVolumeSetting3(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * This property indicates bath hot water volume in liters.<br>0x0000.0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getBathHotWaterVolumeSetting3() {return null;}
+	private final byte[] _getBathHotWaterVolumeSetting3(byte epc) {
+		byte[] edt = getBathHotWaterVolumeSetting3();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Bathroom priority ON/OFF<br>Bathroom priority ON = 0x41, bathroom priority OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setBathroomPrioritySetting(byte[] edt) {return false;}
+	private final boolean _setBathroomPrioritySetting(byte epc, byte[] edt) {
+		boolean success = setBathroomPrioritySetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Bathroom priority ON/OFF<br>Bathroom priority ON = 0x41, bathroom priority OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getBathroomPrioritySetting() {return null;}
+	private final byte[] _getBathroomPrioritySetting(byte epc) {
+		byte[] edt = getBathroomPrioritySetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Shower hot water supply ON/OFF<br>Shower hot water supply ON = 0x41 Shower hot water supply OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getShowerHotWaterSupplyStatus() {return null;}
+	private final byte[] _getShowerHotWaterSupplyStatus(byte epc) {
+		byte[] edt = getShowerHotWaterSupplyStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Kitchen hot water supply ON/OFF<br>Kitchen hot water supply ON = 0x41 kitchen hot water supply OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getKitchenHotWaterSupplyStatus() {return null;}
+	private final byte[] _getKitchenHotWaterSupplyStatus(byte epc) {
+		byte[] edt = getKitchenHotWaterSupplyStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Reservation ON/OFF<br>Reservation ON = 0x41, reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setHotWaterWarmerOnTimerReservationSetting(byte[] edt) {return false;}
+	private final boolean _setHotWaterWarmerOnTimerReservationSetting(byte epc, byte[] edt) {
+		boolean success = setHotWaterWarmerOnTimerReservationSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Reservation ON/OFF<br>Reservation ON = 0x41, reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getHotWaterWarmerOnTimerReservationSetting() {return null;}
+	private final byte[] _getHotWaterWarmerOnTimerReservationSetting(byte epc) {
+		byte[] edt = getHotWaterWarmerOnTimerReservationSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetValueOfHotWaterWarmerOnTimerTime(byte[] edt) {return false;}
+	private final boolean _setSetValueOfHotWaterWarmerOnTimerTime(byte epc, byte[] edt) {
+		boolean success = setSetValueOfHotWaterWarmerOnTimerTime(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetValueOfHotWaterWarmerOnTimerTime() {return null;}
+	private final byte[] _getSetValueOfHotWaterWarmerOnTimerTime(byte epc) {
+		byte[] edt = getSetValueOfHotWaterWarmerOnTimerTime();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Reservation ON/Reservation OFF<br>Reservation ON = 0x41 Reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOnTimerReservationSetting(byte[] edt) {return false;}
+	private final boolean _setOnTimerReservationSetting(byte epc, byte[] edt) {
+		boolean success = setOnTimerReservationSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Reservation ON/Reservation OFF<br>Reservation ON = 0x41 Reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOnTimerReservationSetting() {return null;}
+	private final byte[] _getOnTimerReservationSetting(byte epc) {
+		byte[] edt = getOnTimerReservationSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetValueOfOnTimerTime(byte[] edt) {return false;}
+	private final boolean _setSetValueOfOnTimerTime(byte epc, byte[] edt) {
+		boolean success = setSetValueOfOnTimerTime(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetValueOfOnTimerTime() {return null;}
+	private final byte[] _getSetValueOfOnTimerTime(byte epc) {
+		byte[] edt = getSetValueOfOnTimerTime();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetValueOfOnTimerRelativeTime(byte[] edt) {return false;}
+	private final boolean _setSetValueOfOnTimerRelativeTime(byte epc, byte[] edt) {
+		boolean success = setSetValueOfOnTimerRelativeTime(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetValueOfOnTimerRelativeTime() {return null;}
+	private final byte[] _getSetValueOfOnTimerRelativeTime(byte epc) {
+		byte[] edt = getSetValueOfOnTimerRelativeTime();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -222,55 +417,55 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
 		case EPC_SET_VALUE_OF_HOT_WATER_TEMPERATURE:
-			res.addProperty(epc, edt, setSetValueOfHotWaterTemperature(edt));
+			res.addProperty(epc, edt, _setSetValueOfHotWaterTemperature(epc, edt));
 			break;
 		case EPC_HOT_WATER_WARMER_SETTING:
-			res.addProperty(epc, edt, setHotWaterWarmerSetting(edt));
+			res.addProperty(epc, edt, _setHotWaterWarmerSetting(epc, edt));
 			break;
 		case EPC_GDURATION_OF_AUTOMATIC_OPERATION_H_SETTING:
-			res.addProperty(epc, edt, setGdurationOfAutomaticOperationHSetting(edt));
+			res.addProperty(epc, edt, _setGdurationOfAutomaticOperationHSetting(epc, edt));
 			break;
 		case EPC_SET_VALUE_OF_BATH_TEMPERATURE:
-			res.addProperty(epc, edt, setSetValueOfBathTemperature(edt));
+			res.addProperty(epc, edt, _setSetValueOfBathTemperature(epc, edt));
 			break;
 		case EPC_BATH_AUTO_MODE_SETTING:
-			res.addProperty(epc, edt, setBathAutoModeSetting(edt));
+			res.addProperty(epc, edt, _setBathAutoModeSetting(epc, edt));
 			break;
 		case EPC_BATH_ADDITIONAL_BOIL_UP_OPERATION_SETTING:
-			res.addProperty(epc, edt, setBathAdditionalBoilUpOperationSetting(edt));
+			res.addProperty(epc, edt, _setBathAdditionalBoilUpOperationSetting(epc, edt));
 			break;
 		case EPC_BATH_HOT_WATER_ADDING_OPERATION_SETTING:
-			res.addProperty(epc, edt, setBathHotWaterAddingOperationSetting(edt));
+			res.addProperty(epc, edt, _setBathHotWaterAddingOperationSetting(epc, edt));
 			break;
 		case EPC_BATH_WATER_TEMPERATURE_LOWERING_OPERATION_SETTING:
-			res.addProperty(epc, edt, setBathWaterTemperatureLoweringOperationSetting(edt));
+			res.addProperty(epc, edt, _setBathWaterTemperatureLoweringOperationSetting(epc, edt));
 			break;
 		case EPC_BATH_HOT_WATER_VOLUME_SETTING1:
-			res.addProperty(epc, edt, setBathHotWaterVolumeSetting1(edt));
+			res.addProperty(epc, edt, _setBathHotWaterVolumeSetting1(epc, edt));
 			break;
 		case EPC_BATH_HOT_WATER_VOLUME_SETTING2:
-			res.addProperty(epc, edt, setBathHotWaterVolumeSetting2(edt));
+			res.addProperty(epc, edt, _setBathHotWaterVolumeSetting2(epc, edt));
 			break;
 		case EPC_BATH_HOT_WATER_VOLUME_SETTING3:
-			res.addProperty(epc, edt, setBathHotWaterVolumeSetting3(edt));
+			res.addProperty(epc, edt, _setBathHotWaterVolumeSetting3(epc, edt));
 			break;
 		case EPC_BATHROOM_PRIORITY_SETTING:
-			res.addProperty(epc, edt, setBathroomPrioritySetting(edt));
+			res.addProperty(epc, edt, _setBathroomPrioritySetting(epc, edt));
 			break;
 		case EPC_HOT_WATER_WARMER_ON_TIMER_RESERVATION_SETTING:
-			res.addProperty(epc, edt, setHotWaterWarmerOnTimerReservationSetting(edt));
+			res.addProperty(epc, edt, _setHotWaterWarmerOnTimerReservationSetting(epc, edt));
 			break;
 		case EPC_SET_VALUE_OF_HOT_WATER_WARMER_ON_TIMER_TIME:
-			res.addProperty(epc, edt, setSetValueOfHotWaterWarmerOnTimerTime(edt));
+			res.addProperty(epc, edt, _setSetValueOfHotWaterWarmerOnTimerTime(epc, edt));
 			break;
 		case EPC_ON_TIMER_RESERVATION_SETTING:
-			res.addProperty(epc, edt, setOnTimerReservationSetting(edt));
+			res.addProperty(epc, edt, _setOnTimerReservationSetting(epc, edt));
 			break;
 		case EPC_SET_VALUE_OF_ON_TIMER_TIME:
-			res.addProperty(epc, edt, setSetValueOfOnTimerTime(edt));
+			res.addProperty(epc, edt, _setSetValueOfOnTimerTime(epc, edt));
 			break;
 		case EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME:
-			res.addProperty(epc, edt, setSetValueOfOnTimerRelativeTime(edt));
+			res.addProperty(epc, edt, _setSetValueOfOnTimerRelativeTime(epc, edt));
 			break;
 
 		}
@@ -282,91 +477,91 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_HOT_WATER_HEATING_STATUS:
-			edt = getHotWaterHeatingStatus();
+			edt = _getHotWaterHeatingStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SET_VALUE_OF_HOT_WATER_TEMPERATURE:
-			edt = getSetValueOfHotWaterTemperature();
+			edt = _getSetValueOfHotWaterTemperature(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_HOT_WATER_WARMER_SETTING:
-			edt = getHotWaterWarmerSetting();
+			edt = _getHotWaterWarmerSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_GDURATION_OF_AUTOMATIC_OPERATION_H_SETTING:
-			edt = getGdurationOfAutomaticOperationHSetting();
+			edt = _getGdurationOfAutomaticOperationHSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_REMAINING_AUTOMATIC_OPERATION_TIME:
-			edt = getRemainingAutomaticOperationTime();
+			edt = _getRemainingAutomaticOperationTime(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_SET_VALUE_OF_BATH_TEMPERATURE:
-			edt = getSetValueOfBathTemperature();
+			edt = _getSetValueOfBathTemperature(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_BATH_WATER_HEATER_STATUS:
-			edt = getBathWaterHeaterStatus();
+			edt = _getBathWaterHeaterStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_BATH_AUTO_MODE_SETTING:
-			edt = getBathAutoModeSetting();
+			edt = _getBathAutoModeSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_BATH_ADDITIONAL_BOIL_UP_OPERATION_SETTING:
-			edt = getBathAdditionalBoilUpOperationSetting();
+			edt = _getBathAdditionalBoilUpOperationSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_BATH_HOT_WATER_ADDING_OPERATION_SETTING:
-			edt = getBathHotWaterAddingOperationSetting();
+			edt = _getBathHotWaterAddingOperationSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_BATH_WATER_TEMPERATURE_LOWERING_OPERATION_SETTING:
-			edt = getBathWaterTemperatureLoweringOperationSetting();
+			edt = _getBathWaterTemperatureLoweringOperationSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_BATH_HOT_WATER_VOLUME_SETTING1:
-			edt = getBathHotWaterVolumeSetting1();
+			edt = _getBathHotWaterVolumeSetting1(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_BATH_HOT_WATER_VOLUME_SETTING2:
-			edt = getBathHotWaterVolumeSetting2();
+			edt = _getBathHotWaterVolumeSetting2(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_BATH_HOT_WATER_VOLUME_SETTING3:
-			edt = getBathHotWaterVolumeSetting3();
+			edt = _getBathHotWaterVolumeSetting3(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_BATHROOM_PRIORITY_SETTING:
-			edt = getBathroomPrioritySetting();
+			edt = _getBathroomPrioritySetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SHOWER_HOT_WATER_SUPPLY_STATUS:
-			edt = getShowerHotWaterSupplyStatus();
+			edt = _getShowerHotWaterSupplyStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_KITCHEN_HOT_WATER_SUPPLY_STATUS:
-			edt = getKitchenHotWaterSupplyStatus();
+			edt = _getKitchenHotWaterSupplyStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_HOT_WATER_WARMER_ON_TIMER_RESERVATION_SETTING:
-			edt = getHotWaterWarmerOnTimerReservationSetting();
+			edt = _getHotWaterWarmerOnTimerReservationSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SET_VALUE_OF_HOT_WATER_WARMER_ON_TIMER_TIME:
-			edt = getSetValueOfHotWaterWarmerOnTimerTime();
+			edt = _getSetValueOfHotWaterWarmerOnTimerTime(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_ON_TIMER_RESERVATION_SETTING:
-			edt = getOnTimerReservationSetting();
+			edt = _getOnTimerReservationSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SET_VALUE_OF_ON_TIMER_TIME:
-			edt = getSetValueOfOnTimerTime();
+			edt = _getSetValueOfOnTimerTime(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME:
-			edt = getSetValueOfOnTimerRelativeTime();
+			edt = _getSetValueOfOnTimerRelativeTime(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 
@@ -396,135 +591,133 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_SET_VALUE_OF_HOT_WATER_TEMPERATURE:
-				onSetSetValueOfHotWaterTemperature(eoj, tid, (pdc != 0));
+				_onSetSetValueOfHotWaterTemperature(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_HOT_WATER_WARMER_SETTING:
-				onSetHotWaterWarmerSetting(eoj, tid, (pdc != 0));
+				_onSetHotWaterWarmerSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_GDURATION_OF_AUTOMATIC_OPERATION_H_SETTING:
-				onSetGdurationOfAutomaticOperationHSetting(eoj, tid, (pdc != 0));
+				_onSetGdurationOfAutomaticOperationHSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_SET_VALUE_OF_BATH_TEMPERATURE:
-				onSetSetValueOfBathTemperature(eoj, tid, (pdc != 0));
+				_onSetSetValueOfBathTemperature(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_BATH_AUTO_MODE_SETTING:
-				onSetBathAutoModeSetting(eoj, tid, (pdc != 0));
+				_onSetBathAutoModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_BATH_ADDITIONAL_BOIL_UP_OPERATION_SETTING:
-				onSetBathAdditionalBoilUpOperationSetting(eoj, tid, (pdc != 0));
+				_onSetBathAdditionalBoilUpOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_BATH_HOT_WATER_ADDING_OPERATION_SETTING:
-				onSetBathHotWaterAddingOperationSetting(eoj, tid, (pdc != 0));
+				_onSetBathHotWaterAddingOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_BATH_WATER_TEMPERATURE_LOWERING_OPERATION_SETTING:
-				onSetBathWaterTemperatureLoweringOperationSetting(eoj, tid, (pdc != 0));
+				_onSetBathWaterTemperatureLoweringOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_BATH_HOT_WATER_VOLUME_SETTING1:
-				onSetBathHotWaterVolumeSetting1(eoj, tid, (pdc != 0));
+				_onSetBathHotWaterVolumeSetting1(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_BATH_HOT_WATER_VOLUME_SETTING2:
-				onSetBathHotWaterVolumeSetting2(eoj, tid, (pdc != 0));
+				_onSetBathHotWaterVolumeSetting2(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_BATH_HOT_WATER_VOLUME_SETTING3:
-				onSetBathHotWaterVolumeSetting3(eoj, tid, (pdc != 0));
+				_onSetBathHotWaterVolumeSetting3(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_BATHROOM_PRIORITY_SETTING:
-				onSetBathroomPrioritySetting(eoj, tid, (pdc != 0));
+				_onSetBathroomPrioritySetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_HOT_WATER_WARMER_ON_TIMER_RESERVATION_SETTING:
-				onSetHotWaterWarmerOnTimerReservationSetting(eoj, tid, (pdc != 0));
+				_onSetHotWaterWarmerOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_SET_VALUE_OF_HOT_WATER_WARMER_ON_TIMER_TIME:
-				onSetSetValueOfHotWaterWarmerOnTimerTime(eoj, tid, (pdc != 0));
+				_onSetSetValueOfHotWaterWarmerOnTimerTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_ON_TIMER_RESERVATION_SETTING:
-				onSetOnTimerReservationSetting(eoj, tid, (pdc != 0));
+				_onSetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_SET_VALUE_OF_ON_TIMER_TIME:
-				onSetSetValueOfOnTimerTime(eoj, tid, (pdc != 0));
+				_onSetSetValueOfOnTimerTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME:
-				onSetSetValueOfOnTimerRelativeTime(eoj, tid, (pdc != 0));
+				_onSetSetValueOfOnTimerRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_HOT_WATER_HEATING_STATUS:
-				onGetHotWaterHeatingStatus(eoj, tid, pdc, edt);
+				_onGetHotWaterHeatingStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SET_VALUE_OF_HOT_WATER_TEMPERATURE:
-				onGetSetValueOfHotWaterTemperature(eoj, tid, pdc, edt);
+				_onGetSetValueOfHotWaterTemperature(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_HOT_WATER_WARMER_SETTING:
-				onGetHotWaterWarmerSetting(eoj, tid, pdc, edt);
+				_onGetHotWaterWarmerSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_GDURATION_OF_AUTOMATIC_OPERATION_H_SETTING:
-				onGetGdurationOfAutomaticOperationHSetting(eoj, tid, pdc, edt);
+				_onGetGdurationOfAutomaticOperationHSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_REMAINING_AUTOMATIC_OPERATION_TIME:
-				onGetRemainingAutomaticOperationTime(eoj, tid, pdc, edt);
+				_onGetRemainingAutomaticOperationTime(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SET_VALUE_OF_BATH_TEMPERATURE:
-				onGetSetValueOfBathTemperature(eoj, tid, pdc, edt);
+				_onGetSetValueOfBathTemperature(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_BATH_WATER_HEATER_STATUS:
-				onGetBathWaterHeaterStatus(eoj, tid, pdc, edt);
+				_onGetBathWaterHeaterStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_BATH_AUTO_MODE_SETTING:
-				onGetBathAutoModeSetting(eoj, tid, pdc, edt);
+				_onGetBathAutoModeSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_BATH_ADDITIONAL_BOIL_UP_OPERATION_SETTING:
-				onGetBathAdditionalBoilUpOperationSetting(eoj, tid, pdc, edt);
+				_onGetBathAdditionalBoilUpOperationSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_BATH_HOT_WATER_ADDING_OPERATION_SETTING:
-				onGetBathHotWaterAddingOperationSetting(eoj, tid, pdc, edt);
+				_onGetBathHotWaterAddingOperationSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_BATH_WATER_TEMPERATURE_LOWERING_OPERATION_SETTING:
-				onGetBathWaterTemperatureLoweringOperationSetting(eoj, tid, pdc, edt);
+				_onGetBathWaterTemperatureLoweringOperationSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_BATH_HOT_WATER_VOLUME_SETTING1:
-				onGetBathHotWaterVolumeSetting1(eoj, tid, pdc, edt);
+				_onGetBathHotWaterVolumeSetting1(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_BATH_HOT_WATER_VOLUME_SETTING2:
-				onGetBathHotWaterVolumeSetting2(eoj, tid, pdc, edt);
+				_onGetBathHotWaterVolumeSetting2(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_BATH_HOT_WATER_VOLUME_SETTING3:
-				onGetBathHotWaterVolumeSetting3(eoj, tid, pdc, edt);
+				_onGetBathHotWaterVolumeSetting3(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_BATHROOM_PRIORITY_SETTING:
-				onGetBathroomPrioritySetting(eoj, tid, pdc, edt);
+				_onGetBathroomPrioritySetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SHOWER_HOT_WATER_SUPPLY_STATUS:
-				onGetShowerHotWaterSupplyStatus(eoj, tid, pdc, edt);
+				_onGetShowerHotWaterSupplyStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_KITCHEN_HOT_WATER_SUPPLY_STATUS:
-				onGetKitchenHotWaterSupplyStatus(eoj, tid, pdc, edt);
+				_onGetKitchenHotWaterSupplyStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_HOT_WATER_WARMER_ON_TIMER_RESERVATION_SETTING:
-				onGetHotWaterWarmerOnTimerReservationSetting(eoj, tid, pdc, edt);
+				_onGetHotWaterWarmerOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SET_VALUE_OF_HOT_WATER_WARMER_ON_TIMER_TIME:
-				onGetSetValueOfHotWaterWarmerOnTimerTime(eoj, tid, pdc, edt);
+				_onGetSetValueOfHotWaterWarmerOnTimerTime(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_ON_TIMER_RESERVATION_SETTING:
-				onGetOnTimerReservationSetting(eoj, tid, pdc, edt);
+				_onGetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SET_VALUE_OF_ON_TIMER_TIME:
-				onGetSetValueOfOnTimerTime(eoj, tid, pdc, edt);
+				_onGetSetValueOfOnTimerTime(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME:
-				onGetSetValueOfOnTimerRelativeTime(eoj, tid, pdc, edt);
+				_onGetSetValueOfOnTimerRelativeTime(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -533,159 +726,315 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		/**
 		 * This property indicates hot water heating status.<br>Hot water heating status found = 0x41 Hot water heating status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetHotWaterHeatingStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetHotWaterHeatingStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetHotWaterHeatingStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetHotWaterHeatingStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates set value of hot water temperature in .C.<br>0x00.0x64 (0.100)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetSetValueOfHotWaterTemperature(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetSetValueOfHotWaterTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetSetValueOfHotWaterTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetSetValueOfHotWaterTemperature(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * This property indicates set value of hot water temperature in .C.<br>0x00.0x64 (0.100)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetSetValueOfHotWaterTemperature(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSetValueOfHotWaterTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSetValueOfHotWaterTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSetValueOfHotWaterTemperature(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Hot water warmer setting<br>Hot water warmer operation = 0x41 Hot water warmer operation resetting = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetHotWaterWarmerSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetHotWaterWarmerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetHotWaterWarmerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetHotWaterWarmerSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Hot water warmer setting<br>Hot water warmer operation = 0x41 Hot water warmer operation resetting = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetHotWaterWarmerSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetHotWaterWarmerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetHotWaterWarmerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetHotWaterWarmerSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetGdurationOfAutomaticOperationHSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetGdurationOfAutomaticOperationHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetGdurationOfAutomaticOperationHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetGdurationOfAutomaticOperationHSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetGdurationOfAutomaticOperationHSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetGdurationOfAutomaticOperationHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetGdurationOfAutomaticOperationHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetGdurationOfAutomaticOperationHSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Timer value (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59) Infinite: 0xFFFF<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetRemainingAutomaticOperationTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetRemainingAutomaticOperationTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetRemainingAutomaticOperationTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetRemainingAutomaticOperationTime(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates set value of bath temperature in .C.<br>0x00.0x64 (0.100)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetSetValueOfBathTemperature(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetSetValueOfBathTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetSetValueOfBathTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetSetValueOfBathTemperature(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * This property indicates set value of bath temperature in .C.<br>0x00.0x64 (0.100)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetSetValueOfBathTemperature(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSetValueOfBathTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSetValueOfBathTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSetValueOfBathTemperature(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates whether or not the bath water heater is heating bath water.<br>Heating = 0x41 Not heating = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetBathWaterHeaterStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetBathWaterHeaterStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetBathWaterHeaterStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetBathWaterHeaterStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Bath auto mode ON/OFF<br>Auto ON = 0x41 Auto OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetBathAutoModeSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetBathAutoModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetBathAutoModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetBathAutoModeSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Bath auto mode ON/OFF<br>Auto ON = 0x41 Auto OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetBathAutoModeSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetBathAutoModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetBathAutoModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetBathAutoModeSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Additional boil-up ON/OFF<br>Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetBathAdditionalBoilUpOperationSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetBathAdditionalBoilUpOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetBathAdditionalBoilUpOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetBathAdditionalBoilUpOperationSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Additional boil-up ON/OFF<br>Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetBathAdditionalBoilUpOperationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetBathAdditionalBoilUpOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetBathAdditionalBoilUpOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetBathAdditionalBoilUpOperationSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Hot water addition ON/OFF<br>Hot water addition ON = 0x41 Hot water addition OFF = 0x42<br><br>Data type : unsigned<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetBathHotWaterAddingOperationSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetBathHotWaterAddingOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetBathHotWaterAddingOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetBathHotWaterAddingOperationSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Hot water addition ON/OFF<br>Hot water addition ON = 0x41 Hot water addition OFF = 0x42<br><br>Data type : unsigned<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetBathHotWaterAddingOperationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetBathHotWaterAddingOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetBathHotWaterAddingOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetBathHotWaterAddingOperationSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Hot water temperature lowering ON/OFF<br>Hot water temperature lowering ON = 0x41 Hot water temperature lowering OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetBathWaterTemperatureLoweringOperationSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetBathWaterTemperatureLoweringOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetBathWaterTemperatureLoweringOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetBathWaterTemperatureLoweringOperationSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Hot water temperature lowering ON/OFF<br>Hot water temperature lowering ON = 0x41 Hot water temperature lowering OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetBathWaterTemperatureLoweringOperationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetBathWaterTemperatureLoweringOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetBathWaterTemperatureLoweringOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetBathWaterTemperatureLoweringOperationSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates bath hot water volume in liters.<br>0x00.0xFD (0 to 253 liters)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetBathHotWaterVolumeSetting1(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetBathHotWaterVolumeSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetBathHotWaterVolumeSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetBathHotWaterVolumeSetting1(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * This property indicates bath hot water volume in liters.<br>0x00.0xFD (0 to 253 liters)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetBathHotWaterVolumeSetting1(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetBathHotWaterVolumeSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetBathHotWaterVolumeSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetBathHotWaterVolumeSetting1(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Specifies bath hot water volume (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetBathHotWaterVolumeSetting2(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetBathHotWaterVolumeSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetBathHotWaterVolumeSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetBathHotWaterVolumeSetting2(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Specifies bath hot water volume (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetBathHotWaterVolumeSetting2(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetBathHotWaterVolumeSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetBathHotWaterVolumeSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetBathHotWaterVolumeSetting2(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates bath hot water volume in liters.<br>0x0000.0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetBathHotWaterVolumeSetting3(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetBathHotWaterVolumeSetting3(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetBathHotWaterVolumeSetting3(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetBathHotWaterVolumeSetting3(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * This property indicates bath hot water volume in liters.<br>0x0000.0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetBathHotWaterVolumeSetting3(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetBathHotWaterVolumeSetting3(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetBathHotWaterVolumeSetting3(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetBathHotWaterVolumeSetting3(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Bathroom priority ON/OFF<br>Bathroom priority ON = 0x41, bathroom priority OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetBathroomPrioritySetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetBathroomPrioritySetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetBathroomPrioritySetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetBathroomPrioritySetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Bathroom priority ON/OFF<br>Bathroom priority ON = 0x41, bathroom priority OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetBathroomPrioritySetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetBathroomPrioritySetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetBathroomPrioritySetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetBathroomPrioritySetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Shower hot water supply ON/OFF<br>Shower hot water supply ON = 0x41 Shower hot water supply OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetShowerHotWaterSupplyStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetShowerHotWaterSupplyStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetShowerHotWaterSupplyStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetShowerHotWaterSupplyStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Kitchen hot water supply ON/OFF<br>Kitchen hot water supply ON = 0x41 kitchen hot water supply OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetKitchenHotWaterSupplyStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetKitchenHotWaterSupplyStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetKitchenHotWaterSupplyStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetKitchenHotWaterSupplyStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Reservation ON/OFF<br>Reservation ON = 0x41, reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetHotWaterWarmerOnTimerReservationSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetHotWaterWarmerOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetHotWaterWarmerOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetHotWaterWarmerOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Reservation ON/OFF<br>Reservation ON = 0x41, reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetHotWaterWarmerOnTimerReservationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetHotWaterWarmerOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetHotWaterWarmerOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetHotWaterWarmerOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetSetValueOfHotWaterWarmerOnTimerTime(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetSetValueOfHotWaterWarmerOnTimerTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetSetValueOfHotWaterWarmerOnTimerTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetSetValueOfHotWaterWarmerOnTimerTime(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetSetValueOfHotWaterWarmerOnTimerTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSetValueOfHotWaterWarmerOnTimerTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSetValueOfHotWaterWarmerOnTimerTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSetValueOfHotWaterWarmerOnTimerTime(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Reservation ON/Reservation OFF<br>Reservation ON = 0x41 Reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetOnTimerReservationSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Reservation ON/Reservation OFF<br>Reservation ON = 0x41 Reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetOnTimerReservationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetSetValueOfOnTimerTime(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetSetValueOfOnTimerTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetSetValueOfOnTimerTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetSetValueOfOnTimerTime(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetSetValueOfOnTimerTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSetValueOfOnTimerTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSetValueOfOnTimerTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSetValueOfOnTimerTime(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetSetValueOfOnTimerRelativeTime(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetSetValueOfOnTimerRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetSetValueOfOnTimerRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetSetValueOfOnTimerRelativeTime(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetSetValueOfOnTimerRelativeTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSetValueOfOnTimerRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSetValueOfOnTimerRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSetValueOfOnTimerRelativeTime(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -810,87 +1159,104 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 
 		@Override
 		public Setter reqSetSetValueOfHotWaterTemperature(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_HOT_WATER_TEMPERATURE, edt, setSetValueOfHotWaterTemperature(edt));
+			byte epc = EPC_SET_VALUE_OF_HOT_WATER_TEMPERATURE;
+			addProperty(epc, edt, _setSetValueOfHotWaterTemperature(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetHotWaterWarmerSetting(byte[] edt) {
-			addProperty(EPC_HOT_WATER_WARMER_SETTING, edt, setHotWaterWarmerSetting(edt));
+			byte epc = EPC_HOT_WATER_WARMER_SETTING;
+			addProperty(epc, edt, _setHotWaterWarmerSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetGdurationOfAutomaticOperationHSetting(byte[] edt) {
-			addProperty(EPC_GDURATION_OF_AUTOMATIC_OPERATION_H_SETTING, edt, setGdurationOfAutomaticOperationHSetting(edt));
+			byte epc = EPC_GDURATION_OF_AUTOMATIC_OPERATION_H_SETTING;
+			addProperty(epc, edt, _setGdurationOfAutomaticOperationHSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetSetValueOfBathTemperature(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_BATH_TEMPERATURE, edt, setSetValueOfBathTemperature(edt));
+			byte epc = EPC_SET_VALUE_OF_BATH_TEMPERATURE;
+			addProperty(epc, edt, _setSetValueOfBathTemperature(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetBathAutoModeSetting(byte[] edt) {
-			addProperty(EPC_BATH_AUTO_MODE_SETTING, edt, setBathAutoModeSetting(edt));
+			byte epc = EPC_BATH_AUTO_MODE_SETTING;
+			addProperty(epc, edt, _setBathAutoModeSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetBathAdditionalBoilUpOperationSetting(byte[] edt) {
-			addProperty(EPC_BATH_ADDITIONAL_BOIL_UP_OPERATION_SETTING, edt, setBathAdditionalBoilUpOperationSetting(edt));
+			byte epc = EPC_BATH_ADDITIONAL_BOIL_UP_OPERATION_SETTING;
+			addProperty(epc, edt, _setBathAdditionalBoilUpOperationSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetBathHotWaterAddingOperationSetting(byte[] edt) {
-			addProperty(EPC_BATH_HOT_WATER_ADDING_OPERATION_SETTING, edt, setBathHotWaterAddingOperationSetting(edt));
+			byte epc = EPC_BATH_HOT_WATER_ADDING_OPERATION_SETTING;
+			addProperty(epc, edt, _setBathHotWaterAddingOperationSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetBathWaterTemperatureLoweringOperationSetting(byte[] edt) {
-			addProperty(EPC_BATH_WATER_TEMPERATURE_LOWERING_OPERATION_SETTING, edt, setBathWaterTemperatureLoweringOperationSetting(edt));
+			byte epc = EPC_BATH_WATER_TEMPERATURE_LOWERING_OPERATION_SETTING;
+			addProperty(epc, edt, _setBathWaterTemperatureLoweringOperationSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetBathHotWaterVolumeSetting1(byte[] edt) {
-			addProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING1, edt, setBathHotWaterVolumeSetting1(edt));
+			byte epc = EPC_BATH_HOT_WATER_VOLUME_SETTING1;
+			addProperty(epc, edt, _setBathHotWaterVolumeSetting1(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetBathHotWaterVolumeSetting2(byte[] edt) {
-			addProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING2, edt, setBathHotWaterVolumeSetting2(edt));
+			byte epc = EPC_BATH_HOT_WATER_VOLUME_SETTING2;
+			addProperty(epc, edt, _setBathHotWaterVolumeSetting2(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetBathHotWaterVolumeSetting3(byte[] edt) {
-			addProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING3, edt, setBathHotWaterVolumeSetting3(edt));
+			byte epc = EPC_BATH_HOT_WATER_VOLUME_SETTING3;
+			addProperty(epc, edt, _setBathHotWaterVolumeSetting3(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetBathroomPrioritySetting(byte[] edt) {
-			addProperty(EPC_BATHROOM_PRIORITY_SETTING, edt, setBathroomPrioritySetting(edt));
+			byte epc = EPC_BATHROOM_PRIORITY_SETTING;
+			addProperty(epc, edt, _setBathroomPrioritySetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetHotWaterWarmerOnTimerReservationSetting(byte[] edt) {
-			addProperty(EPC_HOT_WATER_WARMER_ON_TIMER_RESERVATION_SETTING, edt, setHotWaterWarmerOnTimerReservationSetting(edt));
+			byte epc = EPC_HOT_WATER_WARMER_ON_TIMER_RESERVATION_SETTING;
+			addProperty(epc, edt, _setHotWaterWarmerOnTimerReservationSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetSetValueOfHotWaterWarmerOnTimerTime(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_HOT_WATER_WARMER_ON_TIMER_TIME, edt, setSetValueOfHotWaterWarmerOnTimerTime(edt));
+			byte epc = EPC_SET_VALUE_OF_HOT_WATER_WARMER_ON_TIMER_TIME;
+			addProperty(epc, edt, _setSetValueOfHotWaterWarmerOnTimerTime(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetOnTimerReservationSetting(byte[] edt) {
-			addProperty(EPC_ON_TIMER_RESERVATION_SETTING, edt, setOnTimerReservationSetting(edt));
+			byte epc = EPC_ON_TIMER_RESERVATION_SETTING;
+			addProperty(epc, edt, _setOnTimerReservationSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetSetValueOfOnTimerTime(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_ON_TIMER_TIME, edt, setSetValueOfOnTimerTime(edt));
+			byte epc = EPC_SET_VALUE_OF_ON_TIMER_TIME;
+			addProperty(epc, edt, _setSetValueOfOnTimerTime(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetSetValueOfOnTimerRelativeTime(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME, edt, setSetValueOfOnTimerRelativeTime(edt));
+			byte epc = EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME;
+			addProperty(epc, edt, _setSetValueOfOnTimerRelativeTime(epc, edt));
 			return this;
 		}
 	}
@@ -1238,134 +1604,156 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 
 		@Override
 		public Getter reqGetHotWaterHeatingStatus() {
-			byte[] edt = getHotWaterHeatingStatus();
-			addProperty(EPC_HOT_WATER_HEATING_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_HOT_WATER_HEATING_STATUS;
+			byte[] edt = _getHotWaterHeatingStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSetValueOfHotWaterTemperature() {
-			byte[] edt = getSetValueOfHotWaterTemperature();
-			addProperty(EPC_SET_VALUE_OF_HOT_WATER_TEMPERATURE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SET_VALUE_OF_HOT_WATER_TEMPERATURE;
+			byte[] edt = _getSetValueOfHotWaterTemperature(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetHotWaterWarmerSetting() {
-			byte[] edt = getHotWaterWarmerSetting();
-			addProperty(EPC_HOT_WATER_WARMER_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_HOT_WATER_WARMER_SETTING;
+			byte[] edt = _getHotWaterWarmerSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetGdurationOfAutomaticOperationHSetting() {
-			byte[] edt = getGdurationOfAutomaticOperationHSetting();
-			addProperty(EPC_GDURATION_OF_AUTOMATIC_OPERATION_H_SETTING, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_GDURATION_OF_AUTOMATIC_OPERATION_H_SETTING;
+			byte[] edt = _getGdurationOfAutomaticOperationHSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetRemainingAutomaticOperationTime() {
-			byte[] edt = getRemainingAutomaticOperationTime();
-			addProperty(EPC_REMAINING_AUTOMATIC_OPERATION_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_REMAINING_AUTOMATIC_OPERATION_TIME;
+			byte[] edt = _getRemainingAutomaticOperationTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSetValueOfBathTemperature() {
-			byte[] edt = getSetValueOfBathTemperature();
-			addProperty(EPC_SET_VALUE_OF_BATH_TEMPERATURE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SET_VALUE_OF_BATH_TEMPERATURE;
+			byte[] edt = _getSetValueOfBathTemperature(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetBathWaterHeaterStatus() {
-			byte[] edt = getBathWaterHeaterStatus();
-			addProperty(EPC_BATH_WATER_HEATER_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_BATH_WATER_HEATER_STATUS;
+			byte[] edt = _getBathWaterHeaterStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetBathAutoModeSetting() {
-			byte[] edt = getBathAutoModeSetting();
-			addProperty(EPC_BATH_AUTO_MODE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_BATH_AUTO_MODE_SETTING;
+			byte[] edt = _getBathAutoModeSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetBathAdditionalBoilUpOperationSetting() {
-			byte[] edt = getBathAdditionalBoilUpOperationSetting();
-			addProperty(EPC_BATH_ADDITIONAL_BOIL_UP_OPERATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_BATH_ADDITIONAL_BOIL_UP_OPERATION_SETTING;
+			byte[] edt = _getBathAdditionalBoilUpOperationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetBathHotWaterAddingOperationSetting() {
-			byte[] edt = getBathHotWaterAddingOperationSetting();
-			addProperty(EPC_BATH_HOT_WATER_ADDING_OPERATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_BATH_HOT_WATER_ADDING_OPERATION_SETTING;
+			byte[] edt = _getBathHotWaterAddingOperationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetBathWaterTemperatureLoweringOperationSetting() {
-			byte[] edt = getBathWaterTemperatureLoweringOperationSetting();
-			addProperty(EPC_BATH_WATER_TEMPERATURE_LOWERING_OPERATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_BATH_WATER_TEMPERATURE_LOWERING_OPERATION_SETTING;
+			byte[] edt = _getBathWaterTemperatureLoweringOperationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetBathHotWaterVolumeSetting1() {
-			byte[] edt = getBathHotWaterVolumeSetting1();
-			addProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING1, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_BATH_HOT_WATER_VOLUME_SETTING1;
+			byte[] edt = _getBathHotWaterVolumeSetting1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetBathHotWaterVolumeSetting2() {
-			byte[] edt = getBathHotWaterVolumeSetting2();
-			addProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING2, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_BATH_HOT_WATER_VOLUME_SETTING2;
+			byte[] edt = _getBathHotWaterVolumeSetting2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetBathHotWaterVolumeSetting3() {
-			byte[] edt = getBathHotWaterVolumeSetting3();
-			addProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING3, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_BATH_HOT_WATER_VOLUME_SETTING3;
+			byte[] edt = _getBathHotWaterVolumeSetting3(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetBathroomPrioritySetting() {
-			byte[] edt = getBathroomPrioritySetting();
-			addProperty(EPC_BATHROOM_PRIORITY_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_BATHROOM_PRIORITY_SETTING;
+			byte[] edt = _getBathroomPrioritySetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetShowerHotWaterSupplyStatus() {
-			byte[] edt = getShowerHotWaterSupplyStatus();
-			addProperty(EPC_SHOWER_HOT_WATER_SUPPLY_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SHOWER_HOT_WATER_SUPPLY_STATUS;
+			byte[] edt = _getShowerHotWaterSupplyStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetKitchenHotWaterSupplyStatus() {
-			byte[] edt = getKitchenHotWaterSupplyStatus();
-			addProperty(EPC_KITCHEN_HOT_WATER_SUPPLY_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_KITCHEN_HOT_WATER_SUPPLY_STATUS;
+			byte[] edt = _getKitchenHotWaterSupplyStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetHotWaterWarmerOnTimerReservationSetting() {
-			byte[] edt = getHotWaterWarmerOnTimerReservationSetting();
-			addProperty(EPC_HOT_WATER_WARMER_ON_TIMER_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_HOT_WATER_WARMER_ON_TIMER_RESERVATION_SETTING;
+			byte[] edt = _getHotWaterWarmerOnTimerReservationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSetValueOfHotWaterWarmerOnTimerTime() {
-			byte[] edt = getSetValueOfHotWaterWarmerOnTimerTime();
-			addProperty(EPC_SET_VALUE_OF_HOT_WATER_WARMER_ON_TIMER_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_SET_VALUE_OF_HOT_WATER_WARMER_ON_TIMER_TIME;
+			byte[] edt = _getSetValueOfHotWaterWarmerOnTimerTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOnTimerReservationSetting() {
-			byte[] edt = getOnTimerReservationSetting();
-			addProperty(EPC_ON_TIMER_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_ON_TIMER_RESERVATION_SETTING;
+			byte[] edt = _getOnTimerReservationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSetValueOfOnTimerTime() {
-			byte[] edt = getSetValueOfOnTimerTime();
-			addProperty(EPC_SET_VALUE_OF_ON_TIMER_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_SET_VALUE_OF_ON_TIMER_TIME;
+			byte[] edt = _getSetValueOfOnTimerTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSetValueOfOnTimerRelativeTime() {
-			byte[] edt = getSetValueOfOnTimerRelativeTime();
-			addProperty(EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME;
+			byte[] edt = _getSetValueOfOnTimerRelativeTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}
@@ -1798,134 +2186,156 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 
 		@Override
 		public Informer reqInformHotWaterHeatingStatus() {
-			byte[] edt = getHotWaterHeatingStatus();
-			addProperty(EPC_HOT_WATER_HEATING_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_HOT_WATER_HEATING_STATUS;
+			byte[] edt = _getHotWaterHeatingStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSetValueOfHotWaterTemperature() {
-			byte[] edt = getSetValueOfHotWaterTemperature();
-			addProperty(EPC_SET_VALUE_OF_HOT_WATER_TEMPERATURE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SET_VALUE_OF_HOT_WATER_TEMPERATURE;
+			byte[] edt = _getSetValueOfHotWaterTemperature(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformHotWaterWarmerSetting() {
-			byte[] edt = getHotWaterWarmerSetting();
-			addProperty(EPC_HOT_WATER_WARMER_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_HOT_WATER_WARMER_SETTING;
+			byte[] edt = _getHotWaterWarmerSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformGdurationOfAutomaticOperationHSetting() {
-			byte[] edt = getGdurationOfAutomaticOperationHSetting();
-			addProperty(EPC_GDURATION_OF_AUTOMATIC_OPERATION_H_SETTING, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_GDURATION_OF_AUTOMATIC_OPERATION_H_SETTING;
+			byte[] edt = _getGdurationOfAutomaticOperationHSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformRemainingAutomaticOperationTime() {
-			byte[] edt = getRemainingAutomaticOperationTime();
-			addProperty(EPC_REMAINING_AUTOMATIC_OPERATION_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_REMAINING_AUTOMATIC_OPERATION_TIME;
+			byte[] edt = _getRemainingAutomaticOperationTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSetValueOfBathTemperature() {
-			byte[] edt = getSetValueOfBathTemperature();
-			addProperty(EPC_SET_VALUE_OF_BATH_TEMPERATURE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SET_VALUE_OF_BATH_TEMPERATURE;
+			byte[] edt = _getSetValueOfBathTemperature(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformBathWaterHeaterStatus() {
-			byte[] edt = getBathWaterHeaterStatus();
-			addProperty(EPC_BATH_WATER_HEATER_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_BATH_WATER_HEATER_STATUS;
+			byte[] edt = _getBathWaterHeaterStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformBathAutoModeSetting() {
-			byte[] edt = getBathAutoModeSetting();
-			addProperty(EPC_BATH_AUTO_MODE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_BATH_AUTO_MODE_SETTING;
+			byte[] edt = _getBathAutoModeSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformBathAdditionalBoilUpOperationSetting() {
-			byte[] edt = getBathAdditionalBoilUpOperationSetting();
-			addProperty(EPC_BATH_ADDITIONAL_BOIL_UP_OPERATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_BATH_ADDITIONAL_BOIL_UP_OPERATION_SETTING;
+			byte[] edt = _getBathAdditionalBoilUpOperationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformBathHotWaterAddingOperationSetting() {
-			byte[] edt = getBathHotWaterAddingOperationSetting();
-			addProperty(EPC_BATH_HOT_WATER_ADDING_OPERATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_BATH_HOT_WATER_ADDING_OPERATION_SETTING;
+			byte[] edt = _getBathHotWaterAddingOperationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformBathWaterTemperatureLoweringOperationSetting() {
-			byte[] edt = getBathWaterTemperatureLoweringOperationSetting();
-			addProperty(EPC_BATH_WATER_TEMPERATURE_LOWERING_OPERATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_BATH_WATER_TEMPERATURE_LOWERING_OPERATION_SETTING;
+			byte[] edt = _getBathWaterTemperatureLoweringOperationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformBathHotWaterVolumeSetting1() {
-			byte[] edt = getBathHotWaterVolumeSetting1();
-			addProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING1, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_BATH_HOT_WATER_VOLUME_SETTING1;
+			byte[] edt = _getBathHotWaterVolumeSetting1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformBathHotWaterVolumeSetting2() {
-			byte[] edt = getBathHotWaterVolumeSetting2();
-			addProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING2, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_BATH_HOT_WATER_VOLUME_SETTING2;
+			byte[] edt = _getBathHotWaterVolumeSetting2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformBathHotWaterVolumeSetting3() {
-			byte[] edt = getBathHotWaterVolumeSetting3();
-			addProperty(EPC_BATH_HOT_WATER_VOLUME_SETTING3, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_BATH_HOT_WATER_VOLUME_SETTING3;
+			byte[] edt = _getBathHotWaterVolumeSetting3(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformBathroomPrioritySetting() {
-			byte[] edt = getBathroomPrioritySetting();
-			addProperty(EPC_BATHROOM_PRIORITY_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_BATHROOM_PRIORITY_SETTING;
+			byte[] edt = _getBathroomPrioritySetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformShowerHotWaterSupplyStatus() {
-			byte[] edt = getShowerHotWaterSupplyStatus();
-			addProperty(EPC_SHOWER_HOT_WATER_SUPPLY_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SHOWER_HOT_WATER_SUPPLY_STATUS;
+			byte[] edt = _getShowerHotWaterSupplyStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformKitchenHotWaterSupplyStatus() {
-			byte[] edt = getKitchenHotWaterSupplyStatus();
-			addProperty(EPC_KITCHEN_HOT_WATER_SUPPLY_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_KITCHEN_HOT_WATER_SUPPLY_STATUS;
+			byte[] edt = _getKitchenHotWaterSupplyStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformHotWaterWarmerOnTimerReservationSetting() {
-			byte[] edt = getHotWaterWarmerOnTimerReservationSetting();
-			addProperty(EPC_HOT_WATER_WARMER_ON_TIMER_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_HOT_WATER_WARMER_ON_TIMER_RESERVATION_SETTING;
+			byte[] edt = _getHotWaterWarmerOnTimerReservationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSetValueOfHotWaterWarmerOnTimerTime() {
-			byte[] edt = getSetValueOfHotWaterWarmerOnTimerTime();
-			addProperty(EPC_SET_VALUE_OF_HOT_WATER_WARMER_ON_TIMER_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_SET_VALUE_OF_HOT_WATER_WARMER_ON_TIMER_TIME;
+			byte[] edt = _getSetValueOfHotWaterWarmerOnTimerTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOnTimerReservationSetting() {
-			byte[] edt = getOnTimerReservationSetting();
-			addProperty(EPC_ON_TIMER_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_ON_TIMER_RESERVATION_SETTING;
+			byte[] edt = _getOnTimerReservationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSetValueOfOnTimerTime() {
-			byte[] edt = getSetValueOfOnTimerTime();
-			addProperty(EPC_SET_VALUE_OF_ON_TIMER_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_SET_VALUE_OF_ON_TIMER_TIME;
+			byte[] edt = _getSetValueOfOnTimerTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSetValueOfOnTimerRelativeTime() {
-			byte[] edt = getSetValueOfOnTimerRelativeTime();
-			addProperty(EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME;
+			byte[] edt = _getSetValueOfOnTimerRelativeTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}

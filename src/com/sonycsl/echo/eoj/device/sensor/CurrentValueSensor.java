@@ -26,9 +26,9 @@ public abstract class CurrentValueSensor extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x23;
 
-	protected static final byte EPC_MEASURED_CURRENT_VALUE1 = (byte)0xE0;
-	protected static final byte EPC_RATED_VOLTAGE_TO_BE_MEASURED = (byte)0xE1;
-	protected static final byte EPC_MEASURED_CURRENT_VALUE2 = (byte)0xE2;
+	public static final byte EPC_MEASURED_CURRENT_VALUE1 = (byte)0xE0;
+	public static final byte EPC_RATED_VOLTAGE_TO_BE_MEASURED = (byte)0xE1;
+	public static final byte EPC_MEASURED_CURRENT_VALUE2 = (byte)0xE2;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -44,14 +44,29 @@ public abstract class CurrentValueSensor extends DeviceObject {
 	 * This property indicates measured current value in mA.<br>0x00000000.0xFFFFFFFD (0.4,294,967,293mA)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getMeasuredCurrentValue1();
+	private final byte[] _getMeasuredCurrentValue1(byte epc) {
+		byte[] edt = getMeasuredCurrentValue1();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Rated voltage value to be measured by current sensor<br>0x0000.0xFFFD (0.65533V)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getRatedVoltageToBeMeasured() {return null;}
+	private final byte[] _getRatedVoltageToBeMeasured(byte epc) {
+		byte[] edt = getRatedVoltageToBeMeasured();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates measured current value in mA.<br>0x80000001.0x7FFFFFFDE (.2,147,483,647 to 2,147,483,646mA)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getMeasuredCurrentValue2();
+	private final byte[] _getMeasuredCurrentValue2(byte epc) {
+		byte[] edt = getMeasuredCurrentValue2();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -68,15 +83,15 @@ public abstract class CurrentValueSensor extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_MEASURED_CURRENT_VALUE1:
-			edt = getMeasuredCurrentValue1();
+			edt = _getMeasuredCurrentValue1(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			break;
 		case EPC_RATED_VOLTAGE_TO_BE_MEASURED:
-			edt = getRatedVoltageToBeMeasured();
+			edt = _getRatedVoltageToBeMeasured(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_MEASURED_CURRENT_VALUE2:
-			edt = getMeasuredCurrentValue2();
+			edt = _getMeasuredCurrentValue2(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			break;
 
@@ -106,27 +121,25 @@ public abstract class CurrentValueSensor extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_MEASURED_CURRENT_VALUE1:
-				onGetMeasuredCurrentValue1(eoj, tid, pdc, edt);
+				_onGetMeasuredCurrentValue1(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_RATED_VOLTAGE_TO_BE_MEASURED:
-				onGetRatedVoltageToBeMeasured(eoj, tid, pdc, edt);
+				_onGetRatedVoltageToBeMeasured(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_CURRENT_VALUE2:
-				onGetMeasuredCurrentValue2(eoj, tid, pdc, edt);
+				_onGetMeasuredCurrentValue2(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -135,15 +148,27 @@ public abstract class CurrentValueSensor extends DeviceObject {
 		/**
 		 * This property indicates measured current value in mA.<br>0x00000000.0xFFFFFFFD (0.4,294,967,293mA)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetMeasuredCurrentValue1(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredCurrentValue1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredCurrentValue1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredCurrentValue1(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Rated voltage value to be measured by current sensor<br>0x0000.0xFFFD (0.65533V)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetRatedVoltageToBeMeasured(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetRatedVoltageToBeMeasured(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetRatedVoltageToBeMeasured(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetRatedVoltageToBeMeasured(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates measured current value in mA.<br>0x80000001.0x7FFFFFFDE (.2,147,483,647 to 2,147,483,646mA)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetMeasuredCurrentValue2(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredCurrentValue2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredCurrentValue2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredCurrentValue2(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -382,20 +407,23 @@ public abstract class CurrentValueSensor extends DeviceObject {
 
 		@Override
 		public Getter reqGetMeasuredCurrentValue1() {
-			byte[] edt = getMeasuredCurrentValue1();
-			addProperty(EPC_MEASURED_CURRENT_VALUE1, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_MEASURED_CURRENT_VALUE1;
+			byte[] edt = _getMeasuredCurrentValue1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Getter reqGetRatedVoltageToBeMeasured() {
-			byte[] edt = getRatedVoltageToBeMeasured();
-			addProperty(EPC_RATED_VOLTAGE_TO_BE_MEASURED, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_RATED_VOLTAGE_TO_BE_MEASURED;
+			byte[] edt = _getRatedVoltageToBeMeasured(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredCurrentValue2() {
-			byte[] edt = getMeasuredCurrentValue2();
-			addProperty(EPC_MEASURED_CURRENT_VALUE2, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_MEASURED_CURRENT_VALUE2;
+			byte[] edt = _getMeasuredCurrentValue2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 	}
@@ -657,20 +685,23 @@ public abstract class CurrentValueSensor extends DeviceObject {
 
 		@Override
 		public Informer reqInformMeasuredCurrentValue1() {
-			byte[] edt = getMeasuredCurrentValue1();
-			addProperty(EPC_MEASURED_CURRENT_VALUE1, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_MEASURED_CURRENT_VALUE1;
+			byte[] edt = _getMeasuredCurrentValue1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Informer reqInformRatedVoltageToBeMeasured() {
-			byte[] edt = getRatedVoltageToBeMeasured();
-			addProperty(EPC_RATED_VOLTAGE_TO_BE_MEASURED, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_RATED_VOLTAGE_TO_BE_MEASURED;
+			byte[] edt = _getRatedVoltageToBeMeasured(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredCurrentValue2() {
-			byte[] edt = getMeasuredCurrentValue2();
-			addProperty(EPC_MEASURED_CURRENT_VALUE2, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_MEASURED_CURRENT_VALUE2;
+			byte[] edt = _getMeasuredCurrentValue2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 	}

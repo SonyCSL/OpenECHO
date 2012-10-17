@@ -18,10 +18,6 @@ package com.sonycsl.echo.eoj.device;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.eoj.EchoObject;
 
-/**
- * 　機器オブジェクトのスーパークラス
- *
- */
 public abstract class DeviceObject extends EchoObject {
 
 	protected static final byte EPC_OPERATION_STATUS = (byte)0x80;
@@ -66,6 +62,11 @@ public abstract class DeviceObject extends EchoObject {
 	protected boolean setOperationStatus(byte[] edt) {
 		return false;
 	}
+	private final boolean _setOperationStatus(byte epc, byte[] edt) {
+		boolean success = setOperationStatus(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 
 	/**
 	 * This property indicates the ON/OFF status.<br>
@@ -76,7 +77,12 @@ public abstract class DeviceObject extends EchoObject {
 	 * Get : mandatory<br>
 	 * Announcement at status change
 	 */
-	protected abstract byte[] getOperationStatus();	
+	protected abstract byte[] getOperationStatus();
+	private final byte[] _getOperationStatus(byte epc) {
+		byte[] edt = getOperationStatus();
+		notify(epc, edt);
+		return edt;
+	}
 
 	/**
 	 * This property indicates the installation location<br>
@@ -88,12 +94,22 @@ public abstract class DeviceObject extends EchoObject {
 	 * Announcement at status change
 	 */
 	protected abstract boolean setInstallationLocation(byte[] edt);
+	private final boolean _setInstallationLocation(byte epc, byte[] edt) {
+		boolean success = setInstallationLocation(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 
 	/**
 	 * This property indicates the installation location<br>
 	 * See “2.2 ‘Installation location’ property.”
 	 */
 	protected abstract byte[] getInstallationLocation();
+	private final byte[] _getInstallationLocation(byte epc) {
+		byte[] edt = getInstallationLocation();
+		notify(epc, edt);
+		return edt;
+	}
 
 	/**
 	 * This property indicates the version number of the corresponding standard.<br>
@@ -104,9 +120,14 @@ public abstract class DeviceObject extends EchoObject {
 	 * Data type : unsigned char×4<br>
 	 * Data size : 4<br>
 	 * Set : undefined<br>
-	 * Get : mandatory<br>
+	 * Get : mandatory
 	 */
 	protected abstract byte[] getStandardVersionInformation() ;
+	private final byte[] _getStandardVersionInformation(byte epc) {
+		byte[] edt = getStandardVersionInformation();
+		notify(epc, edt);
+		return edt;
+	}
 	
 	/**
 	 * A number that allows each object to be uniquely identified.<br>
@@ -125,97 +146,206 @@ public abstract class DeviceObject extends EchoObject {
 	 * 0xFE：2－17 bytes are defined by the manufacturer, and are set according to the type.<br>
 	 * 0xFF：2－9 bytes are defined when randomly generated protocol is used in the lower-layer communication.<br>
 	 * 0x00：Identification number is not set.<br>
-	 * Second and succeeding bytes: unique number field
+	 * Second and succeeding bytes: unique number field<br><br>
+	 * Data type : unsigned char<br>
+	 * Data size : 9 or 17<br>
+	 * Set : undefined<br>
+	 * Get : optional
 	 */
 	protected byte[] getIdentificationNumber() {
 		return null;
 	}
+	private final byte[] _getIdentificationNumber(byte epc) {
+		byte[] edt = getIdentificationNumber();
+		notify(epc, edt);
+		return edt;
+	}
 
 	/**
 	 * This property indicates the instantaneous power consumption of the device in watts.<br>
-	 * 0x0000-0xFFFF（0-65535W）
+	 * 0x0000-0xFFFF（0-65535W）<br><br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Set : undefined<br>
+	 * Get : optional
 	 */
 	protected byte[] getMeasuredInstantaneousPowerConsumption() {
 		return null;
 	}
+	private final byte[] _getMeasuredInstantaneousPowerConsumption(byte epc) {
+		byte[] edt = getMeasuredInstantaneousPowerConsumption();
+		notify(epc, edt);
+		return edt;
+	}
 
 	/**
 	 * This property indicates the cumulative power consumption of the device in increments of 0.001kWh.<br>
-	 * 0x0-0x3B9AC9FF（0-999,999.999kWh）
+	 * 0x0-0x3B9AC9FF（0-999,999.999kWh）<br><br>
+	 * Data type : unsigned long<br>
+	 * Data size : 4<br>
+	 * Set : undefined<br>
+	 * Get : optional
 	 */
 	protected byte[] getMeasuredCumulativePowerConsumption() {
 		return null;
+	}
+	private final byte[] _getMeasuredCumulativePowerConsumption(byte epc) {
+		byte[] edt = getMeasuredCumulativePowerConsumption();
+		notify(epc, edt);
+		return edt;
 	}
 
 	/**
 	 * This property indicates the manufacturer-defined fault code.<br>
 	 * First byte: Indicates the data size of the fault code field.<br>
 	 * Second to fourth bytes: Manufacturer code<br>
-	 * Fifth and succeeding bytes: Field for manufacturer-defined fault code
+	 * Fifth and succeeding bytes: Field for manufacturer-defined fault code<br><br>
+	 * Data type : unsigned char×(MAX)225<br>
+	 * Data size : Max 225<br>
+	 * Set : undefined<br>
+	 * Get : optional
 	 */	
 	protected byte[] getManufacturersFaultCode() {
 		return null;
 	}
+	private final byte[] _getManufacturersFaultCode(byte epc) {
+		byte[] edt = getManufacturersFaultCode();
+		notify(epc, edt);
+		return edt;
+	}
 
 	/**
 	 * This property indicates the current limit setting (0-100%).<br>
-	 * 0x00-0x64 （=0-100%）
+	 * 0x00-0x64 （=0-100%）<br><br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Set : optional<br>
+	 * Get : optional
 	 */
 	protected boolean setCurrentLimitSetting(byte[] edt) {
 		return false;
 	}
-
+	private final boolean _setCurrentLimitSetting(byte epc, byte[] edt) {
+		boolean success = setCurrentLimitSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
+	
 	/**
 	 * This property indicates the current limit setting (0-100%).<br>
-	 * 0x00-0x64 （=0-100%）
+	 * 0x00-0x64 （=0-100%）<br><br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Set : optional<br>
+	 * Get : optional
 	 */
 	protected byte[] getCurrentLimitSetting() {
 		return null;
 	}
+	private final byte[] _getCurrentLimitSetting(byte epc) {
+		byte[] edt = getCurrentLimitSetting();
+		notify(epc, edt);
+		return edt;
+	}
 
 	/**
 	 * This property indicates whether a fault (e.g. a sensor trouble) has occurred or not.<br>
-	 * Fault occurred＝0x41, No fault has occurred＝0x42
+	 * Fault occurred＝0x41, No fault has occurred＝0x42<br><br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Set : undefined<br>
+	 * Get : mandatory<br>
+	 * Announcement at status change
 	 */
 	protected abstract byte[] getFaultStatus();
+	private final byte[] _getFaultStatus(byte epc) {
+		byte[] edt = getFaultStatus();
+		notify(epc, edt);
+		return edt;
+	}
 
 	
 	/**
 	 * Describes the fault.<br>
-	 * See “2.5 ‘Fault Description’ Property.”
+	 * See “2.5 ‘Fault Description’ Property.”<br><br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Set : undefined<br>
+	 * Get : optional
 	 */
 	protected byte[] getFaultDescription() {
 		return null;
 	}
+	private final byte[] _getFaultDescription(byte epc) {
+		byte[] edt = getFaultDescription();
+		notify(epc, edt);
+		return edt;
+	}
 	
 	/**
 	 * 3-byte manufacturer code<br>
-	 * (Defined by the ECHONET Consortium.)
+	 * (Defined by the ECHONET Consortium.)<br><br>
+	 * Data type : unsigned char×3<br>
+	 * Data size : 3<br>
+	 * Set : undefined<br>
+	 * Get : mandatory
 	 */
 	protected abstract byte[] getManufacturerCode();
+	private final byte[] _getManufacturerCode(byte epc) {
+		byte[] edt = getManufacturerCode();
+		notify(epc, edt);
+		return edt;
+	}
 	
 	/**
 	 * 3-byte business facility code<br>
-	 * （Defined by each manufacturer.）
+	 * （Defined by each manufacturer.）<br><br>
+	 * Data type : unsigned char×3<br>
+	 * Data size : 3<br>
+	 * Set : undefined<br>
+	 * Get : optional
 	 */
 	protected byte[] getBusinessFacilityCode() {
 		return null;
 	}
+	private final byte[] _getBusinessFacilityCode(byte epc) {
+		byte[] edt = getBusinessFacilityCode();
+		notify(epc, edt);
+		return edt;
+	}
 	
 	/**
 	 * Identifies the product usingASCI I code.<br>
-	 * （Defined by each manufacturer.）
+	 * （Defined by each manufacturer.）<br><br>
+	 * Data type : unsigned char×12<br>
+	 * Data size : 12<br>
+	 * Set : undefined<br>
+	 * Get : optional
 	 */
 	protected byte[] getProductCode() {
 		return null;
 	}
+	private final byte[] _getProductCode(byte epc) {
+		byte[] edt = getProductCode();
+		notify(epc, edt);
+		return edt;
+	}
 
 	/**
 	 * This property indicates the production number using ASCI I code.<br>
-	 * （Defined by each manufacturer.）
+	 * （Defined by each manufacturer.）<br><br>
+	 * Data type : unsigned char×12<br>
+	 * Data size : 12<br>
+	 * Set : undefined<br>
+	 * Get : optional
 	 */
 	protected byte[] getProductionNumber() {
 		return null;
+	}
+	private final byte[] _getProductionNumber(byte epc) {
+		byte[] edt = getProductionNumber();
+		notify(epc, edt);
+		return edt;
 	}
 	
 	/**
@@ -223,90 +353,191 @@ public abstract class DeviceObject extends EchoObject {
 	 * This property indicates the product ion date in the YYMD format (1 character = 1 byte) .<br>
 	 * YY： Year (e.g. 1999＝ 0x07CF)<br>
 	 * M： Month (e.g. December＝0x0C)<br>
-	 * D： Day (e.g. 20th＝ 0x14)
+	 * D： Day (e.g. 20th＝ 0x14)<br><br>
+	 * Data type : unsigned char×4<br>
+	 * Data size : 4<br>
+	 * Set : undefined<br>
+	 * Get : optional
 	 */
 	protected byte[] getProductionDate() {
 		return null;
+	}
+	private final byte[] _getProductionDate(byte epc) {
+		byte[] edt = getProductionDate();
+		notify(epc, edt);
+		return edt;
 	}
 	
 	/**
 	 * This property indicates whether the device is operating in power-saving mode.<br>
 	 * Operating in power-saving mode =0x41<br>
-	 * Operating in normal operation mode =0x42
+	 * Operating in normal operation mode =0x42<br><br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Set : optional<br>
+	 * Get : optional
 	 */
 	protected boolean setPowerSavingOperationSetting(byte[] edt) {
 		return false;
 	}
-
+	private final boolean _setPowerSavingOperationSetting(byte epc, byte[] edt) {
+		boolean success = setPowerSavingOperationSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
+	
 	/**
 	 * This property indicates whether the device is operating in power-saving mode.<br>
 	 * Operating in power-saving mode =0x41<br>
-	 * Operating in normal operation mode =0x42
+	 * Operating in normal operation mode =0x42<br><br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Set : optional<br>
+	 * Get : optional
 	 */
 	protected byte[] getPowerSavingOperationSetting() {
 		return null;
 	}
+	private final byte[] _getPowerSavingOperationSetting(byte epc) {
+		byte[] edt = getPowerSavingOperationSetting();
+		notify(epc, edt);
+		return edt;
+	}
 
 	/**
-	 * This property indicates the latitude, longitude and altitude of the installation location.
+	 * This property indicates the latitude, longitude and altitude of the installation location.<br><br>
+	 * Data type : unsigned char×16<br>
+	 * Data size : 16<br>
+	 * Set : optional<br>
+	 * Get : optional<br>
+	 * Announcement at status change
 	 */
 	protected boolean setPositionInformation(byte[] edt) {
 		return false;
 	}
-
+	private final boolean _setPositionInformation(byte epc, byte[] edt) {
+		boolean success = setPositionInformation(edt);
+		notify(epc, edt, success);
+		return success;
+	}
+	
 	/**
-	 * This property indicates the latitude, longitude and altitude of the installation location.
+	 * This property indicates the latitude, longitude and altitude of the installation location.<br><br>
+	 * Data type : unsigned char×16<br>
+	 * Data size : 16<br>
+	 * Set : optional<br>
+	 * Get : optional<br>
+	 * Announcement at status change
 	 */	
 	protected byte[] getPositionInformation() {
 		return null;
 	}
+	private final byte[] _getPositionInformation(byte epc) {
+		byte[] edt = getPositionInformation();
+		notify(epc, edt);
+		return edt;
+	}
 
 	/**
 	 * Current time (HH：MM format)<br>
-	 * 0x00-0x17：0x00-0x3B（ ＝ 0-23）：（ ＝ 0-59）
+	 * 0x00-0x17：0x00-0x3B（ ＝ 0-23）：（ ＝ 0-59）<br><br>
+	 * Data type : unsigned char×2<br>
+	 * Data size : 2<br>
+	 * Set : optional<br>
+	 * Get : optional
 	 */
 	protected boolean setCurrentTimeSetting(byte[] edt) {
 		return false;
 	}
-
+	private final boolean _setCurrentTimeSetting(byte epc, byte[] edt) {
+		boolean success = setCurrentTimeSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
+	
 	/**
 	 * Current time (HH：MM format)<br>
-	 * 0x00-0x17 ： 0x00-0x3B（ ＝ 0-23）：（ ＝ 0-59）
+	 * 0x00-0x17 ： 0x00-0x3B（ ＝ 0-23）：（ ＝ 0-59）<br><br>
+	 * Data type : unsigned char×2<br>
+	 * Data size : 2<br>
+	 * Set : optional<br>
+	 * Get : optional
 	 */
 	protected byte[] getCurrentTimeSetting() {
 		return null;
 	}
+	private final byte[] _getCurrentTimeSetting(byte epc) {
+		byte[] edt = getCurrentTimeSetting();
+		notify(epc, edt);
+		return edt;
+	}
 
 	/**
 	 * Current date (YYYY：MM：DD format)<br>
-	 * 1 ～ 0x270F ： 1 ～ 0x0C ： 1 ～ 0x1F (=1 ～ 9999) ： (=1 ～ 12) ： (=1 ～ 31)
+	 * 1 ～ 0x270F ： 1 ～ 0x0C ： 1 ～ 0x1F (=1 ～ 9999) ： (=1 ～ 12) ： (=1 ～ 31)<br><br>
+	 * Data type : unsigned char×4<br>
+	 * Data size : 4<br>
+	 * Set : optional<br>
+	 * Get : optional
 	 */
 	protected boolean setCurrentDateSetting(byte edt[]) {
 		return false;
 	}
-
+	private final boolean _setCurrentDateSetting(byte epc, byte[] edt) {
+		boolean success = setCurrentDateSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
+	
 	/**
 	 * Current date (YYYY：MM：DD format)<br>
-	 * 1 ～ 0x270F ： 1 ～ 0x0C ： 1 ～ 0x1F (=1 ～ 9999) ： (=1 ～ 12) ： (=1 ～ 31)
+	 * 1 ～ 0x270F ： 1 ～ 0x0C ： 1 ～ 0x1F (=1 ～ 9999) ： (=1 ～ 12) ： (=1 ～ 31)<br><br>
+	 * Data type : unsigned char×4<br>
+	 * Data size : 4<br>
+	 * Set : optional<br>
+	 * Get : optional
 	 */
 	protected byte[] getCurrentDateSetting() {
 		return null;
 	}
-
-	/**
-	 * This property indicates the power limit setting in watts.<br>
-	 * 0x0000~0xFFFF（0-65535W）
-	 */
-	protected boolean setPowerLimitSetting(byte[] edt) {
-		return false;
+	private final byte[] _getCurrentDateSetting(byte epc) {
+		byte[] edt = getCurrentDateSetting();
+		notify(epc, edt);
+		return edt;
 	}
 
 	/**
 	 * This property indicates the power limit setting in watts.<br>
-	 * 0x0000~0xFFFF（0-65535W）
+	 * 0x0000~0xFFFF（0-65535W）<br><br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Set : optional<br>
+	 * Get : optional
+	 */
+	protected boolean setPowerLimitSetting(byte[] edt) {
+		return false;
+	}
+	private final boolean _setPowerLimitSetting(byte epc, byte[] edt) {
+		boolean success = setPowerLimitSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
+	
+	/**
+	 * This property indicates the power limit setting in watts.<br>
+	 * 0x0000~0xFFFF（0-65535W）<br><br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Set : optional<br>
+	 * Get : optional
 	 */
 	protected byte[] getPowerLimitSetting() {
 		return null;
+	}
+	private final byte[] _getPowerLimitSetting(byte epc) {
+		byte[] edt = getPowerLimitSetting();
+		notify(epc, edt);
+		return edt;
 	}
 
 	/**
@@ -314,54 +545,90 @@ public abstract class DeviceObject extends EchoObject {
 	 * First byte: Indicates the unit.<br>
 	 * Second： 0x41; Minute： 0x42; Hour： 0x43; Day:0x44<br>
 	 * Second to fifth bytes ：<br>
-	 * Indicates the elapsed time in the unit specified by the first byte. 0x00000000-0xFFFFFFFF (0-4294967295)
+	 * Indicates the elapsed time in the unit specified by the first byte. 0x00000000-0xFFFFFFFF (0-4294967295)<br><br>
+	 * Data type : unsigned char + unsigned long<br>
+	 * Data size : 1+4 Byte<br>
+	 * Set : undefined<br>
+	 * Get : optional
 	 */
 	protected byte[] getCumulativeOperatingTime() {
 		return null;
 	}
+	private final byte[] _getCumulativeOperatingTime(byte epc) {
+		byte[] edt = getCumulativeOperatingTime();
+		notify(epc, edt);
+		return edt;
+	}
 	
 	/**
-	 * See Appendix 1.
+	 * See Appendix 1.<br><br>
+	 * Data type : unsigned char×(MAX17)<br>
+	 * Data size : Max.17<br>
+	 * Set : undefined<br>
+	 * Get : mandatory
 	 */
 	protected abstract byte[] getStatusChangeAnnouncementPropertyMap() ;
+	private final byte[] _getStatusChangeAnnouncementPropertyMap(byte epc) {
+		byte[] edt = getStatusChangeAnnouncementPropertyMap();
+		notify(epc, edt);
+		return edt;
+	}
 	
 	/**
-	 * See Appendix 1.
+	 * See Appendix 1.<br><br>
+	 * Data type : unsigned char×(MAX17)<br>
+	 * Data size : Max.17<br>
+	 * Set : undefined<br>
+	 * Get : mandatory
 	 */
 	protected abstract byte[] getSetPropertyMap();
+	private final byte[] _getSetPropertyMap(byte epc) {
+		byte[] edt = getSetPropertyMap();
+		notify(epc, edt);
+		return edt;
+	}
 
 	/**
-	 * See Appendix 1.
+	 * See Appendix 1.<br><br>
+	 * Data type : unsigned char×(MAX17)<br>
+	 * Data size : Max.17<br>
+	 * Set : undefined<br>
+	 * Get : mandatory
 	 */
 	protected abstract byte[] getGetPropertyMap();
+	private final byte[] _getGetPropertyMap(byte epc) {
+		byte[] edt = getGetPropertyMap();
+		notify(epc, edt);
+		return edt;
+	}
 
 	@Override
 	protected void onReceiveSet(EchoFrame res, byte epc, byte pdc, byte[] edt) {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
 		case EPC_OPERATION_STATUS :
-			res.addProperty(epc, edt, setOperationStatus(edt));
+			res.addProperty(epc, edt, _setOperationStatus(epc, edt));
 			break;
 		case EPC_INSTALLATION_LOCATION :
-			res.addProperty(epc, edt, setInstallationLocation(edt));
+			res.addProperty(epc, edt, _setInstallationLocation(epc, edt));
 			break;
 		case EPC_CURRENT_LIMIT_SETTING :
-			res.addProperty(epc, edt, setCurrentLimitSetting(edt));
+			res.addProperty(epc, edt, _setCurrentLimitSetting(epc, edt));
 			break;
 		case EPC_POWER_SAVING_OPERATION_SETTING :
-			res.addProperty(epc, edt, setPowerSavingOperationSetting(edt));
+			res.addProperty(epc, edt, _setPowerSavingOperationSetting(epc, edt));
 			break;
 		case EPC_POSITION_INFORMATION :
-			res.addProperty(epc, edt, setPositionInformation(edt));
+			res.addProperty(epc, edt, _setPositionInformation(epc, edt));
 			break;
 		case EPC_CURRENT_TIME_SETTING :
-			res.addProperty(epc, edt, setCurrentTimeSetting(edt));
+			res.addProperty(epc, edt, _setCurrentTimeSetting(epc, edt));
 			break;
 		case EPC_CURRENT_DATE_SETTING :
-			res.addProperty(epc, edt, setCurrentDateSetting(edt));
+			res.addProperty(epc, edt, _setCurrentDateSetting(epc, edt));
 			break;
 		case EPC_POWER_LIMIT_SETTING :
-			res.addProperty(epc, edt, setPowerLimitSetting(edt));
+			res.addProperty(epc, edt, _setPowerLimitSetting(epc, edt));
 			break;
 		}
 	}
@@ -372,99 +639,99 @@ public abstract class DeviceObject extends EchoObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_OPERATION_STATUS :
-			edt = getOperationStatus();
+			edt = _getOperationStatus(epc);
 			res.addProperty(epc, edt, (edt != null && edt.length == 1));
 			break;
 		case EPC_INSTALLATION_LOCATION :
-			edt = getInstallationLocation();
+			edt = _getInstallationLocation(epc);
 			res.addProperty(epc, edt, (edt != null && edt.length == 1));
 			break;
 		case EPC_STANDARD_VERSION_INFORMATION :
-			edt = getStandardVersionInformation();
+			edt = _getStandardVersionInformation(epc);
 			res.addProperty(epc, edt, (edt != null && edt.length == 4));
 			break;
 		case EPC_IDENTIFICATION_NUMBER :
-			edt = getIdentificationNumber();
+			edt = _getIdentificationNumber(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 9 || edt.length == 17)));
 			break;
 		case EPC_MEASURED_INSTANTANEOUS_POWER_CONSUMPTION :
-			edt = getMeasuredInstantaneousPowerConsumption();
+			edt = _getMeasuredInstantaneousPowerConsumption(epc);
 			res.addProperty(epc, edt, (edt != null && edt.length == 2));
 			break;
 		case EPC_MEASURED_CUMULATIVE_POWER_CONSUMPTION :
-			edt = getMeasuredCumulativePowerConsumption();
+			edt = _getMeasuredCumulativePowerConsumption(epc);
 			res.addProperty(epc, edt, (edt != null && edt.length == 4));
 			break;
 		case EPC_MANUFACTURERS_FAULT_CODE :
-			edt = getManufacturersFaultCode();
+			edt = _getManufacturersFaultCode(epc);
 			res.addProperty(epc, edt, (edt != null && edt.length <= 225));
 			break;
 		case EPC_CURRENT_LIMIT_SETTING :
-			edt = getCurrentLimitSetting();
+			edt = _getCurrentLimitSetting(epc);
 			res.addProperty(epc, edt, (edt != null && edt.length == 1));
 			break;
 		case EPC_FAULT_STATUS :
-			edt = getFaultStatus();
+			edt = _getFaultStatus(epc);
 			res.addProperty(epc, edt, (edt != null && edt.length == 1));
 			break;
 		case EPC_FAULT_DESCRIPTION :
-			edt = getFaultDescription();
+			edt = _getFaultDescription(epc);
 			res.addProperty(epc, edt, (edt != null && edt.length == 2));
 			break;
 		case EPC_MANUFACTURER_CODE :
-			edt = getManufacturerCode();
+			edt = _getManufacturerCode(epc);
 			res.addProperty(epc, edt, (edt != null && edt.length == 3));
 			break;
 		case EPC_BUSINESS_FACILITY_CODE :
-			edt = getBusinessFacilityCode();
+			edt = _getBusinessFacilityCode(epc);
 			res.addProperty(epc, edt, (edt != null && edt.length == 3));
 			break;
 		case EPC_PRODUCT_CODE :
-			edt = getProductCode();
+			edt = _getProductCode(epc);
 			res.addProperty(epc, edt, (edt != null && edt.length == 12));
 			break;
 		case EPC_PRODUCTION_NUMBER :
-			edt = getProductionNumber();
+			edt = _getProductionNumber(epc);
 			res.addProperty(epc, edt, (edt != null && edt.length == 12));
 			break;
 		case EPC_PRODUCTION_DATE :
-			edt = getProductionDate();
+			edt = _getProductionDate(epc);
 			res.addProperty(epc, edt, (edt != null && edt.length == 4));
 			break;
 		case EPC_POWER_SAVING_OPERATION_SETTING :
-			edt = getPowerSavingOperationSetting();
+			edt = _getPowerSavingOperationSetting(epc);
 			res.addProperty(epc, edt, (edt != null && edt.length == 1));
 			break;
 		case EPC_POSITION_INFORMATION :
-			edt = getPositionInformation();
+			edt = _getPositionInformation(epc);
 			res.addProperty(epc, edt, (edt != null && edt.length == 16));
 			break;
 		case EPC_CURRENT_TIME_SETTING :
-			edt = getCurrentTimeSetting();
+			edt = _getCurrentTimeSetting(epc);
 			res.addProperty(epc, edt, (edt != null && edt.length == 2));
 			break;
 		case EPC_CURRENT_DATE_SETTING :
-			edt = getCurrentDateSetting();
+			edt = _getCurrentDateSetting(epc);
 			res.addProperty(epc, edt, (edt != null && edt.length == 4));
 			break;
 		case EPC_POWER_LIMIT_SETTING :
-			edt = getPowerLimitSetting();
+			edt = _getPowerLimitSetting(epc);
 			res.addProperty(epc, edt, (edt != null && edt.length == 2));
 			break;
 		case EPC_CUMULATIVE_OPERATING_TIME :
-			edt = getCumulativeOperatingTime();
+			edt = _getCumulativeOperatingTime(epc);
 			res.addProperty(epc, edt, (edt != null && edt.length == 5));
 			break;
 		case EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP :
-			edt = getStatusChangeAnnouncementPropertyMap();
+			edt = _getStatusChangeAnnouncementPropertyMap(epc);
 			res.addProperty(epc, edt, (edt != null && edt.length <= 17));
 			break;
 		case EPC_SET_PROPERTY_MAP :
-			edt = getSetPropertyMap();
+			edt = _getSetPropertyMap(epc);
 			res.addProperty(epc, edt, (edt != null && edt.length <= 17));
 			break;
 		case EPC_GET_PROPERTY_MAP :
-			edt = getGetPropertyMap();
+			edt = _getGetPropertyMap(epc);
 			res.addProperty(epc, edt, (edt != null && edt.length <= 17));
 			break;
 		}
@@ -493,436 +760,668 @@ public abstract class DeviceObject extends EchoObject {
 	public static class Receiver extends EchoObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc, byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_OPERATION_STATUS :
-				onSetOperationStatus(eoj, tid, (pdc != 0));
+				_onSetOperationStatus(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_INSTALLATION_LOCATION :
-				onSetInstallationLocation(eoj, tid, (pdc != 0));
+				_onSetInstallationLocation(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_CURRENT_LIMIT_SETTING :
-				onSetCurrentLimitSetting(eoj, tid, (pdc != 0));
+				_onSetCurrentLimitSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_POWER_SAVING_OPERATION_SETTING :
-				onSetPowerSavingOperationSetting(eoj, tid, (pdc != 0));
+				_onSetPowerSavingOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_POSITION_INFORMATION :
-				onSetPositionInformation(eoj, tid, (pdc != 0));
+				_onSetPositionInformation(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_CURRENT_TIME_SETTING :
-				onSetCurrentTimeSetting(eoj, tid, (pdc != 0));
+				_onSetCurrentTimeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_CURRENT_DATE_SETTING :
-				onSetCurrentDateSetting(eoj, tid, (pdc != 0));
+				_onSetCurrentDateSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_POWER_LIMIT_SETTING :
-				onSetPowerLimitSetting(eoj, tid, (pdc != 0));
+				_onSetPowerLimitSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc, byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_OPERATION_STATUS :
-				onGetOperationStatus(eoj, tid, pdc, edt);
+				_onGetOperationStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_INSTALLATION_LOCATION :
-				onGetInstallationLocation(eoj, tid, pdc, edt);
+				_onGetInstallationLocation(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_STANDARD_VERSION_INFORMATION :
-				onGetStandardVersionInformation(eoj, tid, pdc, edt);
+				_onGetStandardVersionInformation(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_IDENTIFICATION_NUMBER :
-				onGetIdentificationNumber(eoj, tid, pdc, edt);
+				_onGetIdentificationNumber(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_INSTANTANEOUS_POWER_CONSUMPTION :
-				onGetMeasuredInstantaneousPowerConsumption(eoj, tid, pdc, edt);
+				_onGetMeasuredInstantaneousPowerConsumption(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_CUMULATIVE_POWER_CONSUMPTION :
-				onGetMeasuredCumulativehPowerConsumption(eoj, tid, pdc, edt);
+				_onGetMeasuredCumulativehPowerConsumption(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MANUFACTURERS_FAULT_CODE :
-				onGetManufacturersFaultCode(eoj, tid, pdc, edt);
+				_onGetManufacturersFaultCode(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_CURRENT_LIMIT_SETTING :
-				onGetCurrentLimitSetting(eoj, tid, pdc, edt);
+				_onGetCurrentLimitSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_FAULT_STATUS :
-				onGetFaultStatus(eoj, tid, pdc, edt);
+				_onGetFaultStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_FAULT_DESCRIPTION :
-				onGetFaultDescription(eoj, tid, pdc, edt);
+				_onGetFaultDescription(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MANUFACTURER_CODE :
-				onGetManufacturerCode(eoj, tid, pdc, edt);
+				_onGetManufacturerCode(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_BUSINESS_FACILITY_CODE :
-				onGetBusinessFacilityCode(eoj, tid, pdc, edt);
+				_onGetBusinessFacilityCode(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_PRODUCT_CODE :
-				onGetProductCode(eoj, tid, pdc, edt);
+				_onGetProductCode(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_PRODUCTION_NUMBER :
-				onGetProductionNumber(eoj, tid, pdc, edt);
+				_onGetProductionNumber(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_PRODUCTION_DATE :
-				onGetProductionDate(eoj, tid, pdc, edt);
+				_onGetProductionDate(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_POWER_SAVING_OPERATION_SETTING :
-				onGetPowerSavingOperationSetting(eoj, tid, pdc, edt);
+				_onGetPowerSavingOperationSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_POSITION_INFORMATION :
-				onGetPositionInformation(eoj, tid, pdc, edt);
+				_onGetPositionInformation(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_CURRENT_TIME_SETTING :
-				onGetCurrentTimeSetting(eoj, tid, pdc, edt);
+				_onGetCurrentTimeSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_CURRENT_DATE_SETTING :
-				onGetCurrentDateSetting(eoj, tid, pdc, edt);
+				_onGetCurrentDateSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_POWER_LIMIT_SETTING :
-				onGetPowerLimitSetting(eoj, tid, pdc, edt);
+				_onGetPowerLimitSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_CUMULATIVE_OPERATING_TIME :
-				onGetCumulativeOperatingTime(eoj, tid, pdc, edt);
+				_onGetCumulativeOperatingTime(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP :
-				onGetStatusChageAnnouncementPropertyMap(eoj, tid, pdc, edt);
+				_onGetStatusChageAnnouncementPropertyMap(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SET_PROPERTY_MAP :
-				onGetSetPropertyMap(eoj, tid, pdc, edt);
+				_onGetSetPropertyMap(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_GET_PROPERTY_MAP :
-				onGetGetPropertyMap(eoj, tid, pdc, edt);
+				_onGetGetPropertyMap(eoj, tid, esv, epc, pdc, edt);
 				break;
 			}
 		}
 
 		/**
-		 * プロパティ名称:動作状態
-		 * EPC:0x80
-		 * アクセスルール:Set/Get(必須)
-		 * 状態変化アナウンス必須
+		 * This property indicates the ON/OFF status.<br>
+		 * ON＝0x30，OFF＝0x31<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Set : optional<br>
+		 * Get : mandatory<br>
+		 * Announcement at status change
 		 */
-		protected void onSetOperationStatus(EchoObject eoj, short tid, boolean success) {
+		protected void onSetOperationStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetOperationStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetOperationStatus(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
 		}
 
 		/**
-		 * プロパティ名称:動作状態
-		 * EPC:0x80
-		 * アクセスルール:Set/Get(必須)
-		 * 状態変化アナウンス必須
+		 * This property indicates the ON/OFF status.<br>
+		 * ON＝0x30，OFF＝0x31<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Set : optional<br>
+		 * Get : mandatory<br>
+		 * Announcement at status change
 		 */
-		protected void onGetOperationStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {
+		protected void onGetOperationStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOperationStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOperationStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
+		
+		/**
+		 * This property indicates the installation location<br>
+		 * See “2.2 ‘Installation location’ property.”<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Set : mandatory<br>
+		 * Get : mandatory<br>
+		 * Announcement at status change
+		 */
+		protected void onSetInstallationLocation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetInstallationLocation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetInstallationLocation(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
 		}
 
 		/**
-		 * プロパティ名称:設置場所
-		 * EPC:0x81
-		 * アクセスルール:Set(必須)/Get(必須)
-		 * 状態変化アナウンス必須
+		 * This property indicates the installation location<br>
+		 * See “2.2 ‘Installation location’ property.”<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Set : mandatory<br>
+		 * Get : mandatory<br>
+		 * Announcement at status change
 		 */
-		protected void onSetInstallationLocation(EchoObject eoj, short tid, boolean success) {
-			
+		protected void onGetInstallationLocation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetInstallationLocation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetInstallationLocation(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
+		
+		/**
+		 * This property indicates the version number of the corresponding standard.<br>
+		 * First byte: Fixed at 0x00 (for future reserved). <br>
+		 * Second byte: Fixed at 0x00 (for future reserved). <br>
+		 * Third byte: Indicates the order of release in the ASCII format. <br>
+		 * Fourth byte: Fixed at 0x00 (for future reserved).<br><br>
+		 * Data type : unsigned char×4<br>
+		 * Data size : 4<br>
+		 * Set : undefined<br>
+		 * Get : mandatory
+		 */
+		protected void onGetStandardVersionInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetStandardVersionInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetStandardVersionInformation(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
+		
+		/**
+		 * A number that allows each object to be uniquely identified.<br>
+		 * First byte: lower-layer communication ID field<br>
+		 * 0x01－0xFD：This is a communication protocol used in the lower-layer communication and is set arbitrarily according to the protocol class in the case where unique number is assigned (not used in ECHONET Lite).<br>
+		 * 0x11－0x1F: Power line Communication Protocol A and B systems<br>
+		 * 0x31-0x3F: Designated low-powor radio<br>
+		 * 0x41-0x4F: Extended HBS<br>
+		 * 0x51-0x5F: IrDA<br>
+		 * 0x61-0x6F: LonTalk®<br>
+		 * 0x71-0x7F: BlueTooth<br>
+		 * 0x81-0x8F: Ethernet<br>
+		 * 0x91-0x9F: IEEE802.11/11B<br>
+		 * 0xA1: Power line Communication Protocol C systems<br>
+		 * 0xB2：IPv6/6LoWPAN<br>
+		 * 0xFE：2－17 bytes are defined by the manufacturer, and are set according to the type.<br>
+		 * 0xFF：2－9 bytes are defined when randomly generated protocol is used in the lower-layer communication.<br>
+		 * 0x00：Identification number is not set.<br>
+		 * Second and succeeding bytes: unique number field<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 9 or 17<br>
+		 * Set : undefined<br>
+		 * Get : optional
+		 */
+		protected void onGetIdentificationNumber(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetIdentificationNumber(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetIdentificationNumber(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
+		
+		/**
+		 * This property indicates the instantaneous power consumption of the device in watts.<br>
+		 * 0x0000-0xFFFF（0-65535W）<br><br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Set : undefined<br>
+		 * Get : optional
+		 */
+		protected void onGetMeasuredInstantaneousPowerConsumption(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredInstantaneousPowerConsumption(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredInstantaneousPowerConsumption(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
+		
+		/**
+		 * This property indicates the cumulative power consumption of the device in increments of 0.001kWh.<br>
+		 * 0x0-0x3B9AC9FF（0-999,999.999kWh）<br><br>
+		 * Data type : unsigned long<br>
+		 * Data size : 4<br>
+		 * Set : undefined<br>
+		 * Get : optional
+		 */
+		protected void onGetMeasuredCumulativehPowerConsumption(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredCumulativehPowerConsumption(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredCumulativehPowerConsumption(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
+		
+		/**
+		 * This property indicates the manufacturer-defined fault code.<br>
+		 * First byte: Indicates the data size of the fault code field.<br>
+		 * Second to fourth bytes: Manufacturer code<br>
+		 * Fifth and succeeding bytes: Field for manufacturer-defined fault code<br><br>
+		 * Data type : unsigned char×(MAX)225<br>
+		 * Data size : Max 225<br>
+		 * Set : undefined<br>
+		 * Get : optional
+		 */
+		protected void onGetManufacturersFaultCode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetManufacturersFaultCode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetManufacturersFaultCode(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
+		
+		/**
+		 * This property indicates the current limit setting (0-100%).<br>
+		 * 0x00-0x64 （=0-100%）<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Set : optional<br>
+		 * Get : optional
+		 */
+		protected void onSetCurrentLimitSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetCurrentLimitSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetCurrentLimitSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
 		}
 
 		/**
-		 * プロパティ名称:設置場所
-		 * EPC:0x81
-		 * アクセスルール:Set(必須)/Get(必須)
-		 * 状態変化アナウンス必須
+		 * This property indicates the current limit setting (0-100%).<br>
+		 * 0x00-0x64 （=0-100%）<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Set : optional<br>
+		 * Get : optional
 		 */
-		protected void onGetInstallationLocation(EchoObject eoj, short tid, byte pdc, byte[] edt) {
-			
+		protected void onGetCurrentLimitSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetCurrentLimitSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetCurrentLimitSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
 		}
 
 		/**
-		 * プロパティ名称:Version情報
-		 * EPC:0x82
-		 * アクセスルール:Get(必須)
+		 * This property indicates whether a fault (e.g. a sensor trouble) has occurred or not.<br>
+		 * Fault occurred＝0x41, No fault has occurred＝0x42<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Set : undefined<br>
+		 * Get : mandatory<br>
+		 * Announcement at status change
+		 */
+		protected void onGetFaultStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetFaultStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetFaultStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
+		
+		/**
+		 * Describes the fault.<br>
+		 * See “2.5 ‘Fault Description’ Property.”<br><br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Set : undefined<br>
+		 * Get : optional
+		 */
+		protected void onGetFaultDescription(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetFaultDescription(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetFaultDescription(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
+		
+		/**
+		 * 3-byte manufacturer code<br>
+		 * (Defined by the ECHONET Consortium.)<br><br>
+		 * Data type : unsigned char×3<br>
+		 * Data size : 3<br>
+		 * Set : undefined<br>
+		 * Get : mandatory
 		 */ 
-		protected void onGetStandardVersionInformation(EchoObject eoj, short tid, byte pdc, byte[] edt) {
-			
+		protected void onGetManufacturerCode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetManufacturerCode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetManufacturerCode(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
-		 * プロパティ名称:識別番号
-		 * EPC:0x83
-		 * アクセスルール:Get
+		 * 3-byte business facility code<br>
+		 * （Defined by each manufacturer.）<br><br>
+		 * Data type : unsigned char×3<br>
+		 * Data size : 3<br>
+		 * Set : undefined<br>
+		 * Get : optional
 		 */
-		protected void onGetIdentificationNumber(EchoObject eoj, short tid, byte pdc, byte[] edt) {
-		}
-
-		/**
-		 * プロパティ名称:瞬時消費電力計測値
-		 * EPC:0x84
-		 * アクセスルール:Get
-		 */
-		protected void onGetMeasuredInstantaneousPowerConsumption(EchoObject eoj, short tid, byte pdc, byte[] edt) {
-		}
-
-		/**
-		 * プロパティ名称:積算消費電力計測値
-		 * EPC:0x85
-		 * アクセスルール:Get
-		 */
-		protected void onGetMeasuredCumulativehPowerConsumption(EchoObject eoj, short tid, byte pdc, byte[] edt) {
-		}
-
-		/**
-		 * プロパティ名称:メーカ異常コード
-		 * EPC:0x86
-		 * アクセスルール:Get
-		 */	
-		protected void onGetManufacturersFaultCode(EchoObject eoj, short tid, byte pdc, byte[] edt) {
-		}
-
-		/**
-		 * プロパティ名称:電流制限設定
-		 * EPC:0x87
-		 * アクセスルール:Set/Get
-		 */
-		protected void onSetCurrentLimitSetting(EchoObject eoj, short tid, boolean success) {
-		}
-
-		/**
-		 * プロパティ名称:電流制限設定
-		 * EPC:0x87
-		 * アクセスルール:Set/Get
-		 */
-		protected void onGetCurrentLimitSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {
-		}
-
-		/**
-		 * プロパティ名称:異常発生状態
-		 * EPC:0x88
-		 * アクセスルール:Get(必須)
-		 */
-		protected void onGetFaultStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {
-			
+		protected void onGetBusinessFacilityCode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetBusinessFacilityCode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetBusinessFacilityCode(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
-		 * プロパティ名称:異常内容
-		 * EPC:0x89
-		 * アクセスルール:Get
+		 * Identifies the product usingASCI I code.<br>
+		 * （Defined by each manufacturer.）<br><br>
+		 * Data type : unsigned char×12<br>
+		 * Data size : 12<br>
+		 * Set : undefined<br>
+		 * Get : optional
 		 */
-		protected void onGetFaultDescription(EchoObject eoj, short tid, byte pdc, byte[] edt) {
+		protected void onGetProductCode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetProductCode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetProductCode(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
-		 * プロパティ名称:メーカコード
-		 * EPC:0x8A
-		 * アクセスルール:Get(必須)
-		 */ 
-		protected void onGetManufacturerCode(EchoObject eoj, short tid, byte pdc, byte[] edt) {
-			
+		 * This property indicates the production number using ASCI I code.<br>
+		 * （Defined by each manufacturer.）<br><br>
+		 * Data type : unsigned char×12<br>
+		 * Data size : 12<br>
+		 * Set : undefined<br>
+		 * Get : optional
+		 */
+		protected void onGetProductionNumber(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetProductionNumber(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetProductionNumber(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
-		 * プロパティ名称:事業場コード
-		 * EPC:0x8B
-		 * アクセスルール:Get
+		 * 4-byte production date code<br>
+		 * This property indicates the product ion date in the YYMD format (1 character = 1 byte) .<br>
+		 * YY： Year (e.g. 1999＝ 0x07CF)<br>
+		 * M： Month (e.g. December＝0x0C)<br>
+		 * D： Day (e.g. 20th＝ 0x14)<br><br>
+		 * Data type : unsigned char×4<br>
+		 * Data size : 4<br>
+		 * Set : undefined<br>
+		 * Get : optional
 		 */
-		protected void onGetBusinessFacilityCode(EchoObject eoj, short tid, byte pdc, byte[] edt) {
+		protected void onGetProductionDate(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetProductionDate(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetProductionDate(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
-		 * プロパティ名称:商品コード
-		 * EPC:0x8C
-		 * アクセスルール:Get
+		 * This property indicates whether the device is operating in power-saving mode.<br>
+		 * Operating in power-saving mode =0x41<br>
+		 * Operating in normal operation mode =0x42<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Set : optional<br>
+		 * Get : optional
 		 */
-		protected void onGetProductCode(EchoObject eoj, short tid, byte pdc, byte[] edt) {
-		}
-
-		/**
-		 * プロパティ名称:製造番号
-		 * EPC:0x8D
-		 * アクセスルール:Get
-		 */
-		protected void onGetProductionNumber(EchoObject eoj, short tid, byte pdc, byte[] edt) {
+		protected void onSetPowerSavingOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetPowerSavingOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetPowerSavingOperationSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		
 		/**
-		 * プロパティ名称:製造年月日
-		 * EPC:0x8E
-		 * アクセスルール:Get
+		 * This property indicates whether the device is operating in power-saving mode.<br>
+		 * Operating in power-saving mode =0x41<br>
+		 * Operating in normal operation mode =0x42<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Set : optional<br>
+		 * Get : optional
 		 */
-		protected void onGetProductionDate(EchoObject eoj, short tid, byte pdc, byte[] edt) {
-		}
-
-		/**
-		 * プロパティ名称:節電動作設定
-		 * EPC:0x8F
-		 * アクセスルール:Set/Get
-		 */
-		protected void onSetPowerSavingOperationSetting(EchoObject eoj, short tid, boolean success) {
-		}
-
-		/**
-		 * プロパティ名称:節電動作設定
-		 * EPC:0x8F
-		 * アクセスルール:Set/Get
-		 */
-		protected void onGetPowerSavingOperationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {
-		}
-
-		/**
-		 * プロパティ名称:位置情報
-		 * EPC:0x93
-		 * アクセスルール:Set/Get
-		 * 状態変化アナウンス必須
-		 */
-		protected void onSetPositionInformation(EchoObject eoj, short tid, boolean success) {
-		}
-
-		/**
-		 * プロパティ名称:位置情報
-		 * EPC:0x93
-		 * アクセスルール:Set/Get
-		 * 状態変化アナウンス必須
-		 */	
-		protected void onGetPositionInformation(EchoObject eoj, short tid, byte pdc, byte[] edt) {
-		}
-
-		/**
-		 * プロパティ名称:現在時刻設定
-		 * EPC:0x97
-		 * アクセスルール:Set/Get
-		 */
-		protected void onSetCurrentTimeSetting(EchoObject eoj, short tid, boolean success) {
-		}
-
-		/**
-		 * プロパティ名称:現在時刻設定
-		 * EPC:0x97
-		 * アクセスルール:Set/Get
-		 */
-		protected void onGetCurrentTimeSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {
-		}
-
-		/**
-		 * プロパティ名称:現在年月日設定
-		 * EPC:0x98
-		 * アクセスルール:Set/Get
-		 */
-		protected void onSetCurrentDateSetting(EchoObject eoj, short tid, boolean success) {
-		}
-
-		/**
-		 * プロパティ名称:現在年月日設定
-		 * EPC:0x98
-		 * アクセスルール:Set/Get
-		 */
-		protected void onGetCurrentDateSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {
-		}
-
-		/**
-		 * プロパティ名称:電力制限設定
-		 * EPC:0x99
-		 * アクセスルール:Set/Get
-		 */
-		protected void onSetPowerLimitSetting(EchoObject eoj, short tid, boolean success) {
-		}
-
-		/**
-		 * プロパティ名称:電力制限設定
-		 * EPC:0x99
-		 * アクセスルール:Set/Get
-		 */
-		protected void onGetPowerLimitSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {
-		}
-
-		/**
-		 * プロパティ名称:積算運転時間
-		 * EPC:0x9A
-		 * アクセスルール:Set/Get
-		 */
-		protected void onGetCumulativeOperatingTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {
+		protected void onGetPowerSavingOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetPowerSavingOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetPowerSavingOperationSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
-		 * プロパティ名称:状変アナウンスプロパティマップ
-		 * EPC:0x9D
-		 * アクセスルール:Get(必須)
+		 * This property indicates the latitude, longitude and altitude of the installation location.<br><br>
+		 * Data type : unsigned char×16<br>
+		 * Data size : 16<br>
+		 * Set : optional<br>
+		 * Get : optional<br>
+		 * Announcement at status change
 		 */
-		protected void onGetStatusChageAnnouncementPropertyMap(EchoObject eoj, short tid, byte pdc, byte[] edt) {
-		}
-		
-		/**
-		 * プロパティ名称:Setプロパティマップ
-		 * EPC:0x9E
-		 * アクセスルール:Get(必須)
-		 */
-		protected void onGetSetPropertyMap(EchoObject eoj, short tid, byte pdc, byte[] edt) {
+		protected void onSetPositionInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetPositionInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetPositionInformation(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
 		}
 
 		/**
-		 * プロパティ名称:Getプロパティマップ
-		 * EPC:0x9F
-		 * アクセスルール:Get(必須)
+		 * This property indicates the latitude, longitude and altitude of the installation location.<br><br>
+		 * Data type : unsigned char×16<br>
+		 * Data size : 16<br>
+		 * Set : optional<br>
+		 * Get : optional<br>
+		 * Announcement at status change
 		 */
-		protected void onGetGetPropertyMap(EchoObject eoj, short tid, byte pdc, byte[] edt) {
-			
+		protected void onGetPositionInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetPositionInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetPositionInformation(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
+		
+		/**
+		 * Current time (HH：MM format)<br>
+		 * 0x00-0x17：0x00-0x3B（ ＝ 0-23）：（ ＝ 0-59）<br><br>
+		 * Data type : unsigned char×2<br>
+		 * Data size : 2<br>
+		 * Set : optional<br>
+		 * Get : optional
+		 */
+		protected void onSetCurrentTimeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetCurrentTimeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetCurrentTimeSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
+		
+		/**
+		 * Current time (HH：MM format)<br>
+		 * 0x00-0x17：0x00-0x3B（ ＝ 0-23）：（ ＝ 0-59）<br><br>
+		 * Data type : unsigned char×2<br>
+		 * Data size : 2<br>
+		 * Set : optional<br>
+		 * Get : optional
+		 */
+		protected void onGetCurrentTimeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetCurrentTimeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetCurrentTimeSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
+		
+		/**
+		 * Current date (YYYY：MM：DD format)<br>
+		 * 1 ～ 0x270F ： 1 ～ 0x0C ： 1 ～ 0x1F (=1 ～ 9999) ： (=1 ～ 12) ： (=1 ～ 31)<br><br>
+		 * Data type : unsigned char×4<br>
+		 * Data size : 4<br>
+		 * Set : optional<br>
+		 * Get : optional
+		 */
+		protected void onSetCurrentDateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetCurrentDateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetCurrentDateSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
 		}
 
+		/**
+		 * Current date (YYYY：MM：DD format)<br>
+		 * 1 ～ 0x270F ： 1 ～ 0x0C ： 1 ～ 0x1F (=1 ～ 9999) ： (=1 ～ 12) ： (=1 ～ 31)<br><br>
+		 * Data type : unsigned char×4<br>
+		 * Data size : 4<br>
+		 * Set : optional<br>
+		 * Get : optional
+		 */
+		protected void onGetCurrentDateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetCurrentDateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetCurrentDateSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		
+		/**
+		 * This property indicates the power limit setting in watts.<br>
+		 * 0x0000~0xFFFF（0-65535W）<br><br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Set : optional<br>
+		 * Get : optional
+		 */
+		protected void onSetPowerLimitSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetPowerLimitSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetPowerLimitSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
+
+		/**
+		 * This property indicates the power limit setting in watts.<br>
+		 * 0x0000~0xFFFF（0-65535W）<br><br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Set : optional<br>
+		 * Get : optional
+		 */
+		protected void onGetPowerLimitSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetPowerLimitSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetPowerLimitSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
+		
+		/**
+		 * This property indicates the cumulative number of days, hours, minutes or seconds for which the device has operated, using 1 byte for the unit and 4 bytes for the time.<br>
+		 * First byte: Indicates the unit.<br>
+		 * Second： 0x41; Minute： 0x42; Hour： 0x43; Day:0x44<br>
+		 * Second to fifth bytes ：<br>
+		 * Indicates the elapsed time in the unit specified by the first byte. 0x00000000-0xFFFFFFFF (0-4294967295)<br><br>
+		 * Data type : unsigned char + unsigned long<br>
+		 * Data size : 1+4 Byte<br>
+		 * Set : undefined<br>
+		 * Get : optional
+		 */
+		protected void onGetCumulativeOperatingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetCumulativeOperatingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetCumulativeOperatingTime(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
+		
+		/**
+		 * See Appendix 1.<br><br>
+		 * Data type : unsigned char×(MAX17)<br>
+		 * Data size : Max.17<br>
+		 * Set : undefined<br>
+		 * Get : mandatory
+		 */
+		protected void onGetStatusChageAnnouncementPropertyMap(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetStatusChageAnnouncementPropertyMap(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetStatusChageAnnouncementPropertyMap(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
+		
+		/**
+		 * See Appendix 1.<br><br>
+		 * Data type : unsigned char×(MAX17)<br>
+		 * Data size : Max.17<br>
+		 * Set : undefined<br>
+		 * Get : mandatory
+		 */
+		protected void onGetSetPropertyMap(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSetPropertyMap(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSetPropertyMap(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
+		
+		/**
+		 * See Appendix 1.<br><br>
+		 * Data type : unsigned char×(MAX17)<br>
+		 * Data size : Max.17<br>
+		 * Set : undefined<br>
+		 * Get : mandatory
+		 */
+		protected void onGetGetPropertyMap(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetGetPropertyMap(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetGetPropertyMap(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 	}
 
 	public interface Setter extends EchoObject.Setter {
 		/**
-		 * プロパティ名称:動作状態
-		 * EPC:0x80
-		 * アクセスルール:Set/Get(必須)
-		 * 状態変化アナウンス必須
+		 * This property indicates the ON/OFF status.<br>
+		 * ON＝0x30，OFF＝0x31<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Set : optional<br>
+		 * Get : mandatory<br>
+		 * Announcement at status change
 		 */
 		public Setter reqSetOperationStatus(byte[] edt);
 		/**
-		 * プロパティ名称:設置場所
-		 * EPC:0x81
-		 * アクセスルール:Set(必須)/Get(必須)
-		 * 状態変化アナウンス必須
+		 * This property indicates the installation location<br>
+		 * See “2.2 ‘Installation location’ property.”<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Set : mandatory<br>
+		 * Get : mandatory<br>
+		 * Announcement at status change
 		 */
 		public Setter reqSetInstallationLocation(byte[] edt);
 		/**
-		 * プロパティ名称:電流制限設定
-		 * EPC:0x87
-		 * アクセスルール:Set/Get
+		 * This property indicates the current limit setting (0-100%).<br>
+		 * 0x00-0x64 （=0-100%）<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Set : optional<br>
+		 * Get : optional
 		 */
 		public Setter reqSetCurrentLimitSetting(byte[] edt);
 		/**
-		 * プロパティ名称:節電動作設定
-		 * EPC:0x8F
-		 * アクセスルール:Set/Get
+		 * This property indicates whether the device is operating in power-saving mode.<br>
+		 * Operating in power-saving mode =0x41<br>
+		 * Operating in normal operation mode =0x42<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Set : optional<br>
+		 * Get : optional
 		 */
 		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
 		/**
-		 * プロパティ名称:位置情報
-		 * EPC:0x93
-		 * アクセスルール:Set/Get
-		 * 状態変化アナウンス必須
+		 * This property indicates the latitude, longitude and altitude of the installation location.<br><br>
+		 * Data type : unsigned char×16<br>
+		 * Data size : 16<br>
+		 * Set : optional<br>
+		 * Get : optional<br>
+		 * Announcement at status change
 		 */
 		public Setter reqSetPositionInformation(byte[] edt);
 		/**
-		 * プロパティ名称:現在時刻設定
-		 * EPC:0x97
-		 * アクセスルール:Set/Get
+		 * Current time (HH：MM format)<br>
+		 * 0x00-0x17：0x00-0x3B（ ＝ 0-23）：（ ＝ 0-59）<br><br>
+		 * Data type : unsigned char×2<br>
+		 * Data size : 2<br>
+		 * Set : optional<br>
+		 * Get : optional
 		 */
 		public Setter reqSetCurrentTimeSetting(byte[] edt);
 		/**
-		 * プロパティ名称:現在年月日設定
-		 * EPC:0x98
-		 * アクセスルール:Set/Get
+		 * Current date (YYYY：MM：DD format)<br>
+		 * 1 ～ 0x270F ： 1 ～ 0x0C ： 1 ～ 0x1F (=1 ～ 9999) ： (=1 ～ 12) ： (=1 ～ 31)<br><br>
+		 * Data type : unsigned char×4<br>
+		 * Data size : 4<br>
+		 * Set : optional<br>
+		 * Get : optional
 		 */
 		public Setter reqSetCurrentDateSetting(byte[] edt);
 		/**
-		 * プロパティ名称:電力制限設定
-		 * EPC:0x99
-		 * アクセスルール:Set/Get
+		 * This property indicates the power limit setting in watts.<br>
+		 * 0x0000~0xFFFF（0-65535W）<br><br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Set : optional<br>
+		 * Get : optional
 		 */
 		public Setter reqSetPowerLimitSetting(byte[] edt);
 	}
@@ -935,49 +1434,57 @@ public abstract class DeviceObject extends EchoObject {
 		
 		@Override
 		public Setter reqSetOperationStatus(byte[] edt) {
-			addProperty(EPC_OPERATION_STATUS, edt, setOperationStatus(edt));
+			byte epc = EPC_OPERATION_STATUS;
+			addProperty(epc, edt, _setOperationStatus(epc, edt));
 			return this;
 		}
 
 		@Override
 		public Setter reqSetInstallationLocation(byte[] edt) {
-			addProperty(EPC_INSTALLATION_LOCATION, edt, setInstallationLocation(edt));
+			byte epc = EPC_INSTALLATION_LOCATION;
+			addProperty(epc, edt, _setInstallationLocation(epc, edt));
 			return this;
 		}
 
 		@Override
 		public Setter reqSetCurrentLimitSetting(byte[] edt) {
-			addProperty(EPC_CURRENT_LIMIT_SETTING, edt, setCurrentLimitSetting(edt));
+			byte epc = EPC_CURRENT_LIMIT_SETTING;
+			addProperty(epc, edt, _setCurrentLimitSetting(epc, edt));
 			return this;
 		}
 		
 		@Override
 		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
-			addProperty(EPC_POWER_SAVING_OPERATION_SETTING, edt, setPowerSavingOperationSetting(edt));
+			byte epc = EPC_POWER_SAVING_OPERATION_SETTING;
+			addProperty(epc, edt, _setPowerSavingOperationSetting(epc, edt));
 			return this;
 		}
 
 		@Override
 		public Setter reqSetPositionInformation(byte[] edt) {
-			addProperty(EPC_POSITION_INFORMATION, edt, setPositionInformation(edt));
+			byte epc = EPC_POSITION_INFORMATION;
+			addProperty(epc, edt, _setPositionInformation(epc, edt));
 			return this;
 		}
 
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
-			addProperty(EPC_CURRENT_TIME_SETTING, edt, setCurrentTimeSetting(edt));
+			byte epc = EPC_CURRENT_TIME_SETTING;
+			addProperty(epc, edt, _setCurrentTimeSetting(epc, edt));
 			return this;
 		}
 
 		@Override
 		public Setter reqSetCurrentDateSetting(byte[] edt) {
-			addProperty(EPC_CURRENT_DATE_SETTING, edt, setCurrentDateSetting(edt));
+			byte epc = EPC_CURRENT_DATE_SETTING;
+			addProperty(epc, edt, _setCurrentDateSetting(epc, edt));
 			return this;
 		}
 
 		@Override
 		public Setter reqSetPowerLimitSetting(byte[] edt) {
-			addProperty(EPC_POWER_LIMIT_SETTING, edt, setPowerLimitSetting(edt));
+			byte epc = EPC_POWER_LIMIT_SETTING;
+			addProperty(epc, edt, _setPowerLimitSetting(epc, edt));
 			return this;
 		}
 		
@@ -1041,150 +1548,246 @@ public abstract class DeviceObject extends EchoObject {
 	
 	public interface Getter extends EchoObject.Getter {
 		/**
-		 * プロパティ名称:動作状態
-		 * EPC:0x80
-		 * アクセスルール:Set/Get(必須)
-		 * 状態変化アナウンス必須
+		 * This property indicates the ON/OFF status.<br>
+		 * ON＝0x30，OFF＝0x31<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Set : optional<br>
+		 * Get : mandatory<br>
+		 * Announcement at status change
 		 */
 		public Getter reqGetOperationStatus();
 		/**
-		 * プロパティ名称:設置場所
-		 * EPC:0x81
-		 * アクセスルール:Set(必須)/Get(必須)
-		 * 状態変化アナウンス必須
+		 * This property indicates the installation location<br>
+		 * See “2.2 ‘Installation location’ property.”<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Set : mandatory<br>
+		 * Get : mandatory<br>
+		 * Announcement at status change
 		 */
 		public Getter reqGetInstallationLocation();
 		/**
-		 * プロパティ名称:Version情報
-		 * EPC:0x82
-		 * アクセスルール:Get(必須)
-		 */ 
+		 * This property indicates the version number of the corresponding standard.<br>
+		 * First byte: Fixed at 0x00 (for future reserved). <br>
+		 * Second byte: Fixed at 0x00 (for future reserved). <br>
+		 * Third byte: Indicates the order of release in the ASCII format. <br>
+		 * Fourth byte: Fixed at 0x00 (for future reserved).<br><br>
+		 * Data type : unsigned char×4<br>
+		 * Data size : 4<br>
+		 * Set : undefined<br>
+		 * Get : mandatory
+		 */
 		public Getter reqGetStandardVersionInformation();
 		/**
-		 * プロパティ名称:識別番号
-		 * EPC:0x83
-		 * アクセスルール:Get
+		 * A number that allows each object to be uniquely identified.<br>
+		 * First byte: lower-layer communication ID field<br>
+		 * 0x01－0xFD：This is a communication protocol used in the lower-layer communication and is set arbitrarily according to the protocol class in the case where unique number is assigned (not used in ECHONET Lite).<br>
+		 * 0x11－0x1F: Power line Communication Protocol A and B systems<br>
+		 * 0x31-0x3F: Designated low-powor radio<br>
+		 * 0x41-0x4F: Extended HBS<br>
+		 * 0x51-0x5F: IrDA<br>
+		 * 0x61-0x6F: LonTalk®<br>
+		 * 0x71-0x7F: BlueTooth<br>
+		 * 0x81-0x8F: Ethernet<br>
+		 * 0x91-0x9F: IEEE802.11/11B<br>
+		 * 0xA1: Power line Communication Protocol C systems<br>
+		 * 0xB2：IPv6/6LoWPAN<br>
+		 * 0xFE：2－17 bytes are defined by the manufacturer, and are set according to the type.<br>
+		 * 0xFF：2－9 bytes are defined when randomly generated protocol is used in the lower-layer communication.<br>
+		 * 0x00：Identification number is not set.<br>
+		 * Second and succeeding bytes: unique number field<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 9 or 17<br>
+		 * Set : undefined<br>
+		 * Get : optional
 		 */
 		public Getter reqGetIdentificationNumber();
 		/**
-		 * プロパティ名称:瞬時消費電力計測値
-		 * EPC:0x84
-		 * アクセスルール:Get
+		 * This property indicates the instantaneous power consumption of the device in watts.<br>
+		 * 0x0000-0xFFFF（0-65535W）<br><br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Set : undefined<br>
+		 * Get : optional
 		 */
 		public Getter reqGetMeasuredInstantaneousPowerConsumption();
 		/**
-		 * プロパティ名称:積算消費電力計測値
-		 * EPC:0x85
-		 * アクセスルール:Get
+		 * This property indicates the cumulative power consumption of the device in increments of 0.001kWh.<br>
+		 * 0x0-0x3B9AC9FF（0-999,999.999kWh）<br><br>
+		 * Data type : unsigned long<br>
+		 * Data size : 4<br>
+		 * Set : undefined<br>
+		 * Get : optional
 		 */
 		public Getter reqGetMeasuredCumulativePowerConsumption();
 		/**
-		 * プロパティ名称:メーカ異常コード
-		 * EPC:0x86
-		 * アクセスルール:Get
-		 */	
+		 * This property indicates the manufacturer-defined fault code.<br>
+		 * First byte: Indicates the data size of the fault code field.<br>
+		 * Second to fourth bytes: Manufacturer code<br>
+		 * Fifth and succeeding bytes: Field for manufacturer-defined fault code<br><br>
+		 * Data type : unsigned char×(MAX)225<br>
+		 * Data size : Max 225<br>
+		 * Set : undefined<br>
+		 * Get : optional
+		 */
 		public Getter reqGetManufacturersFaultCode();
 		/**
-		 * プロパティ名称:電流制限設定
-		 * EPC:0x87
-		 * アクセスルール:Set/Get
+		 * This property indicates the current limit setting (0-100%).<br>
+		 * 0x00-0x64 （=0-100%）<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Set : optional<br>
+		 * Get : optional
 		 */
 		public Getter reqGetCurrentLimitSetting();
 		/**
-		 * プロパティ名称:異常発生状態
-		 * EPC:0x88
-		 * アクセスルール:Get(必須)
+		 * This property indicates whether a fault (e.g. a sensor trouble) has occurred or not.<br>
+		 * Fault occurred＝0x41, No fault has occurred＝0x42<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Set : undefined<br>
+		 * Get : mandatory<br>
+		 * Announcement at status change
 		 */
 		public Getter reqGetFaultStatus();
 		/**
-		 * プロパティ名称:異常内容
-		 * EPC:0x89
-		 * アクセスルール:Get
+		 * Describes the fault.<br>
+		 * See “2.5 ‘Fault Description’ Property.”<br><br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Set : undefined<br>
+		 * Get : optional
 		 */
 		public Getter reqGetFaultDescription();
 		/**
-		 * プロパティ名称:メーカコード
-		 * EPC:0x8A
-		 * アクセスルール:Get(必須)
-		 */ 
+		 * 3-byte manufacturer code<br>
+		 * (Defined by the ECHONET Consortium.)<br><br>
+		 * Data type : unsigned char×3<br>
+		 * Data size : 3<br>
+		 * Set : undefined<br>
+		 * Get : mandatory
+		 */
 		public Getter reqGetManufacturerCode();
 		/**
-		 * プロパティ名称:事業場コード
-		 * EPC:0x8B
-		 * アクセスルール:Get
+		 * 3-byte business facility code<br>
+		 * （Defined by each manufacturer.）<br><br>
+		 * Data type : unsigned char×3<br>
+		 * Data size : 3<br>
+		 * Set : undefined<br>
+		 * Get : optional
 		 */
 		public Getter reqGetBusinessFacilityCode();
 		/**
-		 * プロパティ名称:商品コード
-		 * EPC:0x8C
-		 * アクセスルール:Get
+		 * Identifies the product usingASCI I code.<br>
+		 * （Defined by each manufacturer.）<br><br>
+		 * Data type : unsigned char×12<br>
+		 * Data size : 12<br>
+		 * Set : undefined<br>
+		 * Get : optional
 		 */
 		public Getter reqGetProductCode();
 		/**
-		 * プロパティ名称:製造番号
-		 * EPC:0x8D
-		 * アクセスルール:Get
+		 * This property indicates the production number using ASCI I code.<br>
+		 * （Defined by each manufacturer.）<br><br>
+		 * Data type : unsigned char×12<br>
+		 * Data size : 12<br>
+		 * Set : undefined<br>
+		 * Get : optional
 		 */
 		public Getter reqGetProductionNumber();
 		/**
-		 * プロパティ名称:製造年月日
-		 * EPC:0x8E
-		 * アクセスルール:Get
+		 * 4-byte production date code<br>
+		 * This property indicates the product ion date in the YYMD format (1 character = 1 byte) .<br>
+		 * YY： Year (e.g. 1999＝ 0x07CF)<br>
+		 * M： Month (e.g. December＝0x0C)<br>
+		 * D： Day (e.g. 20th＝ 0x14)<br><br>
+		 * Data type : unsigned char×4<br>
+		 * Data size : 4<br>
+		 * Set : undefined<br>
+		 * Get : optional
 		 */
 		public Getter reqGetProductionDate();
 		/**
-		 * プロパティ名称:節電動作設定
-		 * EPC:0x8F
-		 * アクセスルール:Set/Get
+		 * This property indicates whether the device is operating in power-saving mode.<br>
+		 * Operating in power-saving mode =0x41<br>
+		 * Operating in normal operation mode =0x42<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Set : optional<br>
+		 * Get : optional
 		 */
 		public Getter reqGetPowerSavingOperationSetting();
 		/**
-		 * プロパティ名称:位置情報
-		 * EPC:0x93
-		 * アクセスルール:Set/Get
-		 * 状態変化アナウンス必須
-		 */	
+		 * This property indicates the latitude, longitude and altitude of the installation location.<br><br>
+		 * Data type : unsigned char×16<br>
+		 * Data size : 16<br>
+		 * Set : optional<br>
+		 * Get : optional<br>
+		 * Announcement at status change
+		 */
 		public Getter reqGetPositionInformation();
 		/**
-		 * プロパティ名称:現在時刻設定
-		 * EPC:0x97
-		 * アクセスルール:Set/Get
+		 * Current time (HH：MM format)<br>
+		 * 0x00-0x17：0x00-0x3B（ ＝ 0-23）：（ ＝ 0-59）<br><br>
+		 * Data type : unsigned char×2<br>
+		 * Data size : 2<br>
+		 * Set : optional<br>
+		 * Get : optional
 		 */
 		public Getter reqGetCurrentTimeSetting();
 		/**
-		 * プロパティ名称:現在年月日設定
-		 * EPC:0x98
-		 * アクセスルール:Set/Get
+		 * Current date (YYYY：MM：DD format)<br>
+		 * 1 ～ 0x270F ： 1 ～ 0x0C ： 1 ～ 0x1F (=1 ～ 9999) ： (=1 ～ 12) ： (=1 ～ 31)<br><br>
+		 * Data type : unsigned char×4<br>
+		 * Data size : 4<br>
+		 * Set : optional<br>
+		 * Get : optional
 		 */
 		public Getter reqGetCurrentDateSetting();
 		/**
-		 * プロパティ名称:電力制限設定
-		 * EPC:0x99
-		 * アクセスルール:Set/Get
+		 * This property indicates the power limit setting in watts.<br>
+		 * 0x0000~0xFFFF（0-65535W）<br><br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Set : optional<br>
+		 * Get : optional
 		 */
 		public Getter reqGetPowerLimitSetting();
 		/**
-		 * プロパティ名称:積算運転時間
-		 * EPC:0x9A
-		 * アクセスルール:Set/Get
+		 * This property indicates the cumulative number of days, hours, minutes or seconds for which the device has operated, using 1 byte for the unit and 4 bytes for the time.<br>
+		 * First byte: Indicates the unit.<br>
+		 * Second： 0x41; Minute： 0x42; Hour： 0x43; Day:0x44<br>
+		 * Second to fifth bytes ：<br>
+		 * Indicates the elapsed time in the unit specified by the first byte. 0x00000000-0xFFFFFFFF (0-4294967295)<br><br>
+		 * Data type : unsigned char + unsigned long<br>
+		 * Data size : 1+4 Byte<br>
+		 * Set : undefined<br>
+		 * Get : optional
 		 */
 		public Getter reqGetCumulativeOperatingTime();
 		/**
-		 * プロパティ名称:状変アナウンスプロパティマップ
-		 * EPC:0x9D
-		 * アクセスルール:Get(必須)
+		 * See Appendix 1.<br><br>
+		 * Data type : unsigned char×(MAX17)<br>
+		 * Data size : Max.17<br>
+		 * Set : undefined<br>
+		 * Get : mandatory
 		 */
 		public Getter reqGetStatusChangeAnnouncementPropertyMap();
 		/**
-		 * プロパティ名称:Setプロパティマップ
-		 * EPC:0x9E
-		 * アクセスルール:Get(必須)
+		 * See Appendix 1.<br><br>
+		 * Data type : unsigned char×(MAX17)<br>
+		 * Data size : Max.17<br>
+		 * Set : undefined<br>
+		 * Get : mandatory
 		 */
 		public Getter reqGetSetPropertyMap();
 		/**
-		 * プロパティ名称:Getプロパティマップ
-		 * EPC:0x9F
-		 * アクセスルール:Get(必須)
+		 * See Appendix 1.<br><br>
+		 * Data type : unsigned char×(MAX17)<br>
+		 * Data size : Max.17<br>
+		 * Set : undefined<br>
+		 * Get : mandatory
 		 */
 		public Getter reqGetGetPropertyMap();
 	}
@@ -1193,169 +1796,193 @@ public abstract class DeviceObject extends EchoObject {
 
 		@Override
 		public Getter reqGetOperationStatus() {
-			byte[] edt = getOperationStatus();
-			addProperty(EPC_OPERATION_STATUS, edt, (edt != null && edt.length == 1));
+			byte epc = EPC_OPERATION_STATUS;
+			byte[] edt = _getOperationStatus(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 1));
 			return this;
 		}
 
 		@Override
 		public Getter reqGetInstallationLocation() {
-			byte[] edt = getInstallationLocation();
-			addProperty(EPC_INSTALLATION_LOCATION, edt, (edt != null && edt.length == 1));
+			byte epc = EPC_INSTALLATION_LOCATION;
+			byte[] edt = _getInstallationLocation(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 1));
 			return this;
 		}
 
 		@Override
 		public Getter reqGetStandardVersionInformation() {
-			byte[] edt = getStandardVersionInformation();
-			addProperty(EPC_STANDARD_VERSION_INFORMATION, edt, (edt != null && edt.length == 4));
+			byte epc = EPC_STANDARD_VERSION_INFORMATION;
+			byte[] edt = _getStandardVersionInformation(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 4));
 			return this;
 		}
 
 		@Override
 		public Getter reqGetIdentificationNumber() {
-			byte[] edt = getIdentificationNumber();
-			addProperty(EPC_IDENTIFICATION_NUMBER, edt, (edt != null && (edt.length == 9 || edt.length == 17)));
+			byte epc = EPC_IDENTIFICATION_NUMBER;
+			byte[] edt = _getIdentificationNumber(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 9 || edt.length == 17)));
 			return this;
 		}
 
 		@Override
 		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			byte[] edt = getMeasuredInstantaneousPowerConsumption();
-			addProperty(EPC_MEASURED_INSTANTANEOUS_POWER_CONSUMPTION, edt, (edt != null && edt.length == 2));
+			byte epc = EPC_MEASURED_INSTANTANEOUS_POWER_CONSUMPTION;
+			byte[] edt = _getMeasuredInstantaneousPowerConsumption(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 2));
 			return this;
 		}
 
 		@Override
 		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			byte[] edt = getMeasuredCumulativePowerConsumption();
-			addProperty(EPC_MEASURED_CUMULATIVE_POWER_CONSUMPTION, edt, (edt != null && edt.length == 4));
+			byte epc = EPC_MEASURED_CUMULATIVE_POWER_CONSUMPTION;
+			byte[] edt = _getMeasuredCumulativePowerConsumption(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 4));
 			return this;
 		}
 
 		@Override
 		public Getter reqGetManufacturersFaultCode() {
-			byte[] edt = getManufacturersFaultCode();
-			addProperty(EPC_MANUFACTURERS_FAULT_CODE, edt, (edt != null && edt.length <= 225));
+			byte epc = EPC_MANUFACTURERS_FAULT_CODE;
+			byte[] edt = _getManufacturersFaultCode(epc);
+			addProperty(epc, edt, (edt != null && edt.length <= 225));
 			return this;
 		}
 
 		@Override
 		public Getter reqGetCurrentLimitSetting() {
-			byte[] edt = getCurrentLimitSetting();
-			addProperty(EPC_CURRENT_LIMIT_SETTING, edt, (edt != null && edt.length == 1));
+			byte epc = EPC_CURRENT_LIMIT_SETTING;
+			byte[] edt = _getCurrentLimitSetting(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 1));
 			return this;
 		}
 
 		@Override
 		public Getter reqGetFaultStatus() {
-			byte[] edt = getFaultStatus();
-			addProperty(EPC_FAULT_STATUS, edt, (edt != null && edt.length == 1));
+			byte epc = EPC_FAULT_STATUS;
+			byte[] edt = _getFaultStatus(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 1));
 			return this;
 		}
 
 		@Override
 		public Getter reqGetFaultDescription() {
-			byte[] edt = getFaultDescription();
-			addProperty(EPC_FAULT_DESCRIPTION, edt, (edt != null && edt.length == 2));
+			byte epc = EPC_FAULT_DESCRIPTION;
+			byte[] edt = _getFaultDescription(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 2));
 			return this;
 		}
 
 		@Override
 		public Getter reqGetManufacturerCode() {
-			byte[] edt = getManufacturerCode();
-			addProperty(EPC_MANUFACTURER_CODE, edt, (edt != null && edt.length == 3));
+			byte epc = EPC_MANUFACTURER_CODE;
+			byte[] edt = _getManufacturerCode(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 3));
 			return this;
 		}
 
 		@Override
 		public Getter reqGetBusinessFacilityCode() {
-			byte[] edt = getBusinessFacilityCode();
-			addProperty(EPC_BUSINESS_FACILITY_CODE, edt, (edt != null && edt.length == 3));
+			byte epc = EPC_BUSINESS_FACILITY_CODE;
+			byte[] edt = _getBusinessFacilityCode(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 3));
 			return this;
 		}
 
 		@Override
 		public Getter reqGetProductCode() {
-			byte[] edt = getProductCode();
-			addProperty(EPC_PRODUCT_CODE, edt, (edt != null && edt.length == 12));
+			byte epc = EPC_PRODUCT_CODE;
+			byte[] edt = _getProductCode(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 12));
 			return this;
 		}
 
 		@Override
 		public Getter reqGetProductionNumber() {
-			byte[] edt = getProductionNumber();
-			addProperty(EPC_PRODUCTION_NUMBER, edt, (edt != null && edt.length == 12));
+			byte epc = EPC_PRODUCTION_NUMBER;
+			byte[] edt = _getProductionNumber(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 12));
 			return this;
 		}
 
 		@Override
 		public Getter reqGetProductionDate() {
-			byte[] edt = getProductionDate();
-			addProperty(EPC_PRODUCTION_DATE, edt, (edt != null && edt.length == 4));
+			byte epc = EPC_PRODUCTION_DATE;
+			byte[] edt = _getProductionDate(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 4));
 			return this;
 		}
 
 		@Override
 		public Getter reqGetPowerSavingOperationSetting() {
-			byte[] edt = getPowerSavingOperationSetting();
-			addProperty(EPC_POWER_SAVING_OPERATION_SETTING, edt, (edt != null && edt.length == 1));
+			byte epc = EPC_POWER_SAVING_OPERATION_SETTING;
+			byte[] edt = _getPowerSavingOperationSetting(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 1));
 			return this;
 		}
 
 		@Override
 		public Getter reqGetPositionInformation() {
-			byte[] edt = getPositionInformation();
-			addProperty(EPC_POSITION_INFORMATION, edt, (edt != null && edt.length == 16));
+			byte epc = EPC_POSITION_INFORMATION;
+			byte[] edt = _getPositionInformation(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 16));
 			return this;
 		}
 
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
-			byte[] edt = getCurrentTimeSetting();
-			addProperty(EPC_CURRENT_TIME_SETTING, edt, (edt != null && edt.length == 2));
+			byte epc = EPC_CURRENT_TIME_SETTING;
+			byte[] edt = _getCurrentTimeSetting(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 2));
 			return this;
 		}
 
 		@Override
 		public Getter reqGetCurrentDateSetting() {
-			byte[] edt = getCurrentDateSetting();
-			addProperty(EPC_CURRENT_DATE_SETTING, edt, (edt != null && edt.length == 4));
+			byte epc = EPC_CURRENT_DATE_SETTING;
+			byte[] edt = _getCurrentDateSetting(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 4));
 			return this;
 		}
 
 		@Override
 		public Getter reqGetPowerLimitSetting() {
-			byte[] edt = getPowerLimitSetting();
-			addProperty(EPC_POWER_LIMIT_SETTING, edt, (edt != null && edt.length == 2));
+			byte epc = EPC_POWER_LIMIT_SETTING;
+			byte[] edt = _getPowerLimitSetting(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 2));
 			return this;
 		}
 
 		@Override
 		public Getter reqGetCumulativeOperatingTime() {
-			byte[] edt = getCumulativeOperatingTime();
-			addProperty(EPC_CUMULATIVE_OPERATING_TIME, edt, (edt != null && edt.length == 5));
+			byte epc = EPC_CUMULATIVE_OPERATING_TIME;
+			byte[] edt = _getCumulativeOperatingTime(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 5));
 			return this;
 		}
 
 		@Override
 		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			byte[] edt = getStatusChangeAnnouncementPropertyMap();
-			addProperty(EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP, edt, (edt != null && edt.length <= 17));
+			byte epc = EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP;
+			byte[] edt = _getStatusChangeAnnouncementPropertyMap(epc);
+			addProperty(epc, edt, (edt != null && edt.length <= 17));
 			return this;
 		}
 
 		@Override
 		public Getter reqGetSetPropertyMap() {
-			byte[] edt = getSetPropertyMap();
-			addProperty(EPC_SET_PROPERTY_MAP, edt, (edt != null && edt.length <= 17));
+			byte epc = EPC_SET_PROPERTY_MAP;
+			byte[] edt = _getSetPropertyMap(epc);
+			addProperty(epc, edt, (edt != null && edt.length <= 17));
 			return this;
 		}
 
 		@Override
 		public Getter reqGetGetPropertyMap() {
-			byte[] edt = getGetPropertyMap();
-			addProperty(EPC_GET_PROPERTY_MAP, edt, (edt != null && edt.length <= 17));
+			byte epc = EPC_GET_PROPERTY_MAP;
+			byte[] edt = _getGetPropertyMap(epc);
+			addProperty(epc, edt, (edt != null && edt.length <= 17));
 			return this;
 		}
 		
@@ -1511,150 +2138,246 @@ public abstract class DeviceObject extends EchoObject {
 	
 	public interface Informer extends EchoObject.Informer {
 		/**
-		 * プロパティ名称:動作状態
-		 * EPC:0x80
-		 * アクセスルール:Set/Get(必須)
-		 * 状態変化アナウンス必須
+		 * This property indicates the ON/OFF status.<br>
+		 * ON＝0x30，OFF＝0x31<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Set : optional<br>
+		 * Get : mandatory<br>
+		 * Announcement at status change
 		 */
 		public Informer reqInformOperationStatus();
 		/**
-		 * プロパティ名称:設置場所
-		 * EPC:0x81
-		 * アクセスルール:Set(必須)/Get(必須)
-		 * 状態変化アナウンス必須
+		 * This property indicates the installation location<br>
+		 * See “2.2 ‘Installation location’ property.”<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Set : mandatory<br>
+		 * Get : mandatory<br>
+		 * Announcement at status change
 		 */
 		public Informer reqInformInstallationLocation();
 		/**
-		 * プロパティ名称:Version情報
-		 * EPC:0x82
-		 * アクセスルール:Get(必須)
-		 */ 
+		 * This property indicates the version number of the corresponding standard.<br>
+		 * First byte: Fixed at 0x00 (for future reserved). <br>
+		 * Second byte: Fixed at 0x00 (for future reserved). <br>
+		 * Third byte: Indicates the order of release in the ASCII format. <br>
+		 * Fourth byte: Fixed at 0x00 (for future reserved).<br><br>
+		 * Data type : unsigned char×4<br>
+		 * Data size : 4<br>
+		 * Set : undefined<br>
+		 * Get : mandatory
+		 */
 		public Informer reqInformStandardVersionInformation();
 		/**
-		 * プロパティ名称:識別番号
-		 * EPC:0x83
-		 * アクセスルール:Get
+		 * A number that allows each object to be uniquely identified.<br>
+		 * First byte: lower-layer communication ID field<br>
+		 * 0x01－0xFD：This is a communication protocol used in the lower-layer communication and is set arbitrarily according to the protocol class in the case where unique number is assigned (not used in ECHONET Lite).<br>
+		 * 0x11－0x1F: Power line Communication Protocol A and B systems<br>
+		 * 0x31-0x3F: Designated low-powor radio<br>
+		 * 0x41-0x4F: Extended HBS<br>
+		 * 0x51-0x5F: IrDA<br>
+		 * 0x61-0x6F: LonTalk®<br>
+		 * 0x71-0x7F: BlueTooth<br>
+		 * 0x81-0x8F: Ethernet<br>
+		 * 0x91-0x9F: IEEE802.11/11B<br>
+		 * 0xA1: Power line Communication Protocol C systems<br>
+		 * 0xB2：IPv6/6LoWPAN<br>
+		 * 0xFE：2－17 bytes are defined by the manufacturer, and are set according to the type.<br>
+		 * 0xFF：2－9 bytes are defined when randomly generated protocol is used in the lower-layer communication.<br>
+		 * 0x00：Identification number is not set.<br>
+		 * Second and succeeding bytes: unique number field<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 9 or 17<br>
+		 * Set : undefined<br>
+		 * Get : optional
 		 */
 		public Informer reqInformIdentificationNumber();
 		/**
-		 * プロパティ名称:瞬時消費電力計測値
-		 * EPC:0x84
-		 * アクセスルール:Get
+		 * This property indicates the instantaneous power consumption of the device in watts.<br>
+		 * 0x0000-0xFFFF（0-65535W）<br><br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Set : undefined<br>
+		 * Get : optional
 		 */
 		public Informer reqInformMeasuredInstantaneousPowerConsumption();
 		/**
-		 * プロパティ名称:積算消費電力計測値
-		 * EPC:0x85
-		 * アクセスルール:Get
+		 * This property indicates the cumulative power consumption of the device in increments of 0.001kWh.<br>
+		 * 0x0-0x3B9AC9FF（0-999,999.999kWh）<br><br>
+		 * Data type : unsigned long<br>
+		 * Data size : 4<br>
+		 * Set : undefined<br>
+		 * Get : optional
 		 */
 		public Informer reqInformMeasuredCumulativePowerConsumption();
 		/**
-		 * プロパティ名称:メーカ異常コード
-		 * EPC:0x86
-		 * アクセスルール:Get
-		 */	
+		 * This property indicates the manufacturer-defined fault code.<br>
+		 * First byte: Indicates the data size of the fault code field.<br>
+		 * Second to fourth bytes: Manufacturer code<br>
+		 * Fifth and succeeding bytes: Field for manufacturer-defined fault code<br><br>
+		 * Data type : unsigned char×(MAX)225<br>
+		 * Data size : Max 225<br>
+		 * Set : undefined<br>
+		 * Get : optional
+		 */
 		public Informer reqInformManufacturersFaultCode();
 		/**
-		 * プロパティ名称:電流制限設定
-		 * EPC:0x87
-		 * アクセスルール:Set/Get
+		 * This property indicates the current limit setting (0-100%).<br>
+		 * 0x00-0x64 （=0-100%）<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Set : optional<br>
+		 * Get : optional
 		 */
 		public Informer reqInformCurrentLimitSetting();
 		/**
-		 * プロパティ名称:異常発生状態
-		 * EPC:0x88
-		 * アクセスルール:Get(必須)
+		 * This property indicates whether a fault (e.g. a sensor trouble) has occurred or not.<br>
+		 * Fault occurred＝0x41, No fault has occurred＝0x42<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Set : undefined<br>
+		 * Get : mandatory<br>
+		 * Announcement at status change
 		 */
 		public Informer reqInformFaultStatus();
 		/**
-		 * プロパティ名称:異常内容
-		 * EPC:0x89
-		 * アクセスルール:Get
+		 * Describes the fault.<br>
+		 * See “2.5 ‘Fault Description’ Property.”<br><br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Set : undefined<br>
+		 * Get : optional
 		 */
 		public Informer reqInformFaultDescription();
 		/**
-		 * プロパティ名称:メーカコード
-		 * EPC:0x8A
-		 * アクセスルール:Get(必須)
-		 */ 
+		 * 3-byte manufacturer code<br>
+		 * (Defined by the ECHONET Consortium.)<br><br>
+		 * Data type : unsigned char×3<br>
+		 * Data size : 3<br>
+		 * Set : undefined<br>
+		 * Get : mandatory
+		 */
 		public Informer reqInformManufacturerCode();
 		/**
-		 * プロパティ名称:事業場コード
-		 * EPC:0x8B
-		 * アクセスルール:Get
+		 * 3-byte business facility code<br>
+		 * （Defined by each manufacturer.）<br><br>
+		 * Data type : unsigned char×3<br>
+		 * Data size : 3<br>
+		 * Set : undefined<br>
+		 * Get : optional
 		 */
 		public Informer reqInformBusinessFacilityCode();
 		/**
-		 * プロパティ名称:商品コード
-		 * EPC:0x8C
-		 * アクセスルール:Get
+		 * Identifies the product usingASCI I code.<br>
+		 * （Defined by each manufacturer.）<br><br>
+		 * Data type : unsigned char×12<br>
+		 * Data size : 12<br>
+		 * Set : undefined<br>
+		 * Get : optional
 		 */
 		public Informer reqInformProductCode();
 		/**
-		 * プロパティ名称:製造番号
-		 * EPC:0x8D
-		 * アクセスルール:Get
+		 * This property indicates the production number using ASCI I code.<br>
+		 * （Defined by each manufacturer.）<br><br>
+		 * Data type : unsigned char×12<br>
+		 * Data size : 12<br>
+		 * Set : undefined<br>
+		 * Get : optional
 		 */
 		public Informer reqInformProductionNumber();
 		/**
-		 * プロパティ名称:製造年月日
-		 * EPC:0x8E
-		 * アクセスルール:Get
+		 * 4-byte production date code<br>
+		 * This property indicates the product ion date in the YYMD format (1 character = 1 byte) .<br>
+		 * YY： Year (e.g. 1999＝ 0x07CF)<br>
+		 * M： Month (e.g. December＝0x0C)<br>
+		 * D： Day (e.g. 20th＝ 0x14)<br><br>
+		 * Data type : unsigned char×4<br>
+		 * Data size : 4<br>
+		 * Set : undefined<br>
+		 * Get : optional
 		 */
 		public Informer reqInformProductionDate();
 		/**
-		 * プロパティ名称:節電動作設定
-		 * EPC:0x8F
-		 * アクセスルール:Set/Get
+		 * This property indicates whether the device is operating in power-saving mode.<br>
+		 * Operating in power-saving mode =0x41<br>
+		 * Operating in normal operation mode =0x42<br><br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Set : optional<br>
+		 * Get : optional
 		 */
 		public Informer reqInformPowerSavingOperationSetting();
 		/**
-		 * プロパティ名称:位置情報
-		 * EPC:0x93
-		 * アクセスルール:Set/Get
-		 * 状態変化アナウンス必須
-		 */	
+		 * This property indicates the latitude, longitude and altitude of the installation location.<br><br>
+		 * Data type : unsigned char×16<br>
+		 * Data size : 16<br>
+		 * Set : optional<br>
+		 * Get : optional<br>
+		 * Announcement at status change
+		 */
 		public Informer reqInformPositionInformation();
 		/**
-		 * プロパティ名称:現在時刻設定
-		 * EPC:0x97
-		 * アクセスルール:Set/Get
+		 * Current time (HH：MM format)<br>
+		 * 0x00-0x17：0x00-0x3B（ ＝ 0-23）：（ ＝ 0-59）<br><br>
+		 * Data type : unsigned char×2<br>
+		 * Data size : 2<br>
+		 * Set : optional<br>
+		 * Get : optional
 		 */
 		public Informer reqInformCurrentTimeSetting();
 		/**
-		 * プロパティ名称:現在年月日設定
-		 * EPC:0x98
-		 * アクセスルール:Set/Get
+		 * Current date (YYYY：MM：DD format)<br>
+		 * 1 ～ 0x270F ： 1 ～ 0x0C ： 1 ～ 0x1F (=1 ～ 9999) ： (=1 ～ 12) ： (=1 ～ 31)<br><br>
+		 * Data type : unsigned char×4<br>
+		 * Data size : 4<br>
+		 * Set : optional<br>
+		 * Get : optional
 		 */
 		public Informer reqInformCurrentDateSetting();
 		/**
-		 * プロパティ名称:電力制限設定
-		 * EPC:0x99
-		 * アクセスルール:Set/Get
+		 * This property indicates the power limit setting in watts.<br>
+		 * 0x0000~0xFFFF（0-65535W）<br><br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Set : optional<br>
+		 * Get : optional
 		 */
 		public Informer reqInformPowerLimitSetting();
 		/**
-		 * プロパティ名称:積算運転時間
-		 * EPC:0x9A
-		 * アクセスルール:Set/Get
+		 * This property indicates the cumulative number of days, hours, minutes or seconds for which the device has operated, using 1 byte for the unit and 4 bytes for the time.<br>
+		 * First byte: Indicates the unit.<br>
+		 * Second： 0x41; Minute： 0x42; Hour： 0x43; Day:0x44<br>
+		 * Second to fifth bytes ：<br>
+		 * Indicates the elapsed time in the unit specified by the first byte. 0x00000000-0xFFFFFFFF (0-4294967295)<br><br>
+		 * Data type : unsigned char + unsigned long<br>
+		 * Data size : 1+4 Byte<br>
+		 * Set : undefined<br>
+		 * Get : optional
 		 */
 		public Informer reqInformCumulativeOperatingTime();
 		/**
-		 * プロパティ名称:状変アナウンスプロパティマップ
-		 * EPC:0x9D
-		 * アクセスルール:Get(必須)
+		 * See Appendix 1.<br><br>
+		 * Data type : unsigned char×(MAX17)<br>
+		 * Data size : Max.17<br>
+		 * Set : undefined<br>
+		 * Get : mandatory
 		 */
 		public Informer reqInformStatusChangeAnnouncementPropertyMap();
 		/**
-		 * プロパティ名称:Setプロパティマップ
-		 * EPC:0x9E
-		 * アクセスルール:Get(必須)
+		 * See Appendix 1.<br><br>
+		 * Data type : unsigned char×(MAX17)<br>
+		 * Data size : Max.17<br>
+		 * Set : undefined<br>
+		 * Get : mandatory
 		 */
 		public Informer reqInformSetPropertyMap();
 		/**
-		 * プロパティ名称:Getプロパティマップ
-		 * EPC:0x9F
-		 * アクセスルール:Get(必須)
+		 * See Appendix 1.<br><br>
+		 * Data type : unsigned char×(MAX17)<br>
+		 * Data size : Max.17<br>
+		 * Set : undefined<br>
+		 * Get : mandatory
 		 */
 		public Informer reqInformGetPropertyMap();
 	}
@@ -1663,172 +2386,195 @@ public abstract class DeviceObject extends EchoObject {
 
 		@Override
 		public Informer reqInformOperationStatus() {
-			byte[] edt = getOperationStatus();
-			addProperty(EPC_OPERATION_STATUS, edt, (edt != null && edt.length == 1));
+			byte epc = EPC_OPERATION_STATUS;
+			byte[] edt = _getOperationStatus(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 1));
 			return this;
 		}
 
 		@Override
 		public Informer reqInformInstallationLocation() {
-			byte[] edt = getInstallationLocation();
-			addProperty(EPC_INSTALLATION_LOCATION, edt, (edt != null && edt.length == 1));
+			byte epc = EPC_INSTALLATION_LOCATION;
+			byte[] edt = _getInstallationLocation(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 1));
 			return this;
 		}
 
 		@Override
 		public Informer reqInformStandardVersionInformation() {
-			byte[] edt = getStandardVersionInformation();
-			addProperty(EPC_STANDARD_VERSION_INFORMATION, edt, (edt != null && edt.length == 4));
+			byte epc = EPC_STANDARD_VERSION_INFORMATION;
+			byte[] edt = _getStandardVersionInformation(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 4));
 			return this;
 		}
 
 		@Override
 		public Informer reqInformIdentificationNumber() {
-			byte[] edt = getIdentificationNumber();
-			addProperty(EPC_IDENTIFICATION_NUMBER, edt, (edt != null && (edt.length == 9 || edt.length == 17)));
+			byte epc = EPC_IDENTIFICATION_NUMBER;
+			byte[] edt = _getIdentificationNumber(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 9 || edt.length == 17)));
 			return this;
 		}
 
 		@Override
 		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
-			byte[] edt = getMeasuredInstantaneousPowerConsumption();
-			addProperty(EPC_MEASURED_INSTANTANEOUS_POWER_CONSUMPTION, edt, (edt != null && edt.length == 2));
+			byte epc = EPC_MEASURED_INSTANTANEOUS_POWER_CONSUMPTION;
+			byte[] edt = _getMeasuredInstantaneousPowerConsumption(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 2));
 			return this;
 		}
 
 		@Override
 		public Informer reqInformMeasuredCumulativePowerConsumption() {
-			byte[] edt = getMeasuredCumulativePowerConsumption();
-			addProperty(EPC_MEASURED_CUMULATIVE_POWER_CONSUMPTION, edt, (edt != null && edt.length == 4));
+			byte epc = EPC_MEASURED_CUMULATIVE_POWER_CONSUMPTION;
+			byte[] edt = _getMeasuredCumulativePowerConsumption(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 4));
 			return this;
 		}
 
 		@Override
 		public Informer reqInformManufacturersFaultCode() {
-			byte[] edt = getManufacturersFaultCode();
-			addProperty(EPC_MANUFACTURERS_FAULT_CODE, edt, (edt != null && edt.length <= 225));
+			byte epc = EPC_MANUFACTURERS_FAULT_CODE;
+			byte[] edt = _getManufacturersFaultCode(epc);
+			addProperty(epc, edt, (edt != null && edt.length <= 225));
 			return this;
 		}
 
 		@Override
 		public Informer reqInformCurrentLimitSetting() {
-			byte[] edt = getCurrentLimitSetting();
-			addProperty(EPC_CURRENT_LIMIT_SETTING, edt, (edt != null && edt.length == 1));
+			byte epc = EPC_CURRENT_LIMIT_SETTING;
+			byte[] edt = _getCurrentLimitSetting(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 1));
 			return this;
 		}
 
 		@Override
 		public Informer reqInformFaultStatus() {
-			byte[] edt = getFaultStatus();
-			addProperty(EPC_FAULT_STATUS, edt, (edt != null && edt.length == 1));
+			byte epc = EPC_FAULT_STATUS;
+			byte[] edt = _getFaultStatus(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 1));
 			return this;
 		}
 
 		@Override
 		public Informer reqInformFaultDescription() {
-			byte[] edt = getFaultDescription();
-			addProperty(EPC_FAULT_DESCRIPTION, edt, (edt != null && edt.length == 2));
+			byte epc = EPC_FAULT_DESCRIPTION;
+			byte[] edt = _getFaultDescription(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 2));
 			return this;
 		}
 
 		@Override
 		public Informer reqInformManufacturerCode() {
-			byte[] edt = getManufacturerCode();
-			addProperty(EPC_MANUFACTURER_CODE, edt, (edt != null && edt.length == 3));
+			byte epc = EPC_MANUFACTURER_CODE;
+			byte[] edt = _getManufacturerCode(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 3));
 			return this;
 		}
 
 		@Override
 		public Informer reqInformBusinessFacilityCode() {
-			byte[] edt = getBusinessFacilityCode();
-			addProperty(EPC_BUSINESS_FACILITY_CODE, edt, (edt != null && edt.length == 3));
+			byte epc = EPC_BUSINESS_FACILITY_CODE;
+			byte[] edt = _getBusinessFacilityCode(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 3));
 			return this;
 		}
 
 		@Override
 		public Informer reqInformProductCode() {
-			byte[] edt = getProductCode();
-			addProperty(EPC_PRODUCT_CODE, edt, (edt != null && edt.length == 12));
+			byte epc = EPC_PRODUCT_CODE;
+			byte[] edt = _getProductCode(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 12));
 			return this;
 		}
 
 		@Override
 		public Informer reqInformProductionNumber() {
-			byte[] edt = getProductionNumber();
-			addProperty(EPC_PRODUCTION_NUMBER, edt, (edt != null && edt.length == 12));
+			byte epc = EPC_PRODUCTION_NUMBER;
+			byte[] edt = _getProductionNumber(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 12));
 			return this;
 		}
 
 		@Override
 		public Informer reqInformProductionDate() {
-			byte[] edt = getProductionDate();
-			addProperty(EPC_PRODUCTION_DATE, edt, (edt != null && edt.length == 4));
+			byte epc = EPC_PRODUCTION_DATE;
+			byte[] edt = _getProductionDate(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 4));
 			return this;
 		}
 
 		@Override
 		public Informer reqInformPowerSavingOperationSetting() {
-			byte[] edt = getPowerSavingOperationSetting();
-			addProperty(EPC_POWER_SAVING_OPERATION_SETTING, edt, (edt != null && edt.length == 1));
+			byte epc = EPC_POWER_SAVING_OPERATION_SETTING;
+			byte[] edt = _getPowerSavingOperationSetting(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 1));
 			return this;
 		}
 
 		@Override
 		public Informer reqInformPositionInformation() {
-			byte[] edt = getPositionInformation();
-			addProperty(EPC_POSITION_INFORMATION, edt, (edt != null && edt.length == 16));
+			byte epc = EPC_POSITION_INFORMATION;
+			byte[] edt = _getPositionInformation(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 16));
 			return this;
 		}
 
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
-			byte[] edt = getCurrentTimeSetting();
-			addProperty(EPC_CURRENT_TIME_SETTING, edt, (edt != null && edt.length == 2));
+			byte epc = EPC_CURRENT_TIME_SETTING;
+			byte[] edt = _getCurrentTimeSetting(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 2));
 			return this;
 		}
 
 		@Override
 		public Informer reqInformCurrentDateSetting() {
-			byte[] edt = getCurrentDateSetting();
-			addProperty(EPC_CURRENT_DATE_SETTING, edt, (edt != null && edt.length == 4));
+			byte epc = EPC_CURRENT_DATE_SETTING;
+			byte[] edt = _getCurrentDateSetting(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 4));
 			return this;
 		}
 
 		@Override
 		public Informer reqInformPowerLimitSetting() {
-			byte[] edt = getPowerLimitSetting();
-			addProperty(EPC_POWER_LIMIT_SETTING, edt, (edt != null && edt.length == 2));
+			byte epc = EPC_POWER_LIMIT_SETTING;
+			byte[] edt = _getPowerLimitSetting(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 2));
 			return this;
 		}
 
 		@Override
 		public Informer reqInformCumulativeOperatingTime() {
-			byte[] edt = getCumulativeOperatingTime();
-			addProperty(EPC_CUMULATIVE_OPERATING_TIME, edt, (edt != null && edt.length == 5));
+			byte epc = EPC_CUMULATIVE_OPERATING_TIME;
+			byte[] edt = _getCumulativeOperatingTime(epc);
+			addProperty(epc, edt, (edt != null && edt.length == 5));
 			return this;
 		}
 
 		@Override
 		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
-			byte[] edt = getStatusChangeAnnouncementPropertyMap();
-			addProperty(EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP, edt, (edt != null && edt.length <= 17));
+			byte epc = EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP;
+			byte[] edt = _getStatusChangeAnnouncementPropertyMap(epc);
+			addProperty(epc, edt, (edt != null && edt.length <= 17));
 			return this;
 		}
 
 		@Override
 		public Informer reqInformSetPropertyMap() {
-			byte[] edt = getSetPropertyMap();
-			addProperty(EPC_SET_PROPERTY_MAP, edt, (edt != null && edt.length <= 17));
+			byte epc = EPC_SET_PROPERTY_MAP;
+			byte[] edt = _getSetPropertyMap(epc);
+			addProperty(epc, edt, (edt != null && edt.length <= 17));
 			return this;
 		}
 
 		@Override
 		public Informer reqInformGetPropertyMap() {
-			byte[] edt = getGetPropertyMap();
-			addProperty(EPC_GET_PROPERTY_MAP, edt, (edt != null && edt.length <= 17));
+			byte epc = EPC_GET_PROPERTY_MAP;
+			byte[] edt = _getGetPropertyMap(epc);
+			addProperty(epc, edt, (edt != null && edt.length <= 17));
 			return this;
 		}
-		
 	}
 
 	public class InformerProxy extends EchoObject.InformerProxy implements Informer {

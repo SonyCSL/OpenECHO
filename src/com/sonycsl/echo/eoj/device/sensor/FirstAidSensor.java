@@ -26,9 +26,9 @@ public abstract class FirstAidSensor extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x04;
 
-	protected static final byte EPC_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;
-	protected static final byte EPC_FIRST_AID_OCCURRENCE_STATUS = (byte)0xB1;
-	protected static final byte EPC_FIRST_AID_OCCURRENCE_STATUS_RESETTING = (byte)0xBF;
+	public static final byte EPC_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;
+	public static final byte EPC_FIRST_AID_OCCURRENCE_STATUS = (byte)0xB1;
+	public static final byte EPC_FIRST_AID_OCCURRENCE_STATUS_RESETTING = (byte)0xBF;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -44,18 +44,38 @@ public abstract class FirstAidSensor extends DeviceObject {
 	 * Specifies detection threshold level (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setDetectionThresholdLevel(byte[] edt) {return false;}
+	private final boolean _setDetectionThresholdLevel(byte epc, byte[] edt) {
+		boolean success = setDetectionThresholdLevel(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Specifies detection threshold level (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getDetectionThresholdLevel() {return null;}
+	private final byte[] _getDetectionThresholdLevel(byte epc) {
+		byte[] edt = getDetectionThresholdLevel();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates first-aid occurrence status.<br>First-air occurrence status found = 0x41 First-aid occurrence status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory<br>Announcement at status change
 	 */
 	protected abstract byte[] getFirstAidOccurrenceStatus();
+	private final byte[] _getFirstAidOccurrenceStatus(byte epc) {
+		byte[] edt = getFirstAidOccurrenceStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Resets first-aid occurrence status by setting 0x00.<br>Reset = 0x00<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : undefined
 	 */
 	protected boolean setFirstAidOccurrenceStatusResetting(byte[] edt) {return false;}
+	private final boolean _setFirstAidOccurrenceStatusResetting(byte epc, byte[] edt) {
+		boolean success = setFirstAidOccurrenceStatusResetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 
 
 	@Override
@@ -63,10 +83,10 @@ public abstract class FirstAidSensor extends DeviceObject {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
 		case EPC_DETECTION_THRESHOLD_LEVEL:
-			res.addProperty(epc, edt, setDetectionThresholdLevel(edt));
+			res.addProperty(epc, edt, _setDetectionThresholdLevel(epc, edt));
 			break;
 		case EPC_FIRST_AID_OCCURRENCE_STATUS_RESETTING:
-			res.addProperty(epc, edt, setFirstAidOccurrenceStatusResetting(edt));
+			res.addProperty(epc, edt, _setFirstAidOccurrenceStatusResetting(epc, edt));
 			break;
 
 		}
@@ -78,11 +98,11 @@ public abstract class FirstAidSensor extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_DETECTION_THRESHOLD_LEVEL:
-			edt = getDetectionThresholdLevel();
+			edt = _getDetectionThresholdLevel(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_FIRST_AID_OCCURRENCE_STATUS:
-			edt = getFirstAidOccurrenceStatus();
+			edt = _getFirstAidOccurrenceStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 
@@ -112,30 +132,28 @@ public abstract class FirstAidSensor extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_DETECTION_THRESHOLD_LEVEL:
-				onSetDetectionThresholdLevel(eoj, tid, (pdc != 0));
+				_onSetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_FIRST_AID_OCCURRENCE_STATUS_RESETTING:
-				onSetFirstAidOccurrenceStatusResetting(eoj, tid, (pdc != 0));
+				_onSetFirstAidOccurrenceStatusResetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_DETECTION_THRESHOLD_LEVEL:
-				onGetDetectionThresholdLevel(eoj, tid, pdc, edt);
+				_onGetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_FIRST_AID_OCCURRENCE_STATUS:
-				onGetFirstAidOccurrenceStatus(eoj, tid, pdc, edt);
+				_onGetFirstAidOccurrenceStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -144,19 +162,35 @@ public abstract class FirstAidSensor extends DeviceObject {
 		/**
 		 * Specifies detection threshold level (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetDetectionThresholdLevel(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Specifies detection threshold level (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetDetectionThresholdLevel(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates first-aid occurrence status.<br>First-air occurrence status found = 0x41 First-aid occurrence status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory<br>Announcement at status change
 		 */
-		protected void onGetFirstAidOccurrenceStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetFirstAidOccurrenceStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetFirstAidOccurrenceStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetFirstAidOccurrenceStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Resets first-aid occurrence status by setting 0x00.<br>Reset = 0x00<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : undefined
 		 */
-		protected void onSetFirstAidOccurrenceStatusResetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetFirstAidOccurrenceStatusResetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetFirstAidOccurrenceStatusResetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetFirstAidOccurrenceStatusResetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 
 	}
 	
@@ -221,12 +255,14 @@ public abstract class FirstAidSensor extends DeviceObject {
 
 		@Override
 		public Setter reqSetDetectionThresholdLevel(byte[] edt) {
-			addProperty(EPC_DETECTION_THRESHOLD_LEVEL, edt, setDetectionThresholdLevel(edt));
+			byte epc = EPC_DETECTION_THRESHOLD_LEVEL;
+			addProperty(epc, edt, _setDetectionThresholdLevel(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetFirstAidOccurrenceStatusResetting(byte[] edt) {
-			addProperty(EPC_FIRST_AID_OCCURRENCE_STATUS_RESETTING, edt, setFirstAidOccurrenceStatusResetting(edt));
+			byte epc = EPC_FIRST_AID_OCCURRENCE_STATUS_RESETTING;
+			addProperty(epc, edt, _setFirstAidOccurrenceStatusResetting(epc, edt));
 			return this;
 		}
 	}
@@ -419,14 +455,16 @@ public abstract class FirstAidSensor extends DeviceObject {
 
 		@Override
 		public Getter reqGetDetectionThresholdLevel() {
-			byte[] edt = getDetectionThresholdLevel();
-			addProperty(EPC_DETECTION_THRESHOLD_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DETECTION_THRESHOLD_LEVEL;
+			byte[] edt = _getDetectionThresholdLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetFirstAidOccurrenceStatus() {
-			byte[] edt = getFirstAidOccurrenceStatus();
-			addProperty(EPC_FIRST_AID_OCCURRENCE_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_FIRST_AID_OCCURRENCE_STATUS;
+			byte[] edt = _getFirstAidOccurrenceStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}
@@ -679,14 +717,16 @@ public abstract class FirstAidSensor extends DeviceObject {
 
 		@Override
 		public Informer reqInformDetectionThresholdLevel() {
-			byte[] edt = getDetectionThresholdLevel();
-			addProperty(EPC_DETECTION_THRESHOLD_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DETECTION_THRESHOLD_LEVEL;
+			byte[] edt = _getDetectionThresholdLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformFirstAidOccurrenceStatus() {
-			byte[] edt = getFirstAidOccurrenceStatus();
-			addProperty(EPC_FIRST_AID_OCCURRENCE_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_FIRST_AID_OCCURRENCE_STATUS;
+			byte[] edt = _getFirstAidOccurrenceStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}

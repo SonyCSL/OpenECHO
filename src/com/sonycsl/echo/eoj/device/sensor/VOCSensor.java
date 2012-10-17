@@ -26,9 +26,9 @@ public abstract class VOCSensor extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x1D;
 
-	protected static final byte EPC_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;
-	protected static final byte EPC_VOC_DETECTION_STATUS = (byte)0xB1;
-	protected static final byte EPC_MEASURED_VALUE_OF_VOC_CONCENTRATION = (byte)0xE0;
+	public static final byte EPC_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;
+	public static final byte EPC_VOC_DETECTION_STATUS = (byte)0xB1;
+	public static final byte EPC_MEASURED_VALUE_OF_VOC_CONCENTRATION = (byte)0xE0;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -44,18 +44,38 @@ public abstract class VOCSensor extends DeviceObject {
 	 * Specifies detection threshold level (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setDetectionThresholdLevel(byte[] edt) {return false;}
+	private final boolean _setDetectionThresholdLevel(byte epc, byte[] edt) {
+		boolean success = setDetectionThresholdLevel(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Specifies detection threshold level (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getDetectionThresholdLevel() {return null;}
+	private final byte[] _getDetectionThresholdLevel(byte epc) {
+		byte[] edt = getDetectionThresholdLevel();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates VOC detection status.<br>VOC detection status found = 0x41 VOC detection status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
 	 */
 	protected byte[] getVocDetectionStatus() {return null;}
+	private final byte[] _getVocDetectionStatus(byte epc) {
+		byte[] edt = getVocDetectionStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates measured value of VOC concentration in ppm.<br>0x0000.0xFFFD (0.65533)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getMeasuredValueOfVocConcentration();
+	private final byte[] _getMeasuredValueOfVocConcentration(byte epc) {
+		byte[] edt = getMeasuredValueOfVocConcentration();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -63,7 +83,7 @@ public abstract class VOCSensor extends DeviceObject {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
 		case EPC_DETECTION_THRESHOLD_LEVEL:
-			res.addProperty(epc, edt, setDetectionThresholdLevel(edt));
+			res.addProperty(epc, edt, _setDetectionThresholdLevel(epc, edt));
 			break;
 
 		}
@@ -75,15 +95,15 @@ public abstract class VOCSensor extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_DETECTION_THRESHOLD_LEVEL:
-			edt = getDetectionThresholdLevel();
+			edt = _getDetectionThresholdLevel(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_VOC_DETECTION_STATUS:
-			edt = getVocDetectionStatus();
+			edt = _getVocDetectionStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_MEASURED_VALUE_OF_VOC_CONCENTRATION:
-			edt = getMeasuredValueOfVocConcentration();
+			edt = _getMeasuredValueOfVocConcentration(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 
@@ -113,30 +133,28 @@ public abstract class VOCSensor extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_DETECTION_THRESHOLD_LEVEL:
-				onSetDetectionThresholdLevel(eoj, tid, (pdc != 0));
+				_onSetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_DETECTION_THRESHOLD_LEVEL:
-				onGetDetectionThresholdLevel(eoj, tid, pdc, edt);
+				_onGetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_VOC_DETECTION_STATUS:
-				onGetVocDetectionStatus(eoj, tid, pdc, edt);
+				_onGetVocDetectionStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_VALUE_OF_VOC_CONCENTRATION:
-				onGetMeasuredValueOfVocConcentration(eoj, tid, pdc, edt);
+				_onGetMeasuredValueOfVocConcentration(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -145,19 +163,35 @@ public abstract class VOCSensor extends DeviceObject {
 		/**
 		 * Specifies detection threshold level (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetDetectionThresholdLevel(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Specifies detection threshold level (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetDetectionThresholdLevel(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates VOC detection status.<br>VOC detection status found = 0x41 VOC detection status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
 		 */
-		protected void onGetVocDetectionStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetVocDetectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetVocDetectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetVocDetectionStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates measured value of VOC concentration in ppm.<br>0x0000.0xFFFD (0.65533)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetMeasuredValueOfVocConcentration(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredValueOfVocConcentration(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredValueOfVocConcentration(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredValueOfVocConcentration(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -218,7 +252,8 @@ public abstract class VOCSensor extends DeviceObject {
 
 		@Override
 		public Setter reqSetDetectionThresholdLevel(byte[] edt) {
-			addProperty(EPC_DETECTION_THRESHOLD_LEVEL, edt, setDetectionThresholdLevel(edt));
+			byte epc = EPC_DETECTION_THRESHOLD_LEVEL;
+			addProperty(epc, edt, _setDetectionThresholdLevel(epc, edt));
 			return this;
 		}
 	}
@@ -410,20 +445,23 @@ public abstract class VOCSensor extends DeviceObject {
 
 		@Override
 		public Getter reqGetDetectionThresholdLevel() {
-			byte[] edt = getDetectionThresholdLevel();
-			addProperty(EPC_DETECTION_THRESHOLD_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DETECTION_THRESHOLD_LEVEL;
+			byte[] edt = _getDetectionThresholdLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetVocDetectionStatus() {
-			byte[] edt = getVocDetectionStatus();
-			addProperty(EPC_VOC_DETECTION_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_VOC_DETECTION_STATUS;
+			byte[] edt = _getVocDetectionStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredValueOfVocConcentration() {
-			byte[] edt = getMeasuredValueOfVocConcentration();
-			addProperty(EPC_MEASURED_VALUE_OF_VOC_CONCENTRATION, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_VALUE_OF_VOC_CONCENTRATION;
+			byte[] edt = _getMeasuredValueOfVocConcentration(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}
@@ -685,20 +723,23 @@ public abstract class VOCSensor extends DeviceObject {
 
 		@Override
 		public Informer reqInformDetectionThresholdLevel() {
-			byte[] edt = getDetectionThresholdLevel();
-			addProperty(EPC_DETECTION_THRESHOLD_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DETECTION_THRESHOLD_LEVEL;
+			byte[] edt = _getDetectionThresholdLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformVocDetectionStatus() {
-			byte[] edt = getVocDetectionStatus();
-			addProperty(EPC_VOC_DETECTION_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_VOC_DETECTION_STATUS;
+			byte[] edt = _getVocDetectionStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredValueOfVocConcentration() {
-			byte[] edt = getMeasuredValueOfVocConcentration();
-			addProperty(EPC_MEASURED_VALUE_OF_VOC_CONCENTRATION, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_VALUE_OF_VOC_CONCENTRATION;
+			byte[] edt = _getMeasuredValueOfVocConcentration(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}

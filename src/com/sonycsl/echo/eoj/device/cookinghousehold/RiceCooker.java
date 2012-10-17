@@ -26,15 +26,15 @@ public abstract class RiceCooker extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x03;
 	public static final byte CLASS_CODE = (byte)0xBB;
 
-	protected static final byte EPC_COVER_OPEN_CLOSE_STATUS = (byte)0xB0;
-	protected static final byte EPC_RICE_COOKING_STATUS = (byte)0xB1;
-	protected static final byte EPC_RICE_COOKING_CONTROL_SETTING = (byte)0xB2;
-	protected static final byte EPC_WARMER_SETTING = (byte)0xE1;
-	protected static final byte EPC_INNER_POT_REMOVAL_STATUS = (byte)0xE5;
-	protected static final byte EPC_COVER_REMOVAL_STATUS = (byte)0xE6;
-	protected static final byte EPC_RICE_COOKING_RESERVATION_SETTING = (byte)0x90;
-	protected static final byte EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_TIME = (byte)0x91;
-	protected static final byte EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_RELATIVE_TIME = (byte)0x92;
+	public static final byte EPC_COVER_OPEN_CLOSE_STATUS = (byte)0xB0;
+	public static final byte EPC_RICE_COOKING_STATUS = (byte)0xB1;
+	public static final byte EPC_RICE_COOKING_CONTROL_SETTING = (byte)0xB2;
+	public static final byte EPC_WARMER_SETTING = (byte)0xE1;
+	public static final byte EPC_INNER_POT_REMOVAL_STATUS = (byte)0xE5;
+	public static final byte EPC_COVER_REMOVAL_STATUS = (byte)0xE6;
+	public static final byte EPC_RICE_COOKING_RESERVATION_SETTING = (byte)0x90;
+	public static final byte EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_TIME = (byte)0x91;
+	public static final byte EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_RELATIVE_TIME = (byte)0x92;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -50,58 +50,128 @@ public abstract class RiceCooker extends DeviceObject {
 	 * This property indicates whether the cover is open or closed.<br>Cover open = 0x41, Cover closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getCoverOpenCloseStatus() {return null;}
+	private final byte[] _getCoverOpenCloseStatus(byte epc) {
+		byte[] edt = getCoverOpenCloseStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates rice cooking status.<br>Stop = 0x41, Preheating = 0x42, Rice cooking = 0x43, Steaming = 0x44, Rice cooking completion = 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getRiceCookingStatus();
+	private final byte[] _getRiceCookingStatus(byte epc) {
+		byte[] edt = getRiceCookingStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates rice cooking control setting.<br>Rice cooking start/restart = 0x41, Rice cooking suspension = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract boolean setRiceCookingControlSetting(byte[] edt);
+	private final boolean _setRiceCookingControlSetting(byte epc, byte[] edt) {
+		boolean success = setRiceCookingControlSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * This property indicates rice cooking control setting.<br>Rice cooking start/restart = 0x41, Rice cooking suspension = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract byte[] getRiceCookingControlSetting();
+	private final byte[] _getRiceCookingControlSetting(byte epc) {
+		byte[] edt = getRiceCookingControlSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates whether or not warmer function is enabled.<br>Warmer enabled = 0x41, Warmer disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setWarmerSetting(byte[] edt) {return false;}
+	private final boolean _setWarmerSetting(byte epc, byte[] edt) {
+		boolean success = setWarmerSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * This property indicates whether or not warmer function is enabled.<br>Warmer enabled = 0x41, Warmer disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getWarmerSetting() {return null;}
+	private final byte[] _getWarmerSetting(byte epc) {
+		byte[] edt = getWarmerSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates whether inner pot is removed or not.<br>Removed = 0x41, Not removed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getInnerPotRemovalStatus() {return null;}
+	private final byte[] _getInnerPotRemovalStatus(byte epc) {
+		byte[] edt = getInnerPotRemovalStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates whether or not cover is removed.<br>Removed = 0x41, Not removed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getCoverRemovalStatus() {return null;}
+	private final byte[] _getCoverRemovalStatus(byte epc) {
+		byte[] edt = getCoverRemovalStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates whether rice cooking reservation is ON or OFF.<br>Reservation ON = 0x41, Reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setRiceCookingReservationSetting(byte[] edt) {return false;}
+	private final boolean _setRiceCookingReservationSetting(byte epc, byte[] edt) {
+		boolean success = setRiceCookingReservationSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * This property indicates whether rice cooking reservation is ON or OFF.<br>Reservation ON = 0x41, Reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getRiceCookingReservationSetting() {return null;}
+	private final byte[] _getRiceCookingReservationSetting(byte epc) {
+		byte[] edt = getRiceCookingReservationSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetValueOfRiceCookingReservationSettingTime(byte[] edt) {return false;}
+	private final boolean _setSetValueOfRiceCookingReservationSettingTime(byte epc, byte[] edt) {
+		boolean success = setSetValueOfRiceCookingReservationSettingTime(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetValueOfRiceCookingReservationSettingTime() {return null;}
+	private final byte[] _getSetValueOfRiceCookingReservationSettingTime(byte epc) {
+		byte[] edt = getSetValueOfRiceCookingReservationSettingTime();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetValueOfRiceCookingReservationSettingRelativeTime(byte[] edt) {return false;}
+	private final boolean _setSetValueOfRiceCookingReservationSettingRelativeTime(byte epc, byte[] edt) {
+		boolean success = setSetValueOfRiceCookingReservationSettingRelativeTime(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetValueOfRiceCookingReservationSettingRelativeTime() {return null;}
+	private final byte[] _getSetValueOfRiceCookingReservationSettingRelativeTime(byte epc) {
+		byte[] edt = getSetValueOfRiceCookingReservationSettingRelativeTime();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -109,19 +179,19 @@ public abstract class RiceCooker extends DeviceObject {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
 		case EPC_RICE_COOKING_CONTROL_SETTING:
-			res.addProperty(epc, edt, setRiceCookingControlSetting(edt));
+			res.addProperty(epc, edt, _setRiceCookingControlSetting(epc, edt));
 			break;
 		case EPC_WARMER_SETTING:
-			res.addProperty(epc, edt, setWarmerSetting(edt));
+			res.addProperty(epc, edt, _setWarmerSetting(epc, edt));
 			break;
 		case EPC_RICE_COOKING_RESERVATION_SETTING:
-			res.addProperty(epc, edt, setRiceCookingReservationSetting(edt));
+			res.addProperty(epc, edt, _setRiceCookingReservationSetting(epc, edt));
 			break;
 		case EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_TIME:
-			res.addProperty(epc, edt, setSetValueOfRiceCookingReservationSettingTime(edt));
+			res.addProperty(epc, edt, _setSetValueOfRiceCookingReservationSettingTime(epc, edt));
 			break;
 		case EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_RELATIVE_TIME:
-			res.addProperty(epc, edt, setSetValueOfRiceCookingReservationSettingRelativeTime(edt));
+			res.addProperty(epc, edt, _setSetValueOfRiceCookingReservationSettingRelativeTime(epc, edt));
 			break;
 
 		}
@@ -133,39 +203,39 @@ public abstract class RiceCooker extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_COVER_OPEN_CLOSE_STATUS:
-			edt = getCoverOpenCloseStatus();
+			edt = _getCoverOpenCloseStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_RICE_COOKING_STATUS:
-			edt = getRiceCookingStatus();
+			edt = _getRiceCookingStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_RICE_COOKING_CONTROL_SETTING:
-			edt = getRiceCookingControlSetting();
+			edt = _getRiceCookingControlSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_WARMER_SETTING:
-			edt = getWarmerSetting();
+			edt = _getWarmerSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_INNER_POT_REMOVAL_STATUS:
-			edt = getInnerPotRemovalStatus();
+			edt = _getInnerPotRemovalStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_COVER_REMOVAL_STATUS:
-			edt = getCoverRemovalStatus();
+			edt = _getCoverRemovalStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_RICE_COOKING_RESERVATION_SETTING:
-			edt = getRiceCookingReservationSetting();
+			edt = _getRiceCookingReservationSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_TIME:
-			edt = getSetValueOfRiceCookingReservationSettingTime();
+			edt = _getSetValueOfRiceCookingReservationSettingTime(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_RELATIVE_TIME:
-			edt = getSetValueOfRiceCookingReservationSettingRelativeTime();
+			edt = _getSetValueOfRiceCookingReservationSettingRelativeTime(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 
@@ -195,60 +265,58 @@ public abstract class RiceCooker extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_RICE_COOKING_CONTROL_SETTING:
-				onSetRiceCookingControlSetting(eoj, tid, (pdc != 0));
+				_onSetRiceCookingControlSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_WARMER_SETTING:
-				onSetWarmerSetting(eoj, tid, (pdc != 0));
+				_onSetWarmerSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_RICE_COOKING_RESERVATION_SETTING:
-				onSetRiceCookingReservationSetting(eoj, tid, (pdc != 0));
+				_onSetRiceCookingReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_TIME:
-				onSetSetValueOfRiceCookingReservationSettingTime(eoj, tid, (pdc != 0));
+				_onSetSetValueOfRiceCookingReservationSettingTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_RELATIVE_TIME:
-				onSetSetValueOfRiceCookingReservationSettingRelativeTime(eoj, tid, (pdc != 0));
+				_onSetSetValueOfRiceCookingReservationSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_COVER_OPEN_CLOSE_STATUS:
-				onGetCoverOpenCloseStatus(eoj, tid, pdc, edt);
+				_onGetCoverOpenCloseStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_RICE_COOKING_STATUS:
-				onGetRiceCookingStatus(eoj, tid, pdc, edt);
+				_onGetRiceCookingStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_RICE_COOKING_CONTROL_SETTING:
-				onGetRiceCookingControlSetting(eoj, tid, pdc, edt);
+				_onGetRiceCookingControlSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_WARMER_SETTING:
-				onGetWarmerSetting(eoj, tid, pdc, edt);
+				_onGetWarmerSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_INNER_POT_REMOVAL_STATUS:
-				onGetInnerPotRemovalStatus(eoj, tid, pdc, edt);
+				_onGetInnerPotRemovalStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_COVER_REMOVAL_STATUS:
-				onGetCoverRemovalStatus(eoj, tid, pdc, edt);
+				_onGetCoverRemovalStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_RICE_COOKING_RESERVATION_SETTING:
-				onGetRiceCookingReservationSetting(eoj, tid, pdc, edt);
+				_onGetRiceCookingReservationSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_TIME:
-				onGetSetValueOfRiceCookingReservationSettingTime(eoj, tid, pdc, edt);
+				_onGetSetValueOfRiceCookingReservationSettingTime(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_RELATIVE_TIME:
-				onGetSetValueOfRiceCookingReservationSettingRelativeTime(eoj, tid, pdc, edt);
+				_onGetSetValueOfRiceCookingReservationSettingRelativeTime(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -257,59 +325,115 @@ public abstract class RiceCooker extends DeviceObject {
 		/**
 		 * This property indicates whether the cover is open or closed.<br>Cover open = 0x41, Cover closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetCoverOpenCloseStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetCoverOpenCloseStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetCoverOpenCloseStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetCoverOpenCloseStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates rice cooking status.<br>Stop = 0x41, Preheating = 0x42, Rice cooking = 0x43, Steaming = 0x44, Rice cooking completion = 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetRiceCookingStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetRiceCookingStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetRiceCookingStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetRiceCookingStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates rice cooking control setting.<br>Rice cooking start/restart = 0x41, Rice cooking suspension = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
-		protected void onSetRiceCookingControlSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetRiceCookingControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetRiceCookingControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetRiceCookingControlSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * This property indicates rice cooking control setting.<br>Rice cooking start/restart = 0x41, Rice cooking suspension = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
-		protected void onGetRiceCookingControlSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetRiceCookingControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetRiceCookingControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetRiceCookingControlSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates whether or not warmer function is enabled.<br>Warmer enabled = 0x41, Warmer disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetWarmerSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetWarmerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetWarmerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetWarmerSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * This property indicates whether or not warmer function is enabled.<br>Warmer enabled = 0x41, Warmer disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetWarmerSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetWarmerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetWarmerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetWarmerSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates whether inner pot is removed or not.<br>Removed = 0x41, Not removed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetInnerPotRemovalStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetInnerPotRemovalStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetInnerPotRemovalStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetInnerPotRemovalStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates whether or not cover is removed.<br>Removed = 0x41, Not removed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetCoverRemovalStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetCoverRemovalStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetCoverRemovalStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetCoverRemovalStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates whether rice cooking reservation is ON or OFF.<br>Reservation ON = 0x41, Reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetRiceCookingReservationSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetRiceCookingReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetRiceCookingReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetRiceCookingReservationSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * This property indicates whether rice cooking reservation is ON or OFF.<br>Reservation ON = 0x41, Reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetRiceCookingReservationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetRiceCookingReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetRiceCookingReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetRiceCookingReservationSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetSetValueOfRiceCookingReservationSettingTime(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetSetValueOfRiceCookingReservationSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetSetValueOfRiceCookingReservationSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetSetValueOfRiceCookingReservationSettingTime(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetSetValueOfRiceCookingReservationSettingTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSetValueOfRiceCookingReservationSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSetValueOfRiceCookingReservationSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSetValueOfRiceCookingReservationSettingTime(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetSetValueOfRiceCookingReservationSettingRelativeTime(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetSetValueOfRiceCookingReservationSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetSetValueOfRiceCookingReservationSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetSetValueOfRiceCookingReservationSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Timer value (HH:MM)<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetSetValueOfRiceCookingReservationSettingRelativeTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSetValueOfRiceCookingReservationSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSetValueOfRiceCookingReservationSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSetValueOfRiceCookingReservationSettingRelativeTime(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -386,27 +510,32 @@ public abstract class RiceCooker extends DeviceObject {
 
 		@Override
 		public Setter reqSetRiceCookingControlSetting(byte[] edt) {
-			addProperty(EPC_RICE_COOKING_CONTROL_SETTING, edt, setRiceCookingControlSetting(edt));
+			byte epc = EPC_RICE_COOKING_CONTROL_SETTING;
+			addProperty(epc, edt, _setRiceCookingControlSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetWarmerSetting(byte[] edt) {
-			addProperty(EPC_WARMER_SETTING, edt, setWarmerSetting(edt));
+			byte epc = EPC_WARMER_SETTING;
+			addProperty(epc, edt, _setWarmerSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetRiceCookingReservationSetting(byte[] edt) {
-			addProperty(EPC_RICE_COOKING_RESERVATION_SETTING, edt, setRiceCookingReservationSetting(edt));
+			byte epc = EPC_RICE_COOKING_RESERVATION_SETTING;
+			addProperty(epc, edt, _setRiceCookingReservationSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetSetValueOfRiceCookingReservationSettingTime(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_TIME, edt, setSetValueOfRiceCookingReservationSettingTime(edt));
+			byte epc = EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_TIME;
+			addProperty(epc, edt, _setSetValueOfRiceCookingReservationSettingTime(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetSetValueOfRiceCookingReservationSettingRelativeTime(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_RELATIVE_TIME, edt, setSetValueOfRiceCookingReservationSettingRelativeTime(edt));
+			byte epc = EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_RELATIVE_TIME;
+			addProperty(epc, edt, _setSetValueOfRiceCookingReservationSettingRelativeTime(epc, edt));
 			return this;
 		}
 	}
@@ -642,56 +771,65 @@ public abstract class RiceCooker extends DeviceObject {
 
 		@Override
 		public Getter reqGetCoverOpenCloseStatus() {
-			byte[] edt = getCoverOpenCloseStatus();
-			addProperty(EPC_COVER_OPEN_CLOSE_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_COVER_OPEN_CLOSE_STATUS;
+			byte[] edt = _getCoverOpenCloseStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetRiceCookingStatus() {
-			byte[] edt = getRiceCookingStatus();
-			addProperty(EPC_RICE_COOKING_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_RICE_COOKING_STATUS;
+			byte[] edt = _getRiceCookingStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetRiceCookingControlSetting() {
-			byte[] edt = getRiceCookingControlSetting();
-			addProperty(EPC_RICE_COOKING_CONTROL_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_RICE_COOKING_CONTROL_SETTING;
+			byte[] edt = _getRiceCookingControlSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetWarmerSetting() {
-			byte[] edt = getWarmerSetting();
-			addProperty(EPC_WARMER_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_WARMER_SETTING;
+			byte[] edt = _getWarmerSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetInnerPotRemovalStatus() {
-			byte[] edt = getInnerPotRemovalStatus();
-			addProperty(EPC_INNER_POT_REMOVAL_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_INNER_POT_REMOVAL_STATUS;
+			byte[] edt = _getInnerPotRemovalStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetCoverRemovalStatus() {
-			byte[] edt = getCoverRemovalStatus();
-			addProperty(EPC_COVER_REMOVAL_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_COVER_REMOVAL_STATUS;
+			byte[] edt = _getCoverRemovalStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetRiceCookingReservationSetting() {
-			byte[] edt = getRiceCookingReservationSetting();
-			addProperty(EPC_RICE_COOKING_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_RICE_COOKING_RESERVATION_SETTING;
+			byte[] edt = _getRiceCookingReservationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSetValueOfRiceCookingReservationSettingTime() {
-			byte[] edt = getSetValueOfRiceCookingReservationSettingTime();
-			addProperty(EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_TIME;
+			byte[] edt = _getSetValueOfRiceCookingReservationSettingTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSetValueOfRiceCookingReservationSettingRelativeTime() {
-			byte[] edt = getSetValueOfRiceCookingReservationSettingRelativeTime();
-			addProperty(EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_RELATIVE_TIME;
+			byte[] edt = _getSetValueOfRiceCookingReservationSettingRelativeTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}
@@ -1007,56 +1145,65 @@ public abstract class RiceCooker extends DeviceObject {
 
 		@Override
 		public Informer reqInformCoverOpenCloseStatus() {
-			byte[] edt = getCoverOpenCloseStatus();
-			addProperty(EPC_COVER_OPEN_CLOSE_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_COVER_OPEN_CLOSE_STATUS;
+			byte[] edt = _getCoverOpenCloseStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformRiceCookingStatus() {
-			byte[] edt = getRiceCookingStatus();
-			addProperty(EPC_RICE_COOKING_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_RICE_COOKING_STATUS;
+			byte[] edt = _getRiceCookingStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformRiceCookingControlSetting() {
-			byte[] edt = getRiceCookingControlSetting();
-			addProperty(EPC_RICE_COOKING_CONTROL_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_RICE_COOKING_CONTROL_SETTING;
+			byte[] edt = _getRiceCookingControlSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformWarmerSetting() {
-			byte[] edt = getWarmerSetting();
-			addProperty(EPC_WARMER_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_WARMER_SETTING;
+			byte[] edt = _getWarmerSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformInnerPotRemovalStatus() {
-			byte[] edt = getInnerPotRemovalStatus();
-			addProperty(EPC_INNER_POT_REMOVAL_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_INNER_POT_REMOVAL_STATUS;
+			byte[] edt = _getInnerPotRemovalStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformCoverRemovalStatus() {
-			byte[] edt = getCoverRemovalStatus();
-			addProperty(EPC_COVER_REMOVAL_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_COVER_REMOVAL_STATUS;
+			byte[] edt = _getCoverRemovalStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformRiceCookingReservationSetting() {
-			byte[] edt = getRiceCookingReservationSetting();
-			addProperty(EPC_RICE_COOKING_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_RICE_COOKING_RESERVATION_SETTING;
+			byte[] edt = _getRiceCookingReservationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSetValueOfRiceCookingReservationSettingTime() {
-			byte[] edt = getSetValueOfRiceCookingReservationSettingTime();
-			addProperty(EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_TIME;
+			byte[] edt = _getSetValueOfRiceCookingReservationSettingTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSetValueOfRiceCookingReservationSettingRelativeTime() {
-			byte[] edt = getSetValueOfRiceCookingReservationSettingRelativeTime();
-			addProperty(EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_RELATIVE_TIME;
+			byte[] edt = _getSetValueOfRiceCookingReservationSettingRelativeTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}

@@ -58,14 +58,17 @@ public abstract class EchoObject {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(getClass().getSimpleName());
-		sb.append("[group:");
+		sb.append("class:"+getClass().getName());
+		sb.append(",groupCode:");
 		sb.append(String.format("%02x", getClassGroupCode()));
-		sb.append(",class:");
+		sb.append(",classCode:");
 		sb.append(String.format("%02x", getClassCode()));
-		sb.append(",instance:");
+		sb.append(",instanceCode:");
 		sb.append(String.format("%02x", getInstanceCode()));
-		sb.append("]");
+		sb.append(",address:");
+		if(getNode() != null) {
+			sb.append(getNode().getAddress().getHostName());
+		}
 		return new String(sb);
 	}
 
@@ -101,7 +104,7 @@ public abstract class EchoObject {
 	
 	public final EchoObject getSeoj() {
 		if(mSeoj == null) {
-			mSeoj = Echo.getEcho().getNode().getProfile();
+			mSeoj = Echo.getNode().getProfile();
 		}
 		return mSeoj;
 	}
@@ -112,13 +115,41 @@ public abstract class EchoObject {
 	
 	protected EchoObject getDeoj() {
 		if(mDeoj == null) {
-			mDeoj = Echo.getEcho().getNode().getProfile();
+			mDeoj = Echo.getNode().getProfile();
 		}
 		return mDeoj;
 	}
 
 	public final void setReceiver(Receiver receiver) {
 		mReceiver = receiver;
+	}
+	
+	public void notify(byte epc, byte[] edt) {
+		if(Echo.isTracing()) {
+			String method = Thread.currentThread().getStackTrace()[2].getMethodName();
+			if(edt == null) {
+				Echo.log("method:"+method+","+toString()
+						+",epc:"+EchoUtils.byteToHexString(epc)+",pdc:0,edt:");
+			} else {
+				Echo.log("method:"+method+",address:"+getNode().getAddress().getHostAddress()+","+toString()
+						+",epc:"+EchoUtils.byteToHexString(epc)+",pdc:"+EchoUtils.byteToHexString((byte)edt.length)
+						+",edt:"+EchoUtils.byteArrayToString(edt));
+			}
+		}
+	}
+	
+	public void notify(byte epc, byte[] edt, boolean success) {
+		if(Echo.isTracing()) {
+			String method = Thread.currentThread().getStackTrace()[2].getMethodName();
+			if(edt == null) {
+				Echo.log("method:"+method+","+toString()
+						+",epc:"+EchoUtils.byteToHexString(epc)+",pdc:0,edt:,success:"+success);
+			} else {
+				Echo.log("method:"+method+","+toString()
+						+",epc:"+EchoUtils.byteToHexString(epc)+",pdc:"+EchoUtils.byteToHexString((byte)edt.length)
+						+",edt:"+EchoUtils.byteArrayToString(edt)+",success:"+success);
+			}
+		}
 	}
 	
 	public final void onReceive(EchoFrame frame) {
@@ -130,7 +161,6 @@ public abstract class EchoObject {
 		}
 
 		EchoFrame res;
-		EchoSocket socket = EchoSocket.getSocket();
 		switch(frame.getEsv()) {
 		case ESV_SETI:
 			res = new EchoFrame(frame.getTid(), frame.getDeoj(), frame.getSeoj(), ESV_SET_NO_RES);
@@ -139,7 +169,7 @@ public abstract class EchoObject {
 			}
 			if(res.getEsv() == ESV_SETI_SNA) {
 				try {
-					socket.send(res.getDeoj().getNode().getAddress(), res.getFrameByteArray());
+					EchoSocket.send(res.getDeoj().getNode().getAddress(), res.getFrameByteArray());
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -151,7 +181,7 @@ public abstract class EchoObject {
 				onReceiveSet(res, p.epc, p.pdc, p.edt);
 			}
 			try {
-				socket.send(res.getDeoj().getNode().getAddress(), res.getFrameByteArray());
+				EchoSocket.send(res.getDeoj().getNode().getAddress(), res.getFrameByteArray());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -162,7 +192,7 @@ public abstract class EchoObject {
 				onReceiveGet(res, p.epc);
 			}
 			try {
-				socket.send(res.getDeoj().getNode().getAddress(), res.getFrameByteArray());
+				EchoSocket.send(res.getDeoj().getNode().getAddress(), res.getFrameByteArray());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -173,7 +203,7 @@ public abstract class EchoObject {
 				onReceiveInfReq(res, p.epc);
 			}
 			try {
-				socket.sendGroup(res.getFrameByteArray());
+				EchoSocket.sendGroup(res.getFrameByteArray());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -184,7 +214,7 @@ public abstract class EchoObject {
 				res.addProperty(p.epc);
 			}
 			try {
-				socket.send(res.getDeoj().getNode().getAddress(), res.getFrameByteArray());
+				EchoSocket.send(res.getDeoj().getNode().getAddress(), res.getFrameByteArray());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -253,76 +283,115 @@ public abstract class EchoObject {
 		public final void onReceive(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			switch(esv) {
 			case ESV_SET_RES: case ESV_SETI_SNA: case ESV_SETC_SNA:
-				onReceiveSetRes(eoj, tid, epc, pdc, edt);
+				onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case ESV_GET_RES: case ESV_GET_SNA:
-				onReceiveGetRes(eoj, tid, epc, pdc, edt);
+				onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case ESV_INF: case ESV_INF_SNA:
-				onReceiveInf(eoj, tid, epc, pdc, edt);
+				onReceiveInf(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case ESV_INFC:
-				onReceiveInfC(eoj, tid, epc, pdc, edt);
+				onReceiveInfC(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case ESV_INFC_RES:
-				onReceiveInfCRes(eoj, tid, epc, pdc, edt);
+				onReceiveInfCRes(eoj, tid, esv, epc, pdc, edt);
 				break;
 			}
 		}
 		/**
 		 * ESV=0x71,0x50,0x51
+		 * @param eoj
 		 * @param tid
+		 * @param esv
 		 * @param epc
 		 * @param pdc
 		 * @param edt
 		 */
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc, byte pdc, byte[] edt) {
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			
 		}
 		
 		/**
 		 * ESV=0x72,0x52
+		 * @param eoj
 		 * @param tid
 		 * @param epc
 		 * @param pdc
 		 * @param edt
 		 */
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc, byte pdc, byte[] edt) {
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			
 		}
 
 		/**
 		 * ESV=0x73,0x53
+		 * @param eoj
 		 * @param tid
+		 * @param esv
 		 * @param epc
 		 * @param pdc
 		 * @param edt
 		 */
-		protected final void onReceiveInf(EchoObject eoj, short tid, byte epc, byte pdc, byte[] edt) {
-			onReceiveGetRes(eoj, tid, epc, pdc, edt);
-			onReceiveInfC(eoj, tid, epc, pdc, edt);
+		protected final void onReceiveInf(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
+			onReceiveInfC(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
 		 * ESV=0x74
+		 * @param eoj
 		 * @param tid
 		 * @param epc
 		 * @param pdc
 		 * @param edt
 		 */
-		protected void onReceiveInfC(EchoObject eoj, short tid, byte epc, byte pdc, byte[] edt) {
-			
+		protected void onReceiveInfC(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 		}
 		
 		/**
 		 * ESV=0x7A
+		 * @param eoj
 		 * @param tid
 		 * @param epc
 		 * @param pdc
 		 * @param edt
 		 */
-		protected void onReceiveInfCRes(EchoObject eoj, short tid, byte epc, byte pdc, byte[] edt) {
-			
+		protected void onReceiveInfCRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+		}
+		
+		protected void notify(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			if(Echo.isTracing()) {
+				String method = Thread.currentThread().getStackTrace()[2].getMethodName();
+				if(edt == null) {
+					Echo.log("method:"+method+","+eoj.toString()
+							+",tid:"+EchoUtils.shortToHexString(tid)+",esv:"+EchoUtils.byteToHexString(esv)
+							+",epc:"+EchoUtils.byteToHexString(epc)+",pdc:0,edt:");
+				} else {
+					Echo.log("method:"+method+","+eoj.toString()
+							+",tid:"+EchoUtils.shortToHexString(tid)+",esv:"+EchoUtils.byteToHexString(esv)
+							+",epc:"+EchoUtils.byteToHexString(epc)+",pdc:"+EchoUtils.byteToHexString(pdc)
+							+",edt:"+EchoUtils.byteArrayToString(edt));
+				}
+			}
+		}
+		
+		protected void notify(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			if(Echo.isTracing()) {
+				String method = Thread.currentThread().getStackTrace()[2].getMethodName();
+				Echo.log("method:"+method+","+eoj.toString()
+						+",tid:"+tid+",esv:"+esv+",epc:"+epc+",pdc:"+pdc+",edt:"+EchoUtils.byteArrayToString(edt)+",success:"+success);
+				if(edt == null) {
+					Echo.log("method:"+method+","+eoj.toString()
+							+",tid:"+EchoUtils.shortToHexString(tid)+",esv:"+EchoUtils.byteToHexString(esv)
+							+",epc:"+EchoUtils.byteToHexString(epc)+",pdc:0,edt:,success:"+success);
+				} else {
+					Echo.log("method:"+method+","+eoj.toString()
+							+",tid:"+EchoUtils.shortToHexString(tid)+",esv:"+EchoUtils.byteToHexString(esv)
+							+",epc:"+EchoUtils.byteToHexString(epc)+",pdc:"+EchoUtils.byteToHexString(pdc)
+							+",edt:"+EchoUtils.byteArrayToString(edt)+",success:"+success);
+				}
+			}
 		}
 	}
 	
@@ -335,12 +404,14 @@ public abstract class EchoObject {
 		
 		protected void send() throws IOException {
 			byte[] data = mFrame.getFrameByteArray();
-			EchoSocket.getSocket().send(mNode.getAddress(), data);
+			EchoSocket.send(mNode.getAddress(), data);
+			notify("send");
 		}
 		
 		protected void sendGroup() throws IOException {
 			byte[] data = mFrame.getFrameByteArray();
-			EchoSocket.getSocket().sendGroup(data);
+			EchoSocket.sendGroup(data);
+			notify("sendGroup");
 		}
 
 		
@@ -358,14 +429,60 @@ public abstract class EchoObject {
 		
 		protected void addProperty(byte epc) {
 			mFrame.addProperty(epc);
+			notify(epc);
 		}
 		
 		protected void addProperty(byte epc, byte[] edt) {
 			mFrame.addProperty(epc, edt);
+			notify(epc, edt);
 		}
 
 		protected void addProperty(byte epc, byte[] edt, boolean success) {
 			mFrame.addProperty(epc, edt, success);
+			notify(epc, edt, success);
+		}
+
+		protected void notify(byte epc) {
+			if(Echo.isTracing()) {
+				String method = Thread.currentThread().getStackTrace()[3].getMethodName();
+				Echo.log("method:"+method+","+self.toString()+",epc:"+EchoUtils.byteToHexString(epc));
+			}
+		}
+		
+		protected void notify(byte epc, byte[] edt) {
+			if(Echo.isTracing()) {
+				String method = Thread.currentThread().getStackTrace()[3].getMethodName();
+				if(edt == null) {
+					Echo.log("method:"+method+","+self.toString()+",epc:"+EchoUtils.byteToHexString(epc)
+							+",pdc:0,edt:");
+				} else {
+					Echo.log("method:"+method+","+self.toString()+",epc:"+EchoUtils.byteToHexString(epc)
+							+",pdc:"+EchoUtils.byteToHexString((byte)edt.length)
+							+",edt:"+EchoUtils.byteArrayToString(edt));
+				}
+			}
+		}
+		
+		protected void notify(byte epc, byte[] edt, boolean success) {
+			if(Echo.isTracing()) {
+				String method = Thread.currentThread().getStackTrace()[3].getMethodName();
+				if(edt == null) {
+					Echo.log("method:"+method+","+self.toString()+",epc:"+EchoUtils.byteToHexString(epc)
+							+",pdc:0,edt:,success:"+success);
+				} else {
+					Echo.log("method:"+method+","+self.toString()+",epc:"+EchoUtils.byteToHexString(epc)
+							+",pdc:"+EchoUtils.byteToHexString((byte)edt.length)
+							+",edt:"+EchoUtils.byteArrayToString(edt)+",success:"+success);
+				}
+			}
+		}
+		
+		protected void notify(String method) {
+			if(Echo.isTracing()) {
+				Echo.log("method:"+method+","+self.toString()
+						+",tid:"+EchoUtils.shortToHexString(mTid)
+						+",esv:"+EchoUtils.byteToHexString(mFrame.getEsv()));
+			}
 		}
 	}
 	
@@ -385,12 +502,16 @@ public abstract class EchoObject {
 			if(getEsv() == ESV_SETI_SNA || getEsv() == ESV_SET_RES || getEsv() == ESV_SETC_SNA) {
 				onReceive(getFrame());
 			}
+			notify("send");
 		}
 
 		@Override
 		public void sendGroup() throws IOException {
-			send();
-		}	
+			if(getEsv() == ESV_SETI_SNA || getEsv() == ESV_SET_RES || getEsv() == ESV_SETC_SNA) {
+				onReceive(getFrame());
+			}
+			notify("sendGroup");
+		}
 	}
 	
 	public class SetterProxy extends Sender implements Setter {
@@ -405,8 +526,7 @@ public abstract class EchoObject {
 		
 		@Override
 		public void sendGroup() throws IOException {
-			byte[] data = mFrame.getFrameByteArray();
-			EchoSocket.getSocket().sendGroup(data);
+			super.sendGroup();
 		}
 
 		
@@ -427,11 +547,13 @@ public abstract class EchoObject {
 		@Override
 		public void send() throws IOException {
 			onReceive(getFrame());
+			notify("send");
 		}
 
 		@Override
 		public void sendGroup() throws IOException {
-			send();
+			onReceive(getFrame());
+			notify("sendGroup");
 		}
 
 	}
@@ -476,7 +598,8 @@ public abstract class EchoObject {
 
 		protected void addProperty(byte epc, byte[] edt, boolean success) {
 			if(success) {
-				addProperty(epc, edt);
+				mFrame.addProperty(epc, edt);
+				notify(epc, edt);
 			}
 		}
 	}

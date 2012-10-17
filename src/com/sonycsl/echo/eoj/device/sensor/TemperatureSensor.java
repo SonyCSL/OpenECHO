@@ -26,7 +26,7 @@ public abstract class TemperatureSensor extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x11;
 
-	protected static final byte EPC_MEASURED_TEMPERATURE_VALUE = (byte)0xE0;
+	public static final byte EPC_MEASURED_TEMPERATURE_VALUE = (byte)0xE0;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -42,6 +42,11 @@ public abstract class TemperatureSensor extends DeviceObject {
 	 * This property indicates the measured temperature value in units of 0.1. C.<br>0xF554.0x7FFF (-2732.32766) (-273.2.3276.6.C)<br><br>Data type : signed short<br>Data size : 2 bytes<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getMeasuredTemperatureValue();
+	private final byte[] _getMeasuredTemperatureValue(byte epc) {
+		byte[] edt = getMeasuredTemperatureValue();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -58,7 +63,7 @@ public abstract class TemperatureSensor extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_MEASURED_TEMPERATURE_VALUE:
-			edt = getMeasuredTemperatureValue();
+			edt = _getMeasuredTemperatureValue(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 
@@ -88,21 +93,19 @@ public abstract class TemperatureSensor extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_MEASURED_TEMPERATURE_VALUE:
-				onGetMeasuredTemperatureValue(eoj, tid, pdc, edt);
+				_onGetMeasuredTemperatureValue(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -111,7 +114,11 @@ public abstract class TemperatureSensor extends DeviceObject {
 		/**
 		 * This property indicates the measured temperature value in units of 0.1. C.<br>0xF554.0x7FFF (-2732.32766) (-273.2.3276.6.C)<br><br>Data type : signed short<br>Data size : 2 bytes<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetMeasuredTemperatureValue(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredTemperatureValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredTemperatureValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredTemperatureValue(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -342,8 +349,9 @@ public abstract class TemperatureSensor extends DeviceObject {
 
 		@Override
 		public Getter reqGetMeasuredTemperatureValue() {
-			byte[] edt = getMeasuredTemperatureValue();
-			addProperty(EPC_MEASURED_TEMPERATURE_VALUE, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_TEMPERATURE_VALUE;
+			byte[] edt = _getMeasuredTemperatureValue(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}
@@ -587,8 +595,9 @@ public abstract class TemperatureSensor extends DeviceObject {
 
 		@Override
 		public Informer reqInformMeasuredTemperatureValue() {
-			byte[] edt = getMeasuredTemperatureValue();
-			addProperty(EPC_MEASURED_TEMPERATURE_VALUE, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_TEMPERATURE_VALUE;
+			byte[] edt = _getMeasuredTemperatureValue(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}

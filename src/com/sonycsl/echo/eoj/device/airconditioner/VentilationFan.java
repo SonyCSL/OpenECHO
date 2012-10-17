@@ -26,8 +26,8 @@ public abstract class VentilationFan extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x01;
 	public static final byte CLASS_CODE = (byte)0x33;
 
-	protected static final byte EPC_VENTILATION_AUTO_SETTING = (byte)0xBF;
-	protected static final byte EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE = (byte)0xA0;
+	public static final byte EPC_VENTILATION_AUTO_SETTING = (byte)0xBF;
+	public static final byte EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE = (byte)0xA0;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -43,18 +43,38 @@ public abstract class VentilationFan extends DeviceObject {
 	 * Auto/Non-auto<br>Auto = 0x41, Non-auto = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setVentilationAutoSetting(byte[] edt) {return false;}
+	private final boolean _setVentilationAutoSetting(byte epc, byte[] edt) {
+		boolean success = setVentilationAutoSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Auto/Non-auto<br>Auto = 0x41, Non-auto = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getVentilationAutoSetting() {return null;}
+	private final byte[] _getVentilationAutoSetting(byte epc) {
+		byte[] edt = getVentilationAutoSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>Ventilation air flow rate auto status = 0x41 Ventilation air flow rate level = 0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetValueOfVentilationAirFlowRate(byte[] edt) {return false;}
+	private final boolean _setSetValueOfVentilationAirFlowRate(byte epc, byte[] edt) {
+		boolean success = setSetValueOfVentilationAirFlowRate(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>Ventilation air flow rate auto status = 0x41 Ventilation air flow rate level = 0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetValueOfVentilationAirFlowRate() {return null;}
+	private final byte[] _getSetValueOfVentilationAirFlowRate(byte epc) {
+		byte[] edt = getSetValueOfVentilationAirFlowRate();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -62,10 +82,10 @@ public abstract class VentilationFan extends DeviceObject {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
 		case EPC_VENTILATION_AUTO_SETTING:
-			res.addProperty(epc, edt, setVentilationAutoSetting(edt));
+			res.addProperty(epc, edt, _setVentilationAutoSetting(epc, edt));
 			break;
 		case EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE:
-			res.addProperty(epc, edt, setSetValueOfVentilationAirFlowRate(edt));
+			res.addProperty(epc, edt, _setSetValueOfVentilationAirFlowRate(epc, edt));
 			break;
 
 		}
@@ -77,11 +97,11 @@ public abstract class VentilationFan extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_VENTILATION_AUTO_SETTING:
-			edt = getVentilationAutoSetting();
+			edt = _getVentilationAutoSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE:
-			edt = getSetValueOfVentilationAirFlowRate();
+			edt = _getSetValueOfVentilationAirFlowRate(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 
@@ -111,30 +131,28 @@ public abstract class VentilationFan extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_VENTILATION_AUTO_SETTING:
-				onSetVentilationAutoSetting(eoj, tid, (pdc != 0));
+				_onSetVentilationAutoSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE:
-				onSetSetValueOfVentilationAirFlowRate(eoj, tid, (pdc != 0));
+				_onSetSetValueOfVentilationAirFlowRate(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_VENTILATION_AUTO_SETTING:
-				onGetVentilationAutoSetting(eoj, tid, pdc, edt);
+				_onGetVentilationAutoSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE:
-				onGetSetValueOfVentilationAirFlowRate(eoj, tid, pdc, edt);
+				_onGetSetValueOfVentilationAirFlowRate(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -143,19 +161,35 @@ public abstract class VentilationFan extends DeviceObject {
 		/**
 		 * Auto/Non-auto<br>Auto = 0x41, Non-auto = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetVentilationAutoSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetVentilationAutoSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetVentilationAutoSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetVentilationAutoSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Auto/Non-auto<br>Auto = 0x41, Non-auto = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetVentilationAutoSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetVentilationAutoSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetVentilationAutoSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetVentilationAutoSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>Ventilation air flow rate auto status = 0x41 Ventilation air flow rate level = 0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetSetValueOfVentilationAirFlowRate(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetSetValueOfVentilationAirFlowRate(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetSetValueOfVentilationAirFlowRate(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetSetValueOfVentilationAirFlowRate(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>Ventilation air flow rate auto status = 0x41 Ventilation air flow rate level = 0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetSetValueOfVentilationAirFlowRate(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSetValueOfVentilationAirFlowRate(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSetValueOfVentilationAirFlowRate(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSetValueOfVentilationAirFlowRate(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -220,12 +254,14 @@ public abstract class VentilationFan extends DeviceObject {
 
 		@Override
 		public Setter reqSetVentilationAutoSetting(byte[] edt) {
-			addProperty(EPC_VENTILATION_AUTO_SETTING, edt, setVentilationAutoSetting(edt));
+			byte epc = EPC_VENTILATION_AUTO_SETTING;
+			addProperty(epc, edt, _setVentilationAutoSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetSetValueOfVentilationAirFlowRate(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE, edt, setSetValueOfVentilationAirFlowRate(edt));
+			byte epc = EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE;
+			addProperty(epc, edt, _setSetValueOfVentilationAirFlowRate(epc, edt));
 			return this;
 		}
 	}
@@ -418,14 +454,16 @@ public abstract class VentilationFan extends DeviceObject {
 
 		@Override
 		public Getter reqGetVentilationAutoSetting() {
-			byte[] edt = getVentilationAutoSetting();
-			addProperty(EPC_VENTILATION_AUTO_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_VENTILATION_AUTO_SETTING;
+			byte[] edt = _getVentilationAutoSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSetValueOfVentilationAirFlowRate() {
-			byte[] edt = getSetValueOfVentilationAirFlowRate();
-			addProperty(EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE;
+			byte[] edt = _getSetValueOfVentilationAirFlowRate(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}
@@ -678,14 +716,16 @@ public abstract class VentilationFan extends DeviceObject {
 
 		@Override
 		public Informer reqInformVentilationAutoSetting() {
-			byte[] edt = getVentilationAutoSetting();
-			addProperty(EPC_VENTILATION_AUTO_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_VENTILATION_AUTO_SETTING;
+			byte[] edt = _getVentilationAutoSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSetValueOfVentilationAirFlowRate() {
-			byte[] edt = getSetValueOfVentilationAirFlowRate();
-			addProperty(EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE;
+			byte[] edt = _getSetValueOfVentilationAirFlowRate(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}

@@ -26,8 +26,8 @@ public abstract class Weighing extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x04;
 	public static final byte CLASS_CODE = (byte)0x01;
 
-	protected static final byte EPC_MEASURED_VALUE_OF_BODY_WEIGHT = (byte)0xE0;
-	protected static final byte EPC_MEASURED_VALUE_OF_BODY_FAT = (byte)0xE1;
+	public static final byte EPC_MEASURED_VALUE_OF_BODY_WEIGHT = (byte)0xE0;
+	public static final byte EPC_MEASURED_VALUE_OF_BODY_FAT = (byte)0xE1;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -43,10 +43,20 @@ public abstract class Weighing extends DeviceObject {
 	 * This property indicates measured value of body weight in units of 0.1 kg.<br>0x0000.0xFFFD (0.6553.3kg)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getMeasuredValueOfBodyWeight();
+	private final byte[] _getMeasuredValueOfBodyWeight(byte epc) {
+		byte[] edt = getMeasuredValueOfBodyWeight();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates measured value of body fat in units of 0.1%.<br>0x0000.0x03E8 (0.100.0%)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredValueOfBodyFat() {return null;}
+	private final byte[] _getMeasuredValueOfBodyFat(byte epc) {
+		byte[] edt = getMeasuredValueOfBodyFat();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -63,11 +73,11 @@ public abstract class Weighing extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_MEASURED_VALUE_OF_BODY_WEIGHT:
-			edt = getMeasuredValueOfBodyWeight();
+			edt = _getMeasuredValueOfBodyWeight(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_MEASURED_VALUE_OF_BODY_FAT:
-			edt = getMeasuredValueOfBodyFat();
+			edt = _getMeasuredValueOfBodyFat(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 
@@ -97,24 +107,22 @@ public abstract class Weighing extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_MEASURED_VALUE_OF_BODY_WEIGHT:
-				onGetMeasuredValueOfBodyWeight(eoj, tid, pdc, edt);
+				_onGetMeasuredValueOfBodyWeight(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_VALUE_OF_BODY_FAT:
-				onGetMeasuredValueOfBodyFat(eoj, tid, pdc, edt);
+				_onGetMeasuredValueOfBodyFat(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -123,11 +131,19 @@ public abstract class Weighing extends DeviceObject {
 		/**
 		 * This property indicates measured value of body weight in units of 0.1 kg.<br>0x0000.0xFFFD (0.6553.3kg)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetMeasuredValueOfBodyWeight(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredValueOfBodyWeight(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredValueOfBodyWeight(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredValueOfBodyWeight(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates measured value of body fat in units of 0.1%.<br>0x0000.0x03E8 (0.100.0%)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMeasuredValueOfBodyFat(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredValueOfBodyFat(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredValueOfBodyFat(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredValueOfBodyFat(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -362,14 +378,16 @@ public abstract class Weighing extends DeviceObject {
 
 		@Override
 		public Getter reqGetMeasuredValueOfBodyWeight() {
-			byte[] edt = getMeasuredValueOfBodyWeight();
-			addProperty(EPC_MEASURED_VALUE_OF_BODY_WEIGHT, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_VALUE_OF_BODY_WEIGHT;
+			byte[] edt = _getMeasuredValueOfBodyWeight(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredValueOfBodyFat() {
-			byte[] edt = getMeasuredValueOfBodyFat();
-			addProperty(EPC_MEASURED_VALUE_OF_BODY_FAT, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_VALUE_OF_BODY_FAT;
+			byte[] edt = _getMeasuredValueOfBodyFat(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}
@@ -622,14 +640,16 @@ public abstract class Weighing extends DeviceObject {
 
 		@Override
 		public Informer reqInformMeasuredValueOfBodyWeight() {
-			byte[] edt = getMeasuredValueOfBodyWeight();
-			addProperty(EPC_MEASURED_VALUE_OF_BODY_WEIGHT, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_VALUE_OF_BODY_WEIGHT;
+			byte[] edt = _getMeasuredValueOfBodyWeight(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredValueOfBodyFat() {
-			byte[] edt = getMeasuredValueOfBodyFat();
-			addProperty(EPC_MEASURED_VALUE_OF_BODY_FAT, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_VALUE_OF_BODY_FAT;
+			byte[] edt = _getMeasuredValueOfBodyFat(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}

@@ -16,8 +16,11 @@
 package com.sonycsl.echo;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.net.InetAddress;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.sonycsl.echo.eoj.EchoObject;
@@ -120,69 +123,71 @@ import com.sonycsl.echo.node.EchoNode;
 public final class Echo {
 	@SuppressWarnings("unused")
 	private static final String TAG = Echo.class.getSimpleName();
-	private static Echo self = null;
 	
-	private EchoNode mNode;
-	private Map<InetAddress, EchoNode> mNodeProxies;
+	private static EchoNode sNode;
+	private static Map<InetAddress, EchoNode> sNodeProxies;
 	
-	private ProxyListener mProxyListener = null;
+	private static ProxyListener sProxyListener = null;
 	
-	private boolean mTracing = false;
+	private static PrintStream sOut = null;
 	
 	private Echo() {
-		mNodeProxies = new HashMap<InetAddress, EchoNode>();
 	}
 	
-	public static Echo getEcho() {
-		if(self == null) {
-			self = new Echo();
+	public static EchoNode start(NodeProfile profile, DeviceObject[] devices) throws IOException {
+
+		sNodeProxies = new HashMap<InetAddress, EchoNode>();
+		EchoSocket.start();
+		sNode = new EchoNode(profile, devices);
+		sNode.getProfile().inform().reqInformInstanceListNotification().sendGroup();
+		return sNode;
+	}
+	
+	public static void stop() throws IOException {
+		sProxyListener = null;
+		EchoSocket.stop();
+		sNodeProxies.clear();
+	}
+	
+	public static void setProxyListener(ProxyListener listener) {
+		sProxyListener = listener;
+	}
+	
+	public static void removeNodeProxy(EchoNode node) {
+		sNodeProxies.remove(node.getAddress());
+	}
+	
+	public static void removeAllNodeProxies() {
+		sNodeProxies.clear();
+	}
+	
+	public static EchoNode getNode() {
+		return sNode;
+	}
+	
+	public static EchoNode[] getNodeProxies() {
+		return (EchoNode[]) sNodeProxies.values().toArray(new EchoNode[]{});
+	}
+	
+	public static EchoNode[] getNodes() {
+		List<EchoNode> nodes = new ArrayList<EchoNode>();
+		EchoNode[] proxies = getNodeProxies();
+		nodes.add(sNode);
+		for(EchoNode p : proxies) {
+			nodes.add(p);
 		}
-		return self;
+		return (EchoNode[]) nodes.toArray(new EchoNode[]{});
 	}
 	
-	public EchoNode start(NodeProfile profile, DeviceObject[] devices) throws IOException {
-		
-		EchoSocket.getSocket().start();
-		mNode = new EchoNode(profile, devices);
-		mNode.getProfile().inform().reqInformInstanceListNotification().sendGroup();
-		return mNode;
-	}
-	
-	public void stop() throws IOException {
-		mProxyListener = null;
-		EchoSocket.getSocket().stop();
-		mNodeProxies.clear();
-	}
-	
-	public void setProxyListener(ProxyListener listener) {
-		mProxyListener = listener;
-	}
-	
-	public void removeNodeProxy(EchoNode node) {
-		mNodeProxies.remove(node.getAddress());
-	}
-	
-	public void removeAllNodeProxies() {
-		mNodeProxies.clear();
-	}
-	
-	public EchoNode getNode() {
-		return mNode;
-	}
-	
-	public EchoNode[] getNodeProxies() {
-		return (EchoNode[]) mNodeProxies.values().toArray(new EchoNode[]{});
-	}
-	
-	public void refreshProxy(InetAddress address, byte[] instanceList) {
-		if(mNode.getAddress().equals(address)) {
+	public static void refreshProxy(InetAddress address, byte[] instanceList) {
+		if(sNode.getAddress().equals(address)) {
 			return;
 		}
 		int size = instanceList[0] & 0xFF;
 		if(size > 84) {
 			size = 84;
-		} else if(mNodeProxies.containsKey(address)) {
-			EchoNode node = mNodeProxies.get(address);
+		} else if(sNodeProxies.containsKey(address)) {
+			EchoNode node = sNodeProxies.get(address);
 			DeviceObject[] devices = node.getDevices();
 			for(DeviceObject device : devices) {
 				int i = 0;
@@ -194,7 +199,7 @@ public final class Echo {
 					}
 				}
 				if(i == size) {
-					mNode.removeDevice(device);
+					sNode.removeDevice(device);
 				}
 			}
 		}
@@ -206,22 +211,22 @@ public final class Echo {
 		
 	}
 	
-	public void putProxy(InetAddress address, byte classGroupCode, byte classCode, byte instanceCode) {
+	public static void putProxy(InetAddress address, byte classGroupCode, byte classCode, byte instanceCode) {
 
-		if(mNode.getAddress().equals(address)) {
+		if(sNode.getAddress().equals(address)) {
 			return;
 		}
 		EchoNode node;
-		if(mNodeProxies.containsKey(address)) {
-			node = mNodeProxies.get(address);
+		if(sNodeProxies.containsKey(address)) {
+			node = sNodeProxies.get(address);
 		} else {
 			NodeProfileProxy profile = new NodeProfileProxy();
 			node = new EchoNode(address, profile, new DeviceObject[0]);
-			mNodeProxies.put(address, node);
-			if(mProxyListener != null) {
-				mProxyListener.onNewNode(node);
-				mProxyListener.onNewProfileObject(profile);
-				mProxyListener.onNewNodeProfile(profile);
+			sNodeProxies.put(address, node);
+			if(sProxyListener != null) {
+				sProxyListener.onNewNode(node);
+				sProxyListener.onNewProfileObject(profile);
+				sProxyListener.onNewNodeProfile(profile);
 			}
 		}
 		if(!node.existsInstance(classGroupCode, classCode, instanceCode)) {
@@ -229,13 +234,13 @@ public final class Echo {
 		}
 	}
 	
-	public EchoObject getInstance(InetAddress address, byte classGroupCode, byte classCode, byte instanceCode) {
+	public static EchoObject getInstance(InetAddress address, byte classGroupCode, byte classCode, byte instanceCode) {
 
-		if(mNode.getAddress().equals(address)) {
-			return mNode.getInstance(classGroupCode, classCode, instanceCode);
+		if(sNode.getAddress().equals(address)) {
+			return sNode.getInstance(classGroupCode, classCode, instanceCode);
 		} else {
-			if(mNodeProxies.containsKey(address)) {
-				EchoNode node = mNodeProxies.get(address);
+			if(sNodeProxies.containsKey(address)) {
+				EchoNode node = sNodeProxies.get(address);
 				if(node.existsInstance(classGroupCode, classCode, instanceCode)) {
 					return node.getInstance(classGroupCode, classCode, instanceCode);
 				} else {
@@ -248,7 +253,7 @@ public final class Echo {
 	}
 	
 
-	private void createDeviceProxy(EchoNode node, byte classGroupCode, byte classCode, byte instanceCode) {
+	private static void createDeviceProxy(EchoNode node, byte classGroupCode, byte classCode, byte instanceCode) {
 		DeviceObject device;
 		if(classGroupCode == 0x00) {
 			// Sensor
@@ -256,345 +261,345 @@ public final class Echo {
 			case ActivityAmountSensorProxy.CLASS_CODE:
 				device = new ActivityAmountSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewActivityAmountSensor((ActivityAmountSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewActivityAmountSensor((ActivityAmountSensorProxy)device);
 				}
 				break;
 			case AirPollutionSensorProxy.CLASS_CODE:
 				device = new AirPollutionSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewAirPollutionSensor((AirPollutionSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewAirPollutionSensor((AirPollutionSensorProxy)device);
 				}
 				break;
 			case AirSpeedSensorProxy.CLASS_CODE:
 				device = new AirSpeedSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewAirSpeedSensor((AirSpeedSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewAirSpeedSensor((AirSpeedSensorProxy)device);
 				}
 				break;
 			case BathHeatingStatusSensorProxy.CLASS_CODE:
 				device = new BathHeatingStatusSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewBathHeatingStatusSensor((BathHeatingStatusSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewBathHeatingStatusSensor((BathHeatingStatusSensorProxy)device);
 				}
 				break;
 			case BathWaterLevelSensorProxy.CLASS_CODE:
 				device = new BathWaterLevelSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewBathWaterLevelSensor((BathWaterLevelSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewBathWaterLevelSensor((BathWaterLevelSensorProxy)device);
 				}
 				break;
 			case BedPresenceSensorProxy.CLASS_CODE:
 				device = new BedPresenceSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewBedPresenceSensor((BedPresenceSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewBedPresenceSensor((BedPresenceSensorProxy)device);
 				}
 				break;
 			case CallSensorProxy.CLASS_CODE:
 				device = new CallSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewCallSensor((CallSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewCallSensor((CallSensorProxy)device);
 				}
 				break;
 			case CigaretteSmokeSensorProxy.CLASS_CODE:
 				device = new CigaretteSmokeSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewCigaretteSmokeSensor((CigaretteSmokeSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewCigaretteSmokeSensor((CigaretteSmokeSensorProxy)device);
 				}
 				break;
 			case CO2SensorProxy.CLASS_CODE:
 				device = new CO2SensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewCO2Sensor((CO2SensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewCO2Sensor((CO2SensorProxy)device);
 				}
 				break;
 			case CondensationSensorProxy.CLASS_CODE:
 				device = new CondensationSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewCondensationSensor((CondensationSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewCondensationSensor((CondensationSensorProxy)device);
 				}
 				break;
 			case CrimePreventionSensorProxy.CLASS_CODE:
 				device = new CrimePreventionSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewCrimePreventionSensor((CrimePreventionSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewCrimePreventionSensor((CrimePreventionSensorProxy)device);
 				}
 				break;
 			case CurrentValueSensorProxy.CLASS_CODE:
 				device = new CurrentValueSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewCurrentValueSensor((CurrentValueSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewCurrentValueSensor((CurrentValueSensorProxy)device);
 				}
 				break;
 			case DifferentialPressureSensorProxy.CLASS_CODE:
 				device = new DifferentialPressureSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewDifferentialPressureSensor((DifferentialPressureSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewDifferentialPressureSensor((DifferentialPressureSensorProxy)device);
 				}
 				break;
 			case EarthquakeSensorProxy.CLASS_CODE:
 				device = new EarthquakeSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewEarthquakeSensor((EarthquakeSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewEarthquakeSensor((EarthquakeSensorProxy)device);
 				}
 				break;
 			case ElectricEnergySensorProxy.CLASS_CODE:
 				device = new ElectricEnergySensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewElectricEnergySensor((ElectricEnergySensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewElectricEnergySensor((ElectricEnergySensorProxy)device);
 				}
 				break;
 			case ElectricLeakSensorProxy.CLASS_CODE:
 				device = new ElectricLeakSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewElectricLeakSensor((ElectricLeakSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewElectricLeakSensor((ElectricLeakSensorProxy)device);
 				}
 				break;
 			case EmergencyButtonProxy.CLASS_CODE:
 				device = new EmergencyButtonProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewEmergencyButton((EmergencyButtonProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewEmergencyButton((EmergencyButtonProxy)device);
 				}
 				break;
 			case FireSensorProxy.CLASS_CODE:
 				device = new FireSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewFireSensor((FireSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewFireSensor((FireSensorProxy)device);
 				}
 				break;
 			case FirstAidSensorProxy.CLASS_CODE:
 				device = new FirstAidSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewFirstAidSensor((FirstAidSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewFirstAidSensor((FirstAidSensorProxy)device);
 				}
 				break;
 			case FlameSensorProxy.CLASS_CODE:
 				device = new FlameSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewFlameSensor((FlameSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewFlameSensor((FlameSensorProxy)device);
 				}
 				break;
 			case GasLeakSensorProxy.CLASS_CODE:
 				device = new GasLeakSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewGasLeakSensor((GasLeakSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewGasLeakSensor((GasLeakSensorProxy)device);
 				}
 				break;
 			case GasSensorProxy.CLASS_CODE:
 				device = new GasSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewGasSensor((GasSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewGasSensor((GasSensorProxy)device);
 				}
 				break;
 			case HumanBodyLocationSensorProxy.CLASS_CODE:
 				device = new HumanBodyLocationSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewHumanBodyLocationSensor((HumanBodyLocationSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewHumanBodyLocationSensor((HumanBodyLocationSensorProxy)device);
 				}
 				break;
 			case HumanDetectionSensorProxy.CLASS_CODE:
 				device = new HumanDetectionSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewHumanDetectionSensor((HumanDetectionSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewHumanDetectionSensor((HumanDetectionSensorProxy)device);
 				}
 				break;
 			case HumiditySensorProxy.CLASS_CODE:
 				device = new HumiditySensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewHumiditySensor((HumiditySensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewHumiditySensor((HumiditySensorProxy)device);
 				}
 				break;
 			case IlluminanceSensorProxy.CLASS_CODE:
 				device = new IlluminanceSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewIlluminanceSensor((IlluminanceSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewIlluminanceSensor((IlluminanceSensorProxy)device);
 				}
 				break;
 			case MailingSensorProxy.CLASS_CODE:
 				device = new MailingSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewMailingSensor((MailingSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewMailingSensor((MailingSensorProxy)device);
 				}
 				break;
 			case MicromotionSensorProxy.CLASS_CODE:
 				device = new MicromotionSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewMicromotionSensor((MicromotionSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewMicromotionSensor((MicromotionSensorProxy)device);
 				}
 				break;
 			case OdorSensorProxy.CLASS_CODE:
 				device = new OdorSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewOdorSensor((OdorSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewOdorSensor((OdorSensorProxy)device);
 				}
 				break;
 			case OpenCloseSensorProxy.CLASS_CODE:
 				device = new OpenCloseSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewOpenCloseSensor((OpenCloseSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewOpenCloseSensor((OpenCloseSensorProxy)device);
 				}
 				break;
 			case OxygenSensorProxy.CLASS_CODE:
 				device = new OxygenSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewOxygenSensor((OxygenSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewOxygenSensor((OxygenSensorProxy)device);
 				}
 				break;
 			case PassageSensorProxy.CLASS_CODE:
 				device = new PassageSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewPassageSensor((PassageSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewPassageSensor((PassageSensorProxy)device);
 				}
 				break;
 			case RainSensorProxy.CLASS_CODE:
 				device = new RainSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewRainSensor((RainSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewRainSensor((RainSensorProxy)device);
 				}
 				break;
 			case SnowSensorProxy.CLASS_CODE:
 				device = new SnowSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewSnowSensor((SnowSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewSnowSensor((SnowSensorProxy)device);
 				}
 				break;
 			case SoundSensorProxy.CLASS_CODE:
 				device = new SoundSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewSoundSensor((SoundSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewSoundSensor((SoundSensorProxy)device);
 				}
 				break;
 			case TemperatureSensorProxy.CLASS_CODE:
 				device = new TemperatureSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewTemperatureSensor((TemperatureSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewTemperatureSensor((TemperatureSensorProxy)device);
 				}
 				break;
 			case VisitorSensorProxy.CLASS_CODE:
 				device = new VisitorSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewVisitorSensor((VisitorSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewVisitorSensor((VisitorSensorProxy)device);
 				}
 				break;
 			case VOCSensorProxy.CLASS_CODE:
 				device = new VOCSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewVOCSensor((VOCSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewVOCSensor((VOCSensorProxy)device);
 				}
 				break;
 			case WaterFlowRateSensorProxy.CLASS_CODE:
 				device = new WaterFlowRateSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewWaterFlowRateSensor((WaterFlowRateSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewWaterFlowRateSensor((WaterFlowRateSensorProxy)device);
 				}
 				break;
 			case WaterLeakSensorProxy.CLASS_CODE:
 				device = new WaterLeakSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewWaterLeakSensor((WaterLeakSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewWaterLeakSensor((WaterLeakSensorProxy)device);
 				}
 				break;
 			case WaterLevelSensorProxy.CLASS_CODE:
 				device = new WaterLevelSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewWaterLevelSensor((WaterLevelSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewWaterLevelSensor((WaterLevelSensorProxy)device);
 				}
 				break;
 			case WaterOverflowSensorProxy.CLASS_CODE:
 				device = new WaterOverflowSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewWaterOverflowSensor((WaterOverflowSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewWaterOverflowSensor((WaterOverflowSensorProxy)device);
 				}
 				break;
 			case WeightSensorProxy.CLASS_CODE:
 				device = new WeightSensorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewWeightSensor((WeightSensorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewWeightSensor((WeightSensorProxy)device);
 				}
 				break;
 			}
@@ -604,73 +609,73 @@ public final class Echo {
 			case AirCleanerProxy.CLASS_CODE:
 				device = new AirCleanerProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewAirCleaner((AirCleanerProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewAirCleaner((AirCleanerProxy)device);
 				}
 				break;
 			case AirConditionerVentilationFanProxy.CLASS_CODE:
 				device = new AirConditionerVentilationFanProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewAirConditionerVentilationFan((AirConditionerVentilationFanProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewAirConditionerVentilationFan((AirConditionerVentilationFanProxy)device);
 				}
 				break;
 			case ElectricHeaterProxy.CLASS_CODE:
 				device = new ElectricHeaterProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewElectricHeater((ElectricHeaterProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewElectricHeater((ElectricHeaterProxy)device);
 				}
 				break;
 			case FanHeaterProxy.CLASS_CODE:
 				device = new FanHeaterProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewFanHeater((FanHeaterProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewFanHeater((FanHeaterProxy)device);
 				}
 				break;
 			case HomeAirConditionerProxy.CLASS_CODE:
 				device = new HomeAirConditionerProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewHomeAirConditioner((HomeAirConditionerProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewHomeAirConditioner((HomeAirConditionerProxy)device);
 				}
 				break;
 			case HumidifierProxy.CLASS_CODE:
 				device = new HumidifierProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewHumidifier((HumidifierProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewHumidifier((HumidifierProxy)device);
 				}
 				break;
 			case PackageTypeCommercialAirConditionerIndoorUnitProxy.CLASS_CODE:
 				device = new PackageTypeCommercialAirConditionerIndoorUnitProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewPackageTypeCommercialAirConditionerIndoorUnit((PackageTypeCommercialAirConditionerIndoorUnitProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewPackageTypeCommercialAirConditionerIndoorUnit((PackageTypeCommercialAirConditionerIndoorUnitProxy)device);
 				}
 				break;
 			case PackageTypeCommercialAirConditionerOutdoorUnitProxy.CLASS_CODE:
 				device = new PackageTypeCommercialAirConditionerOutdoorUnitProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewPackageTypeCommercialAirConditionerOutdoorUnit((PackageTypeCommercialAirConditionerOutdoorUnitProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewPackageTypeCommercialAirConditionerOutdoorUnit((PackageTypeCommercialAirConditionerOutdoorUnitProxy)device);
 				}
 				break;
 			case VentilationFanProxy.CLASS_CODE:
 				device = new VentilationFanProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewVentilationFan((VentilationFanProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewVentilationFan((VentilationFanProxy)device);
 				}
 				break;
 			}
@@ -680,185 +685,185 @@ public final class Echo {
 			case BathroomHeaterAndDryerProxy.CLASS_CODE:
 				device = new BathroomHeaterAndDryerProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewBathroomHeaterAndDryer((BathroomHeaterAndDryerProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewBathroomHeaterAndDryer((BathroomHeaterAndDryerProxy)device);
 				}
 				break;
 			case BatteryProxy.CLASS_CODE:
 				device = new BatteryProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewBattery((BatteryProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewBattery((BatteryProxy)device);
 				}
 				break;
 			case BuzzerProxy.CLASS_CODE:
 				device = new BuzzerProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewBuzzer((BuzzerProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewBuzzer((BuzzerProxy)device);
 				}
 				break;
 			case ColdOrHotWaterHeatSourceEquipmentProxy.CLASS_CODE:
 				device = new ColdOrHotWaterHeatSourceEquipmentProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewColdOrHotWaterHeatSourceEquipment((ColdOrHotWaterHeatSourceEquipmentProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewColdOrHotWaterHeatSourceEquipment((ColdOrHotWaterHeatSourceEquipmentProxy)device);
 				}
 				break;
 			case ElectricallyOperatedShadeProxy.CLASS_CODE:
 				device = new ElectricallyOperatedShadeProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewElectricallyOperatedShade((ElectricallyOperatedShadeProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewElectricallyOperatedShade((ElectricallyOperatedShadeProxy)device);
 				}
 				break;
 			case ElectricLockProxy.CLASS_CODE:
 				device = new ElectricLockProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewElectricLock((ElectricLockProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewElectricLock((ElectricLockProxy)device);
 				}
 				break;
 			case ElectricShutterProxy.CLASS_CODE:
 				device = new ElectricShutterProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewElectricShutter((ElectricShutterProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewElectricShutter((ElectricShutterProxy)device);
 				}
 				break;
 			case ElectricStormWindowProxy.CLASS_CODE:
 				device = new ElectricStormWindowProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewElectricStormWindow((ElectricStormWindowProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewElectricStormWindow((ElectricStormWindowProxy)device);
 				}
 				break;
 			case ElectricToiletSeatProxy.CLASS_CODE:
 				device = new ElectricToiletSeatProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewElectricToiletSeat((ElectricToiletSeatProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewElectricToiletSeat((ElectricToiletSeatProxy)device);
 				}
 				break;
 			case ElectricWaterHeaterProxy.CLASS_CODE:
 				device = new ElectricWaterHeaterProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewElectricWaterHeater((ElectricWaterHeaterProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewElectricWaterHeater((ElectricWaterHeaterProxy)device);
 				}
 				break;
 			case FloorHeaterProxy.CLASS_CODE:
 				device = new FloorHeaterProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewFloorHeater((FloorHeaterProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewFloorHeater((FloorHeaterProxy)device);
 				}
 				break;
 			case FuelCellProxy.CLASS_CODE:
 				device = new FuelCellProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewFuelCell((FuelCellProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewFuelCell((FuelCellProxy)device);
 				}
 				break;
 			case GasMeterProxy.CLASS_CODE:
 				device = new GasMeterProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewGasMeter((GasMeterProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewGasMeter((GasMeterProxy)device);
 				}
 				break;
 			case GeneralLightingProxy.CLASS_CODE:
 				device = new GeneralLightingProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewGeneralLighting((GeneralLightingProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewGeneralLighting((GeneralLightingProxy)device);
 				}
 				break;
 			case HouseholdSolarPowerGenerationProxy.CLASS_CODE:
 				device = new HouseholdSolarPowerGenerationProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewHouseholdSolarPowerGeneration((HouseholdSolarPowerGenerationProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewHouseholdSolarPowerGeneration((HouseholdSolarPowerGenerationProxy)device);
 				}
 				break;
 			case InstantaneousWaterHeaterProxy.CLASS_CODE:
 				device = new InstantaneousWaterHeaterProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewInstantaneousWaterHeater((InstantaneousWaterHeaterProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewInstantaneousWaterHeater((InstantaneousWaterHeaterProxy)device);
 				}
 				break;
 			case LPGasMeterProxy.CLASS_CODE:
 				device = new LPGasMeterProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewLPGasMeter((LPGasMeterProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewLPGasMeter((LPGasMeterProxy)device);
 				}
 				break;
 			case PowerDistributionBoardMeteringProxy.CLASS_CODE:
 				device = new PowerDistributionBoardMeteringProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewPowerDistributionBoardMetering((PowerDistributionBoardMeteringProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewPowerDistributionBoardMetering((PowerDistributionBoardMeteringProxy)device);
 				}
 				break;
 			case SmartElectricEnergyMeterProxy.CLASS_CODE:
 				device = new SmartElectricEnergyMeterProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewSmartElectricEnergyMeter((SmartElectricEnergyMeterProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewSmartElectricEnergyMeter((SmartElectricEnergyMeterProxy)device);
 				}
 				break;
 			case SmartGasMeterProxy.CLASS_CODE:
 				device = new SmartGasMeterProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewSmartGasMeter((SmartGasMeterProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewSmartGasMeter((SmartGasMeterProxy)device);
 				}
 				break;
 			case SprinklerProxy.CLASS_CODE:
 				device = new SprinklerProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewSprinkler((SprinklerProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewSprinkler((SprinklerProxy)device);
 				}
 				break;
 			case WaterFlowmeterProxy.CLASS_CODE:
 				device = new WaterFlowmeterProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewWaterFlowmeter((WaterFlowmeterProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewWaterFlowmeter((WaterFlowmeterProxy)device);
 				}
 				break;
 			case WattHourMeterProxy.CLASS_CODE:
 				device = new WattHourMeterProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewWattHourMeter((WattHourMeterProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewWattHourMeter((WattHourMeterProxy)device);
 				}
 				break;
 			}
@@ -868,65 +873,65 @@ public final class Echo {
 			case ClothesDryerProxy.CLASS_CODE:
 				device = new ClothesDryerProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewClothesDryer((ClothesDryerProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewClothesDryer((ClothesDryerProxy)device);
 				}
 				break;
 			case CombinationMicrowaveOvenProxy.CLASS_CODE:
 				device = new ClothesDryerProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewCombinationMicrowaveOven((CombinationMicrowaveOvenProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewCombinationMicrowaveOven((CombinationMicrowaveOvenProxy)device);
 				}
 				break;
 			case CookingHeaterProxy.CLASS_CODE:
 				device = new CookingHeaterProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewCookingHeater((CookingHeaterProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewCookingHeater((CookingHeaterProxy)device);
 				}
 				break;
 			case ElectricHotWaterPotProxy.CLASS_CODE:
 				device = new ElectricHotWaterPotProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewElectricHotWaterPot((ElectricHotWaterPotProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewElectricHotWaterPot((ElectricHotWaterPotProxy)device);
 				}
 				break;
 			case RefrigeratorProxy.CLASS_CODE:
 				device = new RefrigeratorProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewRefrigerator((RefrigeratorProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewRefrigerator((RefrigeratorProxy)device);
 				}
 				break;
 			case RiceCookerProxy.CLASS_CODE:
 				device = new RiceCookerProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewRiceCooker((RiceCookerProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewRiceCooker((RiceCookerProxy)device);
 				}
 				break;
 			case WasherAndDryerProxy.CLASS_CODE:
 				device = new WasherAndDryerProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewWasherAndDryer((WasherAndDryerProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewWasherAndDryer((WasherAndDryerProxy)device);
 				}
 				break;
 			case WashingMachineProxy.CLASS_CODE:
 				device = new WashingMachineProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewWashingMachine((WashingMachineProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewWashingMachine((WashingMachineProxy)device);
 				}
 				break;
 			}
@@ -936,9 +941,9 @@ public final class Echo {
 			case WeighingProxy.CLASS_CODE:
 				device = new WeighingProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewWeighing((WeighingProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewWeighing((WeighingProxy)device);
 				}
 				break;
 			}
@@ -948,17 +953,17 @@ public final class Echo {
 			case ControllerProxy.CLASS_CODE:
 				device = new ControllerProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewController((ControllerProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewController((ControllerProxy)device);
 				}
 				break;
 			case SwitchProxy.CLASS_CODE:
 				device = new SwitchProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewSwitch((SwitchProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewSwitch((SwitchProxy)device);
 				}
 				break;
 			}
@@ -968,584 +973,421 @@ public final class Echo {
 			case DisplayProxy.CLASS_CODE:
 				device = new DisplayProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewDisplay((DisplayProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewDisplay((DisplayProxy)device);
 				}
 				break;
 			case TelevisionProxy.CLASS_CODE:
 				device = new TelevisionProxy(instanceCode);
 				node.addDevice(device);
-				if(mProxyListener != null) {
-					mProxyListener.onNewDevice(device);
-					mProxyListener.onNewTelevision((TelevisionProxy)device);
+				if(sProxyListener != null) {
+					sProxyListener.onNewDevice(device);
+					sProxyListener.onNewTelevision((TelevisionProxy)device);
 				}
 				break;
 			}
 		}
 	}
 	
-	public void trace(boolean t) {
-		mTracing = t;
+	public static void trace(PrintStream out) {
+		sOut = out;
 	}
 	
-	public boolean isTracing() {
-		return mTracing;
+	public static boolean isTracing() {
+		return sOut != null;
+	}
+	
+	public static void log(String x) {
+		if(isTracing()) {
+			long millis = System.currentTimeMillis();
+			x = "millis:" + millis + "," + x;
+			sOut.println(x);
+		}
 	}
 	
 	public static abstract class  ProxyListener {
-		public void onNewNode(EchoNode node) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewNode[address:"+node.getAddress().getHostAddress()+"]");
+		
+		protected void notify(EchoNode node) {
+			if(Echo.isTracing()) {
+				String method = Thread.currentThread().getStackTrace()[2].getMethodName();
+				Echo.log("method:"+method+",address:"+node.getAddress().getHostAddress());
 			}
+		}
+		protected void notify(EchoObject eoj) {
+			if(Echo.isTracing()) {
+				String method = Thread.currentThread().getStackTrace()[2].getMethodName();
+				Echo.log("method:"+method+","+eoj.toString());
+			}
+		}
+		public void onNewNode(EchoNode node) {
+			notify(node);
 		}
 		
 		public void onNewProfileObject(ProfileObject profile) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewProfileObject[address:"+profile.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(profile);
 		}
 		
 		public void onNewNodeProfile(NodeProfileProxy profile) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewNodeProfile[address:"+profile.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(profile);
 		}
 		
 		public void onNewDevice(DeviceObject device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewDevice[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
-			
+			notify(device);
 		}
 		
 		public void onNewActivityAmountSensor(ActivityAmountSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewActivityAmountSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewAirPollutionSensor(AirPollutionSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewAirPollutionSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewAirSpeedSensor(AirSpeedSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewAirSpeedSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewBathHeatingStatusSensor(BathHeatingStatusSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewBathHeatingStatusSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewBathWaterLevelSensor(BathWaterLevelSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewBathWaterLevelSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewBedPresenceSensor(BedPresenceSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewBedPresenceSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewCallSensor(CallSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewCallSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewCigaretteSmokeSensor(CigaretteSmokeSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewCigaretteSmokeSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewCO2Sensor(CO2SensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewCO2Sensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewCondensationSensor(CondensationSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewCondensationSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewCrimePreventionSensor(CrimePreventionSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewCrimePreventionSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewCurrentValueSensor(CurrentValueSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewCurrentValueSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewDifferentialPressureSensor(DifferentialPressureSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewDifferentialPressureSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewEarthquakeSensor(EarthquakeSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewEarthquakeSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewElectricEnergySensor(ElectricEnergySensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewElectricEnergySensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewElectricLeakSensor(ElectricLeakSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewElectricLeakSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewEmergencyButton(EmergencyButtonProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewEmergencyButton[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewFireSensor(FireSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewFireSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewFirstAidSensor(FirstAidSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewFirstAidSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewFlameSensor(FlameSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewFlameSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewGasLeakSensor(GasLeakSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewGasLeakSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewGasSensor(GasSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewGasSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewHumanBodyLocationSensor(HumanBodyLocationSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewHumanBodyLocationSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewHumanDetectionSensor(HumanDetectionSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewHumanDetectionSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewHumiditySensor(HumiditySensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewHumiditySensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewIlluminanceSensor(IlluminanceSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewIlluminanceSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewMailingSensor(MailingSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewMailingSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewMicromotionSensor(MicromotionSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewMicromotionSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewOdorSensor(OdorSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewOdorSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewOpenCloseSensor(OpenCloseSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewOpenCloseSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewOxygenSensor(OxygenSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewOxygenSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewPassageSensor(PassageSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewPassageSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewRainSensor(RainSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewRainSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewSnowSensor(SnowSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewSnowSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewSoundSensor(SoundSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewSoundSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewTemperatureSensor(TemperatureSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewTemperatureSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewVisitorSensor(VisitorSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewVisitorSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewVOCSensor(VOCSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewVOCSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewWaterFlowRateSensor(WaterFlowRateSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewWaterFlowRateSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewWaterLeakSensor(WaterLeakSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewWaterLeakSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewWaterLevelSensor(WaterLevelSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewWaterLevelSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewWaterOverflowSensor(WaterOverflowSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewWaterOverflowSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewWeightSensor(WeightSensorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewWeightSensor[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewAirCleaner(AirCleanerProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewAirCleaner[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewAirConditionerVentilationFan(AirConditionerVentilationFanProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewAirConditionerVentilationFan[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewElectricHeater(ElectricHeaterProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewElectricHeater[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewFanHeater(FanHeaterProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewFanHeater[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewHomeAirConditioner(HomeAirConditionerProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewHomeAirConditioner[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewHumidifier(HumidifierProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewHumidifier[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewPackageTypeCommercialAirConditionerIndoorUnit(PackageTypeCommercialAirConditionerIndoorUnitProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewPackageTypeCommercialAirConditionerIndoorUnit[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewPackageTypeCommercialAirConditionerOutdoorUnit(PackageTypeCommercialAirConditionerOutdoorUnitProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewPackageTypeCommercialAirConditionerOutdoorUnit[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewVentilationFan(VentilationFanProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewVentilationFan[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewBathroomHeaterAndDryer(BathroomHeaterAndDryerProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewBathroomHeaterAndDryer[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewBattery(BatteryProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewBattery[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewBuzzer(BuzzerProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewBuzzer[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewColdOrHotWaterHeatSourceEquipment(ColdOrHotWaterHeatSourceEquipmentProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewColdOrHotWaterHeatSourceEquipment[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewElectricallyOperatedShade(ElectricallyOperatedShadeProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewElectricallyOperatedShade[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewElectricLock(ElectricLockProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewElectricLock[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewElectricShutter(ElectricShutterProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewElectricShutter[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewElectricStormWindow(ElectricStormWindowProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewElectricStormWindow[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewElectricToiletSeat(ElectricToiletSeatProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewElectricToiletSeat[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewElectricWaterHeater(ElectricWaterHeaterProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewElectricWaterHeater[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewFloorHeater(FloorHeaterProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewFloorHeater[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewFuelCell(FuelCellProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewFuelCell[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewGasMeter(GasMeterProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewGasMeter[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewGeneralLighting(GeneralLightingProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewGeneralLighting[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewHouseholdSolarPowerGeneration(HouseholdSolarPowerGenerationProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewHouseholdSolarPowerGeneration[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewInstantaneousWaterHeater(InstantaneousWaterHeaterProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewInstantaneousWaterHeater[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewLPGasMeter(LPGasMeterProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewLPGasMeter[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewPowerDistributionBoardMetering(PowerDistributionBoardMeteringProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewPowerDistributionBoardMetering[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewSmartElectricEnergyMeter(SmartElectricEnergyMeterProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewSmartElectricEnergyMeter[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewSmartGasMeter(SmartGasMeterProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewSmartGasMeter[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewSprinkler(SprinklerProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewSprinkler[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewWaterFlowmeter(WaterFlowmeterProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewWaterFlowmeter[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewWattHourMeter(WattHourMeterProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewWattHourMeter[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewClothesDryer(ClothesDryerProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewClothesDryer[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewCombinationMicrowaveOven(CombinationMicrowaveOvenProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewCombinationMicrowaveOven[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewCookingHeater(CookingHeaterProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewCookingHeater[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewElectricHotWaterPot(ElectricHotWaterPotProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewElectricHotWaterPot[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewRefrigerator(RefrigeratorProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewRefrigerator[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewRiceCooker(RiceCookerProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewRiceCooker[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewWasherAndDryer(WasherAndDryerProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewWasherAndDryer[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewWashingMachine(WashingMachineProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewWashingMachine[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewWeighing(WeighingProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewWeighing[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewController(ControllerProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewController[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
-		
+
 		public void onNewSwitch(SwitchProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewSwitch[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewDisplay(DisplayProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewDisplay[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
 
 		public void onNewTelevision(TelevisionProxy device) {
-			if(Echo.getEcho().isTracing()) {
-				System.out.println("onNewTelevision[address:"+device.getNode().getAddress().getHostAddress()+"]");
-			}
+			notify(device);
 		}
+
 
 	}
 }

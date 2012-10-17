@@ -26,16 +26,16 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x79;
 
-	protected static final byte EPC_SYSTEM_INTERCONNECTION_STATUS = (byte)0xD0;
-	protected static final byte EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED = (byte)0xE0;
-	protected static final byte EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED = (byte)0xE1;
-	protected static final byte EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED = (byte)0xE2;
-	protected static final byte EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD = (byte)0xE3;
-	protected static final byte EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD = (byte)0xE4;
-	protected static final byte EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1 = (byte)0xE5;
-	protected static final byte EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2 = (byte)0xE6;
-	protected static final byte EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD = (byte)0xE7;
-	protected static final byte EPC_RATED_POWER_GENERATION_OUTPUT = (byte)0xE8;
+	public static final byte EPC_SYSTEM_INTERCONNECTION_STATUS = (byte)0xD0;
+	public static final byte EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED = (byte)0xE0;
+	public static final byte EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED = (byte)0xE1;
+	public static final byte EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED = (byte)0xE2;
+	public static final byte EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD = (byte)0xE3;
+	public static final byte EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD = (byte)0xE4;
+	public static final byte EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1 = (byte)0xE5;
+	public static final byte EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2 = (byte)0xE6;
+	public static final byte EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD = (byte)0xE7;
+	public static final byte EPC_RATED_POWER_GENERATION_OUTPUT = (byte)0xE8;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -51,58 +51,128 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * This property indicates system interconnection status<br>System-linked type = 0x00 Independent type = 0x01<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getSystemInterconnectionStatus() {return null;}
+	private final byte[] _getSystemInterconnectionStatus(byte epc) {
+		byte[] edt = getSystemInterconnectionStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates instantaneous generated power in W.<br>0x0000.0xFFFD (0.65533)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getMeasuredInstantaneousAmountOfElectricityGenerated();
+	private final byte[] _getMeasuredInstantaneousAmountOfElectricityGenerated(byte epc) {
+		byte[] edt = getMeasuredInstantaneousAmountOfElectricityGenerated();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates integral electric energy in 0.001 kWh.<br>0x0.0x3B9AC9FF (0.999999.999 kWh)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getMeasuredCumulativeAmountOfElectricityGenerated();
+	private final byte[] _getMeasuredCumulativeAmountOfElectricityGenerated(byte epc) {
+		byte[] edt = getMeasuredCumulativeAmountOfElectricityGenerated();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Resets integral generated electric energy by setting 0x00.<br>Reset = 0x00<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : undefined
 	 */
 	protected boolean setResettingCumulativeAmountOfElectricityGenerated(byte[] edt) {return false;}
+	private final boolean _setResettingCumulativeAmountOfElectricityGenerated(byte epc, byte[] edt) {
+		boolean success = setResettingCumulativeAmountOfElectricityGenerated(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * This property indicates integral value of sold power in 0.001 kWh.<br>0x0.0x3B9AC9FF (0.999999.999 kWh)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredCumulativeAmountOfElectricitySold() {return null;}
+	private final byte[] _getMeasuredCumulativeAmountOfElectricitySold(byte epc) {
+		byte[] edt = getMeasuredCumulativeAmountOfElectricitySold();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Resets integral sold electric energy by setting 0x00.<br>Reset = 0x00<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : undefined
 	 */
 	protected boolean setResettingCumulativeAmountOfElectricitySold(byte[] edt) {return false;}
+	private final boolean _setResettingCumulativeAmountOfElectricitySold(byte epc, byte[] edt) {
+		boolean success = setResettingCumulativeAmountOfElectricitySold(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setPowerGenerationOutputLimitSetting1(byte[] edt) {return false;}
+	private final boolean _setPowerGenerationOutputLimitSetting1(byte epc, byte[] edt) {
+		boolean success = setPowerGenerationOutputLimitSetting1(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getPowerGenerationOutputLimitSetting1() {return null;}
+	private final byte[] _getPowerGenerationOutputLimitSetting1(byte epc) {
+		byte[] edt = getPowerGenerationOutputLimitSetting1();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Specifies the power generation output in watts and to acquire the current setting.<br>0x0000 to 00xFFFD (0 to 65533)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setPowerGenerationOutputLimitSetting2(byte[] edt) {return false;}
+	private final boolean _setPowerGenerationOutputLimitSetting2(byte epc, byte[] edt) {
+		boolean success = setPowerGenerationOutputLimitSetting2(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Specifies the power generation output in watts and to acquire the current setting.<br>0x0000 to 00xFFFD (0 to 65533)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getPowerGenerationOutputLimitSetting2() {return null;}
+	private final byte[] _getPowerGenerationOutputLimitSetting2(byte epc) {
+		byte[] edt = getPowerGenerationOutputLimitSetting2();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Specifies, in watts, the amount of electricity sold and to acquire the current setting.<br>0x0000 to 00xFFFD (0 to 65533)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setLimitSettingForTheAmountOfElectricitySold(byte[] edt) {return false;}
+	private final boolean _setLimitSettingForTheAmountOfElectricitySold(byte epc, byte[] edt) {
+		boolean success = setLimitSettingForTheAmountOfElectricitySold(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Specifies, in watts, the amount of electricity sold and to acquire the current setting.<br>0x0000 to 00xFFFD (0 to 65533)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getLimitSettingForTheAmountOfElectricitySold() {return null;}
+	private final byte[] _getLimitSettingForTheAmountOfElectricitySold(byte epc) {
+		byte[] edt = getLimitSettingForTheAmountOfElectricitySold();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the rated power generation output (catalog value) in watts.<br>0x0000 to 00xFFFD (0 to 65533)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setRatedPowerGenerationOutput(byte[] edt) {return false;}
+	private final boolean _setRatedPowerGenerationOutput(byte epc, byte[] edt) {
+		boolean success = setRatedPowerGenerationOutput(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * This property indicates the rated power generation output (catalog value) in watts.<br>0x0000 to 00xFFFD (0 to 65533)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getRatedPowerGenerationOutput() {return null;}
+	private final byte[] _getRatedPowerGenerationOutput(byte epc) {
+		byte[] edt = getRatedPowerGenerationOutput();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -110,22 +180,22 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
 		case EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED:
-			res.addProperty(epc, edt, setResettingCumulativeAmountOfElectricityGenerated(edt));
+			res.addProperty(epc, edt, _setResettingCumulativeAmountOfElectricityGenerated(epc, edt));
 			break;
 		case EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD:
-			res.addProperty(epc, edt, setResettingCumulativeAmountOfElectricitySold(edt));
+			res.addProperty(epc, edt, _setResettingCumulativeAmountOfElectricitySold(epc, edt));
 			break;
 		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1:
-			res.addProperty(epc, edt, setPowerGenerationOutputLimitSetting1(edt));
+			res.addProperty(epc, edt, _setPowerGenerationOutputLimitSetting1(epc, edt));
 			break;
 		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2:
-			res.addProperty(epc, edt, setPowerGenerationOutputLimitSetting2(edt));
+			res.addProperty(epc, edt, _setPowerGenerationOutputLimitSetting2(epc, edt));
 			break;
 		case EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD:
-			res.addProperty(epc, edt, setLimitSettingForTheAmountOfElectricitySold(edt));
+			res.addProperty(epc, edt, _setLimitSettingForTheAmountOfElectricitySold(epc, edt));
 			break;
 		case EPC_RATED_POWER_GENERATION_OUTPUT:
-			res.addProperty(epc, edt, setRatedPowerGenerationOutput(edt));
+			res.addProperty(epc, edt, _setRatedPowerGenerationOutput(epc, edt));
 			break;
 
 		}
@@ -137,35 +207,35 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_SYSTEM_INTERCONNECTION_STATUS:
-			edt = getSystemInterconnectionStatus();
+			edt = _getSystemInterconnectionStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED:
-			edt = getMeasuredInstantaneousAmountOfElectricityGenerated();
+			edt = _getMeasuredInstantaneousAmountOfElectricityGenerated(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED:
-			edt = getMeasuredCumulativeAmountOfElectricityGenerated();
+			edt = _getMeasuredCumulativeAmountOfElectricityGenerated(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			break;
 		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD:
-			edt = getMeasuredCumulativeAmountOfElectricitySold();
+			edt = _getMeasuredCumulativeAmountOfElectricitySold(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			break;
 		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1:
-			edt = getPowerGenerationOutputLimitSetting1();
+			edt = _getPowerGenerationOutputLimitSetting1(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2:
-			edt = getPowerGenerationOutputLimitSetting2();
+			edt = _getPowerGenerationOutputLimitSetting2(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD:
-			edt = getLimitSettingForTheAmountOfElectricitySold();
+			edt = _getLimitSettingForTheAmountOfElectricitySold(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_RATED_POWER_GENERATION_OUTPUT:
-			edt = getRatedPowerGenerationOutput();
+			edt = _getRatedPowerGenerationOutput(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 
@@ -195,60 +265,58 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED:
-				onSetResettingCumulativeAmountOfElectricityGenerated(eoj, tid, (pdc != 0));
+				_onSetResettingCumulativeAmountOfElectricityGenerated(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD:
-				onSetResettingCumulativeAmountOfElectricitySold(eoj, tid, (pdc != 0));
+				_onSetResettingCumulativeAmountOfElectricitySold(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1:
-				onSetPowerGenerationOutputLimitSetting1(eoj, tid, (pdc != 0));
+				_onSetPowerGenerationOutputLimitSetting1(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2:
-				onSetPowerGenerationOutputLimitSetting2(eoj, tid, (pdc != 0));
+				_onSetPowerGenerationOutputLimitSetting2(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD:
-				onSetLimitSettingForTheAmountOfElectricitySold(eoj, tid, (pdc != 0));
+				_onSetLimitSettingForTheAmountOfElectricitySold(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_RATED_POWER_GENERATION_OUTPUT:
-				onSetRatedPowerGenerationOutput(eoj, tid, (pdc != 0));
+				_onSetRatedPowerGenerationOutput(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_SYSTEM_INTERCONNECTION_STATUS:
-				onGetSystemInterconnectionStatus(eoj, tid, pdc, edt);
+				_onGetSystemInterconnectionStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED:
-				onGetMeasuredInstantaneousAmountOfElectricityGenerated(eoj, tid, pdc, edt);
+				_onGetMeasuredInstantaneousAmountOfElectricityGenerated(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED:
-				onGetMeasuredCumulativeAmountOfElectricityGenerated(eoj, tid, pdc, edt);
+				_onGetMeasuredCumulativeAmountOfElectricityGenerated(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD:
-				onGetMeasuredCumulativeAmountOfElectricitySold(eoj, tid, pdc, edt);
+				_onGetMeasuredCumulativeAmountOfElectricitySold(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1:
-				onGetPowerGenerationOutputLimitSetting1(eoj, tid, pdc, edt);
+				_onGetPowerGenerationOutputLimitSetting1(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2:
-				onGetPowerGenerationOutputLimitSetting2(eoj, tid, pdc, edt);
+				_onGetPowerGenerationOutputLimitSetting2(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD:
-				onGetLimitSettingForTheAmountOfElectricitySold(eoj, tid, pdc, edt);
+				_onGetLimitSettingForTheAmountOfElectricitySold(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_RATED_POWER_GENERATION_OUTPUT:
-				onGetRatedPowerGenerationOutput(eoj, tid, pdc, edt);
+				_onGetRatedPowerGenerationOutput(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -257,59 +325,115 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		/**
 		 * This property indicates system interconnection status<br>System-linked type = 0x00 Independent type = 0x01<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetSystemInterconnectionStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSystemInterconnectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSystemInterconnectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSystemInterconnectionStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates instantaneous generated power in W.<br>0x0000.0xFFFD (0.65533)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetMeasuredInstantaneousAmountOfElectricityGenerated(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredInstantaneousAmountOfElectricityGenerated(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredInstantaneousAmountOfElectricityGenerated(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredInstantaneousAmountOfElectricityGenerated(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates integral electric energy in 0.001 kWh.<br>0x0.0x3B9AC9FF (0.999999.999 kWh)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetMeasuredCumulativeAmountOfElectricityGenerated(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredCumulativeAmountOfElectricityGenerated(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredCumulativeAmountOfElectricityGenerated(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredCumulativeAmountOfElectricityGenerated(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Resets integral generated electric energy by setting 0x00.<br>Reset = 0x00<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : undefined
 		 */
-		protected void onSetResettingCumulativeAmountOfElectricityGenerated(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetResettingCumulativeAmountOfElectricityGenerated(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetResettingCumulativeAmountOfElectricityGenerated(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetResettingCumulativeAmountOfElectricityGenerated(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * This property indicates integral value of sold power in 0.001 kWh.<br>0x0.0x3B9AC9FF (0.999999.999 kWh)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMeasuredCumulativeAmountOfElectricitySold(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredCumulativeAmountOfElectricitySold(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredCumulativeAmountOfElectricitySold(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredCumulativeAmountOfElectricitySold(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Resets integral sold electric energy by setting 0x00.<br>Reset = 0x00<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : undefined
 		 */
-		protected void onSetResettingCumulativeAmountOfElectricitySold(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetResettingCumulativeAmountOfElectricitySold(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetResettingCumulativeAmountOfElectricitySold(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetResettingCumulativeAmountOfElectricitySold(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetPowerGenerationOutputLimitSetting1(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetPowerGenerationOutputLimitSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetPowerGenerationOutputLimitSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetPowerGenerationOutputLimitSetting1(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetPowerGenerationOutputLimitSetting1(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetPowerGenerationOutputLimitSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetPowerGenerationOutputLimitSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetPowerGenerationOutputLimitSetting1(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Specifies the power generation output in watts and to acquire the current setting.<br>0x0000 to 00xFFFD (0 to 65533)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetPowerGenerationOutputLimitSetting2(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetPowerGenerationOutputLimitSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetPowerGenerationOutputLimitSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetPowerGenerationOutputLimitSetting2(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Specifies the power generation output in watts and to acquire the current setting.<br>0x0000 to 00xFFFD (0 to 65533)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetPowerGenerationOutputLimitSetting2(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetPowerGenerationOutputLimitSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetPowerGenerationOutputLimitSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetPowerGenerationOutputLimitSetting2(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Specifies, in watts, the amount of electricity sold and to acquire the current setting.<br>0x0000 to 00xFFFD (0 to 65533)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetLimitSettingForTheAmountOfElectricitySold(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetLimitSettingForTheAmountOfElectricitySold(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetLimitSettingForTheAmountOfElectricitySold(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetLimitSettingForTheAmountOfElectricitySold(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Specifies, in watts, the amount of electricity sold and to acquire the current setting.<br>0x0000 to 00xFFFD (0 to 65533)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetLimitSettingForTheAmountOfElectricitySold(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetLimitSettingForTheAmountOfElectricitySold(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetLimitSettingForTheAmountOfElectricitySold(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetLimitSettingForTheAmountOfElectricitySold(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the rated power generation output (catalog value) in watts.<br>0x0000 to 00xFFFD (0 to 65533)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetRatedPowerGenerationOutput(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetRatedPowerGenerationOutput(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetRatedPowerGenerationOutput(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetRatedPowerGenerationOutput(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * This property indicates the rated power generation output (catalog value) in watts.<br>0x0000 to 00xFFFD (0 to 65533)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetRatedPowerGenerationOutput(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetRatedPowerGenerationOutput(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetRatedPowerGenerationOutput(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetRatedPowerGenerationOutput(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -390,32 +514,38 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 
 		@Override
 		public Setter reqSetResettingCumulativeAmountOfElectricityGenerated(byte[] edt) {
-			addProperty(EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED, edt, setResettingCumulativeAmountOfElectricityGenerated(edt));
+			byte epc = EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED;
+			addProperty(epc, edt, _setResettingCumulativeAmountOfElectricityGenerated(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetResettingCumulativeAmountOfElectricitySold(byte[] edt) {
-			addProperty(EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD, edt, setResettingCumulativeAmountOfElectricitySold(edt));
+			byte epc = EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD;
+			addProperty(epc, edt, _setResettingCumulativeAmountOfElectricitySold(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetPowerGenerationOutputLimitSetting1(byte[] edt) {
-			addProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1, edt, setPowerGenerationOutputLimitSetting1(edt));
+			byte epc = EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1;
+			addProperty(epc, edt, _setPowerGenerationOutputLimitSetting1(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetPowerGenerationOutputLimitSetting2(byte[] edt) {
-			addProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2, edt, setPowerGenerationOutputLimitSetting2(edt));
+			byte epc = EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2;
+			addProperty(epc, edt, _setPowerGenerationOutputLimitSetting2(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetLimitSettingForTheAmountOfElectricitySold(byte[] edt) {
-			addProperty(EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD, edt, setLimitSettingForTheAmountOfElectricitySold(edt));
+			byte epc = EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD;
+			addProperty(epc, edt, _setLimitSettingForTheAmountOfElectricitySold(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetRatedPowerGenerationOutput(byte[] edt) {
-			addProperty(EPC_RATED_POWER_GENERATION_OUTPUT, edt, setRatedPowerGenerationOutput(edt));
+			byte epc = EPC_RATED_POWER_GENERATION_OUTPUT;
+			addProperty(epc, edt, _setRatedPowerGenerationOutput(epc, edt));
 			return this;
 		}
 	}
@@ -652,50 +782,58 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 
 		@Override
 		public Getter reqGetSystemInterconnectionStatus() {
-			byte[] edt = getSystemInterconnectionStatus();
-			addProperty(EPC_SYSTEM_INTERCONNECTION_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SYSTEM_INTERCONNECTION_STATUS;
+			byte[] edt = _getSystemInterconnectionStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredInstantaneousAmountOfElectricityGenerated() {
-			byte[] edt = getMeasuredInstantaneousAmountOfElectricityGenerated();
-			addProperty(EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED;
+			byte[] edt = _getMeasuredInstantaneousAmountOfElectricityGenerated(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredCumulativeAmountOfElectricityGenerated() {
-			byte[] edt = getMeasuredCumulativeAmountOfElectricityGenerated();
-			addProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED;
+			byte[] edt = _getMeasuredCumulativeAmountOfElectricityGenerated(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredCumulativeAmountOfElectricitySold() {
-			byte[] edt = getMeasuredCumulativeAmountOfElectricitySold();
-			addProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD;
+			byte[] edt = _getMeasuredCumulativeAmountOfElectricitySold(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Getter reqGetPowerGenerationOutputLimitSetting1() {
-			byte[] edt = getPowerGenerationOutputLimitSetting1();
-			addProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1;
+			byte[] edt = _getPowerGenerationOutputLimitSetting1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetPowerGenerationOutputLimitSetting2() {
-			byte[] edt = getPowerGenerationOutputLimitSetting2();
-			addProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2;
+			byte[] edt = _getPowerGenerationOutputLimitSetting2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetLimitSettingForTheAmountOfElectricitySold() {
-			byte[] edt = getLimitSettingForTheAmountOfElectricitySold();
-			addProperty(EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD;
+			byte[] edt = _getLimitSettingForTheAmountOfElectricitySold(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetRatedPowerGenerationOutput() {
-			byte[] edt = getRatedPowerGenerationOutput();
-			addProperty(EPC_RATED_POWER_GENERATION_OUTPUT, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_RATED_POWER_GENERATION_OUTPUT;
+			byte[] edt = _getRatedPowerGenerationOutput(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}
@@ -1002,50 +1140,58 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 
 		@Override
 		public Informer reqInformSystemInterconnectionStatus() {
-			byte[] edt = getSystemInterconnectionStatus();
-			addProperty(EPC_SYSTEM_INTERCONNECTION_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SYSTEM_INTERCONNECTION_STATUS;
+			byte[] edt = _getSystemInterconnectionStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredInstantaneousAmountOfElectricityGenerated() {
-			byte[] edt = getMeasuredInstantaneousAmountOfElectricityGenerated();
-			addProperty(EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED;
+			byte[] edt = _getMeasuredInstantaneousAmountOfElectricityGenerated(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredCumulativeAmountOfElectricityGenerated() {
-			byte[] edt = getMeasuredCumulativeAmountOfElectricityGenerated();
-			addProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED;
+			byte[] edt = _getMeasuredCumulativeAmountOfElectricityGenerated(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredCumulativeAmountOfElectricitySold() {
-			byte[] edt = getMeasuredCumulativeAmountOfElectricitySold();
-			addProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD;
+			byte[] edt = _getMeasuredCumulativeAmountOfElectricitySold(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Informer reqInformPowerGenerationOutputLimitSetting1() {
-			byte[] edt = getPowerGenerationOutputLimitSetting1();
-			addProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1;
+			byte[] edt = _getPowerGenerationOutputLimitSetting1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformPowerGenerationOutputLimitSetting2() {
-			byte[] edt = getPowerGenerationOutputLimitSetting2();
-			addProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2;
+			byte[] edt = _getPowerGenerationOutputLimitSetting2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformLimitSettingForTheAmountOfElectricitySold() {
-			byte[] edt = getLimitSettingForTheAmountOfElectricitySold();
-			addProperty(EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD;
+			byte[] edt = _getLimitSettingForTheAmountOfElectricitySold(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformRatedPowerGenerationOutput() {
-			byte[] edt = getRatedPowerGenerationOutput();
-			addProperty(EPC_RATED_POWER_GENERATION_OUTPUT, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_RATED_POWER_GENERATION_OUTPUT;
+			byte[] edt = _getRatedPowerGenerationOutput(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}

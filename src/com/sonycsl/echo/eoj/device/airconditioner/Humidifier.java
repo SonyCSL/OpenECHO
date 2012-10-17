@@ -26,15 +26,15 @@ public abstract class Humidifier extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x01;
 	public static final byte CLASS_CODE = (byte)0x39;
 
-	protected static final byte EPC_HUMIDIFYING_SETTING1 = (byte)0xC0;
-	protected static final byte EPC_HUMIDIFYING_SETTING2 = (byte)0xC1;
-	protected static final byte EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY = (byte)0xB4;
-	protected static final byte EPC_RESERVATION_SET_OF_OFF_TIMER = (byte)0x94;
-	protected static final byte EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER = (byte)0x96;
-	protected static final byte EPC_ION_EMISSION_SETTING = (byte)0xC2;
-	protected static final byte EPC_IMPLEMENTED_ION_EMISSION_METHOD = (byte)0xC3;
-	protected static final byte EPC_SPECIAL_OPERATION_MODE_SETTING = (byte)0xC4;
-	protected static final byte EPC_WATER_AMOUNT_LEVEL = (byte)0xC5;
+	public static final byte EPC_HUMIDIFYING_SETTING1 = (byte)0xC0;
+	public static final byte EPC_HUMIDIFYING_SETTING2 = (byte)0xC1;
+	public static final byte EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY = (byte)0xB4;
+	public static final byte EPC_RESERVATION_SET_OF_OFF_TIMER = (byte)0x94;
+	public static final byte EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER = (byte)0x96;
+	public static final byte EPC_ION_EMISSION_SETTING = (byte)0xC2;
+	public static final byte EPC_IMPLEMENTED_ION_EMISSION_METHOD = (byte)0xC3;
+	public static final byte EPC_SPECIAL_OPERATION_MODE_SETTING = (byte)0xC4;
+	public static final byte EPC_WATER_AMOUNT_LEVEL = (byte)0xC5;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -50,62 +50,137 @@ public abstract class Humidifier extends DeviceObject {
 	 * Sets value of relative humidity and get setting status<br>0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract boolean setHumidifyingSetting1(byte[] edt);
+	private final boolean _setHumidifyingSetting1(byte epc, byte[] edt) {
+		boolean success = setHumidifyingSetting1(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets value of relative humidity and get setting status<br>0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract byte[] getHumidifyingSetting1();
+	private final byte[] _getHumidifyingSetting1(byte epc) {
+		byte[] edt = getHumidifyingSetting1();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Sets humidifying level by 3 steps<br>Humidifying levels =0x31.0x33 Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract boolean setHumidifyingSetting2(byte[] edt);
+	private final boolean _setHumidifyingSetting2(byte epc, byte[] edt) {
+		boolean success = setHumidifyingSetting2(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets humidifying level by 3 steps<br>Humidifying levels =0x31.0x33 Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract byte[] getHumidifyingSetting2();
+	private final byte[] _getHumidifyingSetting2(byte epc) {
+		byte[] edt = getHumidifyingSetting2();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates measured value of relative humidity<br>0x00.0x64, (0.100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredValueOfRelativeHumidity() {return null;}
+	private final byte[] _getMeasuredValueOfRelativeHumidity(byte epc) {
+		byte[] edt = getMeasuredValueOfRelativeHumidity();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Sets reservation ON/OFF and set setting status<br>Reservation ON =0x41, OFF =0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setReservationSetOfOffTimer(byte[] edt) {return false;}
+	private final boolean _setReservationSetOfOffTimer(byte epc, byte[] edt) {
+		boolean success = setReservationSetOfOffTimer(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets reservation ON/OFF and set setting status<br>Reservation ON =0x41, OFF =0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getReservationSetOfOffTimer() {return null;}
+	private final byte[] _getReservationSetOfOffTimer(byte epc) {
+		byte[] edt = getReservationSetOfOffTimer();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Sets timer value HH:MM and   get updated time<br>Reservation ON =0x41, OFF =0x42<br><br>Data type : unsigned char x2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setRelativeTimeValueSetOfOffTimer(byte[] edt) {return false;}
+	private final boolean _setRelativeTimeValueSetOfOffTimer(byte epc, byte[] edt) {
+		boolean success = setRelativeTimeValueSetOfOffTimer(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets timer value HH:MM and   get updated time<br>Reservation ON =0x41, OFF =0x42<br><br>Data type : unsigned char x2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getRelativeTimeValueSetOfOffTimer() {return null;}
+	private final byte[] _getRelativeTimeValueSetOfOffTimer(byte epc) {
+		byte[] edt = getRelativeTimeValueSetOfOffTimer();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Sets ON/OFF of ion emission and gets setting status<br>Emission ON= 0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setIonEmissionSetting(byte[] edt) {return false;}
+	private final boolean _setIonEmissionSetting(byte epc, byte[] edt) {
+		boolean success = setIonEmissionSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets ON/OFF of ion emission and gets setting status<br>Emission ON= 0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getIonEmissionSetting() {return null;}
+	private final byte[] _getIonEmissionSetting(byte epc) {
+		byte[] edt = getIonEmissionSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Sets ion emission method equipped in humidifier by bit map<br>Bit 0: negative ion method, Bit 1: cluster ion method,<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getImplementedIonEmissionMethod() {return null;}
+	private final byte[] _getImplementedIonEmissionMethod(byte epc) {
+		byte[] edt = getImplementedIonEmissionMethod();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Sets special operation mode and gets setting status. Specifies by bit map<br>Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation Bit 2-7: for future reserved<br><br>Data type : unsigned short<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSpecialOperationModeSetting(byte[] edt) {return false;}
+	private final boolean _setSpecialOperationModeSetting(byte epc, byte[] edt) {
+		boolean success = setSpecialOperationModeSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets special operation mode and gets setting status. Specifies by bit map<br>Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation Bit 2-7: for future reserved<br><br>Data type : unsigned short<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSpecialOperationModeSetting() {return null;}
+	private final byte[] _getSpecialOperationModeSetting(byte epc) {
+		byte[] edt = getSpecialOperationModeSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates water amount level in water tank by 6 steps.<br>0x40: empty 0x41-0x45: minimum to maximum level<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getWaterAmountLevel() {return null;}
+	private final byte[] _getWaterAmountLevel(byte epc) {
+		byte[] edt = getWaterAmountLevel();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -113,22 +188,22 @@ public abstract class Humidifier extends DeviceObject {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
 		case EPC_HUMIDIFYING_SETTING1:
-			res.addProperty(epc, edt, setHumidifyingSetting1(edt));
+			res.addProperty(epc, edt, _setHumidifyingSetting1(epc, edt));
 			break;
 		case EPC_HUMIDIFYING_SETTING2:
-			res.addProperty(epc, edt, setHumidifyingSetting2(edt));
+			res.addProperty(epc, edt, _setHumidifyingSetting2(epc, edt));
 			break;
 		case EPC_RESERVATION_SET_OF_OFF_TIMER:
-			res.addProperty(epc, edt, setReservationSetOfOffTimer(edt));
+			res.addProperty(epc, edt, _setReservationSetOfOffTimer(epc, edt));
 			break;
 		case EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER:
-			res.addProperty(epc, edt, setRelativeTimeValueSetOfOffTimer(edt));
+			res.addProperty(epc, edt, _setRelativeTimeValueSetOfOffTimer(epc, edt));
 			break;
 		case EPC_ION_EMISSION_SETTING:
-			res.addProperty(epc, edt, setIonEmissionSetting(edt));
+			res.addProperty(epc, edt, _setIonEmissionSetting(epc, edt));
 			break;
 		case EPC_SPECIAL_OPERATION_MODE_SETTING:
-			res.addProperty(epc, edt, setSpecialOperationModeSetting(edt));
+			res.addProperty(epc, edt, _setSpecialOperationModeSetting(epc, edt));
 			break;
 
 		}
@@ -140,39 +215,39 @@ public abstract class Humidifier extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_HUMIDIFYING_SETTING1:
-			edt = getHumidifyingSetting1();
+			edt = _getHumidifyingSetting1(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_HUMIDIFYING_SETTING2:
-			edt = getHumidifyingSetting2();
+			edt = _getHumidifyingSetting2(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY:
-			edt = getMeasuredValueOfRelativeHumidity();
+			edt = _getMeasuredValueOfRelativeHumidity(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_RESERVATION_SET_OF_OFF_TIMER:
-			edt = getReservationSetOfOffTimer();
+			edt = _getReservationSetOfOffTimer(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER:
-			edt = getRelativeTimeValueSetOfOffTimer();
+			edt = _getRelativeTimeValueSetOfOffTimer(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_ION_EMISSION_SETTING:
-			edt = getIonEmissionSetting();
+			edt = _getIonEmissionSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_IMPLEMENTED_ION_EMISSION_METHOD:
-			edt = getImplementedIonEmissionMethod();
+			edt = _getImplementedIonEmissionMethod(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SPECIAL_OPERATION_MODE_SETTING:
-			edt = getSpecialOperationModeSetting();
+			edt = _getSpecialOperationModeSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_WATER_AMOUNT_LEVEL:
-			edt = getWaterAmountLevel();
+			edt = _getWaterAmountLevel(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 
@@ -202,63 +277,61 @@ public abstract class Humidifier extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_HUMIDIFYING_SETTING1:
-				onSetHumidifyingSetting1(eoj, tid, (pdc != 0));
+				_onSetHumidifyingSetting1(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_HUMIDIFYING_SETTING2:
-				onSetHumidifyingSetting2(eoj, tid, (pdc != 0));
+				_onSetHumidifyingSetting2(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_RESERVATION_SET_OF_OFF_TIMER:
-				onSetReservationSetOfOffTimer(eoj, tid, (pdc != 0));
+				_onSetReservationSetOfOffTimer(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER:
-				onSetRelativeTimeValueSetOfOffTimer(eoj, tid, (pdc != 0));
+				_onSetRelativeTimeValueSetOfOffTimer(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_ION_EMISSION_SETTING:
-				onSetIonEmissionSetting(eoj, tid, (pdc != 0));
+				_onSetIonEmissionSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_SPECIAL_OPERATION_MODE_SETTING:
-				onSetSpecialOperationModeSetting(eoj, tid, (pdc != 0));
+				_onSetSpecialOperationModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_HUMIDIFYING_SETTING1:
-				onGetHumidifyingSetting1(eoj, tid, pdc, edt);
+				_onGetHumidifyingSetting1(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_HUMIDIFYING_SETTING2:
-				onGetHumidifyingSetting2(eoj, tid, pdc, edt);
+				_onGetHumidifyingSetting2(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY:
-				onGetMeasuredValueOfRelativeHumidity(eoj, tid, pdc, edt);
+				_onGetMeasuredValueOfRelativeHumidity(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_RESERVATION_SET_OF_OFF_TIMER:
-				onGetReservationSetOfOffTimer(eoj, tid, pdc, edt);
+				_onGetReservationSetOfOffTimer(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER:
-				onGetRelativeTimeValueSetOfOffTimer(eoj, tid, pdc, edt);
+				_onGetRelativeTimeValueSetOfOffTimer(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_ION_EMISSION_SETTING:
-				onGetIonEmissionSetting(eoj, tid, pdc, edt);
+				_onGetIonEmissionSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_IMPLEMENTED_ION_EMISSION_METHOD:
-				onGetImplementedIonEmissionMethod(eoj, tid, pdc, edt);
+				_onGetImplementedIonEmissionMethod(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SPECIAL_OPERATION_MODE_SETTING:
-				onGetSpecialOperationModeSetting(eoj, tid, pdc, edt);
+				_onGetSpecialOperationModeSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_WATER_AMOUNT_LEVEL:
-				onGetWaterAmountLevel(eoj, tid, pdc, edt);
+				_onGetWaterAmountLevel(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -267,63 +340,123 @@ public abstract class Humidifier extends DeviceObject {
 		/**
 		 * Sets value of relative humidity and get setting status<br>0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
-		protected void onSetHumidifyingSetting1(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetHumidifyingSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetHumidifyingSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetHumidifyingSetting1(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets value of relative humidity and get setting status<br>0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
-		protected void onGetHumidifyingSetting1(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetHumidifyingSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetHumidifyingSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetHumidifyingSetting1(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Sets humidifying level by 3 steps<br>Humidifying levels =0x31.0x33 Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
-		protected void onSetHumidifyingSetting2(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetHumidifyingSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetHumidifyingSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetHumidifyingSetting2(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets humidifying level by 3 steps<br>Humidifying levels =0x31.0x33 Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
-		protected void onGetHumidifyingSetting2(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetHumidifyingSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetHumidifyingSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetHumidifyingSetting2(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates measured value of relative humidity<br>0x00.0x64, (0.100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMeasuredValueOfRelativeHumidity(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredValueOfRelativeHumidity(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredValueOfRelativeHumidity(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredValueOfRelativeHumidity(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Sets reservation ON/OFF and set setting status<br>Reservation ON =0x41, OFF =0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetReservationSetOfOffTimer(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetReservationSetOfOffTimer(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetReservationSetOfOffTimer(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetReservationSetOfOffTimer(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets reservation ON/OFF and set setting status<br>Reservation ON =0x41, OFF =0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetReservationSetOfOffTimer(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetReservationSetOfOffTimer(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetReservationSetOfOffTimer(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetReservationSetOfOffTimer(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Sets timer value HH:MM and   get updated time<br>Reservation ON =0x41, OFF =0x42<br><br>Data type : unsigned char x2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetRelativeTimeValueSetOfOffTimer(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetRelativeTimeValueSetOfOffTimer(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetRelativeTimeValueSetOfOffTimer(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetRelativeTimeValueSetOfOffTimer(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets timer value HH:MM and   get updated time<br>Reservation ON =0x41, OFF =0x42<br><br>Data type : unsigned char x2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetRelativeTimeValueSetOfOffTimer(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetRelativeTimeValueSetOfOffTimer(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetRelativeTimeValueSetOfOffTimer(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetRelativeTimeValueSetOfOffTimer(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Sets ON/OFF of ion emission and gets setting status<br>Emission ON= 0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetIonEmissionSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetIonEmissionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetIonEmissionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetIonEmissionSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets ON/OFF of ion emission and gets setting status<br>Emission ON= 0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetIonEmissionSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetIonEmissionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetIonEmissionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetIonEmissionSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Sets ion emission method equipped in humidifier by bit map<br>Bit 0: negative ion method, Bit 1: cluster ion method,<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetImplementedIonEmissionMethod(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetImplementedIonEmissionMethod(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetImplementedIonEmissionMethod(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetImplementedIonEmissionMethod(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Sets special operation mode and gets setting status. Specifies by bit map<br>Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation Bit 2-7: for future reserved<br><br>Data type : unsigned short<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetSpecialOperationModeSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetSpecialOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetSpecialOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetSpecialOperationModeSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets special operation mode and gets setting status. Specifies by bit map<br>Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation Bit 2-7: for future reserved<br><br>Data type : unsigned short<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetSpecialOperationModeSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSpecialOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSpecialOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSpecialOperationModeSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates water amount level in water tank by 6 steps.<br>0x40: empty 0x41-0x45: minimum to maximum level<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetWaterAmountLevel(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetWaterAmountLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetWaterAmountLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetWaterAmountLevel(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -404,32 +537,38 @@ public abstract class Humidifier extends DeviceObject {
 
 		@Override
 		public Setter reqSetHumidifyingSetting1(byte[] edt) {
-			addProperty(EPC_HUMIDIFYING_SETTING1, edt, setHumidifyingSetting1(edt));
+			byte epc = EPC_HUMIDIFYING_SETTING1;
+			addProperty(epc, edt, _setHumidifyingSetting1(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetHumidifyingSetting2(byte[] edt) {
-			addProperty(EPC_HUMIDIFYING_SETTING2, edt, setHumidifyingSetting2(edt));
+			byte epc = EPC_HUMIDIFYING_SETTING2;
+			addProperty(epc, edt, _setHumidifyingSetting2(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetReservationSetOfOffTimer(byte[] edt) {
-			addProperty(EPC_RESERVATION_SET_OF_OFF_TIMER, edt, setReservationSetOfOffTimer(edt));
+			byte epc = EPC_RESERVATION_SET_OF_OFF_TIMER;
+			addProperty(epc, edt, _setReservationSetOfOffTimer(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetRelativeTimeValueSetOfOffTimer(byte[] edt) {
-			addProperty(EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER, edt, setRelativeTimeValueSetOfOffTimer(edt));
+			byte epc = EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER;
+			addProperty(epc, edt, _setRelativeTimeValueSetOfOffTimer(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetIonEmissionSetting(byte[] edt) {
-			addProperty(EPC_ION_EMISSION_SETTING, edt, setIonEmissionSetting(edt));
+			byte epc = EPC_ION_EMISSION_SETTING;
+			addProperty(epc, edt, _setIonEmissionSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetSpecialOperationModeSetting(byte[] edt) {
-			addProperty(EPC_SPECIAL_OPERATION_MODE_SETTING, edt, setSpecialOperationModeSetting(edt));
+			byte epc = EPC_SPECIAL_OPERATION_MODE_SETTING;
+			addProperty(epc, edt, _setSpecialOperationModeSetting(epc, edt));
 			return this;
 		}
 	}
@@ -670,56 +809,65 @@ public abstract class Humidifier extends DeviceObject {
 
 		@Override
 		public Getter reqGetHumidifyingSetting1() {
-			byte[] edt = getHumidifyingSetting1();
-			addProperty(EPC_HUMIDIFYING_SETTING1, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_HUMIDIFYING_SETTING1;
+			byte[] edt = _getHumidifyingSetting1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetHumidifyingSetting2() {
-			byte[] edt = getHumidifyingSetting2();
-			addProperty(EPC_HUMIDIFYING_SETTING2, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_HUMIDIFYING_SETTING2;
+			byte[] edt = _getHumidifyingSetting2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredValueOfRelativeHumidity() {
-			byte[] edt = getMeasuredValueOfRelativeHumidity();
-			addProperty(EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY;
+			byte[] edt = _getMeasuredValueOfRelativeHumidity(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetReservationSetOfOffTimer() {
-			byte[] edt = getReservationSetOfOffTimer();
-			addProperty(EPC_RESERVATION_SET_OF_OFF_TIMER, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_RESERVATION_SET_OF_OFF_TIMER;
+			byte[] edt = _getReservationSetOfOffTimer(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetRelativeTimeValueSetOfOffTimer() {
-			byte[] edt = getRelativeTimeValueSetOfOffTimer();
-			addProperty(EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER;
+			byte[] edt = _getRelativeTimeValueSetOfOffTimer(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetIonEmissionSetting() {
-			byte[] edt = getIonEmissionSetting();
-			addProperty(EPC_ION_EMISSION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_ION_EMISSION_SETTING;
+			byte[] edt = _getIonEmissionSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetImplementedIonEmissionMethod() {
-			byte[] edt = getImplementedIonEmissionMethod();
-			addProperty(EPC_IMPLEMENTED_ION_EMISSION_METHOD, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_IMPLEMENTED_ION_EMISSION_METHOD;
+			byte[] edt = _getImplementedIonEmissionMethod(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSpecialOperationModeSetting() {
-			byte[] edt = getSpecialOperationModeSetting();
-			addProperty(EPC_SPECIAL_OPERATION_MODE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SPECIAL_OPERATION_MODE_SETTING;
+			byte[] edt = _getSpecialOperationModeSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetWaterAmountLevel() {
-			byte[] edt = getWaterAmountLevel();
-			addProperty(EPC_WATER_AMOUNT_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_WATER_AMOUNT_LEVEL;
+			byte[] edt = _getWaterAmountLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}
@@ -1035,56 +1183,65 @@ public abstract class Humidifier extends DeviceObject {
 
 		@Override
 		public Informer reqInformHumidifyingSetting1() {
-			byte[] edt = getHumidifyingSetting1();
-			addProperty(EPC_HUMIDIFYING_SETTING1, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_HUMIDIFYING_SETTING1;
+			byte[] edt = _getHumidifyingSetting1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformHumidifyingSetting2() {
-			byte[] edt = getHumidifyingSetting2();
-			addProperty(EPC_HUMIDIFYING_SETTING2, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_HUMIDIFYING_SETTING2;
+			byte[] edt = _getHumidifyingSetting2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredValueOfRelativeHumidity() {
-			byte[] edt = getMeasuredValueOfRelativeHumidity();
-			addProperty(EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY;
+			byte[] edt = _getMeasuredValueOfRelativeHumidity(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformReservationSetOfOffTimer() {
-			byte[] edt = getReservationSetOfOffTimer();
-			addProperty(EPC_RESERVATION_SET_OF_OFF_TIMER, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_RESERVATION_SET_OF_OFF_TIMER;
+			byte[] edt = _getReservationSetOfOffTimer(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformRelativeTimeValueSetOfOffTimer() {
-			byte[] edt = getRelativeTimeValueSetOfOffTimer();
-			addProperty(EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER;
+			byte[] edt = _getRelativeTimeValueSetOfOffTimer(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformIonEmissionSetting() {
-			byte[] edt = getIonEmissionSetting();
-			addProperty(EPC_ION_EMISSION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_ION_EMISSION_SETTING;
+			byte[] edt = _getIonEmissionSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformImplementedIonEmissionMethod() {
-			byte[] edt = getImplementedIonEmissionMethod();
-			addProperty(EPC_IMPLEMENTED_ION_EMISSION_METHOD, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_IMPLEMENTED_ION_EMISSION_METHOD;
+			byte[] edt = _getImplementedIonEmissionMethod(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSpecialOperationModeSetting() {
-			byte[] edt = getSpecialOperationModeSetting();
-			addProperty(EPC_SPECIAL_OPERATION_MODE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SPECIAL_OPERATION_MODE_SETTING;
+			byte[] edt = _getSpecialOperationModeSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformWaterAmountLevel() {
-			byte[] edt = getWaterAmountLevel();
-			addProperty(EPC_WATER_AMOUNT_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_WATER_AMOUNT_LEVEL;
+			byte[] edt = _getWaterAmountLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}

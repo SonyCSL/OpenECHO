@@ -26,10 +26,10 @@ public abstract class WattHourMeter extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x80;
 
-	protected static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE = (byte)0xE0;
-	protected static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_UNIT = (byte)0xE2;
-	protected static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG1 = (byte)0xE3;
-	protected static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG2 = (byte)0xE4;
+	public static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE = (byte)0xE0;
+	public static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_UNIT = (byte)0xE2;
+	public static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG1 = (byte)0xE3;
+	public static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG2 = (byte)0xE4;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -45,18 +45,38 @@ public abstract class WattHourMeter extends DeviceObject {
 	 * This property indicates integral electric energy in decimal (8 digits).<br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getIntegralElectricEnergyMeasurementValue();
+	private final byte[] _getIntegralElectricEnergyMeasurementValue(byte epc) {
+		byte[] edt = getIntegralElectricEnergyMeasurementValue();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates number of decimal places of integral electric energy (0xE0).<br>0x01 :   0.1kWh 0x02 :   0.01kWh<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getIntegralElectricEnergyUnit();
+	private final byte[] _getIntegralElectricEnergyUnit(byte epc) {
+		byte[] edt = getIntegralElectricEnergyUnit();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates integral electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours.<br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Data type : unsigned long x 48<br>Data size : 192 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getIntegralElectricEnergyMeasurementLog1() {return null;}
+	private final byte[] _getIntegralElectricEnergyMeasurementLog1(byte epc) {
+		byte[] edt = getIntegralElectricEnergyMeasurementLog1();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates integral electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments.<br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Data type : unsigned long x48 x45<br>Data size : 192 bytes x 45<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getIntegralElectricEnergyMeasurementLog2() {return null;}
+	private final byte[] _getIntegralElectricEnergyMeasurementLog2(byte epc) {
+		byte[] edt = getIntegralElectricEnergyMeasurementLog2();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -73,19 +93,19 @@ public abstract class WattHourMeter extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE:
-			edt = getIntegralElectricEnergyMeasurementValue();
+			edt = _getIntegralElectricEnergyMeasurementValue(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			break;
 		case EPC_INTEGRAL_ELECTRIC_ENERGY_UNIT:
-			edt = getIntegralElectricEnergyUnit();
+			edt = _getIntegralElectricEnergyUnit(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG1:
-			edt = getIntegralElectricEnergyMeasurementLog1();
+			edt = _getIntegralElectricEnergyMeasurementLog1(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 192)));
 			break;
 		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG2:
-			edt = getIntegralElectricEnergyMeasurementLog2();
+			edt = _getIntegralElectricEnergyMeasurementLog2(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 192)));
 			break;
 
@@ -115,30 +135,28 @@ public abstract class WattHourMeter extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE:
-				onGetIntegralElectricEnergyMeasurementValue(eoj, tid, pdc, edt);
+				_onGetIntegralElectricEnergyMeasurementValue(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_INTEGRAL_ELECTRIC_ENERGY_UNIT:
-				onGetIntegralElectricEnergyUnit(eoj, tid, pdc, edt);
+				_onGetIntegralElectricEnergyUnit(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG1:
-				onGetIntegralElectricEnergyMeasurementLog1(eoj, tid, pdc, edt);
+				_onGetIntegralElectricEnergyMeasurementLog1(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG2:
-				onGetIntegralElectricEnergyMeasurementLog2(eoj, tid, pdc, edt);
+				_onGetIntegralElectricEnergyMeasurementLog2(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -147,19 +165,35 @@ public abstract class WattHourMeter extends DeviceObject {
 		/**
 		 * This property indicates integral electric energy in decimal (8 digits).<br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetIntegralElectricEnergyMeasurementValue(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetIntegralElectricEnergyMeasurementValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetIntegralElectricEnergyMeasurementValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetIntegralElectricEnergyMeasurementValue(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates number of decimal places of integral electric energy (0xE0).<br>0x01 :   0.1kWh 0x02 :   0.01kWh<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetIntegralElectricEnergyUnit(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetIntegralElectricEnergyUnit(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetIntegralElectricEnergyUnit(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetIntegralElectricEnergyUnit(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates integral electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours.<br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Data type : unsigned long x 48<br>Data size : 192 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetIntegralElectricEnergyMeasurementLog1(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetIntegralElectricEnergyMeasurementLog1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetIntegralElectricEnergyMeasurementLog1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetIntegralElectricEnergyMeasurementLog1(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates integral electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments.<br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Data type : unsigned long x48 x45<br>Data size : 192 bytes x 45<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetIntegralElectricEnergyMeasurementLog2(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetIntegralElectricEnergyMeasurementLog2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetIntegralElectricEnergyMeasurementLog2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetIntegralElectricEnergyMeasurementLog2(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -402,26 +436,30 @@ public abstract class WattHourMeter extends DeviceObject {
 
 		@Override
 		public Getter reqGetIntegralElectricEnergyMeasurementValue() {
-			byte[] edt = getIntegralElectricEnergyMeasurementValue();
-			addProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE;
+			byte[] edt = _getIntegralElectricEnergyMeasurementValue(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Getter reqGetIntegralElectricEnergyUnit() {
-			byte[] edt = getIntegralElectricEnergyUnit();
-			addProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_UNIT, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_INTEGRAL_ELECTRIC_ENERGY_UNIT;
+			byte[] edt = _getIntegralElectricEnergyUnit(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetIntegralElectricEnergyMeasurementLog1() {
-			byte[] edt = getIntegralElectricEnergyMeasurementLog1();
-			addProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG1, edt, (edt != null && (edt.length == 192)));
+			byte epc = EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG1;
+			byte[] edt = _getIntegralElectricEnergyMeasurementLog1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 192)));
 			return this;
 		}
 		@Override
 		public Getter reqGetIntegralElectricEnergyMeasurementLog2() {
-			byte[] edt = getIntegralElectricEnergyMeasurementLog2();
-			addProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG2, edt, (edt != null && (edt.length == 192)));
+			byte epc = EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG2;
+			byte[] edt = _getIntegralElectricEnergyMeasurementLog2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 192)));
 			return this;
 		}
 	}
@@ -692,26 +730,30 @@ public abstract class WattHourMeter extends DeviceObject {
 
 		@Override
 		public Informer reqInformIntegralElectricEnergyMeasurementValue() {
-			byte[] edt = getIntegralElectricEnergyMeasurementValue();
-			addProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE;
+			byte[] edt = _getIntegralElectricEnergyMeasurementValue(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Informer reqInformIntegralElectricEnergyUnit() {
-			byte[] edt = getIntegralElectricEnergyUnit();
-			addProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_UNIT, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_INTEGRAL_ELECTRIC_ENERGY_UNIT;
+			byte[] edt = _getIntegralElectricEnergyUnit(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformIntegralElectricEnergyMeasurementLog1() {
-			byte[] edt = getIntegralElectricEnergyMeasurementLog1();
-			addProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG1, edt, (edt != null && (edt.length == 192)));
+			byte epc = EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG1;
+			byte[] edt = _getIntegralElectricEnergyMeasurementLog1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 192)));
 			return this;
 		}
 		@Override
 		public Informer reqInformIntegralElectricEnergyMeasurementLog2() {
-			byte[] edt = getIntegralElectricEnergyMeasurementLog2();
-			addProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG2, edt, (edt != null && (edt.length == 192)));
+			byte epc = EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG2;
+			byte[] edt = _getIntegralElectricEnergyMeasurementLog2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 192)));
 			return this;
 		}
 	}

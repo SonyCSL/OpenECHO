@@ -26,9 +26,9 @@ public abstract class OpenCloseSensor extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x29;
 
-	protected static final byte EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS1 = (byte)0xE0;
-	protected static final byte EPC_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;
-	protected static final byte EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS2 = (byte)0xB1;
+	public static final byte EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS1 = (byte)0xE0;
+	public static final byte EPC_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;
+	public static final byte EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS2 = (byte)0xB1;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -44,18 +44,38 @@ public abstract class OpenCloseSensor extends DeviceObject {
 	 * Specifies open/close detection status and one of 8 different degrees of opening.<br>Close detected: 0x30; Degree-of-opening level: 0x31 to 0x38; Open detected but degree-of-opening unknown: 0x39<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getDegreeOfOpeniNgDetectionStatus1();
+	private final byte[] _getDegreeOfOpeniNgDetectionStatus1(byte epc) {
+		byte[] edt = getDegreeOfOpeniNgDetectionStatus1();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Specifies detection threshold level (8-step).<br>Detection threshold level 0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setDetectionThresholdLevel(byte[] edt) {return false;}
+	private final boolean _setDetectionThresholdLevel(byte epc, byte[] edt) {
+		boolean success = setDetectionThresholdLevel(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Specifies detection threshold level (8-step).<br>Detection threshold level 0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getDetectionThresholdLevel() {return null;}
+	private final byte[] _getDetectionThresholdLevel(byte epc) {
+		byte[] edt = getDetectionThresholdLevel();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Specifies whether degree-of .opening detected or not<br>Degree-of-opening detection detected =0x41, not detected =0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory<br>Announcement at status change
 	 */
 	protected abstract byte[] getDegreeOfOpeniNgDetectionStatus2();
+	private final byte[] _getDegreeOfOpeniNgDetectionStatus2(byte epc) {
+		byte[] edt = getDegreeOfOpeniNgDetectionStatus2();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -63,7 +83,7 @@ public abstract class OpenCloseSensor extends DeviceObject {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
 		case EPC_DETECTION_THRESHOLD_LEVEL:
-			res.addProperty(epc, edt, setDetectionThresholdLevel(edt));
+			res.addProperty(epc, edt, _setDetectionThresholdLevel(epc, edt));
 			break;
 
 		}
@@ -75,15 +95,15 @@ public abstract class OpenCloseSensor extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS1:
-			edt = getDegreeOfOpeniNgDetectionStatus1();
+			edt = _getDegreeOfOpeniNgDetectionStatus1(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_DETECTION_THRESHOLD_LEVEL:
-			edt = getDetectionThresholdLevel();
+			edt = _getDetectionThresholdLevel(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS2:
-			edt = getDegreeOfOpeniNgDetectionStatus2();
+			edt = _getDegreeOfOpeniNgDetectionStatus2(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 
@@ -113,30 +133,28 @@ public abstract class OpenCloseSensor extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_DETECTION_THRESHOLD_LEVEL:
-				onSetDetectionThresholdLevel(eoj, tid, (pdc != 0));
+				_onSetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS1:
-				onGetDegreeOfOpeniNgDetectionStatus1(eoj, tid, pdc, edt);
+				_onGetDegreeOfOpeniNgDetectionStatus1(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_DETECTION_THRESHOLD_LEVEL:
-				onGetDetectionThresholdLevel(eoj, tid, pdc, edt);
+				_onGetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS2:
-				onGetDegreeOfOpeniNgDetectionStatus2(eoj, tid, pdc, edt);
+				_onGetDegreeOfOpeniNgDetectionStatus2(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -145,19 +163,35 @@ public abstract class OpenCloseSensor extends DeviceObject {
 		/**
 		 * Specifies open/close detection status and one of 8 different degrees of opening.<br>Close detected: 0x30; Degree-of-opening level: 0x31 to 0x38; Open detected but degree-of-opening unknown: 0x39<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetDegreeOfOpeniNgDetectionStatus1(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetDegreeOfOpeniNgDetectionStatus1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetDegreeOfOpeniNgDetectionStatus1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetDegreeOfOpeniNgDetectionStatus1(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Specifies detection threshold level (8-step).<br>Detection threshold level 0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetDetectionThresholdLevel(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Specifies detection threshold level (8-step).<br>Detection threshold level 0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetDetectionThresholdLevel(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Specifies whether degree-of .opening detected or not<br>Degree-of-opening detection detected =0x41, not detected =0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory<br>Announcement at status change
 		 */
-		protected void onGetDegreeOfOpeniNgDetectionStatus2(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetDegreeOfOpeniNgDetectionStatus2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetDegreeOfOpeniNgDetectionStatus2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetDegreeOfOpeniNgDetectionStatus2(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -218,7 +252,8 @@ public abstract class OpenCloseSensor extends DeviceObject {
 
 		@Override
 		public Setter reqSetDetectionThresholdLevel(byte[] edt) {
-			addProperty(EPC_DETECTION_THRESHOLD_LEVEL, edt, setDetectionThresholdLevel(edt));
+			byte epc = EPC_DETECTION_THRESHOLD_LEVEL;
+			addProperty(epc, edt, _setDetectionThresholdLevel(epc, edt));
 			return this;
 		}
 	}
@@ -410,20 +445,23 @@ public abstract class OpenCloseSensor extends DeviceObject {
 
 		@Override
 		public Getter reqGetDegreeOfOpeniNgDetectionStatus1() {
-			byte[] edt = getDegreeOfOpeniNgDetectionStatus1();
-			addProperty(EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS1, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS1;
+			byte[] edt = _getDegreeOfOpeniNgDetectionStatus1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetDetectionThresholdLevel() {
-			byte[] edt = getDetectionThresholdLevel();
-			addProperty(EPC_DETECTION_THRESHOLD_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DETECTION_THRESHOLD_LEVEL;
+			byte[] edt = _getDetectionThresholdLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetDegreeOfOpeniNgDetectionStatus2() {
-			byte[] edt = getDegreeOfOpeniNgDetectionStatus2();
-			addProperty(EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS2, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS2;
+			byte[] edt = _getDegreeOfOpeniNgDetectionStatus2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}
@@ -685,20 +723,23 @@ public abstract class OpenCloseSensor extends DeviceObject {
 
 		@Override
 		public Informer reqInformDegreeOfOpeniNgDetectionStatus1() {
-			byte[] edt = getDegreeOfOpeniNgDetectionStatus1();
-			addProperty(EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS1, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS1;
+			byte[] edt = _getDegreeOfOpeniNgDetectionStatus1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformDetectionThresholdLevel() {
-			byte[] edt = getDetectionThresholdLevel();
-			addProperty(EPC_DETECTION_THRESHOLD_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DETECTION_THRESHOLD_LEVEL;
+			byte[] edt = _getDetectionThresholdLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformDegreeOfOpeniNgDetectionStatus2() {
-			byte[] edt = getDegreeOfOpeniNgDetectionStatus2();
-			addProperty(EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS2, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS2;
+			byte[] edt = _getDegreeOfOpeniNgDetectionStatus2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}

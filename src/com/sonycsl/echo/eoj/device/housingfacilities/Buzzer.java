@@ -26,8 +26,8 @@ public abstract class Buzzer extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0xA0;
 
-	protected static final byte EPC_SOUND_GENERATION_SETTING = (byte)0xB1;
-	protected static final byte EPC_BUZZER_SOUND_TYPE = (byte)0xE0;
+	public static final byte EPC_SOUND_GENERATION_SETTING = (byte)0xB1;
+	public static final byte EPC_BUZZER_SOUND_TYPE = (byte)0xE0;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -43,18 +43,38 @@ public abstract class Buzzer extends DeviceObject {
 	 * This property indicates buzzer sound generation setting.<br>Buzzer enabled = 0x41, buzzer disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSoundGenerationSetting(byte[] edt) {return false;}
+	private final boolean _setSoundGenerationSetting(byte epc, byte[] edt) {
+		boolean success = setSoundGenerationSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * This property indicates buzzer sound generation setting.<br>Buzzer enabled = 0x41, buzzer disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSoundGenerationSetting() {return null;}
+	private final byte[] _getSoundGenerationSetting(byte epc) {
+		byte[] edt = getSoundGenerationSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates 8 different types of buzzer sound.<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setBuzzerSoundType(byte[] edt) {return false;}
+	private final boolean _setBuzzerSoundType(byte epc, byte[] edt) {
+		boolean success = setBuzzerSoundType(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * This property indicates 8 different types of buzzer sound.<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getBuzzerSoundType() {return null;}
+	private final byte[] _getBuzzerSoundType(byte epc) {
+		byte[] edt = getBuzzerSoundType();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -62,10 +82,10 @@ public abstract class Buzzer extends DeviceObject {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
 		case EPC_SOUND_GENERATION_SETTING:
-			res.addProperty(epc, edt, setSoundGenerationSetting(edt));
+			res.addProperty(epc, edt, _setSoundGenerationSetting(epc, edt));
 			break;
 		case EPC_BUZZER_SOUND_TYPE:
-			res.addProperty(epc, edt, setBuzzerSoundType(edt));
+			res.addProperty(epc, edt, _setBuzzerSoundType(epc, edt));
 			break;
 
 		}
@@ -77,11 +97,11 @@ public abstract class Buzzer extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_SOUND_GENERATION_SETTING:
-			edt = getSoundGenerationSetting();
+			edt = _getSoundGenerationSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_BUZZER_SOUND_TYPE:
-			edt = getBuzzerSoundType();
+			edt = _getBuzzerSoundType(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 
@@ -111,30 +131,28 @@ public abstract class Buzzer extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_SOUND_GENERATION_SETTING:
-				onSetSoundGenerationSetting(eoj, tid, (pdc != 0));
+				_onSetSoundGenerationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_BUZZER_SOUND_TYPE:
-				onSetBuzzerSoundType(eoj, tid, (pdc != 0));
+				_onSetBuzzerSoundType(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_SOUND_GENERATION_SETTING:
-				onGetSoundGenerationSetting(eoj, tid, pdc, edt);
+				_onGetSoundGenerationSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_BUZZER_SOUND_TYPE:
-				onGetBuzzerSoundType(eoj, tid, pdc, edt);
+				_onGetBuzzerSoundType(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -143,19 +161,35 @@ public abstract class Buzzer extends DeviceObject {
 		/**
 		 * This property indicates buzzer sound generation setting.<br>Buzzer enabled = 0x41, buzzer disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetSoundGenerationSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetSoundGenerationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetSoundGenerationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetSoundGenerationSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * This property indicates buzzer sound generation setting.<br>Buzzer enabled = 0x41, buzzer disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetSoundGenerationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSoundGenerationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSoundGenerationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSoundGenerationSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates 8 different types of buzzer sound.<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetBuzzerSoundType(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetBuzzerSoundType(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetBuzzerSoundType(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetBuzzerSoundType(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * This property indicates 8 different types of buzzer sound.<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetBuzzerSoundType(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetBuzzerSoundType(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetBuzzerSoundType(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetBuzzerSoundType(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -220,12 +254,14 @@ public abstract class Buzzer extends DeviceObject {
 
 		@Override
 		public Setter reqSetSoundGenerationSetting(byte[] edt) {
-			addProperty(EPC_SOUND_GENERATION_SETTING, edt, setSoundGenerationSetting(edt));
+			byte epc = EPC_SOUND_GENERATION_SETTING;
+			addProperty(epc, edt, _setSoundGenerationSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetBuzzerSoundType(byte[] edt) {
-			addProperty(EPC_BUZZER_SOUND_TYPE, edt, setBuzzerSoundType(edt));
+			byte epc = EPC_BUZZER_SOUND_TYPE;
+			addProperty(epc, edt, _setBuzzerSoundType(epc, edt));
 			return this;
 		}
 	}
@@ -418,14 +454,16 @@ public abstract class Buzzer extends DeviceObject {
 
 		@Override
 		public Getter reqGetSoundGenerationSetting() {
-			byte[] edt = getSoundGenerationSetting();
-			addProperty(EPC_SOUND_GENERATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SOUND_GENERATION_SETTING;
+			byte[] edt = _getSoundGenerationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetBuzzerSoundType() {
-			byte[] edt = getBuzzerSoundType();
-			addProperty(EPC_BUZZER_SOUND_TYPE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_BUZZER_SOUND_TYPE;
+			byte[] edt = _getBuzzerSoundType(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}
@@ -678,14 +716,16 @@ public abstract class Buzzer extends DeviceObject {
 
 		@Override
 		public Informer reqInformSoundGenerationSetting() {
-			byte[] edt = getSoundGenerationSetting();
-			addProperty(EPC_SOUND_GENERATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SOUND_GENERATION_SETTING;
+			byte[] edt = _getSoundGenerationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformBuzzerSoundType() {
-			byte[] edt = getBuzzerSoundType();
-			addProperty(EPC_BUZZER_SOUND_TYPE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_BUZZER_SOUND_TYPE;
+			byte[] edt = _getBuzzerSoundType(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}

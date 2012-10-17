@@ -26,9 +26,9 @@ public abstract class BathWaterLevelSensor extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x15;
 
-	protected static final byte EPC_BATH_WATER_LEVEL_OVER_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;
-	protected static final byte EPC_BATH_WATER_LEVEL_OVER_DETECTION_STATUS = (byte)0xB1;
-	protected static final byte EPC_MEASURED_VALUE_OF_BATH_WATER_LEVEL = (byte)0xE0;
+	public static final byte EPC_BATH_WATER_LEVEL_OVER_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;
+	public static final byte EPC_BATH_WATER_LEVEL_OVER_DETECTION_STATUS = (byte)0xB1;
+	public static final byte EPC_MEASURED_VALUE_OF_BATH_WATER_LEVEL = (byte)0xE0;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -44,14 +44,29 @@ public abstract class BathWaterLevelSensor extends DeviceObject {
 	 * This property indicates the bath water level over detection threshold level in cm.<br>0x00.0xFD (0.253)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getBathWaterLevelOverDetectionThresholdLevel() {return null;}
+	private final byte[] _getBathWaterLevelOverDetectionThresholdLevel(byte epc) {
+		byte[] edt = getBathWaterLevelOverDetectionThresholdLevel();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates if bath water level exceeds detection water level threshold level.<br>Water level over detection status found = 0x41 Water level over detection status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
 	 */
 	protected byte[] getBathWaterLevelOverDetectionStatus() {return null;}
+	private final byte[] _getBathWaterLevelOverDetectionStatus(byte epc) {
+		byte[] edt = getBathWaterLevelOverDetectionStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates measured value of bath water level in cm.<br>0x00.(0xFD) (0.253)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getMeasuredValueOfBathWaterLevel();
+	private final byte[] _getMeasuredValueOfBathWaterLevel(byte epc) {
+		byte[] edt = getMeasuredValueOfBathWaterLevel();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -68,15 +83,15 @@ public abstract class BathWaterLevelSensor extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_BATH_WATER_LEVEL_OVER_DETECTION_THRESHOLD_LEVEL:
-			edt = getBathWaterLevelOverDetectionThresholdLevel();
+			edt = _getBathWaterLevelOverDetectionThresholdLevel(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_BATH_WATER_LEVEL_OVER_DETECTION_STATUS:
-			edt = getBathWaterLevelOverDetectionStatus();
+			edt = _getBathWaterLevelOverDetectionStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_MEASURED_VALUE_OF_BATH_WATER_LEVEL:
-			edt = getMeasuredValueOfBathWaterLevel();
+			edt = _getMeasuredValueOfBathWaterLevel(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 
@@ -106,27 +121,25 @@ public abstract class BathWaterLevelSensor extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_BATH_WATER_LEVEL_OVER_DETECTION_THRESHOLD_LEVEL:
-				onGetBathWaterLevelOverDetectionThresholdLevel(eoj, tid, pdc, edt);
+				_onGetBathWaterLevelOverDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_BATH_WATER_LEVEL_OVER_DETECTION_STATUS:
-				onGetBathWaterLevelOverDetectionStatus(eoj, tid, pdc, edt);
+				_onGetBathWaterLevelOverDetectionStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_VALUE_OF_BATH_WATER_LEVEL:
-				onGetMeasuredValueOfBathWaterLevel(eoj, tid, pdc, edt);
+				_onGetMeasuredValueOfBathWaterLevel(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -135,15 +148,27 @@ public abstract class BathWaterLevelSensor extends DeviceObject {
 		/**
 		 * This property indicates the bath water level over detection threshold level in cm.<br>0x00.0xFD (0.253)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetBathWaterLevelOverDetectionThresholdLevel(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetBathWaterLevelOverDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetBathWaterLevelOverDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetBathWaterLevelOverDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates if bath water level exceeds detection water level threshold level.<br>Water level over detection status found = 0x41 Water level over detection status not found = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
 		 */
-		protected void onGetBathWaterLevelOverDetectionStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetBathWaterLevelOverDetectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetBathWaterLevelOverDetectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetBathWaterLevelOverDetectionStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates measured value of bath water level in cm.<br>0x00.(0xFD) (0.253)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetMeasuredValueOfBathWaterLevel(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredValueOfBathWaterLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredValueOfBathWaterLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredValueOfBathWaterLevel(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -382,20 +407,23 @@ public abstract class BathWaterLevelSensor extends DeviceObject {
 
 		@Override
 		public Getter reqGetBathWaterLevelOverDetectionThresholdLevel() {
-			byte[] edt = getBathWaterLevelOverDetectionThresholdLevel();
-			addProperty(EPC_BATH_WATER_LEVEL_OVER_DETECTION_THRESHOLD_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_BATH_WATER_LEVEL_OVER_DETECTION_THRESHOLD_LEVEL;
+			byte[] edt = _getBathWaterLevelOverDetectionThresholdLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetBathWaterLevelOverDetectionStatus() {
-			byte[] edt = getBathWaterLevelOverDetectionStatus();
-			addProperty(EPC_BATH_WATER_LEVEL_OVER_DETECTION_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_BATH_WATER_LEVEL_OVER_DETECTION_STATUS;
+			byte[] edt = _getBathWaterLevelOverDetectionStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredValueOfBathWaterLevel() {
-			byte[] edt = getMeasuredValueOfBathWaterLevel();
-			addProperty(EPC_MEASURED_VALUE_OF_BATH_WATER_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MEASURED_VALUE_OF_BATH_WATER_LEVEL;
+			byte[] edt = _getMeasuredValueOfBathWaterLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}
@@ -657,20 +685,23 @@ public abstract class BathWaterLevelSensor extends DeviceObject {
 
 		@Override
 		public Informer reqInformBathWaterLevelOverDetectionThresholdLevel() {
-			byte[] edt = getBathWaterLevelOverDetectionThresholdLevel();
-			addProperty(EPC_BATH_WATER_LEVEL_OVER_DETECTION_THRESHOLD_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_BATH_WATER_LEVEL_OVER_DETECTION_THRESHOLD_LEVEL;
+			byte[] edt = _getBathWaterLevelOverDetectionThresholdLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformBathWaterLevelOverDetectionStatus() {
-			byte[] edt = getBathWaterLevelOverDetectionStatus();
-			addProperty(EPC_BATH_WATER_LEVEL_OVER_DETECTION_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_BATH_WATER_LEVEL_OVER_DETECTION_STATUS;
+			byte[] edt = _getBathWaterLevelOverDetectionStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredValueOfBathWaterLevel() {
-			byte[] edt = getMeasuredValueOfBathWaterLevel();
-			addProperty(EPC_MEASURED_VALUE_OF_BATH_WATER_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MEASURED_VALUE_OF_BATH_WATER_LEVEL;
+			byte[] edt = _getMeasuredValueOfBathWaterLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}

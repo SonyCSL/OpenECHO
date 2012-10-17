@@ -26,8 +26,8 @@ public abstract class WaterFlowRateSensor extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x25;
 
-	protected static final byte EPC_INTEGRAL_FLOW_RATE = (byte)0xE0;
-	protected static final byte EPC_FLOW_RATE = (byte)0xE2;
+	public static final byte EPC_INTEGRAL_FLOW_RATE = (byte)0xE0;
+	public static final byte EPC_FLOW_RATE = (byte)0xE2;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -43,10 +43,20 @@ public abstract class WaterFlowRateSensor extends DeviceObject {
 	 * This property indicates measured integral flow in cm3.<br>0x00000000.0x3B9AC9FF (0.999,999,999)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getIntegralFlowRate() {return null;}
+	private final byte[] _getIntegralFlowRate(byte epc) {
+		byte[] edt = getIntegralFlowRate();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates measured instantaneous flow rate in cm3/mm.<br>0x0000.0x3B9AC9FF (0.999,999,999)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getFlowRate();
+	private final byte[] _getFlowRate(byte epc) {
+		byte[] edt = getFlowRate();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -63,11 +73,11 @@ public abstract class WaterFlowRateSensor extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_INTEGRAL_FLOW_RATE:
-			edt = getIntegralFlowRate();
+			edt = _getIntegralFlowRate(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			break;
 		case EPC_FLOW_RATE:
-			edt = getFlowRate();
+			edt = _getFlowRate(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			break;
 
@@ -97,24 +107,22 @@ public abstract class WaterFlowRateSensor extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_INTEGRAL_FLOW_RATE:
-				onGetIntegralFlowRate(eoj, tid, pdc, edt);
+				_onGetIntegralFlowRate(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_FLOW_RATE:
-				onGetFlowRate(eoj, tid, pdc, edt);
+				_onGetFlowRate(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -123,11 +131,19 @@ public abstract class WaterFlowRateSensor extends DeviceObject {
 		/**
 		 * This property indicates measured integral flow in cm3.<br>0x00000000.0x3B9AC9FF (0.999,999,999)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetIntegralFlowRate(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetIntegralFlowRate(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetIntegralFlowRate(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetIntegralFlowRate(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates measured instantaneous flow rate in cm3/mm.<br>0x0000.0x3B9AC9FF (0.999,999,999)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetFlowRate(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetFlowRate(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetFlowRate(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetFlowRate(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -362,14 +378,16 @@ public abstract class WaterFlowRateSensor extends DeviceObject {
 
 		@Override
 		public Getter reqGetIntegralFlowRate() {
-			byte[] edt = getIntegralFlowRate();
-			addProperty(EPC_INTEGRAL_FLOW_RATE, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_INTEGRAL_FLOW_RATE;
+			byte[] edt = _getIntegralFlowRate(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Getter reqGetFlowRate() {
-			byte[] edt = getFlowRate();
-			addProperty(EPC_FLOW_RATE, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_FLOW_RATE;
+			byte[] edt = _getFlowRate(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 	}
@@ -622,14 +640,16 @@ public abstract class WaterFlowRateSensor extends DeviceObject {
 
 		@Override
 		public Informer reqInformIntegralFlowRate() {
-			byte[] edt = getIntegralFlowRate();
-			addProperty(EPC_INTEGRAL_FLOW_RATE, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_INTEGRAL_FLOW_RATE;
+			byte[] edt = _getIntegralFlowRate(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Informer reqInformFlowRate() {
-			byte[] edt = getFlowRate();
-			addProperty(EPC_FLOW_RATE, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_FLOW_RATE;
+			byte[] edt = _getFlowRate(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 	}

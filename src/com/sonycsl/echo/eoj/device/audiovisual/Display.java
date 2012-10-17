@@ -26,11 +26,11 @@ public abstract class Display extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x06;
 	public static final byte CLASS_CODE = (byte)0x01;
 
-	protected static final byte EPC_DISPLAY_CONTROL_SETTING = (byte)0xB0;
-	protected static final byte EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS = (byte)0xB1;
-	protected static final byte EPC_SUPPORTED_CHARACTER_CODES = (byte)0xB2;
-	protected static final byte EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER = (byte)0xB3;
-	protected static final byte EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED = (byte)0xB4;
+	public static final byte EPC_DISPLAY_CONTROL_SETTING = (byte)0xB0;
+	public static final byte EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS = (byte)0xB1;
+	public static final byte EPC_SUPPORTED_CHARACTER_CODES = (byte)0xB2;
+	public static final byte EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER = (byte)0xB3;
+	public static final byte EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED = (byte)0xB4;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -46,30 +46,65 @@ public abstract class Display extends DeviceObject {
 	 * Sets the status as to whether the displaying of characters is enabled or disabled and acquires the current setting.<br>Displaying enabled: 0x30 Displaying disabled: 0x31<br><br>Data type : unsigne d char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setDisplayControlSetting(byte[] edt) {return false;}
+	private final boolean _setDisplayControlSetting(byte epc, byte[] edt) {
+		boolean success = setDisplayControlSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets the status as to whether the displaying of characters is enabled or disabled and acquires the current setting.<br>Displaying enabled: 0x30 Displaying disabled: 0x31<br><br>Data type : unsigne d char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getDisplayControlSetting() {return null;}
+	private final byte[] _getDisplayControlSetting(byte epc) {
+		byte[] edt = getDisplayControlSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates whether or not the device is ready to accept the character string to present to the user.<br>Ready: 0x30        Busy: 0x31<br><br>Data type : unsigne d char<br>Data size : 1 Byte<br>Set : undefined<br>Get : mandatory<br>Announcement at status change
 	 */
 	protected abstract byte[] getCharacterStringSettingAcceptanceStatus();
+	private final byte[] _getCharacterStringSettingAcceptanceStatus(byte epc) {
+		byte[] edt = getCharacterStringSettingAcceptanceStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates, in a bit map format, the implemented character codes that can be used to present character strings.<br>Bit 0   ANSI X3.4 Implemented: 1 Not implemented: 0 Bit 1   Shift-JIS Implemented: 1 Not implemented: 0 Bit 2   JIS Implemented: 1 Not implemented: 0 Bit 3   Japanese EUC Implemented: 1 Not implemented: 0 Bit 4   UCS-4 Implemented: 1 Not implemented: 0 Bit 5   UCS-2 Implemented: 1 Not implemented: 0 Bit 6   Latin-1 Implemented: 1 Not implemented: 0 Bit 7   UTF-8 Implemented: 1 Not implemented: 0 Bit 8 and succeeding bits: for future reserved    0<br><br>Data type : unsigne d char ~ 2<br>Data size : 2 Byte<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getSupportedCharacterCodes();
+	private final byte[] _getSupportedCharacterCodes(byte epc) {
+		byte[] edt = getSupportedCharacterCodes();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Sets the character string to present to the user, the length of the character string and the character code to use to present the character string and acquires the stored setting. The highest-order byte shall indicate the byte sequence data length of the character string to present to the user and the second-highest-order byte shall indicate the character code to use. The second-highest-order byte shall be followed by a byte containing  g0x00 h (for future reserved), which shall be followed by a number of bytes, each assigned with one of the first and succeeding bytes, starting with the first byte, of the character string to present to the user. The lowest-order byte shall be assigned with the last byte of the character string to present to the user.<br>First byte: Byte code sequence data length of the character string to present to the user converted to the hexadecimal format Second byte: Character code to use Third byte: for future reserved Fourth and succeeding bytes: Byte code sequence of the character string to present to the user (max. 244 bytes) Each of the character codes listed below shall be assigned with the indicated code value. ANSI X3.4=0x01 Shift .JIS=0x02 JIS =0x03 Japanese EUC=0x04 UCS-4 =0x05 UCS-2 =0x06 Latin -1=0x07 UTF-8=0x08 0x09 and succeeding values = for future reserved<br><br>Data type : unsigne d    char  ~ Max 247<br>Data size : Max247 Byte<br>Set : mandatory<br>Get : optional
 	 */
 	protected abstract boolean setCharacterStringToPresentToTheUser(byte[] edt);
+	private final boolean _setCharacterStringToPresentToTheUser(byte epc, byte[] edt) {
+		boolean success = setCharacterStringToPresentToTheUser(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets the character string to present to the user, the length of the character string and the character code to use to present the character string and acquires the stored setting. The highest-order byte shall indicate the byte sequence data length of the character string to present to the user and the second-highest-order byte shall indicate the character code to use. The second-highest-order byte shall be followed by a byte containing  g0x00 h (for future reserved), which shall be followed by a number of bytes, each assigned with one of the first and succeeding bytes, starting with the first byte, of the character string to present to the user. The lowest-order byte shall be assigned with the last byte of the character string to present to the user.<br>First byte: Byte code sequence data length of the character string to present to the user converted to the hexadecimal format Second byte: Character code to use Third byte: for future reserved Fourth and succeeding bytes: Byte code sequence of the character string to present to the user (max. 244 bytes) Each of the character codes listed below shall be assigned with the indicated code value. ANSI X3.4=0x01 Shift .JIS=0x02 JIS =0x03 Japanese EUC=0x04 UCS-4 =0x05 UCS-2 =0x06 Latin -1=0x07 UTF-8=0x08 0x09 and succeeding values = for future reserved<br><br>Data type : unsigne d    char  ~ Max 247<br>Data size : Max247 Byte<br>Set : mandatory<br>Get : optional
 	 */
 	protected byte[] getCharacterStringToPresentToTheUser() {return null;}
+	private final byte[] _getCharacterStringToPresentToTheUser(byte epc) {
+		byte[] edt = getCharacterStringToPresentToTheUser();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the total number of bytes of the newest character string to present to the user which has been set and is being held.<br>First byte: 0x00 to 0xF4 Second byte: 0x00 (for future reserved)<br><br>Data type : unsigne d char<br>Data size : 2 Byte<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getLengthOfCharacterStringAccepted();
+	private final byte[] _getLengthOfCharacterStringAccepted(byte epc) {
+		byte[] edt = getLengthOfCharacterStringAccepted();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -77,10 +112,10 @@ public abstract class Display extends DeviceObject {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
 		case EPC_DISPLAY_CONTROL_SETTING:
-			res.addProperty(epc, edt, setDisplayControlSetting(edt));
+			res.addProperty(epc, edt, _setDisplayControlSetting(epc, edt));
 			break;
 		case EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER:
-			res.addProperty(epc, edt, setCharacterStringToPresentToTheUser(edt));
+			res.addProperty(epc, edt, _setCharacterStringToPresentToTheUser(epc, edt));
 			break;
 
 		}
@@ -92,23 +127,23 @@ public abstract class Display extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_DISPLAY_CONTROL_SETTING:
-			edt = getDisplayControlSetting();
+			edt = _getDisplayControlSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS:
-			edt = getCharacterStringSettingAcceptanceStatus();
+			edt = _getCharacterStringSettingAcceptanceStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SUPPORTED_CHARACTER_CODES:
-			edt = getSupportedCharacterCodes();
+			edt = _getSupportedCharacterCodes(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER:
-			edt = getCharacterStringToPresentToTheUser();
+			edt = _getCharacterStringToPresentToTheUser(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length <= 247)));
 			break;
 		case EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED:
-			edt = getLengthOfCharacterStringAccepted();
+			edt = _getLengthOfCharacterStringAccepted(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 
@@ -138,39 +173,37 @@ public abstract class Display extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_DISPLAY_CONTROL_SETTING:
-				onSetDisplayControlSetting(eoj, tid, (pdc != 0));
+				_onSetDisplayControlSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER:
-				onSetCharacterStringToPresentToTheUser(eoj, tid, (pdc != 0));
+				_onSetCharacterStringToPresentToTheUser(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_DISPLAY_CONTROL_SETTING:
-				onGetDisplayControlSetting(eoj, tid, pdc, edt);
+				_onGetDisplayControlSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS:
-				onGetCharacterStringSettingAcceptanceStatus(eoj, tid, pdc, edt);
+				_onGetCharacterStringSettingAcceptanceStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SUPPORTED_CHARACTER_CODES:
-				onGetSupportedCharacterCodes(eoj, tid, pdc, edt);
+				_onGetSupportedCharacterCodes(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER:
-				onGetCharacterStringToPresentToTheUser(eoj, tid, pdc, edt);
+				_onGetCharacterStringToPresentToTheUser(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED:
-				onGetLengthOfCharacterStringAccepted(eoj, tid, pdc, edt);
+				_onGetLengthOfCharacterStringAccepted(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -179,31 +212,59 @@ public abstract class Display extends DeviceObject {
 		/**
 		 * Sets the status as to whether the displaying of characters is enabled or disabled and acquires the current setting.<br>Displaying enabled: 0x30 Displaying disabled: 0x31<br><br>Data type : unsigne d char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetDisplayControlSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetDisplayControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetDisplayControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetDisplayControlSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets the status as to whether the displaying of characters is enabled or disabled and acquires the current setting.<br>Displaying enabled: 0x30 Displaying disabled: 0x31<br><br>Data type : unsigne d char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetDisplayControlSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetDisplayControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetDisplayControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetDisplayControlSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates whether or not the device is ready to accept the character string to present to the user.<br>Ready: 0x30        Busy: 0x31<br><br>Data type : unsigne d char<br>Data size : 1 Byte<br>Set : undefined<br>Get : mandatory<br>Announcement at status change
 		 */
-		protected void onGetCharacterStringSettingAcceptanceStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetCharacterStringSettingAcceptanceStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetCharacterStringSettingAcceptanceStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetCharacterStringSettingAcceptanceStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates, in a bit map format, the implemented character codes that can be used to present character strings.<br>Bit 0   ANSI X3.4 Implemented: 1 Not implemented: 0 Bit 1   Shift-JIS Implemented: 1 Not implemented: 0 Bit 2   JIS Implemented: 1 Not implemented: 0 Bit 3   Japanese EUC Implemented: 1 Not implemented: 0 Bit 4   UCS-4 Implemented: 1 Not implemented: 0 Bit 5   UCS-2 Implemented: 1 Not implemented: 0 Bit 6   Latin-1 Implemented: 1 Not implemented: 0 Bit 7   UTF-8 Implemented: 1 Not implemented: 0 Bit 8 and succeeding bits: for future reserved    0<br><br>Data type : unsigne d char ~ 2<br>Data size : 2 Byte<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetSupportedCharacterCodes(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSupportedCharacterCodes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSupportedCharacterCodes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSupportedCharacterCodes(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Sets the character string to present to the user, the length of the character string and the character code to use to present the character string and acquires the stored setting. The highest-order byte shall indicate the byte sequence data length of the character string to present to the user and the second-highest-order byte shall indicate the character code to use. The second-highest-order byte shall be followed by a byte containing  g0x00 h (for future reserved), which shall be followed by a number of bytes, each assigned with one of the first and succeeding bytes, starting with the first byte, of the character string to present to the user. The lowest-order byte shall be assigned with the last byte of the character string to present to the user.<br>First byte: Byte code sequence data length of the character string to present to the user converted to the hexadecimal format Second byte: Character code to use Third byte: for future reserved Fourth and succeeding bytes: Byte code sequence of the character string to present to the user (max. 244 bytes) Each of the character codes listed below shall be assigned with the indicated code value. ANSI X3.4=0x01 Shift .JIS=0x02 JIS =0x03 Japanese EUC=0x04 UCS-4 =0x05 UCS-2 =0x06 Latin -1=0x07 UTF-8=0x08 0x09 and succeeding values = for future reserved<br><br>Data type : unsigne d    char  ~ Max 247<br>Data size : Max247 Byte<br>Set : mandatory<br>Get : optional
 		 */
-		protected void onSetCharacterStringToPresentToTheUser(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetCharacterStringToPresentToTheUser(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetCharacterStringToPresentToTheUser(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetCharacterStringToPresentToTheUser(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets the character string to present to the user, the length of the character string and the character code to use to present the character string and acquires the stored setting. The highest-order byte shall indicate the byte sequence data length of the character string to present to the user and the second-highest-order byte shall indicate the character code to use. The second-highest-order byte shall be followed by a byte containing  g0x00 h (for future reserved), which shall be followed by a number of bytes, each assigned with one of the first and succeeding bytes, starting with the first byte, of the character string to present to the user. The lowest-order byte shall be assigned with the last byte of the character string to present to the user.<br>First byte: Byte code sequence data length of the character string to present to the user converted to the hexadecimal format Second byte: Character code to use Third byte: for future reserved Fourth and succeeding bytes: Byte code sequence of the character string to present to the user (max. 244 bytes) Each of the character codes listed below shall be assigned with the indicated code value. ANSI X3.4=0x01 Shift .JIS=0x02 JIS =0x03 Japanese EUC=0x04 UCS-4 =0x05 UCS-2 =0x06 Latin -1=0x07 UTF-8=0x08 0x09 and succeeding values = for future reserved<br><br>Data type : unsigne d    char  ~ Max 247<br>Data size : Max247 Byte<br>Set : mandatory<br>Get : optional
 		 */
-		protected void onGetCharacterStringToPresentToTheUser(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetCharacterStringToPresentToTheUser(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetCharacterStringToPresentToTheUser(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetCharacterStringToPresentToTheUser(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the total number of bytes of the newest character string to present to the user which has been set and is being held.<br>First byte: 0x00 to 0xF4 Second byte: 0x00 (for future reserved)<br><br>Data type : unsigne d char<br>Data size : 2 Byte<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetLengthOfCharacterStringAccepted(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetLengthOfCharacterStringAccepted(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetLengthOfCharacterStringAccepted(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetLengthOfCharacterStringAccepted(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -268,12 +329,14 @@ public abstract class Display extends DeviceObject {
 
 		@Override
 		public Setter reqSetDisplayControlSetting(byte[] edt) {
-			addProperty(EPC_DISPLAY_CONTROL_SETTING, edt, setDisplayControlSetting(edt));
+			byte epc = EPC_DISPLAY_CONTROL_SETTING;
+			addProperty(epc, edt, _setDisplayControlSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetCharacterStringToPresentToTheUser(byte[] edt) {
-			addProperty(EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER, edt, setCharacterStringToPresentToTheUser(edt));
+			byte epc = EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER;
+			addProperty(epc, edt, _setCharacterStringToPresentToTheUser(epc, edt));
 			return this;
 		}
 	}
@@ -478,32 +541,37 @@ public abstract class Display extends DeviceObject {
 
 		@Override
 		public Getter reqGetDisplayControlSetting() {
-			byte[] edt = getDisplayControlSetting();
-			addProperty(EPC_DISPLAY_CONTROL_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DISPLAY_CONTROL_SETTING;
+			byte[] edt = _getDisplayControlSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetCharacterStringSettingAcceptanceStatus() {
-			byte[] edt = getCharacterStringSettingAcceptanceStatus();
-			addProperty(EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS;
+			byte[] edt = _getCharacterStringSettingAcceptanceStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSupportedCharacterCodes() {
-			byte[] edt = getSupportedCharacterCodes();
-			addProperty(EPC_SUPPORTED_CHARACTER_CODES, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_SUPPORTED_CHARACTER_CODES;
+			byte[] edt = _getSupportedCharacterCodes(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetCharacterStringToPresentToTheUser() {
-			byte[] edt = getCharacterStringToPresentToTheUser();
-			addProperty(EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER, edt, (edt != null && (edt.length <= 247)));
+			byte epc = EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER;
+			byte[] edt = _getCharacterStringToPresentToTheUser(epc);
+			addProperty(epc, edt, (edt != null && (edt.length <= 247)));
 			return this;
 		}
 		@Override
 		public Getter reqGetLengthOfCharacterStringAccepted() {
-			byte[] edt = getLengthOfCharacterStringAccepted();
-			addProperty(EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED;
+			byte[] edt = _getLengthOfCharacterStringAccepted(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}
@@ -783,32 +851,37 @@ public abstract class Display extends DeviceObject {
 
 		@Override
 		public Informer reqInformDisplayControlSetting() {
-			byte[] edt = getDisplayControlSetting();
-			addProperty(EPC_DISPLAY_CONTROL_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DISPLAY_CONTROL_SETTING;
+			byte[] edt = _getDisplayControlSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformCharacterStringSettingAcceptanceStatus() {
-			byte[] edt = getCharacterStringSettingAcceptanceStatus();
-			addProperty(EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS;
+			byte[] edt = _getCharacterStringSettingAcceptanceStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSupportedCharacterCodes() {
-			byte[] edt = getSupportedCharacterCodes();
-			addProperty(EPC_SUPPORTED_CHARACTER_CODES, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_SUPPORTED_CHARACTER_CODES;
+			byte[] edt = _getSupportedCharacterCodes(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformCharacterStringToPresentToTheUser() {
-			byte[] edt = getCharacterStringToPresentToTheUser();
-			addProperty(EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER, edt, (edt != null && (edt.length <= 247)));
+			byte epc = EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER;
+			byte[] edt = _getCharacterStringToPresentToTheUser(epc);
+			addProperty(epc, edt, (edt != null && (edt.length <= 247)));
 			return this;
 		}
 		@Override
 		public Informer reqInformLengthOfCharacterStringAccepted() {
-			byte[] edt = getLengthOfCharacterStringAccepted();
-			addProperty(EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED;
+			byte[] edt = _getLengthOfCharacterStringAccepted(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}

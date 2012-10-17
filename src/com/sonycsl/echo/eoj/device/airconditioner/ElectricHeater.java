@@ -26,17 +26,17 @@ public abstract class ElectricHeater extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x01;
 	public static final byte CLASS_CODE = (byte)0x42;
 
-	protected static final byte EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING = (byte)0xB1;
-	protected static final byte EPC_TEMPERATURE_SETTING = (byte)0xB3;
-	protected static final byte EPC_MEASURED_ROOM_TEMPERATURE = (byte)0xBB;
-	protected static final byte EPC_REMOTELY_SET_TEMPERATURE = (byte)0xBC;
-	protected static final byte EPC_AIR_FLOW_RATE_SETTING = (byte)0xA0;
-	protected static final byte EPC_ON_TIMER_BASED_RESERVATION_SETTING = (byte)0x90;
-	protected static final byte EPC_ON_TIMER_SETTING_TIME = (byte)0x91;
-	protected static final byte EPC_ON_TIMER_SETTING_RELATIVE_TIME = (byte)0x92;
-	protected static final byte EPC_OFF_TIMER_BASED_RESERVATION_SETTING = (byte)0x94;
-	protected static final byte EPC_OFF_TIMER_SETTING_TIME = (byte)0x95;
-	protected static final byte EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME = (byte)0x96;
+	public static final byte EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING = (byte)0xB1;
+	public static final byte EPC_TEMPERATURE_SETTING = (byte)0xB3;
+	public static final byte EPC_MEASURED_ROOM_TEMPERATURE = (byte)0xBB;
+	public static final byte EPC_REMOTELY_SET_TEMPERATURE = (byte)0xBC;
+	public static final byte EPC_AIR_FLOW_RATE_SETTING = (byte)0xA0;
+	public static final byte EPC_ON_TIMER_BASED_RESERVATION_SETTING = (byte)0x90;
+	public static final byte EPC_ON_TIMER_SETTING_TIME = (byte)0x91;
+	public static final byte EPC_ON_TIMER_SETTING_RELATIVE_TIME = (byte)0x92;
+	public static final byte EPC_OFF_TIMER_BASED_RESERVATION_SETTING = (byte)0x94;
+	public static final byte EPC_OFF_TIMER_SETTING_TIME = (byte)0x95;
+	public static final byte EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME = (byte)0x96;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -52,82 +52,182 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Used to specify whether or not to use the automatic temperature control function.<br>Automatic = 0x41, non-automatic = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAutomaticTemperatureControlSetting(byte[] edt) {return false;}
+	private final boolean _setAutomaticTemperatureControlSetting(byte epc, byte[] edt) {
+		boolean success = setAutomaticTemperatureControlSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify whether or not to use the automatic temperature control function.<br>Automatic = 0x41, non-automatic = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAutomaticTemperatureControlSetting() {return null;}
+	private final byte[] _getAutomaticTemperatureControlSetting(byte epc) {
+		byte[] edt = getAutomaticTemperatureControlSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to set the temperature.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract boolean setTemperatureSetting(byte[] edt);
+	private final boolean _setTemperatureSetting(byte epc, byte[] edt) {
+		boolean success = setTemperatureSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to set the temperature.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 	 */
 	protected abstract byte[] getTemperatureSetting();
+	private final byte[] _getTemperatureSetting(byte epc) {
+		byte[] edt = getTemperatureSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the measured room temperature.<br>0x81 to 0x7E (-128 to 127��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMeasuredRoomTemperature() {return null;}
+	private final byte[] _getMeasuredRoomTemperature(byte epc) {
+		byte[] edt = getMeasuredRoomTemperature();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates the last temperature (��C) set by the user using a remote controller unit.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getRemotelySetTemperature() {return null;}
+	private final byte[] _getRemotelySetTemperature(byte epc) {
+		byte[] edt = getRemotelySetTemperature();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br>Automatic air flow rate control used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAirFlowRateSetting(byte[] edt) {return false;}
+	private final boolean _setAirFlowRateSetting(byte epc, byte[] edt) {
+		boolean success = setAirFlowRateSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br>Automatic air flow rate control used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAirFlowRateSetting() {return null;}
+	private final byte[] _getAirFlowRateSetting(byte epc) {
+		byte[] edt = getAirFlowRateSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify whether or not to use the ON timer-based reservation function.<br>ON timer-based reservation function ON: 0x41 ON timer-based reservation function OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOnTimerBasedReservationSetting(byte[] edt) {return false;}
+	private final boolean _setOnTimerBasedReservationSetting(byte epc, byte[] edt) {
+		boolean success = setOnTimerBasedReservationSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify whether or not to use the ON timer-based reservation function.<br>ON timer-based reservation function ON: 0x41 ON timer-based reservation function OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOnTimerBasedReservationSetting() {return null;}
+	private final byte[] _getOnTimerBasedReservationSetting(byte epc) {
+		byte[] edt = getOnTimerBasedReservationSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOnTimerSettingTime(byte[] edt) {return false;}
+	private final boolean _setOnTimerSettingTime(byte epc, byte[] edt) {
+		boolean success = setOnTimerSettingTime(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOnTimerSettingTime() {return null;}
+	private final byte[] _getOnTimerSettingTime(byte epc) {
+		byte[] edt = getOnTimerSettingTime();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOnTimerSettingRelativeTime(byte[] edt) {return false;}
+	private final boolean _setOnTimerSettingRelativeTime(byte epc, byte[] edt) {
+		boolean success = setOnTimerSettingRelativeTime(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOnTimerSettingRelativeTime() {return null;}
+	private final byte[] _getOnTimerSettingRelativeTime(byte epc) {
+		byte[] edt = getOnTimerSettingRelativeTime();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify whether or not to use the OFF timer-based reservation function.<br>OFF timer-based reservation function ON: 0x41 OFF timer-based reservation function OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOffTimerBasedReservationSetting(byte[] edt) {return false;}
+	private final boolean _setOffTimerBasedReservationSetting(byte epc, byte[] edt) {
+		boolean success = setOffTimerBasedReservationSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify whether or not to use the OFF timer-based reservation function.<br>OFF timer-based reservation function ON: 0x41 OFF timer-based reservation function OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOffTimerBasedReservationSetting() {return null;}
+	private final byte[] _getOffTimerBasedReservationSetting(byte epc) {
+		byte[] edt = getOffTimerBasedReservationSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setOffTimerSettingTime(byte[] edt) {return false;}
+	private final boolean _setOffTimerSettingTime(byte epc, byte[] edt) {
+		boolean success = setOffTimerSettingTime(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getOffTimerSettingTime() {return null;}
+	private final byte[] _getOffTimerSettingTime(byte epc) {
+		byte[] edt = getOffTimerSettingTime();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Timer value HH:MM<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetValueOfOffTimerRelativeTime(byte[] edt) {return false;}
+	private final boolean _setSetValueOfOffTimerRelativeTime(byte epc, byte[] edt) {
+		boolean success = setSetValueOfOffTimerRelativeTime(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Timer value HH:MM<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetValueOfOffTimerRelativeTime() {return null;}
+	private final byte[] _getSetValueOfOffTimerRelativeTime(byte epc) {
+		byte[] edt = getSetValueOfOffTimerRelativeTime();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -135,31 +235,31 @@ public abstract class ElectricHeater extends DeviceObject {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
 		case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING:
-			res.addProperty(epc, edt, setAutomaticTemperatureControlSetting(edt));
+			res.addProperty(epc, edt, _setAutomaticTemperatureControlSetting(epc, edt));
 			break;
 		case EPC_TEMPERATURE_SETTING:
-			res.addProperty(epc, edt, setTemperatureSetting(edt));
+			res.addProperty(epc, edt, _setTemperatureSetting(epc, edt));
 			break;
 		case EPC_AIR_FLOW_RATE_SETTING:
-			res.addProperty(epc, edt, setAirFlowRateSetting(edt));
+			res.addProperty(epc, edt, _setAirFlowRateSetting(epc, edt));
 			break;
 		case EPC_ON_TIMER_BASED_RESERVATION_SETTING:
-			res.addProperty(epc, edt, setOnTimerBasedReservationSetting(edt));
+			res.addProperty(epc, edt, _setOnTimerBasedReservationSetting(epc, edt));
 			break;
 		case EPC_ON_TIMER_SETTING_TIME:
-			res.addProperty(epc, edt, setOnTimerSettingTime(edt));
+			res.addProperty(epc, edt, _setOnTimerSettingTime(epc, edt));
 			break;
 		case EPC_ON_TIMER_SETTING_RELATIVE_TIME:
-			res.addProperty(epc, edt, setOnTimerSettingRelativeTime(edt));
+			res.addProperty(epc, edt, _setOnTimerSettingRelativeTime(epc, edt));
 			break;
 		case EPC_OFF_TIMER_BASED_RESERVATION_SETTING:
-			res.addProperty(epc, edt, setOffTimerBasedReservationSetting(edt));
+			res.addProperty(epc, edt, _setOffTimerBasedReservationSetting(epc, edt));
 			break;
 		case EPC_OFF_TIMER_SETTING_TIME:
-			res.addProperty(epc, edt, setOffTimerSettingTime(edt));
+			res.addProperty(epc, edt, _setOffTimerSettingTime(epc, edt));
 			break;
 		case EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME:
-			res.addProperty(epc, edt, setSetValueOfOffTimerRelativeTime(edt));
+			res.addProperty(epc, edt, _setSetValueOfOffTimerRelativeTime(epc, edt));
 			break;
 
 		}
@@ -171,47 +271,47 @@ public abstract class ElectricHeater extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING:
-			edt = getAutomaticTemperatureControlSetting();
+			edt = _getAutomaticTemperatureControlSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_TEMPERATURE_SETTING:
-			edt = getTemperatureSetting();
+			edt = _getTemperatureSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_MEASURED_ROOM_TEMPERATURE:
-			edt = getMeasuredRoomTemperature();
+			edt = _getMeasuredRoomTemperature(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_REMOTELY_SET_TEMPERATURE:
-			edt = getRemotelySetTemperature();
+			edt = _getRemotelySetTemperature(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_AIR_FLOW_RATE_SETTING:
-			edt = getAirFlowRateSetting();
+			edt = _getAirFlowRateSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_ON_TIMER_BASED_RESERVATION_SETTING:
-			edt = getOnTimerBasedReservationSetting();
+			edt = _getOnTimerBasedReservationSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_ON_TIMER_SETTING_TIME:
-			edt = getOnTimerSettingTime();
+			edt = _getOnTimerSettingTime(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_ON_TIMER_SETTING_RELATIVE_TIME:
-			edt = getOnTimerSettingRelativeTime();
+			edt = _getOnTimerSettingRelativeTime(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_OFF_TIMER_BASED_RESERVATION_SETTING:
-			edt = getOffTimerBasedReservationSetting();
+			edt = _getOffTimerBasedReservationSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_OFF_TIMER_SETTING_TIME:
-			edt = getOffTimerSettingTime();
+			edt = _getOffTimerSettingTime(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME:
-			edt = getSetValueOfOffTimerRelativeTime();
+			edt = _getSetValueOfOffTimerRelativeTime(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 
@@ -241,78 +341,76 @@ public abstract class ElectricHeater extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING:
-				onSetAutomaticTemperatureControlSetting(eoj, tid, (pdc != 0));
+				_onSetAutomaticTemperatureControlSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_TEMPERATURE_SETTING:
-				onSetTemperatureSetting(eoj, tid, (pdc != 0));
+				_onSetTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_AIR_FLOW_RATE_SETTING:
-				onSetAirFlowRateSetting(eoj, tid, (pdc != 0));
+				_onSetAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_ON_TIMER_BASED_RESERVATION_SETTING:
-				onSetOnTimerBasedReservationSetting(eoj, tid, (pdc != 0));
+				_onSetOnTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_ON_TIMER_SETTING_TIME:
-				onSetOnTimerSettingTime(eoj, tid, (pdc != 0));
+				_onSetOnTimerSettingTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_ON_TIMER_SETTING_RELATIVE_TIME:
-				onSetOnTimerSettingRelativeTime(eoj, tid, (pdc != 0));
+				_onSetOnTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_OFF_TIMER_BASED_RESERVATION_SETTING:
-				onSetOffTimerBasedReservationSetting(eoj, tid, (pdc != 0));
+				_onSetOffTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_OFF_TIMER_SETTING_TIME:
-				onSetOffTimerSettingTime(eoj, tid, (pdc != 0));
+				_onSetOffTimerSettingTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME:
-				onSetSetValueOfOffTimerRelativeTime(eoj, tid, (pdc != 0));
+				_onSetSetValueOfOffTimerRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING:
-				onGetAutomaticTemperatureControlSetting(eoj, tid, pdc, edt);
+				_onGetAutomaticTemperatureControlSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_TEMPERATURE_SETTING:
-				onGetTemperatureSetting(eoj, tid, pdc, edt);
+				_onGetTemperatureSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MEASURED_ROOM_TEMPERATURE:
-				onGetMeasuredRoomTemperature(eoj, tid, pdc, edt);
+				_onGetMeasuredRoomTemperature(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_REMOTELY_SET_TEMPERATURE:
-				onGetRemotelySetTemperature(eoj, tid, pdc, edt);
+				_onGetRemotelySetTemperature(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_AIR_FLOW_RATE_SETTING:
-				onGetAirFlowRateSetting(eoj, tid, pdc, edt);
+				_onGetAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_ON_TIMER_BASED_RESERVATION_SETTING:
-				onGetOnTimerBasedReservationSetting(eoj, tid, pdc, edt);
+				_onGetOnTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_ON_TIMER_SETTING_TIME:
-				onGetOnTimerSettingTime(eoj, tid, pdc, edt);
+				_onGetOnTimerSettingTime(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_ON_TIMER_SETTING_RELATIVE_TIME:
-				onGetOnTimerSettingRelativeTime(eoj, tid, pdc, edt);
+				_onGetOnTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_OFF_TIMER_BASED_RESERVATION_SETTING:
-				onGetOffTimerBasedReservationSetting(eoj, tid, pdc, edt);
+				_onGetOffTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_OFF_TIMER_SETTING_TIME:
-				onGetOffTimerSettingTime(eoj, tid, pdc, edt);
+				_onGetOffTimerSettingTime(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME:
-				onGetSetValueOfOffTimerRelativeTime(eoj, tid, pdc, edt);
+				_onGetSetValueOfOffTimerRelativeTime(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -321,83 +419,163 @@ public abstract class ElectricHeater extends DeviceObject {
 		/**
 		 * Used to specify whether or not to use the automatic temperature control function.<br>Automatic = 0x41, non-automatic = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetAutomaticTemperatureControlSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify whether or not to use the automatic temperature control function.<br>Automatic = 0x41, non-automatic = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetAutomaticTemperatureControlSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to set the temperature.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
-		protected void onSetTemperatureSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetTemperatureSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetTemperatureSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetTemperatureSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to set the temperature.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
 		 */
-		protected void onGetTemperatureSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetTemperatureSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetTemperatureSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetTemperatureSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the measured room temperature.<br>0x81 to 0x7E (-128 to 127��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMeasuredRoomTemperature(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredRoomTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredRoomTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredRoomTemperature(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates the last temperature (��C) set by the user using a remote controller unit.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetRemotelySetTemperature(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetRemotelySetTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetRemotelySetTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetRemotelySetTemperature(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br>Automatic air flow rate control used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetAirFlowRateSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br>Automatic air flow rate control used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetAirFlowRateSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify whether or not to use the ON timer-based reservation function.<br>ON timer-based reservation function ON: 0x41 ON timer-based reservation function OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetOnTimerBasedReservationSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetOnTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetOnTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetOnTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify whether or not to use the ON timer-based reservation function.<br>ON timer-based reservation function ON: 0x41 ON timer-based reservation function OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetOnTimerBasedReservationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOnTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOnTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOnTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetOnTimerSettingTime(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetOnTimerSettingTime(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetOnTimerSettingTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOnTimerSettingTime(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetOnTimerSettingRelativeTime(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetOnTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOnTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify whether or not to use the OFF timer-based reservation function.<br>OFF timer-based reservation function ON: 0x41 OFF timer-based reservation function OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetOffTimerBasedReservationSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetOffTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetOffTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetOffTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify whether or not to use the OFF timer-based reservation function.<br>OFF timer-based reservation function ON: 0x41 OFF timer-based reservation function OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetOffTimerBasedReservationSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOffTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOffTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOffTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetOffTimerSettingTime(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetOffTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetOffTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetOffTimerSettingTime(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetOffTimerSettingTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOffTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOffTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOffTimerSettingTime(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Timer value HH:MM<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetSetValueOfOffTimerRelativeTime(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetSetValueOfOffTimerRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetSetValueOfOffTimerRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetSetValueOfOffTimerRelativeTime(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Timer value HH:MM<br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetSetValueOfOffTimerRelativeTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSetValueOfOffTimerRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSetValueOfOffTimerRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSetValueOfOffTimerRelativeTime(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -490,47 +668,56 @@ public abstract class ElectricHeater extends DeviceObject {
 
 		@Override
 		public Setter reqSetAutomaticTemperatureControlSetting(byte[] edt) {
-			addProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING, edt, setAutomaticTemperatureControlSetting(edt));
+			byte epc = EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING;
+			addProperty(epc, edt, _setAutomaticTemperatureControlSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetTemperatureSetting(byte[] edt) {
-			addProperty(EPC_TEMPERATURE_SETTING, edt, setTemperatureSetting(edt));
+			byte epc = EPC_TEMPERATURE_SETTING;
+			addProperty(epc, edt, _setTemperatureSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetAirFlowRateSetting(byte[] edt) {
-			addProperty(EPC_AIR_FLOW_RATE_SETTING, edt, setAirFlowRateSetting(edt));
+			byte epc = EPC_AIR_FLOW_RATE_SETTING;
+			addProperty(epc, edt, _setAirFlowRateSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetOnTimerBasedReservationSetting(byte[] edt) {
-			addProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING, edt, setOnTimerBasedReservationSetting(edt));
+			byte epc = EPC_ON_TIMER_BASED_RESERVATION_SETTING;
+			addProperty(epc, edt, _setOnTimerBasedReservationSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetOnTimerSettingTime(byte[] edt) {
-			addProperty(EPC_ON_TIMER_SETTING_TIME, edt, setOnTimerSettingTime(edt));
+			byte epc = EPC_ON_TIMER_SETTING_TIME;
+			addProperty(epc, edt, _setOnTimerSettingTime(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetOnTimerSettingRelativeTime(byte[] edt) {
-			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME, edt, setOnTimerSettingRelativeTime(edt));
+			byte epc = EPC_ON_TIMER_SETTING_RELATIVE_TIME;
+			addProperty(epc, edt, _setOnTimerSettingRelativeTime(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetOffTimerBasedReservationSetting(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING, edt, setOffTimerBasedReservationSetting(edt));
+			byte epc = EPC_OFF_TIMER_BASED_RESERVATION_SETTING;
+			addProperty(epc, edt, _setOffTimerBasedReservationSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetOffTimerSettingTime(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_SETTING_TIME, edt, setOffTimerSettingTime(edt));
+			byte epc = EPC_OFF_TIMER_SETTING_TIME;
+			addProperty(epc, edt, _setOffTimerSettingTime(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetSetValueOfOffTimerRelativeTime(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME, edt, setSetValueOfOffTimerRelativeTime(edt));
+			byte epc = EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME;
+			addProperty(epc, edt, _setSetValueOfOffTimerRelativeTime(epc, edt));
 			return this;
 		}
 	}
@@ -794,68 +981,79 @@ public abstract class ElectricHeater extends DeviceObject {
 
 		@Override
 		public Getter reqGetAutomaticTemperatureControlSetting() {
-			byte[] edt = getAutomaticTemperatureControlSetting();
-			addProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING;
+			byte[] edt = _getAutomaticTemperatureControlSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetTemperatureSetting() {
-			byte[] edt = getTemperatureSetting();
-			addProperty(EPC_TEMPERATURE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_TEMPERATURE_SETTING;
+			byte[] edt = _getTemperatureSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMeasuredRoomTemperature() {
-			byte[] edt = getMeasuredRoomTemperature();
-			addProperty(EPC_MEASURED_ROOM_TEMPERATURE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MEASURED_ROOM_TEMPERATURE;
+			byte[] edt = _getMeasuredRoomTemperature(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetRemotelySetTemperature() {
-			byte[] edt = getRemotelySetTemperature();
-			addProperty(EPC_REMOTELY_SET_TEMPERATURE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_REMOTELY_SET_TEMPERATURE;
+			byte[] edt = _getRemotelySetTemperature(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetAirFlowRateSetting() {
-			byte[] edt = getAirFlowRateSetting();
-			addProperty(EPC_AIR_FLOW_RATE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AIR_FLOW_RATE_SETTING;
+			byte[] edt = _getAirFlowRateSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOnTimerBasedReservationSetting() {
-			byte[] edt = getOnTimerBasedReservationSetting();
-			addProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_ON_TIMER_BASED_RESERVATION_SETTING;
+			byte[] edt = _getOnTimerBasedReservationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOnTimerSettingTime() {
-			byte[] edt = getOnTimerSettingTime();
-			addProperty(EPC_ON_TIMER_SETTING_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_ON_TIMER_SETTING_TIME;
+			byte[] edt = _getOnTimerSettingTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOnTimerSettingRelativeTime() {
-			byte[] edt = getOnTimerSettingRelativeTime();
-			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_ON_TIMER_SETTING_RELATIVE_TIME;
+			byte[] edt = _getOnTimerSettingRelativeTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOffTimerBasedReservationSetting() {
-			byte[] edt = getOffTimerBasedReservationSetting();
-			addProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OFF_TIMER_BASED_RESERVATION_SETTING;
+			byte[] edt = _getOffTimerBasedReservationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOffTimerSettingTime() {
-			byte[] edt = getOffTimerSettingTime();
-			addProperty(EPC_OFF_TIMER_SETTING_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_OFF_TIMER_SETTING_TIME;
+			byte[] edt = _getOffTimerSettingTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSetValueOfOffTimerRelativeTime() {
-			byte[] edt = getSetValueOfOffTimerRelativeTime();
-			addProperty(EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME;
+			byte[] edt = _getSetValueOfOffTimerRelativeTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}
@@ -1189,68 +1387,79 @@ public abstract class ElectricHeater extends DeviceObject {
 
 		@Override
 		public Informer reqInformAutomaticTemperatureControlSetting() {
-			byte[] edt = getAutomaticTemperatureControlSetting();
-			addProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING;
+			byte[] edt = _getAutomaticTemperatureControlSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformTemperatureSetting() {
-			byte[] edt = getTemperatureSetting();
-			addProperty(EPC_TEMPERATURE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_TEMPERATURE_SETTING;
+			byte[] edt = _getTemperatureSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMeasuredRoomTemperature() {
-			byte[] edt = getMeasuredRoomTemperature();
-			addProperty(EPC_MEASURED_ROOM_TEMPERATURE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MEASURED_ROOM_TEMPERATURE;
+			byte[] edt = _getMeasuredRoomTemperature(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformRemotelySetTemperature() {
-			byte[] edt = getRemotelySetTemperature();
-			addProperty(EPC_REMOTELY_SET_TEMPERATURE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_REMOTELY_SET_TEMPERATURE;
+			byte[] edt = _getRemotelySetTemperature(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformAirFlowRateSetting() {
-			byte[] edt = getAirFlowRateSetting();
-			addProperty(EPC_AIR_FLOW_RATE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AIR_FLOW_RATE_SETTING;
+			byte[] edt = _getAirFlowRateSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOnTimerBasedReservationSetting() {
-			byte[] edt = getOnTimerBasedReservationSetting();
-			addProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_ON_TIMER_BASED_RESERVATION_SETTING;
+			byte[] edt = _getOnTimerBasedReservationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOnTimerSettingTime() {
-			byte[] edt = getOnTimerSettingTime();
-			addProperty(EPC_ON_TIMER_SETTING_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_ON_TIMER_SETTING_TIME;
+			byte[] edt = _getOnTimerSettingTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOnTimerSettingRelativeTime() {
-			byte[] edt = getOnTimerSettingRelativeTime();
-			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_ON_TIMER_SETTING_RELATIVE_TIME;
+			byte[] edt = _getOnTimerSettingRelativeTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOffTimerBasedReservationSetting() {
-			byte[] edt = getOffTimerBasedReservationSetting();
-			addProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OFF_TIMER_BASED_RESERVATION_SETTING;
+			byte[] edt = _getOffTimerBasedReservationSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOffTimerSettingTime() {
-			byte[] edt = getOffTimerSettingTime();
-			addProperty(EPC_OFF_TIMER_SETTING_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_OFF_TIMER_SETTING_TIME;
+			byte[] edt = _getOffTimerSettingTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSetValueOfOffTimerRelativeTime() {
-			byte[] edt = getSetValueOfOffTimerRelativeTime();
-			addProperty(EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME;
+			byte[] edt = _getSetValueOfOffTimerRelativeTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}

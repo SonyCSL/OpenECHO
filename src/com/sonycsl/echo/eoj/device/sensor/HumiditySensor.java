@@ -26,7 +26,7 @@ public abstract class HumiditySensor extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x12;
 
-	protected static final byte EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY = (byte)0xE0;
+	public static final byte EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY = (byte)0xE0;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -42,6 +42,11 @@ public abstract class HumiditySensor extends DeviceObject {
 	 * This property indicates measured value of relative humidity in %.<br>0x00.0x64 (0.100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getMeasuredValueOfRelativeHumidity();
+	private final byte[] _getMeasuredValueOfRelativeHumidity(byte epc) {
+		byte[] edt = getMeasuredValueOfRelativeHumidity();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -58,7 +63,7 @@ public abstract class HumiditySensor extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY:
-			edt = getMeasuredValueOfRelativeHumidity();
+			edt = _getMeasuredValueOfRelativeHumidity(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 
@@ -88,21 +93,19 @@ public abstract class HumiditySensor extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY:
-				onGetMeasuredValueOfRelativeHumidity(eoj, tid, pdc, edt);
+				_onGetMeasuredValueOfRelativeHumidity(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -111,7 +114,11 @@ public abstract class HumiditySensor extends DeviceObject {
 		/**
 		 * This property indicates measured value of relative humidity in %.<br>0x00.0x64 (0.100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetMeasuredValueOfRelativeHumidity(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMeasuredValueOfRelativeHumidity(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMeasuredValueOfRelativeHumidity(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMeasuredValueOfRelativeHumidity(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -342,8 +349,9 @@ public abstract class HumiditySensor extends DeviceObject {
 
 		@Override
 		public Getter reqGetMeasuredValueOfRelativeHumidity() {
-			byte[] edt = getMeasuredValueOfRelativeHumidity();
-			addProperty(EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY;
+			byte[] edt = _getMeasuredValueOfRelativeHumidity(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}
@@ -587,8 +595,9 @@ public abstract class HumiditySensor extends DeviceObject {
 
 		@Override
 		public Informer reqInformMeasuredValueOfRelativeHumidity() {
-			byte[] edt = getMeasuredValueOfRelativeHumidity();
-			addProperty(EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY;
+			byte[] edt = _getMeasuredValueOfRelativeHumidity(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}

@@ -26,9 +26,9 @@ public abstract class PassageSensor extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x27;
 
-	protected static final byte EPC_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;
-	protected static final byte EPC_PASSAGE_DETECTION_HOLD_TIME = (byte)0xBE;
-	protected static final byte EPC_PASSAGE_DETECTION_DIRECTION = (byte)0xE0;
+	public static final byte EPC_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;
+	public static final byte EPC_PASSAGE_DETECTION_HOLD_TIME = (byte)0xBE;
+	public static final byte EPC_PASSAGE_DETECTION_DIRECTION = (byte)0xE0;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -44,22 +44,47 @@ public abstract class PassageSensor extends DeviceObject {
 	 * Specifies detection threshold level (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setDetectionThresholdLevel(byte[] edt) {return false;}
+	private final boolean _setDetectionThresholdLevel(byte epc, byte[] edt) {
+		boolean success = setDetectionThresholdLevel(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Specifies detection threshold level (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getDetectionThresholdLevel() {return null;}
+	private final byte[] _getDetectionThresholdLevel(byte epc) {
+		byte[] edt = getDetectionThresholdLevel();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates passage detection hold time in ms.<br>0x0000.0xFFFD (0.65533 ms)<br><br>Data type : unsigned char<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setPassageDetectionHoldTime(byte[] edt) {return false;}
+	private final boolean _setPassageDetectionHoldTime(byte epc, byte[] edt) {
+		boolean success = setPassageDetectionHoldTime(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * This property indicates passage detection hold time in ms.<br>0x0000.0xFFFD (0.65533 ms)<br><br>Data type : unsigned char<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getPassageDetectionHoldTime() {return null;}
+	private final byte[] _getPassageDetectionHoldTime(byte epc) {
+		byte[] edt = getPassageDetectionHoldTime();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates direction of passage (one of 8 different directions).<br>0x30: No passage. 0x31 to 0x38: Direction of passage. 0x39: Passage detected but not located. Or, a sensor incapable of detecting passage direction was passed.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory<br>Announcement at status change
 	 */
 	protected abstract byte[] getPassageDetectionDirection();
+	private final byte[] _getPassageDetectionDirection(byte epc) {
+		byte[] edt = getPassageDetectionDirection();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -67,10 +92,10 @@ public abstract class PassageSensor extends DeviceObject {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
 		case EPC_DETECTION_THRESHOLD_LEVEL:
-			res.addProperty(epc, edt, setDetectionThresholdLevel(edt));
+			res.addProperty(epc, edt, _setDetectionThresholdLevel(epc, edt));
 			break;
 		case EPC_PASSAGE_DETECTION_HOLD_TIME:
-			res.addProperty(epc, edt, setPassageDetectionHoldTime(edt));
+			res.addProperty(epc, edt, _setPassageDetectionHoldTime(epc, edt));
 			break;
 
 		}
@@ -82,15 +107,15 @@ public abstract class PassageSensor extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_DETECTION_THRESHOLD_LEVEL:
-			edt = getDetectionThresholdLevel();
+			edt = _getDetectionThresholdLevel(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_PASSAGE_DETECTION_HOLD_TIME:
-			edt = getPassageDetectionHoldTime();
+			edt = _getPassageDetectionHoldTime(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_PASSAGE_DETECTION_DIRECTION:
-			edt = getPassageDetectionDirection();
+			edt = _getPassageDetectionDirection(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 
@@ -120,33 +145,31 @@ public abstract class PassageSensor extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_DETECTION_THRESHOLD_LEVEL:
-				onSetDetectionThresholdLevel(eoj, tid, (pdc != 0));
+				_onSetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_PASSAGE_DETECTION_HOLD_TIME:
-				onSetPassageDetectionHoldTime(eoj, tid, (pdc != 0));
+				_onSetPassageDetectionHoldTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_DETECTION_THRESHOLD_LEVEL:
-				onGetDetectionThresholdLevel(eoj, tid, pdc, edt);
+				_onGetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_PASSAGE_DETECTION_HOLD_TIME:
-				onGetPassageDetectionHoldTime(eoj, tid, pdc, edt);
+				_onGetPassageDetectionHoldTime(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_PASSAGE_DETECTION_DIRECTION:
-				onGetPassageDetectionDirection(eoj, tid, pdc, edt);
+				_onGetPassageDetectionDirection(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -155,23 +178,43 @@ public abstract class PassageSensor extends DeviceObject {
 		/**
 		 * Specifies detection threshold level (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetDetectionThresholdLevel(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Specifies detection threshold level (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetDetectionThresholdLevel(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates passage detection hold time in ms.<br>0x0000.0xFFFD (0.65533 ms)<br><br>Data type : unsigned char<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetPassageDetectionHoldTime(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetPassageDetectionHoldTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetPassageDetectionHoldTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetPassageDetectionHoldTime(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * This property indicates passage detection hold time in ms.<br>0x0000.0xFFFD (0.65533 ms)<br><br>Data type : unsigned char<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetPassageDetectionHoldTime(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetPassageDetectionHoldTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetPassageDetectionHoldTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetPassageDetectionHoldTime(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates direction of passage (one of 8 different directions).<br>0x30: No passage. 0x31 to 0x38: Direction of passage. 0x39: Passage detected but not located. Or, a sensor incapable of detecting passage direction was passed.<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory<br>Announcement at status change
 		 */
-		protected void onGetPassageDetectionDirection(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetPassageDetectionDirection(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetPassageDetectionDirection(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetPassageDetectionDirection(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -236,12 +279,14 @@ public abstract class PassageSensor extends DeviceObject {
 
 		@Override
 		public Setter reqSetDetectionThresholdLevel(byte[] edt) {
-			addProperty(EPC_DETECTION_THRESHOLD_LEVEL, edt, setDetectionThresholdLevel(edt));
+			byte epc = EPC_DETECTION_THRESHOLD_LEVEL;
+			addProperty(epc, edt, _setDetectionThresholdLevel(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetPassageDetectionHoldTime(byte[] edt) {
-			addProperty(EPC_PASSAGE_DETECTION_HOLD_TIME, edt, setPassageDetectionHoldTime(edt));
+			byte epc = EPC_PASSAGE_DETECTION_HOLD_TIME;
+			addProperty(epc, edt, _setPassageDetectionHoldTime(epc, edt));
 			return this;
 		}
 	}
@@ -438,20 +483,23 @@ public abstract class PassageSensor extends DeviceObject {
 
 		@Override
 		public Getter reqGetDetectionThresholdLevel() {
-			byte[] edt = getDetectionThresholdLevel();
-			addProperty(EPC_DETECTION_THRESHOLD_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DETECTION_THRESHOLD_LEVEL;
+			byte[] edt = _getDetectionThresholdLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetPassageDetectionHoldTime() {
-			byte[] edt = getPassageDetectionHoldTime();
-			addProperty(EPC_PASSAGE_DETECTION_HOLD_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_PASSAGE_DETECTION_HOLD_TIME;
+			byte[] edt = _getPassageDetectionHoldTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetPassageDetectionDirection() {
-			byte[] edt = getPassageDetectionDirection();
-			addProperty(EPC_PASSAGE_DETECTION_DIRECTION, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_PASSAGE_DETECTION_DIRECTION;
+			byte[] edt = _getPassageDetectionDirection(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}
@@ -713,20 +761,23 @@ public abstract class PassageSensor extends DeviceObject {
 
 		@Override
 		public Informer reqInformDetectionThresholdLevel() {
-			byte[] edt = getDetectionThresholdLevel();
-			addProperty(EPC_DETECTION_THRESHOLD_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DETECTION_THRESHOLD_LEVEL;
+			byte[] edt = _getDetectionThresholdLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformPassageDetectionHoldTime() {
-			byte[] edt = getPassageDetectionHoldTime();
-			addProperty(EPC_PASSAGE_DETECTION_HOLD_TIME, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_PASSAGE_DETECTION_HOLD_TIME;
+			byte[] edt = _getPassageDetectionHoldTime(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformPassageDetectionDirection() {
-			byte[] edt = getPassageDetectionDirection();
-			addProperty(EPC_PASSAGE_DETECTION_DIRECTION, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_PASSAGE_DETECTION_DIRECTION;
+			byte[] edt = _getPassageDetectionDirection(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}

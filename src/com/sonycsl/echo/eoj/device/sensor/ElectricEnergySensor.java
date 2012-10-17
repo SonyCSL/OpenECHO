@@ -26,11 +26,11 @@ public abstract class ElectricEnergySensor extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x22;
 
-	protected static final byte EPC_INTEGRAL_ELECTRIC_ENERGY = (byte)0xE0;
-	protected static final byte EPC_SMALL_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY = (byte)0xE2;
-	protected static final byte EPC_LARGE_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY = (byte)0xE3;
-	protected static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG = (byte)0xE4;
-	protected static final byte EPC_EFFECTIVE_VOLTAGE_VALUE = (byte)0xE5;
+	public static final byte EPC_INTEGRAL_ELECTRIC_ENERGY = (byte)0xE0;
+	public static final byte EPC_SMALL_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY = (byte)0xE2;
+	public static final byte EPC_LARGE_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY = (byte)0xE3;
+	public static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG = (byte)0xE4;
+	public static final byte EPC_EFFECTIVE_VOLTAGE_VALUE = (byte)0xE5;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -46,22 +46,47 @@ public abstract class ElectricEnergySensor extends DeviceObject {
 	 * This property indicates integral electric energy in 0.001kWh.<br>0x0.0x3B9AC9FF (0.999999.999 kWh)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getIntegralElectricEnergy();
+	private final byte[] _getIntegralElectricEnergy(byte epc) {
+		byte[] edt = getIntegralElectricEnergy();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates instantaneous electric energy in units of 0.1 W.<br>0x8001.0x7FFE (-3276,7.3276,6)<br><br>Data type : signed short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getSmallCapacitySensorInstantaneousElectricEnergy() {return null;}
+	private final byte[] _getSmallCapacitySensorInstantaneousElectricEnergy(byte epc) {
+		byte[] edt = getSmallCapacitySensorInstantaneousElectricEnergy();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates instantaneous electric energy in units of 0.1 kW.<br>0x8001.0x7FFE (-3276,7.3276,6)<br><br>Data type : signed short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getLargeCapacitySensorInstantaneousElectricEnergy() {return null;}
+	private final byte[] _getLargeCapacitySensorInstantaneousElectricEnergy(byte epc) {
+		byte[] edt = getLargeCapacitySensorInstantaneousElectricEnergy();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates measurement result log of integral electric energy (0.001kWh) for the past 24 hours in 30-minute sections.<br>0.0x3B9AC9F (0.999,999,999) (0.999999.999 kWh)<br><br>Data type : unsigned long x 48<br>Data size : 192 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getIntegralElectricEnergyMeasurementLog() {return null;}
+	private final byte[] _getIntegralElectricEnergyMeasurementLog(byte epc) {
+		byte[] edt = getIntegralElectricEnergyMeasurementLog();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates effective voltage value in V.<br>0x0000.0xFFFD (0.65533V)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getEffectiveVoltageValue() {return null;}
+	private final byte[] _getEffectiveVoltageValue(byte epc) {
+		byte[] edt = getEffectiveVoltageValue();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -78,23 +103,23 @@ public abstract class ElectricEnergySensor extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_INTEGRAL_ELECTRIC_ENERGY:
-			edt = getIntegralElectricEnergy();
+			edt = _getIntegralElectricEnergy(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			break;
 		case EPC_SMALL_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY:
-			edt = getSmallCapacitySensorInstantaneousElectricEnergy();
+			edt = _getSmallCapacitySensorInstantaneousElectricEnergy(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_LARGE_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY:
-			edt = getLargeCapacitySensorInstantaneousElectricEnergy();
+			edt = _getLargeCapacitySensorInstantaneousElectricEnergy(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG:
-			edt = getIntegralElectricEnergyMeasurementLog();
+			edt = _getIntegralElectricEnergyMeasurementLog(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 192)));
 			break;
 		case EPC_EFFECTIVE_VOLTAGE_VALUE:
-			edt = getEffectiveVoltageValue();
+			edt = _getEffectiveVoltageValue(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 
@@ -124,33 +149,31 @@ public abstract class ElectricEnergySensor extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_INTEGRAL_ELECTRIC_ENERGY:
-				onGetIntegralElectricEnergy(eoj, tid, pdc, edt);
+				_onGetIntegralElectricEnergy(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SMALL_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY:
-				onGetSmallCapacitySensorInstantaneousElectricEnergy(eoj, tid, pdc, edt);
+				_onGetSmallCapacitySensorInstantaneousElectricEnergy(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_LARGE_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY:
-				onGetLargeCapacitySensorInstantaneousElectricEnergy(eoj, tid, pdc, edt);
+				_onGetLargeCapacitySensorInstantaneousElectricEnergy(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG:
-				onGetIntegralElectricEnergyMeasurementLog(eoj, tid, pdc, edt);
+				_onGetIntegralElectricEnergyMeasurementLog(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_EFFECTIVE_VOLTAGE_VALUE:
-				onGetEffectiveVoltageValue(eoj, tid, pdc, edt);
+				_onGetEffectiveVoltageValue(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -159,23 +182,43 @@ public abstract class ElectricEnergySensor extends DeviceObject {
 		/**
 		 * This property indicates integral electric energy in 0.001kWh.<br>0x0.0x3B9AC9FF (0.999999.999 kWh)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetIntegralElectricEnergy(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetIntegralElectricEnergy(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetIntegralElectricEnergy(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetIntegralElectricEnergy(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates instantaneous electric energy in units of 0.1 W.<br>0x8001.0x7FFE (-3276,7.3276,6)<br><br>Data type : signed short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetSmallCapacitySensorInstantaneousElectricEnergy(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSmallCapacitySensorInstantaneousElectricEnergy(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSmallCapacitySensorInstantaneousElectricEnergy(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSmallCapacitySensorInstantaneousElectricEnergy(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates instantaneous electric energy in units of 0.1 kW.<br>0x8001.0x7FFE (-3276,7.3276,6)<br><br>Data type : signed short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetLargeCapacitySensorInstantaneousElectricEnergy(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetLargeCapacitySensorInstantaneousElectricEnergy(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetLargeCapacitySensorInstantaneousElectricEnergy(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetLargeCapacitySensorInstantaneousElectricEnergy(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates measurement result log of integral electric energy (0.001kWh) for the past 24 hours in 30-minute sections.<br>0.0x3B9AC9F (0.999,999,999) (0.999999.999 kWh)<br><br>Data type : unsigned long x 48<br>Data size : 192 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetIntegralElectricEnergyMeasurementLog(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetIntegralElectricEnergyMeasurementLog(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetIntegralElectricEnergyMeasurementLog(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetIntegralElectricEnergyMeasurementLog(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates effective voltage value in V.<br>0x0000.0xFFFD (0.65533V)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetEffectiveVoltageValue(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetEffectiveVoltageValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetEffectiveVoltageValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetEffectiveVoltageValue(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -422,32 +465,37 @@ public abstract class ElectricEnergySensor extends DeviceObject {
 
 		@Override
 		public Getter reqGetIntegralElectricEnergy() {
-			byte[] edt = getIntegralElectricEnergy();
-			addProperty(EPC_INTEGRAL_ELECTRIC_ENERGY, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_INTEGRAL_ELECTRIC_ENERGY;
+			byte[] edt = _getIntegralElectricEnergy(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSmallCapacitySensorInstantaneousElectricEnergy() {
-			byte[] edt = getSmallCapacitySensorInstantaneousElectricEnergy();
-			addProperty(EPC_SMALL_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_SMALL_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY;
+			byte[] edt = _getSmallCapacitySensorInstantaneousElectricEnergy(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetLargeCapacitySensorInstantaneousElectricEnergy() {
-			byte[] edt = getLargeCapacitySensorInstantaneousElectricEnergy();
-			addProperty(EPC_LARGE_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_LARGE_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY;
+			byte[] edt = _getLargeCapacitySensorInstantaneousElectricEnergy(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetIntegralElectricEnergyMeasurementLog() {
-			byte[] edt = getIntegralElectricEnergyMeasurementLog();
-			addProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG, edt, (edt != null && (edt.length == 192)));
+			byte epc = EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG;
+			byte[] edt = _getIntegralElectricEnergyMeasurementLog(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 192)));
 			return this;
 		}
 		@Override
 		public Getter reqGetEffectiveVoltageValue() {
-			byte[] edt = getEffectiveVoltageValue();
-			addProperty(EPC_EFFECTIVE_VOLTAGE_VALUE, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_EFFECTIVE_VOLTAGE_VALUE;
+			byte[] edt = _getEffectiveVoltageValue(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}
@@ -727,32 +775,37 @@ public abstract class ElectricEnergySensor extends DeviceObject {
 
 		@Override
 		public Informer reqInformIntegralElectricEnergy() {
-			byte[] edt = getIntegralElectricEnergy();
-			addProperty(EPC_INTEGRAL_ELECTRIC_ENERGY, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_INTEGRAL_ELECTRIC_ENERGY;
+			byte[] edt = _getIntegralElectricEnergy(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSmallCapacitySensorInstantaneousElectricEnergy() {
-			byte[] edt = getSmallCapacitySensorInstantaneousElectricEnergy();
-			addProperty(EPC_SMALL_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_SMALL_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY;
+			byte[] edt = _getSmallCapacitySensorInstantaneousElectricEnergy(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformLargeCapacitySensorInstantaneousElectricEnergy() {
-			byte[] edt = getLargeCapacitySensorInstantaneousElectricEnergy();
-			addProperty(EPC_LARGE_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_LARGE_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY;
+			byte[] edt = _getLargeCapacitySensorInstantaneousElectricEnergy(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformIntegralElectricEnergyMeasurementLog() {
-			byte[] edt = getIntegralElectricEnergyMeasurementLog();
-			addProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG, edt, (edt != null && (edt.length == 192)));
+			byte epc = EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG;
+			byte[] edt = _getIntegralElectricEnergyMeasurementLog(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 192)));
 			return this;
 		}
 		@Override
 		public Informer reqInformEffectiveVoltageValue() {
-			byte[] edt = getEffectiveVoltageValue();
-			addProperty(EPC_EFFECTIVE_VOLTAGE_VALUE, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_EFFECTIVE_VOLTAGE_VALUE;
+			byte[] edt = _getEffectiveVoltageValue(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}

@@ -26,10 +26,10 @@ public abstract class HumanBodyLocationSensor extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x2B;
 
-	protected static final byte EPC_HUMAN_BODY_DETECTION_LOCATION1 = (byte)0xE0;
-	protected static final byte EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS = (byte)0xE1;
-	protected static final byte EPC_HUMAN_BODY_DETECTION_LOCATION2 = (byte)0xE2;
-	protected static final byte EPC_HUMAN_BODY_EXISTENCE_INFORMATION = (byte)0xE3;
+	public static final byte EPC_HUMAN_BODY_DETECTION_LOCATION1 = (byte)0xE0;
+	public static final byte EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS = (byte)0xE1;
+	public static final byte EPC_HUMAN_BODY_DETECTION_LOCATION2 = (byte)0xE2;
+	public static final byte EPC_HUMAN_BODY_EXISTENCE_INFORMATION = (byte)0xE3;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -45,18 +45,38 @@ public abstract class HumanBodyLocationSensor extends DeviceObject {
 	 * This property indicates human body detection location. The array element number indicates a human body ID.<br>1st byte: X coordinate; 2nd byte: Y coordinate; 3rd byte: Z coordinate<br><br>Data type : unsigned char x 3 x max 128<br>Data size : 3 x max 128 bytes<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getHumanBodyDetectionLocation1();
+	private final byte[] _getHumanBodyDetectionLocation1(byte epc) {
+		byte[] edt = getHumanBodyDetectionLocation1();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates maximum number of human body IDs that can be registered for human body detection location 1.<br>0x0001.0x0080 (= 1.128)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getMaximumNumberOfHumanBodyIdFs() {return null;}
+	private final byte[] _getMaximumNumberOfHumanBodyIdFs(byte epc) {
+		byte[] edt = getMaximumNumberOfHumanBodyIdFs();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates human body detection location.<br>1st byte: X coordinate; 2nd byte: Y coordinate; 3rd byte: Z coordinate<br><br>Data type : unsigned char x 3<br>Data size : 3 bytes<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getHumanBodyDetectionLocation2();
+	private final byte[] _getHumanBodyDetectionLocation2(byte epc) {
+		byte[] edt = getHumanBodyDetectionLocation2();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Array element number information retained by human body detection location 1.<br>(See (5) below for details.)<br><br>Data type : unsigned char x 16<br>Data size : 16 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getHumanBodyExistenceInformation() {return null;}
+	private final byte[] _getHumanBodyExistenceInformation(byte epc) {
+		byte[] edt = getHumanBodyExistenceInformation();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -73,19 +93,19 @@ public abstract class HumanBodyLocationSensor extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_HUMAN_BODY_DETECTION_LOCATION1:
-			edt = getHumanBodyDetectionLocation1();
+			edt = _getHumanBodyDetectionLocation1(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 3)));
 			break;
 		case EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS:
-			edt = getMaximumNumberOfHumanBodyIdFs();
+			edt = _getMaximumNumberOfHumanBodyIdFs(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			break;
 		case EPC_HUMAN_BODY_DETECTION_LOCATION2:
-			edt = getHumanBodyDetectionLocation2();
+			edt = _getHumanBodyDetectionLocation2(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 3)));
 			break;
 		case EPC_HUMAN_BODY_EXISTENCE_INFORMATION:
-			edt = getHumanBodyExistenceInformation();
+			edt = _getHumanBodyExistenceInformation(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 16)));
 			break;
 
@@ -115,30 +135,28 @@ public abstract class HumanBodyLocationSensor extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_HUMAN_BODY_DETECTION_LOCATION1:
-				onGetHumanBodyDetectionLocation1(eoj, tid, pdc, edt);
+				_onGetHumanBodyDetectionLocation1(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS:
-				onGetMaximumNumberOfHumanBodyIdFs(eoj, tid, pdc, edt);
+				_onGetMaximumNumberOfHumanBodyIdFs(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_HUMAN_BODY_DETECTION_LOCATION2:
-				onGetHumanBodyDetectionLocation2(eoj, tid, pdc, edt);
+				_onGetHumanBodyDetectionLocation2(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_HUMAN_BODY_EXISTENCE_INFORMATION:
-				onGetHumanBodyExistenceInformation(eoj, tid, pdc, edt);
+				_onGetHumanBodyExistenceInformation(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -147,19 +165,35 @@ public abstract class HumanBodyLocationSensor extends DeviceObject {
 		/**
 		 * This property indicates human body detection location. The array element number indicates a human body ID.<br>1st byte: X coordinate; 2nd byte: Y coordinate; 3rd byte: Z coordinate<br><br>Data type : unsigned char x 3 x max 128<br>Data size : 3 x max 128 bytes<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetHumanBodyDetectionLocation1(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetHumanBodyDetectionLocation1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetHumanBodyDetectionLocation1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetHumanBodyDetectionLocation1(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates maximum number of human body IDs that can be registered for human body detection location 1.<br>0x0001.0x0080 (= 1.128)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetMaximumNumberOfHumanBodyIdFs(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetMaximumNumberOfHumanBodyIdFs(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetMaximumNumberOfHumanBodyIdFs(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetMaximumNumberOfHumanBodyIdFs(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates human body detection location.<br>1st byte: X coordinate; 2nd byte: Y coordinate; 3rd byte: Z coordinate<br><br>Data type : unsigned char x 3<br>Data size : 3 bytes<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetHumanBodyDetectionLocation2(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetHumanBodyDetectionLocation2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetHumanBodyDetectionLocation2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetHumanBodyDetectionLocation2(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Array element number information retained by human body detection location 1.<br>(See (5) below for details.)<br><br>Data type : unsigned char x 16<br>Data size : 16 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetHumanBodyExistenceInformation(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetHumanBodyExistenceInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetHumanBodyExistenceInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetHumanBodyExistenceInformation(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -402,26 +436,30 @@ public abstract class HumanBodyLocationSensor extends DeviceObject {
 
 		@Override
 		public Getter reqGetHumanBodyDetectionLocation1() {
-			byte[] edt = getHumanBodyDetectionLocation1();
-			addProperty(EPC_HUMAN_BODY_DETECTION_LOCATION1, edt, (edt != null && (edt.length == 3)));
+			byte epc = EPC_HUMAN_BODY_DETECTION_LOCATION1;
+			byte[] edt = _getHumanBodyDetectionLocation1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 3)));
 			return this;
 		}
 		@Override
 		public Getter reqGetMaximumNumberOfHumanBodyIdFs() {
-			byte[] edt = getMaximumNumberOfHumanBodyIdFs();
-			addProperty(EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS;
+			byte[] edt = _getMaximumNumberOfHumanBodyIdFs(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Getter reqGetHumanBodyDetectionLocation2() {
-			byte[] edt = getHumanBodyDetectionLocation2();
-			addProperty(EPC_HUMAN_BODY_DETECTION_LOCATION2, edt, (edt != null && (edt.length == 3)));
+			byte epc = EPC_HUMAN_BODY_DETECTION_LOCATION2;
+			byte[] edt = _getHumanBodyDetectionLocation2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 3)));
 			return this;
 		}
 		@Override
 		public Getter reqGetHumanBodyExistenceInformation() {
-			byte[] edt = getHumanBodyExistenceInformation();
-			addProperty(EPC_HUMAN_BODY_EXISTENCE_INFORMATION, edt, (edt != null && (edt.length == 16)));
+			byte epc = EPC_HUMAN_BODY_EXISTENCE_INFORMATION;
+			byte[] edt = _getHumanBodyExistenceInformation(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 16)));
 			return this;
 		}
 	}
@@ -692,26 +730,30 @@ public abstract class HumanBodyLocationSensor extends DeviceObject {
 
 		@Override
 		public Informer reqInformHumanBodyDetectionLocation1() {
-			byte[] edt = getHumanBodyDetectionLocation1();
-			addProperty(EPC_HUMAN_BODY_DETECTION_LOCATION1, edt, (edt != null && (edt.length == 3)));
+			byte epc = EPC_HUMAN_BODY_DETECTION_LOCATION1;
+			byte[] edt = _getHumanBodyDetectionLocation1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 3)));
 			return this;
 		}
 		@Override
 		public Informer reqInformMaximumNumberOfHumanBodyIdFs() {
-			byte[] edt = getMaximumNumberOfHumanBodyIdFs();
-			addProperty(EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS, edt, (edt != null && (edt.length == 2)));
+			byte epc = EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS;
+			byte[] edt = _getMaximumNumberOfHumanBodyIdFs(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 		@Override
 		public Informer reqInformHumanBodyDetectionLocation2() {
-			byte[] edt = getHumanBodyDetectionLocation2();
-			addProperty(EPC_HUMAN_BODY_DETECTION_LOCATION2, edt, (edt != null && (edt.length == 3)));
+			byte epc = EPC_HUMAN_BODY_DETECTION_LOCATION2;
+			byte[] edt = _getHumanBodyDetectionLocation2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 3)));
 			return this;
 		}
 		@Override
 		public Informer reqInformHumanBodyExistenceInformation() {
-			byte[] edt = getHumanBodyExistenceInformation();
-			addProperty(EPC_HUMAN_BODY_EXISTENCE_INFORMATION, edt, (edt != null && (edt.length == 16)));
+			byte epc = EPC_HUMAN_BODY_EXISTENCE_INFORMATION;
+			byte[] edt = _getHumanBodyExistenceInformation(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 16)));
 			return this;
 		}
 	}

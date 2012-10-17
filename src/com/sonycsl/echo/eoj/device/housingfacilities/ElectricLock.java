@@ -26,13 +26,13 @@ public abstract class ElectricLock extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x6F;
 
-	protected static final byte EPC_LOCK_SETTING1 = (byte)0xE0;
-	protected static final byte EPC_LOCK_SETTING2 = (byte)0xE1;
-	protected static final byte EPC_LOCK_STATUS_OF_DOOR_GUARD = (byte)0xE2;
-	protected static final byte EPC_DOOR_OPEN_CLOSE_STATUS = (byte)0xE3;
-	protected static final byte EPC_OCCUPANT_NON_OCCUPANT_STATUS = (byte)0xE4;
-	protected static final byte EPC_ALARM_STATUS = (byte)0xE5;
-	protected static final byte EPC_AUTO_LOCK_MODE_SETTING = (byte)0xE6;
+	public static final byte EPC_LOCK_SETTING1 = (byte)0xE0;
+	public static final byte EPC_LOCK_SETTING2 = (byte)0xE1;
+	public static final byte EPC_LOCK_STATUS_OF_DOOR_GUARD = (byte)0xE2;
+	public static final byte EPC_DOOR_OPEN_CLOSE_STATUS = (byte)0xE3;
+	public static final byte EPC_OCCUPANT_NON_OCCUPANT_STATUS = (byte)0xE4;
+	public static final byte EPC_ALARM_STATUS = (byte)0xE5;
+	public static final byte EPC_AUTO_LOCK_MODE_SETTING = (byte)0xE6;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -48,42 +48,92 @@ public abstract class ElectricLock extends DeviceObject {
 	 * Lock/unlock of main electric lock<br>lock=0x41, unlock=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 	 */
 	protected abstract boolean setLockSetting1(byte[] edt);
+	private final boolean _setLockSetting1(byte epc, byte[] edt) {
+		boolean success = setLockSetting1(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Lock/unlock of main electric lock<br>lock=0x41, unlock=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 	 */
 	protected abstract byte[] getLockSetting1();
+	private final byte[] _getLockSetting1(byte epc) {
+		byte[] edt = getLockSetting1();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Lock/unlock of sub electric lock<br>lock=0x41, unlock=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setLockSetting2(byte[] edt) {return false;}
+	private final boolean _setLockSetting2(byte epc, byte[] edt) {
+		boolean success = setLockSetting2(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Lock/unlock of sub electric lock<br>lock=0x41, unlock=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getLockSetting2() {return null;}
+	private final byte[] _getLockSetting2(byte epc) {
+		byte[] edt = getLockSetting2();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Lock status of door guard.<br>lock=0x41, unlock=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getLockStatusOfDoorGuard() {return null;}
+	private final byte[] _getLockStatusOfDoorGuard(byte epc) {
+		byte[] edt = getLockStatusOfDoorGuard();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Open/close status of door<br>open=0x41, close=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getDoorOpenCloseStatus() {return null;}
+	private final byte[] _getDoorOpenCloseStatus(byte epc) {
+		byte[] edt = getDoorOpenCloseStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Occupant/ non-occupant status of persons<br>occupant=0x41, non-occupant=0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getOccupantNonOccupantStatus() {return null;}
+	private final byte[] _getOccupantNonOccupantStatus(byte epc) {
+		byte[] edt = getOccupantNonOccupantStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Atarm status of electric lock<br>normal (no alarm)=0x40, break open=0x41, door open=0x42, manual unlocked=0x43, tampered=0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
 	 */
 	protected byte[] getAlarmStatus() {return null;}
+	private final byte[] _getAlarmStatus(byte epc) {
+		byte[] edt = getAlarmStatus();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Sets ON/OFF of auto lock mode and get the status<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setAutoLockModeSetting(byte[] edt) {return false;}
+	private final boolean _setAutoLockModeSetting(byte epc, byte[] edt) {
+		boolean success = setAutoLockModeSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Sets ON/OFF of auto lock mode and get the status<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getAutoLockModeSetting() {return null;}
+	private final byte[] _getAutoLockModeSetting(byte epc) {
+		byte[] edt = getAutoLockModeSetting();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -91,13 +141,13 @@ public abstract class ElectricLock extends DeviceObject {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
 		case EPC_LOCK_SETTING1:
-			res.addProperty(epc, edt, setLockSetting1(edt));
+			res.addProperty(epc, edt, _setLockSetting1(epc, edt));
 			break;
 		case EPC_LOCK_SETTING2:
-			res.addProperty(epc, edt, setLockSetting2(edt));
+			res.addProperty(epc, edt, _setLockSetting2(epc, edt));
 			break;
 		case EPC_AUTO_LOCK_MODE_SETTING:
-			res.addProperty(epc, edt, setAutoLockModeSetting(edt));
+			res.addProperty(epc, edt, _setAutoLockModeSetting(epc, edt));
 			break;
 
 		}
@@ -109,31 +159,31 @@ public abstract class ElectricLock extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_LOCK_SETTING1:
-			edt = getLockSetting1();
+			edt = _getLockSetting1(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_LOCK_SETTING2:
-			edt = getLockSetting2();
+			edt = _getLockSetting2(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_LOCK_STATUS_OF_DOOR_GUARD:
-			edt = getLockStatusOfDoorGuard();
+			edt = _getLockStatusOfDoorGuard(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_DOOR_OPEN_CLOSE_STATUS:
-			edt = getDoorOpenCloseStatus();
+			edt = _getDoorOpenCloseStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_OCCUPANT_NON_OCCUPANT_STATUS:
-			edt = getOccupantNonOccupantStatus();
+			edt = _getOccupantNonOccupantStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_ALARM_STATUS:
-			edt = getAlarmStatus();
+			edt = _getAlarmStatus(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_AUTO_LOCK_MODE_SETTING:
-			edt = getAutoLockModeSetting();
+			edt = _getAutoLockModeSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 
@@ -163,48 +213,46 @@ public abstract class ElectricLock extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_LOCK_SETTING1:
-				onSetLockSetting1(eoj, tid, (pdc != 0));
+				_onSetLockSetting1(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_LOCK_SETTING2:
-				onSetLockSetting2(eoj, tid, (pdc != 0));
+				_onSetLockSetting2(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_AUTO_LOCK_MODE_SETTING:
-				onSetAutoLockModeSetting(eoj, tid, (pdc != 0));
+				_onSetAutoLockModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_LOCK_SETTING1:
-				onGetLockSetting1(eoj, tid, pdc, edt);
+				_onGetLockSetting1(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_LOCK_SETTING2:
-				onGetLockSetting2(eoj, tid, pdc, edt);
+				_onGetLockSetting2(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_LOCK_STATUS_OF_DOOR_GUARD:
-				onGetLockStatusOfDoorGuard(eoj, tid, pdc, edt);
+				_onGetLockStatusOfDoorGuard(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_DOOR_OPEN_CLOSE_STATUS:
-				onGetDoorOpenCloseStatus(eoj, tid, pdc, edt);
+				_onGetDoorOpenCloseStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_OCCUPANT_NON_OCCUPANT_STATUS:
-				onGetOccupantNonOccupantStatus(eoj, tid, pdc, edt);
+				_onGetOccupantNonOccupantStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_ALARM_STATUS:
-				onGetAlarmStatus(eoj, tid, pdc, edt);
+				_onGetAlarmStatus(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_AUTO_LOCK_MODE_SETTING:
-				onGetAutoLockModeSetting(eoj, tid, pdc, edt);
+				_onGetAutoLockModeSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -213,43 +261,83 @@ public abstract class ElectricLock extends DeviceObject {
 		/**
 		 * Lock/unlock of main electric lock<br>lock=0x41, unlock=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
-		protected void onSetLockSetting1(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetLockSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetLockSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetLockSetting1(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Lock/unlock of main electric lock<br>lock=0x41, unlock=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
-		protected void onGetLockSetting1(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetLockSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetLockSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetLockSetting1(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Lock/unlock of sub electric lock<br>lock=0x41, unlock=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetLockSetting2(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetLockSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetLockSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetLockSetting2(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Lock/unlock of sub electric lock<br>lock=0x41, unlock=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetLockSetting2(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetLockSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetLockSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetLockSetting2(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Lock status of door guard.<br>lock=0x41, unlock=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetLockStatusOfDoorGuard(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetLockStatusOfDoorGuard(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetLockStatusOfDoorGuard(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetLockStatusOfDoorGuard(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Open/close status of door<br>open=0x41, close=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetDoorOpenCloseStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetDoorOpenCloseStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetDoorOpenCloseStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetDoorOpenCloseStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Occupant/ non-occupant status of persons<br>occupant=0x41, non-occupant=0x42<br><br>Data type : unsigned char<br>Data size : 1 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetOccupantNonOccupantStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOccupantNonOccupantStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOccupantNonOccupantStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOccupantNonOccupantStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Atarm status of electric lock<br>normal (no alarm)=0x40, break open=0x41, door open=0x42, manual unlocked=0x43, tampered=0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
 		 */
-		protected void onGetAlarmStatus(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetAlarmStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetAlarmStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetAlarmStatus(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Sets ON/OFF of auto lock mode and get the status<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetAutoLockModeSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetAutoLockModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetAutoLockModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetAutoLockModeSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Sets ON/OFF of auto lock mode and get the status<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetAutoLockModeSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetAutoLockModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetAutoLockModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetAutoLockModeSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -318,17 +406,20 @@ public abstract class ElectricLock extends DeviceObject {
 
 		@Override
 		public Setter reqSetLockSetting1(byte[] edt) {
-			addProperty(EPC_LOCK_SETTING1, edt, setLockSetting1(edt));
+			byte epc = EPC_LOCK_SETTING1;
+			addProperty(epc, edt, _setLockSetting1(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetLockSetting2(byte[] edt) {
-			addProperty(EPC_LOCK_SETTING2, edt, setLockSetting2(edt));
+			byte epc = EPC_LOCK_SETTING2;
+			addProperty(epc, edt, _setLockSetting2(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetAutoLockModeSetting(byte[] edt) {
-			addProperty(EPC_AUTO_LOCK_MODE_SETTING, edt, setAutoLockModeSetting(edt));
+			byte epc = EPC_AUTO_LOCK_MODE_SETTING;
+			addProperty(epc, edt, _setAutoLockModeSetting(epc, edt));
 			return this;
 		}
 	}
@@ -546,44 +637,51 @@ public abstract class ElectricLock extends DeviceObject {
 
 		@Override
 		public Getter reqGetLockSetting1() {
-			byte[] edt = getLockSetting1();
-			addProperty(EPC_LOCK_SETTING1, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_LOCK_SETTING1;
+			byte[] edt = _getLockSetting1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetLockSetting2() {
-			byte[] edt = getLockSetting2();
-			addProperty(EPC_LOCK_SETTING2, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_LOCK_SETTING2;
+			byte[] edt = _getLockSetting2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetLockStatusOfDoorGuard() {
-			byte[] edt = getLockStatusOfDoorGuard();
-			addProperty(EPC_LOCK_STATUS_OF_DOOR_GUARD, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_LOCK_STATUS_OF_DOOR_GUARD;
+			byte[] edt = _getLockStatusOfDoorGuard(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetDoorOpenCloseStatus() {
-			byte[] edt = getDoorOpenCloseStatus();
-			addProperty(EPC_DOOR_OPEN_CLOSE_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DOOR_OPEN_CLOSE_STATUS;
+			byte[] edt = _getDoorOpenCloseStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetOccupantNonOccupantStatus() {
-			byte[] edt = getOccupantNonOccupantStatus();
-			addProperty(EPC_OCCUPANT_NON_OCCUPANT_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OCCUPANT_NON_OCCUPANT_STATUS;
+			byte[] edt = _getOccupantNonOccupantStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetAlarmStatus() {
-			byte[] edt = getAlarmStatus();
-			addProperty(EPC_ALARM_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_ALARM_STATUS;
+			byte[] edt = _getAlarmStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetAutoLockModeSetting() {
-			byte[] edt = getAutoLockModeSetting();
-			addProperty(EPC_AUTO_LOCK_MODE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AUTO_LOCK_MODE_SETTING;
+			byte[] edt = _getAutoLockModeSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}
@@ -881,44 +979,51 @@ public abstract class ElectricLock extends DeviceObject {
 
 		@Override
 		public Informer reqInformLockSetting1() {
-			byte[] edt = getLockSetting1();
-			addProperty(EPC_LOCK_SETTING1, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_LOCK_SETTING1;
+			byte[] edt = _getLockSetting1(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformLockSetting2() {
-			byte[] edt = getLockSetting2();
-			addProperty(EPC_LOCK_SETTING2, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_LOCK_SETTING2;
+			byte[] edt = _getLockSetting2(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformLockStatusOfDoorGuard() {
-			byte[] edt = getLockStatusOfDoorGuard();
-			addProperty(EPC_LOCK_STATUS_OF_DOOR_GUARD, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_LOCK_STATUS_OF_DOOR_GUARD;
+			byte[] edt = _getLockStatusOfDoorGuard(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformDoorOpenCloseStatus() {
-			byte[] edt = getDoorOpenCloseStatus();
-			addProperty(EPC_DOOR_OPEN_CLOSE_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DOOR_OPEN_CLOSE_STATUS;
+			byte[] edt = _getDoorOpenCloseStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformOccupantNonOccupantStatus() {
-			byte[] edt = getOccupantNonOccupantStatus();
-			addProperty(EPC_OCCUPANT_NON_OCCUPANT_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OCCUPANT_NON_OCCUPANT_STATUS;
+			byte[] edt = _getOccupantNonOccupantStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformAlarmStatus() {
-			byte[] edt = getAlarmStatus();
-			addProperty(EPC_ALARM_STATUS, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_ALARM_STATUS;
+			byte[] edt = _getAlarmStatus(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformAutoLockModeSetting() {
-			byte[] edt = getAutoLockModeSetting();
-			addProperty(EPC_AUTO_LOCK_MODE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_AUTO_LOCK_MODE_SETTING;
+			byte[] edt = _getAutoLockModeSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}

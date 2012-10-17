@@ -26,8 +26,8 @@ public abstract class GasMeter extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x82;
 
-	protected static final byte EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_VALUE = (byte)0xE0;
-	protected static final byte EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_LOG = (byte)0xE2;
+	public static final byte EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_VALUE = (byte)0xE0;
+	public static final byte EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_LOG = (byte)0xE2;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -43,10 +43,20 @@ public abstract class GasMeter extends DeviceObject {
 	 * This property indicates integral gas consumption in units of 0.001 m3.<br>0x0.0x3B9AC9FF (0.999999,999m3)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
 	 */
 	protected abstract byte[] getIntegralGasConsumptionMeasurementValue();
+	private final byte[] _getIntegralGasConsumptionMeasurementValue(byte epc) {
+		byte[] edt = getIntegralGasConsumptionMeasurementValue();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * This property indicates integral gas consumption measurement result log for past 24 hours as data in 30-minute segments.<br>0x0.0x3B9AC9FF (0.999999,999m3)<br><br>Data type : unsigned long x 48<br>Data size : 192 bytes<br>Set : undefined<br>Get : optional
 	 */
 	protected byte[] getIntegralGasConsumptionMeasurementLog() {return null;}
+	private final byte[] _getIntegralGasConsumptionMeasurementLog(byte epc) {
+		byte[] edt = getIntegralGasConsumptionMeasurementLog();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -63,11 +73,11 @@ public abstract class GasMeter extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_VALUE:
-			edt = getIntegralGasConsumptionMeasurementValue();
+			edt = _getIntegralGasConsumptionMeasurementValue(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			break;
 		case EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_LOG:
-			edt = getIntegralGasConsumptionMeasurementLog();
+			edt = _getIntegralGasConsumptionMeasurementLog(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 192)));
 			break;
 
@@ -97,24 +107,22 @@ public abstract class GasMeter extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_VALUE:
-				onGetIntegralGasConsumptionMeasurementValue(eoj, tid, pdc, edt);
+				_onGetIntegralGasConsumptionMeasurementValue(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_LOG:
-				onGetIntegralGasConsumptionMeasurementLog(eoj, tid, pdc, edt);
+				_onGetIntegralGasConsumptionMeasurementLog(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -123,11 +131,19 @@ public abstract class GasMeter extends DeviceObject {
 		/**
 		 * This property indicates integral gas consumption in units of 0.001 m3.<br>0x0.0x3B9AC9FF (0.999999,999m3)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
 		 */
-		protected void onGetIntegralGasConsumptionMeasurementValue(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetIntegralGasConsumptionMeasurementValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetIntegralGasConsumptionMeasurementValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetIntegralGasConsumptionMeasurementValue(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * This property indicates integral gas consumption measurement result log for past 24 hours as data in 30-minute segments.<br>0x0.0x3B9AC9FF (0.999999,999m3)<br><br>Data type : unsigned long x 48<br>Data size : 192 bytes<br>Set : undefined<br>Get : optional
 		 */
-		protected void onGetIntegralGasConsumptionMeasurementLog(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetIntegralGasConsumptionMeasurementLog(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetIntegralGasConsumptionMeasurementLog(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetIntegralGasConsumptionMeasurementLog(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -362,14 +378,16 @@ public abstract class GasMeter extends DeviceObject {
 
 		@Override
 		public Getter reqGetIntegralGasConsumptionMeasurementValue() {
-			byte[] edt = getIntegralGasConsumptionMeasurementValue();
-			addProperty(EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_VALUE, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_VALUE;
+			byte[] edt = _getIntegralGasConsumptionMeasurementValue(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Getter reqGetIntegralGasConsumptionMeasurementLog() {
-			byte[] edt = getIntegralGasConsumptionMeasurementLog();
-			addProperty(EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_LOG, edt, (edt != null && (edt.length == 192)));
+			byte epc = EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_LOG;
+			byte[] edt = _getIntegralGasConsumptionMeasurementLog(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 192)));
 			return this;
 		}
 	}
@@ -622,14 +640,16 @@ public abstract class GasMeter extends DeviceObject {
 
 		@Override
 		public Informer reqInformIntegralGasConsumptionMeasurementValue() {
-			byte[] edt = getIntegralGasConsumptionMeasurementValue();
-			addProperty(EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_VALUE, edt, (edt != null && (edt.length == 4)));
+			byte epc = EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_VALUE;
+			byte[] edt = _getIntegralGasConsumptionMeasurementValue(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 4)));
 			return this;
 		}
 		@Override
 		public Informer reqInformIntegralGasConsumptionMeasurementLog() {
-			byte[] edt = getIntegralGasConsumptionMeasurementLog();
-			addProperty(EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_LOG, edt, (edt != null && (edt.length == 192)));
+			byte epc = EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_LOG;
+			byte[] edt = _getIntegralGasConsumptionMeasurementLog(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 192)));
 			return this;
 		}
 	}

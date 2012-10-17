@@ -26,10 +26,10 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x60;
 
-	protected static final byte EPC_OPEN_CLOSE_SETTING = (byte)0xE0;
-	protected static final byte EPC_DEGREE_OF_OPENI_NG_LEVEL = (byte)0xE1;
-	protected static final byte EPC_SET_VALUE_OF_SHADE_ANGLE = (byte)0xE2;
-	protected static final byte EPC_SHADE_OPEN_CLOSE_SPEED = (byte)0xE3;
+	public static final byte EPC_OPEN_CLOSE_SETTING = (byte)0xE0;
+	public static final byte EPC_DEGREE_OF_OPENI_NG_LEVEL = (byte)0xE1;
+	public static final byte EPC_SET_VALUE_OF_SHADE_ANGLE = (byte)0xE2;
+	public static final byte EPC_SHADE_OPEN_CLOSE_SPEED = (byte)0xE3;
 
 	@Override
 	public byte getClassGroupCode() {
@@ -45,34 +45,74 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	 * Open/close<br>Open = 0x41, close = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 	 */
 	protected abstract boolean setOpenCloseSetting(byte[] edt);
+	private final boolean _setOpenCloseSetting(byte epc, byte[] edt) {
+		boolean success = setOpenCloseSetting(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Open/close<br>Open = 0x41, close = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 	 */
 	protected abstract byte[] getOpenCloseSetting();
+	private final byte[] _getOpenCloseSetting(byte epc) {
+		byte[] edt = getOpenCloseSetting();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setDegreeOfOpeniNgLevel(byte[] edt) {return false;}
+	private final boolean _setDegreeOfOpeniNgLevel(byte epc, byte[] edt) {
+		boolean success = setDegreeOfOpeniNgLevel(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getDegreeOfOpeniNgLevel() {return null;}
+	private final byte[] _getDegreeOfOpeniNgLevel(byte epc) {
+		byte[] edt = getDegreeOfOpeniNgLevel();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Shade angle value<br>0x00.0xB4 (0.180. )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setSetValueOfShadeAngle(byte[] edt) {return false;}
+	private final boolean _setSetValueOfShadeAngle(byte epc, byte[] edt) {
+		boolean success = setSetValueOfShadeAngle(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Shade angle value<br>0x00.0xB4 (0.180. )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getSetValueOfShadeAngle() {return null;}
+	private final byte[] _getSetValueOfShadeAngle(byte epc) {
+		byte[] edt = getSetValueOfShadeAngle();
+		notify(epc, edt);
+		return edt;
+	}
 	/**
 	 * Low/Medium/High<br>Low = 0x41, Medium = 0x42, High = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected boolean setShadeOpenCloseSpeed(byte[] edt) {return false;}
+	private final boolean _setShadeOpenCloseSpeed(byte epc, byte[] edt) {
+		boolean success = setShadeOpenCloseSpeed(edt);
+		notify(epc, edt, success);
+		return success;
+	}
 	/**
 	 * Low/Medium/High<br>Low = 0x41, Medium = 0x42, High = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 	 */
 	protected byte[] getShadeOpenCloseSpeed() {return null;}
+	private final byte[] _getShadeOpenCloseSpeed(byte epc) {
+		byte[] edt = getShadeOpenCloseSpeed();
+		notify(epc, edt);
+		return edt;
+	}
 
 
 	@Override
@@ -80,16 +120,16 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		super.onReceiveSet(res, epc, pdc, edt);
 		switch(epc) {
 		case EPC_OPEN_CLOSE_SETTING:
-			res.addProperty(epc, edt, setOpenCloseSetting(edt));
+			res.addProperty(epc, edt, _setOpenCloseSetting(epc, edt));
 			break;
 		case EPC_DEGREE_OF_OPENI_NG_LEVEL:
-			res.addProperty(epc, edt, setDegreeOfOpeniNgLevel(edt));
+			res.addProperty(epc, edt, _setDegreeOfOpeniNgLevel(epc, edt));
 			break;
 		case EPC_SET_VALUE_OF_SHADE_ANGLE:
-			res.addProperty(epc, edt, setSetValueOfShadeAngle(edt));
+			res.addProperty(epc, edt, _setSetValueOfShadeAngle(epc, edt));
 			break;
 		case EPC_SHADE_OPEN_CLOSE_SPEED:
-			res.addProperty(epc, edt, setShadeOpenCloseSpeed(edt));
+			res.addProperty(epc, edt, _setShadeOpenCloseSpeed(epc, edt));
 			break;
 
 		}
@@ -101,19 +141,19 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		byte[] edt;
 		switch(epc) {
 		case EPC_OPEN_CLOSE_SETTING:
-			edt = getOpenCloseSetting();
+			edt = _getOpenCloseSetting(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_DEGREE_OF_OPENI_NG_LEVEL:
-			edt = getDegreeOfOpeniNgLevel();
+			edt = _getDegreeOfOpeniNgLevel(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SET_VALUE_OF_SHADE_ANGLE:
-			edt = getSetValueOfShadeAngle();
+			edt = _getSetValueOfShadeAngle(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 		case EPC_SHADE_OPEN_CLOSE_SPEED:
-			edt = getShadeOpenCloseSpeed();
+			edt = _getShadeOpenCloseSpeed(epc);
 			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			break;
 
@@ -143,42 +183,40 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_OPEN_CLOSE_SETTING:
-				onSetOpenCloseSetting(eoj, tid, (pdc != 0));
+				_onSetOpenCloseSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_DEGREE_OF_OPENI_NG_LEVEL:
-				onSetDegreeOfOpeniNgLevel(eoj, tid, (pdc != 0));
+				_onSetDegreeOfOpeniNgLevel(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_SET_VALUE_OF_SHADE_ANGLE:
-				onSetSetValueOfShadeAngle(eoj, tid, (pdc != 0));
+				_onSetSetValueOfShadeAngle(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 			case EPC_SHADE_OPEN_CLOSE_SPEED:
-				onSetShadeOpenCloseSpeed(eoj, tid, (pdc != 0));
+				_onSetShadeOpenCloseSpeed(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
 				break;
 
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte epc,
-				byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, epc, pdc, edt);
+		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_OPEN_CLOSE_SETTING:
-				onGetOpenCloseSetting(eoj, tid, pdc, edt);
+				_onGetOpenCloseSetting(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_DEGREE_OF_OPENI_NG_LEVEL:
-				onGetDegreeOfOpeniNgLevel(eoj, tid, pdc, edt);
+				_onGetDegreeOfOpeniNgLevel(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SET_VALUE_OF_SHADE_ANGLE:
-				onGetSetValueOfShadeAngle(eoj, tid, pdc, edt);
+				_onGetSetValueOfShadeAngle(eoj, tid, esv, epc, pdc, edt);
 				break;
 			case EPC_SHADE_OPEN_CLOSE_SPEED:
-				onGetShadeOpenCloseSpeed(eoj, tid, pdc, edt);
+				_onGetShadeOpenCloseSpeed(eoj, tid, esv, epc, pdc, edt);
 				break;
 
 			}
@@ -187,35 +225,67 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		/**
 		 * Open/close<br>Open = 0x41, close = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
-		protected void onSetOpenCloseSetting(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetOpenCloseSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetOpenCloseSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetOpenCloseSetting(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Open/close<br>Open = 0x41, close = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
 		 */
-		protected void onGetOpenCloseSetting(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetOpenCloseSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetOpenCloseSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetOpenCloseSetting(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetDegreeOfOpeniNgLevel(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetDegreeOfOpeniNgLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetDegreeOfOpeniNgLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetDegreeOfOpeniNgLevel(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetDegreeOfOpeniNgLevel(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetDegreeOfOpeniNgLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetDegreeOfOpeniNgLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetDegreeOfOpeniNgLevel(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Shade angle value<br>0x00.0xB4 (0.180. )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetSetValueOfShadeAngle(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetSetValueOfShadeAngle(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetSetValueOfShadeAngle(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetSetValueOfShadeAngle(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Shade angle value<br>0x00.0xB4 (0.180. )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetSetValueOfShadeAngle(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetSetValueOfShadeAngle(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetSetValueOfShadeAngle(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetSetValueOfShadeAngle(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 		/**
 		 * Low/Medium/High<br>Low = 0x41, Medium = 0x42, High = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onSetShadeOpenCloseSpeed(EchoObject eoj, short tid, boolean success) {}
+		protected void onSetShadeOpenCloseSpeed(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
+		private final void _onSetShadeOpenCloseSpeed(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			onSetShadeOpenCloseSpeed(eoj, tid, esv, epc, pdc, edt, success);
+			notify(eoj, tid, esv, epc, pdc, edt, success);
+		}
 		/**
 		 * Low/Medium/High<br>Low = 0x41, Medium = 0x42, High = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
 		 */
-		protected void onGetShadeOpenCloseSpeed(EchoObject eoj, short tid, byte pdc, byte[] edt) {}
+		protected void onGetShadeOpenCloseSpeed(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		private final void _onGetShadeOpenCloseSpeed(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			onGetShadeOpenCloseSpeed(eoj, tid, esv, epc, pdc, edt);
+			notify(eoj, tid, esv, epc, pdc, edt);
+		}
 
 	}
 	
@@ -288,22 +358,26 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 
 		@Override
 		public Setter reqSetOpenCloseSetting(byte[] edt) {
-			addProperty(EPC_OPEN_CLOSE_SETTING, edt, setOpenCloseSetting(edt));
+			byte epc = EPC_OPEN_CLOSE_SETTING;
+			addProperty(epc, edt, _setOpenCloseSetting(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetDegreeOfOpeniNgLevel(byte[] edt) {
-			addProperty(EPC_DEGREE_OF_OPENI_NG_LEVEL, edt, setDegreeOfOpeniNgLevel(edt));
+			byte epc = EPC_DEGREE_OF_OPENI_NG_LEVEL;
+			addProperty(epc, edt, _setDegreeOfOpeniNgLevel(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetSetValueOfShadeAngle(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_SHADE_ANGLE, edt, setSetValueOfShadeAngle(edt));
+			byte epc = EPC_SET_VALUE_OF_SHADE_ANGLE;
+			addProperty(epc, edt, _setSetValueOfShadeAngle(epc, edt));
 			return this;
 		}
 		@Override
 		public Setter reqSetShadeOpenCloseSpeed(byte[] edt) {
-			addProperty(EPC_SHADE_OPEN_CLOSE_SPEED, edt, setShadeOpenCloseSpeed(edt));
+			byte epc = EPC_SHADE_OPEN_CLOSE_SPEED;
+			addProperty(epc, edt, _setShadeOpenCloseSpeed(epc, edt));
 			return this;
 		}
 	}
@@ -514,26 +588,30 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 
 		@Override
 		public Getter reqGetOpenCloseSetting() {
-			byte[] edt = getOpenCloseSetting();
-			addProperty(EPC_OPEN_CLOSE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OPEN_CLOSE_SETTING;
+			byte[] edt = _getOpenCloseSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetDegreeOfOpeniNgLevel() {
-			byte[] edt = getDegreeOfOpeniNgLevel();
-			addProperty(EPC_DEGREE_OF_OPENI_NG_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DEGREE_OF_OPENI_NG_LEVEL;
+			byte[] edt = _getDegreeOfOpeniNgLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetSetValueOfShadeAngle() {
-			byte[] edt = getSetValueOfShadeAngle();
-			addProperty(EPC_SET_VALUE_OF_SHADE_ANGLE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SET_VALUE_OF_SHADE_ANGLE;
+			byte[] edt = _getSetValueOfShadeAngle(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Getter reqGetShadeOpenCloseSpeed() {
-			byte[] edt = getShadeOpenCloseSpeed();
-			addProperty(EPC_SHADE_OPEN_CLOSE_SPEED, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SHADE_OPEN_CLOSE_SPEED;
+			byte[] edt = _getShadeOpenCloseSpeed(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}
@@ -804,26 +882,30 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 
 		@Override
 		public Informer reqInformOpenCloseSetting() {
-			byte[] edt = getOpenCloseSetting();
-			addProperty(EPC_OPEN_CLOSE_SETTING, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_OPEN_CLOSE_SETTING;
+			byte[] edt = _getOpenCloseSetting(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformDegreeOfOpeniNgLevel() {
-			byte[] edt = getDegreeOfOpeniNgLevel();
-			addProperty(EPC_DEGREE_OF_OPENI_NG_LEVEL, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_DEGREE_OF_OPENI_NG_LEVEL;
+			byte[] edt = _getDegreeOfOpeniNgLevel(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformSetValueOfShadeAngle() {
-			byte[] edt = getSetValueOfShadeAngle();
-			addProperty(EPC_SET_VALUE_OF_SHADE_ANGLE, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SET_VALUE_OF_SHADE_ANGLE;
+			byte[] edt = _getSetValueOfShadeAngle(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 		@Override
 		public Informer reqInformShadeOpenCloseSpeed() {
-			byte[] edt = getShadeOpenCloseSpeed();
-			addProperty(EPC_SHADE_OPEN_CLOSE_SPEED, edt, (edt != null && (edt.length == 1)));
+			byte epc = EPC_SHADE_OPEN_CLOSE_SPEED;
+			byte[] edt = _getShadeOpenCloseSpeed(epc);
+			addProperty(epc, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}
