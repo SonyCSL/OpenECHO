@@ -79,6 +79,7 @@ public final class EchoUtils {
 	}
 	
 	public static String toHexString(byte[] data) {
+		if(data == null) return "";
 		StringBuilder sb = new StringBuilder();
 		for(byte b : data) {
 			sb.append(String.format("%02x ", b));

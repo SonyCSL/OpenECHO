@@ -1263,7 +1263,7 @@ public final class Echo {
 					+",esv:"+EchoUtils.toHexString(frame.getEsv())
 					+",seoj:["+frame.getSeoj()
 					+"],deoj:["+(frame.getDeoj()!=null?frame.getDeoj().toString():"")
-					+"]");
+					+"],data:"+EchoUtils.toHexString(frame.getFrameByteArray()));
 		}
 
 		@Override
@@ -1274,7 +1274,7 @@ public final class Echo {
 					+",esv:"+EchoUtils.toHexString(frame.getEsv())
 					+",seoj:["+frame.getSeoj()
 					+"],deoj:["+(frame.getDeoj()!=null?frame.getDeoj().toString():"")
-					+"]");
+					+"],data:"+EchoUtils.toHexString(frame.getFrameByteArray()));
 		}
 
 		@Override
@@ -1285,7 +1285,7 @@ public final class Echo {
 					+",esv:"+EchoUtils.toHexString(frame.getEsv())
 					+",seoj:["+frame.getSeoj()
 					+"],deoj:["+(frame.getDeoj()!=null?frame.getDeoj().toString():"")
-					+"]");
+					+"],data:"+EchoUtils.toHexString(frame.getFrameByteArray()));
 		}
 
 		@Override
