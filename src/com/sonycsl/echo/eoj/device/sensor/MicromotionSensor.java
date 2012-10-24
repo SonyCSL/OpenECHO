@@ -20,8 +20,6 @@ import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 
 public abstract class MicromotionSensor extends DeviceObject {
-	@SuppressWarnings("unused")
-	private static final String TAG = MicromotionSensor.class.getSimpleName();
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x26;
@@ -43,84 +41,84 @@ public abstract class MicromotionSensor extends DeviceObject {
 	}
 
 	/**
-	 * Specifies detection threshold level (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Specifies detection threshold level (8-step).<br><br>0x31.0x38<br><br>Name : Detection threshold level<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setDetectionThresholdLevel(byte[] edt) {return false;}
 	private final boolean _setDetectionThresholdLevel(byte epc, byte[] edt) {
 		boolean success = setDetectionThresholdLevel(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Specifies detection threshold level (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Specifies detection threshold level (8-step).<br><br>0x31.0x38<br><br>Name : Detection threshold level<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getDetectionThresholdLevel() {return null;}
 	private final byte[] _getDetectionThresholdLevel(byte epc) {
 		byte[] edt = getDetectionThresholdLevel();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates whether micromotion is detected or not.<br>Micromotion detected = 0x41 Micromotion not detected = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory<br>Announcement at status change
+	 * This property indicates whether micromotion is detected or not.<br><br>Micromotion detected = 0x41 Micromotion not detected = 0x42<br><br>Name : Micromotion detection status<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br><br>Announcement at status change<br>
 	 */
 	protected abstract byte[] getMicromotionDetectionStatus();
 	private final byte[] _getMicromotionDetectionStatus(byte epc) {
 		byte[] edt = getMicromotionDetectionStatus();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates micromotion detection count.<br>0x0000.0xFFFE (0.65534)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+	 * This property indicates micromotion detection count.<br><br>0x0000.0xFFFE (0.65534)<br><br>Name : Detection counter<br>EPC : 0xB2<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setDetectionCounter(byte[] edt) {return false;}
 	private final boolean _setDetectionCounter(byte epc, byte[] edt) {
 		boolean success = setDetectionCounter(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * This property indicates micromotion detection count.<br>0x0000.0xFFFE (0.65534)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+	 * This property indicates micromotion detection count.<br><br>0x0000.0xFFFE (0.65534)<br><br>Name : Detection counter<br>EPC : 0xB2<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getDetectionCounter() {return null;}
 	private final byte[] _getDetectionCounter(byte epc) {
 		byte[] edt = getDetectionCounter();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates micromotion detection sampling count.<br>0x0000.0xFFFE (0.65534)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+	 * This property indicates micromotion detection sampling count.<br><br>0x0000.0xFFFE (0.65534)<br><br>Name : Sampling count<br>EPC : 0xBC<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setSamplingCount(byte[] edt) {return false;}
 	private final boolean _setSamplingCount(byte epc, byte[] edt) {
 		boolean success = setSamplingCount(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * This property indicates micromotion detection sampling count.<br>0x0000.0xFFFE (0.65534)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+	 * This property indicates micromotion detection sampling count.<br><br>0x0000.0xFFFE (0.65534)<br><br>Name : Sampling count<br>EPC : 0xBC<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getSamplingCount() {return null;}
 	private final byte[] _getSamplingCount(byte epc) {
 		byte[] edt = getSamplingCount();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates micromotion detection sampling cycle.<br>0x0000.0xFFFE (0.65534)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+	 * This property indicates micromotion detection sampling cycle.<br><br>0x0000.0xFFFE (0.65534)<br><br>Name : Sampling cycle<br>EPC : 0xBD<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setSamplingCycle(byte[] edt) {return false;}
 	private final boolean _setSamplingCycle(byte epc, byte[] edt) {
 		boolean success = setSamplingCycle(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * This property indicates micromotion detection sampling cycle.<br>0x0000.0xFFFE (0.65534)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+	 * This property indicates micromotion detection sampling cycle.<br><br>0x0000.0xFFFE (0.65534)<br><br>Name : Sampling cycle<br>EPC : 0xBD<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getSamplingCycle() {return null;}
 	private final byte[] _getSamplingCycle(byte epc) {
 		byte[] edt = getSamplingCycle();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
@@ -176,17 +174,17 @@ public abstract class MicromotionSensor extends DeviceObject {
 	
 	@Override
 	public Setter set() {
-		return new SetterImpl(ESV_SET_NO_RES);
+		return new Setter(ESV_SETI);
 	}
 
 	@Override
 	public Setter setC() {
-		return new SetterImpl(ESV_SET_RES);
+		return new Setter(ESV_SETC);
 	}
 
 	@Override
 	public Getter get() {
-		return new GetterImpl();
+		return new Getter();
 	}
 
 	@Override
@@ -240,112 +238,88 @@ public abstract class MicromotionSensor extends DeviceObject {
 		}
 		
 		/**
-		 * Specifies detection threshold level (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Specifies detection threshold level (8-step).<br><br>0x31.0x38<br><br>Name : Detection threshold level<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Specifies detection threshold level (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Specifies detection threshold level (8-step).<br><br>0x31.0x38<br><br>Name : Detection threshold level<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates whether micromotion is detected or not.<br>Micromotion detected = 0x41 Micromotion not detected = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory<br>Announcement at status change
+		 * This property indicates whether micromotion is detected or not.<br><br>Micromotion detected = 0x41 Micromotion not detected = 0x42<br><br>Name : Micromotion detection status<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br><br>Announcement at status change<br>
 		 */
 		protected void onGetMicromotionDetectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetMicromotionDetectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetMicromotionDetectionStatus(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates micromotion detection count.<br>0x0000.0xFFFE (0.65534)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * This property indicates micromotion detection count.<br><br>0x0000.0xFFFE (0.65534)<br><br>Name : Detection counter<br>EPC : 0xB2<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetDetectionCounter(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetDetectionCounter(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetDetectionCounter(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * This property indicates micromotion detection count.<br>0x0000.0xFFFE (0.65534)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * This property indicates micromotion detection count.<br><br>0x0000.0xFFFE (0.65534)<br><br>Name : Detection counter<br>EPC : 0xB2<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetDetectionCounter(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetDetectionCounter(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetDetectionCounter(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates micromotion detection sampling count.<br>0x0000.0xFFFE (0.65534)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * This property indicates micromotion detection sampling count.<br><br>0x0000.0xFFFE (0.65534)<br><br>Name : Sampling count<br>EPC : 0xBC<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetSamplingCount(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetSamplingCount(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetSamplingCount(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * This property indicates micromotion detection sampling count.<br>0x0000.0xFFFE (0.65534)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * This property indicates micromotion detection sampling count.<br><br>0x0000.0xFFFE (0.65534)<br><br>Name : Sampling count<br>EPC : 0xBC<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetSamplingCount(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetSamplingCount(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetSamplingCount(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates micromotion detection sampling cycle.<br>0x0000.0xFFFE (0.65534)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * This property indicates micromotion detection sampling cycle.<br><br>0x0000.0xFFFE (0.65534)<br><br>Name : Sampling cycle<br>EPC : 0xBD<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetSamplingCycle(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetSamplingCycle(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetSamplingCycle(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * This property indicates micromotion detection sampling cycle.<br>0x0000.0xFFFE (0.65534)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * This property indicates micromotion detection sampling cycle.<br><br>0x0000.0xFFFE (0.65534)<br><br>Name : Sampling cycle<br>EPC : 0xBD<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetSamplingCycle(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetSamplingCycle(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetSamplingCycle(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 
 	}
 	
-	public interface Setter extends DeviceObject.Setter {
-		public Setter reqSetOperationStatus(byte[] edt);
-		public Setter reqSetInstallationLocation(byte[] edt);
-		public Setter reqSetCurrentLimitSetting(byte[] edt);
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
-		public Setter reqSetPositionInformation(byte[] edt);
-		public Setter reqSetCurrentTimeSetting(byte[] edt);
-		public Setter reqSetCurrentDateSetting(byte[] edt);
-		public Setter reqSetPowerLimitSetting(byte[] edt);
-		
-		/**
-		 * Specifies detection threshold level (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetDetectionThresholdLevel(byte[] edt);
-		/**
-		 * This property indicates micromotion detection count.<br>0x0000.0xFFFE (0.65534)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetDetectionCounter(byte[] edt);
-		/**
-		 * This property indicates micromotion detection sampling count.<br>0x0000.0xFFFE (0.65534)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetSamplingCount(byte[] edt);
-		/**
-		 * This property indicates micromotion detection sampling cycle.<br>0x0000.0xFFFE (0.65534)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetSamplingCycle(byte[] edt);
-	}
-
-	public class SetterImpl extends DeviceObject.SetterImpl implements Setter {
-
-		public SetterImpl(byte esv) {
+	public class Setter extends DeviceObject.Setter {
+		public Setter(byte esv) {
 			super(esv);
+		}
+
+		@Override
+		public Setter reqSet(byte epc, byte[] edt) {
+			return (Setter)super.reqSet(epc, edt);
 		}
 		
 		@Override
@@ -381,397 +355,166 @@ public abstract class MicromotionSensor extends DeviceObject {
 			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
-		@Override
-		public Setter reqSetDetectionThresholdLevel(byte[] edt) {
-			byte epc = EPC_DETECTION_THRESHOLD_LEVEL;
-			addProperty(epc, edt, _setDetectionThresholdLevel(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetDetectionCounter(byte[] edt) {
-			byte epc = EPC_DETECTION_COUNTER;
-			addProperty(epc, edt, _setDetectionCounter(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetSamplingCount(byte[] edt) {
-			byte epc = EPC_SAMPLING_COUNT;
-			addProperty(epc, edt, _setSamplingCount(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetSamplingCycle(byte[] edt) {
-			byte epc = EPC_SAMPLING_CYCLE;
-			addProperty(epc, edt, _setSamplingCycle(epc, edt));
-			return this;
-		}
-	}
-	
-	public class SetterProxy extends DeviceObject.SetterProxy implements Setter {
-
-		public SetterProxy(byte esv) {
-			super(esv);
-		}
-
-		@Override
-		public Setter reqSetOperationStatus(byte[] edt) {
-			return (Setter)super.reqSetOperationStatus(edt);
-		}
-		@Override
-		public Setter reqSetInstallationLocation(byte[] edt) {
-			return (Setter)super.reqSetInstallationLocation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimitSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
-		}
-		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentTimeSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentTimeSetting(edt);
-		}
-		@Override
-		public Setter reqSetCurrentDateSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentDateSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitSetting(edt);
-		}
-
-		@Override
+		/**
+		 * Specifies detection threshold level (8-step).<br><br>0x31.0x38<br><br>Name : Detection threshold level<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetDetectionThresholdLevel(byte[] edt) {
 			addProperty(EPC_DETECTION_THRESHOLD_LEVEL, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates micromotion detection count.<br><br>0x0000.0xFFFE (0.65534)<br><br>Name : Detection counter<br>EPC : 0xB2<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetDetectionCounter(byte[] edt) {
 			addProperty(EPC_DETECTION_COUNTER, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates micromotion detection sampling count.<br><br>0x0000.0xFFFE (0.65534)<br><br>Name : Sampling count<br>EPC : 0xBC<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetSamplingCount(byte[] edt) {
 			addProperty(EPC_SAMPLING_COUNT, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates micromotion detection sampling cycle.<br><br>0x0000.0xFFFE (0.65534)<br><br>Name : Sampling cycle<br>EPC : 0xBD<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetSamplingCycle(byte[] edt) {
 			addProperty(EPC_SAMPLING_CYCLE, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}
 
-	public interface Getter extends DeviceObject.Getter {
-		public Getter reqGetOperationStatus();
-		public Getter reqGetInstallationLocation();
-		public Getter reqGetStandardVersionInformation();
-		public Getter reqGetIdentificationNumber();
-		public Getter reqGetMeasuredInstantaneousPowerConsumption();
-		public Getter reqGetMeasuredCumulativePowerConsumption();
-		public Getter reqGetManufacturersFaultCode();
-		public Getter reqGetCurrentLimitSetting();
-		public Getter reqGetFaultStatus();
-		public Getter reqGetFaultDescription();
-		public Getter reqGetManufacturerCode();
-		public Getter reqGetBusinessFacilityCode();
-		public Getter reqGetProductCode();
-		public Getter reqGetProductionNumber();
-		public Getter reqGetProductionDate();
-		public Getter reqGetPowerSavingOperationSetting();
-		public Getter reqGetPositionInformation();
-		public Getter reqGetCurrentTimeSetting();
-		public Getter reqGetCurrentDateSetting();
-		public Getter reqGetPowerLimitSetting();
-		public Getter reqGetCumulativeOperatingTime();
-		public Getter reqGetStatusChangeAnnouncementPropertyMap();
-		public Getter reqGetSetPropertyMap();
-		public Getter reqGetGetPropertyMap();
+	public class Getter extends DeviceObject.Getter {
+
+		@Override
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
+		}
+		@Override
+		public Getter reqGetInstallationLocation() {
+			return (Getter)super.reqGetInstallationLocation();
+		}
+		@Override
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
+		}
+		@Override
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
+		}
+		@Override
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
+		}
+		@Override
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
+		}
+		@Override
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
+		}
+		@Override
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
+		}
+		@Override
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
+		}
+		@Override
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
+		}
+		@Override
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
+		}
+		@Override
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
+		}
+		@Override
+		public Getter reqGetProductCode() {
+			return (Getter)super.reqGetProductCode();
+		}
+		@Override
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
+		}
+		@Override
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
+		}
+		@Override
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
+		}
+		@Override
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
+		}
+		@Override
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
+		}
+		@Override
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
+		}
+		@Override
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
+		}
+		@Override
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
+		}
+		@Override
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
+		}
+		@Override
+		public Getter reqGetSetPropertyMap() {
+			return (Getter)super.reqGetSetPropertyMap();
+		}
+		@Override
+		public Getter reqGetGetPropertyMap() {
+			return (Getter)super.reqGetGetPropertyMap();
+		}
 		
 		/**
-		 * Specifies detection threshold level (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Specifies detection threshold level (8-step).<br><br>0x31.0x38<br><br>Name : Detection threshold level<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
-		public Getter reqGetDetectionThresholdLevel();
-		/**
-		 * This property indicates whether micromotion is detected or not.<br>Micromotion detected = 0x41 Micromotion not detected = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory<br>Announcement at status change
-		 */
-		public Getter reqGetMicromotionDetectionStatus();
-		/**
-		 * This property indicates micromotion detection count.<br>0x0000.0xFFFE (0.65534)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetDetectionCounter();
-		/**
-		 * This property indicates micromotion detection sampling count.<br>0x0000.0xFFFE (0.65534)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetSamplingCount();
-		/**
-		 * This property indicates micromotion detection sampling cycle.<br>0x0000.0xFFFE (0.65534)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetSamplingCycle();
-	}
-	
-	public class GetterImpl extends DeviceObject.GetterImpl implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
-		public Getter reqGetDetectionThresholdLevel() {
-			byte epc = EPC_DETECTION_THRESHOLD_LEVEL;
-			byte[] edt = _getDetectionThresholdLevel(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetMicromotionDetectionStatus() {
-			byte epc = EPC_MICROMOTION_DETECTION_STATUS;
-			byte[] edt = _getMicromotionDetectionStatus(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetDetectionCounter() {
-			byte epc = EPC_DETECTION_COUNTER;
-			byte[] edt = _getDetectionCounter(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetSamplingCount() {
-			byte epc = EPC_SAMPLING_COUNT;
-			byte[] edt = _getSamplingCount(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetSamplingCycle() {
-			byte epc = EPC_SAMPLING_CYCLE;
-			byte[] edt = _getSamplingCycle(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-	}
-
-	public class GetterProxy extends DeviceObject.GetterProxy implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
 		public Getter reqGetDetectionThresholdLevel() {
 			addProperty(EPC_DETECTION_THRESHOLD_LEVEL);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates whether micromotion is detected or not.<br><br>Micromotion detected = 0x41 Micromotion not detected = 0x42<br><br>Name : Micromotion detection status<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br><br>Announcement at status change<br>
+		 */
 		public Getter reqGetMicromotionDetectionStatus() {
 			addProperty(EPC_MICROMOTION_DETECTION_STATUS);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates micromotion detection count.<br><br>0x0000.0xFFFE (0.65534)<br><br>Name : Detection counter<br>EPC : 0xB2<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetDetectionCounter() {
 			addProperty(EPC_DETECTION_COUNTER);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates micromotion detection sampling count.<br><br>0x0000.0xFFFE (0.65534)<br><br>Name : Sampling count<br>EPC : 0xBC<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetSamplingCount() {
 			addProperty(EPC_SAMPLING_COUNT);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates micromotion detection sampling cycle.<br><br>0x0000.0xFFFE (0.65534)<br><br>Name : Sampling cycle<br>EPC : 0xBD<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetSamplingCycle() {
 			addProperty(EPC_SAMPLING_CYCLE);
 			return this;
@@ -779,6 +522,8 @@ public abstract class MicromotionSensor extends DeviceObject {
 	}
 	
 	public interface Informer extends DeviceObject.Informer {
+		public Informer reqInform(byte epc);
+		
 		public Informer reqInformOperationStatus();
 		public Informer reqInformInstallationLocation();
 		public Informer reqInformStandardVersionInformation();
@@ -805,29 +550,33 @@ public abstract class MicromotionSensor extends DeviceObject {
 		public Informer reqInformGetPropertyMap();
 		
 		/**
-		 * Specifies detection threshold level (8-step).<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Specifies detection threshold level (8-step).<br><br>0x31.0x38<br><br>Name : Detection threshold level<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformDetectionThresholdLevel();
 		/**
-		 * This property indicates whether micromotion is detected or not.<br>Micromotion detected = 0x41 Micromotion not detected = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory<br>Announcement at status change
+		 * This property indicates whether micromotion is detected or not.<br><br>Micromotion detected = 0x41 Micromotion not detected = 0x42<br><br>Name : Micromotion detection status<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br><br>Announcement at status change<br>
 		 */
 		public Informer reqInformMicromotionDetectionStatus();
 		/**
-		 * This property indicates micromotion detection count.<br>0x0000.0xFFFE (0.65534)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * This property indicates micromotion detection count.<br><br>0x0000.0xFFFE (0.65534)<br><br>Name : Detection counter<br>EPC : 0xB2<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformDetectionCounter();
 		/**
-		 * This property indicates micromotion detection sampling count.<br>0x0000.0xFFFE (0.65534)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * This property indicates micromotion detection sampling count.<br><br>0x0000.0xFFFE (0.65534)<br><br>Name : Sampling count<br>EPC : 0xBC<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformSamplingCount();
 		/**
-		 * This property indicates micromotion detection sampling cycle.<br>0x0000.0xFFFE (0.65534)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * This property indicates micromotion detection sampling cycle.<br><br>0x0000.0xFFFE (0.65534)<br><br>Name : Sampling cycle<br>EPC : 0xBD<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformSamplingCycle();
 	}
 
 	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();
@@ -963,7 +712,11 @@ public abstract class MicromotionSensor extends DeviceObject {
 	}
 	
 	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();

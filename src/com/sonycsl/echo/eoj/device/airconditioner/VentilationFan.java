@@ -20,8 +20,6 @@ import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 
 public abstract class VentilationFan extends DeviceObject {
-	@SuppressWarnings("unused")
-	private static final String TAG = VentilationFan.class.getSimpleName();
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x01;
 	public static final byte CLASS_CODE = (byte)0x33;
@@ -40,39 +38,39 @@ public abstract class VentilationFan extends DeviceObject {
 	}
 
 	/**
-	 * Auto/Non-auto<br>Auto = 0x41, Non-auto = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Auto/Non-auto<br><br>Auto = 0x41, Non-auto = 0x42<br><br>Name : Ventilation auto setting<br>EPC : 0xBF<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setVentilationAutoSetting(byte[] edt) {return false;}
 	private final boolean _setVentilationAutoSetting(byte epc, byte[] edt) {
 		boolean success = setVentilationAutoSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Auto/Non-auto<br>Auto = 0x41, Non-auto = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Auto/Non-auto<br><br>Auto = 0x41, Non-auto = 0x42<br><br>Name : Ventilation auto setting<br>EPC : 0xBF<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getVentilationAutoSetting() {return null;}
 	private final byte[] _getVentilationAutoSetting(byte epc) {
 		byte[] edt = getVentilationAutoSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>Ventilation air flow rate auto status = 0x41 Ventilation air flow rate level = 0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br><br>Ventilation air flow rate auto status = 0x41 Ventilation air flow rate level = 0x31.0x38<br><br>Name : Set value of ventilation air flow rate<br>EPC : 0xA0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setSetValueOfVentilationAirFlowRate(byte[] edt) {return false;}
 	private final boolean _setSetValueOfVentilationAirFlowRate(byte epc, byte[] edt) {
 		boolean success = setSetValueOfVentilationAirFlowRate(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>Ventilation air flow rate auto status = 0x41 Ventilation air flow rate level = 0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br><br>Ventilation air flow rate auto status = 0x41 Ventilation air flow rate level = 0x31.0x38<br><br>Name : Set value of ventilation air flow rate<br>EPC : 0xA0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getSetValueOfVentilationAirFlowRate() {return null;}
 	private final byte[] _getSetValueOfVentilationAirFlowRate(byte epc) {
 		byte[] edt = getSetValueOfVentilationAirFlowRate();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
@@ -110,17 +108,17 @@ public abstract class VentilationFan extends DeviceObject {
 	
 	@Override
 	public Setter set() {
-		return new SetterImpl(ESV_SET_NO_RES);
+		return new Setter(ESV_SETI);
 	}
 
 	@Override
 	public Setter setC() {
-		return new SetterImpl(ESV_SET_RES);
+		return new Setter(ESV_SETC);
 	}
 
 	@Override
 	public Getter get() {
-		return new GetterImpl();
+		return new Getter();
 	}
 
 	@Override
@@ -159,64 +157,48 @@ public abstract class VentilationFan extends DeviceObject {
 		}
 		
 		/**
-		 * Auto/Non-auto<br>Auto = 0x41, Non-auto = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Auto/Non-auto<br><br>Auto = 0x41, Non-auto = 0x42<br><br>Name : Ventilation auto setting<br>EPC : 0xBF<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetVentilationAutoSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetVentilationAutoSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetVentilationAutoSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Auto/Non-auto<br>Auto = 0x41, Non-auto = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Auto/Non-auto<br><br>Auto = 0x41, Non-auto = 0x42<br><br>Name : Ventilation auto setting<br>EPC : 0xBF<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetVentilationAutoSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetVentilationAutoSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetVentilationAutoSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>Ventilation air flow rate auto status = 0x41 Ventilation air flow rate level = 0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br><br>Ventilation air flow rate auto status = 0x41 Ventilation air flow rate level = 0x31.0x38<br><br>Name : Set value of ventilation air flow rate<br>EPC : 0xA0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetSetValueOfVentilationAirFlowRate(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetSetValueOfVentilationAirFlowRate(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetSetValueOfVentilationAirFlowRate(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>Ventilation air flow rate auto status = 0x41 Ventilation air flow rate level = 0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br><br>Ventilation air flow rate auto status = 0x41 Ventilation air flow rate level = 0x31.0x38<br><br>Name : Set value of ventilation air flow rate<br>EPC : 0xA0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetSetValueOfVentilationAirFlowRate(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetSetValueOfVentilationAirFlowRate(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetSetValueOfVentilationAirFlowRate(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 
 	}
 	
-	public interface Setter extends DeviceObject.Setter {
-		public Setter reqSetOperationStatus(byte[] edt);
-		public Setter reqSetInstallationLocation(byte[] edt);
-		public Setter reqSetCurrentLimitSetting(byte[] edt);
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
-		public Setter reqSetPositionInformation(byte[] edt);
-		public Setter reqSetCurrentTimeSetting(byte[] edt);
-		public Setter reqSetCurrentDateSetting(byte[] edt);
-		public Setter reqSetPowerLimitSetting(byte[] edt);
-		
-		/**
-		 * Auto/Non-auto<br>Auto = 0x41, Non-auto = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetVentilationAutoSetting(byte[] edt);
-		/**
-		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>Ventilation air flow rate auto status = 0x41 Ventilation air flow rate level = 0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetSetValueOfVentilationAirFlowRate(byte[] edt);
-	}
-
-	public class SetterImpl extends DeviceObject.SetterImpl implements Setter {
-
-		public SetterImpl(byte esv) {
+	public class Setter extends DeviceObject.Setter {
+		public Setter(byte esv) {
 			super(esv);
+		}
+
+		@Override
+		public Setter reqSet(byte epc, byte[] edt) {
+			return (Setter)super.reqSet(epc, edt);
 		}
 		
 		@Override
@@ -252,327 +234,131 @@ public abstract class VentilationFan extends DeviceObject {
 			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
-		@Override
-		public Setter reqSetVentilationAutoSetting(byte[] edt) {
-			byte epc = EPC_VENTILATION_AUTO_SETTING;
-			addProperty(epc, edt, _setVentilationAutoSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetSetValueOfVentilationAirFlowRate(byte[] edt) {
-			byte epc = EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE;
-			addProperty(epc, edt, _setSetValueOfVentilationAirFlowRate(epc, edt));
-			return this;
-		}
-	}
-	
-	public class SetterProxy extends DeviceObject.SetterProxy implements Setter {
-
-		public SetterProxy(byte esv) {
-			super(esv);
-		}
-
-		@Override
-		public Setter reqSetOperationStatus(byte[] edt) {
-			return (Setter)super.reqSetOperationStatus(edt);
-		}
-		@Override
-		public Setter reqSetInstallationLocation(byte[] edt) {
-			return (Setter)super.reqSetInstallationLocation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimitSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
-		}
-		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentTimeSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentTimeSetting(edt);
-		}
-		@Override
-		public Setter reqSetCurrentDateSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentDateSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitSetting(edt);
-		}
-
-		@Override
+		/**
+		 * Auto/Non-auto<br><br>Auto = 0x41, Non-auto = 0x42<br><br>Name : Ventilation auto setting<br>EPC : 0xBF<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetVentilationAutoSetting(byte[] edt) {
 			addProperty(EPC_VENTILATION_AUTO_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br><br>Ventilation air flow rate auto status = 0x41 Ventilation air flow rate level = 0x31.0x38<br><br>Name : Set value of ventilation air flow rate<br>EPC : 0xA0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetSetValueOfVentilationAirFlowRate(byte[] edt) {
 			addProperty(EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}
 
-	public interface Getter extends DeviceObject.Getter {
-		public Getter reqGetOperationStatus();
-		public Getter reqGetInstallationLocation();
-		public Getter reqGetStandardVersionInformation();
-		public Getter reqGetIdentificationNumber();
-		public Getter reqGetMeasuredInstantaneousPowerConsumption();
-		public Getter reqGetMeasuredCumulativePowerConsumption();
-		public Getter reqGetManufacturersFaultCode();
-		public Getter reqGetCurrentLimitSetting();
-		public Getter reqGetFaultStatus();
-		public Getter reqGetFaultDescription();
-		public Getter reqGetManufacturerCode();
-		public Getter reqGetBusinessFacilityCode();
-		public Getter reqGetProductCode();
-		public Getter reqGetProductionNumber();
-		public Getter reqGetProductionDate();
-		public Getter reqGetPowerSavingOperationSetting();
-		public Getter reqGetPositionInformation();
-		public Getter reqGetCurrentTimeSetting();
-		public Getter reqGetCurrentDateSetting();
-		public Getter reqGetPowerLimitSetting();
-		public Getter reqGetCumulativeOperatingTime();
-		public Getter reqGetStatusChangeAnnouncementPropertyMap();
-		public Getter reqGetSetPropertyMap();
-		public Getter reqGetGetPropertyMap();
+	public class Getter extends DeviceObject.Getter {
+
+		@Override
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
+		}
+		@Override
+		public Getter reqGetInstallationLocation() {
+			return (Getter)super.reqGetInstallationLocation();
+		}
+		@Override
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
+		}
+		@Override
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
+		}
+		@Override
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
+		}
+		@Override
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
+		}
+		@Override
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
+		}
+		@Override
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
+		}
+		@Override
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
+		}
+		@Override
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
+		}
+		@Override
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
+		}
+		@Override
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
+		}
+		@Override
+		public Getter reqGetProductCode() {
+			return (Getter)super.reqGetProductCode();
+		}
+		@Override
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
+		}
+		@Override
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
+		}
+		@Override
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
+		}
+		@Override
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
+		}
+		@Override
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
+		}
+		@Override
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
+		}
+		@Override
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
+		}
+		@Override
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
+		}
+		@Override
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
+		}
+		@Override
+		public Getter reqGetSetPropertyMap() {
+			return (Getter)super.reqGetSetPropertyMap();
+		}
+		@Override
+		public Getter reqGetGetPropertyMap() {
+			return (Getter)super.reqGetGetPropertyMap();
+		}
 		
 		/**
-		 * Auto/Non-auto<br>Auto = 0x41, Non-auto = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Auto/Non-auto<br><br>Auto = 0x41, Non-auto = 0x42<br><br>Name : Ventilation auto setting<br>EPC : 0xBF<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
-		public Getter reqGetVentilationAutoSetting();
-		/**
-		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>Ventilation air flow rate auto status = 0x41 Ventilation air flow rate level = 0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetSetValueOfVentilationAirFlowRate();
-	}
-	
-	public class GetterImpl extends DeviceObject.GetterImpl implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
-		public Getter reqGetVentilationAutoSetting() {
-			byte epc = EPC_VENTILATION_AUTO_SETTING;
-			byte[] edt = _getVentilationAutoSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetSetValueOfVentilationAirFlowRate() {
-			byte epc = EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE;
-			byte[] edt = _getSetValueOfVentilationAirFlowRate(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-	}
-
-	public class GetterProxy extends DeviceObject.GetterProxy implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
 		public Getter reqGetVentilationAutoSetting() {
 			addProperty(EPC_VENTILATION_AUTO_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br><br>Ventilation air flow rate auto status = 0x41 Ventilation air flow rate level = 0x31.0x38<br><br>Name : Set value of ventilation air flow rate<br>EPC : 0xA0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetSetValueOfVentilationAirFlowRate() {
 			addProperty(EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE);
 			return this;
@@ -580,6 +366,8 @@ public abstract class VentilationFan extends DeviceObject {
 	}
 	
 	public interface Informer extends DeviceObject.Informer {
+		public Informer reqInform(byte epc);
+		
 		public Informer reqInformOperationStatus();
 		public Informer reqInformInstallationLocation();
 		public Informer reqInformStandardVersionInformation();
@@ -606,17 +394,21 @@ public abstract class VentilationFan extends DeviceObject {
 		public Informer reqInformGetPropertyMap();
 		
 		/**
-		 * Auto/Non-auto<br>Auto = 0x41, Non-auto = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Auto/Non-auto<br><br>Auto = 0x41, Non-auto = 0x42<br><br>Name : Ventilation auto setting<br>EPC : 0xBF<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformVentilationAutoSetting();
 		/**
-		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>Ventilation air flow rate auto status = 0x41 Ventilation air flow rate level = 0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br><br>Ventilation air flow rate auto status = 0x41 Ventilation air flow rate level = 0x31.0x38<br><br>Name : Set value of ventilation air flow rate<br>EPC : 0xA0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformSetValueOfVentilationAirFlowRate();
 	}
 
 	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();
@@ -731,7 +523,11 @@ public abstract class VentilationFan extends DeviceObject {
 	}
 	
 	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();

@@ -20,8 +20,6 @@ import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 
 public abstract class Buzzer extends DeviceObject {
-	@SuppressWarnings("unused")
-	private static final String TAG = Buzzer.class.getSimpleName();
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0xA0;
@@ -40,39 +38,39 @@ public abstract class Buzzer extends DeviceObject {
 	}
 
 	/**
-	 * This property indicates buzzer sound generation setting.<br>Buzzer enabled = 0x41, buzzer disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * This property indicates buzzer sound generation setting.<br><br>Buzzer enabled = 0x41, buzzer disabled = 0x42<br><br>Name : Sound generation setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setSoundGenerationSetting(byte[] edt) {return false;}
 	private final boolean _setSoundGenerationSetting(byte epc, byte[] edt) {
 		boolean success = setSoundGenerationSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * This property indicates buzzer sound generation setting.<br>Buzzer enabled = 0x41, buzzer disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * This property indicates buzzer sound generation setting.<br><br>Buzzer enabled = 0x41, buzzer disabled = 0x42<br><br>Name : Sound generation setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getSoundGenerationSetting() {return null;}
 	private final byte[] _getSoundGenerationSetting(byte epc) {
 		byte[] edt = getSoundGenerationSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates 8 different types of buzzer sound.<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * This property indicates 8 different types of buzzer sound.<br><br>0x31.0x38<br><br>Name : Buzzer sound type<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setBuzzerSoundType(byte[] edt) {return false;}
 	private final boolean _setBuzzerSoundType(byte epc, byte[] edt) {
 		boolean success = setBuzzerSoundType(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * This property indicates 8 different types of buzzer sound.<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * This property indicates 8 different types of buzzer sound.<br><br>0x31.0x38<br><br>Name : Buzzer sound type<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getBuzzerSoundType() {return null;}
 	private final byte[] _getBuzzerSoundType(byte epc) {
 		byte[] edt = getBuzzerSoundType();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
@@ -110,17 +108,17 @@ public abstract class Buzzer extends DeviceObject {
 	
 	@Override
 	public Setter set() {
-		return new SetterImpl(ESV_SET_NO_RES);
+		return new Setter(ESV_SETI);
 	}
 
 	@Override
 	public Setter setC() {
-		return new SetterImpl(ESV_SET_RES);
+		return new Setter(ESV_SETC);
 	}
 
 	@Override
 	public Getter get() {
-		return new GetterImpl();
+		return new Getter();
 	}
 
 	@Override
@@ -159,64 +157,48 @@ public abstract class Buzzer extends DeviceObject {
 		}
 		
 		/**
-		 * This property indicates buzzer sound generation setting.<br>Buzzer enabled = 0x41, buzzer disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * This property indicates buzzer sound generation setting.<br><br>Buzzer enabled = 0x41, buzzer disabled = 0x42<br><br>Name : Sound generation setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetSoundGenerationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetSoundGenerationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetSoundGenerationSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * This property indicates buzzer sound generation setting.<br>Buzzer enabled = 0x41, buzzer disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * This property indicates buzzer sound generation setting.<br><br>Buzzer enabled = 0x41, buzzer disabled = 0x42<br><br>Name : Sound generation setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetSoundGenerationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetSoundGenerationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetSoundGenerationSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates 8 different types of buzzer sound.<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * This property indicates 8 different types of buzzer sound.<br><br>0x31.0x38<br><br>Name : Buzzer sound type<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetBuzzerSoundType(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetBuzzerSoundType(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetBuzzerSoundType(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * This property indicates 8 different types of buzzer sound.<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * This property indicates 8 different types of buzzer sound.<br><br>0x31.0x38<br><br>Name : Buzzer sound type<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetBuzzerSoundType(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetBuzzerSoundType(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetBuzzerSoundType(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 
 	}
 	
-	public interface Setter extends DeviceObject.Setter {
-		public Setter reqSetOperationStatus(byte[] edt);
-		public Setter reqSetInstallationLocation(byte[] edt);
-		public Setter reqSetCurrentLimitSetting(byte[] edt);
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
-		public Setter reqSetPositionInformation(byte[] edt);
-		public Setter reqSetCurrentTimeSetting(byte[] edt);
-		public Setter reqSetCurrentDateSetting(byte[] edt);
-		public Setter reqSetPowerLimitSetting(byte[] edt);
-		
-		/**
-		 * This property indicates buzzer sound generation setting.<br>Buzzer enabled = 0x41, buzzer disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetSoundGenerationSetting(byte[] edt);
-		/**
-		 * This property indicates 8 different types of buzzer sound.<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetBuzzerSoundType(byte[] edt);
-	}
-
-	public class SetterImpl extends DeviceObject.SetterImpl implements Setter {
-
-		public SetterImpl(byte esv) {
+	public class Setter extends DeviceObject.Setter {
+		public Setter(byte esv) {
 			super(esv);
+		}
+
+		@Override
+		public Setter reqSet(byte epc, byte[] edt) {
+			return (Setter)super.reqSet(epc, edt);
 		}
 		
 		@Override
@@ -252,327 +234,131 @@ public abstract class Buzzer extends DeviceObject {
 			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
-		@Override
-		public Setter reqSetSoundGenerationSetting(byte[] edt) {
-			byte epc = EPC_SOUND_GENERATION_SETTING;
-			addProperty(epc, edt, _setSoundGenerationSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetBuzzerSoundType(byte[] edt) {
-			byte epc = EPC_BUZZER_SOUND_TYPE;
-			addProperty(epc, edt, _setBuzzerSoundType(epc, edt));
-			return this;
-		}
-	}
-	
-	public class SetterProxy extends DeviceObject.SetterProxy implements Setter {
-
-		public SetterProxy(byte esv) {
-			super(esv);
-		}
-
-		@Override
-		public Setter reqSetOperationStatus(byte[] edt) {
-			return (Setter)super.reqSetOperationStatus(edt);
-		}
-		@Override
-		public Setter reqSetInstallationLocation(byte[] edt) {
-			return (Setter)super.reqSetInstallationLocation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimitSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
-		}
-		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentTimeSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentTimeSetting(edt);
-		}
-		@Override
-		public Setter reqSetCurrentDateSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentDateSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitSetting(edt);
-		}
-
-		@Override
+		/**
+		 * This property indicates buzzer sound generation setting.<br><br>Buzzer enabled = 0x41, buzzer disabled = 0x42<br><br>Name : Sound generation setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetSoundGenerationSetting(byte[] edt) {
 			addProperty(EPC_SOUND_GENERATION_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates 8 different types of buzzer sound.<br><br>0x31.0x38<br><br>Name : Buzzer sound type<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetBuzzerSoundType(byte[] edt) {
 			addProperty(EPC_BUZZER_SOUND_TYPE, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}
 
-	public interface Getter extends DeviceObject.Getter {
-		public Getter reqGetOperationStatus();
-		public Getter reqGetInstallationLocation();
-		public Getter reqGetStandardVersionInformation();
-		public Getter reqGetIdentificationNumber();
-		public Getter reqGetMeasuredInstantaneousPowerConsumption();
-		public Getter reqGetMeasuredCumulativePowerConsumption();
-		public Getter reqGetManufacturersFaultCode();
-		public Getter reqGetCurrentLimitSetting();
-		public Getter reqGetFaultStatus();
-		public Getter reqGetFaultDescription();
-		public Getter reqGetManufacturerCode();
-		public Getter reqGetBusinessFacilityCode();
-		public Getter reqGetProductCode();
-		public Getter reqGetProductionNumber();
-		public Getter reqGetProductionDate();
-		public Getter reqGetPowerSavingOperationSetting();
-		public Getter reqGetPositionInformation();
-		public Getter reqGetCurrentTimeSetting();
-		public Getter reqGetCurrentDateSetting();
-		public Getter reqGetPowerLimitSetting();
-		public Getter reqGetCumulativeOperatingTime();
-		public Getter reqGetStatusChangeAnnouncementPropertyMap();
-		public Getter reqGetSetPropertyMap();
-		public Getter reqGetGetPropertyMap();
+	public class Getter extends DeviceObject.Getter {
+
+		@Override
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
+		}
+		@Override
+		public Getter reqGetInstallationLocation() {
+			return (Getter)super.reqGetInstallationLocation();
+		}
+		@Override
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
+		}
+		@Override
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
+		}
+		@Override
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
+		}
+		@Override
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
+		}
+		@Override
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
+		}
+		@Override
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
+		}
+		@Override
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
+		}
+		@Override
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
+		}
+		@Override
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
+		}
+		@Override
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
+		}
+		@Override
+		public Getter reqGetProductCode() {
+			return (Getter)super.reqGetProductCode();
+		}
+		@Override
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
+		}
+		@Override
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
+		}
+		@Override
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
+		}
+		@Override
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
+		}
+		@Override
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
+		}
+		@Override
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
+		}
+		@Override
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
+		}
+		@Override
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
+		}
+		@Override
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
+		}
+		@Override
+		public Getter reqGetSetPropertyMap() {
+			return (Getter)super.reqGetSetPropertyMap();
+		}
+		@Override
+		public Getter reqGetGetPropertyMap() {
+			return (Getter)super.reqGetGetPropertyMap();
+		}
 		
 		/**
-		 * This property indicates buzzer sound generation setting.<br>Buzzer enabled = 0x41, buzzer disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * This property indicates buzzer sound generation setting.<br><br>Buzzer enabled = 0x41, buzzer disabled = 0x42<br><br>Name : Sound generation setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
-		public Getter reqGetSoundGenerationSetting();
-		/**
-		 * This property indicates 8 different types of buzzer sound.<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetBuzzerSoundType();
-	}
-	
-	public class GetterImpl extends DeviceObject.GetterImpl implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
-		public Getter reqGetSoundGenerationSetting() {
-			byte epc = EPC_SOUND_GENERATION_SETTING;
-			byte[] edt = _getSoundGenerationSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetBuzzerSoundType() {
-			byte epc = EPC_BUZZER_SOUND_TYPE;
-			byte[] edt = _getBuzzerSoundType(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-	}
-
-	public class GetterProxy extends DeviceObject.GetterProxy implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
 		public Getter reqGetSoundGenerationSetting() {
 			addProperty(EPC_SOUND_GENERATION_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates 8 different types of buzzer sound.<br><br>0x31.0x38<br><br>Name : Buzzer sound type<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetBuzzerSoundType() {
 			addProperty(EPC_BUZZER_SOUND_TYPE);
 			return this;
@@ -580,6 +366,8 @@ public abstract class Buzzer extends DeviceObject {
 	}
 	
 	public interface Informer extends DeviceObject.Informer {
+		public Informer reqInform(byte epc);
+		
 		public Informer reqInformOperationStatus();
 		public Informer reqInformInstallationLocation();
 		public Informer reqInformStandardVersionInformation();
@@ -606,17 +394,21 @@ public abstract class Buzzer extends DeviceObject {
 		public Informer reqInformGetPropertyMap();
 		
 		/**
-		 * This property indicates buzzer sound generation setting.<br>Buzzer enabled = 0x41, buzzer disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * This property indicates buzzer sound generation setting.<br><br>Buzzer enabled = 0x41, buzzer disabled = 0x42<br><br>Name : Sound generation setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformSoundGenerationSetting();
 		/**
-		 * This property indicates 8 different types of buzzer sound.<br>0x31.0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * This property indicates 8 different types of buzzer sound.<br><br>0x31.0x38<br><br>Name : Buzzer sound type<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformBuzzerSoundType();
 	}
 
 	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();
@@ -731,7 +523,11 @@ public abstract class Buzzer extends DeviceObject {
 	}
 	
 	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();

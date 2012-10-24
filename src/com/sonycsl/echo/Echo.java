@@ -128,8 +128,7 @@ public final class Echo {
 	private static Map<InetAddress, EchoNode> sNodeProxies;
 	
 	private static ProxyListener sProxyListener = null;
-	
-	private static PrintStream sOut = null;
+	private static MethodInvokedListener sMethodInvokedListener = null;
 	
 	private Echo() {
 	}
@@ -990,404 +989,333 @@ public final class Echo {
 		}
 	}
 	
-	public static void trace(PrintStream out) {
-		sOut = out;
-	}
-	
-	public static boolean isTracing() {
-		return sOut != null;
-	}
-	
-	public static void log(String x) {
-		if(isTracing()) {
-			long millis = System.currentTimeMillis();
-			x = "millis:" + millis + "," + x;
-			sOut.println(x);
-		}
-	}
-	
 	public static abstract class  ProxyListener {
 		
-		protected void notify(EchoNode node) {
-			if(Echo.isTracing()) {
-				String method = Thread.currentThread().getStackTrace()[2].getMethodName();
-				Echo.log("method:"+method+",address:"+node.getAddress().getHostAddress());
-			}
-		}
-		protected void notify(EchoObject eoj) {
-			if(Echo.isTracing()) {
-				String method = Thread.currentThread().getStackTrace()[2].getMethodName();
-				Echo.log("method:"+method+","+eoj.toString());
-			}
-		}
 		public void onNewNode(EchoNode node) {
-			notify(node);
+			if(Echo.getMethodInvokedListener() != null) {
+				Echo.getMethodInvokedListener().onInvokedOnNewMethod(node);
+			}
 		}
 		
 		public void onNewProfileObject(ProfileObject profile) {
-			notify(profile);
+			if(Echo.getMethodInvokedListener() != null) {
+				Echo.getMethodInvokedListener().onInvokedOnNewMethod(profile);
+			}
 		}
-		
-		public void onNewNodeProfile(NodeProfileProxy profile) {
-			notify(profile);
-		}
+		public void onNewNodeProfile(NodeProfileProxy profile) {}
 		
 		public void onNewDevice(DeviceObject device) {
-			notify(device);
+			if(Echo.getMethodInvokedListener() != null) {
+				Echo.getMethodInvokedListener().onInvokedOnNewMethod(device);
+			}
 		}
+		public void onNewActivityAmountSensor(ActivityAmountSensorProxy device) {}
+		public void onNewAirPollutionSensor(AirPollutionSensorProxy device) {}
+		public void onNewAirSpeedSensor(AirSpeedSensorProxy device) {}
+		public void onNewBathHeatingStatusSensor(BathHeatingStatusSensorProxy device) {}
+		public void onNewBathWaterLevelSensor(BathWaterLevelSensorProxy device) {}
+		public void onNewBedPresenceSensor(BedPresenceSensorProxy device) {}
+		public void onNewCallSensor(CallSensorProxy device) {}
+		public void onNewCigaretteSmokeSensor(CigaretteSmokeSensorProxy device) {}
+		public void onNewCO2Sensor(CO2SensorProxy device) {}
+		public void onNewCondensationSensor(CondensationSensorProxy device) {}
+		public void onNewCrimePreventionSensor(CrimePreventionSensorProxy device) {}
+		public void onNewCurrentValueSensor(CurrentValueSensorProxy device) {}
+		public void onNewDifferentialPressureSensor(DifferentialPressureSensorProxy device) {}
+		public void onNewEarthquakeSensor(EarthquakeSensorProxy device) {}
+		public void onNewElectricEnergySensor(ElectricEnergySensorProxy device) {}
+		public void onNewElectricLeakSensor(ElectricLeakSensorProxy device) {}
+		public void onNewEmergencyButton(EmergencyButtonProxy device) {}
+		public void onNewFireSensor(FireSensorProxy device) {}
+		public void onNewFirstAidSensor(FirstAidSensorProxy device) {}
+		public void onNewFlameSensor(FlameSensorProxy device) {}
+		public void onNewGasLeakSensor(GasLeakSensorProxy device) {}
+		public void onNewGasSensor(GasSensorProxy device) {}
+		public void onNewHumanBodyLocationSensor(HumanBodyLocationSensorProxy device) {}
+		public void onNewHumanDetectionSensor(HumanDetectionSensorProxy device) {}
+		public void onNewHumiditySensor(HumiditySensorProxy device) {}
+		public void onNewIlluminanceSensor(IlluminanceSensorProxy device) {}
+		public void onNewMailingSensor(MailingSensorProxy device) {}
+		public void onNewMicromotionSensor(MicromotionSensorProxy device) {}
+		public void onNewOdorSensor(OdorSensorProxy device) {}
+		public void onNewOpenCloseSensor(OpenCloseSensorProxy device) {}
+		public void onNewOxygenSensor(OxygenSensorProxy device) {}
+		public void onNewPassageSensor(PassageSensorProxy device) {}
+		public void onNewRainSensor(RainSensorProxy device) {}
+		public void onNewSnowSensor(SnowSensorProxy device) {}
+		public void onNewSoundSensor(SoundSensorProxy device) {}
+		public void onNewTemperatureSensor(TemperatureSensorProxy device) {}
+		public void onNewVisitorSensor(VisitorSensorProxy device) {}
+		public void onNewVOCSensor(VOCSensorProxy device) {}
+		public void onNewWaterFlowRateSensor(WaterFlowRateSensorProxy device) {}
+		public void onNewWaterLeakSensor(WaterLeakSensorProxy device) {}
+		public void onNewWaterLevelSensor(WaterLevelSensorProxy device) {}
+		public void onNewWaterOverflowSensor(WaterOverflowSensorProxy device) {}
+		public void onNewWeightSensor(WeightSensorProxy device) {}
+		public void onNewAirCleaner(AirCleanerProxy device) {}
+		public void onNewAirConditionerVentilationFan(AirConditionerVentilationFanProxy device) {}
+		public void onNewElectricHeater(ElectricHeaterProxy device) {}
+		public void onNewFanHeater(FanHeaterProxy device) {}
+		public void onNewHomeAirConditioner(HomeAirConditionerProxy device) {}
+		public void onNewHumidifier(HumidifierProxy device) {}
+		public void onNewPackageTypeCommercialAirConditionerIndoorUnit(PackageTypeCommercialAirConditionerIndoorUnitProxy device) {}
+		public void onNewPackageTypeCommercialAirConditionerOutdoorUnit(PackageTypeCommercialAirConditionerOutdoorUnitProxy device) {}
+		public void onNewVentilationFan(VentilationFanProxy device) {}
+		public void onNewBathroomHeaterAndDryer(BathroomHeaterAndDryerProxy device) {}
+		public void onNewBattery(BatteryProxy device) {}
+		public void onNewBuzzer(BuzzerProxy device) {}
+		public void onNewColdOrHotWaterHeatSourceEquipment(ColdOrHotWaterHeatSourceEquipmentProxy device) {}
+		public void onNewElectricallyOperatedShade(ElectricallyOperatedShadeProxy device) {}
+		public void onNewElectricLock(ElectricLockProxy device) {}
+		public void onNewElectricShutter(ElectricShutterProxy device) {}
+		public void onNewElectricStormWindow(ElectricStormWindowProxy device) {}
+		public void onNewElectricToiletSeat(ElectricToiletSeatProxy device) {}
+		public void onNewElectricWaterHeater(ElectricWaterHeaterProxy device) {}
+		public void onNewFloorHeater(FloorHeaterProxy device) {}
+		public void onNewFuelCell(FuelCellProxy device) {}
+		public void onNewGasMeter(GasMeterProxy device) {}
+		public void onNewGeneralLighting(GeneralLightingProxy device) {}
+		public void onNewHouseholdSolarPowerGeneration(HouseholdSolarPowerGenerationProxy device) {}
+		public void onNewInstantaneousWaterHeater(InstantaneousWaterHeaterProxy device) {}
+		public void onNewLPGasMeter(LPGasMeterProxy device) {}
+		public void onNewPowerDistributionBoardMetering(PowerDistributionBoardMeteringProxy device) {}
+		public void onNewSmartElectricEnergyMeter(SmartElectricEnergyMeterProxy device) {}
+		public void onNewSmartGasMeter(SmartGasMeterProxy device) {}
+		public void onNewSprinkler(SprinklerProxy device) {}
+		public void onNewWaterFlowmeter(WaterFlowmeterProxy device) {}
+		public void onNewWattHourMeter(WattHourMeterProxy device) {}
+		public void onNewClothesDryer(ClothesDryerProxy device) {}
+		public void onNewCombinationMicrowaveOven(CombinationMicrowaveOvenProxy device) {}
+		public void onNewCookingHeater(CookingHeaterProxy device) {}
+		public void onNewElectricHotWaterPot(ElectricHotWaterPotProxy device) {}
+		public void onNewRefrigerator(RefrigeratorProxy device) {}
+		public void onNewRiceCooker(RiceCookerProxy device) {}
+		public void onNewWasherAndDryer(WasherAndDryerProxy device) {}
+		public void onNewWashingMachine(WashingMachineProxy device) {}
+		public void onNewWeighing(WeighingProxy device) {}
+		public void onNewController(ControllerProxy device) {}
+		public void onNewSwitch(SwitchProxy device) {}
+		public void onNewDisplay(DisplayProxy device) {}
+		public void onNewTelevision(TelevisionProxy device) {}
+
+
+	}
+	
+	public static void setMethodInvokedListener(MethodInvokedListener listener) {
+		sMethodInvokedListener = listener;
+	}
+	
+	public static MethodInvokedListener getMethodInvokedListener() {
+		return sMethodInvokedListener;
+	}
+	
+	public interface MethodInvokedListener {
+		public void onInvokedSetMethod(EchoObject eoj, byte epc, byte pdc, byte[] edt, boolean success);
+		public void onInvokedGetMethod(EchoObject eoj, byte epc, byte pdc, byte[] edt);
 		
-		public void onNewActivityAmountSensor(ActivityAmountSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewAirPollutionSensor(AirPollutionSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewAirSpeedSensor(AirSpeedSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewBathHeatingStatusSensor(BathHeatingStatusSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewBathWaterLevelSensor(BathWaterLevelSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewBedPresenceSensor(BedPresenceSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewCallSensor(CallSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewCigaretteSmokeSensor(CigaretteSmokeSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewCO2Sensor(CO2SensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewCondensationSensor(CondensationSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewCrimePreventionSensor(CrimePreventionSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewCurrentValueSensor(CurrentValueSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewDifferentialPressureSensor(DifferentialPressureSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewEarthquakeSensor(EarthquakeSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewElectricEnergySensor(ElectricEnergySensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewElectricLeakSensor(ElectricLeakSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewEmergencyButton(EmergencyButtonProxy device) {
-			notify(device);
-		}
-
-		public void onNewFireSensor(FireSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewFirstAidSensor(FirstAidSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewFlameSensor(FlameSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewGasLeakSensor(GasLeakSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewGasSensor(GasSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewHumanBodyLocationSensor(HumanBodyLocationSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewHumanDetectionSensor(HumanDetectionSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewHumiditySensor(HumiditySensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewIlluminanceSensor(IlluminanceSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewMailingSensor(MailingSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewMicromotionSensor(MicromotionSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewOdorSensor(OdorSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewOpenCloseSensor(OpenCloseSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewOxygenSensor(OxygenSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewPassageSensor(PassageSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewRainSensor(RainSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewSnowSensor(SnowSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewSoundSensor(SoundSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewTemperatureSensor(TemperatureSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewVisitorSensor(VisitorSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewVOCSensor(VOCSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewWaterFlowRateSensor(WaterFlowRateSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewWaterLeakSensor(WaterLeakSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewWaterLevelSensor(WaterLevelSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewWaterOverflowSensor(WaterOverflowSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewWeightSensor(WeightSensorProxy device) {
-			notify(device);
-		}
-
-		public void onNewAirCleaner(AirCleanerProxy device) {
-			notify(device);
-		}
-
-		public void onNewAirConditionerVentilationFan(AirConditionerVentilationFanProxy device) {
-			notify(device);
-		}
-
-		public void onNewElectricHeater(ElectricHeaterProxy device) {
-			notify(device);
-		}
-
-		public void onNewFanHeater(FanHeaterProxy device) {
-			notify(device);
-		}
-
-		public void onNewHomeAirConditioner(HomeAirConditionerProxy device) {
-			notify(device);
-		}
-
-		public void onNewHumidifier(HumidifierProxy device) {
-			notify(device);
-		}
-
-		public void onNewPackageTypeCommercialAirConditionerIndoorUnit(PackageTypeCommercialAirConditionerIndoorUnitProxy device) {
-			notify(device);
-		}
-
-		public void onNewPackageTypeCommercialAirConditionerOutdoorUnit(PackageTypeCommercialAirConditionerOutdoorUnitProxy device) {
-			notify(device);
-		}
-
-		public void onNewVentilationFan(VentilationFanProxy device) {
-			notify(device);
-		}
-
-		public void onNewBathroomHeaterAndDryer(BathroomHeaterAndDryerProxy device) {
-			notify(device);
-		}
-
-		public void onNewBattery(BatteryProxy device) {
-			notify(device);
-		}
-
-		public void onNewBuzzer(BuzzerProxy device) {
-			notify(device);
-		}
-
-		public void onNewColdOrHotWaterHeatSourceEquipment(ColdOrHotWaterHeatSourceEquipmentProxy device) {
-			notify(device);
-		}
-
-		public void onNewElectricallyOperatedShade(ElectricallyOperatedShadeProxy device) {
-			notify(device);
-		}
-
-		public void onNewElectricLock(ElectricLockProxy device) {
-			notify(device);
-		}
-
-		public void onNewElectricShutter(ElectricShutterProxy device) {
-			notify(device);
-		}
-
-		public void onNewElectricStormWindow(ElectricStormWindowProxy device) {
-			notify(device);
-		}
-
-		public void onNewElectricToiletSeat(ElectricToiletSeatProxy device) {
-			notify(device);
-		}
-
-		public void onNewElectricWaterHeater(ElectricWaterHeaterProxy device) {
-			notify(device);
-		}
-
-		public void onNewFloorHeater(FloorHeaterProxy device) {
-			notify(device);
-		}
-
-		public void onNewFuelCell(FuelCellProxy device) {
-			notify(device);
-		}
-
-		public void onNewGasMeter(GasMeterProxy device) {
-			notify(device);
-		}
-
-		public void onNewGeneralLighting(GeneralLightingProxy device) {
-			notify(device);
-		}
-
-		public void onNewHouseholdSolarPowerGeneration(HouseholdSolarPowerGenerationProxy device) {
-			notify(device);
-		}
-
-		public void onNewInstantaneousWaterHeater(InstantaneousWaterHeaterProxy device) {
-			notify(device);
-		}
-
-		public void onNewLPGasMeter(LPGasMeterProxy device) {
-			notify(device);
-		}
-
-		public void onNewPowerDistributionBoardMetering(PowerDistributionBoardMeteringProxy device) {
-			notify(device);
-		}
-
-		public void onNewSmartElectricEnergyMeter(SmartElectricEnergyMeterProxy device) {
-			notify(device);
-		}
-
-		public void onNewSmartGasMeter(SmartGasMeterProxy device) {
-			notify(device);
-		}
-
-		public void onNewSprinkler(SprinklerProxy device) {
-			notify(device);
-		}
-
-		public void onNewWaterFlowmeter(WaterFlowmeterProxy device) {
-			notify(device);
-		}
-
-		public void onNewWattHourMeter(WattHourMeterProxy device) {
-			notify(device);
-		}
-
-		public void onNewClothesDryer(ClothesDryerProxy device) {
-			notify(device);
-		}
-
-		public void onNewCombinationMicrowaveOven(CombinationMicrowaveOvenProxy device) {
-			notify(device);
-		}
-
-		public void onNewCookingHeater(CookingHeaterProxy device) {
-			notify(device);
-		}
-
-		public void onNewElectricHotWaterPot(ElectricHotWaterPotProxy device) {
-			notify(device);
-		}
-
-		public void onNewRefrigerator(RefrigeratorProxy device) {
-			notify(device);
-		}
-
-		public void onNewRiceCooker(RiceCookerProxy device) {
-			notify(device);
-		}
-
-		public void onNewWasherAndDryer(WasherAndDryerProxy device) {
-			notify(device);
-		}
-
-		public void onNewWashingMachine(WashingMachineProxy device) {
-			notify(device);
-		}
-
-		public void onNewWeighing(WeighingProxy device) {
-			notify(device);
-		}
-
-		public void onNewController(ControllerProxy device) {
-			notify(device);
-		}
-
-		public void onNewSwitch(SwitchProxy device) {
-			notify(device);
-		}
-
-		public void onNewDisplay(DisplayProxy device) {
-			notify(device);
-		}
-
-		public void onNewTelevision(TelevisionProxy device) {
-			notify(device);
-		}
-
-
+		public void onInvokedOnSetMethod(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success);
+		public void onInvokedOnGetMethod(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt);
+		public void onInvokedOnInformMethod(EchoObject eoj, short tid, byte esv, byte epc);
+		
+		public void onInvokedReqSetMethod(EchoObject eoj, byte epc, byte pdc, byte[] edt);
+		public void onInvokedReqGetMethod(EchoObject eoj, byte epc);
+		public void onInvokedReqInformMethod(EchoObject eoj, byte epc);
+		public void onInvokedReqInformMethod(EchoObject eoj, byte epc, byte pdc, byte[] edt);
+		public void onInvokedInformMethod(EchoObject eoj, byte epc, byte pdc, byte[] edt);
+
+		public void onInvokedSendMethod(EchoFrame frame);
+		public void onInvokedSendGroupMethod(EchoFrame frame);
+		public void onInvokedReceiveMethod(EchoFrame frame);
+
+		public void onInvokedOnNewMethod(EchoNode node);
+		public void onInvokedOnNewMethod(EchoObject eoj);
+		public void onInvokedOnRemovedMethod(EchoNode node);
+		public void onInvokedOnRemovedMethod(EchoObject eoj);
+	}
+	
+	public static class Logger implements MethodInvokedListener {
+		
+		PrintStream mOut;
+		
+		public Logger(PrintStream out) {
+			mOut = out;
+		}
+
+		@Override
+		public void onInvokedSetMethod(EchoObject eoj,
+				byte epc, byte pdc, byte[] edt, boolean success) {
+			long millis = System.currentTimeMillis();
+			mOut.println("millis:"+millis
+					+",method:set,"+eoj.toString()
+					+",epc:"+EchoUtils.toHexString(epc)
+					+",pdc:"+EchoUtils.toHexString(pdc)
+					+",edt:"+EchoUtils.toHexString(edt)
+					+",success:"+success);
+		}
+
+		@Override
+		public void onInvokedGetMethod(EchoObject eoj,
+				byte epc, byte pdc, byte[] edt) {
+			long millis = System.currentTimeMillis();
+			mOut.println("millis:"+millis
+					+",method:get,"+eoj.toString()
+					+",epc:"+EchoUtils.toHexString(epc)
+					+",pdc:"+EchoUtils.toHexString(pdc)
+					+",edt:"+EchoUtils.toHexString(edt));
+		}
+
+		@Override
+		public void onInvokedOnSetMethod(EchoObject eoj, short tid, byte esv,
+				byte epc, byte pdc, byte[] edt, boolean success) {
+			long millis = System.currentTimeMillis();
+			mOut.println("millis:"+millis
+					+",method:onSet,"+eoj.toString()
+					+",tid:"+EchoUtils.toHexString(tid)
+					+",esv:"+EchoUtils.toHexString(esv)
+					+",epc:"+EchoUtils.toHexString(epc)
+					+",pdc:"+EchoUtils.toHexString(pdc)
+					+",edt:"+EchoUtils.toHexString(edt)
+					+",success:"+success);
+		}
+
+		@Override
+		public void onInvokedOnGetMethod(EchoObject eoj, short tid, byte esv,
+				byte epc, byte pdc, byte[] edt) {
+			long millis = System.currentTimeMillis();
+			mOut.println("millis:"+millis
+					+",method:onGet,"+eoj.toString()
+					+",tid:"+EchoUtils.toHexString(tid)
+					+",esv:"+EchoUtils.toHexString(esv)
+					+",epc:"+EchoUtils.toHexString(epc)
+					+",pdc:"+EchoUtils.toHexString(pdc)
+					+",edt:"+EchoUtils.toHexString(edt));
+			
+		}
+
+		@Override
+		public void onInvokedOnInformMethod(EchoObject eoj, short tid, byte esv, byte epc) {
+			long millis = System.currentTimeMillis();
+			mOut.println("millis:"+millis
+					+",method:onInform,"+eoj.toString()
+					+",tid:"+EchoUtils.toHexString(tid)
+					+",esv:"+EchoUtils.toHexString(esv)
+					+",epc:"+EchoUtils.toHexString(epc));
+		}
+
+		@Override
+		public void onInvokedReqSetMethod(EchoObject eoj,
+				byte epc, byte pdc, byte[] edt) {
+			long millis = System.currentTimeMillis();
+			mOut.println("millis:"+millis
+					+",method:reqSet,"+eoj.toString()
+					+",epc:"+EchoUtils.toHexString(epc)
+					+",pdc:"+EchoUtils.toHexString(pdc)
+					+",edt:"+EchoUtils.toHexString(edt));
+		}
+
+		@Override
+		public void onInvokedReqGetMethod(EchoObject eoj,
+				byte epc) {
+			long millis = System.currentTimeMillis();
+			mOut.println("millis:"+millis
+					+",method:reqGet,"+eoj.toString()
+					+",epc:"+EchoUtils.toHexString(epc));
+		}
+
+		@Override
+		public void onInvokedReqInformMethod(EchoObject eoj,
+				byte epc) {
+			long millis = System.currentTimeMillis();
+			mOut.println("millis:"+millis
+					+",method:reqInform,"+eoj.toString()
+					+",epc:"+EchoUtils.toHexString(epc));
+		}
+
+		@Override
+		public void onInvokedReqInformMethod(EchoObject eoj, byte epc,
+				byte pdc, byte[] edt) {
+			long millis = System.currentTimeMillis();
+			mOut.println("millis:"+millis
+					+",method:reqInform,"+eoj.toString()
+					+",epc:"+EchoUtils.toHexString(epc)
+					+",pdc:"+EchoUtils.toHexString(pdc)
+					+",edt:"+EchoUtils.toHexString(edt));
+			
+		}
+
+		@Override
+		public void onInvokedInformMethod(EchoObject eoj, byte epc, byte pdc,
+				byte[] edt) {
+			long millis = System.currentTimeMillis();
+			mOut.println("millis:"+millis
+					+",method:inform,"+eoj.toString()
+					+",epc:"+EchoUtils.toHexString(epc)
+					+",pdc:"+EchoUtils.toHexString(pdc)
+					+",edt:"+EchoUtils.toHexString(edt));
+			
+		}
+
+		@Override
+		public void onInvokedSendMethod(EchoFrame frame) {
+			long millis = System.currentTimeMillis();
+			mOut.println("millis:"+millis
+					+",method:send,tid:"+EchoUtils.toHexString(frame.getTid())
+					+",esv:"+EchoUtils.toHexString(frame.getEsv())
+					+",seoj:["+frame.getSeoj()
+					+"],deoj:["+(frame.getDeoj()!=null?frame.getDeoj().toString():"")
+					+"]");
+		}
+
+		@Override
+		public void onInvokedSendGroupMethod(EchoFrame frame) {
+			long millis = System.currentTimeMillis();
+			mOut.println("millis:"+millis
+					+",method:sendGroup,tid:"+EchoUtils.toHexString(frame.getTid())
+					+",esv:"+EchoUtils.toHexString(frame.getEsv())
+					+",seoj:["+frame.getSeoj()
+					+"],deoj:["+(frame.getDeoj()!=null?frame.getDeoj().toString():"")
+					+"]");
+		}
+
+		@Override
+		public void onInvokedReceiveMethod(EchoFrame frame) {
+			long millis = System.currentTimeMillis();
+			mOut.println("millis:"+millis
+					+",method:receive,tid:"+EchoUtils.toHexString(frame.getTid())
+					+",esv:"+EchoUtils.toHexString(frame.getEsv())
+					+",seoj:["+frame.getSeoj()
+					+"],deoj:["+(frame.getDeoj()!=null?frame.getDeoj().toString():"")
+					+"]");
+		}
+
+		@Override
+		public void onInvokedOnNewMethod(EchoNode node) {
+			long millis = System.currentTimeMillis();
+			mOut.println("millis:"+millis
+					+",method:new,type:node,address:"
+					+node.getAddress().getHostAddress());
+		}
+
+		@Override
+		public void onInvokedOnNewMethod(EchoObject eoj) {
+			long millis = System.currentTimeMillis();
+			mOut.println("millis:"+millis
+					+",method:new,type:eoj,"
+					+eoj.toString());
+		}
+
+		@Override
+		public void onInvokedOnRemovedMethod(EchoNode node) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onInvokedOnRemovedMethod(EchoObject eoj) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		
 	}
 }

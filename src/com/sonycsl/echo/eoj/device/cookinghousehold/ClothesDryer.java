@@ -20,8 +20,6 @@ import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 
 public abstract class ClothesDryer extends DeviceObject {
-	@SuppressWarnings("unused")
-	private static final String TAG = ClothesDryer.class.getSimpleName();
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x03;
 	public static final byte CLASS_CODE = (byte)0xC6;
@@ -45,102 +43,102 @@ public abstract class ClothesDryer extends DeviceObject {
 	}
 
 	/**
-	 * This property indicates the status of the door or cover as to whether it is open or closed.<br>Door/cover open = 0x41 Door/cover closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
+	 * This property indicates the status of the door or cover as to whether it is open or closed.<br><br>Door/cover open = 0x41 Door/cover closed = 0x42<br><br>Name : Door/cover open/close status<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getDoorCoverOpenCloseStatus() {return null;}
 	private final byte[] _getDoorCoverOpenCloseStatus(byte epc) {
 		byte[] edt = getDoorCoverOpenCloseStatus();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Drying setting<br>Start/restart drying  0x41, Suspend drying  0x42, Stop drying  0x43<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+	 * Drying setting<br><br>Start/restart drying  0x41, Suspend drying  0x42, Stop drying  0x43<br><br>Name : Drying setting<br>EPC : 0xB2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setDryingSetting(byte[] edt) {return false;}
 	private final boolean _setDryingSetting(byte epc, byte[] edt) {
 		boolean success = setDryingSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Drying setting<br>Start/restart drying  0x41, Suspend drying  0x42, Stop drying  0x43<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+	 * Drying setting<br><br>Start/restart drying  0x41, Suspend drying  0x42, Stop drying  0x43<br><br>Name : Drying setting<br>EPC : 0xB2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getDryingSetting() {return null;}
 	private final byte[] _getDryingSetting(byte epc) {
 		byte[] edt = getDryingSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Drying status<br>Drying in progress  0x41 Drying suspended  0x42 Drying completed/stopped  0x43<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
+	 * Drying status<br><br>Drying in progress  0x41 Drying suspended  0x42 Drying completed/stopped  0x43<br><br>Name : Drying status<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getDryingStatus() {return null;}
 	private final byte[] _getDryingStatus(byte epc) {
 		byte[] edt = getDryingStatus();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the remaining drying time in the  gHH:MM:SS h .format.<br>0-0x17: 0-0x3B : 0-0x3B (=0-23):(=0-59):(=0-59)<br><br>Data type : unsigned char  ~3<br>Data size : 3 Byte<br>Set : undefined<br>Get : optional
+	 * This property indicates the remaining drying time in the  gHH:MM:SS h .format.<br><br>0-0x17: 0-0x3B : 0-0x3B (=0-23):(=0-59):(=0-59)<br><br>Name : Remaining drying time<br>EPC : 0xE6<br>Data Type : unsigned char  ~3<br>Data Size(Byte) : 3 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getRemainingDryingTime() {return null;}
 	private final byte[] _getRemainingDryingTime(byte epc) {
 		byte[] edt = getRemainingDryingTime();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Reservation ON/OFF<br>Reservation ON  0x41 Reservation OFF  0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+	 * Reservation ON/OFF<br><br>Reservation ON  0x41 Reservation OFF  0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setOnTimerReservationSetting(byte[] edt) {return false;}
 	private final boolean _setOnTimerReservationSetting(byte epc, byte[] edt) {
 		boolean success = setOnTimerReservationSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Reservation ON/OFF<br>Reservation ON  0x41 Reservation OFF  0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+	 * Reservation ON/OFF<br><br>Reservation ON  0x41 Reservation OFF  0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getOnTimerReservationSetting() {return null;}
 	private final byte[] _getOnTimerReservationSetting(byte epc) {
 		byte[] edt = getOnTimerReservationSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Timer value    HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char  ~ Q<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
+	 * Timer value    HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsigned char  ~ Q<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setOnTimerSetting(byte[] edt) {return false;}
 	private final boolean _setOnTimerSetting(byte epc, byte[] edt) {
 		boolean success = setOnTimerSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Timer value    HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char  ~ Q<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
+	 * Timer value    HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsigned char  ~ Q<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getOnTimerSetting() {return null;}
 	private final byte[] _getOnTimerSetting(byte epc) {
 		byte[] edt = getOnTimerSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Timer value    HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char  ~ Q<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
+	 * Timer value    HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Relative time-based ON timer setting<br>EPC : 0x92<br>Data Type : unsigned char  ~ Q<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setRelativeTimeBasedOnTimerSetting(byte[] edt) {return false;}
 	private final boolean _setRelativeTimeBasedOnTimerSetting(byte epc, byte[] edt) {
 		boolean success = setRelativeTimeBasedOnTimerSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Timer value    HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char  ~ Q<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
+	 * Timer value    HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Relative time-based ON timer setting<br>EPC : 0x92<br>Data Type : unsigned char  ~ Q<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getRelativeTimeBasedOnTimerSetting() {return null;}
 	private final byte[] _getRelativeTimeBasedOnTimerSetting(byte epc) {
 		byte[] edt = getRelativeTimeBasedOnTimerSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
@@ -204,17 +202,17 @@ public abstract class ClothesDryer extends DeviceObject {
 	
 	@Override
 	public Setter set() {
-		return new SetterImpl(ESV_SET_NO_RES);
+		return new Setter(ESV_SETI);
 	}
 
 	@Override
 	public Setter setC() {
-		return new SetterImpl(ESV_SET_RES);
+		return new Setter(ESV_SETC);
 	}
 
 	@Override
 	public Getter get() {
-		return new GetterImpl();
+		return new Getter();
 	}
 
 	@Override
@@ -274,128 +272,104 @@ public abstract class ClothesDryer extends DeviceObject {
 		}
 		
 		/**
-		 * This property indicates the status of the door or cover as to whether it is open or closed.<br>Door/cover open = 0x41 Door/cover closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the status of the door or cover as to whether it is open or closed.<br><br>Door/cover open = 0x41 Door/cover closed = 0x42<br><br>Name : Door/cover open/close status<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetDoorCoverOpenCloseStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetDoorCoverOpenCloseStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetDoorCoverOpenCloseStatus(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Drying setting<br>Start/restart drying  0x41, Suspend drying  0x42, Stop drying  0x43<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+		 * Drying setting<br><br>Start/restart drying  0x41, Suspend drying  0x42, Stop drying  0x43<br><br>Name : Drying setting<br>EPC : 0xB2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetDryingSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetDryingSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetDryingSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Drying setting<br>Start/restart drying  0x41, Suspend drying  0x42, Stop drying  0x43<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+		 * Drying setting<br><br>Start/restart drying  0x41, Suspend drying  0x42, Stop drying  0x43<br><br>Name : Drying setting<br>EPC : 0xB2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetDryingSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetDryingSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetDryingSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Drying status<br>Drying in progress  0x41 Drying suspended  0x42 Drying completed/stopped  0x43<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
+		 * Drying status<br><br>Drying in progress  0x41 Drying suspended  0x42 Drying completed/stopped  0x43<br><br>Name : Drying status<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetDryingStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetDryingStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetDryingStatus(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the remaining drying time in the  gHH:MM:SS h .format.<br>0-0x17: 0-0x3B : 0-0x3B (=0-23):(=0-59):(=0-59)<br><br>Data type : unsigned char  ~3<br>Data size : 3 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the remaining drying time in the  gHH:MM:SS h .format.<br><br>0-0x17: 0-0x3B : 0-0x3B (=0-23):(=0-59):(=0-59)<br><br>Name : Remaining drying time<br>EPC : 0xE6<br>Data Type : unsigned char  ~3<br>Data Size(Byte) : 3 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetRemainingDryingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetRemainingDryingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetRemainingDryingTime(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Reservation ON/OFF<br>Reservation ON  0x41 Reservation OFF  0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+		 * Reservation ON/OFF<br><br>Reservation ON  0x41 Reservation OFF  0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Reservation ON/OFF<br>Reservation ON  0x41 Reservation OFF  0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+		 * Reservation ON/OFF<br><br>Reservation ON  0x41 Reservation OFF  0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Timer value    HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char  ~ Q<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
+		 * Timer value    HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsigned char  ~ Q<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetOnTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetOnTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetOnTimerSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Timer value    HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char  ~ Q<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
+		 * Timer value    HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsigned char  ~ Q<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetOnTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetOnTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetOnTimerSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Timer value    HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char  ~ Q<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
+		 * Timer value    HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Relative time-based ON timer setting<br>EPC : 0x92<br>Data Type : unsigned char  ~ Q<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetRelativeTimeBasedOnTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetRelativeTimeBasedOnTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetRelativeTimeBasedOnTimerSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Timer value    HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char  ~ Q<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
+		 * Timer value    HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Relative time-based ON timer setting<br>EPC : 0x92<br>Data Type : unsigned char  ~ Q<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetRelativeTimeBasedOnTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetRelativeTimeBasedOnTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetRelativeTimeBasedOnTimerSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 
 	}
 	
-	public interface Setter extends DeviceObject.Setter {
-		public Setter reqSetOperationStatus(byte[] edt);
-		public Setter reqSetInstallationLocation(byte[] edt);
-		public Setter reqSetCurrentLimitSetting(byte[] edt);
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
-		public Setter reqSetPositionInformation(byte[] edt);
-		public Setter reqSetCurrentTimeSetting(byte[] edt);
-		public Setter reqSetCurrentDateSetting(byte[] edt);
-		public Setter reqSetPowerLimitSetting(byte[] edt);
-		
-		/**
-		 * Drying setting<br>Start/restart drying  0x41, Suspend drying  0x42, Stop drying  0x43<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetDryingSetting(byte[] edt);
-		/**
-		 * Reservation ON/OFF<br>Reservation ON  0x41 Reservation OFF  0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetOnTimerReservationSetting(byte[] edt);
-		/**
-		 * Timer value    HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char  ~ Q<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetOnTimerSetting(byte[] edt);
-		/**
-		 * Timer value    HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char  ~ Q<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetRelativeTimeBasedOnTimerSetting(byte[] edt);
-	}
-
-	public class SetterImpl extends DeviceObject.SetterImpl implements Setter {
-
-		public SetterImpl(byte esv) {
+	public class Setter extends DeviceObject.Setter {
+		public Setter(byte esv) {
 			super(esv);
+		}
+
+		@Override
+		public Setter reqSet(byte epc, byte[] edt) {
+			return (Setter)super.reqSet(epc, edt);
 		}
 		
 		@Override
@@ -431,429 +405,180 @@ public abstract class ClothesDryer extends DeviceObject {
 			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
-		@Override
-		public Setter reqSetDryingSetting(byte[] edt) {
-			byte epc = EPC_DRYING_SETTING;
-			addProperty(epc, edt, _setDryingSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetOnTimerReservationSetting(byte[] edt) {
-			byte epc = EPC_ON_TIMER_RESERVATION_SETTING;
-			addProperty(epc, edt, _setOnTimerReservationSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetOnTimerSetting(byte[] edt) {
-			byte epc = EPC_ON_TIMER_SETTING;
-			addProperty(epc, edt, _setOnTimerSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetRelativeTimeBasedOnTimerSetting(byte[] edt) {
-			byte epc = EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING;
-			addProperty(epc, edt, _setRelativeTimeBasedOnTimerSetting(epc, edt));
-			return this;
-		}
-	}
-	
-	public class SetterProxy extends DeviceObject.SetterProxy implements Setter {
-
-		public SetterProxy(byte esv) {
-			super(esv);
-		}
-
-		@Override
-		public Setter reqSetOperationStatus(byte[] edt) {
-			return (Setter)super.reqSetOperationStatus(edt);
-		}
-		@Override
-		public Setter reqSetInstallationLocation(byte[] edt) {
-			return (Setter)super.reqSetInstallationLocation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimitSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
-		}
-		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentTimeSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentTimeSetting(edt);
-		}
-		@Override
-		public Setter reqSetCurrentDateSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentDateSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitSetting(edt);
-		}
-
-		@Override
+		/**
+		 * Drying setting<br><br>Start/restart drying  0x41, Suspend drying  0x42, Stop drying  0x43<br><br>Name : Drying setting<br>EPC : 0xB2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetDryingSetting(byte[] edt) {
 			addProperty(EPC_DRYING_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Reservation ON/OFF<br><br>Reservation ON  0x41 Reservation OFF  0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetOnTimerReservationSetting(byte[] edt) {
 			addProperty(EPC_ON_TIMER_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Timer value    HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsigned char  ~ Q<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetOnTimerSetting(byte[] edt) {
 			addProperty(EPC_ON_TIMER_SETTING, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-		@Override
+		/**
+		 * Timer value    HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Relative time-based ON timer setting<br>EPC : 0x92<br>Data Type : unsigned char  ~ Q<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetRelativeTimeBasedOnTimerSetting(byte[] edt) {
 			addProperty(EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}
 
-	public interface Getter extends DeviceObject.Getter {
-		public Getter reqGetOperationStatus();
-		public Getter reqGetInstallationLocation();
-		public Getter reqGetStandardVersionInformation();
-		public Getter reqGetIdentificationNumber();
-		public Getter reqGetMeasuredInstantaneousPowerConsumption();
-		public Getter reqGetMeasuredCumulativePowerConsumption();
-		public Getter reqGetManufacturersFaultCode();
-		public Getter reqGetCurrentLimitSetting();
-		public Getter reqGetFaultStatus();
-		public Getter reqGetFaultDescription();
-		public Getter reqGetManufacturerCode();
-		public Getter reqGetBusinessFacilityCode();
-		public Getter reqGetProductCode();
-		public Getter reqGetProductionNumber();
-		public Getter reqGetProductionDate();
-		public Getter reqGetPowerSavingOperationSetting();
-		public Getter reqGetPositionInformation();
-		public Getter reqGetCurrentTimeSetting();
-		public Getter reqGetCurrentDateSetting();
-		public Getter reqGetPowerLimitSetting();
-		public Getter reqGetCumulativeOperatingTime();
-		public Getter reqGetStatusChangeAnnouncementPropertyMap();
-		public Getter reqGetSetPropertyMap();
-		public Getter reqGetGetPropertyMap();
+	public class Getter extends DeviceObject.Getter {
+
+		@Override
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
+		}
+		@Override
+		public Getter reqGetInstallationLocation() {
+			return (Getter)super.reqGetInstallationLocation();
+		}
+		@Override
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
+		}
+		@Override
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
+		}
+		@Override
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
+		}
+		@Override
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
+		}
+		@Override
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
+		}
+		@Override
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
+		}
+		@Override
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
+		}
+		@Override
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
+		}
+		@Override
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
+		}
+		@Override
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
+		}
+		@Override
+		public Getter reqGetProductCode() {
+			return (Getter)super.reqGetProductCode();
+		}
+		@Override
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
+		}
+		@Override
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
+		}
+		@Override
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
+		}
+		@Override
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
+		}
+		@Override
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
+		}
+		@Override
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
+		}
+		@Override
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
+		}
+		@Override
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
+		}
+		@Override
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
+		}
+		@Override
+		public Getter reqGetSetPropertyMap() {
+			return (Getter)super.reqGetSetPropertyMap();
+		}
+		@Override
+		public Getter reqGetGetPropertyMap() {
+			return (Getter)super.reqGetGetPropertyMap();
+		}
 		
 		/**
-		 * This property indicates the status of the door or cover as to whether it is open or closed.<br>Door/cover open = 0x41 Door/cover closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the status of the door or cover as to whether it is open or closed.<br><br>Door/cover open = 0x41 Door/cover closed = 0x42<br><br>Name : Door/cover open/close status<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
-		public Getter reqGetDoorCoverOpenCloseStatus();
-		/**
-		 * Drying setting<br>Start/restart drying  0x41, Suspend drying  0x42, Stop drying  0x43<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetDryingSetting();
-		/**
-		 * Drying status<br>Drying in progress  0x41 Drying suspended  0x42 Drying completed/stopped  0x43<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetDryingStatus();
-		/**
-		 * This property indicates the remaining drying time in the  gHH:MM:SS h .format.<br>0-0x17: 0-0x3B : 0-0x3B (=0-23):(=0-59):(=0-59)<br><br>Data type : unsigned char  ~3<br>Data size : 3 Byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetRemainingDryingTime();
-		/**
-		 * Reservation ON/OFF<br>Reservation ON  0x41 Reservation OFF  0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetOnTimerReservationSetting();
-		/**
-		 * Timer value    HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char  ~ Q<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetOnTimerSetting();
-		/**
-		 * Timer value    HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char  ~ Q<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetRelativeTimeBasedOnTimerSetting();
-	}
-	
-	public class GetterImpl extends DeviceObject.GetterImpl implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
-		public Getter reqGetDoorCoverOpenCloseStatus() {
-			byte epc = EPC_DOOR_COVER_OPEN_CLOSE_STATUS;
-			byte[] edt = _getDoorCoverOpenCloseStatus(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetDryingSetting() {
-			byte epc = EPC_DRYING_SETTING;
-			byte[] edt = _getDryingSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetDryingStatus() {
-			byte epc = EPC_DRYING_STATUS;
-			byte[] edt = _getDryingStatus(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetRemainingDryingTime() {
-			byte epc = EPC_REMAINING_DRYING_TIME;
-			byte[] edt = _getRemainingDryingTime(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 3)));
-			return this;
-		}
-		@Override
-		public Getter reqGetOnTimerReservationSetting() {
-			byte epc = EPC_ON_TIMER_RESERVATION_SETTING;
-			byte[] edt = _getOnTimerReservationSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetOnTimerSetting() {
-			byte epc = EPC_ON_TIMER_SETTING;
-			byte[] edt = _getOnTimerSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetRelativeTimeBasedOnTimerSetting() {
-			byte epc = EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING;
-			byte[] edt = _getRelativeTimeBasedOnTimerSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-	}
-
-	public class GetterProxy extends DeviceObject.GetterProxy implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
 		public Getter reqGetDoorCoverOpenCloseStatus() {
 			addProperty(EPC_DOOR_COVER_OPEN_CLOSE_STATUS);
 			return this;
 		}
-		@Override
+		/**
+		 * Drying setting<br><br>Start/restart drying  0x41, Suspend drying  0x42, Stop drying  0x43<br><br>Name : Drying setting<br>EPC : 0xB2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetDryingSetting() {
 			addProperty(EPC_DRYING_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Drying status<br><br>Drying in progress  0x41 Drying suspended  0x42 Drying completed/stopped  0x43<br><br>Name : Drying status<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetDryingStatus() {
 			addProperty(EPC_DRYING_STATUS);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the remaining drying time in the  gHH:MM:SS h .format.<br><br>0-0x17: 0-0x3B : 0-0x3B (=0-23):(=0-59):(=0-59)<br><br>Name : Remaining drying time<br>EPC : 0xE6<br>Data Type : unsigned char  ~3<br>Data Size(Byte) : 3 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetRemainingDryingTime() {
 			addProperty(EPC_REMAINING_DRYING_TIME);
 			return this;
 		}
-		@Override
+		/**
+		 * Reservation ON/OFF<br><br>Reservation ON  0x41 Reservation OFF  0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetOnTimerReservationSetting() {
 			addProperty(EPC_ON_TIMER_RESERVATION_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Timer value    HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsigned char  ~ Q<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetOnTimerSetting() {
 			addProperty(EPC_ON_TIMER_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Timer value    HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Relative time-based ON timer setting<br>EPC : 0x92<br>Data Type : unsigned char  ~ Q<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetRelativeTimeBasedOnTimerSetting() {
 			addProperty(EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING);
 			return this;
@@ -861,6 +586,8 @@ public abstract class ClothesDryer extends DeviceObject {
 	}
 	
 	public interface Informer extends DeviceObject.Informer {
+		public Informer reqInform(byte epc);
+		
 		public Informer reqInformOperationStatus();
 		public Informer reqInformInstallationLocation();
 		public Informer reqInformStandardVersionInformation();
@@ -887,37 +614,41 @@ public abstract class ClothesDryer extends DeviceObject {
 		public Informer reqInformGetPropertyMap();
 		
 		/**
-		 * This property indicates the status of the door or cover as to whether it is open or closed.<br>Door/cover open = 0x41 Door/cover closed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the status of the door or cover as to whether it is open or closed.<br><br>Door/cover open = 0x41 Door/cover closed = 0x42<br><br>Name : Door/cover open/close status<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformDoorCoverOpenCloseStatus();
 		/**
-		 * Drying setting<br>Start/restart drying  0x41, Suspend drying  0x42, Stop drying  0x43<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+		 * Drying setting<br><br>Start/restart drying  0x41, Suspend drying  0x42, Stop drying  0x43<br><br>Name : Drying setting<br>EPC : 0xB2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformDryingSetting();
 		/**
-		 * Drying status<br>Drying in progress  0x41 Drying suspended  0x42 Drying completed/stopped  0x43<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
+		 * Drying status<br><br>Drying in progress  0x41 Drying suspended  0x42 Drying completed/stopped  0x43<br><br>Name : Drying status<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformDryingStatus();
 		/**
-		 * This property indicates the remaining drying time in the  gHH:MM:SS h .format.<br>0-0x17: 0-0x3B : 0-0x3B (=0-23):(=0-59):(=0-59)<br><br>Data type : unsigned char  ~3<br>Data size : 3 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the remaining drying time in the  gHH:MM:SS h .format.<br><br>0-0x17: 0-0x3B : 0-0x3B (=0-23):(=0-59):(=0-59)<br><br>Name : Remaining drying time<br>EPC : 0xE6<br>Data Type : unsigned char  ~3<br>Data Size(Byte) : 3 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformRemainingDryingTime();
 		/**
-		 * Reservation ON/OFF<br>Reservation ON  0x41 Reservation OFF  0x42<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+		 * Reservation ON/OFF<br><br>Reservation ON  0x41 Reservation OFF  0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformOnTimerReservationSetting();
 		/**
-		 * Timer value    HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char  ~ Q<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
+		 * Timer value    HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsigned char  ~ Q<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformOnTimerSetting();
 		/**
-		 * Timer value    HH:MM<br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Data type : unsigned char  ~ Q<br>Data size : 2 Byte<br>Set : optional<br>Get : optional
+		 * Timer value    HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Relative time-based ON timer setting<br>EPC : 0x92<br>Data Type : unsigned char  ~ Q<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformRelativeTimeBasedOnTimerSetting();
 	}
 
 	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();
@@ -1067,7 +798,11 @@ public abstract class ClothesDryer extends DeviceObject {
 	}
 	
 	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();

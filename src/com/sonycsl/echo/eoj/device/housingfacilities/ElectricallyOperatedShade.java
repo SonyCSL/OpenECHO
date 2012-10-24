@@ -20,8 +20,6 @@ import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 
 public abstract class ElectricallyOperatedShade extends DeviceObject {
-	@SuppressWarnings("unused")
-	private static final String TAG = ElectricallyOperatedShade.class.getSimpleName();
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x60;
@@ -42,75 +40,75 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	}
 
 	/**
-	 * Open/close<br>Open = 0x41, close = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+	 * Open/close<br><br>Open = 0x41, close = 0x42<br><br>Name : Open/close setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
 	 */
 	protected abstract boolean setOpenCloseSetting(byte[] edt);
 	private final boolean _setOpenCloseSetting(byte epc, byte[] edt) {
 		boolean success = setOpenCloseSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Open/close<br>Open = 0x41, close = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+	 * Open/close<br><br>Open = 0x41, close = 0x42<br><br>Name : Open/close setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
 	 */
 	protected abstract byte[] getOpenCloseSetting();
 	private final byte[] _getOpenCloseSetting(byte epc) {
 		byte[] edt = getOpenCloseSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br><br>0x31 to 0x38<br><br>Name : Degree-of-openi ng level<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setDegreeOfOpeniNgLevel(byte[] edt) {return false;}
 	private final boolean _setDegreeOfOpeniNgLevel(byte epc, byte[] edt) {
 		boolean success = setDegreeOfOpeniNgLevel(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br><br>0x31 to 0x38<br><br>Name : Degree-of-openi ng level<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getDegreeOfOpeniNgLevel() {return null;}
 	private final byte[] _getDegreeOfOpeniNgLevel(byte epc) {
 		byte[] edt = getDegreeOfOpeniNgLevel();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Shade angle value<br>0x00.0xB4 (0.180. )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Shade angle value<br><br>0x00.0xB4 (0.180. )<br><br>Name : Set value of shade angle<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setSetValueOfShadeAngle(byte[] edt) {return false;}
 	private final boolean _setSetValueOfShadeAngle(byte epc, byte[] edt) {
 		boolean success = setSetValueOfShadeAngle(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Shade angle value<br>0x00.0xB4 (0.180. )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Shade angle value<br><br>0x00.0xB4 (0.180. )<br><br>Name : Set value of shade angle<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getSetValueOfShadeAngle() {return null;}
 	private final byte[] _getSetValueOfShadeAngle(byte epc) {
 		byte[] edt = getSetValueOfShadeAngle();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Low/Medium/High<br>Low = 0x41, Medium = 0x42, High = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Low/Medium/High<br><br>Low = 0x41, Medium = 0x42, High = 0x43<br><br>Name : Shade open/close speed<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setShadeOpenCloseSpeed(byte[] edt) {return false;}
 	private final boolean _setShadeOpenCloseSpeed(byte epc, byte[] edt) {
 		boolean success = setShadeOpenCloseSpeed(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Low/Medium/High<br>Low = 0x41, Medium = 0x42, High = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Low/Medium/High<br><br>Low = 0x41, Medium = 0x42, High = 0x43<br><br>Name : Shade open/close speed<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getShadeOpenCloseSpeed() {return null;}
 	private final byte[] _getShadeOpenCloseSpeed(byte epc) {
 		byte[] edt = getShadeOpenCloseSpeed();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
@@ -162,17 +160,17 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	
 	@Override
 	public Setter set() {
-		return new SetterImpl(ESV_SET_NO_RES);
+		return new Setter(ESV_SETI);
 	}
 
 	@Override
 	public Setter setC() {
-		return new SetterImpl(ESV_SET_RES);
+		return new Setter(ESV_SETC);
 	}
 
 	@Override
 	public Getter get() {
-		return new GetterImpl();
+		return new Getter();
 	}
 
 	@Override
@@ -223,104 +221,80 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		}
 		
 		/**
-		 * Open/close<br>Open = 0x41, close = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+		 * Open/close<br><br>Open = 0x41, close = 0x42<br><br>Name : Open/close setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
 		 */
 		protected void onSetOpenCloseSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetOpenCloseSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetOpenCloseSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Open/close<br>Open = 0x41, close = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+		 * Open/close<br><br>Open = 0x41, close = 0x42<br><br>Name : Open/close setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
 		 */
 		protected void onGetOpenCloseSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetOpenCloseSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetOpenCloseSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br><br>0x31 to 0x38<br><br>Name : Degree-of-openi ng level<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetDegreeOfOpeniNgLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetDegreeOfOpeniNgLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetDegreeOfOpeniNgLevel(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br><br>0x31 to 0x38<br><br>Name : Degree-of-openi ng level<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetDegreeOfOpeniNgLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetDegreeOfOpeniNgLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetDegreeOfOpeniNgLevel(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Shade angle value<br>0x00.0xB4 (0.180. )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Shade angle value<br><br>0x00.0xB4 (0.180. )<br><br>Name : Set value of shade angle<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetSetValueOfShadeAngle(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetSetValueOfShadeAngle(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetSetValueOfShadeAngle(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Shade angle value<br>0x00.0xB4 (0.180. )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Shade angle value<br><br>0x00.0xB4 (0.180. )<br><br>Name : Set value of shade angle<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetSetValueOfShadeAngle(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetSetValueOfShadeAngle(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetSetValueOfShadeAngle(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Low/Medium/High<br>Low = 0x41, Medium = 0x42, High = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Low/Medium/High<br><br>Low = 0x41, Medium = 0x42, High = 0x43<br><br>Name : Shade open/close speed<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetShadeOpenCloseSpeed(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetShadeOpenCloseSpeed(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetShadeOpenCloseSpeed(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Low/Medium/High<br>Low = 0x41, Medium = 0x42, High = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Low/Medium/High<br><br>Low = 0x41, Medium = 0x42, High = 0x43<br><br>Name : Shade open/close speed<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetShadeOpenCloseSpeed(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetShadeOpenCloseSpeed(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetShadeOpenCloseSpeed(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 
 	}
 	
-	public interface Setter extends DeviceObject.Setter {
-		public Setter reqSetOperationStatus(byte[] edt);
-		public Setter reqSetInstallationLocation(byte[] edt);
-		public Setter reqSetCurrentLimitSetting(byte[] edt);
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
-		public Setter reqSetPositionInformation(byte[] edt);
-		public Setter reqSetCurrentTimeSetting(byte[] edt);
-		public Setter reqSetCurrentDateSetting(byte[] edt);
-		public Setter reqSetPowerLimitSetting(byte[] edt);
-		
-		/**
-		 * Open/close<br>Open = 0x41, close = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
-		 */
-		public Setter reqSetOpenCloseSetting(byte[] edt);
-		/**
-		 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetDegreeOfOpeniNgLevel(byte[] edt);
-		/**
-		 * Shade angle value<br>0x00.0xB4 (0.180. )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetSetValueOfShadeAngle(byte[] edt);
-		/**
-		 * Low/Medium/High<br>Low = 0x41, Medium = 0x42, High = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetShadeOpenCloseSpeed(byte[] edt);
-	}
-
-	public class SetterImpl extends DeviceObject.SetterImpl implements Setter {
-
-		public SetterImpl(byte esv) {
+	public class Setter extends DeviceObject.Setter {
+		public Setter(byte esv) {
 			super(esv);
+		}
+
+		@Override
+		public Setter reqSet(byte epc, byte[] edt) {
+			return (Setter)super.reqSet(epc, edt);
 		}
 		
 		@Override
@@ -356,381 +330,159 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
-		@Override
-		public Setter reqSetOpenCloseSetting(byte[] edt) {
-			byte epc = EPC_OPEN_CLOSE_SETTING;
-			addProperty(epc, edt, _setOpenCloseSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetDegreeOfOpeniNgLevel(byte[] edt) {
-			byte epc = EPC_DEGREE_OF_OPENI_NG_LEVEL;
-			addProperty(epc, edt, _setDegreeOfOpeniNgLevel(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetSetValueOfShadeAngle(byte[] edt) {
-			byte epc = EPC_SET_VALUE_OF_SHADE_ANGLE;
-			addProperty(epc, edt, _setSetValueOfShadeAngle(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetShadeOpenCloseSpeed(byte[] edt) {
-			byte epc = EPC_SHADE_OPEN_CLOSE_SPEED;
-			addProperty(epc, edt, _setShadeOpenCloseSpeed(epc, edt));
-			return this;
-		}
-	}
-	
-	public class SetterProxy extends DeviceObject.SetterProxy implements Setter {
-
-		public SetterProxy(byte esv) {
-			super(esv);
-		}
-
-		@Override
-		public Setter reqSetOperationStatus(byte[] edt) {
-			return (Setter)super.reqSetOperationStatus(edt);
-		}
-		@Override
-		public Setter reqSetInstallationLocation(byte[] edt) {
-			return (Setter)super.reqSetInstallationLocation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimitSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
-		}
-		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentTimeSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentTimeSetting(edt);
-		}
-		@Override
-		public Setter reqSetCurrentDateSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentDateSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitSetting(edt);
-		}
-
-		@Override
+		/**
+		 * Open/close<br><br>Open = 0x41, close = 0x42<br><br>Name : Open/close setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
+		 */
 		public Setter reqSetOpenCloseSetting(byte[] edt) {
 			addProperty(EPC_OPEN_CLOSE_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br><br>0x31 to 0x38<br><br>Name : Degree-of-openi ng level<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetDegreeOfOpeniNgLevel(byte[] edt) {
 			addProperty(EPC_DEGREE_OF_OPENI_NG_LEVEL, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Shade angle value<br><br>0x00.0xB4 (0.180. )<br><br>Name : Set value of shade angle<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetSetValueOfShadeAngle(byte[] edt) {
 			addProperty(EPC_SET_VALUE_OF_SHADE_ANGLE, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Low/Medium/High<br><br>Low = 0x41, Medium = 0x42, High = 0x43<br><br>Name : Shade open/close speed<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetShadeOpenCloseSpeed(byte[] edt) {
 			addProperty(EPC_SHADE_OPEN_CLOSE_SPEED, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}
 
-	public interface Getter extends DeviceObject.Getter {
-		public Getter reqGetOperationStatus();
-		public Getter reqGetInstallationLocation();
-		public Getter reqGetStandardVersionInformation();
-		public Getter reqGetIdentificationNumber();
-		public Getter reqGetMeasuredInstantaneousPowerConsumption();
-		public Getter reqGetMeasuredCumulativePowerConsumption();
-		public Getter reqGetManufacturersFaultCode();
-		public Getter reqGetCurrentLimitSetting();
-		public Getter reqGetFaultStatus();
-		public Getter reqGetFaultDescription();
-		public Getter reqGetManufacturerCode();
-		public Getter reqGetBusinessFacilityCode();
-		public Getter reqGetProductCode();
-		public Getter reqGetProductionNumber();
-		public Getter reqGetProductionDate();
-		public Getter reqGetPowerSavingOperationSetting();
-		public Getter reqGetPositionInformation();
-		public Getter reqGetCurrentTimeSetting();
-		public Getter reqGetCurrentDateSetting();
-		public Getter reqGetPowerLimitSetting();
-		public Getter reqGetCumulativeOperatingTime();
-		public Getter reqGetStatusChangeAnnouncementPropertyMap();
-		public Getter reqGetSetPropertyMap();
-		public Getter reqGetGetPropertyMap();
+	public class Getter extends DeviceObject.Getter {
+
+		@Override
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
+		}
+		@Override
+		public Getter reqGetInstallationLocation() {
+			return (Getter)super.reqGetInstallationLocation();
+		}
+		@Override
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
+		}
+		@Override
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
+		}
+		@Override
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
+		}
+		@Override
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
+		}
+		@Override
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
+		}
+		@Override
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
+		}
+		@Override
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
+		}
+		@Override
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
+		}
+		@Override
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
+		}
+		@Override
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
+		}
+		@Override
+		public Getter reqGetProductCode() {
+			return (Getter)super.reqGetProductCode();
+		}
+		@Override
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
+		}
+		@Override
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
+		}
+		@Override
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
+		}
+		@Override
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
+		}
+		@Override
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
+		}
+		@Override
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
+		}
+		@Override
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
+		}
+		@Override
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
+		}
+		@Override
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
+		}
+		@Override
+		public Getter reqGetSetPropertyMap() {
+			return (Getter)super.reqGetSetPropertyMap();
+		}
+		@Override
+		public Getter reqGetGetPropertyMap() {
+			return (Getter)super.reqGetGetPropertyMap();
+		}
 		
 		/**
-		 * Open/close<br>Open = 0x41, close = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+		 * Open/close<br><br>Open = 0x41, close = 0x42<br><br>Name : Open/close setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
 		 */
-		public Getter reqGetOpenCloseSetting();
-		/**
-		 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetDegreeOfOpeniNgLevel();
-		/**
-		 * Shade angle value<br>0x00.0xB4 (0.180. )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetSetValueOfShadeAngle();
-		/**
-		 * Low/Medium/High<br>Low = 0x41, Medium = 0x42, High = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetShadeOpenCloseSpeed();
-	}
-	
-	public class GetterImpl extends DeviceObject.GetterImpl implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
-		public Getter reqGetOpenCloseSetting() {
-			byte epc = EPC_OPEN_CLOSE_SETTING;
-			byte[] edt = _getOpenCloseSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetDegreeOfOpeniNgLevel() {
-			byte epc = EPC_DEGREE_OF_OPENI_NG_LEVEL;
-			byte[] edt = _getDegreeOfOpeniNgLevel(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetSetValueOfShadeAngle() {
-			byte epc = EPC_SET_VALUE_OF_SHADE_ANGLE;
-			byte[] edt = _getSetValueOfShadeAngle(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetShadeOpenCloseSpeed() {
-			byte epc = EPC_SHADE_OPEN_CLOSE_SPEED;
-			byte[] edt = _getShadeOpenCloseSpeed(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-	}
-
-	public class GetterProxy extends DeviceObject.GetterProxy implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
 		public Getter reqGetOpenCloseSetting() {
 			addProperty(EPC_OPEN_CLOSE_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br><br>0x31 to 0x38<br><br>Name : Degree-of-openi ng level<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetDegreeOfOpeniNgLevel() {
 			addProperty(EPC_DEGREE_OF_OPENI_NG_LEVEL);
 			return this;
 		}
-		@Override
+		/**
+		 * Shade angle value<br><br>0x00.0xB4 (0.180. )<br><br>Name : Set value of shade angle<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetSetValueOfShadeAngle() {
 			addProperty(EPC_SET_VALUE_OF_SHADE_ANGLE);
 			return this;
 		}
-		@Override
+		/**
+		 * Low/Medium/High<br><br>Low = 0x41, Medium = 0x42, High = 0x43<br><br>Name : Shade open/close speed<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetShadeOpenCloseSpeed() {
 			addProperty(EPC_SHADE_OPEN_CLOSE_SPEED);
 			return this;
@@ -738,6 +490,8 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	}
 	
 	public interface Informer extends DeviceObject.Informer {
+		public Informer reqInform(byte epc);
+		
 		public Informer reqInformOperationStatus();
 		public Informer reqInformInstallationLocation();
 		public Informer reqInformStandardVersionInformation();
@@ -764,25 +518,29 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		public Informer reqInformGetPropertyMap();
 		
 		/**
-		 * Open/close<br>Open = 0x41, close = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+		 * Open/close<br><br>Open = 0x41, close = 0x42<br><br>Name : Open/close setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
 		 */
 		public Informer reqInformOpenCloseSetting();
 		/**
-		 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br><br>0x31 to 0x38<br><br>Name : Degree-of-openi ng level<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformDegreeOfOpeniNgLevel();
 		/**
-		 * Shade angle value<br>0x00.0xB4 (0.180. )<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Shade angle value<br><br>0x00.0xB4 (0.180. )<br><br>Name : Set value of shade angle<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformSetValueOfShadeAngle();
 		/**
-		 * Low/Medium/High<br>Low = 0x41, Medium = 0x42, High = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Low/Medium/High<br><br>Low = 0x41, Medium = 0x42, High = 0x43<br><br>Name : Shade open/close speed<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformShadeOpenCloseSpeed();
 	}
 
 	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();
@@ -911,7 +669,11 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	}
 	
 	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();

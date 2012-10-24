@@ -20,8 +20,6 @@ import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 
 public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends DeviceObject {
-	@SuppressWarnings("unused")
-	private static final String TAG = PackageTypeCommercialAirConditionerOutdoorUnit.class.getSimpleName();
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x01;
 	public static final byte CLASS_CODE = (byte)0x46;
@@ -48,102 +46,102 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	}
 
 	/**
-	 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
+	 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br><br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Name : Operation mode setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
 	 */
 	protected boolean setOperationModeSetting(byte[] edt) {return false;}
 	private final boolean _setOperationModeSetting(byte epc, byte[] edt) {
 		boolean success = setOperationModeSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
+	 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br><br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Name : Operation mode setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
 	 */
 	protected byte[] getOperationModeSetting() {return null;}
 	private final byte[] _getOperationModeSetting(byte epc) {
 		byte[] edt = getOperationModeSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to acquire the rated power consumption for the cooling, heating and dehumidification modes.<br>0x0000 to 0xFFFD (0 to 65533W) Cooling: heating: dehumidification<br><br>Data type : unsigned short x 3<br>Data size : 6 bytes<br>Set : undefined<br>Get : optional
+	 * Used to acquire the rated power consumption for the cooling, heating and dehumidification modes.<br><br>0x0000 to 0xFFFD (0 to 65533W) Cooling: heating: dehumidification<br><br>Name : Rated power consumption of outdoor unit<br>EPC : 0xB8<br>Data Type : unsigned short x 3<br>Data Size(Byte) : 6 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getRatedPowerConsumptionOfOutdoorUnit() {return null;}
 	private final byte[] _getRatedPowerConsumptionOfOutdoorUnit(byte epc) {
 		byte[] edt = getRatedPowerConsumptionOfOutdoorUnit();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to acquire the measured electric current consumption.<br>0x0000 to 0xFFFD (0 to 6553.3A)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+	 * Used to acquire the measured electric current consumption.<br><br>0x0000 to 0xFFFD (0 to 6553.3A)<br><br>Name : Measured electric current consumption of outdoor unit<br>EPC : 0xB9<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getMeasuredElectricCurrentConsumptionOfOutdoorUnit() {return null;}
 	private final byte[] _getMeasuredElectricCurrentConsumptionOfOutdoorUnit(byte epc) {
 		byte[] edt = getMeasuredElectricCurrentConsumptionOfOutdoorUnit();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to acquire the measured temperature of the outdoor air.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+	 * Used to acquire the measured temperature of the outdoor air.<br><br>0x81 to 0x7D (-127 to 125��C)<br><br>Name : Measured outdoor air temperature 1<br>EPC : 0xBE<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getMeasuredOutdoorAirTemperature1() {return null;}
 	private final byte[] _getMeasuredOutdoorAirTemperature1(byte epc) {
 		byte[] edt = getMeasuredOutdoorAirTemperature1();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates when the air conditioner is in the �gspecial�h state (i.e. �gdefrosting�h state).<br>�gNormal operation�h state = 0x40, �gdefrosting�h state = 0x41<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+	 * This property indicates when the air conditioner is in the �gspecial�h state (i.e. �gdefrosting�h state).<br><br>�gNormal operation�h state = 0x40, �gdefrosting�h state = 0x41<br><br>Name : �gSpecial�h state<br>EPC : 0xAA<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getGspecialHState() {return null;}
 	private final byte[] _getGspecialHState(byte epc) {
 		byte[] edt = getGspecialHState();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to acquire the operation status (i.e. ON or OFF) of the compressor.<br>Compressor ON: 0x41 Compressor OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+	 * Used to acquire the operation status (i.e. ON or OFF) of the compressor.<br><br>Compressor ON: 0x41 Compressor OFF: 0x42<br><br>Name : Operation status of compressor<br>EPC : 0xD0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getOperationStatusOfCompressor() {return null;}
 	private final byte[] _getOperationStatusOfCompressor(byte epc) {
 		byte[] edt = getOperationStatusOfCompressor();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to acquire the current operation mode (i.e. �gcooling,�h �gheating,�h �gdehumidification�h or �gother�h).<br>Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
+	 * Used to acquire the current operation mode (i.e. �gcooling,�h �gheating,�h �gdehumidification�h or �gother�h).<br><br>Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Other: 0x40<br><br>Name : Operation mode information<br>EPC : 0xD1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
 	 */
 	protected abstract byte[] getOperationModeInformation();
 	private final byte[] _getOperationModeInformation(byte epc) {
 		byte[] edt = getOperationModeInformation();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to acquire the rotation speed of the fan of the outdoor unit (expressed in %).<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+	 * Used to acquire the rotation speed of the fan of the outdoor unit (expressed in %).<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : Fan rotation speed<br>EPC : 0xD2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getFanRotationSpeed() {return null;}
 	private final byte[] _getFanRotationSpeed(byte epc) {
 		byte[] edt = getFanRotationSpeed();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to acquire the measured power consumption of the outdoor unit.<br>0x0000 to 0xFFFD (0 to 65533W)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+	 * Used to acquire the measured power consumption of the outdoor unit.<br><br>0x0000 to 0xFFFD (0 to 65533W)<br><br>Name : Measured power consumption of outdoor unit<br>EPC : 0xDB<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getMeasuredPowerConsumptionOfOutdoorUnit() {return null;}
 	private final byte[] _getMeasuredPowerConsumptionOfOutdoorUnit(byte epc) {
 		byte[] edt = getMeasuredPowerConsumptionOfOutdoorUnit();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to acquire the measured temperature of the outdoor air.<br>0xF554 to 0x7FFD (-273,2 to 3276.5��C)<br><br>Data type : signed short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+	 * Used to acquire the measured temperature of the outdoor air.<br><br>0xF554 to 0x7FFD (-273,2 to 3276.5��C)<br><br>Name : Measured outdoor air temperature 2<br>EPC : 0xEE<br>Data Type : signed short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getMeasuredOutdoorAirTemperature2() {return null;}
 	private final byte[] _getMeasuredOutdoorAirTemperature2(byte epc) {
 		byte[] edt = getMeasuredOutdoorAirTemperature2();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
@@ -210,17 +208,17 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	
 	@Override
 	public Setter set() {
-		return new SetterImpl(ESV_SET_NO_RES);
+		return new Setter(ESV_SETI);
 	}
 
 	@Override
 	public Setter setC() {
-		return new SetterImpl(ESV_SET_RES);
+		return new Setter(ESV_SETC);
 	}
 
 	@Override
 	public Getter get() {
-		return new GetterImpl();
+		return new Getter();
 	}
 
 	@Override
@@ -280,589 +278,313 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		}
 		
 		/**
-		 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
+		 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br><br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Name : Operation mode setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
 		 */
 		protected void onSetOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetOperationModeSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
+		 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br><br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Name : Operation mode setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
 		 */
 		protected void onGetOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetOperationModeSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to acquire the rated power consumption for the cooling, heating and dehumidification modes.<br>0x0000 to 0xFFFD (0 to 65533W) Cooling: heating: dehumidification<br><br>Data type : unsigned short x 3<br>Data size : 6 bytes<br>Set : undefined<br>Get : optional
+		 * Used to acquire the rated power consumption for the cooling, heating and dehumidification modes.<br><br>0x0000 to 0xFFFD (0 to 65533W) Cooling: heating: dehumidification<br><br>Name : Rated power consumption of outdoor unit<br>EPC : 0xB8<br>Data Type : unsigned short x 3<br>Data Size(Byte) : 6 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetRatedPowerConsumptionOfOutdoorUnit(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetRatedPowerConsumptionOfOutdoorUnit(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetRatedPowerConsumptionOfOutdoorUnit(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to acquire the measured electric current consumption.<br>0x0000 to 0xFFFD (0 to 6553.3A)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+		 * Used to acquire the measured electric current consumption.<br><br>0x0000 to 0xFFFD (0 to 6553.3A)<br><br>Name : Measured electric current consumption of outdoor unit<br>EPC : 0xB9<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetMeasuredElectricCurrentConsumptionOfOutdoorUnit(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetMeasuredElectricCurrentConsumptionOfOutdoorUnit(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetMeasuredElectricCurrentConsumptionOfOutdoorUnit(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to acquire the measured temperature of the outdoor air.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * Used to acquire the measured temperature of the outdoor air.<br><br>0x81 to 0x7D (-127 to 125��C)<br><br>Name : Measured outdoor air temperature 1<br>EPC : 0xBE<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetMeasuredOutdoorAirTemperature1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetMeasuredOutdoorAirTemperature1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetMeasuredOutdoorAirTemperature1(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates when the air conditioner is in the �gspecial�h state (i.e. �gdefrosting�h state).<br>�gNormal operation�h state = 0x40, �gdefrosting�h state = 0x41<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * This property indicates when the air conditioner is in the �gspecial�h state (i.e. �gdefrosting�h state).<br><br>�gNormal operation�h state = 0x40, �gdefrosting�h state = 0x41<br><br>Name : �gSpecial�h state<br>EPC : 0xAA<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetGspecialHState(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetGspecialHState(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetGspecialHState(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to acquire the operation status (i.e. ON or OFF) of the compressor.<br>Compressor ON: 0x41 Compressor OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * Used to acquire the operation status (i.e. ON or OFF) of the compressor.<br><br>Compressor ON: 0x41 Compressor OFF: 0x42<br><br>Name : Operation status of compressor<br>EPC : 0xD0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetOperationStatusOfCompressor(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetOperationStatusOfCompressor(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetOperationStatusOfCompressor(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to acquire the current operation mode (i.e. �gcooling,�h �gheating,�h �gdehumidification�h or �gother�h).<br>Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
+		 * Used to acquire the current operation mode (i.e. �gcooling,�h �gheating,�h �gdehumidification�h or �gother�h).<br><br>Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Other: 0x40<br><br>Name : Operation mode information<br>EPC : 0xD1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
 		 */
 		protected void onGetOperationModeInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetOperationModeInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetOperationModeInformation(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to acquire the rotation speed of the fan of the outdoor unit (expressed in %).<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * Used to acquire the rotation speed of the fan of the outdoor unit (expressed in %).<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : Fan rotation speed<br>EPC : 0xD2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetFanRotationSpeed(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetFanRotationSpeed(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetFanRotationSpeed(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to acquire the measured power consumption of the outdoor unit.<br>0x0000 to 0xFFFD (0 to 65533W)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+		 * Used to acquire the measured power consumption of the outdoor unit.<br><br>0x0000 to 0xFFFD (0 to 65533W)<br><br>Name : Measured power consumption of outdoor unit<br>EPC : 0xDB<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetMeasuredPowerConsumptionOfOutdoorUnit(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetMeasuredPowerConsumptionOfOutdoorUnit(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetMeasuredPowerConsumptionOfOutdoorUnit(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to acquire the measured temperature of the outdoor air.<br>0xF554 to 0x7FFD (-273,2 to 3276.5��C)<br><br>Data type : signed short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+		 * Used to acquire the measured temperature of the outdoor air.<br><br>0xF554 to 0x7FFD (-273,2 to 3276.5��C)<br><br>Name : Measured outdoor air temperature 2<br>EPC : 0xEE<br>Data Type : signed short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetMeasuredOutdoorAirTemperature2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetMeasuredOutdoorAirTemperature2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetMeasuredOutdoorAirTemperature2(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 
 	}
 	
-	public interface Setter extends DeviceObject.Setter {
-		public Setter reqSetOperationStatus(byte[] edt);
-		public Setter reqSetInstallationLocation(byte[] edt);
-		public Setter reqSetCurrentLimitSetting(byte[] edt);
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
-		public Setter reqSetPositionInformation(byte[] edt);
-		public Setter reqSetCurrentTimeSetting(byte[] edt);
-		public Setter reqSetCurrentDateSetting(byte[] edt);
-		public Setter reqSetPowerLimitSetting(byte[] edt);
+	public class Setter extends DeviceObject.Setter {
+		public Setter(byte esv) {
+			super(esv);
+		}
+
+		@Override
+		public Setter reqSet(byte epc, byte[] edt) {
+			return (Setter)super.reqSet(epc, edt);
+		}
 		
+		@Override
+		public Setter reqSetOperationStatus(byte[] edt) {
+			return (Setter)super.reqSetOperationStatus(edt);
+		}
+		@Override
+		public Setter reqSetInstallationLocation(byte[] edt) {
+			return (Setter)super.reqSetInstallationLocation(edt);
+		}
+		@Override
+		public Setter reqSetCurrentLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentLimitSetting(edt);
+		}
+		@Override
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
+		}
+		@Override
+		public Setter reqSetPositionInformation(byte[] edt) {
+			return (Setter)super.reqSetPositionInformation(edt);
+		}
+		@Override
+		public Setter reqSetCurrentTimeSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentTimeSetting(edt);
+		}
+		@Override
+		public Setter reqSetCurrentDateSetting(byte[] edt) {
+			return (Setter)super.reqSetCurrentDateSetting(edt);
+		}
+		@Override
+		public Setter reqSetPowerLimitSetting(byte[] edt) {
+			return (Setter)super.reqSetPowerLimitSetting(edt);
+		}
+
 		/**
-		 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
+		 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br><br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Name : Operation mode setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
 		 */
-		public Setter reqSetOperationModeSetting(byte[] edt);
-	}
-
-	public class SetterImpl extends DeviceObject.SetterImpl implements Setter {
-
-		public SetterImpl(byte esv) {
-			super(esv);
-		}
-		
-		@Override
-		public Setter reqSetOperationStatus(byte[] edt) {
-			return (Setter)super.reqSetOperationStatus(edt);
-		}
-		@Override
-		public Setter reqSetInstallationLocation(byte[] edt) {
-			return (Setter)super.reqSetInstallationLocation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimitSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
-		}
-		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentTimeSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentTimeSetting(edt);
-		}
-		@Override
-		public Setter reqSetCurrentDateSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentDateSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitSetting(edt);
-		}
-
-		@Override
-		public Setter reqSetOperationModeSetting(byte[] edt) {
-			byte epc = EPC_OPERATION_MODE_SETTING;
-			addProperty(epc, edt, _setOperationModeSetting(epc, edt));
-			return this;
-		}
-	}
-	
-	public class SetterProxy extends DeviceObject.SetterProxy implements Setter {
-
-		public SetterProxy(byte esv) {
-			super(esv);
-		}
-
-		@Override
-		public Setter reqSetOperationStatus(byte[] edt) {
-			return (Setter)super.reqSetOperationStatus(edt);
-		}
-		@Override
-		public Setter reqSetInstallationLocation(byte[] edt) {
-			return (Setter)super.reqSetInstallationLocation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimitSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
-		}
-		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentTimeSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentTimeSetting(edt);
-		}
-		@Override
-		public Setter reqSetCurrentDateSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentDateSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitSetting(edt);
-		}
-
-		@Override
 		public Setter reqSetOperationModeSetting(byte[] edt) {
 			addProperty(EPC_OPERATION_MODE_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}
 
-	public interface Getter extends DeviceObject.Getter {
-		public Getter reqGetOperationStatus();
-		public Getter reqGetInstallationLocation();
-		public Getter reqGetStandardVersionInformation();
-		public Getter reqGetIdentificationNumber();
-		public Getter reqGetMeasuredInstantaneousPowerConsumption();
-		public Getter reqGetMeasuredCumulativePowerConsumption();
-		public Getter reqGetManufacturersFaultCode();
-		public Getter reqGetCurrentLimitSetting();
-		public Getter reqGetFaultStatus();
-		public Getter reqGetFaultDescription();
-		public Getter reqGetManufacturerCode();
-		public Getter reqGetBusinessFacilityCode();
-		public Getter reqGetProductCode();
-		public Getter reqGetProductionNumber();
-		public Getter reqGetProductionDate();
-		public Getter reqGetPowerSavingOperationSetting();
-		public Getter reqGetPositionInformation();
-		public Getter reqGetCurrentTimeSetting();
-		public Getter reqGetCurrentDateSetting();
-		public Getter reqGetPowerLimitSetting();
-		public Getter reqGetCumulativeOperatingTime();
-		public Getter reqGetStatusChangeAnnouncementPropertyMap();
-		public Getter reqGetSetPropertyMap();
-		public Getter reqGetGetPropertyMap();
+	public class Getter extends DeviceObject.Getter {
+
+		@Override
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
+		}
+		@Override
+		public Getter reqGetInstallationLocation() {
+			return (Getter)super.reqGetInstallationLocation();
+		}
+		@Override
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
+		}
+		@Override
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
+		}
+		@Override
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
+		}
+		@Override
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
+		}
+		@Override
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
+		}
+		@Override
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
+		}
+		@Override
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
+		}
+		@Override
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
+		}
+		@Override
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
+		}
+		@Override
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
+		}
+		@Override
+		public Getter reqGetProductCode() {
+			return (Getter)super.reqGetProductCode();
+		}
+		@Override
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
+		}
+		@Override
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
+		}
+		@Override
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
+		}
+		@Override
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
+		}
+		@Override
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
+		}
+		@Override
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
+		}
+		@Override
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
+		}
+		@Override
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
+		}
+		@Override
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
+		}
+		@Override
+		public Getter reqGetSetPropertyMap() {
+			return (Getter)super.reqGetSetPropertyMap();
+		}
+		@Override
+		public Getter reqGetGetPropertyMap() {
+			return (Getter)super.reqGetGetPropertyMap();
+		}
 		
 		/**
-		 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
+		 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br><br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Name : Operation mode setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
 		 */
-		public Getter reqGetOperationModeSetting();
-		/**
-		 * Used to acquire the rated power consumption for the cooling, heating and dehumidification modes.<br>0x0000 to 0xFFFD (0 to 65533W) Cooling: heating: dehumidification<br><br>Data type : unsigned short x 3<br>Data size : 6 bytes<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetRatedPowerConsumptionOfOutdoorUnit();
-		/**
-		 * Used to acquire the measured electric current consumption.<br>0x0000 to 0xFFFD (0 to 6553.3A)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetMeasuredElectricCurrentConsumptionOfOutdoorUnit();
-		/**
-		 * Used to acquire the measured temperature of the outdoor air.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetMeasuredOutdoorAirTemperature1();
-		/**
-		 * This property indicates when the air conditioner is in the �gspecial�h state (i.e. �gdefrosting�h state).<br>�gNormal operation�h state = 0x40, �gdefrosting�h state = 0x41<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetGspecialHState();
-		/**
-		 * Used to acquire the operation status (i.e. ON or OFF) of the compressor.<br>Compressor ON: 0x41 Compressor OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetOperationStatusOfCompressor();
-		/**
-		 * Used to acquire the current operation mode (i.e. �gcooling,�h �gheating,�h �gdehumidification�h or �gother�h).<br>Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
-		 */
-		public Getter reqGetOperationModeInformation();
-		/**
-		 * Used to acquire the rotation speed of the fan of the outdoor unit (expressed in %).<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetFanRotationSpeed();
-		/**
-		 * Used to acquire the measured power consumption of the outdoor unit.<br>0x0000 to 0xFFFD (0 to 65533W)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetMeasuredPowerConsumptionOfOutdoorUnit();
-		/**
-		 * Used to acquire the measured temperature of the outdoor air.<br>0xF554 to 0x7FFD (-273,2 to 3276.5��C)<br><br>Data type : signed short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetMeasuredOutdoorAirTemperature2();
-	}
-	
-	public class GetterImpl extends DeviceObject.GetterImpl implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
-		public Getter reqGetOperationModeSetting() {
-			byte epc = EPC_OPERATION_MODE_SETTING;
-			byte[] edt = _getOperationModeSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetRatedPowerConsumptionOfOutdoorUnit() {
-			byte epc = EPC_RATED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT;
-			byte[] edt = _getRatedPowerConsumptionOfOutdoorUnit(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 6)));
-			return this;
-		}
-		@Override
-		public Getter reqGetMeasuredElectricCurrentConsumptionOfOutdoorUnit() {
-			byte epc = EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_OUTDOOR_UNIT;
-			byte[] edt = _getMeasuredElectricCurrentConsumptionOfOutdoorUnit(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetMeasuredOutdoorAirTemperature1() {
-			byte epc = EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE1;
-			byte[] edt = _getMeasuredOutdoorAirTemperature1(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetGspecialHState() {
-			byte epc = EPC_GSPECIAL_H_STATE;
-			byte[] edt = _getGspecialHState(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetOperationStatusOfCompressor() {
-			byte epc = EPC_OPERATION_STATUS_OF_COMPRESSOR;
-			byte[] edt = _getOperationStatusOfCompressor(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetOperationModeInformation() {
-			byte epc = EPC_OPERATION_MODE_INFORMATION;
-			byte[] edt = _getOperationModeInformation(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetFanRotationSpeed() {
-			byte epc = EPC_FAN_ROTATION_SPEED;
-			byte[] edt = _getFanRotationSpeed(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetMeasuredPowerConsumptionOfOutdoorUnit() {
-			byte epc = EPC_MEASURED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT;
-			byte[] edt = _getMeasuredPowerConsumptionOfOutdoorUnit(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetMeasuredOutdoorAirTemperature2() {
-			byte epc = EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE2;
-			byte[] edt = _getMeasuredOutdoorAirTemperature2(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-	}
-
-	public class GetterProxy extends DeviceObject.GetterProxy implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
 		public Getter reqGetOperationModeSetting() {
 			addProperty(EPC_OPERATION_MODE_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to acquire the rated power consumption for the cooling, heating and dehumidification modes.<br><br>0x0000 to 0xFFFD (0 to 65533W) Cooling: heating: dehumidification<br><br>Name : Rated power consumption of outdoor unit<br>EPC : 0xB8<br>Data Type : unsigned short x 3<br>Data Size(Byte) : 6 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetRatedPowerConsumptionOfOutdoorUnit() {
 			addProperty(EPC_RATED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to acquire the measured electric current consumption.<br><br>0x0000 to 0xFFFD (0 to 6553.3A)<br><br>Name : Measured electric current consumption of outdoor unit<br>EPC : 0xB9<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetMeasuredElectricCurrentConsumptionOfOutdoorUnit() {
 			addProperty(EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_OUTDOOR_UNIT);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to acquire the measured temperature of the outdoor air.<br><br>0x81 to 0x7D (-127 to 125��C)<br><br>Name : Measured outdoor air temperature 1<br>EPC : 0xBE<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetMeasuredOutdoorAirTemperature1() {
 			addProperty(EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE1);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates when the air conditioner is in the �gspecial�h state (i.e. �gdefrosting�h state).<br><br>�gNormal operation�h state = 0x40, �gdefrosting�h state = 0x41<br><br>Name : �gSpecial�h state<br>EPC : 0xAA<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetGspecialHState() {
 			addProperty(EPC_GSPECIAL_H_STATE);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to acquire the operation status (i.e. ON or OFF) of the compressor.<br><br>Compressor ON: 0x41 Compressor OFF: 0x42<br><br>Name : Operation status of compressor<br>EPC : 0xD0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetOperationStatusOfCompressor() {
 			addProperty(EPC_OPERATION_STATUS_OF_COMPRESSOR);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to acquire the current operation mode (i.e. �gcooling,�h �gheating,�h �gdehumidification�h or �gother�h).<br><br>Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Other: 0x40<br><br>Name : Operation mode information<br>EPC : 0xD1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
+		 */
 		public Getter reqGetOperationModeInformation() {
 			addProperty(EPC_OPERATION_MODE_INFORMATION);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to acquire the rotation speed of the fan of the outdoor unit (expressed in %).<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : Fan rotation speed<br>EPC : 0xD2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetFanRotationSpeed() {
 			addProperty(EPC_FAN_ROTATION_SPEED);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to acquire the measured power consumption of the outdoor unit.<br><br>0x0000 to 0xFFFD (0 to 65533W)<br><br>Name : Measured power consumption of outdoor unit<br>EPC : 0xDB<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetMeasuredPowerConsumptionOfOutdoorUnit() {
 			addProperty(EPC_MEASURED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to acquire the measured temperature of the outdoor air.<br><br>0xF554 to 0x7FFD (-273,2 to 3276.5��C)<br><br>Name : Measured outdoor air temperature 2<br>EPC : 0xEE<br>Data Type : signed short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetMeasuredOutdoorAirTemperature2() {
 			addProperty(EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE2);
 			return this;
@@ -870,6 +592,8 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	}
 	
 	public interface Informer extends DeviceObject.Informer {
+		public Informer reqInform(byte epc);
+		
 		public Informer reqInformOperationStatus();
 		public Informer reqInformInstallationLocation();
 		public Informer reqInformStandardVersionInformation();
@@ -896,49 +620,53 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		public Informer reqInformGetPropertyMap();
 		
 		/**
-		 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
+		 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br><br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Name : Operation mode setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
 		 */
 		public Informer reqInformOperationModeSetting();
 		/**
-		 * Used to acquire the rated power consumption for the cooling, heating and dehumidification modes.<br>0x0000 to 0xFFFD (0 to 65533W) Cooling: heating: dehumidification<br><br>Data type : unsigned short x 3<br>Data size : 6 bytes<br>Set : undefined<br>Get : optional
+		 * Used to acquire the rated power consumption for the cooling, heating and dehumidification modes.<br><br>0x0000 to 0xFFFD (0 to 65533W) Cooling: heating: dehumidification<br><br>Name : Rated power consumption of outdoor unit<br>EPC : 0xB8<br>Data Type : unsigned short x 3<br>Data Size(Byte) : 6 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformRatedPowerConsumptionOfOutdoorUnit();
 		/**
-		 * Used to acquire the measured electric current consumption.<br>0x0000 to 0xFFFD (0 to 6553.3A)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+		 * Used to acquire the measured electric current consumption.<br><br>0x0000 to 0xFFFD (0 to 6553.3A)<br><br>Name : Measured electric current consumption of outdoor unit<br>EPC : 0xB9<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformMeasuredElectricCurrentConsumptionOfOutdoorUnit();
 		/**
-		 * Used to acquire the measured temperature of the outdoor air.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * Used to acquire the measured temperature of the outdoor air.<br><br>0x81 to 0x7D (-127 to 125��C)<br><br>Name : Measured outdoor air temperature 1<br>EPC : 0xBE<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformMeasuredOutdoorAirTemperature1();
 		/**
-		 * This property indicates when the air conditioner is in the �gspecial�h state (i.e. �gdefrosting�h state).<br>�gNormal operation�h state = 0x40, �gdefrosting�h state = 0x41<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * This property indicates when the air conditioner is in the �gspecial�h state (i.e. �gdefrosting�h state).<br><br>�gNormal operation�h state = 0x40, �gdefrosting�h state = 0x41<br><br>Name : �gSpecial�h state<br>EPC : 0xAA<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformGspecialHState();
 		/**
-		 * Used to acquire the operation status (i.e. ON or OFF) of the compressor.<br>Compressor ON: 0x41 Compressor OFF: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * Used to acquire the operation status (i.e. ON or OFF) of the compressor.<br><br>Compressor ON: 0x41 Compressor OFF: 0x42<br><br>Name : Operation status of compressor<br>EPC : 0xD0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformOperationStatusOfCompressor();
 		/**
-		 * Used to acquire the current operation mode (i.e. �gcooling,�h �gheating,�h �gdehumidification�h or �gother�h).<br>Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
+		 * Used to acquire the current operation mode (i.e. �gcooling,�h �gheating,�h �gdehumidification�h or �gother�h).<br><br>Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Other: 0x40<br><br>Name : Operation mode information<br>EPC : 0xD1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
 		 */
 		public Informer reqInformOperationModeInformation();
 		/**
-		 * Used to acquire the rotation speed of the fan of the outdoor unit (expressed in %).<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * Used to acquire the rotation speed of the fan of the outdoor unit (expressed in %).<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : Fan rotation speed<br>EPC : 0xD2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformFanRotationSpeed();
 		/**
-		 * Used to acquire the measured power consumption of the outdoor unit.<br>0x0000 to 0xFFFD (0 to 65533W)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+		 * Used to acquire the measured power consumption of the outdoor unit.<br><br>0x0000 to 0xFFFD (0 to 65533W)<br><br>Name : Measured power consumption of outdoor unit<br>EPC : 0xDB<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformMeasuredPowerConsumptionOfOutdoorUnit();
 		/**
-		 * Used to acquire the measured temperature of the outdoor air.<br>0xF554 to 0x7FFD (-273,2 to 3276.5��C)<br><br>Data type : signed short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+		 * Used to acquire the measured temperature of the outdoor air.<br><br>0xF554 to 0x7FFD (-273,2 to 3276.5��C)<br><br>Name : Measured outdoor air temperature 2<br>EPC : 0xEE<br>Data Type : signed short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformMeasuredOutdoorAirTemperature2();
 	}
 
 	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();
@@ -1109,7 +837,11 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	}
 	
 	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();

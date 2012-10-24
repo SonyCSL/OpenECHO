@@ -33,6 +33,11 @@ public class WaterLeakSensorProxy extends WaterLeakSensor {
 	}
 	
 	@Override
+	public boolean isProxy() {
+		return true;
+	}
+	
+	@Override
 	protected byte[] getOperationStatus() {return null;}
 	@Override
 	protected boolean setInstallationLocation(byte[] arg) {return false;}
@@ -55,23 +60,10 @@ public class WaterLeakSensorProxy extends WaterLeakSensor {
 	protected byte[] getWaterLeakDetectionStatus() {return null;}
 
 	@Override
-	public Setter set() {
-		return new SetterProxy(ESV_SETI);
-	}
-
-	@Override
-	public Setter setC() {
-		return new SetterProxy(ESV_SETC);
-	}
-
-	@Override
-	public Getter get() {
-		return new GetterProxy();
-	}
-
-	@Override
 	public Informer inform() {
 		return new InformerProxy();
 	}
 	
+	public static class Receiver extends WaterLeakSensor.Receiver {
+	}
 }

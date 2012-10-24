@@ -17,33 +17,36 @@ package com.sonycsl.echo.eoj.device;
 
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.eoj.EchoObject;
+import com.sonycsl.echo.eoj.EchoObject.Getter;
+import com.sonycsl.echo.eoj.EchoObject.Setter;
+import com.sonycsl.echo.eoj.profile.ProfileObject.Informer;
 
 public abstract class DeviceObject extends EchoObject {
 
-	protected static final byte EPC_OPERATION_STATUS = (byte)0x80;
-	protected static final byte EPC_INSTALLATION_LOCATION = (byte)0x81;
-	protected static final byte EPC_STANDARD_VERSION_INFORMATION = (byte)0x82;
-	protected static final byte EPC_IDENTIFICATION_NUMBER = (byte)0x83;
-	protected static final byte EPC_MEASURED_INSTANTANEOUS_POWER_CONSUMPTION = (byte)0x84;
-	protected static final byte EPC_MEASURED_CUMULATIVE_POWER_CONSUMPTION = (byte)0x85;
-	protected static final byte EPC_MANUFACTURERS_FAULT_CODE = (byte)0x86;
-	protected static final byte EPC_CURRENT_LIMIT_SETTING = (byte)0x87;
-	protected static final byte EPC_FAULT_STATUS = (byte)0x88;
-	protected static final byte EPC_FAULT_DESCRIPTION = (byte)0x89;
-	protected static final byte EPC_MANUFACTURER_CODE = (byte)0x8A;
-	protected static final byte EPC_BUSINESS_FACILITY_CODE = (byte)0x8B;
-	protected static final byte EPC_PRODUCT_CODE =  (byte)0x8C;
-	protected static final byte EPC_PRODUCTION_NUMBER = (byte)0x8D;
-	protected static final byte EPC_PRODUCTION_DATE = (byte)0x8E;
-	protected static final byte EPC_POWER_SAVING_OPERATION_SETTING = (byte)0x8F;
-	protected static final byte EPC_POSITION_INFORMATION = (byte)0x93;
-	protected static final byte EPC_CURRENT_TIME_SETTING = (byte)0x97;
-	protected static final byte EPC_CURRENT_DATE_SETTING = (byte)0x98;
-	protected static final byte EPC_POWER_LIMIT_SETTING = (byte)0x99;
-	protected static final byte EPC_CUMULATIVE_OPERATING_TIME = (byte)0x9A;
-	protected static final byte EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP = (byte)0x9D;
-	protected static final byte EPC_SET_PROPERTY_MAP = (byte)0x9E;
-	protected static final byte EPC_GET_PROPERTY_MAP = (byte)0x9F;
+	public static final byte EPC_OPERATION_STATUS = (byte)0x80;
+	public static final byte EPC_INSTALLATION_LOCATION = (byte)0x81;
+	public static final byte EPC_STANDARD_VERSION_INFORMATION = (byte)0x82;
+	public static final byte EPC_IDENTIFICATION_NUMBER = (byte)0x83;
+	public static final byte EPC_MEASURED_INSTANTANEOUS_POWER_CONSUMPTION = (byte)0x84;
+	public static final byte EPC_MEASURED_CUMULATIVE_POWER_CONSUMPTION = (byte)0x85;
+	public static final byte EPC_MANUFACTURERS_FAULT_CODE = (byte)0x86;
+	public static final byte EPC_CURRENT_LIMIT_SETTING = (byte)0x87;
+	public static final byte EPC_FAULT_STATUS = (byte)0x88;
+	public static final byte EPC_FAULT_DESCRIPTION = (byte)0x89;
+	public static final byte EPC_MANUFACTURER_CODE = (byte)0x8A;
+	public static final byte EPC_BUSINESS_FACILITY_CODE = (byte)0x8B;
+	public static final byte EPC_PRODUCT_CODE =  (byte)0x8C;
+	public static final byte EPC_PRODUCTION_NUMBER = (byte)0x8D;
+	public static final byte EPC_PRODUCTION_DATE = (byte)0x8E;
+	public static final byte EPC_POWER_SAVING_OPERATION_SETTING = (byte)0x8F;
+	public static final byte EPC_POSITION_INFORMATION = (byte)0x93;
+	public static final byte EPC_CURRENT_TIME_SETTING = (byte)0x97;
+	public static final byte EPC_CURRENT_DATE_SETTING = (byte)0x98;
+	public static final byte EPC_POWER_LIMIT_SETTING = (byte)0x99;
+	public static final byte EPC_CUMULATIVE_OPERATING_TIME = (byte)0x9A;
+	public static final byte EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP = (byte)0x9D;
+	public static final byte EPC_SET_PROPERTY_MAP = (byte)0x9E;
+	public static final byte EPC_GET_PROPERTY_MAP = (byte)0x9F;
 
 	@Override
 	public byte getInstanceCode() {
@@ -52,85 +55,102 @@ public abstract class DeviceObject extends EchoObject {
 
 	/**
 	 * This property indicates the ON/OFF status.<br>
-	 * ON＝0x30，OFF＝0x31<br><br>
-	 * Data type : unsigned char<br>
-	 * Data size : 1<br>
+	 * <br>
+	 * ON＝0x30，OFF＝0x31<br>
+	 * <br>
+	 * Data Type : unsigned char<br>
+	 * Data Size(Byte) : 1<br>
+	 * <br>
 	 * Set : optional<br>
 	 * Get : mandatory<br>
-	 * Announcement at status change
+	 * <br>
+	 * Announcement at status change<br>
 	 */
 	protected boolean setOperationStatus(byte[] edt) {
 		return false;
 	}
 	private final boolean _setOperationStatus(byte epc, byte[] edt) {
 		boolean success = setOperationStatus(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 
 	/**
 	 * This property indicates the ON/OFF status.<br>
-	 * ON＝0x30，OFF＝0x31<br><br>
+	 * <br>
+	 * ON＝0x30，OFF＝0x31<br>
+	 * <br>
 	 * Data type : unsigned char<br>
 	 * Data size : 1<br>
+	 * <br>
 	 * Set : optional<br>
 	 * Get : mandatory<br>
-	 * Announcement at status change
+	 * <br>
+	 * Announcement at status change<br>
 	 */
 	protected abstract byte[] getOperationStatus();
 	private final byte[] _getOperationStatus(byte epc) {
 		byte[] edt = getOperationStatus();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
 	/**
 	 * This property indicates the installation location<br>
-	 * See “2.2 ‘Installation location’ property.”<br><br>
+	 * <br>
+	 * See “2.2 ‘Installation location’ property.”<br>
+	 * <br>
 	 * Data type : unsigned char<br>
 	 * Data size : 1<br>
+	 * <br>
 	 * Set : mandatory<br>
 	 * Get : mandatory<br>
-	 * Announcement at status change
+	 * <br>
+	 * Announcement at status change<br>
 	 */
 	protected abstract boolean setInstallationLocation(byte[] edt);
 	private final boolean _setInstallationLocation(byte epc, byte[] edt) {
 		boolean success = setInstallationLocation(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 
 	/**
 	 * This property indicates the installation location<br>
-	 * See “2.2 ‘Installation location’ property.”
+	 * <br>
+	 * See “2.2 ‘Installation location’ property.”<br>
 	 */
 	protected abstract byte[] getInstallationLocation();
 	private final byte[] _getInstallationLocation(byte epc) {
 		byte[] edt = getInstallationLocation();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
 	/**
 	 * This property indicates the version number of the corresponding standard.<br>
+	 * <br>
 	 * First byte: Fixed at 0x00 (for future reserved). <br>
 	 * Second byte: Fixed at 0x00 (for future reserved). <br>
 	 * Third byte: Indicates the order of release in the ASCII format. <br>
-	 * Fourth byte: Fixed at 0x00 (for future reserved).<br><br>
+	 * Fourth byte: Fixed at 0x00 (for future reserved).<br>
+	 * <br>
 	 * Data type : unsigned char×4<br>
 	 * Data size : 4<br>
+	 * <br>
 	 * Set : undefined<br>
-	 * Get : mandatory
+	 * Get : mandatory<br>
 	 */
 	protected abstract byte[] getStandardVersionInformation() ;
 	private final byte[] _getStandardVersionInformation(byte epc) {
 		byte[] edt = getStandardVersionInformation();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	
 	/**
 	 * A number that allows each object to be uniquely identified.<br>
+	 * <br>
 	 * First byte: lower-layer communication ID field<br>
 	 * 0x01－0xFD：This is a communication protocol used in the lower-layer communication and is set arbitrarily according to the protocol class in the case where unique number is assigned (not used in ECHONET Lite).<br>
 	 * 0x11－0x1F: Power line Communication Protocol A and B systems<br>
@@ -146,408 +166,478 @@ public abstract class DeviceObject extends EchoObject {
 	 * 0xFE：2－17 bytes are defined by the manufacturer, and are set according to the type.<br>
 	 * 0xFF：2－9 bytes are defined when randomly generated protocol is used in the lower-layer communication.<br>
 	 * 0x00：Identification number is not set.<br>
-	 * Second and succeeding bytes: unique number field<br><br>
+	 * Second and succeeding bytes: unique number field<br>
+	 * <br>
 	 * Data type : unsigned char<br>
 	 * Data size : 9 or 17<br>
+	 * <br>
 	 * Set : undefined<br>
-	 * Get : optional
+	 * Get : optional<br>
 	 */
 	protected byte[] getIdentificationNumber() {
 		return null;
 	}
 	private final byte[] _getIdentificationNumber(byte epc) {
 		byte[] edt = getIdentificationNumber();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
 	/**
 	 * This property indicates the instantaneous power consumption of the device in watts.<br>
-	 * 0x0000-0xFFFF（0-65535W）<br><br>
+	 * <br>
+	 * 0x0000-0xFFFF（0-65535W）<br>
+	 * <br>
 	 * Data type : unsigned short<br>
 	 * Data size : 2<br>
+	 * <br>
 	 * Set : undefined<br>
-	 * Get : optional
+	 * Get : optional<br>
 	 */
 	protected byte[] getMeasuredInstantaneousPowerConsumption() {
 		return null;
 	}
 	private final byte[] _getMeasuredInstantaneousPowerConsumption(byte epc) {
 		byte[] edt = getMeasuredInstantaneousPowerConsumption();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
 	/**
 	 * This property indicates the cumulative power consumption of the device in increments of 0.001kWh.<br>
-	 * 0x0-0x3B9AC9FF（0-999,999.999kWh）<br><br>
+	 * <br>
+	 * 0x0-0x3B9AC9FF（0-999,999.999kWh）<br>
+	 * <br>
 	 * Data type : unsigned long<br>
 	 * Data size : 4<br>
+	 * <br>
 	 * Set : undefined<br>
-	 * Get : optional
+	 * Get : optional<br>
 	 */
 	protected byte[] getMeasuredCumulativePowerConsumption() {
 		return null;
 	}
 	private final byte[] _getMeasuredCumulativePowerConsumption(byte epc) {
 		byte[] edt = getMeasuredCumulativePowerConsumption();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
 	/**
 	 * This property indicates the manufacturer-defined fault code.<br>
+	 * <br>
 	 * First byte: Indicates the data size of the fault code field.<br>
 	 * Second to fourth bytes: Manufacturer code<br>
-	 * Fifth and succeeding bytes: Field for manufacturer-defined fault code<br><br>
+	 * Fifth and succeeding bytes: Field for manufacturer-defined fault code<br>
+	 * <br>
 	 * Data type : unsigned char×(MAX)225<br>
 	 * Data size : Max 225<br>
+	 * <br>
 	 * Set : undefined<br>
-	 * Get : optional
+	 * Get : optional<br>
 	 */	
 	protected byte[] getManufacturersFaultCode() {
 		return null;
 	}
 	private final byte[] _getManufacturersFaultCode(byte epc) {
 		byte[] edt = getManufacturersFaultCode();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
 	/**
 	 * This property indicates the current limit setting (0-100%).<br>
-	 * 0x00-0x64 （=0-100%）<br><br>
+	 * 0x00-0x64 （=0-100%）<br>
+	 * <br>
 	 * Data type : unsigned char<br>
 	 * Data size : 1<br>
+	 * <br>
 	 * Set : optional<br>
-	 * Get : optional
+	 * Get : optional<br>
 	 */
 	protected boolean setCurrentLimitSetting(byte[] edt) {
 		return false;
 	}
 	private final boolean _setCurrentLimitSetting(byte epc, byte[] edt) {
 		boolean success = setCurrentLimitSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	
 	/**
 	 * This property indicates the current limit setting (0-100%).<br>
-	 * 0x00-0x64 （=0-100%）<br><br>
+	 * <br>
+	 * 0x00-0x64 （=0-100%）<br>
+	 * <br>
 	 * Data type : unsigned char<br>
 	 * Data size : 1<br>
+	 * <br>
 	 * Set : optional<br>
-	 * Get : optional
+	 * Get : optional<br>
 	 */
 	protected byte[] getCurrentLimitSetting() {
 		return null;
 	}
 	private final byte[] _getCurrentLimitSetting(byte epc) {
 		byte[] edt = getCurrentLimitSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
 	/**
 	 * This property indicates whether a fault (e.g. a sensor trouble) has occurred or not.<br>
-	 * Fault occurred＝0x41, No fault has occurred＝0x42<br><br>
+	 * <br>
+	 * Fault occurred＝0x41, No fault has occurred＝0x42<br>
+	 * <br>
 	 * Data type : unsigned char<br>
 	 * Data size : 1<br>
+	 * <br>
 	 * Set : undefined<br>
 	 * Get : mandatory<br>
+	 * <br>
 	 * Announcement at status change
 	 */
 	protected abstract byte[] getFaultStatus();
 	private final byte[] _getFaultStatus(byte epc) {
 		byte[] edt = getFaultStatus();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
 	
 	/**
 	 * Describes the fault.<br>
-	 * See “2.5 ‘Fault Description’ Property.”<br><br>
+	 * <br>
+	 * See “2.5 ‘Fault Description’ Property.”<br>
+	 * <br>
 	 * Data type : unsigned short<br>
 	 * Data size : 2<br>
+	 * <br>
 	 * Set : undefined<br>
-	 * Get : optional
+	 * Get : optional<br>
 	 */
 	protected byte[] getFaultDescription() {
 		return null;
 	}
 	private final byte[] _getFaultDescription(byte epc) {
 		byte[] edt = getFaultDescription();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	
 	/**
 	 * 3-byte manufacturer code<br>
-	 * (Defined by the ECHONET Consortium.)<br><br>
+	 * <br>
+	 * (Defined by the ECHONET Consortium.)<br>
+	 * <br>
 	 * Data type : unsigned char×3<br>
 	 * Data size : 3<br>
+	 * <br>
 	 * Set : undefined<br>
-	 * Get : mandatory
+	 * Get : mandatory<br>
 	 */
 	protected abstract byte[] getManufacturerCode();
 	private final byte[] _getManufacturerCode(byte epc) {
 		byte[] edt = getManufacturerCode();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	
 	/**
 	 * 3-byte business facility code<br>
-	 * （Defined by each manufacturer.）<br><br>
+	 * <br>
+	 * （Defined by each manufacturer.）<br>
+	 * <br>
 	 * Data type : unsigned char×3<br>
 	 * Data size : 3<br>
+	 * <br>
 	 * Set : undefined<br>
-	 * Get : optional
+	 * Get : optional<br>
 	 */
 	protected byte[] getBusinessFacilityCode() {
 		return null;
 	}
 	private final byte[] _getBusinessFacilityCode(byte epc) {
 		byte[] edt = getBusinessFacilityCode();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	
 	/**
 	 * Identifies the product usingASCI I code.<br>
-	 * （Defined by each manufacturer.）<br><br>
+	 * （Defined by each manufacturer.）<br>
+	 * <br>
 	 * Data type : unsigned char×12<br>
 	 * Data size : 12<br>
+	 * <br>
 	 * Set : undefined<br>
-	 * Get : optional
+	 * Get : optional<br>
 	 */
 	protected byte[] getProductCode() {
 		return null;
 	}
 	private final byte[] _getProductCode(byte epc) {
 		byte[] edt = getProductCode();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
 	/**
 	 * This property indicates the production number using ASCI I code.<br>
-	 * （Defined by each manufacturer.）<br><br>
+	 * <br>
+	 * （Defined by each manufacturer.）<br>
+	 * <br>
 	 * Data type : unsigned char×12<br>
 	 * Data size : 12<br>
+	 * <br>
 	 * Set : undefined<br>
-	 * Get : optional
+	 * Get : optional<br>
 	 */
 	protected byte[] getProductionNumber() {
 		return null;
 	}
 	private final byte[] _getProductionNumber(byte epc) {
 		byte[] edt = getProductionNumber();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	
 	/**
 	 * 4-byte production date code<br>
+	 * <br>
 	 * This property indicates the product ion date in the YYMD format (1 character = 1 byte) .<br>
 	 * YY： Year (e.g. 1999＝ 0x07CF)<br>
 	 * M： Month (e.g. December＝0x0C)<br>
-	 * D： Day (e.g. 20th＝ 0x14)<br><br>
+	 * D： Day (e.g. 20th＝ 0x14)<br>
+	 * <br>
 	 * Data type : unsigned char×4<br>
 	 * Data size : 4<br>
+	 * <br>
 	 * Set : undefined<br>
-	 * Get : optional
+	 * Get : optional<br>
 	 */
 	protected byte[] getProductionDate() {
 		return null;
 	}
 	private final byte[] _getProductionDate(byte epc) {
 		byte[] edt = getProductionDate();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	
 	/**
 	 * This property indicates whether the device is operating in power-saving mode.<br>
+	 * <br>
 	 * Operating in power-saving mode =0x41<br>
-	 * Operating in normal operation mode =0x42<br><br>
+	 * Operating in normal operation mode =0x42<br>
+	 * <br>
 	 * Data type : unsigned char<br>
 	 * Data size : 1<br>
+	 * <br>
 	 * Set : optional<br>
-	 * Get : optional
+	 * Get : optional<br>
 	 */
 	protected boolean setPowerSavingOperationSetting(byte[] edt) {
 		return false;
 	}
 	private final boolean _setPowerSavingOperationSetting(byte epc, byte[] edt) {
 		boolean success = setPowerSavingOperationSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	
 	/**
 	 * This property indicates whether the device is operating in power-saving mode.<br>
+	 * <br>
 	 * Operating in power-saving mode =0x41<br>
-	 * Operating in normal operation mode =0x42<br><br>
+	 * Operating in normal operation mode =0x42<br>
+	 * <br>
 	 * Data type : unsigned char<br>
 	 * Data size : 1<br>
+	 * <br>
 	 * Set : optional<br>
-	 * Get : optional
+	 * Get : optional<br>
 	 */
 	protected byte[] getPowerSavingOperationSetting() {
 		return null;
 	}
 	private final byte[] _getPowerSavingOperationSetting(byte epc) {
 		byte[] edt = getPowerSavingOperationSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
 	/**
-	 * This property indicates the latitude, longitude and altitude of the installation location.<br><br>
+	 * This property indicates the latitude, longitude and altitude of the installation location.<br>
+	 * <br>
 	 * Data type : unsigned char×16<br>
 	 * Data size : 16<br>
+	 * <br>
 	 * Set : optional<br>
 	 * Get : optional<br>
-	 * Announcement at status change
+	 * <br>
+	 * Announcement at status change<br>
 	 */
 	protected boolean setPositionInformation(byte[] edt) {
 		return false;
 	}
 	private final boolean _setPositionInformation(byte epc, byte[] edt) {
 		boolean success = setPositionInformation(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	
 	/**
-	 * This property indicates the latitude, longitude and altitude of the installation location.<br><br>
+	 * This property indicates the latitude, longitude and altitude of the installation location.<br>
+	 * <br>
 	 * Data type : unsigned char×16<br>
 	 * Data size : 16<br>
+	 * <br>
 	 * Set : optional<br>
 	 * Get : optional<br>
-	 * Announcement at status change
+	 * <br>
+	 * Announcement at status change<br>
 	 */	
 	protected byte[] getPositionInformation() {
 		return null;
 	}
 	private final byte[] _getPositionInformation(byte epc) {
 		byte[] edt = getPositionInformation();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
 	/**
 	 * Current time (HH：MM format)<br>
-	 * 0x00-0x17：0x00-0x3B（ ＝ 0-23）：（ ＝ 0-59）<br><br>
+	 * <br>
+	 * 0x00-0x17：0x00-0x3B（ ＝ 0-23）：（ ＝ 0-59）<br>
+	 * <br>
 	 * Data type : unsigned char×2<br>
 	 * Data size : 2<br>
+	 * <br>
 	 * Set : optional<br>
-	 * Get : optional
+	 * Get : optional<br>
 	 */
 	protected boolean setCurrentTimeSetting(byte[] edt) {
 		return false;
 	}
 	private final boolean _setCurrentTimeSetting(byte epc, byte[] edt) {
 		boolean success = setCurrentTimeSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	
 	/**
 	 * Current time (HH：MM format)<br>
-	 * 0x00-0x17 ： 0x00-0x3B（ ＝ 0-23）：（ ＝ 0-59）<br><br>
+	 * <br>
+	 * 0x00-0x17 ： 0x00-0x3B（ ＝ 0-23）：（ ＝ 0-59）<br>
+	 * <br>
 	 * Data type : unsigned char×2<br>
 	 * Data size : 2<br>
+	 * <br>
 	 * Set : optional<br>
-	 * Get : optional
+	 * Get : optional<br>
 	 */
 	protected byte[] getCurrentTimeSetting() {
 		return null;
 	}
 	private final byte[] _getCurrentTimeSetting(byte epc) {
 		byte[] edt = getCurrentTimeSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
 	/**
 	 * Current date (YYYY：MM：DD format)<br>
-	 * 1 ～ 0x270F ： 1 ～ 0x0C ： 1 ～ 0x1F (=1 ～ 9999) ： (=1 ～ 12) ： (=1 ～ 31)<br><br>
+	 * <br>
+	 * 1 ～ 0x270F ： 1 ～ 0x0C ： 1 ～ 0x1F (=1 ～ 9999) ： (=1 ～ 12) ： (=1 ～ 31)<br>
+	 * <br>
 	 * Data type : unsigned char×4<br>
 	 * Data size : 4<br>
+	 * <br>
 	 * Set : optional<br>
-	 * Get : optional
+	 * Get : optional<br>
 	 */
 	protected boolean setCurrentDateSetting(byte edt[]) {
 		return false;
 	}
 	private final boolean _setCurrentDateSetting(byte epc, byte[] edt) {
 		boolean success = setCurrentDateSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	
 	/**
 	 * Current date (YYYY：MM：DD format)<br>
-	 * 1 ～ 0x270F ： 1 ～ 0x0C ： 1 ～ 0x1F (=1 ～ 9999) ： (=1 ～ 12) ： (=1 ～ 31)<br><br>
+	 * <br>
+	 * 1 ～ 0x270F ： 1 ～ 0x0C ： 1 ～ 0x1F (=1 ～ 9999) ： (=1 ～ 12) ： (=1 ～ 31)<br>
+	 * <br>
 	 * Data type : unsigned char×4<br>
 	 * Data size : 4<br>
+	 * <br>
 	 * Set : optional<br>
-	 * Get : optional
+	 * Get : optional<br>
 	 */
 	protected byte[] getCurrentDateSetting() {
 		return null;
 	}
 	private final byte[] _getCurrentDateSetting(byte epc) {
 		byte[] edt = getCurrentDateSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
 	/**
 	 * This property indicates the power limit setting in watts.<br>
-	 * 0x0000~0xFFFF（0-65535W）<br><br>
+	 * <br>
+	 * 0x0000~0xFFFF（0-65535W）<br>
+	 * <br>
 	 * Data type : unsigned short<br>
 	 * Data size : 2<br>
+	 * <br>
 	 * Set : optional<br>
-	 * Get : optional
+	 * Get : optional<br>
 	 */
 	protected boolean setPowerLimitSetting(byte[] edt) {
 		return false;
 	}
 	private final boolean _setPowerLimitSetting(byte epc, byte[] edt) {
 		boolean success = setPowerLimitSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	
 	/**
 	 * This property indicates the power limit setting in watts.<br>
-	 * 0x0000~0xFFFF（0-65535W）<br><br>
+	 * <br>
+	 * 0x0000~0xFFFF（0-65535W）<br>
+	 * <br>
 	 * Data type : unsigned short<br>
 	 * Data size : 2<br>
+	 * <br>
 	 * Set : optional<br>
-	 * Get : optional
+	 * Get : optional<br>
 	 */
 	protected byte[] getPowerLimitSetting() {
 		return null;
 	}
 	private final byte[] _getPowerLimitSetting(byte epc) {
 		byte[] edt = getPowerLimitSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
 	/**
 	 * This property indicates the cumulative number of days, hours, minutes or seconds for which the device has operated, using 1 byte for the unit and 4 bytes for the time.<br>
+	 * <br>
 	 * First byte: Indicates the unit.<br>
 	 * Second： 0x41; Minute： 0x42; Hour： 0x43; Day:0x44<br>
 	 * Second to fifth bytes ：<br>
-	 * Indicates the elapsed time in the unit specified by the first byte. 0x00000000-0xFFFFFFFF (0-4294967295)<br><br>
+	 * Indicates the elapsed time in the unit specified by the first byte. 0x00000000-0xFFFFFFFF (0-4294967295)<br>
+	 * <br>
 	 * Data type : unsigned char + unsigned long<br>
 	 * Data size : 1+4 Byte<br>
+	 * <br>
 	 * Set : undefined<br>
 	 * Get : optional
 	 */
@@ -556,49 +646,55 @@ public abstract class DeviceObject extends EchoObject {
 	}
 	private final byte[] _getCumulativeOperatingTime(byte epc) {
 		byte[] edt = getCumulativeOperatingTime();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	
 	/**
-	 * See Appendix 1.<br><br>
+	 * See Appendix 1.<br>
+	 * <br>
 	 * Data type : unsigned char×(MAX17)<br>
 	 * Data size : Max.17<br>
+	 * <br>
 	 * Set : undefined<br>
-	 * Get : mandatory
+	 * Get : mandatory<br>
 	 */
 	protected abstract byte[] getStatusChangeAnnouncementPropertyMap() ;
 	private final byte[] _getStatusChangeAnnouncementPropertyMap(byte epc) {
 		byte[] edt = getStatusChangeAnnouncementPropertyMap();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	
 	/**
-	 * See Appendix 1.<br><br>
+	 * See Appendix 1.<br>
+	 * <br>
 	 * Data type : unsigned char×(MAX17)<br>
 	 * Data size : Max.17<br>
+	 * <br>
 	 * Set : undefined<br>
-	 * Get : mandatory
+	 * Get : mandatory<br>
 	 */
 	protected abstract byte[] getSetPropertyMap();
 	private final byte[] _getSetPropertyMap(byte epc) {
 		byte[] edt = getSetPropertyMap();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
 	/**
-	 * See Appendix 1.<br><br>
+	 * See Appendix 1.<br>
+	 * <br>
 	 * Data type : unsigned char×(MAX17)<br>
 	 * Data size : Max.17<br>
+	 * <br>
 	 * Set : undefined<br>
-	 * Get : mandatory
+	 * Get : mandatory<br>
 	 */
 	protected abstract byte[] getGetPropertyMap();
 	private final byte[] _getGetPropertyMap(byte epc) {
 		byte[] edt = getGetPropertyMap();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
@@ -739,17 +835,17 @@ public abstract class DeviceObject extends EchoObject {
 
 	@Override
 	public Setter set() {
-		return new SetterImpl(ESV_SET_NO_RES);
+		return new Setter(ESV_SETI);
 	}
 
 	@Override
 	public Setter setC() {
-		return new SetterImpl(ESV_SET_RES);
+		return new Setter(ESV_SETC);
 	}
 
 	@Override
 	public Getter get() {
-		return new GetterImpl();
+		return new Getter();
 	}
 
 	@Override
@@ -881,7 +977,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onSetOperationStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetOperationStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetOperationStatus(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 
 		/**
@@ -896,7 +992,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onGetOperationStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetOperationStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetOperationStatus(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
@@ -911,7 +1007,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onSetInstallationLocation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetInstallationLocation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetInstallationLocation(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 
 		/**
@@ -926,7 +1022,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onGetInstallationLocation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetInstallationLocation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetInstallationLocation(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
@@ -943,7 +1039,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onGetStandardVersionInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetStandardVersionInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetStandardVersionInformation(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
@@ -972,7 +1068,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onGetIdentificationNumber(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetIdentificationNumber(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetIdentificationNumber(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
@@ -986,7 +1082,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onGetMeasuredInstantaneousPowerConsumption(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetMeasuredInstantaneousPowerConsumption(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetMeasuredInstantaneousPowerConsumption(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
@@ -1000,7 +1096,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onGetMeasuredCumulativehPowerConsumption(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetMeasuredCumulativehPowerConsumption(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetMeasuredCumulativehPowerConsumption(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
@@ -1016,7 +1112,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onGetManufacturersFaultCode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetManufacturersFaultCode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetManufacturersFaultCode(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
@@ -1030,7 +1126,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onSetCurrentLimitSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetCurrentLimitSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetCurrentLimitSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 
 		/**
@@ -1044,7 +1140,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onGetCurrentLimitSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetCurrentLimitSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetCurrentLimitSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 
 		/**
@@ -1059,7 +1155,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onGetFaultStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetFaultStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetFaultStatus(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
@@ -1073,7 +1169,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onGetFaultDescription(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetFaultDescription(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetFaultDescription(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
@@ -1087,7 +1183,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onGetManufacturerCode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetManufacturerCode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetManufacturerCode(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
@@ -1101,7 +1197,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onGetBusinessFacilityCode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetBusinessFacilityCode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetBusinessFacilityCode(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
@@ -1115,7 +1211,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onGetProductCode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetProductCode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetProductCode(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
@@ -1129,7 +1225,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onGetProductionNumber(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetProductionNumber(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetProductionNumber(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
@@ -1146,7 +1242,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onGetProductionDate(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetProductionDate(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetProductionDate(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
@@ -1161,7 +1257,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onSetPowerSavingOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetPowerSavingOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetPowerSavingOperationSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		
 		/**
@@ -1176,7 +1272,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onGetPowerSavingOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetPowerSavingOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetPowerSavingOperationSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
@@ -1190,7 +1286,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onSetPositionInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetPositionInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetPositionInformation(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 
 		/**
@@ -1204,7 +1300,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onGetPositionInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetPositionInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetPositionInformation(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
@@ -1218,7 +1314,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onSetCurrentTimeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetCurrentTimeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetCurrentTimeSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		
 		/**
@@ -1232,7 +1328,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onGetCurrentTimeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetCurrentTimeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetCurrentTimeSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
@@ -1246,7 +1342,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onSetCurrentDateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetCurrentDateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetCurrentDateSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 
 		/**
@@ -1260,7 +1356,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onGetCurrentDateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetCurrentDateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetCurrentDateSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
@@ -1274,7 +1370,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onSetPowerLimitSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetPowerLimitSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetPowerLimitSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 
 		/**
@@ -1288,7 +1384,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onGetPowerLimitSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetPowerLimitSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetPowerLimitSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
@@ -1305,7 +1401,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onGetCumulativeOperatingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetCumulativeOperatingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetCumulativeOperatingTime(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
@@ -1318,7 +1414,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onGetStatusChageAnnouncementPropertyMap(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetStatusChageAnnouncementPropertyMap(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetStatusChageAnnouncementPropertyMap(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
@@ -1331,7 +1427,7 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onGetSetPropertyMap(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetSetPropertyMap(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetSetPropertyMap(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		
 		/**
@@ -1344,11 +1440,20 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onGetGetPropertyMap(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetGetPropertyMap(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetGetPropertyMap(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 	}
 
-	public interface Setter extends EchoObject.Setter {
+	public class Setter extends EchoObject.Setter {
+		public Setter(byte esv) {
+			super(esv);
+		}
+		
+		@Override
+		public Setter reqSet(byte epc, byte[] edt) {
+			return (Setter)super.reqSet(epc, edt);
+		}
+
 		/**
 		 * This property indicates the ON/OFF status.<br>
 		 * ON＝0x30，OFF＝0x31<br><br>
@@ -1358,7 +1463,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : mandatory<br>
 		 * Announcement at status change
 		 */
-		public Setter reqSetOperationStatus(byte[] edt);
+		public Setter reqSetOperationStatus(byte[] edt) {
+			addProperty(EPC_OPERATION_STATUS, edt, (edt.length == 1));
+			return this;
+		}
 		/**
 		 * This property indicates the installation location<br>
 		 * See “2.2 ‘Installation location’ property.”<br><br>
@@ -1368,7 +1476,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : mandatory<br>
 		 * Announcement at status change
 		 */
-		public Setter reqSetInstallationLocation(byte[] edt);
+		public Setter reqSetInstallationLocation(byte[] edt) {
+			addProperty(EPC_INSTALLATION_LOCATION, edt, (edt.length == 1));
+			return this;
+		}
 		/**
 		 * This property indicates the current limit setting (0-100%).<br>
 		 * 0x00-0x64 （=0-100%）<br><br>
@@ -1377,7 +1488,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Set : optional<br>
 		 * Get : optional
 		 */
-		public Setter reqSetCurrentLimitSetting(byte[] edt);
+		public Setter reqSetCurrentLimitSetting(byte[] edt) {
+			addProperty(EPC_CURRENT_LIMIT_SETTING, edt, (edt.length == 1));
+			return this;
+		}
 		/**
 		 * This property indicates whether the device is operating in power-saving mode.<br>
 		 * Operating in power-saving mode =0x41<br>
@@ -1387,7 +1501,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Set : optional<br>
 		 * Get : optional
 		 */
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
+		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
+			addProperty(EPC_POWER_SAVING_OPERATION_SETTING, edt, (edt.length == 1));
+			return this;
+		}
 		/**
 		 * This property indicates the latitude, longitude and altitude of the installation location.<br><br>
 		 * Data type : unsigned char×16<br>
@@ -1396,7 +1513,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional<br>
 		 * Announcement at status change
 		 */
-		public Setter reqSetPositionInformation(byte[] edt);
+		public Setter reqSetPositionInformation(byte[] edt) {
+			addProperty(EPC_POSITION_INFORMATION, edt, (edt.length == 16));
+			return this;
+		}
 		/**
 		 * Current time (HH：MM format)<br>
 		 * 0x00-0x17：0x00-0x3B（ ＝ 0-23）：（ ＝ 0-59）<br><br>
@@ -1405,7 +1525,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Set : optional<br>
 		 * Get : optional
 		 */
-		public Setter reqSetCurrentTimeSetting(byte[] edt);
+		public Setter reqSetCurrentTimeSetting(byte[] edt) {
+			addProperty(EPC_CURRENT_TIME_SETTING, edt, (edt.length == 2));
+			return this;
+		}
 		/**
 		 * Current date (YYYY：MM：DD format)<br>
 		 * 1 ～ 0x270F ： 1 ～ 0x0C ： 1 ～ 0x1F (=1 ～ 9999) ： (=1 ～ 12) ： (=1 ～ 31)<br><br>
@@ -1414,7 +1537,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Set : optional<br>
 		 * Get : optional
 		 */
-		public Setter reqSetCurrentDateSetting(byte[] edt);
+		public Setter reqSetCurrentDateSetting(byte[] edt) {
+			addProperty(EPC_CURRENT_DATE_SETTING, edt, (edt.length == 4));
+			return this;
+		}
 		/**
 		 * This property indicates the power limit setting in watts.<br>
 		 * 0x0000~0xFFFF（0-65535W）<br><br>
@@ -1423,130 +1549,18 @@ public abstract class DeviceObject extends EchoObject {
 		 * Set : optional<br>
 		 * Get : optional
 		 */
-		public Setter reqSetPowerLimitSetting(byte[] edt);
-	}
-	
-	public class SetterImpl extends EchoObject.SetterImpl implements Setter {
-
-		public SetterImpl(byte esv) {
-			super(esv);
-		}
-		
-		@Override
-		public Setter reqSetOperationStatus(byte[] edt) {
-			byte epc = EPC_OPERATION_STATUS;
-			addProperty(epc, edt, _setOperationStatus(epc, edt));
-			return this;
-		}
-
-		@Override
-		public Setter reqSetInstallationLocation(byte[] edt) {
-			byte epc = EPC_INSTALLATION_LOCATION;
-			addProperty(epc, edt, _setInstallationLocation(epc, edt));
-			return this;
-		}
-
-		@Override
-		public Setter reqSetCurrentLimitSetting(byte[] edt) {
-			byte epc = EPC_CURRENT_LIMIT_SETTING;
-			addProperty(epc, edt, _setCurrentLimitSetting(epc, edt));
-			return this;
-		}
-		
-		@Override
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
-			byte epc = EPC_POWER_SAVING_OPERATION_SETTING;
-			addProperty(epc, edt, _setPowerSavingOperationSetting(epc, edt));
-			return this;
-		}
-
-		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			byte epc = EPC_POSITION_INFORMATION;
-			addProperty(epc, edt, _setPositionInformation(epc, edt));
-			return this;
-		}
-
-		@Override
-		public Setter reqSetCurrentTimeSetting(byte[] edt) {
-			byte epc = EPC_CURRENT_TIME_SETTING;
-			addProperty(epc, edt, _setCurrentTimeSetting(epc, edt));
-			return this;
-		}
-
-		@Override
-		public Setter reqSetCurrentDateSetting(byte[] edt) {
-			byte epc = EPC_CURRENT_DATE_SETTING;
-			addProperty(epc, edt, _setCurrentDateSetting(epc, edt));
-			return this;
-		}
-
-		@Override
-		public Setter reqSetPowerLimitSetting(byte[] edt) {
-			byte epc = EPC_POWER_LIMIT_SETTING;
-			addProperty(epc, edt, _setPowerLimitSetting(epc, edt));
-			return this;
-		}
-		
-	}
-
-	public class SetterProxy extends EchoObject.SetterProxy implements Setter {
-
-		public SetterProxy(byte esv) {
-			super(esv);
-		}
-
-		@Override
-		public Setter reqSetOperationStatus(byte[] edt) {
-			addProperty(EPC_OPERATION_STATUS, edt, (edt.length == 1));
-			return this;
-		}
-
-		@Override
-		public Setter reqSetInstallationLocation(byte[] edt) {
-			addProperty(EPC_INSTALLATION_LOCATION, edt, (edt.length == 1));
-			return this;
-		}
-
-		@Override
-		public Setter reqSetCurrentLimitSetting(byte[] edt) {
-			addProperty(EPC_CURRENT_LIMIT_SETTING, edt, (edt.length == 1));
-			return this;
-		}
-		
-		@Override
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
-			addProperty(EPC_POWER_SAVING_OPERATION_SETTING, edt, (edt.length == 1));
-			return this;
-		}
-
-		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			addProperty(EPC_POSITION_INFORMATION, edt, (edt.length == 16));
-			return this;
-		}
-
-		@Override
-		public Setter reqSetCurrentTimeSetting(byte[] edt) {
-			addProperty(EPC_CURRENT_TIME_SETTING, edt, (edt.length == 2));
-			return this;
-		}
-
-		@Override
-		public Setter reqSetCurrentDateSetting(byte[] edt) {
-			addProperty(EPC_CURRENT_DATE_SETTING, edt, (edt.length == 4));
-			return this;
-		}
-
-		@Override
 		public Setter reqSetPowerLimitSetting(byte[] edt) {
 			addProperty(EPC_POWER_LIMIT_SETTING, edt, (edt.length == 2));
 			return this;
 		}
-		
 	}
 	
-	public interface Getter extends EchoObject.Getter {
+	public class Getter extends EchoObject.Getter {
+		
+		@Override
+		public Getter reqGet(byte epc) {
+			return (Getter)super.reqGet(epc);
+		}
 		/**
 		 * This property indicates the ON/OFF status.<br>
 		 * ON＝0x30，OFF＝0x31<br><br>
@@ -1556,7 +1570,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : mandatory<br>
 		 * Announcement at status change
 		 */
-		public Getter reqGetOperationStatus();
+		public Getter reqGetOperationStatus() {
+			addProperty(EPC_OPERATION_STATUS);
+			return this;
+		}
 		/**
 		 * This property indicates the installation location<br>
 		 * See “2.2 ‘Installation location’ property.”<br><br>
@@ -1566,7 +1583,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : mandatory<br>
 		 * Announcement at status change
 		 */
-		public Getter reqGetInstallationLocation();
+		public Getter reqGetInstallationLocation() {
+			addProperty(EPC_INSTALLATION_LOCATION);
+			return this;
+		}
 		/**
 		 * This property indicates the version number of the corresponding standard.<br>
 		 * First byte: Fixed at 0x00 (for future reserved). <br>
@@ -1578,7 +1598,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Set : undefined<br>
 		 * Get : mandatory
 		 */
-		public Getter reqGetStandardVersionInformation();
+		public Getter reqGetStandardVersionInformation() {
+			addProperty(EPC_STANDARD_VERSION_INFORMATION);
+			return this;
+		}
 		/**
 		 * A number that allows each object to be uniquely identified.<br>
 		 * First byte: lower-layer communication ID field<br>
@@ -1602,7 +1625,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
-		public Getter reqGetIdentificationNumber();
+		public Getter reqGetIdentificationNumber() {
+			addProperty(EPC_IDENTIFICATION_NUMBER);
+			return this;
+		}
 		/**
 		 * This property indicates the instantaneous power consumption of the device in watts.<br>
 		 * 0x0000-0xFFFF（0-65535W）<br><br>
@@ -1611,7 +1637,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
-		public Getter reqGetMeasuredInstantaneousPowerConsumption();
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			addProperty(EPC_MEASURED_INSTANTANEOUS_POWER_CONSUMPTION);
+			return this;
+		}
 		/**
 		 * This property indicates the cumulative power consumption of the device in increments of 0.001kWh.<br>
 		 * 0x0-0x3B9AC9FF（0-999,999.999kWh）<br><br>
@@ -1620,7 +1649,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
-		public Getter reqGetMeasuredCumulativePowerConsumption();
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			addProperty(EPC_MEASURED_CUMULATIVE_POWER_CONSUMPTION);
+			return this;
+		}
 		/**
 		 * This property indicates the manufacturer-defined fault code.<br>
 		 * First byte: Indicates the data size of the fault code field.<br>
@@ -1631,7 +1663,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
-		public Getter reqGetManufacturersFaultCode();
+		public Getter reqGetManufacturersFaultCode() {
+			addProperty(EPC_MANUFACTURERS_FAULT_CODE);
+			return this;
+		}
 		/**
 		 * This property indicates the current limit setting (0-100%).<br>
 		 * 0x00-0x64 （=0-100%）<br><br>
@@ -1640,7 +1675,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Set : optional<br>
 		 * Get : optional
 		 */
-		public Getter reqGetCurrentLimitSetting();
+		public Getter reqGetCurrentLimitSetting() {
+			addProperty(EPC_CURRENT_LIMIT_SETTING);
+			return this;
+		}
 		/**
 		 * This property indicates whether a fault (e.g. a sensor trouble) has occurred or not.<br>
 		 * Fault occurred＝0x41, No fault has occurred＝0x42<br><br>
@@ -1650,7 +1688,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : mandatory<br>
 		 * Announcement at status change
 		 */
-		public Getter reqGetFaultStatus();
+		public Getter reqGetFaultStatus() {
+			addProperty(EPC_FAULT_STATUS);
+			return this;
+		}
 		/**
 		 * Describes the fault.<br>
 		 * See “2.5 ‘Fault Description’ Property.”<br><br>
@@ -1659,7 +1700,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
-		public Getter reqGetFaultDescription();
+		public Getter reqGetFaultDescription() {
+			addProperty(EPC_FAULT_DESCRIPTION);
+			return this;
+		}
 		/**
 		 * 3-byte manufacturer code<br>
 		 * (Defined by the ECHONET Consortium.)<br><br>
@@ -1668,7 +1712,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Set : undefined<br>
 		 * Get : mandatory
 		 */
-		public Getter reqGetManufacturerCode();
+		public Getter reqGetManufacturerCode() {
+			addProperty(EPC_MANUFACTURER_CODE);
+			return this;
+		}
 		/**
 		 * 3-byte business facility code<br>
 		 * （Defined by each manufacturer.）<br><br>
@@ -1677,7 +1724,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
-		public Getter reqGetBusinessFacilityCode();
+		public Getter reqGetBusinessFacilityCode() {
+			addProperty(EPC_BUSINESS_FACILITY_CODE);
+			return this;
+		}
 		/**
 		 * Identifies the product usingASCI I code.<br>
 		 * （Defined by each manufacturer.）<br><br>
@@ -1686,7 +1736,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
-		public Getter reqGetProductCode();
+		public Getter reqGetProductCode() {
+			addProperty(EPC_PRODUCT_CODE);
+			return this;
+		}
 		/**
 		 * This property indicates the production number using ASCI I code.<br>
 		 * （Defined by each manufacturer.）<br><br>
@@ -1695,7 +1748,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
-		public Getter reqGetProductionNumber();
+		public Getter reqGetProductionNumber() {
+			addProperty(EPC_PRODUCTION_NUMBER);
+			return this;
+		}
 		/**
 		 * 4-byte production date code<br>
 		 * This property indicates the product ion date in the YYMD format (1 character = 1 byte) .<br>
@@ -1707,7 +1763,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
-		public Getter reqGetProductionDate();
+		public Getter reqGetProductionDate() {
+			addProperty(EPC_PRODUCTION_DATE);
+			return this;
+		}
 		/**
 		 * This property indicates whether the device is operating in power-saving mode.<br>
 		 * Operating in power-saving mode =0x41<br>
@@ -1717,7 +1776,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Set : optional<br>
 		 * Get : optional
 		 */
-		public Getter reqGetPowerSavingOperationSetting();
+		public Getter reqGetPowerSavingOperationSetting() {
+			addProperty(EPC_POWER_SAVING_OPERATION_SETTING);
+			return this;
+		}
 		/**
 		 * This property indicates the latitude, longitude and altitude of the installation location.<br><br>
 		 * Data type : unsigned char×16<br>
@@ -1726,7 +1788,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional<br>
 		 * Announcement at status change
 		 */
-		public Getter reqGetPositionInformation();
+		public Getter reqGetPositionInformation() {
+			addProperty(EPC_POSITION_INFORMATION);
+			return this;
+		}
 		/**
 		 * Current time (HH：MM format)<br>
 		 * 0x00-0x17：0x00-0x3B（ ＝ 0-23）：（ ＝ 0-59）<br><br>
@@ -1735,7 +1800,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Set : optional<br>
 		 * Get : optional
 		 */
-		public Getter reqGetCurrentTimeSetting();
+		public Getter reqGetCurrentTimeSetting() {
+			addProperty(EPC_CURRENT_TIME_SETTING);
+			return this;
+		}
 		/**
 		 * Current date (YYYY：MM：DD format)<br>
 		 * 1 ～ 0x270F ： 1 ～ 0x0C ： 1 ～ 0x1F (=1 ～ 9999) ： (=1 ～ 12) ： (=1 ～ 31)<br><br>
@@ -1744,7 +1812,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Set : optional<br>
 		 * Get : optional
 		 */
-		public Getter reqGetCurrentDateSetting();
+		public Getter reqGetCurrentDateSetting() {
+			addProperty(EPC_CURRENT_DATE_SETTING);
+			return this;
+		}
 		/**
 		 * This property indicates the power limit setting in watts.<br>
 		 * 0x0000~0xFFFF（0-65535W）<br><br>
@@ -1753,7 +1824,10 @@ public abstract class DeviceObject extends EchoObject {
 		 * Set : optional<br>
 		 * Get : optional
 		 */
-		public Getter reqGetPowerLimitSetting();
+		public Getter reqGetPowerLimitSetting() {
+			addProperty(EPC_POWER_LIMIT_SETTING);
+			return this;
+		}
 		/**
 		 * This property indicates the cumulative number of days, hours, minutes or seconds for which the device has operated, using 1 byte for the unit and 4 bytes for the time.<br>
 		 * First byte: Indicates the unit.<br>
@@ -1765,378 +1839,48 @@ public abstract class DeviceObject extends EchoObject {
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
-		public Getter reqGetCumulativeOperatingTime();
-		/**
-		 * See Appendix 1.<br><br>
-		 * Data type : unsigned char×(MAX17)<br>
-		 * Data size : Max.17<br>
-		 * Set : undefined<br>
-		 * Get : mandatory
-		 */
-		public Getter reqGetStatusChangeAnnouncementPropertyMap();
-		/**
-		 * See Appendix 1.<br><br>
-		 * Data type : unsigned char×(MAX17)<br>
-		 * Data size : Max.17<br>
-		 * Set : undefined<br>
-		 * Get : mandatory
-		 */
-		public Getter reqGetSetPropertyMap();
-		/**
-		 * See Appendix 1.<br><br>
-		 * Data type : unsigned char×(MAX17)<br>
-		 * Data size : Max.17<br>
-		 * Set : undefined<br>
-		 * Get : mandatory
-		 */
-		public Getter reqGetGetPropertyMap();
-	}
-	
-	public class GetterImpl extends EchoObject.GetterImpl implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			byte epc = EPC_OPERATION_STATUS;
-			byte[] edt = _getOperationStatus(epc);
-			addProperty(epc, edt, (edt != null && edt.length == 1));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetInstallationLocation() {
-			byte epc = EPC_INSTALLATION_LOCATION;
-			byte[] edt = _getInstallationLocation(epc);
-			addProperty(epc, edt, (edt != null && edt.length == 1));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			byte epc = EPC_STANDARD_VERSION_INFORMATION;
-			byte[] edt = _getStandardVersionInformation(epc);
-			addProperty(epc, edt, (edt != null && edt.length == 4));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			byte epc = EPC_IDENTIFICATION_NUMBER;
-			byte[] edt = _getIdentificationNumber(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 9 || edt.length == 17)));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			byte epc = EPC_MEASURED_INSTANTANEOUS_POWER_CONSUMPTION;
-			byte[] edt = _getMeasuredInstantaneousPowerConsumption(epc);
-			addProperty(epc, edt, (edt != null && edt.length == 2));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			byte epc = EPC_MEASURED_CUMULATIVE_POWER_CONSUMPTION;
-			byte[] edt = _getMeasuredCumulativePowerConsumption(epc);
-			addProperty(epc, edt, (edt != null && edt.length == 4));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			byte epc = EPC_MANUFACTURERS_FAULT_CODE;
-			byte[] edt = _getManufacturersFaultCode(epc);
-			addProperty(epc, edt, (edt != null && edt.length <= 225));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			byte epc = EPC_CURRENT_LIMIT_SETTING;
-			byte[] edt = _getCurrentLimitSetting(epc);
-			addProperty(epc, edt, (edt != null && edt.length == 1));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetFaultStatus() {
-			byte epc = EPC_FAULT_STATUS;
-			byte[] edt = _getFaultStatus(epc);
-			addProperty(epc, edt, (edt != null && edt.length == 1));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetFaultDescription() {
-			byte epc = EPC_FAULT_DESCRIPTION;
-			byte[] edt = _getFaultDescription(epc);
-			addProperty(epc, edt, (edt != null && edt.length == 2));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetManufacturerCode() {
-			byte epc = EPC_MANUFACTURER_CODE;
-			byte[] edt = _getManufacturerCode(epc);
-			addProperty(epc, edt, (edt != null && edt.length == 3));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			byte epc = EPC_BUSINESS_FACILITY_CODE;
-			byte[] edt = _getBusinessFacilityCode(epc);
-			addProperty(epc, edt, (edt != null && edt.length == 3));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetProductCode() {
-			byte epc = EPC_PRODUCT_CODE;
-			byte[] edt = _getProductCode(epc);
-			addProperty(epc, edt, (edt != null && edt.length == 12));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetProductionNumber() {
-			byte epc = EPC_PRODUCTION_NUMBER;
-			byte[] edt = _getProductionNumber(epc);
-			addProperty(epc, edt, (edt != null && edt.length == 12));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetProductionDate() {
-			byte epc = EPC_PRODUCTION_DATE;
-			byte[] edt = _getProductionDate(epc);
-			addProperty(epc, edt, (edt != null && edt.length == 4));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			byte epc = EPC_POWER_SAVING_OPERATION_SETTING;
-			byte[] edt = _getPowerSavingOperationSetting(epc);
-			addProperty(epc, edt, (edt != null && edt.length == 1));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetPositionInformation() {
-			byte epc = EPC_POSITION_INFORMATION;
-			byte[] edt = _getPositionInformation(epc);
-			addProperty(epc, edt, (edt != null && edt.length == 16));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			byte epc = EPC_CURRENT_TIME_SETTING;
-			byte[] edt = _getCurrentTimeSetting(epc);
-			addProperty(epc, edt, (edt != null && edt.length == 2));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			byte epc = EPC_CURRENT_DATE_SETTING;
-			byte[] edt = _getCurrentDateSetting(epc);
-			addProperty(epc, edt, (edt != null && edt.length == 4));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			byte epc = EPC_POWER_LIMIT_SETTING;
-			byte[] edt = _getPowerLimitSetting(epc);
-			addProperty(epc, edt, (edt != null && edt.length == 2));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			byte epc = EPC_CUMULATIVE_OPERATING_TIME;
-			byte[] edt = _getCumulativeOperatingTime(epc);
-			addProperty(epc, edt, (edt != null && edt.length == 5));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			byte epc = EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP;
-			byte[] edt = _getStatusChangeAnnouncementPropertyMap(epc);
-			addProperty(epc, edt, (edt != null && edt.length <= 17));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			byte epc = EPC_SET_PROPERTY_MAP;
-			byte[] edt = _getSetPropertyMap(epc);
-			addProperty(epc, edt, (edt != null && edt.length <= 17));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			byte epc = EPC_GET_PROPERTY_MAP;
-			byte[] edt = _getGetPropertyMap(epc);
-			addProperty(epc, edt, (edt != null && edt.length <= 17));
-			return this;
-		}
-		
-	}
-	
-	public class GetterProxy extends EchoObject.GetterProxy implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			addProperty(EPC_OPERATION_STATUS);
-			return this;
-		}
-
-		@Override
-		public Getter reqGetInstallationLocation() {
-			addProperty(EPC_INSTALLATION_LOCATION);
-			return this;
-		}
-
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			addProperty(EPC_STANDARD_VERSION_INFORMATION);
-			return this;
-		}
-
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			addProperty(EPC_IDENTIFICATION_NUMBER);
-			return this;
-		}
-
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			addProperty(EPC_MEASURED_INSTANTANEOUS_POWER_CONSUMPTION);
-			return this;
-		}
-
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			addProperty(EPC_MEASURED_CUMULATIVE_POWER_CONSUMPTION);
-			return this;
-		}
-
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			addProperty(EPC_MANUFACTURERS_FAULT_CODE);
-			return this;
-		}
-
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			addProperty(EPC_CURRENT_LIMIT_SETTING);
-			return this;
-		}
-
-		@Override
-		public Getter reqGetFaultStatus() {
-			addProperty(EPC_FAULT_STATUS);
-			return this;
-		}
-
-		@Override
-		public Getter reqGetFaultDescription() {
-			addProperty(EPC_FAULT_DESCRIPTION);
-			return this;
-		}
-
-		@Override
-		public Getter reqGetManufacturerCode() {
-			addProperty(EPC_MANUFACTURER_CODE);
-			return this;
-		}
-
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			addProperty(EPC_BUSINESS_FACILITY_CODE);
-			return this;
-		}
-
-		@Override
-		public Getter reqGetProductCode() {
-			addProperty(EPC_PRODUCT_CODE);
-			return this;
-		}
-
-		@Override
-		public Getter reqGetProductionNumber() {
-			addProperty(EPC_PRODUCTION_NUMBER);
-			return this;
-		}
-
-		@Override
-		public Getter reqGetProductionDate() {
-			addProperty(EPC_PRODUCTION_DATE);
-			return this;
-		}
-
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			addProperty(EPC_POWER_SAVING_OPERATION_SETTING);
-			return this;
-		}
-
-		@Override
-		public Getter reqGetPositionInformation() {
-			addProperty(EPC_POSITION_INFORMATION);
-			return this;
-		}
-
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			addProperty(EPC_CURRENT_TIME_SETTING);
-			return this;
-		}
-
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			addProperty(EPC_CURRENT_DATE_SETTING);
-			return this;
-		}
-
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			addProperty(EPC_POWER_LIMIT_SETTING);
-			return this;
-		}
-
-		@Override
 		public Getter reqGetCumulativeOperatingTime() {
 			addProperty(EPC_CUMULATIVE_OPERATING_TIME);
 			return this;
 		}
-
-		@Override
+		/**
+		 * See Appendix 1.<br><br>
+		 * Data type : unsigned char×(MAX17)<br>
+		 * Data size : Max.17<br>
+		 * Set : undefined<br>
+		 * Get : mandatory
+		 */
 		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
 			addProperty(EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP);
 			return this;
 		}
-
-		@Override
+		/**
+		 * See Appendix 1.<br><br>
+		 * Data type : unsigned char×(MAX17)<br>
+		 * Data size : Max.17<br>
+		 * Set : undefined<br>
+		 * Get : mandatory
+		 */
 		public Getter reqGetSetPropertyMap() {
-			addProperty(EPC_GET_PROPERTY_MAP);
+			addProperty(EPC_SET_PROPERTY_MAP);
 			return this;
 		}
-
-		@Override
+		/**
+		 * See Appendix 1.<br><br>
+		 * Data type : unsigned char×(MAX17)<br>
+		 * Data size : Max.17<br>
+		 * Set : undefined<br>
+		 * Get : mandatory
+		 */
 		public Getter reqGetGetPropertyMap() {
 			addProperty(EPC_GET_PROPERTY_MAP);
 			return this;
 		}
-		
 	}
 	
 	public interface Informer extends EchoObject.Informer {
+		public Informer reqInform(byte epc);
+		
 		/**
 		 * This property indicates the ON/OFF status.<br>
 		 * ON＝0x30，OFF＝0x31<br><br>
@@ -2385,6 +2129,11 @@ public abstract class DeviceObject extends EchoObject {
 	public class InformerImpl extends EchoObject.InformerImpl implements Informer {
 
 		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+
+		@Override
 		public Informer reqInformOperationStatus() {
 			byte epc = EPC_OPERATION_STATUS;
 			byte[] edt = _getOperationStatus(epc);
@@ -2579,6 +2328,11 @@ public abstract class DeviceObject extends EchoObject {
 
 	public class InformerProxy extends EchoObject.InformerProxy implements Informer {
 
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			addProperty(EPC_OPERATION_STATUS);

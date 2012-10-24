@@ -20,8 +20,6 @@ import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 
 public abstract class SmartElectricEnergyMeter extends DeviceObject {
-	@SuppressWarnings("unused")
-	private static final String TAG = SmartElectricEnergyMeter.class.getSimpleName();
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x88;
@@ -54,183 +52,183 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 	}
 
 	/**
-	 * This property indicates the electric energy meter type.<br>0x30�FElectric utility company 0x31�FSolar power 0x32�FFuel cell 0x33�FBattery 0x34�FEV 0x35�FOthers<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+	 * This property indicates the electric energy meter type.<br><br>0x30�FElectric utility company 0x31�FSolar power 0x32�FFuel cell 0x33�FBattery 0x34�FEV 0x35�FOthers<br><br>Name : Electric energy meter classification<br>EPC : 0xD0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setElectricEnergyMeterClassification(byte[] edt) {return false;}
 	private final boolean _setElectricEnergyMeterClassification(byte epc, byte[] edt) {
 		boolean success = setElectricEnergyMeterClassification(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * This property indicates the electric energy meter type.<br>0x30�FElectric utility company 0x31�FSolar power 0x32�FFuel cell 0x33�FBattery 0x34�FEV 0x35�FOthers<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+	 * This property indicates the electric energy meter type.<br><br>0x30�FElectric utility company 0x31�FSolar power 0x32�FFuel cell 0x33�FBattery 0x34�FEV 0x35�FOthers<br><br>Name : Electric energy meter classification<br>EPC : 0xD0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getElectricEnergyMeterClassification() {return null;}
 	private final byte[] _getElectricEnergyMeterClassification(byte epc) {
 		byte[] edt = getElectricEnergyMeterClassification();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the type of the owner of the meter.<br>0x30�FNot specified 0x31�FElectric utility company 0x32�FPrivate sector company 0x33�FIndividual<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+	 * This property indicates the type of the owner of the meter.<br><br>0x30�FNot specified 0x31�FElectric utility company 0x32�FPrivate sector company 0x33�FIndividual<br><br>Name : Owner classification<br>EPC : 0xD1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setOwnerClassification(byte[] edt) {return false;}
 	private final boolean _setOwnerClassification(byte epc, byte[] edt) {
 		boolean success = setOwnerClassification(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * This property indicates the type of the owner of the meter.<br>0x30�FNot specified 0x31�FElectric utility company 0x32�FPrivate sector company 0x33�FIndividual<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+	 * This property indicates the type of the owner of the meter.<br><br>0x30�FNot specified 0x31�FElectric utility company 0x32�FPrivate sector company 0x33�FIndividual<br><br>Name : Owner classification<br>EPC : 0xD1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getOwnerClassification() {return null;}
 	private final byte[] _getOwnerClassification(byte epc) {
 		byte[] edt = getOwnerClassification();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the configuration regarding the phases and wires of the system.<br>Single-phase, two-wire system�F 0x30 Single-phase, three-wire system�F 0x31 Three-phase, three-wire system�F 0x32 Three-phase, four-wire system�F 0x33<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
+	 * This property indicates the configuration regarding the phases and wires of the system.<br><br>Single-phase, two-wire system�F 0x30 Single-phase, three-wire system�F 0x31 Three-phase, three-wire system�F 0x32 Three-phase, four-wire system�F 0x33<br><br>Name : Configuration information of phases and wires of the systems<br>EPC : 0xD2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getConfigurationInformationOfPhasesAndWiresOfTheSystems() {return null;}
 	private final byte[] _getConfigurationInformationOfPhasesAndWiresOfTheSystems(byte epc) {
 		byte[] edt = getConfigurationInformationOfPhasesAndWiresOfTheSystems();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the composite transformation ratio using a 6-digit decimal notation number (initial value = 1).<br>0x00000000-0x000F423F (000000-999999)<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
+	 * This property indicates the composite transformation ratio using a 6-digit decimal notation number (initial value = 1).<br><br>0x00000000-0x000F423F (000000-999999)<br><br>Name : Composite transformation ratio<br>EPC : 0xD3<br>Data Type : unsigned long<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getCompositeTransformationRatio() {return null;}
 	private final byte[] _getCompositeTransformationRatio(byte epc) {
 		byte[] edt = getCompositeTransformationRatio();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the multiplying factor for the composite transformation ratio.<br>0x00�F�~1(initial value) 0x01�F�~0.1 0x02�F�~0.01 0x03�F�~0.001<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
+	 * This property indicates the multiplying factor for the composite transformation ratio.<br><br>0x00�F�~1(initial value) 0x01�F�~0.1 0x02�F�~0.01 0x03�F�~0.001<br><br>Name : Multiplying factor for composite transformation ratio<br>EPC : 0xD4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getMultiplyingFactorForCompositeTransformationRatio() {return null;}
 	private final byte[] _getMultiplyingFactorForCompositeTransformationRatio(byte epc) {
 		byte[] edt = getMultiplyingFactorForCompositeTransformationRatio();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the type-certified meter number using alphanumeric characters (0x20-0x70).<br>Type-certified meter (type number): 0000-0��������- 9999-9�������� Non-type certified meter: FFFFFFFFFF (initial value)<br><br>Data type : unsigned char x 10<br>Data size : 10 Byte<br>Set : undefined<br>Get : mandatory
+	 * This property indicates the type-certified meter number using alphanumeric characters (0x20-0x70).<br><br>Type-certified meter (type number): 0000-0��������- 9999-9�������� Non-type certified meter: FFFFFFFFFF (initial value)<br><br>Name : Meter type certification number (type approval number in Japan)<br>EPC : 0xD5<br>Data Type : unsigned char x 10<br>Data Size(Byte) : 10 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
 	 */
 	protected abstract byte[] getMeterTypeCertificationNumberTypeApprovalNumberInJapan();
 	private final byte[] _getMeterTypeCertificationNumberTypeApprovalNumberInJapan(byte epc) {
 		byte[] edt = getMeterTypeCertificationNumberTypeApprovalNumberInJapan();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates, in the form of an ASCII code, the month and year in which the verification of the meter will expire.<br>YYYYMM YYYY (Year), MM (Month)<br><br>Data type : unsigned char x 6<br>Data size : 6 Byte<br>Set : optional<br>Get : optional
+	 * This property indicates, in the form of an ASCII code, the month and year in which the verification of the meter will expire.<br><br>YYYYMM YYYY (Year), MM (Month)<br><br>Name : Verification expiration date<br>EPC : 0xD6<br>Data Type : unsigned char x 6<br>Data Size(Byte) : 6 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setVerificationExpirationDate(byte[] edt) {return false;}
 	private final boolean _setVerificationExpirationDate(byte epc, byte[] edt) {
 		boolean success = setVerificationExpirationDate(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * This property indicates, in the form of an ASCII code, the month and year in which the verification of the meter will expire.<br>YYYYMM YYYY (Year), MM (Month)<br><br>Data type : unsigned char x 6<br>Data size : 6 Byte<br>Set : optional<br>Get : optional
+	 * This property indicates, in the form of an ASCII code, the month and year in which the verification of the meter will expire.<br><br>YYYYMM YYYY (Year), MM (Month)<br><br>Name : Verification expiration date<br>EPC : 0xD6<br>Data Type : unsigned char x 6<br>Data Size(Byte) : 6 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getVerificationExpirationDate() {return null;}
 	private final byte[] _getVerificationExpirationDate(byte epc) {
 		byte[] edt = getVerificationExpirationDate();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br>0x00000000-0x05F5E0FF (0-99,999,999)<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : mandatory
+	 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br><br>0x00000000-0x05F5E0FF (0-99,999,999)<br><br>Name : Measured cumulative amount of electric energy (normal direction)<br>EPC : 0xE0<br>Data Type : unsigned long<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
 	 */
 	protected abstract byte[] getMeasuredCumulativeAmountOfElectricEnergyNormalDirection();
 	private final byte[] _getMeasuredCumulativeAmountOfElectricEnergyNormalDirection(byte epc) {
 		byte[] edt = getMeasuredCumulativeAmountOfElectricEnergyNormalDirection();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy.<br>0x00: 1kWh 0x01: 0.1kWh 0x02: 0.01kWh 0x03: 0.001kWh (Initial value) 0x04: 0.0001kWh 0x0A: 10kWh 0x0B: 100kWh 0x0C: 1000kWh 0x0D: 10000kWh<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : mandatory
+	 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy.<br><br>0x00: 1kWh 0x01: 0.1kWh 0x02: 0.01kWh 0x03: 0.001kWh (Initial value) 0x04: 0.0001kWh 0x0A: 10kWh 0x0B: 100kWh 0x0C: 1000kWh 0x0D: 10000kWh<br><br>Name : Unit for cumulative amounts of electric energy (normal and reverse directions)<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
 	 */
 	protected abstract byte[] getUnitForCumulativeAmountsOfElectricEnergyNormalAndReverseDirections();
 	private final byte[] _getUnitForCumulativeAmountsOfElectricEnergyNormalAndReverseDirections(byte epc) {
 		byte[] edt = getUnitForCumulativeAmountsOfElectricEnergyNormalAndReverseDirections();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>0x0000-0x0063: 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br><br>Data type : unsigned short + unsigned long x48<br>Data size : 194 Byte<br>Set : undefined<br>Get : optional
+	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br><br>0x0000-0x0063: 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br><br>Name : Historical data of measured cumulative amounts of electric energy (normal direction)<br>EPC : 0xE2<br>Data Type : unsigned short + unsigned long x48<br>Data Size(Byte) : 194 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection() {return null;}
 	private final byte[] _getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection(byte epc) {
 		byte[] edt = getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br>0x00000000-0x05F5E0FF (0-99,999,999)<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
+	 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br><br>0x00000000-0x05F5E0FF (0-99,999,999)<br><br>Name : Measured cumulative amount of electric energy (reverse direction)<br>EPC : 0xE3<br>Data Type : unsigned long<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getMeasuredCumulativeAmountOfElectricEnergyReverseDirection() {return null;}
 	private final byte[] _getMeasuredCumulativeAmountOfElectricEnergyReverseDirection(byte epc) {
 		byte[] edt = getMeasuredCumulativeAmountOfElectricEnergyReverseDirection();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>0x0000-0x0063: 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br><br>Data type : unsigned short �{ unsigned long �~48<br>Data size : 194 Byte<br>Set : undefined<br>Get : optional
+	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br><br>0x0000-0x0063: 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br><br>Name : Historical data of measured cumulative amounts of electric energy (reverse direction)<br>EPC : 0xE4<br>Data Type : unsigned short �{ unsigned long �~48<br>Data Size(Byte) : 194 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection() {return null;}
 	private final byte[] _getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection(byte epc) {
 		byte[] edt = getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>0x00-0x63 ( 0-99) 0: current day 1  . 99: previous day . day that precedes the current day by 99 days<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br><br>0x00-0x63 ( 0-99) 0: current day 1  . 99: previous day . day that precedes the current day by 99 days<br><br>Name : Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(byte[] edt) {return false;}
 	private final boolean _setDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(byte epc, byte[] edt) {
 		boolean success = setDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>0x00-0x63 ( 0-99) 0: current day 1  . 99: previous day . day that precedes the current day by 99 days<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br><br>0x00-0x63 ( 0-99) 0: current day 1  . 99: previous day . day that precedes the current day by 99 days<br><br>Name : Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved() {return null;}
 	private final byte[] _getDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(byte epc) {
 		byte[] edt = getDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the measured effective instantaneous amount of electric energy in watts.<br>0x80000001-0x7FFFFFFD (-2,147,483,647- 2,147,483,645)<br><br>Data type : signed long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
+	 * This property indicates the measured effective instantaneous amount of electric energy in watts.<br><br>0x80000001-0x7FFFFFFD (-2,147,483,647- 2,147,483,645)<br><br>Name : Measured instantaneous amount of electric energy<br>EPC : 0xE7<br>Data Type : signed long<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getMeasuredInstantaneousAmountOfElectricEnergy() {return null;}
 	private final byte[] _getMeasuredInstantaneousAmountOfElectricEnergy(byte epc) {
 		byte[] edt = getMeasuredInstantaneousAmountOfElectricEnergy();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the measured effective instantaneous R and T phase currents in amperes. In the case of a single-phase, two-wire system, 0x7FFE shall be used for the T phase.<br>0x8001-0x7FFD�iR phase�j : 0x8001-0x7FFD�iT phase�j (-3,276.7-3,276.5): (-3,276.7-3,276.5)<br><br>Data type : signed short �~2<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
+	 * This property indicates the measured effective instantaneous R and T phase currents in amperes. In the case of a single-phase, two-wire system, 0x7FFE shall be used for the T phase.<br><br>0x8001-0x7FFD�iR phase�j : 0x8001-0x7FFD�iT phase�j (-3,276.7-3,276.5): (-3,276.7-3,276.5)<br><br>Name : Measured instantaneous currents<br>EPC : 0xE8<br>Data Type : signed short �~2<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getMeasuredInstantaneousCurrents() {return null;}
 	private final byte[] _getMeasuredInstantaneousCurrents(byte epc) {
 		byte[] edt = getMeasuredInstantaneousCurrents();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system, 0xFFFE shall be used for the S(N)-T voltage.<br>0x0000-0xFFFD (between R and S(N))�F 0x0000-0xFFFD (between S(N) and T) (0-6,553.3) : (0-6,553.3)<br><br>Data type : unsigned short �~2<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
+	 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system, 0xFFFE shall be used for the S(N)-T voltage.<br><br>0x0000-0xFFFD (between R and S(N))�F 0x0000-0xFFFD (between S(N) and T) (0-6,553.3) : (0-6,553.3)<br><br>Name : Measured instantaneous voltages<br>EPC : 0xE9<br>Data Type : unsigned short �~2<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getMeasuredInstantaneousVoltages() {return null;}
 	private final byte[] _getMeasuredInstantaneousVoltages(byte epc) {
 		byte[] edt = getMeasuredInstantaneousVoltages();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
@@ -330,17 +328,17 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 	
 	@Override
 	public Setter set() {
-		return new SetterImpl(ESV_SET_NO_RES);
+		return new Setter(ESV_SETI);
 	}
 
 	@Override
 	public Setter setC() {
-		return new SetterImpl(ESV_SET_RES);
+		return new Setter(ESV_SETC);
 	}
 
 	@Override
 	public Getter get() {
-		return new GetterImpl();
+		return new Getter();
 	}
 
 	@Override
@@ -427,200 +425,176 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 		}
 		
 		/**
-		 * This property indicates the electric energy meter type.<br>0x30�FElectric utility company 0x31�FSolar power 0x32�FFuel cell 0x33�FBattery 0x34�FEV 0x35�FOthers<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+		 * This property indicates the electric energy meter type.<br><br>0x30�FElectric utility company 0x31�FSolar power 0x32�FFuel cell 0x33�FBattery 0x34�FEV 0x35�FOthers<br><br>Name : Electric energy meter classification<br>EPC : 0xD0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetElectricEnergyMeterClassification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetElectricEnergyMeterClassification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetElectricEnergyMeterClassification(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * This property indicates the electric energy meter type.<br>0x30�FElectric utility company 0x31�FSolar power 0x32�FFuel cell 0x33�FBattery 0x34�FEV 0x35�FOthers<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+		 * This property indicates the electric energy meter type.<br><br>0x30�FElectric utility company 0x31�FSolar power 0x32�FFuel cell 0x33�FBattery 0x34�FEV 0x35�FOthers<br><br>Name : Electric energy meter classification<br>EPC : 0xD0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetElectricEnergyMeterClassification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetElectricEnergyMeterClassification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetElectricEnergyMeterClassification(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the type of the owner of the meter.<br>0x30�FNot specified 0x31�FElectric utility company 0x32�FPrivate sector company 0x33�FIndividual<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+		 * This property indicates the type of the owner of the meter.<br><br>0x30�FNot specified 0x31�FElectric utility company 0x32�FPrivate sector company 0x33�FIndividual<br><br>Name : Owner classification<br>EPC : 0xD1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetOwnerClassification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetOwnerClassification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetOwnerClassification(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * This property indicates the type of the owner of the meter.<br>0x30�FNot specified 0x31�FElectric utility company 0x32�FPrivate sector company 0x33�FIndividual<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+		 * This property indicates the type of the owner of the meter.<br><br>0x30�FNot specified 0x31�FElectric utility company 0x32�FPrivate sector company 0x33�FIndividual<br><br>Name : Owner classification<br>EPC : 0xD1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetOwnerClassification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetOwnerClassification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetOwnerClassification(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the configuration regarding the phases and wires of the system.<br>Single-phase, two-wire system�F 0x30 Single-phase, three-wire system�F 0x31 Three-phase, three-wire system�F 0x32 Three-phase, four-wire system�F 0x33<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the configuration regarding the phases and wires of the system.<br><br>Single-phase, two-wire system�F 0x30 Single-phase, three-wire system�F 0x31 Three-phase, three-wire system�F 0x32 Three-phase, four-wire system�F 0x33<br><br>Name : Configuration information of phases and wires of the systems<br>EPC : 0xD2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetConfigurationInformationOfPhasesAndWiresOfTheSystems(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetConfigurationInformationOfPhasesAndWiresOfTheSystems(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetConfigurationInformationOfPhasesAndWiresOfTheSystems(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the composite transformation ratio using a 6-digit decimal notation number (initial value = 1).<br>0x00000000-0x000F423F (000000-999999)<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the composite transformation ratio using a 6-digit decimal notation number (initial value = 1).<br><br>0x00000000-0x000F423F (000000-999999)<br><br>Name : Composite transformation ratio<br>EPC : 0xD3<br>Data Type : unsigned long<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetCompositeTransformationRatio(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetCompositeTransformationRatio(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetCompositeTransformationRatio(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the multiplying factor for the composite transformation ratio.<br>0x00�F�~1(initial value) 0x01�F�~0.1 0x02�F�~0.01 0x03�F�~0.001<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the multiplying factor for the composite transformation ratio.<br><br>0x00�F�~1(initial value) 0x01�F�~0.1 0x02�F�~0.01 0x03�F�~0.001<br><br>Name : Multiplying factor for composite transformation ratio<br>EPC : 0xD4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetMultiplyingFactorForCompositeTransformationRatio(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetMultiplyingFactorForCompositeTransformationRatio(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetMultiplyingFactorForCompositeTransformationRatio(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the type-certified meter number using alphanumeric characters (0x20-0x70).<br>Type-certified meter (type number): 0000-0��������- 9999-9�������� Non-type certified meter: FFFFFFFFFF (initial value)<br><br>Data type : unsigned char x 10<br>Data size : 10 Byte<br>Set : undefined<br>Get : mandatory
+		 * This property indicates the type-certified meter number using alphanumeric characters (0x20-0x70).<br><br>Type-certified meter (type number): 0000-0��������- 9999-9�������� Non-type certified meter: FFFFFFFFFF (initial value)<br><br>Name : Meter type certification number (type approval number in Japan)<br>EPC : 0xD5<br>Data Type : unsigned char x 10<br>Data Size(Byte) : 10 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
 		 */
 		protected void onGetMeterTypeCertificationNumberTypeApprovalNumberInJapan(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetMeterTypeCertificationNumberTypeApprovalNumberInJapan(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetMeterTypeCertificationNumberTypeApprovalNumberInJapan(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates, in the form of an ASCII code, the month and year in which the verification of the meter will expire.<br>YYYYMM YYYY (Year), MM (Month)<br><br>Data type : unsigned char x 6<br>Data size : 6 Byte<br>Set : optional<br>Get : optional
+		 * This property indicates, in the form of an ASCII code, the month and year in which the verification of the meter will expire.<br><br>YYYYMM YYYY (Year), MM (Month)<br><br>Name : Verification expiration date<br>EPC : 0xD6<br>Data Type : unsigned char x 6<br>Data Size(Byte) : 6 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetVerificationExpirationDate(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetVerificationExpirationDate(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetVerificationExpirationDate(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * This property indicates, in the form of an ASCII code, the month and year in which the verification of the meter will expire.<br>YYYYMM YYYY (Year), MM (Month)<br><br>Data type : unsigned char x 6<br>Data size : 6 Byte<br>Set : optional<br>Get : optional
+		 * This property indicates, in the form of an ASCII code, the month and year in which the verification of the meter will expire.<br><br>YYYYMM YYYY (Year), MM (Month)<br><br>Name : Verification expiration date<br>EPC : 0xD6<br>Data Type : unsigned char x 6<br>Data Size(Byte) : 6 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetVerificationExpirationDate(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetVerificationExpirationDate(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetVerificationExpirationDate(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br>0x00000000-0x05F5E0FF (0-99,999,999)<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : mandatory
+		 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br><br>0x00000000-0x05F5E0FF (0-99,999,999)<br><br>Name : Measured cumulative amount of electric energy (normal direction)<br>EPC : 0xE0<br>Data Type : unsigned long<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
 		 */
 		protected void onGetMeasuredCumulativeAmountOfElectricEnergyNormalDirection(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetMeasuredCumulativeAmountOfElectricEnergyNormalDirection(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetMeasuredCumulativeAmountOfElectricEnergyNormalDirection(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy.<br>0x00: 1kWh 0x01: 0.1kWh 0x02: 0.01kWh 0x03: 0.001kWh (Initial value) 0x04: 0.0001kWh 0x0A: 10kWh 0x0B: 100kWh 0x0C: 1000kWh 0x0D: 10000kWh<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : mandatory
+		 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy.<br><br>0x00: 1kWh 0x01: 0.1kWh 0x02: 0.01kWh 0x03: 0.001kWh (Initial value) 0x04: 0.0001kWh 0x0A: 10kWh 0x0B: 100kWh 0x0C: 1000kWh 0x0D: 10000kWh<br><br>Name : Unit for cumulative amounts of electric energy (normal and reverse directions)<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
 		 */
 		protected void onGetUnitForCumulativeAmountsOfElectricEnergyNormalAndReverseDirections(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetUnitForCumulativeAmountsOfElectricEnergyNormalAndReverseDirections(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetUnitForCumulativeAmountsOfElectricEnergyNormalAndReverseDirections(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>0x0000-0x0063: 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br><br>Data type : unsigned short + unsigned long x48<br>Data size : 194 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br><br>0x0000-0x0063: 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br><br>Name : Historical data of measured cumulative amounts of electric energy (normal direction)<br>EPC : 0xE2<br>Data Type : unsigned short + unsigned long x48<br>Data Size(Byte) : 194 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br>0x00000000-0x05F5E0FF (0-99,999,999)<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br><br>0x00000000-0x05F5E0FF (0-99,999,999)<br><br>Name : Measured cumulative amount of electric energy (reverse direction)<br>EPC : 0xE3<br>Data Type : unsigned long<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetMeasuredCumulativeAmountOfElectricEnergyReverseDirection(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetMeasuredCumulativeAmountOfElectricEnergyReverseDirection(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetMeasuredCumulativeAmountOfElectricEnergyReverseDirection(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>0x0000-0x0063: 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br><br>Data type : unsigned short �{ unsigned long �~48<br>Data size : 194 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br><br>0x0000-0x0063: 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br><br>Name : Historical data of measured cumulative amounts of electric energy (reverse direction)<br>EPC : 0xE4<br>Data Type : unsigned short �{ unsigned long �~48<br>Data Size(Byte) : 194 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>0x00-0x63 ( 0-99) 0: current day 1  . 99: previous day . day that precedes the current day by 99 days<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br><br>0x00-0x63 ( 0-99) 0: current day 1  . 99: previous day . day that precedes the current day by 99 days<br><br>Name : Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>0x00-0x63 ( 0-99) 0: current day 1  . 99: previous day . day that precedes the current day by 99 days<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br><br>0x00-0x63 ( 0-99) 0: current day 1  . 99: previous day . day that precedes the current day by 99 days<br><br>Name : Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the measured effective instantaneous amount of electric energy in watts.<br>0x80000001-0x7FFFFFFD (-2,147,483,647- 2,147,483,645)<br><br>Data type : signed long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the measured effective instantaneous amount of electric energy in watts.<br><br>0x80000001-0x7FFFFFFD (-2,147,483,647- 2,147,483,645)<br><br>Name : Measured instantaneous amount of electric energy<br>EPC : 0xE7<br>Data Type : signed long<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetMeasuredInstantaneousAmountOfElectricEnergy(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetMeasuredInstantaneousAmountOfElectricEnergy(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetMeasuredInstantaneousAmountOfElectricEnergy(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the measured effective instantaneous R and T phase currents in amperes. In the case of a single-phase, two-wire system, 0x7FFE shall be used for the T phase.<br>0x8001-0x7FFD�iR phase�j : 0x8001-0x7FFD�iT phase�j (-3,276.7-3,276.5): (-3,276.7-3,276.5)<br><br>Data type : signed short �~2<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the measured effective instantaneous R and T phase currents in amperes. In the case of a single-phase, two-wire system, 0x7FFE shall be used for the T phase.<br><br>0x8001-0x7FFD�iR phase�j : 0x8001-0x7FFD�iT phase�j (-3,276.7-3,276.5): (-3,276.7-3,276.5)<br><br>Name : Measured instantaneous currents<br>EPC : 0xE8<br>Data Type : signed short �~2<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetMeasuredInstantaneousCurrents(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetMeasuredInstantaneousCurrents(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetMeasuredInstantaneousCurrents(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system, 0xFFFE shall be used for the S(N)-T voltage.<br>0x0000-0xFFFD (between R and S(N))�F 0x0000-0xFFFD (between S(N) and T) (0-6,553.3) : (0-6,553.3)<br><br>Data type : unsigned short �~2<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system, 0xFFFE shall be used for the S(N)-T voltage.<br><br>0x0000-0xFFFD (between R and S(N))�F 0x0000-0xFFFD (between S(N) and T) (0-6,553.3) : (0-6,553.3)<br><br>Name : Measured instantaneous voltages<br>EPC : 0xE9<br>Data Type : unsigned short �~2<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetMeasuredInstantaneousVoltages(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetMeasuredInstantaneousVoltages(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetMeasuredInstantaneousVoltages(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 
 	}
 	
-	public interface Setter extends DeviceObject.Setter {
-		public Setter reqSetOperationStatus(byte[] edt);
-		public Setter reqSetInstallationLocation(byte[] edt);
-		public Setter reqSetCurrentLimitSetting(byte[] edt);
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
-		public Setter reqSetPositionInformation(byte[] edt);
-		public Setter reqSetCurrentTimeSetting(byte[] edt);
-		public Setter reqSetCurrentDateSetting(byte[] edt);
-		public Setter reqSetPowerLimitSetting(byte[] edt);
-		
-		/**
-		 * This property indicates the electric energy meter type.<br>0x30�FElectric utility company 0x31�FSolar power 0x32�FFuel cell 0x33�FBattery 0x34�FEV 0x35�FOthers<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetElectricEnergyMeterClassification(byte[] edt);
-		/**
-		 * This property indicates the type of the owner of the meter.<br>0x30�FNot specified 0x31�FElectric utility company 0x32�FPrivate sector company 0x33�FIndividual<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetOwnerClassification(byte[] edt);
-		/**
-		 * This property indicates, in the form of an ASCII code, the month and year in which the verification of the meter will expire.<br>YYYYMM YYYY (Year), MM (Month)<br><br>Data type : unsigned char x 6<br>Data size : 6 Byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetVerificationExpirationDate(byte[] edt);
-		/**
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>0x00-0x63 ( 0-99) 0: current day 1  . 99: previous day . day that precedes the current day by 99 days<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(byte[] edt);
-	}
-
-	public class SetterImpl extends DeviceObject.SetterImpl implements Setter {
-
-		public SetterImpl(byte esv) {
+	public class Setter extends DeviceObject.Setter {
+		public Setter(byte esv) {
 			super(esv);
+		}
+
+		@Override
+		public Setter reqSet(byte epc, byte[] edt) {
+			return (Setter)super.reqSet(epc, edt);
 		}
 		
 		@Override
@@ -656,573 +630,243 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
-		@Override
-		public Setter reqSetElectricEnergyMeterClassification(byte[] edt) {
-			byte epc = EPC_ELECTRIC_ENERGY_METER_CLASSIFICATION;
-			addProperty(epc, edt, _setElectricEnergyMeterClassification(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetOwnerClassification(byte[] edt) {
-			byte epc = EPC_OWNER_CLASSIFICATION;
-			addProperty(epc, edt, _setOwnerClassification(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetVerificationExpirationDate(byte[] edt) {
-			byte epc = EPC_VERIFICATION_EXPIRATION_DATE;
-			addProperty(epc, edt, _setVerificationExpirationDate(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(byte[] edt) {
-			byte epc = EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED;
-			addProperty(epc, edt, _setDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(epc, edt));
-			return this;
-		}
-	}
-	
-	public class SetterProxy extends DeviceObject.SetterProxy implements Setter {
-
-		public SetterProxy(byte esv) {
-			super(esv);
-		}
-
-		@Override
-		public Setter reqSetOperationStatus(byte[] edt) {
-			return (Setter)super.reqSetOperationStatus(edt);
-		}
-		@Override
-		public Setter reqSetInstallationLocation(byte[] edt) {
-			return (Setter)super.reqSetInstallationLocation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimitSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
-		}
-		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentTimeSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentTimeSetting(edt);
-		}
-		@Override
-		public Setter reqSetCurrentDateSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentDateSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitSetting(edt);
-		}
-
-		@Override
+		/**
+		 * This property indicates the electric energy meter type.<br><br>0x30�FElectric utility company 0x31�FSolar power 0x32�FFuel cell 0x33�FBattery 0x34�FEV 0x35�FOthers<br><br>Name : Electric energy meter classification<br>EPC : 0xD0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetElectricEnergyMeterClassification(byte[] edt) {
 			addProperty(EPC_ELECTRIC_ENERGY_METER_CLASSIFICATION, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the type of the owner of the meter.<br><br>0x30�FNot specified 0x31�FElectric utility company 0x32�FPrivate sector company 0x33�FIndividual<br><br>Name : Owner classification<br>EPC : 0xD1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetOwnerClassification(byte[] edt) {
 			addProperty(EPC_OWNER_CLASSIFICATION, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates, in the form of an ASCII code, the month and year in which the verification of the meter will expire.<br><br>YYYYMM YYYY (Year), MM (Month)<br><br>Name : Verification expiration date<br>EPC : 0xD6<br>Data Type : unsigned char x 6<br>Data Size(Byte) : 6 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetVerificationExpirationDate(byte[] edt) {
 			addProperty(EPC_VERIFICATION_EXPIRATION_DATE, edt, (edt != null && (edt.length == 6)));
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br><br>0x00-0x63 ( 0-99) 0: current day 1  . 99: previous day . day that precedes the current day by 99 days<br><br>Name : Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(byte[] edt) {
 			addProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}
 
-	public interface Getter extends DeviceObject.Getter {
-		public Getter reqGetOperationStatus();
-		public Getter reqGetInstallationLocation();
-		public Getter reqGetStandardVersionInformation();
-		public Getter reqGetIdentificationNumber();
-		public Getter reqGetMeasuredInstantaneousPowerConsumption();
-		public Getter reqGetMeasuredCumulativePowerConsumption();
-		public Getter reqGetManufacturersFaultCode();
-		public Getter reqGetCurrentLimitSetting();
-		public Getter reqGetFaultStatus();
-		public Getter reqGetFaultDescription();
-		public Getter reqGetManufacturerCode();
-		public Getter reqGetBusinessFacilityCode();
-		public Getter reqGetProductCode();
-		public Getter reqGetProductionNumber();
-		public Getter reqGetProductionDate();
-		public Getter reqGetPowerSavingOperationSetting();
-		public Getter reqGetPositionInformation();
-		public Getter reqGetCurrentTimeSetting();
-		public Getter reqGetCurrentDateSetting();
-		public Getter reqGetPowerLimitSetting();
-		public Getter reqGetCumulativeOperatingTime();
-		public Getter reqGetStatusChangeAnnouncementPropertyMap();
-		public Getter reqGetSetPropertyMap();
-		public Getter reqGetGetPropertyMap();
+	public class Getter extends DeviceObject.Getter {
+
+		@Override
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
+		}
+		@Override
+		public Getter reqGetInstallationLocation() {
+			return (Getter)super.reqGetInstallationLocation();
+		}
+		@Override
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
+		}
+		@Override
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
+		}
+		@Override
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
+		}
+		@Override
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
+		}
+		@Override
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
+		}
+		@Override
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
+		}
+		@Override
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
+		}
+		@Override
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
+		}
+		@Override
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
+		}
+		@Override
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
+		}
+		@Override
+		public Getter reqGetProductCode() {
+			return (Getter)super.reqGetProductCode();
+		}
+		@Override
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
+		}
+		@Override
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
+		}
+		@Override
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
+		}
+		@Override
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
+		}
+		@Override
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
+		}
+		@Override
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
+		}
+		@Override
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
+		}
+		@Override
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
+		}
+		@Override
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
+		}
+		@Override
+		public Getter reqGetSetPropertyMap() {
+			return (Getter)super.reqGetSetPropertyMap();
+		}
+		@Override
+		public Getter reqGetGetPropertyMap() {
+			return (Getter)super.reqGetGetPropertyMap();
+		}
 		
 		/**
-		 * This property indicates the electric energy meter type.<br>0x30�FElectric utility company 0x31�FSolar power 0x32�FFuel cell 0x33�FBattery 0x34�FEV 0x35�FOthers<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+		 * This property indicates the electric energy meter type.<br><br>0x30�FElectric utility company 0x31�FSolar power 0x32�FFuel cell 0x33�FBattery 0x34�FEV 0x35�FOthers<br><br>Name : Electric energy meter classification<br>EPC : 0xD0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
-		public Getter reqGetElectricEnergyMeterClassification();
-		/**
-		 * This property indicates the type of the owner of the meter.<br>0x30�FNot specified 0x31�FElectric utility company 0x32�FPrivate sector company 0x33�FIndividual<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetOwnerClassification();
-		/**
-		 * This property indicates the configuration regarding the phases and wires of the system.<br>Single-phase, two-wire system�F 0x30 Single-phase, three-wire system�F 0x31 Three-phase, three-wire system�F 0x32 Three-phase, four-wire system�F 0x33<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetConfigurationInformationOfPhasesAndWiresOfTheSystems();
-		/**
-		 * This property indicates the composite transformation ratio using a 6-digit decimal notation number (initial value = 1).<br>0x00000000-0x000F423F (000000-999999)<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetCompositeTransformationRatio();
-		/**
-		 * This property indicates the multiplying factor for the composite transformation ratio.<br>0x00�F�~1(initial value) 0x01�F�~0.1 0x02�F�~0.01 0x03�F�~0.001<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetMultiplyingFactorForCompositeTransformationRatio();
-		/**
-		 * This property indicates the type-certified meter number using alphanumeric characters (0x20-0x70).<br>Type-certified meter (type number): 0000-0��������- 9999-9�������� Non-type certified meter: FFFFFFFFFF (initial value)<br><br>Data type : unsigned char x 10<br>Data size : 10 Byte<br>Set : undefined<br>Get : mandatory
-		 */
-		public Getter reqGetMeterTypeCertificationNumberTypeApprovalNumberInJapan();
-		/**
-		 * This property indicates, in the form of an ASCII code, the month and year in which the verification of the meter will expire.<br>YYYYMM YYYY (Year), MM (Month)<br><br>Data type : unsigned char x 6<br>Data size : 6 Byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetVerificationExpirationDate();
-		/**
-		 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br>0x00000000-0x05F5E0FF (0-99,999,999)<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : mandatory
-		 */
-		public Getter reqGetMeasuredCumulativeAmountOfElectricEnergyNormalDirection();
-		/**
-		 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy.<br>0x00: 1kWh 0x01: 0.1kWh 0x02: 0.01kWh 0x03: 0.001kWh (Initial value) 0x04: 0.0001kWh 0x0A: 10kWh 0x0B: 100kWh 0x0C: 1000kWh 0x0D: 10000kWh<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : mandatory
-		 */
-		public Getter reqGetUnitForCumulativeAmountsOfElectricEnergyNormalAndReverseDirections();
-		/**
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>0x0000-0x0063: 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br><br>Data type : unsigned short + unsigned long x48<br>Data size : 194 Byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection();
-		/**
-		 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br>0x00000000-0x05F5E0FF (0-99,999,999)<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetMeasuredCumulativeAmountOfElectricEnergyReverseDirection();
-		/**
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>0x0000-0x0063: 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br><br>Data type : unsigned short �{ unsigned long �~48<br>Data size : 194 Byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection();
-		/**
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>0x00-0x63 ( 0-99) 0: current day 1  . 99: previous day . day that precedes the current day by 99 days<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved();
-		/**
-		 * This property indicates the measured effective instantaneous amount of electric energy in watts.<br>0x80000001-0x7FFFFFFD (-2,147,483,647- 2,147,483,645)<br><br>Data type : signed long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetMeasuredInstantaneousAmountOfElectricEnergy();
-		/**
-		 * This property indicates the measured effective instantaneous R and T phase currents in amperes. In the case of a single-phase, two-wire system, 0x7FFE shall be used for the T phase.<br>0x8001-0x7FFD�iR phase�j : 0x8001-0x7FFD�iT phase�j (-3,276.7-3,276.5): (-3,276.7-3,276.5)<br><br>Data type : signed short �~2<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetMeasuredInstantaneousCurrents();
-		/**
-		 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system, 0xFFFE shall be used for the S(N)-T voltage.<br>0x0000-0xFFFD (between R and S(N))�F 0x0000-0xFFFD (between S(N) and T) (0-6,553.3) : (0-6,553.3)<br><br>Data type : unsigned short �~2<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetMeasuredInstantaneousVoltages();
-	}
-	
-	public class GetterImpl extends DeviceObject.GetterImpl implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
-		public Getter reqGetElectricEnergyMeterClassification() {
-			byte epc = EPC_ELECTRIC_ENERGY_METER_CLASSIFICATION;
-			byte[] edt = _getElectricEnergyMeterClassification(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetOwnerClassification() {
-			byte epc = EPC_OWNER_CLASSIFICATION;
-			byte[] edt = _getOwnerClassification(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetConfigurationInformationOfPhasesAndWiresOfTheSystems() {
-			byte epc = EPC_CONFIGURATION_INFORMATION_OF_PHASES_AND_WIRES_OF_THE_SYSTEMS;
-			byte[] edt = _getConfigurationInformationOfPhasesAndWiresOfTheSystems(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetCompositeTransformationRatio() {
-			byte epc = EPC_COMPOSITE_TRANSFORMATION_RATIO;
-			byte[] edt = _getCompositeTransformationRatio(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 4)));
-			return this;
-		}
-		@Override
-		public Getter reqGetMultiplyingFactorForCompositeTransformationRatio() {
-			byte epc = EPC_MULTIPLYING_FACTOR_FOR_COMPOSITE_TRANSFORMATION_RATIO;
-			byte[] edt = _getMultiplyingFactorForCompositeTransformationRatio(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetMeterTypeCertificationNumberTypeApprovalNumberInJapan() {
-			byte epc = EPC_METER_TYPE_CERTIFICATION_NUMBER_TYPE_APPROVAL_NUMBER_IN_JAPAN;
-			byte[] edt = _getMeterTypeCertificationNumberTypeApprovalNumberInJapan(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 10)));
-			return this;
-		}
-		@Override
-		public Getter reqGetVerificationExpirationDate() {
-			byte epc = EPC_VERIFICATION_EXPIRATION_DATE;
-			byte[] edt = _getVerificationExpirationDate(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 6)));
-			return this;
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativeAmountOfElectricEnergyNormalDirection() {
-			byte epc = EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION;
-			byte[] edt = _getMeasuredCumulativeAmountOfElectricEnergyNormalDirection(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 4)));
-			return this;
-		}
-		@Override
-		public Getter reqGetUnitForCumulativeAmountsOfElectricEnergyNormalAndReverseDirections() {
-			byte epc = EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS;
-			byte[] edt = _getUnitForCumulativeAmountsOfElectricEnergyNormalAndReverseDirections(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection() {
-			byte epc = EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION;
-			byte[] edt = _getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 194)));
-			return this;
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativeAmountOfElectricEnergyReverseDirection() {
-			byte epc = EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION;
-			byte[] edt = _getMeasuredCumulativeAmountOfElectricEnergyReverseDirection(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 4)));
-			return this;
-		}
-		@Override
-		public Getter reqGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection() {
-			byte epc = EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION;
-			byte[] edt = _getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 194)));
-			return this;
-		}
-		@Override
-		public Getter reqGetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved() {
-			byte epc = EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED;
-			byte[] edt = _getDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousAmountOfElectricEnergy() {
-			byte epc = EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRIC_ENERGY;
-			byte[] edt = _getMeasuredInstantaneousAmountOfElectricEnergy(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 4)));
-			return this;
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousCurrents() {
-			byte epc = EPC_MEASURED_INSTANTANEOUS_CURRENTS;
-			byte[] edt = _getMeasuredInstantaneousCurrents(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 4)));
-			return this;
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousVoltages() {
-			byte epc = EPC_MEASURED_INSTANTANEOUS_VOLTAGES;
-			byte[] edt = _getMeasuredInstantaneousVoltages(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 4)));
-			return this;
-		}
-	}
-
-	public class GetterProxy extends DeviceObject.GetterProxy implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
 		public Getter reqGetElectricEnergyMeterClassification() {
 			addProperty(EPC_ELECTRIC_ENERGY_METER_CLASSIFICATION);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the type of the owner of the meter.<br><br>0x30�FNot specified 0x31�FElectric utility company 0x32�FPrivate sector company 0x33�FIndividual<br><br>Name : Owner classification<br>EPC : 0xD1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetOwnerClassification() {
 			addProperty(EPC_OWNER_CLASSIFICATION);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the configuration regarding the phases and wires of the system.<br><br>Single-phase, two-wire system�F 0x30 Single-phase, three-wire system�F 0x31 Three-phase, three-wire system�F 0x32 Three-phase, four-wire system�F 0x33<br><br>Name : Configuration information of phases and wires of the systems<br>EPC : 0xD2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetConfigurationInformationOfPhasesAndWiresOfTheSystems() {
 			addProperty(EPC_CONFIGURATION_INFORMATION_OF_PHASES_AND_WIRES_OF_THE_SYSTEMS);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the composite transformation ratio using a 6-digit decimal notation number (initial value = 1).<br><br>0x00000000-0x000F423F (000000-999999)<br><br>Name : Composite transformation ratio<br>EPC : 0xD3<br>Data Type : unsigned long<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetCompositeTransformationRatio() {
 			addProperty(EPC_COMPOSITE_TRANSFORMATION_RATIO);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the multiplying factor for the composite transformation ratio.<br><br>0x00�F�~1(initial value) 0x01�F�~0.1 0x02�F�~0.01 0x03�F�~0.001<br><br>Name : Multiplying factor for composite transformation ratio<br>EPC : 0xD4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetMultiplyingFactorForCompositeTransformationRatio() {
 			addProperty(EPC_MULTIPLYING_FACTOR_FOR_COMPOSITE_TRANSFORMATION_RATIO);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the type-certified meter number using alphanumeric characters (0x20-0x70).<br><br>Type-certified meter (type number): 0000-0��������- 9999-9�������� Non-type certified meter: FFFFFFFFFF (initial value)<br><br>Name : Meter type certification number (type approval number in Japan)<br>EPC : 0xD5<br>Data Type : unsigned char x 10<br>Data Size(Byte) : 10 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
+		 */
 		public Getter reqGetMeterTypeCertificationNumberTypeApprovalNumberInJapan() {
 			addProperty(EPC_METER_TYPE_CERTIFICATION_NUMBER_TYPE_APPROVAL_NUMBER_IN_JAPAN);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates, in the form of an ASCII code, the month and year in which the verification of the meter will expire.<br><br>YYYYMM YYYY (Year), MM (Month)<br><br>Name : Verification expiration date<br>EPC : 0xD6<br>Data Type : unsigned char x 6<br>Data Size(Byte) : 6 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetVerificationExpirationDate() {
 			addProperty(EPC_VERIFICATION_EXPIRATION_DATE);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br><br>0x00000000-0x05F5E0FF (0-99,999,999)<br><br>Name : Measured cumulative amount of electric energy (normal direction)<br>EPC : 0xE0<br>Data Type : unsigned long<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
+		 */
 		public Getter reqGetMeasuredCumulativeAmountOfElectricEnergyNormalDirection() {
 			addProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy.<br><br>0x00: 1kWh 0x01: 0.1kWh 0x02: 0.01kWh 0x03: 0.001kWh (Initial value) 0x04: 0.0001kWh 0x0A: 10kWh 0x0B: 100kWh 0x0C: 1000kWh 0x0D: 10000kWh<br><br>Name : Unit for cumulative amounts of electric energy (normal and reverse directions)<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
+		 */
 		public Getter reqGetUnitForCumulativeAmountsOfElectricEnergyNormalAndReverseDirections() {
 			addProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br><br>0x0000-0x0063: 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br><br>Name : Historical data of measured cumulative amounts of electric energy (normal direction)<br>EPC : 0xE2<br>Data Type : unsigned short + unsigned long x48<br>Data Size(Byte) : 194 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection() {
 			addProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br><br>0x00000000-0x05F5E0FF (0-99,999,999)<br><br>Name : Measured cumulative amount of electric energy (reverse direction)<br>EPC : 0xE3<br>Data Type : unsigned long<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetMeasuredCumulativeAmountOfElectricEnergyReverseDirection() {
 			addProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br><br>0x0000-0x0063: 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br><br>Name : Historical data of measured cumulative amounts of electric energy (reverse direction)<br>EPC : 0xE4<br>Data Type : unsigned short �{ unsigned long �~48<br>Data Size(Byte) : 194 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection() {
 			addProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br><br>0x00-0x63 ( 0-99) 0: current day 1  . 99: previous day . day that precedes the current day by 99 days<br><br>Name : Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved() {
 			addProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the measured effective instantaneous amount of electric energy in watts.<br><br>0x80000001-0x7FFFFFFD (-2,147,483,647- 2,147,483,645)<br><br>Name : Measured instantaneous amount of electric energy<br>EPC : 0xE7<br>Data Type : signed long<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetMeasuredInstantaneousAmountOfElectricEnergy() {
 			addProperty(EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRIC_ENERGY);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the measured effective instantaneous R and T phase currents in amperes. In the case of a single-phase, two-wire system, 0x7FFE shall be used for the T phase.<br><br>0x8001-0x7FFD�iR phase�j : 0x8001-0x7FFD�iT phase�j (-3,276.7-3,276.5): (-3,276.7-3,276.5)<br><br>Name : Measured instantaneous currents<br>EPC : 0xE8<br>Data Type : signed short �~2<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetMeasuredInstantaneousCurrents() {
 			addProperty(EPC_MEASURED_INSTANTANEOUS_CURRENTS);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system, 0xFFFE shall be used for the S(N)-T voltage.<br><br>0x0000-0xFFFD (between R and S(N))�F 0x0000-0xFFFD (between S(N) and T) (0-6,553.3) : (0-6,553.3)<br><br>Name : Measured instantaneous voltages<br>EPC : 0xE9<br>Data Type : unsigned short �~2<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetMeasuredInstantaneousVoltages() {
 			addProperty(EPC_MEASURED_INSTANTANEOUS_VOLTAGES);
 			return this;
@@ -1230,6 +874,8 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 	}
 	
 	public interface Informer extends DeviceObject.Informer {
+		public Informer reqInform(byte epc);
+		
 		public Informer reqInformOperationStatus();
 		public Informer reqInformInstallationLocation();
 		public Informer reqInformStandardVersionInformation();
@@ -1256,73 +902,77 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 		public Informer reqInformGetPropertyMap();
 		
 		/**
-		 * This property indicates the electric energy meter type.<br>0x30�FElectric utility company 0x31�FSolar power 0x32�FFuel cell 0x33�FBattery 0x34�FEV 0x35�FOthers<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+		 * This property indicates the electric energy meter type.<br><br>0x30�FElectric utility company 0x31�FSolar power 0x32�FFuel cell 0x33�FBattery 0x34�FEV 0x35�FOthers<br><br>Name : Electric energy meter classification<br>EPC : 0xD0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformElectricEnergyMeterClassification();
 		/**
-		 * This property indicates the type of the owner of the meter.<br>0x30�FNot specified 0x31�FElectric utility company 0x32�FPrivate sector company 0x33�FIndividual<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+		 * This property indicates the type of the owner of the meter.<br><br>0x30�FNot specified 0x31�FElectric utility company 0x32�FPrivate sector company 0x33�FIndividual<br><br>Name : Owner classification<br>EPC : 0xD1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformOwnerClassification();
 		/**
-		 * This property indicates the configuration regarding the phases and wires of the system.<br>Single-phase, two-wire system�F 0x30 Single-phase, three-wire system�F 0x31 Three-phase, three-wire system�F 0x32 Three-phase, four-wire system�F 0x33<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the configuration regarding the phases and wires of the system.<br><br>Single-phase, two-wire system�F 0x30 Single-phase, three-wire system�F 0x31 Three-phase, three-wire system�F 0x32 Three-phase, four-wire system�F 0x33<br><br>Name : Configuration information of phases and wires of the systems<br>EPC : 0xD2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformConfigurationInformationOfPhasesAndWiresOfTheSystems();
 		/**
-		 * This property indicates the composite transformation ratio using a 6-digit decimal notation number (initial value = 1).<br>0x00000000-0x000F423F (000000-999999)<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the composite transformation ratio using a 6-digit decimal notation number (initial value = 1).<br><br>0x00000000-0x000F423F (000000-999999)<br><br>Name : Composite transformation ratio<br>EPC : 0xD3<br>Data Type : unsigned long<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformCompositeTransformationRatio();
 		/**
-		 * This property indicates the multiplying factor for the composite transformation ratio.<br>0x00�F�~1(initial value) 0x01�F�~0.1 0x02�F�~0.01 0x03�F�~0.001<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the multiplying factor for the composite transformation ratio.<br><br>0x00�F�~1(initial value) 0x01�F�~0.1 0x02�F�~0.01 0x03�F�~0.001<br><br>Name : Multiplying factor for composite transformation ratio<br>EPC : 0xD4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformMultiplyingFactorForCompositeTransformationRatio();
 		/**
-		 * This property indicates the type-certified meter number using alphanumeric characters (0x20-0x70).<br>Type-certified meter (type number): 0000-0��������- 9999-9�������� Non-type certified meter: FFFFFFFFFF (initial value)<br><br>Data type : unsigned char x 10<br>Data size : 10 Byte<br>Set : undefined<br>Get : mandatory
+		 * This property indicates the type-certified meter number using alphanumeric characters (0x20-0x70).<br><br>Type-certified meter (type number): 0000-0��������- 9999-9�������� Non-type certified meter: FFFFFFFFFF (initial value)<br><br>Name : Meter type certification number (type approval number in Japan)<br>EPC : 0xD5<br>Data Type : unsigned char x 10<br>Data Size(Byte) : 10 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
 		 */
 		public Informer reqInformMeterTypeCertificationNumberTypeApprovalNumberInJapan();
 		/**
-		 * This property indicates, in the form of an ASCII code, the month and year in which the verification of the meter will expire.<br>YYYYMM YYYY (Year), MM (Month)<br><br>Data type : unsigned char x 6<br>Data size : 6 Byte<br>Set : optional<br>Get : optional
+		 * This property indicates, in the form of an ASCII code, the month and year in which the verification of the meter will expire.<br><br>YYYYMM YYYY (Year), MM (Month)<br><br>Name : Verification expiration date<br>EPC : 0xD6<br>Data Type : unsigned char x 6<br>Data Size(Byte) : 6 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformVerificationExpirationDate();
 		/**
-		 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br>0x00000000-0x05F5E0FF (0-99,999,999)<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : mandatory
+		 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br><br>0x00000000-0x05F5E0FF (0-99,999,999)<br><br>Name : Measured cumulative amount of electric energy (normal direction)<br>EPC : 0xE0<br>Data Type : unsigned long<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
 		 */
 		public Informer reqInformMeasuredCumulativeAmountOfElectricEnergyNormalDirection();
 		/**
-		 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy.<br>0x00: 1kWh 0x01: 0.1kWh 0x02: 0.01kWh 0x03: 0.001kWh (Initial value) 0x04: 0.0001kWh 0x0A: 10kWh 0x0B: 100kWh 0x0C: 1000kWh 0x0D: 10000kWh<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : mandatory
+		 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy.<br><br>0x00: 1kWh 0x01: 0.1kWh 0x02: 0.01kWh 0x03: 0.001kWh (Initial value) 0x04: 0.0001kWh 0x0A: 10kWh 0x0B: 100kWh 0x0C: 1000kWh 0x0D: 10000kWh<br><br>Name : Unit for cumulative amounts of electric energy (normal and reverse directions)<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
 		 */
 		public Informer reqInformUnitForCumulativeAmountsOfElectricEnergyNormalAndReverseDirections();
 		/**
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>0x0000-0x0063: 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br><br>Data type : unsigned short + unsigned long x48<br>Data size : 194 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br><br>0x0000-0x0063: 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br><br>Name : Historical data of measured cumulative amounts of electric energy (normal direction)<br>EPC : 0xE2<br>Data Type : unsigned short + unsigned long x48<br>Data Size(Byte) : 194 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection();
 		/**
-		 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br>0x00000000-0x05F5E0FF (0-99,999,999)<br><br>Data type : unsigned long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br><br>0x00000000-0x05F5E0FF (0-99,999,999)<br><br>Name : Measured cumulative amount of electric energy (reverse direction)<br>EPC : 0xE3<br>Data Type : unsigned long<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformMeasuredCumulativeAmountOfElectricEnergyReverseDirection();
 		/**
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>0x0000-0x0063: 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br><br>Data type : unsigned short �{ unsigned long �~48<br>Data size : 194 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br><br>0x0000-0x0063: 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br><br>Name : Historical data of measured cumulative amounts of electric energy (reverse direction)<br>EPC : 0xE4<br>Data Type : unsigned short �{ unsigned long �~48<br>Data Size(Byte) : 194 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection();
 		/**
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>0x00-0x63 ( 0-99) 0: current day 1  . 99: previous day . day that precedes the current day by 99 days<br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br><br>0x00-0x63 ( 0-99) 0: current day 1  . 99: previous day . day that precedes the current day by 99 days<br><br>Name : Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved();
 		/**
-		 * This property indicates the measured effective instantaneous amount of electric energy in watts.<br>0x80000001-0x7FFFFFFD (-2,147,483,647- 2,147,483,645)<br><br>Data type : signed long<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the measured effective instantaneous amount of electric energy in watts.<br><br>0x80000001-0x7FFFFFFD (-2,147,483,647- 2,147,483,645)<br><br>Name : Measured instantaneous amount of electric energy<br>EPC : 0xE7<br>Data Type : signed long<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformMeasuredInstantaneousAmountOfElectricEnergy();
 		/**
-		 * This property indicates the measured effective instantaneous R and T phase currents in amperes. In the case of a single-phase, two-wire system, 0x7FFE shall be used for the T phase.<br>0x8001-0x7FFD�iR phase�j : 0x8001-0x7FFD�iT phase�j (-3,276.7-3,276.5): (-3,276.7-3,276.5)<br><br>Data type : signed short �~2<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the measured effective instantaneous R and T phase currents in amperes. In the case of a single-phase, two-wire system, 0x7FFE shall be used for the T phase.<br><br>0x8001-0x7FFD�iR phase�j : 0x8001-0x7FFD�iT phase�j (-3,276.7-3,276.5): (-3,276.7-3,276.5)<br><br>Name : Measured instantaneous currents<br>EPC : 0xE8<br>Data Type : signed short �~2<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformMeasuredInstantaneousCurrents();
 		/**
-		 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system, 0xFFFE shall be used for the S(N)-T voltage.<br>0x0000-0xFFFD (between R and S(N))�F 0x0000-0xFFFD (between S(N) and T) (0-6,553.3) : (0-6,553.3)<br><br>Data type : unsigned short �~2<br>Data size : 4 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system, 0xFFFE shall be used for the S(N)-T voltage.<br><br>0x0000-0xFFFD (between R and S(N))�F 0x0000-0xFFFD (between S(N) and T) (0-6,553.3) : (0-6,553.3)<br><br>Name : Measured instantaneous voltages<br>EPC : 0xE9<br>Data Type : unsigned short �~2<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformMeasuredInstantaneousVoltages();
 	}
 
 	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();
@@ -1535,7 +1185,11 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 	}
 	
 	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();

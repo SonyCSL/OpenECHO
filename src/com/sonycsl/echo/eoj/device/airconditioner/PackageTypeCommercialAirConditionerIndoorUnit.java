@@ -20,8 +20,6 @@ import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 
 public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends DeviceObject {
-	@SuppressWarnings("unused")
-	private static final String TAG = PackageTypeCommercialAirConditionerIndoorUnit.class.getSimpleName();
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x01;
 	public static final byte CLASS_CODE = (byte)0x45;
@@ -76,588 +74,588 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 	}
 
 	/**
-	 * Used to specify the operation mode (�gautomatic,�h .�gcooling,�h .�gheating,�h . �gdehumidification�h .or .�gair . circulator�h) .and .to .acquire .the .current . setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+	 * Used to specify the operation mode (�gautomatic,�h .�gcooling,�h .�gheating,�h . �gdehumidification�h .or .�gair . circulator�h) .and .to .acquire .the .current . setting.<br><br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Name : Operation mode setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
 	 */
 	protected abstract boolean setOperationModeSetting(byte[] edt);
 	private final boolean _setOperationModeSetting(byte epc, byte[] edt) {
 		boolean success = setOperationModeSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify the operation mode (�gautomatic,�h .�gcooling,�h .�gheating,�h . �gdehumidification�h .or .�gair . circulator�h) .and .to .acquire .the .current . setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+	 * Used to specify the operation mode (�gautomatic,�h .�gcooling,�h .�gheating,�h . �gdehumidification�h .or .�gair . circulator�h) .and .to .acquire .the .current . setting.<br><br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Name : Operation mode setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
 	 */
 	protected abstract byte[] getOperationModeSetting();
 	private final byte[] _getOperationModeSetting(byte epc) {
 		byte[] edt = getOperationModeSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+	 * Used to set the temperature and to acquire the current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : Temperature setting 1<br>EPC : 0xB3<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
 	 */
 	protected abstract boolean setTemperatureSetting1(byte[] edt);
 	private final boolean _setTemperatureSetting1(byte epc, byte[] edt) {
 		boolean success = setTemperatureSetting1(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+	 * Used to set the temperature and to acquire the current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : Temperature setting 1<br>EPC : 0xB3<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
 	 */
 	protected abstract byte[] getTemperatureSetting1();
 	private final byte[] _getTemperatureSetting1(byte epc) {
 		byte[] edt = getTemperatureSetting1();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to set the relative humidity for the .�gdehumidification�h .mode .and .to . acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
+	 * Used to set the relative humidity for the .�gdehumidification�h .mode .and .to . acquire the current setting.<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : �gRelative . humidity setting for �edehumidifica- tion�f .mode�h .1<br>EPC : 0xB4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
 	 */
 	protected boolean setGrelativeHumiditySettingForEdehumidificaTionFModeH1(byte[] edt) {return false;}
 	private final boolean _setGrelativeHumiditySettingForEdehumidificaTionFModeH1(byte epc, byte[] edt) {
 		boolean success = setGrelativeHumiditySettingForEdehumidificaTionFModeH1(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to set the relative humidity for the .�gdehumidification�h .mode .and .to . acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
+	 * Used to set the relative humidity for the .�gdehumidification�h .mode .and .to . acquire the current setting.<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : �gRelative . humidity setting for �edehumidifica- tion�f .mode�h .1<br>EPC : 0xB4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
 	 */
 	protected byte[] getGrelativeHumiditySettingForEdehumidificaTionFModeH1() {return null;}
 	private final byte[] _getGrelativeHumiditySettingForEdehumidificaTionFModeH1(byte epc) {
 		byte[] edt = getGrelativeHumiditySettingForEdehumidificaTionFModeH1();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to set the temperature for the �gcooling�h .mode .and .to .acquire .the . current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to set the temperature for the �gcooling�h .mode .and .to .acquire .the . current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : �gTemperature . setting for �ecooling�f .mode�h . 1<br>EPC : 0xB5<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setGtemperatureSettingForEcoolingFModeH1(byte[] edt) {return false;}
 	private final boolean _setGtemperatureSettingForEcoolingFModeH1(byte epc, byte[] edt) {
 		boolean success = setGtemperatureSettingForEcoolingFModeH1(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to set the temperature for the �gcooling�h .mode .and .to .acquire .the . current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to set the temperature for the �gcooling�h .mode .and .to .acquire .the . current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : �gTemperature . setting for �ecooling�f .mode�h . 1<br>EPC : 0xB5<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getGtemperatureSettingForEcoolingFModeH1() {return null;}
 	private final byte[] _getGtemperatureSettingForEcoolingFModeH1(byte epc) {
 		byte[] edt = getGtemperatureSettingForEcoolingFModeH1();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to set the temperature for the �gheating�h .mode .and .to .acquire .the . current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to set the temperature for the �gheating�h .mode .and .to .acquire .the . current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : �gTemperature . setting for �eheating�f .mode�h . 1<br>EPC : 0xB6<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setGtemperatureSettingForEheatingFModeH1(byte[] edt) {return false;}
 	private final boolean _setGtemperatureSettingForEheatingFModeH1(byte epc, byte[] edt) {
 		boolean success = setGtemperatureSettingForEheatingFModeH1(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to set the temperature for the �gheating�h .mode .and .to .acquire .the . current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to set the temperature for the �gheating�h .mode .and .to .acquire .the . current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : �gTemperature . setting for �eheating�f .mode�h . 1<br>EPC : 0xB6<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getGtemperatureSettingForEheatingFModeH1() {return null;}
 	private final byte[] _getGtemperatureSettingForEheatingFModeH1(byte epc) {
 		byte[] edt = getGtemperatureSettingForEheatingFModeH1();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to set the temperature for the �gdehumidification�h .mode .and .to . acquire the current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to set the temperature for the �gdehumidification�h .mode .and .to . acquire the current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : �gTemperature . setting for �edehumidifica- tion�f .mode�h .1<br>EPC : 0xB7<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setGtemperatureSettingForEdehumidificaTionFModeH1(byte[] edt) {return false;}
 	private final boolean _setGtemperatureSettingForEdehumidificaTionFModeH1(byte epc, byte[] edt) {
 		boolean success = setGtemperatureSettingForEdehumidificaTionFModeH1(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to set the temperature for the �gdehumidification�h .mode .and .to . acquire the current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to set the temperature for the �gdehumidification�h .mode .and .to . acquire the current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : �gTemperature . setting for �edehumidifica- tion�f .mode�h .1<br>EPC : 0xB7<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getGtemperatureSettingForEdehumidificaTionFModeH1() {return null;}
 	private final byte[] _getGtemperatureSettingForEdehumidificaTionFModeH1(byte epc) {
 		byte[] edt = getGtemperatureSettingForEdehumidificaTionFModeH1();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the rated power consumption for the cooling, heating, dehumidification and air circulator modes.<br>0x0000 to 0xFFFD (0 to 65533W) Cooling: heating: dehumidification: air circulator<br><br>Data type : unsigned short x 4<br>Data size : 8 bytes<br>Set : undefined<br>Get : optional
+	 * This property indicates the rated power consumption for the cooling, heating, dehumidification and air circulator modes.<br><br>0x0000 to 0xFFFD (0 to 65533W) Cooling: heating: dehumidification: air circulator<br><br>Name : Rated power consumption of indoor unit<br>EPC : 0xB8<br>Data Type : unsigned short x 4<br>Data Size(Byte) : 8 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getRatedPowerConsumptionOfIndoorUnit() {return null;}
 	private final byte[] _getRatedPowerConsumptionOfIndoorUnit(byte epc) {
 		byte[] edt = getRatedPowerConsumptionOfIndoorUnit();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the measured electric current consumption.<br>0x0000 to 0xFFFD (0 to 6553.3A)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+	 * This property indicates the measured electric current consumption.<br><br>0x0000 to 0xFFFD (0 to 6553.3A)<br><br>Name : Measured electric current consumption of indoor unit<br>EPC : 0xB9<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getMeasuredElectricCurrentConsumptionOfIndoorUnit() {return null;}
 	private final byte[] _getMeasuredElectricCurrentConsumptionOfIndoorUnit(byte epc) {
 		byte[] edt = getMeasuredElectricCurrentConsumptionOfIndoorUnit();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to acquire the measured indoor relative humidity.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+	 * Used to acquire the measured indoor relative humidity.<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : Measured indoor relative humidity 1<br>EPC : 0xBA<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getMeasuredIndoorRelativeHumidity1() {return null;}
 	private final byte[] _getMeasuredIndoorRelativeHumidity1(byte epc) {
 		byte[] edt = getMeasuredIndoorRelativeHumidity1();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to acquire the measured indoor temperature.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+	 * Used to acquire the measured indoor temperature.<br><br>0x81 to 0x7D (-127 to 125��C)<br><br>Name : Measured indoor temperature 1<br>EPC : 0xBB<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getMeasuredIndoorTemperature1() {return null;}
 	private final byte[] _getMeasuredIndoorTemperature1(byte epc) {
 		byte[] edt = getMeasuredIndoorTemperature1();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode and to acquire the current setting.<br><br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Name : Relative temperature setting<br>EPC : 0xBF<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setRelativeTemperatureSetting(byte[] edt) {return false;}
 	private final boolean _setRelativeTemperatureSetting(byte epc, byte[] edt) {
 		boolean success = setRelativeTemperatureSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode and to acquire the current setting.<br><br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Name : Relative temperature setting<br>EPC : 0xBF<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getRelativeTemperatureSetting() {return null;}
 	private final byte[] _getRelativeTemperatureSetting(byte epc) {
 		byte[] edt = getRelativeTemperatureSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br><br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Name : Air flow rate setting<br>EPC : 0xA0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setAirFlowRateSetting(byte[] edt) {return false;}
 	private final boolean _setAirFlowRateSetting(byte epc, byte[] edt) {
 		boolean success = setAirFlowRateSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br><br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Name : Air flow rate setting<br>EPC : 0xA0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getAirFlowRateSetting() {return null;}
 	private final byte[] _getAirFlowRateSetting(byte epc) {
 		byte[] edt = getAirFlowRateSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 9 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>Automatic = 0x31, swing = 0x32 Air flow direction: 0x41 to 0x49 (0x41 and 0x49 shall be used for the uppermost and lowermost directions, respectively.)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 9 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br><br>Automatic = 0x31, swing = 0x32 Air flow direction: 0x41 to 0x49 (0x41 and 0x49 shall be used for the uppermost and lowermost directions, respectively.)<br><br>Name : �gAir flow direction (vertical)�h setting<br>EPC : 0xA4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setGairFlowDirectionVerticalHSetting(byte[] edt) {return false;}
 	private final boolean _setGairFlowDirectionVerticalHSetting(byte epc, byte[] edt) {
 		boolean success = setGairFlowDirectionVerticalHSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 9 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>Automatic = 0x31, swing = 0x32 Air flow direction: 0x41 to 0x49 (0x41 and 0x49 shall be used for the uppermost and lowermost directions, respectively.)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 9 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br><br>Automatic = 0x31, swing = 0x32 Air flow direction: 0x41 to 0x49 (0x41 and 0x49 shall be used for the uppermost and lowermost directions, respectively.)<br><br>Name : �gAir flow direction (vertical)�h setting<br>EPC : 0xA4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getGairFlowDirectionVerticalHSetting() {return null;}
 	private final byte[] _getGairFlowDirectionVerticalHSetting(byte epc) {
 		byte[] edt = getGairFlowDirectionVerticalHSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify the air flow direction in the horizontal plane by selecting a pattern from among the 6 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>Automatic = 0x31, swing = 0x32 Air flow direction: Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the air flow direction in the horizontal plane by selecting a pattern from among the 6 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br><br>Automatic = 0x31, swing = 0x32 Air flow direction: Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44<br><br>Name : �gAir flow direction (horizontal)�h setting<br>EPC : 0xA5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setGairFlowDirectionHorizontalHSetting(byte[] edt) {return false;}
 	private final boolean _setGairFlowDirectionHorizontalHSetting(byte epc, byte[] edt) {
 		boolean success = setGairFlowDirectionHorizontalHSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify the air flow direction in the horizontal plane by selecting a pattern from among the 6 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>Automatic = 0x31, swing = 0x32 Air flow direction: Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the air flow direction in the horizontal plane by selecting a pattern from among the 6 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br><br>Automatic = 0x31, swing = 0x32 Air flow direction: Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44<br><br>Name : �gAir flow direction (horizontal)�h setting<br>EPC : 0xA5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getGairFlowDirectionHorizontalHSetting() {return null;}
 	private final byte[] _getGairFlowDirectionHorizontalHSetting(byte epc) {
 		byte[] edt = getGairFlowDirectionHorizontalHSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates when the air conditioner is in a �gspecial�h state.<br>�gNormal operation�h state = 0x40, �gpreheating�h state = 0x42, �gheat removal�h state = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+	 * This property indicates when the air conditioner is in a �gspecial�h state.<br><br>�gNormal operation�h state = 0x40, �gpreheating�h state = 0x42, �gheat removal�h state = 0x43<br><br>Name : �gSpecial�h state<br>EPC : 0xAA<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getGspecialHState() {return null;}
 	private final byte[] _getGspecialHState(byte epc) {
 		byte[] edt = getGspecialHState();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the state (ON or OFF) of the thermostat.<br>Thermostat ON = 0x41 Thermostat OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+	 * This property indicates the state (ON or OFF) of the thermostat.<br><br>Thermostat ON = 0x41 Thermostat OFF = 0x42<br><br>Name : Thermostat state<br>EPC : 0xAC<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getThermostatState() {return null;}
 	private final byte[] _getThermostatState(byte epc) {
 		byte[] edt = getThermostatState();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates, when the air conditioner is operating in the �gautomatic�h operation mode, the function (�gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h) that is currently being used.<br>The following values shall be used: Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
+	 * This property indicates, when the air conditioner is operating in the �gautomatic�h operation mode, the function (�gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h) that is currently being used.<br><br>The following values shall be used: Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Name : Current function (�gautomatic�h operation mode)<br>EPC : 0xAE<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
 	 */
 	protected byte[] getCurrentFunctionGautomaticHOperationMode() {return null;}
 	private final byte[] _getCurrentFunctionGautomaticHOperationMode(byte epc) {
 		byte[] edt = getCurrentFunctionGautomaticHOperationMode();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify the ventilation mode and to acquire the current setting.<br>Ordinary ventilation = 0x41, ventilation plus total heat exchanger-based heat exchange = 0x42, automatic control of ventilation (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the ventilation mode and to acquire the current setting.<br><br>Ordinary ventilation = 0x41, ventilation plus total heat exchanger-based heat exchange = 0x42, automatic control of ventilation (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br><br>Name : Ventilation mode setting<br>EPC : 0xC0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setVentilationModeSetting(byte[] edt) {return false;}
 	private final boolean _setVentilationModeSetting(byte epc, byte[] edt) {
 		boolean success = setVentilationModeSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify the ventilation mode and to acquire the current setting.<br>Ordinary ventilation = 0x41, ventilation plus total heat exchanger-based heat exchange = 0x42, automatic control of ventilation (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the ventilation mode and to acquire the current setting.<br><br>Ordinary ventilation = 0x41, ventilation plus total heat exchanger-based heat exchange = 0x42, automatic control of ventilation (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br><br>Name : Ventilation mode setting<br>EPC : 0xC0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getVentilationModeSetting() {return null;}
 	private final byte[] _getVentilationModeSetting(byte epc) {
 		byte[] edt = getVentilationModeSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify whether or not to use the �gcombined operation of indoor unit and total heat exchanger�h function, and to acquire the current setting.<br>�gCombined operation of indoor unit and total heat exchanger�h function used = 0x41 �gCombined operation of indoor unit and total heat exchanger�h function not used= 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify whether or not to use the �gcombined operation of indoor unit and total heat exchanger�h function, and to acquire the current setting.<br><br>�gCombined operation of indoor unit and total heat exchanger�h function used = 0x41 �gCombined operation of indoor unit and total heat exchanger�h function not used= 0x42<br><br>Name : Combined operation of indoor unit and total heat exchanger<br>EPC : 0xC1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setCombinedOperationOfIndoorUnitAndTotalHeatExchanger(byte[] edt) {return false;}
 	private final boolean _setCombinedOperationOfIndoorUnitAndTotalHeatExchanger(byte epc, byte[] edt) {
 		boolean success = setCombinedOperationOfIndoorUnitAndTotalHeatExchanger(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify whether or not to use the �gcombined operation of indoor unit and total heat exchanger�h function, and to acquire the current setting.<br>�gCombined operation of indoor unit and total heat exchanger�h function used = 0x41 �gCombined operation of indoor unit and total heat exchanger�h function not used= 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify whether or not to use the �gcombined operation of indoor unit and total heat exchanger�h function, and to acquire the current setting.<br><br>�gCombined operation of indoor unit and total heat exchanger�h function used = 0x41 �gCombined operation of indoor unit and total heat exchanger�h function not used= 0x42<br><br>Name : Combined operation of indoor unit and total heat exchanger<br>EPC : 0xC1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getCombinedOperationOfIndoorUnitAndTotalHeatExchanger() {return null;}
 	private final byte[] _getCombinedOperationOfIndoorUnitAndTotalHeatExchanger(byte epc) {
 		byte[] edt = getCombinedOperationOfIndoorUnitAndTotalHeatExchanger();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire the current setting.<br>Automatic control of ventilation air flow rate = 0x41 Ventilation air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire the current setting.<br><br>Automatic control of ventilation air flow rate = 0x41 Ventilation air flow rate = 0x31 to 0x38<br><br>Name : Ventilation air flow rate setting<br>EPC : 0xC2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setVentilationAirFlowRateSetting(byte[] edt) {return false;}
 	private final boolean _setVentilationAirFlowRateSetting(byte epc, byte[] edt) {
 		boolean success = setVentilationAirFlowRateSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire the current setting.<br>Automatic control of ventilation air flow rate = 0x41 Ventilation air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire the current setting.<br><br>Automatic control of ventilation air flow rate = 0x41 Ventilation air flow rate = 0x31 to 0x38<br><br>Name : Ventilation air flow rate setting<br>EPC : 0xC2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getVentilationAirFlowRateSetting() {return null;}
 	private final byte[] _getVentilationAirFlowRateSetting(byte epc) {
 		byte[] edt = getVentilationAirFlowRateSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify whether or not to disable the air conditioner, and to acquire the current setting.<br>Disabled = 0x41, not disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify whether or not to disable the air conditioner, and to acquire the current setting.<br><br>Disabled = 0x41, not disabled = 0x42<br><br>Name : �gDisabling of air conditioner�h setting<br>EPC : 0xCD<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setGdisablingOfAirConditionerHSetting(byte[] edt) {return false;}
 	private final boolean _setGdisablingOfAirConditionerHSetting(byte epc, byte[] edt) {
 		boolean success = setGdisablingOfAirConditionerHSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify whether or not to disable the air conditioner, and to acquire the current setting.<br>Disabled = 0x41, not disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify whether or not to disable the air conditioner, and to acquire the current setting.<br><br>Disabled = 0x41, not disabled = 0x42<br><br>Name : �gDisabling of air conditioner�h setting<br>EPC : 0xCD<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getGdisablingOfAirConditionerHSetting() {return null;}
 	private final byte[] _getGdisablingOfAirConditionerHSetting(byte epc) {
 		byte[] edt = getGdisablingOfAirConditionerHSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify whether or not the air conditioner shall operate ignoring its thermostat setting.<br>Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify whether or not the air conditioner shall operate ignoring its thermostat setting.<br><br>Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br><br>Name : Thermostat setting override function<br>EPC : 0xCE<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setThermostatSettingOverrideFunction(byte[] edt) {return false;}
 	private final boolean _setThermostatSettingOverrideFunction(byte epc, byte[] edt) {
 		boolean success = setThermostatSettingOverrideFunction(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify whether or not the air conditioner shall operate ignoring its thermostat setting.<br>Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify whether or not the air conditioner shall operate ignoring its thermostat setting.<br><br>Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br><br>Name : Thermostat setting override function<br>EPC : 0xCE<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getThermostatSettingOverrideFunction() {return null;}
 	private final byte[] _getThermostatSettingOverrideFunction(byte epc) {
 		byte[] edt = getThermostatSettingOverrideFunction();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify whether or not to enable the filter cleaning reminder lamp, and to acquire the current setting.<br>Enabled = 0x41, disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
+	 * Used to specify whether or not to enable the filter cleaning reminder lamp, and to acquire the current setting.<br><br>Enabled = 0x41, disabled = 0x42<br><br>Name : Filter cleaning reminder lamp setting<br>EPC : 0xCF<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
 	 */
 	protected boolean setFilterCleaningReminderLampSetting(byte[] edt) {return false;}
 	private final boolean _setFilterCleaningReminderLampSetting(byte epc, byte[] edt) {
 		boolean success = setFilterCleaningReminderLampSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify whether or not to enable the filter cleaning reminder lamp, and to acquire the current setting.<br>Enabled = 0x41, disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
+	 * Used to specify whether or not to enable the filter cleaning reminder lamp, and to acquire the current setting.<br><br>Enabled = 0x41, disabled = 0x42<br><br>Name : Filter cleaning reminder lamp setting<br>EPC : 0xCF<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
 	 */
 	protected byte[] getFilterCleaningReminderLampSetting() {return null;}
 	private final byte[] _getFilterCleaningReminderLampSetting(byte epc) {
 		byte[] edt = getFilterCleaningReminderLampSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the measured power consumption of the indoor unit.<br>0x0000 to 0xFFFD (0 to 65533W)<br><br>Data type : unsigned<br>Data size : 2 byte<br>Set : undefined<br>Get : optional
+	 * This property indicates the measured power consumption of the indoor unit.<br><br>0x0000 to 0xFFFD (0 to 65533W)<br><br>Name : Measured power consumption of indoor unit<br>EPC : 0xDB<br>Data Type : unsigned<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getMeasuredPowerConsumptionOfIndoorUnit() {return null;}
 	private final byte[] _getMeasuredPowerConsumptionOfIndoorUnit(byte epc) {
 		byte[] edt = getMeasuredPowerConsumptionOfIndoorUnit();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the aperture of the expansion valve in %.<br>0 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+	 * This property indicates the aperture of the expansion valve in %.<br><br>0 to 0x64 (0 to 100%)<br><br>Name : Aperture of expansion valve<br>EPC : 0xDC<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getApertureOfExpansionValve() {return null;}
 	private final byte[] _getApertureOfExpansionValve(byte epc) {
 		byte[] edt = getApertureOfExpansionValve();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to set the temperature and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+	 * Used to set the temperature and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : Temperature setting 2<br>EPC : 0xE3<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
 	 */
 	protected abstract boolean setTemperatureSetting2(byte[] edt);
 	private final boolean _setTemperatureSetting2(byte epc, byte[] edt) {
 		boolean success = setTemperatureSetting2(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to set the temperature and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+	 * Used to set the temperature and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : Temperature setting 2<br>EPC : 0xE3<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
 	 */
 	protected abstract byte[] getTemperatureSetting2();
 	private final byte[] _getTemperatureSetting2(byte epc) {
 		byte[] edt = getTemperatureSetting2();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x0000 to 0x3E8 (0.0 to 100.0%)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
+	 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br><br>0x0000 to 0x3E8 (0.0 to 100.0%)<br><br>Name : �gRelative humidity setting for �edehumidificatio n�f mode�h 2<br>EPC : 0xE4<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
 	 */
 	protected boolean setGrelativeHumiditySettingForEdehumidificatioNFModeH2(byte[] edt) {return false;}
 	private final boolean _setGrelativeHumiditySettingForEdehumidificatioNFModeH2(byte epc, byte[] edt) {
 		boolean success = setGrelativeHumiditySettingForEdehumidificatioNFModeH2(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x0000 to 0x3E8 (0.0 to 100.0%)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
+	 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br><br>0x0000 to 0x3E8 (0.0 to 100.0%)<br><br>Name : �gRelative humidity setting for �edehumidificatio n�f mode�h 2<br>EPC : 0xE4<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
 	 */
 	protected byte[] getGrelativeHumiditySettingForEdehumidificatioNFModeH2() {return null;}
 	private final byte[] _getGrelativeHumiditySettingForEdehumidificatioNFModeH2(byte epc) {
 		byte[] edt = getGrelativeHumiditySettingForEdehumidificatioNFModeH2();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+	 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : �gTemperature setting for �ecooling�f mode�h 2<br>EPC : 0xE5<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setGtemperatureSettingForEcoolingFModeH2(byte[] edt) {return false;}
 	private final boolean _setGtemperatureSettingForEcoolingFModeH2(byte epc, byte[] edt) {
 		boolean success = setGtemperatureSettingForEcoolingFModeH2(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+	 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : �gTemperature setting for �ecooling�f mode�h 2<br>EPC : 0xE5<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getGtemperatureSettingForEcoolingFModeH2() {return null;}
 	private final byte[] _getGtemperatureSettingForEcoolingFModeH2(byte epc) {
 		byte[] edt = getGtemperatureSettingForEcoolingFModeH2();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+	 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : �gTemperature setting for �eheating�f mode�h 2<br>EPC : 0xE6<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setGtemperatureSettingForEheatingFModeH2(byte[] edt) {return false;}
 	private final boolean _setGtemperatureSettingForEheatingFModeH2(byte epc, byte[] edt) {
 		boolean success = setGtemperatureSettingForEheatingFModeH2(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+	 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : �gTemperature setting for �eheating�f mode�h 2<br>EPC : 0xE6<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getGtemperatureSettingForEheatingFModeH2() {return null;}
 	private final byte[] _getGtemperatureSettingForEheatingFModeH2(byte epc) {
 		byte[] edt = getGtemperatureSettingForEheatingFModeH2();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+	 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : �gTemperature setting for �edehumidificatio n�f mode�h 2<br>EPC : 0xE7<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setGtemperatureSettingForEdehumidificatioNFModeH2(byte[] edt) {return false;}
 	private final boolean _setGtemperatureSettingForEdehumidificatioNFModeH2(byte epc, byte[] edt) {
 		boolean success = setGtemperatureSettingForEdehumidificatioNFModeH2(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+	 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : �gTemperature setting for �edehumidificatio n�f mode�h 2<br>EPC : 0xE7<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getGtemperatureSettingForEdehumidificatioNFModeH2() {return null;}
 	private final byte[] _getGtemperatureSettingForEdehumidificatioNFModeH2(byte epc) {
 		byte[] edt = getGtemperatureSettingForEdehumidificatioNFModeH2();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to acquire the measured indoor relative humidity.<br>0x0000 to 0x3E8 (0.0 to 100.0%)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : undefined<br>Get : optional
+	 * Used to acquire the measured indoor relative humidity.<br><br>0x0000 to 0x3E8 (0.0 to 100.0%)<br><br>Name : Measured indoor relative humidity 2<br>EPC : 0xEA<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getMeasuredIndoorRelativeHumidity2() {return null;}
 	private final byte[] _getMeasuredIndoorRelativeHumidity2(byte epc) {
 		byte[] edt = getMeasuredIndoorRelativeHumidity2();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to acquire the measured indoor temperature.<br>0xF554 to 0x7FFD (-273,2 to 3276,5��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : undefined<br>Get : optional
+	 * Used to acquire the measured indoor temperature.<br><br>0xF554 to 0x7FFD (-273,2 to 3276,5��C)<br><br>Name : Measured indoor temperature 2<br>EPC : 0xEB<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getMeasuredIndoorTemperature2() {return null;}
 	private final byte[] _getMeasuredIndoorTemperature2(byte epc) {
 		byte[] edt = getMeasuredIndoorTemperature2();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br><br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Name : �gON timer-based reservation�h setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setGonTimerBasedReservationHSetting(byte[] edt) {return false;}
 	private final boolean _setGonTimerBasedReservationHSetting(byte epc, byte[] edt) {
 		boolean success = setGonTimerBasedReservationHSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br><br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Name : �gON timer-based reservation�h setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getGonTimerBasedReservationHSetting() {return null;}
 	private final byte[] _getGonTimerBasedReservationHSetting(byte epc) {
 		byte[] edt = getGonTimerBasedReservationHSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (time)<br>EPC : 0x91<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setOnTimerSettingTime(byte[] edt) {return false;}
 	private final boolean _setOnTimerSettingTime(byte epc, byte[] edt) {
 		boolean success = setOnTimerSettingTime(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (time)<br>EPC : 0x91<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getOnTimerSettingTime() {return null;}
 	private final byte[] _getOnTimerSettingTime(byte epc) {
 		byte[] edt = getOnTimerSettingTime();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Name : ON timer setting (relative time)<br>EPC : 0x92<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setOnTimerSettingRelativeTime(byte[] edt) {return false;}
 	private final boolean _setOnTimerSettingRelativeTime(byte epc, byte[] edt) {
 		boolean success = setOnTimerSettingRelativeTime(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Name : ON timer setting (relative time)<br>EPC : 0x92<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getOnTimerSettingRelativeTime() {return null;}
 	private final byte[] _getOnTimerSettingRelativeTime(byte epc) {
 		byte[] edt = getOnTimerSettingRelativeTime();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br><br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Name : �gOFF timer-based reservation�h setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setGoffTimerBasedReservationHSetting(byte[] edt) {return false;}
 	private final boolean _setGoffTimerBasedReservationHSetting(byte epc, byte[] edt) {
 		boolean success = setGoffTimerBasedReservationHSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br><br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Name : �gOFF timer-based reservation�h setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getGoffTimerBasedReservationHSetting() {return null;}
 	private final byte[] _getGoffTimerBasedReservationHSetting(byte epc) {
 		byte[] edt = getGoffTimerBasedReservationHSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (time)<br>EPC : 0x95<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setOffTimerSettingTime(byte[] edt) {return false;}
 	private final boolean _setOffTimerSettingTime(byte epc, byte[] edt) {
 		boolean success = setOffTimerSettingTime(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (time)<br>EPC : 0x95<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getOffTimerSettingTime() {return null;}
 	private final byte[] _getOffTimerSettingTime(byte epc) {
 		byte[] edt = getOffTimerSettingTime();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Name : OFF timer setting (relative time)<br>EPC : 0x96<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setOffTimerSettingRelativeTime(byte[] edt) {return false;}
 	private final boolean _setOffTimerSettingRelativeTime(byte epc, byte[] edt) {
 		boolean success = setOffTimerSettingRelativeTime(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Name : OFF timer setting (relative time)<br>EPC : 0x96<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getOffTimerSettingRelativeTime() {return null;}
 	private final byte[] _getOffTimerSettingRelativeTime(byte epc) {
 		byte[] edt = getOffTimerSettingRelativeTime();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
@@ -914,17 +912,17 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 	
 	@Override
 	public Setter set() {
-		return new SetterImpl(ESV_SET_NO_RES);
+		return new Setter(ESV_SETI);
 	}
 
 	@Override
 	public Setter setC() {
-		return new SetterImpl(ESV_SET_RES);
+		return new Setter(ESV_SETC);
 	}
 
 	@Override
 	public Getter get() {
-		return new GetterImpl();
+		return new Getter();
 	}
 
 	@Override
@@ -1146,652 +1144,536 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		}
 		
 		/**
-		 * Used to specify the operation mode (�gautomatic,�h .�gcooling,�h .�gheating,�h . �gdehumidification�h .or .�gair . circulator�h) .and .to .acquire .the .current . setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+		 * Used to specify the operation mode (�gautomatic,�h .�gcooling,�h .�gheating,�h . �gdehumidification�h .or .�gair . circulator�h) .and .to .acquire .the .current . setting.<br><br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Name : Operation mode setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
 		 */
 		protected void onSetOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetOperationModeSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify the operation mode (�gautomatic,�h .�gcooling,�h .�gheating,�h . �gdehumidification�h .or .�gair . circulator�h) .and .to .acquire .the .current . setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+		 * Used to specify the operation mode (�gautomatic,�h .�gcooling,�h .�gheating,�h . �gdehumidification�h .or .�gair . circulator�h) .and .to .acquire .the .current . setting.<br><br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Name : Operation mode setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
 		 */
 		protected void onGetOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetOperationModeSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+		 * Used to set the temperature and to acquire the current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : Temperature setting 1<br>EPC : 0xB3<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
 		 */
 		protected void onSetTemperatureSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetTemperatureSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetTemperatureSetting1(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+		 * Used to set the temperature and to acquire the current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : Temperature setting 1<br>EPC : 0xB3<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
 		 */
 		protected void onGetTemperatureSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetTemperatureSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetTemperatureSetting1(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to set the relative humidity for the .�gdehumidification�h .mode .and .to . acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
+		 * Used to set the relative humidity for the .�gdehumidification�h .mode .and .to . acquire the current setting.<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : �gRelative . humidity setting for �edehumidifica- tion�f .mode�h .1<br>EPC : 0xB4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
 		 */
 		protected void onSetGrelativeHumiditySettingForEdehumidificaTionFModeH1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetGrelativeHumiditySettingForEdehumidificaTionFModeH1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetGrelativeHumiditySettingForEdehumidificaTionFModeH1(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to set the relative humidity for the .�gdehumidification�h .mode .and .to . acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
+		 * Used to set the relative humidity for the .�gdehumidification�h .mode .and .to . acquire the current setting.<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : �gRelative . humidity setting for �edehumidifica- tion�f .mode�h .1<br>EPC : 0xB4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
 		 */
 		protected void onGetGrelativeHumiditySettingForEdehumidificaTionFModeH1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetGrelativeHumiditySettingForEdehumidificaTionFModeH1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetGrelativeHumiditySettingForEdehumidificaTionFModeH1(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to set the temperature for the �gcooling�h .mode .and .to .acquire .the . current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the �gcooling�h .mode .and .to .acquire .the . current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : �gTemperature . setting for �ecooling�f .mode�h . 1<br>EPC : 0xB5<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetGtemperatureSettingForEcoolingFModeH1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetGtemperatureSettingForEcoolingFModeH1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetGtemperatureSettingForEcoolingFModeH1(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to set the temperature for the �gcooling�h .mode .and .to .acquire .the . current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the �gcooling�h .mode .and .to .acquire .the . current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : �gTemperature . setting for �ecooling�f .mode�h . 1<br>EPC : 0xB5<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetGtemperatureSettingForEcoolingFModeH1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetGtemperatureSettingForEcoolingFModeH1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetGtemperatureSettingForEcoolingFModeH1(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to set the temperature for the �gheating�h .mode .and .to .acquire .the . current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the �gheating�h .mode .and .to .acquire .the . current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : �gTemperature . setting for �eheating�f .mode�h . 1<br>EPC : 0xB6<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetGtemperatureSettingForEheatingFModeH1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetGtemperatureSettingForEheatingFModeH1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetGtemperatureSettingForEheatingFModeH1(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to set the temperature for the �gheating�h .mode .and .to .acquire .the . current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the �gheating�h .mode .and .to .acquire .the . current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : �gTemperature . setting for �eheating�f .mode�h . 1<br>EPC : 0xB6<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetGtemperatureSettingForEheatingFModeH1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetGtemperatureSettingForEheatingFModeH1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetGtemperatureSettingForEheatingFModeH1(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to set the temperature for the �gdehumidification�h .mode .and .to . acquire the current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the �gdehumidification�h .mode .and .to . acquire the current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : �gTemperature . setting for �edehumidifica- tion�f .mode�h .1<br>EPC : 0xB7<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetGtemperatureSettingForEdehumidificaTionFModeH1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetGtemperatureSettingForEdehumidificaTionFModeH1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetGtemperatureSettingForEdehumidificaTionFModeH1(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to set the temperature for the �gdehumidification�h .mode .and .to . acquire the current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the �gdehumidification�h .mode .and .to . acquire the current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : �gTemperature . setting for �edehumidifica- tion�f .mode�h .1<br>EPC : 0xB7<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetGtemperatureSettingForEdehumidificaTionFModeH1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetGtemperatureSettingForEdehumidificaTionFModeH1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetGtemperatureSettingForEdehumidificaTionFModeH1(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the rated power consumption for the cooling, heating, dehumidification and air circulator modes.<br>0x0000 to 0xFFFD (0 to 65533W) Cooling: heating: dehumidification: air circulator<br><br>Data type : unsigned short x 4<br>Data size : 8 bytes<br>Set : undefined<br>Get : optional
+		 * This property indicates the rated power consumption for the cooling, heating, dehumidification and air circulator modes.<br><br>0x0000 to 0xFFFD (0 to 65533W) Cooling: heating: dehumidification: air circulator<br><br>Name : Rated power consumption of indoor unit<br>EPC : 0xB8<br>Data Type : unsigned short x 4<br>Data Size(Byte) : 8 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetRatedPowerConsumptionOfIndoorUnit(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetRatedPowerConsumptionOfIndoorUnit(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetRatedPowerConsumptionOfIndoorUnit(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the measured electric current consumption.<br>0x0000 to 0xFFFD (0 to 6553.3A)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+		 * This property indicates the measured electric current consumption.<br><br>0x0000 to 0xFFFD (0 to 6553.3A)<br><br>Name : Measured electric current consumption of indoor unit<br>EPC : 0xB9<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetMeasuredElectricCurrentConsumptionOfIndoorUnit(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetMeasuredElectricCurrentConsumptionOfIndoorUnit(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetMeasuredElectricCurrentConsumptionOfIndoorUnit(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to acquire the measured indoor relative humidity.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * Used to acquire the measured indoor relative humidity.<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : Measured indoor relative humidity 1<br>EPC : 0xBA<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetMeasuredIndoorRelativeHumidity1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetMeasuredIndoorRelativeHumidity1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetMeasuredIndoorRelativeHumidity1(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to acquire the measured indoor temperature.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * Used to acquire the measured indoor temperature.<br><br>0x81 to 0x7D (-127 to 125��C)<br><br>Name : Measured indoor temperature 1<br>EPC : 0xBB<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetMeasuredIndoorTemperature1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetMeasuredIndoorTemperature1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetMeasuredIndoorTemperature1(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode and to acquire the current setting.<br><br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Name : Relative temperature setting<br>EPC : 0xBF<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetRelativeTemperatureSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetRelativeTemperatureSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetRelativeTemperatureSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode and to acquire the current setting.<br><br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Name : Relative temperature setting<br>EPC : 0xBF<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetRelativeTemperatureSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetRelativeTemperatureSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetRelativeTemperatureSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br><br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Name : Air flow rate setting<br>EPC : 0xA0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br><br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Name : Air flow rate setting<br>EPC : 0xA0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 9 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>Automatic = 0x31, swing = 0x32 Air flow direction: 0x41 to 0x49 (0x41 and 0x49 shall be used for the uppermost and lowermost directions, respectively.)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 9 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br><br>Automatic = 0x31, swing = 0x32 Air flow direction: 0x41 to 0x49 (0x41 and 0x49 shall be used for the uppermost and lowermost directions, respectively.)<br><br>Name : �gAir flow direction (vertical)�h setting<br>EPC : 0xA4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetGairFlowDirectionVerticalHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetGairFlowDirectionVerticalHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetGairFlowDirectionVerticalHSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 9 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>Automatic = 0x31, swing = 0x32 Air flow direction: 0x41 to 0x49 (0x41 and 0x49 shall be used for the uppermost and lowermost directions, respectively.)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 9 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br><br>Automatic = 0x31, swing = 0x32 Air flow direction: 0x41 to 0x49 (0x41 and 0x49 shall be used for the uppermost and lowermost directions, respectively.)<br><br>Name : �gAir flow direction (vertical)�h setting<br>EPC : 0xA4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetGairFlowDirectionVerticalHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetGairFlowDirectionVerticalHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetGairFlowDirectionVerticalHSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify the air flow direction in the horizontal plane by selecting a pattern from among the 6 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>Automatic = 0x31, swing = 0x32 Air flow direction: Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the air flow direction in the horizontal plane by selecting a pattern from among the 6 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br><br>Automatic = 0x31, swing = 0x32 Air flow direction: Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44<br><br>Name : �gAir flow direction (horizontal)�h setting<br>EPC : 0xA5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetGairFlowDirectionHorizontalHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetGairFlowDirectionHorizontalHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetGairFlowDirectionHorizontalHSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify the air flow direction in the horizontal plane by selecting a pattern from among the 6 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>Automatic = 0x31, swing = 0x32 Air flow direction: Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the air flow direction in the horizontal plane by selecting a pattern from among the 6 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br><br>Automatic = 0x31, swing = 0x32 Air flow direction: Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44<br><br>Name : �gAir flow direction (horizontal)�h setting<br>EPC : 0xA5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetGairFlowDirectionHorizontalHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetGairFlowDirectionHorizontalHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetGairFlowDirectionHorizontalHSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates when the air conditioner is in a �gspecial�h state.<br>�gNormal operation�h state = 0x40, �gpreheating�h state = 0x42, �gheat removal�h state = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * This property indicates when the air conditioner is in a �gspecial�h state.<br><br>�gNormal operation�h state = 0x40, �gpreheating�h state = 0x42, �gheat removal�h state = 0x43<br><br>Name : �gSpecial�h state<br>EPC : 0xAA<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetGspecialHState(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetGspecialHState(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetGspecialHState(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the state (ON or OFF) of the thermostat.<br>Thermostat ON = 0x41 Thermostat OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the state (ON or OFF) of the thermostat.<br><br>Thermostat ON = 0x41 Thermostat OFF = 0x42<br><br>Name : Thermostat state<br>EPC : 0xAC<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetThermostatState(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetThermostatState(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetThermostatState(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates, when the air conditioner is operating in the �gautomatic�h operation mode, the function (�gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h) that is currently being used.<br>The following values shall be used: Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
+		 * This property indicates, when the air conditioner is operating in the �gautomatic�h operation mode, the function (�gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h) that is currently being used.<br><br>The following values shall be used: Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Name : Current function (�gautomatic�h operation mode)<br>EPC : 0xAE<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
 		 */
 		protected void onGetCurrentFunctionGautomaticHOperationMode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetCurrentFunctionGautomaticHOperationMode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetCurrentFunctionGautomaticHOperationMode(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify the ventilation mode and to acquire the current setting.<br>Ordinary ventilation = 0x41, ventilation plus total heat exchanger-based heat exchange = 0x42, automatic control of ventilation (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the ventilation mode and to acquire the current setting.<br><br>Ordinary ventilation = 0x41, ventilation plus total heat exchanger-based heat exchange = 0x42, automatic control of ventilation (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br><br>Name : Ventilation mode setting<br>EPC : 0xC0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetVentilationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetVentilationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetVentilationModeSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify the ventilation mode and to acquire the current setting.<br>Ordinary ventilation = 0x41, ventilation plus total heat exchanger-based heat exchange = 0x42, automatic control of ventilation (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the ventilation mode and to acquire the current setting.<br><br>Ordinary ventilation = 0x41, ventilation plus total heat exchanger-based heat exchange = 0x42, automatic control of ventilation (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br><br>Name : Ventilation mode setting<br>EPC : 0xC0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetVentilationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetVentilationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetVentilationModeSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify whether or not to use the �gcombined operation of indoor unit and total heat exchanger�h function, and to acquire the current setting.<br>�gCombined operation of indoor unit and total heat exchanger�h function used = 0x41 �gCombined operation of indoor unit and total heat exchanger�h function not used= 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to use the �gcombined operation of indoor unit and total heat exchanger�h function, and to acquire the current setting.<br><br>�gCombined operation of indoor unit and total heat exchanger�h function used = 0x41 �gCombined operation of indoor unit and total heat exchanger�h function not used= 0x42<br><br>Name : Combined operation of indoor unit and total heat exchanger<br>EPC : 0xC1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetCombinedOperationOfIndoorUnitAndTotalHeatExchanger(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetCombinedOperationOfIndoorUnitAndTotalHeatExchanger(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetCombinedOperationOfIndoorUnitAndTotalHeatExchanger(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify whether or not to use the �gcombined operation of indoor unit and total heat exchanger�h function, and to acquire the current setting.<br>�gCombined operation of indoor unit and total heat exchanger�h function used = 0x41 �gCombined operation of indoor unit and total heat exchanger�h function not used= 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to use the �gcombined operation of indoor unit and total heat exchanger�h function, and to acquire the current setting.<br><br>�gCombined operation of indoor unit and total heat exchanger�h function used = 0x41 �gCombined operation of indoor unit and total heat exchanger�h function not used= 0x42<br><br>Name : Combined operation of indoor unit and total heat exchanger<br>EPC : 0xC1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetCombinedOperationOfIndoorUnitAndTotalHeatExchanger(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetCombinedOperationOfIndoorUnitAndTotalHeatExchanger(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetCombinedOperationOfIndoorUnitAndTotalHeatExchanger(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire the current setting.<br>Automatic control of ventilation air flow rate = 0x41 Ventilation air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire the current setting.<br><br>Automatic control of ventilation air flow rate = 0x41 Ventilation air flow rate = 0x31 to 0x38<br><br>Name : Ventilation air flow rate setting<br>EPC : 0xC2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetVentilationAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetVentilationAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetVentilationAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire the current setting.<br>Automatic control of ventilation air flow rate = 0x41 Ventilation air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire the current setting.<br><br>Automatic control of ventilation air flow rate = 0x41 Ventilation air flow rate = 0x31 to 0x38<br><br>Name : Ventilation air flow rate setting<br>EPC : 0xC2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetVentilationAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetVentilationAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetVentilationAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify whether or not to disable the air conditioner, and to acquire the current setting.<br>Disabled = 0x41, not disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to disable the air conditioner, and to acquire the current setting.<br><br>Disabled = 0x41, not disabled = 0x42<br><br>Name : �gDisabling of air conditioner�h setting<br>EPC : 0xCD<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetGdisablingOfAirConditionerHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetGdisablingOfAirConditionerHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetGdisablingOfAirConditionerHSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify whether or not to disable the air conditioner, and to acquire the current setting.<br>Disabled = 0x41, not disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to disable the air conditioner, and to acquire the current setting.<br><br>Disabled = 0x41, not disabled = 0x42<br><br>Name : �gDisabling of air conditioner�h setting<br>EPC : 0xCD<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetGdisablingOfAirConditionerHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetGdisablingOfAirConditionerHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetGdisablingOfAirConditionerHSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify whether or not the air conditioner shall operate ignoring its thermostat setting.<br>Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not the air conditioner shall operate ignoring its thermostat setting.<br><br>Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br><br>Name : Thermostat setting override function<br>EPC : 0xCE<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetThermostatSettingOverrideFunction(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetThermostatSettingOverrideFunction(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetThermostatSettingOverrideFunction(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify whether or not the air conditioner shall operate ignoring its thermostat setting.<br>Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not the air conditioner shall operate ignoring its thermostat setting.<br><br>Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br><br>Name : Thermostat setting override function<br>EPC : 0xCE<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetThermostatSettingOverrideFunction(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetThermostatSettingOverrideFunction(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetThermostatSettingOverrideFunction(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify whether or not to enable the filter cleaning reminder lamp, and to acquire the current setting.<br>Enabled = 0x41, disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
+		 * Used to specify whether or not to enable the filter cleaning reminder lamp, and to acquire the current setting.<br><br>Enabled = 0x41, disabled = 0x42<br><br>Name : Filter cleaning reminder lamp setting<br>EPC : 0xCF<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
 		 */
 		protected void onSetFilterCleaningReminderLampSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetFilterCleaningReminderLampSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetFilterCleaningReminderLampSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify whether or not to enable the filter cleaning reminder lamp, and to acquire the current setting.<br>Enabled = 0x41, disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
+		 * Used to specify whether or not to enable the filter cleaning reminder lamp, and to acquire the current setting.<br><br>Enabled = 0x41, disabled = 0x42<br><br>Name : Filter cleaning reminder lamp setting<br>EPC : 0xCF<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
 		 */
 		protected void onGetFilterCleaningReminderLampSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetFilterCleaningReminderLampSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetFilterCleaningReminderLampSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the measured power consumption of the indoor unit.<br>0x0000 to 0xFFFD (0 to 65533W)<br><br>Data type : unsigned<br>Data size : 2 byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the measured power consumption of the indoor unit.<br><br>0x0000 to 0xFFFD (0 to 65533W)<br><br>Name : Measured power consumption of indoor unit<br>EPC : 0xDB<br>Data Type : unsigned<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetMeasuredPowerConsumptionOfIndoorUnit(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetMeasuredPowerConsumptionOfIndoorUnit(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetMeasuredPowerConsumptionOfIndoorUnit(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the aperture of the expansion valve in %.<br>0 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the aperture of the expansion valve in %.<br><br>0 to 0x64 (0 to 100%)<br><br>Name : Aperture of expansion valve<br>EPC : 0xDC<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetApertureOfExpansionValve(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetApertureOfExpansionValve(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetApertureOfExpansionValve(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to set the temperature and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+		 * Used to set the temperature and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : Temperature setting 2<br>EPC : 0xE3<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
 		 */
 		protected void onSetTemperatureSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetTemperatureSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetTemperatureSetting2(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to set the temperature and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+		 * Used to set the temperature and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : Temperature setting 2<br>EPC : 0xE3<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
 		 */
 		protected void onGetTemperatureSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetTemperatureSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetTemperatureSetting2(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x0000 to 0x3E8 (0.0 to 100.0%)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
+		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br><br>0x0000 to 0x3E8 (0.0 to 100.0%)<br><br>Name : �gRelative humidity setting for �edehumidificatio n�f mode�h 2<br>EPC : 0xE4<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
 		 */
 		protected void onSetGrelativeHumiditySettingForEdehumidificatioNFModeH2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetGrelativeHumiditySettingForEdehumidificatioNFModeH2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetGrelativeHumiditySettingForEdehumidificatioNFModeH2(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x0000 to 0x3E8 (0.0 to 100.0%)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
+		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br><br>0x0000 to 0x3E8 (0.0 to 100.0%)<br><br>Name : �gRelative humidity setting for �edehumidificatio n�f mode�h 2<br>EPC : 0xE4<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
 		 */
 		protected void onGetGrelativeHumiditySettingForEdehumidificatioNFModeH2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetGrelativeHumiditySettingForEdehumidificatioNFModeH2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetGrelativeHumiditySettingForEdehumidificatioNFModeH2(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : �gTemperature setting for �ecooling�f mode�h 2<br>EPC : 0xE5<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetGtemperatureSettingForEcoolingFModeH2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetGtemperatureSettingForEcoolingFModeH2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetGtemperatureSettingForEcoolingFModeH2(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : �gTemperature setting for �ecooling�f mode�h 2<br>EPC : 0xE5<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetGtemperatureSettingForEcoolingFModeH2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetGtemperatureSettingForEcoolingFModeH2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetGtemperatureSettingForEcoolingFModeH2(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : �gTemperature setting for �eheating�f mode�h 2<br>EPC : 0xE6<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetGtemperatureSettingForEheatingFModeH2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetGtemperatureSettingForEheatingFModeH2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetGtemperatureSettingForEheatingFModeH2(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : �gTemperature setting for �eheating�f mode�h 2<br>EPC : 0xE6<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetGtemperatureSettingForEheatingFModeH2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetGtemperatureSettingForEheatingFModeH2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetGtemperatureSettingForEheatingFModeH2(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : �gTemperature setting for �edehumidificatio n�f mode�h 2<br>EPC : 0xE7<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetGtemperatureSettingForEdehumidificatioNFModeH2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetGtemperatureSettingForEdehumidificatioNFModeH2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetGtemperatureSettingForEdehumidificatioNFModeH2(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : �gTemperature setting for �edehumidificatio n�f mode�h 2<br>EPC : 0xE7<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetGtemperatureSettingForEdehumidificatioNFModeH2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetGtemperatureSettingForEdehumidificatioNFModeH2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetGtemperatureSettingForEdehumidificatioNFModeH2(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to acquire the measured indoor relative humidity.<br>0x0000 to 0x3E8 (0.0 to 100.0%)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : undefined<br>Get : optional
+		 * Used to acquire the measured indoor relative humidity.<br><br>0x0000 to 0x3E8 (0.0 to 100.0%)<br><br>Name : Measured indoor relative humidity 2<br>EPC : 0xEA<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetMeasuredIndoorRelativeHumidity2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetMeasuredIndoorRelativeHumidity2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetMeasuredIndoorRelativeHumidity2(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to acquire the measured indoor temperature.<br>0xF554 to 0x7FFD (-273,2 to 3276,5��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : undefined<br>Get : optional
+		 * Used to acquire the measured indoor temperature.<br><br>0xF554 to 0x7FFD (-273,2 to 3276,5��C)<br><br>Name : Measured indoor temperature 2<br>EPC : 0xEB<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetMeasuredIndoorTemperature2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetMeasuredIndoorTemperature2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetMeasuredIndoorTemperature2(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br><br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Name : �gON timer-based reservation�h setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetGonTimerBasedReservationHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetGonTimerBasedReservationHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetGonTimerBasedReservationHSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br><br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Name : �gON timer-based reservation�h setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetGonTimerBasedReservationHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetGonTimerBasedReservationHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetGonTimerBasedReservationHSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (time)<br>EPC : 0x91<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetOnTimerSettingTime(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (time)<br>EPC : 0x91<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetOnTimerSettingTime(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Name : ON timer setting (relative time)<br>EPC : 0x92<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetOnTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Name : ON timer setting (relative time)<br>EPC : 0x92<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetOnTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br><br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Name : �gOFF timer-based reservation�h setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetGoffTimerBasedReservationHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetGoffTimerBasedReservationHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetGoffTimerBasedReservationHSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br><br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Name : �gOFF timer-based reservation�h setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetGoffTimerBasedReservationHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetGoffTimerBasedReservationHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetGoffTimerBasedReservationHSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (time)<br>EPC : 0x95<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetOffTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetOffTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetOffTimerSettingTime(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (time)<br>EPC : 0x95<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetOffTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetOffTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetOffTimerSettingTime(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Name : OFF timer setting (relative time)<br>EPC : 0x96<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetOffTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetOffTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetOffTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Name : OFF timer setting (relative time)<br>EPC : 0x96<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetOffTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetOffTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetOffTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 
 	}
 	
-	public interface Setter extends DeviceObject.Setter {
-		public Setter reqSetOperationStatus(byte[] edt);
-		public Setter reqSetInstallationLocation(byte[] edt);
-		public Setter reqSetCurrentLimitSetting(byte[] edt);
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
-		public Setter reqSetPositionInformation(byte[] edt);
-		public Setter reqSetCurrentTimeSetting(byte[] edt);
-		public Setter reqSetCurrentDateSetting(byte[] edt);
-		public Setter reqSetPowerLimitSetting(byte[] edt);
-		
-		/**
-		 * Used to specify the operation mode (�gautomatic,�h .�gcooling,�h .�gheating,�h . �gdehumidification�h .or .�gair . circulator�h) .and .to .acquire .the .current . setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
-		 */
-		public Setter reqSetOperationModeSetting(byte[] edt);
-		/**
-		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
-		 */
-		public Setter reqSetTemperatureSetting1(byte[] edt);
-		/**
-		 * Used to set the relative humidity for the .�gdehumidification�h .mode .and .to . acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
-		 */
-		public Setter reqSetGrelativeHumiditySettingForEdehumidificaTionFModeH1(byte[] edt);
-		/**
-		 * Used to set the temperature for the �gcooling�h .mode .and .to .acquire .the . current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetGtemperatureSettingForEcoolingFModeH1(byte[] edt);
-		/**
-		 * Used to set the temperature for the �gheating�h .mode .and .to .acquire .the . current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetGtemperatureSettingForEheatingFModeH1(byte[] edt);
-		/**
-		 * Used to set the temperature for the �gdehumidification�h .mode .and .to . acquire the current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetGtemperatureSettingForEdehumidificaTionFModeH1(byte[] edt);
-		/**
-		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetRelativeTemperatureSetting(byte[] edt);
-		/**
-		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetAirFlowRateSetting(byte[] edt);
-		/**
-		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 9 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>Automatic = 0x31, swing = 0x32 Air flow direction: 0x41 to 0x49 (0x41 and 0x49 shall be used for the uppermost and lowermost directions, respectively.)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetGairFlowDirectionVerticalHSetting(byte[] edt);
-		/**
-		 * Used to specify the air flow direction in the horizontal plane by selecting a pattern from among the 6 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>Automatic = 0x31, swing = 0x32 Air flow direction: Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetGairFlowDirectionHorizontalHSetting(byte[] edt);
-		/**
-		 * Used to specify the ventilation mode and to acquire the current setting.<br>Ordinary ventilation = 0x41, ventilation plus total heat exchanger-based heat exchange = 0x42, automatic control of ventilation (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetVentilationModeSetting(byte[] edt);
-		/**
-		 * Used to specify whether or not to use the �gcombined operation of indoor unit and total heat exchanger�h function, and to acquire the current setting.<br>�gCombined operation of indoor unit and total heat exchanger�h function used = 0x41 �gCombined operation of indoor unit and total heat exchanger�h function not used= 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetCombinedOperationOfIndoorUnitAndTotalHeatExchanger(byte[] edt);
-		/**
-		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire the current setting.<br>Automatic control of ventilation air flow rate = 0x41 Ventilation air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetVentilationAirFlowRateSetting(byte[] edt);
-		/**
-		 * Used to specify whether or not to disable the air conditioner, and to acquire the current setting.<br>Disabled = 0x41, not disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetGdisablingOfAirConditionerHSetting(byte[] edt);
-		/**
-		 * Used to specify whether or not the air conditioner shall operate ignoring its thermostat setting.<br>Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetThermostatSettingOverrideFunction(byte[] edt);
-		/**
-		 * Used to specify whether or not to enable the filter cleaning reminder lamp, and to acquire the current setting.<br>Enabled = 0x41, disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
-		 */
-		public Setter reqSetFilterCleaningReminderLampSetting(byte[] edt);
-		/**
-		 * Used to set the temperature and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
-		 */
-		public Setter reqSetTemperatureSetting2(byte[] edt);
-		/**
-		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x0000 to 0x3E8 (0.0 to 100.0%)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
-		 */
-		public Setter reqSetGrelativeHumiditySettingForEdehumidificatioNFModeH2(byte[] edt);
-		/**
-		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetGtemperatureSettingForEcoolingFModeH2(byte[] edt);
-		/**
-		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetGtemperatureSettingForEheatingFModeH2(byte[] edt);
-		/**
-		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetGtemperatureSettingForEdehumidificatioNFModeH2(byte[] edt);
-		/**
-		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetGonTimerBasedReservationHSetting(byte[] edt);
-		/**
-		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetOnTimerSettingTime(byte[] edt);
-		/**
-		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetOnTimerSettingRelativeTime(byte[] edt);
-		/**
-		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetGoffTimerBasedReservationHSetting(byte[] edt);
-		/**
-		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetOffTimerSettingTime(byte[] edt);
-		/**
-		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetOffTimerSettingRelativeTime(byte[] edt);
-	}
-
-	public class SetterImpl extends DeviceObject.SetterImpl implements Setter {
-
-		public SetterImpl(byte esv) {
+	public class Setter extends DeviceObject.Setter {
+		public Setter(byte esv) {
 			super(esv);
+		}
+
+		@Override
+		public Setter reqSet(byte epc, byte[] edt) {
+			return (Setter)super.reqSet(epc, edt);
 		}
 		
 		@Override
@@ -1827,1178 +1709,558 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
-		@Override
-		public Setter reqSetOperationModeSetting(byte[] edt) {
-			byte epc = EPC_OPERATION_MODE_SETTING;
-			addProperty(epc, edt, _setOperationModeSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetTemperatureSetting1(byte[] edt) {
-			byte epc = EPC_TEMPERATURE_SETTING1;
-			addProperty(epc, edt, _setTemperatureSetting1(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetGrelativeHumiditySettingForEdehumidificaTionFModeH1(byte[] edt) {
-			byte epc = EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1;
-			addProperty(epc, edt, _setGrelativeHumiditySettingForEdehumidificaTionFModeH1(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetGtemperatureSettingForEcoolingFModeH1(byte[] edt) {
-			byte epc = EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H1;
-			addProperty(epc, edt, _setGtemperatureSettingForEcoolingFModeH1(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetGtemperatureSettingForEheatingFModeH1(byte[] edt) {
-			byte epc = EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H1;
-			addProperty(epc, edt, _setGtemperatureSettingForEheatingFModeH1(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetGtemperatureSettingForEdehumidificaTionFModeH1(byte[] edt) {
-			byte epc = EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1;
-			addProperty(epc, edt, _setGtemperatureSettingForEdehumidificaTionFModeH1(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetRelativeTemperatureSetting(byte[] edt) {
-			byte epc = EPC_RELATIVE_TEMPERATURE_SETTING;
-			addProperty(epc, edt, _setRelativeTemperatureSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetAirFlowRateSetting(byte[] edt) {
-			byte epc = EPC_AIR_FLOW_RATE_SETTING;
-			addProperty(epc, edt, _setAirFlowRateSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetGairFlowDirectionVerticalHSetting(byte[] edt) {
-			byte epc = EPC_GAIR_FLOW_DIRECTION_VERTICAL_H_SETTING;
-			addProperty(epc, edt, _setGairFlowDirectionVerticalHSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetGairFlowDirectionHorizontalHSetting(byte[] edt) {
-			byte epc = EPC_GAIR_FLOW_DIRECTION_HORIZONTAL_H_SETTING;
-			addProperty(epc, edt, _setGairFlowDirectionHorizontalHSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetVentilationModeSetting(byte[] edt) {
-			byte epc = EPC_VENTILATION_MODE_SETTING;
-			addProperty(epc, edt, _setVentilationModeSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetCombinedOperationOfIndoorUnitAndTotalHeatExchanger(byte[] edt) {
-			byte epc = EPC_COMBINED_OPERATION_OF_INDOOR_UNIT_AND_TOTAL_HEAT_EXCHANGER;
-			addProperty(epc, edt, _setCombinedOperationOfIndoorUnitAndTotalHeatExchanger(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetVentilationAirFlowRateSetting(byte[] edt) {
-			byte epc = EPC_VENTILATION_AIR_FLOW_RATE_SETTING;
-			addProperty(epc, edt, _setVentilationAirFlowRateSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetGdisablingOfAirConditionerHSetting(byte[] edt) {
-			byte epc = EPC_GDISABLING_OF_AIR_CONDITIONER_H_SETTING;
-			addProperty(epc, edt, _setGdisablingOfAirConditionerHSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetThermostatSettingOverrideFunction(byte[] edt) {
-			byte epc = EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION;
-			addProperty(epc, edt, _setThermostatSettingOverrideFunction(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetFilterCleaningReminderLampSetting(byte[] edt) {
-			byte epc = EPC_FILTER_CLEANING_REMINDER_LAMP_SETTING;
-			addProperty(epc, edt, _setFilterCleaningReminderLampSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetTemperatureSetting2(byte[] edt) {
-			byte epc = EPC_TEMPERATURE_SETTING2;
-			addProperty(epc, edt, _setTemperatureSetting2(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetGrelativeHumiditySettingForEdehumidificatioNFModeH2(byte[] edt) {
-			byte epc = EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2;
-			addProperty(epc, edt, _setGrelativeHumiditySettingForEdehumidificatioNFModeH2(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetGtemperatureSettingForEcoolingFModeH2(byte[] edt) {
-			byte epc = EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H2;
-			addProperty(epc, edt, _setGtemperatureSettingForEcoolingFModeH2(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetGtemperatureSettingForEheatingFModeH2(byte[] edt) {
-			byte epc = EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H2;
-			addProperty(epc, edt, _setGtemperatureSettingForEheatingFModeH2(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetGtemperatureSettingForEdehumidificatioNFModeH2(byte[] edt) {
-			byte epc = EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2;
-			addProperty(epc, edt, _setGtemperatureSettingForEdehumidificatioNFModeH2(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetGonTimerBasedReservationHSetting(byte[] edt) {
-			byte epc = EPC_GON_TIMER_BASED_RESERVATION_H_SETTING;
-			addProperty(epc, edt, _setGonTimerBasedReservationHSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetOnTimerSettingTime(byte[] edt) {
-			byte epc = EPC_ON_TIMER_SETTING_TIME;
-			addProperty(epc, edt, _setOnTimerSettingTime(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetOnTimerSettingRelativeTime(byte[] edt) {
-			byte epc = EPC_ON_TIMER_SETTING_RELATIVE_TIME;
-			addProperty(epc, edt, _setOnTimerSettingRelativeTime(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetGoffTimerBasedReservationHSetting(byte[] edt) {
-			byte epc = EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING;
-			addProperty(epc, edt, _setGoffTimerBasedReservationHSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetOffTimerSettingTime(byte[] edt) {
-			byte epc = EPC_OFF_TIMER_SETTING_TIME;
-			addProperty(epc, edt, _setOffTimerSettingTime(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetOffTimerSettingRelativeTime(byte[] edt) {
-			byte epc = EPC_OFF_TIMER_SETTING_RELATIVE_TIME;
-			addProperty(epc, edt, _setOffTimerSettingRelativeTime(epc, edt));
-			return this;
-		}
-	}
-	
-	public class SetterProxy extends DeviceObject.SetterProxy implements Setter {
-
-		public SetterProxy(byte esv) {
-			super(esv);
-		}
-
-		@Override
-		public Setter reqSetOperationStatus(byte[] edt) {
-			return (Setter)super.reqSetOperationStatus(edt);
-		}
-		@Override
-		public Setter reqSetInstallationLocation(byte[] edt) {
-			return (Setter)super.reqSetInstallationLocation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimitSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
-		}
-		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentTimeSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentTimeSetting(edt);
-		}
-		@Override
-		public Setter reqSetCurrentDateSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentDateSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitSetting(edt);
-		}
-
-		@Override
+		/**
+		 * Used to specify the operation mode (�gautomatic,�h .�gcooling,�h .�gheating,�h . �gdehumidification�h .or .�gair . circulator�h) .and .to .acquire .the .current . setting.<br><br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Name : Operation mode setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
+		 */
 		public Setter reqSetOperationModeSetting(byte[] edt) {
 			addProperty(EPC_OPERATION_MODE_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to set the temperature and to acquire the current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : Temperature setting 1<br>EPC : 0xB3<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
+		 */
 		public Setter reqSetTemperatureSetting1(byte[] edt) {
 			addProperty(EPC_TEMPERATURE_SETTING1, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to set the relative humidity for the .�gdehumidification�h .mode .and .to . acquire the current setting.<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : �gRelative . humidity setting for �edehumidifica- tion�f .mode�h .1<br>EPC : 0xB4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
+		 */
 		public Setter reqSetGrelativeHumiditySettingForEdehumidificaTionFModeH1(byte[] edt) {
 			addProperty(EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to set the temperature for the �gcooling�h .mode .and .to .acquire .the . current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : �gTemperature . setting for �ecooling�f .mode�h . 1<br>EPC : 0xB5<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetGtemperatureSettingForEcoolingFModeH1(byte[] edt) {
 			addProperty(EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H1, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to set the temperature for the �gheating�h .mode .and .to .acquire .the . current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : �gTemperature . setting for �eheating�f .mode�h . 1<br>EPC : 0xB6<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetGtemperatureSettingForEheatingFModeH1(byte[] edt) {
 			addProperty(EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H1, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to set the temperature for the �gdehumidification�h .mode .and .to . acquire the current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : �gTemperature . setting for �edehumidifica- tion�f .mode�h .1<br>EPC : 0xB7<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetGtemperatureSettingForEdehumidificaTionFModeH1(byte[] edt) {
 			addProperty(EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode and to acquire the current setting.<br><br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Name : Relative temperature setting<br>EPC : 0xBF<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetRelativeTemperatureSetting(byte[] edt) {
 			addProperty(EPC_RELATIVE_TEMPERATURE_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br><br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Name : Air flow rate setting<br>EPC : 0xA0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetAirFlowRateSetting(byte[] edt) {
 			addProperty(EPC_AIR_FLOW_RATE_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 9 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br><br>Automatic = 0x31, swing = 0x32 Air flow direction: 0x41 to 0x49 (0x41 and 0x49 shall be used for the uppermost and lowermost directions, respectively.)<br><br>Name : �gAir flow direction (vertical)�h setting<br>EPC : 0xA4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetGairFlowDirectionVerticalHSetting(byte[] edt) {
 			addProperty(EPC_GAIR_FLOW_DIRECTION_VERTICAL_H_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the air flow direction in the horizontal plane by selecting a pattern from among the 6 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br><br>Automatic = 0x31, swing = 0x32 Air flow direction: Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44<br><br>Name : �gAir flow direction (horizontal)�h setting<br>EPC : 0xA5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetGairFlowDirectionHorizontalHSetting(byte[] edt) {
 			addProperty(EPC_GAIR_FLOW_DIRECTION_HORIZONTAL_H_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the ventilation mode and to acquire the current setting.<br><br>Ordinary ventilation = 0x41, ventilation plus total heat exchanger-based heat exchange = 0x42, automatic control of ventilation (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br><br>Name : Ventilation mode setting<br>EPC : 0xC0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetVentilationModeSetting(byte[] edt) {
 			addProperty(EPC_VENTILATION_MODE_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify whether or not to use the �gcombined operation of indoor unit and total heat exchanger�h function, and to acquire the current setting.<br><br>�gCombined operation of indoor unit and total heat exchanger�h function used = 0x41 �gCombined operation of indoor unit and total heat exchanger�h function not used= 0x42<br><br>Name : Combined operation of indoor unit and total heat exchanger<br>EPC : 0xC1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetCombinedOperationOfIndoorUnitAndTotalHeatExchanger(byte[] edt) {
 			addProperty(EPC_COMBINED_OPERATION_OF_INDOOR_UNIT_AND_TOTAL_HEAT_EXCHANGER, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire the current setting.<br><br>Automatic control of ventilation air flow rate = 0x41 Ventilation air flow rate = 0x31 to 0x38<br><br>Name : Ventilation air flow rate setting<br>EPC : 0xC2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetVentilationAirFlowRateSetting(byte[] edt) {
 			addProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify whether or not to disable the air conditioner, and to acquire the current setting.<br><br>Disabled = 0x41, not disabled = 0x42<br><br>Name : �gDisabling of air conditioner�h setting<br>EPC : 0xCD<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetGdisablingOfAirConditionerHSetting(byte[] edt) {
 			addProperty(EPC_GDISABLING_OF_AIR_CONDITIONER_H_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify whether or not the air conditioner shall operate ignoring its thermostat setting.<br><br>Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br><br>Name : Thermostat setting override function<br>EPC : 0xCE<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetThermostatSettingOverrideFunction(byte[] edt) {
 			addProperty(EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify whether or not to enable the filter cleaning reminder lamp, and to acquire the current setting.<br><br>Enabled = 0x41, disabled = 0x42<br><br>Name : Filter cleaning reminder lamp setting<br>EPC : 0xCF<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
+		 */
 		public Setter reqSetFilterCleaningReminderLampSetting(byte[] edt) {
 			addProperty(EPC_FILTER_CLEANING_REMINDER_LAMP_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to set the temperature and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : Temperature setting 2<br>EPC : 0xE3<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
+		 */
 		public Setter reqSetTemperatureSetting2(byte[] edt) {
 			addProperty(EPC_TEMPERATURE_SETTING2, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br><br>0x0000 to 0x3E8 (0.0 to 100.0%)<br><br>Name : �gRelative humidity setting for �edehumidificatio n�f mode�h 2<br>EPC : 0xE4<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
+		 */
 		public Setter reqSetGrelativeHumiditySettingForEdehumidificatioNFModeH2(byte[] edt) {
 			addProperty(EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : �gTemperature setting for �ecooling�f mode�h 2<br>EPC : 0xE5<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetGtemperatureSettingForEcoolingFModeH2(byte[] edt) {
 			addProperty(EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H2, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : �gTemperature setting for �eheating�f mode�h 2<br>EPC : 0xE6<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetGtemperatureSettingForEheatingFModeH2(byte[] edt) {
 			addProperty(EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H2, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : �gTemperature setting for �edehumidificatio n�f mode�h 2<br>EPC : 0xE7<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetGtemperatureSettingForEdehumidificatioNFModeH2(byte[] edt) {
 			addProperty(EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br><br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Name : �gON timer-based reservation�h setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetGonTimerBasedReservationHSetting(byte[] edt) {
 			addProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (time)<br>EPC : 0x91<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetOnTimerSettingTime(byte[] edt) {
 			addProperty(EPC_ON_TIMER_SETTING_TIME, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Name : ON timer setting (relative time)<br>EPC : 0x92<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetOnTimerSettingRelativeTime(byte[] edt) {
 			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br><br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Name : �gOFF timer-based reservation�h setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetGoffTimerBasedReservationHSetting(byte[] edt) {
 			addProperty(EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (time)<br>EPC : 0x95<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetOffTimerSettingTime(byte[] edt) {
 			addProperty(EPC_OFF_TIMER_SETTING_TIME, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Name : OFF timer setting (relative time)<br>EPC : 0x96<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetOffTimerSettingRelativeTime(byte[] edt) {
 			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}
 
-	public interface Getter extends DeviceObject.Getter {
-		public Getter reqGetOperationStatus();
-		public Getter reqGetInstallationLocation();
-		public Getter reqGetStandardVersionInformation();
-		public Getter reqGetIdentificationNumber();
-		public Getter reqGetMeasuredInstantaneousPowerConsumption();
-		public Getter reqGetMeasuredCumulativePowerConsumption();
-		public Getter reqGetManufacturersFaultCode();
-		public Getter reqGetCurrentLimitSetting();
-		public Getter reqGetFaultStatus();
-		public Getter reqGetFaultDescription();
-		public Getter reqGetManufacturerCode();
-		public Getter reqGetBusinessFacilityCode();
-		public Getter reqGetProductCode();
-		public Getter reqGetProductionNumber();
-		public Getter reqGetProductionDate();
-		public Getter reqGetPowerSavingOperationSetting();
-		public Getter reqGetPositionInformation();
-		public Getter reqGetCurrentTimeSetting();
-		public Getter reqGetCurrentDateSetting();
-		public Getter reqGetPowerLimitSetting();
-		public Getter reqGetCumulativeOperatingTime();
-		public Getter reqGetStatusChangeAnnouncementPropertyMap();
-		public Getter reqGetSetPropertyMap();
-		public Getter reqGetGetPropertyMap();
+	public class Getter extends DeviceObject.Getter {
+
+		@Override
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
+		}
+		@Override
+		public Getter reqGetInstallationLocation() {
+			return (Getter)super.reqGetInstallationLocation();
+		}
+		@Override
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
+		}
+		@Override
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
+		}
+		@Override
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
+		}
+		@Override
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
+		}
+		@Override
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
+		}
+		@Override
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
+		}
+		@Override
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
+		}
+		@Override
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
+		}
+		@Override
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
+		}
+		@Override
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
+		}
+		@Override
+		public Getter reqGetProductCode() {
+			return (Getter)super.reqGetProductCode();
+		}
+		@Override
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
+		}
+		@Override
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
+		}
+		@Override
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
+		}
+		@Override
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
+		}
+		@Override
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
+		}
+		@Override
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
+		}
+		@Override
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
+		}
+		@Override
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
+		}
+		@Override
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
+		}
+		@Override
+		public Getter reqGetSetPropertyMap() {
+			return (Getter)super.reqGetSetPropertyMap();
+		}
+		@Override
+		public Getter reqGetGetPropertyMap() {
+			return (Getter)super.reqGetGetPropertyMap();
+		}
 		
 		/**
-		 * Used to specify the operation mode (�gautomatic,�h .�gcooling,�h .�gheating,�h . �gdehumidification�h .or .�gair . circulator�h) .and .to .acquire .the .current . setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+		 * Used to specify the operation mode (�gautomatic,�h .�gcooling,�h .�gheating,�h . �gdehumidification�h .or .�gair . circulator�h) .and .to .acquire .the .current . setting.<br><br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Name : Operation mode setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
 		 */
-		public Getter reqGetOperationModeSetting();
-		/**
-		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
-		 */
-		public Getter reqGetTemperatureSetting1();
-		/**
-		 * Used to set the relative humidity for the .�gdehumidification�h .mode .and .to . acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
-		 */
-		public Getter reqGetGrelativeHumiditySettingForEdehumidificaTionFModeH1();
-		/**
-		 * Used to set the temperature for the �gcooling�h .mode .and .to .acquire .the . current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetGtemperatureSettingForEcoolingFModeH1();
-		/**
-		 * Used to set the temperature for the �gheating�h .mode .and .to .acquire .the . current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetGtemperatureSettingForEheatingFModeH1();
-		/**
-		 * Used to set the temperature for the �gdehumidification�h .mode .and .to . acquire the current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetGtemperatureSettingForEdehumidificaTionFModeH1();
-		/**
-		 * This property indicates the rated power consumption for the cooling, heating, dehumidification and air circulator modes.<br>0x0000 to 0xFFFD (0 to 65533W) Cooling: heating: dehumidification: air circulator<br><br>Data type : unsigned short x 4<br>Data size : 8 bytes<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetRatedPowerConsumptionOfIndoorUnit();
-		/**
-		 * This property indicates the measured electric current consumption.<br>0x0000 to 0xFFFD (0 to 6553.3A)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetMeasuredElectricCurrentConsumptionOfIndoorUnit();
-		/**
-		 * Used to acquire the measured indoor relative humidity.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetMeasuredIndoorRelativeHumidity1();
-		/**
-		 * Used to acquire the measured indoor temperature.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetMeasuredIndoorTemperature1();
-		/**
-		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetRelativeTemperatureSetting();
-		/**
-		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetAirFlowRateSetting();
-		/**
-		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 9 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>Automatic = 0x31, swing = 0x32 Air flow direction: 0x41 to 0x49 (0x41 and 0x49 shall be used for the uppermost and lowermost directions, respectively.)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetGairFlowDirectionVerticalHSetting();
-		/**
-		 * Used to specify the air flow direction in the horizontal plane by selecting a pattern from among the 6 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>Automatic = 0x31, swing = 0x32 Air flow direction: Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetGairFlowDirectionHorizontalHSetting();
-		/**
-		 * This property indicates when the air conditioner is in a �gspecial�h state.<br>�gNormal operation�h state = 0x40, �gpreheating�h state = 0x42, �gheat removal�h state = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetGspecialHState();
-		/**
-		 * This property indicates the state (ON or OFF) of the thermostat.<br>Thermostat ON = 0x41 Thermostat OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetThermostatState();
-		/**
-		 * This property indicates, when the air conditioner is operating in the �gautomatic�h operation mode, the function (�gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h) that is currently being used.<br>The following values shall be used: Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
-		 */
-		public Getter reqGetCurrentFunctionGautomaticHOperationMode();
-		/**
-		 * Used to specify the ventilation mode and to acquire the current setting.<br>Ordinary ventilation = 0x41, ventilation plus total heat exchanger-based heat exchange = 0x42, automatic control of ventilation (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetVentilationModeSetting();
-		/**
-		 * Used to specify whether or not to use the �gcombined operation of indoor unit and total heat exchanger�h function, and to acquire the current setting.<br>�gCombined operation of indoor unit and total heat exchanger�h function used = 0x41 �gCombined operation of indoor unit and total heat exchanger�h function not used= 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetCombinedOperationOfIndoorUnitAndTotalHeatExchanger();
-		/**
-		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire the current setting.<br>Automatic control of ventilation air flow rate = 0x41 Ventilation air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetVentilationAirFlowRateSetting();
-		/**
-		 * Used to specify whether or not to disable the air conditioner, and to acquire the current setting.<br>Disabled = 0x41, not disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetGdisablingOfAirConditionerHSetting();
-		/**
-		 * Used to specify whether or not the air conditioner shall operate ignoring its thermostat setting.<br>Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetThermostatSettingOverrideFunction();
-		/**
-		 * Used to specify whether or not to enable the filter cleaning reminder lamp, and to acquire the current setting.<br>Enabled = 0x41, disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
-		 */
-		public Getter reqGetFilterCleaningReminderLampSetting();
-		/**
-		 * This property indicates the measured power consumption of the indoor unit.<br>0x0000 to 0xFFFD (0 to 65533W)<br><br>Data type : unsigned<br>Data size : 2 byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetMeasuredPowerConsumptionOfIndoorUnit();
-		/**
-		 * This property indicates the aperture of the expansion valve in %.<br>0 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetApertureOfExpansionValve();
-		/**
-		 * Used to set the temperature and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
-		 */
-		public Getter reqGetTemperatureSetting2();
-		/**
-		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x0000 to 0x3E8 (0.0 to 100.0%)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
-		 */
-		public Getter reqGetGrelativeHumiditySettingForEdehumidificatioNFModeH2();
-		/**
-		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetGtemperatureSettingForEcoolingFModeH2();
-		/**
-		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetGtemperatureSettingForEheatingFModeH2();
-		/**
-		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetGtemperatureSettingForEdehumidificatioNFModeH2();
-		/**
-		 * Used to acquire the measured indoor relative humidity.<br>0x0000 to 0x3E8 (0.0 to 100.0%)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetMeasuredIndoorRelativeHumidity2();
-		/**
-		 * Used to acquire the measured indoor temperature.<br>0xF554 to 0x7FFD (-273,2 to 3276,5��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetMeasuredIndoorTemperature2();
-		/**
-		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetGonTimerBasedReservationHSetting();
-		/**
-		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetOnTimerSettingTime();
-		/**
-		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetOnTimerSettingRelativeTime();
-		/**
-		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetGoffTimerBasedReservationHSetting();
-		/**
-		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetOffTimerSettingTime();
-		/**
-		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetOffTimerSettingRelativeTime();
-	}
-	
-	public class GetterImpl extends DeviceObject.GetterImpl implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
-		public Getter reqGetOperationModeSetting() {
-			byte epc = EPC_OPERATION_MODE_SETTING;
-			byte[] edt = _getOperationModeSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetTemperatureSetting1() {
-			byte epc = EPC_TEMPERATURE_SETTING1;
-			byte[] edt = _getTemperatureSetting1(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetGrelativeHumiditySettingForEdehumidificaTionFModeH1() {
-			byte epc = EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1;
-			byte[] edt = _getGrelativeHumiditySettingForEdehumidificaTionFModeH1(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetGtemperatureSettingForEcoolingFModeH1() {
-			byte epc = EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H1;
-			byte[] edt = _getGtemperatureSettingForEcoolingFModeH1(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetGtemperatureSettingForEheatingFModeH1() {
-			byte epc = EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H1;
-			byte[] edt = _getGtemperatureSettingForEheatingFModeH1(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetGtemperatureSettingForEdehumidificaTionFModeH1() {
-			byte epc = EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1;
-			byte[] edt = _getGtemperatureSettingForEdehumidificaTionFModeH1(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetRatedPowerConsumptionOfIndoorUnit() {
-			byte epc = EPC_RATED_POWER_CONSUMPTION_OF_INDOOR_UNIT;
-			byte[] edt = _getRatedPowerConsumptionOfIndoorUnit(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 8)));
-			return this;
-		}
-		@Override
-		public Getter reqGetMeasuredElectricCurrentConsumptionOfIndoorUnit() {
-			byte epc = EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_INDOOR_UNIT;
-			byte[] edt = _getMeasuredElectricCurrentConsumptionOfIndoorUnit(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetMeasuredIndoorRelativeHumidity1() {
-			byte epc = EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY1;
-			byte[] edt = _getMeasuredIndoorRelativeHumidity1(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetMeasuredIndoorTemperature1() {
-			byte epc = EPC_MEASURED_INDOOR_TEMPERATURE1;
-			byte[] edt = _getMeasuredIndoorTemperature1(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetRelativeTemperatureSetting() {
-			byte epc = EPC_RELATIVE_TEMPERATURE_SETTING;
-			byte[] edt = _getRelativeTemperatureSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetAirFlowRateSetting() {
-			byte epc = EPC_AIR_FLOW_RATE_SETTING;
-			byte[] edt = _getAirFlowRateSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetGairFlowDirectionVerticalHSetting() {
-			byte epc = EPC_GAIR_FLOW_DIRECTION_VERTICAL_H_SETTING;
-			byte[] edt = _getGairFlowDirectionVerticalHSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetGairFlowDirectionHorizontalHSetting() {
-			byte epc = EPC_GAIR_FLOW_DIRECTION_HORIZONTAL_H_SETTING;
-			byte[] edt = _getGairFlowDirectionHorizontalHSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetGspecialHState() {
-			byte epc = EPC_GSPECIAL_H_STATE;
-			byte[] edt = _getGspecialHState(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetThermostatState() {
-			byte epc = EPC_THERMOSTAT_STATE;
-			byte[] edt = _getThermostatState(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetCurrentFunctionGautomaticHOperationMode() {
-			byte epc = EPC_CURRENT_FUNCTION_GAUTOMATIC_H_OPERATION_MODE;
-			byte[] edt = _getCurrentFunctionGautomaticHOperationMode(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetVentilationModeSetting() {
-			byte epc = EPC_VENTILATION_MODE_SETTING;
-			byte[] edt = _getVentilationModeSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetCombinedOperationOfIndoorUnitAndTotalHeatExchanger() {
-			byte epc = EPC_COMBINED_OPERATION_OF_INDOOR_UNIT_AND_TOTAL_HEAT_EXCHANGER;
-			byte[] edt = _getCombinedOperationOfIndoorUnitAndTotalHeatExchanger(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetVentilationAirFlowRateSetting() {
-			byte epc = EPC_VENTILATION_AIR_FLOW_RATE_SETTING;
-			byte[] edt = _getVentilationAirFlowRateSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetGdisablingOfAirConditionerHSetting() {
-			byte epc = EPC_GDISABLING_OF_AIR_CONDITIONER_H_SETTING;
-			byte[] edt = _getGdisablingOfAirConditionerHSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetThermostatSettingOverrideFunction() {
-			byte epc = EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION;
-			byte[] edt = _getThermostatSettingOverrideFunction(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetFilterCleaningReminderLampSetting() {
-			byte epc = EPC_FILTER_CLEANING_REMINDER_LAMP_SETTING;
-			byte[] edt = _getFilterCleaningReminderLampSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetMeasuredPowerConsumptionOfIndoorUnit() {
-			byte epc = EPC_MEASURED_POWER_CONSUMPTION_OF_INDOOR_UNIT;
-			byte[] edt = _getMeasuredPowerConsumptionOfIndoorUnit(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetApertureOfExpansionValve() {
-			byte epc = EPC_APERTURE_OF_EXPANSION_VALVE;
-			byte[] edt = _getApertureOfExpansionValve(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetTemperatureSetting2() {
-			byte epc = EPC_TEMPERATURE_SETTING2;
-			byte[] edt = _getTemperatureSetting2(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetGrelativeHumiditySettingForEdehumidificatioNFModeH2() {
-			byte epc = EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2;
-			byte[] edt = _getGrelativeHumiditySettingForEdehumidificatioNFModeH2(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetGtemperatureSettingForEcoolingFModeH2() {
-			byte epc = EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H2;
-			byte[] edt = _getGtemperatureSettingForEcoolingFModeH2(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetGtemperatureSettingForEheatingFModeH2() {
-			byte epc = EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H2;
-			byte[] edt = _getGtemperatureSettingForEheatingFModeH2(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetGtemperatureSettingForEdehumidificatioNFModeH2() {
-			byte epc = EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2;
-			byte[] edt = _getGtemperatureSettingForEdehumidificatioNFModeH2(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetMeasuredIndoorRelativeHumidity2() {
-			byte epc = EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY2;
-			byte[] edt = _getMeasuredIndoorRelativeHumidity2(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetMeasuredIndoorTemperature2() {
-			byte epc = EPC_MEASURED_INDOOR_TEMPERATURE2;
-			byte[] edt = _getMeasuredIndoorTemperature2(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetGonTimerBasedReservationHSetting() {
-			byte epc = EPC_GON_TIMER_BASED_RESERVATION_H_SETTING;
-			byte[] edt = _getGonTimerBasedReservationHSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetOnTimerSettingTime() {
-			byte epc = EPC_ON_TIMER_SETTING_TIME;
-			byte[] edt = _getOnTimerSettingTime(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetOnTimerSettingRelativeTime() {
-			byte epc = EPC_ON_TIMER_SETTING_RELATIVE_TIME;
-			byte[] edt = _getOnTimerSettingRelativeTime(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetGoffTimerBasedReservationHSetting() {
-			byte epc = EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING;
-			byte[] edt = _getGoffTimerBasedReservationHSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetOffTimerSettingTime() {
-			byte epc = EPC_OFF_TIMER_SETTING_TIME;
-			byte[] edt = _getOffTimerSettingTime(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetOffTimerSettingRelativeTime() {
-			byte epc = EPC_OFF_TIMER_SETTING_RELATIVE_TIME;
-			byte[] edt = _getOffTimerSettingRelativeTime(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-	}
-
-	public class GetterProxy extends DeviceObject.GetterProxy implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
 		public Getter reqGetOperationModeSetting() {
 			addProperty(EPC_OPERATION_MODE_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to set the temperature and to acquire the current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : Temperature setting 1<br>EPC : 0xB3<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
+		 */
 		public Getter reqGetTemperatureSetting1() {
 			addProperty(EPC_TEMPERATURE_SETTING1);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to set the relative humidity for the .�gdehumidification�h .mode .and .to . acquire the current setting.<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : �gRelative . humidity setting for �edehumidifica- tion�f .mode�h .1<br>EPC : 0xB4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
+		 */
 		public Getter reqGetGrelativeHumiditySettingForEdehumidificaTionFModeH1() {
 			addProperty(EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to set the temperature for the �gcooling�h .mode .and .to .acquire .the . current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : �gTemperature . setting for �ecooling�f .mode�h . 1<br>EPC : 0xB5<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetGtemperatureSettingForEcoolingFModeH1() {
 			addProperty(EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H1);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to set the temperature for the �gheating�h .mode .and .to .acquire .the . current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : �gTemperature . setting for �eheating�f .mode�h . 1<br>EPC : 0xB6<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetGtemperatureSettingForEheatingFModeH1() {
 			addProperty(EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H1);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to set the temperature for the �gdehumidification�h .mode .and .to . acquire the current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : �gTemperature . setting for �edehumidifica- tion�f .mode�h .1<br>EPC : 0xB7<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetGtemperatureSettingForEdehumidificaTionFModeH1() {
 			addProperty(EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the rated power consumption for the cooling, heating, dehumidification and air circulator modes.<br><br>0x0000 to 0xFFFD (0 to 65533W) Cooling: heating: dehumidification: air circulator<br><br>Name : Rated power consumption of indoor unit<br>EPC : 0xB8<br>Data Type : unsigned short x 4<br>Data Size(Byte) : 8 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetRatedPowerConsumptionOfIndoorUnit() {
 			addProperty(EPC_RATED_POWER_CONSUMPTION_OF_INDOOR_UNIT);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the measured electric current consumption.<br><br>0x0000 to 0xFFFD (0 to 6553.3A)<br><br>Name : Measured electric current consumption of indoor unit<br>EPC : 0xB9<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetMeasuredElectricCurrentConsumptionOfIndoorUnit() {
 			addProperty(EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_INDOOR_UNIT);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to acquire the measured indoor relative humidity.<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : Measured indoor relative humidity 1<br>EPC : 0xBA<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetMeasuredIndoorRelativeHumidity1() {
 			addProperty(EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY1);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to acquire the measured indoor temperature.<br><br>0x81 to 0x7D (-127 to 125��C)<br><br>Name : Measured indoor temperature 1<br>EPC : 0xBB<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetMeasuredIndoorTemperature1() {
 			addProperty(EPC_MEASURED_INDOOR_TEMPERATURE1);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode and to acquire the current setting.<br><br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Name : Relative temperature setting<br>EPC : 0xBF<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetRelativeTemperatureSetting() {
 			addProperty(EPC_RELATIVE_TEMPERATURE_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br><br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Name : Air flow rate setting<br>EPC : 0xA0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetAirFlowRateSetting() {
 			addProperty(EPC_AIR_FLOW_RATE_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 9 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br><br>Automatic = 0x31, swing = 0x32 Air flow direction: 0x41 to 0x49 (0x41 and 0x49 shall be used for the uppermost and lowermost directions, respectively.)<br><br>Name : �gAir flow direction (vertical)�h setting<br>EPC : 0xA4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetGairFlowDirectionVerticalHSetting() {
 			addProperty(EPC_GAIR_FLOW_DIRECTION_VERTICAL_H_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the air flow direction in the horizontal plane by selecting a pattern from among the 6 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br><br>Automatic = 0x31, swing = 0x32 Air flow direction: Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44<br><br>Name : �gAir flow direction (horizontal)�h setting<br>EPC : 0xA5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetGairFlowDirectionHorizontalHSetting() {
 			addProperty(EPC_GAIR_FLOW_DIRECTION_HORIZONTAL_H_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates when the air conditioner is in a �gspecial�h state.<br><br>�gNormal operation�h state = 0x40, �gpreheating�h state = 0x42, �gheat removal�h state = 0x43<br><br>Name : �gSpecial�h state<br>EPC : 0xAA<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetGspecialHState() {
 			addProperty(EPC_GSPECIAL_H_STATE);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the state (ON or OFF) of the thermostat.<br><br>Thermostat ON = 0x41 Thermostat OFF = 0x42<br><br>Name : Thermostat state<br>EPC : 0xAC<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetThermostatState() {
 			addProperty(EPC_THERMOSTAT_STATE);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates, when the air conditioner is operating in the �gautomatic�h operation mode, the function (�gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h) that is currently being used.<br><br>The following values shall be used: Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Name : Current function (�gautomatic�h operation mode)<br>EPC : 0xAE<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
+		 */
 		public Getter reqGetCurrentFunctionGautomaticHOperationMode() {
 			addProperty(EPC_CURRENT_FUNCTION_GAUTOMATIC_H_OPERATION_MODE);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the ventilation mode and to acquire the current setting.<br><br>Ordinary ventilation = 0x41, ventilation plus total heat exchanger-based heat exchange = 0x42, automatic control of ventilation (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br><br>Name : Ventilation mode setting<br>EPC : 0xC0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetVentilationModeSetting() {
 			addProperty(EPC_VENTILATION_MODE_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify whether or not to use the �gcombined operation of indoor unit and total heat exchanger�h function, and to acquire the current setting.<br><br>�gCombined operation of indoor unit and total heat exchanger�h function used = 0x41 �gCombined operation of indoor unit and total heat exchanger�h function not used= 0x42<br><br>Name : Combined operation of indoor unit and total heat exchanger<br>EPC : 0xC1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetCombinedOperationOfIndoorUnitAndTotalHeatExchanger() {
 			addProperty(EPC_COMBINED_OPERATION_OF_INDOOR_UNIT_AND_TOTAL_HEAT_EXCHANGER);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire the current setting.<br><br>Automatic control of ventilation air flow rate = 0x41 Ventilation air flow rate = 0x31 to 0x38<br><br>Name : Ventilation air flow rate setting<br>EPC : 0xC2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetVentilationAirFlowRateSetting() {
 			addProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify whether or not to disable the air conditioner, and to acquire the current setting.<br><br>Disabled = 0x41, not disabled = 0x42<br><br>Name : �gDisabling of air conditioner�h setting<br>EPC : 0xCD<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetGdisablingOfAirConditionerHSetting() {
 			addProperty(EPC_GDISABLING_OF_AIR_CONDITIONER_H_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify whether or not the air conditioner shall operate ignoring its thermostat setting.<br><br>Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br><br>Name : Thermostat setting override function<br>EPC : 0xCE<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetThermostatSettingOverrideFunction() {
 			addProperty(EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify whether or not to enable the filter cleaning reminder lamp, and to acquire the current setting.<br><br>Enabled = 0x41, disabled = 0x42<br><br>Name : Filter cleaning reminder lamp setting<br>EPC : 0xCF<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
+		 */
 		public Getter reqGetFilterCleaningReminderLampSetting() {
 			addProperty(EPC_FILTER_CLEANING_REMINDER_LAMP_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the measured power consumption of the indoor unit.<br><br>0x0000 to 0xFFFD (0 to 65533W)<br><br>Name : Measured power consumption of indoor unit<br>EPC : 0xDB<br>Data Type : unsigned<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetMeasuredPowerConsumptionOfIndoorUnit() {
 			addProperty(EPC_MEASURED_POWER_CONSUMPTION_OF_INDOOR_UNIT);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the aperture of the expansion valve in %.<br><br>0 to 0x64 (0 to 100%)<br><br>Name : Aperture of expansion valve<br>EPC : 0xDC<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetApertureOfExpansionValve() {
 			addProperty(EPC_APERTURE_OF_EXPANSION_VALVE);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to set the temperature and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : Temperature setting 2<br>EPC : 0xE3<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
+		 */
 		public Getter reqGetTemperatureSetting2() {
 			addProperty(EPC_TEMPERATURE_SETTING2);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br><br>0x0000 to 0x3E8 (0.0 to 100.0%)<br><br>Name : �gRelative humidity setting for �edehumidificatio n�f mode�h 2<br>EPC : 0xE4<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
+		 */
 		public Getter reqGetGrelativeHumiditySettingForEdehumidificatioNFModeH2() {
 			addProperty(EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : �gTemperature setting for �ecooling�f mode�h 2<br>EPC : 0xE5<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetGtemperatureSettingForEcoolingFModeH2() {
 			addProperty(EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H2);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : �gTemperature setting for �eheating�f mode�h 2<br>EPC : 0xE6<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetGtemperatureSettingForEheatingFModeH2() {
 			addProperty(EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H2);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : �gTemperature setting for �edehumidificatio n�f mode�h 2<br>EPC : 0xE7<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetGtemperatureSettingForEdehumidificatioNFModeH2() {
 			addProperty(EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to acquire the measured indoor relative humidity.<br><br>0x0000 to 0x3E8 (0.0 to 100.0%)<br><br>Name : Measured indoor relative humidity 2<br>EPC : 0xEA<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetMeasuredIndoorRelativeHumidity2() {
 			addProperty(EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY2);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to acquire the measured indoor temperature.<br><br>0xF554 to 0x7FFD (-273,2 to 3276,5��C)<br><br>Name : Measured indoor temperature 2<br>EPC : 0xEB<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetMeasuredIndoorTemperature2() {
 			addProperty(EPC_MEASURED_INDOOR_TEMPERATURE2);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br><br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Name : �gON timer-based reservation�h setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetGonTimerBasedReservationHSetting() {
 			addProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (time)<br>EPC : 0x91<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetOnTimerSettingTime() {
 			addProperty(EPC_ON_TIMER_SETTING_TIME);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Name : ON timer setting (relative time)<br>EPC : 0x92<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetOnTimerSettingRelativeTime() {
 			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br><br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Name : �gOFF timer-based reservation�h setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetGoffTimerBasedReservationHSetting() {
 			addProperty(EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (time)<br>EPC : 0x95<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetOffTimerSettingTime() {
 			addProperty(EPC_OFF_TIMER_SETTING_TIME);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Name : OFF timer setting (relative time)<br>EPC : 0x96<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetOffTimerSettingRelativeTime() {
 			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME);
 			return this;
@@ -3006,6 +2268,8 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 	}
 	
 	public interface Informer extends DeviceObject.Informer {
+		public Informer reqInform(byte epc);
+		
 		public Informer reqInformOperationStatus();
 		public Informer reqInformInstallationLocation();
 		public Informer reqInformStandardVersionInformation();
@@ -3032,161 +2296,165 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		public Informer reqInformGetPropertyMap();
 		
 		/**
-		 * Used to specify the operation mode (�gautomatic,�h .�gcooling,�h .�gheating,�h . �gdehumidification�h .or .�gair . circulator�h) .and .to .acquire .the .current . setting.<br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+		 * Used to specify the operation mode (�gautomatic,�h .�gcooling,�h .�gheating,�h . �gdehumidification�h .or .�gair . circulator�h) .and .to .acquire .the .current . setting.<br><br>The following values shall be used: Automatic: 0x41 Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br><br>Name : Operation mode setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
 		 */
 		public Informer reqInformOperationModeSetting();
 		/**
-		 * Used to set the temperature and to acquire the current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+		 * Used to set the temperature and to acquire the current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : Temperature setting 1<br>EPC : 0xB3<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
 		 */
 		public Informer reqInformTemperatureSetting1();
 		/**
-		 * Used to set the relative humidity for the .�gdehumidification�h .mode .and .to . acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
+		 * Used to set the relative humidity for the .�gdehumidification�h .mode .and .to . acquire the current setting.<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : �gRelative . humidity setting for �edehumidifica- tion�f .mode�h .1<br>EPC : 0xB4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
 		 */
 		public Informer reqInformGrelativeHumiditySettingForEdehumidificaTionFModeH1();
 		/**
-		 * Used to set the temperature for the �gcooling�h .mode .and .to .acquire .the . current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the �gcooling�h .mode .and .to .acquire .the . current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : �gTemperature . setting for �ecooling�f .mode�h . 1<br>EPC : 0xB5<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformGtemperatureSettingForEcoolingFModeH1();
 		/**
-		 * Used to set the temperature for the �gheating�h .mode .and .to .acquire .the . current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the �gheating�h .mode .and .to .acquire .the . current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : �gTemperature . setting for �eheating�f .mode�h . 1<br>EPC : 0xB6<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformGtemperatureSettingForEheatingFModeH1();
 		/**
-		 * Used to set the temperature for the �gdehumidification�h .mode .and .to . acquire the current setting.<br>0x00 to 0x32 (0 to 50��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the �gdehumidification�h .mode .and .to . acquire the current setting.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : �gTemperature . setting for �edehumidifica- tion�f .mode�h .1<br>EPC : 0xB7<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformGtemperatureSettingForEdehumidificaTionFModeH1();
 		/**
-		 * This property indicates the rated power consumption for the cooling, heating, dehumidification and air circulator modes.<br>0x0000 to 0xFFFD (0 to 65533W) Cooling: heating: dehumidification: air circulator<br><br>Data type : unsigned short x 4<br>Data size : 8 bytes<br>Set : undefined<br>Get : optional
+		 * This property indicates the rated power consumption for the cooling, heating, dehumidification and air circulator modes.<br><br>0x0000 to 0xFFFD (0 to 65533W) Cooling: heating: dehumidification: air circulator<br><br>Name : Rated power consumption of indoor unit<br>EPC : 0xB8<br>Data Type : unsigned short x 4<br>Data Size(Byte) : 8 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformRatedPowerConsumptionOfIndoorUnit();
 		/**
-		 * This property indicates the measured electric current consumption.<br>0x0000 to 0xFFFD (0 to 6553.3A)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+		 * This property indicates the measured electric current consumption.<br><br>0x0000 to 0xFFFD (0 to 6553.3A)<br><br>Name : Measured electric current consumption of indoor unit<br>EPC : 0xB9<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformMeasuredElectricCurrentConsumptionOfIndoorUnit();
 		/**
-		 * Used to acquire the measured indoor relative humidity.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * Used to acquire the measured indoor relative humidity.<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : Measured indoor relative humidity 1<br>EPC : 0xBA<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformMeasuredIndoorRelativeHumidity1();
 		/**
-		 * Used to acquire the measured indoor temperature.<br>0x81 to 0x7D (-127 to 125��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * Used to acquire the measured indoor temperature.<br><br>0x81 to 0x7D (-127 to 125��C)<br><br>Name : Measured indoor temperature 1<br>EPC : 0xBB<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformMeasuredIndoorTemperature1();
 		/**
-		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode and to acquire the current setting.<br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Data type : signed char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode and to acquire the current setting.<br><br>0x81 to 0x7D (-12.7��C to 12.5��C)<br><br>Name : Relative temperature setting<br>EPC : 0xBF<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformRelativeTemperatureSetting();
 		/**
-		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate, and to acquire the current setting. The air flow rate shall be selected from among the 8 predefined levels.<br><br>Automatic air flow rate control function used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Name : Air flow rate setting<br>EPC : 0xA0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformAirFlowRateSetting();
 		/**
-		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 9 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>Automatic = 0x31, swing = 0x32 Air flow direction: 0x41 to 0x49 (0x41 and 0x49 shall be used for the uppermost and lowermost directions, respectively.)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 9 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br><br>Automatic = 0x31, swing = 0x32 Air flow direction: 0x41 to 0x49 (0x41 and 0x49 shall be used for the uppermost and lowermost directions, respectively.)<br><br>Name : �gAir flow direction (vertical)�h setting<br>EPC : 0xA4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformGairFlowDirectionVerticalHSetting();
 		/**
-		 * Used to specify the air flow direction in the horizontal plane by selecting a pattern from among the 6 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>Automatic = 0x31, swing = 0x32 Air flow direction: Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the air flow direction in the horizontal plane by selecting a pattern from among the 6 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br><br>Automatic = 0x31, swing = 0x32 Air flow direction: Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward = 0x44<br><br>Name : �gAir flow direction (horizontal)�h setting<br>EPC : 0xA5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformGairFlowDirectionHorizontalHSetting();
 		/**
-		 * This property indicates when the air conditioner is in a �gspecial�h state.<br>�gNormal operation�h state = 0x40, �gpreheating�h state = 0x42, �gheat removal�h state = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * This property indicates when the air conditioner is in a �gspecial�h state.<br><br>�gNormal operation�h state = 0x40, �gpreheating�h state = 0x42, �gheat removal�h state = 0x43<br><br>Name : �gSpecial�h state<br>EPC : 0xAA<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformGspecialHState();
 		/**
-		 * This property indicates the state (ON or OFF) of the thermostat.<br>Thermostat ON = 0x41 Thermostat OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the state (ON or OFF) of the thermostat.<br><br>Thermostat ON = 0x41 Thermostat OFF = 0x42<br><br>Name : Thermostat state<br>EPC : 0xAC<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformThermostatState();
 		/**
-		 * This property indicates, when the air conditioner is operating in the �gautomatic�h operation mode, the function (�gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h) that is currently being used.<br>The following values shall be used: Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional<br>Announcement at status change
+		 * This property indicates, when the air conditioner is operating in the �gautomatic�h operation mode, the function (�gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h) that is currently being used.<br><br>The following values shall be used: Cooling: 0x42 Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br><br>Name : Current function (�gautomatic�h operation mode)<br>EPC : 0xAE<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
 		 */
 		public Informer reqInformCurrentFunctionGautomaticHOperationMode();
 		/**
-		 * Used to specify the ventilation mode and to acquire the current setting.<br>Ordinary ventilation = 0x41, ventilation plus total heat exchanger-based heat exchange = 0x42, automatic control of ventilation (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the ventilation mode and to acquire the current setting.<br><br>Ordinary ventilation = 0x41, ventilation plus total heat exchanger-based heat exchange = 0x42, automatic control of ventilation (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br><br>Name : Ventilation mode setting<br>EPC : 0xC0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformVentilationModeSetting();
 		/**
-		 * Used to specify whether or not to use the �gcombined operation of indoor unit and total heat exchanger�h function, and to acquire the current setting.<br>�gCombined operation of indoor unit and total heat exchanger�h function used = 0x41 �gCombined operation of indoor unit and total heat exchanger�h function not used= 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to use the �gcombined operation of indoor unit and total heat exchanger�h function, and to acquire the current setting.<br><br>�gCombined operation of indoor unit and total heat exchanger�h function used = 0x41 �gCombined operation of indoor unit and total heat exchanger�h function not used= 0x42<br><br>Name : Combined operation of indoor unit and total heat exchanger<br>EPC : 0xC1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformCombinedOperationOfIndoorUnitAndTotalHeatExchanger();
 		/**
-		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire the current setting.<br>Automatic control of ventilation air flow rate = 0x41 Ventilation air flow rate = 0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire the current setting.<br><br>Automatic control of ventilation air flow rate = 0x41 Ventilation air flow rate = 0x31 to 0x38<br><br>Name : Ventilation air flow rate setting<br>EPC : 0xC2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformVentilationAirFlowRateSetting();
 		/**
-		 * Used to specify whether or not to disable the air conditioner, and to acquire the current setting.<br>Disabled = 0x41, not disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to disable the air conditioner, and to acquire the current setting.<br><br>Disabled = 0x41, not disabled = 0x42<br><br>Name : �gDisabling of air conditioner�h setting<br>EPC : 0xCD<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformGdisablingOfAirConditionerHSetting();
 		/**
-		 * Used to specify whether or not the air conditioner shall operate ignoring its thermostat setting.<br>Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not the air conditioner shall operate ignoring its thermostat setting.<br><br>Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br><br>Name : Thermostat setting override function<br>EPC : 0xCE<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformThermostatSettingOverrideFunction();
 		/**
-		 * Used to specify whether or not to enable the filter cleaning reminder lamp, and to acquire the current setting.<br>Enabled = 0x41, disabled = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
+		 * Used to specify whether or not to enable the filter cleaning reminder lamp, and to acquire the current setting.<br><br>Enabled = 0x41, disabled = 0x42<br><br>Name : Filter cleaning reminder lamp setting<br>EPC : 0xCF<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
 		 */
 		public Informer reqInformFilterCleaningReminderLampSetting();
 		/**
-		 * This property indicates the measured power consumption of the indoor unit.<br>0x0000 to 0xFFFD (0 to 65533W)<br><br>Data type : unsigned<br>Data size : 2 byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the measured power consumption of the indoor unit.<br><br>0x0000 to 0xFFFD (0 to 65533W)<br><br>Name : Measured power consumption of indoor unit<br>EPC : 0xDB<br>Data Type : unsigned<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformMeasuredPowerConsumptionOfIndoorUnit();
 		/**
-		 * This property indicates the aperture of the expansion valve in %.<br>0 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the aperture of the expansion valve in %.<br><br>0 to 0x64 (0 to 100%)<br><br>Name : Aperture of expansion valve<br>EPC : 0xDC<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformApertureOfExpansionValve();
 		/**
-		 * Used to set the temperature and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : mandatory<br>Get : mandatory<br>Announcement at status change
+		 * Used to set the temperature and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : Temperature setting 2<br>EPC : 0xE3<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br><br>Announcement at status change<br>
 		 */
 		public Informer reqInformTemperatureSetting2();
 		/**
-		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>0x0000 to 0x3E8 (0.0 to 100.0%)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional<br>Announcement at status change
+		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br><br>0x0000 to 0x3E8 (0.0 to 100.0%)<br><br>Name : �gRelative humidity setting for �edehumidificatio n�f mode�h 2<br>EPC : 0xE4<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br><br>Announcement at status change<br>
 		 */
 		public Informer reqInformGrelativeHumiditySettingForEdehumidificatioNFModeH2();
 		/**
-		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : �gTemperature setting for �ecooling�f mode�h 2<br>EPC : 0xE5<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformGtemperatureSettingForEcoolingFModeH2();
 		/**
-		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : �gTemperature setting for �eheating�f mode�h 2<br>EPC : 0xE6<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformGtemperatureSettingForEheatingFModeH2();
 		/**
-		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br><br>0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br><br>Name : �gTemperature setting for �edehumidificatio n�f mode�h 2<br>EPC : 0xE7<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformGtemperatureSettingForEdehumidificatioNFModeH2();
 		/**
-		 * Used to acquire the measured indoor relative humidity.<br>0x0000 to 0x3E8 (0.0 to 100.0%)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : undefined<br>Get : optional
+		 * Used to acquire the measured indoor relative humidity.<br><br>0x0000 to 0x3E8 (0.0 to 100.0%)<br><br>Name : Measured indoor relative humidity 2<br>EPC : 0xEA<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformMeasuredIndoorRelativeHumidity2();
 		/**
-		 * Used to acquire the measured indoor temperature.<br>0xF554 to 0x7FFD (-273,2 to 3276,5��C)<br><br>Data type : unsigned short<br>Data size : 2 byte<br>Set : undefined<br>Get : optional
+		 * Used to acquire the measured indoor temperature.<br><br>0xF554 to 0x7FFD (-273,2 to 3276,5��C)<br><br>Name : Measured indoor temperature 2<br>EPC : 0xEB<br>Data Type : unsigned short<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformMeasuredIndoorTemperature2();
 		/**
-		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br><br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Name : �gON timer-based reservation�h setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformGonTimerBasedReservationHSetting();
 		/**
-		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (time)<br>EPC : 0x91<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformOnTimerSettingTime();
 		/**
-		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Name : ON timer setting (relative time)<br>EPC : 0x92<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformOnTimerSettingRelativeTime();
 		/**
-		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br><br>Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br><br>Name : �gOFF timer-based reservation�h setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformGoffTimerBasedReservationHSetting();
 		/**
-		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the time for the time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (time)<br>EPC : 0x95<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformOffTimerSettingTime();
 		/**
-		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Data type : unsigned char�~2<br>Data size : 2 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br><br>0 to 0xFF: 0 to 0x3B (= 0 to 255): (= 0 to 59)<br><br>Name : OFF timer setting (relative time)<br>EPC : 0x96<br>Data Type : unsigned char�~2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformOffTimerSettingRelativeTime();
 	}
 
 	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();
@@ -3553,7 +2821,11 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 	}
 	
 	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();

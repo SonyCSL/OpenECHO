@@ -20,8 +20,6 @@ import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 
 public abstract class Television extends DeviceObject {
-	@SuppressWarnings("unused")
-	private static final String TAG = Television.class.getSimpleName();
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x06;
 	public static final byte CLASS_CODE = (byte)0x02;
@@ -42,57 +40,57 @@ public abstract class Television extends DeviceObject {
 	}
 
 	/**
-	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br><br>Name : Display control setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setDisplayControlSetting(byte[] edt) {return false;}
 	private final boolean _setDisplayControlSetting(byte epc, byte[] edt) {
 		boolean success = setDisplayControlSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br><br>Name : Display control setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getDisplayControlSetting() {return null;}
 	private final byte[] _getDisplayControlSetting(byte epc) {
 		byte[] edt = getDisplayControlSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : mandatory<br>Announcement at status change
+	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br><br>Name : Character string setting acceptance status<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br><br>Announcement at status change<br>
 	 */
 	protected abstract byte[] getCharacterStringSettingAcceptanceStatus();
 	private final byte[] _getCharacterStringSettingAcceptanceStatus(byte epc) {
 		byte[] edt = getCharacterStringSettingAcceptanceStatus();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br>Data type : unsigned char ~ 2<br>Data size : 2 Byte<br>Set : undefined<br>Get : mandatory
+	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br><br>Name : Supported character codes<br>EPC : 0xB2<br>Data Type : unsigned char ~ 2<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
 	 */
 	protected abstract byte[] getSupportedCharacterCodes();
 	private final byte[] _getSupportedCharacterCodes(byte epc) {
 		byte[] edt = getSupportedCharacterCodes();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br>Data type : unsigned char ~ Max 247<br>Data size : Max247 B yte<br>Set : mandatory<br>Get : optional
+	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br><br>Name : Character string to present to the user<br>EPC : 0xB3<br>Data Type : unsigned char ~ Max 247<br>Data Size(Byte) : Max247 B yte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : optional<br>
 	 */
 	protected abstract boolean setCharacterStringToPresentToTheUser(byte[] edt);
 	private final boolean _setCharacterStringToPresentToTheUser(byte epc, byte[] edt) {
 		boolean success = setCharacterStringToPresentToTheUser(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br>Data type : unsigned char ~ Max 247<br>Data size : Max247 B yte<br>Set : mandatory<br>Get : optional
+	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br><br>Name : Character string to present to the user<br>EPC : 0xB3<br>Data Type : unsigned char ~ Max 247<br>Data Size(Byte) : Max247 B yte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : optional<br>
 	 */
 	protected byte[] getCharacterStringToPresentToTheUser() {return null;}
 	private final byte[] _getCharacterStringToPresentToTheUser(byte epc) {
 		byte[] edt = getCharacterStringToPresentToTheUser();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
@@ -138,17 +136,17 @@ public abstract class Television extends DeviceObject {
 	
 	@Override
 	public Setter set() {
-		return new SetterImpl(ESV_SET_NO_RES);
+		return new Setter(ESV_SETI);
 	}
 
 	@Override
 	public Setter setC() {
-		return new SetterImpl(ESV_SET_RES);
+		return new Setter(ESV_SETC);
 	}
 
 	@Override
 	public Getter get() {
-		return new GetterImpl();
+		return new Getter();
 	}
 
 	@Override
@@ -193,80 +191,64 @@ public abstract class Television extends DeviceObject {
 		}
 		
 		/**
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br><br>Name : Display control setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetDisplayControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetDisplayControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetDisplayControlSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br><br>Name : Display control setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetDisplayControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetDisplayControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetDisplayControlSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : mandatory<br>Announcement at status change
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br><br>Name : Character string setting acceptance status<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br><br>Announcement at status change<br>
 		 */
 		protected void onGetCharacterStringSettingAcceptanceStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetCharacterStringSettingAcceptanceStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetCharacterStringSettingAcceptanceStatus(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br>Data type : unsigned char ~ 2<br>Data size : 2 Byte<br>Set : undefined<br>Get : mandatory
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br><br>Name : Supported character codes<br>EPC : 0xB2<br>Data Type : unsigned char ~ 2<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
 		 */
 		protected void onGetSupportedCharacterCodes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetSupportedCharacterCodes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetSupportedCharacterCodes(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br>Data type : unsigned char ~ Max 247<br>Data size : Max247 B yte<br>Set : mandatory<br>Get : optional
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br><br>Name : Character string to present to the user<br>EPC : 0xB3<br>Data Type : unsigned char ~ Max 247<br>Data Size(Byte) : Max247 B yte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : optional<br>
 		 */
 		protected void onSetCharacterStringToPresentToTheUser(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetCharacterStringToPresentToTheUser(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetCharacterStringToPresentToTheUser(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br>Data type : unsigned char ~ Max 247<br>Data size : Max247 B yte<br>Set : mandatory<br>Get : optional
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br><br>Name : Character string to present to the user<br>EPC : 0xB3<br>Data Type : unsigned char ~ Max 247<br>Data Size(Byte) : Max247 B yte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : optional<br>
 		 */
 		protected void onGetCharacterStringToPresentToTheUser(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetCharacterStringToPresentToTheUser(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetCharacterStringToPresentToTheUser(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 
 	}
 	
-	public interface Setter extends DeviceObject.Setter {
-		public Setter reqSetOperationStatus(byte[] edt);
-		public Setter reqSetInstallationLocation(byte[] edt);
-		public Setter reqSetCurrentLimitSetting(byte[] edt);
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
-		public Setter reqSetPositionInformation(byte[] edt);
-		public Setter reqSetCurrentTimeSetting(byte[] edt);
-		public Setter reqSetCurrentDateSetting(byte[] edt);
-		public Setter reqSetPowerLimitSetting(byte[] edt);
-		
-		/**
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetDisplayControlSetting(byte[] edt);
-		/**
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br>Data type : unsigned char ~ Max 247<br>Data size : Max247 B yte<br>Set : mandatory<br>Get : optional
-		 */
-		public Setter reqSetCharacterStringToPresentToTheUser(byte[] edt);
-	}
-
-	public class SetterImpl extends DeviceObject.SetterImpl implements Setter {
-
-		public SetterImpl(byte esv) {
+	public class Setter extends DeviceObject.Setter {
+		public Setter(byte esv) {
 			super(esv);
+		}
+
+		@Override
+		public Setter reqSet(byte epc, byte[] edt) {
+			return (Setter)super.reqSet(epc, edt);
 		}
 		
 		@Override
@@ -302,359 +284,145 @@ public abstract class Television extends DeviceObject {
 			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
-		@Override
-		public Setter reqSetDisplayControlSetting(byte[] edt) {
-			byte epc = EPC_DISPLAY_CONTROL_SETTING;
-			addProperty(epc, edt, _setDisplayControlSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetCharacterStringToPresentToTheUser(byte[] edt) {
-			byte epc = EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER;
-			addProperty(epc, edt, _setCharacterStringToPresentToTheUser(epc, edt));
-			return this;
-		}
-	}
-	
-	public class SetterProxy extends DeviceObject.SetterProxy implements Setter {
-
-		public SetterProxy(byte esv) {
-			super(esv);
-		}
-
-		@Override
-		public Setter reqSetOperationStatus(byte[] edt) {
-			return (Setter)super.reqSetOperationStatus(edt);
-		}
-		@Override
-		public Setter reqSetInstallationLocation(byte[] edt) {
-			return (Setter)super.reqSetInstallationLocation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimitSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
-		}
-		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentTimeSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentTimeSetting(edt);
-		}
-		@Override
-		public Setter reqSetCurrentDateSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentDateSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitSetting(edt);
-		}
-
-		@Override
+		/**
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br><br>Name : Display control setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetDisplayControlSetting(byte[] edt) {
 			addProperty(EPC_DISPLAY_CONTROL_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br><br>Name : Character string to present to the user<br>EPC : 0xB3<br>Data Type : unsigned char ~ Max 247<br>Data Size(Byte) : Max247 B yte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : optional<br>
+		 */
 		public Setter reqSetCharacterStringToPresentToTheUser(byte[] edt) {
 			addProperty(EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER, edt, (edt != null && (edt.length <= 247)));
 			return this;
 		}
 	}
 
-	public interface Getter extends DeviceObject.Getter {
-		public Getter reqGetOperationStatus();
-		public Getter reqGetInstallationLocation();
-		public Getter reqGetStandardVersionInformation();
-		public Getter reqGetIdentificationNumber();
-		public Getter reqGetMeasuredInstantaneousPowerConsumption();
-		public Getter reqGetMeasuredCumulativePowerConsumption();
-		public Getter reqGetManufacturersFaultCode();
-		public Getter reqGetCurrentLimitSetting();
-		public Getter reqGetFaultStatus();
-		public Getter reqGetFaultDescription();
-		public Getter reqGetManufacturerCode();
-		public Getter reqGetBusinessFacilityCode();
-		public Getter reqGetProductCode();
-		public Getter reqGetProductionNumber();
-		public Getter reqGetProductionDate();
-		public Getter reqGetPowerSavingOperationSetting();
-		public Getter reqGetPositionInformation();
-		public Getter reqGetCurrentTimeSetting();
-		public Getter reqGetCurrentDateSetting();
-		public Getter reqGetPowerLimitSetting();
-		public Getter reqGetCumulativeOperatingTime();
-		public Getter reqGetStatusChangeAnnouncementPropertyMap();
-		public Getter reqGetSetPropertyMap();
-		public Getter reqGetGetPropertyMap();
+	public class Getter extends DeviceObject.Getter {
+
+		@Override
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
+		}
+		@Override
+		public Getter reqGetInstallationLocation() {
+			return (Getter)super.reqGetInstallationLocation();
+		}
+		@Override
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
+		}
+		@Override
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
+		}
+		@Override
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
+		}
+		@Override
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
+		}
+		@Override
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
+		}
+		@Override
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
+		}
+		@Override
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
+		}
+		@Override
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
+		}
+		@Override
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
+		}
+		@Override
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
+		}
+		@Override
+		public Getter reqGetProductCode() {
+			return (Getter)super.reqGetProductCode();
+		}
+		@Override
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
+		}
+		@Override
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
+		}
+		@Override
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
+		}
+		@Override
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
+		}
+		@Override
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
+		}
+		@Override
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
+		}
+		@Override
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
+		}
+		@Override
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
+		}
+		@Override
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
+		}
+		@Override
+		public Getter reqGetSetPropertyMap() {
+			return (Getter)super.reqGetSetPropertyMap();
+		}
+		@Override
+		public Getter reqGetGetPropertyMap() {
+			return (Getter)super.reqGetGetPropertyMap();
+		}
 		
 		/**
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br><br>Name : Display control setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
-		public Getter reqGetDisplayControlSetting();
-		/**
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : mandatory<br>Announcement at status change
-		 */
-		public Getter reqGetCharacterStringSettingAcceptanceStatus();
-		/**
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br>Data type : unsigned char ~ 2<br>Data size : 2 Byte<br>Set : undefined<br>Get : mandatory
-		 */
-		public Getter reqGetSupportedCharacterCodes();
-		/**
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br>Data type : unsigned char ~ Max 247<br>Data size : Max247 B yte<br>Set : mandatory<br>Get : optional
-		 */
-		public Getter reqGetCharacterStringToPresentToTheUser();
-	}
-	
-	public class GetterImpl extends DeviceObject.GetterImpl implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
-		public Getter reqGetDisplayControlSetting() {
-			byte epc = EPC_DISPLAY_CONTROL_SETTING;
-			byte[] edt = _getDisplayControlSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetCharacterStringSettingAcceptanceStatus() {
-			byte epc = EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS;
-			byte[] edt = _getCharacterStringSettingAcceptanceStatus(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetSupportedCharacterCodes() {
-			byte epc = EPC_SUPPORTED_CHARACTER_CODES;
-			byte[] edt = _getSupportedCharacterCodes(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetCharacterStringToPresentToTheUser() {
-			byte epc = EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER;
-			byte[] edt = _getCharacterStringToPresentToTheUser(epc);
-			addProperty(epc, edt, (edt != null && (edt.length <= 247)));
-			return this;
-		}
-	}
-
-	public class GetterProxy extends DeviceObject.GetterProxy implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
 		public Getter reqGetDisplayControlSetting() {
 			addProperty(EPC_DISPLAY_CONTROL_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br><br>Name : Character string setting acceptance status<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br><br>Announcement at status change<br>
+		 */
 		public Getter reqGetCharacterStringSettingAcceptanceStatus() {
 			addProperty(EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS);
 			return this;
 		}
-		@Override
+		/**
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br><br>Name : Supported character codes<br>EPC : 0xB2<br>Data Type : unsigned char ~ 2<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
+		 */
 		public Getter reqGetSupportedCharacterCodes() {
 			addProperty(EPC_SUPPORTED_CHARACTER_CODES);
 			return this;
 		}
-		@Override
+		/**
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br><br>Name : Character string to present to the user<br>EPC : 0xB3<br>Data Type : unsigned char ~ Max 247<br>Data Size(Byte) : Max247 B yte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : optional<br>
+		 */
 		public Getter reqGetCharacterStringToPresentToTheUser() {
 			addProperty(EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER);
 			return this;
@@ -662,6 +430,8 @@ public abstract class Television extends DeviceObject {
 	}
 	
 	public interface Informer extends DeviceObject.Informer {
+		public Informer reqInform(byte epc);
+		
 		public Informer reqInformOperationStatus();
 		public Informer reqInformInstallationLocation();
 		public Informer reqInformStandardVersionInformation();
@@ -688,25 +458,29 @@ public abstract class Television extends DeviceObject {
 		public Informer reqInformGetPropertyMap();
 		
 		/**
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : optional<br>Get : optional
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br><br>Name : Display control setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformDisplayControlSetting();
 		/**
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br>Data type : unsigned char<br>Data size : 1 Byte<br>Set : undefined<br>Get : mandatory<br>Announcement at status change
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br><br>Name : Character string setting acceptance status<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br><br>Announcement at status change<br>
 		 */
 		public Informer reqInformCharacterStringSettingAcceptanceStatus();
 		/**
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br>Data type : unsigned char ~ 2<br>Data size : 2 Byte<br>Set : undefined<br>Get : mandatory
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br><br>Name : Supported character codes<br>EPC : 0xB2<br>Data Type : unsigned char ~ 2<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
 		 */
 		public Informer reqInformSupportedCharacterCodes();
 		/**
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br>Data type : unsigned char ~ Max 247<br>Data size : Max247 B yte<br>Set : mandatory<br>Get : optional
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code = 0x01).<br><br><br><br>Name : Character string to present to the user<br>EPC : 0xB3<br>Data Type : unsigned char ~ Max 247<br>Data Size(Byte) : Max247 B yte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : optional<br>
 		 */
 		public Informer reqInformCharacterStringToPresentToTheUser();
 	}
 
 	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();
@@ -835,7 +609,11 @@ public abstract class Television extends DeviceObject {
 	}
 	
 	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();

@@ -20,8 +20,6 @@ import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 
 public abstract class ElectricEnergySensor extends DeviceObject {
-	@SuppressWarnings("unused")
-	private static final String TAG = ElectricEnergySensor.class.getSimpleName();
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x22;
@@ -43,48 +41,48 @@ public abstract class ElectricEnergySensor extends DeviceObject {
 	}
 
 	/**
-	 * This property indicates integral electric energy in 0.001kWh.<br>0x0.0x3B9AC9FF (0.999999.999 kWh)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
+	 * This property indicates integral electric energy in 0.001kWh.<br><br>0x0.0x3B9AC9FF (0.999999.999 kWh)<br><br>Name : Integral electric energy<br>EPC : 0xE0<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
 	 */
 	protected abstract byte[] getIntegralElectricEnergy();
 	private final byte[] _getIntegralElectricEnergy(byte epc) {
 		byte[] edt = getIntegralElectricEnergy();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates instantaneous electric energy in units of 0.1 W.<br>0x8001.0x7FFE (-3276,7.3276,6)<br><br>Data type : signed short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+	 * This property indicates instantaneous electric energy in units of 0.1 W.<br><br>0x8001.0x7FFE (-3276,7.3276,6)<br><br>Name : Small-capacity sensor instantaneous electric energy<br>EPC : 0xE2<br>Data Type : signed short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getSmallCapacitySensorInstantaneousElectricEnergy() {return null;}
 	private final byte[] _getSmallCapacitySensorInstantaneousElectricEnergy(byte epc) {
 		byte[] edt = getSmallCapacitySensorInstantaneousElectricEnergy();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates instantaneous electric energy in units of 0.1 kW.<br>0x8001.0x7FFE (-3276,7.3276,6)<br><br>Data type : signed short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+	 * This property indicates instantaneous electric energy in units of 0.1 kW.<br><br>0x8001.0x7FFE (-3276,7.3276,6)<br><br>Name : Large-capacity sensor instantaneous electric energy<br>EPC : 0xE3<br>Data Type : signed short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getLargeCapacitySensorInstantaneousElectricEnergy() {return null;}
 	private final byte[] _getLargeCapacitySensorInstantaneousElectricEnergy(byte epc) {
 		byte[] edt = getLargeCapacitySensorInstantaneousElectricEnergy();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates measurement result log of integral electric energy (0.001kWh) for the past 24 hours in 30-minute sections.<br>0.0x3B9AC9F (0.999,999,999) (0.999999.999 kWh)<br><br>Data type : unsigned long x 48<br>Data size : 192 bytes<br>Set : undefined<br>Get : optional
+	 * This property indicates measurement result log of integral electric energy (0.001kWh) for the past 24 hours in 30-minute sections.<br><br>0.0x3B9AC9F (0.999,999,999) (0.999999.999 kWh)<br><br>Name : Integral electric energy measurement log<br>EPC : 0xE4<br>Data Type : unsigned long x 48<br>Data Size(Byte) : 192 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getIntegralElectricEnergyMeasurementLog() {return null;}
 	private final byte[] _getIntegralElectricEnergyMeasurementLog(byte epc) {
 		byte[] edt = getIntegralElectricEnergyMeasurementLog();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates effective voltage value in V.<br>0x0000.0xFFFD (0.65533V)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+	 * This property indicates effective voltage value in V.<br><br>0x0000.0xFFFD (0.65533V)<br><br>Name : Effective voltage value<br>EPC : 0xE5<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getEffectiveVoltageValue() {return null;}
 	private final byte[] _getEffectiveVoltageValue(byte epc) {
 		byte[] edt = getEffectiveVoltageValue();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
@@ -128,17 +126,17 @@ public abstract class ElectricEnergySensor extends DeviceObject {
 	
 	@Override
 	public Setter set() {
-		return new SetterImpl(ESV_SET_NO_RES);
+		return new Setter(ESV_SETI);
 	}
 
 	@Override
 	public Setter setC() {
-		return new SetterImpl(ESV_SET_RES);
+		return new Setter(ESV_SETC);
 	}
 
 	@Override
 	public Getter get() {
-		return new GetterImpl();
+		return new Getter();
 	}
 
 	@Override
@@ -180,64 +178,56 @@ public abstract class ElectricEnergySensor extends DeviceObject {
 		}
 		
 		/**
-		 * This property indicates integral electric energy in 0.001kWh.<br>0x0.0x3B9AC9FF (0.999999.999 kWh)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
+		 * This property indicates integral electric energy in 0.001kWh.<br><br>0x0.0x3B9AC9FF (0.999999.999 kWh)<br><br>Name : Integral electric energy<br>EPC : 0xE0<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
 		 */
 		protected void onGetIntegralElectricEnergy(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetIntegralElectricEnergy(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetIntegralElectricEnergy(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates instantaneous electric energy in units of 0.1 W.<br>0x8001.0x7FFE (-3276,7.3276,6)<br><br>Data type : signed short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+		 * This property indicates instantaneous electric energy in units of 0.1 W.<br><br>0x8001.0x7FFE (-3276,7.3276,6)<br><br>Name : Small-capacity sensor instantaneous electric energy<br>EPC : 0xE2<br>Data Type : signed short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetSmallCapacitySensorInstantaneousElectricEnergy(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetSmallCapacitySensorInstantaneousElectricEnergy(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetSmallCapacitySensorInstantaneousElectricEnergy(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates instantaneous electric energy in units of 0.1 kW.<br>0x8001.0x7FFE (-3276,7.3276,6)<br><br>Data type : signed short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+		 * This property indicates instantaneous electric energy in units of 0.1 kW.<br><br>0x8001.0x7FFE (-3276,7.3276,6)<br><br>Name : Large-capacity sensor instantaneous electric energy<br>EPC : 0xE3<br>Data Type : signed short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetLargeCapacitySensorInstantaneousElectricEnergy(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetLargeCapacitySensorInstantaneousElectricEnergy(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetLargeCapacitySensorInstantaneousElectricEnergy(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates measurement result log of integral electric energy (0.001kWh) for the past 24 hours in 30-minute sections.<br>0.0x3B9AC9F (0.999,999,999) (0.999999.999 kWh)<br><br>Data type : unsigned long x 48<br>Data size : 192 bytes<br>Set : undefined<br>Get : optional
+		 * This property indicates measurement result log of integral electric energy (0.001kWh) for the past 24 hours in 30-minute sections.<br><br>0.0x3B9AC9F (0.999,999,999) (0.999999.999 kWh)<br><br>Name : Integral electric energy measurement log<br>EPC : 0xE4<br>Data Type : unsigned long x 48<br>Data Size(Byte) : 192 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetIntegralElectricEnergyMeasurementLog(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetIntegralElectricEnergyMeasurementLog(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetIntegralElectricEnergyMeasurementLog(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates effective voltage value in V.<br>0x0000.0xFFFD (0.65533V)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+		 * This property indicates effective voltage value in V.<br><br>0x0000.0xFFFD (0.65533V)<br><br>Name : Effective voltage value<br>EPC : 0xE5<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetEffectiveVoltageValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetEffectiveVoltageValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetEffectiveVoltageValue(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 
 	}
 	
-	public interface Setter extends DeviceObject.Setter {
-		public Setter reqSetOperationStatus(byte[] edt);
-		public Setter reqSetInstallationLocation(byte[] edt);
-		public Setter reqSetCurrentLimitSetting(byte[] edt);
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
-		public Setter reqSetPositionInformation(byte[] edt);
-		public Setter reqSetCurrentTimeSetting(byte[] edt);
-		public Setter reqSetCurrentDateSetting(byte[] edt);
-		public Setter reqSetPowerLimitSetting(byte[] edt);
-		
-	}
-
-	public class SetterImpl extends DeviceObject.SetterImpl implements Setter {
-
-		public SetterImpl(byte esv) {
+	public class Setter extends DeviceObject.Setter {
+		public Setter(byte esv) {
 			super(esv);
+		}
+
+		@Override
+		public Setter reqSet(byte epc, byte[] edt) {
+			return (Setter)super.reqSet(epc, edt);
 		}
 		
 		@Override
@@ -274,97 +264,8 @@ public abstract class ElectricEnergySensor extends DeviceObject {
 		}
 
 	}
-	
-	public class SetterProxy extends DeviceObject.SetterProxy implements Setter {
 
-		public SetterProxy(byte esv) {
-			super(esv);
-		}
-
-		@Override
-		public Setter reqSetOperationStatus(byte[] edt) {
-			return (Setter)super.reqSetOperationStatus(edt);
-		}
-		@Override
-		public Setter reqSetInstallationLocation(byte[] edt) {
-			return (Setter)super.reqSetInstallationLocation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimitSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
-		}
-		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentTimeSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentTimeSetting(edt);
-		}
-		@Override
-		public Setter reqSetCurrentDateSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentDateSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitSetting(edt);
-		}
-
-	}
-
-	public interface Getter extends DeviceObject.Getter {
-		public Getter reqGetOperationStatus();
-		public Getter reqGetInstallationLocation();
-		public Getter reqGetStandardVersionInformation();
-		public Getter reqGetIdentificationNumber();
-		public Getter reqGetMeasuredInstantaneousPowerConsumption();
-		public Getter reqGetMeasuredCumulativePowerConsumption();
-		public Getter reqGetManufacturersFaultCode();
-		public Getter reqGetCurrentLimitSetting();
-		public Getter reqGetFaultStatus();
-		public Getter reqGetFaultDescription();
-		public Getter reqGetManufacturerCode();
-		public Getter reqGetBusinessFacilityCode();
-		public Getter reqGetProductCode();
-		public Getter reqGetProductionNumber();
-		public Getter reqGetProductionDate();
-		public Getter reqGetPowerSavingOperationSetting();
-		public Getter reqGetPositionInformation();
-		public Getter reqGetCurrentTimeSetting();
-		public Getter reqGetCurrentDateSetting();
-		public Getter reqGetPowerLimitSetting();
-		public Getter reqGetCumulativeOperatingTime();
-		public Getter reqGetStatusChangeAnnouncementPropertyMap();
-		public Getter reqGetSetPropertyMap();
-		public Getter reqGetGetPropertyMap();
-		
-		/**
-		 * This property indicates integral electric energy in 0.001kWh.<br>0x0.0x3B9AC9FF (0.999999.999 kWh)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
-		 */
-		public Getter reqGetIntegralElectricEnergy();
-		/**
-		 * This property indicates instantaneous electric energy in units of 0.1 W.<br>0x8001.0x7FFE (-3276,7.3276,6)<br><br>Data type : signed short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetSmallCapacitySensorInstantaneousElectricEnergy();
-		/**
-		 * This property indicates instantaneous electric energy in units of 0.1 kW.<br>0x8001.0x7FFE (-3276,7.3276,6)<br><br>Data type : signed short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetLargeCapacitySensorInstantaneousElectricEnergy();
-		/**
-		 * This property indicates measurement result log of integral electric energy (0.001kWh) for the past 24 hours in 30-minute sections.<br>0.0x3B9AC9F (0.999,999,999) (0.999999.999 kWh)<br><br>Data type : unsigned long x 48<br>Data size : 192 bytes<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetIntegralElectricEnergyMeasurementLog();
-		/**
-		 * This property indicates effective voltage value in V.<br>0x0000.0xFFFD (0.65533V)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetEffectiveVoltageValue();
-	}
-	
-	public class GetterImpl extends DeviceObject.GetterImpl implements Getter {
+	public class Getter extends DeviceObject.Getter {
 
 		@Override
 		public Getter reqGetOperationStatus() {
@@ -462,164 +363,38 @@ public abstract class ElectricEnergySensor extends DeviceObject {
 		public Getter reqGetGetPropertyMap() {
 			return (Getter)super.reqGetGetPropertyMap();
 		}
-
-		@Override
-		public Getter reqGetIntegralElectricEnergy() {
-			byte epc = EPC_INTEGRAL_ELECTRIC_ENERGY;
-			byte[] edt = _getIntegralElectricEnergy(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 4)));
-			return this;
-		}
-		@Override
-		public Getter reqGetSmallCapacitySensorInstantaneousElectricEnergy() {
-			byte epc = EPC_SMALL_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY;
-			byte[] edt = _getSmallCapacitySensorInstantaneousElectricEnergy(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetLargeCapacitySensorInstantaneousElectricEnergy() {
-			byte epc = EPC_LARGE_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY;
-			byte[] edt = _getLargeCapacitySensorInstantaneousElectricEnergy(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetIntegralElectricEnergyMeasurementLog() {
-			byte epc = EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG;
-			byte[] edt = _getIntegralElectricEnergyMeasurementLog(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 192)));
-			return this;
-		}
-		@Override
-		public Getter reqGetEffectiveVoltageValue() {
-			byte epc = EPC_EFFECTIVE_VOLTAGE_VALUE;
-			byte[] edt = _getEffectiveVoltageValue(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-	}
-
-	public class GetterProxy extends DeviceObject.GetterProxy implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
+		
+		/**
+		 * This property indicates integral electric energy in 0.001kWh.<br><br>0x0.0x3B9AC9FF (0.999999.999 kWh)<br><br>Name : Integral electric energy<br>EPC : 0xE0<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
+		 */
 		public Getter reqGetIntegralElectricEnergy() {
 			addProperty(EPC_INTEGRAL_ELECTRIC_ENERGY);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates instantaneous electric energy in units of 0.1 W.<br><br>0x8001.0x7FFE (-3276,7.3276,6)<br><br>Name : Small-capacity sensor instantaneous electric energy<br>EPC : 0xE2<br>Data Type : signed short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetSmallCapacitySensorInstantaneousElectricEnergy() {
 			addProperty(EPC_SMALL_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates instantaneous electric energy in units of 0.1 kW.<br><br>0x8001.0x7FFE (-3276,7.3276,6)<br><br>Name : Large-capacity sensor instantaneous electric energy<br>EPC : 0xE3<br>Data Type : signed short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetLargeCapacitySensorInstantaneousElectricEnergy() {
 			addProperty(EPC_LARGE_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates measurement result log of integral electric energy (0.001kWh) for the past 24 hours in 30-minute sections.<br><br>0.0x3B9AC9F (0.999,999,999) (0.999999.999 kWh)<br><br>Name : Integral electric energy measurement log<br>EPC : 0xE4<br>Data Type : unsigned long x 48<br>Data Size(Byte) : 192 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetIntegralElectricEnergyMeasurementLog() {
 			addProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates effective voltage value in V.<br><br>0x0000.0xFFFD (0.65533V)<br><br>Name : Effective voltage value<br>EPC : 0xE5<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetEffectiveVoltageValue() {
 			addProperty(EPC_EFFECTIVE_VOLTAGE_VALUE);
 			return this;
@@ -627,6 +402,8 @@ public abstract class ElectricEnergySensor extends DeviceObject {
 	}
 	
 	public interface Informer extends DeviceObject.Informer {
+		public Informer reqInform(byte epc);
+		
 		public Informer reqInformOperationStatus();
 		public Informer reqInformInstallationLocation();
 		public Informer reqInformStandardVersionInformation();
@@ -653,29 +430,33 @@ public abstract class ElectricEnergySensor extends DeviceObject {
 		public Informer reqInformGetPropertyMap();
 		
 		/**
-		 * This property indicates integral electric energy in 0.001kWh.<br>0x0.0x3B9AC9FF (0.999999.999 kWh)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
+		 * This property indicates integral electric energy in 0.001kWh.<br><br>0x0.0x3B9AC9FF (0.999999.999 kWh)<br><br>Name : Integral electric energy<br>EPC : 0xE0<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
 		 */
 		public Informer reqInformIntegralElectricEnergy();
 		/**
-		 * This property indicates instantaneous electric energy in units of 0.1 W.<br>0x8001.0x7FFE (-3276,7.3276,6)<br><br>Data type : signed short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+		 * This property indicates instantaneous electric energy in units of 0.1 W.<br><br>0x8001.0x7FFE (-3276,7.3276,6)<br><br>Name : Small-capacity sensor instantaneous electric energy<br>EPC : 0xE2<br>Data Type : signed short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformSmallCapacitySensorInstantaneousElectricEnergy();
 		/**
-		 * This property indicates instantaneous electric energy in units of 0.1 kW.<br>0x8001.0x7FFE (-3276,7.3276,6)<br><br>Data type : signed short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+		 * This property indicates instantaneous electric energy in units of 0.1 kW.<br><br>0x8001.0x7FFE (-3276,7.3276,6)<br><br>Name : Large-capacity sensor instantaneous electric energy<br>EPC : 0xE3<br>Data Type : signed short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformLargeCapacitySensorInstantaneousElectricEnergy();
 		/**
-		 * This property indicates measurement result log of integral electric energy (0.001kWh) for the past 24 hours in 30-minute sections.<br>0.0x3B9AC9F (0.999,999,999) (0.999999.999 kWh)<br><br>Data type : unsigned long x 48<br>Data size : 192 bytes<br>Set : undefined<br>Get : optional
+		 * This property indicates measurement result log of integral electric energy (0.001kWh) for the past 24 hours in 30-minute sections.<br><br>0.0x3B9AC9F (0.999,999,999) (0.999999.999 kWh)<br><br>Name : Integral electric energy measurement log<br>EPC : 0xE4<br>Data Type : unsigned long x 48<br>Data Size(Byte) : 192 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformIntegralElectricEnergyMeasurementLog();
 		/**
-		 * This property indicates effective voltage value in V.<br>0x0000.0xFFFD (0.65533V)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+		 * This property indicates effective voltage value in V.<br><br>0x0000.0xFFFD (0.65533V)<br><br>Name : Effective voltage value<br>EPC : 0xE5<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformEffectiveVoltageValue();
 	}
 
 	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();
@@ -811,7 +592,11 @@ public abstract class ElectricEnergySensor extends DeviceObject {
 	}
 	
 	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();

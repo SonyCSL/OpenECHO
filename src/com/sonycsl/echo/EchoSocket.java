@@ -71,11 +71,6 @@ public final class EchoSocket {
 			return;
 		}
 		
-		if(Echo.isTracing()) {
-			Echo.log("method:send,address:"+address.getHostAddress()+",data:"+EchoUtils.byteArrayToString(data)
-					+",class:com.sonycsl.echo.EchoSocket");
-		}
-		
 		DatagramPacket packet = new DatagramPacket(data, data.length,
 				address, PORT);
 		mSocket.send(packet);
@@ -84,11 +79,6 @@ public final class EchoSocket {
 	public static void sendGroup(byte[] data) throws IOException {
 		if(mSocket == null) {
 			return;
-		}
-		
-		if(Echo.isTracing()) {
-			Echo.log("method:sendGroup,address:"+ADDRESS+",data:"+EchoUtils.byteArrayToString(data)
-					+",class:com.sonycsl.echo.EchoSocket");
 		}
 		
 		DatagramPacket packet = new DatagramPacket(data, data.length, 
@@ -124,13 +114,6 @@ public final class EchoSocket {
 				}
 				byte[] data = new byte[packet.getLength()];
 				System.arraycopy(packet.getData(), 0, data, 0, packet.getLength());
-
-
-				if(Echo.isTracing()) {
-					Echo.log("method:receive,address:"+packet.getAddress().getHostAddress()
-							+",data:"+EchoUtils.byteArrayToString(data)
-							+",class:com.sonycsl.echo.EchoSocket");
-				}
 				
 				if(data.length < 12) continue;
 				List<EchoFrame> frameList = new ArrayList<EchoFrame>();
@@ -144,8 +127,13 @@ public final class EchoSocket {
 				} else {
 					frameList.add(new EchoFrame(packet.getAddress(), data));
 				}
-					
+				
 				for(EchoFrame frame : frameList) {
+
+					if(Echo.getMethodInvokedListener() != null) {
+						Echo.getMethodInvokedListener().onInvokedReceiveMethod(frame);
+					}
+					
 					if(frame.getDeoj() != null) {
 						switch(frame.getEsv()) {
 						case EchoObject.ESV_SETI_SNA:

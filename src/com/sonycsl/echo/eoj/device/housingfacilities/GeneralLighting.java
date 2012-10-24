@@ -20,8 +20,6 @@ import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 
 public abstract class GeneralLighting extends DeviceObject {
-	@SuppressWarnings("unused")
-	private static final String TAG = GeneralLighting.class.getSimpleName();
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x90;
@@ -47,156 +45,156 @@ public abstract class GeneralLighting extends DeviceObject {
 	}
 
 	/**
-	 * This property indicates illuminance level in %.<br>0x00.0x64 (0.100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * This property indicates illuminance level in %.<br><br>0x00.0x64 (0.100%)<br><br>Name : Illuminance level<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setIlluminanceLevel(byte[] edt) {return false;}
 	private final boolean _setIlluminanceLevel(byte epc, byte[] edt) {
 		boolean success = setIlluminanceLevel(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * This property indicates illuminance level in %.<br>0x00.0x64 (0.100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * This property indicates illuminance level in %.<br><br>0x00.0x64 (0.100%)<br><br>Name : Illuminance level<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getIlluminanceLevel() {return null;}
 	private final byte[] _getIlluminanceLevel(byte epc) {
 		byte[] edt = getIlluminanceLevel();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
+	 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br><br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br><br>Name : Illuminance level step setting<br>EPC : 0xB2<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setIlluminanceLevelStepSetting(byte[] edt) {return false;}
 	private final boolean _setIlluminanceLevelStepSetting(byte epc, byte[] edt) {
 		boolean success = setIlluminanceLevelStepSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
+	 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br><br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br><br>Name : Illuminance level step setting<br>EPC : 0xB2<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getIlluminanceLevelStepSetting() {return null;}
 	private final byte[] _getIlluminanceLevelStepSetting(byte epc) {
 		byte[] edt = getIlluminanceLevelStepSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify the light color in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
+	 * Used to specify the light color in terms of steps and acquire the current setting.<br><br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br><br>Name : Light color step setting<br>EPC : 0xB3<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setLightColorStepSetting(byte[] edt) {return false;}
 	private final boolean _setLightColorStepSetting(byte epc, byte[] edt) {
 		boolean success = setLightColorStepSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify the light color in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
+	 * Used to specify the light color in terms of steps and acquire the current setting.<br><br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br><br>Name : Light color step setting<br>EPC : 0xB3<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getLightColorStepSetting() {return null;}
 	private final byte[] _getLightColorStepSetting(byte epc) {
 		byte[] edt = getLightColorStepSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to acquire the maximum specifiable illuminance level value and the maximum specifiable light color value.<br>First byte: illuminance Second byte: light color 0x01-0xFF(Step 1 -Step 255) 0x00(when the function is not implemented)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : undefined<br>Get : optional
+	 * Used to acquire the maximum specifiable illuminance level value and the maximum specifiable light color value.<br><br>First byte: illuminance Second byte: light color 0x01-0xFF(Step 1 -Step 255) 0x00(when the function is not implemented)<br><br>Name : Maximum specifiable values<br>EPC : 0xB4<br>Data Type : unsign ed char �~2<br>Data Size(Byte) : 2 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getMaximumSpecifiableValues() {return null;}
 	private final byte[] _getMaximumSpecifiableValues(byte epc) {
 		byte[] edt = getMaximumSpecifiableValues();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify the light color.<br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
+	 * Used to specify the light color.<br><br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br><br>Name : Light color setting<br>EPC : 0xB1<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setLightColorSetting(byte[] edt) {return false;}
 	private final boolean _setLightColorSetting(byte epc, byte[] edt) {
 		boolean success = setLightColorSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify the light color.<br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
+	 * Used to specify the light color.<br><br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br><br>Name : Light color setting<br>EPC : 0xB1<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getLightColorSetting() {return null;}
 	private final byte[] _getLightColorSetting(byte epc) {
 		byte[] edt = getLightColorSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
+	 * Reservation ON/OFF<br><br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setOnTimerReservationSetting(byte[] edt) {return false;}
 	private final boolean _setOnTimerReservationSetting(byte epc, byte[] edt) {
 		boolean success = setOnTimerReservationSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
+	 * Reservation ON/OFF<br><br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getOnTimerReservationSetting() {return null;}
 	private final byte[] _getOnTimerReservationSetting(byte epc) {
 		byte[] edt = getOnTimerReservationSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
+	 * Timer value HH:MM<br><br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsign ed char �~2<br>Data Size(Byte) : 2 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setOnTimerSetting(byte[] edt) {return false;}
 	private final boolean _setOnTimerSetting(byte epc, byte[] edt) {
 		boolean success = setOnTimerSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
+	 * Timer value HH:MM<br><br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsign ed char �~2<br>Data Size(Byte) : 2 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getOnTimerSetting() {return null;}
 	private final byte[] _getOnTimerSetting(byte epc) {
 		byte[] edt = getOnTimerSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
+	 * Reservation ON/OFF<br><br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Name : OFF timer reservation setting<br>EPC : 0x94<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setOffTimerReservationSetting(byte[] edt) {return false;}
 	private final boolean _setOffTimerReservationSetting(byte epc, byte[] edt) {
 		boolean success = setOffTimerReservationSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
+	 * Reservation ON/OFF<br><br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Name : OFF timer reservation setting<br>EPC : 0x94<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getOffTimerReservationSetting() {return null;}
 	private final byte[] _getOffTimerReservationSetting(byte epc) {
 		byte[] edt = getOffTimerReservationSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
+	 * Timer value HH:MM<br><br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Name : OFF timer setting<br>EPC : 0x95<br>Data Type : unsign ed char �~2<br>Data Size(Byte) : 2 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setOffTimerSetting(byte[] edt) {return false;}
 	private final boolean _setOffTimerSetting(byte epc, byte[] edt) {
 		boolean success = setOffTimerSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
+	 * Timer value HH:MM<br><br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Name : OFF timer setting<br>EPC : 0x95<br>Data Type : unsign ed char �~2<br>Data Size(Byte) : 2 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getOffTimerSetting() {return null;}
 	private final byte[] _getOffTimerSetting(byte epc) {
 		byte[] edt = getOffTimerSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
@@ -280,17 +278,17 @@ public abstract class GeneralLighting extends DeviceObject {
 	
 	@Override
 	public Setter set() {
-		return new SetterImpl(ESV_SET_NO_RES);
+		return new Setter(ESV_SETI);
 	}
 
 	@Override
 	public Setter setC() {
-		return new SetterImpl(ESV_SET_RES);
+		return new Setter(ESV_SETC);
 	}
 
 	@Override
 	public Getter get() {
-		return new GetterImpl();
+		return new Getter();
 	}
 
 	@Override
@@ -368,192 +366,152 @@ public abstract class GeneralLighting extends DeviceObject {
 		}
 		
 		/**
-		 * This property indicates illuminance level in %.<br>0x00.0x64 (0.100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * This property indicates illuminance level in %.<br><br>0x00.0x64 (0.100%)<br><br>Name : Illuminance level<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetIlluminanceLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetIlluminanceLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetIlluminanceLevel(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * This property indicates illuminance level in %.<br>0x00.0x64 (0.100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * This property indicates illuminance level in %.<br><br>0x00.0x64 (0.100%)<br><br>Name : Illuminance level<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetIlluminanceLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetIlluminanceLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetIlluminanceLevel(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
+		 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br><br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br><br>Name : Illuminance level step setting<br>EPC : 0xB2<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetIlluminanceLevelStepSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetIlluminanceLevelStepSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetIlluminanceLevelStepSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
+		 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br><br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br><br>Name : Illuminance level step setting<br>EPC : 0xB2<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetIlluminanceLevelStepSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetIlluminanceLevelStepSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetIlluminanceLevelStepSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify the light color in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
+		 * Used to specify the light color in terms of steps and acquire the current setting.<br><br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br><br>Name : Light color step setting<br>EPC : 0xB3<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetLightColorStepSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetLightColorStepSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetLightColorStepSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify the light color in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
+		 * Used to specify the light color in terms of steps and acquire the current setting.<br><br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br><br>Name : Light color step setting<br>EPC : 0xB3<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetLightColorStepSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetLightColorStepSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetLightColorStepSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to acquire the maximum specifiable illuminance level value and the maximum specifiable light color value.<br>First byte: illuminance Second byte: light color 0x01-0xFF(Step 1 -Step 255) 0x00(when the function is not implemented)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : undefined<br>Get : optional
+		 * Used to acquire the maximum specifiable illuminance level value and the maximum specifiable light color value.<br><br>First byte: illuminance Second byte: light color 0x01-0xFF(Step 1 -Step 255) 0x00(when the function is not implemented)<br><br>Name : Maximum specifiable values<br>EPC : 0xB4<br>Data Type : unsign ed char �~2<br>Data Size(Byte) : 2 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetMaximumSpecifiableValues(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetMaximumSpecifiableValues(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetMaximumSpecifiableValues(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify the light color.<br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
+		 * Used to specify the light color.<br><br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br><br>Name : Light color setting<br>EPC : 0xB1<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetLightColorSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetLightColorSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetLightColorSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify the light color.<br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
+		 * Used to specify the light color.<br><br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br><br>Name : Light color setting<br>EPC : 0xB1<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetLightColorSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetLightColorSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetLightColorSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
+		 * Reservation ON/OFF<br><br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
+		 * Reservation ON/OFF<br><br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
+		 * Timer value HH:MM<br><br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsign ed char �~2<br>Data Size(Byte) : 2 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetOnTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetOnTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetOnTimerSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
+		 * Timer value HH:MM<br><br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsign ed char �~2<br>Data Size(Byte) : 2 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetOnTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetOnTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetOnTimerSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
+		 * Reservation ON/OFF<br><br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Name : OFF timer reservation setting<br>EPC : 0x94<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetOffTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetOffTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetOffTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
+		 * Reservation ON/OFF<br><br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Name : OFF timer reservation setting<br>EPC : 0x94<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetOffTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetOffTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetOffTimerReservationSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
+		 * Timer value HH:MM<br><br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Name : OFF timer setting<br>EPC : 0x95<br>Data Type : unsign ed char �~2<br>Data Size(Byte) : 2 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetOffTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetOffTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetOffTimerSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
+		 * Timer value HH:MM<br><br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Name : OFF timer setting<br>EPC : 0x95<br>Data Type : unsign ed char �~2<br>Data Size(Byte) : 2 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetOffTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetOffTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetOffTimerSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 
 	}
 	
-	public interface Setter extends DeviceObject.Setter {
-		public Setter reqSetOperationStatus(byte[] edt);
-		public Setter reqSetInstallationLocation(byte[] edt);
-		public Setter reqSetCurrentLimitSetting(byte[] edt);
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
-		public Setter reqSetPositionInformation(byte[] edt);
-		public Setter reqSetCurrentTimeSetting(byte[] edt);
-		public Setter reqSetCurrentDateSetting(byte[] edt);
-		public Setter reqSetPowerLimitSetting(byte[] edt);
-		
-		/**
-		 * This property indicates illuminance level in %.<br>0x00.0x64 (0.100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetIlluminanceLevel(byte[] edt);
-		/**
-		 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetIlluminanceLevelStepSetting(byte[] edt);
-		/**
-		 * Used to specify the light color in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetLightColorStepSetting(byte[] edt);
-		/**
-		 * Used to specify the light color.<br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetLightColorSetting(byte[] edt);
-		/**
-		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetOnTimerReservationSetting(byte[] edt);
-		/**
-		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetOnTimerSetting(byte[] edt);
-		/**
-		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetOffTimerReservationSetting(byte[] edt);
-		/**
-		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetOffTimerSetting(byte[] edt);
-	}
-
-	public class SetterImpl extends DeviceObject.SetterImpl implements Setter {
-
-		public SetterImpl(byte esv) {
+	public class Setter extends DeviceObject.Setter {
+		public Setter(byte esv) {
 			super(esv);
+		}
+
+		@Override
+		public Setter reqSet(byte epc, byte[] edt) {
+			return (Setter)super.reqSet(epc, edt);
 		}
 		
 		@Override
@@ -589,505 +547,222 @@ public abstract class GeneralLighting extends DeviceObject {
 			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
-		@Override
-		public Setter reqSetIlluminanceLevel(byte[] edt) {
-			byte epc = EPC_ILLUMINANCE_LEVEL;
-			addProperty(epc, edt, _setIlluminanceLevel(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetIlluminanceLevelStepSetting(byte[] edt) {
-			byte epc = EPC_ILLUMINANCE_LEVEL_STEP_SETTING;
-			addProperty(epc, edt, _setIlluminanceLevelStepSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetLightColorStepSetting(byte[] edt) {
-			byte epc = EPC_LIGHT_COLOR_STEP_SETTING;
-			addProperty(epc, edt, _setLightColorStepSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetLightColorSetting(byte[] edt) {
-			byte epc = EPC_LIGHT_COLOR_SETTING;
-			addProperty(epc, edt, _setLightColorSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetOnTimerReservationSetting(byte[] edt) {
-			byte epc = EPC_ON_TIMER_RESERVATION_SETTING;
-			addProperty(epc, edt, _setOnTimerReservationSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetOnTimerSetting(byte[] edt) {
-			byte epc = EPC_ON_TIMER_SETTING;
-			addProperty(epc, edt, _setOnTimerSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetOffTimerReservationSetting(byte[] edt) {
-			byte epc = EPC_OFF_TIMER_RESERVATION_SETTING;
-			addProperty(epc, edt, _setOffTimerReservationSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetOffTimerSetting(byte[] edt) {
-			byte epc = EPC_OFF_TIMER_SETTING;
-			addProperty(epc, edt, _setOffTimerSetting(epc, edt));
-			return this;
-		}
-	}
-	
-	public class SetterProxy extends DeviceObject.SetterProxy implements Setter {
-
-		public SetterProxy(byte esv) {
-			super(esv);
-		}
-
-		@Override
-		public Setter reqSetOperationStatus(byte[] edt) {
-			return (Setter)super.reqSetOperationStatus(edt);
-		}
-		@Override
-		public Setter reqSetInstallationLocation(byte[] edt) {
-			return (Setter)super.reqSetInstallationLocation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimitSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
-		}
-		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentTimeSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentTimeSetting(edt);
-		}
-		@Override
-		public Setter reqSetCurrentDateSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentDateSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitSetting(edt);
-		}
-
-		@Override
+		/**
+		 * This property indicates illuminance level in %.<br><br>0x00.0x64 (0.100%)<br><br>Name : Illuminance level<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetIlluminanceLevel(byte[] edt) {
 			addProperty(EPC_ILLUMINANCE_LEVEL, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br><br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br><br>Name : Illuminance level step setting<br>EPC : 0xB2<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetIlluminanceLevelStepSetting(byte[] edt) {
 			addProperty(EPC_ILLUMINANCE_LEVEL_STEP_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the light color in terms of steps and acquire the current setting.<br><br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br><br>Name : Light color step setting<br>EPC : 0xB3<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetLightColorStepSetting(byte[] edt) {
 			addProperty(EPC_LIGHT_COLOR_STEP_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the light color.<br><br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br><br>Name : Light color setting<br>EPC : 0xB1<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetLightColorSetting(byte[] edt) {
 			addProperty(EPC_LIGHT_COLOR_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Reservation ON/OFF<br><br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetOnTimerReservationSetting(byte[] edt) {
 			addProperty(EPC_ON_TIMER_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Timer value HH:MM<br><br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsign ed char �~2<br>Data Size(Byte) : 2 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetOnTimerSetting(byte[] edt) {
 			addProperty(EPC_ON_TIMER_SETTING, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-		@Override
+		/**
+		 * Reservation ON/OFF<br><br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Name : OFF timer reservation setting<br>EPC : 0x94<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetOffTimerReservationSetting(byte[] edt) {
 			addProperty(EPC_OFF_TIMER_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Timer value HH:MM<br><br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Name : OFF timer setting<br>EPC : 0x95<br>Data Type : unsign ed char �~2<br>Data Size(Byte) : 2 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetOffTimerSetting(byte[] edt) {
 			addProperty(EPC_OFF_TIMER_SETTING, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}
 
-	public interface Getter extends DeviceObject.Getter {
-		public Getter reqGetOperationStatus();
-		public Getter reqGetInstallationLocation();
-		public Getter reqGetStandardVersionInformation();
-		public Getter reqGetIdentificationNumber();
-		public Getter reqGetMeasuredInstantaneousPowerConsumption();
-		public Getter reqGetMeasuredCumulativePowerConsumption();
-		public Getter reqGetManufacturersFaultCode();
-		public Getter reqGetCurrentLimitSetting();
-		public Getter reqGetFaultStatus();
-		public Getter reqGetFaultDescription();
-		public Getter reqGetManufacturerCode();
-		public Getter reqGetBusinessFacilityCode();
-		public Getter reqGetProductCode();
-		public Getter reqGetProductionNumber();
-		public Getter reqGetProductionDate();
-		public Getter reqGetPowerSavingOperationSetting();
-		public Getter reqGetPositionInformation();
-		public Getter reqGetCurrentTimeSetting();
-		public Getter reqGetCurrentDateSetting();
-		public Getter reqGetPowerLimitSetting();
-		public Getter reqGetCumulativeOperatingTime();
-		public Getter reqGetStatusChangeAnnouncementPropertyMap();
-		public Getter reqGetSetPropertyMap();
-		public Getter reqGetGetPropertyMap();
+	public class Getter extends DeviceObject.Getter {
+
+		@Override
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
+		}
+		@Override
+		public Getter reqGetInstallationLocation() {
+			return (Getter)super.reqGetInstallationLocation();
+		}
+		@Override
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
+		}
+		@Override
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
+		}
+		@Override
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
+		}
+		@Override
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
+		}
+		@Override
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
+		}
+		@Override
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
+		}
+		@Override
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
+		}
+		@Override
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
+		}
+		@Override
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
+		}
+		@Override
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
+		}
+		@Override
+		public Getter reqGetProductCode() {
+			return (Getter)super.reqGetProductCode();
+		}
+		@Override
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
+		}
+		@Override
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
+		}
+		@Override
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
+		}
+		@Override
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
+		}
+		@Override
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
+		}
+		@Override
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
+		}
+		@Override
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
+		}
+		@Override
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
+		}
+		@Override
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
+		}
+		@Override
+		public Getter reqGetSetPropertyMap() {
+			return (Getter)super.reqGetSetPropertyMap();
+		}
+		@Override
+		public Getter reqGetGetPropertyMap() {
+			return (Getter)super.reqGetGetPropertyMap();
+		}
 		
 		/**
-		 * This property indicates illuminance level in %.<br>0x00.0x64 (0.100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * This property indicates illuminance level in %.<br><br>0x00.0x64 (0.100%)<br><br>Name : Illuminance level<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
-		public Getter reqGetIlluminanceLevel();
-		/**
-		 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetIlluminanceLevelStepSetting();
-		/**
-		 * Used to specify the light color in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetLightColorStepSetting();
-		/**
-		 * Used to acquire the maximum specifiable illuminance level value and the maximum specifiable light color value.<br>First byte: illuminance Second byte: light color 0x01-0xFF(Step 1 -Step 255) 0x00(when the function is not implemented)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetMaximumSpecifiableValues();
-		/**
-		 * Used to specify the light color.<br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetLightColorSetting();
-		/**
-		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetOnTimerReservationSetting();
-		/**
-		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetOnTimerSetting();
-		/**
-		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetOffTimerReservationSetting();
-		/**
-		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetOffTimerSetting();
-	}
-	
-	public class GetterImpl extends DeviceObject.GetterImpl implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
-		public Getter reqGetIlluminanceLevel() {
-			byte epc = EPC_ILLUMINANCE_LEVEL;
-			byte[] edt = _getIlluminanceLevel(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetIlluminanceLevelStepSetting() {
-			byte epc = EPC_ILLUMINANCE_LEVEL_STEP_SETTING;
-			byte[] edt = _getIlluminanceLevelStepSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetLightColorStepSetting() {
-			byte epc = EPC_LIGHT_COLOR_STEP_SETTING;
-			byte[] edt = _getLightColorStepSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetMaximumSpecifiableValues() {
-			byte epc = EPC_MAXIMUM_SPECIFIABLE_VALUES;
-			byte[] edt = _getMaximumSpecifiableValues(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetLightColorSetting() {
-			byte epc = EPC_LIGHT_COLOR_SETTING;
-			byte[] edt = _getLightColorSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetOnTimerReservationSetting() {
-			byte epc = EPC_ON_TIMER_RESERVATION_SETTING;
-			byte[] edt = _getOnTimerReservationSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetOnTimerSetting() {
-			byte epc = EPC_ON_TIMER_SETTING;
-			byte[] edt = _getOnTimerSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetOffTimerReservationSetting() {
-			byte epc = EPC_OFF_TIMER_RESERVATION_SETTING;
-			byte[] edt = _getOffTimerReservationSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetOffTimerSetting() {
-			byte epc = EPC_OFF_TIMER_SETTING;
-			byte[] edt = _getOffTimerSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-	}
-
-	public class GetterProxy extends DeviceObject.GetterProxy implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
 		public Getter reqGetIlluminanceLevel() {
 			addProperty(EPC_ILLUMINANCE_LEVEL);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br><br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br><br>Name : Illuminance level step setting<br>EPC : 0xB2<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetIlluminanceLevelStepSetting() {
 			addProperty(EPC_ILLUMINANCE_LEVEL_STEP_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the light color in terms of steps and acquire the current setting.<br><br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br><br>Name : Light color step setting<br>EPC : 0xB3<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetLightColorStepSetting() {
 			addProperty(EPC_LIGHT_COLOR_STEP_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to acquire the maximum specifiable illuminance level value and the maximum specifiable light color value.<br><br>First byte: illuminance Second byte: light color 0x01-0xFF(Step 1 -Step 255) 0x00(when the function is not implemented)<br><br>Name : Maximum specifiable values<br>EPC : 0xB4<br>Data Type : unsign ed char �~2<br>Data Size(Byte) : 2 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetMaximumSpecifiableValues() {
 			addProperty(EPC_MAXIMUM_SPECIFIABLE_VALUES);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the light color.<br><br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br><br>Name : Light color setting<br>EPC : 0xB1<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetLightColorSetting() {
 			addProperty(EPC_LIGHT_COLOR_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Reservation ON/OFF<br><br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetOnTimerReservationSetting() {
 			addProperty(EPC_ON_TIMER_RESERVATION_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Timer value HH:MM<br><br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsign ed char �~2<br>Data Size(Byte) : 2 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetOnTimerSetting() {
 			addProperty(EPC_ON_TIMER_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Reservation ON/OFF<br><br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Name : OFF timer reservation setting<br>EPC : 0x94<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetOffTimerReservationSetting() {
 			addProperty(EPC_OFF_TIMER_RESERVATION_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Timer value HH:MM<br><br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Name : OFF timer setting<br>EPC : 0x95<br>Data Type : unsign ed char �~2<br>Data Size(Byte) : 2 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetOffTimerSetting() {
 			addProperty(EPC_OFF_TIMER_SETTING);
 			return this;
@@ -1095,6 +770,8 @@ public abstract class GeneralLighting extends DeviceObject {
 	}
 	
 	public interface Informer extends DeviceObject.Informer {
+		public Informer reqInform(byte epc);
+		
 		public Informer reqInformOperationStatus();
 		public Informer reqInformInstallationLocation();
 		public Informer reqInformStandardVersionInformation();
@@ -1121,45 +798,49 @@ public abstract class GeneralLighting extends DeviceObject {
 		public Informer reqInformGetPropertyMap();
 		
 		/**
-		 * This property indicates illuminance level in %.<br>0x00.0x64 (0.100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * This property indicates illuminance level in %.<br><br>0x00.0x64 (0.100%)<br><br>Name : Illuminance level<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformIlluminanceLevel();
 		/**
-		 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
+		 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br><br>From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br><br>Name : Illuminance level step setting<br>EPC : 0xB2<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformIlluminanceLevelStepSetting();
 		/**
-		 * Used to specify the light color in terms of steps and acquire the current setting.<br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
+		 * Used to specify the light color in terms of steps and acquire the current setting.<br><br>From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br><br>Name : Light color step setting<br>EPC : 0xB3<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformLightColorStepSetting();
 		/**
-		 * Used to acquire the maximum specifiable illuminance level value and the maximum specifiable light color value.<br>First byte: illuminance Second byte: light color 0x01-0xFF(Step 1 -Step 255) 0x00(when the function is not implemented)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : undefined<br>Get : optional
+		 * Used to acquire the maximum specifiable illuminance level value and the maximum specifiable light color value.<br><br>First byte: illuminance Second byte: light color 0x01-0xFF(Step 1 -Step 255) 0x00(when the function is not implemented)<br><br>Name : Maximum specifiable values<br>EPC : 0xB4<br>Data Type : unsign ed char �~2<br>Data Size(Byte) : 2 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformMaximumSpecifiableValues();
 		/**
-		 * Used to specify the light color.<br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
+		 * Used to specify the light color.<br><br>incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br><br>Name : Light color setting<br>EPC : 0xB1<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformLightColorSetting();
 		/**
-		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
+		 * Reservation ON/OFF<br><br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformOnTimerReservationSetting();
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
+		 * Timer value HH:MM<br><br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsign ed char �~2<br>Data Size(Byte) : 2 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformOnTimerSetting();
 		/**
-		 * Reservation ON/OFF<br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Data type : unsign ed char<br>Data size : 1 Byt e<br>Set : optional<br>Get : optional
+		 * Reservation ON/OFF<br><br>Reservation ON��0x41, Reservation OFF��0x42<br><br>Name : OFF timer reservation setting<br>EPC : 0x94<br>Data Type : unsign ed char<br>Data Size(Byte) : 1 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformOffTimerReservationSetting();
 		/**
-		 * Timer value HH:MM<br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Data type : unsign ed char �~2<br>Data size : 2 Byt e<br>Set : optional<br>Get : optional
+		 * Timer value HH:MM<br><br>0-0x17: 0 -0x3B (=0-23):(=0 -59)<br><br>Name : OFF timer setting<br>EPC : 0x95<br>Data Type : unsign ed char �~2<br>Data Size(Byte) : 2 Byt e<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformOffTimerSetting();
 	}
 
 	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();
@@ -1323,7 +1004,11 @@ public abstract class GeneralLighting extends DeviceObject {
 	}
 	
 	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();

@@ -20,8 +20,6 @@ import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 
 public abstract class ElectricToiletSeat extends DeviceObject {
-	@SuppressWarnings("unused")
-	private static final String TAG = ElectricToiletSeat.class.getSimpleName();
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x6E;
@@ -51,228 +49,228 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	}
 
 	/**
-	 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>0x31 to 0x3A<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br><br>0x31 to 0x3A<br><br>Name : Temperature level of toilet seat<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setTemperatureLevelOfToiletSeat(byte[] edt) {return false;}
 	private final boolean _setTemperatureLevelOfToiletSeat(byte epc, byte[] edt) {
 		boolean success = setTemperatureLevelOfToiletSeat(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>0x31 to 0x3A<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br><br>0x31 to 0x3A<br><br>Name : Temperature level of toilet seat<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getTemperatureLevelOfToiletSeat() {return null;}
 	private final byte[] _getTemperatureLevelOfToiletSeat(byte epc) {
 		byte[] edt = getTemperatureLevelOfToiletSeat();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * ON/OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
+	 * ON/OFF<br><br>ON=0x41, OFF=0x42<br><br>Name : Heater setting of toilet seat<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
 	 */
 	protected abstract boolean setHeaterSettingOfToiletSeat(byte[] edt);
 	private final boolean _setHeaterSettingOfToiletSeat(byte epc, byte[] edt) {
 		boolean success = setHeaterSettingOfToiletSeat(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * ON/OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
+	 * ON/OFF<br><br>ON=0x41, OFF=0x42<br><br>Name : Heater setting of toilet seat<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
 	 */
 	protected abstract byte[] getHeaterSettingOfToiletSeat();
 	private final byte[] _getHeaterSettingOfToiletSeat(byte epc) {
 		byte[] edt = getHeaterSettingOfToiletSeat();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Continuous setting / one time setting / no setting.<br>Continuous setting=0x41, one time setting=0x42, no setting=0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Continuous setting / one time setting / no setting.<br><br>Continuous setting=0x41, one time setting=0x42, no setting=0x43<br><br>Name : Temporal halt setting of toilet seat<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setTemporalHaltSettingOfToiletSeat(byte[] edt) {return false;}
 	private final boolean _setTemporalHaltSettingOfToiletSeat(byte epc, byte[] edt) {
 		boolean success = setTemporalHaltSettingOfToiletSeat(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Continuous setting / one time setting / no setting.<br>Continuous setting=0x41, one time setting=0x42, no setting=0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Continuous setting / one time setting / no setting.<br><br>Continuous setting=0x41, one time setting=0x42, no setting=0x43<br><br>Name : Temporal halt setting of toilet seat<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getTemporalHaltSettingOfToiletSeat() {return null;}
 	private final byte[] _getTemporalHaltSettingOfToiletSeat(byte epc) {
 		byte[] edt = getTemporalHaltSettingOfToiletSeat();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Temporal halt start time of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+	 * Temporal halt start time of toilet seat timer value: HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Temporal halt start time of toilet seat<br>EPC : 0xE3<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setTemporalHaltStartTimeOfToiletSeat(byte[] edt) {return false;}
 	private final boolean _setTemporalHaltStartTimeOfToiletSeat(byte epc, byte[] edt) {
 		boolean success = setTemporalHaltStartTimeOfToiletSeat(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Temporal halt start time of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+	 * Temporal halt start time of toilet seat timer value: HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Temporal halt start time of toilet seat<br>EPC : 0xE3<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getTemporalHaltStartTimeOfToiletSeat() {return null;}
 	private final byte[] _getTemporalHaltStartTimeOfToiletSeat(byte epc) {
 		byte[] edt = getTemporalHaltStartTimeOfToiletSeat();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Temporal stop time duration of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+	 * Temporal stop time duration of toilet seat timer value: HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Temporal halt time duration of toilet seat<br>EPC : 0xE4<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setTemporalHaltTimeDurationOfToiletSeat(byte[] edt) {return false;}
 	private final boolean _setTemporalHaltTimeDurationOfToiletSeat(byte epc, byte[] edt) {
 		boolean success = setTemporalHaltTimeDurationOfToiletSeat(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Temporal stop time duration of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+	 * Temporal stop time duration of toilet seat timer value: HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Temporal halt time duration of toilet seat<br>EPC : 0xE4<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getTemporalHaltTimeDurationOfToiletSeat() {return null;}
 	private final byte[] _getTemporalHaltTimeDurationOfToiletSeat(byte epc) {
 		byte[] edt = getTemporalHaltTimeDurationOfToiletSeat();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Low / midium / high temperature<br>0x31 / 0x32 / 0x33<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Low / midium / high temperature<br><br>0x31 / 0x32 / 0x33<br><br>Name : Temperature level setting of room heating<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setTemperatureLevelSettingOfRoomHeating(byte[] edt) {return false;}
 	private final boolean _setTemperatureLevelSettingOfRoomHeating(byte epc, byte[] edt) {
 		boolean success = setTemperatureLevelSettingOfRoomHeating(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Low / midium / high temperature<br>0x31 / 0x32 / 0x33<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Low / midium / high temperature<br><br>0x31 / 0x32 / 0x33<br><br>Name : Temperature level setting of room heating<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getTemperatureLevelSettingOfRoomHeating() {return null;}
 	private final byte[] _getTemperatureLevelSettingOfRoomHeating(byte epc) {
 		byte[] edt = getTemperatureLevelSettingOfRoomHeating();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Room heating ON / room heating OFF / timer mode setting<br>0x41 / 0x42 / 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Room heating ON / room heating OFF / timer mode setting<br><br>0x41 / 0x42 / 0x43<br><br>Name : Room heating setting<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setRoomHeatingSetting(byte[] edt) {return false;}
 	private final boolean _setRoomHeatingSetting(byte epc, byte[] edt) {
 		boolean success = setRoomHeatingSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Room heating ON / room heating OFF / timer mode setting<br>0x41 / 0x42 / 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Room heating ON / room heating OFF / timer mode setting<br><br>0x41 / 0x42 / 0x43<br><br>Name : Room heating setting<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getRoomHeatingSetting() {return null;}
 	private final byte[] _getRoomHeatingSetting(byte epc) {
 		byte[] edt = getRoomHeatingSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Room heating ON / room heating OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+	 * Room heating ON / room heating OFF<br><br>ON=0x41, OFF=0x42<br><br>Name : Room heating status<br>EPC : 0xE7<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getRoomHeatingStatus() {return null;}
 	private final byte[] _getRoomHeatingStatus(byte epc) {
 		byte[] edt = getRoomHeatingStatus();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Timer value HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+	 * Timer value HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Start time of room heating<br>EPC : 0xE8<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setStartTimeOfRoomHeating(byte[] edt) {return false;}
 	private final boolean _setStartTimeOfRoomHeating(byte epc, byte[] edt) {
 		boolean success = setStartTimeOfRoomHeating(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Timer value HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+	 * Timer value HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Start time of room heating<br>EPC : 0xE8<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getStartTimeOfRoomHeating() {return null;}
 	private final byte[] _getStartTimeOfRoomHeating(byte epc) {
 		byte[] edt = getStartTimeOfRoomHeating();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Duration time HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+	 * Duration time HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Duration time of room hreating<br>EPC : 0xE9<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setDurationTimeOfRoomHreating(byte[] edt) {return false;}
 	private final boolean _setDurationTimeOfRoomHreating(byte epc, byte[] edt) {
 		boolean success = setDurationTimeOfRoomHreating(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Duration time HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+	 * Duration time HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Duration time of room hreating<br>EPC : 0xE9<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getDurationTimeOfRoomHreating() {return null;}
 	private final byte[] _getDurationTimeOfRoomHreating(byte epc) {
 		byte[] edt = getDurationTimeOfRoomHreating();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to set a special operation mode and get the status<br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to set a special operation mode and get the status<br><br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-<br><br>Name : Special operation mode setting<br>EPC : 0xEA<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setSpecialOperationModeSetting(byte[] edt) {return false;}
 	private final boolean _setSpecialOperationModeSetting(byte epc, byte[] edt) {
 		boolean success = setSpecialOperationModeSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to set a special operation mode and get the status<br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to set a special operation mode and get the status<br><br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-<br><br>Name : Special operation mode setting<br>EPC : 0xEA<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getSpecialOperationModeSetting() {return null;}
 	private final byte[] _getSpecialOperationModeSetting(byte epc) {
 		byte[] edt = getSpecialOperationModeSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Indicate detection of human body<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Indicate detection of human body<br><br>Detected = 0x41 Non detecteed = 0x42<br><br>Name : Human detection status<br>EPC : 0xEB<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setHumanDetectionStatus(byte[] edt) {return false;}
 	private final boolean _setHumanDetectionStatus(byte epc, byte[] edt) {
 		boolean success = setHumanDetectionStatus(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Indicate detection of human body<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Indicate detection of human body<br><br>Detected = 0x41 Non detecteed = 0x42<br><br>Name : Human detection status<br>EPC : 0xEB<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getHumanDetectionStatus() {return null;}
 	private final byte[] _getHumanDetectionStatus(byte epc) {
 		byte[] edt = getHumanDetectionStatus();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates detection of seating<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * This property indicates detection of seating<br><br>Detected = 0x41 Non detecteed = 0x42<br><br>Name : Seating detection status<br>EPC : 0xEC<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setSeatingDetectionStatus(byte[] edt) {return false;}
 	private final boolean _setSeatingDetectionStatus(byte epc, byte[] edt) {
 		boolean success = setSeatingDetectionStatus(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * This property indicates detection of seating<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * This property indicates detection of seating<br><br>Detected = 0x41 Non detecteed = 0x42<br><br>Name : Seating detection status<br>EPC : 0xEC<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getSeatingDetectionStatus() {return null;}
 	private final byte[] _getSeatingDetectionStatus(byte epc) {
 		byte[] edt = getSeatingDetectionStatus();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
@@ -384,17 +382,17 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	
 	@Override
 	public Setter set() {
-		return new SetterImpl(ESV_SET_NO_RES);
+		return new Setter(ESV_SETI);
 	}
 
 	@Override
 	public Setter setC() {
-		return new SetterImpl(ESV_SET_RES);
+		return new Setter(ESV_SETC);
 	}
 
 	@Override
 	public Getter get() {
-		return new GetterImpl();
+		return new Getter();
 	}
 
 	@Override
@@ -496,272 +494,216 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		}
 		
 		/**
-		 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>0x31 to 0x3A<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br><br>0x31 to 0x3A<br><br>Name : Temperature level of toilet seat<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetTemperatureLevelOfToiletSeat(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetTemperatureLevelOfToiletSeat(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetTemperatureLevelOfToiletSeat(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>0x31 to 0x3A<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br><br>0x31 to 0x3A<br><br>Name : Temperature level of toilet seat<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetTemperatureLevelOfToiletSeat(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetTemperatureLevelOfToiletSeat(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetTemperatureLevelOfToiletSeat(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * ON/OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
+		 * ON/OFF<br><br>ON=0x41, OFF=0x42<br><br>Name : Heater setting of toilet seat<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
 		 */
 		protected void onSetHeaterSettingOfToiletSeat(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetHeaterSettingOfToiletSeat(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetHeaterSettingOfToiletSeat(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * ON/OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
+		 * ON/OFF<br><br>ON=0x41, OFF=0x42<br><br>Name : Heater setting of toilet seat<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
 		 */
 		protected void onGetHeaterSettingOfToiletSeat(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetHeaterSettingOfToiletSeat(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetHeaterSettingOfToiletSeat(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Continuous setting / one time setting / no setting.<br>Continuous setting=0x41, one time setting=0x42, no setting=0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Continuous setting / one time setting / no setting.<br><br>Continuous setting=0x41, one time setting=0x42, no setting=0x43<br><br>Name : Temporal halt setting of toilet seat<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetTemporalHaltSettingOfToiletSeat(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetTemporalHaltSettingOfToiletSeat(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetTemporalHaltSettingOfToiletSeat(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Continuous setting / one time setting / no setting.<br>Continuous setting=0x41, one time setting=0x42, no setting=0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Continuous setting / one time setting / no setting.<br><br>Continuous setting=0x41, one time setting=0x42, no setting=0x43<br><br>Name : Temporal halt setting of toilet seat<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetTemporalHaltSettingOfToiletSeat(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetTemporalHaltSettingOfToiletSeat(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetTemporalHaltSettingOfToiletSeat(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Temporal halt start time of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * Temporal halt start time of toilet seat timer value: HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Temporal halt start time of toilet seat<br>EPC : 0xE3<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetTemporalHaltStartTimeOfToiletSeat(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetTemporalHaltStartTimeOfToiletSeat(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetTemporalHaltStartTimeOfToiletSeat(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Temporal halt start time of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * Temporal halt start time of toilet seat timer value: HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Temporal halt start time of toilet seat<br>EPC : 0xE3<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetTemporalHaltStartTimeOfToiletSeat(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetTemporalHaltStartTimeOfToiletSeat(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetTemporalHaltStartTimeOfToiletSeat(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Temporal stop time duration of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * Temporal stop time duration of toilet seat timer value: HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Temporal halt time duration of toilet seat<br>EPC : 0xE4<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetTemporalHaltTimeDurationOfToiletSeat(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetTemporalHaltTimeDurationOfToiletSeat(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetTemporalHaltTimeDurationOfToiletSeat(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Temporal stop time duration of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * Temporal stop time duration of toilet seat timer value: HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Temporal halt time duration of toilet seat<br>EPC : 0xE4<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetTemporalHaltTimeDurationOfToiletSeat(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetTemporalHaltTimeDurationOfToiletSeat(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetTemporalHaltTimeDurationOfToiletSeat(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Low / midium / high temperature<br>0x31 / 0x32 / 0x33<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Low / midium / high temperature<br><br>0x31 / 0x32 / 0x33<br><br>Name : Temperature level setting of room heating<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetTemperatureLevelSettingOfRoomHeating(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetTemperatureLevelSettingOfRoomHeating(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetTemperatureLevelSettingOfRoomHeating(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Low / midium / high temperature<br>0x31 / 0x32 / 0x33<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Low / midium / high temperature<br><br>0x31 / 0x32 / 0x33<br><br>Name : Temperature level setting of room heating<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetTemperatureLevelSettingOfRoomHeating(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetTemperatureLevelSettingOfRoomHeating(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetTemperatureLevelSettingOfRoomHeating(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Room heating ON / room heating OFF / timer mode setting<br>0x41 / 0x42 / 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Room heating ON / room heating OFF / timer mode setting<br><br>0x41 / 0x42 / 0x43<br><br>Name : Room heating setting<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetRoomHeatingSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetRoomHeatingSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetRoomHeatingSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Room heating ON / room heating OFF / timer mode setting<br>0x41 / 0x42 / 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Room heating ON / room heating OFF / timer mode setting<br><br>0x41 / 0x42 / 0x43<br><br>Name : Room heating setting<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetRoomHeatingSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetRoomHeatingSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetRoomHeatingSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Room heating ON / room heating OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * Room heating ON / room heating OFF<br><br>ON=0x41, OFF=0x42<br><br>Name : Room heating status<br>EPC : 0xE7<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetRoomHeatingStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetRoomHeatingStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetRoomHeatingStatus(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Timer value HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * Timer value HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Start time of room heating<br>EPC : 0xE8<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetStartTimeOfRoomHeating(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetStartTimeOfRoomHeating(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetStartTimeOfRoomHeating(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Timer value HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * Timer value HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Start time of room heating<br>EPC : 0xE8<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetStartTimeOfRoomHeating(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetStartTimeOfRoomHeating(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetStartTimeOfRoomHeating(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Duration time HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * Duration time HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Duration time of room hreating<br>EPC : 0xE9<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetDurationTimeOfRoomHreating(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetDurationTimeOfRoomHreating(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetDurationTimeOfRoomHreating(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Duration time HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * Duration time HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Duration time of room hreating<br>EPC : 0xE9<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetDurationTimeOfRoomHreating(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetDurationTimeOfRoomHreating(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetDurationTimeOfRoomHreating(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to set a special operation mode and get the status<br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set a special operation mode and get the status<br><br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-<br><br>Name : Special operation mode setting<br>EPC : 0xEA<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetSpecialOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetSpecialOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetSpecialOperationModeSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to set a special operation mode and get the status<br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set a special operation mode and get the status<br><br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-<br><br>Name : Special operation mode setting<br>EPC : 0xEA<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetSpecialOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetSpecialOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetSpecialOperationModeSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Indicate detection of human body<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Indicate detection of human body<br><br>Detected = 0x41 Non detecteed = 0x42<br><br>Name : Human detection status<br>EPC : 0xEB<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetHumanDetectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetHumanDetectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetHumanDetectionStatus(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Indicate detection of human body<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Indicate detection of human body<br><br>Detected = 0x41 Non detecteed = 0x42<br><br>Name : Human detection status<br>EPC : 0xEB<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetHumanDetectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetHumanDetectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetHumanDetectionStatus(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates detection of seating<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * This property indicates detection of seating<br><br>Detected = 0x41 Non detecteed = 0x42<br><br>Name : Seating detection status<br>EPC : 0xEC<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetSeatingDetectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetSeatingDetectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetSeatingDetectionStatus(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * This property indicates detection of seating<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * This property indicates detection of seating<br><br>Detected = 0x41 Non detecteed = 0x42<br><br>Name : Seating detection status<br>EPC : 0xEC<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetSeatingDetectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetSeatingDetectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetSeatingDetectionStatus(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 
 	}
 	
-	public interface Setter extends DeviceObject.Setter {
-		public Setter reqSetOperationStatus(byte[] edt);
-		public Setter reqSetInstallationLocation(byte[] edt);
-		public Setter reqSetCurrentLimitSetting(byte[] edt);
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
-		public Setter reqSetPositionInformation(byte[] edt);
-		public Setter reqSetCurrentTimeSetting(byte[] edt);
-		public Setter reqSetCurrentDateSetting(byte[] edt);
-		public Setter reqSetPowerLimitSetting(byte[] edt);
-		
-		/**
-		 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>0x31 to 0x3A<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetTemperatureLevelOfToiletSeat(byte[] edt);
-		/**
-		 * ON/OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
-		 */
-		public Setter reqSetHeaterSettingOfToiletSeat(byte[] edt);
-		/**
-		 * Continuous setting / one time setting / no setting.<br>Continuous setting=0x41, one time setting=0x42, no setting=0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetTemporalHaltSettingOfToiletSeat(byte[] edt);
-		/**
-		 * Temporal halt start time of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetTemporalHaltStartTimeOfToiletSeat(byte[] edt);
-		/**
-		 * Temporal stop time duration of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetTemporalHaltTimeDurationOfToiletSeat(byte[] edt);
-		/**
-		 * Low / midium / high temperature<br>0x31 / 0x32 / 0x33<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetTemperatureLevelSettingOfRoomHeating(byte[] edt);
-		/**
-		 * Room heating ON / room heating OFF / timer mode setting<br>0x41 / 0x42 / 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetRoomHeatingSetting(byte[] edt);
-		/**
-		 * Timer value HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetStartTimeOfRoomHeating(byte[] edt);
-		/**
-		 * Duration time HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetDurationTimeOfRoomHreating(byte[] edt);
-		/**
-		 * Used to set a special operation mode and get the status<br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetSpecialOperationModeSetting(byte[] edt);
-		/**
-		 * Indicate detection of human body<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetHumanDetectionStatus(byte[] edt);
-		/**
-		 * This property indicates detection of seating<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetSeatingDetectionStatus(byte[] edt);
-	}
-
-	public class SetterImpl extends DeviceObject.SetterImpl implements Setter {
-
-		public SetterImpl(byte esv) {
+	public class Setter extends DeviceObject.Setter {
+		public Setter(byte esv) {
 			super(esv);
+		}
+
+		@Override
+		public Setter reqSet(byte epc, byte[] edt) {
+			return (Setter)super.reqSet(epc, edt);
 		}
 		
 		@Override
@@ -797,613 +739,278 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
-		@Override
-		public Setter reqSetTemperatureLevelOfToiletSeat(byte[] edt) {
-			byte epc = EPC_TEMPERATURE_LEVEL_OF_TOILET_SEAT;
-			addProperty(epc, edt, _setTemperatureLevelOfToiletSeat(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetHeaterSettingOfToiletSeat(byte[] edt) {
-			byte epc = EPC_HEATER_SETTING_OF_TOILET_SEAT;
-			addProperty(epc, edt, _setHeaterSettingOfToiletSeat(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetTemporalHaltSettingOfToiletSeat(byte[] edt) {
-			byte epc = EPC_TEMPORAL_HALT_SETTING_OF_TOILET_SEAT;
-			addProperty(epc, edt, _setTemporalHaltSettingOfToiletSeat(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetTemporalHaltStartTimeOfToiletSeat(byte[] edt) {
-			byte epc = EPC_TEMPORAL_HALT_START_TIME_OF_TOILET_SEAT;
-			addProperty(epc, edt, _setTemporalHaltStartTimeOfToiletSeat(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetTemporalHaltTimeDurationOfToiletSeat(byte[] edt) {
-			byte epc = EPC_TEMPORAL_HALT_TIME_DURATION_OF_TOILET_SEAT;
-			addProperty(epc, edt, _setTemporalHaltTimeDurationOfToiletSeat(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetTemperatureLevelSettingOfRoomHeating(byte[] edt) {
-			byte epc = EPC_TEMPERATURE_LEVEL_SETTING_OF_ROOM_HEATING;
-			addProperty(epc, edt, _setTemperatureLevelSettingOfRoomHeating(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetRoomHeatingSetting(byte[] edt) {
-			byte epc = EPC_ROOM_HEATING_SETTING;
-			addProperty(epc, edt, _setRoomHeatingSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetStartTimeOfRoomHeating(byte[] edt) {
-			byte epc = EPC_START_TIME_OF_ROOM_HEATING;
-			addProperty(epc, edt, _setStartTimeOfRoomHeating(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetDurationTimeOfRoomHreating(byte[] edt) {
-			byte epc = EPC_DURATION_TIME_OF_ROOM_HREATING;
-			addProperty(epc, edt, _setDurationTimeOfRoomHreating(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetSpecialOperationModeSetting(byte[] edt) {
-			byte epc = EPC_SPECIAL_OPERATION_MODE_SETTING;
-			addProperty(epc, edt, _setSpecialOperationModeSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetHumanDetectionStatus(byte[] edt) {
-			byte epc = EPC_HUMAN_DETECTION_STATUS;
-			addProperty(epc, edt, _setHumanDetectionStatus(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetSeatingDetectionStatus(byte[] edt) {
-			byte epc = EPC_SEATING_DETECTION_STATUS;
-			addProperty(epc, edt, _setSeatingDetectionStatus(epc, edt));
-			return this;
-		}
-	}
-	
-	public class SetterProxy extends DeviceObject.SetterProxy implements Setter {
-
-		public SetterProxy(byte esv) {
-			super(esv);
-		}
-
-		@Override
-		public Setter reqSetOperationStatus(byte[] edt) {
-			return (Setter)super.reqSetOperationStatus(edt);
-		}
-		@Override
-		public Setter reqSetInstallationLocation(byte[] edt) {
-			return (Setter)super.reqSetInstallationLocation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimitSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
-		}
-		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentTimeSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentTimeSetting(edt);
-		}
-		@Override
-		public Setter reqSetCurrentDateSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentDateSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitSetting(edt);
-		}
-
-		@Override
+		/**
+		 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br><br>0x31 to 0x3A<br><br>Name : Temperature level of toilet seat<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetTemperatureLevelOfToiletSeat(byte[] edt) {
 			addProperty(EPC_TEMPERATURE_LEVEL_OF_TOILET_SEAT, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * ON/OFF<br><br>ON=0x41, OFF=0x42<br><br>Name : Heater setting of toilet seat<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 */
 		public Setter reqSetHeaterSettingOfToiletSeat(byte[] edt) {
 			addProperty(EPC_HEATER_SETTING_OF_TOILET_SEAT, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Continuous setting / one time setting / no setting.<br><br>Continuous setting=0x41, one time setting=0x42, no setting=0x43<br><br>Name : Temporal halt setting of toilet seat<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetTemporalHaltSettingOfToiletSeat(byte[] edt) {
 			addProperty(EPC_TEMPORAL_HALT_SETTING_OF_TOILET_SEAT, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Temporal halt start time of toilet seat timer value: HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Temporal halt start time of toilet seat<br>EPC : 0xE3<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetTemporalHaltStartTimeOfToiletSeat(byte[] edt) {
 			addProperty(EPC_TEMPORAL_HALT_START_TIME_OF_TOILET_SEAT, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-		@Override
+		/**
+		 * Temporal stop time duration of toilet seat timer value: HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Temporal halt time duration of toilet seat<br>EPC : 0xE4<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetTemporalHaltTimeDurationOfToiletSeat(byte[] edt) {
 			addProperty(EPC_TEMPORAL_HALT_TIME_DURATION_OF_TOILET_SEAT, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-		@Override
+		/**
+		 * Low / midium / high temperature<br><br>0x31 / 0x32 / 0x33<br><br>Name : Temperature level setting of room heating<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetTemperatureLevelSettingOfRoomHeating(byte[] edt) {
 			addProperty(EPC_TEMPERATURE_LEVEL_SETTING_OF_ROOM_HEATING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Room heating ON / room heating OFF / timer mode setting<br><br>0x41 / 0x42 / 0x43<br><br>Name : Room heating setting<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetRoomHeatingSetting(byte[] edt) {
 			addProperty(EPC_ROOM_HEATING_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Timer value HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Start time of room heating<br>EPC : 0xE8<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetStartTimeOfRoomHeating(byte[] edt) {
 			addProperty(EPC_START_TIME_OF_ROOM_HEATING, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-		@Override
+		/**
+		 * Duration time HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Duration time of room hreating<br>EPC : 0xE9<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetDurationTimeOfRoomHreating(byte[] edt) {
 			addProperty(EPC_DURATION_TIME_OF_ROOM_HREATING, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to set a special operation mode and get the status<br><br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-<br><br>Name : Special operation mode setting<br>EPC : 0xEA<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetSpecialOperationModeSetting(byte[] edt) {
 			addProperty(EPC_SPECIAL_OPERATION_MODE_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Indicate detection of human body<br><br>Detected = 0x41 Non detecteed = 0x42<br><br>Name : Human detection status<br>EPC : 0xEB<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetHumanDetectionStatus(byte[] edt) {
 			addProperty(EPC_HUMAN_DETECTION_STATUS, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates detection of seating<br><br>Detected = 0x41 Non detecteed = 0x42<br><br>Name : Seating detection status<br>EPC : 0xEC<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetSeatingDetectionStatus(byte[] edt) {
 			addProperty(EPC_SEATING_DETECTION_STATUS, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
 	}
 
-	public interface Getter extends DeviceObject.Getter {
-		public Getter reqGetOperationStatus();
-		public Getter reqGetInstallationLocation();
-		public Getter reqGetStandardVersionInformation();
-		public Getter reqGetIdentificationNumber();
-		public Getter reqGetMeasuredInstantaneousPowerConsumption();
-		public Getter reqGetMeasuredCumulativePowerConsumption();
-		public Getter reqGetManufacturersFaultCode();
-		public Getter reqGetCurrentLimitSetting();
-		public Getter reqGetFaultStatus();
-		public Getter reqGetFaultDescription();
-		public Getter reqGetManufacturerCode();
-		public Getter reqGetBusinessFacilityCode();
-		public Getter reqGetProductCode();
-		public Getter reqGetProductionNumber();
-		public Getter reqGetProductionDate();
-		public Getter reqGetPowerSavingOperationSetting();
-		public Getter reqGetPositionInformation();
-		public Getter reqGetCurrentTimeSetting();
-		public Getter reqGetCurrentDateSetting();
-		public Getter reqGetPowerLimitSetting();
-		public Getter reqGetCumulativeOperatingTime();
-		public Getter reqGetStatusChangeAnnouncementPropertyMap();
-		public Getter reqGetSetPropertyMap();
-		public Getter reqGetGetPropertyMap();
+	public class Getter extends DeviceObject.Getter {
+
+		@Override
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
+		}
+		@Override
+		public Getter reqGetInstallationLocation() {
+			return (Getter)super.reqGetInstallationLocation();
+		}
+		@Override
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
+		}
+		@Override
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
+		}
+		@Override
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
+		}
+		@Override
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
+		}
+		@Override
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
+		}
+		@Override
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
+		}
+		@Override
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
+		}
+		@Override
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
+		}
+		@Override
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
+		}
+		@Override
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
+		}
+		@Override
+		public Getter reqGetProductCode() {
+			return (Getter)super.reqGetProductCode();
+		}
+		@Override
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
+		}
+		@Override
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
+		}
+		@Override
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
+		}
+		@Override
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
+		}
+		@Override
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
+		}
+		@Override
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
+		}
+		@Override
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
+		}
+		@Override
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
+		}
+		@Override
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
+		}
+		@Override
+		public Getter reqGetSetPropertyMap() {
+			return (Getter)super.reqGetSetPropertyMap();
+		}
+		@Override
+		public Getter reqGetGetPropertyMap() {
+			return (Getter)super.reqGetGetPropertyMap();
+		}
 		
 		/**
-		 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>0x31 to 0x3A<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br><br>0x31 to 0x3A<br><br>Name : Temperature level of toilet seat<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
-		public Getter reqGetTemperatureLevelOfToiletSeat();
-		/**
-		 * ON/OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
-		 */
-		public Getter reqGetHeaterSettingOfToiletSeat();
-		/**
-		 * Continuous setting / one time setting / no setting.<br>Continuous setting=0x41, one time setting=0x42, no setting=0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetTemporalHaltSettingOfToiletSeat();
-		/**
-		 * Temporal halt start time of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetTemporalHaltStartTimeOfToiletSeat();
-		/**
-		 * Temporal stop time duration of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetTemporalHaltTimeDurationOfToiletSeat();
-		/**
-		 * Low / midium / high temperature<br>0x31 / 0x32 / 0x33<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetTemperatureLevelSettingOfRoomHeating();
-		/**
-		 * Room heating ON / room heating OFF / timer mode setting<br>0x41 / 0x42 / 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetRoomHeatingSetting();
-		/**
-		 * Room heating ON / room heating OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetRoomHeatingStatus();
-		/**
-		 * Timer value HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetStartTimeOfRoomHeating();
-		/**
-		 * Duration time HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetDurationTimeOfRoomHreating();
-		/**
-		 * Used to set a special operation mode and get the status<br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetSpecialOperationModeSetting();
-		/**
-		 * Indicate detection of human body<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetHumanDetectionStatus();
-		/**
-		 * This property indicates detection of seating<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetSeatingDetectionStatus();
-	}
-	
-	public class GetterImpl extends DeviceObject.GetterImpl implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
-		public Getter reqGetTemperatureLevelOfToiletSeat() {
-			byte epc = EPC_TEMPERATURE_LEVEL_OF_TOILET_SEAT;
-			byte[] edt = _getTemperatureLevelOfToiletSeat(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetHeaterSettingOfToiletSeat() {
-			byte epc = EPC_HEATER_SETTING_OF_TOILET_SEAT;
-			byte[] edt = _getHeaterSettingOfToiletSeat(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetTemporalHaltSettingOfToiletSeat() {
-			byte epc = EPC_TEMPORAL_HALT_SETTING_OF_TOILET_SEAT;
-			byte[] edt = _getTemporalHaltSettingOfToiletSeat(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetTemporalHaltStartTimeOfToiletSeat() {
-			byte epc = EPC_TEMPORAL_HALT_START_TIME_OF_TOILET_SEAT;
-			byte[] edt = _getTemporalHaltStartTimeOfToiletSeat(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetTemporalHaltTimeDurationOfToiletSeat() {
-			byte epc = EPC_TEMPORAL_HALT_TIME_DURATION_OF_TOILET_SEAT;
-			byte[] edt = _getTemporalHaltTimeDurationOfToiletSeat(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetTemperatureLevelSettingOfRoomHeating() {
-			byte epc = EPC_TEMPERATURE_LEVEL_SETTING_OF_ROOM_HEATING;
-			byte[] edt = _getTemperatureLevelSettingOfRoomHeating(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetRoomHeatingSetting() {
-			byte epc = EPC_ROOM_HEATING_SETTING;
-			byte[] edt = _getRoomHeatingSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetRoomHeatingStatus() {
-			byte epc = EPC_ROOM_HEATING_STATUS;
-			byte[] edt = _getRoomHeatingStatus(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetStartTimeOfRoomHeating() {
-			byte epc = EPC_START_TIME_OF_ROOM_HEATING;
-			byte[] edt = _getStartTimeOfRoomHeating(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetDurationTimeOfRoomHreating() {
-			byte epc = EPC_DURATION_TIME_OF_ROOM_HREATING;
-			byte[] edt = _getDurationTimeOfRoomHreating(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetSpecialOperationModeSetting() {
-			byte epc = EPC_SPECIAL_OPERATION_MODE_SETTING;
-			byte[] edt = _getSpecialOperationModeSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetHumanDetectionStatus() {
-			byte epc = EPC_HUMAN_DETECTION_STATUS;
-			byte[] edt = _getHumanDetectionStatus(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetSeatingDetectionStatus() {
-			byte epc = EPC_SEATING_DETECTION_STATUS;
-			byte[] edt = _getSeatingDetectionStatus(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-	}
-
-	public class GetterProxy extends DeviceObject.GetterProxy implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
 		public Getter reqGetTemperatureLevelOfToiletSeat() {
 			addProperty(EPC_TEMPERATURE_LEVEL_OF_TOILET_SEAT);
 			return this;
 		}
-		@Override
+		/**
+		 * ON/OFF<br><br>ON=0x41, OFF=0x42<br><br>Name : Heater setting of toilet seat<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 */
 		public Getter reqGetHeaterSettingOfToiletSeat() {
 			addProperty(EPC_HEATER_SETTING_OF_TOILET_SEAT);
 			return this;
 		}
-		@Override
+		/**
+		 * Continuous setting / one time setting / no setting.<br><br>Continuous setting=0x41, one time setting=0x42, no setting=0x43<br><br>Name : Temporal halt setting of toilet seat<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetTemporalHaltSettingOfToiletSeat() {
 			addProperty(EPC_TEMPORAL_HALT_SETTING_OF_TOILET_SEAT);
 			return this;
 		}
-		@Override
+		/**
+		 * Temporal halt start time of toilet seat timer value: HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Temporal halt start time of toilet seat<br>EPC : 0xE3<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetTemporalHaltStartTimeOfToiletSeat() {
 			addProperty(EPC_TEMPORAL_HALT_START_TIME_OF_TOILET_SEAT);
 			return this;
 		}
-		@Override
+		/**
+		 * Temporal stop time duration of toilet seat timer value: HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Temporal halt time duration of toilet seat<br>EPC : 0xE4<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetTemporalHaltTimeDurationOfToiletSeat() {
 			addProperty(EPC_TEMPORAL_HALT_TIME_DURATION_OF_TOILET_SEAT);
 			return this;
 		}
-		@Override
+		/**
+		 * Low / midium / high temperature<br><br>0x31 / 0x32 / 0x33<br><br>Name : Temperature level setting of room heating<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetTemperatureLevelSettingOfRoomHeating() {
 			addProperty(EPC_TEMPERATURE_LEVEL_SETTING_OF_ROOM_HEATING);
 			return this;
 		}
-		@Override
+		/**
+		 * Room heating ON / room heating OFF / timer mode setting<br><br>0x41 / 0x42 / 0x43<br><br>Name : Room heating setting<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetRoomHeatingSetting() {
 			addProperty(EPC_ROOM_HEATING_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Room heating ON / room heating OFF<br><br>ON=0x41, OFF=0x42<br><br>Name : Room heating status<br>EPC : 0xE7<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetRoomHeatingStatus() {
 			addProperty(EPC_ROOM_HEATING_STATUS);
 			return this;
 		}
-		@Override
+		/**
+		 * Timer value HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Start time of room heating<br>EPC : 0xE8<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetStartTimeOfRoomHeating() {
 			addProperty(EPC_START_TIME_OF_ROOM_HEATING);
 			return this;
 		}
-		@Override
+		/**
+		 * Duration time HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Duration time of room hreating<br>EPC : 0xE9<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetDurationTimeOfRoomHreating() {
 			addProperty(EPC_DURATION_TIME_OF_ROOM_HREATING);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to set a special operation mode and get the status<br><br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-<br><br>Name : Special operation mode setting<br>EPC : 0xEA<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetSpecialOperationModeSetting() {
 			addProperty(EPC_SPECIAL_OPERATION_MODE_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Indicate detection of human body<br><br>Detected = 0x41 Non detecteed = 0x42<br><br>Name : Human detection status<br>EPC : 0xEB<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetHumanDetectionStatus() {
 			addProperty(EPC_HUMAN_DETECTION_STATUS);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates detection of seating<br><br>Detected = 0x41 Non detecteed = 0x42<br><br>Name : Seating detection status<br>EPC : 0xEC<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetSeatingDetectionStatus() {
 			addProperty(EPC_SEATING_DETECTION_STATUS);
 			return this;
@@ -1411,6 +1018,8 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	}
 	
 	public interface Informer extends DeviceObject.Informer {
+		public Informer reqInform(byte epc);
+		
 		public Informer reqInformOperationStatus();
 		public Informer reqInformInstallationLocation();
 		public Informer reqInformStandardVersionInformation();
@@ -1437,61 +1046,65 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		public Informer reqInformGetPropertyMap();
 		
 		/**
-		 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>0x31 to 0x3A<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br><br>0x31 to 0x3A<br><br>Name : Temperature level of toilet seat<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformTemperatureLevelOfToiletSeat();
 		/**
-		 * ON/OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
+		 * ON/OFF<br><br>ON=0x41, OFF=0x42<br><br>Name : Heater setting of toilet seat<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
 		 */
 		public Informer reqInformHeaterSettingOfToiletSeat();
 		/**
-		 * Continuous setting / one time setting / no setting.<br>Continuous setting=0x41, one time setting=0x42, no setting=0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Continuous setting / one time setting / no setting.<br><br>Continuous setting=0x41, one time setting=0x42, no setting=0x43<br><br>Name : Temporal halt setting of toilet seat<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformTemporalHaltSettingOfToiletSeat();
 		/**
-		 * Temporal halt start time of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * Temporal halt start time of toilet seat timer value: HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Temporal halt start time of toilet seat<br>EPC : 0xE3<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformTemporalHaltStartTimeOfToiletSeat();
 		/**
-		 * Temporal stop time duration of toilet seat timer value: HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * Temporal stop time duration of toilet seat timer value: HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Temporal halt time duration of toilet seat<br>EPC : 0xE4<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformTemporalHaltTimeDurationOfToiletSeat();
 		/**
-		 * Low / midium / high temperature<br>0x31 / 0x32 / 0x33<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Low / midium / high temperature<br><br>0x31 / 0x32 / 0x33<br><br>Name : Temperature level setting of room heating<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformTemperatureLevelSettingOfRoomHeating();
 		/**
-		 * Room heating ON / room heating OFF / timer mode setting<br>0x41 / 0x42 / 0x43<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Room heating ON / room heating OFF / timer mode setting<br><br>0x41 / 0x42 / 0x43<br><br>Name : Room heating setting<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformRoomHeatingSetting();
 		/**
-		 * Room heating ON / room heating OFF<br>ON=0x41, OFF=0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * Room heating ON / room heating OFF<br><br>ON=0x41, OFF=0x42<br><br>Name : Room heating status<br>EPC : 0xE7<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformRoomHeatingStatus();
 		/**
-		 * Timer value HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * Timer value HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Start time of room heating<br>EPC : 0xE8<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformStartTimeOfRoomHeating();
 		/**
-		 * Duration time HH:MM<br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Data type : unsigned char *2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * Duration time HH:MM<br><br>0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br><br>Name : Duration time of room hreating<br>EPC : 0xE9<br>Data Type : unsigned char *2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformDurationTimeOfRoomHreating();
 		/**
-		 * Used to set a special operation mode and get the status<br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to set a special operation mode and get the status<br><br>No setting: 0x40, Over-cool prevention: 0x41 for future reserved: 0x42-<br><br>Name : Special operation mode setting<br>EPC : 0xEA<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformSpecialOperationModeSetting();
 		/**
-		 * Indicate detection of human body<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Indicate detection of human body<br><br>Detected = 0x41 Non detecteed = 0x42<br><br>Name : Human detection status<br>EPC : 0xEB<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformHumanDetectionStatus();
 		/**
-		 * This property indicates detection of seating<br>Detected = 0x41 Non detecteed = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * This property indicates detection of seating<br><br>Detected = 0x41 Non detecteed = 0x42<br><br>Name : Seating detection status<br>EPC : 0xEC<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformSeatingDetectionStatus();
 	}
 
 	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();
@@ -1683,7 +1296,11 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	}
 	
 	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();

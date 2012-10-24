@@ -78,7 +78,7 @@ public final class EchoUtils {
 		return null;
 	}
 	
-	public static String byteArrayToString(byte[] data) {
+	public static String toHexString(byte[] data) {
 		StringBuilder sb = new StringBuilder();
 		for(byte b : data) {
 			sb.append(String.format("%02x ", b));
@@ -87,11 +87,11 @@ public final class EchoUtils {
 		return new String(sb);
 	}
 
-	public static String byteToHexString(byte b) {
+	public static String toHexString(byte b) {
 		return String.format("%02x", b);
 	}
 	
-	public static String shortToHexString(short s) {
+	public static String toHexString(short s) {
 		return String.format("%04x", s);
 	}
 	

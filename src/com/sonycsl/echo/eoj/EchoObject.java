@@ -45,6 +45,7 @@ public abstract class EchoObject {
 	public static final byte ESV_INF_SNA = 0x53;
 	
 	public static final byte ESV_SET_NO_RES = 0x70;
+	public static final byte ESV_INF_NO_REQ = 0x64;
 	
 	private short mTid = 0;
 	
@@ -58,8 +59,7 @@ public abstract class EchoObject {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("class:"+getClass().getName());
-		sb.append(",groupCode:");
+		sb.append("groupCode:");
 		sb.append(String.format("%02x", getClassGroupCode()));
 		sb.append(",classCode:");
 		sb.append(String.format("%02x", getClassCode()));
@@ -71,7 +71,7 @@ public abstract class EchoObject {
 		}
 		return new String(sb);
 	}
-
+	
 	public abstract byte getClassGroupCode();
 	
 	public abstract byte getClassCode();
@@ -80,6 +80,10 @@ public abstract class EchoObject {
 	
 	public final short getObjectClassCode() {
 		return EchoUtils.getObjectClassCode(getClassGroupCode(), getClassCode());
+	}
+	
+	public boolean isProxy() {
+		return false;
 	}
 	
 	public final void setTid(short tid) {
@@ -123,33 +127,40 @@ public abstract class EchoObject {
 	public final void setReceiver(Receiver receiver) {
 		mReceiver = receiver;
 	}
-	
-	public void notify(byte epc, byte[] edt) {
-		if(Echo.isTracing()) {
-			String method = Thread.currentThread().getStackTrace()[2].getMethodName();
-			if(edt == null) {
-				Echo.log("method:"+method+","+toString()
-						+",epc:"+EchoUtils.byteToHexString(epc)+",pdc:0,edt:");
-			} else {
-				Echo.log("method:"+method+",address:"+getNode().getAddress().getHostAddress()+","+toString()
-						+",epc:"+EchoUtils.byteToHexString(epc)+",pdc:"+EchoUtils.byteToHexString((byte)edt.length)
-						+",edt:"+EchoUtils.byteArrayToString(edt));
-			}
-		}
+
+	public void onInvokedSetMethod(byte epc, byte[] edt, boolean success) {
+		if(Echo.getMethodInvokedListener() == null) return;
+		byte pdc = (edt == null) ? 0 : (byte)edt.length;
+		Echo.getMethodInvokedListener().onInvokedSetMethod(this, epc, pdc, edt, success);
+	}
+	public void onInvokedGetMethod(byte epc, byte[] edt) {
+		if(Echo.getMethodInvokedListener() == null) return;
+		byte pdc = (edt == null) ? 0 : (byte)edt.length;
+		Echo.getMethodInvokedListener().onInvokedGetMethod(this, epc, pdc, edt);
 	}
 	
-	public void notify(byte epc, byte[] edt, boolean success) {
-		if(Echo.isTracing()) {
-			String method = Thread.currentThread().getStackTrace()[2].getMethodName();
-			if(edt == null) {
-				Echo.log("method:"+method+","+toString()
-						+",epc:"+EchoUtils.byteToHexString(epc)+",pdc:0,edt:,success:"+success);
-			} else {
-				Echo.log("method:"+method+","+toString()
-						+",epc:"+EchoUtils.byteToHexString(epc)+",pdc:"+EchoUtils.byteToHexString((byte)edt.length)
-						+",edt:"+EchoUtils.byteArrayToString(edt)+",success:"+success);
-			}
-		}
+	public void onInvokedReqSetMethod(byte epc, byte[] edt) {
+		if(Echo.getMethodInvokedListener() == null) return;
+		byte pdc = (edt == null) ? 0 : (byte)edt.length;
+		Echo.getMethodInvokedListener().onInvokedReqSetMethod(this, epc, pdc, edt);
+	}
+	public void onInvokedReqGetMethod(byte epc) {
+		if(Echo.getMethodInvokedListener() == null) return;
+		Echo.getMethodInvokedListener().onInvokedReqGetMethod(this, epc);
+	}
+	public void onInvokedReqInformMethod(byte epc) {
+		if(Echo.getMethodInvokedListener() == null) return;
+		Echo.getMethodInvokedListener().onInvokedReqInformMethod(this, epc);
+	}
+	public void onInvokedReqInformMethod(byte epc, byte[] edt) {
+		if(Echo.getMethodInvokedListener() == null) return;
+		byte pdc = (edt == null) ? 0 : (byte)edt.length;
+		Echo.getMethodInvokedListener().onInvokedReqInformMethod(this, epc, pdc, edt);
+	}
+	public void onInvokedInformMethod(byte epc, byte[] edt) {
+		if(Echo.getMethodInvokedListener() == null) return;
+		byte pdc = (edt == null) ? 0 : (byte)edt.length;
+		Echo.getMethodInvokedListener().onInvokedInformMethod(this, epc, pdc, edt);
 	}
 	
 	public final void onReceive(EchoFrame frame) {
@@ -260,15 +271,15 @@ public abstract class EchoObject {
 	}
 
 	public Setter set() {
-		return new SetterImpl(ESV_SET_NO_RES);
+		return new Setter(ESV_SETI);
 	}
 	
 	public Setter setC() {
-		return new SetterImpl(ESV_SET_RES);
+		return new Setter(ESV_SETC);
 	}
 	
 	public Getter get() {
-		return new GetterImpl();
+		return new Getter();
 	}
 	
 	public Informer inform() {
@@ -276,7 +287,7 @@ public abstract class EchoObject {
 	}
 	
 	protected InformerC informC() {
-		return new InformerCImpl();
+		return new InformerC();
 	}
 	
 	public static class Receiver {
@@ -360,39 +371,20 @@ public abstract class EchoObject {
 		protected void onReceiveInfCRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 		}
 		
-		protected void notify(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			if(Echo.isTracing()) {
-				String method = Thread.currentThread().getStackTrace()[2].getMethodName();
-				if(edt == null) {
-					Echo.log("method:"+method+","+eoj.toString()
-							+",tid:"+EchoUtils.shortToHexString(tid)+",esv:"+EchoUtils.byteToHexString(esv)
-							+",epc:"+EchoUtils.byteToHexString(epc)+",pdc:0,edt:");
-				} else {
-					Echo.log("method:"+method+","+eoj.toString()
-							+",tid:"+EchoUtils.shortToHexString(tid)+",esv:"+EchoUtils.byteToHexString(esv)
-							+",epc:"+EchoUtils.byteToHexString(epc)+",pdc:"+EchoUtils.byteToHexString(pdc)
-							+",edt:"+EchoUtils.byteArrayToString(edt));
-				}
-			}
+
+		public void onInvokedOnSetMethod(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
+			if(Echo.getMethodInvokedListener() == null) return;
+			Echo.getMethodInvokedListener().onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
+		}
+		public void onInvokedOnGetMethod(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			if(Echo.getMethodInvokedListener() == null) return;
+			Echo.getMethodInvokedListener().onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
+			
+		}
+		public void onInvokedOnInformMethod(EchoObject eoj, short tid, byte esv, byte epc) {
+			Echo.getMethodInvokedListener().onInvokedOnInformMethod(eoj, tid, esv, epc);
 		}
 		
-		protected void notify(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			if(Echo.isTracing()) {
-				String method = Thread.currentThread().getStackTrace()[2].getMethodName();
-				Echo.log("method:"+method+","+eoj.toString()
-						+",tid:"+tid+",esv:"+esv+",epc:"+epc+",pdc:"+pdc+",edt:"+EchoUtils.byteArrayToString(edt)+",success:"+success);
-				if(edt == null) {
-					Echo.log("method:"+method+","+eoj.toString()
-							+",tid:"+EchoUtils.shortToHexString(tid)+",esv:"+EchoUtils.byteToHexString(esv)
-							+",epc:"+EchoUtils.byteToHexString(epc)+",pdc:0,edt:,success:"+success);
-				} else {
-					Echo.log("method:"+method+","+eoj.toString()
-							+",tid:"+EchoUtils.shortToHexString(tid)+",esv:"+EchoUtils.byteToHexString(esv)
-							+",epc:"+EchoUtils.byteToHexString(epc)+",pdc:"+EchoUtils.byteToHexString(pdc)
-							+",edt:"+EchoUtils.byteArrayToString(edt)+",success:"+success);
-				}
-			}
-		}
 	}
 	
 	protected class Sender {
@@ -405,13 +397,15 @@ public abstract class EchoObject {
 		protected void send() throws IOException {
 			byte[] data = mFrame.getFrameByteArray();
 			EchoSocket.send(mNode.getAddress(), data);
-			notify("send");
+			if(Echo.getMethodInvokedListener() == null) return;
+			Echo.getMethodInvokedListener().onInvokedSendMethod(getFrame());
 		}
 		
 		protected void sendGroup() throws IOException {
 			byte[] data = mFrame.getFrameByteArray();
 			EchoSocket.sendGroup(data);
-			notify("sendGroup");
+			if(Echo.getMethodInvokedListener() == null) return;
+			Echo.getMethodInvokedListener().onInvokedSendGroupMethod(getFrame());
 		}
 
 		
@@ -429,141 +423,55 @@ public abstract class EchoObject {
 		
 		protected void addProperty(byte epc) {
 			mFrame.addProperty(epc);
-			notify(epc);
 		}
 		
 		protected void addProperty(byte epc, byte[] edt) {
 			mFrame.addProperty(epc, edt);
-			notify(epc, edt);
 		}
 
 		protected void addProperty(byte epc, byte[] edt, boolean success) {
 			mFrame.addProperty(epc, edt, success);
-			notify(epc, edt, success);
 		}
 
-		protected void notify(byte epc) {
-			if(Echo.isTracing()) {
-				String method = Thread.currentThread().getStackTrace()[3].getMethodName();
-				Echo.log("method:"+method+","+self.toString()+",epc:"+EchoUtils.byteToHexString(epc));
-			}
-		}
 		
-		protected void notify(byte epc, byte[] edt) {
-			if(Echo.isTracing()) {
-				String method = Thread.currentThread().getStackTrace()[3].getMethodName();
-				if(edt == null) {
-					Echo.log("method:"+method+","+self.toString()+",epc:"+EchoUtils.byteToHexString(epc)
-							+",pdc:0,edt:");
-				} else {
-					Echo.log("method:"+method+","+self.toString()+",epc:"+EchoUtils.byteToHexString(epc)
-							+",pdc:"+EchoUtils.byteToHexString((byte)edt.length)
-							+",edt:"+EchoUtils.byteArrayToString(edt));
-				}
-			}
-		}
-		
-		protected void notify(byte epc, byte[] edt, boolean success) {
-			if(Echo.isTracing()) {
-				String method = Thread.currentThread().getStackTrace()[3].getMethodName();
-				if(edt == null) {
-					Echo.log("method:"+method+","+self.toString()+",epc:"+EchoUtils.byteToHexString(epc)
-							+",pdc:0,edt:,success:"+success);
-				} else {
-					Echo.log("method:"+method+","+self.toString()+",epc:"+EchoUtils.byteToHexString(epc)
-							+",pdc:"+EchoUtils.byteToHexString((byte)edt.length)
-							+",edt:"+EchoUtils.byteArrayToString(edt)+",success:"+success);
-				}
-			}
-		}
-		
-		protected void notify(String method) {
-			if(Echo.isTracing()) {
-				Echo.log("method:"+method+","+self.toString()
-						+",tid:"+EchoUtils.shortToHexString(mTid)
-						+",esv:"+EchoUtils.byteToHexString(mFrame.getEsv()));
-			}
-		}
 	}
 	
-	public interface Setter {
-		public void send() throws IOException;
-		public void sendGroup() throws IOException;
-	}
-	
-	public class SetterImpl extends Sender implements Setter {
+	public class Setter extends Sender {
 
-		public SetterImpl(byte esv) {
+		public Setter(byte esv) {
 			super(getSeoj(), self, esv);
 		}
-
+		
 		@Override
-		public void send() throws IOException {
-			if(getEsv() == ESV_SETI_SNA || getEsv() == ESV_SET_RES || getEsv() == ESV_SETC_SNA) {
-				onReceive(getFrame());
-			}
-			notify("send");
-		}
-
-		@Override
-		public void sendGroup() throws IOException {
-			if(getEsv() == ESV_SETI_SNA || getEsv() == ESV_SET_RES || getEsv() == ESV_SETC_SNA) {
-				onReceive(getFrame());
-			}
-			notify("sendGroup");
-		}
-	}
-	
-	public class SetterProxy extends Sender implements Setter {
-
-		public SetterProxy(byte esv) {
-			super(getSeoj(), self, esv);
-		}
-
 		public void send() throws IOException {
 			super.send();
 		}
-		
+
 		@Override
 		public void sendGroup() throws IOException {
 			super.sendGroup();
 		}
 
-		
-	}
-
-	public interface Getter {
-		public void send() throws IOException;
-		public void sendGroup() throws IOException;
-	}
-	
-	
-	public class GetterImpl extends Sender implements Getter {
-
-		public GetterImpl() {
-			super(getSeoj(), self, ESV_GET_RES);
+		public Setter reqSet(byte epc, byte[] edt) {
+			addProperty(epc, edt);
+			onInvokedReqSetMethod(epc, edt);
+			return this;
 		}
 
 		@Override
-		public void send() throws IOException {
-			onReceive(getFrame());
-			notify("send");
-		}
-
-		@Override
-		public void sendGroup() throws IOException {
-			onReceive(getFrame());
-			notify("sendGroup");
+		protected void addProperty(byte epc, byte[] edt, boolean success) {
+			super.addProperty(epc, edt, success);
+			if(success)
+				onInvokedReqSetMethod(epc, edt);
 		}
 
 	}
 	
-	public class GetterProxy extends Sender implements Getter {
-
-		public GetterProxy() {
+	public class Getter extends Sender {
+		public Getter() {
 			super(getSeoj(), self, ESV_GET);
 		}
-
+		
 		@Override
 		public void send() throws IOException {
 			super.send();
@@ -573,11 +481,27 @@ public abstract class EchoObject {
 		public void sendGroup() throws IOException {
 			super.sendGroup();
 		}
+
+		public Getter reqGet(byte epc) {
+			addProperty(epc);
+			onInvokedReqGetMethod(epc);
+			return this;
+		}
+
+		@Override
+		protected void addProperty(byte epc) {
+			super.addProperty(epc);
+			onInvokedReqGetMethod(epc);
+		}
 	}
+	
+	
 	
 	public interface Informer {
 		public void send() throws IOException;
 		public void sendGroup() throws IOException;
+
+		public Informer reqInform(byte epc);
 	}
 	
 	public class InformerImpl extends Sender implements Informer {
@@ -599,8 +523,21 @@ public abstract class EchoObject {
 		protected void addProperty(byte epc, byte[] edt, boolean success) {
 			if(success) {
 				mFrame.addProperty(epc, edt);
-				notify(epc, edt);
+				onInvokedReqInformMethod(epc, edt);
 			}
+		}
+
+		@Override
+		public Informer reqInform(byte epc) {
+			getFrame().setEsv(ESV_INFC);
+			onReceiveInfReq(getFrame(), epc);
+			getFrame().setEsv(ESV_INF);
+			EchoFrame.Property[] props = getFrame().getProperties();
+			if(props.length == 0) return this;
+			EchoFrame.Property prop = props[props.length - 1];
+			if(prop.epc == epc)
+				onInvokedReqInformMethod(epc, prop.edt);
+			return this;
 		}
 	}
 	
@@ -619,20 +556,34 @@ public abstract class EchoObject {
 		public void sendGroup() throws IOException {
 			super.sendGroup();
 		}
+
+		@Override
+		public Informer reqInform(byte epc) {
+			addProperty(epc);
+			return this;
+		}
+
+		@Override
+		protected void addProperty(byte epc) {
+			super.addProperty(epc);
+			onInvokedReqInformMethod(epc);
+		}
 	}
 
-	public interface InformerC {
-		public void send() throws IOException;
-	}
-	
-	public class InformerCImpl extends Sender implements InformerC {
-		public InformerCImpl() {
+	public class InformerC extends Sender {
+		public InformerC() {
 			super(self, getDeoj(), ESV_INFC);
 		}
 
 		@Override
 		public void send() throws IOException {
 			super.send();
+		}
+
+		@Override
+		protected void addProperty(byte epc, byte[] edt) {
+			super.addProperty(epc, edt);
+			onInvokedInformMethod(epc, edt);
 		}
 
 	}

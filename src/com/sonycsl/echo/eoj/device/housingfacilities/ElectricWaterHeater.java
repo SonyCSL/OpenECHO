@@ -20,8 +20,6 @@ import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 
 public abstract class ElectricWaterHeater extends DeviceObject {
-	@SuppressWarnings("unused")
-	private static final String TAG = ElectricWaterHeater.class.getSimpleName();
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x6B;
@@ -60,336 +58,336 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 	}
 
 	/**
-	 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting.<br>Automatic water heating function used: 0x41 Non-automatic water heating function stopped: 0x43 Non-automatic water heating function used: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting.<br><br>Automatic water heating function used: 0x41 Non-automatic water heating function stopped: 0x43 Non-automatic water heating function used: 0x42<br><br>Name : �gAutomatic water heating�h setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setGautomaticWaterHeatingHSetting(byte[] edt) {return false;}
 	private final boolean _setGautomaticWaterHeatingHSetting(byte epc, byte[] edt) {
 		boolean success = setGautomaticWaterHeatingHSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting.<br>Automatic water heating function used: 0x41 Non-automatic water heating function stopped: 0x43 Non-automatic water heating function used: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting.<br><br>Automatic water heating function used: 0x41 Non-automatic water heating function stopped: 0x43 Non-automatic water heating function used: 0x42<br><br>Name : �gAutomatic water heating�h setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getGautomaticWaterHeatingHSetting() {return null;}
 	private final byte[] _getGautomaticWaterHeatingHSetting(byte epc) {
 		byte[] edt = getGautomaticWaterHeatingHSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting.<br>Automatic water temperature control function used: 0x41 Automatic water temperature control function not used: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting.<br><br>Automatic water temperature control function used: 0x41 Automatic water temperature control function not used: 0x42<br><br>Name : �gAutomatic water temperature control�h setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setGautomaticWaterTemperatureControlHSetting(byte[] edt) {return false;}
 	private final boolean _setGautomaticWaterTemperatureControlHSetting(byte epc, byte[] edt) {
 		boolean success = setGautomaticWaterTemperatureControlHSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting.<br>Automatic water temperature control function used: 0x41 Automatic water temperature control function not used: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting.<br><br>Automatic water temperature control function used: 0x41 Automatic water temperature control function not used: 0x42<br><br>Name : �gAutomatic water temperature control�h setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getGautomaticWaterTemperatureControlHSetting() {return null;}
 	private final byte[] _getGautomaticWaterTemperatureControlHSetting(byte epc) {
 		byte[] edt = getGautomaticWaterTemperatureControlHSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the current status of the water heater in terms of whether it is heating water or not.<br>Heating = 0x41 Not heating = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+	 * This property indicates the current status of the water heater in terms of whether it is heating water or not.<br><br>Heating = 0x41 Not heating = 0x42<br><br>Name : Water heater status<br>EPC : 0xB2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getWaterHeaterStatus() {return null;}
 	private final byte[] _getWaterHeaterStatus(byte epc) {
 		byte[] edt = getWaterHeaterStatus();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify (in ��C) the temperature of heated water to achieve, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
+	 * Used to specify (in ��C) the temperature of heated water to achieve, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100��C)<br><br>Name : Water heating temperature setting<br>EPC : 0xB3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
 	 */
 	protected abstract boolean setWaterHeatingTemperatureSetting(byte[] edt);
 	private final boolean _setWaterHeatingTemperatureSetting(byte epc, byte[] edt) {
 		boolean success = setWaterHeatingTemperatureSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify (in ��C) the temperature of heated water to achieve, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
+	 * Used to specify (in ��C) the temperature of heated water to achieve, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100��C)<br><br>Name : Water heating temperature setting<br>EPC : 0xB3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
 	 */
 	protected abstract byte[] getWaterHeatingTemperatureSetting();
 	private final byte[] _getWaterHeatingTemperatureSetting(byte epc) {
 		byte[] edt = getWaterHeatingTemperatureSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting.<br>Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting.<br><br>Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br><br>Name : �gDaytime reheating permission�h setting<br>EPC : 0xC0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setGdaytimeReheatingPermissionHSetting(byte[] edt) {return false;}
 	private final boolean _setGdaytimeReheatingPermissionHSetting(byte epc, byte[] edt) {
 		boolean success = setGdaytimeReheatingPermissionHSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting.<br>Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting.<br><br>Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br><br>Name : �gDaytime reheating permission�h setting<br>EPC : 0xC0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getGdaytimeReheatingPermissionHSetting() {return null;}
 	private final byte[] _getGdaytimeReheatingPermissionHSetting(byte epc) {
 		byte[] edt = getGdaytimeReheatingPermissionHSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the current temperature of the water in the water heater.<br>0x00 to 0x64 (0 to 100��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+	 * This property indicates the current temperature of the water in the water heater.<br><br>0x00 to 0x64 (0 to 100��C)<br><br>Name : Measured temperature of water in water heater<br>EPC : 0xC1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getMeasuredTemperatureOfWaterInWaterHeater() {return null;}
 	private final byte[] _getMeasuredTemperatureOfWaterInWaterHeater(byte epc) {
 		byte[] edt = getMeasuredTemperatureOfWaterInWaterHeater();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify the temperature of water supplied from the water heater in ��C, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the temperature of water supplied from the water heater in ��C, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100��C)<br><br>Name : �gTemperature of supplied water�h setting<br>EPC : 0xD1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setGtemperatureOfSuppliedWaterHSetting(byte[] edt) {return false;}
 	private final boolean _setGtemperatureOfSuppliedWaterHSetting(byte epc, byte[] edt) {
 		boolean success = setGtemperatureOfSuppliedWaterHSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify the temperature of water supplied from the water heater in ��C, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the temperature of water supplied from the water heater in ��C, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100��C)<br><br>Name : �gTemperature of supplied water�h setting<br>EPC : 0xD1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getGtemperatureOfSuppliedWaterHSetting() {return null;}
 	private final byte[] _getGtemperatureOfSuppliedWaterHSetting(byte epc) {
 		byte[] edt = getGtemperatureOfSuppliedWaterHSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify (in ��C) the temperature up to which the water heater will heat bath water, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify (in ��C) the temperature up to which the water heater will heat bath water, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100��C)<br><br>Name : Bath water temperature setting<br>EPC : 0xD3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setBathWaterTemperatureSetting(byte[] edt) {return false;}
 	private final boolean _setBathWaterTemperatureSetting(byte epc, byte[] edt) {
 		boolean success = setBathWaterTemperatureSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify (in ��C) the temperature up to which the water heater will heat bath water, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify (in ��C) the temperature up to which the water heater will heat bath water, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100��C)<br><br>Name : Bath water temperature setting<br>EPC : 0xD3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getBathWaterTemperatureSetting() {return null;}
 	private final byte[] _getBathWaterTemperatureSetting(byte epc) {
 		byte[] edt = getBathWaterTemperatureSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : Bath water volume setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setBathWaterVolumeSetting(byte[] edt) {return false;}
 	private final boolean _setBathWaterVolumeSetting(byte epc, byte[] edt) {
 		boolean success = setBathWaterVolumeSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : Bath water volume setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getBathWaterVolumeSetting() {return null;}
 	private final byte[] _getBathWaterVolumeSetting(byte epc) {
 		byte[] edt = getBathWaterVolumeSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the measured amount of water left in the tank in liters.<br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+	 * This property indicates the measured amount of water left in the tank in liters.<br><br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Name : Measured amount of water remaining in tank<br>EPC : 0xE1<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getMeasuredAmountOfWaterRemainingInTank() {return null;}
 	private final byte[] _getMeasuredAmountOfWaterRemainingInTank(byte epc) {
 		byte[] edt = getMeasuredAmountOfWaterRemainingInTank();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the tank capacity in liters.<br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+	 * This property indicates the tank capacity in liters.<br><br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Name : Tank capacity<br>EPC : 0xE2<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getTankCapacity() {return null;}
 	private final byte[] _getTankCapacity(byte epc) {
 		byte[] edt = getTankCapacity();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify whether or not to use the �gautomatic bath water heating�h mode, and to acquire the current setting.<br>�gAutomatic bath water heating�h mode ON = 0x41 �gAutomatic bath water heating�h mode OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify whether or not to use the �gautomatic bath water heating�h mode, and to acquire the current setting.<br><br>�gAutomatic bath water heating�h mode ON = 0x41 �gAutomatic bath water heating�h mode OFF = 0x42<br><br>Name : �gAutomatic bath water heating�h mode setting<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setGautomaticBathWaterHeatingHModeSetting(byte[] edt) {return false;}
 	private final boolean _setGautomaticBathWaterHeatingHModeSetting(byte epc, byte[] edt) {
 		boolean success = setGautomaticBathWaterHeatingHModeSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify whether or not to use the �gautomatic bath water heating�h mode, and to acquire the current setting.<br>�gAutomatic bath water heating�h mode ON = 0x41 �gAutomatic bath water heating�h mode OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify whether or not to use the �gautomatic bath water heating�h mode, and to acquire the current setting.<br><br>�gAutomatic bath water heating�h mode ON = 0x41 �gAutomatic bath water heating�h mode OFF = 0x42<br><br>Name : �gAutomatic bath water heating�h mode setting<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getGautomaticBathWaterHeatingHModeSetting() {return null;}
 	private final byte[] _getGautomaticBathWaterHeatingHModeSetting(byte epc) {
 		byte[] edt = getGautomaticBathWaterHeatingHModeSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting.<br>�gAddition of hot water�h function ON = 0x41 �gAddition of hot water�h function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting.<br><br>�gAddition of hot water�h function ON = 0x41 �gAddition of hot water�h function OFF = 0x42<br><br>Name : �gAddition of hot water�h function setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setGadditionOfHotWaterHFunctionSetting(byte[] edt) {return false;}
 	private final boolean _setGadditionOfHotWaterHFunctionSetting(byte epc, byte[] edt) {
 		boolean success = setGadditionOfHotWaterHFunctionSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting.<br>�gAddition of hot water�h function ON = 0x41 �gAddition of hot water�h function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting.<br><br>�gAddition of hot water�h function ON = 0x41 �gAddition of hot water�h function OFF = 0x42<br><br>Name : �gAddition of hot water�h function setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getGadditionOfHotWaterHFunctionSetting() {return null;}
 	private final byte[] _getGadditionOfHotWaterHFunctionSetting(byte epc) {
 		byte[] edt = getGadditionOfHotWaterHFunctionSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify whether or not to use the �gslight bath water temperature lowering�h function, and to acquire the current setting.<br>�gSlight bath water temperature lowering�h function ON = 0x41 �gSlight bath water temperature lowering�h function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify whether or not to use the �gslight bath water temperature lowering�h function, and to acquire the current setting.<br><br>�gSlight bath water temperature lowering�h function ON = 0x41 �gSlight bath water temperature lowering�h function OFF = 0x42<br><br>Name : �gSlight bath water temperature lowering�h function setting<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setGslightBathWaterTemperatureLoweringHFunctionSetting(byte[] edt) {return false;}
 	private final boolean _setGslightBathWaterTemperatureLoweringHFunctionSetting(byte epc, byte[] edt) {
 		boolean success = setGslightBathWaterTemperatureLoweringHFunctionSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify whether or not to use the �gslight bath water temperature lowering�h function, and to acquire the current setting.<br>�gSlight bath water temperature lowering�h function ON = 0x41 �gSlight bath water temperature lowering�h function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify whether or not to use the �gslight bath water temperature lowering�h function, and to acquire the current setting.<br><br>�gSlight bath water temperature lowering�h function ON = 0x41 �gSlight bath water temperature lowering�h function OFF = 0x42<br><br>Name : �gSlight bath water temperature lowering�h function setting<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getGslightBathWaterTemperatureLoweringHFunctionSetting() {return null;}
 	private final byte[] _getGslightBathWaterTemperatureLoweringHFunctionSetting(byte epc) {
 		byte[] edt = getGslightBathWaterTemperatureLoweringHFunctionSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>0x00 to 0xFD (0 to 253 liters)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the bath water volume in liters, and to acquire the current setting.<br><br>0x00 to 0xFD (0 to 253 liters)<br><br>Name : Bath water volume setting 1<br>EPC : 0xE7<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setBathWaterVolumeSetting1(byte[] edt) {return false;}
 	private final boolean _setBathWaterVolumeSetting1(byte epc, byte[] edt) {
 		boolean success = setBathWaterVolumeSetting1(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>0x00 to 0xFD (0 to 253 liters)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the bath water volume in liters, and to acquire the current setting.<br><br>0x00 to 0xFD (0 to 253 liters)<br><br>Name : Bath water volume setting 1<br>EPC : 0xE7<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getBathWaterVolumeSetting1() {return null;}
 	private final byte[] _getBathWaterVolumeSetting1(byte epc) {
 		byte[] edt = getBathWaterVolumeSetting1();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br><br>0x31 to 0x38<br><br>Name : Bath water volume setting 2<br>EPC : 0xE8<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setBathWaterVolumeSetting2(byte[] edt) {return false;}
 	private final boolean _setBathWaterVolumeSetting2(byte epc, byte[] edt) {
 		boolean success = setBathWaterVolumeSetting2(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br><br>0x31 to 0x38<br><br>Name : Bath water volume setting 2<br>EPC : 0xE8<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getBathWaterVolumeSetting2() {return null;}
 	private final byte[] _getBathWaterVolumeSetting2(byte epc) {
 		byte[] edt = getBathWaterVolumeSetting2();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+	 * Used to specify the bath water volume in liters, and to acquire the current setting.<br><br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Name : Bath water volume setting 3<br>EPC : 0xEE<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setBathWaterVolumeSetting3(byte[] edt) {return false;}
 	private final boolean _setBathWaterVolumeSetting3(byte epc, byte[] edt) {
 		boolean success = setBathWaterVolumeSetting3(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+	 * Used to specify the bath water volume in liters, and to acquire the current setting.<br><br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Name : Bath water volume setting 3<br>EPC : 0xEE<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getBathWaterVolumeSetting3() {return null;}
 	private final byte[] _getBathWaterVolumeSetting3(byte epc) {
 		byte[] edt = getBathWaterVolumeSetting3();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * 0x31 to 0x38<br>Reservation ON = 0x41 Reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * 0x31 to 0x38<br><br>Reservation ON = 0x41 Reservation OFF = 0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setOnTimerReservationSetting(byte[] edt) {return false;}
 	private final boolean _setOnTimerReservationSetting(byte epc, byte[] edt) {
 		boolean success = setOnTimerReservationSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * 0x31 to 0x38<br>Reservation ON = 0x41 Reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+	 * 0x31 to 0x38<br><br>Reservation ON = 0x41 Reservation OFF = 0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getOnTimerReservationSetting() {return null;}
 	private final byte[] _getOnTimerReservationSetting(byte epc) {
 		byte[] edt = getOnTimerReservationSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * ON timer setting (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+	 * ON timer setting (HH:MM)<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected boolean setOnTimerSetting(byte[] edt) {return false;}
 	private final boolean _setOnTimerSetting(byte epc, byte[] edt) {
 		boolean success = setOnTimerSetting(edt);
-		notify(epc, edt, success);
+		onInvokedSetMethod(epc, edt, success);
 		return success;
 	}
 	/**
-	 * ON timer setting (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+	 * ON timer setting (HH:MM)<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 	 */
 	protected byte[] getOnTimerSetting() {return null;}
 	private final byte[] _getOnTimerSetting(byte epc) {
 		byte[] edt = getOnTimerSetting();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the rated power consumption of the heat pump in wintertime (December to Mar.ch)<br>0x0000-0xFFFD(0-65,533)<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
+	 * This property indicates the rated power consumption of the heat pump in wintertime (December to Mar.ch)<br><br>0x0000-0xFFFD(0-65,533)<br><br>Name : Rated power consumption of H/P unit in wintertime<br>EPC : 0xDB<br>Data Type : unsigned short<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getRatedPowerConsumptionOfHPUnitInWintertime() {return null;}
 	private final byte[] _getRatedPowerConsumptionOfHPUnitInWintertime(byte epc) {
 		byte[] edt = getRatedPowerConsumptionOfHPUnitInWintertime();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the rated power consumption of the heat pump in in-between seasons (April, May, October, November)<br>0x0000-0xFFFD(0-65,533)<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
+	 * This property indicates the rated power consumption of the heat pump in in-between seasons (April, May, October, November)<br><br>0x0000-0xFFFD(0-65,533)<br><br>Name : Rated power consumption of H/P unit in in-between seasons<br>EPC : 0xDC<br>Data Type : unsigned short<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getRatedPowerConsumptionOfHPUnitInInBetweenSeasons() {return null;}
 	private final byte[] _getRatedPowerConsumptionOfHPUnitInInBetweenSeasons(byte epc) {
 		byte[] edt = getRatedPowerConsumptionOfHPUnitInInBetweenSeasons();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates the rated power consumption of the heat pump in summertime (June to September)<br>0x0000-0xFFFD(0-65,533)<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
+	 * This property indicates the rated power consumption of the heat pump in summertime (June to September)<br><br>0x0000-0xFFFD(0-65,533)<br><br>Name : Rated power consumption of H/P unit in summertime<br>EPC : 0xDD<br>Data Type : unsigned short<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getRatedPowerConsumptionOfHPUnitInSummertime() {return null;}
 	private final byte[] _getRatedPowerConsumptionOfHPUnitInSummertime(byte epc) {
 		byte[] edt = getRatedPowerConsumptionOfHPUnitInSummertime();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
@@ -546,17 +544,17 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 	
 	@Override
 	public Setter set() {
-		return new SetterImpl(ESV_SET_NO_RES);
+		return new Setter(ESV_SETI);
 	}
 
 	@Override
 	public Setter setC() {
-		return new SetterImpl(ESV_SET_RES);
+		return new Setter(ESV_SETC);
 	}
 
 	@Override
 	public Getter get() {
-		return new GetterImpl();
+		return new Getter();
 	}
 
 	@Override
@@ -694,380 +692,312 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		}
 		
 		/**
-		 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting.<br>Automatic water heating function used: 0x41 Non-automatic water heating function stopped: 0x43 Non-automatic water heating function used: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting.<br><br>Automatic water heating function used: 0x41 Non-automatic water heating function stopped: 0x43 Non-automatic water heating function used: 0x42<br><br>Name : �gAutomatic water heating�h setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetGautomaticWaterHeatingHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetGautomaticWaterHeatingHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetGautomaticWaterHeatingHSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting.<br>Automatic water heating function used: 0x41 Non-automatic water heating function stopped: 0x43 Non-automatic water heating function used: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting.<br><br>Automatic water heating function used: 0x41 Non-automatic water heating function stopped: 0x43 Non-automatic water heating function used: 0x42<br><br>Name : �gAutomatic water heating�h setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetGautomaticWaterHeatingHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetGautomaticWaterHeatingHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetGautomaticWaterHeatingHSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting.<br>Automatic water temperature control function used: 0x41 Automatic water temperature control function not used: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting.<br><br>Automatic water temperature control function used: 0x41 Automatic water temperature control function not used: 0x42<br><br>Name : �gAutomatic water temperature control�h setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetGautomaticWaterTemperatureControlHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetGautomaticWaterTemperatureControlHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetGautomaticWaterTemperatureControlHSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting.<br>Automatic water temperature control function used: 0x41 Automatic water temperature control function not used: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting.<br><br>Automatic water temperature control function used: 0x41 Automatic water temperature control function not used: 0x42<br><br>Name : �gAutomatic water temperature control�h setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetGautomaticWaterTemperatureControlHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetGautomaticWaterTemperatureControlHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetGautomaticWaterTemperatureControlHSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the current status of the water heater in terms of whether it is heating water or not.<br>Heating = 0x41 Not heating = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the current status of the water heater in terms of whether it is heating water or not.<br><br>Heating = 0x41 Not heating = 0x42<br><br>Name : Water heater status<br>EPC : 0xB2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetWaterHeaterStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetWaterHeaterStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetWaterHeaterStatus(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify (in ��C) the temperature of heated water to achieve, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
+		 * Used to specify (in ��C) the temperature of heated water to achieve, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100��C)<br><br>Name : Water heating temperature setting<br>EPC : 0xB3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
 		 */
 		protected void onSetWaterHeatingTemperatureSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetWaterHeatingTemperatureSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetWaterHeatingTemperatureSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify (in ��C) the temperature of heated water to achieve, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
+		 * Used to specify (in ��C) the temperature of heated water to achieve, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100��C)<br><br>Name : Water heating temperature setting<br>EPC : 0xB3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
 		 */
 		protected void onGetWaterHeatingTemperatureSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetWaterHeatingTemperatureSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetWaterHeatingTemperatureSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting.<br>Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting.<br><br>Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br><br>Name : �gDaytime reheating permission�h setting<br>EPC : 0xC0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetGdaytimeReheatingPermissionHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetGdaytimeReheatingPermissionHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetGdaytimeReheatingPermissionHSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting.<br>Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting.<br><br>Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br><br>Name : �gDaytime reheating permission�h setting<br>EPC : 0xC0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetGdaytimeReheatingPermissionHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetGdaytimeReheatingPermissionHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetGdaytimeReheatingPermissionHSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the current temperature of the water in the water heater.<br>0x00 to 0x64 (0 to 100��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the current temperature of the water in the water heater.<br><br>0x00 to 0x64 (0 to 100��C)<br><br>Name : Measured temperature of water in water heater<br>EPC : 0xC1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetMeasuredTemperatureOfWaterInWaterHeater(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetMeasuredTemperatureOfWaterInWaterHeater(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetMeasuredTemperatureOfWaterInWaterHeater(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify the temperature of water supplied from the water heater in ��C, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the temperature of water supplied from the water heater in ��C, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100��C)<br><br>Name : �gTemperature of supplied water�h setting<br>EPC : 0xD1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetGtemperatureOfSuppliedWaterHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetGtemperatureOfSuppliedWaterHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetGtemperatureOfSuppliedWaterHSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify the temperature of water supplied from the water heater in ��C, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the temperature of water supplied from the water heater in ��C, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100��C)<br><br>Name : �gTemperature of supplied water�h setting<br>EPC : 0xD1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetGtemperatureOfSuppliedWaterHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetGtemperatureOfSuppliedWaterHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetGtemperatureOfSuppliedWaterHSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify (in ��C) the temperature up to which the water heater will heat bath water, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify (in ��C) the temperature up to which the water heater will heat bath water, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100��C)<br><br>Name : Bath water temperature setting<br>EPC : 0xD3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetBathWaterTemperatureSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetBathWaterTemperatureSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetBathWaterTemperatureSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify (in ��C) the temperature up to which the water heater will heat bath water, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify (in ��C) the temperature up to which the water heater will heat bath water, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100��C)<br><br>Name : Bath water temperature setting<br>EPC : 0xD3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetBathWaterTemperatureSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetBathWaterTemperatureSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetBathWaterTemperatureSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : Bath water volume setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetBathWaterVolumeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetBathWaterVolumeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetBathWaterVolumeSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : Bath water volume setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetBathWaterVolumeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetBathWaterVolumeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetBathWaterVolumeSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the measured amount of water left in the tank in liters.<br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+		 * This property indicates the measured amount of water left in the tank in liters.<br><br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Name : Measured amount of water remaining in tank<br>EPC : 0xE1<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetMeasuredAmountOfWaterRemainingInTank(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetMeasuredAmountOfWaterRemainingInTank(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetMeasuredAmountOfWaterRemainingInTank(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the tank capacity in liters.<br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+		 * This property indicates the tank capacity in liters.<br><br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Name : Tank capacity<br>EPC : 0xE2<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetTankCapacity(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetTankCapacity(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetTankCapacity(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify whether or not to use the �gautomatic bath water heating�h mode, and to acquire the current setting.<br>�gAutomatic bath water heating�h mode ON = 0x41 �gAutomatic bath water heating�h mode OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to use the �gautomatic bath water heating�h mode, and to acquire the current setting.<br><br>�gAutomatic bath water heating�h mode ON = 0x41 �gAutomatic bath water heating�h mode OFF = 0x42<br><br>Name : �gAutomatic bath water heating�h mode setting<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetGautomaticBathWaterHeatingHModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetGautomaticBathWaterHeatingHModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetGautomaticBathWaterHeatingHModeSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify whether or not to use the �gautomatic bath water heating�h mode, and to acquire the current setting.<br>�gAutomatic bath water heating�h mode ON = 0x41 �gAutomatic bath water heating�h mode OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to use the �gautomatic bath water heating�h mode, and to acquire the current setting.<br><br>�gAutomatic bath water heating�h mode ON = 0x41 �gAutomatic bath water heating�h mode OFF = 0x42<br><br>Name : �gAutomatic bath water heating�h mode setting<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetGautomaticBathWaterHeatingHModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetGautomaticBathWaterHeatingHModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetGautomaticBathWaterHeatingHModeSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting.<br>�gAddition of hot water�h function ON = 0x41 �gAddition of hot water�h function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting.<br><br>�gAddition of hot water�h function ON = 0x41 �gAddition of hot water�h function OFF = 0x42<br><br>Name : �gAddition of hot water�h function setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetGadditionOfHotWaterHFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetGadditionOfHotWaterHFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetGadditionOfHotWaterHFunctionSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting.<br>�gAddition of hot water�h function ON = 0x41 �gAddition of hot water�h function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting.<br><br>�gAddition of hot water�h function ON = 0x41 �gAddition of hot water�h function OFF = 0x42<br><br>Name : �gAddition of hot water�h function setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetGadditionOfHotWaterHFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetGadditionOfHotWaterHFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetGadditionOfHotWaterHFunctionSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify whether or not to use the �gslight bath water temperature lowering�h function, and to acquire the current setting.<br>�gSlight bath water temperature lowering�h function ON = 0x41 �gSlight bath water temperature lowering�h function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to use the �gslight bath water temperature lowering�h function, and to acquire the current setting.<br><br>�gSlight bath water temperature lowering�h function ON = 0x41 �gSlight bath water temperature lowering�h function OFF = 0x42<br><br>Name : �gSlight bath water temperature lowering�h function setting<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetGslightBathWaterTemperatureLoweringHFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetGslightBathWaterTemperatureLoweringHFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetGslightBathWaterTemperatureLoweringHFunctionSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify whether or not to use the �gslight bath water temperature lowering�h function, and to acquire the current setting.<br>�gSlight bath water temperature lowering�h function ON = 0x41 �gSlight bath water temperature lowering�h function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to use the �gslight bath water temperature lowering�h function, and to acquire the current setting.<br><br>�gSlight bath water temperature lowering�h function ON = 0x41 �gSlight bath water temperature lowering�h function OFF = 0x42<br><br>Name : �gSlight bath water temperature lowering�h function setting<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetGslightBathWaterTemperatureLoweringHFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetGslightBathWaterTemperatureLoweringHFunctionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetGslightBathWaterTemperatureLoweringHFunctionSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>0x00 to 0xFD (0 to 253 liters)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br><br>0x00 to 0xFD (0 to 253 liters)<br><br>Name : Bath water volume setting 1<br>EPC : 0xE7<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetBathWaterVolumeSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetBathWaterVolumeSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetBathWaterVolumeSetting1(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>0x00 to 0xFD (0 to 253 liters)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br><br>0x00 to 0xFD (0 to 253 liters)<br><br>Name : Bath water volume setting 1<br>EPC : 0xE7<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetBathWaterVolumeSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetBathWaterVolumeSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetBathWaterVolumeSetting1(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br><br>0x31 to 0x38<br><br>Name : Bath water volume setting 2<br>EPC : 0xE8<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetBathWaterVolumeSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetBathWaterVolumeSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetBathWaterVolumeSetting2(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br><br>0x31 to 0x38<br><br>Name : Bath water volume setting 2<br>EPC : 0xE8<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetBathWaterVolumeSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetBathWaterVolumeSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetBathWaterVolumeSetting2(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br><br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Name : Bath water volume setting 3<br>EPC : 0xEE<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetBathWaterVolumeSetting3(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetBathWaterVolumeSetting3(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetBathWaterVolumeSetting3(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br><br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Name : Bath water volume setting 3<br>EPC : 0xEE<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetBathWaterVolumeSetting3(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetBathWaterVolumeSetting3(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetBathWaterVolumeSetting3(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * 0x31 to 0x38<br>Reservation ON = 0x41 Reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * 0x31 to 0x38<br><br>Reservation ON = 0x41 Reservation OFF = 0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * 0x31 to 0x38<br>Reservation ON = 0x41 Reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * 0x31 to 0x38<br><br>Reservation ON = 0x41 Reservation OFF = 0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * ON timer setting (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * ON timer setting (HH:MM)<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onSetOnTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
 		private final void _onSetOnTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
 			onSetOnTimerSetting(eoj, tid, esv, epc, pdc, edt, success);
-			notify(eoj, tid, esv, epc, pdc, edt, success);
+			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
 		}
 		/**
-		 * ON timer setting (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * ON timer setting (HH:MM)<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		protected void onGetOnTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetOnTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetOnTimerSetting(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the rated power consumption of the heat pump in wintertime (December to Mar.ch)<br>0x0000-0xFFFD(0-65,533)<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the rated power consumption of the heat pump in wintertime (December to Mar.ch)<br><br>0x0000-0xFFFD(0-65,533)<br><br>Name : Rated power consumption of H/P unit in wintertime<br>EPC : 0xDB<br>Data Type : unsigned short<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetRatedPowerConsumptionOfHPUnitInWintertime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetRatedPowerConsumptionOfHPUnitInWintertime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetRatedPowerConsumptionOfHPUnitInWintertime(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the rated power consumption of the heat pump in in-between seasons (April, May, October, November)<br>0x0000-0xFFFD(0-65,533)<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the rated power consumption of the heat pump in in-between seasons (April, May, October, November)<br><br>0x0000-0xFFFD(0-65,533)<br><br>Name : Rated power consumption of H/P unit in in-between seasons<br>EPC : 0xDC<br>Data Type : unsigned short<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetRatedPowerConsumptionOfHPUnitInInBetweenSeasons(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetRatedPowerConsumptionOfHPUnitInInBetweenSeasons(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetRatedPowerConsumptionOfHPUnitInInBetweenSeasons(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates the rated power consumption of the heat pump in summertime (June to September)<br>0x0000-0xFFFD(0-65,533)<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the rated power consumption of the heat pump in summertime (June to September)<br><br>0x0000-0xFFFD(0-65,533)<br><br>Name : Rated power consumption of H/P unit in summertime<br>EPC : 0xDD<br>Data Type : unsigned short<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetRatedPowerConsumptionOfHPUnitInSummertime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetRatedPowerConsumptionOfHPUnitInSummertime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetRatedPowerConsumptionOfHPUnitInSummertime(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 
 	}
 	
-	public interface Setter extends DeviceObject.Setter {
-		public Setter reqSetOperationStatus(byte[] edt);
-		public Setter reqSetInstallationLocation(byte[] edt);
-		public Setter reqSetCurrentLimitSetting(byte[] edt);
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
-		public Setter reqSetPositionInformation(byte[] edt);
-		public Setter reqSetCurrentTimeSetting(byte[] edt);
-		public Setter reqSetCurrentDateSetting(byte[] edt);
-		public Setter reqSetPowerLimitSetting(byte[] edt);
-		
-		/**
-		 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting.<br>Automatic water heating function used: 0x41 Non-automatic water heating function stopped: 0x43 Non-automatic water heating function used: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetGautomaticWaterHeatingHSetting(byte[] edt);
-		/**
-		 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting.<br>Automatic water temperature control function used: 0x41 Automatic water temperature control function not used: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetGautomaticWaterTemperatureControlHSetting(byte[] edt);
-		/**
-		 * Used to specify (in ��C) the temperature of heated water to achieve, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
-		 */
-		public Setter reqSetWaterHeatingTemperatureSetting(byte[] edt);
-		/**
-		 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting.<br>Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetGdaytimeReheatingPermissionHSetting(byte[] edt);
-		/**
-		 * Used to specify the temperature of water supplied from the water heater in ��C, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetGtemperatureOfSuppliedWaterHSetting(byte[] edt);
-		/**
-		 * Used to specify (in ��C) the temperature up to which the water heater will heat bath water, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetBathWaterTemperatureSetting(byte[] edt);
-		/**
-		 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetBathWaterVolumeSetting(byte[] edt);
-		/**
-		 * Used to specify whether or not to use the �gautomatic bath water heating�h mode, and to acquire the current setting.<br>�gAutomatic bath water heating�h mode ON = 0x41 �gAutomatic bath water heating�h mode OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetGautomaticBathWaterHeatingHModeSetting(byte[] edt);
-		/**
-		 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting.<br>�gAddition of hot water�h function ON = 0x41 �gAddition of hot water�h function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetGadditionOfHotWaterHFunctionSetting(byte[] edt);
-		/**
-		 * Used to specify whether or not to use the �gslight bath water temperature lowering�h function, and to acquire the current setting.<br>�gSlight bath water temperature lowering�h function ON = 0x41 �gSlight bath water temperature lowering�h function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetGslightBathWaterTemperatureLoweringHFunctionSetting(byte[] edt);
-		/**
-		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>0x00 to 0xFD (0 to 253 liters)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetBathWaterVolumeSetting1(byte[] edt);
-		/**
-		 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetBathWaterVolumeSetting2(byte[] edt);
-		/**
-		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetBathWaterVolumeSetting3(byte[] edt);
-		/**
-		 * 0x31 to 0x38<br>Reservation ON = 0x41 Reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetOnTimerReservationSetting(byte[] edt);
-		/**
-		 * ON timer setting (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
-		 */
-		public Setter reqSetOnTimerSetting(byte[] edt);
-	}
-
-	public class SetterImpl extends DeviceObject.SetterImpl implements Setter {
-
-		public SetterImpl(byte esv) {
+	public class Setter extends DeviceObject.Setter {
+		public Setter(byte esv) {
 			super(esv);
+		}
+
+		@Override
+		public Setter reqSet(byte epc, byte[] edt) {
+			return (Setter)super.reqSet(epc, edt);
 		}
 		
 		@Override
@@ -1103,790 +1033,362 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 
-		@Override
-		public Setter reqSetGautomaticWaterHeatingHSetting(byte[] edt) {
-			byte epc = EPC_GAUTOMATIC_WATER_HEATING_H_SETTING;
-			addProperty(epc, edt, _setGautomaticWaterHeatingHSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetGautomaticWaterTemperatureControlHSetting(byte[] edt) {
-			byte epc = EPC_GAUTOMATIC_WATER_TEMPERATURE_CONTROL_H_SETTING;
-			addProperty(epc, edt, _setGautomaticWaterTemperatureControlHSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetWaterHeatingTemperatureSetting(byte[] edt) {
-			byte epc = EPC_WATER_HEATING_TEMPERATURE_SETTING;
-			addProperty(epc, edt, _setWaterHeatingTemperatureSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetGdaytimeReheatingPermissionHSetting(byte[] edt) {
-			byte epc = EPC_GDAYTIME_REHEATING_PERMISSION_H_SETTING;
-			addProperty(epc, edt, _setGdaytimeReheatingPermissionHSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetGtemperatureOfSuppliedWaterHSetting(byte[] edt) {
-			byte epc = EPC_GTEMPERATURE_OF_SUPPLIED_WATER_H_SETTING;
-			addProperty(epc, edt, _setGtemperatureOfSuppliedWaterHSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetBathWaterTemperatureSetting(byte[] edt) {
-			byte epc = EPC_BATH_WATER_TEMPERATURE_SETTING;
-			addProperty(epc, edt, _setBathWaterTemperatureSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetBathWaterVolumeSetting(byte[] edt) {
-			byte epc = EPC_BATH_WATER_VOLUME_SETTING;
-			addProperty(epc, edt, _setBathWaterVolumeSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetGautomaticBathWaterHeatingHModeSetting(byte[] edt) {
-			byte epc = EPC_GAUTOMATIC_BATH_WATER_HEATING_H_MODE_SETTING;
-			addProperty(epc, edt, _setGautomaticBathWaterHeatingHModeSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetGadditionOfHotWaterHFunctionSetting(byte[] edt) {
-			byte epc = EPC_GADDITION_OF_HOT_WATER_H_FUNCTION_SETTING;
-			addProperty(epc, edt, _setGadditionOfHotWaterHFunctionSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetGslightBathWaterTemperatureLoweringHFunctionSetting(byte[] edt) {
-			byte epc = EPC_GSLIGHT_BATH_WATER_TEMPERATURE_LOWERING_H_FUNCTION_SETTING;
-			addProperty(epc, edt, _setGslightBathWaterTemperatureLoweringHFunctionSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetBathWaterVolumeSetting1(byte[] edt) {
-			byte epc = EPC_BATH_WATER_VOLUME_SETTING1;
-			addProperty(epc, edt, _setBathWaterVolumeSetting1(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetBathWaterVolumeSetting2(byte[] edt) {
-			byte epc = EPC_BATH_WATER_VOLUME_SETTING2;
-			addProperty(epc, edt, _setBathWaterVolumeSetting2(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetBathWaterVolumeSetting3(byte[] edt) {
-			byte epc = EPC_BATH_WATER_VOLUME_SETTING3;
-			addProperty(epc, edt, _setBathWaterVolumeSetting3(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetOnTimerReservationSetting(byte[] edt) {
-			byte epc = EPC_ON_TIMER_RESERVATION_SETTING;
-			addProperty(epc, edt, _setOnTimerReservationSetting(epc, edt));
-			return this;
-		}
-		@Override
-		public Setter reqSetOnTimerSetting(byte[] edt) {
-			byte epc = EPC_ON_TIMER_SETTING;
-			addProperty(epc, edt, _setOnTimerSetting(epc, edt));
-			return this;
-		}
-	}
-	
-	public class SetterProxy extends DeviceObject.SetterProxy implements Setter {
-
-		public SetterProxy(byte esv) {
-			super(esv);
-		}
-
-		@Override
-		public Setter reqSetOperationStatus(byte[] edt) {
-			return (Setter)super.reqSetOperationStatus(edt);
-		}
-		@Override
-		public Setter reqSetInstallationLocation(byte[] edt) {
-			return (Setter)super.reqSetInstallationLocation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimitSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
-		}
-		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentTimeSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentTimeSetting(edt);
-		}
-		@Override
-		public Setter reqSetCurrentDateSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentDateSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitSetting(edt);
-		}
-
-		@Override
+		/**
+		 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting.<br><br>Automatic water heating function used: 0x41 Non-automatic water heating function stopped: 0x43 Non-automatic water heating function used: 0x42<br><br>Name : �gAutomatic water heating�h setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetGautomaticWaterHeatingHSetting(byte[] edt) {
 			addProperty(EPC_GAUTOMATIC_WATER_HEATING_H_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting.<br><br>Automatic water temperature control function used: 0x41 Automatic water temperature control function not used: 0x42<br><br>Name : �gAutomatic water temperature control�h setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetGautomaticWaterTemperatureControlHSetting(byte[] edt) {
 			addProperty(EPC_GAUTOMATIC_WATER_TEMPERATURE_CONTROL_H_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify (in ��C) the temperature of heated water to achieve, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100��C)<br><br>Name : Water heating temperature setting<br>EPC : 0xB3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 */
 		public Setter reqSetWaterHeatingTemperatureSetting(byte[] edt) {
 			addProperty(EPC_WATER_HEATING_TEMPERATURE_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting.<br><br>Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br><br>Name : �gDaytime reheating permission�h setting<br>EPC : 0xC0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetGdaytimeReheatingPermissionHSetting(byte[] edt) {
 			addProperty(EPC_GDAYTIME_REHEATING_PERMISSION_H_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the temperature of water supplied from the water heater in ��C, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100��C)<br><br>Name : �gTemperature of supplied water�h setting<br>EPC : 0xD1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetGtemperatureOfSuppliedWaterHSetting(byte[] edt) {
 			addProperty(EPC_GTEMPERATURE_OF_SUPPLIED_WATER_H_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify (in ��C) the temperature up to which the water heater will heat bath water, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100��C)<br><br>Name : Bath water temperature setting<br>EPC : 0xD3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetBathWaterTemperatureSetting(byte[] edt) {
 			addProperty(EPC_BATH_WATER_TEMPERATURE_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : Bath water volume setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetBathWaterVolumeSetting(byte[] edt) {
 			addProperty(EPC_BATH_WATER_VOLUME_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify whether or not to use the �gautomatic bath water heating�h mode, and to acquire the current setting.<br><br>�gAutomatic bath water heating�h mode ON = 0x41 �gAutomatic bath water heating�h mode OFF = 0x42<br><br>Name : �gAutomatic bath water heating�h mode setting<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetGautomaticBathWaterHeatingHModeSetting(byte[] edt) {
 			addProperty(EPC_GAUTOMATIC_BATH_WATER_HEATING_H_MODE_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting.<br><br>�gAddition of hot water�h function ON = 0x41 �gAddition of hot water�h function OFF = 0x42<br><br>Name : �gAddition of hot water�h function setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetGadditionOfHotWaterHFunctionSetting(byte[] edt) {
 			addProperty(EPC_GADDITION_OF_HOT_WATER_H_FUNCTION_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify whether or not to use the �gslight bath water temperature lowering�h function, and to acquire the current setting.<br><br>�gSlight bath water temperature lowering�h function ON = 0x41 �gSlight bath water temperature lowering�h function OFF = 0x42<br><br>Name : �gSlight bath water temperature lowering�h function setting<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetGslightBathWaterTemperatureLoweringHFunctionSetting(byte[] edt) {
 			addProperty(EPC_GSLIGHT_BATH_WATER_TEMPERATURE_LOWERING_H_FUNCTION_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br><br>0x00 to 0xFD (0 to 253 liters)<br><br>Name : Bath water volume setting 1<br>EPC : 0xE7<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetBathWaterVolumeSetting1(byte[] edt) {
 			addProperty(EPC_BATH_WATER_VOLUME_SETTING1, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br><br>0x31 to 0x38<br><br>Name : Bath water volume setting 2<br>EPC : 0xE8<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetBathWaterVolumeSetting2(byte[] edt) {
 			addProperty(EPC_BATH_WATER_VOLUME_SETTING2, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br><br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Name : Bath water volume setting 3<br>EPC : 0xEE<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetBathWaterVolumeSetting3(byte[] edt) {
 			addProperty(EPC_BATH_WATER_VOLUME_SETTING3, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
-		@Override
+		/**
+		 * 0x31 to 0x38<br><br>Reservation ON = 0x41 Reservation OFF = 0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetOnTimerReservationSetting(byte[] edt) {
 			addProperty(EPC_ON_TIMER_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
 			return this;
 		}
-		@Override
+		/**
+		 * ON timer setting (HH:MM)<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Setter reqSetOnTimerSetting(byte[] edt) {
 			addProperty(EPC_ON_TIMER_SETTING, edt, (edt != null && (edt.length == 2)));
 			return this;
 		}
 	}
 
-	public interface Getter extends DeviceObject.Getter {
-		public Getter reqGetOperationStatus();
-		public Getter reqGetInstallationLocation();
-		public Getter reqGetStandardVersionInformation();
-		public Getter reqGetIdentificationNumber();
-		public Getter reqGetMeasuredInstantaneousPowerConsumption();
-		public Getter reqGetMeasuredCumulativePowerConsumption();
-		public Getter reqGetManufacturersFaultCode();
-		public Getter reqGetCurrentLimitSetting();
-		public Getter reqGetFaultStatus();
-		public Getter reqGetFaultDescription();
-		public Getter reqGetManufacturerCode();
-		public Getter reqGetBusinessFacilityCode();
-		public Getter reqGetProductCode();
-		public Getter reqGetProductionNumber();
-		public Getter reqGetProductionDate();
-		public Getter reqGetPowerSavingOperationSetting();
-		public Getter reqGetPositionInformation();
-		public Getter reqGetCurrentTimeSetting();
-		public Getter reqGetCurrentDateSetting();
-		public Getter reqGetPowerLimitSetting();
-		public Getter reqGetCumulativeOperatingTime();
-		public Getter reqGetStatusChangeAnnouncementPropertyMap();
-		public Getter reqGetSetPropertyMap();
-		public Getter reqGetGetPropertyMap();
+	public class Getter extends DeviceObject.Getter {
+
+		@Override
+		public Getter reqGetOperationStatus() {
+			return (Getter)super.reqGetOperationStatus();
+		}
+		@Override
+		public Getter reqGetInstallationLocation() {
+			return (Getter)super.reqGetInstallationLocation();
+		}
+		@Override
+		public Getter reqGetStandardVersionInformation() {
+			return (Getter)super.reqGetStandardVersionInformation();
+		}
+		@Override
+		public Getter reqGetIdentificationNumber() {
+			return (Getter)super.reqGetIdentificationNumber();
+		}
+		@Override
+		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
+			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
+		}
+		@Override
+		public Getter reqGetMeasuredCumulativePowerConsumption() {
+			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
+		}
+		@Override
+		public Getter reqGetManufacturersFaultCode() {
+			return (Getter)super.reqGetManufacturersFaultCode();
+		}
+		@Override
+		public Getter reqGetCurrentLimitSetting() {
+			return (Getter)super.reqGetCurrentLimitSetting();
+		}
+		@Override
+		public Getter reqGetFaultStatus() {
+			return (Getter)super.reqGetFaultStatus();
+		}
+		@Override
+		public Getter reqGetFaultDescription() {
+			return (Getter)super.reqGetFaultDescription();
+		}
+		@Override
+		public Getter reqGetManufacturerCode() {
+			return (Getter)super.reqGetManufacturerCode();
+		}
+		@Override
+		public Getter reqGetBusinessFacilityCode() {
+			return (Getter)super.reqGetBusinessFacilityCode();
+		}
+		@Override
+		public Getter reqGetProductCode() {
+			return (Getter)super.reqGetProductCode();
+		}
+		@Override
+		public Getter reqGetProductionNumber() {
+			return (Getter)super.reqGetProductionNumber();
+		}
+		@Override
+		public Getter reqGetProductionDate() {
+			return (Getter)super.reqGetProductionDate();
+		}
+		@Override
+		public Getter reqGetPowerSavingOperationSetting() {
+			return (Getter)super.reqGetPowerSavingOperationSetting();
+		}
+		@Override
+		public Getter reqGetPositionInformation() {
+			return (Getter)super.reqGetPositionInformation();
+		}
+		@Override
+		public Getter reqGetCurrentTimeSetting() {
+			return (Getter)super.reqGetCurrentTimeSetting();
+		}
+		@Override
+		public Getter reqGetCurrentDateSetting() {
+			return (Getter)super.reqGetCurrentDateSetting();
+		}
+		@Override
+		public Getter reqGetPowerLimitSetting() {
+			return (Getter)super.reqGetPowerLimitSetting();
+		}
+		@Override
+		public Getter reqGetCumulativeOperatingTime() {
+			return (Getter)super.reqGetCumulativeOperatingTime();
+		}
+		@Override
+		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
+			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
+		}
+		@Override
+		public Getter reqGetSetPropertyMap() {
+			return (Getter)super.reqGetSetPropertyMap();
+		}
+		@Override
+		public Getter reqGetGetPropertyMap() {
+			return (Getter)super.reqGetGetPropertyMap();
+		}
 		
 		/**
-		 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting.<br>Automatic water heating function used: 0x41 Non-automatic water heating function stopped: 0x43 Non-automatic water heating function used: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting.<br><br>Automatic water heating function used: 0x41 Non-automatic water heating function stopped: 0x43 Non-automatic water heating function used: 0x42<br><br>Name : �gAutomatic water heating�h setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
-		public Getter reqGetGautomaticWaterHeatingHSetting();
-		/**
-		 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting.<br>Automatic water temperature control function used: 0x41 Automatic water temperature control function not used: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetGautomaticWaterTemperatureControlHSetting();
-		/**
-		 * This property indicates the current status of the water heater in terms of whether it is heating water or not.<br>Heating = 0x41 Not heating = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetWaterHeaterStatus();
-		/**
-		 * Used to specify (in ��C) the temperature of heated water to achieve, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
-		 */
-		public Getter reqGetWaterHeatingTemperatureSetting();
-		/**
-		 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting.<br>Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetGdaytimeReheatingPermissionHSetting();
-		/**
-		 * This property indicates the current temperature of the water in the water heater.<br>0x00 to 0x64 (0 to 100��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetMeasuredTemperatureOfWaterInWaterHeater();
-		/**
-		 * Used to specify the temperature of water supplied from the water heater in ��C, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetGtemperatureOfSuppliedWaterHSetting();
-		/**
-		 * Used to specify (in ��C) the temperature up to which the water heater will heat bath water, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetBathWaterTemperatureSetting();
-		/**
-		 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetBathWaterVolumeSetting();
-		/**
-		 * This property indicates the measured amount of water left in the tank in liters.<br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetMeasuredAmountOfWaterRemainingInTank();
-		/**
-		 * This property indicates the tank capacity in liters.<br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetTankCapacity();
-		/**
-		 * Used to specify whether or not to use the �gautomatic bath water heating�h mode, and to acquire the current setting.<br>�gAutomatic bath water heating�h mode ON = 0x41 �gAutomatic bath water heating�h mode OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetGautomaticBathWaterHeatingHModeSetting();
-		/**
-		 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting.<br>�gAddition of hot water�h function ON = 0x41 �gAddition of hot water�h function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetGadditionOfHotWaterHFunctionSetting();
-		/**
-		 * Used to specify whether or not to use the �gslight bath water temperature lowering�h function, and to acquire the current setting.<br>�gSlight bath water temperature lowering�h function ON = 0x41 �gSlight bath water temperature lowering�h function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetGslightBathWaterTemperatureLoweringHFunctionSetting();
-		/**
-		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>0x00 to 0xFD (0 to 253 liters)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetBathWaterVolumeSetting1();
-		/**
-		 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetBathWaterVolumeSetting2();
-		/**
-		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetBathWaterVolumeSetting3();
-		/**
-		 * 0x31 to 0x38<br>Reservation ON = 0x41 Reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetOnTimerReservationSetting();
-		/**
-		 * ON timer setting (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
-		 */
-		public Getter reqGetOnTimerSetting();
-		/**
-		 * This property indicates the rated power consumption of the heat pump in wintertime (December to Mar.ch)<br>0x0000-0xFFFD(0-65,533)<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetRatedPowerConsumptionOfHPUnitInWintertime();
-		/**
-		 * This property indicates the rated power consumption of the heat pump in in-between seasons (April, May, October, November)<br>0x0000-0xFFFD(0-65,533)<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetRatedPowerConsumptionOfHPUnitInInBetweenSeasons();
-		/**
-		 * This property indicates the rated power consumption of the heat pump in summertime (June to September)<br>0x0000-0xFFFD(0-65,533)<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetRatedPowerConsumptionOfHPUnitInSummertime();
-	}
-	
-	public class GetterImpl extends DeviceObject.GetterImpl implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
-		public Getter reqGetGautomaticWaterHeatingHSetting() {
-			byte epc = EPC_GAUTOMATIC_WATER_HEATING_H_SETTING;
-			byte[] edt = _getGautomaticWaterHeatingHSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetGautomaticWaterTemperatureControlHSetting() {
-			byte epc = EPC_GAUTOMATIC_WATER_TEMPERATURE_CONTROL_H_SETTING;
-			byte[] edt = _getGautomaticWaterTemperatureControlHSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetWaterHeaterStatus() {
-			byte epc = EPC_WATER_HEATER_STATUS;
-			byte[] edt = _getWaterHeaterStatus(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetWaterHeatingTemperatureSetting() {
-			byte epc = EPC_WATER_HEATING_TEMPERATURE_SETTING;
-			byte[] edt = _getWaterHeatingTemperatureSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetGdaytimeReheatingPermissionHSetting() {
-			byte epc = EPC_GDAYTIME_REHEATING_PERMISSION_H_SETTING;
-			byte[] edt = _getGdaytimeReheatingPermissionHSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetMeasuredTemperatureOfWaterInWaterHeater() {
-			byte epc = EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER;
-			byte[] edt = _getMeasuredTemperatureOfWaterInWaterHeater(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetGtemperatureOfSuppliedWaterHSetting() {
-			byte epc = EPC_GTEMPERATURE_OF_SUPPLIED_WATER_H_SETTING;
-			byte[] edt = _getGtemperatureOfSuppliedWaterHSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetBathWaterTemperatureSetting() {
-			byte epc = EPC_BATH_WATER_TEMPERATURE_SETTING;
-			byte[] edt = _getBathWaterTemperatureSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetBathWaterVolumeSetting() {
-			byte epc = EPC_BATH_WATER_VOLUME_SETTING;
-			byte[] edt = _getBathWaterVolumeSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetMeasuredAmountOfWaterRemainingInTank() {
-			byte epc = EPC_MEASURED_AMOUNT_OF_WATER_REMAINING_IN_TANK;
-			byte[] edt = _getMeasuredAmountOfWaterRemainingInTank(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetTankCapacity() {
-			byte epc = EPC_TANK_CAPACITY;
-			byte[] edt = _getTankCapacity(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetGautomaticBathWaterHeatingHModeSetting() {
-			byte epc = EPC_GAUTOMATIC_BATH_WATER_HEATING_H_MODE_SETTING;
-			byte[] edt = _getGautomaticBathWaterHeatingHModeSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetGadditionOfHotWaterHFunctionSetting() {
-			byte epc = EPC_GADDITION_OF_HOT_WATER_H_FUNCTION_SETTING;
-			byte[] edt = _getGadditionOfHotWaterHFunctionSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetGslightBathWaterTemperatureLoweringHFunctionSetting() {
-			byte epc = EPC_GSLIGHT_BATH_WATER_TEMPERATURE_LOWERING_H_FUNCTION_SETTING;
-			byte[] edt = _getGslightBathWaterTemperatureLoweringHFunctionSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetBathWaterVolumeSetting1() {
-			byte epc = EPC_BATH_WATER_VOLUME_SETTING1;
-			byte[] edt = _getBathWaterVolumeSetting1(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetBathWaterVolumeSetting2() {
-			byte epc = EPC_BATH_WATER_VOLUME_SETTING2;
-			byte[] edt = _getBathWaterVolumeSetting2(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetBathWaterVolumeSetting3() {
-			byte epc = EPC_BATH_WATER_VOLUME_SETTING3;
-			byte[] edt = _getBathWaterVolumeSetting3(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetOnTimerReservationSetting() {
-			byte epc = EPC_ON_TIMER_RESERVATION_SETTING;
-			byte[] edt = _getOnTimerReservationSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetOnTimerSetting() {
-			byte epc = EPC_ON_TIMER_SETTING;
-			byte[] edt = _getOnTimerSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetRatedPowerConsumptionOfHPUnitInWintertime() {
-			byte epc = EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_WINTERTIME;
-			byte[] edt = _getRatedPowerConsumptionOfHPUnitInWintertime(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetRatedPowerConsumptionOfHPUnitInInBetweenSeasons() {
-			byte epc = EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_IN_BETWEEN_SEASONS;
-			byte[] edt = _getRatedPowerConsumptionOfHPUnitInInBetweenSeasons(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Getter reqGetRatedPowerConsumptionOfHPUnitInSummertime() {
-			byte epc = EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_SUMMERTIME;
-			byte[] edt = _getRatedPowerConsumptionOfHPUnitInSummertime(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-	}
-
-	public class GetterProxy extends DeviceObject.GetterProxy implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
 		public Getter reqGetGautomaticWaterHeatingHSetting() {
 			addProperty(EPC_GAUTOMATIC_WATER_HEATING_H_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting.<br><br>Automatic water temperature control function used: 0x41 Automatic water temperature control function not used: 0x42<br><br>Name : �gAutomatic water temperature control�h setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetGautomaticWaterTemperatureControlHSetting() {
 			addProperty(EPC_GAUTOMATIC_WATER_TEMPERATURE_CONTROL_H_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the current status of the water heater in terms of whether it is heating water or not.<br><br>Heating = 0x41 Not heating = 0x42<br><br>Name : Water heater status<br>EPC : 0xB2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetWaterHeaterStatus() {
 			addProperty(EPC_WATER_HEATER_STATUS);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify (in ��C) the temperature of heated water to achieve, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100��C)<br><br>Name : Water heating temperature setting<br>EPC : 0xB3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 */
 		public Getter reqGetWaterHeatingTemperatureSetting() {
 			addProperty(EPC_WATER_HEATING_TEMPERATURE_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting.<br><br>Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br><br>Name : �gDaytime reheating permission�h setting<br>EPC : 0xC0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetGdaytimeReheatingPermissionHSetting() {
 			addProperty(EPC_GDAYTIME_REHEATING_PERMISSION_H_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the current temperature of the water in the water heater.<br><br>0x00 to 0x64 (0 to 100��C)<br><br>Name : Measured temperature of water in water heater<br>EPC : 0xC1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetMeasuredTemperatureOfWaterInWaterHeater() {
 			addProperty(EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the temperature of water supplied from the water heater in ��C, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100��C)<br><br>Name : �gTemperature of supplied water�h setting<br>EPC : 0xD1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetGtemperatureOfSuppliedWaterHSetting() {
 			addProperty(EPC_GTEMPERATURE_OF_SUPPLIED_WATER_H_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify (in ��C) the temperature up to which the water heater will heat bath water, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100��C)<br><br>Name : Bath water temperature setting<br>EPC : 0xD3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetBathWaterTemperatureSetting() {
 			addProperty(EPC_BATH_WATER_TEMPERATURE_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : Bath water volume setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetBathWaterVolumeSetting() {
 			addProperty(EPC_BATH_WATER_VOLUME_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the measured amount of water left in the tank in liters.<br><br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Name : Measured amount of water remaining in tank<br>EPC : 0xE1<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetMeasuredAmountOfWaterRemainingInTank() {
 			addProperty(EPC_MEASURED_AMOUNT_OF_WATER_REMAINING_IN_TANK);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the tank capacity in liters.<br><br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Name : Tank capacity<br>EPC : 0xE2<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetTankCapacity() {
 			addProperty(EPC_TANK_CAPACITY);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify whether or not to use the �gautomatic bath water heating�h mode, and to acquire the current setting.<br><br>�gAutomatic bath water heating�h mode ON = 0x41 �gAutomatic bath water heating�h mode OFF = 0x42<br><br>Name : �gAutomatic bath water heating�h mode setting<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetGautomaticBathWaterHeatingHModeSetting() {
 			addProperty(EPC_GAUTOMATIC_BATH_WATER_HEATING_H_MODE_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting.<br><br>�gAddition of hot water�h function ON = 0x41 �gAddition of hot water�h function OFF = 0x42<br><br>Name : �gAddition of hot water�h function setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetGadditionOfHotWaterHFunctionSetting() {
 			addProperty(EPC_GADDITION_OF_HOT_WATER_H_FUNCTION_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify whether or not to use the �gslight bath water temperature lowering�h function, and to acquire the current setting.<br><br>�gSlight bath water temperature lowering�h function ON = 0x41 �gSlight bath water temperature lowering�h function OFF = 0x42<br><br>Name : �gSlight bath water temperature lowering�h function setting<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetGslightBathWaterTemperatureLoweringHFunctionSetting() {
 			addProperty(EPC_GSLIGHT_BATH_WATER_TEMPERATURE_LOWERING_H_FUNCTION_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br><br>0x00 to 0xFD (0 to 253 liters)<br><br>Name : Bath water volume setting 1<br>EPC : 0xE7<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetBathWaterVolumeSetting1() {
 			addProperty(EPC_BATH_WATER_VOLUME_SETTING1);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br><br>0x31 to 0x38<br><br>Name : Bath water volume setting 2<br>EPC : 0xE8<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetBathWaterVolumeSetting2() {
 			addProperty(EPC_BATH_WATER_VOLUME_SETTING2);
 			return this;
 		}
-		@Override
+		/**
+		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br><br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Name : Bath water volume setting 3<br>EPC : 0xEE<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetBathWaterVolumeSetting3() {
 			addProperty(EPC_BATH_WATER_VOLUME_SETTING3);
 			return this;
 		}
-		@Override
+		/**
+		 * 0x31 to 0x38<br><br>Reservation ON = 0x41 Reservation OFF = 0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetOnTimerReservationSetting() {
 			addProperty(EPC_ON_TIMER_RESERVATION_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * ON timer setting (HH:MM)<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 */
 		public Getter reqGetOnTimerSetting() {
 			addProperty(EPC_ON_TIMER_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the rated power consumption of the heat pump in wintertime (December to Mar.ch)<br><br>0x0000-0xFFFD(0-65,533)<br><br>Name : Rated power consumption of H/P unit in wintertime<br>EPC : 0xDB<br>Data Type : unsigned short<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetRatedPowerConsumptionOfHPUnitInWintertime() {
 			addProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_WINTERTIME);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the rated power consumption of the heat pump in in-between seasons (April, May, October, November)<br><br>0x0000-0xFFFD(0-65,533)<br><br>Name : Rated power consumption of H/P unit in in-between seasons<br>EPC : 0xDC<br>Data Type : unsigned short<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetRatedPowerConsumptionOfHPUnitInInBetweenSeasons() {
 			addProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_IN_BETWEEN_SEASONS);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates the rated power consumption of the heat pump in summertime (June to September)<br><br>0x0000-0xFFFD(0-65,533)<br><br>Name : Rated power consumption of H/P unit in summertime<br>EPC : 0xDD<br>Data Type : unsigned short<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetRatedPowerConsumptionOfHPUnitInSummertime() {
 			addProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_SUMMERTIME);
 			return this;
@@ -1894,6 +1396,8 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 	}
 	
 	public interface Informer extends DeviceObject.Informer {
+		public Informer reqInform(byte epc);
+		
 		public Informer reqInformOperationStatus();
 		public Informer reqInformInstallationLocation();
 		public Informer reqInformStandardVersionInformation();
@@ -1920,97 +1424,101 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		public Informer reqInformGetPropertyMap();
 		
 		/**
-		 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting.<br>Automatic water heating function used: 0x41 Non-automatic water heating function stopped: 0x43 Non-automatic water heating function used: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting.<br><br>Automatic water heating function used: 0x41 Non-automatic water heating function stopped: 0x43 Non-automatic water heating function used: 0x42<br><br>Name : �gAutomatic water heating�h setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformGautomaticWaterHeatingHSetting();
 		/**
-		 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting.<br>Automatic water temperature control function used: 0x41 Automatic water temperature control function not used: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting.<br><br>Automatic water temperature control function used: 0x41 Automatic water temperature control function not used: 0x42<br><br>Name : �gAutomatic water temperature control�h setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformGautomaticWaterTemperatureControlHSetting();
 		/**
-		 * This property indicates the current status of the water heater in terms of whether it is heating water or not.<br>Heating = 0x41 Not heating = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the current status of the water heater in terms of whether it is heating water or not.<br><br>Heating = 0x41 Not heating = 0x42<br><br>Name : Water heater status<br>EPC : 0xB2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformWaterHeaterStatus();
 		/**
-		 * Used to specify (in ��C) the temperature of heated water to achieve, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : mandatory<br>Get : mandatory
+		 * Used to specify (in ��C) the temperature of heated water to achieve, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100��C)<br><br>Name : Water heating temperature setting<br>EPC : 0xB3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
 		 */
 		public Informer reqInformWaterHeatingTemperatureSetting();
 		/**
-		 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting.<br>Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting.<br><br>Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br><br>Name : �gDaytime reheating permission�h setting<br>EPC : 0xC0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformGdaytimeReheatingPermissionHSetting();
 		/**
-		 * This property indicates the current temperature of the water in the water heater.<br>0x00 to 0x64 (0 to 100��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the current temperature of the water in the water heater.<br><br>0x00 to 0x64 (0 to 100��C)<br><br>Name : Measured temperature of water in water heater<br>EPC : 0xC1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformMeasuredTemperatureOfWaterInWaterHeater();
 		/**
-		 * Used to specify the temperature of water supplied from the water heater in ��C, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the temperature of water supplied from the water heater in ��C, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100��C)<br><br>Name : �gTemperature of supplied water�h setting<br>EPC : 0xD1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformGtemperatureOfSuppliedWaterHSetting();
 		/**
-		 * Used to specify (in ��C) the temperature up to which the water heater will heat bath water, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100��C)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify (in ��C) the temperature up to which the water heater will heat bath water, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100��C)<br><br>Name : Bath water temperature setting<br>EPC : 0xD3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformBathWaterTemperatureSetting();
 		/**
-		 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting.<br>0x00 to 0x64 (0 to 100%)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting.<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : Bath water volume setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformBathWaterVolumeSetting();
 		/**
-		 * This property indicates the measured amount of water left in the tank in liters.<br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+		 * This property indicates the measured amount of water left in the tank in liters.<br><br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Name : Measured amount of water remaining in tank<br>EPC : 0xE1<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformMeasuredAmountOfWaterRemainingInTank();
 		/**
-		 * This property indicates the tank capacity in liters.<br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : undefined<br>Get : optional
+		 * This property indicates the tank capacity in liters.<br><br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Name : Tank capacity<br>EPC : 0xE2<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformTankCapacity();
 		/**
-		 * Used to specify whether or not to use the �gautomatic bath water heating�h mode, and to acquire the current setting.<br>�gAutomatic bath water heating�h mode ON = 0x41 �gAutomatic bath water heating�h mode OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to use the �gautomatic bath water heating�h mode, and to acquire the current setting.<br><br>�gAutomatic bath water heating�h mode ON = 0x41 �gAutomatic bath water heating�h mode OFF = 0x42<br><br>Name : �gAutomatic bath water heating�h mode setting<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformGautomaticBathWaterHeatingHModeSetting();
 		/**
-		 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting.<br>�gAddition of hot water�h function ON = 0x41 �gAddition of hot water�h function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting.<br><br>�gAddition of hot water�h function ON = 0x41 �gAddition of hot water�h function OFF = 0x42<br><br>Name : �gAddition of hot water�h function setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformGadditionOfHotWaterHFunctionSetting();
 		/**
-		 * Used to specify whether or not to use the �gslight bath water temperature lowering�h function, and to acquire the current setting.<br>�gSlight bath water temperature lowering�h function ON = 0x41 �gSlight bath water temperature lowering�h function OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify whether or not to use the �gslight bath water temperature lowering�h function, and to acquire the current setting.<br><br>�gSlight bath water temperature lowering�h function ON = 0x41 �gSlight bath water temperature lowering�h function OFF = 0x42<br><br>Name : �gSlight bath water temperature lowering�h function setting<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformGslightBathWaterTemperatureLoweringHFunctionSetting();
 		/**
-		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>0x00 to 0xFD (0 to 253 liters)<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br><br>0x00 to 0xFD (0 to 253 liters)<br><br>Name : Bath water volume setting 1<br>EPC : 0xE7<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformBathWaterVolumeSetting1();
 		/**
-		 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>0x31 to 0x38<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br><br>0x31 to 0x38<br><br>Name : Bath water volume setting 2<br>EPC : 0xE8<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformBathWaterVolumeSetting2();
 		/**
-		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Data type : unsigned short<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br><br>0x0000 to 0xFFFD (0 to 65533 liters)<br><br>Name : Bath water volume setting 3<br>EPC : 0xEE<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformBathWaterVolumeSetting3();
 		/**
-		 * 0x31 to 0x38<br>Reservation ON = 0x41 Reservation OFF = 0x42<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : optional<br>Get : optional
+		 * 0x31 to 0x38<br><br>Reservation ON = 0x41 Reservation OFF = 0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformOnTimerReservationSetting();
 		/**
-		 * ON timer setting (HH:MM)<br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Data type : unsigned char x 2<br>Data size : 2 bytes<br>Set : optional<br>Get : optional
+		 * ON timer setting (HH:MM)<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
 		 */
 		public Informer reqInformOnTimerSetting();
 		/**
-		 * This property indicates the rated power consumption of the heat pump in wintertime (December to Mar.ch)<br>0x0000-0xFFFD(0-65,533)<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the rated power consumption of the heat pump in wintertime (December to Mar.ch)<br><br>0x0000-0xFFFD(0-65,533)<br><br>Name : Rated power consumption of H/P unit in wintertime<br>EPC : 0xDB<br>Data Type : unsigned short<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformRatedPowerConsumptionOfHPUnitInWintertime();
 		/**
-		 * This property indicates the rated power consumption of the heat pump in in-between seasons (April, May, October, November)<br>0x0000-0xFFFD(0-65,533)<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the rated power consumption of the heat pump in in-between seasons (April, May, October, November)<br><br>0x0000-0xFFFD(0-65,533)<br><br>Name : Rated power consumption of H/P unit in in-between seasons<br>EPC : 0xDC<br>Data Type : unsigned short<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformRatedPowerConsumptionOfHPUnitInInBetweenSeasons();
 		/**
-		 * This property indicates the rated power consumption of the heat pump in summertime (June to September)<br>0x0000-0xFFFD(0-65,533)<br><br>Data type : unsigned short<br>Data size : 2 Byte<br>Set : undefined<br>Get : optional
+		 * This property indicates the rated power consumption of the heat pump in summertime (June to September)<br><br>0x0000-0xFFFD(0-65,533)<br><br>Name : Rated power consumption of H/P unit in summertime<br>EPC : 0xDD<br>Data Type : unsigned short<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformRatedPowerConsumptionOfHPUnitInSummertime();
 	}
 
 	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();
@@ -2265,7 +1773,11 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 	}
 	
 	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();

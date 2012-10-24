@@ -20,8 +20,6 @@ import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 
 public abstract class WattHourMeter extends DeviceObject {
-	@SuppressWarnings("unused")
-	private static final String TAG = WattHourMeter.class.getSimpleName();
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x80;
@@ -42,39 +40,39 @@ public abstract class WattHourMeter extends DeviceObject {
 	}
 
 	/**
-	 * This property indicates integral electric energy in decimal (8 digits).<br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
+	 * This property indicates integral electric energy in decimal (8 digits).<br><br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Name : Integral electric energy measurement value<br>EPC : 0xE0<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
 	 */
 	protected abstract byte[] getIntegralElectricEnergyMeasurementValue();
 	private final byte[] _getIntegralElectricEnergyMeasurementValue(byte epc) {
 		byte[] edt = getIntegralElectricEnergyMeasurementValue();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates number of decimal places of integral electric energy (0xE0).<br>0x01 :   0.1kWh 0x02 :   0.01kWh<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
+	 * This property indicates number of decimal places of integral electric energy (0xE0).<br><br>0x01 :   0.1kWh 0x02 :   0.01kWh<br><br>Name : Integral electric energy unit<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
 	 */
 	protected abstract byte[] getIntegralElectricEnergyUnit();
 	private final byte[] _getIntegralElectricEnergyUnit(byte epc) {
 		byte[] edt = getIntegralElectricEnergyUnit();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates integral electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours.<br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Data type : unsigned long x 48<br>Data size : 192 bytes<br>Set : undefined<br>Get : optional
+	 * This property indicates integral electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours.<br><br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Name : Integral electric energy measurement log 1<br>EPC : 0xE3<br>Data Type : unsigned long x 48<br>Data Size(Byte) : 192 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getIntegralElectricEnergyMeasurementLog1() {return null;}
 	private final byte[] _getIntegralElectricEnergyMeasurementLog1(byte epc) {
 		byte[] edt = getIntegralElectricEnergyMeasurementLog1();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	/**
-	 * This property indicates integral electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments.<br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Data type : unsigned long x48 x45<br>Data size : 192 bytes x 45<br>Set : undefined<br>Get : optional
+	 * This property indicates integral electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments.<br><br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Name : Integral electric energy measurement log 2<br>EPC : 0xE4<br>Data Type : unsigned long x48 x45<br>Data Size(Byte) : 192 bytes x 45<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 	 */
 	protected byte[] getIntegralElectricEnergyMeasurementLog2() {return null;}
 	private final byte[] _getIntegralElectricEnergyMeasurementLog2(byte epc) {
 		byte[] edt = getIntegralElectricEnergyMeasurementLog2();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
@@ -114,17 +112,17 @@ public abstract class WattHourMeter extends DeviceObject {
 	
 	@Override
 	public Setter set() {
-		return new SetterImpl(ESV_SET_NO_RES);
+		return new Setter(ESV_SETI);
 	}
 
 	@Override
 	public Setter setC() {
-		return new SetterImpl(ESV_SET_RES);
+		return new Setter(ESV_SETC);
 	}
 
 	@Override
 	public Getter get() {
-		return new GetterImpl();
+		return new Getter();
 	}
 
 	@Override
@@ -163,56 +161,48 @@ public abstract class WattHourMeter extends DeviceObject {
 		}
 		
 		/**
-		 * This property indicates integral electric energy in decimal (8 digits).<br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
+		 * This property indicates integral electric energy in decimal (8 digits).<br><br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Name : Integral electric energy measurement value<br>EPC : 0xE0<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
 		 */
 		protected void onGetIntegralElectricEnergyMeasurementValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetIntegralElectricEnergyMeasurementValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetIntegralElectricEnergyMeasurementValue(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates number of decimal places of integral electric energy (0xE0).<br>0x01 :   0.1kWh 0x02 :   0.01kWh<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
+		 * This property indicates number of decimal places of integral electric energy (0xE0).<br><br>0x01 :   0.1kWh 0x02 :   0.01kWh<br><br>Name : Integral electric energy unit<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
 		 */
 		protected void onGetIntegralElectricEnergyUnit(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetIntegralElectricEnergyUnit(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetIntegralElectricEnergyUnit(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates integral electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours.<br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Data type : unsigned long x 48<br>Data size : 192 bytes<br>Set : undefined<br>Get : optional
+		 * This property indicates integral electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours.<br><br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Name : Integral electric energy measurement log 1<br>EPC : 0xE3<br>Data Type : unsigned long x 48<br>Data Size(Byte) : 192 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetIntegralElectricEnergyMeasurementLog1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetIntegralElectricEnergyMeasurementLog1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetIntegralElectricEnergyMeasurementLog1(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
-		 * This property indicates integral electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments.<br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Data type : unsigned long x48 x45<br>Data size : 192 bytes x 45<br>Set : undefined<br>Get : optional
+		 * This property indicates integral electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments.<br><br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Name : Integral electric energy measurement log 2<br>EPC : 0xE4<br>Data Type : unsigned long x48 x45<br>Data Size(Byte) : 192 bytes x 45<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		protected void onGetIntegralElectricEnergyMeasurementLog2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetIntegralElectricEnergyMeasurementLog2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetIntegralElectricEnergyMeasurementLog2(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 
 	}
 	
-	public interface Setter extends DeviceObject.Setter {
-		public Setter reqSetOperationStatus(byte[] edt);
-		public Setter reqSetInstallationLocation(byte[] edt);
-		public Setter reqSetCurrentLimitSetting(byte[] edt);
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt);
-		public Setter reqSetPositionInformation(byte[] edt);
-		public Setter reqSetCurrentTimeSetting(byte[] edt);
-		public Setter reqSetCurrentDateSetting(byte[] edt);
-		public Setter reqSetPowerLimitSetting(byte[] edt);
-		
-	}
-
-	public class SetterImpl extends DeviceObject.SetterImpl implements Setter {
-
-		public SetterImpl(byte esv) {
+	public class Setter extends DeviceObject.Setter {
+		public Setter(byte esv) {
 			super(esv);
+		}
+
+		@Override
+		public Setter reqSet(byte epc, byte[] edt) {
+			return (Setter)super.reqSet(epc, edt);
 		}
 		
 		@Override
@@ -249,93 +239,8 @@ public abstract class WattHourMeter extends DeviceObject {
 		}
 
 	}
-	
-	public class SetterProxy extends DeviceObject.SetterProxy implements Setter {
 
-		public SetterProxy(byte esv) {
-			super(esv);
-		}
-
-		@Override
-		public Setter reqSetOperationStatus(byte[] edt) {
-			return (Setter)super.reqSetOperationStatus(edt);
-		}
-		@Override
-		public Setter reqSetInstallationLocation(byte[] edt) {
-			return (Setter)super.reqSetInstallationLocation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentLimitSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
-		}
-		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
-		}
-		@Override
-		public Setter reqSetCurrentTimeSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentTimeSetting(edt);
-		}
-		@Override
-		public Setter reqSetCurrentDateSetting(byte[] edt) {
-			return (Setter)super.reqSetCurrentDateSetting(edt);
-		}
-		@Override
-		public Setter reqSetPowerLimitSetting(byte[] edt) {
-			return (Setter)super.reqSetPowerLimitSetting(edt);
-		}
-
-	}
-
-	public interface Getter extends DeviceObject.Getter {
-		public Getter reqGetOperationStatus();
-		public Getter reqGetInstallationLocation();
-		public Getter reqGetStandardVersionInformation();
-		public Getter reqGetIdentificationNumber();
-		public Getter reqGetMeasuredInstantaneousPowerConsumption();
-		public Getter reqGetMeasuredCumulativePowerConsumption();
-		public Getter reqGetManufacturersFaultCode();
-		public Getter reqGetCurrentLimitSetting();
-		public Getter reqGetFaultStatus();
-		public Getter reqGetFaultDescription();
-		public Getter reqGetManufacturerCode();
-		public Getter reqGetBusinessFacilityCode();
-		public Getter reqGetProductCode();
-		public Getter reqGetProductionNumber();
-		public Getter reqGetProductionDate();
-		public Getter reqGetPowerSavingOperationSetting();
-		public Getter reqGetPositionInformation();
-		public Getter reqGetCurrentTimeSetting();
-		public Getter reqGetCurrentDateSetting();
-		public Getter reqGetPowerLimitSetting();
-		public Getter reqGetCumulativeOperatingTime();
-		public Getter reqGetStatusChangeAnnouncementPropertyMap();
-		public Getter reqGetSetPropertyMap();
-		public Getter reqGetGetPropertyMap();
-		
-		/**
-		 * This property indicates integral electric energy in decimal (8 digits).<br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
-		 */
-		public Getter reqGetIntegralElectricEnergyMeasurementValue();
-		/**
-		 * This property indicates number of decimal places of integral electric energy (0xE0).<br>0x01 :   0.1kWh 0x02 :   0.01kWh<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
-		 */
-		public Getter reqGetIntegralElectricEnergyUnit();
-		/**
-		 * This property indicates integral electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours.<br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Data type : unsigned long x 48<br>Data size : 192 bytes<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetIntegralElectricEnergyMeasurementLog1();
-		/**
-		 * This property indicates integral electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments.<br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Data type : unsigned long x48 x45<br>Data size : 192 bytes x 45<br>Set : undefined<br>Get : optional
-		 */
-		public Getter reqGetIntegralElectricEnergyMeasurementLog2();
-	}
-	
-	public class GetterImpl extends DeviceObject.GetterImpl implements Getter {
+	public class Getter extends DeviceObject.Getter {
 
 		@Override
 		public Getter reqGetOperationStatus() {
@@ -433,152 +338,31 @@ public abstract class WattHourMeter extends DeviceObject {
 		public Getter reqGetGetPropertyMap() {
 			return (Getter)super.reqGetGetPropertyMap();
 		}
-
-		@Override
-		public Getter reqGetIntegralElectricEnergyMeasurementValue() {
-			byte epc = EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE;
-			byte[] edt = _getIntegralElectricEnergyMeasurementValue(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 4)));
-			return this;
-		}
-		@Override
-		public Getter reqGetIntegralElectricEnergyUnit() {
-			byte epc = EPC_INTEGRAL_ELECTRIC_ENERGY_UNIT;
-			byte[] edt = _getIntegralElectricEnergyUnit(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Getter reqGetIntegralElectricEnergyMeasurementLog1() {
-			byte epc = EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG1;
-			byte[] edt = _getIntegralElectricEnergyMeasurementLog1(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 192)));
-			return this;
-		}
-		@Override
-		public Getter reqGetIntegralElectricEnergyMeasurementLog2() {
-			byte epc = EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG2;
-			byte[] edt = _getIntegralElectricEnergyMeasurementLog2(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 192)));
-			return this;
-		}
-	}
-
-	public class GetterProxy extends DeviceObject.GetterProxy implements Getter {
-
-		@Override
-		public Getter reqGetOperationStatus() {
-			return (Getter)super.reqGetOperationStatus();
-		}
-		@Override
-		public Getter reqGetInstallationLocation() {
-			return (Getter)super.reqGetInstallationLocation();
-		}
-		@Override
-		public Getter reqGetStandardVersionInformation() {
-			return (Getter)super.reqGetStandardVersionInformation();
-		}
-		@Override
-		public Getter reqGetIdentificationNumber() {
-			return (Getter)super.reqGetIdentificationNumber();
-		}
-		@Override
-		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			return (Getter)super.reqGetMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			return (Getter)super.reqGetMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Getter reqGetManufacturersFaultCode() {
-			return (Getter)super.reqGetManufacturersFaultCode();
-		}
-		@Override
-		public Getter reqGetCurrentLimitSetting() {
-			return (Getter)super.reqGetCurrentLimitSetting();
-		}
-		@Override
-		public Getter reqGetFaultStatus() {
-			return (Getter)super.reqGetFaultStatus();
-		}
-		@Override
-		public Getter reqGetFaultDescription() {
-			return (Getter)super.reqGetFaultDescription();
-		}
-		@Override
-		public Getter reqGetManufacturerCode() {
-			return (Getter)super.reqGetManufacturerCode();
-		}
-		@Override
-		public Getter reqGetBusinessFacilityCode() {
-			return (Getter)super.reqGetBusinessFacilityCode();
-		}
-		@Override
-		public Getter reqGetProductCode() {
-			return (Getter)super.reqGetProductCode();
-		}
-		@Override
-		public Getter reqGetProductionNumber() {
-			return (Getter)super.reqGetProductionNumber();
-		}
-		@Override
-		public Getter reqGetProductionDate() {
-			return (Getter)super.reqGetProductionDate();
-		}
-		@Override
-		public Getter reqGetPowerSavingOperationSetting() {
-			return (Getter)super.reqGetPowerSavingOperationSetting();
-		}
-		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
-		}
-		@Override
-		public Getter reqGetCurrentTimeSetting() {
-			return (Getter)super.reqGetCurrentTimeSetting();
-		}
-		@Override
-		public Getter reqGetCurrentDateSetting() {
-			return (Getter)super.reqGetCurrentDateSetting();
-		}
-		@Override
-		public Getter reqGetPowerLimitSetting() {
-			return (Getter)super.reqGetPowerLimitSetting();
-		}
-		@Override
-		public Getter reqGetCumulativeOperatingTime() {
-			return (Getter)super.reqGetCumulativeOperatingTime();
-		}
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			return (Getter)super.reqGetStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			return (Getter)super.reqGetSetPropertyMap();
-		}
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			return (Getter)super.reqGetGetPropertyMap();
-		}
-
-		@Override
+		
+		/**
+		 * This property indicates integral electric energy in decimal (8 digits).<br><br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Name : Integral electric energy measurement value<br>EPC : 0xE0<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
+		 */
 		public Getter reqGetIntegralElectricEnergyMeasurementValue() {
 			addProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates number of decimal places of integral electric energy (0xE0).<br><br>0x01 :   0.1kWh 0x02 :   0.01kWh<br><br>Name : Integral electric energy unit<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
+		 */
 		public Getter reqGetIntegralElectricEnergyUnit() {
 			addProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_UNIT);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates integral electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours.<br><br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Name : Integral electric energy measurement log 1<br>EPC : 0xE3<br>Data Type : unsigned long x 48<br>Data Size(Byte) : 192 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetIntegralElectricEnergyMeasurementLog1() {
 			addProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG1);
 			return this;
 		}
-		@Override
+		/**
+		 * This property indicates integral electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments.<br><br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Name : Integral electric energy measurement log 2<br>EPC : 0xE4<br>Data Type : unsigned long x48 x45<br>Data Size(Byte) : 192 bytes x 45<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 */
 		public Getter reqGetIntegralElectricEnergyMeasurementLog2() {
 			addProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG2);
 			return this;
@@ -586,6 +370,8 @@ public abstract class WattHourMeter extends DeviceObject {
 	}
 	
 	public interface Informer extends DeviceObject.Informer {
+		public Informer reqInform(byte epc);
+		
 		public Informer reqInformOperationStatus();
 		public Informer reqInformInstallationLocation();
 		public Informer reqInformStandardVersionInformation();
@@ -612,25 +398,29 @@ public abstract class WattHourMeter extends DeviceObject {
 		public Informer reqInformGetPropertyMap();
 		
 		/**
-		 * This property indicates integral electric energy in decimal (8 digits).<br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Data type : unsigned long<br>Data size : 4 bytes<br>Set : undefined<br>Get : mandatory
+		 * This property indicates integral electric energy in decimal (8 digits).<br><br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Name : Integral electric energy measurement value<br>EPC : 0xE0<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
 		 */
 		public Informer reqInformIntegralElectricEnergyMeasurementValue();
 		/**
-		 * This property indicates number of decimal places of integral electric energy (0xE0).<br>0x01 :   0.1kWh 0x02 :   0.01kWh<br><br>Data type : unsigned char<br>Data size : 1 byte<br>Set : undefined<br>Get : mandatory
+		 * This property indicates number of decimal places of integral electric energy (0xE0).<br><br>0x01 :   0.1kWh 0x02 :   0.01kWh<br><br>Name : Integral electric energy unit<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
 		 */
 		public Informer reqInformIntegralElectricEnergyUnit();
 		/**
-		 * This property indicates integral electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours.<br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Data type : unsigned long x 48<br>Data size : 192 bytes<br>Set : undefined<br>Get : optional
+		 * This property indicates integral electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours.<br><br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Name : Integral electric energy measurement log 1<br>EPC : 0xE3<br>Data Type : unsigned long x 48<br>Data Size(Byte) : 192 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformIntegralElectricEnergyMeasurementLog1();
 		/**
-		 * This property indicates integral electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments.<br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Data type : unsigned long x48 x45<br>Data size : 192 bytes x 45<br>Set : undefined<br>Get : optional
+		 * This property indicates integral electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments.<br><br>0x00000000.0x05F5E0FF (0.99,999,999)<br><br>Name : Integral electric energy measurement log 2<br>EPC : 0xE4<br>Data Type : unsigned long x48 x45<br>Data Size(Byte) : 192 bytes x 45<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
 		 */
 		public Informer reqInformIntegralElectricEnergyMeasurementLog2();
 	}
 
 	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();
@@ -759,7 +549,11 @@ public abstract class WattHourMeter extends DeviceObject {
 	}
 	
 	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
-
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+		
 		@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();

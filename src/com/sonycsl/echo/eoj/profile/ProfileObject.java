@@ -17,6 +17,8 @@ package com.sonycsl.echo.eoj.profile;
 
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.eoj.EchoObject;
+import com.sonycsl.echo.eoj.EchoObject.Getter;
+import com.sonycsl.echo.eoj.EchoObject.Informer;
 
 public abstract class ProfileObject extends EchoObject {
 
@@ -43,7 +45,7 @@ public abstract class ProfileObject extends EchoObject {
 	}
 	private final byte[] _getFaultStatus(byte epc) {
 		byte[] edt = getFaultStatus();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
@@ -58,7 +60,7 @@ public abstract class ProfileObject extends EchoObject {
 	protected abstract byte[] getManufacturerCode();
 	private final byte[] _getManufacturerCode(byte epc) {
 		byte[] edt = getManufacturerCode();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	
@@ -75,7 +77,7 @@ public abstract class ProfileObject extends EchoObject {
 	}
 	private final byte[] _getPlaceOfBusinessCode(byte epc) {
 		byte[] edt = getPlaceOfBusinessCode();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	
@@ -92,7 +94,7 @@ public abstract class ProfileObject extends EchoObject {
 	}
 	private final byte[] _getProductCode(byte epc) {
 		byte[] edt = getProductCode();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
@@ -109,7 +111,7 @@ public abstract class ProfileObject extends EchoObject {
 	}
 	private final byte[] _getSerialNumber(byte epc) {
 		byte[] edt = getSerialNumber();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	
@@ -128,7 +130,7 @@ public abstract class ProfileObject extends EchoObject {
 	}
 	private final byte[] _getDateOfManufacture(byte epc) {
 		byte[] edt = getDateOfManufacture();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	
@@ -142,7 +144,7 @@ public abstract class ProfileObject extends EchoObject {
 	protected abstract byte[] getStatusChangeAnnouncementPropertyMap();
 	private final byte[] _getStatusChangeAnnouncementPropertyMap(byte epc) {
 		byte[] edt = getStatusChangeAnnouncementPropertyMap();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	
@@ -156,7 +158,7 @@ public abstract class ProfileObject extends EchoObject {
 	protected abstract byte[] getSetPropertyMap();
 	private final byte[] _getSetPropertyMap(byte epc) {
 		byte[] edt = getSetPropertyMap();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 
@@ -170,7 +172,7 @@ public abstract class ProfileObject extends EchoObject {
 	protected abstract byte[] getGetPropertyMap();
 	private final byte[] _getGetPropertyMap(byte epc) {
 		byte[] edt = getGetPropertyMap();
-		notify(epc, edt);
+		onInvokedGetMethod(epc, edt);
 		return edt;
 	}
 	
@@ -230,17 +232,17 @@ public abstract class ProfileObject extends EchoObject {
 
 	@Override
 	public Setter set() {
-		return new SetterImpl(ESV_SET_NO_RES);
+		return new Setter(ESV_SETI);
 	}
 
 	@Override
 	public Setter setC() {
-		return new SetterImpl(ESV_SET_RES);
+		return new Setter(ESV_SETC);
 	}
 
 	@Override
 	public Getter get() {
-		return new GetterImpl();
+		return new Getter();
 	}
 	
 	@Override
@@ -312,7 +314,7 @@ public abstract class ProfileObject extends EchoObject {
 		protected void onGetFaultStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetFaultStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetFaultStatus(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
 		 * Stipulated in 3 bytes<br>
@@ -325,7 +327,7 @@ public abstract class ProfileObject extends EchoObject {
 		protected void onGetManufacturerCode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetManufacturerCode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetManufacturerCode(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
 		 * Stipulated in 3-byte place-of-business code<br>
@@ -338,7 +340,7 @@ public abstract class ProfileObject extends EchoObject {
 		protected void onGetPlaceOfBusinessCode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetPlaceOfBusinessCode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetPlaceOfBusinessCode(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
 		 * Specified in ASCII code<br>
@@ -351,7 +353,7 @@ public abstract class ProfileObject extends EchoObject {
 		protected void onGetProductCode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetProductCode(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetProductCode(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
 		 * Specified in ASCII code<br>
@@ -364,7 +366,7 @@ public abstract class ProfileObject extends EchoObject {
 		protected void onGetSerialNumber(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetSerialNumber(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetSerialNumber(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
 		 * Stipulated in 4 bytes<br>
@@ -379,7 +381,7 @@ public abstract class ProfileObject extends EchoObject {
 		protected void onGetDateOfManufacture(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetDateOfManufacture(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetDateOfManufacture(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
 		 * See “ECHONET Device Objects: Detailed Specifications”.<br><br>
@@ -391,7 +393,7 @@ public abstract class ProfileObject extends EchoObject {
 		protected void onGetStatusChangeAnnouncementPropertyMap(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetStatusChangeAnnouncementPropertyMap(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetStatusChangeAnnouncementPropertyMap(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
 		 * See “ECHONET Device Objects: Detailed Specifications”.<br><br>
@@ -403,7 +405,7 @@ public abstract class ProfileObject extends EchoObject {
 		protected void onGetSetPropertyMap(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetSetPropertyMap(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetSetPropertyMap(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 		/**
 		 * See “ECHONET Device Objects: Detailed Specifications”.<br><br>
@@ -415,27 +417,30 @@ public abstract class ProfileObject extends EchoObject {
 		protected void onGetGetPropertyMap(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
 		private final void _onGetGetPropertyMap(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetGetPropertyMap(eoj, tid, esv, epc, pdc, edt);
-			notify(eoj, tid, esv, epc, pdc, edt);
+			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
 		}
 	}
 
-	public interface Setter extends EchoObject.Setter {
+	public class Setter extends EchoObject.Setter {
+
+		public Setter(byte esv) {
+			super(esv);
+		}
+
+		@Override
+		public Setter reqSet(byte epc,
+				byte[] edt) {
+			return (Setter)super.reqSet(epc, edt);
+		}
 		
 	}
 	
-	public class SetterImpl extends EchoObject.SetterImpl implements Setter {
-		public SetterImpl(byte esv) {
-			super(esv);
+	public class Getter extends EchoObject.Getter {
+		@Override
+		public Getter reqGet(byte epc) {
+			return (Getter)super.reqGet(epc);
 		}
-	}
-	
-	public class SetterProxy extends EchoObject.SetterProxy implements Setter {
-		public SetterProxy(byte esv) {
-			super(esv);
-		}
-	}
-	
-	public interface Getter extends EchoObject.Getter {
+		
 		/**
 		 * Indicates an encountered abnormality (sensor trouble, etc.).<br>
 		 * Fault encountered = 0x41, no fault encountered = 0x42<br><br>
@@ -444,7 +449,10 @@ public abstract class ProfileObject extends EchoObject {
 		 * Set : undefined<br>
 		 * Get : optional<br>
 		 */
-		public Getter reqGetFaultStatus();
+		public Getter reqGetFaultStatus() {
+			addProperty(EPC_FAULT_STATUS);
+			return this;
+		}
 		/**
 		 * Stipulated in 3 bytes<br>
 		 * (To be specified by ECHONET Consortium)<br><br>
@@ -453,7 +461,10 @@ public abstract class ProfileObject extends EchoObject {
 		 * Set : undefined<br>
 		 * Get : mandatory<br>
 		 */
-		public Getter reqGetManufacturerCode();
+		public Getter reqGetManufacturerCode() {
+			addProperty(EPC_MANUFACTURER_CODE);
+			return this;
+		}
 		/**
 		 * Stipulated in 3-byte place-of-business code<br>
 		 * (Specified individually by each char×3 manufacturer)<br><br>
@@ -462,7 +473,10 @@ public abstract class ProfileObject extends EchoObject {
 		 * Set : undefined<br>
 		 * Get : optional<br>
 		 */
-		public Getter reqGetPlaceOfBusinessCode();
+		public Getter reqGetPlaceOfBusinessCode() {
+			addProperty(EPC_PLACE_OF_BUSINESS_CODE);
+			return this;
+		}
 		/**
 		 * Specified in ASCII code<br>
 		 * (Specified individually by each manufacturer)<br><br>
@@ -471,7 +485,10 @@ public abstract class ProfileObject extends EchoObject {
 		 * Set : undefined<br>
 		 * Get : optional<br>
 		 */
-		public Getter reqGetProductCode();
+		public Getter reqGetProductCode() {
+			addProperty(EPC_PRODUCT_CODE);
+			return this;
+		}
 		/**
 		 * Specified in ASCII code<br>
 		 * (Specified individually by each manufacturer)<br><br>
@@ -480,7 +497,10 @@ public abstract class ProfileObject extends EchoObject {
 		 * Set : undefined<br>
 		 * Get : optional<br>
 		 */
-		public Getter reqGetSerialNumber();
+		public Getter reqGetSerialNumber() {
+			addProperty(EPC_SERIAL_NUMBER);
+			return this;
+		}
 		/**
 		 * Stipulated in 4 bytes<br>
 		 * YYMD (1 byte/character)<br>
@@ -491,168 +511,48 @@ public abstract class ProfileObject extends EchoObject {
 		 * Set : undefined<br>
 		 * Get : optional<br>
 		 */
-		public Getter reqGetDateOfManufacture();
-		/**
-		 * See “ECHONET Device Objects: Detailed Specifications”.<br><br>
-		 * Data type : unsigned char×(MAX17)<br>
-		 * Data size : Max.17<br>
-		 * Set : undefined<br>
-		 * Get : mandatory
-		 */
-		public Getter reqGetStatusChangeAnnouncementPropertyMap();
-		/**
-		 * See “ECHONET Device Objects: Detailed Specifications”.<br><br>
-		 * Data type : unsigned char×(MAX17)<br>
-		 * Data size : Max.17<br>
-		 * Set : undefined<br>
-		 * Get : mandatory
-		 */
-		public Getter reqGetSetPropertyMap();
-		/**
-		 * See “ECHONET Device Objects: Detailed Specifications”.<br><br>
-		 * Data type : unsigned char×(MAX17)<br>
-		 * Data size : Max.17<br>
-		 * Set : undefined<br>
-		 * Get : mandatory
-		 */
-		public Getter reqGetGetPropertyMap();
-	}
-	
-	public class GetterImpl extends EchoObject.GetterImpl implements Getter {
-		
-		@Override
-		public Getter reqGetFaultStatus() {
-			byte epc = EPC_FAULT_STATUS;
-			byte[] edt = _getFaultStatus(epc);
-			addProperty(epc, edt, (edt != null && edt.length == 1));
-			return this;
-		}
-		
-		@Override
-		public Getter reqGetManufacturerCode() {
-			byte epc = EPC_MANUFACTURER_CODE;
-			byte[] edt = _getManufacturerCode(epc);
-			addProperty(epc, edt, (edt != null && edt.length == 3));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetPlaceOfBusinessCode() {
-			byte epc = EPC_PLACE_OF_BUSINESS_CODE;
-			byte[] edt = _getPlaceOfBusinessCode(epc);
-			addProperty(epc, edt, (edt != null && edt.length == 3));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetProductCode() {
-			byte epc = EPC_PRODUCT_CODE;
-			byte[] edt = _getProductCode(epc);
-			addProperty(epc, edt, (edt != null && edt.length == 12));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetSerialNumber() {
-			byte epc = EPC_SERIAL_NUMBER;
-			byte[] edt = _getSerialNumber(epc);
-			addProperty(epc, edt, (edt != null && edt.length == 12));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetDateOfManufacture() {
-			byte epc = EPC_DATE_OF_MANUFACTURE;
-			byte[] edt = _getDateOfManufacture(epc);
-			addProperty(epc, edt, (edt != null && edt.length == 4));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			byte epc = EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP;
-			byte[] edt = _getStatusChangeAnnouncementPropertyMap(epc);
-			addProperty(epc, edt, (edt != null && edt.length <= 17));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetSetPropertyMap() {
-			byte epc = EPC_SET_PROPERTY_MAP;
-			byte[] edt = _getSetPropertyMap(epc);
-			addProperty(epc, edt, (edt != null && edt.length <= 17));
-			return this;
-		}
-
-		@Override
-		public Getter reqGetGetPropertyMap() {
-			byte epc = EPC_GET_PROPERTY_MAP;
-			byte[] edt = _getGetPropertyMap(epc);
-			addProperty(epc, edt, (edt != null && edt.length <= 17));
-			return this;
-		}
-		
-	}
-
-	public class GetterProxy extends EchoObject.GetterProxy implements Getter {
-		
-		@Override
-		public Getter reqGetFaultStatus() {
-			addProperty(EPC_FAULT_STATUS);
-			return this;
-		}
-
-		@Override
-		public Getter reqGetManufacturerCode() {
-			addProperty(EPC_MANUFACTURER_CODE);
-			return this;
-		}
-
-		@Override
-		public Getter reqGetPlaceOfBusinessCode() {
-			addProperty(EPC_PLACE_OF_BUSINESS_CODE);
-			return this;
-		}
-
-		@Override
-		public Getter reqGetProductCode() {
-			addProperty(EPC_PRODUCT_CODE);
-			return this;
-		}
-
-		@Override
-		public Getter reqGetSerialNumber() {
-			addProperty(EPC_SERIAL_NUMBER);
-			return this;
-		}
-
-		@Override
 		public Getter reqGetDateOfManufacture() {
 			addProperty(EPC_DATE_OF_MANUFACTURE);
 			return this;
 		}
-
-		@Override
+		/**
+		 * See “ECHONET Device Objects: Detailed Specifications”.<br><br>
+		 * Data type : unsigned char×(MAX17)<br>
+		 * Data size : Max.17<br>
+		 * Set : undefined<br>
+		 * Get : mandatory
+		 */
 		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
 			addProperty(EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP);
 			return this;
 		}
-
-		@Override
+		/**
+		 * See “ECHONET Device Objects: Detailed Specifications”.<br><br>
+		 * Data type : unsigned char×(MAX17)<br>
+		 * Data size : Max.17<br>
+		 * Set : undefined<br>
+		 * Get : mandatory
+		 */
 		public Getter reqGetSetPropertyMap() {
 			addProperty(EPC_SET_PROPERTY_MAP);
 			return this;
 		}
-
-		@Override
+		/**
+		 * See “ECHONET Device Objects: Detailed Specifications”.<br><br>
+		 * Data type : unsigned char×(MAX17)<br>
+		 * Data size : Max.17<br>
+		 * Set : undefined<br>
+		 * Get : mandatory
+		 */
 		public Getter reqGetGetPropertyMap() {
 			addProperty(EPC_GET_PROPERTY_MAP);
 			return this;
 		}
-		
 	}
 	
 	public interface Informer extends EchoObject.Informer {
+		public Informer reqInform(byte epc);
+		
 		/**
 		 * Indicates an encountered abnormality (sensor trouble, etc.).<br>
 		 * Fault encountered = 0x41, no fault encountered = 0x42<br><br>
@@ -738,6 +638,11 @@ public abstract class ProfileObject extends EchoObject {
 	public class InformerImpl extends EchoObject.InformerImpl implements Informer {
 
 		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
+
+		@Override
 		public Informer reqInformFaultStatus() {
 			byte epc = EPC_FAULT_STATUS;
 			byte[] edt = _getFaultStatus(epc);
@@ -811,6 +716,11 @@ public abstract class ProfileObject extends EchoObject {
 	}
 
 	public class InformerProxy extends EchoObject.InformerProxy implements Informer {
+
+		@Override
+		public Informer reqInform(byte epc) {
+			return (Informer)super.reqInform(epc);
+		}
 
 		@Override
 		public Informer reqInformFaultStatus() {

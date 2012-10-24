@@ -33,6 +33,11 @@ public class CurrentValueSensorProxy extends CurrentValueSensor {
 	}
 	
 	@Override
+	public boolean isProxy() {
+		return true;
+	}
+	
+	@Override
 	protected byte[] getOperationStatus() {return null;}
 	@Override
 	protected boolean setInstallationLocation(byte[] arg) {return false;}
@@ -57,23 +62,10 @@ public class CurrentValueSensorProxy extends CurrentValueSensor {
 	protected byte[] getMeasuredCurrentValue2() {return null;}
 
 	@Override
-	public Setter set() {
-		return new SetterProxy(ESV_SETI);
-	}
-
-	@Override
-	public Setter setC() {
-		return new SetterProxy(ESV_SETC);
-	}
-
-	@Override
-	public Getter get() {
-		return new GetterProxy();
-	}
-
-	@Override
 	public Informer inform() {
 		return new InformerProxy();
 	}
 	
+	public static class Receiver extends CurrentValueSensor.Receiver {
+	}
 }

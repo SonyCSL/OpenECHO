@@ -21,6 +21,11 @@ import com.sonycsl.echo.eoj.profile.NodeProfile;
 
 public class NodeProfileProxy extends NodeProfile {
 
+	@Override
+	public boolean isProxy() {
+		return true;
+	}
+
 	public NodeProfileProxy() {
 		setReceiver(new Receiver());
 	}
@@ -95,21 +100,6 @@ public class NodeProfileProxy extends NodeProfile {
 	protected byte[] getGetPropertyMap() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public Setter set() {
-		return new SetterProxy(ESV_SETI);
-	}
-
-	@Override
-	public Setter setC() {
-		return new SetterProxy(ESV_SETC);
-	}
-
-	@Override
-	public Getter get() {
-		return new GetterProxy();
 	}
 
 	@Override
