@@ -79,10 +79,13 @@ public final class EchoUtils {
 	}
 	
 	public static String toHexString(byte[] data) {
+		return toHexString(data," ") ;
+	}
+	public static String toHexString(byte[] data,String sep) {
 		if(data == null) return "";
 		StringBuilder sb = new StringBuilder();
 		for(byte b : data) {
-			sb.append(String.format("%02x ", b));
+			sb.append(String.format("%02x"+sep, b));
 		}
 		
 		return new String(sb);
