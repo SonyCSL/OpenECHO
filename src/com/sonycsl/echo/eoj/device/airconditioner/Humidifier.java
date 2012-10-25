@@ -23,6 +23,10 @@ public abstract class Humidifier extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x01;
 	public static final byte CLASS_CODE = (byte)0x39;
+	
+	public Humidifier() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_HUMIDIFYING_SETTING1 = (byte)0xC0;
 	public static final byte EPC_HUMIDIFYING_SETTING2 = (byte)0xC1;

@@ -25,6 +25,7 @@ public class DifferentialPressureSensorProxy extends DifferentialPressureSensor 
 	
 	public DifferentialPressureSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

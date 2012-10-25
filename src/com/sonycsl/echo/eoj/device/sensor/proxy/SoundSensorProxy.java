@@ -25,6 +25,7 @@ public class SoundSensorProxy extends SoundSensor {
 	
 	public SoundSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

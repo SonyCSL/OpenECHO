@@ -23,6 +23,10 @@ public abstract class DifferentialPressureSensor extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x1E;
+	
+	public DifferentialPressureSensor() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_MEASURED_VALUE_OF_DIFFERENTIAL_PRESSURE = (byte)0xE0;
 

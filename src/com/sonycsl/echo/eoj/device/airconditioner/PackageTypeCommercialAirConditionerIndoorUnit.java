@@ -23,6 +23,10 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x01;
 	public static final byte CLASS_CODE = (byte)0x45;
+	
+	public PackageTypeCommercialAirConditionerIndoorUnit() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_OPERATION_MODE_SETTING = (byte)0xB0;
 	public static final byte EPC_TEMPERATURE_SETTING1 = (byte)0xB3;

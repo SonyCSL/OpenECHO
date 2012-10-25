@@ -25,6 +25,7 @@ public class GasLeakSensorProxy extends GasLeakSensor {
 	
 	public GasLeakSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

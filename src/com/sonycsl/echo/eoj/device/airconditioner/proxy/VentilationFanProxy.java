@@ -25,6 +25,7 @@ public class VentilationFanProxy extends VentilationFan {
 	
 	public VentilationFanProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

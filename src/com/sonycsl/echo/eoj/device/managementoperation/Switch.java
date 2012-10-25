@@ -23,6 +23,10 @@ public abstract class Switch extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x05;
 	public static final byte CLASS_CODE = (byte)0xFD;
+	
+	public Switch() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_CONNECTED_DEVICE = (byte)0xE0;
 

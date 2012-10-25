@@ -25,6 +25,7 @@ public class SmartGasMeterProxy extends SmartGasMeter {
 	
 	public SmartGasMeterProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

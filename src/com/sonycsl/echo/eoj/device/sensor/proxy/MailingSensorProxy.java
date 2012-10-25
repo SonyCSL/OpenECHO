@@ -25,6 +25,7 @@ public class MailingSensorProxy extends MailingSensor {
 	
 	public MailingSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

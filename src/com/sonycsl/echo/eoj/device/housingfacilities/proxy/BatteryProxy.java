@@ -25,6 +25,7 @@ public class BatteryProxy extends Battery {
 	
 	public BatteryProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

@@ -25,6 +25,7 @@ public class FirstAidSensorProxy extends FirstAidSensor {
 	
 	public FirstAidSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

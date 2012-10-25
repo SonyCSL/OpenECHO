@@ -40,6 +40,10 @@ public abstract class NodeProfile extends ProfileObject {
 	protected static final byte EPC_SELF_NODE_INSTANCE_LIST_S = (byte)0xD6;
 	protected static final byte EPC_SELF_NODE_CLASS_LIST = (byte)0xD7; 
 
+	public NodeProfile() {
+		setReceiver(new Receiver());
+	}
+
 	@Override
 	public byte getClassGroupCode() {
 		return CLASS_GROUP_CODE;

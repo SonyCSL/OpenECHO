@@ -25,6 +25,7 @@ public class HumanBodyLocationSensorProxy extends HumanBodyLocationSensor {
 	
 	public HumanBodyLocationSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

@@ -25,6 +25,7 @@ public class WeightSensorProxy extends WeightSensor {
 	
 	public WeightSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

@@ -23,6 +23,10 @@ public abstract class Sprinkler extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x67;
+	
+	public Sprinkler() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING = (byte)0xE0;
 	public static final byte EPC_SPRINKLE_INTERVAL_SETTING = (byte)0xE1;

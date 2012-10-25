@@ -25,6 +25,7 @@ public class HomeAirConditionerProxy extends HomeAirConditioner {
 	
 	public HomeAirConditionerProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

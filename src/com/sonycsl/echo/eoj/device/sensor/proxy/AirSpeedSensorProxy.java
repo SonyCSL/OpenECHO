@@ -25,6 +25,7 @@ public class AirSpeedSensorProxy extends AirSpeedSensor {
 	
 	public AirSpeedSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

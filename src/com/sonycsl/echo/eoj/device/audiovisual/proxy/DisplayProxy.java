@@ -25,6 +25,7 @@ public class DisplayProxy extends Display {
 	
 	public DisplayProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

@@ -25,6 +25,7 @@ public class ElectricToiletSeatProxy extends ElectricToiletSeat {
 	
 	public ElectricToiletSeatProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

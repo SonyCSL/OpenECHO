@@ -25,6 +25,7 @@ public class BedPresenceSensorProxy extends BedPresenceSensor {
 	
 	public BedPresenceSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

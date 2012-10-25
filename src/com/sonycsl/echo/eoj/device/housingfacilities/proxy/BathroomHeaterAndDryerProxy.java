@@ -25,6 +25,7 @@ public class BathroomHeaterAndDryerProxy extends BathroomHeaterAndDryer {
 	
 	public BathroomHeaterAndDryerProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

@@ -23,6 +23,10 @@ public abstract class FuelCell extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x7C;
+	
+	public FuelCell() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_AUTOMATIC_SETTING_OF_HEATED_WATER_TEMPERATURE = (byte)0xB1;
 	public static final byte EPC_HEATING_STATUS = (byte)0xB2;

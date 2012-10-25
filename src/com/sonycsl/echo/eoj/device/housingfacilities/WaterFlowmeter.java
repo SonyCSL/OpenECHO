@@ -23,6 +23,10 @@ public abstract class WaterFlowmeter extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x81;
+	
+	public WaterFlowmeter() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_FLOWING_WATER_CLASSIFICATION = (byte)0xD0;
 	public static final byte EPC_OWNER_CLASSIFICATION = (byte)0xD1;

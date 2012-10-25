@@ -25,6 +25,7 @@ public class IlluminanceSensorProxy extends IlluminanceSensor {
 	
 	public IlluminanceSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

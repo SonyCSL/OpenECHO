@@ -25,6 +25,7 @@ public class BuzzerProxy extends Buzzer {
 	
 	public BuzzerProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

@@ -23,6 +23,10 @@ public abstract class OpenCloseSensor extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x29;
+	
+	public OpenCloseSensor() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS1 = (byte)0xE0;
 	public static final byte EPC_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;

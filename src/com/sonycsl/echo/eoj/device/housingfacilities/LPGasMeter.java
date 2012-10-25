@@ -23,6 +23,10 @@ public abstract class LPGasMeter extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x83;
+	
+	public LPGasMeter() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1 = (byte)0xE0;
 	public static final byte EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2 = (byte)0xE1;

@@ -25,6 +25,7 @@ public class MicromotionSensorProxy extends MicromotionSensor {
 	
 	public MicromotionSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

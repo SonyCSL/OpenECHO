@@ -25,6 +25,7 @@ public class RainSensorProxy extends RainSensor {
 	
 	public RainSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

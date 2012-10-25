@@ -25,6 +25,7 @@ public class ElectricLockProxy extends ElectricLock {
 	
 	public ElectricLockProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

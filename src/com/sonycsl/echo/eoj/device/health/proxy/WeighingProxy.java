@@ -25,6 +25,7 @@ public class WeighingProxy extends Weighing {
 	
 	public WeighingProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

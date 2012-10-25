@@ -25,6 +25,7 @@ public class ElectricShutterProxy extends ElectricShutter {
 	
 	public ElectricShutterProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

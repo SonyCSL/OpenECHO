@@ -25,6 +25,7 @@ public class EarthquakeSensorProxy extends EarthquakeSensor {
 	
 	public EarthquakeSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

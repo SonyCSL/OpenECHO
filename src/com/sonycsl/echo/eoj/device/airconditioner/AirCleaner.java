@@ -23,6 +23,10 @@ public abstract class AirCleaner extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x01;
 	public static final byte CLASS_CODE = (byte)0x35;
+	
+	public AirCleaner() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_FILTER_CHANGE_NOTICE = (byte)0xE1;
 	public static final byte EPC_AIR_FLOW_RATE_SETTING = (byte)0xA0;

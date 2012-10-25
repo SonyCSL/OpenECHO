@@ -25,6 +25,7 @@ public class FireSensorProxy extends FireSensor {
 	
 	public FireSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

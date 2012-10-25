@@ -25,6 +25,7 @@ public class SnowSensorProxy extends SnowSensor {
 	
 	public SnowSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

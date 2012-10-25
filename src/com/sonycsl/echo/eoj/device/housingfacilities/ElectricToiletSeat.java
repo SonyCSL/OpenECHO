@@ -23,6 +23,10 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x6E;
+	
+	public ElectricToiletSeat() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_TEMPERATURE_LEVEL_OF_TOILET_SEAT = (byte)0xE0;
 	public static final byte EPC_HEATER_SETTING_OF_TOILET_SEAT = (byte)0xE1;

@@ -25,6 +25,7 @@ public class WashingMachineProxy extends WashingMachine {
 	
 	public WashingMachineProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

@@ -25,6 +25,7 @@ public class HumanDetectionSensorProxy extends HumanDetectionSensor {
 	
 	public HumanDetectionSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

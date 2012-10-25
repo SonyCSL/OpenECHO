@@ -23,6 +23,10 @@ public abstract class WattHourMeter extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x80;
+	
+	public WattHourMeter() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE = (byte)0xE0;
 	public static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_UNIT = (byte)0xE2;

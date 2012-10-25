@@ -25,6 +25,7 @@ public class ControllerProxy extends Controller {
 	
 	public ControllerProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

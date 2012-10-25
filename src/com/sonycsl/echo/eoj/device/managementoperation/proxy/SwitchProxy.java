@@ -25,6 +25,7 @@ public class SwitchProxy extends Switch {
 	
 	public SwitchProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

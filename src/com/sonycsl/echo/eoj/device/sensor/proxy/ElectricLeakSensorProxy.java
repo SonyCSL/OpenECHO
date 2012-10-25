@@ -25,6 +25,7 @@ public class ElectricLeakSensorProxy extends ElectricLeakSensor {
 	
 	public ElectricLeakSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

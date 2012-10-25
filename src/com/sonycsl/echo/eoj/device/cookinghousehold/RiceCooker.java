@@ -23,6 +23,10 @@ public abstract class RiceCooker extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x03;
 	public static final byte CLASS_CODE = (byte)0xBB;
+	
+	public RiceCooker() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_COVER_OPEN_CLOSE_STATUS = (byte)0xB0;
 	public static final byte EPC_RICE_COOKING_STATUS = (byte)0xB1;

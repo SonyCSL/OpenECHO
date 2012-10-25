@@ -23,6 +23,10 @@ public abstract class Television extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x06;
 	public static final byte CLASS_CODE = (byte)0x02;
+	
+	public Television() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_DISPLAY_CONTROL_SETTING = (byte)0xB0;
 	public static final byte EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS = (byte)0xB1;

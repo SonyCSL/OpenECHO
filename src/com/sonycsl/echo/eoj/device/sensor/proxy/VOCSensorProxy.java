@@ -25,6 +25,7 @@ public class VOCSensorProxy extends VOCSensor {
 	
 	public VOCSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

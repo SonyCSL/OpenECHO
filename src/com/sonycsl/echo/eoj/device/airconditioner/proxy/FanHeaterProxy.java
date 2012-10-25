@@ -25,6 +25,7 @@ public class FanHeaterProxy extends FanHeater {
 	
 	public FanHeaterProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

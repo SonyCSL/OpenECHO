@@ -23,6 +23,10 @@ public abstract class EmergencyButton extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x03;
+	
+	public EmergencyButton() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_EMERGENCY_OCCURRENCE_STATUS = (byte)0xB1;
 	public static final byte EPC_EMERGENCY_OCCURRENCE_STATUS_RESETTING = (byte)0xBF;

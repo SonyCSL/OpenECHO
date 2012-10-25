@@ -23,6 +23,10 @@ public abstract class CO2Sensor extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x1B;
+	
+	public CO2Sensor() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION = (byte)0xE0;
 

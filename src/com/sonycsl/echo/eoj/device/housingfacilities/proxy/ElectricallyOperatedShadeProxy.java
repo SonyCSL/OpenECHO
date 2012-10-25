@@ -25,6 +25,7 @@ public class ElectricallyOperatedShadeProxy extends ElectricallyOperatedShade {
 	
 	public ElectricallyOperatedShadeProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

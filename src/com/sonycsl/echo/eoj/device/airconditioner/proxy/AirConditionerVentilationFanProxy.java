@@ -25,6 +25,7 @@ public class AirConditionerVentilationFanProxy extends AirConditionerVentilation
 	
 	public AirConditionerVentilationFanProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

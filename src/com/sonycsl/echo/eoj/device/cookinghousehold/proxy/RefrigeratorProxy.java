@@ -25,6 +25,7 @@ public class RefrigeratorProxy extends Refrigerator {
 	
 	public RefrigeratorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

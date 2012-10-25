@@ -23,6 +23,10 @@ public abstract class HumiditySensor extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x12;
+	
+	public HumiditySensor() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY = (byte)0xE0;
 

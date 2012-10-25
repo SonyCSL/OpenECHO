@@ -23,6 +23,10 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x01;
 	public static final byte CLASS_CODE = (byte)0x46;
+	
+	public PackageTypeCommercialAirConditionerOutdoorUnit() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_OPERATION_MODE_SETTING = (byte)0xB0;
 	public static final byte EPC_RATED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT = (byte)0xB8;

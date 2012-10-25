@@ -25,6 +25,7 @@ public class OdorSensorProxy extends OdorSensor {
 	
 	public OdorSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

@@ -23,6 +23,10 @@ public abstract class GeneralLighting extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x90;
+	
+	public GeneralLighting() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_ILLUMINANCE_LEVEL = (byte)0xB0;
 	public static final byte EPC_ILLUMINANCE_LEVEL_STEP_SETTING = (byte)0xB2;

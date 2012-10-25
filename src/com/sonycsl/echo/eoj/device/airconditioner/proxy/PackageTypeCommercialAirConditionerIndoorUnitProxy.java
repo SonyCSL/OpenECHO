@@ -25,6 +25,7 @@ public class PackageTypeCommercialAirConditionerIndoorUnitProxy extends PackageT
 	
 	public PackageTypeCommercialAirConditionerIndoorUnitProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

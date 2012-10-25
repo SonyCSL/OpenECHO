@@ -23,6 +23,10 @@ public abstract class FanHeater extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x01;
 	public static final byte CLASS_CODE = (byte)0x43;
+	
+	public FanHeater() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_TEMPERATURE_SETTING_VALUE = (byte)0xB3;
 	public static final byte EPC_MEASURED_TEMPERATURE = (byte)0xBB;

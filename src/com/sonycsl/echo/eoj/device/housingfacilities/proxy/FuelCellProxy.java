@@ -25,6 +25,7 @@ public class FuelCellProxy extends FuelCell {
 	
 	public FuelCellProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

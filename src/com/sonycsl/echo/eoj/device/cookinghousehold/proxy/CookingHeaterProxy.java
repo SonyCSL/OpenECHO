@@ -25,6 +25,7 @@ public class CookingHeaterProxy extends CookingHeater {
 	
 	public CookingHeaterProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

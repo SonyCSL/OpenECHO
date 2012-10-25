@@ -25,6 +25,7 @@ public class WaterFlowRateSensorProxy extends WaterFlowRateSensor {
 	
 	public WaterFlowRateSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

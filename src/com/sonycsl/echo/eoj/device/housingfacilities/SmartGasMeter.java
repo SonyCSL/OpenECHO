@@ -23,6 +23,10 @@ public abstract class SmartGasMeter extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x89;
+	
+	public SmartGasMeter() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_GAS_METER_CLASSIFICATION = (byte)0xE0;
 	public static final byte EPC_OWNER_CLASSIFICATION = (byte)0xE1;

@@ -25,6 +25,7 @@ public class PowerDistributionBoardMeteringProxy extends PowerDistributionBoardM
 	
 	public PowerDistributionBoardMeteringProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

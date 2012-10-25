@@ -25,6 +25,7 @@ public class VisitorSensorProxy extends VisitorSensor {
 	
 	public VisitorSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

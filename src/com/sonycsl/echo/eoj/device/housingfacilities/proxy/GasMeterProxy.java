@@ -25,6 +25,7 @@ public class GasMeterProxy extends GasMeter {
 	
 	public GasMeterProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

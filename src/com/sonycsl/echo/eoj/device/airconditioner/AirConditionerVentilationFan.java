@@ -23,6 +23,10 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x01;
 	public static final byte CLASS_CODE = (byte)0x34;
+	
+	public AirConditionerVentilationFan() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY = (byte)0xB4;
 	public static final byte EPC_VENTILATION_AUTO_SETTING = (byte)0xBF;

@@ -25,6 +25,7 @@ public class RiceCookerProxy extends RiceCooker {
 	
 	public RiceCookerProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

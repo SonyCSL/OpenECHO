@@ -23,6 +23,10 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x72;
+	
+	public InstantaneousWaterHeater() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_HOT_WATER_HEATING_STATUS = (byte)0xD0;
 	public static final byte EPC_SET_VALUE_OF_HOT_WATER_TEMPERATURE = (byte)0xD1;

@@ -25,6 +25,7 @@ public class CrimePreventionSensorProxy extends CrimePreventionSensor {
 	
 	public CrimePreventionSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

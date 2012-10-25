@@ -25,6 +25,7 @@ public class EmergencyButtonProxy extends EmergencyButton {
 	
 	public EmergencyButtonProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

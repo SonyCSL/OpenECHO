@@ -25,6 +25,7 @@ public class WaterFlowmeterProxy extends WaterFlowmeter {
 	
 	public WaterFlowmeterProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

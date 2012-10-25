@@ -23,6 +23,10 @@ public abstract class FloorHeater extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x7B;
+	
+	public FloorHeater() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_TEMPERATURE_SETTING1 = (byte)0xE0;
 	public static final byte EPC_TEMPERATURE_SETTING2 = (byte)0xE1;

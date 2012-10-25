@@ -25,6 +25,7 @@ public class FloorHeaterProxy extends FloorHeater {
 	
 	public FloorHeaterProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

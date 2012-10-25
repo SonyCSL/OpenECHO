@@ -23,6 +23,10 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x60;
+	
+	public ElectricallyOperatedShade() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_OPEN_CLOSE_SETTING = (byte)0xE0;
 	public static final byte EPC_DEGREE_OF_OPENI_NG_LEVEL = (byte)0xE1;

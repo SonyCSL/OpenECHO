@@ -23,6 +23,10 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x2A;
+	
+	public ActivityAmountSensor() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS = (byte)0xE1;
 	public static final byte EPC_ACTIVITY_AMOUNT_LEVEL2 = (byte)0xE2;

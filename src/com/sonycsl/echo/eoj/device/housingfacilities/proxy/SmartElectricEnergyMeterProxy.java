@@ -25,6 +25,7 @@ public class SmartElectricEnergyMeterProxy extends SmartElectricEnergyMeter {
 	
 	public SmartElectricEnergyMeterProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

@@ -25,6 +25,7 @@ public class SprinklerProxy extends Sprinkler {
 	
 	public SprinklerProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

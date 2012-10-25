@@ -25,6 +25,7 @@ public class HumiditySensorProxy extends HumiditySensor {
 	
 	public HumiditySensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

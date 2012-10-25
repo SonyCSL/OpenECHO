@@ -23,6 +23,10 @@ public abstract class WaterOverflowSensor extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x18;
+	
+	public WaterOverflowSensor() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;
 	public static final byte EPC_WATER_OVERFLOW_DETECTION_STATUS = (byte)0xB1;

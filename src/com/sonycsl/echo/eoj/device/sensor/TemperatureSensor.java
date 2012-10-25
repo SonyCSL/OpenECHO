@@ -23,6 +23,10 @@ public abstract class TemperatureSensor extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x11;
+	
+	public TemperatureSensor() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_MEASURED_TEMPERATURE_VALUE = (byte)0xE0;
 

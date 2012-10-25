@@ -25,6 +25,7 @@ public class GeneralLightingProxy extends GeneralLighting {
 	
 	public GeneralLightingProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

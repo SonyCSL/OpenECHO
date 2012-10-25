@@ -23,6 +23,10 @@ public abstract class ElectricHeater extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x01;
 	public static final byte CLASS_CODE = (byte)0x42;
+	
+	public ElectricHeater() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING = (byte)0xB1;
 	public static final byte EPC_TEMPERATURE_SETTING = (byte)0xB3;

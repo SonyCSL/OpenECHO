@@ -25,6 +25,7 @@ public class HouseholdSolarPowerGenerationProxy extends HouseholdSolarPowerGener
 	
 	public HouseholdSolarPowerGenerationProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

@@ -23,6 +23,10 @@ public abstract class AirSpeedSensor extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x1F;
+	
+	public AirSpeedSensor() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_MEASURED_VALUE_OF_AIR_SPEED = (byte)0xE0;
 	public static final byte EPC_AIR_FLOW_DIRECTION = (byte)0xE1;

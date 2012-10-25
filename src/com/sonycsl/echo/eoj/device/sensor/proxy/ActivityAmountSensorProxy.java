@@ -25,6 +25,7 @@ public class ActivityAmountSensorProxy extends ActivityAmountSensor {
 	
 	public ActivityAmountSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

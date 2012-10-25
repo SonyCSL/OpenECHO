@@ -23,6 +23,10 @@ public abstract class Battery extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x7D;
+	
+	public Battery() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_RATED_ELECTRIC_ENERGY = (byte)0xD0;
 	public static final byte EPC_RATED_CAPACITY = (byte)0xD1;

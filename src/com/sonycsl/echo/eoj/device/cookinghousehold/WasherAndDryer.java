@@ -23,6 +23,10 @@ public abstract class WasherAndDryer extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x03;
 	public static final byte CLASS_CODE = (byte)0xD3;
+	
+	public WasherAndDryer() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_DOOR_COVER_OPEN_CLOSE_STATUS = (byte)0xB0;
 	public static final byte EPC_WASHER_AND_DRYER_SETTING = (byte)0xB2;

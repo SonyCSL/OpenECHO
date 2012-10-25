@@ -23,6 +23,10 @@ public abstract class SnowSensor extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x2C;
+	
+	public SnowSensor() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;
 	public static final byte EPC_SNOW_DETECTION_STATUS = (byte)0xB1;

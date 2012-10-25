@@ -25,6 +25,7 @@ public class AirPollutionSensorProxy extends AirPollutionSensor {
 	
 	public AirPollutionSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

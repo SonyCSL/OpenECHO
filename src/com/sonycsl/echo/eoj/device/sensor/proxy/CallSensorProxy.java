@@ -25,6 +25,7 @@ public class CallSensorProxy extends CallSensor {
 	
 	public CallSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

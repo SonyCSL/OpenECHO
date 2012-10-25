@@ -23,6 +23,10 @@ public abstract class CurrentValueSensor extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x00;
 	public static final byte CLASS_CODE = (byte)0x23;
+	
+	public CurrentValueSensor() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_MEASURED_CURRENT_VALUE1 = (byte)0xE0;
 	public static final byte EPC_RATED_VOLTAGE_TO_BE_MEASURED = (byte)0xE1;

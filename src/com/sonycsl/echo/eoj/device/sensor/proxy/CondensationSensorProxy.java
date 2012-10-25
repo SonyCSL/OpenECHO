@@ -25,6 +25,7 @@ public class CondensationSensorProxy extends CondensationSensor {
 	
 	public CondensationSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

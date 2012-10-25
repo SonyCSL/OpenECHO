@@ -25,6 +25,7 @@ public class WaterOverflowSensorProxy extends WaterOverflowSensor {
 	
 	public WaterOverflowSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

@@ -23,6 +23,10 @@ public abstract class Refrigerator extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x03;
 	public static final byte CLASS_CODE = (byte)0xB7;
+	
+	public Refrigerator() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_DOOR_OPEN_CLOSE_STATUS = (byte)0xB0;
 	public static final byte EPC_DOOR_OPEN_WARNING = (byte)0xB1;

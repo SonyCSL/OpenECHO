@@ -25,6 +25,7 @@ public class BathHeatingStatusSensorProxy extends BathHeatingStatusSensor {
 	
 	public BathHeatingStatusSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

@@ -23,6 +23,10 @@ public abstract class CookingHeater extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x03;
 	public static final byte CLASS_CODE = (byte)0xB9;
+	
+	public CookingHeater() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_HEATING_STATUS = (byte)0xB1;
 	public static final byte EPC_HEATING_SETTING = (byte)0xB2;

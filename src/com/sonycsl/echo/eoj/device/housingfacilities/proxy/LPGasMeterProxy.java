@@ -25,6 +25,7 @@ public class LPGasMeterProxy extends LPGasMeter {
 	
 	public LPGasMeterProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

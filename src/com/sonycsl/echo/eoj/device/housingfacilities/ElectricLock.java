@@ -23,6 +23,10 @@ public abstract class ElectricLock extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x6F;
+	
+	public ElectricLock() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_LOCK_SETTING1 = (byte)0xE0;
 	public static final byte EPC_LOCK_SETTING2 = (byte)0xE1;

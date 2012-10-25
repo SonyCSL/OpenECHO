@@ -23,6 +23,10 @@ public abstract class Buzzer extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0xA0;
+	
+	public Buzzer() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_SOUND_GENERATION_SETTING = (byte)0xB1;
 	public static final byte EPC_BUZZER_SOUND_TYPE = (byte)0xE0;

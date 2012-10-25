@@ -25,6 +25,7 @@ public class CurrentValueSensorProxy extends CurrentValueSensor {
 	
 	public CurrentValueSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

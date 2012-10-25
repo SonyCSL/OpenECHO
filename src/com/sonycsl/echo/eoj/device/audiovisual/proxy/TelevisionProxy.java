@@ -25,6 +25,7 @@ public class TelevisionProxy extends Television {
 	
 	public TelevisionProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

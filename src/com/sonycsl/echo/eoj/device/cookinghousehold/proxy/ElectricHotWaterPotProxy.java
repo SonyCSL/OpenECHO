@@ -25,6 +25,7 @@ public class ElectricHotWaterPotProxy extends ElectricHotWaterPot {
 	
 	public ElectricHotWaterPotProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

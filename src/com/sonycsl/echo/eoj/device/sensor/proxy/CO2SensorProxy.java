@@ -25,6 +25,7 @@ public class CO2SensorProxy extends CO2Sensor {
 	
 	public CO2SensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

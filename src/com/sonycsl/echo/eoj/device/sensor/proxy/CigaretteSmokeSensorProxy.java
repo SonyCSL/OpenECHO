@@ -25,6 +25,7 @@ public class CigaretteSmokeSensorProxy extends CigaretteSmokeSensor {
 	
 	public CigaretteSmokeSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

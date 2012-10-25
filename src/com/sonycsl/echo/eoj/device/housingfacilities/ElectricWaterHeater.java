@@ -23,6 +23,10 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x6B;
+	
+	public ElectricWaterHeater() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_GAUTOMATIC_WATER_HEATING_H_SETTING = (byte)0xB0;
 	public static final byte EPC_GAUTOMATIC_WATER_TEMPERATURE_CONTROL_H_SETTING = (byte)0xB1;

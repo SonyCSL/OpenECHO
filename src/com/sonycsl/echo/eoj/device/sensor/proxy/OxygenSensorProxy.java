@@ -25,6 +25,7 @@ public class OxygenSensorProxy extends OxygenSensor {
 	
 	public OxygenSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

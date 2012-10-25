@@ -25,6 +25,7 @@ public class ClothesDryerProxy extends ClothesDryer {
 	
 	public ClothesDryerProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

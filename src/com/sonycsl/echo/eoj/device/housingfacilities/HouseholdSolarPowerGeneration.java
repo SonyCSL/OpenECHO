@@ -23,6 +23,10 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x79;
+	
+	public HouseholdSolarPowerGeneration() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_SYSTEM_INTERCONNECTION_STATUS = (byte)0xD0;
 	public static final byte EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED = (byte)0xE0;

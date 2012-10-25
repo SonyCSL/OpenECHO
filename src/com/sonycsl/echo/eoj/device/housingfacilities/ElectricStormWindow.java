@@ -23,6 +23,10 @@ public abstract class ElectricStormWindow extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x02;
 	public static final byte CLASS_CODE = (byte)0x63;
+	
+	public ElectricStormWindow() {
+		setReceiver(new Receiver());
+	}
 
 	public static final byte EPC_OPEN_CLOSE_SETTING1 = (byte)0xE0;
 	public static final byte EPC_EXTENT_OF_OPENING1 = (byte)0xE1;

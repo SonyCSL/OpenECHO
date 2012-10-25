@@ -25,6 +25,7 @@ public class ElectricHeaterProxy extends ElectricHeater {
 	
 	public ElectricHeaterProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

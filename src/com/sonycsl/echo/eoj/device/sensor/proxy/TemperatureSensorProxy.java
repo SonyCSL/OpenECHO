@@ -25,6 +25,7 @@ public class TemperatureSensorProxy extends TemperatureSensor {
 	
 	public TemperatureSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

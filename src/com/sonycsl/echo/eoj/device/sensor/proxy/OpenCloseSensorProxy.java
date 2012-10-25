@@ -25,6 +25,7 @@ public class OpenCloseSensorProxy extends OpenCloseSensor {
 	
 	public OpenCloseSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

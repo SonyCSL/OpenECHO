@@ -25,6 +25,7 @@ public class ElectricStormWindowProxy extends ElectricStormWindow {
 	
 	public ElectricStormWindowProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

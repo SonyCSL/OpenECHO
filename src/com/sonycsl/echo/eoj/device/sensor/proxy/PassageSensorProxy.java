@@ -25,6 +25,7 @@ public class PassageSensorProxy extends PassageSensor {
 	
 	public PassageSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

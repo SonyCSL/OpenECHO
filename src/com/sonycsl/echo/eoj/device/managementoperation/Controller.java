@@ -23,6 +23,10 @@ public abstract class Controller extends DeviceObject {
 	
 	public static final byte CLASS_GROUP_CODE = (byte)0x05;
 	public static final byte CLASS_CODE = (byte)0xFF;
+	
+	public Controller() {
+		setReceiver(new Receiver());
+	}
 
 
 	@Override

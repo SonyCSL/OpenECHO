@@ -25,6 +25,7 @@ public class HumidifierProxy extends Humidifier {
 	
 	public HumidifierProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override

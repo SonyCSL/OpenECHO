@@ -25,6 +25,7 @@ public class AirCleanerProxy extends AirCleaner {
 	
 	public AirCleanerProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
+		setReceiver(new Receiver());
 	}
 	
 	@Override
