@@ -16,6 +16,8 @@
 package com.sonycsl.echo.eoj;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
@@ -45,7 +47,10 @@ public abstract class EchoObject {
 	public static final byte ESV_INF_SNA = 0x53;
 	
 	public static final byte ESV_SET_NO_RES = 0x70;
-	public static final byte ESV_INF_NO_REQ = 0x64;
+	
+	public static final byte ESV_SET_GET = 0x6E;
+	public static final byte ESV_SET_GET_RES = 0x7E;
+	public static final byte ESV_SET_GET_SNA = 0x5E;
 	
 	private short mTid = 0;
 	
@@ -67,7 +72,7 @@ public abstract class EchoObject {
 		sb.append(String.format("%02x", getInstanceCode()));
 		sb.append(",address:");
 		if(getNode() != null) {
-			sb.append(getNode().getAddress().getHostName());
+			sb.append(getNode().getAddress().getHostAddress());
 		}
 		return new String(sb);
 	}
@@ -213,10 +218,25 @@ public abstract class EchoObject {
 			for(EchoFrame.Property p : properties) {
 				onReceiveInfReq(res, p.epc);
 			}
+			/*
 			try {
 				EchoSocket.sendGroup(res.getFrameByteArray());
 			} catch (IOException e) {
 				e.printStackTrace();
+			}
+			*/
+			if(res.getEsv() == ESV_INF) {
+				try {
+					EchoSocket.sendGroup(res.getFrameByteArray());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} else {
+				try {
+					EchoSocket.send(res.getDeoj().getNode().getAddress(), res.getFrameByteArray());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 			break;
 		case ESV_INFC:
@@ -230,6 +250,18 @@ public abstract class EchoObject {
 				e.printStackTrace();
 			}
 			break;
+		case ESV_SET_GET:
+			res = new EchoFrame(frame.getTid(), frame.getDeoj(), frame.getSeoj(), ESV_SET_GET_SNA);
+			byte[] b = res.getFrameByteArray();
+			ByteBuffer buffer = ByteBuffer.allocate(b.length+1);
+			buffer.order(ByteOrder.BIG_ENDIAN);
+			buffer.put(b);
+			buffer.put((byte)0);
+			try {
+				EchoSocket.send(res.getDeoj().getNode().getAddress(), buffer.array());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		default :
 			return;
 		}

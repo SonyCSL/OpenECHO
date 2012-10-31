@@ -53,14 +53,15 @@ public abstract class DeviceObject extends EchoObject {
 		return getNode().getDeviceNumber(this);
 	}
 
-	/**
-	 * This property indicates the ON/OFF status.<br>
+	/**This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * ON＝0x30，OFF＝0x31<br>
 	 * <br>
 	 * Data Type : unsigned char<br>
 	 * Data Size(Byte) : 1<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : optional<br>
 	 * Get : mandatory<br>
 	 * <br>
@@ -75,14 +76,15 @@ public abstract class DeviceObject extends EchoObject {
 		return success;
 	}
 
-	/**
-	 * This property indicates the ON/OFF status.<br>
+	/**This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * ON＝0x30，OFF＝0x31<br>
 	 * <br>
-	 * Data type : unsigned char<br>
-	 * Data size : 1<br>
+	 * Data Type : unsigned char<br>
+	 * Data Size(Byte) : 1<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : optional<br>
 	 * Get : mandatory<br>
 	 * <br>
@@ -100,9 +102,11 @@ public abstract class DeviceObject extends EchoObject {
 	 * <br>
 	 * See “2.2 ‘Installation location’ property.”<br>
 	 * <br>
-	 * Data type : unsigned char<br>
-	 * Data size : 1<br>
+	 * Data Type : unsigned char<br>
+	 * Data Size(Byte) : 1<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : mandatory<br>
 	 * Get : mandatory<br>
 	 * <br>
@@ -119,6 +123,16 @@ public abstract class DeviceObject extends EchoObject {
 	 * This property indicates the installation location<br>
 	 * <br>
 	 * See “2.2 ‘Installation location’ property.”<br>
+	 * <br>
+	 * Data Type : unsigned char<br>
+	 * Data Size(Byte) : 1<br>
+	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
+	 * Set : mandatory<br>
+	 * Get : mandatory<br>
+	 * <br>
+	 * Announcement at status change<br>
 	 */
 	protected abstract byte[] getInstallationLocation();
 	private final byte[] _getInstallationLocation(byte epc) {
@@ -135,9 +149,11 @@ public abstract class DeviceObject extends EchoObject {
 	 * Third byte: Indicates the order of release in the ASCII format. <br>
 	 * Fourth byte: Fixed at 0x00 (for future reserved).<br>
 	 * <br>
-	 * Data type : unsigned char×4<br>
-	 * Data size : 4<br>
+	 * Data Type : unsigned char×4<br>
+	 * Data Size(Byte) : 4<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : undefined<br>
 	 * Get : mandatory<br>
 	 */
@@ -168,9 +184,11 @@ public abstract class DeviceObject extends EchoObject {
 	 * 0x00：Identification number is not set.<br>
 	 * Second and succeeding bytes: unique number field<br>
 	 * <br>
-	 * Data type : unsigned char<br>
-	 * Data size : 9 or 17<br>
+	 * Data Type : unsigned char<br>
+	 * Data Size(Byte) : 9 or 17<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : undefined<br>
 	 * Get : optional<br>
 	 */
@@ -188,9 +206,11 @@ public abstract class DeviceObject extends EchoObject {
 	 * <br>
 	 * 0x0000-0xFFFF（0-65535W）<br>
 	 * <br>
-	 * Data type : unsigned short<br>
-	 * Data size : 2<br>
+	 * Data Type : unsigned short<br>
+	 * Data Size(Byte) : 2<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : undefined<br>
 	 * Get : optional<br>
 	 */
@@ -208,9 +228,11 @@ public abstract class DeviceObject extends EchoObject {
 	 * <br>
 	 * 0x0-0x3B9AC9FF（0-999,999.999kWh）<br>
 	 * <br>
-	 * Data type : unsigned long<br>
-	 * Data size : 4<br>
+	 * Data Type : unsigned long<br>
+	 * Data Size(Byte) : 4<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : undefined<br>
 	 * Get : optional<br>
 	 */
@@ -230,9 +252,11 @@ public abstract class DeviceObject extends EchoObject {
 	 * Second to fourth bytes: Manufacturer code<br>
 	 * Fifth and succeeding bytes: Field for manufacturer-defined fault code<br>
 	 * <br>
-	 * Data type : unsigned char×(MAX)225<br>
-	 * Data size : Max 225<br>
+	 * Data Type : unsigned char×(MAX)225<br>
+	 * Data Size(Byte) : Max 225<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : undefined<br>
 	 * Get : optional<br>
 	 */	
@@ -249,9 +273,11 @@ public abstract class DeviceObject extends EchoObject {
 	 * This property indicates the current limit setting (0-100%).<br>
 	 * 0x00-0x64 （=0-100%）<br>
 	 * <br>
-	 * Data type : unsigned char<br>
-	 * Data size : 1<br>
+	 * Data Type : unsigned char<br>
+	 * Data Size(Byte) : 1<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : optional<br>
 	 * Get : optional<br>
 	 */
@@ -269,9 +295,11 @@ public abstract class DeviceObject extends EchoObject {
 	 * <br>
 	 * 0x00-0x64 （=0-100%）<br>
 	 * <br>
-	 * Data type : unsigned char<br>
-	 * Data size : 1<br>
+	 * Data Type : unsigned char<br>
+	 * Data Size(Byte) : 1<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : optional<br>
 	 * Get : optional<br>
 	 */
@@ -289,13 +317,15 @@ public abstract class DeviceObject extends EchoObject {
 	 * <br>
 	 * Fault occurred＝0x41, No fault has occurred＝0x42<br>
 	 * <br>
-	 * Data type : unsigned char<br>
-	 * Data size : 1<br>
+	 * Data Type : unsigned char<br>
+	 * Data Size(Byte) : 1<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : undefined<br>
 	 * Get : mandatory<br>
 	 * <br>
-	 * Announcement at status change
+	 * Announcement at status change<br>
 	 */
 	protected abstract byte[] getFaultStatus();
 	private final byte[] _getFaultStatus(byte epc) {
@@ -310,9 +340,11 @@ public abstract class DeviceObject extends EchoObject {
 	 * <br>
 	 * See “2.5 ‘Fault Description’ Property.”<br>
 	 * <br>
-	 * Data type : unsigned short<br>
-	 * Data size : 2<br>
+	 * Data Type : unsigned short<br>
+	 * Data Size(Byte) : 2<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : undefined<br>
 	 * Get : optional<br>
 	 */
@@ -330,9 +362,11 @@ public abstract class DeviceObject extends EchoObject {
 	 * <br>
 	 * (Defined by the ECHONET Consortium.)<br>
 	 * <br>
-	 * Data type : unsigned char×3<br>
-	 * Data size : 3<br>
+	 * Data Type : unsigned char×3<br>
+	 * Data Size(Byte) : 3<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : undefined<br>
 	 * Get : mandatory<br>
 	 */
@@ -348,9 +382,11 @@ public abstract class DeviceObject extends EchoObject {
 	 * <br>
 	 * （Defined by each manufacturer.）<br>
 	 * <br>
-	 * Data type : unsigned char×3<br>
-	 * Data size : 3<br>
+	 * Data Type : unsigned char×3<br>
+	 * Data Size(Byte) : 3<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : undefined<br>
 	 * Get : optional<br>
 	 */
@@ -367,9 +403,11 @@ public abstract class DeviceObject extends EchoObject {
 	 * Identifies the product usingASCI I code.<br>
 	 * （Defined by each manufacturer.）<br>
 	 * <br>
-	 * Data type : unsigned char×12<br>
-	 * Data size : 12<br>
+	 * Data Type : unsigned char×12<br>
+	 * Data Size(Byte) : 12<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : undefined<br>
 	 * Get : optional<br>
 	 */
@@ -387,9 +425,11 @@ public abstract class DeviceObject extends EchoObject {
 	 * <br>
 	 * （Defined by each manufacturer.）<br>
 	 * <br>
-	 * Data type : unsigned char×12<br>
-	 * Data size : 12<br>
+	 * Data Type : unsigned char×12<br>
+	 * Data Size(Byte) : 12<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : undefined<br>
 	 * Get : optional<br>
 	 */
@@ -410,9 +450,11 @@ public abstract class DeviceObject extends EchoObject {
 	 * M： Month (e.g. December＝0x0C)<br>
 	 * D： Day (e.g. 20th＝ 0x14)<br>
 	 * <br>
-	 * Data type : unsigned char×4<br>
-	 * Data size : 4<br>
+	 * Data Type : unsigned char×4<br>
+	 * Data Size(Byte) : 4<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : undefined<br>
 	 * Get : optional<br>
 	 */
@@ -431,9 +473,11 @@ public abstract class DeviceObject extends EchoObject {
 	 * Operating in power-saving mode =0x41<br>
 	 * Operating in normal operation mode =0x42<br>
 	 * <br>
-	 * Data type : unsigned char<br>
-	 * Data size : 1<br>
+	 * Data Type : unsigned char<br>
+	 * Data Size(Byte) : 1<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : optional<br>
 	 * Get : optional<br>
 	 */
@@ -452,9 +496,11 @@ public abstract class DeviceObject extends EchoObject {
 	 * Operating in power-saving mode =0x41<br>
 	 * Operating in normal operation mode =0x42<br>
 	 * <br>
-	 * Data type : unsigned char<br>
-	 * Data size : 1<br>
+	 * Data Type : unsigned char<br>
+	 * Data Size(Byte) : 1<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : optional<br>
 	 * Get : optional<br>
 	 */
@@ -470,9 +516,11 @@ public abstract class DeviceObject extends EchoObject {
 	/**
 	 * This property indicates the latitude, longitude and altitude of the installation location.<br>
 	 * <br>
-	 * Data type : unsigned char×16<br>
-	 * Data size : 16<br>
+	 * Data Type : unsigned char×16<br>
+	 * Data Size(Byte) : 16<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : optional<br>
 	 * Get : optional<br>
 	 * <br>
@@ -490,9 +538,11 @@ public abstract class DeviceObject extends EchoObject {
 	/**
 	 * This property indicates the latitude, longitude and altitude of the installation location.<br>
 	 * <br>
-	 * Data type : unsigned char×16<br>
-	 * Data size : 16<br>
+	 * Data Type : unsigned char×16<br>
+	 * Data Size(Byte) : 16<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : optional<br>
 	 * Get : optional<br>
 	 * <br>
@@ -512,9 +562,11 @@ public abstract class DeviceObject extends EchoObject {
 	 * <br>
 	 * 0x00-0x17：0x00-0x3B（ ＝ 0-23）：（ ＝ 0-59）<br>
 	 * <br>
-	 * Data type : unsigned char×2<br>
-	 * Data size : 2<br>
+	 * Data Type : unsigned char×2<br>
+	 * Data Size(Byte) : 2<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : optional<br>
 	 * Get : optional<br>
 	 */
@@ -532,9 +584,11 @@ public abstract class DeviceObject extends EchoObject {
 	 * <br>
 	 * 0x00-0x17 ： 0x00-0x3B（ ＝ 0-23）：（ ＝ 0-59）<br>
 	 * <br>
-	 * Data type : unsigned char×2<br>
-	 * Data size : 2<br>
+	 * Data Type : unsigned char×2<br>
+	 * Data Size(Byte) : 2<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : optional<br>
 	 * Get : optional<br>
 	 */
@@ -552,9 +606,11 @@ public abstract class DeviceObject extends EchoObject {
 	 * <br>
 	 * 1 ～ 0x270F ： 1 ～ 0x0C ： 1 ～ 0x1F (=1 ～ 9999) ： (=1 ～ 12) ： (=1 ～ 31)<br>
 	 * <br>
-	 * Data type : unsigned char×4<br>
-	 * Data size : 4<br>
+	 * Data Type : unsigned char×4<br>
+	 * Data Size(Byte) : 4<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : optional<br>
 	 * Get : optional<br>
 	 */
@@ -572,9 +628,11 @@ public abstract class DeviceObject extends EchoObject {
 	 * <br>
 	 * 1 ～ 0x270F ： 1 ～ 0x0C ： 1 ～ 0x1F (=1 ～ 9999) ： (=1 ～ 12) ： (=1 ～ 31)<br>
 	 * <br>
-	 * Data type : unsigned char×4<br>
-	 * Data size : 4<br>
+	 * Data Type : unsigned char×4<br>
+	 * Data Size(Byte) : 4<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : optional<br>
 	 * Get : optional<br>
 	 */
@@ -592,9 +650,11 @@ public abstract class DeviceObject extends EchoObject {
 	 * <br>
 	 * 0x0000~0xFFFF（0-65535W）<br>
 	 * <br>
-	 * Data type : unsigned short<br>
-	 * Data size : 2<br>
+	 * Data Type : unsigned short<br>
+	 * Data Size(Byte) : 2<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : optional<br>
 	 * Get : optional<br>
 	 */
@@ -612,9 +672,11 @@ public abstract class DeviceObject extends EchoObject {
 	 * <br>
 	 * 0x0000~0xFFFF（0-65535W）<br>
 	 * <br>
-	 * Data type : unsigned short<br>
-	 * Data size : 2<br>
+	 * Data Type : unsigned short<br>
+	 * Data Size(Byte) : 2<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : optional<br>
 	 * Get : optional<br>
 	 */
@@ -635,11 +697,13 @@ public abstract class DeviceObject extends EchoObject {
 	 * Second to fifth bytes ：<br>
 	 * Indicates the elapsed time in the unit specified by the first byte. 0x00000000-0xFFFFFFFF (0-4294967295)<br>
 	 * <br>
-	 * Data type : unsigned char + unsigned long<br>
-	 * Data size : 1+4 Byte<br>
+	 * Data Type : unsigned char + unsigned long<br>
+	 * Data Size(Byte) : 1+4 Byte<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : undefined<br>
-	 * Get : optional
+	 * Get : optional<br>
 	 */
 	protected byte[] getCumulativeOperatingTime() {
 		return null;
@@ -653,9 +717,11 @@ public abstract class DeviceObject extends EchoObject {
 	/**
 	 * See Appendix 1.<br>
 	 * <br>
-	 * Data type : unsigned char×(MAX17)<br>
-	 * Data size : Max.17<br>
+	 * Data Type : unsigned char×(MAX17)<br>
+	 * Data Size(Byte) : Max.17<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : undefined<br>
 	 * Get : mandatory<br>
 	 */
@@ -669,9 +735,11 @@ public abstract class DeviceObject extends EchoObject {
 	/**
 	 * See Appendix 1.<br>
 	 * <br>
-	 * Data type : unsigned char×(MAX17)<br>
-	 * Data size : Max.17<br>
+	 * Data Type : unsigned char×(MAX17)<br>
+	 * Data Size(Byte) : Max.17<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : undefined<br>
 	 * Get : mandatory<br>
 	 */
@@ -685,9 +753,11 @@ public abstract class DeviceObject extends EchoObject {
 	/**
 	 * See Appendix 1.<br>
 	 * <br>
-	 * Data type : unsigned char×(MAX17)<br>
-	 * Data size : Max.17<br>
+	 * Data Type : unsigned char×(MAX17)<br>
+	 * Data Size(Byte) : Max.17<br>
 	 * <br>
+	 * AccessRule<br>
+	 * Announce : undefined<br>
 	 * Set : undefined<br>
 	 * Get : mandatory<br>
 	 */
@@ -968,8 +1038,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the ON/OFF status.<br>
 		 * ON＝0x30，OFF＝0x31<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 1<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : optional<br>
 		 * Get : mandatory<br>
 		 * Announcement at status change
@@ -983,8 +1053,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the ON/OFF status.<br>
 		 * ON＝0x30，OFF＝0x31<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 1<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : optional<br>
 		 * Get : mandatory<br>
 		 * Announcement at status change
@@ -998,8 +1068,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the installation location<br>
 		 * See “2.2 ‘Installation location’ property.”<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 1<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : mandatory<br>
 		 * Get : mandatory<br>
 		 * Announcement at status change
@@ -1013,8 +1083,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the installation location<br>
 		 * See “2.2 ‘Installation location’ property.”<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 1<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : mandatory<br>
 		 * Get : mandatory<br>
 		 * Announcement at status change
@@ -1031,8 +1101,8 @@ public abstract class DeviceObject extends EchoObject {
 		 * Second byte: Fixed at 0x00 (for future reserved). <br>
 		 * Third byte: Indicates the order of release in the ASCII format. <br>
 		 * Fourth byte: Fixed at 0x00 (for future reserved).<br><br>
-		 * Data type : unsigned char×4<br>
-		 * Data size : 4<br>
+		 * Data Type : unsigned char×4<br>
+		 * Data Size(Byte) : 4<br>
 		 * Set : undefined<br>
 		 * Get : mandatory
 		 */
@@ -1060,8 +1130,8 @@ public abstract class DeviceObject extends EchoObject {
 		 * 0xFF：2－9 bytes are defined when randomly generated protocol is used in the lower-layer communication.<br>
 		 * 0x00：Identification number is not set.<br>
 		 * Second and succeeding bytes: unique number field<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 9 or 17<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 9 or 17<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -1074,8 +1144,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the instantaneous power consumption of the device in watts.<br>
 		 * 0x0000-0xFFFF（0-65535W）<br><br>
-		 * Data type : unsigned short<br>
-		 * Data size : 2<br>
+		 * Data Type : unsigned short<br>
+		 * Data Size(Byte) : 2<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -1088,8 +1158,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the cumulative power consumption of the device in increments of 0.001kWh.<br>
 		 * 0x0-0x3B9AC9FF（0-999,999.999kWh）<br><br>
-		 * Data type : unsigned long<br>
-		 * Data size : 4<br>
+		 * Data Type : unsigned long<br>
+		 * Data Size(Byte) : 4<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -1104,8 +1174,8 @@ public abstract class DeviceObject extends EchoObject {
 		 * First byte: Indicates the data size of the fault code field.<br>
 		 * Second to fourth bytes: Manufacturer code<br>
 		 * Fifth and succeeding bytes: Field for manufacturer-defined fault code<br><br>
-		 * Data type : unsigned char×(MAX)225<br>
-		 * Data size : Max 225<br>
+		 * Data Type : unsigned char×(MAX)225<br>
+		 * Data Size(Byte) : Max 225<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -1118,8 +1188,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the current limit setting (0-100%).<br>
 		 * 0x00-0x64 （=0-100%）<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 1<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : optional<br>
 		 * Get : optional
 		 */
@@ -1132,8 +1202,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the current limit setting (0-100%).<br>
 		 * 0x00-0x64 （=0-100%）<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 1<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : optional<br>
 		 * Get : optional
 		 */
@@ -1146,8 +1216,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates whether a fault (e.g. a sensor trouble) has occurred or not.<br>
 		 * Fault occurred＝0x41, No fault has occurred＝0x42<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 1<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : undefined<br>
 		 * Get : mandatory<br>
 		 * Announcement at status change
@@ -1161,8 +1231,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * Describes the fault.<br>
 		 * See “2.5 ‘Fault Description’ Property.”<br><br>
-		 * Data type : unsigned short<br>
-		 * Data size : 2<br>
+		 * Data Type : unsigned short<br>
+		 * Data Size(Byte) : 2<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -1175,8 +1245,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * 3-byte manufacturer code<br>
 		 * (Defined by the ECHONET Consortium.)<br><br>
-		 * Data type : unsigned char×3<br>
-		 * Data size : 3<br>
+		 * Data Type : unsigned char×3<br>
+		 * Data Size(Byte) : 3<br>
 		 * Set : undefined<br>
 		 * Get : mandatory
 		 */ 
@@ -1189,8 +1259,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * 3-byte business facility code<br>
 		 * （Defined by each manufacturer.）<br><br>
-		 * Data type : unsigned char×3<br>
-		 * Data size : 3<br>
+		 * Data Type : unsigned char×3<br>
+		 * Data Size(Byte) : 3<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -1203,8 +1273,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * Identifies the product usingASCI I code.<br>
 		 * （Defined by each manufacturer.）<br><br>
-		 * Data type : unsigned char×12<br>
-		 * Data size : 12<br>
+		 * Data Type : unsigned char×12<br>
+		 * Data Size(Byte) : 12<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -1217,8 +1287,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the production number using ASCI I code.<br>
 		 * （Defined by each manufacturer.）<br><br>
-		 * Data type : unsigned char×12<br>
-		 * Data size : 12<br>
+		 * Data Type : unsigned char×12<br>
+		 * Data Size(Byte) : 12<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -1234,8 +1304,8 @@ public abstract class DeviceObject extends EchoObject {
 		 * YY： Year (e.g. 1999＝ 0x07CF)<br>
 		 * M： Month (e.g. December＝0x0C)<br>
 		 * D： Day (e.g. 20th＝ 0x14)<br><br>
-		 * Data type : unsigned char×4<br>
-		 * Data size : 4<br>
+		 * Data Type : unsigned char×4<br>
+		 * Data Size(Byte) : 4<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -1249,8 +1319,8 @@ public abstract class DeviceObject extends EchoObject {
 		 * This property indicates whether the device is operating in power-saving mode.<br>
 		 * Operating in power-saving mode =0x41<br>
 		 * Operating in normal operation mode =0x42<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 1<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : optional<br>
 		 * Get : optional
 		 */
@@ -1264,8 +1334,8 @@ public abstract class DeviceObject extends EchoObject {
 		 * This property indicates whether the device is operating in power-saving mode.<br>
 		 * Operating in power-saving mode =0x41<br>
 		 * Operating in normal operation mode =0x42<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 1<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : optional<br>
 		 * Get : optional
 		 */
@@ -1277,8 +1347,8 @@ public abstract class DeviceObject extends EchoObject {
 		
 		/**
 		 * This property indicates the latitude, longitude and altitude of the installation location.<br><br>
-		 * Data type : unsigned char×16<br>
-		 * Data size : 16<br>
+		 * Data Type : unsigned char×16<br>
+		 * Data Size(Byte) : 16<br>
 		 * Set : optional<br>
 		 * Get : optional<br>
 		 * Announcement at status change
@@ -1291,8 +1361,8 @@ public abstract class DeviceObject extends EchoObject {
 
 		/**
 		 * This property indicates the latitude, longitude and altitude of the installation location.<br><br>
-		 * Data type : unsigned char×16<br>
-		 * Data size : 16<br>
+		 * Data Type : unsigned char×16<br>
+		 * Data Size(Byte) : 16<br>
 		 * Set : optional<br>
 		 * Get : optional<br>
 		 * Announcement at status change
@@ -1306,8 +1376,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * Current time (HH：MM format)<br>
 		 * 0x00-0x17：0x00-0x3B（ ＝ 0-23）：（ ＝ 0-59）<br><br>
-		 * Data type : unsigned char×2<br>
-		 * Data size : 2<br>
+		 * Data Type : unsigned char×2<br>
+		 * Data Size(Byte) : 2<br>
 		 * Set : optional<br>
 		 * Get : optional
 		 */
@@ -1320,8 +1390,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * Current time (HH：MM format)<br>
 		 * 0x00-0x17：0x00-0x3B（ ＝ 0-23）：（ ＝ 0-59）<br><br>
-		 * Data type : unsigned char×2<br>
-		 * Data size : 2<br>
+		 * Data Type : unsigned char×2<br>
+		 * Data Size(Byte) : 2<br>
 		 * Set : optional<br>
 		 * Get : optional
 		 */
@@ -1334,8 +1404,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * Current date (YYYY：MM：DD format)<br>
 		 * 1 ～ 0x270F ： 1 ～ 0x0C ： 1 ～ 0x1F (=1 ～ 9999) ： (=1 ～ 12) ： (=1 ～ 31)<br><br>
-		 * Data type : unsigned char×4<br>
-		 * Data size : 4<br>
+		 * Data Type : unsigned char×4<br>
+		 * Data Size(Byte) : 4<br>
 		 * Set : optional<br>
 		 * Get : optional
 		 */
@@ -1348,8 +1418,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * Current date (YYYY：MM：DD format)<br>
 		 * 1 ～ 0x270F ： 1 ～ 0x0C ： 1 ～ 0x1F (=1 ～ 9999) ： (=1 ～ 12) ： (=1 ～ 31)<br><br>
-		 * Data type : unsigned char×4<br>
-		 * Data size : 4<br>
+		 * Data Type : unsigned char×4<br>
+		 * Data Size(Byte) : 4<br>
 		 * Set : optional<br>
 		 * Get : optional
 		 */
@@ -1362,8 +1432,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the power limit setting in watts.<br>
 		 * 0x0000~0xFFFF（0-65535W）<br><br>
-		 * Data type : unsigned short<br>
-		 * Data size : 2<br>
+		 * Data Type : unsigned short<br>
+		 * Data Size(Byte) : 2<br>
 		 * Set : optional<br>
 		 * Get : optional
 		 */
@@ -1376,8 +1446,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the power limit setting in watts.<br>
 		 * 0x0000~0xFFFF（0-65535W）<br><br>
-		 * Data type : unsigned short<br>
-		 * Data size : 2<br>
+		 * Data Type : unsigned short<br>
+		 * Data Size(Byte) : 2<br>
 		 * Set : optional<br>
 		 * Get : optional
 		 */
@@ -1393,8 +1463,8 @@ public abstract class DeviceObject extends EchoObject {
 		 * Second： 0x41; Minute： 0x42; Hour： 0x43; Day:0x44<br>
 		 * Second to fifth bytes ：<br>
 		 * Indicates the elapsed time in the unit specified by the first byte. 0x00000000-0xFFFFFFFF (0-4294967295)<br><br>
-		 * Data type : unsigned char + unsigned long<br>
-		 * Data size : 1+4 Byte<br>
+		 * Data Type : unsigned char + unsigned long<br>
+		 * Data Size(Byte) : 1+4 Byte<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -1406,8 +1476,8 @@ public abstract class DeviceObject extends EchoObject {
 		
 		/**
 		 * See Appendix 1.<br><br>
-		 * Data type : unsigned char×(MAX17)<br>
-		 * Data size : Max.17<br>
+		 * Data Type : unsigned char×(MAX17)<br>
+		 * Data Size(Byte) : Max.17<br>
 		 * Set : undefined<br>
 		 * Get : mandatory
 		 */
@@ -1419,8 +1489,8 @@ public abstract class DeviceObject extends EchoObject {
 		
 		/**
 		 * See Appendix 1.<br><br>
-		 * Data type : unsigned char×(MAX17)<br>
-		 * Data size : Max.17<br>
+		 * Data Type : unsigned char×(MAX17)<br>
+		 * Data Size(Byte) : Max.17<br>
 		 * Set : undefined<br>
 		 * Get : mandatory
 		 */
@@ -1432,8 +1502,8 @@ public abstract class DeviceObject extends EchoObject {
 		
 		/**
 		 * See Appendix 1.<br><br>
-		 * Data type : unsigned char×(MAX17)<br>
-		 * Data size : Max.17<br>
+		 * Data Type : unsigned char×(MAX17)<br>
+		 * Data Size(Byte) : Max.17<br>
 		 * Set : undefined<br>
 		 * Get : mandatory
 		 */
@@ -1457,8 +1527,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the ON/OFF status.<br>
 		 * ON＝0x30，OFF＝0x31<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 1<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : optional<br>
 		 * Get : mandatory<br>
 		 * Announcement at status change
@@ -1470,8 +1540,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the installation location<br>
 		 * See “2.2 ‘Installation location’ property.”<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 1<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : mandatory<br>
 		 * Get : mandatory<br>
 		 * Announcement at status change
@@ -1483,8 +1553,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the current limit setting (0-100%).<br>
 		 * 0x00-0x64 （=0-100%）<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 1<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : optional<br>
 		 * Get : optional
 		 */
@@ -1496,8 +1566,8 @@ public abstract class DeviceObject extends EchoObject {
 		 * This property indicates whether the device is operating in power-saving mode.<br>
 		 * Operating in power-saving mode =0x41<br>
 		 * Operating in normal operation mode =0x42<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 1<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : optional<br>
 		 * Get : optional
 		 */
@@ -1507,8 +1577,8 @@ public abstract class DeviceObject extends EchoObject {
 		}
 		/**
 		 * This property indicates the latitude, longitude and altitude of the installation location.<br><br>
-		 * Data type : unsigned char×16<br>
-		 * Data size : 16<br>
+		 * Data Type : unsigned char×16<br>
+		 * Data Size(Byte) : 16<br>
 		 * Set : optional<br>
 		 * Get : optional<br>
 		 * Announcement at status change
@@ -1520,8 +1590,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * Current time (HH：MM format)<br>
 		 * 0x00-0x17：0x00-0x3B（ ＝ 0-23）：（ ＝ 0-59）<br><br>
-		 * Data type : unsigned char×2<br>
-		 * Data size : 2<br>
+		 * Data Type : unsigned char×2<br>
+		 * Data Size(Byte) : 2<br>
 		 * Set : optional<br>
 		 * Get : optional
 		 */
@@ -1532,8 +1602,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * Current date (YYYY：MM：DD format)<br>
 		 * 1 ～ 0x270F ： 1 ～ 0x0C ： 1 ～ 0x1F (=1 ～ 9999) ： (=1 ～ 12) ： (=1 ～ 31)<br><br>
-		 * Data type : unsigned char×4<br>
-		 * Data size : 4<br>
+		 * Data Type : unsigned char×4<br>
+		 * Data Size(Byte) : 4<br>
 		 * Set : optional<br>
 		 * Get : optional
 		 */
@@ -1544,8 +1614,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the power limit setting in watts.<br>
 		 * 0x0000~0xFFFF（0-65535W）<br><br>
-		 * Data type : unsigned short<br>
-		 * Data size : 2<br>
+		 * Data Type : unsigned short<br>
+		 * Data Size(Byte) : 2<br>
 		 * Set : optional<br>
 		 * Get : optional
 		 */
@@ -1564,8 +1634,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the ON/OFF status.<br>
 		 * ON＝0x30，OFF＝0x31<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 1<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : optional<br>
 		 * Get : mandatory<br>
 		 * Announcement at status change
@@ -1577,8 +1647,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the installation location<br>
 		 * See “2.2 ‘Installation location’ property.”<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 1<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : mandatory<br>
 		 * Get : mandatory<br>
 		 * Announcement at status change
@@ -1593,8 +1663,8 @@ public abstract class DeviceObject extends EchoObject {
 		 * Second byte: Fixed at 0x00 (for future reserved). <br>
 		 * Third byte: Indicates the order of release in the ASCII format. <br>
 		 * Fourth byte: Fixed at 0x00 (for future reserved).<br><br>
-		 * Data type : unsigned char×4<br>
-		 * Data size : 4<br>
+		 * Data Type : unsigned char×4<br>
+		 * Data Size(Byte) : 4<br>
 		 * Set : undefined<br>
 		 * Get : mandatory
 		 */
@@ -1620,8 +1690,8 @@ public abstract class DeviceObject extends EchoObject {
 		 * 0xFF：2－9 bytes are defined when randomly generated protocol is used in the lower-layer communication.<br>
 		 * 0x00：Identification number is not set.<br>
 		 * Second and succeeding bytes: unique number field<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 9 or 17<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 9 or 17<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -1632,8 +1702,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the instantaneous power consumption of the device in watts.<br>
 		 * 0x0000-0xFFFF（0-65535W）<br><br>
-		 * Data type : unsigned short<br>
-		 * Data size : 2<br>
+		 * Data Type : unsigned short<br>
+		 * Data Size(Byte) : 2<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -1644,8 +1714,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the cumulative power consumption of the device in increments of 0.001kWh.<br>
 		 * 0x0-0x3B9AC9FF（0-999,999.999kWh）<br><br>
-		 * Data type : unsigned long<br>
-		 * Data size : 4<br>
+		 * Data Type : unsigned long<br>
+		 * Data Size(Byte) : 4<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -1658,8 +1728,8 @@ public abstract class DeviceObject extends EchoObject {
 		 * First byte: Indicates the data size of the fault code field.<br>
 		 * Second to fourth bytes: Manufacturer code<br>
 		 * Fifth and succeeding bytes: Field for manufacturer-defined fault code<br><br>
-		 * Data type : unsigned char×(MAX)225<br>
-		 * Data size : Max 225<br>
+		 * Data Type : unsigned char×(MAX)225<br>
+		 * Data Size(Byte) : Max 225<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -1670,8 +1740,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the current limit setting (0-100%).<br>
 		 * 0x00-0x64 （=0-100%）<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 1<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : optional<br>
 		 * Get : optional
 		 */
@@ -1682,8 +1752,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates whether a fault (e.g. a sensor trouble) has occurred or not.<br>
 		 * Fault occurred＝0x41, No fault has occurred＝0x42<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 1<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : undefined<br>
 		 * Get : mandatory<br>
 		 * Announcement at status change
@@ -1695,8 +1765,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * Describes the fault.<br>
 		 * See “2.5 ‘Fault Description’ Property.”<br><br>
-		 * Data type : unsigned short<br>
-		 * Data size : 2<br>
+		 * Data Type : unsigned short<br>
+		 * Data Size(Byte) : 2<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -1707,8 +1777,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * 3-byte manufacturer code<br>
 		 * (Defined by the ECHONET Consortium.)<br><br>
-		 * Data type : unsigned char×3<br>
-		 * Data size : 3<br>
+		 * Data Type : unsigned char×3<br>
+		 * Data Size(Byte) : 3<br>
 		 * Set : undefined<br>
 		 * Get : mandatory
 		 */
@@ -1719,8 +1789,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * 3-byte business facility code<br>
 		 * （Defined by each manufacturer.）<br><br>
-		 * Data type : unsigned char×3<br>
-		 * Data size : 3<br>
+		 * Data Type : unsigned char×3<br>
+		 * Data Size(Byte) : 3<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -1731,8 +1801,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * Identifies the product usingASCI I code.<br>
 		 * （Defined by each manufacturer.）<br><br>
-		 * Data type : unsigned char×12<br>
-		 * Data size : 12<br>
+		 * Data Type : unsigned char×12<br>
+		 * Data Size(Byte) : 12<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -1743,8 +1813,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the production number using ASCI I code.<br>
 		 * （Defined by each manufacturer.）<br><br>
-		 * Data type : unsigned char×12<br>
-		 * Data size : 12<br>
+		 * Data Type : unsigned char×12<br>
+		 * Data Size(Byte) : 12<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -1758,8 +1828,8 @@ public abstract class DeviceObject extends EchoObject {
 		 * YY： Year (e.g. 1999＝ 0x07CF)<br>
 		 * M： Month (e.g. December＝0x0C)<br>
 		 * D： Day (e.g. 20th＝ 0x14)<br><br>
-		 * Data type : unsigned char×4<br>
-		 * Data size : 4<br>
+		 * Data Type : unsigned char×4<br>
+		 * Data Size(Byte) : 4<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -1771,8 +1841,8 @@ public abstract class DeviceObject extends EchoObject {
 		 * This property indicates whether the device is operating in power-saving mode.<br>
 		 * Operating in power-saving mode =0x41<br>
 		 * Operating in normal operation mode =0x42<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 1<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : optional<br>
 		 * Get : optional
 		 */
@@ -1782,8 +1852,8 @@ public abstract class DeviceObject extends EchoObject {
 		}
 		/**
 		 * This property indicates the latitude, longitude and altitude of the installation location.<br><br>
-		 * Data type : unsigned char×16<br>
-		 * Data size : 16<br>
+		 * Data Type : unsigned char×16<br>
+		 * Data Size(Byte) : 16<br>
 		 * Set : optional<br>
 		 * Get : optional<br>
 		 * Announcement at status change
@@ -1795,8 +1865,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * Current time (HH：MM format)<br>
 		 * 0x00-0x17：0x00-0x3B（ ＝ 0-23）：（ ＝ 0-59）<br><br>
-		 * Data type : unsigned char×2<br>
-		 * Data size : 2<br>
+		 * Data Type : unsigned char×2<br>
+		 * Data Size(Byte) : 2<br>
 		 * Set : optional<br>
 		 * Get : optional
 		 */
@@ -1807,8 +1877,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * Current date (YYYY：MM：DD format)<br>
 		 * 1 ～ 0x270F ： 1 ～ 0x0C ： 1 ～ 0x1F (=1 ～ 9999) ： (=1 ～ 12) ： (=1 ～ 31)<br><br>
-		 * Data type : unsigned char×4<br>
-		 * Data size : 4<br>
+		 * Data Type : unsigned char×4<br>
+		 * Data Size(Byte) : 4<br>
 		 * Set : optional<br>
 		 * Get : optional
 		 */
@@ -1819,8 +1889,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the power limit setting in watts.<br>
 		 * 0x0000~0xFFFF（0-65535W）<br><br>
-		 * Data type : unsigned short<br>
-		 * Data size : 2<br>
+		 * Data Type : unsigned short<br>
+		 * Data Size(Byte) : 2<br>
 		 * Set : optional<br>
 		 * Get : optional
 		 */
@@ -1834,8 +1904,8 @@ public abstract class DeviceObject extends EchoObject {
 		 * Second： 0x41; Minute： 0x42; Hour： 0x43; Day:0x44<br>
 		 * Second to fifth bytes ：<br>
 		 * Indicates the elapsed time in the unit specified by the first byte. 0x00000000-0xFFFFFFFF (0-4294967295)<br><br>
-		 * Data type : unsigned char + unsigned long<br>
-		 * Data size : 1+4 Byte<br>
+		 * Data Type : unsigned char + unsigned long<br>
+		 * Data Size(Byte) : 1+4 Byte<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -1845,8 +1915,8 @@ public abstract class DeviceObject extends EchoObject {
 		}
 		/**
 		 * See Appendix 1.<br><br>
-		 * Data type : unsigned char×(MAX17)<br>
-		 * Data size : Max.17<br>
+		 * Data Type : unsigned char×(MAX17)<br>
+		 * Data Size(Byte) : Max.17<br>
 		 * Set : undefined<br>
 		 * Get : mandatory
 		 */
@@ -1856,8 +1926,8 @@ public abstract class DeviceObject extends EchoObject {
 		}
 		/**
 		 * See Appendix 1.<br><br>
-		 * Data type : unsigned char×(MAX17)<br>
-		 * Data size : Max.17<br>
+		 * Data Type : unsigned char×(MAX17)<br>
+		 * Data Size(Byte) : Max.17<br>
 		 * Set : undefined<br>
 		 * Get : mandatory
 		 */
@@ -1867,8 +1937,8 @@ public abstract class DeviceObject extends EchoObject {
 		}
 		/**
 		 * See Appendix 1.<br><br>
-		 * Data type : unsigned char×(MAX17)<br>
-		 * Data size : Max.17<br>
+		 * Data Type : unsigned char×(MAX17)<br>
+		 * Data Size(Byte) : Max.17<br>
 		 * Set : undefined<br>
 		 * Get : mandatory
 		 */
@@ -1884,8 +1954,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the ON/OFF status.<br>
 		 * ON＝0x30，OFF＝0x31<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 1<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : optional<br>
 		 * Get : mandatory<br>
 		 * Announcement at status change
@@ -1894,8 +1964,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the installation location<br>
 		 * See “2.2 ‘Installation location’ property.”<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 1<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : mandatory<br>
 		 * Get : mandatory<br>
 		 * Announcement at status change
@@ -1907,8 +1977,8 @@ public abstract class DeviceObject extends EchoObject {
 		 * Second byte: Fixed at 0x00 (for future reserved). <br>
 		 * Third byte: Indicates the order of release in the ASCII format. <br>
 		 * Fourth byte: Fixed at 0x00 (for future reserved).<br><br>
-		 * Data type : unsigned char×4<br>
-		 * Data size : 4<br>
+		 * Data Type : unsigned char×4<br>
+		 * Data Size(Byte) : 4<br>
 		 * Set : undefined<br>
 		 * Get : mandatory
 		 */
@@ -1931,8 +2001,8 @@ public abstract class DeviceObject extends EchoObject {
 		 * 0xFF：2－9 bytes are defined when randomly generated protocol is used in the lower-layer communication.<br>
 		 * 0x00：Identification number is not set.<br>
 		 * Second and succeeding bytes: unique number field<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 9 or 17<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 9 or 17<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -1940,8 +2010,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the instantaneous power consumption of the device in watts.<br>
 		 * 0x0000-0xFFFF（0-65535W）<br><br>
-		 * Data type : unsigned short<br>
-		 * Data size : 2<br>
+		 * Data Type : unsigned short<br>
+		 * Data Size(Byte) : 2<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -1949,8 +2019,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the cumulative power consumption of the device in increments of 0.001kWh.<br>
 		 * 0x0-0x3B9AC9FF（0-999,999.999kWh）<br><br>
-		 * Data type : unsigned long<br>
-		 * Data size : 4<br>
+		 * Data Type : unsigned long<br>
+		 * Data Size(Byte) : 4<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -1960,8 +2030,8 @@ public abstract class DeviceObject extends EchoObject {
 		 * First byte: Indicates the data size of the fault code field.<br>
 		 * Second to fourth bytes: Manufacturer code<br>
 		 * Fifth and succeeding bytes: Field for manufacturer-defined fault code<br><br>
-		 * Data type : unsigned char×(MAX)225<br>
-		 * Data size : Max 225<br>
+		 * Data Type : unsigned char×(MAX)225<br>
+		 * Data Size(Byte) : Max 225<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -1969,8 +2039,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the current limit setting (0-100%).<br>
 		 * 0x00-0x64 （=0-100%）<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 1<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : optional<br>
 		 * Get : optional
 		 */
@@ -1978,8 +2048,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates whether a fault (e.g. a sensor trouble) has occurred or not.<br>
 		 * Fault occurred＝0x41, No fault has occurred＝0x42<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 1<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : undefined<br>
 		 * Get : mandatory<br>
 		 * Announcement at status change
@@ -1988,8 +2058,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * Describes the fault.<br>
 		 * See “2.5 ‘Fault Description’ Property.”<br><br>
-		 * Data type : unsigned short<br>
-		 * Data size : 2<br>
+		 * Data Type : unsigned short<br>
+		 * Data Size(Byte) : 2<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -1997,8 +2067,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * 3-byte manufacturer code<br>
 		 * (Defined by the ECHONET Consortium.)<br><br>
-		 * Data type : unsigned char×3<br>
-		 * Data size : 3<br>
+		 * Data Type : unsigned char×3<br>
+		 * Data Size(Byte) : 3<br>
 		 * Set : undefined<br>
 		 * Get : mandatory
 		 */
@@ -2006,8 +2076,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * 3-byte business facility code<br>
 		 * （Defined by each manufacturer.）<br><br>
-		 * Data type : unsigned char×3<br>
-		 * Data size : 3<br>
+		 * Data Type : unsigned char×3<br>
+		 * Data Size(Byte) : 3<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -2015,8 +2085,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * Identifies the product usingASCI I code.<br>
 		 * （Defined by each manufacturer.）<br><br>
-		 * Data type : unsigned char×12<br>
-		 * Data size : 12<br>
+		 * Data Type : unsigned char×12<br>
+		 * Data Size(Byte) : 12<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -2024,8 +2094,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the production number using ASCI I code.<br>
 		 * （Defined by each manufacturer.）<br><br>
-		 * Data type : unsigned char×12<br>
-		 * Data size : 12<br>
+		 * Data Type : unsigned char×12<br>
+		 * Data Size(Byte) : 12<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -2036,8 +2106,8 @@ public abstract class DeviceObject extends EchoObject {
 		 * YY： Year (e.g. 1999＝ 0x07CF)<br>
 		 * M： Month (e.g. December＝0x0C)<br>
 		 * D： Day (e.g. 20th＝ 0x14)<br><br>
-		 * Data type : unsigned char×4<br>
-		 * Data size : 4<br>
+		 * Data Type : unsigned char×4<br>
+		 * Data Size(Byte) : 4<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
@@ -2046,16 +2116,16 @@ public abstract class DeviceObject extends EchoObject {
 		 * This property indicates whether the device is operating in power-saving mode.<br>
 		 * Operating in power-saving mode =0x41<br>
 		 * Operating in normal operation mode =0x42<br><br>
-		 * Data type : unsigned char<br>
-		 * Data size : 1<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : optional<br>
 		 * Get : optional
 		 */
 		public Informer reqInformPowerSavingOperationSetting();
 		/**
 		 * This property indicates the latitude, longitude and altitude of the installation location.<br><br>
-		 * Data type : unsigned char×16<br>
-		 * Data size : 16<br>
+		 * Data Type : unsigned char×16<br>
+		 * Data Size(Byte) : 16<br>
 		 * Set : optional<br>
 		 * Get : optional<br>
 		 * Announcement at status change
@@ -2064,8 +2134,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * Current time (HH：MM format)<br>
 		 * 0x00-0x17：0x00-0x3B（ ＝ 0-23）：（ ＝ 0-59）<br><br>
-		 * Data type : unsigned char×2<br>
-		 * Data size : 2<br>
+		 * Data Type : unsigned char×2<br>
+		 * Data Size(Byte) : 2<br>
 		 * Set : optional<br>
 		 * Get : optional
 		 */
@@ -2073,8 +2143,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * Current date (YYYY：MM：DD format)<br>
 		 * 1 ～ 0x270F ： 1 ～ 0x0C ： 1 ～ 0x1F (=1 ～ 9999) ： (=1 ～ 12) ： (=1 ～ 31)<br><br>
-		 * Data type : unsigned char×4<br>
-		 * Data size : 4<br>
+		 * Data Type : unsigned char×4<br>
+		 * Data Size(Byte) : 4<br>
 		 * Set : optional<br>
 		 * Get : optional
 		 */
@@ -2082,8 +2152,8 @@ public abstract class DeviceObject extends EchoObject {
 		/**
 		 * This property indicates the power limit setting in watts.<br>
 		 * 0x0000~0xFFFF（0-65535W）<br><br>
-		 * Data type : unsigned short<br>
-		 * Data size : 2<br>
+		 * Data Type : unsigned short<br>
+		 * Data Size(Byte) : 2<br>
 		 * Set : optional<br>
 		 * Get : optional
 		 */
@@ -2094,32 +2164,32 @@ public abstract class DeviceObject extends EchoObject {
 		 * Second： 0x41; Minute： 0x42; Hour： 0x43; Day:0x44<br>
 		 * Second to fifth bytes ：<br>
 		 * Indicates the elapsed time in the unit specified by the first byte. 0x00000000-0xFFFFFFFF (0-4294967295)<br><br>
-		 * Data type : unsigned char + unsigned long<br>
-		 * Data size : 1+4 Byte<br>
+		 * Data Type : unsigned char + unsigned long<br>
+		 * Data Size(Byte) : 1+4 Byte<br>
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
 		public Informer reqInformCumulativeOperatingTime();
 		/**
 		 * See Appendix 1.<br><br>
-		 * Data type : unsigned char×(MAX17)<br>
-		 * Data size : Max.17<br>
+		 * Data Type : unsigned char×(MAX17)<br>
+		 * Data Size(Byte) : Max.17<br>
 		 * Set : undefined<br>
 		 * Get : mandatory
 		 */
 		public Informer reqInformStatusChangeAnnouncementPropertyMap();
 		/**
 		 * See Appendix 1.<br><br>
-		 * Data type : unsigned char×(MAX17)<br>
-		 * Data size : Max.17<br>
+		 * Data Type : unsigned char×(MAX17)<br>
+		 * Data Size(Byte) : Max.17<br>
 		 * Set : undefined<br>
 		 * Get : mandatory
 		 */
 		public Informer reqInformSetPropertyMap();
 		/**
 		 * See Appendix 1.<br><br>
-		 * Data type : unsigned char×(MAX17)<br>
-		 * Data size : Max.17<br>
+		 * Data Type : unsigned char×(MAX17)<br>
+		 * Data Size(Byte) : Max.17<br>
 		 * Set : undefined<br>
 		 * Get : mandatory
 		 */

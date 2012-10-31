@@ -161,7 +161,9 @@ public class EchoNode {
 	
 	public byte[] getNumberOfSelfNodeClasses() {
 		byte[] ret = new byte[2];
-		int size = getDeviceGroupList().size();
+		//int size = getDeviceGroupList().size();
+		// number of classes (contains NodeProfile)
+		int size = getDeviceGroupList().size() + 1;
 		ret[0] = (byte)((size >> 8) & 0xFF);
 		ret[1] = (byte)(size & 0xFF);
 		return ret;
