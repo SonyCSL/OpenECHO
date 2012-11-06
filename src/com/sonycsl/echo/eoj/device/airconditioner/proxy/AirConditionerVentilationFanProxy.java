@@ -25,7 +25,7 @@ public class AirConditionerVentilationFanProxy extends AirConditionerVentilation
 	
 	public AirConditionerVentilationFanProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new AirConditionerVentilationFan.Receiver());
 	}
 	
 	@Override
@@ -63,6 +63,4 @@ public class AirConditionerVentilationFanProxy extends AirConditionerVentilation
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends AirConditionerVentilationFan.Receiver {
-	}
 }

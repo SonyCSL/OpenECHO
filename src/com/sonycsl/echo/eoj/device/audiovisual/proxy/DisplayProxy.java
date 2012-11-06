@@ -25,7 +25,7 @@ public class DisplayProxy extends Display {
 	
 	public DisplayProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new Display.Receiver());
 	}
 	
 	@Override
@@ -71,6 +71,4 @@ public class DisplayProxy extends Display {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends Display.Receiver {
-	}
 }

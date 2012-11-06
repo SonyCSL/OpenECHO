@@ -25,7 +25,7 @@ public class WaterLeakSensorProxy extends WaterLeakSensor {
 	
 	public WaterLeakSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new WaterLeakSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class WaterLeakSensorProxy extends WaterLeakSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends WaterLeakSensor.Receiver {
-	}
 }

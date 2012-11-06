@@ -25,7 +25,7 @@ public class OdorSensorProxy extends OdorSensor {
 	
 	public OdorSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new OdorSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class OdorSensorProxy extends OdorSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends OdorSensor.Receiver {
-	}
 }

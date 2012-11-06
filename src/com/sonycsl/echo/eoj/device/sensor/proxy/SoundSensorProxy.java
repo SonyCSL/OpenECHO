@@ -25,7 +25,7 @@ public class SoundSensorProxy extends SoundSensor {
 	
 	public SoundSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new SoundSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class SoundSensorProxy extends SoundSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends SoundSensor.Receiver {
-	}
 }

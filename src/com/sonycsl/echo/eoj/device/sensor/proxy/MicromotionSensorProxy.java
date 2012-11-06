@@ -25,7 +25,7 @@ public class MicromotionSensorProxy extends MicromotionSensor {
 	
 	public MicromotionSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new MicromotionSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class MicromotionSensorProxy extends MicromotionSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends MicromotionSensor.Receiver {
-	}
 }

@@ -25,7 +25,7 @@ public class GasMeterProxy extends GasMeter {
 	
 	public GasMeterProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new GasMeter.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class GasMeterProxy extends GasMeter {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends GasMeter.Receiver {
-	}
 }

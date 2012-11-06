@@ -25,7 +25,7 @@ public class ElectricHotWaterPotProxy extends ElectricHotWaterPot {
 	
 	public ElectricHotWaterPotProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new ElectricHotWaterPot.Receiver());
 	}
 	
 	@Override
@@ -63,6 +63,4 @@ public class ElectricHotWaterPotProxy extends ElectricHotWaterPot {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends ElectricHotWaterPot.Receiver {
-	}
 }

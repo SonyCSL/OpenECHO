@@ -25,7 +25,7 @@ public class HumanBodyLocationSensorProxy extends HumanBodyLocationSensor {
 	
 	public HumanBodyLocationSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new HumanBodyLocationSensor.Receiver());
 	}
 	
 	@Override
@@ -67,6 +67,4 @@ public class HumanBodyLocationSensorProxy extends HumanBodyLocationSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends HumanBodyLocationSensor.Receiver {
-	}
 }

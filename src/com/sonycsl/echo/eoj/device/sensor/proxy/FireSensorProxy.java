@@ -25,7 +25,7 @@ public class FireSensorProxy extends FireSensor {
 	
 	public FireSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new FireSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class FireSensorProxy extends FireSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends FireSensor.Receiver {
-	}
 }

@@ -357,16 +357,16 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_ELECTRIC_ENERGY_METER_CLASSIFICATION:
-				_onSetElectricEnergyMeterClassification(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetElectricEnergyMeterClassification(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_OWNER_CLASSIFICATION:
-				_onSetOwnerClassification(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOwnerClassification(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_VERIFICATION_EXPIRATION_DATE:
-				_onSetVerificationExpirationDate(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetVerificationExpirationDate(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED:
-				_onSetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

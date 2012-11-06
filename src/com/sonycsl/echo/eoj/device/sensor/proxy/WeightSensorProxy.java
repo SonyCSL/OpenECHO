@@ -25,7 +25,7 @@ public class WeightSensorProxy extends WeightSensor {
 	
 	public WeightSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new WeightSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class WeightSensorProxy extends WeightSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends WeightSensor.Receiver {
-	}
 }

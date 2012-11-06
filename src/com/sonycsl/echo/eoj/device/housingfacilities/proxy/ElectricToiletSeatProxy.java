@@ -25,7 +25,7 @@ public class ElectricToiletSeatProxy extends ElectricToiletSeat {
 	
 	public ElectricToiletSeatProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new ElectricToiletSeat.Receiver());
 	}
 	
 	@Override
@@ -67,6 +67,4 @@ public class ElectricToiletSeatProxy extends ElectricToiletSeat {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends ElectricToiletSeat.Receiver {
-	}
 }

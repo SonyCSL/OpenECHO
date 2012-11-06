@@ -797,70 +797,70 @@ public abstract class WasherAndDryer extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_WASHER_AND_DRYER_SETTING:
-				_onSetWasherAndDryerSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetWasherAndDryerSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_WASHER_AND_DRYER_CYCLE_SETTING1_NOTE1:
-				_onSetWasherAndDryerCycleSetting1Note1(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetWasherAndDryerCycleSetting1Note1(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_WASHER_AND_DRYER_CYCLE_SETTING2_NOTE1:
-				_onSetWasherAndDryerCycleSetting2Note1(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetWasherAndDryerCycleSetting2Note1(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_DRYING_CYCLE_SETTING_NOTE1:
-				_onSetDryingCycleSettingNote1(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetDryingCycleSettingNote1(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_WATER_FLOW_RATE_SETTING:
-				_onSetWaterFlowRateSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetWaterFlowRateSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_GROTATION_SPEED_FOR_SPIN_DRYING_H_SETTING:
-				_onSetGrotationSpeedForSpinDryingHSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetGrotationSpeedForSpinDryingHSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_GDEGREE_OF_DRYING_H_SETTING:
-				_onSetGdegreeOfDryingHSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetGdegreeOfDryingHSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_PRESOAKING_TIME_SETTING:
-				_onSetPresoakingTimeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetPresoakingTimeSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_WATER_VOLUME_SETTING1:
-				_onSetWaterVolumeSetting1(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetWaterVolumeSetting1(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_WATER_VOLUME_SETTING2:
-				_onSetWaterVolumeSetting2(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetWaterVolumeSetting2(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_WASHING_TIME_SETTING:
-				_onSetWashingTimeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetWashingTimeSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_GNUMBER_OF_TIMES_OF_RINSING_H_SETTING:
-				_onSetGnumberOfTimesOfRinsingHSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetGnumberOfTimesOfRinsingHSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_RINSING_PROCESS_SETTING:
-				_onSetRinsingProcessSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetRinsingProcessSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SPIN_DRYING_TIME_SETTING:
-				_onSetSpinDryingTimeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSpinDryingTimeSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_DRYING_TIME_SETTING:
-				_onSetDryingTimeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetDryingTimeSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_WARM_WATER_SETTING:
-				_onSetWarmWaterSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetWarmWaterSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_BATHTUB_WATER_RECYCLE_SETTING:
-				_onSetBathtubWaterRecycleSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetBathtubWaterRecycleSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_WRINKLING_MINIMIZATION_SETTING:
-				_onSetWrinklingMinimizationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetWrinklingMinimizationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_DOOR_COVER_LOCK_SETTING:
-				_onSetDoorCoverLockSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetDoorCoverLockSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ON_TIMER_RESERVATION_SETTING:
-				_onSetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ON_TIMER_SETTING:
-				_onSetOnTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOnTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING:
-				_onSetRelativeTimeBasedOnTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetRelativeTimeBasedOnTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

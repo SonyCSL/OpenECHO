@@ -138,10 +138,10 @@ public abstract class FlameSensor extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_DETECTION_THRESHOLD_LEVEL:
-				_onSetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_FLAME_DETECTION_STATUS_RESETTING:
-				_onSetFlameDetectionStatusResetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetFlameDetectionStatusResetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

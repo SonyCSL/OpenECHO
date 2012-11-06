@@ -25,7 +25,7 @@ public class OpenCloseSensorProxy extends OpenCloseSensor {
 	
 	public OpenCloseSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new OpenCloseSensor.Receiver());
 	}
 	
 	@Override
@@ -67,6 +67,4 @@ public class OpenCloseSensorProxy extends OpenCloseSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends OpenCloseSensor.Receiver {
-	}
 }

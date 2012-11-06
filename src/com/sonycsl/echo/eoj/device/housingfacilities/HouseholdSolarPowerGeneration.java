@@ -271,22 +271,22 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED:
-				_onSetResettingCumulativeAmountOfElectricityGenerated(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetResettingCumulativeAmountOfElectricityGenerated(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD:
-				_onSetResettingCumulativeAmountOfElectricitySold(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetResettingCumulativeAmountOfElectricitySold(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1:
-				_onSetPowerGenerationOutputLimitSetting1(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetPowerGenerationOutputLimitSetting1(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2:
-				_onSetPowerGenerationOutputLimitSetting2(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetPowerGenerationOutputLimitSetting2(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD:
-				_onSetLimitSettingForTheAmountOfElectricitySold(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetLimitSettingForTheAmountOfElectricitySold(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_RATED_POWER_GENERATION_OUTPUT:
-				_onSetRatedPowerGenerationOutput(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetRatedPowerGenerationOutput(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

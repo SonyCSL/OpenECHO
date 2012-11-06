@@ -259,16 +259,16 @@ public abstract class WaterFlowmeter extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_FLOWING_WATER_CLASSIFICATION:
-				_onSetFlowingWaterClassification(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetFlowingWaterClassification(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_OWNER_CLASSIFICATION:
-				_onSetOwnerClassification(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOwnerClassification(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ID_NUMBER_SETTING:
-				_onSetIdNumberSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetIdNumberSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_VERIFICATION_EXPIRATION_INFORMATION:
-				_onSetVerificationExpirationInformation(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetVerificationExpirationInformation(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

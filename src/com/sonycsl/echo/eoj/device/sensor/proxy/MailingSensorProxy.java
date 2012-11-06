@@ -25,7 +25,7 @@ public class MailingSensorProxy extends MailingSensor {
 	
 	public MailingSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new MailingSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class MailingSensorProxy extends MailingSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends MailingSensor.Receiver {
-	}
 }

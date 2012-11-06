@@ -25,7 +25,7 @@ public class BathHeatingStatusSensorProxy extends BathHeatingStatusSensor {
 	
 	public BathHeatingStatusSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new BathHeatingStatusSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class BathHeatingStatusSensorProxy extends BathHeatingStatusSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends BathHeatingStatusSensor.Receiver {
-	}
 }

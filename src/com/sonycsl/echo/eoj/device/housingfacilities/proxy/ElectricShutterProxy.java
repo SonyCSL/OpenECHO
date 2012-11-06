@@ -25,7 +25,7 @@ public class ElectricShutterProxy extends ElectricShutter {
 	
 	public ElectricShutterProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new ElectricShutter.Receiver());
 	}
 	
 	@Override
@@ -71,6 +71,4 @@ public class ElectricShutterProxy extends ElectricShutter {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends ElectricShutter.Receiver {
-	}
 }

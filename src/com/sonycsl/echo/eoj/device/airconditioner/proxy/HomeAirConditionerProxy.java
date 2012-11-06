@@ -25,7 +25,7 @@ public class HomeAirConditionerProxy extends HomeAirConditioner {
 	
 	public HomeAirConditionerProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new HomeAirConditioner.Receiver());
 	}
 	
 	@Override
@@ -71,6 +71,4 @@ public class HomeAirConditionerProxy extends HomeAirConditioner {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends HomeAirConditioner.Receiver {
-	}
 }

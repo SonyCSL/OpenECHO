@@ -25,7 +25,7 @@ public class CigaretteSmokeSensorProxy extends CigaretteSmokeSensor {
 	
 	public CigaretteSmokeSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new CigaretteSmokeSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class CigaretteSmokeSensorProxy extends CigaretteSmokeSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends CigaretteSmokeSensor.Receiver {
-	}
 }

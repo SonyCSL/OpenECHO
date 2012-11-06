@@ -25,7 +25,7 @@ public class FanHeaterProxy extends FanHeater {
 	
 	public FanHeaterProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new FanHeater.Receiver());
 	}
 	
 	@Override
@@ -67,6 +67,4 @@ public class FanHeaterProxy extends FanHeater {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends FanHeater.Receiver {
-	}
 }

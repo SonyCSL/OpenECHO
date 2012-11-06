@@ -203,16 +203,16 @@ public abstract class MicromotionSensor extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_DETECTION_THRESHOLD_LEVEL:
-				_onSetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_DETECTION_COUNTER:
-				_onSetDetectionCounter(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetDetectionCounter(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SAMPLING_COUNT:
-				_onSetSamplingCount(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSamplingCount(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SAMPLING_CYCLE:
-				_onSetSamplingCycle(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSamplingCycle(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

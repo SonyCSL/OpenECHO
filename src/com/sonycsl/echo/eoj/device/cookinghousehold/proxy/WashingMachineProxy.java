@@ -25,7 +25,7 @@ public class WashingMachineProxy extends WashingMachine {
 	
 	public WashingMachineProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new WashingMachine.Receiver());
 	}
 	
 	@Override
@@ -63,6 +63,4 @@ public class WashingMachineProxy extends WashingMachine {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends WashingMachine.Receiver {
-	}
 }

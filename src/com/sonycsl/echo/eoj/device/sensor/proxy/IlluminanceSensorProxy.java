@@ -25,7 +25,7 @@ public class IlluminanceSensorProxy extends IlluminanceSensor {
 	
 	public IlluminanceSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new IlluminanceSensor.Receiver());
 	}
 	
 	@Override
@@ -67,6 +67,4 @@ public class IlluminanceSensorProxy extends IlluminanceSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends IlluminanceSensor.Receiver {
-	}
 }

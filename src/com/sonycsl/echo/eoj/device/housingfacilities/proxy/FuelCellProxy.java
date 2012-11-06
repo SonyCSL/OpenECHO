@@ -25,7 +25,7 @@ public class FuelCellProxy extends FuelCell {
 	
 	public FuelCellProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new FuelCell.Receiver());
 	}
 	
 	@Override
@@ -67,6 +67,4 @@ public class FuelCellProxy extends FuelCell {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends FuelCell.Receiver {
-	}
 }

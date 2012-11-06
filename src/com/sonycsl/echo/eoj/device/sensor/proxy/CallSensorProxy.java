@@ -25,7 +25,7 @@ public class CallSensorProxy extends CallSensor {
 	
 	public CallSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new CallSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class CallSensorProxy extends CallSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends CallSensor.Receiver {
-	}
 }

@@ -231,16 +231,16 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY:
-				_onSetSetValueOfRoomRelativeHumidity(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSetValueOfRoomRelativeHumidity(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_VENTILATION_AUTO_SETTING:
-				_onSetVentilationAutoSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetVentilationAutoSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE:
-				_onSetSetValueOfVentilationAirFlowRate(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSetValueOfVentilationAirFlowRate(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_HEAT_EXCHANGER_OPERATION_SETTING:
-				_onSetHeatExchangerOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetHeatExchangerOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

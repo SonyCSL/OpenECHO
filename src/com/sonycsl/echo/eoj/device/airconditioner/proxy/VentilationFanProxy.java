@@ -25,7 +25,7 @@ public class VentilationFanProxy extends VentilationFan {
 	
 	public VentilationFanProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new VentilationFan.Receiver());
 	}
 	
 	@Override
@@ -63,6 +63,4 @@ public class VentilationFanProxy extends VentilationFan {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends VentilationFan.Receiver {
-	}
 }

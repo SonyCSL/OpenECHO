@@ -25,7 +25,7 @@ public class ColdOrHotWaterHeatSourceEquipmentProxy extends ColdOrHotWaterHeatSo
 	
 	public ColdOrHotWaterHeatSourceEquipmentProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new ColdOrHotWaterHeatSourceEquipment.Receiver());
 	}
 	
 	@Override
@@ -71,6 +71,4 @@ public class ColdOrHotWaterHeatSourceEquipmentProxy extends ColdOrHotWaterHeatSo
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends ColdOrHotWaterHeatSourceEquipment.Receiver {
-	}
 }

@@ -413,37 +413,37 @@ public abstract class FanHeater extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_TEMPERATURE_SETTING_VALUE:
-				_onSetTemperatureSettingValue(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetTemperatureSettingValue(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING:
-				_onSetAutomaticTemperatureControlSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetAutomaticTemperatureControlSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ON_TIMER_RESERVATION_SETTING:
-				_onSetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ON_TIMER_SETTING_VALUE_TIME:
-				_onSetOnTimerSettingValueTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOnTimerSettingValueTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME:
-				_onSetOnTimerSettingValueRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOnTimerSettingValueRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_OFF_TIMER_RESERVATION_SETTING:
-				_onSetOffTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOffTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_OFF_TIMER_SETTING_VALUE_TIME:
-				_onSetOffTimerSettingValueTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOffTimerSettingValueTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_OFF_TIMER_VALUE_RELATIVE_TIME:
-				_onSetOffTimerValueRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOffTimerValueRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_EXTENTIONAL_OPERATION_SETTING:
-				_onSetExtentionalOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetExtentionalOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_EXTENTIONAL_OPERATION_TIMER_TIME_SETTING_VALUE:
-				_onSetExtentionalOperationTimerTimeSettingValue(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetExtentionalOperationTimerTimeSettingValue(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ION_EMISSION_SETTING:
-				_onSetIonEmissionSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetIonEmissionSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

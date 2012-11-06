@@ -25,7 +25,7 @@ public class SnowSensorProxy extends SnowSensor {
 	
 	public SnowSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new SnowSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class SnowSensorProxy extends SnowSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends SnowSensor.Receiver {
-	}
 }

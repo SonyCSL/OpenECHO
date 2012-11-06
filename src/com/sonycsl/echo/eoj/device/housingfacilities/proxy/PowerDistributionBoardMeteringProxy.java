@@ -25,7 +25,7 @@ public class PowerDistributionBoardMeteringProxy extends PowerDistributionBoardM
 	
 	public PowerDistributionBoardMeteringProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new PowerDistributionBoardMetering.Receiver());
 	}
 	
 	@Override
@@ -69,6 +69,4 @@ public class PowerDistributionBoardMeteringProxy extends PowerDistributionBoardM
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends PowerDistributionBoardMetering.Receiver {
-	}
 }

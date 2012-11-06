@@ -25,7 +25,7 @@ public class VisitorSensorProxy extends VisitorSensor {
 	
 	public VisitorSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new VisitorSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class VisitorSensorProxy extends VisitorSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends VisitorSensor.Receiver {
-	}
 }

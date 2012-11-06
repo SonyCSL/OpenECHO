@@ -219,13 +219,13 @@ public abstract class ElectricLock extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_LOCK_SETTING1:
-				_onSetLockSetting1(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetLockSetting1(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_LOCK_SETTING2:
-				_onSetLockSetting2(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetLockSetting2(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_AUTO_LOCK_MODE_SETTING:
-				_onSetAutoLockModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetAutoLockModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

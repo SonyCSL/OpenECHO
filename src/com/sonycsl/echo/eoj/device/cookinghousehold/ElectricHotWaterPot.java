@@ -219,13 +219,13 @@ public abstract class ElectricHotWaterPot extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_BOIL_UP_SETTING:
-				_onSetBoilUpSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetBoilUpSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_BOIL_UP_WARMER_MODE_SETTING:
-				_onSetBoilUpWarmerModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetBoilUpWarmerModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SET_VALUE_OF_WARMER_TEMPERATURE:
-				_onSetSetValueOfWarmerTemperature(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSetValueOfWarmerTemperature(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

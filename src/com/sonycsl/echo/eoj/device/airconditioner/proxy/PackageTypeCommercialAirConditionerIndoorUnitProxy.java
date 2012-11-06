@@ -25,7 +25,7 @@ public class PackageTypeCommercialAirConditionerIndoorUnitProxy extends PackageT
 	
 	public PackageTypeCommercialAirConditionerIndoorUnitProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new PackageTypeCommercialAirConditionerIndoorUnit.Receiver());
 	}
 	
 	@Override
@@ -75,6 +75,4 @@ public class PackageTypeCommercialAirConditionerIndoorUnitProxy extends PackageT
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends PackageTypeCommercialAirConditionerIndoorUnit.Receiver {
-	}
 }

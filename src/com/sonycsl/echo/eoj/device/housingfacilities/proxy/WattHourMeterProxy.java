@@ -25,7 +25,7 @@ public class WattHourMeterProxy extends WattHourMeter {
 	
 	public WattHourMeterProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new WattHourMeter.Receiver());
 	}
 	
 	@Override
@@ -67,6 +67,4 @@ public class WattHourMeterProxy extends WattHourMeter {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends WattHourMeter.Receiver {
-	}
 }

@@ -25,7 +25,7 @@ public class TelevisionProxy extends Television {
 	
 	public TelevisionProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new Television.Receiver());
 	}
 	
 	@Override
@@ -69,6 +69,4 @@ public class TelevisionProxy extends Television {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends Television.Receiver {
-	}
 }

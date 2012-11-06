@@ -355,19 +355,19 @@ public abstract class SmartGasMeter extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_GAS_METER_CLASSIFICATION:
-				_onSetGasMeterClassification(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetGasMeterClassification(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_OWNER_CLASSIFICATION:
-				_onSetOwnerClassification(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOwnerClassification(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED:
-				_onSetDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ID_NUMBER_SETTING:
-				_onSetIdNumberSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetIdNumberSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_VERIFICATION_EXPIRATION_INFORMATION:
-				_onSetVerificationExpirationInformation(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetVerificationExpirationInformation(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

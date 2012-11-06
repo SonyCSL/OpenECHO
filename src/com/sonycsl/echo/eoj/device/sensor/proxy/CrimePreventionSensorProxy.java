@@ -25,7 +25,7 @@ public class CrimePreventionSensorProxy extends CrimePreventionSensor {
 	
 	public CrimePreventionSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new CrimePreventionSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class CrimePreventionSensorProxy extends CrimePreventionSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends CrimePreventionSensor.Receiver {
-	}
 }

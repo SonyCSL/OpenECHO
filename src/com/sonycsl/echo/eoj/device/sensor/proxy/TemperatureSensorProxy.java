@@ -25,7 +25,7 @@ public class TemperatureSensorProxy extends TemperatureSensor {
 	
 	public TemperatureSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new TemperatureSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class TemperatureSensorProxy extends TemperatureSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends TemperatureSensor.Receiver {
-	}
 }

@@ -25,7 +25,7 @@ public class SwitchProxy extends Switch {
 	
 	public SwitchProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new Switch.Receiver());
 	}
 	
 	@Override
@@ -63,6 +63,4 @@ public class SwitchProxy extends Switch {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends Switch.Receiver {
-	}
 }

@@ -411,40 +411,40 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_TEMPERATURE_LEVEL_OF_TOILET_SEAT:
-				_onSetTemperatureLevelOfToiletSeat(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetTemperatureLevelOfToiletSeat(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_HEATER_SETTING_OF_TOILET_SEAT:
-				_onSetHeaterSettingOfToiletSeat(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetHeaterSettingOfToiletSeat(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_TEMPORAL_HALT_SETTING_OF_TOILET_SEAT:
-				_onSetTemporalHaltSettingOfToiletSeat(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetTemporalHaltSettingOfToiletSeat(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_TEMPORAL_HALT_START_TIME_OF_TOILET_SEAT:
-				_onSetTemporalHaltStartTimeOfToiletSeat(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetTemporalHaltStartTimeOfToiletSeat(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_TEMPORAL_HALT_TIME_DURATION_OF_TOILET_SEAT:
-				_onSetTemporalHaltTimeDurationOfToiletSeat(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetTemporalHaltTimeDurationOfToiletSeat(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_TEMPERATURE_LEVEL_SETTING_OF_ROOM_HEATING:
-				_onSetTemperatureLevelSettingOfRoomHeating(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetTemperatureLevelSettingOfRoomHeating(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ROOM_HEATING_SETTING:
-				_onSetRoomHeatingSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetRoomHeatingSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_START_TIME_OF_ROOM_HEATING:
-				_onSetStartTimeOfRoomHeating(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetStartTimeOfRoomHeating(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_DURATION_TIME_OF_ROOM_HREATING:
-				_onSetDurationTimeOfRoomHreating(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetDurationTimeOfRoomHreating(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SPECIAL_OPERATION_MODE_SETTING:
-				_onSetSpecialOperationModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSpecialOperationModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_HUMAN_DETECTION_STATUS:
-				_onSetHumanDetectionStatus(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetHumanDetectionStatus(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SEATING_DETECTION_STATUS:
-				_onSetSeatingDetectionStatus(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSeatingDetectionStatus(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

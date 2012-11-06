@@ -189,16 +189,16 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_OPEN_CLOSE_SETTING:
-				_onSetOpenCloseSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOpenCloseSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_DEGREE_OF_OPENI_NG_LEVEL:
-				_onSetDegreeOfOpeniNgLevel(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetDegreeOfOpeniNgLevel(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SET_VALUE_OF_SHADE_ANGLE:
-				_onSetSetValueOfShadeAngle(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSetValueOfShadeAngle(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SHADE_OPEN_CLOSE_SPEED:
-				_onSetShadeOpenCloseSpeed(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetShadeOpenCloseSpeed(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

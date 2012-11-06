@@ -25,7 +25,7 @@ public class LPGasMeterProxy extends LPGasMeter {
 	
 	public LPGasMeterProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new LPGasMeter.Receiver());
 	}
 	
 	@Override
@@ -67,6 +67,4 @@ public class LPGasMeterProxy extends LPGasMeter {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends LPGasMeter.Receiver {
-	}
 }

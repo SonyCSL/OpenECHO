@@ -25,7 +25,7 @@ public class BathWaterLevelSensorProxy extends BathWaterLevelSensor {
 	
 	public BathWaterLevelSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new BathWaterLevelSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class BathWaterLevelSensorProxy extends BathWaterLevelSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends BathWaterLevelSensor.Receiver {
-	}
 }

@@ -25,7 +25,7 @@ public class CookingHeaterProxy extends CookingHeater {
 	
 	public CookingHeaterProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new CookingHeater.Receiver());
 	}
 	
 	@Override
@@ -67,6 +67,4 @@ public class CookingHeaterProxy extends CookingHeater {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends CookingHeater.Receiver {
-	}
 }

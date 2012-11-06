@@ -25,7 +25,7 @@ public class RefrigeratorProxy extends Refrigerator {
 	
 	public RefrigeratorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new Refrigerator.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class RefrigeratorProxy extends Refrigerator {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends Refrigerator.Receiver {
-	}
 }

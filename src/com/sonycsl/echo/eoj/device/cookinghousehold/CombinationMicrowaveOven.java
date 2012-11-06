@@ -568,58 +568,58 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_HEATING_SETTING:
-				_onSetHeatingSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetHeatingSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_HEATING_MODE_SETTING:
-				_onSetHeatingModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetHeatingModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_AUTOMATIC_HEATING_SETTING:
-				_onSetAutomaticHeatingSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetAutomaticHeatingSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_AUTOMATIC_HEATING_LEVEL_SETTING:
-				_onSetAutomaticHeatingLevelSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetAutomaticHeatingLevelSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_AUTOMATIC_HEATING_MENU_SETTING:
-				_onSetAutomaticHeatingMenuSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetAutomaticHeatingMenuSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_OVEN_MODE_SETTING:
-				_onSetOvenModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOvenModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_OVEN_PREHEATING_SETTING:
-				_onSetOvenPreheatingSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOvenPreheatingSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_FERMENTING_MODE_SETTING:
-				_onSetFermentingModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetFermentingModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_CHAMBER_TEMPERATURE_SETTING:
-				_onSetChamberTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetChamberTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_FOOD_TEMPERATURE_SETTING:
-				_onSetFoodTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetFoodTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_HEATING_TIME_SETTING:
-				_onSetHeatingTimeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetHeatingTimeSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_REMAINING_HEATING_TIME_SETTING:
-				_onSetRemainingHeatingTimeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetRemainingHeatingTimeSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_MICROWAVE_HEATING_POWER_SETTING:
-				_onSetMicrowaveHeatingPowerSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetMicrowaveHeatingPowerSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_PROMPT_MESSAGE_SETTING:
-				_onSetPromptMessageSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetPromptMessageSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_GACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_H_SETTING:
-				_onSetGaccessoriesToCombinationMicrowaveOvenHSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetGaccessoriesToCombinationMicrowaveOvenHSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_DISPLAY_CHARACTER_STRING_SETTING:
-				_onSetDisplayCharacterStringSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetDisplayCharacterStringSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION:
-				_onSetTwoStageMicrowaveHeatingSettingDuration(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetTwoStageMicrowaveHeatingSettingDuration(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER:
-				_onSetTwoStageMicrowaveHeatingSettingHeatingPower(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetTwoStageMicrowaveHeatingSettingHeatingPower(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

@@ -179,10 +179,10 @@ public abstract class AirCleaner extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_AIR_FLOW_RATE_SETTING:
-				_onSetAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_OPTICAL_CATALYST_OPERATION_SETTING:
-				_onSetOpticalCatalystOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOpticalCatalystOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

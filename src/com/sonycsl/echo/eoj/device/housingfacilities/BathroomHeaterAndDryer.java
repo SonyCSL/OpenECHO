@@ -517,49 +517,49 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_OPERATION_SETTING:
-				_onSetOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_VENTILATION_OPERATION_SETTING:
-				_onSetVentilationOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetVentilationOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_BATHROOM_PRE_WARMER_OPERATION_SETTING:
-				_onSetBathroomPreWarmerOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetBathroomPreWarmerOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_BATHROOM_HEATER_OPERATION_SETTING:
-				_onSetBathroomHeaterOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetBathroomHeaterOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_BATHROOM_DRYER_OPERATION_SETTING:
-				_onSetBathroomDryerOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetBathroomDryerOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_COOL_AIR_CIRCULATOR_OPERATION_SETTING:
-				_onSetCoolAirCirculatorOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetCoolAirCirculatorOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_VENTILATION_AIR_FLOW_RATE_SETTING:
-				_onSetVentilationAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetVentilationAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING:
-				_onSetFilterCleaningReminderSignSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetFilterCleaningReminderSignSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1:
-				_onSetGonTimerBasedReservationHSetting1(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetGonTimerBasedReservationHSetting1(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2:
-				_onSetGonTimerBasedReservationHSetting2(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetGonTimerBasedReservationHSetting2(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ON_TIMER_SETTING_TIME:
-				_onSetOnTimerSettingTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOnTimerSettingTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ON_TIMER_SETTING_RELATIVE_TIME:
-				_onSetOnTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOnTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING:
-				_onSetGoffTimerBasedReservationHSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetGoffTimerBasedReservationHSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_OFF_TIMER_SETTING_TIME:
-				_onSetOffTimerSettingTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOffTimerSettingTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_OFF_TIMER_SETTING_RELATIVE_TIME:
-				_onSetOffTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOffTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

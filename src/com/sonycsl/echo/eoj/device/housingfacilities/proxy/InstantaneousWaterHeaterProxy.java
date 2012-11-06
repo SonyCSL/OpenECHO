@@ -25,7 +25,7 @@ public class InstantaneousWaterHeaterProxy extends InstantaneousWaterHeater {
 	
 	public InstantaneousWaterHeaterProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new InstantaneousWaterHeater.Receiver());
 	}
 	
 	@Override
@@ -67,6 +67,4 @@ public class InstantaneousWaterHeaterProxy extends InstantaneousWaterHeater {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends InstantaneousWaterHeater.Receiver {
-	}
 }

@@ -347,31 +347,31 @@ public abstract class ElectricHeater extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING:
-				_onSetAutomaticTemperatureControlSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetAutomaticTemperatureControlSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_TEMPERATURE_SETTING:
-				_onSetTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_AIR_FLOW_RATE_SETTING:
-				_onSetAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ON_TIMER_BASED_RESERVATION_SETTING:
-				_onSetOnTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOnTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ON_TIMER_SETTING_TIME:
-				_onSetOnTimerSettingTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOnTimerSettingTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ON_TIMER_SETTING_RELATIVE_TIME:
-				_onSetOnTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOnTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_OFF_TIMER_BASED_RESERVATION_SETTING:
-				_onSetOffTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOffTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_OFF_TIMER_SETTING_TIME:
-				_onSetOffTimerSettingTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOffTimerSettingTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME:
-				_onSetSetValueOfOffTimerRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSetValueOfOffTimerRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

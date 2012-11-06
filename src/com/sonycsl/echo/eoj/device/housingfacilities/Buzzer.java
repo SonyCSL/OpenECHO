@@ -137,10 +137,10 @@ public abstract class Buzzer extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_SOUND_GENERATION_SETTING:
-				_onSetSoundGenerationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSoundGenerationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_BUZZER_SOUND_TYPE:
-				_onSetBuzzerSoundType(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetBuzzerSoundType(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

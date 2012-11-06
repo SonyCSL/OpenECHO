@@ -25,7 +25,7 @@ public class EmergencyButtonProxy extends EmergencyButton {
 	
 	public EmergencyButtonProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new EmergencyButton.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class EmergencyButtonProxy extends EmergencyButton {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends EmergencyButton.Receiver {
-	}
 }

@@ -25,7 +25,7 @@ public class ElectricallyOperatedShadeProxy extends ElectricallyOperatedShade {
 	
 	public ElectricallyOperatedShadeProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new ElectricallyOperatedShade.Receiver());
 	}
 	
 	@Override
@@ -67,6 +67,4 @@ public class ElectricallyOperatedShadeProxy extends ElectricallyOperatedShade {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends ElectricallyOperatedShade.Receiver {
-	}
 }

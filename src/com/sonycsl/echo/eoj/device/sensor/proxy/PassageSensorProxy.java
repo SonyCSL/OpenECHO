@@ -25,7 +25,7 @@ public class PassageSensorProxy extends PassageSensor {
 	
 	public PassageSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new PassageSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class PassageSensorProxy extends PassageSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends PassageSensor.Receiver {
-	}
 }

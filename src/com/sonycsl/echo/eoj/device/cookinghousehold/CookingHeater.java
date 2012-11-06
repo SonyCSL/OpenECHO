@@ -294,28 +294,28 @@ public abstract class CookingHeater extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_HEATING_SETTING:
-				_onSetHeatingSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetHeatingSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_GALL_STOP_H_SETTING:
-				_onSetGallStopHSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetGallStopHSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_HEATING_POWER_SETTING:
-				_onSetHeatingPowerSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetHeatingPowerSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_HEATING_TEMPERATURE_SETTING:
-				_onSetHeatingTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetHeatingTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_GHEATING_MODES_OF_STOVES_H_SETTING:
-				_onSetGheatingModesOfStovesHSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetGheatingModesOfStovesHSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_RELATIVE_TIME_SETTINGS_OF_OFF_TIMERS:
-				_onSetRelativeTimeSettingsOfOffTimers(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetRelativeTimeSettingsOfOffTimers(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_CHILD_LOCK_SETTING:
-				_onSetChildLockSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetChildLockSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_RADIANT_HEATER_LOCK_SETTING:
-				_onSetRadiantHeaterLockSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetRadiantHeaterLockSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

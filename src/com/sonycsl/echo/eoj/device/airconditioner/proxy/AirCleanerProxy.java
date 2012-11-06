@@ -25,7 +25,7 @@ public class AirCleanerProxy extends AirCleaner {
 	
 	public AirCleanerProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new AirCleaner.Receiver());
 	}
 	
 	@Override
@@ -63,6 +63,4 @@ public class AirCleanerProxy extends AirCleaner {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends AirCleaner.Receiver {
-	}
 }

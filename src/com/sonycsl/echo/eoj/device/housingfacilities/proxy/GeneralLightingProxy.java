@@ -25,7 +25,7 @@ public class GeneralLightingProxy extends GeneralLighting {
 	
 	public GeneralLightingProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new GeneralLighting.Receiver());
 	}
 	
 	@Override
@@ -63,6 +63,4 @@ public class GeneralLightingProxy extends GeneralLighting {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends GeneralLighting.Receiver {
-	}
 }

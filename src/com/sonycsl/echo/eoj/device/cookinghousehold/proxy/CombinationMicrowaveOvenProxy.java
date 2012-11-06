@@ -25,7 +25,7 @@ public class CombinationMicrowaveOvenProxy extends CombinationMicrowaveOven {
 	
 	public CombinationMicrowaveOvenProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new CombinationMicrowaveOven.Receiver());
 	}
 	
 	@Override
@@ -63,6 +63,4 @@ public class CombinationMicrowaveOvenProxy extends CombinationMicrowaveOven {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends CombinationMicrowaveOven.Receiver {
-	}
 }

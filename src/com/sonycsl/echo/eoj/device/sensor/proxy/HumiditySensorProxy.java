@@ -25,7 +25,7 @@ public class HumiditySensorProxy extends HumiditySensor {
 	
 	public HumiditySensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new HumiditySensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class HumiditySensorProxy extends HumiditySensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends HumiditySensor.Receiver {
-	}
 }

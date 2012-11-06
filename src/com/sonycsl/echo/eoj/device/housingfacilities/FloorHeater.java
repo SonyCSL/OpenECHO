@@ -451,43 +451,43 @@ public abstract class FloorHeater extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_TEMPERATURE_SETTING1:
-				_onSetTemperatureSetting1(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetTemperatureSetting1(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_TEMPERATURE_SETTING2:
-				_onSetTemperatureSetting2(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetTemperatureSetting2(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ZONE_CHANGE_SETTING:
-				_onSetZoneChangeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetZoneChangeSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SPECIAL_OPERATION_SETTING:
-				_onSetSpecialOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSpecialOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_DAILY_TIMER_SETTING:
-				_onSetDailyTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetDailyTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_DAILY_TIMER_SETTING1:
-				_onSetDailyTimerSetting1(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetDailyTimerSetting1(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_DAILY_TIMER_SETTING2:
-				_onSetDailyTimerSetting2(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetDailyTimerSetting2(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ON_TIMER_RESERVATION_SETTING:
-				_onSetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_TIME_SET_BY_ON_TIMER:
-				_onSetTimeSetByOnTimer(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetTimeSetByOnTimer(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_RELATIVE_ON_TIMER_SETTING:
-				_onSetRelativeOnTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetRelativeOnTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_OFF_TIMER_RESERVATION_SETTING:
-				_onSetOffTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOffTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_TIME_SET_BY_OFF_TIMER:
-				_onSetTimeSetByOffTimer(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetTimeSetByOffTimer(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_RELATIVE_OFF_TIMER_SETTING:
-				_onSetRelativeOffTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetRelativeOffTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

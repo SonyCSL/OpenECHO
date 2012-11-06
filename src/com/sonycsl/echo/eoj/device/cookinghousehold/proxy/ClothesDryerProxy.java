@@ -25,7 +25,7 @@ public class ClothesDryerProxy extends ClothesDryer {
 	
 	public ClothesDryerProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new ClothesDryer.Receiver());
 	}
 	
 	@Override
@@ -63,6 +63,4 @@ public class ClothesDryerProxy extends ClothesDryer {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends ClothesDryer.Receiver {
-	}
 }

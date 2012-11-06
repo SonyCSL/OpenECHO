@@ -237,7 +237,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_OPERATION_MODE_SETTING:
-				_onSetOperationModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOperationModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

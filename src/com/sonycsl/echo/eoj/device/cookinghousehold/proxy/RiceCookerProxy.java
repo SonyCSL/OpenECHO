@@ -25,7 +25,7 @@ public class RiceCookerProxy extends RiceCooker {
 	
 	public RiceCookerProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new RiceCooker.Receiver());
 	}
 	
 	@Override
@@ -69,6 +69,4 @@ public class RiceCookerProxy extends RiceCooker {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends RiceCooker.Receiver {
-	}
 }

@@ -25,7 +25,7 @@ public class WeighingProxy extends Weighing {
 	
 	public WeighingProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new Weighing.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class WeighingProxy extends Weighing {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends Weighing.Receiver {
-	}
 }

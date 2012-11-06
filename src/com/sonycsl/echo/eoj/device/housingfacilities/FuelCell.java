@@ -615,52 +615,52 @@ public abstract class FuelCell extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_AUTOMATIC_SETTING_OF_HEATED_WATER_TEMPERATURE:
-				_onSetAutomaticSettingOfHeatedWaterTemperature(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetAutomaticSettingOfHeatedWaterTemperature(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_HEATED_WATER_TEMPERATURE_SETTING:
-				_onSetHeatedWaterTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetHeatedWaterTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_CUMULATIVE_POWER_GENERATION_OUTPUT_RESET_SETTING:
-				_onSetCumulativePowerGenerationOutputResetSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetCumulativePowerGenerationOutputResetSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_CUMULATIVE_GAS_CONSUMPTION_RESET_SETTING:
-				_onSetCumulativeGasConsumptionResetSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetCumulativeGasConsumptionResetSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_POWER_GENERATION_SETTING:
-				_onSetPowerGenerationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetPowerGenerationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_BATH_WATER_REHEATING:
-				_onSetBathWaterReheating(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetBathWaterReheating(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_GTEMPERATURE_OF_SUPPLIED_WATER_H_SETTING:
-				_onSetGtemperatureOfSuppliedWaterHSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetGtemperatureOfSuppliedWaterHSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_BATH_WATER_TEMPERATURE_SETTING:
-				_onSetBathWaterTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetBathWaterTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_HEATED_BATH_WATER_AMOUNT_SETTING:
-				_onSetHeatedBathWaterAmountSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetHeatedBathWaterAmountSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_GAUTOMATIC_BATH_WATER_HEATING_MODE_H_SETTING:
-				_onSetGautomaticBathWaterHeatingModeHSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetGautomaticBathWaterHeatingModeHSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_GBATH_WATER_ADDITION_FUNCTION_H_SETTING:
-				_onSetGbathWaterAdditionFunctionHSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetGbathWaterAdditionFunctionHSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_GSLIGHT_BATH_WATER_TEMPERATURE_LOWERING_H_FUNCTION_SETTING:
-				_onSetGslightBathWaterTemperatureLoweringHFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetGslightBathWaterTemperatureLoweringHFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_BATH_WATER_AMOUNT_SETTING2:
-				_onSetBathWaterAmountSetting2(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetBathWaterAmountSetting2(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_BATH_WATER_AMOUNT_SETTING3:
-				_onSetBathWaterAmountSetting3(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetBathWaterAmountSetting3(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ON_TIMER_RESERVATION_SETTING:
-				_onSetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ON_TIMER_SETTING:
-				_onSetOnTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOnTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

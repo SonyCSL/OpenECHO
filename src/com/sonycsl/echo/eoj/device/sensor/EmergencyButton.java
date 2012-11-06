@@ -112,7 +112,7 @@ public abstract class EmergencyButton extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_EMERGENCY_OCCURRENCE_STATUS_RESETTING:
-				_onSetEmergencyOccurrenceStatusResetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetEmergencyOccurrenceStatusResetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

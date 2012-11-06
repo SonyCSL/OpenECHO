@@ -283,22 +283,22 @@ public abstract class Humidifier extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_HUMIDIFYING_SETTING1:
-				_onSetHumidifyingSetting1(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetHumidifyingSetting1(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_HUMIDIFYING_SETTING2:
-				_onSetHumidifyingSetting2(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetHumidifyingSetting2(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_RESERVATION_SET_OF_OFF_TIMER:
-				_onSetReservationSetOfOffTimer(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetReservationSetOfOffTimer(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER:
-				_onSetRelativeTimeValueSetOfOffTimer(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetRelativeTimeValueSetOfOffTimer(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ION_EMISSION_SETTING:
-				_onSetIonEmissionSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetIonEmissionSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SPECIAL_OPERATION_MODE_SETTING:
-				_onSetSpecialOperationModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSpecialOperationModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

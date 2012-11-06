@@ -231,16 +231,16 @@ public abstract class ClothesDryer extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_DRYING_SETTING:
-				_onSetDryingSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetDryingSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ON_TIMER_RESERVATION_SETTING:
-				_onSetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ON_TIMER_SETTING:
-				_onSetOnTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOnTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING:
-				_onSetRelativeTimeBasedOnTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetRelativeTimeBasedOnTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

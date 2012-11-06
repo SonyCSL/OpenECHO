@@ -25,7 +25,7 @@ public class BathroomHeaterAndDryerProxy extends BathroomHeaterAndDryer {
 	
 	public BathroomHeaterAndDryerProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new BathroomHeaterAndDryer.Receiver());
 	}
 	
 	@Override
@@ -75,6 +75,4 @@ public class BathroomHeaterAndDryerProxy extends BathroomHeaterAndDryer {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends BathroomHeaterAndDryer.Receiver {
-	}
 }

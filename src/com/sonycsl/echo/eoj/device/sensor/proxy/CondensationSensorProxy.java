@@ -25,7 +25,7 @@ public class CondensationSensorProxy extends CondensationSensor {
 	
 	public CondensationSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new CondensationSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class CondensationSensorProxy extends CondensationSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends CondensationSensor.Receiver {
-	}
 }

@@ -108,25 +108,4 @@ public class NodeProfileProxy extends NodeProfile {
 	}
 	
 
-	public static class Receiver extends NodeProfile.Receiver {
-
-		@Override
-		protected void onGetInstanceListNotification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			super.onGetInstanceListNotification(eoj, tid, esv, epc, pdc, edt);
-			if(pdc != 0)
-				putDevices(eoj, edt);
-		}
-
-		@Override
-		protected void onGetSelfNodeInstanceListS(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			super.onGetSelfNodeInstanceListS(eoj, tid, esv, epc, pdc, edt);
-			if(pdc != 0)
-				putDevices(eoj, edt);
-		}
-		
-		protected void putDevices(EchoObject eoj, byte[] edt) {
-			Echo.refreshProxy(eoj.getNode().getAddress(), edt);
-		}
-		
-	}
 }

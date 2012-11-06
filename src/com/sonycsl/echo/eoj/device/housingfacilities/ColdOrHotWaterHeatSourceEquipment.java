@@ -451,43 +451,43 @@ public abstract class ColdOrHotWaterHeatSourceEquipment extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_OPERATION_MODE_SETTING:
-				_onSetOperationModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOperationModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_WATER_TEMPERATURE_SETTING1:
-				_onSetWaterTemperatureSetting1(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetWaterTemperatureSetting1(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_WATER_TEMPERATURE_SETTING2:
-				_onSetWaterTemperatureSetting2(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetWaterTemperatureSetting2(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SPECIAL_OPERATION_SETTING:
-				_onSetSpecialOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSpecialOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_DAILY_TIMER_SETTING:
-				_onSetDailyTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetDailyTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_DAILY_TIMER_SETTING1:
-				_onSetDailyTimerSetting1(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetDailyTimerSetting1(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_DAILY_TIMER_SETTING2:
-				_onSetDailyTimerSetting2(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetDailyTimerSetting2(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ON_TIMER_RESERVATION_SETTING:
-				_onSetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ON_TIMER_SETTING:
-				_onSetOnTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOnTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_RELATIVE_ON_TIMER_SETTING:
-				_onSetRelativeOnTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetRelativeOnTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_OFF_TIMER_RESERVATION_SETTING:
-				_onSetOffTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOffTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_TIME_SET_BY_OFF_TIMER:
-				_onSetTimeSetByOffTimer(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetTimeSetByOffTimer(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_RELATIVE_OFF_TIMER_SETTING:
-				_onSetRelativeOffTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetRelativeOffTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

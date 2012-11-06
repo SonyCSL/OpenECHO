@@ -25,7 +25,7 @@ public class BedPresenceSensorProxy extends BedPresenceSensor {
 	
 	public BedPresenceSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new BedPresenceSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class BedPresenceSensorProxy extends BedPresenceSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends BedPresenceSensor.Receiver {
-	}
 }

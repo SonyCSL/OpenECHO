@@ -25,7 +25,7 @@ public class AirSpeedSensorProxy extends AirSpeedSensor {
 	
 	public AirSpeedSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new AirSpeedSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class AirSpeedSensorProxy extends AirSpeedSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends AirSpeedSensor.Receiver {
-	}
 }

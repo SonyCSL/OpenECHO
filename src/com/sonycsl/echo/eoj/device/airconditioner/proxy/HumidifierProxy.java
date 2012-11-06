@@ -25,7 +25,7 @@ public class HumidifierProxy extends Humidifier {
 	
 	public HumidifierProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new Humidifier.Receiver());
 	}
 	
 	@Override
@@ -71,6 +71,4 @@ public class HumidifierProxy extends Humidifier {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends Humidifier.Receiver {
-	}
 }

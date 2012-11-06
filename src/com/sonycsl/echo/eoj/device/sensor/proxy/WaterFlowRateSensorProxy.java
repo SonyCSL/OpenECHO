@@ -25,7 +25,7 @@ public class WaterFlowRateSensorProxy extends WaterFlowRateSensor {
 	
 	public WaterFlowRateSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new WaterFlowRateSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class WaterFlowRateSensorProxy extends WaterFlowRateSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends WaterFlowRateSensor.Receiver {
-	}
 }

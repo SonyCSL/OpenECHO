@@ -138,10 +138,10 @@ public abstract class GasLeakSensor extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_DETECTION_THRESHOLD_LEVEL:
-				_onSetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_GAS_LEAK_OCCURRENCE_STATUS_RESETTING:
-				_onSetGasLeakOccurrenceStatusResetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetGasLeakOccurrenceStatusResetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

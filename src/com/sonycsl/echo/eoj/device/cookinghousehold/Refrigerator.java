@@ -753,52 +753,52 @@ public abstract class Refrigerator extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_REFRIGERATOR_COMPARTMENT_TEMPERATURE_SETTING:
-				_onSetRefrigeratorCompartmentTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetRefrigeratorCompartmentTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_FREEZER_COMPARTMENT_TEMPERATURE_SETTING:
-				_onSetFreezerCompartmentTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetFreezerCompartmentTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ICE_TEMPERATURE_SETTING:
-				_onSetIceTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetIceTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_VEGETABLE_COMPARTMENT_TEMPERATURE_SETTING:
-				_onSetVegetableCompartmentTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetVegetableCompartmentTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_MULTI_REFRIGERA_TING_MODE_COMPARTMENT_TEMPERATURE_SETTING:
-				_onSetMultiRefrigeraTingModeCompartmentTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetMultiRefrigeraTingModeCompartmentTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_REFRIGERATOR_COMPARTMENT_TEMPERATURE_LEVEL_SETTING:
-				_onSetRefrigeratorCompartmentTemperatureLevelSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetRefrigeratorCompartmentTemperatureLevelSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_FREEZER_COMPARTMENT_TEMPERATURE_LEVEL_SETTING:
-				_onSetFreezerCompartmentTemperatureLevelSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetFreezerCompartmentTemperatureLevelSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ICE_COMPARTMENT_TEMPERATURE_LEVEL_SETTING:
-				_onSetIceCompartmentTemperatureLevelSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetIceCompartmentTemperatureLevelSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_VEGETABLE_COMPARTMENT_TEMPERATURE_LEVEL_SETTING:
-				_onSetVegetableCompartmentTemperatureLevelSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetVegetableCompartmentTemperatureLevelSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_MULTI_REFRIGERA_TING_MODE_COMPARTMENT_TEMPERATURE_LEVEL_SETTING:
-				_onSetMultiRefrigeraTingModeCompartmentTemperatureLevelSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetMultiRefrigeraTingModeCompartmentTemperatureLevelSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_QUICK_FREEZE_FUNCTION_SETTING:
-				_onSetQuickFreezeFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetQuickFreezeFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_QUICK_REFRIGERATION_FUNCTION_SETTING:
-				_onSetQuickRefrigerationFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetQuickRefrigerationFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ICEMAKER_SETTING:
-				_onSetIcemakerSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetIcemakerSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_REFRIGERATOR_COMPARTMENT_HUMIDIFICATION_FUNCTION_SETTING:
-				_onSetRefrigeratorCompartmentHumidificationFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetRefrigeratorCompartmentHumidificationFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_VEGETABLE_COMPARTMENT_HUMIDIFICATION_FUNCTION_SETTING:
-				_onSetVegetableCompartmentHumidificationFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetVegetableCompartmentHumidificationFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_DEODORIZATION_FUNCTION_SETTING:
-				_onSetDeodorizationFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetDeodorizationFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

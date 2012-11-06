@@ -25,7 +25,7 @@ public class AirPollutionSensorProxy extends AirPollutionSensor {
 	
 	public AirPollutionSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new AirPollutionSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class AirPollutionSensorProxy extends AirPollutionSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends AirPollutionSensor.Receiver {
-	}
 }

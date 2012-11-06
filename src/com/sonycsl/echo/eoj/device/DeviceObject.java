@@ -930,28 +930,28 @@ public abstract class DeviceObject extends EchoObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_OPERATION_STATUS :
-				_onSetOperationStatus(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOperationStatus(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_INSTALLATION_LOCATION :
-				_onSetInstallationLocation(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetInstallationLocation(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_CURRENT_LIMIT_SETTING :
-				_onSetCurrentLimitSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetCurrentLimitSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_POWER_SAVING_OPERATION_SETTING :
-				_onSetPowerSavingOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetPowerSavingOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_POSITION_INFORMATION :
-				_onSetPositionInformation(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetPositionInformation(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_CURRENT_TIME_SETTING :
-				_onSetCurrentTimeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetCurrentTimeSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_CURRENT_DATE_SETTING :
-				_onSetCurrentDateSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetCurrentDateSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_POWER_LIMIT_SETTING :
-				_onSetPowerLimitSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetPowerLimitSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			}
 		}

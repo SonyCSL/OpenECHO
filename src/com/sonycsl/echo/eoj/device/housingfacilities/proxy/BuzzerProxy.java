@@ -25,7 +25,7 @@ public class BuzzerProxy extends Buzzer {
 	
 	public BuzzerProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new Buzzer.Receiver());
 	}
 	
 	@Override
@@ -63,6 +63,4 @@ public class BuzzerProxy extends Buzzer {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends Buzzer.Receiver {
-	}
 }

@@ -267,25 +267,25 @@ public abstract class ElectricStormWindow extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_OPEN_CLOSE_SETTING1:
-				_onSetOpenCloseSetting1(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOpenCloseSetting1(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_EXTENT_OF_OPENING1:
-				_onSetExtentOfOpening1(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetExtentOfOpening1(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_BLIND_ANGLE_SETTING:
-				_onSetBlindAngleSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetBlindAngleSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SHUTTER_SPEED:
-				_onSetShutterSpeed(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetShutterSpeed(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_EXTENT_OF_OPENING2:
-				_onSetExtentOfOpening2(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetExtentOfOpening2(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ELECTRIC_LOCK_SETTING:
-				_onSetElectricLockSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetElectricLockSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_OPEN_CLOSE_SETTING2:
-				_onSetOpenCloseSetting2(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOpenCloseSetting2(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

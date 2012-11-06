@@ -25,7 +25,7 @@ public class GasSensorProxy extends GasSensor {
 	
 	public GasSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new GasSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class GasSensorProxy extends GasSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends GasSensor.Receiver {
-	}
 }

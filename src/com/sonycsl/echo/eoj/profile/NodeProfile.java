@@ -15,6 +15,7 @@
  */
 package com.sonycsl.echo.eoj.profile;
 
+import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoUtils;
 import com.sonycsl.echo.eoj.EchoObject;
@@ -466,10 +467,10 @@ public abstract class NodeProfile extends ProfileObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_OPERATING_STATUS:
-				_onSetOperatingStatus(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOperatingStatus(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_UNIQUE_IDENTIFIER_DATA:
-				_onSetUniqueIdentifierData(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetUniqueIdentifierData(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			}
 		}
@@ -754,7 +755,9 @@ public abstract class NodeProfile extends ProfileObject {
 		 * <br>
 		 * Announcement at status change<br>
 		 */
-		protected void onGetInstanceListNotification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		protected void onGetInstanceListNotification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			if(eoj.isProxy() && pdc != 0) putDevices(eoj, edt);
+		}
 		private final void _onGetInstanceListNotification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetInstanceListNotification(eoj, tid, esv, epc, pdc, edt);
 			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
@@ -800,7 +803,9 @@ public abstract class NodeProfile extends ProfileObject {
 		 * Set : undefined<br>
 		 * Get : mandatory<br>
 		 */
-		protected void onGetSelfNodeInstanceListS(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
+		protected void onGetSelfNodeInstanceListS(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
+			if(eoj.isProxy() && pdc != 0) putDevices(eoj, edt);
+		}
 		private final void _onGetSelfNodeInstanceListS(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetSelfNodeInstanceListS(eoj, tid, esv, epc, pdc, edt);
 			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
@@ -826,6 +831,10 @@ public abstract class NodeProfile extends ProfileObject {
 		private final void _onGetSelfNodeClassList(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
 			onGetSelfNodeClassList(eoj, tid, esv, epc, pdc, edt);
 			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
+		}
+		
+		protected void putDevices(EchoObject eoj, byte[] edt) {
+			Echo.refreshProxy(eoj.getNode().getAddress(), edt);
 		}
 		
 	}

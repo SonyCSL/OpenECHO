@@ -1034,94 +1034,94 @@ public abstract class HomeAirConditioner extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_OPERATION_MODE_SETTING:
-				_onSetOperationModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOperationModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING:
-				_onSetAutomaticTemperatureControlSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetAutomaticTemperatureControlSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_NORMAL_HIGH_SPEED_SILENT_OPERATION_SETTING:
-				_onSetNormalHighSpeedSilentOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetNormalHighSpeedSilentOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SET_TEMPERATURE_VALUE:
-				_onSetSetTemperatureValue(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSetTemperatureValue(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SET_VALUE_OF_RELATIVE_HUMIDITY_IN_DEHUMIDIFYING_MODE:
-				_onSetSetValueOfRelativeHumidityInDehumidifyingMode(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSetValueOfRelativeHumidityInDehumidifyingMode(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SET_TEMPERATURE_VALUE_IN_COOLING_MODE:
-				_onSetSetTemperatureValueInCoolingMode(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSetTemperatureValueInCoolingMode(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SET_TEMPERATURE_VALUE_IN_HEATING_MODE:
-				_onSetSetTemperatureValueInHeatingMode(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSetTemperatureValueInHeatingMode(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SET_TEMPERATURE_VALUE_IN_DEHUMIDIFYING_MODE:
-				_onSetSetTemperatureValueInDehumidifyingMode(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSetTemperatureValueInDehumidifyingMode(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_RELATIVE_TEMPERATURE_SETTING:
-				_onSetRelativeTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetRelativeTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_AIR_FLOW_RATE_SETTING:
-				_onSetAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_AUTOMATIC_CONTROL_OF_AIR_FLOW_DIRECTION_SETTING:
-				_onSetAutomaticControlOfAirFlowDirectionSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetAutomaticControlOfAirFlowDirectionSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_AUTOMATIC_SWING_OF_AIR_FLOW_SETTING:
-				_onSetAutomaticSwingOfAirFlowSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetAutomaticSwingOfAirFlowSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING:
-				_onSetAirFlowDirectionVerticalSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetAirFlowDirectionVerticalSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING:
-				_onSetAirFlowDirectionHorizontalSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetAirFlowDirectionHorizontalSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_VENTILATION_FUNCTION_SETTING:
-				_onSetVentilationFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetVentilationFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_HUMIDIFIER_FUNCTION_SETTING:
-				_onSetHumidifierFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetHumidifierFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_VENTILATION_AIR_FLOW_RATE_SETTING:
-				_onSetVentilationAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetVentilationAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_DEGREE_OF_HUMIDIFICATION_SETTING:
-				_onSetDegreeOfHumidificationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetDegreeOfHumidificationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_AIR_PURIFIER_FUNCTION_SETTING:
-				_onSetAirPurifierFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetAirPurifierFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_AIR_REFRESHER_FUNCTION_SETTING:
-				_onSetAirRefresherFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetAirRefresherFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SELF_CLEANING_FUNCTION_SETTING:
-				_onSetSelfCleaningFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSelfCleaningFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SPECIAL_FUNCTION_SETTING:
-				_onSetSpecialFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSpecialFunctionSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION:
-				_onSetThermostatSettingOverrideFunction(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetThermostatSettingOverrideFunction(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_AIR_PURIFICATION_MODE_SETTING:
-				_onSetAirPurificationModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetAirPurificationModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ON_TIMER_BASED_RESERVATION_SETTING:
-				_onSetOnTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOnTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ON_TIMER_SETTING_TIME:
-				_onSetOnTimerSettingTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOnTimerSettingTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ON_TIMER_SETTING_RELATIVE_TIME:
-				_onSetOnTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOnTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_OFF_TIMER_BASED_RESERVATION_SETTING:
-				_onSetOffTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOffTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_OFF_TIMER_SETTING_TIME:
-				_onSetOffTimerSettingTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOffTimerSettingTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_OFF_TIMER_SETTING_RELATIVE_TIME:
-				_onSetOffTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOffTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

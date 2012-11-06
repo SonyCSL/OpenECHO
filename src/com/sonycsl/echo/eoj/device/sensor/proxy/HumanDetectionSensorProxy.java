@@ -25,7 +25,7 @@ public class HumanDetectionSensorProxy extends HumanDetectionSensor {
 	
 	public HumanDetectionSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new HumanDetectionSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class HumanDetectionSensorProxy extends HumanDetectionSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends HumanDetectionSensor.Receiver {
-	}
 }

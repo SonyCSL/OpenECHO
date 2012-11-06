@@ -241,22 +241,22 @@ public abstract class Sprinkler extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING:
-				_onSetSprinkleValveOpenCloseSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSprinkleValveOpenCloseSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SPRINKLE_INTERVAL_SETTING:
-				_onSetSprinkleIntervalSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSprinkleIntervalSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_NUMBER_OF_SPRINKLES_SETTING:
-				_onSetNumberOfSprinklesSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetNumberOfSprinklesSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SPRINKLE_TIME_SETTING1:
-				_onSetSprinkleTimeSetting1(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSprinkleTimeSetting1(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SPRINKLE_TIME_SETTING2:
-				_onSetSprinkleTimeSetting2(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSprinkleTimeSetting2(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SPRINKLE_DURATION_SETTING:
-				_onSetSprinkleDurationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSprinkleDurationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

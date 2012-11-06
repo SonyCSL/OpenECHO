@@ -25,7 +25,7 @@ public class CO2SensorProxy extends CO2Sensor {
 	
 	public CO2SensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new CO2Sensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class CO2SensorProxy extends CO2Sensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends CO2Sensor.Receiver {
-	}
 }

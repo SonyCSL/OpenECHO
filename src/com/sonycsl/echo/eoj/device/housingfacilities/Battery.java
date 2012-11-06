@@ -357,19 +357,19 @@ public abstract class Battery extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_GMEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_H_RESET_SETTING:
-				_onSetGmeasuredCumulativeDischargeElectricEnergyHResetSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetGmeasuredCumulativeDischargeElectricEnergyHResetSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_GMEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_H_RESET_SETTING:
-				_onSetGmeasuredCumulativeChargeElectricEnergyHResetSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetGmeasuredCumulativeChargeElectricEnergyHResetSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_OPERATION_MODE_SETTING_SEE_NOTE1:
-				_onSetOperationModeSettingSeeNote1(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOperationModeSettingSeeNote1(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING1_SEE_NOTE2:
-				_onSetChargingDischaRgingAmountSetting1SeeNote2(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetChargingDischaRgingAmountSetting1SeeNote2(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING2_SEE_NOTE2:
-				_onSetChargingDischaRgingAmountSetting2SeeNote2(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetChargingDischaRgingAmountSetting2SeeNote2(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

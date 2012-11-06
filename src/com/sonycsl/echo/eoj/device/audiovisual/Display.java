@@ -179,10 +179,10 @@ public abstract class Display extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_DISPLAY_CONTROL_SETTING:
-				_onSetDisplayControlSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetDisplayControlSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER:
-				_onSetCharacterStringToPresentToTheUser(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetCharacterStringToPresentToTheUser(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

@@ -111,7 +111,7 @@ public abstract class Switch extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_CONNECTED_DEVICE:
-				_onSetConnectedDevice(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetConnectedDevice(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

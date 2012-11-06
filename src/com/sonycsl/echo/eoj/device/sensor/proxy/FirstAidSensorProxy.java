@@ -25,7 +25,7 @@ public class FirstAidSensorProxy extends FirstAidSensor {
 	
 	public FirstAidSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new FirstAidSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class FirstAidSensorProxy extends FirstAidSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends FirstAidSensor.Receiver {
-	}
 }

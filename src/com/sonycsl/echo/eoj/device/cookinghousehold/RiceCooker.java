@@ -271,19 +271,19 @@ public abstract class RiceCooker extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_RICE_COOKING_CONTROL_SETTING:
-				_onSetRiceCookingControlSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetRiceCookingControlSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_WARMER_SETTING:
-				_onSetWarmerSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetWarmerSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_RICE_COOKING_RESERVATION_SETTING:
-				_onSetRiceCookingReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetRiceCookingReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_TIME:
-				_onSetSetValueOfRiceCookingReservationSettingTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSetValueOfRiceCookingReservationSettingTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SET_VALUE_OF_RICE_COOKING_RESERVATION_SETTING_RELATIVE_TIME:
-				_onSetSetValueOfRiceCookingReservationSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSetValueOfRiceCookingReservationSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

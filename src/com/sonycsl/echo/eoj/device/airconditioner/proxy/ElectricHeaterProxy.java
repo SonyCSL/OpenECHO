@@ -25,7 +25,7 @@ public class ElectricHeaterProxy extends ElectricHeater {
 	
 	public ElectricHeaterProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new ElectricHeater.Receiver());
 	}
 	
 	@Override
@@ -67,6 +67,4 @@ public class ElectricHeaterProxy extends ElectricHeater {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends ElectricHeater.Receiver {
-	}
 }

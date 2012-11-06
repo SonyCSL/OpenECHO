@@ -25,7 +25,7 @@ public class ControllerProxy extends Controller {
 	
 	public ControllerProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new Controller.Receiver());
 	}
 	
 	@Override
@@ -63,6 +63,4 @@ public class ControllerProxy extends Controller {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends Controller.Receiver {
-	}
 }

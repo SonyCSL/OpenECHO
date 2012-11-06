@@ -25,7 +25,7 @@ public class ElectricLeakSensorProxy extends ElectricLeakSensor {
 	
 	public ElectricLeakSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new ElectricLeakSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class ElectricLeakSensorProxy extends ElectricLeakSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends ElectricLeakSensor.Receiver {
-	}
 }

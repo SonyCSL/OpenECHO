@@ -25,7 +25,7 @@ public class BatteryProxy extends Battery {
 	
 	public BatteryProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new Battery.Receiver());
 	}
 	
 	@Override
@@ -75,6 +75,4 @@ public class BatteryProxy extends Battery {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends Battery.Receiver {
-	}
 }

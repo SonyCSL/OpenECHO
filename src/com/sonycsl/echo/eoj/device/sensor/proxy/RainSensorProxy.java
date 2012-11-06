@@ -25,7 +25,7 @@ public class RainSensorProxy extends RainSensor {
 	
 	public RainSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new RainSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class RainSensorProxy extends RainSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends RainSensor.Receiver {
-	}
 }

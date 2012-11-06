@@ -25,7 +25,7 @@ public class ElectricStormWindowProxy extends ElectricStormWindow {
 	
 	public ElectricStormWindowProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new ElectricStormWindow.Receiver());
 	}
 	
 	@Override
@@ -71,6 +71,4 @@ public class ElectricStormWindowProxy extends ElectricStormWindow {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends ElectricStormWindow.Receiver {
-	}
 }

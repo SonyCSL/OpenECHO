@@ -469,16 +469,16 @@ public abstract class LPGasMeter extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1:
-				_onSetSetValueOfResidualVolumeControlWarningLevel1(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSetValueOfResidualVolumeControlWarningLevel1(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2:
-				_onSetSetValueOfResidualVolumeControlWarningLevel2(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSetValueOfResidualVolumeControlWarningLevel2(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3:
-				_onSetSetValueOfResidualVolumeControlWarningLevel3(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSetValueOfResidualVolumeControlWarningLevel3(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_TEST_CALL_SETTING:
-				_onSetTestCallSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetTestCallSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

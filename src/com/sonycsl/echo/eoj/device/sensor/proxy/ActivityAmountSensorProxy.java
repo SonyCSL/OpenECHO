@@ -25,7 +25,7 @@ public class ActivityAmountSensorProxy extends ActivityAmountSensor {
 	
 	public ActivityAmountSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new ActivityAmountSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class ActivityAmountSensorProxy extends ActivityAmountSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends ActivityAmountSensor.Receiver {
-	}
 }

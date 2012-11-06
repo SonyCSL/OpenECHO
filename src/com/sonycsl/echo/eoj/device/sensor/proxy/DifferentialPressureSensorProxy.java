@@ -25,7 +25,7 @@ public class DifferentialPressureSensorProxy extends DifferentialPressureSensor 
 	
 	public DifferentialPressureSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new DifferentialPressureSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class DifferentialPressureSensorProxy extends DifferentialPressureSensor 
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends DifferentialPressureSensor.Receiver {
-	}
 }

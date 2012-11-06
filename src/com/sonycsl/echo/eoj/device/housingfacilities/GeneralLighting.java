@@ -307,28 +307,28 @@ public abstract class GeneralLighting extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_ILLUMINANCE_LEVEL:
-				_onSetIlluminanceLevel(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetIlluminanceLevel(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ILLUMINANCE_LEVEL_STEP_SETTING:
-				_onSetIlluminanceLevelStepSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetIlluminanceLevelStepSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_LIGHT_COLOR_STEP_SETTING:
-				_onSetLightColorStepSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetLightColorStepSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_LIGHT_COLOR_SETTING:
-				_onSetLightColorSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetLightColorSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ON_TIMER_RESERVATION_SETTING:
-				_onSetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ON_TIMER_SETTING:
-				_onSetOnTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOnTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_OFF_TIMER_RESERVATION_SETTING:
-				_onSetOffTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOffTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_OFF_TIMER_SETTING:
-				_onSetOffTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOffTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

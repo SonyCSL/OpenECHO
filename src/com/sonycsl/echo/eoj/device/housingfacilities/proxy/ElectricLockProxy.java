@@ -25,7 +25,7 @@ public class ElectricLockProxy extends ElectricLock {
 	
 	public ElectricLockProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new ElectricLock.Receiver());
 	}
 	
 	@Override
@@ -67,6 +67,4 @@ public class ElectricLockProxy extends ElectricLock {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends ElectricLock.Receiver {
-	}
 }

@@ -25,7 +25,7 @@ public class VOCSensorProxy extends VOCSensor {
 	
 	public VOCSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new VOCSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class VOCSensorProxy extends VOCSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends VOCSensor.Receiver {
-	}
 }

@@ -25,7 +25,7 @@ public class OxygenSensorProxy extends OxygenSensor {
 	
 	public OxygenSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new OxygenSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class OxygenSensorProxy extends OxygenSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends OxygenSensor.Receiver {
-	}
 }

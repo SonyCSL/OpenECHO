@@ -25,7 +25,7 @@ public class CurrentValueSensorProxy extends CurrentValueSensor {
 	
 	public CurrentValueSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new CurrentValueSensor.Receiver());
 	}
 	
 	@Override
@@ -67,6 +67,4 @@ public class CurrentValueSensorProxy extends CurrentValueSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends CurrentValueSensor.Receiver {
-	}
 }

@@ -137,10 +137,10 @@ public abstract class VentilationFan extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_VENTILATION_AUTO_SETTING:
-				_onSetVentilationAutoSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetVentilationAutoSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE:
-				_onSetSetValueOfVentilationAirFlowRate(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSetValueOfVentilationAirFlowRate(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

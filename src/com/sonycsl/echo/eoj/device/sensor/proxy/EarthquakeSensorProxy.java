@@ -25,7 +25,7 @@ public class EarthquakeSensorProxy extends EarthquakeSensor {
 	
 	public EarthquakeSensorProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new EarthquakeSensor.Receiver());
 	}
 	
 	@Override
@@ -65,6 +65,4 @@ public class EarthquakeSensorProxy extends EarthquakeSensor {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends EarthquakeSensor.Receiver {
-	}
 }

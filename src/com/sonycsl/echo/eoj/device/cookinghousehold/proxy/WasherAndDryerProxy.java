@@ -25,7 +25,7 @@ public class WasherAndDryerProxy extends WasherAndDryer {
 	
 	public WasherAndDryerProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new WasherAndDryer.Receiver());
 	}
 	
 	@Override
@@ -63,6 +63,4 @@ public class WasherAndDryerProxy extends WasherAndDryer {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends WasherAndDryer.Receiver {
-	}
 }

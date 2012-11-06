@@ -597,55 +597,55 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_SET_VALUE_OF_HOT_WATER_TEMPERATURE:
-				_onSetSetValueOfHotWaterTemperature(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSetValueOfHotWaterTemperature(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_HOT_WATER_WARMER_SETTING:
-				_onSetHotWaterWarmerSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetHotWaterWarmerSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_GDURATION_OF_AUTOMATIC_OPERATION_H_SETTING:
-				_onSetGdurationOfAutomaticOperationHSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetGdurationOfAutomaticOperationHSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SET_VALUE_OF_BATH_TEMPERATURE:
-				_onSetSetValueOfBathTemperature(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSetValueOfBathTemperature(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_BATH_AUTO_MODE_SETTING:
-				_onSetBathAutoModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetBathAutoModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_BATH_ADDITIONAL_BOIL_UP_OPERATION_SETTING:
-				_onSetBathAdditionalBoilUpOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetBathAdditionalBoilUpOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_BATH_HOT_WATER_ADDING_OPERATION_SETTING:
-				_onSetBathHotWaterAddingOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetBathHotWaterAddingOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_BATH_WATER_TEMPERATURE_LOWERING_OPERATION_SETTING:
-				_onSetBathWaterTemperatureLoweringOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetBathWaterTemperatureLoweringOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_BATH_HOT_WATER_VOLUME_SETTING1:
-				_onSetBathHotWaterVolumeSetting1(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetBathHotWaterVolumeSetting1(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_BATH_HOT_WATER_VOLUME_SETTING2:
-				_onSetBathHotWaterVolumeSetting2(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetBathHotWaterVolumeSetting2(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_BATH_HOT_WATER_VOLUME_SETTING3:
-				_onSetBathHotWaterVolumeSetting3(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetBathHotWaterVolumeSetting3(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_BATHROOM_PRIORITY_SETTING:
-				_onSetBathroomPrioritySetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetBathroomPrioritySetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_HOT_WATER_WARMER_ON_TIMER_RESERVATION_SETTING:
-				_onSetHotWaterWarmerOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetHotWaterWarmerOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SET_VALUE_OF_HOT_WATER_WARMER_ON_TIMER_TIME:
-				_onSetSetValueOfHotWaterWarmerOnTimerTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSetValueOfHotWaterWarmerOnTimerTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_ON_TIMER_RESERVATION_SETTING:
-				_onSetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SET_VALUE_OF_ON_TIMER_TIME:
-				_onSetSetValueOfOnTimerTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSetValueOfOnTimerTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_SET_VALUE_OF_ON_TIMER_RELATIVE_TIME:
-				_onSetSetValueOfOnTimerRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetSetValueOfOnTimerRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

@@ -151,10 +151,10 @@ public abstract class CallSensor extends DeviceObject {
 			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
 			switch(epc) {
 			case EPC_DETECTION_THRESHOLD_LEVEL:
-				_onSetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetDetectionThresholdLevel(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 			case EPC_CALL_HOLDING_TIME:
-				_onSetCallHoldingTime(eoj, tid, esv, epc, pdc, edt, (pdc != 0));
+				_onSetCallHoldingTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
 				break;
 
 			}

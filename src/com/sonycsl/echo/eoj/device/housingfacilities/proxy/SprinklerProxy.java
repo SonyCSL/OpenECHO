@@ -25,7 +25,7 @@ public class SprinklerProxy extends Sprinkler {
 	
 	public SprinklerProxy(byte instanceCode) {
 		mInstanceCode = instanceCode;
-		setReceiver(new Receiver());
+		setReceiver(new Sprinkler.Receiver());
 	}
 	
 	@Override
@@ -67,6 +67,4 @@ public class SprinklerProxy extends Sprinkler {
 		return new InformerProxy();
 	}
 	
-	public static class Receiver extends Sprinkler.Receiver {
-	}
 }
