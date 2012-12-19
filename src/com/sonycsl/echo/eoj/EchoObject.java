@@ -246,7 +246,7 @@ public abstract class EchoObject {
 				case EchoFrame.ESV_INFC:
 					onReceiveProperty(p);
 					if(mReceiver != null) mReceiver.onGetProperty(this, frame.getTid(), frame.getEsv(), p, (p.pdc != 0));
-					if(listener != null) listener.onGetProperty(this, frame.getTid(), frame.getEsv(), p, (p.pdc == 0));
+					if(listener != null) listener.onGetProperty(this, frame.getTid(), frame.getEsv(), p, (p.pdc != 0));
 					break;
 				case EchoFrame.ESV_INFC_RES:
 					if(mReceiver != null) mReceiver.onInformProperty(this, frame.getTid(), frame.getEsv(), p);
