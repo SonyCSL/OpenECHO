@@ -15,148 +15,346 @@
  */
 package com.sonycsl.echo.eoj.device.housingfacilities;
 
+import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
+import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
+import com.sonycsl.echo.node.EchoNode;
 
 public abstract class GasMeter extends DeviceObject {
 	
-	public static final byte CLASS_GROUP_CODE = (byte)0x02;
-	public static final byte CLASS_CODE = (byte)0x82;
-	
-	public GasMeter() {
-		setReceiver(new Receiver());
-	}
+	public static final short ECHO_CLASS_CODE = (short)0x0282;
 
 	public static final byte EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_VALUE = (byte)0xE0;
 	public static final byte EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_LOG = (byte)0xE2;
 
 	@Override
-	public byte getClassGroupCode() {
-		return CLASS_GROUP_CODE;
+	protected void setupPropertyMaps() {
+		super.setupPropertyMaps();
+		
+		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
+		removeSetProperty(EPC_OPERATION_STATUS);
+		addGetProperty(EPC_OPERATION_STATUS);
+		addGetProperty(EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_VALUE);
 	}
-
+	
 	@Override
-	public byte getClassCode() {
-		return CLASS_CODE;
+	public void initialize(EchoNode node) {
+		super.initialize(node);
+		Echo.EventListener listener = Echo.getEventListener();
+		if(listener != null) listener.onNewGasMeter(this);
+	}
+	
+	@Override
+	public short getEchoClassCode() {
+		return ECHO_CLASS_CODE;
 	}
 
 	/**
-	 * This property indicates integral gas consumption in units of 0.001 m3.<br><br>0x0.0x3B9AC9FF (0.999999,999m3)<br><br>Name : Integral gas consumption measurement value<br>EPC : 0xE0<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the ON/OFF<br>
+	 * status.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30, OFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : �\<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setOperationStatus(byte[] edt) {return false;}
+	/**
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the ON/OFF<br>
+	 * status.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30, OFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : �\<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getOperationStatus();
+	/**
+	 * Property name : Integral gas consumption measurement value<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates integral gas consumption in units of 0.001 m3.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0.0x3B9AC9FF (0.999999,999m3)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * <br>
+	 * Data size : 4 bytes<br>
+	 * <br>
+	 * Unit : 0.001m
+3<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
 	 */
 	protected abstract byte[] getIntegralGasConsumptionMeasurementValue();
-	private final byte[] _getIntegralGasConsumptionMeasurementValue(byte epc) {
-		byte[] edt = getIntegralGasConsumptionMeasurementValue();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Integral gas consumption measurement value<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates integral gas consumption in units of 0.001 m3.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0.0x3B9AC9FF (0.999999,999m3)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * <br>
+	 * Data size : 4 bytes<br>
+	 * <br>
+	 * Unit : 0.001m
+3<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidIntegralGasConsumptionMeasurementValue(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates integral gas consumption measurement result log for past 24 hours as data in 30-minute segments.<br><br>0x0.0x3B9AC9FF (0.999999,999m3)<br><br>Name : Integral gas consumption measurement log<br>EPC : 0xE2<br>Data Type : unsigned long x 48<br>Data Size(Byte) : 192 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Integral gas consumption measurement log<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates integral gas consumption measurement result log for past 24 hours as data in 30-minute segments.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0.0x3B9AC9FF (0.999999,999m3)<br>
+	 * <br>
+	 * Data type : unsigned long x 48<br>
+	 * <br>
+	 * Data size : 192 bytes<br>
+	 * <br>
+	 * Unit : 0.001m
+3<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getIntegralGasConsumptionMeasurementLog() {return null;}
-	private final byte[] _getIntegralGasConsumptionMeasurementLog(byte epc) {
-		byte[] edt = getIntegralGasConsumptionMeasurementLog();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Integral gas consumption measurement log<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates integral gas consumption measurement result log for past 24 hours as data in 30-minute segments.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0.0x3B9AC9FF (0.999999,999m3)<br>
+	 * <br>
+	 * Data type : unsigned long x 48<br>
+	 * <br>
+	 * Data size : 192 bytes<br>
+	 * <br>
+	 * Unit : 0.001m
+3<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidIntegralGasConsumptionMeasurementLog(byte[] edt) {
+		if(edt == null || !(edt.length == 192)) return false;
+		return true;
 	}
 
-
 	@Override
-	protected void onReceiveSet(EchoFrame res, byte epc, byte pdc, byte[] edt) {
-		super.onReceiveSet(res, epc, pdc, edt);
-		switch(epc) {
+	protected boolean setProperty(EchoProperty property) {
+		boolean success = super.setProperty(property);
+		if(success) return success;
 
-		}
-	}
-
-	@Override
-	protected void onReceiveGet(EchoFrame res, byte epc) {
-		super.onReceiveGet(res, epc);
-		byte[] edt;
-		switch(epc) {
-		case EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_VALUE:
-			edt = _getIntegralGasConsumptionMeasurementValue(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
-			break;
-		case EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_LOG:
-			edt = _getIntegralGasConsumptionMeasurementLog(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 192)));
-			break;
-
+		switch(property.epc) {
+		default : return false;
 		}
 	}
 	
 	@Override
-	public Setter set() {
-		return new Setter(ESV_SETI);
+	protected byte[] getProperty(byte epc) {
+		byte[] edt = super.getProperty(epc);
+		if(edt != null) return edt;
+		
+		switch(epc) {
+		case EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_VALUE : return getIntegralGasConsumptionMeasurementValue();
+		case EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_LOG : return getIntegralGasConsumptionMeasurementLog();
+		default : return null;
+		}
 	}
 
 	@Override
-	public Setter setC() {
-		return new Setter(ESV_SETC);
+	protected boolean isValidProperty(EchoProperty property) {
+		boolean valid = super.isValidProperty(property);
+		if(valid) return valid;
+		
+		switch(property.epc) {
+		case EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_VALUE : return isValidIntegralGasConsumptionMeasurementValue(property.edt);
+		case EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_LOG : return isValidIntegralGasConsumptionMeasurementLog(property.edt);
+		default : return false;
+		}
+	}
+
+	@Override
+	public Setter set() {
+		return new Setter(this, true, false);
+	}
+
+	@Override
+	public Setter set(boolean responseRequired) {
+		return new Setter(this, responseRequired, false);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter();
+		return new Getter(this, false);
 	}
 
 	@Override
 	public Informer inform() {
-		return new InformerImpl();
+		return new Informer(this, !isProxy());
+	}
+	
+	@Override
+	protected Informer inform(boolean multicast) {
+		return new Informer(this, multicast);
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
-			switch(epc) {
-
+		protected boolean onSetProperty(EchoObject eoj, short tid, byte esv,
+				EchoProperty property, boolean success) {
+			boolean ret = super.onSetProperty(eoj, tid, esv, property, success);
+			if(ret) return true;
+			
+			switch(property.epc) {
+			default :
+				return false;
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
-			switch(epc) {
-			case EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_VALUE:
-				_onGetIntegralGasConsumptionMeasurementValue(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_LOG:
-				_onGetIntegralGasConsumptionMeasurementLog(eoj, tid, esv, epc, pdc, edt);
-				break;
-
+		protected boolean onGetProperty(EchoObject eoj, short tid, byte esv,
+				EchoProperty property, boolean success) {
+			boolean ret = super.onGetProperty(eoj, tid, esv, property, success);
+			if(ret) return true;
+			
+			switch(property.epc) {
+			case EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_VALUE : 
+				onGetIntegralGasConsumptionMeasurementValue(eoj, tid, esv, property, success);
+				return true;
+			case EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_LOG : 
+				onGetIntegralGasConsumptionMeasurementLog(eoj, tid, esv, property, success);
+				return true;
+			default :
+				return false;
 			}
 		}
 		
 		/**
-		 * This property indicates integral gas consumption in units of 0.001 m3.<br><br>0x0.0x3B9AC9FF (0.999999,999m3)<br><br>Name : Integral gas consumption measurement value<br>EPC : 0xE0<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
+		 * Property name : Integral gas consumption measurement value<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates integral gas consumption in units of 0.001 m3.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0.0x3B9AC9FF (0.999999,999m3)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4 bytes<br>
+		 * <br>
+		 * Unit : 0.001m
+3<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
 		 */
-		protected void onGetIntegralGasConsumptionMeasurementValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetIntegralGasConsumptionMeasurementValue(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetIntegralGasConsumptionMeasurementValue(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetIntegralGasConsumptionMeasurementValue(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates integral gas consumption measurement result log for past 24 hours as data in 30-minute segments.<br><br>0x0.0x3B9AC9FF (0.999999,999m3)<br><br>Name : Integral gas consumption measurement log<br>EPC : 0xE2<br>Data Type : unsigned long x 48<br>Data Size(Byte) : 192 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Integral gas consumption measurement log<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates integral gas consumption measurement result log for past 24 hours as data in 30-minute segments.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0.0x3B9AC9FF (0.999999,999m3)<br>
+		 * <br>
+		 * Data type : unsigned long x 48<br>
+		 * <br>
+		 * Data size : 192 bytes<br>
+		 * <br>
+		 * Unit : 0.001m
+3<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetIntegralGasConsumptionMeasurementLog(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetIntegralGasConsumptionMeasurementLog(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetIntegralGasConsumptionMeasurementLog(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
-
+		protected void onGetIntegralGasConsumptionMeasurementLog(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 	}
-	
-	public class Setter extends DeviceObject.Setter {
-		public Setter(byte esv) {
-			super(esv);
-		}
 
+	public static class Setter extends DeviceObject.Setter {
+		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
+			super(eoj, responseRequired, multicast);
+		}
+		
 		@Override
-		public Setter reqSet(byte epc, byte[] edt) {
-			return (Setter)super.reqSet(epc, edt);
+		public Setter reqSetProperty(byte epc, byte[] edt) {
+			return (Setter)super.reqSetProperty(epc, edt);
 		}
 		
 		@Override
@@ -191,11 +389,19 @@ public abstract class GasMeter extends DeviceObject {
 		public Setter reqSetPowerLimitSetting(byte[] edt) {
 			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
-
+		
 	}
-
-	public class Getter extends DeviceObject.Getter {
-
+	
+	public static class Getter extends DeviceObject.Getter {
+		public Getter(EchoObject eoj, boolean multicast) {
+			super(eoj, multicast);
+		}
+		
+		@Override
+		public Getter reqGetProperty(byte epc) {
+			return (Getter)super.reqGetProperty(epc);
+		}
+		
 		@Override
 		public Getter reqGetOperationStatus() {
 			return (Getter)super.reqGetOperationStatus();
@@ -294,14 +500,54 @@ public abstract class GasMeter extends DeviceObject {
 		}
 		
 		/**
-		 * This property indicates integral gas consumption in units of 0.001 m3.<br><br>0x0.0x3B9AC9FF (0.999999,999m3)<br><br>Name : Integral gas consumption measurement value<br>EPC : 0xE0<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
+		 * Property name : Integral gas consumption measurement value<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates integral gas consumption in units of 0.001 m3.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0.0x3B9AC9FF (0.999999,999m3)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4 bytes<br>
+		 * <br>
+		 * Unit : 0.001m
+3<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
 		 */
 		public Getter reqGetIntegralGasConsumptionMeasurementValue() {
 			addProperty(EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_VALUE);
 			return this;
 		}
 		/**
-		 * This property indicates integral gas consumption measurement result log for past 24 hours as data in 30-minute segments.<br><br>0x0.0x3B9AC9FF (0.999999,999m3)<br><br>Name : Integral gas consumption measurement log<br>EPC : 0xE2<br>Data Type : unsigned long x 48<br>Data Size(Byte) : 192 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Integral gas consumption measurement log<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates integral gas consumption measurement result log for past 24 hours as data in 30-minute segments.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0.0x3B9AC9FF (0.999999,999m3)<br>
+		 * <br>
+		 * Data type : unsigned long x 48<br>
+		 * <br>
+		 * Data size : 192 bytes<br>
+		 * <br>
+		 * Unit : 0.001m
+3<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetIntegralGasConsumptionMeasurementLog() {
 			addProperty(EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_LOG);
@@ -309,51 +555,16 @@ public abstract class GasMeter extends DeviceObject {
 		}
 	}
 	
-	public interface Informer extends DeviceObject.Informer {
-		public Informer reqInform(byte epc);
-		
-		public Informer reqInformOperationStatus();
-		public Informer reqInformInstallationLocation();
-		public Informer reqInformStandardVersionInformation();
-		public Informer reqInformIdentificationNumber();
-		public Informer reqInformMeasuredInstantaneousPowerConsumption();
-		public Informer reqInformMeasuredCumulativePowerConsumption();
-		public Informer reqInformManufacturersFaultCode();
-		public Informer reqInformCurrentLimitSetting();
-		public Informer reqInformFaultStatus();
-		public Informer reqInformFaultDescription();
-		public Informer reqInformManufacturerCode();
-		public Informer reqInformBusinessFacilityCode();
-		public Informer reqInformProductCode();
-		public Informer reqInformProductionNumber();
-		public Informer reqInformProductionDate();
-		public Informer reqInformPowerSavingOperationSetting();
-		public Informer reqInformPositionInformation();
-		public Informer reqInformCurrentTimeSetting();
-		public Informer reqInformCurrentDateSetting();
-		public Informer reqInformPowerLimitSetting();
-		public Informer reqInformCumulativeOperatingTime();
-		public Informer reqInformStatusChangeAnnouncementPropertyMap();
-		public Informer reqInformSetPropertyMap();
-		public Informer reqInformGetPropertyMap();
-		
-		/**
-		 * This property indicates integral gas consumption in units of 0.001 m3.<br><br>0x0.0x3B9AC9FF (0.999999,999m3)<br><br>Name : Integral gas consumption measurement value<br>EPC : 0xE0<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
-		 */
-		public Informer reqInformIntegralGasConsumptionMeasurementValue();
-		/**
-		 * This property indicates integral gas consumption measurement result log for past 24 hours as data in 30-minute segments.<br><br>0x0.0x3B9AC9FF (0.999999,999m3)<br><br>Name : Integral gas consumption measurement log<br>EPC : 0xE2<br>Data Type : unsigned long x 48<br>Data Size(Byte) : 192 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformIntegralGasConsumptionMeasurementLog();
-	}
-
-	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
-		@Override
-		public Informer reqInform(byte epc) {
-			return (Informer)super.reqInform(epc);
+	public static class Informer extends DeviceObject.Informer {
+		public Informer(EchoObject eoj, boolean multicast) {
+			super(eoj, multicast);
 		}
 		
 		@Override
+		public Informer reqInformProperty(byte epc) {
+			return (Informer)super.reqInformProperty(epc);
+		}
+				@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();
 		}
@@ -449,135 +660,119 @@ public abstract class GasMeter extends DeviceObject {
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
 		}
-
-		@Override
-		public Informer reqInformIntegralGasConsumptionMeasurementValue() {
-			byte epc = EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_VALUE;
-			byte[] edt = _getIntegralGasConsumptionMeasurementValue(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 4)));
-			return this;
-		}
-		@Override
-		public Informer reqInformIntegralGasConsumptionMeasurementLog() {
-			byte epc = EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_LOG;
-			byte[] edt = _getIntegralGasConsumptionMeasurementLog(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 192)));
-			return this;
-		}
-	}
-	
-	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
-		@Override
-		public Informer reqInform(byte epc) {
-			return (Informer)super.reqInform(epc);
-		}
 		
-		@Override
-		public Informer reqInformOperationStatus() {
-			return (Informer)super.reqInformOperationStatus();
-		}
-		@Override
-		public Informer reqInformInstallationLocation() {
-			return (Informer)super.reqInformInstallationLocation();
-		}
-		@Override
-		public Informer reqInformStandardVersionInformation() {
-			return (Informer)super.reqInformStandardVersionInformation();
-		}
-		@Override
-		public Informer reqInformIdentificationNumber() {
-			return (Informer)super.reqInformIdentificationNumber();
-		}
-		@Override
-		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
-			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Informer reqInformMeasuredCumulativePowerConsumption() {
-			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Informer reqInformManufacturersFaultCode() {
-			return (Informer)super.reqInformManufacturersFaultCode();
-		}
-		@Override
-		public Informer reqInformCurrentLimitSetting() {
-			return (Informer)super.reqInformCurrentLimitSetting();
-		}
-		@Override
-		public Informer reqInformFaultStatus() {
-			return (Informer)super.reqInformFaultStatus();
-		}
-		@Override
-		public Informer reqInformFaultDescription() {
-			return (Informer)super.reqInformFaultDescription();
-		}
-		@Override
-		public Informer reqInformManufacturerCode() {
-			return (Informer)super.reqInformManufacturerCode();
-		}
-		@Override
-		public Informer reqInformBusinessFacilityCode() {
-			return (Informer)super.reqInformBusinessFacilityCode();
-		}
-		@Override
-		public Informer reqInformProductCode() {
-			return (Informer)super.reqInformProductCode();
-		}
-		@Override
-		public Informer reqInformProductionNumber() {
-			return (Informer)super.reqInformProductionNumber();
-		}
-		@Override
-		public Informer reqInformProductionDate() {
-			return (Informer)super.reqInformProductionDate();
-		}
-		@Override
-		public Informer reqInformPowerSavingOperationSetting() {
-			return (Informer)super.reqInformPowerSavingOperationSetting();
-		}
-		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
-		}
-		@Override
-		public Informer reqInformCurrentTimeSetting() {
-			return (Informer)super.reqInformCurrentTimeSetting();
-		}
-		@Override
-		public Informer reqInformCurrentDateSetting() {
-			return (Informer)super.reqInformCurrentDateSetting();
-		}
-		@Override
-		public Informer reqInformPowerLimitSetting() {
-			return (Informer)super.reqInformPowerLimitSetting();
-		}
-		@Override
-		public Informer reqInformCumulativeOperatingTime() {
-			return (Informer)super.reqInformCumulativeOperatingTime();
-		}
-		@Override
-		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
-			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Informer reqInformSetPropertyMap() {
-			return (Informer)super.reqInformSetPropertyMap();
-		}
-		@Override
-		public Informer reqInformGetPropertyMap() {
-			return (Informer)super.reqInformGetPropertyMap();
-		}
-
-		@Override
+		/**
+		 * Property name : Integral gas consumption measurement value<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates integral gas consumption in units of 0.001 m3.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0.0x3B9AC9FF (0.999999,999m3)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4 bytes<br>
+		 * <br>
+		 * Unit : 0.001m
+3<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
 		public Informer reqInformIntegralGasConsumptionMeasurementValue() {
 			addProperty(EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_VALUE);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Integral gas consumption measurement log<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates integral gas consumption measurement result log for past 24 hours as data in 30-minute segments.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0.0x3B9AC9FF (0.999999,999m3)<br>
+		 * <br>
+		 * Data type : unsigned long x 48<br>
+		 * <br>
+		 * Data size : 192 bytes<br>
+		 * <br>
+		 * Unit : 0.001m
+3<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformIntegralGasConsumptionMeasurementLog() {
 			addProperty(EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_LOG);
 			return this;
 		}
 	}
+
+	public static class Proxy extends GasMeter {
+		private byte mInstanceCode;
+		public Proxy(byte instanceCode) {
+			super();
+			mInstanceCode = instanceCode;
+		}
+		@Override
+		public byte getInstanceCode() {
+			return mInstanceCode;
+		}
+		@Override
+		protected byte[] getOperationStatus() {return null;}
+		@Override
+		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		@Override
+		protected byte[] getInstallationLocation() {return null;}
+		@Override
+		protected byte[] getStandardVersionInformation() {return null;}
+		@Override
+		protected byte[] getFaultStatus() {return null;}
+		@Override
+		protected byte[] getManufacturerCode() {return null;}
+		@Override
+		protected byte[] getIntegralGasConsumptionMeasurementValue() {return null;}
+	}
+	
+	public static Setter setG() {
+		return setG((byte)0);
+	}
+
+	public static Setter setG(byte instanceCode) {
+		return new Setter(new Proxy(instanceCode), true, true);
+	}
+
+	public static Setter setG(boolean responseRequired) {
+		return setG((byte)0, responseRequired);
+	}
+
+	public static Setter setG(byte instanceCode, boolean responseRequired) {
+		return new Setter(new Proxy(instanceCode), responseRequired, true);
+	}
+
+	public static Getter getG() {
+		return getG((byte)0);
+	}
+	
+	public static Getter getG(byte instanceCode) {
+		return new Getter(new Proxy(instanceCode), true);
+	}
+
+	public static Informer informG() {
+		return informG((byte)0);
+	}
+
+	public static Informer informG(byte instanceCode) {
+		return new Informer(new Proxy(instanceCode), true);
+	}
+
 }

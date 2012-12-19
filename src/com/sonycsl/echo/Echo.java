@@ -25,1116 +25,238 @@ import java.util.Map;
 
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
-import com.sonycsl.echo.eoj.device.airconditioner.proxy.AirCleanerProxy;
-import com.sonycsl.echo.eoj.device.airconditioner.proxy.AirConditionerVentilationFanProxy;
-import com.sonycsl.echo.eoj.device.airconditioner.proxy.ElectricHeaterProxy;
-import com.sonycsl.echo.eoj.device.airconditioner.proxy.FanHeaterProxy;
-import com.sonycsl.echo.eoj.device.airconditioner.proxy.HomeAirConditionerProxy;
-import com.sonycsl.echo.eoj.device.airconditioner.proxy.HumidifierProxy;
-import com.sonycsl.echo.eoj.device.airconditioner.proxy.PackageTypeCommercialAirConditionerIndoorUnitProxy;
-import com.sonycsl.echo.eoj.device.airconditioner.proxy.PackageTypeCommercialAirConditionerOutdoorUnitProxy;
-import com.sonycsl.echo.eoj.device.airconditioner.proxy.VentilationFanProxy;
-import com.sonycsl.echo.eoj.device.audiovisual.proxy.DisplayProxy;
-import com.sonycsl.echo.eoj.device.audiovisual.proxy.TelevisionProxy;
-import com.sonycsl.echo.eoj.device.cookinghousehold.proxy.ClothesDryerProxy;
-import com.sonycsl.echo.eoj.device.cookinghousehold.proxy.CombinationMicrowaveOvenProxy;
-import com.sonycsl.echo.eoj.device.cookinghousehold.proxy.CookingHeaterProxy;
-import com.sonycsl.echo.eoj.device.cookinghousehold.proxy.ElectricHotWaterPotProxy;
-import com.sonycsl.echo.eoj.device.cookinghousehold.proxy.RefrigeratorProxy;
-import com.sonycsl.echo.eoj.device.cookinghousehold.proxy.RiceCookerProxy;
-import com.sonycsl.echo.eoj.device.cookinghousehold.proxy.WasherAndDryerProxy;
-import com.sonycsl.echo.eoj.device.cookinghousehold.proxy.WashingMachineProxy;
-import com.sonycsl.echo.eoj.device.health.proxy.WeighingProxy;
-import com.sonycsl.echo.eoj.device.housingfacilities.proxy.BathroomHeaterAndDryerProxy;
-import com.sonycsl.echo.eoj.device.housingfacilities.proxy.BatteryProxy;
-import com.sonycsl.echo.eoj.device.housingfacilities.proxy.BuzzerProxy;
-import com.sonycsl.echo.eoj.device.housingfacilities.proxy.ColdOrHotWaterHeatSourceEquipmentProxy;
-import com.sonycsl.echo.eoj.device.housingfacilities.proxy.ElectricLockProxy;
-import com.sonycsl.echo.eoj.device.housingfacilities.proxy.ElectricShutterProxy;
-import com.sonycsl.echo.eoj.device.housingfacilities.proxy.ElectricStormWindowProxy;
-import com.sonycsl.echo.eoj.device.housingfacilities.proxy.ElectricToiletSeatProxy;
-import com.sonycsl.echo.eoj.device.housingfacilities.proxy.ElectricWaterHeaterProxy;
-import com.sonycsl.echo.eoj.device.housingfacilities.proxy.ElectricallyOperatedShadeProxy;
-import com.sonycsl.echo.eoj.device.housingfacilities.proxy.FloorHeaterProxy;
-import com.sonycsl.echo.eoj.device.housingfacilities.proxy.FuelCellProxy;
-import com.sonycsl.echo.eoj.device.housingfacilities.proxy.GasMeterProxy;
-import com.sonycsl.echo.eoj.device.housingfacilities.proxy.GeneralLightingProxy;
-import com.sonycsl.echo.eoj.device.housingfacilities.proxy.HouseholdSolarPowerGenerationProxy;
-import com.sonycsl.echo.eoj.device.housingfacilities.proxy.InstantaneousWaterHeaterProxy;
-import com.sonycsl.echo.eoj.device.housingfacilities.proxy.LPGasMeterProxy;
-import com.sonycsl.echo.eoj.device.housingfacilities.proxy.PowerDistributionBoardMeteringProxy;
-import com.sonycsl.echo.eoj.device.housingfacilities.proxy.SmartElectricEnergyMeterProxy;
-import com.sonycsl.echo.eoj.device.housingfacilities.proxy.SmartGasMeterProxy;
-import com.sonycsl.echo.eoj.device.housingfacilities.proxy.SprinklerProxy;
-import com.sonycsl.echo.eoj.device.housingfacilities.proxy.WaterFlowmeterProxy;
-import com.sonycsl.echo.eoj.device.housingfacilities.proxy.WattHourMeterProxy;
-import com.sonycsl.echo.eoj.device.managementoperation.proxy.ControllerProxy;
-import com.sonycsl.echo.eoj.device.managementoperation.proxy.SwitchProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.ActivityAmountSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.AirPollutionSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.AirSpeedSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.BathHeatingStatusSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.BathWaterLevelSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.BedPresenceSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.CO2SensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.CallSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.CigaretteSmokeSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.CondensationSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.CrimePreventionSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.CurrentValueSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.DifferentialPressureSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.EarthquakeSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.ElectricEnergySensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.ElectricLeakSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.EmergencyButtonProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.FireSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.FirstAidSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.FlameSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.GasLeakSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.GasSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.HumanBodyLocationSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.HumanDetectionSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.HumiditySensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.IlluminanceSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.MailingSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.MicromotionSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.OdorSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.OpenCloseSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.OxygenSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.PassageSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.RainSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.SnowSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.SoundSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.TemperatureSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.VOCSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.VisitorSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.WaterFlowRateSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.WaterLeakSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.WaterLevelSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.WaterOverflowSensorProxy;
-import com.sonycsl.echo.eoj.device.sensor.proxy.WeightSensorProxy;
-import com.sonycsl.echo.eoj.profile.NodeProfile;
-import com.sonycsl.echo.eoj.profile.ProfileObject;
-import com.sonycsl.echo.eoj.profile.proxy.NodeProfileProxy;
+import com.sonycsl.echo.eoj.device.airconditioner.*;
+import com.sonycsl.echo.eoj.device.audiovisual.*;
+import com.sonycsl.echo.eoj.device.cookinghousehold.*;
+import com.sonycsl.echo.eoj.device.health.*;
+import com.sonycsl.echo.eoj.device.housingfacilities.*;
+import com.sonycsl.echo.eoj.device.managementoperation.*;
+import com.sonycsl.echo.eoj.device.sensor.*;
+import com.sonycsl.echo.eoj.profile.*;
 import com.sonycsl.echo.node.EchoNode;
 
 
 
 public final class Echo {
-	@SuppressWarnings("unused")
-	private static final String TAG = Echo.class.getSimpleName();
 	
-	private static EchoNode sNode;
-	private static Map<InetAddress, EchoNode> sNodeProxies;
+	private static Map<InetAddress, EchoNode> sNodes;
+	private static EchoNode sLocalNode;
 	
-	private static ProxyListener sProxyListener = null;
-	private static MethodInvokedListener sMethodInvokedListener = null;
+	private static Events sEvents = null;
+	private static ArrayList<EventListener> sListeners;
+	
+	static {
+		sNodes = new HashMap<InetAddress, EchoNode>();
+		sListeners = new ArrayList<EventListener>();
+		sEvents = new Events();
+		
+	}
 	
 	private Echo() {
 	}
 	
 	public static EchoNode start(NodeProfile profile, DeviceObject[] devices) throws IOException {
 
-		sNodeProxies = new HashMap<InetAddress, EchoNode>();
+		
 		EchoSocket.start();
-		sNode = new EchoNode(profile, devices);
-		sNode.getProfile().inform().reqInformInstanceListNotification().sendGroup();
-		return sNode;
+		EchoNode node = new EchoNode(profile, devices);
+		node.getNodeProfile().inform().reqInformInstanceListNotification().send();
+		return node;
 	}
 	
 	public static void stop() throws IOException {
-		sProxyListener = null;
 		EchoSocket.stop();
-		sNodeProxies.clear();
+		
+		//sNodes.clear();
 	}
 	
-	public static void setProxyListener(ProxyListener listener) {
-		sProxyListener = listener;
+	public static void addNode(EchoNode node) {
+		if(!node.isProxy()) sLocalNode = node;
+		sNodes.put(node.getAddress(), node);
+		if(sEvents != null) {
+			sEvents.onNewNode(node);
+		}
 	}
 	
-	public static void removeNodeProxy(EchoNode node) {
-		sNodeProxies.remove(node.getAddress());
-	}
+	//public static void removeNode(EchoNode node) {
+	//	sNodes.remove(node.getAddress());
+	//}
 	
-	public static void removeAllNodeProxies() {
-		sNodeProxies.clear();
-	}
+	//public static void removeAllNode() {
+	//	sNodes.clear();
+	//}
 	
 	public static EchoNode getNode() {
-		return sNode;
-	}
-	
-	public static EchoNode[] getNodeProxies() {
-		return (EchoNode[]) sNodeProxies.values().toArray(new EchoNode[]{});
+		return sLocalNode;
 	}
 	
 	public static EchoNode[] getNodes() {
-		List<EchoNode> nodes = new ArrayList<EchoNode>();
-		EchoNode[] proxies = getNodeProxies();
-		nodes.add(sNode);
-		for(EchoNode p : proxies) {
-			nodes.add(p);
-		}
-		return (EchoNode[]) nodes.toArray(new EchoNode[]{});
+		return (EchoNode[]) sNodes.values().toArray(new EchoNode[]{});
 	}
-	
-	public static void refreshProxy(InetAddress address, byte[] instanceList) {
-		if(sNode.getAddress().equals(address)) {
-			return;
-		}
-		int size = instanceList[0] & 0xFF;
-		if(size > 84) {
-			size = 84;
-		} else if(sNodeProxies.containsKey(address)) {
-			EchoNode node = sNodeProxies.get(address);
-			DeviceObject[] devices = node.getDevices();
-			for(DeviceObject device : devices) {
-				int i = 0;
-				for(; i < size; i++) {
-					if(device.getClassGroupCode() == instanceList[i*3+1] &&
-							device.getClassCode() == instanceList[i*3+2] &&
-							device.getInstanceCode() == instanceList[i*3+3]) {
-						break;
-					}
-				}
-				if(i == size) {
-					sNode.removeDevice(device);
-				}
-			}
-		}
-		for(int i = 0; i < size; i++) {
-			putProxy(address, instanceList[i*3+1], instanceList[i*3+2], instanceList[i*3+3]);
-		}
-		
-		
-		
-	}
-	
-	public static void putProxy(InetAddress address, byte classGroupCode, byte classCode, byte instanceCode) {
 
-		if(sNode.getAddress().equals(address)) {
-			return;
-		}
-		EchoNode node;
-		if(sNodeProxies.containsKey(address)) {
-			node = sNodeProxies.get(address);
-		} else {
-			NodeProfileProxy profile = new NodeProfileProxy();
-			node = new EchoNode(address, profile, new DeviceObject[0]);
-			sNodeProxies.put(address, node);
-			if(sProxyListener != null) {
-				sProxyListener.onNewNode(node);
-				sProxyListener.onNewProfileObject(profile);
-				sProxyListener.onNewNodeProfile(profile);
-			}
-		}
-		if(!node.existsInstance(classGroupCode, classCode, instanceCode)) {
-			createDeviceProxy(node, classGroupCode, classCode, instanceCode);
-		}
-	}
 	
 	public static EchoObject getInstance(InetAddress address, byte classGroupCode, byte classCode, byte instanceCode) {
-
-		if(sNode.getAddress().equals(address)) {
-			return sNode.getInstance(classGroupCode, classCode, instanceCode);
+		return getInstance(address, EchoUtils.getEchoClassCode(classGroupCode, classCode), instanceCode);
+	}
+	
+	public static EchoObject getInstance(InetAddress address, short echoClassCode, byte instanceCode) {
+		if(!sNodes.containsKey(address)) return null;
+		EchoNode node = sNodes.get(address);
+		if(!node.containsInstance(echoClassCode, instanceCode)) return null;
+		return node.getInstance(echoClassCode, instanceCode);
+	}
+	
+	public static void updateNodeInstance(InetAddress address, byte classGroupCode, byte classCode, byte instanceCode) {
+		if(sNodes.containsKey(address)) {
+			EchoNode node = sNodes.get(address);
+			if(!node.isProxy()) return;
+			if(node.containsInstance(classGroupCode, classCode, instanceCode)) return;
+			node.addDevice(EchoUtils.getEchoClassCode(classGroupCode, classCode), instanceCode);
 		} else {
-			if(sNodeProxies.containsKey(address)) {
-				EchoNode node = sNodeProxies.get(address);
-				if(node.existsInstance(classGroupCode, classCode, instanceCode)) {
-					return node.getInstance(classGroupCode, classCode, instanceCode);
-				} else {
-					return null;
-				}
+			if(NodeProfile.ECHO_CLASS_CODE == EchoUtils.getEchoClassCode(classGroupCode, classCode)
+					&& NodeProfile.INSTANCE_CODE == instanceCode) {
+				new EchoNode(address, new ArrayList<Integer>());
 			} else {
-				return null;
+				ArrayList<Integer> list = new ArrayList<Integer>();
+				list.add(EchoUtils.getEchoObjectCode(classGroupCode, classCode, instanceCode));
+				new EchoNode(address, list);
 			}
 		}
 	}
 	
-
-	private static void createDeviceProxy(EchoNode node, byte classGroupCode, byte classCode, byte instanceCode) {
-		DeviceObject device;
-		if(classGroupCode == 0x00) {
-			// Sensor
-			switch(classCode) {
-			case ActivityAmountSensorProxy.CLASS_CODE:
-				device = new ActivityAmountSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewActivityAmountSensor((ActivityAmountSensorProxy)device);
-				}
-				break;
-			case AirPollutionSensorProxy.CLASS_CODE:
-				device = new AirPollutionSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewAirPollutionSensor((AirPollutionSensorProxy)device);
-				}
-				break;
-			case AirSpeedSensorProxy.CLASS_CODE:
-				device = new AirSpeedSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewAirSpeedSensor((AirSpeedSensorProxy)device);
-				}
-				break;
-			case BathHeatingStatusSensorProxy.CLASS_CODE:
-				device = new BathHeatingStatusSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewBathHeatingStatusSensor((BathHeatingStatusSensorProxy)device);
-				}
-				break;
-			case BathWaterLevelSensorProxy.CLASS_CODE:
-				device = new BathWaterLevelSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewBathWaterLevelSensor((BathWaterLevelSensorProxy)device);
-				}
-				break;
-			case BedPresenceSensorProxy.CLASS_CODE:
-				device = new BedPresenceSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewBedPresenceSensor((BedPresenceSensorProxy)device);
-				}
-				break;
-			case CallSensorProxy.CLASS_CODE:
-				device = new CallSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewCallSensor((CallSensorProxy)device);
-				}
-				break;
-			case CigaretteSmokeSensorProxy.CLASS_CODE:
-				device = new CigaretteSmokeSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewCigaretteSmokeSensor((CigaretteSmokeSensorProxy)device);
-				}
-				break;
-			case CO2SensorProxy.CLASS_CODE:
-				device = new CO2SensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewCO2Sensor((CO2SensorProxy)device);
-				}
-				break;
-			case CondensationSensorProxy.CLASS_CODE:
-				device = new CondensationSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewCondensationSensor((CondensationSensorProxy)device);
-				}
-				break;
-			case CrimePreventionSensorProxy.CLASS_CODE:
-				device = new CrimePreventionSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewCrimePreventionSensor((CrimePreventionSensorProxy)device);
-				}
-				break;
-			case CurrentValueSensorProxy.CLASS_CODE:
-				device = new CurrentValueSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewCurrentValueSensor((CurrentValueSensorProxy)device);
-				}
-				break;
-			case DifferentialPressureSensorProxy.CLASS_CODE:
-				device = new DifferentialPressureSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewDifferentialPressureSensor((DifferentialPressureSensorProxy)device);
-				}
-				break;
-			case EarthquakeSensorProxy.CLASS_CODE:
-				device = new EarthquakeSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewEarthquakeSensor((EarthquakeSensorProxy)device);
-				}
-				break;
-			case ElectricEnergySensorProxy.CLASS_CODE:
-				device = new ElectricEnergySensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewElectricEnergySensor((ElectricEnergySensorProxy)device);
-				}
-				break;
-			case ElectricLeakSensorProxy.CLASS_CODE:
-				device = new ElectricLeakSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewElectricLeakSensor((ElectricLeakSensorProxy)device);
-				}
-				break;
-			case EmergencyButtonProxy.CLASS_CODE:
-				device = new EmergencyButtonProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewEmergencyButton((EmergencyButtonProxy)device);
-				}
-				break;
-			case FireSensorProxy.CLASS_CODE:
-				device = new FireSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewFireSensor((FireSensorProxy)device);
-				}
-				break;
-			case FirstAidSensorProxy.CLASS_CODE:
-				device = new FirstAidSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewFirstAidSensor((FirstAidSensorProxy)device);
-				}
-				break;
-			case FlameSensorProxy.CLASS_CODE:
-				device = new FlameSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewFlameSensor((FlameSensorProxy)device);
-				}
-				break;
-			case GasLeakSensorProxy.CLASS_CODE:
-				device = new GasLeakSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewGasLeakSensor((GasLeakSensorProxy)device);
-				}
-				break;
-			case GasSensorProxy.CLASS_CODE:
-				device = new GasSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewGasSensor((GasSensorProxy)device);
-				}
-				break;
-			case HumanBodyLocationSensorProxy.CLASS_CODE:
-				device = new HumanBodyLocationSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewHumanBodyLocationSensor((HumanBodyLocationSensorProxy)device);
-				}
-				break;
-			case HumanDetectionSensorProxy.CLASS_CODE:
-				device = new HumanDetectionSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewHumanDetectionSensor((HumanDetectionSensorProxy)device);
-				}
-				break;
-			case HumiditySensorProxy.CLASS_CODE:
-				device = new HumiditySensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewHumiditySensor((HumiditySensorProxy)device);
-				}
-				break;
-			case IlluminanceSensorProxy.CLASS_CODE:
-				device = new IlluminanceSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewIlluminanceSensor((IlluminanceSensorProxy)device);
-				}
-				break;
-			case MailingSensorProxy.CLASS_CODE:
-				device = new MailingSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewMailingSensor((MailingSensorProxy)device);
-				}
-				break;
-			case MicromotionSensorProxy.CLASS_CODE:
-				device = new MicromotionSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewMicromotionSensor((MicromotionSensorProxy)device);
-				}
-				break;
-			case OdorSensorProxy.CLASS_CODE:
-				device = new OdorSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewOdorSensor((OdorSensorProxy)device);
-				}
-				break;
-			case OpenCloseSensorProxy.CLASS_CODE:
-				device = new OpenCloseSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewOpenCloseSensor((OpenCloseSensorProxy)device);
-				}
-				break;
-			case OxygenSensorProxy.CLASS_CODE:
-				device = new OxygenSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewOxygenSensor((OxygenSensorProxy)device);
-				}
-				break;
-			case PassageSensorProxy.CLASS_CODE:
-				device = new PassageSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewPassageSensor((PassageSensorProxy)device);
-				}
-				break;
-			case RainSensorProxy.CLASS_CODE:
-				device = new RainSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewRainSensor((RainSensorProxy)device);
-				}
-				break;
-			case SnowSensorProxy.CLASS_CODE:
-				device = new SnowSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewSnowSensor((SnowSensorProxy)device);
-				}
-				break;
-			case SoundSensorProxy.CLASS_CODE:
-				device = new SoundSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewSoundSensor((SoundSensorProxy)device);
-				}
-				break;
-			case TemperatureSensorProxy.CLASS_CODE:
-				device = new TemperatureSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewTemperatureSensor((TemperatureSensorProxy)device);
-				}
-				break;
-			case VisitorSensorProxy.CLASS_CODE:
-				device = new VisitorSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewVisitorSensor((VisitorSensorProxy)device);
-				}
-				break;
-			case VOCSensorProxy.CLASS_CODE:
-				device = new VOCSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewVOCSensor((VOCSensorProxy)device);
-				}
-				break;
-			case WaterFlowRateSensorProxy.CLASS_CODE:
-				device = new WaterFlowRateSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewWaterFlowRateSensor((WaterFlowRateSensorProxy)device);
-				}
-				break;
-			case WaterLeakSensorProxy.CLASS_CODE:
-				device = new WaterLeakSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewWaterLeakSensor((WaterLeakSensorProxy)device);
-				}
-				break;
-			case WaterLevelSensorProxy.CLASS_CODE:
-				device = new WaterLevelSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewWaterLevelSensor((WaterLevelSensorProxy)device);
-				}
-				break;
-			case WaterOverflowSensorProxy.CLASS_CODE:
-				device = new WaterOverflowSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewWaterOverflowSensor((WaterOverflowSensorProxy)device);
-				}
-				break;
-			case WeightSensorProxy.CLASS_CODE:
-				device = new WeightSensorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewWeightSensor((WeightSensorProxy)device);
-				}
-				break;
-			}
-		} else if(classGroupCode == 0x01) {
-			// AirConditioner
-			switch(classCode) {
-			case AirCleanerProxy.CLASS_CODE:
-				device = new AirCleanerProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewAirCleaner((AirCleanerProxy)device);
-				}
-				break;
-			case AirConditionerVentilationFanProxy.CLASS_CODE:
-				device = new AirConditionerVentilationFanProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewAirConditionerVentilationFan((AirConditionerVentilationFanProxy)device);
-				}
-				break;
-			case ElectricHeaterProxy.CLASS_CODE:
-				device = new ElectricHeaterProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewElectricHeater((ElectricHeaterProxy)device);
-				}
-				break;
-			case FanHeaterProxy.CLASS_CODE:
-				device = new FanHeaterProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewFanHeater((FanHeaterProxy)device);
-				}
-				break;
-			case HomeAirConditionerProxy.CLASS_CODE:
-				device = new HomeAirConditionerProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewHomeAirConditioner((HomeAirConditionerProxy)device);
-				}
-				break;
-			case HumidifierProxy.CLASS_CODE:
-				device = new HumidifierProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewHumidifier((HumidifierProxy)device);
-				}
-				break;
-			case PackageTypeCommercialAirConditionerIndoorUnitProxy.CLASS_CODE:
-				device = new PackageTypeCommercialAirConditionerIndoorUnitProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewPackageTypeCommercialAirConditionerIndoorUnit((PackageTypeCommercialAirConditionerIndoorUnitProxy)device);
-				}
-				break;
-			case PackageTypeCommercialAirConditionerOutdoorUnitProxy.CLASS_CODE:
-				device = new PackageTypeCommercialAirConditionerOutdoorUnitProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewPackageTypeCommercialAirConditionerOutdoorUnit((PackageTypeCommercialAirConditionerOutdoorUnitProxy)device);
-				}
-				break;
-			case VentilationFanProxy.CLASS_CODE:
-				device = new VentilationFanProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewVentilationFan((VentilationFanProxy)device);
-				}
-				break;
-			}
-		} else if(classGroupCode == 0x02) {
-			// Housing/Facilities
-			switch(classCode) {
-			case BathroomHeaterAndDryerProxy.CLASS_CODE:
-				device = new BathroomHeaterAndDryerProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewBathroomHeaterAndDryer((BathroomHeaterAndDryerProxy)device);
-				}
-				break;
-			case BatteryProxy.CLASS_CODE:
-				device = new BatteryProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewBattery((BatteryProxy)device);
-				}
-				break;
-			case BuzzerProxy.CLASS_CODE:
-				device = new BuzzerProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewBuzzer((BuzzerProxy)device);
-				}
-				break;
-			case ColdOrHotWaterHeatSourceEquipmentProxy.CLASS_CODE:
-				device = new ColdOrHotWaterHeatSourceEquipmentProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewColdOrHotWaterHeatSourceEquipment((ColdOrHotWaterHeatSourceEquipmentProxy)device);
-				}
-				break;
-			case ElectricallyOperatedShadeProxy.CLASS_CODE:
-				device = new ElectricallyOperatedShadeProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewElectricallyOperatedShade((ElectricallyOperatedShadeProxy)device);
-				}
-				break;
-			case ElectricLockProxy.CLASS_CODE:
-				device = new ElectricLockProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewElectricLock((ElectricLockProxy)device);
-				}
-				break;
-			case ElectricShutterProxy.CLASS_CODE:
-				device = new ElectricShutterProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewElectricShutter((ElectricShutterProxy)device);
-				}
-				break;
-			case ElectricStormWindowProxy.CLASS_CODE:
-				device = new ElectricStormWindowProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewElectricStormWindow((ElectricStormWindowProxy)device);
-				}
-				break;
-			case ElectricToiletSeatProxy.CLASS_CODE:
-				device = new ElectricToiletSeatProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewElectricToiletSeat((ElectricToiletSeatProxy)device);
-				}
-				break;
-			case ElectricWaterHeaterProxy.CLASS_CODE:
-				device = new ElectricWaterHeaterProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewElectricWaterHeater((ElectricWaterHeaterProxy)device);
-				}
-				break;
-			case FloorHeaterProxy.CLASS_CODE:
-				device = new FloorHeaterProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewFloorHeater((FloorHeaterProxy)device);
-				}
-				break;
-			case FuelCellProxy.CLASS_CODE:
-				device = new FuelCellProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewFuelCell((FuelCellProxy)device);
-				}
-				break;
-			case GasMeterProxy.CLASS_CODE:
-				device = new GasMeterProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewGasMeter((GasMeterProxy)device);
-				}
-				break;
-			case GeneralLightingProxy.CLASS_CODE:
-				device = new GeneralLightingProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewGeneralLighting((GeneralLightingProxy)device);
-				}
-				break;
-			case HouseholdSolarPowerGenerationProxy.CLASS_CODE:
-				device = new HouseholdSolarPowerGenerationProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewHouseholdSolarPowerGeneration((HouseholdSolarPowerGenerationProxy)device);
-				}
-				break;
-			case InstantaneousWaterHeaterProxy.CLASS_CODE:
-				device = new InstantaneousWaterHeaterProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewInstantaneousWaterHeater((InstantaneousWaterHeaterProxy)device);
-				}
-				break;
-			case LPGasMeterProxy.CLASS_CODE:
-				device = new LPGasMeterProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewLPGasMeter((LPGasMeterProxy)device);
-				}
-				break;
-			case PowerDistributionBoardMeteringProxy.CLASS_CODE:
-				device = new PowerDistributionBoardMeteringProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewPowerDistributionBoardMetering((PowerDistributionBoardMeteringProxy)device);
-				}
-				break;
-			case SmartElectricEnergyMeterProxy.CLASS_CODE:
-				device = new SmartElectricEnergyMeterProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewSmartElectricEnergyMeter((SmartElectricEnergyMeterProxy)device);
-				}
-				break;
-			case SmartGasMeterProxy.CLASS_CODE:
-				device = new SmartGasMeterProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewSmartGasMeter((SmartGasMeterProxy)device);
-				}
-				break;
-			case SprinklerProxy.CLASS_CODE:
-				device = new SprinklerProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewSprinkler((SprinklerProxy)device);
-				}
-				break;
-			case WaterFlowmeterProxy.CLASS_CODE:
-				device = new WaterFlowmeterProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewWaterFlowmeter((WaterFlowmeterProxy)device);
-				}
-				break;
-			case WattHourMeterProxy.CLASS_CODE:
-				device = new WattHourMeterProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewWattHourMeter((WattHourMeterProxy)device);
-				}
-				break;
-			}
-		} else if(classGroupCode == 0x03) {
-			// Cooking/Household
-			switch(classCode) {
-			case ClothesDryerProxy.CLASS_CODE:
-				device = new ClothesDryerProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewClothesDryer((ClothesDryerProxy)device);
-				}
-				break;
-			case CombinationMicrowaveOvenProxy.CLASS_CODE:
-				device = new ClothesDryerProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewCombinationMicrowaveOven((CombinationMicrowaveOvenProxy)device);
-				}
-				break;
-			case CookingHeaterProxy.CLASS_CODE:
-				device = new CookingHeaterProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewCookingHeater((CookingHeaterProxy)device);
-				}
-				break;
-			case ElectricHotWaterPotProxy.CLASS_CODE:
-				device = new ElectricHotWaterPotProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewElectricHotWaterPot((ElectricHotWaterPotProxy)device);
-				}
-				break;
-			case RefrigeratorProxy.CLASS_CODE:
-				device = new RefrigeratorProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewRefrigerator((RefrigeratorProxy)device);
-				}
-				break;
-			case RiceCookerProxy.CLASS_CODE:
-				device = new RiceCookerProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewRiceCooker((RiceCookerProxy)device);
-				}
-				break;
-			case WasherAndDryerProxy.CLASS_CODE:
-				device = new WasherAndDryerProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewWasherAndDryer((WasherAndDryerProxy)device);
-				}
-				break;
-			case WashingMachineProxy.CLASS_CODE:
-				device = new WashingMachineProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewWashingMachine((WashingMachineProxy)device);
-				}
-				break;
-			}
-		} else if(classGroupCode == 0x04) {
-			// Health
-			switch(classCode) {
-			case WeighingProxy.CLASS_CODE:
-				device = new WeighingProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewWeighing((WeighingProxy)device);
-				}
-				break;
-			}
-		} else if(classGroupCode == 0x05) {
-			// Management/Operation
-			switch(classCode) {
-			case ControllerProxy.CLASS_CODE:
-				device = new ControllerProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewController((ControllerProxy)device);
-				}
-				break;
-			case SwitchProxy.CLASS_CODE:
-				device = new SwitchProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewSwitch((SwitchProxy)device);
-				}
-				break;
-			}
-		} else if(classGroupCode == 0x06) {
-			// Audiovisual
-			switch(classCode) {
-			case DisplayProxy.CLASS_CODE:
-				device = new DisplayProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewDisplay((DisplayProxy)device);
-				}
-				break;
-			case TelevisionProxy.CLASS_CODE:
-				device = new TelevisionProxy(instanceCode);
-				node.addDevice(device);
-				if(sProxyListener != null) {
-					sProxyListener.onNewDevice(device);
-					sProxyListener.onNewTelevision((TelevisionProxy)device);
-				}
-				break;
-			}
+	public static void updateNodeDevices(InetAddress address, List<Integer> echoObjectCodeList) {
+		if(sNodes.containsKey(address)) {
+			EchoNode node = sNodes.get(address);
+			if(!node.isProxy()) return;
+			node.updateDevices(echoObjectCodeList);
+		} else {
+			new EchoNode(address, echoObjectCodeList);
 		}
 	}
 	
-	public static abstract class  ProxyListener {
-		
-		public void onNewNode(EchoNode node) {
-			if(Echo.getMethodInvokedListener() != null) {
-				Echo.getMethodInvokedListener().onInvokedOnNewMethod(node);
-			}
-		}
-		
-		public void onNewProfileObject(ProfileObject profile) {
-			if(Echo.getMethodInvokedListener() != null) {
-				Echo.getMethodInvokedListener().onInvokedOnNewMethod(profile);
-			}
-		}
-		public void onNewNodeProfile(NodeProfileProxy profile) {}
-		
-		public void onNewDevice(DeviceObject device) {
-			if(Echo.getMethodInvokedListener() != null) {
-				Echo.getMethodInvokedListener().onInvokedOnNewMethod(device);
-			}
-		}
-		public void onNewActivityAmountSensor(ActivityAmountSensorProxy device) {}
-		public void onNewAirPollutionSensor(AirPollutionSensorProxy device) {}
-		public void onNewAirSpeedSensor(AirSpeedSensorProxy device) {}
-		public void onNewBathHeatingStatusSensor(BathHeatingStatusSensorProxy device) {}
-		public void onNewBathWaterLevelSensor(BathWaterLevelSensorProxy device) {}
-		public void onNewBedPresenceSensor(BedPresenceSensorProxy device) {}
-		public void onNewCallSensor(CallSensorProxy device) {}
-		public void onNewCigaretteSmokeSensor(CigaretteSmokeSensorProxy device) {}
-		public void onNewCO2Sensor(CO2SensorProxy device) {}
-		public void onNewCondensationSensor(CondensationSensorProxy device) {}
-		public void onNewCrimePreventionSensor(CrimePreventionSensorProxy device) {}
-		public void onNewCurrentValueSensor(CurrentValueSensorProxy device) {}
-		public void onNewDifferentialPressureSensor(DifferentialPressureSensorProxy device) {}
-		public void onNewEarthquakeSensor(EarthquakeSensorProxy device) {}
-		public void onNewElectricEnergySensor(ElectricEnergySensorProxy device) {}
-		public void onNewElectricLeakSensor(ElectricLeakSensorProxy device) {}
-		public void onNewEmergencyButton(EmergencyButtonProxy device) {}
-		public void onNewFireSensor(FireSensorProxy device) {}
-		public void onNewFirstAidSensor(FirstAidSensorProxy device) {}
-		public void onNewFlameSensor(FlameSensorProxy device) {}
-		public void onNewGasLeakSensor(GasLeakSensorProxy device) {}
-		public void onNewGasSensor(GasSensorProxy device) {}
-		public void onNewHumanBodyLocationSensor(HumanBodyLocationSensorProxy device) {}
-		public void onNewHumanDetectionSensor(HumanDetectionSensorProxy device) {}
-		public void onNewHumiditySensor(HumiditySensorProxy device) {}
-		public void onNewIlluminanceSensor(IlluminanceSensorProxy device) {}
-		public void onNewMailingSensor(MailingSensorProxy device) {}
-		public void onNewMicromotionSensor(MicromotionSensorProxy device) {}
-		public void onNewOdorSensor(OdorSensorProxy device) {}
-		public void onNewOpenCloseSensor(OpenCloseSensorProxy device) {}
-		public void onNewOxygenSensor(OxygenSensorProxy device) {}
-		public void onNewPassageSensor(PassageSensorProxy device) {}
-		public void onNewRainSensor(RainSensorProxy device) {}
-		public void onNewSnowSensor(SnowSensorProxy device) {}
-		public void onNewSoundSensor(SoundSensorProxy device) {}
-		public void onNewTemperatureSensor(TemperatureSensorProxy device) {}
-		public void onNewVisitorSensor(VisitorSensorProxy device) {}
-		public void onNewVOCSensor(VOCSensorProxy device) {}
-		public void onNewWaterFlowRateSensor(WaterFlowRateSensorProxy device) {}
-		public void onNewWaterLeakSensor(WaterLeakSensorProxy device) {}
-		public void onNewWaterLevelSensor(WaterLevelSensorProxy device) {}
-		public void onNewWaterOverflowSensor(WaterOverflowSensorProxy device) {}
-		public void onNewWeightSensor(WeightSensorProxy device) {}
-		public void onNewAirCleaner(AirCleanerProxy device) {}
-		public void onNewAirConditionerVentilationFan(AirConditionerVentilationFanProxy device) {}
-		public void onNewElectricHeater(ElectricHeaterProxy device) {}
-		public void onNewFanHeater(FanHeaterProxy device) {}
-		public void onNewHomeAirConditioner(HomeAirConditionerProxy device) {}
-		public void onNewHumidifier(HumidifierProxy device) {}
-		public void onNewPackageTypeCommercialAirConditionerIndoorUnit(PackageTypeCommercialAirConditionerIndoorUnitProxy device) {}
-		public void onNewPackageTypeCommercialAirConditionerOutdoorUnit(PackageTypeCommercialAirConditionerOutdoorUnitProxy device) {}
-		public void onNewVentilationFan(VentilationFanProxy device) {}
-		public void onNewBathroomHeaterAndDryer(BathroomHeaterAndDryerProxy device) {}
-		public void onNewBattery(BatteryProxy device) {}
-		public void onNewBuzzer(BuzzerProxy device) {}
-		public void onNewColdOrHotWaterHeatSourceEquipment(ColdOrHotWaterHeatSourceEquipmentProxy device) {}
-		public void onNewElectricallyOperatedShade(ElectricallyOperatedShadeProxy device) {}
-		public void onNewElectricLock(ElectricLockProxy device) {}
-		public void onNewElectricShutter(ElectricShutterProxy device) {}
-		public void onNewElectricStormWindow(ElectricStormWindowProxy device) {}
-		public void onNewElectricToiletSeat(ElectricToiletSeatProxy device) {}
-		public void onNewElectricWaterHeater(ElectricWaterHeaterProxy device) {}
-		public void onNewFloorHeater(FloorHeaterProxy device) {}
-		public void onNewFuelCell(FuelCellProxy device) {}
-		public void onNewGasMeter(GasMeterProxy device) {}
-		public void onNewGeneralLighting(GeneralLightingProxy device) {}
-		public void onNewHouseholdSolarPowerGeneration(HouseholdSolarPowerGenerationProxy device) {}
-		public void onNewInstantaneousWaterHeater(InstantaneousWaterHeaterProxy device) {}
-		public void onNewLPGasMeter(LPGasMeterProxy device) {}
-		public void onNewPowerDistributionBoardMetering(PowerDistributionBoardMeteringProxy device) {}
-		public void onNewSmartElectricEnergyMeter(SmartElectricEnergyMeterProxy device) {}
-		public void onNewSmartGasMeter(SmartGasMeterProxy device) {}
-		public void onNewSprinkler(SprinklerProxy device) {}
-		public void onNewWaterFlowmeter(WaterFlowmeterProxy device) {}
-		public void onNewWattHourMeter(WattHourMeterProxy device) {}
-		public void onNewClothesDryer(ClothesDryerProxy device) {}
-		public void onNewCombinationMicrowaveOven(CombinationMicrowaveOvenProxy device) {}
-		public void onNewCookingHeater(CookingHeaterProxy device) {}
-		public void onNewElectricHotWaterPot(ElectricHotWaterPotProxy device) {}
-		public void onNewRefrigerator(RefrigeratorProxy device) {}
-		public void onNewRiceCooker(RiceCookerProxy device) {}
-		public void onNewWasherAndDryer(WasherAndDryerProxy device) {}
-		public void onNewWashingMachine(WashingMachineProxy device) {}
-		public void onNewWeighing(WeighingProxy device) {}
-		public void onNewController(ControllerProxy device) {}
-		public void onNewSwitch(SwitchProxy device) {}
-		public void onNewDisplay(DisplayProxy device) {}
-		public void onNewTelevision(TelevisionProxy device) {}
-
-
+	public static void addEventListener(EventListener listener) {
+		sListeners.add(listener);
 	}
 	
-	public static void setMethodInvokedListener(MethodInvokedListener listener) {
-		sMethodInvokedListener = listener;
+	public static EventListener getEventListener() {
+		return sEvents;
 	}
 	
-	public static MethodInvokedListener getMethodInvokedListener() {
-		return sMethodInvokedListener;
-	}
-	
-	public interface MethodInvokedListener {
-		public void onInvokedSetMethod(EchoObject eoj, byte epc, byte pdc, byte[] edt, boolean success);
-		public void onInvokedGetMethod(EchoObject eoj, byte epc, byte pdc, byte[] edt);
-		
-		public void onInvokedOnSetMethod(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success);
-		public void onInvokedOnGetMethod(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt);
-		public void onInvokedOnInformMethod(EchoObject eoj, short tid, byte esv, byte epc);
-		
-		public void onInvokedReqSetMethod(EchoObject eoj, byte epc, byte pdc, byte[] edt);
-		public void onInvokedReqGetMethod(EchoObject eoj, byte epc);
-		public void onInvokedReqInformMethod(EchoObject eoj, byte epc);
-		public void onInvokedReqInformMethod(EchoObject eoj, byte epc, byte pdc, byte[] edt);
-		public void onInvokedInformMethod(EchoObject eoj, byte epc, byte pdc, byte[] edt);
+	public static class EventListener {
+		public void setProperty(EchoObject eoj, EchoProperty property, boolean success) {}
+		public void getProperty(EchoObject eoj, EchoProperty property) {}
+		public void isValidProperty(EchoObject eoj, EchoProperty property, boolean valid) {}
 
-		public void onInvokedSendMethod(EchoFrame frame);
-		public void onInvokedSendGroupMethod(EchoFrame frame);
-		public void onInvokedReceiveMethod(EchoFrame frame);
-
-		public void onInvokedOnNewMethod(EchoNode node);
-		public void onInvokedOnNewMethod(EchoObject eoj);
-		public void onInvokedOnRemovedMethod(EchoNode node);
-		public void onInvokedOnRemovedMethod(EchoObject eoj);
+		public void onSetProperty(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		public void onGetProperty(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		public void onInformProperty(EchoObject eoj, short tid, byte esv, EchoProperty property) {}
+		
+		public void reqSetPropertyEvent(EchoObject eoj, EchoProperty property) {}
+		public void reqGetPropertyEvent(EchoObject eoj, EchoProperty property) {}
+		public void reqInformPropertyEvent(EchoObject eoj, EchoProperty property) {}
+		public void reqInformCPropertyEvent(EchoObject eoj, EchoProperty property) {}
+		
+		public void sendEvent(EchoFrame frame) {}
+		public void receiveEvent(EchoFrame frame) {}
+		
+		public void onCatchException(Exception e) {}
+		
+		public void onNewNode(EchoNode node) {}
+		public void onNewEchoObject(EchoObject eoj) {}
+		public void onNewProfileObject(ProfileObject profile) {}
+		public void onNewNodeProfile(NodeProfile profile) {}
+		public void onNewDeviceObject(DeviceObject device) {}
+		public void onNewActivityAmountSensor(ActivityAmountSensor device) {}
+		public void onNewAirPollutionSensor(AirPollutionSensor device) {}
+		public void onNewAirSpeedSensor(AirSpeedSensor device) {}
+		public void onNewBathHeatingStatusSensor(BathHeatingStatusSensor device) {}
+		public void onNewBathWaterLevelSensor(BathWaterLevelSensor device) {}
+		public void onNewBedPresenceSensor(BedPresenceSensor device) {}
+		public void onNewCallSensor(CallSensor device) {}
+		public void onNewCigaretteSmokeSensor(CigaretteSmokeSensor device) {}
+		public void onNewCO2Sensor(CO2Sensor device) {}
+		public void onNewCondensationSensor(CondensationSensor device) {}
+		public void onNewCrimePreventionSensor(CrimePreventionSensor device) {}
+		public void onNewCurrentValueSensor(CurrentValueSensor device) {}
+		public void onNewDifferentialPressureSensor(DifferentialPressureSensor device) {}
+		public void onNewEarthquakeSensor(EarthquakeSensor device) {}
+		public void onNewElectricEnergySensor(ElectricEnergySensor device) {}
+		public void onNewElectricLeakSensor(ElectricLeakSensor device) {}
+		public void onNewEmergencyButton(EmergencyButton device) {}
+		public void onNewFireSensor(FireSensor device) {}
+		public void onNewFirstAidSensor(FirstAidSensor device) {}
+		public void onNewFlameSensor(FlameSensor device) {}
+		public void onNewGasLeakSensor(GasLeakSensor device) {}
+		public void onNewGasSensor(GasSensor device) {}
+		public void onNewHumanBodyLocationSensor(HumanBodyLocationSensor device) {}
+		public void onNewHumanDetectionSensor(HumanDetectionSensor device) {}
+		public void onNewHumiditySensor(HumiditySensor device) {}
+		public void onNewIlluminanceSensor(IlluminanceSensor device) {}
+		public void onNewMailingSensor(MailingSensor device) {}
+		public void onNewMicromotionSensor(MicromotionSensor device) {}
+		public void onNewOdorSensor(OdorSensor device) {}
+		public void onNewOpenCloseSensor(OpenCloseSensor device) {}
+		public void onNewOxygenSensor(OxygenSensor device) {}
+		public void onNewPassageSensor(PassageSensor device) {}
+		public void onNewRainSensor(RainSensor device) {}
+		public void onNewSnowSensor(SnowSensor device) {}
+		public void onNewSoundSensor(SoundSensor device) {}
+		public void onNewTemperatureSensor(TemperatureSensor device) {}
+		public void onNewVisitorSensor(VisitorSensor device) {}
+		public void onNewVOCSensor(VOCSensor device) {}
+		public void onNewWaterFlowRateSensor(WaterFlowRateSensor device) {}
+		public void onNewWaterLeakSensor(WaterLeakSensor device) {}
+		public void onNewWaterLevelSensor(WaterLevelSensor device) {}
+		public void onNewWaterOverflowSensor(WaterOverflowSensor device) {}
+		public void onNewWeightSensor(WeightSensor device) {}
+		public void onNewAirCleaner(AirCleaner device) {}
+		public void onNewAirConditionerVentilationFan(AirConditionerVentilationFan device) {}
+		public void onNewElectricHeater(ElectricHeater device) {}
+		public void onNewFanHeater(FanHeater device) {}
+		public void onNewHomeAirConditioner(HomeAirConditioner device) {}
+		public void onNewHumidifier(Humidifier device) {}
+		public void onNewPackageTypeCommercialAirConditionerIndoorUnit(PackageTypeCommercialAirConditionerIndoorUnit device) {}
+		public void onNewPackageTypeCommercialAirConditionerOutdoorUnit(PackageTypeCommercialAirConditionerOutdoorUnit device) {}
+		public void onNewVentilationFan(VentilationFan device) {}
+		public void onNewBathroomHeaterAndDryer(BathroomHeaterAndDryer device) {}
+		public void onNewBattery(Battery device) {}
+		public void onNewBuzzer(Buzzer device) {}
+		public void onNewColdOrHotWaterHeatSourceEquipment(ColdOrHotWaterHeatSourceEquipment device) {}
+		public void onNewElectricallyOperatedShade(ElectricallyOperatedShade device) {}
+		public void onNewElectricLock(ElectricLock device) {}
+		public void onNewElectricShutter(ElectricShutter device) {}
+		public void onNewElectricStormWindow(ElectricStormWindow device) {}
+		public void onNewElectricToiletSeat(ElectricToiletSeat device) {}
+		public void onNewElectricWaterHeater(ElectricWaterHeater device) {}
+		public void onNewFloorHeater(FloorHeater device) {}
+		public void onNewFuelCell(FuelCell device) {}
+		public void onNewGasMeter(GasMeter device) {}
+		public void onNewGeneralLighting(GeneralLighting device) {}
+		public void onNewHouseholdSolarPowerGeneration(HouseholdSolarPowerGeneration device) {}
+		public void onNewInstantaneousWaterHeater(InstantaneousWaterHeater device) {}
+		public void onNewLPGasMeter(LPGasMeter device) {}
+		public void onNewPowerDistributionBoardMetering(PowerDistributionBoardMetering device) {}
+		public void onNewSmartElectricEnergyMeter(SmartElectricEnergyMeter device) {}
+		public void onNewSmartGasMeter(SmartGasMeter device) {}
+		public void onNewSprinkler(Sprinkler device) {}
+		public void onNewWaterFlowmeter(WaterFlowmeter device) {}
+		public void onNewWattHourMeter(WattHourMeter device) {}
+		public void onNewClothesDryer(ClothesDryer device) {}
+		public void onNewCombinationMicrowaveOven(CombinationMicrowaveOven device) {}
+		public void onNewCookingHeater(CookingHeater device) {}
+		public void onNewElectricHotWaterPot(ElectricHotWaterPot device) {}
+		public void onNewRefrigerator(Refrigerator device) {}
+		public void onNewRiceCooker(RiceCooker device) {}
+		public void onNewWasherAndDryer(WasherAndDryer device) {}
+		public void onNewWashingMachine(WashingMachine device) {}
+		public void onNewWeighing(Weighing device) {}
+		public void onNewController(Controller device) {}
+		public void onNewSwitch(Switch device) {}
+		public void onNewDisplay(Display device) {}
+		public void onNewTelevision(Television device) {}
 	}
 	
-	public static class Logger implements MethodInvokedListener {
-		
+	public static class Logger extends EventListener {
 		PrintStream mOut;
 		
 		public Logger(PrintStream out) {
@@ -1142,121 +264,116 @@ public final class Echo {
 		}
 
 		@Override
-		public void onInvokedSetMethod(EchoObject eoj,
-				byte epc, byte pdc, byte[] edt, boolean success) {
+		public void setProperty(EchoObject eoj, EchoProperty property,
+				boolean success) {
 			long millis = System.currentTimeMillis();
 			mOut.println("millis:"+millis
 					+",method:set,"+eoj.toString()
-					+",epc:"+EchoUtils.toHexString(epc)
-					+",pdc:"+EchoUtils.toHexString(pdc)
-					+",edt:"+EchoUtils.toHexString(edt)
+					+",epc:"+EchoUtils.toHexString(property.epc)
+					+",pdc:"+EchoUtils.toHexString(property.pdc)
+					+",edt:"+EchoUtils.toHexString(property.edt)
 					+",success:"+success);
 		}
 
 		@Override
-		public void onInvokedGetMethod(EchoObject eoj,
-				byte epc, byte pdc, byte[] edt) {
+		public void getProperty(EchoObject eoj, EchoProperty property) {
 			long millis = System.currentTimeMillis();
 			mOut.println("millis:"+millis
 					+",method:get,"+eoj.toString()
-					+",epc:"+EchoUtils.toHexString(epc)
-					+",pdc:"+EchoUtils.toHexString(pdc)
-					+",edt:"+EchoUtils.toHexString(edt));
+					+",epc:"+EchoUtils.toHexString(property.epc)
+					+",pdc:"+EchoUtils.toHexString(property.pdc)
+					+",edt:"+EchoUtils.toHexString(property.edt));
 		}
 
 		@Override
-		public void onInvokedOnSetMethod(EchoObject eoj, short tid, byte esv,
-				byte epc, byte pdc, byte[] edt, boolean success) {
+		public void isValidProperty(EchoObject eoj, EchoProperty property,
+				boolean valid) {
+			// TODO Auto-generated method stub
+			super.isValidProperty(eoj, property, valid);
+		}
+
+		@Override
+		public void onSetProperty(EchoObject eoj, short tid, byte esv,
+				EchoProperty property, boolean success) {
 			long millis = System.currentTimeMillis();
 			mOut.println("millis:"+millis
 					+",method:onSet,"+eoj.toString()
 					+",tid:"+EchoUtils.toHexString(tid)
 					+",esv:"+EchoUtils.toHexString(esv)
-					+",epc:"+EchoUtils.toHexString(epc)
-					+",pdc:"+EchoUtils.toHexString(pdc)
-					+",edt:"+EchoUtils.toHexString(edt)
+					+",epc:"+EchoUtils.toHexString(property.epc)
+					+",pdc:"+EchoUtils.toHexString(property.pdc)
+					+",edt:"+EchoUtils.toHexString(property.edt)
 					+",success:"+success);
 		}
 
 		@Override
-		public void onInvokedOnGetMethod(EchoObject eoj, short tid, byte esv,
-				byte epc, byte pdc, byte[] edt) {
+		public void onGetProperty(EchoObject eoj, short tid, byte esv,
+				EchoProperty property, boolean success) {
 			long millis = System.currentTimeMillis();
 			mOut.println("millis:"+millis
 					+",method:onGet,"+eoj.toString()
 					+",tid:"+EchoUtils.toHexString(tid)
 					+",esv:"+EchoUtils.toHexString(esv)
-					+",epc:"+EchoUtils.toHexString(epc)
-					+",pdc:"+EchoUtils.toHexString(pdc)
-					+",edt:"+EchoUtils.toHexString(edt));
-			
+					+",epc:"+EchoUtils.toHexString(property.epc)
+					+",pdc:"+EchoUtils.toHexString(property.pdc)
+					+",edt:"+EchoUtils.toHexString(property.edt));
+
 		}
 
 		@Override
-		public void onInvokedOnInformMethod(EchoObject eoj, short tid, byte esv, byte epc) {
+		public void onInformProperty(EchoObject eoj, short tid, byte esv,
+				EchoProperty property) {
 			long millis = System.currentTimeMillis();
 			mOut.println("millis:"+millis
 					+",method:onInform,"+eoj.toString()
 					+",tid:"+EchoUtils.toHexString(tid)
 					+",esv:"+EchoUtils.toHexString(esv)
-					+",epc:"+EchoUtils.toHexString(epc));
+					+",epc:"+EchoUtils.toHexString(property.epc));
 		}
 
 		@Override
-		public void onInvokedReqSetMethod(EchoObject eoj,
-				byte epc, byte pdc, byte[] edt) {
+		public void reqSetPropertyEvent(EchoObject eoj, EchoProperty property) {
 			long millis = System.currentTimeMillis();
 			mOut.println("millis:"+millis
 					+",method:reqSet,"+eoj.toString()
-					+",epc:"+EchoUtils.toHexString(epc)
-					+",pdc:"+EchoUtils.toHexString(pdc)
-					+",edt:"+EchoUtils.toHexString(edt));
+					+",epc:"+EchoUtils.toHexString(property.epc)
+					+",pdc:"+EchoUtils.toHexString(property.pdc)
+					+",edt:"+EchoUtils.toHexString(property.edt));
 		}
 
 		@Override
-		public void onInvokedReqGetMethod(EchoObject eoj,
-				byte epc) {
+		public void reqGetPropertyEvent(EchoObject eoj, EchoProperty property) {
 			long millis = System.currentTimeMillis();
 			mOut.println("millis:"+millis
 					+",method:reqGet,"+eoj.toString()
-					+",epc:"+EchoUtils.toHexString(epc));
+					+",epc:"+EchoUtils.toHexString(property.epc)
+					+",pdc:"+EchoUtils.toHexString(property.pdc)
+					+",edt:"+EchoUtils.toHexString(property.edt));
 		}
 
 		@Override
-		public void onInvokedReqInformMethod(EchoObject eoj,
-				byte epc) {
+		public void reqInformPropertyEvent(EchoObject eoj, EchoProperty property) {
 			long millis = System.currentTimeMillis();
 			mOut.println("millis:"+millis
 					+",method:reqInform,"+eoj.toString()
-					+",epc:"+EchoUtils.toHexString(epc));
+					+",epc:"+EchoUtils.toHexString(property.epc)
+					+",pdc:"+EchoUtils.toHexString(property.pdc)
+					+",edt:"+EchoUtils.toHexString(property.edt));
 		}
 
 		@Override
-		public void onInvokedReqInformMethod(EchoObject eoj, byte epc,
-				byte pdc, byte[] edt) {
+		public void reqInformCPropertyEvent(EchoObject eoj,
+				EchoProperty property) {
 			long millis = System.currentTimeMillis();
 			mOut.println("millis:"+millis
-					+",method:reqInform,"+eoj.toString()
-					+",epc:"+EchoUtils.toHexString(epc)
-					+",pdc:"+EchoUtils.toHexString(pdc)
-					+",edt:"+EchoUtils.toHexString(edt));
-			
+					+",method:reqInformC,"+eoj.toString()
+					+",epc:"+EchoUtils.toHexString(property.epc)
+					+",pdc:"+EchoUtils.toHexString(property.pdc)
+					+",edt:"+EchoUtils.toHexString(property.edt));
 		}
 
 		@Override
-		public void onInvokedInformMethod(EchoObject eoj, byte epc, byte pdc,
-				byte[] edt) {
-			long millis = System.currentTimeMillis();
-			mOut.println("millis:"+millis
-					+",method:inform,"+eoj.toString()
-					+",epc:"+EchoUtils.toHexString(epc)
-					+",pdc:"+EchoUtils.toHexString(pdc)
-					+",edt:"+EchoUtils.toHexString(edt));
-			
-		}
-
-		@Override
-		public void onInvokedSendMethod(EchoFrame frame) {
+		public void sendEvent(EchoFrame frame) {
 			long millis = System.currentTimeMillis();
 			mOut.println("millis:"+millis
 					+",method:send,tid:"+EchoUtils.toHexString(frame.getTid())
@@ -1267,18 +384,7 @@ public final class Echo {
 		}
 
 		@Override
-		public void onInvokedSendGroupMethod(EchoFrame frame) {
-			long millis = System.currentTimeMillis();
-			mOut.println("millis:"+millis
-					+",method:sendGroup,tid:"+EchoUtils.toHexString(frame.getTid())
-					+",esv:"+EchoUtils.toHexString(frame.getEsv())
-					+",seoj:["+frame.getSeoj()
-					+"],deoj:["+(frame.getDeoj()!=null?frame.getDeoj().toString():"")
-					+"],data:"+EchoUtils.toHexString(frame.getFrameByteArray()));
-		}
-
-		@Override
-		public void onInvokedReceiveMethod(EchoFrame frame) {
+		public void receiveEvent(EchoFrame frame) {
 			long millis = System.currentTimeMillis();
 			mOut.println("millis:"+millis
 					+",method:receive,tid:"+EchoUtils.toHexString(frame.getTid())
@@ -1289,7 +395,13 @@ public final class Echo {
 		}
 
 		@Override
-		public void onInvokedOnNewMethod(EchoNode node) {
+		public void onCatchException(Exception e) {
+			// TODO Auto-generated method stub
+			super.onCatchException(e);
+		}
+
+		@Override
+		public void onNewNode(EchoNode node) {
 			long millis = System.currentTimeMillis();
 			mOut.println("millis:"+millis
 					+",method:new,type:node,address:"
@@ -1297,25 +409,776 @@ public final class Echo {
 		}
 
 		@Override
-		public void onInvokedOnNewMethod(EchoObject eoj) {
+		public void onNewEchoObject(EchoObject eoj) {
 			long millis = System.currentTimeMillis();
 			mOut.println("millis:"+millis
 					+",method:new,type:eoj,"
 					+eoj.toString());
 		}
+		
+	}
+	
+	private static class Events extends EventListener {
 
 		@Override
-		public void onInvokedOnRemovedMethod(EchoNode node) {
-			// TODO Auto-generated method stub
-			
+		public void setProperty(EchoObject eoj, EchoProperty property,
+				boolean success) {
+			super.setProperty(eoj, property, success);
+			for(EventListener listener : sListeners) {
+				listener.setProperty(eoj, property, success);
+			}
 		}
 
 		@Override
-		public void onInvokedOnRemovedMethod(EchoObject eoj) {
-			// TODO Auto-generated method stub
-			
+		public void getProperty(EchoObject eoj, EchoProperty property) {
+			for(EventListener listener : sListeners) {
+				listener.getProperty(eoj, property);
+			}
 		}
 
+		@Override
+		public void isValidProperty(EchoObject eoj, EchoProperty property,
+				boolean valid) {
+			for(EventListener listener : sListeners) {
+				listener.isValidProperty(eoj, property, valid);
+			}
+		}
+
+		@Override
+		public void onSetProperty(EchoObject eoj, short tid, byte esv,
+				EchoProperty property, boolean success) {
+			for(EventListener listener : sListeners) {
+				listener.onSetProperty(eoj, tid, esv, property, success);
+			}
+		}
+
+		@Override
+		public void onGetProperty(EchoObject eoj, short tid, byte esv,
+				EchoProperty property, boolean success) {
+			for(EventListener listener : sListeners) {
+				listener.onGetProperty(eoj, tid, esv, property, success);
+			}
+		}
+
+		@Override
+		public void onInformProperty(EchoObject eoj, short tid, byte esv,
+				EchoProperty property) {
+			for(EventListener listener : sListeners) {
+				listener.onInformProperty(eoj, tid, esv, property);
+			}
+		}
+
+		@Override
+		public void reqSetPropertyEvent(EchoObject eoj, EchoProperty property) {
+			for(EventListener listener : sListeners) {
+				listener.reqSetPropertyEvent(eoj, property);
+			}
+		}
+
+		@Override
+		public void reqGetPropertyEvent(EchoObject eoj, EchoProperty property) {
+			for(EventListener listener : sListeners) {
+				listener.reqGetPropertyEvent(eoj, property);
+			}
+		}
+
+		@Override
+		public void reqInformPropertyEvent(EchoObject eoj, EchoProperty property) {
+			for(EventListener listener : sListeners) {
+				listener.reqInformPropertyEvent(eoj, property);
+			}
+		}
+
+		@Override
+		public void reqInformCPropertyEvent(EchoObject eoj,
+				EchoProperty property) {
+			for(EventListener listener : sListeners) {
+				listener.reqInformCPropertyEvent(eoj, property);
+			}
+		}
+
+		@Override
+		public void sendEvent(EchoFrame frame) {
+			for(EventListener listener : sListeners) {
+				listener.sendEvent(frame);
+			}
+		}
+
+		@Override
+		public void receiveEvent(EchoFrame frame) {
+			for(EventListener listener : sListeners) {
+				listener.receiveEvent(frame);
+			}
+		}
+
+		@Override
+		public void onCatchException(Exception e) {
+			for(EventListener listener : sListeners) {
+				listener.onCatchException(e);
+			}
+		}
+
+		@Override
+		public void onNewNode(EchoNode node) {
+			for(EventListener listener : sListeners) {
+				listener.onNewNode(node);
+			}
+		}
+
+		@Override
+		public void onNewEchoObject(EchoObject eoj) {
+			for(EventListener listener : sListeners) {
+				listener.onNewEchoObject(eoj);
+			}
+		}
+
+		@Override
+		public void onNewProfileObject(ProfileObject profile) {
+			for(EventListener listener : sListeners) {
+				listener.onNewProfileObject(profile);
+			}
+		}
+
+		@Override
+		public void onNewNodeProfile(NodeProfile profile) {
+			for(EventListener listener : sListeners) {
+				listener.onNewNodeProfile(profile);
+			}
+		}
+
+		@Override
+		public void onNewDeviceObject(DeviceObject device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewDeviceObject(device);
+			}
+		}
+
+		@Override
+		public void onNewActivityAmountSensor(ActivityAmountSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewActivityAmountSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewAirPollutionSensor(AirPollutionSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewAirPollutionSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewAirSpeedSensor(AirSpeedSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewAirSpeedSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewBathHeatingStatusSensor(BathHeatingStatusSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewBathHeatingStatusSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewBathWaterLevelSensor(BathWaterLevelSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewBathWaterLevelSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewBedPresenceSensor(BedPresenceSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewBedPresenceSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewCallSensor(CallSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewCallSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewCigaretteSmokeSensor(CigaretteSmokeSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewCigaretteSmokeSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewCO2Sensor(CO2Sensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewCO2Sensor(device);
+			}
+		}
+
+		@Override
+		public void onNewCondensationSensor(CondensationSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewCondensationSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewCrimePreventionSensor(CrimePreventionSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewCrimePreventionSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewCurrentValueSensor(CurrentValueSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewCurrentValueSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewDifferentialPressureSensor(
+				DifferentialPressureSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewDifferentialPressureSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewEarthquakeSensor(EarthquakeSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewEarthquakeSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewElectricEnergySensor(ElectricEnergySensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewElectricEnergySensor(device);
+			}
+		}
+
+		@Override
+		public void onNewElectricLeakSensor(ElectricLeakSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewElectricLeakSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewEmergencyButton(EmergencyButton device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewEmergencyButton(device);
+			}
+		}
+
+		@Override
+		public void onNewFireSensor(FireSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewFireSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewFirstAidSensor(FirstAidSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewFirstAidSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewFlameSensor(FlameSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewFlameSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewGasLeakSensor(GasLeakSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewGasLeakSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewGasSensor(GasSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewGasSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewHumanBodyLocationSensor(HumanBodyLocationSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewHumanBodyLocationSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewHumanDetectionSensor(HumanDetectionSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewHumanDetectionSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewHumiditySensor(HumiditySensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewHumiditySensor(device);
+			}
+		}
+
+		@Override
+		public void onNewIlluminanceSensor(IlluminanceSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewIlluminanceSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewMailingSensor(MailingSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewMailingSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewMicromotionSensor(MicromotionSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewMicromotionSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewOdorSensor(OdorSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewOdorSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewOpenCloseSensor(OpenCloseSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewOpenCloseSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewOxygenSensor(OxygenSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewOxygenSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewPassageSensor(PassageSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewPassageSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewRainSensor(RainSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewRainSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewSnowSensor(SnowSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewSnowSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewSoundSensor(SoundSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewSoundSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewTemperatureSensor(TemperatureSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewTemperatureSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewVisitorSensor(VisitorSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewVisitorSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewVOCSensor(VOCSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewVOCSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewWaterFlowRateSensor(WaterFlowRateSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewWaterFlowRateSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewWaterLeakSensor(WaterLeakSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewWaterLeakSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewWaterLevelSensor(WaterLevelSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewWaterLevelSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewWaterOverflowSensor(WaterOverflowSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewWaterOverflowSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewWeightSensor(WeightSensor device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewWeightSensor(device);
+			}
+		}
+
+		@Override
+		public void onNewAirCleaner(AirCleaner device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewAirCleaner(device);
+			}
+		}
+
+		@Override
+		public void onNewAirConditionerVentilationFan(
+				AirConditionerVentilationFan device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewAirConditionerVentilationFan(device);
+			}
+		}
+
+		@Override
+		public void onNewElectricHeater(ElectricHeater device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewElectricHeater(device);
+			}
+		}
+
+		@Override
+		public void onNewFanHeater(FanHeater device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewFanHeater(device);
+			}
+		}
+
+		@Override
+		public void onNewHomeAirConditioner(HomeAirConditioner device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewHomeAirConditioner(device);
+			}
+		}
+
+		@Override
+		public void onNewHumidifier(Humidifier device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewHumidifier(device);
+			}
+		}
+
+		@Override
+		public void onNewPackageTypeCommercialAirConditionerIndoorUnit(
+				PackageTypeCommercialAirConditionerIndoorUnit device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewPackageTypeCommercialAirConditionerIndoorUnit(device);
+			}
+		}
+
+		@Override
+		public void onNewPackageTypeCommercialAirConditionerOutdoorUnit(
+				PackageTypeCommercialAirConditionerOutdoorUnit device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewPackageTypeCommercialAirConditionerOutdoorUnit(device);
+			}
+		}
+
+		@Override
+		public void onNewVentilationFan(VentilationFan device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewVentilationFan(device);
+			}
+		}
+
+		@Override
+		public void onNewBathroomHeaterAndDryer(BathroomHeaterAndDryer device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewBathroomHeaterAndDryer(device);
+			}
+		}
+
+		@Override
+		public void onNewBattery(Battery device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewBattery(device);
+			}
+		}
+
+		@Override
+		public void onNewBuzzer(Buzzer device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewBuzzer(device);
+			}
+		}
+
+		@Override
+		public void onNewColdOrHotWaterHeatSourceEquipment(
+				ColdOrHotWaterHeatSourceEquipment device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewColdOrHotWaterHeatSourceEquipment(device);
+			}
+		}
+
+		@Override
+		public void onNewElectricallyOperatedShade(
+				ElectricallyOperatedShade device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewElectricallyOperatedShade(device);
+			}
+		}
+
+		@Override
+		public void onNewElectricLock(ElectricLock device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewElectricLock(device);
+			}
+		}
+
+		@Override
+		public void onNewElectricShutter(ElectricShutter device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewElectricShutter(device);
+			}
+		}
+
+		@Override
+		public void onNewElectricStormWindow(ElectricStormWindow device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewElectricStormWindow(device);
+			}
+		}
+
+		@Override
+		public void onNewElectricToiletSeat(ElectricToiletSeat device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewElectricToiletSeat(device);
+			}
+		}
+
+		@Override
+		public void onNewElectricWaterHeater(ElectricWaterHeater device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewElectricWaterHeater(device);
+			}
+		}
+
+		@Override
+		public void onNewFloorHeater(FloorHeater device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewFloorHeater(device);
+			}
+		}
+
+		@Override
+		public void onNewFuelCell(FuelCell device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewFuelCell(device);
+			}
+		}
+
+		@Override
+		public void onNewGasMeter(GasMeter device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewGasMeter(device);
+			}
+		}
+
+		@Override
+		public void onNewGeneralLighting(GeneralLighting device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewGeneralLighting(device);
+			}
+		}
+
+		@Override
+		public void onNewHouseholdSolarPowerGeneration(
+				HouseholdSolarPowerGeneration device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewHouseholdSolarPowerGeneration(device);
+			}
+		}
+
+		@Override
+		public void onNewInstantaneousWaterHeater(
+				InstantaneousWaterHeater device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewInstantaneousWaterHeater(device);
+			}
+		}
+
+		@Override
+		public void onNewLPGasMeter(LPGasMeter device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewLPGasMeter(device);
+			}
+		}
+
+		@Override
+		public void onNewPowerDistributionBoardMetering(
+				PowerDistributionBoardMetering device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewPowerDistributionBoardMetering(device);
+			}
+		}
+
+		@Override
+		public void onNewSmartElectricEnergyMeter(
+				SmartElectricEnergyMeter device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewSmartElectricEnergyMeter(device);
+			}
+		}
+
+		@Override
+		public void onNewSmartGasMeter(SmartGasMeter device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewSmartGasMeter(device);
+			}
+		}
+
+		@Override
+		public void onNewSprinkler(Sprinkler device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewSprinkler(device);
+			}
+		}
+
+		@Override
+		public void onNewWaterFlowmeter(WaterFlowmeter device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewWaterFlowmeter(device);
+			}
+		}
+
+		@Override
+		public void onNewWattHourMeter(WattHourMeter device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewWattHourMeter(device);
+			}
+		}
+
+		@Override
+		public void onNewClothesDryer(ClothesDryer device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewClothesDryer(device);
+			}
+		}
+
+		@Override
+		public void onNewCombinationMicrowaveOven(
+				CombinationMicrowaveOven device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewCombinationMicrowaveOven(device);
+			}
+		}
+
+		@Override
+		public void onNewCookingHeater(CookingHeater device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewCookingHeater(device);
+			}
+		}
+
+		@Override
+		public void onNewElectricHotWaterPot(ElectricHotWaterPot device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewElectricHotWaterPot(device);
+			}
+		}
+
+		@Override
+		public void onNewRefrigerator(Refrigerator device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewRefrigerator(device);
+			}
+		}
+
+		@Override
+		public void onNewRiceCooker(RiceCooker device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewRiceCooker(device);
+			}
+		}
+
+		@Override
+		public void onNewWasherAndDryer(WasherAndDryer device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewWasherAndDryer(device);
+			}
+		}
+
+		@Override
+		public void onNewWashingMachine(WashingMachine device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewWashingMachine(device);
+			}
+		}
+
+		@Override
+		public void onNewWeighing(Weighing device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewWeighing(device);
+			}
+		}
+
+		@Override
+		public void onNewController(Controller device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewController(device);
+			}
+		}
+
+		@Override
+		public void onNewSwitch(Switch device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewSwitch(device);
+			}
+		}
+
+		@Override
+		public void onNewDisplay(Display device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewDisplay(device);
+			}
+		}
+
+		@Override
+		public void onNewTelevision(Television device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewTelevision(device);
+			}
+		}
 		
 	}
 }

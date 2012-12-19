@@ -15,18 +15,16 @@
  */
 package com.sonycsl.echo.eoj.device.housingfacilities;
 
+import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
+import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
+import com.sonycsl.echo.node.EchoNode;
 
 public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	
-	public static final byte CLASS_GROUP_CODE = (byte)0x02;
-	public static final byte CLASS_CODE = (byte)0x73;
-	
-	public BathroomHeaterAndDryer() {
-		setReceiver(new Receiver());
-	}
+	public static final short ECHO_CLASS_CODE = (short)0x0273;
 
 	public static final byte EPC_OPERATION_SETTING = (byte)0xB0;
 	public static final byte EPC_VENTILATION_OPERATION_SETTING = (byte)0xB1;
@@ -48,860 +46,2571 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	public static final byte EPC_OFF_TIMER_SETTING_RELATIVE_TIME = (byte)0x96;
 
 	@Override
-	public byte getClassGroupCode() {
-		return CLASS_GROUP_CODE;
+	protected void setupPropertyMaps() {
+		super.setupPropertyMaps();
+		
+		removeStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
+		removeSetProperty(EPC_OPERATION_STATUS);
+		addGetProperty(EPC_OPERATION_STATUS);
+		addSetProperty(EPC_OPERATION_SETTING);
+		addGetProperty(EPC_OPERATION_SETTING);
+		addSetProperty(EPC_BATHROOM_PRE_WARMER_OPERATION_SETTING);
+		addGetProperty(EPC_BATHROOM_PRE_WARMER_OPERATION_SETTING);
+		addSetProperty(EPC_BATHROOM_DRYER_OPERATION_SETTING);
+		addGetProperty(EPC_BATHROOM_DRYER_OPERATION_SETTING);
 	}
-
+	
 	@Override
-	public byte getClassCode() {
-		return CLASS_CODE;
+	public void initialize(EchoNode node) {
+		super.initialize(node);
+		Echo.EventListener listener = Echo.getEventListener();
+		if(listener != null) listener.onNewBathroomHeaterAndDryer(this);
+	}
+	
+	@Override
+	public short getEchoClassCode() {
+		return ECHO_CLASS_CODE;
 	}
 
 	/**
-	 * Used to set the operation mode (ventilation mode, bathroom pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br><br>Ventilation operation             : 0x10 Bathroom pre-warmer operation : 0x20 Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00<br><br>Name : Operation setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the ON/OFF<br>
+	 * status.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON           : 0x30<br>
+	 * OFF          : 0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean setOperationStatus(byte[] edt) {return false;}
+	/**
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the ON/OFF<br>
+	 * status.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON           : 0x30<br>
+	 * OFF          : 0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - mandatory<br>
+	 */
+	protected abstract byte[] getOperationStatus();
+	/**
+	 * Property name : Operation setting<br>
+	 * <br>
+	 * EPC : 0xB0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the operation mode<br>
+	 * (ventilation mode, bathroom<br>
+	 * pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Ventilation operation             : 0x10<br>
+	 * Bathroom pre-warmer operation :<br>
+	 * 0x20<br>
+	 * Bathroom heater operation   : 0x30<br>
+	 * Bathroom dryer operation      : 0x40<br>
+	 * Cool air circulator operation : 0x50<br>
+	 * Stop                                           :0x00<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
 	 */
 	protected abstract boolean setOperationSetting(byte[] edt);
-	private final boolean _setOperationSetting(byte epc, byte[] edt) {
-		boolean success = setOperationSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Used to set the operation mode (ventilation mode, bathroom pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br><br>Ventilation operation             : 0x10 Bathroom pre-warmer operation : 0x20 Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00<br><br>Name : Operation setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+	 * Property name : Operation setting<br>
+	 * <br>
+	 * EPC : 0xB0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the operation mode<br>
+	 * (ventilation mode, bathroom<br>
+	 * pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Ventilation operation             : 0x10<br>
+	 * Bathroom pre-warmer operation :<br>
+	 * 0x20<br>
+	 * Bathroom heater operation   : 0x30<br>
+	 * Bathroom dryer operation      : 0x40<br>
+	 * Cool air circulator operation : 0x50<br>
+	 * Stop                                           :0x00<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
 	 */
 	protected abstract byte[] getOperationSetting();
-	private final byte[] _getOperationSetting(byte epc) {
-		byte[] edt = getOperationSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Operation setting<br>
+	 * <br>
+	 * EPC : 0xB0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the operation mode<br>
+	 * (ventilation mode, bathroom<br>
+	 * pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Ventilation operation             : 0x10<br>
+	 * Bathroom pre-warmer operation :<br>
+	 * 0x20<br>
+	 * Bathroom heater operation   : 0x30<br>
+	 * Bathroom dryer operation      : 0x40<br>
+	 * Cool air circulator operation : 0x50<br>
+	 * Stop                                           :0x00<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidOperationSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Air flow rate level    : 0x31 to 0x38<br><br>Name : Ventilation operation setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Ventilation operation setting<br>
+	 * <br>
+	 * EPC : 0xB1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic        : 0x41<br>
+	 * Standard          : 0x42<br>
+	 * Air flow rate level    : 0x31 to 0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setVentilationOperationSetting(byte[] edt) {return false;}
-	private final boolean _setVentilationOperationSetting(byte epc, byte[] edt) {
-		boolean success = setVentilationOperationSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Air flow rate level    : 0x31 to 0x38<br><br>Name : Ventilation operation setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Ventilation operation setting<br>
+	 * <br>
+	 * EPC : 0xB1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic        : 0x41<br>
+	 * Standard          : 0x42<br>
+	 * Air flow rate level    : 0x31 to 0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getVentilationOperationSetting() {return null;}
-	private final byte[] _getVentilationOperationSetting(byte epc) {
-		byte[] edt = getVentilationOperationSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Ventilation operation setting<br>
+	 * <br>
+	 * EPC : 0xB1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic        : 0x41<br>
+	 * Standard          : 0x42<br>
+	 * Air flow rate level    : 0x31 to 0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidVentilationOperationSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Bathroom pre-warming level : 0x31 to 0x38<br><br>Name : Bathroom pre-warmer operation setting<br>EPC : 0xB2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+	 * Property name : Bathroom pre-warmer operation setting<br>
+	 * <br>
+	 * EPC : 0xB2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic        : 0x41<br>
+	 * Standard          : 0x42<br>
+	 * Bathroom pre-warming level<br>
+	 * : 0x31 to 0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
 	 */
 	protected abstract boolean setBathroomPreWarmerOperationSetting(byte[] edt);
-	private final boolean _setBathroomPreWarmerOperationSetting(byte epc, byte[] edt) {
-		boolean success = setBathroomPreWarmerOperationSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Bathroom pre-warming level : 0x31 to 0x38<br><br>Name : Bathroom pre-warmer operation setting<br>EPC : 0xB2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+	 * Property name : Bathroom pre-warmer operation setting<br>
+	 * <br>
+	 * EPC : 0xB2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic        : 0x41<br>
+	 * Standard          : 0x42<br>
+	 * Bathroom pre-warming level<br>
+	 * : 0x31 to 0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
 	 */
 	protected abstract byte[] getBathroomPreWarmerOperationSetting();
-	private final byte[] _getBathroomPreWarmerOperationSetting(byte epc) {
-		byte[] edt = getBathroomPreWarmerOperationSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Bathroom pre-warmer operation setting<br>
+	 * <br>
+	 * EPC : 0xB2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic        : 0x41<br>
+	 * Standard          : 0x42<br>
+	 * Bathroom pre-warming level<br>
+	 * : 0x31 to 0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidBathroomPreWarmerOperationSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Bathroom heating level : 0x31 to 0x38<br><br>Name : Bathroom heater operation setting<br>EPC : 0xB3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Bathroom heater operation setting<br>
+	 * <br>
+	 * EPC : 0xB3<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic        : 0x41<br>
+	 * Standard          : 0x42<br>
+	 * Bathroom heating level<br>
+	 * : 0x31 to 0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setBathroomHeaterOperationSetting(byte[] edt) {return false;}
-	private final boolean _setBathroomHeaterOperationSetting(byte epc, byte[] edt) {
-		boolean success = setBathroomHeaterOperationSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Bathroom heating level : 0x31 to 0x38<br><br>Name : Bathroom heater operation setting<br>EPC : 0xB3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Bathroom heater operation setting<br>
+	 * <br>
+	 * EPC : 0xB3<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic        : 0x41<br>
+	 * Standard          : 0x42<br>
+	 * Bathroom heating level<br>
+	 * : 0x31 to 0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getBathroomHeaterOperationSetting() {return null;}
-	private final byte[] _getBathroomHeaterOperationSetting(byte epc) {
-		byte[] edt = getBathroomHeaterOperationSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Bathroom heater operation setting<br>
+	 * <br>
+	 * EPC : 0xB3<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic        : 0x41<br>
+	 * Standard          : 0x42<br>
+	 * Bathroom heating level<br>
+	 * : 0x31 to 0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidBathroomHeaterOperationSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Bathroom drying level : 0x31 to 0x38<br><br>Name : Bathroom dryer operation setting<br>EPC : 0xB4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+	 * Property name : Bathroom dryer operation setting<br>
+	 * <br>
+	 * EPC : 0xB4<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic        : 0x41<br>
+	 * Standard          : 0x42<br>
+	 * Bathroom drying level<br>
+	 * : 0x31 to 0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
 	 */
 	protected abstract boolean setBathroomDryerOperationSetting(byte[] edt);
-	private final boolean _setBathroomDryerOperationSetting(byte epc, byte[] edt) {
-		boolean success = setBathroomDryerOperationSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Bathroom drying level : 0x31 to 0x38<br><br>Name : Bathroom dryer operation setting<br>EPC : 0xB4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+	 * Property name : Bathroom dryer operation setting<br>
+	 * <br>
+	 * EPC : 0xB4<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic        : 0x41<br>
+	 * Standard          : 0x42<br>
+	 * Bathroom drying level<br>
+	 * : 0x31 to 0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
 	 */
 	protected abstract byte[] getBathroomDryerOperationSetting();
-	private final byte[] _getBathroomDryerOperationSetting(byte epc) {
-		byte[] edt = getBathroomDryerOperationSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Bathroom dryer operation setting<br>
+	 * <br>
+	 * EPC : 0xB4<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic        : 0x41<br>
+	 * Standard          : 0x42<br>
+	 * Bathroom drying level<br>
+	 * : 0x31 to 0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidBathroomDryerOperationSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Cool air circulation level : 0x31 to 0x38<br><br>Name : Cool air circulator operation setting<br>EPC : 0xB5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Cool air circulator operation setting<br>
+	 * <br>
+	 * EPC : 0xB5<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic        : 0x41<br>
+	 * Standard          : 0x42<br>
+	 * Cool air circulation level<br>
+	 * : 0x31 to 0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setCoolAirCirculatorOperationSetting(byte[] edt) {return false;}
-	private final boolean _setCoolAirCirculatorOperationSetting(byte epc, byte[] edt) {
-		boolean success = setCoolAirCirculatorOperationSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Cool air circulation level : 0x31 to 0x38<br><br>Name : Cool air circulator operation setting<br>EPC : 0xB5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Cool air circulator operation setting<br>
+	 * <br>
+	 * EPC : 0xB5<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic        : 0x41<br>
+	 * Standard          : 0x42<br>
+	 * Cool air circulation level<br>
+	 * : 0x31 to 0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getCoolAirCirculatorOperationSetting() {return null;}
-	private final byte[] _getCoolAirCirculatorOperationSetting(byte epc) {
-		byte[] edt = getCoolAirCirculatorOperationSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Cool air circulator operation setting<br>
+	 * <br>
+	 * EPC : 0xB5<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic        : 0x41<br>
+	 * Standard          : 0x42<br>
+	 * Cool air circulation level<br>
+	 * : 0x31 to 0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidCoolAirCirculatorOperationSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Used to acquire the measured relative humidity of the bathroom.<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : Measured relative bathroom humidity<br>EPC : 0xBA<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Measured
+relative bathroom humidity<br>
+	 * <br>
+	 * EPC : 0xBA<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to acquire the measured relative humidity of the bathroom.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00 to 0x64 (0 to 100%)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : %<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getMeasuredRelativeBathroomHumidity() {return null;}
-	private final byte[] _getMeasuredRelativeBathroomHumidity(byte epc) {
-		byte[] edt = getMeasuredRelativeBathroomHumidity();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Measured
+relative bathroom humidity<br>
+	 * <br>
+	 * EPC : 0xBA<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to acquire the measured relative humidity of the bathroom.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00 to 0x64 (0 to 100%)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : %<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidMeasuredRelativeBathroomHumidity(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Used to acquire the measured temperature of the bathroom.<br><br>0x81 to 0x7D (.127 to �{125��)<br><br>Name : Measured bathroom temperature<br>EPC : 0xBB<br>Data Type : signed char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Measured bathroom temperature<br>
+	 * <br>
+	 * EPC : 0xBB<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to acquire the measured temperature of the bathroom.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x81 to 0x7D (.127 to �{125��)<br>
+	 * <br>
+	 * Data type : signed char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : ��<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getMeasuredBathroomTemperature() {return null;}
-	private final byte[] _getMeasuredBathroomTemperature(byte epc) {
-		byte[] edt = getMeasuredBathroomTemperature();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Measured bathroom temperature<br>
+	 * <br>
+	 * EPC : 0xBB<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to acquire the measured temperature of the bathroom.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x81 to 0x7D (.127 to �{125��)<br>
+	 * <br>
+	 * Data type : signed char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : ��<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidMeasuredBathroomTemperature(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br><br>Automatic: 0x41 Air flow rate level: 0x31 to 0x38<br><br>Name : Ventilation air flow rate setting<br>EPC : 0xC2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Ventilation air flow rate setting<br>
+	 * <br>
+	 * EPC : 0xC2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic: 0x41<br>
+	 * Air flow rate level: 0x31 to 0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setVentilationAirFlowRateSetting(byte[] edt) {return false;}
-	private final boolean _setVentilationAirFlowRateSetting(byte epc, byte[] edt) {
-		boolean success = setVentilationAirFlowRateSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br><br>Automatic: 0x41 Air flow rate level: 0x31 to 0x38<br><br>Name : Ventilation air flow rate setting<br>EPC : 0xC2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Ventilation air flow rate setting<br>
+	 * <br>
+	 * EPC : 0xC2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic: 0x41<br>
+	 * Air flow rate level: 0x31 to 0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getVentilationAirFlowRateSetting() {return null;}
-	private final byte[] _getVentilationAirFlowRateSetting(byte epc) {
-		byte[] edt = getVentilationAirFlowRateSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Ventilation air flow rate setting<br>
+	 * <br>
+	 * EPC : 0xC2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic: 0x41<br>
+	 * Air flow rate level: 0x31 to 0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidVentilationAirFlowRateSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Used to set the filter cleaning reminder sign status (lit/not lit) and to acquire the current setting.<br><br>Lit: 0x41 Not lit: 0x42<br><br>Name : Filter cleaning reminder sign setting<br>EPC : 0xCF<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Filter cleaning reminder sign setting<br>
+	 * <br>
+	 * EPC : 0xCF<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the filter cleaning reminder<br>
+	 * sign status (lit/not lit) and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Lit: 0x41<br>
+	 * Not lit: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setFilterCleaningReminderSignSetting(byte[] edt) {return false;}
-	private final boolean _setFilterCleaningReminderSignSetting(byte epc, byte[] edt) {
-		boolean success = setFilterCleaningReminderSignSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Used to set the filter cleaning reminder sign status (lit/not lit) and to acquire the current setting.<br><br>Lit: 0x41 Not lit: 0x42<br><br>Name : Filter cleaning reminder sign setting<br>EPC : 0xCF<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Filter cleaning reminder sign setting<br>
+	 * <br>
+	 * EPC : 0xCF<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the filter cleaning reminder<br>
+	 * sign status (lit/not lit) and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Lit: 0x41<br>
+	 * Not lit: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getFilterCleaningReminderSignSetting() {return null;}
-	private final byte[] _getFilterCleaningReminderSignSetting(byte epc) {
-		byte[] edt = getFilterCleaningReminderSignSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Filter cleaning reminder sign setting<br>
+	 * <br>
+	 * EPC : 0xCF<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the filter cleaning reminder<br>
+	 * sign status (lit/not lit) and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Lit: 0x41<br>
+	 * Not lit: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidFilterCleaningReminderSignSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Used to acquire the human body detection status.<br><br>Detected: 0x41 Not detected: 0x42<br><br>Name : Human body detection status<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Human body detection status<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to acquire the human body detection status.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Detected: 0x41<br>
+	 * Not detected: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getHumanBodyDetectionStatus() {return null;}
-	private final byte[] _getHumanBodyDetectionStatus(byte epc) {
-		byte[] edt = getHumanBodyDetectionStatus();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Human body detection status<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to acquire the human body detection status.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Detected: 0x41<br>
+	 * Not detected: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidHumanBodyDetectionStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Used to set the ON/OFF status of the ON timer-based reservation function and to acquire the current setting.<br><br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Name : �gON timer-based reservation�h setting 1<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : �gON timer-based reservation�h setting 1<br>
+	 * <br>
+	 * EPC : 0x90<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the ON/OFF status of the<br>
+	 * ON timer-based reservation function and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reservation function ON: 0x41<br>
+	 * Reservation function OFF: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setGonTimerBasedReservationHSetting1(byte[] edt) {return false;}
-	private final boolean _setGonTimerBasedReservationHSetting1(byte epc, byte[] edt) {
-		boolean success = setGonTimerBasedReservationHSetting1(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Used to set the ON/OFF status of the ON timer-based reservation function and to acquire the current setting.<br><br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Name : �gON timer-based reservation�h setting 1<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : �gON timer-based reservation�h setting 1<br>
+	 * <br>
+	 * EPC : 0x90<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the ON/OFF status of the<br>
+	 * ON timer-based reservation function and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reservation function ON: 0x41<br>
+	 * Reservation function OFF: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getGonTimerBasedReservationHSetting1() {return null;}
-	private final byte[] _getGonTimerBasedReservationHSetting1(byte epc) {
-		byte[] edt = getGonTimerBasedReservationHSetting1();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : �gON timer-based reservation�h setting 1<br>
+	 * <br>
+	 * EPC : 0x90<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the ON/OFF status of the<br>
+	 * ON timer-based reservation function and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reservation function ON: 0x41<br>
+	 * Reservation function OFF: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidGonTimerBasedReservationHSetting1(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br><br>Reservation function ON for the ventilation mode                      : 0x10 Reservation function ON for the bathroom pre-warmer mode : 0x20 Reservation function ON for the bathroom heater mode          : 0x30 Reservation function ON for the bathroom dryer mode            : 0x40 Reservation function ON for the cool air circulator mode       : 0x50 Reservation function OFF : 0x00<br><br>Name : �gON timer-based reservation�h setting 2<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : �gON timer-based reservation�h setting 2<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the ON/OFF status of the<br>
+	 * ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reservation function ON for the ventilation mode                      : 0x10<br>
+	 * Reservation function ON for the bathroom pre-warmer mode : 0x20<br>
+	 * Reservation function ON for the bathroom heater mode          : 0x30<br>
+	 * Reservation function ON for the bathroom dryer mode            : 0x40<br>
+	 * Reservation function ON for the cool air circulator mode       : 0x50<br>
+	 * Reservation function OFF : 0x00<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setGonTimerBasedReservationHSetting2(byte[] edt) {return false;}
-	private final boolean _setGonTimerBasedReservationHSetting2(byte epc, byte[] edt) {
-		boolean success = setGonTimerBasedReservationHSetting2(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br><br>Reservation function ON for the ventilation mode                      : 0x10 Reservation function ON for the bathroom pre-warmer mode : 0x20 Reservation function ON for the bathroom heater mode          : 0x30 Reservation function ON for the bathroom dryer mode            : 0x40 Reservation function ON for the cool air circulator mode       : 0x50 Reservation function OFF : 0x00<br><br>Name : �gON timer-based reservation�h setting 2<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : �gON timer-based reservation�h setting 2<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the ON/OFF status of the<br>
+	 * ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reservation function ON for the ventilation mode                      : 0x10<br>
+	 * Reservation function ON for the bathroom pre-warmer mode : 0x20<br>
+	 * Reservation function ON for the bathroom heater mode          : 0x30<br>
+	 * Reservation function ON for the bathroom dryer mode            : 0x40<br>
+	 * Reservation function ON for the cool air circulator mode       : 0x50<br>
+	 * Reservation function OFF : 0x00<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getGonTimerBasedReservationHSetting2() {return null;}
-	private final byte[] _getGonTimerBasedReservationHSetting2(byte epc) {
-		byte[] edt = getGonTimerBasedReservationHSetting2();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : �gON timer-based reservation�h setting 2<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the ON/OFF status of the<br>
+	 * ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reservation function ON for the ventilation mode                      : 0x10<br>
+	 * Reservation function ON for the bathroom pre-warmer mode : 0x20<br>
+	 * Reservation function ON for the bathroom heater mode          : 0x30<br>
+	 * Reservation function ON for the bathroom dryer mode            : 0x40<br>
+	 * Reservation function ON for the cool air circulator mode       : 0x50<br>
+	 * Reservation function OFF : 0x00<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidGonTimerBasedReservationHSetting2(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Used to set the time setting for the time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (time)<br>EPC : 0x91<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : ON timer setting
+(time)<br>
+	 * <br>
+	 * EPC : 0x91<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the time setting for the<br>
+	 * time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0 to 0x17: 0 to 0x3B<br>
+	 * (= 0 to 23): (= 0 to 59)<br>
+	 * <br>
+	 * Data type : unsigned char
+x2<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setOnTimerSettingTime(byte[] edt) {return false;}
-	private final boolean _setOnTimerSettingTime(byte epc, byte[] edt) {
-		boolean success = setOnTimerSettingTime(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Used to set the time setting for the time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (time)<br>EPC : 0x91<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : ON timer setting
+(time)<br>
+	 * <br>
+	 * EPC : 0x91<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the time setting for the<br>
+	 * time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0 to 0x17: 0 to 0x3B<br>
+	 * (= 0 to 23): (= 0 to 59)<br>
+	 * <br>
+	 * Data type : unsigned char
+x2<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getOnTimerSettingTime() {return null;}
-	private final byte[] _getOnTimerSettingTime(byte epc) {
-		byte[] edt = getOnTimerSettingTime();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : ON timer setting
+(time)<br>
+	 * <br>
+	 * EPC : 0x91<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the time setting for the<br>
+	 * time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0 to 0x17: 0 to 0x3B<br>
+	 * (= 0 to 23): (= 0 to 59)<br>
+	 * <br>
+	 * Data type : unsigned char
+x2<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidOnTimerSettingTime(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
+		return true;
 	}
 	/**
-	 * Used to set the relative time setting for the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (relative time)<br>EPC : 0x92<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : ON timer setting
+(relative time)<br>
+	 * <br>
+	 * EPC : 0x92<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the relative time setting for<br>
+	 * the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0 to 0x17: 0 to 0x3B<br>
+	 * (= 0 to 23): (= 0 to 59)<br>
+	 * <br>
+	 * Data type : unsigned char
+x2<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setOnTimerSettingRelativeTime(byte[] edt) {return false;}
-	private final boolean _setOnTimerSettingRelativeTime(byte epc, byte[] edt) {
-		boolean success = setOnTimerSettingRelativeTime(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Used to set the relative time setting for the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (relative time)<br>EPC : 0x92<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : ON timer setting
+(relative time)<br>
+	 * <br>
+	 * EPC : 0x92<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the relative time setting for<br>
+	 * the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0 to 0x17: 0 to 0x3B<br>
+	 * (= 0 to 23): (= 0 to 59)<br>
+	 * <br>
+	 * Data type : unsigned char
+x2<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getOnTimerSettingRelativeTime() {return null;}
-	private final byte[] _getOnTimerSettingRelativeTime(byte epc) {
-		byte[] edt = getOnTimerSettingRelativeTime();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : ON timer setting
+(relative time)<br>
+	 * <br>
+	 * EPC : 0x92<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the relative time setting for<br>
+	 * the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0 to 0x17: 0 to 0x3B<br>
+	 * (= 0 to 23): (= 0 to 59)<br>
+	 * <br>
+	 * Data type : unsigned char
+x2<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidOnTimerSettingRelativeTime(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
+		return true;
 	}
 	/**
-	 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br><br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Name : �gOFF timer-based reservation�h setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : �gOFF
+timer-based reservation�h setting<br>
+	 * <br>
+	 * EPC : 0x94<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reservation function ON: 0x41<br>
+	 * Reservation function OFF: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setGoffTimerBasedReservationHSetting(byte[] edt) {return false;}
-	private final boolean _setGoffTimerBasedReservationHSetting(byte epc, byte[] edt) {
-		boolean success = setGoffTimerBasedReservationHSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br><br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Name : �gOFF timer-based reservation�h setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : �gOFF
+timer-based reservation�h setting<br>
+	 * <br>
+	 * EPC : 0x94<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reservation function ON: 0x41<br>
+	 * Reservation function OFF: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getGoffTimerBasedReservationHSetting() {return null;}
-	private final byte[] _getGoffTimerBasedReservationHSetting(byte epc) {
-		byte[] edt = getGoffTimerBasedReservationHSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : �gOFF
+timer-based reservation�h setting<br>
+	 * <br>
+	 * EPC : 0x94<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reservation function ON: 0x41<br>
+	 * Reservation function OFF: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidGoffTimerBasedReservationHSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Used to set the time setting for the time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (time)<br>EPC : 0x95<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : OFF timer setting (time)<br>
+	 * <br>
+	 * EPC : 0x95<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the time setting for the<br>
+	 * time-based reservation function for the<br>
+	 * OFF timer (in the HH:MM format)<br>
+	 * and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0 to 0x17: 0 to 0x3B<br>
+	 * (= 0 to 23): (= 0 to 59)<br>
+	 * <br>
+	 * Data type : unsigned char
+x2<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setOffTimerSettingTime(byte[] edt) {return false;}
-	private final boolean _setOffTimerSettingTime(byte epc, byte[] edt) {
-		boolean success = setOffTimerSettingTime(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Used to set the time setting for the time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (time)<br>EPC : 0x95<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : OFF timer setting (time)<br>
+	 * <br>
+	 * EPC : 0x95<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the time setting for the<br>
+	 * time-based reservation function for the<br>
+	 * OFF timer (in the HH:MM format)<br>
+	 * and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0 to 0x17: 0 to 0x3B<br>
+	 * (= 0 to 23): (= 0 to 59)<br>
+	 * <br>
+	 * Data type : unsigned char
+x2<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getOffTimerSettingTime() {return null;}
-	private final byte[] _getOffTimerSettingTime(byte epc) {
-		byte[] edt = getOffTimerSettingTime();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : OFF timer setting (time)<br>
+	 * <br>
+	 * EPC : 0x95<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the time setting for the<br>
+	 * time-based reservation function for the<br>
+	 * OFF timer (in the HH:MM format)<br>
+	 * and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0 to 0x17: 0 to 0x3B<br>
+	 * (= 0 to 23): (= 0 to 59)<br>
+	 * <br>
+	 * Data type : unsigned char
+x2<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidOffTimerSettingTime(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
+		return true;
 	}
 	/**
-	 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (relative time)<br>EPC : 0x96<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : OFF timer setting (relative time)<br>
+	 * <br>
+	 * EPC : 0x96<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the<br>
+	 * current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0 to 0x17: 0 to 0x3B<br>
+	 * (= 0 to 23): (= 0 to 59)<br>
+	 * <br>
+	 * Data type : unsigned char
+x2<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setOffTimerSettingRelativeTime(byte[] edt) {return false;}
-	private final boolean _setOffTimerSettingRelativeTime(byte epc, byte[] edt) {
-		boolean success = setOffTimerSettingRelativeTime(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (relative time)<br>EPC : 0x96<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : OFF timer setting (relative time)<br>
+	 * <br>
+	 * EPC : 0x96<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the<br>
+	 * current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0 to 0x17: 0 to 0x3B<br>
+	 * (= 0 to 23): (= 0 to 59)<br>
+	 * <br>
+	 * Data type : unsigned char
+x2<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getOffTimerSettingRelativeTime() {return null;}
-	private final byte[] _getOffTimerSettingRelativeTime(byte epc) {
-		byte[] edt = getOffTimerSettingRelativeTime();
-		onInvokedGetMethod(epc, edt);
-		return edt;
-	}
-
-
-	@Override
-	protected void onReceiveSet(EchoFrame res, byte epc, byte pdc, byte[] edt) {
-		super.onReceiveSet(res, epc, pdc, edt);
-		switch(epc) {
-		case EPC_OPERATION_SETTING:
-			res.addProperty(epc, edt, _setOperationSetting(epc, edt));
-			break;
-		case EPC_VENTILATION_OPERATION_SETTING:
-			res.addProperty(epc, edt, _setVentilationOperationSetting(epc, edt));
-			break;
-		case EPC_BATHROOM_PRE_WARMER_OPERATION_SETTING:
-			res.addProperty(epc, edt, _setBathroomPreWarmerOperationSetting(epc, edt));
-			break;
-		case EPC_BATHROOM_HEATER_OPERATION_SETTING:
-			res.addProperty(epc, edt, _setBathroomHeaterOperationSetting(epc, edt));
-			break;
-		case EPC_BATHROOM_DRYER_OPERATION_SETTING:
-			res.addProperty(epc, edt, _setBathroomDryerOperationSetting(epc, edt));
-			break;
-		case EPC_COOL_AIR_CIRCULATOR_OPERATION_SETTING:
-			res.addProperty(epc, edt, _setCoolAirCirculatorOperationSetting(epc, edt));
-			break;
-		case EPC_VENTILATION_AIR_FLOW_RATE_SETTING:
-			res.addProperty(epc, edt, _setVentilationAirFlowRateSetting(epc, edt));
-			break;
-		case EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING:
-			res.addProperty(epc, edt, _setFilterCleaningReminderSignSetting(epc, edt));
-			break;
-		case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1:
-			res.addProperty(epc, edt, _setGonTimerBasedReservationHSetting1(epc, edt));
-			break;
-		case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2:
-			res.addProperty(epc, edt, _setGonTimerBasedReservationHSetting2(epc, edt));
-			break;
-		case EPC_ON_TIMER_SETTING_TIME:
-			res.addProperty(epc, edt, _setOnTimerSettingTime(epc, edt));
-			break;
-		case EPC_ON_TIMER_SETTING_RELATIVE_TIME:
-			res.addProperty(epc, edt, _setOnTimerSettingRelativeTime(epc, edt));
-			break;
-		case EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING:
-			res.addProperty(epc, edt, _setGoffTimerBasedReservationHSetting(epc, edt));
-			break;
-		case EPC_OFF_TIMER_SETTING_TIME:
-			res.addProperty(epc, edt, _setOffTimerSettingTime(epc, edt));
-			break;
-		case EPC_OFF_TIMER_SETTING_RELATIVE_TIME:
-			res.addProperty(epc, edt, _setOffTimerSettingRelativeTime(epc, edt));
-			break;
-
-		}
+	/**
+	 * Property name : OFF timer setting (relative time)<br>
+	 * <br>
+	 * EPC : 0x96<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the<br>
+	 * current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0 to 0x17: 0 to 0x3B<br>
+	 * (= 0 to 23): (= 0 to 59)<br>
+	 * <br>
+	 * Data type : unsigned char
+x2<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidOffTimerSettingRelativeTime(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
+		return true;
 	}
 
 	@Override
-	protected void onReceiveGet(EchoFrame res, byte epc) {
-		super.onReceiveGet(res, epc);
-		byte[] edt;
-		switch(epc) {
-		case EPC_OPERATION_SETTING:
-			edt = _getOperationSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_VENTILATION_OPERATION_SETTING:
-			edt = _getVentilationOperationSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_BATHROOM_PRE_WARMER_OPERATION_SETTING:
-			edt = _getBathroomPreWarmerOperationSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_BATHROOM_HEATER_OPERATION_SETTING:
-			edt = _getBathroomHeaterOperationSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_BATHROOM_DRYER_OPERATION_SETTING:
-			edt = _getBathroomDryerOperationSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_COOL_AIR_CIRCULATOR_OPERATION_SETTING:
-			edt = _getCoolAirCirculatorOperationSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_MEASURED_RELATIVE_BATHROOM_HUMIDITY:
-			edt = _getMeasuredRelativeBathroomHumidity(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_MEASURED_BATHROOM_TEMPERATURE:
-			edt = _getMeasuredBathroomTemperature(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_VENTILATION_AIR_FLOW_RATE_SETTING:
-			edt = _getVentilationAirFlowRateSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING:
-			edt = _getFilterCleaningReminderSignSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_HUMAN_BODY_DETECTION_STATUS:
-			edt = _getHumanBodyDetectionStatus(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1:
-			edt = _getGonTimerBasedReservationHSetting1(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2:
-			edt = _getGonTimerBasedReservationHSetting2(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_ON_TIMER_SETTING_TIME:
-			edt = _getOnTimerSettingTime(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			break;
-		case EPC_ON_TIMER_SETTING_RELATIVE_TIME:
-			edt = _getOnTimerSettingRelativeTime(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			break;
-		case EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING:
-			edt = _getGoffTimerBasedReservationHSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_OFF_TIMER_SETTING_TIME:
-			edt = _getOffTimerSettingTime(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			break;
-		case EPC_OFF_TIMER_SETTING_RELATIVE_TIME:
-			edt = _getOffTimerSettingRelativeTime(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			break;
+	protected boolean setProperty(EchoProperty property) {
+		boolean success = super.setProperty(property);
+		if(success) return success;
 
+		switch(property.epc) {
+		case EPC_OPERATION_SETTING : return setOperationSetting(property.edt);
+		case EPC_VENTILATION_OPERATION_SETTING : return setVentilationOperationSetting(property.edt);
+		case EPC_BATHROOM_PRE_WARMER_OPERATION_SETTING : return setBathroomPreWarmerOperationSetting(property.edt);
+		case EPC_BATHROOM_HEATER_OPERATION_SETTING : return setBathroomHeaterOperationSetting(property.edt);
+		case EPC_BATHROOM_DRYER_OPERATION_SETTING : return setBathroomDryerOperationSetting(property.edt);
+		case EPC_COOL_AIR_CIRCULATOR_OPERATION_SETTING : return setCoolAirCirculatorOperationSetting(property.edt);
+		case EPC_VENTILATION_AIR_FLOW_RATE_SETTING : return setVentilationAirFlowRateSetting(property.edt);
+		case EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING : return setFilterCleaningReminderSignSetting(property.edt);
+		case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1 : return setGonTimerBasedReservationHSetting1(property.edt);
+		case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2 : return setGonTimerBasedReservationHSetting2(property.edt);
+		case EPC_ON_TIMER_SETTING_TIME : return setOnTimerSettingTime(property.edt);
+		case EPC_ON_TIMER_SETTING_RELATIVE_TIME : return setOnTimerSettingRelativeTime(property.edt);
+		case EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING : return setGoffTimerBasedReservationHSetting(property.edt);
+		case EPC_OFF_TIMER_SETTING_TIME : return setOffTimerSettingTime(property.edt);
+		case EPC_OFF_TIMER_SETTING_RELATIVE_TIME : return setOffTimerSettingRelativeTime(property.edt);
+		default : return false;
 		}
 	}
 	
 	@Override
-	public Setter set() {
-		return new Setter(ESV_SETI);
+	protected byte[] getProperty(byte epc) {
+		byte[] edt = super.getProperty(epc);
+		if(edt != null) return edt;
+		
+		switch(epc) {
+		case EPC_OPERATION_SETTING : return getOperationSetting();
+		case EPC_VENTILATION_OPERATION_SETTING : return getVentilationOperationSetting();
+		case EPC_BATHROOM_PRE_WARMER_OPERATION_SETTING : return getBathroomPreWarmerOperationSetting();
+		case EPC_BATHROOM_HEATER_OPERATION_SETTING : return getBathroomHeaterOperationSetting();
+		case EPC_BATHROOM_DRYER_OPERATION_SETTING : return getBathroomDryerOperationSetting();
+		case EPC_COOL_AIR_CIRCULATOR_OPERATION_SETTING : return getCoolAirCirculatorOperationSetting();
+		case EPC_MEASURED_RELATIVE_BATHROOM_HUMIDITY : return getMeasuredRelativeBathroomHumidity();
+		case EPC_MEASURED_BATHROOM_TEMPERATURE : return getMeasuredBathroomTemperature();
+		case EPC_VENTILATION_AIR_FLOW_RATE_SETTING : return getVentilationAirFlowRateSetting();
+		case EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING : return getFilterCleaningReminderSignSetting();
+		case EPC_HUMAN_BODY_DETECTION_STATUS : return getHumanBodyDetectionStatus();
+		case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1 : return getGonTimerBasedReservationHSetting1();
+		case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2 : return getGonTimerBasedReservationHSetting2();
+		case EPC_ON_TIMER_SETTING_TIME : return getOnTimerSettingTime();
+		case EPC_ON_TIMER_SETTING_RELATIVE_TIME : return getOnTimerSettingRelativeTime();
+		case EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING : return getGoffTimerBasedReservationHSetting();
+		case EPC_OFF_TIMER_SETTING_TIME : return getOffTimerSettingTime();
+		case EPC_OFF_TIMER_SETTING_RELATIVE_TIME : return getOffTimerSettingRelativeTime();
+		default : return null;
+		}
 	}
 
 	@Override
-	public Setter setC() {
-		return new Setter(ESV_SETC);
+	protected boolean isValidProperty(EchoProperty property) {
+		boolean valid = super.isValidProperty(property);
+		if(valid) return valid;
+		
+		switch(property.epc) {
+		case EPC_OPERATION_SETTING : return isValidOperationSetting(property.edt);
+		case EPC_VENTILATION_OPERATION_SETTING : return isValidVentilationOperationSetting(property.edt);
+		case EPC_BATHROOM_PRE_WARMER_OPERATION_SETTING : return isValidBathroomPreWarmerOperationSetting(property.edt);
+		case EPC_BATHROOM_HEATER_OPERATION_SETTING : return isValidBathroomHeaterOperationSetting(property.edt);
+		case EPC_BATHROOM_DRYER_OPERATION_SETTING : return isValidBathroomDryerOperationSetting(property.edt);
+		case EPC_COOL_AIR_CIRCULATOR_OPERATION_SETTING : return isValidCoolAirCirculatorOperationSetting(property.edt);
+		case EPC_MEASURED_RELATIVE_BATHROOM_HUMIDITY : return isValidMeasuredRelativeBathroomHumidity(property.edt);
+		case EPC_MEASURED_BATHROOM_TEMPERATURE : return isValidMeasuredBathroomTemperature(property.edt);
+		case EPC_VENTILATION_AIR_FLOW_RATE_SETTING : return isValidVentilationAirFlowRateSetting(property.edt);
+		case EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING : return isValidFilterCleaningReminderSignSetting(property.edt);
+		case EPC_HUMAN_BODY_DETECTION_STATUS : return isValidHumanBodyDetectionStatus(property.edt);
+		case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1 : return isValidGonTimerBasedReservationHSetting1(property.edt);
+		case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2 : return isValidGonTimerBasedReservationHSetting2(property.edt);
+		case EPC_ON_TIMER_SETTING_TIME : return isValidOnTimerSettingTime(property.edt);
+		case EPC_ON_TIMER_SETTING_RELATIVE_TIME : return isValidOnTimerSettingRelativeTime(property.edt);
+		case EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING : return isValidGoffTimerBasedReservationHSetting(property.edt);
+		case EPC_OFF_TIMER_SETTING_TIME : return isValidOffTimerSettingTime(property.edt);
+		case EPC_OFF_TIMER_SETTING_RELATIVE_TIME : return isValidOffTimerSettingRelativeTime(property.edt);
+		default : return false;
+		}
+	}
+
+	@Override
+	public Setter set() {
+		return new Setter(this, true, false);
+	}
+
+	@Override
+	public Setter set(boolean responseRequired) {
+		return new Setter(this, responseRequired, false);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter();
+		return new Getter(this, false);
 	}
 
 	@Override
 	public Informer inform() {
-		return new InformerImpl();
+		return new Informer(this, !isProxy());
+	}
+	
+	@Override
+	protected Informer inform(boolean multicast) {
+		return new Informer(this, multicast);
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
-			switch(epc) {
-			case EPC_OPERATION_SETTING:
-				_onSetOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_VENTILATION_OPERATION_SETTING:
-				_onSetVentilationOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_BATHROOM_PRE_WARMER_OPERATION_SETTING:
-				_onSetBathroomPreWarmerOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_BATHROOM_HEATER_OPERATION_SETTING:
-				_onSetBathroomHeaterOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_BATHROOM_DRYER_OPERATION_SETTING:
-				_onSetBathroomDryerOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_COOL_AIR_CIRCULATOR_OPERATION_SETTING:
-				_onSetCoolAirCirculatorOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_VENTILATION_AIR_FLOW_RATE_SETTING:
-				_onSetVentilationAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING:
-				_onSetFilterCleaningReminderSignSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1:
-				_onSetGonTimerBasedReservationHSetting1(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2:
-				_onSetGonTimerBasedReservationHSetting2(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_ON_TIMER_SETTING_TIME:
-				_onSetOnTimerSettingTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_ON_TIMER_SETTING_RELATIVE_TIME:
-				_onSetOnTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING:
-				_onSetGoffTimerBasedReservationHSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_OFF_TIMER_SETTING_TIME:
-				_onSetOffTimerSettingTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_OFF_TIMER_SETTING_RELATIVE_TIME:
-				_onSetOffTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-
+		protected boolean onSetProperty(EchoObject eoj, short tid, byte esv,
+				EchoProperty property, boolean success) {
+			boolean ret = super.onSetProperty(eoj, tid, esv, property, success);
+			if(ret) return true;
+			
+			switch(property.epc) {
+			case EPC_OPERATION_SETTING : 
+				onSetOperationSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_VENTILATION_OPERATION_SETTING : 
+				onSetVentilationOperationSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_BATHROOM_PRE_WARMER_OPERATION_SETTING : 
+				onSetBathroomPreWarmerOperationSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_BATHROOM_HEATER_OPERATION_SETTING : 
+				onSetBathroomHeaterOperationSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_BATHROOM_DRYER_OPERATION_SETTING : 
+				onSetBathroomDryerOperationSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_COOL_AIR_CIRCULATOR_OPERATION_SETTING : 
+				onSetCoolAirCirculatorOperationSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_VENTILATION_AIR_FLOW_RATE_SETTING : 
+				onSetVentilationAirFlowRateSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING : 
+				onSetFilterCleaningReminderSignSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1 : 
+				onSetGonTimerBasedReservationHSetting1(eoj, tid, esv, property, success);
+				return true;
+			case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2 : 
+				onSetGonTimerBasedReservationHSetting2(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ON_TIMER_SETTING_TIME : 
+				onSetOnTimerSettingTime(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ON_TIMER_SETTING_RELATIVE_TIME : 
+				onSetOnTimerSettingRelativeTime(eoj, tid, esv, property, success);
+				return true;
+			case EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING : 
+				onSetGoffTimerBasedReservationHSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_OFF_TIMER_SETTING_TIME : 
+				onSetOffTimerSettingTime(eoj, tid, esv, property, success);
+				return true;
+			case EPC_OFF_TIMER_SETTING_RELATIVE_TIME : 
+				onSetOffTimerSettingRelativeTime(eoj, tid, esv, property, success);
+				return true;
+			default :
+				return false;
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
-			switch(epc) {
-			case EPC_OPERATION_SETTING:
-				_onGetOperationSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_VENTILATION_OPERATION_SETTING:
-				_onGetVentilationOperationSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_BATHROOM_PRE_WARMER_OPERATION_SETTING:
-				_onGetBathroomPreWarmerOperationSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_BATHROOM_HEATER_OPERATION_SETTING:
-				_onGetBathroomHeaterOperationSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_BATHROOM_DRYER_OPERATION_SETTING:
-				_onGetBathroomDryerOperationSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_COOL_AIR_CIRCULATOR_OPERATION_SETTING:
-				_onGetCoolAirCirculatorOperationSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_MEASURED_RELATIVE_BATHROOM_HUMIDITY:
-				_onGetMeasuredRelativeBathroomHumidity(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_MEASURED_BATHROOM_TEMPERATURE:
-				_onGetMeasuredBathroomTemperature(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_VENTILATION_AIR_FLOW_RATE_SETTING:
-				_onGetVentilationAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING:
-				_onGetFilterCleaningReminderSignSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_HUMAN_BODY_DETECTION_STATUS:
-				_onGetHumanBodyDetectionStatus(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1:
-				_onGetGonTimerBasedReservationHSetting1(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2:
-				_onGetGonTimerBasedReservationHSetting2(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_ON_TIMER_SETTING_TIME:
-				_onGetOnTimerSettingTime(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_ON_TIMER_SETTING_RELATIVE_TIME:
-				_onGetOnTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING:
-				_onGetGoffTimerBasedReservationHSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_OFF_TIMER_SETTING_TIME:
-				_onGetOffTimerSettingTime(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_OFF_TIMER_SETTING_RELATIVE_TIME:
-				_onGetOffTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt);
-				break;
-
+		protected boolean onGetProperty(EchoObject eoj, short tid, byte esv,
+				EchoProperty property, boolean success) {
+			boolean ret = super.onGetProperty(eoj, tid, esv, property, success);
+			if(ret) return true;
+			
+			switch(property.epc) {
+			case EPC_OPERATION_SETTING : 
+				onGetOperationSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_VENTILATION_OPERATION_SETTING : 
+				onGetVentilationOperationSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_BATHROOM_PRE_WARMER_OPERATION_SETTING : 
+				onGetBathroomPreWarmerOperationSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_BATHROOM_HEATER_OPERATION_SETTING : 
+				onGetBathroomHeaterOperationSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_BATHROOM_DRYER_OPERATION_SETTING : 
+				onGetBathroomDryerOperationSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_COOL_AIR_CIRCULATOR_OPERATION_SETTING : 
+				onGetCoolAirCirculatorOperationSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASURED_RELATIVE_BATHROOM_HUMIDITY : 
+				onGetMeasuredRelativeBathroomHumidity(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASURED_BATHROOM_TEMPERATURE : 
+				onGetMeasuredBathroomTemperature(eoj, tid, esv, property, success);
+				return true;
+			case EPC_VENTILATION_AIR_FLOW_RATE_SETTING : 
+				onGetVentilationAirFlowRateSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING : 
+				onGetFilterCleaningReminderSignSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_HUMAN_BODY_DETECTION_STATUS : 
+				onGetHumanBodyDetectionStatus(eoj, tid, esv, property, success);
+				return true;
+			case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1 : 
+				onGetGonTimerBasedReservationHSetting1(eoj, tid, esv, property, success);
+				return true;
+			case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2 : 
+				onGetGonTimerBasedReservationHSetting2(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ON_TIMER_SETTING_TIME : 
+				onGetOnTimerSettingTime(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ON_TIMER_SETTING_RELATIVE_TIME : 
+				onGetOnTimerSettingRelativeTime(eoj, tid, esv, property, success);
+				return true;
+			case EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING : 
+				onGetGoffTimerBasedReservationHSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_OFF_TIMER_SETTING_TIME : 
+				onGetOffTimerSettingTime(eoj, tid, esv, property, success);
+				return true;
+			case EPC_OFF_TIMER_SETTING_RELATIVE_TIME : 
+				onGetOffTimerSettingRelativeTime(eoj, tid, esv, property, success);
+				return true;
+			default :
+				return false;
 			}
 		}
 		
 		/**
-		 * Used to set the operation mode (ventilation mode, bathroom pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br><br>Ventilation operation             : 0x10 Bathroom pre-warmer operation : 0x20 Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00<br><br>Name : Operation setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Operation setting<br>
+		 * <br>
+		 * EPC : 0xB0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the operation mode<br>
+		 * (ventilation mode, bathroom<br>
+		 * pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Ventilation operation             : 0x10<br>
+		 * Bathroom pre-warmer operation :<br>
+		 * 0x20<br>
+		 * Bathroom heater operation   : 0x30<br>
+		 * Bathroom dryer operation      : 0x40<br>
+		 * Cool air circulator operation : 0x50<br>
+		 * Stop                                           :0x00<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
-		protected void onSetOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetOperationSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetOperationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the operation mode (ventilation mode, bathroom pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br><br>Ventilation operation             : 0x10 Bathroom pre-warmer operation : 0x20 Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00<br><br>Name : Operation setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Operation setting<br>
+		 * <br>
+		 * EPC : 0xB0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the operation mode<br>
+		 * (ventilation mode, bathroom<br>
+		 * pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Ventilation operation             : 0x10<br>
+		 * Bathroom pre-warmer operation :<br>
+		 * 0x20<br>
+		 * Bathroom heater operation   : 0x30<br>
+		 * Bathroom dryer operation      : 0x40<br>
+		 * Cool air circulator operation : 0x50<br>
+		 * Stop                                           :0x00<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
-		protected void onGetOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetOperationSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetOperationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Air flow rate level    : 0x31 to 0x38<br><br>Name : Ventilation operation setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Ventilation operation setting<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic        : 0x41<br>
+		 * Standard          : 0x42<br>
+		 * Air flow rate level    : 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetVentilationOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetVentilationOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetVentilationOperationSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetVentilationOperationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Air flow rate level    : 0x31 to 0x38<br><br>Name : Ventilation operation setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Ventilation operation setting<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic        : 0x41<br>
+		 * Standard          : 0x42<br>
+		 * Air flow rate level    : 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetVentilationOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetVentilationOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetVentilationOperationSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetVentilationOperationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Bathroom pre-warming level : 0x31 to 0x38<br><br>Name : Bathroom pre-warmer operation setting<br>EPC : 0xB2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Bathroom pre-warmer operation setting<br>
+		 * <br>
+		 * EPC : 0xB2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic        : 0x41<br>
+		 * Standard          : 0x42<br>
+		 * Bathroom pre-warming level<br>
+		 * : 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
-		protected void onSetBathroomPreWarmerOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetBathroomPreWarmerOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetBathroomPreWarmerOperationSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetBathroomPreWarmerOperationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Bathroom pre-warming level : 0x31 to 0x38<br><br>Name : Bathroom pre-warmer operation setting<br>EPC : 0xB2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Bathroom pre-warmer operation setting<br>
+		 * <br>
+		 * EPC : 0xB2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic        : 0x41<br>
+		 * Standard          : 0x42<br>
+		 * Bathroom pre-warming level<br>
+		 * : 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
-		protected void onGetBathroomPreWarmerOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetBathroomPreWarmerOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetBathroomPreWarmerOperationSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetBathroomPreWarmerOperationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Bathroom heating level : 0x31 to 0x38<br><br>Name : Bathroom heater operation setting<br>EPC : 0xB3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Bathroom heater operation setting<br>
+		 * <br>
+		 * EPC : 0xB3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic        : 0x41<br>
+		 * Standard          : 0x42<br>
+		 * Bathroom heating level<br>
+		 * : 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetBathroomHeaterOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetBathroomHeaterOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetBathroomHeaterOperationSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetBathroomHeaterOperationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Bathroom heating level : 0x31 to 0x38<br><br>Name : Bathroom heater operation setting<br>EPC : 0xB3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Bathroom heater operation setting<br>
+		 * <br>
+		 * EPC : 0xB3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic        : 0x41<br>
+		 * Standard          : 0x42<br>
+		 * Bathroom heating level<br>
+		 * : 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetBathroomHeaterOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetBathroomHeaterOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetBathroomHeaterOperationSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetBathroomHeaterOperationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Bathroom drying level : 0x31 to 0x38<br><br>Name : Bathroom dryer operation setting<br>EPC : 0xB4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Bathroom dryer operation setting<br>
+		 * <br>
+		 * EPC : 0xB4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic        : 0x41<br>
+		 * Standard          : 0x42<br>
+		 * Bathroom drying level<br>
+		 * : 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
-		protected void onSetBathroomDryerOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetBathroomDryerOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetBathroomDryerOperationSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetBathroomDryerOperationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Bathroom drying level : 0x31 to 0x38<br><br>Name : Bathroom dryer operation setting<br>EPC : 0xB4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Bathroom dryer operation setting<br>
+		 * <br>
+		 * EPC : 0xB4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic        : 0x41<br>
+		 * Standard          : 0x42<br>
+		 * Bathroom drying level<br>
+		 * : 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
-		protected void onGetBathroomDryerOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetBathroomDryerOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetBathroomDryerOperationSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetBathroomDryerOperationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Cool air circulation level : 0x31 to 0x38<br><br>Name : Cool air circulator operation setting<br>EPC : 0xB5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Cool air circulator operation setting<br>
+		 * <br>
+		 * EPC : 0xB5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic        : 0x41<br>
+		 * Standard          : 0x42<br>
+		 * Cool air circulation level<br>
+		 * : 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetCoolAirCirculatorOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetCoolAirCirculatorOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetCoolAirCirculatorOperationSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetCoolAirCirculatorOperationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Cool air circulation level : 0x31 to 0x38<br><br>Name : Cool air circulator operation setting<br>EPC : 0xB5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Cool air circulator operation setting<br>
+		 * <br>
+		 * EPC : 0xB5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic        : 0x41<br>
+		 * Standard          : 0x42<br>
+		 * Cool air circulation level<br>
+		 * : 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetCoolAirCirculatorOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetCoolAirCirculatorOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetCoolAirCirculatorOperationSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetCoolAirCirculatorOperationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to acquire the measured relative humidity of the bathroom.<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : Measured relative bathroom humidity<br>EPC : 0xBA<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Measured
+relative bathroom humidity<br>
+		 * <br>
+		 * EPC : 0xBA<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to acquire the measured relative humidity of the bathroom.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetMeasuredRelativeBathroomHumidity(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetMeasuredRelativeBathroomHumidity(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetMeasuredRelativeBathroomHumidity(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetMeasuredRelativeBathroomHumidity(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to acquire the measured temperature of the bathroom.<br><br>0x81 to 0x7D (.127 to �{125��)<br><br>Name : Measured bathroom temperature<br>EPC : 0xBB<br>Data Type : signed char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Measured bathroom temperature<br>
+		 * <br>
+		 * EPC : 0xBB<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to acquire the measured temperature of the bathroom.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x81 to 0x7D (.127 to �{125��)<br>
+		 * <br>
+		 * Data type : signed char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : ��<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetMeasuredBathroomTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetMeasuredBathroomTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetMeasuredBathroomTemperature(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetMeasuredBathroomTemperature(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br><br>Automatic: 0x41 Air flow rate level: 0x31 to 0x38<br><br>Name : Ventilation air flow rate setting<br>EPC : 0xC2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Ventilation air flow rate setting<br>
+		 * <br>
+		 * EPC : 0xC2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic: 0x41<br>
+		 * Air flow rate level: 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetVentilationAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetVentilationAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetVentilationAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetVentilationAirFlowRateSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br><br>Automatic: 0x41 Air flow rate level: 0x31 to 0x38<br><br>Name : Ventilation air flow rate setting<br>EPC : 0xC2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Ventilation air flow rate setting<br>
+		 * <br>
+		 * EPC : 0xC2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic: 0x41<br>
+		 * Air flow rate level: 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetVentilationAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetVentilationAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetVentilationAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetVentilationAirFlowRateSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the filter cleaning reminder sign status (lit/not lit) and to acquire the current setting.<br><br>Lit: 0x41 Not lit: 0x42<br><br>Name : Filter cleaning reminder sign setting<br>EPC : 0xCF<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Filter cleaning reminder sign setting<br>
+		 * <br>
+		 * EPC : 0xCF<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the filter cleaning reminder<br>
+		 * sign status (lit/not lit) and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Lit: 0x41<br>
+		 * Not lit: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetFilterCleaningReminderSignSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetFilterCleaningReminderSignSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetFilterCleaningReminderSignSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetFilterCleaningReminderSignSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the filter cleaning reminder sign status (lit/not lit) and to acquire the current setting.<br><br>Lit: 0x41 Not lit: 0x42<br><br>Name : Filter cleaning reminder sign setting<br>EPC : 0xCF<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Filter cleaning reminder sign setting<br>
+		 * <br>
+		 * EPC : 0xCF<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the filter cleaning reminder<br>
+		 * sign status (lit/not lit) and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Lit: 0x41<br>
+		 * Not lit: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetFilterCleaningReminderSignSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetFilterCleaningReminderSignSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetFilterCleaningReminderSignSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetFilterCleaningReminderSignSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to acquire the human body detection status.<br><br>Detected: 0x41 Not detected: 0x42<br><br>Name : Human body detection status<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Human body detection status<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to acquire the human body detection status.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Detected: 0x41<br>
+		 * Not detected: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetHumanBodyDetectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetHumanBodyDetectionStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetHumanBodyDetectionStatus(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetHumanBodyDetectionStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the ON/OFF status of the ON timer-based reservation function and to acquire the current setting.<br><br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Name : �gON timer-based reservation�h setting 1<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : �gON timer-based reservation�h setting 1<br>
+		 * <br>
+		 * EPC : 0x90<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the ON/OFF status of the<br>
+		 * ON timer-based reservation function and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation function ON: 0x41<br>
+		 * Reservation function OFF: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetGonTimerBasedReservationHSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetGonTimerBasedReservationHSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetGonTimerBasedReservationHSetting1(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetGonTimerBasedReservationHSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the ON/OFF status of the ON timer-based reservation function and to acquire the current setting.<br><br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Name : �gON timer-based reservation�h setting 1<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : �gON timer-based reservation�h setting 1<br>
+		 * <br>
+		 * EPC : 0x90<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the ON/OFF status of the<br>
+		 * ON timer-based reservation function and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation function ON: 0x41<br>
+		 * Reservation function OFF: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetGonTimerBasedReservationHSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetGonTimerBasedReservationHSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetGonTimerBasedReservationHSetting1(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetGonTimerBasedReservationHSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br><br>Reservation function ON for the ventilation mode                      : 0x10 Reservation function ON for the bathroom pre-warmer mode : 0x20 Reservation function ON for the bathroom heater mode          : 0x30 Reservation function ON for the bathroom dryer mode            : 0x40 Reservation function ON for the cool air circulator mode       : 0x50 Reservation function OFF : 0x00<br><br>Name : �gON timer-based reservation�h setting 2<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : �gON timer-based reservation�h setting 2<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the ON/OFF status of the<br>
+		 * ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation function ON for the ventilation mode                      : 0x10<br>
+		 * Reservation function ON for the bathroom pre-warmer mode : 0x20<br>
+		 * Reservation function ON for the bathroom heater mode          : 0x30<br>
+		 * Reservation function ON for the bathroom dryer mode            : 0x40<br>
+		 * Reservation function ON for the cool air circulator mode       : 0x50<br>
+		 * Reservation function OFF : 0x00<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetGonTimerBasedReservationHSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetGonTimerBasedReservationHSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetGonTimerBasedReservationHSetting2(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetGonTimerBasedReservationHSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br><br>Reservation function ON for the ventilation mode                      : 0x10 Reservation function ON for the bathroom pre-warmer mode : 0x20 Reservation function ON for the bathroom heater mode          : 0x30 Reservation function ON for the bathroom dryer mode            : 0x40 Reservation function ON for the cool air circulator mode       : 0x50 Reservation function OFF : 0x00<br><br>Name : �gON timer-based reservation�h setting 2<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : �gON timer-based reservation�h setting 2<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the ON/OFF status of the<br>
+		 * ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation function ON for the ventilation mode                      : 0x10<br>
+		 * Reservation function ON for the bathroom pre-warmer mode : 0x20<br>
+		 * Reservation function ON for the bathroom heater mode          : 0x30<br>
+		 * Reservation function ON for the bathroom dryer mode            : 0x40<br>
+		 * Reservation function ON for the cool air circulator mode       : 0x50<br>
+		 * Reservation function OFF : 0x00<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetGonTimerBasedReservationHSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetGonTimerBasedReservationHSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetGonTimerBasedReservationHSetting2(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetGonTimerBasedReservationHSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the time setting for the time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (time)<br>EPC : 0x91<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer setting
+(time)<br>
+		 * <br>
+		 * EPC : 0x91<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the time setting for the<br>
+		 * time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetOnTimerSettingTime(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the time setting for the time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (time)<br>EPC : 0x91<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer setting
+(time)<br>
+		 * <br>
+		 * EPC : 0x91<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the time setting for the<br>
+		 * time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetOnTimerSettingTime(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the relative time setting for the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (relative time)<br>EPC : 0x92<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer setting
+(relative time)<br>
+		 * <br>
+		 * EPC : 0x92<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the relative time setting for<br>
+		 * the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetOnTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the relative time setting for the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (relative time)<br>EPC : 0x92<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer setting
+(relative time)<br>
+		 * <br>
+		 * EPC : 0x92<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the relative time setting for<br>
+		 * the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetOnTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br><br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Name : �gOFF timer-based reservation�h setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : �gOFF
+timer-based reservation�h setting<br>
+		 * <br>
+		 * EPC : 0x94<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation function ON: 0x41<br>
+		 * Reservation function OFF: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetGoffTimerBasedReservationHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetGoffTimerBasedReservationHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetGoffTimerBasedReservationHSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetGoffTimerBasedReservationHSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br><br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Name : �gOFF timer-based reservation�h setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : �gOFF
+timer-based reservation�h setting<br>
+		 * <br>
+		 * EPC : 0x94<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation function ON: 0x41<br>
+		 * Reservation function OFF: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetGoffTimerBasedReservationHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetGoffTimerBasedReservationHSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetGoffTimerBasedReservationHSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetGoffTimerBasedReservationHSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the time setting for the time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (time)<br>EPC : 0x95<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : OFF timer setting (time)<br>
+		 * <br>
+		 * EPC : 0x95<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the time setting for the<br>
+		 * time-based reservation function for the<br>
+		 * OFF timer (in the HH:MM format)<br>
+		 * and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetOffTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetOffTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetOffTimerSettingTime(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetOffTimerSettingTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the time setting for the time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (time)<br>EPC : 0x95<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : OFF timer setting (time)<br>
+		 * <br>
+		 * EPC : 0x95<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the time setting for the<br>
+		 * time-based reservation function for the<br>
+		 * OFF timer (in the HH:MM format)<br>
+		 * and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetOffTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetOffTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetOffTimerSettingTime(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetOffTimerSettingTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (relative time)<br>EPC : 0x96<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : OFF timer setting (relative time)<br>
+		 * <br>
+		 * EPC : 0x96<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the<br>
+		 * current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetOffTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetOffTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetOffTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetOffTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (relative time)<br>EPC : 0x96<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : OFF timer setting (relative time)<br>
+		 * <br>
+		 * EPC : 0x96<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the<br>
+		 * current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetOffTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetOffTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetOffTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
-
+		protected void onGetOffTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 	}
-	
-	public class Setter extends DeviceObject.Setter {
-		public Setter(byte esv) {
-			super(esv);
-		}
 
+	public static class Setter extends DeviceObject.Setter {
+		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
+			super(eoj, responseRequired, multicast);
+		}
+		
 		@Override
-		public Setter reqSet(byte epc, byte[] edt) {
-			return (Setter)super.reqSet(epc, edt);
+		public Setter reqSetProperty(byte epc, byte[] edt) {
+			return (Setter)super.reqSetProperty(epc, edt);
 		}
 		
 		@Override
@@ -936,116 +2645,460 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 		public Setter reqSetPowerLimitSetting(byte[] edt) {
 			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
-
+		
 		/**
-		 * Used to set the operation mode (ventilation mode, bathroom pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br><br>Ventilation operation             : 0x10 Bathroom pre-warmer operation : 0x20 Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00<br><br>Name : Operation setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Operation setting<br>
+		 * <br>
+		 * EPC : 0xB0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the operation mode<br>
+		 * (ventilation mode, bathroom<br>
+		 * pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Ventilation operation             : 0x10<br>
+		 * Bathroom pre-warmer operation :<br>
+		 * 0x20<br>
+		 * Bathroom heater operation   : 0x30<br>
+		 * Bathroom dryer operation      : 0x40<br>
+		 * Cool air circulator operation : 0x50<br>
+		 * Stop                                           :0x00<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		public Setter reqSetOperationSetting(byte[] edt) {
-			addProperty(EPC_OPERATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_OPERATION_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Air flow rate level    : 0x31 to 0x38<br><br>Name : Ventilation operation setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Ventilation operation setting<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic        : 0x41<br>
+		 * Standard          : 0x42<br>
+		 * Air flow rate level    : 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetVentilationOperationSetting(byte[] edt) {
-			addProperty(EPC_VENTILATION_OPERATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_VENTILATION_OPERATION_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Bathroom pre-warming level : 0x31 to 0x38<br><br>Name : Bathroom pre-warmer operation setting<br>EPC : 0xB2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Bathroom pre-warmer operation setting<br>
+		 * <br>
+		 * EPC : 0xB2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic        : 0x41<br>
+		 * Standard          : 0x42<br>
+		 * Bathroom pre-warming level<br>
+		 * : 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		public Setter reqSetBathroomPreWarmerOperationSetting(byte[] edt) {
-			addProperty(EPC_BATHROOM_PRE_WARMER_OPERATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_BATHROOM_PRE_WARMER_OPERATION_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Bathroom heating level : 0x31 to 0x38<br><br>Name : Bathroom heater operation setting<br>EPC : 0xB3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Bathroom heater operation setting<br>
+		 * <br>
+		 * EPC : 0xB3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic        : 0x41<br>
+		 * Standard          : 0x42<br>
+		 * Bathroom heating level<br>
+		 * : 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetBathroomHeaterOperationSetting(byte[] edt) {
-			addProperty(EPC_BATHROOM_HEATER_OPERATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_BATHROOM_HEATER_OPERATION_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Bathroom drying level : 0x31 to 0x38<br><br>Name : Bathroom dryer operation setting<br>EPC : 0xB4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Bathroom dryer operation setting<br>
+		 * <br>
+		 * EPC : 0xB4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic        : 0x41<br>
+		 * Standard          : 0x42<br>
+		 * Bathroom drying level<br>
+		 * : 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		public Setter reqSetBathroomDryerOperationSetting(byte[] edt) {
-			addProperty(EPC_BATHROOM_DRYER_OPERATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_BATHROOM_DRYER_OPERATION_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Cool air circulation level : 0x31 to 0x38<br><br>Name : Cool air circulator operation setting<br>EPC : 0xB5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Cool air circulator operation setting<br>
+		 * <br>
+		 * EPC : 0xB5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic        : 0x41<br>
+		 * Standard          : 0x42<br>
+		 * Cool air circulation level<br>
+		 * : 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetCoolAirCirculatorOperationSetting(byte[] edt) {
-			addProperty(EPC_COOL_AIR_CIRCULATOR_OPERATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_COOL_AIR_CIRCULATOR_OPERATION_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br><br>Automatic: 0x41 Air flow rate level: 0x31 to 0x38<br><br>Name : Ventilation air flow rate setting<br>EPC : 0xC2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Ventilation air flow rate setting<br>
+		 * <br>
+		 * EPC : 0xC2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic: 0x41<br>
+		 * Air flow rate level: 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetVentilationAirFlowRateSetting(byte[] edt) {
-			addProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Used to set the filter cleaning reminder sign status (lit/not lit) and to acquire the current setting.<br><br>Lit: 0x41 Not lit: 0x42<br><br>Name : Filter cleaning reminder sign setting<br>EPC : 0xCF<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Filter cleaning reminder sign setting<br>
+		 * <br>
+		 * EPC : 0xCF<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the filter cleaning reminder<br>
+		 * sign status (lit/not lit) and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Lit: 0x41<br>
+		 * Not lit: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetFilterCleaningReminderSignSetting(byte[] edt) {
-			addProperty(EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Used to set the ON/OFF status of the ON timer-based reservation function and to acquire the current setting.<br><br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Name : �gON timer-based reservation�h setting 1<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : �gON timer-based reservation�h setting 1<br>
+		 * <br>
+		 * EPC : 0x90<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the ON/OFF status of the<br>
+		 * ON timer-based reservation function and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation function ON: 0x41<br>
+		 * Reservation function OFF: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetGonTimerBasedReservationHSetting1(byte[] edt) {
-			addProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1, edt);
 			return this;
 		}
 		/**
-		 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br><br>Reservation function ON for the ventilation mode                      : 0x10 Reservation function ON for the bathroom pre-warmer mode : 0x20 Reservation function ON for the bathroom heater mode          : 0x30 Reservation function ON for the bathroom dryer mode            : 0x40 Reservation function ON for the cool air circulator mode       : 0x50 Reservation function OFF : 0x00<br><br>Name : �gON timer-based reservation�h setting 2<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : �gON timer-based reservation�h setting 2<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the ON/OFF status of the<br>
+		 * ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation function ON for the ventilation mode                      : 0x10<br>
+		 * Reservation function ON for the bathroom pre-warmer mode : 0x20<br>
+		 * Reservation function ON for the bathroom heater mode          : 0x30<br>
+		 * Reservation function ON for the bathroom dryer mode            : 0x40<br>
+		 * Reservation function ON for the cool air circulator mode       : 0x50<br>
+		 * Reservation function OFF : 0x00<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetGonTimerBasedReservationHSetting2(byte[] edt) {
-			addProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2, edt);
 			return this;
 		}
 		/**
-		 * Used to set the time setting for the time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (time)<br>EPC : 0x91<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer setting
+(time)<br>
+		 * <br>
+		 * EPC : 0x91<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the time setting for the<br>
+		 * time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerSettingTime(byte[] edt) {
-			addProperty(EPC_ON_TIMER_SETTING_TIME, edt, (edt != null && (edt.length == 2)));
+			addProperty(EPC_ON_TIMER_SETTING_TIME, edt);
 			return this;
 		}
 		/**
-		 * Used to set the relative time setting for the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (relative time)<br>EPC : 0x92<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer setting
+(relative time)<br>
+		 * <br>
+		 * EPC : 0x92<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the relative time setting for<br>
+		 * the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerSettingRelativeTime(byte[] edt) {
-			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
+			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME, edt);
 			return this;
 		}
 		/**
-		 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br><br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Name : �gOFF timer-based reservation�h setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : �gOFF
+timer-based reservation�h setting<br>
+		 * <br>
+		 * EPC : 0x94<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation function ON: 0x41<br>
+		 * Reservation function OFF: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetGoffTimerBasedReservationHSetting(byte[] edt) {
-			addProperty(EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Used to set the time setting for the time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (time)<br>EPC : 0x95<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : OFF timer setting (time)<br>
+		 * <br>
+		 * EPC : 0x95<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the time setting for the<br>
+		 * time-based reservation function for the<br>
+		 * OFF timer (in the HH:MM format)<br>
+		 * and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetOffTimerSettingTime(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_SETTING_TIME, edt, (edt != null && (edt.length == 2)));
+			addProperty(EPC_OFF_TIMER_SETTING_TIME, edt);
 			return this;
 		}
 		/**
-		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (relative time)<br>EPC : 0x96<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : OFF timer setting (relative time)<br>
+		 * <br>
+		 * EPC : 0x96<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the<br>
+		 * current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetOffTimerSettingRelativeTime(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
+			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME, edt);
 			return this;
 		}
 	}
-
-	public class Getter extends DeviceObject.Getter {
-
+	
+	public static class Getter extends DeviceObject.Getter {
+		public Getter(EchoObject eoj, boolean multicast) {
+			super(eoj, multicast);
+		}
+		
+		@Override
+		public Getter reqGetProperty(byte epc) {
+			return (Getter)super.reqGetProperty(epc);
+		}
+		
 		@Override
 		public Getter reqGetOperationStatus() {
 			return (Getter)super.reqGetOperationStatus();
@@ -1144,126 +3197,521 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 		}
 		
 		/**
-		 * Used to set the operation mode (ventilation mode, bathroom pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br><br>Ventilation operation             : 0x10 Bathroom pre-warmer operation : 0x20 Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00<br><br>Name : Operation setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Operation setting<br>
+		 * <br>
+		 * EPC : 0xB0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the operation mode<br>
+		 * (ventilation mode, bathroom<br>
+		 * pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Ventilation operation             : 0x10<br>
+		 * Bathroom pre-warmer operation :<br>
+		 * 0x20<br>
+		 * Bathroom heater operation   : 0x30<br>
+		 * Bathroom dryer operation      : 0x40<br>
+		 * Cool air circulator operation : 0x50<br>
+		 * Stop                                           :0x00<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		public Getter reqGetOperationSetting() {
 			addProperty(EPC_OPERATION_SETTING);
 			return this;
 		}
 		/**
-		 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Air flow rate level    : 0x31 to 0x38<br><br>Name : Ventilation operation setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Ventilation operation setting<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic        : 0x41<br>
+		 * Standard          : 0x42<br>
+		 * Air flow rate level    : 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetVentilationOperationSetting() {
 			addProperty(EPC_VENTILATION_OPERATION_SETTING);
 			return this;
 		}
 		/**
-		 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Bathroom pre-warming level : 0x31 to 0x38<br><br>Name : Bathroom pre-warmer operation setting<br>EPC : 0xB2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Bathroom pre-warmer operation setting<br>
+		 * <br>
+		 * EPC : 0xB2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic        : 0x41<br>
+		 * Standard          : 0x42<br>
+		 * Bathroom pre-warming level<br>
+		 * : 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		public Getter reqGetBathroomPreWarmerOperationSetting() {
 			addProperty(EPC_BATHROOM_PRE_WARMER_OPERATION_SETTING);
 			return this;
 		}
 		/**
-		 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Bathroom heating level : 0x31 to 0x38<br><br>Name : Bathroom heater operation setting<br>EPC : 0xB3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Bathroom heater operation setting<br>
+		 * <br>
+		 * EPC : 0xB3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic        : 0x41<br>
+		 * Standard          : 0x42<br>
+		 * Bathroom heating level<br>
+		 * : 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetBathroomHeaterOperationSetting() {
 			addProperty(EPC_BATHROOM_HEATER_OPERATION_SETTING);
 			return this;
 		}
 		/**
-		 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Bathroom drying level : 0x31 to 0x38<br><br>Name : Bathroom dryer operation setting<br>EPC : 0xB4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Bathroom dryer operation setting<br>
+		 * <br>
+		 * EPC : 0xB4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic        : 0x41<br>
+		 * Standard          : 0x42<br>
+		 * Bathroom drying level<br>
+		 * : 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		public Getter reqGetBathroomDryerOperationSetting() {
 			addProperty(EPC_BATHROOM_DRYER_OPERATION_SETTING);
 			return this;
 		}
 		/**
-		 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Cool air circulation level : 0x31 to 0x38<br><br>Name : Cool air circulator operation setting<br>EPC : 0xB5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Cool air circulator operation setting<br>
+		 * <br>
+		 * EPC : 0xB5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic        : 0x41<br>
+		 * Standard          : 0x42<br>
+		 * Cool air circulation level<br>
+		 * : 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetCoolAirCirculatorOperationSetting() {
 			addProperty(EPC_COOL_AIR_CIRCULATOR_OPERATION_SETTING);
 			return this;
 		}
 		/**
-		 * Used to acquire the measured relative humidity of the bathroom.<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : Measured relative bathroom humidity<br>EPC : 0xBA<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Measured
+relative bathroom humidity<br>
+		 * <br>
+		 * EPC : 0xBA<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to acquire the measured relative humidity of the bathroom.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredRelativeBathroomHumidity() {
 			addProperty(EPC_MEASURED_RELATIVE_BATHROOM_HUMIDITY);
 			return this;
 		}
 		/**
-		 * Used to acquire the measured temperature of the bathroom.<br><br>0x81 to 0x7D (.127 to �{125��)<br><br>Name : Measured bathroom temperature<br>EPC : 0xBB<br>Data Type : signed char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Measured bathroom temperature<br>
+		 * <br>
+		 * EPC : 0xBB<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to acquire the measured temperature of the bathroom.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x81 to 0x7D (.127 to �{125��)<br>
+		 * <br>
+		 * Data type : signed char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : ��<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredBathroomTemperature() {
 			addProperty(EPC_MEASURED_BATHROOM_TEMPERATURE);
 			return this;
 		}
 		/**
-		 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br><br>Automatic: 0x41 Air flow rate level: 0x31 to 0x38<br><br>Name : Ventilation air flow rate setting<br>EPC : 0xC2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Ventilation air flow rate setting<br>
+		 * <br>
+		 * EPC : 0xC2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic: 0x41<br>
+		 * Air flow rate level: 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetVentilationAirFlowRateSetting() {
 			addProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING);
 			return this;
 		}
 		/**
-		 * Used to set the filter cleaning reminder sign status (lit/not lit) and to acquire the current setting.<br><br>Lit: 0x41 Not lit: 0x42<br><br>Name : Filter cleaning reminder sign setting<br>EPC : 0xCF<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Filter cleaning reminder sign setting<br>
+		 * <br>
+		 * EPC : 0xCF<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the filter cleaning reminder<br>
+		 * sign status (lit/not lit) and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Lit: 0x41<br>
+		 * Not lit: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetFilterCleaningReminderSignSetting() {
 			addProperty(EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING);
 			return this;
 		}
 		/**
-		 * Used to acquire the human body detection status.<br><br>Detected: 0x41 Not detected: 0x42<br><br>Name : Human body detection status<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Human body detection status<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to acquire the human body detection status.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Detected: 0x41<br>
+		 * Not detected: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetHumanBodyDetectionStatus() {
 			addProperty(EPC_HUMAN_BODY_DETECTION_STATUS);
 			return this;
 		}
 		/**
-		 * Used to set the ON/OFF status of the ON timer-based reservation function and to acquire the current setting.<br><br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Name : �gON timer-based reservation�h setting 1<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : �gON timer-based reservation�h setting 1<br>
+		 * <br>
+		 * EPC : 0x90<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the ON/OFF status of the<br>
+		 * ON timer-based reservation function and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation function ON: 0x41<br>
+		 * Reservation function OFF: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetGonTimerBasedReservationHSetting1() {
 			addProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1);
 			return this;
 		}
 		/**
-		 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br><br>Reservation function ON for the ventilation mode                      : 0x10 Reservation function ON for the bathroom pre-warmer mode : 0x20 Reservation function ON for the bathroom heater mode          : 0x30 Reservation function ON for the bathroom dryer mode            : 0x40 Reservation function ON for the cool air circulator mode       : 0x50 Reservation function OFF : 0x00<br><br>Name : �gON timer-based reservation�h setting 2<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : �gON timer-based reservation�h setting 2<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the ON/OFF status of the<br>
+		 * ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation function ON for the ventilation mode                      : 0x10<br>
+		 * Reservation function ON for the bathroom pre-warmer mode : 0x20<br>
+		 * Reservation function ON for the bathroom heater mode          : 0x30<br>
+		 * Reservation function ON for the bathroom dryer mode            : 0x40<br>
+		 * Reservation function ON for the cool air circulator mode       : 0x50<br>
+		 * Reservation function OFF : 0x00<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetGonTimerBasedReservationHSetting2() {
 			addProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2);
 			return this;
 		}
 		/**
-		 * Used to set the time setting for the time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (time)<br>EPC : 0x91<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer setting
+(time)<br>
+		 * <br>
+		 * EPC : 0x91<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the time setting for the<br>
+		 * time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerSettingTime() {
 			addProperty(EPC_ON_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
-		 * Used to set the relative time setting for the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (relative time)<br>EPC : 0x92<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer setting
+(relative time)<br>
+		 * <br>
+		 * EPC : 0x92<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the relative time setting for<br>
+		 * the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerSettingRelativeTime() {
 			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 		/**
-		 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br><br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Name : �gOFF timer-based reservation�h setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : �gOFF
+timer-based reservation�h setting<br>
+		 * <br>
+		 * EPC : 0x94<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation function ON: 0x41<br>
+		 * Reservation function OFF: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetGoffTimerBasedReservationHSetting() {
 			addProperty(EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING);
 			return this;
 		}
 		/**
-		 * Used to set the time setting for the time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (time)<br>EPC : 0x95<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : OFF timer setting (time)<br>
+		 * <br>
+		 * EPC : 0x95<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the time setting for the<br>
+		 * time-based reservation function for the<br>
+		 * OFF timer (in the HH:MM format)<br>
+		 * and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetOffTimerSettingTime() {
 			addProperty(EPC_OFF_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
-		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (relative time)<br>EPC : 0x96<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : OFF timer setting (relative time)<br>
+		 * <br>
+		 * EPC : 0x96<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the<br>
+		 * current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetOffTimerSettingRelativeTime() {
 			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME);
@@ -1271,115 +3719,16 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 		}
 	}
 	
-	public interface Informer extends DeviceObject.Informer {
-		public Informer reqInform(byte epc);
-		
-		public Informer reqInformOperationStatus();
-		public Informer reqInformInstallationLocation();
-		public Informer reqInformStandardVersionInformation();
-		public Informer reqInformIdentificationNumber();
-		public Informer reqInformMeasuredInstantaneousPowerConsumption();
-		public Informer reqInformMeasuredCumulativePowerConsumption();
-		public Informer reqInformManufacturersFaultCode();
-		public Informer reqInformCurrentLimitSetting();
-		public Informer reqInformFaultStatus();
-		public Informer reqInformFaultDescription();
-		public Informer reqInformManufacturerCode();
-		public Informer reqInformBusinessFacilityCode();
-		public Informer reqInformProductCode();
-		public Informer reqInformProductionNumber();
-		public Informer reqInformProductionDate();
-		public Informer reqInformPowerSavingOperationSetting();
-		public Informer reqInformPositionInformation();
-		public Informer reqInformCurrentTimeSetting();
-		public Informer reqInformCurrentDateSetting();
-		public Informer reqInformPowerLimitSetting();
-		public Informer reqInformCumulativeOperatingTime();
-		public Informer reqInformStatusChangeAnnouncementPropertyMap();
-		public Informer reqInformSetPropertyMap();
-		public Informer reqInformGetPropertyMap();
-		
-		/**
-		 * Used to set the operation mode (ventilation mode, bathroom pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br><br>Ventilation operation             : 0x10 Bathroom pre-warmer operation : 0x20 Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00<br><br>Name : Operation setting<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
-		 */
-		public Informer reqInformOperationSetting();
-		/**
-		 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Air flow rate level    : 0x31 to 0x38<br><br>Name : Ventilation operation setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformVentilationOperationSetting();
-		/**
-		 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Bathroom pre-warming level : 0x31 to 0x38<br><br>Name : Bathroom pre-warmer operation setting<br>EPC : 0xB2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
-		 */
-		public Informer reqInformBathroomPreWarmerOperationSetting();
-		/**
-		 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Bathroom heating level : 0x31 to 0x38<br><br>Name : Bathroom heater operation setting<br>EPC : 0xB3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformBathroomHeaterOperationSetting();
-		/**
-		 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Bathroom drying level : 0x31 to 0x38<br><br>Name : Bathroom dryer operation setting<br>EPC : 0xB4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
-		 */
-		public Informer reqInformBathroomDryerOperationSetting();
-		/**
-		 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br><br>Automatic        : 0x41 Standard          : 0x42 Cool air circulation level : 0x31 to 0x38<br><br>Name : Cool air circulator operation setting<br>EPC : 0xB5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformCoolAirCirculatorOperationSetting();
-		/**
-		 * Used to acquire the measured relative humidity of the bathroom.<br><br>0x00 to 0x64 (0 to 100%)<br><br>Name : Measured relative bathroom humidity<br>EPC : 0xBA<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformMeasuredRelativeBathroomHumidity();
-		/**
-		 * Used to acquire the measured temperature of the bathroom.<br><br>0x81 to 0x7D (.127 to �{125��)<br><br>Name : Measured bathroom temperature<br>EPC : 0xBB<br>Data Type : signed char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformMeasuredBathroomTemperature();
-		/**
-		 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br><br>Automatic: 0x41 Air flow rate level: 0x31 to 0x38<br><br>Name : Ventilation air flow rate setting<br>EPC : 0xC2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformVentilationAirFlowRateSetting();
-		/**
-		 * Used to set the filter cleaning reminder sign status (lit/not lit) and to acquire the current setting.<br><br>Lit: 0x41 Not lit: 0x42<br><br>Name : Filter cleaning reminder sign setting<br>EPC : 0xCF<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformFilterCleaningReminderSignSetting();
-		/**
-		 * Used to acquire the human body detection status.<br><br>Detected: 0x41 Not detected: 0x42<br><br>Name : Human body detection status<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformHumanBodyDetectionStatus();
-		/**
-		 * Used to set the ON/OFF status of the ON timer-based reservation function and to acquire the current setting.<br><br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Name : �gON timer-based reservation�h setting 1<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformGonTimerBasedReservationHSetting1();
-		/**
-		 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br><br>Reservation function ON for the ventilation mode                      : 0x10 Reservation function ON for the bathroom pre-warmer mode : 0x20 Reservation function ON for the bathroom heater mode          : 0x30 Reservation function ON for the bathroom dryer mode            : 0x40 Reservation function ON for the cool air circulator mode       : 0x50 Reservation function OFF : 0x00<br><br>Name : �gON timer-based reservation�h setting 2<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformGonTimerBasedReservationHSetting2();
-		/**
-		 * Used to set the time setting for the time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (time)<br>EPC : 0x91<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformOnTimerSettingTime();
-		/**
-		 * Used to set the relative time setting for the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (relative time)<br>EPC : 0x92<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformOnTimerSettingRelativeTime();
-		/**
-		 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br><br>Reservation function ON: 0x41 Reservation function OFF: 0x42<br><br>Name : �gOFF timer-based reservation�h setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformGoffTimerBasedReservationHSetting();
-		/**
-		 * Used to set the time setting for the time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (time)<br>EPC : 0x95<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformOffTimerSettingTime();
-		/**
-		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (relative time)<br>EPC : 0x96<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformOffTimerSettingRelativeTime();
-	}
-
-	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
-		@Override
-		public Informer reqInform(byte epc) {
-			return (Informer)super.reqInform(epc);
+	public static class Informer extends DeviceObject.Informer {
+		public Informer(EchoObject eoj, boolean multicast) {
+			super(eoj, multicast);
 		}
 		
 		@Override
+		public Informer reqInformProperty(byte epc) {
+			return (Informer)super.reqInformProperty(epc);
+		}
+				@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();
 		}
@@ -1475,327 +3824,596 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
 		}
-
-		@Override
-		public Informer reqInformOperationSetting() {
-			byte epc = EPC_OPERATION_SETTING;
-			byte[] edt = _getOperationSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformVentilationOperationSetting() {
-			byte epc = EPC_VENTILATION_OPERATION_SETTING;
-			byte[] edt = _getVentilationOperationSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformBathroomPreWarmerOperationSetting() {
-			byte epc = EPC_BATHROOM_PRE_WARMER_OPERATION_SETTING;
-			byte[] edt = _getBathroomPreWarmerOperationSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformBathroomHeaterOperationSetting() {
-			byte epc = EPC_BATHROOM_HEATER_OPERATION_SETTING;
-			byte[] edt = _getBathroomHeaterOperationSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformBathroomDryerOperationSetting() {
-			byte epc = EPC_BATHROOM_DRYER_OPERATION_SETTING;
-			byte[] edt = _getBathroomDryerOperationSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformCoolAirCirculatorOperationSetting() {
-			byte epc = EPC_COOL_AIR_CIRCULATOR_OPERATION_SETTING;
-			byte[] edt = _getCoolAirCirculatorOperationSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformMeasuredRelativeBathroomHumidity() {
-			byte epc = EPC_MEASURED_RELATIVE_BATHROOM_HUMIDITY;
-			byte[] edt = _getMeasuredRelativeBathroomHumidity(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformMeasuredBathroomTemperature() {
-			byte epc = EPC_MEASURED_BATHROOM_TEMPERATURE;
-			byte[] edt = _getMeasuredBathroomTemperature(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformVentilationAirFlowRateSetting() {
-			byte epc = EPC_VENTILATION_AIR_FLOW_RATE_SETTING;
-			byte[] edt = _getVentilationAirFlowRateSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformFilterCleaningReminderSignSetting() {
-			byte epc = EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING;
-			byte[] edt = _getFilterCleaningReminderSignSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformHumanBodyDetectionStatus() {
-			byte epc = EPC_HUMAN_BODY_DETECTION_STATUS;
-			byte[] edt = _getHumanBodyDetectionStatus(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformGonTimerBasedReservationHSetting1() {
-			byte epc = EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1;
-			byte[] edt = _getGonTimerBasedReservationHSetting1(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformGonTimerBasedReservationHSetting2() {
-			byte epc = EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2;
-			byte[] edt = _getGonTimerBasedReservationHSetting2(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformOnTimerSettingTime() {
-			byte epc = EPC_ON_TIMER_SETTING_TIME;
-			byte[] edt = _getOnTimerSettingTime(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Informer reqInformOnTimerSettingRelativeTime() {
-			byte epc = EPC_ON_TIMER_SETTING_RELATIVE_TIME;
-			byte[] edt = _getOnTimerSettingRelativeTime(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Informer reqInformGoffTimerBasedReservationHSetting() {
-			byte epc = EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING;
-			byte[] edt = _getGoffTimerBasedReservationHSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformOffTimerSettingTime() {
-			byte epc = EPC_OFF_TIMER_SETTING_TIME;
-			byte[] edt = _getOffTimerSettingTime(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Informer reqInformOffTimerSettingRelativeTime() {
-			byte epc = EPC_OFF_TIMER_SETTING_RELATIVE_TIME;
-			byte[] edt = _getOffTimerSettingRelativeTime(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-	}
-	
-	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
-		@Override
-		public Informer reqInform(byte epc) {
-			return (Informer)super.reqInform(epc);
-		}
 		
-		@Override
-		public Informer reqInformOperationStatus() {
-			return (Informer)super.reqInformOperationStatus();
-		}
-		@Override
-		public Informer reqInformInstallationLocation() {
-			return (Informer)super.reqInformInstallationLocation();
-		}
-		@Override
-		public Informer reqInformStandardVersionInformation() {
-			return (Informer)super.reqInformStandardVersionInformation();
-		}
-		@Override
-		public Informer reqInformIdentificationNumber() {
-			return (Informer)super.reqInformIdentificationNumber();
-		}
-		@Override
-		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
-			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Informer reqInformMeasuredCumulativePowerConsumption() {
-			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Informer reqInformManufacturersFaultCode() {
-			return (Informer)super.reqInformManufacturersFaultCode();
-		}
-		@Override
-		public Informer reqInformCurrentLimitSetting() {
-			return (Informer)super.reqInformCurrentLimitSetting();
-		}
-		@Override
-		public Informer reqInformFaultStatus() {
-			return (Informer)super.reqInformFaultStatus();
-		}
-		@Override
-		public Informer reqInformFaultDescription() {
-			return (Informer)super.reqInformFaultDescription();
-		}
-		@Override
-		public Informer reqInformManufacturerCode() {
-			return (Informer)super.reqInformManufacturerCode();
-		}
-		@Override
-		public Informer reqInformBusinessFacilityCode() {
-			return (Informer)super.reqInformBusinessFacilityCode();
-		}
-		@Override
-		public Informer reqInformProductCode() {
-			return (Informer)super.reqInformProductCode();
-		}
-		@Override
-		public Informer reqInformProductionNumber() {
-			return (Informer)super.reqInformProductionNumber();
-		}
-		@Override
-		public Informer reqInformProductionDate() {
-			return (Informer)super.reqInformProductionDate();
-		}
-		@Override
-		public Informer reqInformPowerSavingOperationSetting() {
-			return (Informer)super.reqInformPowerSavingOperationSetting();
-		}
-		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
-		}
-		@Override
-		public Informer reqInformCurrentTimeSetting() {
-			return (Informer)super.reqInformCurrentTimeSetting();
-		}
-		@Override
-		public Informer reqInformCurrentDateSetting() {
-			return (Informer)super.reqInformCurrentDateSetting();
-		}
-		@Override
-		public Informer reqInformPowerLimitSetting() {
-			return (Informer)super.reqInformPowerLimitSetting();
-		}
-		@Override
-		public Informer reqInformCumulativeOperatingTime() {
-			return (Informer)super.reqInformCumulativeOperatingTime();
-		}
-		@Override
-		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
-			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Informer reqInformSetPropertyMap() {
-			return (Informer)super.reqInformSetPropertyMap();
-		}
-		@Override
-		public Informer reqInformGetPropertyMap() {
-			return (Informer)super.reqInformGetPropertyMap();
-		}
-
-		@Override
+		/**
+		 * Property name : Operation setting<br>
+		 * <br>
+		 * EPC : 0xB0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the operation mode<br>
+		 * (ventilation mode, bathroom<br>
+		 * pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Ventilation operation             : 0x10<br>
+		 * Bathroom pre-warmer operation :<br>
+		 * 0x20<br>
+		 * Bathroom heater operation   : 0x30<br>
+		 * Bathroom dryer operation      : 0x40<br>
+		 * Cool air circulator operation : 0x50<br>
+		 * Stop                                           :0x00<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
+		 */
 		public Informer reqInformOperationSetting() {
 			addProperty(EPC_OPERATION_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Ventilation operation setting<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the ventilation air flow rate level for the ventilation mode and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic        : 0x41<br>
+		 * Standard          : 0x42<br>
+		 * Air flow rate level    : 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformVentilationOperationSetting() {
 			addProperty(EPC_VENTILATION_OPERATION_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Bathroom pre-warmer operation setting<br>
+		 * <br>
+		 * EPC : 0xB2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the bathroom pre-warming level for the bathroom pre-warmer mode and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic        : 0x41<br>
+		 * Standard          : 0x42<br>
+		 * Bathroom pre-warming level<br>
+		 * : 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
+		 */
 		public Informer reqInformBathroomPreWarmerOperationSetting() {
 			addProperty(EPC_BATHROOM_PRE_WARMER_OPERATION_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Bathroom heater operation setting<br>
+		 * <br>
+		 * EPC : 0xB3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the bathroom heating level for the bathroom heater mode and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic        : 0x41<br>
+		 * Standard          : 0x42<br>
+		 * Bathroom heating level<br>
+		 * : 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformBathroomHeaterOperationSetting() {
 			addProperty(EPC_BATHROOM_HEATER_OPERATION_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Bathroom dryer operation setting<br>
+		 * <br>
+		 * EPC : 0xB4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the bathroom drying level for the bathroom dryer mode and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic        : 0x41<br>
+		 * Standard          : 0x42<br>
+		 * Bathroom drying level<br>
+		 * : 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
+		 */
 		public Informer reqInformBathroomDryerOperationSetting() {
 			addProperty(EPC_BATHROOM_DRYER_OPERATION_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Cool air circulator operation setting<br>
+		 * <br>
+		 * EPC : 0xB5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the cool air circulation level for the cool air circulator mode and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic        : 0x41<br>
+		 * Standard          : 0x42<br>
+		 * Cool air circulation level<br>
+		 * : 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformCoolAirCirculatorOperationSetting() {
 			addProperty(EPC_COOL_AIR_CIRCULATOR_OPERATION_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Measured
+relative bathroom humidity<br>
+		 * <br>
+		 * EPC : 0xBA<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to acquire the measured relative humidity of the bathroom.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformMeasuredRelativeBathroomHumidity() {
 			addProperty(EPC_MEASURED_RELATIVE_BATHROOM_HUMIDITY);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Measured bathroom temperature<br>
+		 * <br>
+		 * EPC : 0xBB<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to acquire the measured temperature of the bathroom.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x81 to 0x7D (.127 to �{125��)<br>
+		 * <br>
+		 * Data type : signed char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : ��<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformMeasuredBathroomTemperature() {
 			addProperty(EPC_MEASURED_BATHROOM_TEMPERATURE);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Ventilation air flow rate setting<br>
+		 * <br>
+		 * EPC : 0xC2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the air flow rate level for the around-the-clock ventilation function and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic: 0x41<br>
+		 * Air flow rate level: 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformVentilationAirFlowRateSetting() {
 			addProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Filter cleaning reminder sign setting<br>
+		 * <br>
+		 * EPC : 0xCF<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the filter cleaning reminder<br>
+		 * sign status (lit/not lit) and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Lit: 0x41<br>
+		 * Not lit: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformFilterCleaningReminderSignSetting() {
 			addProperty(EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Human body detection status<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to acquire the human body detection status.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Detected: 0x41<br>
+		 * Not detected: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformHumanBodyDetectionStatus() {
 			addProperty(EPC_HUMAN_BODY_DETECTION_STATUS);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : �gON timer-based reservation�h setting 1<br>
+		 * <br>
+		 * EPC : 0x90<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the ON/OFF status of the<br>
+		 * ON timer-based reservation function and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation function ON: 0x41<br>
+		 * Reservation function OFF: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformGonTimerBasedReservationHSetting1() {
 			addProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : �gON timer-based reservation�h setting 2<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the ON/OFF status of the<br>
+		 * ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation function ON for the ventilation mode                      : 0x10<br>
+		 * Reservation function ON for the bathroom pre-warmer mode : 0x20<br>
+		 * Reservation function ON for the bathroom heater mode          : 0x30<br>
+		 * Reservation function ON for the bathroom dryer mode            : 0x40<br>
+		 * Reservation function ON for the cool air circulator mode       : 0x50<br>
+		 * Reservation function OFF : 0x00<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformGonTimerBasedReservationHSetting2() {
 			addProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : ON timer setting
+(time)<br>
+		 * <br>
+		 * EPC : 0x91<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the time setting for the<br>
+		 * time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformOnTimerSettingTime() {
 			addProperty(EPC_ON_TIMER_SETTING_TIME);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : ON timer setting
+(relative time)<br>
+		 * <br>
+		 * EPC : 0x92<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the relative time setting for<br>
+		 * the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformOnTimerSettingRelativeTime() {
 			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : �gOFF
+timer-based reservation�h setting<br>
+		 * <br>
+		 * EPC : 0x94<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation function ON: 0x41<br>
+		 * Reservation function OFF: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformGoffTimerBasedReservationHSetting() {
 			addProperty(EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : OFF timer setting (time)<br>
+		 * <br>
+		 * EPC : 0x95<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the time setting for the<br>
+		 * time-based reservation function for the<br>
+		 * OFF timer (in the HH:MM format)<br>
+		 * and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformOffTimerSettingTime() {
 			addProperty(EPC_OFF_TIMER_SETTING_TIME);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : OFF timer setting (relative time)<br>
+		 * <br>
+		 * EPC : 0x96<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the<br>
+		 * current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformOffTimerSettingRelativeTime() {
 			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 	}
+
+	public static class Proxy extends BathroomHeaterAndDryer {
+		private byte mInstanceCode;
+		public Proxy(byte instanceCode) {
+			super();
+			mInstanceCode = instanceCode;
+		}
+		@Override
+		public byte getInstanceCode() {
+			return mInstanceCode;
+		}
+		@Override
+		protected byte[] getOperationStatus() {return null;}
+		@Override
+		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		@Override
+		protected byte[] getInstallationLocation() {return null;}
+		@Override
+		protected byte[] getStandardVersionInformation() {return null;}
+		@Override
+		protected byte[] getFaultStatus() {return null;}
+		@Override
+		protected byte[] getManufacturerCode() {return null;}
+		@Override
+		protected boolean setOperationSetting(byte[] edt) {return false;}
+		@Override
+		protected byte[] getOperationSetting() {return null;}
+		@Override
+		protected boolean setBathroomPreWarmerOperationSetting(byte[] edt) {return false;}
+		@Override
+		protected byte[] getBathroomPreWarmerOperationSetting() {return null;}
+		@Override
+		protected boolean setBathroomDryerOperationSetting(byte[] edt) {return false;}
+		@Override
+		protected byte[] getBathroomDryerOperationSetting() {return null;}
+	}
+	
+	public static Setter setG() {
+		return setG((byte)0);
+	}
+
+	public static Setter setG(byte instanceCode) {
+		return new Setter(new Proxy(instanceCode), true, true);
+	}
+
+	public static Setter setG(boolean responseRequired) {
+		return setG((byte)0, responseRequired);
+	}
+
+	public static Setter setG(byte instanceCode, boolean responseRequired) {
+		return new Setter(new Proxy(instanceCode), responseRequired, true);
+	}
+
+	public static Getter getG() {
+		return getG((byte)0);
+	}
+	
+	public static Getter getG(byte instanceCode) {
+		return new Getter(new Proxy(instanceCode), true);
+	}
+
+	public static Informer informG() {
+		return informG((byte)0);
+	}
+
+	public static Informer informG(byte instanceCode) {
+		return new Informer(new Proxy(instanceCode), true);
+	}
+
 }

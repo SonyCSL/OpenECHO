@@ -15,18 +15,16 @@
  */
 package com.sonycsl.echo.eoj.device.housingfacilities;
 
+import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
+import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
+import com.sonycsl.echo.node.EchoNode;
 
 public abstract class ColdOrHotWaterHeatSourceEquipment extends DeviceObject {
 	
-	public static final byte CLASS_GROUP_CODE = (byte)0x02;
-	public static final byte CLASS_CODE = (byte)0x7A;
-	
-	public ColdOrHotWaterHeatSourceEquipment() {
-		setReceiver(new Receiver());
-	}
+	public static final short ECHO_CLASS_CODE = (short)0x027A;
 
 	public static final byte EPC_OPERATION_MODE_SETTING = (byte)0xE0;
 	public static final byte EPC_WATER_TEMPERATURE_SETTING1 = (byte)0xE1;
@@ -45,742 +43,2179 @@ public abstract class ColdOrHotWaterHeatSourceEquipment extends DeviceObject {
 	public static final byte EPC_RELATIVE_OFF_TIMER_SETTING = (byte)0x96;
 
 	@Override
-	public byte getClassGroupCode() {
-		return CLASS_GROUP_CODE;
+	protected void setupPropertyMaps() {
+		super.setupPropertyMaps();
+		
+		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
+		removeSetProperty(EPC_OPERATION_STATUS);
+		addGetProperty(EPC_OPERATION_STATUS);
+		addSetProperty(EPC_WATER_TEMPERATURE_SETTING1);
+		addGetProperty(EPC_WATER_TEMPERATURE_SETTING1);
+		addSetProperty(EPC_WATER_TEMPERATURE_SETTING2);
+		addGetProperty(EPC_WATER_TEMPERATURE_SETTING2);
 	}
-
+	
 	@Override
-	public byte getClassCode() {
-		return CLASS_CODE;
+	public void initialize(EchoNode node) {
+		super.initialize(node);
+		Echo.EventListener listener = Echo.getEventListener();
+		if(listener != null) listener.onNewColdOrHotWaterHeatSourceEquipment(this);
+	}
+	
+	@Override
+	public short getEchoClassCode() {
+		return ECHO_CLASS_CODE;
 	}
 
 	/**
-	 * Set the operation mode of heating (hot water)/cooling (cold water) and gets the status<br><br>Heating��0x41,Cooling��0x42<br><br>Name : Operation mode setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the ON/OFF<br>
+	 * status.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30, OFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : �\<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setOperationStatus(byte[] edt) {return false;}
+	/**
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the ON/OFF<br>
+	 * status.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30, OFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : �\<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getOperationStatus();
+	/**
+	 * Property name : Operation mode setting<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Set the operation mode of heating (hot water)/cooling (cold water) and gets the status<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Heating��0x41,Cooling��0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setOperationModeSetting(byte[] edt) {return false;}
-	private final boolean _setOperationModeSetting(byte epc, byte[] edt) {
-		boolean success = setOperationModeSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Set the operation mode of heating (hot water)/cooling (cold water) and gets the status<br><br>Heating��0x41,Cooling��0x42<br><br>Name : Operation mode setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Operation mode setting<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Set the operation mode of heating (hot water)/cooling (cold water) and gets the status<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Heating��0x41,Cooling��0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getOperationModeSetting() {return null;}
-	private final byte[] _getOperationModeSetting(byte epc) {
-		byte[] edt = getOperationModeSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Operation mode setting<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Set the operation mode of heating (hot water)/cooling (cold water) and gets the status<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Heating��0x41,Cooling��0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidOperationModeSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates water temperature setting�B<br><br>0x00-0x64�i0-100���j AUTO��0x71<br><br>Name : Water temperature setting 1<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+	 * Property name : Water temperature setting 1<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates water<br>
+	 * temperature setting�B<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00-0x64�i0-100���j<br>
+	 * AUTO��0x71<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : ��<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
 	 */
 	protected abstract boolean setWaterTemperatureSetting1(byte[] edt);
-	private final boolean _setWaterTemperatureSetting1(byte epc, byte[] edt) {
-		boolean success = setWaterTemperatureSetting1(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * This property indicates water temperature setting�B<br><br>0x00-0x64�i0-100���j AUTO��0x71<br><br>Name : Water temperature setting 1<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+	 * Property name : Water temperature setting 1<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates water<br>
+	 * temperature setting�B<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00-0x64�i0-100���j<br>
+	 * AUTO��0x71<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : ��<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
 	 */
 	protected abstract byte[] getWaterTemperatureSetting1();
-	private final byte[] _getWaterTemperatureSetting1(byte epc) {
-		byte[] edt = getWaterTemperatureSetting1();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Water temperature setting 1<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates water<br>
+	 * temperature setting�B<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00-0x64�i0-100���j<br>
+	 * AUTO��0x71<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : ��<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidWaterTemperatureSetting1(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates water temperature setting level by 15 steps<br><br>Cooling (cold water):0x21-0x2F Heating (hot water):0x31-0x3F indicated the minimum to maximumlevel respectively AUTO=0x41<br><br>Name : Water temperature setting 2<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+	 * Property name : Water temperature setting 2<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates water temperature setting level by 15 steps<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Cooling (cold water):0x21-0x2F Heating (hot water):0x31-0x3F<br>
+	 * indicated the minimum to maximumlevel respectively<br>
+	 * AUTO=0x41<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
 	 */
 	protected abstract boolean setWaterTemperatureSetting2(byte[] edt);
-	private final boolean _setWaterTemperatureSetting2(byte epc, byte[] edt) {
-		boolean success = setWaterTemperatureSetting2(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * This property indicates water temperature setting level by 15 steps<br><br>Cooling (cold water):0x21-0x2F Heating (hot water):0x31-0x3F indicated the minimum to maximumlevel respectively AUTO=0x41<br><br>Name : Water temperature setting 2<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+	 * Property name : Water temperature setting 2<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates water temperature setting level by 15 steps<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Cooling (cold water):0x21-0x2F Heating (hot water):0x31-0x3F<br>
+	 * indicated the minimum to maximumlevel respectively<br>
+	 * AUTO=0x41<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
 	 */
 	protected abstract byte[] getWaterTemperatureSetting2();
-	private final byte[] _getWaterTemperatureSetting2(byte epc) {
-		byte[] edt = getWaterTemperatureSetting2();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Water temperature setting 2<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates water temperature setting level by 15 steps<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Cooling (cold water):0x21-0x2F Heating (hot water):0x31-0x3F<br>
+	 * indicated the minimum to maximumlevel respectively<br>
+	 * AUTO=0x41<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidWaterTemperatureSetting2(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Measured temperature of outward water<br><br>0x00-0x64�i0-100���j<br><br>Name : Measured temperature of outward water (Exit water Temperature)<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Measured temperature of outward water
+(Exit water
+Temperature)<br>
+	 * <br>
+	 * EPC : 0xE3<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Measured temperature of outward water<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00-0x64�i0-100���j<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : ��<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getMeasuredTemperatureOfOutwardWaterExitWaterTemperature() {return null;}
-	private final byte[] _getMeasuredTemperatureOfOutwardWaterExitWaterTemperature(byte epc) {
-		byte[] edt = getMeasuredTemperatureOfOutwardWaterExitWaterTemperature();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Measured temperature of outward water
+(Exit water
+Temperature)<br>
+	 * <br>
+	 * EPC : 0xE3<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Measured temperature of outward water<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00-0x64�i0-100���j<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : ��<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidMeasuredTemperatureOfOutwardWaterExitWaterTemperature(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Measured temperature of inward water<br><br>0x00-0x64�i0-100���j<br><br>Name : Measured temperature of inward water (Entrance water temperature)<br>EPC : 0xE4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Measured temperature of inward water
+(Entrance water temperature)<br>
+	 * <br>
+	 * EPC : 0xE4<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Measured temperature of inward water<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00-0x64�i0-100���j<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : ��<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getMeasuredTemperatureOfInwardWaterEntranceWaterTemperature() {return null;}
-	private final byte[] _getMeasuredTemperatureOfInwardWaterEntranceWaterTemperature(byte epc) {
-		byte[] edt = getMeasuredTemperatureOfInwardWaterEntranceWaterTemperature();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Measured temperature of inward water
+(Entrance water temperature)<br>
+	 * <br>
+	 * EPC : 0xE4<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Measured temperature of inward water<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00-0x64�i0-100���j<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : ��<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidMeasuredTemperatureOfInwardWaterEntranceWaterTemperature(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Sets Nornal Operation/ modest o peration/high power operation and gets the status<br><br>Nornal Operation=0x41, modest operation=0x42�high power operation=0x43<br><br>Name : Special operation setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Special operation setting<br>
+	 * <br>
+	 * EPC : 0xE5<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets Nornal Operation/ modest o peration/high power operation and gets the status<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Nornal Operation=0x41, modest<br>
+	 * operation=0x42�high power<br>
+	 * operation=0x43<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setSpecialOperationSetting(byte[] edt) {return false;}
-	private final boolean _setSpecialOperationSetting(byte epc, byte[] edt) {
-		boolean success = setSpecialOperationSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Sets Nornal Operation/ modest o peration/high power operation and gets the status<br><br>Nornal Operation=0x41, modest operation=0x42�high power operation=0x43<br><br>Name : Special operation setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Special operation setting<br>
+	 * <br>
+	 * EPC : 0xE5<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets Nornal Operation/ modest o peration/high power operation and gets the status<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Nornal Operation=0x41, modest<br>
+	 * operation=0x42�high power<br>
+	 * operation=0x43<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getSpecialOperationSetting() {return null;}
-	private final byte[] _getSpecialOperationSetting(byte epc) {
-		byte[] edt = getSpecialOperationSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Special operation setting<br>
+	 * <br>
+	 * EPC : 0xE5<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets Nornal Operation/ modest o peration/high power operation and gets the status<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Nornal Operation=0x41, modest<br>
+	 * operation=0x42�high power<br>
+	 * operation=0x43<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidSpecialOperationSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Daily timer ON/OFF Up tp 2 kinds of timers can be used<br><br>Timer OFF=0x40, timer 1=0x41 timer 2=0x42<br><br>Name : Daily timer setting<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Daily timer setting<br>
+	 * <br>
+	 * EPC : 0xE6<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Daily timer ON/OFF<br>
+	 * Up tp 2 kinds of timers can be used<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Timer OFF=0x40, timer 1=0x41<br>
+	 * timer 2=0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setDailyTimerSetting(byte[] edt) {return false;}
-	private final boolean _setDailyTimerSetting(byte epc, byte[] edt) {
-		boolean success = setDailyTimerSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Daily timer ON/OFF Up tp 2 kinds of timers can be used<br><br>Timer OFF=0x40, timer 1=0x41 timer 2=0x42<br><br>Name : Daily timer setting<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Daily timer setting<br>
+	 * <br>
+	 * EPC : 0xE6<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Daily timer ON/OFF<br>
+	 * Up tp 2 kinds of timers can be used<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Timer OFF=0x40, timer 1=0x41<br>
+	 * timer 2=0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getDailyTimerSetting() {return null;}
-	private final byte[] _getDailyTimerSetting(byte epc) {
-		byte[] edt = getDailyTimerSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Daily timer setting<br>
+	 * <br>
+	 * EPC : 0xE6<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Daily timer ON/OFF<br>
+	 * Up tp 2 kinds of timers can be used<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Timer OFF=0x40, timer 1=0x41<br>
+	 * timer 2=0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidDailyTimerSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Time set by daily timer<br><br>Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes. Each bit 1: worked 0: stopped<br><br>Name : Daily timer setting 1<br>EPC : 0xE7<br>Data Type : unsigned char x 6<br>Data Size(Byte) : 6 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Daily timer setting 1<br>
+	 * <br>
+	 * EPC : 0xE7<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Time set by daily timer<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes.<br>
+	 * Each bit 1: worked 0: stopped<br>
+	 * <br>
+	 * Data type : unsigned char
+x 6<br>
+	 * <br>
+	 * Data size : 6
+Bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setDailyTimerSetting1(byte[] edt) {return false;}
-	private final boolean _setDailyTimerSetting1(byte epc, byte[] edt) {
-		boolean success = setDailyTimerSetting1(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Time set by daily timer<br><br>Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes. Each bit 1: worked 0: stopped<br><br>Name : Daily timer setting 1<br>EPC : 0xE7<br>Data Type : unsigned char x 6<br>Data Size(Byte) : 6 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Daily timer setting 1<br>
+	 * <br>
+	 * EPC : 0xE7<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Time set by daily timer<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes.<br>
+	 * Each bit 1: worked 0: stopped<br>
+	 * <br>
+	 * Data type : unsigned char
+x 6<br>
+	 * <br>
+	 * Data size : 6
+Bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getDailyTimerSetting1() {return null;}
-	private final byte[] _getDailyTimerSetting1(byte epc) {
-		byte[] edt = getDailyTimerSetting1();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Daily timer setting 1<br>
+	 * <br>
+	 * EPC : 0xE7<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Time set by daily timer<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes.<br>
+	 * Each bit 1: worked 0: stopped<br>
+	 * <br>
+	 * Data type : unsigned char
+x 6<br>
+	 * <br>
+	 * Data size : 6
+Bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidDailyTimerSetting1(byte[] edt) {
+		if(edt == null || !(edt.length == 6)) return false;
+		return true;
 	}
 	/**
-	 * Time set by daily timer<br><br>Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes. Each bit 1: worked 0: stopped<br><br>Name : Daily timer setting 2<br>EPC : 0xE8<br>Data Type : unsigned char x 6<br>Data Size(Byte) : 6 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Daily timer setting 2<br>
+	 * <br>
+	 * EPC : 0xE8<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Time set by daily timer<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes.<br>
+	 * Each bit 1: worked 0: stopped<br>
+	 * <br>
+	 * Data type : unsigned char
+x 6<br>
+	 * <br>
+	 * Data size : 6
+Bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setDailyTimerSetting2(byte[] edt) {return false;}
-	private final boolean _setDailyTimerSetting2(byte epc, byte[] edt) {
-		boolean success = setDailyTimerSetting2(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Time set by daily timer<br><br>Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes. Each bit 1: worked 0: stopped<br><br>Name : Daily timer setting 2<br>EPC : 0xE8<br>Data Type : unsigned char x 6<br>Data Size(Byte) : 6 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Daily timer setting 2<br>
+	 * <br>
+	 * EPC : 0xE8<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Time set by daily timer<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes.<br>
+	 * Each bit 1: worked 0: stopped<br>
+	 * <br>
+	 * Data type : unsigned char
+x 6<br>
+	 * <br>
+	 * Data size : 6
+Bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getDailyTimerSetting2() {return null;}
-	private final byte[] _getDailyTimerSetting2(byte epc) {
-		byte[] edt = getDailyTimerSetting2();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Daily timer setting 2<br>
+	 * <br>
+	 * EPC : 0xE8<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Time set by daily timer<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes.<br>
+	 * Each bit 1: worked 0: stopped<br>
+	 * <br>
+	 * Data type : unsigned char
+x 6<br>
+	 * <br>
+	 * Data size : 6
+Bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidDailyTimerSetting2(byte[] edt) {
+		if(edt == null || !(edt.length == 6)) return false;
+		return true;
 	}
 	/**
-	 * Reservation ON/OFF<br><br>ON=0x41, OFF=0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : ON timer reservation setting<br>
+	 * <br>
+	 * EPC : 0x90<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Reservation ON/OFF<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x41, OFF=0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setOnTimerReservationSetting(byte[] edt) {return false;}
-	private final boolean _setOnTimerReservationSetting(byte epc, byte[] edt) {
-		boolean success = setOnTimerReservationSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Reservation ON/OFF<br><br>ON=0x41, OFF=0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : ON timer reservation setting<br>
+	 * <br>
+	 * EPC : 0x90<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Reservation ON/OFF<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x41, OFF=0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getOnTimerReservationSetting() {return null;}
-	private final byte[] _getOnTimerReservationSetting(byte epc) {
-		byte[] edt = getOnTimerReservationSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : ON timer reservation setting<br>
+	 * <br>
+	 * EPC : 0x90<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Reservation ON/OFF<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x41, OFF=0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidOnTimerReservationSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : ON timer setting<br>
+	 * <br>
+	 * EPC : 0x91<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Timer value HH:MM<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0-0x17: 0-0x3B<br>
+	 * (=0-23):(=0-59)<br>
+	 * <br>
+	 * Data type : unsigned char
+x 2<br>
+	 * <br>
+	 * Data size : 2
+Bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setOnTimerSetting(byte[] edt) {return false;}
-	private final boolean _setOnTimerSetting(byte epc, byte[] edt) {
-		boolean success = setOnTimerSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : ON timer setting<br>
+	 * <br>
+	 * EPC : 0x91<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Timer value HH:MM<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0-0x17: 0-0x3B<br>
+	 * (=0-23):(=0-59)<br>
+	 * <br>
+	 * Data type : unsigned char
+x 2<br>
+	 * <br>
+	 * Data size : 2
+Bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getOnTimerSetting() {return null;}
-	private final byte[] _getOnTimerSetting(byte epc) {
-		byte[] edt = getOnTimerSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : ON timer setting<br>
+	 * <br>
+	 * EPC : 0x91<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Timer value HH:MM<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0-0x17: 0-0x3B<br>
+	 * (=0-23):(=0-59)<br>
+	 * <br>
+	 * Data type : unsigned char
+x 2<br>
+	 * <br>
+	 * Data size : 2
+Bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidOnTimerSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
+		return true;
 	}
 	/**
-	 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Relative ON timer setting<br>EPC : 0x92<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Relative ON
+timer setting<br>
+	 * <br>
+	 * EPC : 0x92<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Timer value HH:MM<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0-0x17: 0-0x3B<br>
+	 * (=0-23):(=0-59)<br>
+	 * <br>
+	 * Data type : unsigned char
+x 2<br>
+	 * <br>
+	 * Data size : 2
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setRelativeOnTimerSetting(byte[] edt) {return false;}
-	private final boolean _setRelativeOnTimerSetting(byte epc, byte[] edt) {
-		boolean success = setRelativeOnTimerSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Relative ON timer setting<br>EPC : 0x92<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Relative ON
+timer setting<br>
+	 * <br>
+	 * EPC : 0x92<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Timer value HH:MM<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0-0x17: 0-0x3B<br>
+	 * (=0-23):(=0-59)<br>
+	 * <br>
+	 * Data type : unsigned char
+x 2<br>
+	 * <br>
+	 * Data size : 2
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getRelativeOnTimerSetting() {return null;}
-	private final byte[] _getRelativeOnTimerSetting(byte epc) {
-		byte[] edt = getRelativeOnTimerSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Relative ON
+timer setting<br>
+	 * <br>
+	 * EPC : 0x92<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Timer value HH:MM<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0-0x17: 0-0x3B<br>
+	 * (=0-23):(=0-59)<br>
+	 * <br>
+	 * Data type : unsigned char
+x 2<br>
+	 * <br>
+	 * Data size : 2
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidRelativeOnTimerSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
+		return true;
 	}
 	/**
-	 * Reservation ON/OFF<br><br>ON��0x41, OFF��0x42<br><br>Name : OFF timer reservation setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : OFF timer reservation setting<br>
+	 * <br>
+	 * EPC : 0x94<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Reservation ON/OFF<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON��0x41, OFF��0x42<br>
+	 * <br>
+	 * Data type : unsigned
+char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setOffTimerReservationSetting(byte[] edt) {return false;}
-	private final boolean _setOffTimerReservationSetting(byte epc, byte[] edt) {
-		boolean success = setOffTimerReservationSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Reservation ON/OFF<br><br>ON��0x41, OFF��0x42<br><br>Name : OFF timer reservation setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : OFF timer reservation setting<br>
+	 * <br>
+	 * EPC : 0x94<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Reservation ON/OFF<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON��0x41, OFF��0x42<br>
+	 * <br>
+	 * Data type : unsigned
+char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getOffTimerReservationSetting() {return null;}
-	private final byte[] _getOffTimerReservationSetting(byte epc) {
-		byte[] edt = getOffTimerReservationSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : OFF timer reservation setting<br>
+	 * <br>
+	 * EPC : 0x94<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Reservation ON/OFF<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON��0x41, OFF��0x42<br>
+	 * <br>
+	 * Data type : unsigned
+char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidOffTimerReservationSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Time set by OFF timer<br>EPC : 0x95<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Time set by OFF
+timer<br>
+	 * <br>
+	 * EPC : 0x95<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Timer value HH:MM<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0-0x17: 0-0x3B<br>
+	 * (=0-23):(=0-59)<br>
+	 * <br>
+	 * Data type : unsigned char
+�~2<br>
+	 * <br>
+	 * Data size : 2
+Bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setTimeSetByOffTimer(byte[] edt) {return false;}
-	private final boolean _setTimeSetByOffTimer(byte epc, byte[] edt) {
-		boolean success = setTimeSetByOffTimer(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Time set by OFF timer<br>EPC : 0x95<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Time set by OFF
+timer<br>
+	 * <br>
+	 * EPC : 0x95<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Timer value HH:MM<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0-0x17: 0-0x3B<br>
+	 * (=0-23):(=0-59)<br>
+	 * <br>
+	 * Data type : unsigned char
+�~2<br>
+	 * <br>
+	 * Data size : 2
+Bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getTimeSetByOffTimer() {return null;}
-	private final byte[] _getTimeSetByOffTimer(byte epc) {
-		byte[] edt = getTimeSetByOffTimer();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Time set by OFF
+timer<br>
+	 * <br>
+	 * EPC : 0x95<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Timer value HH:MM<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0-0x17: 0-0x3B<br>
+	 * (=0-23):(=0-59)<br>
+	 * <br>
+	 * Data type : unsigned char
+�~2<br>
+	 * <br>
+	 * Data size : 2
+Bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidTimeSetByOffTimer(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
+		return true;
 	}
 	/**
-	 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Relative OFF timer setting<br>EPC : 0x96<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Relative OFF
+timer setting<br>
+	 * <br>
+	 * EPC : 0x96<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Timer value HH:MM<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0-0x17: 0-0x3B<br>
+	 * (=0-23):(=0-59)<br>
+	 * <br>
+	 * Data type : unsigned char
+�~2<br>
+	 * <br>
+	 * Data size : 2
+Bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setRelativeOffTimerSetting(byte[] edt) {return false;}
-	private final boolean _setRelativeOffTimerSetting(byte epc, byte[] edt) {
-		boolean success = setRelativeOffTimerSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Relative OFF timer setting<br>EPC : 0x96<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Relative OFF
+timer setting<br>
+	 * <br>
+	 * EPC : 0x96<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Timer value HH:MM<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0-0x17: 0-0x3B<br>
+	 * (=0-23):(=0-59)<br>
+	 * <br>
+	 * Data type : unsigned char
+�~2<br>
+	 * <br>
+	 * Data size : 2
+Bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getRelativeOffTimerSetting() {return null;}
-	private final byte[] _getRelativeOffTimerSetting(byte epc) {
-		byte[] edt = getRelativeOffTimerSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
-	}
-
-
-	@Override
-	protected void onReceiveSet(EchoFrame res, byte epc, byte pdc, byte[] edt) {
-		super.onReceiveSet(res, epc, pdc, edt);
-		switch(epc) {
-		case EPC_OPERATION_MODE_SETTING:
-			res.addProperty(epc, edt, _setOperationModeSetting(epc, edt));
-			break;
-		case EPC_WATER_TEMPERATURE_SETTING1:
-			res.addProperty(epc, edt, _setWaterTemperatureSetting1(epc, edt));
-			break;
-		case EPC_WATER_TEMPERATURE_SETTING2:
-			res.addProperty(epc, edt, _setWaterTemperatureSetting2(epc, edt));
-			break;
-		case EPC_SPECIAL_OPERATION_SETTING:
-			res.addProperty(epc, edt, _setSpecialOperationSetting(epc, edt));
-			break;
-		case EPC_DAILY_TIMER_SETTING:
-			res.addProperty(epc, edt, _setDailyTimerSetting(epc, edt));
-			break;
-		case EPC_DAILY_TIMER_SETTING1:
-			res.addProperty(epc, edt, _setDailyTimerSetting1(epc, edt));
-			break;
-		case EPC_DAILY_TIMER_SETTING2:
-			res.addProperty(epc, edt, _setDailyTimerSetting2(epc, edt));
-			break;
-		case EPC_ON_TIMER_RESERVATION_SETTING:
-			res.addProperty(epc, edt, _setOnTimerReservationSetting(epc, edt));
-			break;
-		case EPC_ON_TIMER_SETTING:
-			res.addProperty(epc, edt, _setOnTimerSetting(epc, edt));
-			break;
-		case EPC_RELATIVE_ON_TIMER_SETTING:
-			res.addProperty(epc, edt, _setRelativeOnTimerSetting(epc, edt));
-			break;
-		case EPC_OFF_TIMER_RESERVATION_SETTING:
-			res.addProperty(epc, edt, _setOffTimerReservationSetting(epc, edt));
-			break;
-		case EPC_TIME_SET_BY_OFF_TIMER:
-			res.addProperty(epc, edt, _setTimeSetByOffTimer(epc, edt));
-			break;
-		case EPC_RELATIVE_OFF_TIMER_SETTING:
-			res.addProperty(epc, edt, _setRelativeOffTimerSetting(epc, edt));
-			break;
-
-		}
+	/**
+	 * Property name : Relative OFF
+timer setting<br>
+	 * <br>
+	 * EPC : 0x96<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Timer value HH:MM<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0-0x17: 0-0x3B<br>
+	 * (=0-23):(=0-59)<br>
+	 * <br>
+	 * Data type : unsigned char
+�~2<br>
+	 * <br>
+	 * Data size : 2
+Bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidRelativeOffTimerSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
+		return true;
 	}
 
 	@Override
-	protected void onReceiveGet(EchoFrame res, byte epc) {
-		super.onReceiveGet(res, epc);
-		byte[] edt;
-		switch(epc) {
-		case EPC_OPERATION_MODE_SETTING:
-			edt = _getOperationModeSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_WATER_TEMPERATURE_SETTING1:
-			edt = _getWaterTemperatureSetting1(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_WATER_TEMPERATURE_SETTING2:
-			edt = _getWaterTemperatureSetting2(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_MEASURED_TEMPERATURE_OF_OUTWARD_WATER_EXIT_WATER_TEMPERATURE:
-			edt = _getMeasuredTemperatureOfOutwardWaterExitWaterTemperature(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_MEASURED_TEMPERATURE_OF_INWARD_WATER_ENTRANCE_WATER_TEMPERATURE:
-			edt = _getMeasuredTemperatureOfInwardWaterEntranceWaterTemperature(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_SPECIAL_OPERATION_SETTING:
-			edt = _getSpecialOperationSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_DAILY_TIMER_SETTING:
-			edt = _getDailyTimerSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_DAILY_TIMER_SETTING1:
-			edt = _getDailyTimerSetting1(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 6)));
-			break;
-		case EPC_DAILY_TIMER_SETTING2:
-			edt = _getDailyTimerSetting2(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 6)));
-			break;
-		case EPC_ON_TIMER_RESERVATION_SETTING:
-			edt = _getOnTimerReservationSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_ON_TIMER_SETTING:
-			edt = _getOnTimerSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			break;
-		case EPC_RELATIVE_ON_TIMER_SETTING:
-			edt = _getRelativeOnTimerSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			break;
-		case EPC_OFF_TIMER_RESERVATION_SETTING:
-			edt = _getOffTimerReservationSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_TIME_SET_BY_OFF_TIMER:
-			edt = _getTimeSetByOffTimer(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			break;
-		case EPC_RELATIVE_OFF_TIMER_SETTING:
-			edt = _getRelativeOffTimerSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			break;
+	protected boolean setProperty(EchoProperty property) {
+		boolean success = super.setProperty(property);
+		if(success) return success;
 
+		switch(property.epc) {
+		case EPC_OPERATION_MODE_SETTING : return setOperationModeSetting(property.edt);
+		case EPC_WATER_TEMPERATURE_SETTING1 : return setWaterTemperatureSetting1(property.edt);
+		case EPC_WATER_TEMPERATURE_SETTING2 : return setWaterTemperatureSetting2(property.edt);
+		case EPC_SPECIAL_OPERATION_SETTING : return setSpecialOperationSetting(property.edt);
+		case EPC_DAILY_TIMER_SETTING : return setDailyTimerSetting(property.edt);
+		case EPC_DAILY_TIMER_SETTING1 : return setDailyTimerSetting1(property.edt);
+		case EPC_DAILY_TIMER_SETTING2 : return setDailyTimerSetting2(property.edt);
+		case EPC_ON_TIMER_RESERVATION_SETTING : return setOnTimerReservationSetting(property.edt);
+		case EPC_ON_TIMER_SETTING : return setOnTimerSetting(property.edt);
+		case EPC_RELATIVE_ON_TIMER_SETTING : return setRelativeOnTimerSetting(property.edt);
+		case EPC_OFF_TIMER_RESERVATION_SETTING : return setOffTimerReservationSetting(property.edt);
+		case EPC_TIME_SET_BY_OFF_TIMER : return setTimeSetByOffTimer(property.edt);
+		case EPC_RELATIVE_OFF_TIMER_SETTING : return setRelativeOffTimerSetting(property.edt);
+		default : return false;
 		}
 	}
 	
 	@Override
-	public Setter set() {
-		return new Setter(ESV_SETI);
+	protected byte[] getProperty(byte epc) {
+		byte[] edt = super.getProperty(epc);
+		if(edt != null) return edt;
+		
+		switch(epc) {
+		case EPC_OPERATION_MODE_SETTING : return getOperationModeSetting();
+		case EPC_WATER_TEMPERATURE_SETTING1 : return getWaterTemperatureSetting1();
+		case EPC_WATER_TEMPERATURE_SETTING2 : return getWaterTemperatureSetting2();
+		case EPC_MEASURED_TEMPERATURE_OF_OUTWARD_WATER_EXIT_WATER_TEMPERATURE : return getMeasuredTemperatureOfOutwardWaterExitWaterTemperature();
+		case EPC_MEASURED_TEMPERATURE_OF_INWARD_WATER_ENTRANCE_WATER_TEMPERATURE : return getMeasuredTemperatureOfInwardWaterEntranceWaterTemperature();
+		case EPC_SPECIAL_OPERATION_SETTING : return getSpecialOperationSetting();
+		case EPC_DAILY_TIMER_SETTING : return getDailyTimerSetting();
+		case EPC_DAILY_TIMER_SETTING1 : return getDailyTimerSetting1();
+		case EPC_DAILY_TIMER_SETTING2 : return getDailyTimerSetting2();
+		case EPC_ON_TIMER_RESERVATION_SETTING : return getOnTimerReservationSetting();
+		case EPC_ON_TIMER_SETTING : return getOnTimerSetting();
+		case EPC_RELATIVE_ON_TIMER_SETTING : return getRelativeOnTimerSetting();
+		case EPC_OFF_TIMER_RESERVATION_SETTING : return getOffTimerReservationSetting();
+		case EPC_TIME_SET_BY_OFF_TIMER : return getTimeSetByOffTimer();
+		case EPC_RELATIVE_OFF_TIMER_SETTING : return getRelativeOffTimerSetting();
+		default : return null;
+		}
 	}
 
 	@Override
-	public Setter setC() {
-		return new Setter(ESV_SETC);
+	protected boolean isValidProperty(EchoProperty property) {
+		boolean valid = super.isValidProperty(property);
+		if(valid) return valid;
+		
+		switch(property.epc) {
+		case EPC_OPERATION_MODE_SETTING : return isValidOperationModeSetting(property.edt);
+		case EPC_WATER_TEMPERATURE_SETTING1 : return isValidWaterTemperatureSetting1(property.edt);
+		case EPC_WATER_TEMPERATURE_SETTING2 : return isValidWaterTemperatureSetting2(property.edt);
+		case EPC_MEASURED_TEMPERATURE_OF_OUTWARD_WATER_EXIT_WATER_TEMPERATURE : return isValidMeasuredTemperatureOfOutwardWaterExitWaterTemperature(property.edt);
+		case EPC_MEASURED_TEMPERATURE_OF_INWARD_WATER_ENTRANCE_WATER_TEMPERATURE : return isValidMeasuredTemperatureOfInwardWaterEntranceWaterTemperature(property.edt);
+		case EPC_SPECIAL_OPERATION_SETTING : return isValidSpecialOperationSetting(property.edt);
+		case EPC_DAILY_TIMER_SETTING : return isValidDailyTimerSetting(property.edt);
+		case EPC_DAILY_TIMER_SETTING1 : return isValidDailyTimerSetting1(property.edt);
+		case EPC_DAILY_TIMER_SETTING2 : return isValidDailyTimerSetting2(property.edt);
+		case EPC_ON_TIMER_RESERVATION_SETTING : return isValidOnTimerReservationSetting(property.edt);
+		case EPC_ON_TIMER_SETTING : return isValidOnTimerSetting(property.edt);
+		case EPC_RELATIVE_ON_TIMER_SETTING : return isValidRelativeOnTimerSetting(property.edt);
+		case EPC_OFF_TIMER_RESERVATION_SETTING : return isValidOffTimerReservationSetting(property.edt);
+		case EPC_TIME_SET_BY_OFF_TIMER : return isValidTimeSetByOffTimer(property.edt);
+		case EPC_RELATIVE_OFF_TIMER_SETTING : return isValidRelativeOffTimerSetting(property.edt);
+		default : return false;
+		}
+	}
+
+	@Override
+	public Setter set() {
+		return new Setter(this, true, false);
+	}
+
+	@Override
+	public Setter set(boolean responseRequired) {
+		return new Setter(this, responseRequired, false);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter();
+		return new Getter(this, false);
 	}
 
 	@Override
 	public Informer inform() {
-		return new InformerImpl();
+		return new Informer(this, !isProxy());
+	}
+	
+	@Override
+	protected Informer inform(boolean multicast) {
+		return new Informer(this, multicast);
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
-			switch(epc) {
-			case EPC_OPERATION_MODE_SETTING:
-				_onSetOperationModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_WATER_TEMPERATURE_SETTING1:
-				_onSetWaterTemperatureSetting1(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_WATER_TEMPERATURE_SETTING2:
-				_onSetWaterTemperatureSetting2(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_SPECIAL_OPERATION_SETTING:
-				_onSetSpecialOperationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_DAILY_TIMER_SETTING:
-				_onSetDailyTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_DAILY_TIMER_SETTING1:
-				_onSetDailyTimerSetting1(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_DAILY_TIMER_SETTING2:
-				_onSetDailyTimerSetting2(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_ON_TIMER_RESERVATION_SETTING:
-				_onSetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_ON_TIMER_SETTING:
-				_onSetOnTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_RELATIVE_ON_TIMER_SETTING:
-				_onSetRelativeOnTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_OFF_TIMER_RESERVATION_SETTING:
-				_onSetOffTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_TIME_SET_BY_OFF_TIMER:
-				_onSetTimeSetByOffTimer(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_RELATIVE_OFF_TIMER_SETTING:
-				_onSetRelativeOffTimerSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-
+		protected boolean onSetProperty(EchoObject eoj, short tid, byte esv,
+				EchoProperty property, boolean success) {
+			boolean ret = super.onSetProperty(eoj, tid, esv, property, success);
+			if(ret) return true;
+			
+			switch(property.epc) {
+			case EPC_OPERATION_MODE_SETTING : 
+				onSetOperationModeSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_WATER_TEMPERATURE_SETTING1 : 
+				onSetWaterTemperatureSetting1(eoj, tid, esv, property, success);
+				return true;
+			case EPC_WATER_TEMPERATURE_SETTING2 : 
+				onSetWaterTemperatureSetting2(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SPECIAL_OPERATION_SETTING : 
+				onSetSpecialOperationSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_DAILY_TIMER_SETTING : 
+				onSetDailyTimerSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_DAILY_TIMER_SETTING1 : 
+				onSetDailyTimerSetting1(eoj, tid, esv, property, success);
+				return true;
+			case EPC_DAILY_TIMER_SETTING2 : 
+				onSetDailyTimerSetting2(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ON_TIMER_RESERVATION_SETTING : 
+				onSetOnTimerReservationSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ON_TIMER_SETTING : 
+				onSetOnTimerSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_RELATIVE_ON_TIMER_SETTING : 
+				onSetRelativeOnTimerSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_OFF_TIMER_RESERVATION_SETTING : 
+				onSetOffTimerReservationSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_TIME_SET_BY_OFF_TIMER : 
+				onSetTimeSetByOffTimer(eoj, tid, esv, property, success);
+				return true;
+			case EPC_RELATIVE_OFF_TIMER_SETTING : 
+				onSetRelativeOffTimerSetting(eoj, tid, esv, property, success);
+				return true;
+			default :
+				return false;
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
-			switch(epc) {
-			case EPC_OPERATION_MODE_SETTING:
-				_onGetOperationModeSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_WATER_TEMPERATURE_SETTING1:
-				_onGetWaterTemperatureSetting1(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_WATER_TEMPERATURE_SETTING2:
-				_onGetWaterTemperatureSetting2(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_MEASURED_TEMPERATURE_OF_OUTWARD_WATER_EXIT_WATER_TEMPERATURE:
-				_onGetMeasuredTemperatureOfOutwardWaterExitWaterTemperature(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_MEASURED_TEMPERATURE_OF_INWARD_WATER_ENTRANCE_WATER_TEMPERATURE:
-				_onGetMeasuredTemperatureOfInwardWaterEntranceWaterTemperature(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_SPECIAL_OPERATION_SETTING:
-				_onGetSpecialOperationSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_DAILY_TIMER_SETTING:
-				_onGetDailyTimerSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_DAILY_TIMER_SETTING1:
-				_onGetDailyTimerSetting1(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_DAILY_TIMER_SETTING2:
-				_onGetDailyTimerSetting2(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_ON_TIMER_RESERVATION_SETTING:
-				_onGetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_ON_TIMER_SETTING:
-				_onGetOnTimerSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_RELATIVE_ON_TIMER_SETTING:
-				_onGetRelativeOnTimerSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_OFF_TIMER_RESERVATION_SETTING:
-				_onGetOffTimerReservationSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_TIME_SET_BY_OFF_TIMER:
-				_onGetTimeSetByOffTimer(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_RELATIVE_OFF_TIMER_SETTING:
-				_onGetRelativeOffTimerSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-
+		protected boolean onGetProperty(EchoObject eoj, short tid, byte esv,
+				EchoProperty property, boolean success) {
+			boolean ret = super.onGetProperty(eoj, tid, esv, property, success);
+			if(ret) return true;
+			
+			switch(property.epc) {
+			case EPC_OPERATION_MODE_SETTING : 
+				onGetOperationModeSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_WATER_TEMPERATURE_SETTING1 : 
+				onGetWaterTemperatureSetting1(eoj, tid, esv, property, success);
+				return true;
+			case EPC_WATER_TEMPERATURE_SETTING2 : 
+				onGetWaterTemperatureSetting2(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASURED_TEMPERATURE_OF_OUTWARD_WATER_EXIT_WATER_TEMPERATURE : 
+				onGetMeasuredTemperatureOfOutwardWaterExitWaterTemperature(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASURED_TEMPERATURE_OF_INWARD_WATER_ENTRANCE_WATER_TEMPERATURE : 
+				onGetMeasuredTemperatureOfInwardWaterEntranceWaterTemperature(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SPECIAL_OPERATION_SETTING : 
+				onGetSpecialOperationSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_DAILY_TIMER_SETTING : 
+				onGetDailyTimerSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_DAILY_TIMER_SETTING1 : 
+				onGetDailyTimerSetting1(eoj, tid, esv, property, success);
+				return true;
+			case EPC_DAILY_TIMER_SETTING2 : 
+				onGetDailyTimerSetting2(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ON_TIMER_RESERVATION_SETTING : 
+				onGetOnTimerReservationSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ON_TIMER_SETTING : 
+				onGetOnTimerSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_RELATIVE_ON_TIMER_SETTING : 
+				onGetRelativeOnTimerSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_OFF_TIMER_RESERVATION_SETTING : 
+				onGetOffTimerReservationSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_TIME_SET_BY_OFF_TIMER : 
+				onGetTimeSetByOffTimer(eoj, tid, esv, property, success);
+				return true;
+			case EPC_RELATIVE_OFF_TIMER_SETTING : 
+				onGetRelativeOffTimerSetting(eoj, tid, esv, property, success);
+				return true;
+			default :
+				return false;
 			}
 		}
 		
 		/**
-		 * Set the operation mode of heating (hot water)/cooling (cold water) and gets the status<br><br>Heating��0x41,Cooling��0x42<br><br>Name : Operation mode setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Operation mode setting<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Set the operation mode of heating (hot water)/cooling (cold water) and gets the status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Heating��0x41,Cooling��0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetOperationModeSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetOperationModeSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Set the operation mode of heating (hot water)/cooling (cold water) and gets the status<br><br>Heating��0x41,Cooling��0x42<br><br>Name : Operation mode setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Operation mode setting<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Set the operation mode of heating (hot water)/cooling (cold water) and gets the status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Heating��0x41,Cooling��0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetOperationModeSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetOperationModeSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates water temperature setting�B<br><br>0x00-0x64�i0-100���j AUTO��0x71<br><br>Name : Water temperature setting 1<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Water temperature setting 1<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates water<br>
+		 * temperature setting�B<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00-0x64�i0-100���j<br>
+		 * AUTO��0x71<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : ��<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
-		protected void onSetWaterTemperatureSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetWaterTemperatureSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetWaterTemperatureSetting1(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetWaterTemperatureSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates water temperature setting�B<br><br>0x00-0x64�i0-100���j AUTO��0x71<br><br>Name : Water temperature setting 1<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Water temperature setting 1<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates water<br>
+		 * temperature setting�B<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00-0x64�i0-100���j<br>
+		 * AUTO��0x71<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : ��<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
-		protected void onGetWaterTemperatureSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetWaterTemperatureSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetWaterTemperatureSetting1(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetWaterTemperatureSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates water temperature setting level by 15 steps<br><br>Cooling (cold water):0x21-0x2F Heating (hot water):0x31-0x3F indicated the minimum to maximumlevel respectively AUTO=0x41<br><br>Name : Water temperature setting 2<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Water temperature setting 2<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates water temperature setting level by 15 steps<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Cooling (cold water):0x21-0x2F Heating (hot water):0x31-0x3F<br>
+		 * indicated the minimum to maximumlevel respectively<br>
+		 * AUTO=0x41<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
-		protected void onSetWaterTemperatureSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetWaterTemperatureSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetWaterTemperatureSetting2(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetWaterTemperatureSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates water temperature setting level by 15 steps<br><br>Cooling (cold water):0x21-0x2F Heating (hot water):0x31-0x3F indicated the minimum to maximumlevel respectively AUTO=0x41<br><br>Name : Water temperature setting 2<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Water temperature setting 2<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates water temperature setting level by 15 steps<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Cooling (cold water):0x21-0x2F Heating (hot water):0x31-0x3F<br>
+		 * indicated the minimum to maximumlevel respectively<br>
+		 * AUTO=0x41<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
-		protected void onGetWaterTemperatureSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetWaterTemperatureSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetWaterTemperatureSetting2(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetWaterTemperatureSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Measured temperature of outward water<br><br>0x00-0x64�i0-100���j<br><br>Name : Measured temperature of outward water (Exit water Temperature)<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Measured temperature of outward water
+(Exit water
+Temperature)<br>
+		 * <br>
+		 * EPC : 0xE3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Measured temperature of outward water<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00-0x64�i0-100���j<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : ��<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetMeasuredTemperatureOfOutwardWaterExitWaterTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetMeasuredTemperatureOfOutwardWaterExitWaterTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetMeasuredTemperatureOfOutwardWaterExitWaterTemperature(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetMeasuredTemperatureOfOutwardWaterExitWaterTemperature(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Measured temperature of inward water<br><br>0x00-0x64�i0-100���j<br><br>Name : Measured temperature of inward water (Entrance water temperature)<br>EPC : 0xE4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Measured temperature of inward water
+(Entrance water temperature)<br>
+		 * <br>
+		 * EPC : 0xE4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Measured temperature of inward water<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00-0x64�i0-100���j<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : ��<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetMeasuredTemperatureOfInwardWaterEntranceWaterTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetMeasuredTemperatureOfInwardWaterEntranceWaterTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetMeasuredTemperatureOfInwardWaterEntranceWaterTemperature(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetMeasuredTemperatureOfInwardWaterEntranceWaterTemperature(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Sets Nornal Operation/ modest o peration/high power operation and gets the status<br><br>Nornal Operation=0x41, modest operation=0x42�high power operation=0x43<br><br>Name : Special operation setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Special operation setting<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets Nornal Operation/ modest o peration/high power operation and gets the status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Nornal Operation=0x41, modest<br>
+		 * operation=0x42�high power<br>
+		 * operation=0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetSpecialOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetSpecialOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetSpecialOperationSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetSpecialOperationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Sets Nornal Operation/ modest o peration/high power operation and gets the status<br><br>Nornal Operation=0x41, modest operation=0x42�high power operation=0x43<br><br>Name : Special operation setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Special operation setting<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets Nornal Operation/ modest o peration/high power operation and gets the status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Nornal Operation=0x41, modest<br>
+		 * operation=0x42�high power<br>
+		 * operation=0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetSpecialOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetSpecialOperationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetSpecialOperationSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetSpecialOperationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Daily timer ON/OFF Up tp 2 kinds of timers can be used<br><br>Timer OFF=0x40, timer 1=0x41 timer 2=0x42<br><br>Name : Daily timer setting<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Daily timer setting<br>
+		 * <br>
+		 * EPC : 0xE6<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Daily timer ON/OFF<br>
+		 * Up tp 2 kinds of timers can be used<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Timer OFF=0x40, timer 1=0x41<br>
+		 * timer 2=0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetDailyTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetDailyTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetDailyTimerSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetDailyTimerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Daily timer ON/OFF Up tp 2 kinds of timers can be used<br><br>Timer OFF=0x40, timer 1=0x41 timer 2=0x42<br><br>Name : Daily timer setting<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Daily timer setting<br>
+		 * <br>
+		 * EPC : 0xE6<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Daily timer ON/OFF<br>
+		 * Up tp 2 kinds of timers can be used<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Timer OFF=0x40, timer 1=0x41<br>
+		 * timer 2=0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetDailyTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetDailyTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetDailyTimerSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetDailyTimerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Time set by daily timer<br><br>Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes. Each bit 1: worked 0: stopped<br><br>Name : Daily timer setting 1<br>EPC : 0xE7<br>Data Type : unsigned char x 6<br>Data Size(Byte) : 6 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Daily timer setting 1<br>
+		 * <br>
+		 * EPC : 0xE7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Time set by daily timer<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes.<br>
+		 * Each bit 1: worked 0: stopped<br>
+		 * <br>
+		 * Data type : unsigned char
+x 6<br>
+		 * <br>
+		 * Data size : 6
+Bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetDailyTimerSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetDailyTimerSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetDailyTimerSetting1(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetDailyTimerSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Time set by daily timer<br><br>Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes. Each bit 1: worked 0: stopped<br><br>Name : Daily timer setting 1<br>EPC : 0xE7<br>Data Type : unsigned char x 6<br>Data Size(Byte) : 6 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Daily timer setting 1<br>
+		 * <br>
+		 * EPC : 0xE7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Time set by daily timer<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes.<br>
+		 * Each bit 1: worked 0: stopped<br>
+		 * <br>
+		 * Data type : unsigned char
+x 6<br>
+		 * <br>
+		 * Data size : 6
+Bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetDailyTimerSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetDailyTimerSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetDailyTimerSetting1(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetDailyTimerSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Time set by daily timer<br><br>Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes. Each bit 1: worked 0: stopped<br><br>Name : Daily timer setting 2<br>EPC : 0xE8<br>Data Type : unsigned char x 6<br>Data Size(Byte) : 6 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Daily timer setting 2<br>
+		 * <br>
+		 * EPC : 0xE8<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Time set by daily timer<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes.<br>
+		 * Each bit 1: worked 0: stopped<br>
+		 * <br>
+		 * Data type : unsigned char
+x 6<br>
+		 * <br>
+		 * Data size : 6
+Bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetDailyTimerSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetDailyTimerSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetDailyTimerSetting2(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetDailyTimerSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Time set by daily timer<br><br>Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes. Each bit 1: worked 0: stopped<br><br>Name : Daily timer setting 2<br>EPC : 0xE8<br>Data Type : unsigned char x 6<br>Data Size(Byte) : 6 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Daily timer setting 2<br>
+		 * <br>
+		 * EPC : 0xE8<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Time set by daily timer<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes.<br>
+		 * Each bit 1: worked 0: stopped<br>
+		 * <br>
+		 * Data type : unsigned char
+x 6<br>
+		 * <br>
+		 * Data size : 6
+Bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetDailyTimerSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetDailyTimerSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetDailyTimerSetting2(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetDailyTimerSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Reservation ON/OFF<br><br>ON=0x41, OFF=0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer reservation setting<br>
+		 * <br>
+		 * EPC : 0x90<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Reservation ON/OFF<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x41, OFF=0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Reservation ON/OFF<br><br>ON=0x41, OFF=0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer reservation setting<br>
+		 * <br>
+		 * EPC : 0x90<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Reservation ON/OFF<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x41, OFF=0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetOnTimerReservationSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer setting<br>
+		 * <br>
+		 * EPC : 0x91<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Timer value HH:MM<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x17: 0-0x3B<br>
+		 * (=0-23):(=0-59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x 2<br>
+		 * <br>
+		 * Data size : 2
+Bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetOnTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetOnTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetOnTimerSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetOnTimerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer setting<br>
+		 * <br>
+		 * EPC : 0x91<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Timer value HH:MM<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x17: 0-0x3B<br>
+		 * (=0-23):(=0-59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x 2<br>
+		 * <br>
+		 * Data size : 2
+Bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetOnTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetOnTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetOnTimerSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetOnTimerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Relative ON timer setting<br>EPC : 0x92<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Relative ON
+timer setting<br>
+		 * <br>
+		 * EPC : 0x92<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Timer value HH:MM<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x17: 0-0x3B<br>
+		 * (=0-23):(=0-59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x 2<br>
+		 * <br>
+		 * Data size : 2
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetRelativeOnTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetRelativeOnTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetRelativeOnTimerSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetRelativeOnTimerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Relative ON timer setting<br>EPC : 0x92<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Relative ON
+timer setting<br>
+		 * <br>
+		 * EPC : 0x92<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Timer value HH:MM<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x17: 0-0x3B<br>
+		 * (=0-23):(=0-59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x 2<br>
+		 * <br>
+		 * Data size : 2
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetRelativeOnTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetRelativeOnTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetRelativeOnTimerSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetRelativeOnTimerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Reservation ON/OFF<br><br>ON��0x41, OFF��0x42<br><br>Name : OFF timer reservation setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : OFF timer reservation setting<br>
+		 * <br>
+		 * EPC : 0x94<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Reservation ON/OFF<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON��0x41, OFF��0x42<br>
+		 * <br>
+		 * Data type : unsigned
+char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetOffTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetOffTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetOffTimerReservationSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetOffTimerReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Reservation ON/OFF<br><br>ON��0x41, OFF��0x42<br><br>Name : OFF timer reservation setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : OFF timer reservation setting<br>
+		 * <br>
+		 * EPC : 0x94<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Reservation ON/OFF<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON��0x41, OFF��0x42<br>
+		 * <br>
+		 * Data type : unsigned
+char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetOffTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetOffTimerReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetOffTimerReservationSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetOffTimerReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Time set by OFF timer<br>EPC : 0x95<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Time set by OFF
+timer<br>
+		 * <br>
+		 * EPC : 0x95<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Timer value HH:MM<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x17: 0-0x3B<br>
+		 * (=0-23):(=0-59)<br>
+		 * <br>
+		 * Data type : unsigned char
+�~2<br>
+		 * <br>
+		 * Data size : 2
+Bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetTimeSetByOffTimer(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetTimeSetByOffTimer(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetTimeSetByOffTimer(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetTimeSetByOffTimer(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Time set by OFF timer<br>EPC : 0x95<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Time set by OFF
+timer<br>
+		 * <br>
+		 * EPC : 0x95<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Timer value HH:MM<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x17: 0-0x3B<br>
+		 * (=0-23):(=0-59)<br>
+		 * <br>
+		 * Data type : unsigned char
+�~2<br>
+		 * <br>
+		 * Data size : 2
+Bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetTimeSetByOffTimer(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetTimeSetByOffTimer(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetTimeSetByOffTimer(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetTimeSetByOffTimer(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Relative OFF timer setting<br>EPC : 0x96<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Relative OFF
+timer setting<br>
+		 * <br>
+		 * EPC : 0x96<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Timer value HH:MM<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x17: 0-0x3B<br>
+		 * (=0-23):(=0-59)<br>
+		 * <br>
+		 * Data type : unsigned char
+�~2<br>
+		 * <br>
+		 * Data size : 2
+Bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetRelativeOffTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetRelativeOffTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetRelativeOffTimerSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetRelativeOffTimerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Relative OFF timer setting<br>EPC : 0x96<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Relative OFF
+timer setting<br>
+		 * <br>
+		 * EPC : 0x96<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Timer value HH:MM<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x17: 0-0x3B<br>
+		 * (=0-23):(=0-59)<br>
+		 * <br>
+		 * Data type : unsigned char
+�~2<br>
+		 * <br>
+		 * Data size : 2
+Bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetRelativeOffTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetRelativeOffTimerSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetRelativeOffTimerSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
-
+		protected void onGetRelativeOffTimerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 	}
-	
-	public class Setter extends DeviceObject.Setter {
-		public Setter(byte esv) {
-			super(esv);
-		}
 
+	public static class Setter extends DeviceObject.Setter {
+		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
+			super(eoj, responseRequired, multicast);
+		}
+		
 		@Override
-		public Setter reqSet(byte epc, byte[] edt) {
-			return (Setter)super.reqSet(epc, edt);
+		public Setter reqSetProperty(byte epc, byte[] edt) {
+			return (Setter)super.reqSetProperty(epc, edt);
 		}
 		
 		@Override
@@ -815,102 +2250,394 @@ public abstract class ColdOrHotWaterHeatSourceEquipment extends DeviceObject {
 		public Setter reqSetPowerLimitSetting(byte[] edt) {
 			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
-
+		
 		/**
-		 * Set the operation mode of heating (hot water)/cooling (cold water) and gets the status<br><br>Heating��0x41,Cooling��0x42<br><br>Name : Operation mode setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Operation mode setting<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Set the operation mode of heating (hot water)/cooling (cold water) and gets the status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Heating��0x41,Cooling��0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetOperationModeSetting(byte[] edt) {
-			addProperty(EPC_OPERATION_MODE_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_OPERATION_MODE_SETTING, edt);
 			return this;
 		}
 		/**
-		 * This property indicates water temperature setting�B<br><br>0x00-0x64�i0-100���j AUTO��0x71<br><br>Name : Water temperature setting 1<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Water temperature setting 1<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates water<br>
+		 * temperature setting�B<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00-0x64�i0-100���j<br>
+		 * AUTO��0x71<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : ��<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		public Setter reqSetWaterTemperatureSetting1(byte[] edt) {
-			addProperty(EPC_WATER_TEMPERATURE_SETTING1, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_WATER_TEMPERATURE_SETTING1, edt);
 			return this;
 		}
 		/**
-		 * This property indicates water temperature setting level by 15 steps<br><br>Cooling (cold water):0x21-0x2F Heating (hot water):0x31-0x3F indicated the minimum to maximumlevel respectively AUTO=0x41<br><br>Name : Water temperature setting 2<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Water temperature setting 2<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates water temperature setting level by 15 steps<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Cooling (cold water):0x21-0x2F Heating (hot water):0x31-0x3F<br>
+		 * indicated the minimum to maximumlevel respectively<br>
+		 * AUTO=0x41<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		public Setter reqSetWaterTemperatureSetting2(byte[] edt) {
-			addProperty(EPC_WATER_TEMPERATURE_SETTING2, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_WATER_TEMPERATURE_SETTING2, edt);
 			return this;
 		}
 		/**
-		 * Sets Nornal Operation/ modest o peration/high power operation and gets the status<br><br>Nornal Operation=0x41, modest operation=0x42�high power operation=0x43<br><br>Name : Special operation setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Special operation setting<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets Nornal Operation/ modest o peration/high power operation and gets the status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Nornal Operation=0x41, modest<br>
+		 * operation=0x42�high power<br>
+		 * operation=0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetSpecialOperationSetting(byte[] edt) {
-			addProperty(EPC_SPECIAL_OPERATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_SPECIAL_OPERATION_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Daily timer ON/OFF Up tp 2 kinds of timers can be used<br><br>Timer OFF=0x40, timer 1=0x41 timer 2=0x42<br><br>Name : Daily timer setting<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Daily timer setting<br>
+		 * <br>
+		 * EPC : 0xE6<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Daily timer ON/OFF<br>
+		 * Up tp 2 kinds of timers can be used<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Timer OFF=0x40, timer 1=0x41<br>
+		 * timer 2=0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetDailyTimerSetting(byte[] edt) {
-			addProperty(EPC_DAILY_TIMER_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_DAILY_TIMER_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Time set by daily timer<br><br>Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes. Each bit 1: worked 0: stopped<br><br>Name : Daily timer setting 1<br>EPC : 0xE7<br>Data Type : unsigned char x 6<br>Data Size(Byte) : 6 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Daily timer setting 1<br>
+		 * <br>
+		 * EPC : 0xE7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Time set by daily timer<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes.<br>
+		 * Each bit 1: worked 0: stopped<br>
+		 * <br>
+		 * Data type : unsigned char
+x 6<br>
+		 * <br>
+		 * Data size : 6
+Bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetDailyTimerSetting1(byte[] edt) {
-			addProperty(EPC_DAILY_TIMER_SETTING1, edt, (edt != null && (edt.length == 6)));
+			addProperty(EPC_DAILY_TIMER_SETTING1, edt);
 			return this;
 		}
 		/**
-		 * Time set by daily timer<br><br>Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes. Each bit 1: worked 0: stopped<br><br>Name : Daily timer setting 2<br>EPC : 0xE8<br>Data Type : unsigned char x 6<br>Data Size(Byte) : 6 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Daily timer setting 2<br>
+		 * <br>
+		 * EPC : 0xE8<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Time set by daily timer<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes.<br>
+		 * Each bit 1: worked 0: stopped<br>
+		 * <br>
+		 * Data type : unsigned char
+x 6<br>
+		 * <br>
+		 * Data size : 6
+Bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetDailyTimerSetting2(byte[] edt) {
-			addProperty(EPC_DAILY_TIMER_SETTING2, edt, (edt != null && (edt.length == 6)));
+			addProperty(EPC_DAILY_TIMER_SETTING2, edt);
 			return this;
 		}
 		/**
-		 * Reservation ON/OFF<br><br>ON=0x41, OFF=0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer reservation setting<br>
+		 * <br>
+		 * EPC : 0x90<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Reservation ON/OFF<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x41, OFF=0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerReservationSetting(byte[] edt) {
-			addProperty(EPC_ON_TIMER_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_ON_TIMER_RESERVATION_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer setting<br>
+		 * <br>
+		 * EPC : 0x91<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Timer value HH:MM<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x17: 0-0x3B<br>
+		 * (=0-23):(=0-59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x 2<br>
+		 * <br>
+		 * Data size : 2
+Bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerSetting(byte[] edt) {
-			addProperty(EPC_ON_TIMER_SETTING, edt, (edt != null && (edt.length == 2)));
+			addProperty(EPC_ON_TIMER_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Relative ON timer setting<br>EPC : 0x92<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Relative ON
+timer setting<br>
+		 * <br>
+		 * EPC : 0x92<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Timer value HH:MM<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x17: 0-0x3B<br>
+		 * (=0-23):(=0-59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x 2<br>
+		 * <br>
+		 * Data size : 2
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetRelativeOnTimerSetting(byte[] edt) {
-			addProperty(EPC_RELATIVE_ON_TIMER_SETTING, edt, (edt != null && (edt.length == 2)));
+			addProperty(EPC_RELATIVE_ON_TIMER_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Reservation ON/OFF<br><br>ON��0x41, OFF��0x42<br><br>Name : OFF timer reservation setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : OFF timer reservation setting<br>
+		 * <br>
+		 * EPC : 0x94<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Reservation ON/OFF<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON��0x41, OFF��0x42<br>
+		 * <br>
+		 * Data type : unsigned
+char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetOffTimerReservationSetting(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_OFF_TIMER_RESERVATION_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Time set by OFF timer<br>EPC : 0x95<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Time set by OFF
+timer<br>
+		 * <br>
+		 * EPC : 0x95<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Timer value HH:MM<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x17: 0-0x3B<br>
+		 * (=0-23):(=0-59)<br>
+		 * <br>
+		 * Data type : unsigned char
+�~2<br>
+		 * <br>
+		 * Data size : 2
+Bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetTimeSetByOffTimer(byte[] edt) {
-			addProperty(EPC_TIME_SET_BY_OFF_TIMER, edt, (edt != null && (edt.length == 2)));
+			addProperty(EPC_TIME_SET_BY_OFF_TIMER, edt);
 			return this;
 		}
 		/**
-		 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Relative OFF timer setting<br>EPC : 0x96<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Relative OFF
+timer setting<br>
+		 * <br>
+		 * EPC : 0x96<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Timer value HH:MM<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x17: 0-0x3B<br>
+		 * (=0-23):(=0-59)<br>
+		 * <br>
+		 * Data type : unsigned char
+�~2<br>
+		 * <br>
+		 * Data size : 2
+Bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetRelativeOffTimerSetting(byte[] edt) {
-			addProperty(EPC_RELATIVE_OFF_TIMER_SETTING, edt, (edt != null && (edt.length == 2)));
+			addProperty(EPC_RELATIVE_OFF_TIMER_SETTING, edt);
 			return this;
 		}
 	}
-
-	public class Getter extends DeviceObject.Getter {
-
+	
+	public static class Getter extends DeviceObject.Getter {
+		public Getter(EchoObject eoj, boolean multicast) {
+			super(eoj, multicast);
+		}
+		
+		@Override
+		public Getter reqGetProperty(byte epc) {
+			return (Getter)super.reqGetProperty(epc);
+		}
+		
 		@Override
 		public Getter reqGetOperationStatus() {
 			return (Getter)super.reqGetOperationStatus();
@@ -1009,105 +2736,432 @@ public abstract class ColdOrHotWaterHeatSourceEquipment extends DeviceObject {
 		}
 		
 		/**
-		 * Set the operation mode of heating (hot water)/cooling (cold water) and gets the status<br><br>Heating��0x41,Cooling��0x42<br><br>Name : Operation mode setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Operation mode setting<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Set the operation mode of heating (hot water)/cooling (cold water) and gets the status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Heating��0x41,Cooling��0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetOperationModeSetting() {
 			addProperty(EPC_OPERATION_MODE_SETTING);
 			return this;
 		}
 		/**
-		 * This property indicates water temperature setting�B<br><br>0x00-0x64�i0-100���j AUTO��0x71<br><br>Name : Water temperature setting 1<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Water temperature setting 1<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates water<br>
+		 * temperature setting�B<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00-0x64�i0-100���j<br>
+		 * AUTO��0x71<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : ��<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		public Getter reqGetWaterTemperatureSetting1() {
 			addProperty(EPC_WATER_TEMPERATURE_SETTING1);
 			return this;
 		}
 		/**
-		 * This property indicates water temperature setting level by 15 steps<br><br>Cooling (cold water):0x21-0x2F Heating (hot water):0x31-0x3F indicated the minimum to maximumlevel respectively AUTO=0x41<br><br>Name : Water temperature setting 2<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Water temperature setting 2<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates water temperature setting level by 15 steps<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Cooling (cold water):0x21-0x2F Heating (hot water):0x31-0x3F<br>
+		 * indicated the minimum to maximumlevel respectively<br>
+		 * AUTO=0x41<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		public Getter reqGetWaterTemperatureSetting2() {
 			addProperty(EPC_WATER_TEMPERATURE_SETTING2);
 			return this;
 		}
 		/**
-		 * Measured temperature of outward water<br><br>0x00-0x64�i0-100���j<br><br>Name : Measured temperature of outward water (Exit water Temperature)<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Measured temperature of outward water
+(Exit water
+Temperature)<br>
+		 * <br>
+		 * EPC : 0xE3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Measured temperature of outward water<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00-0x64�i0-100���j<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : ��<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredTemperatureOfOutwardWaterExitWaterTemperature() {
 			addProperty(EPC_MEASURED_TEMPERATURE_OF_OUTWARD_WATER_EXIT_WATER_TEMPERATURE);
 			return this;
 		}
 		/**
-		 * Measured temperature of inward water<br><br>0x00-0x64�i0-100���j<br><br>Name : Measured temperature of inward water (Entrance water temperature)<br>EPC : 0xE4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Measured temperature of inward water
+(Entrance water temperature)<br>
+		 * <br>
+		 * EPC : 0xE4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Measured temperature of inward water<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00-0x64�i0-100���j<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : ��<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredTemperatureOfInwardWaterEntranceWaterTemperature() {
 			addProperty(EPC_MEASURED_TEMPERATURE_OF_INWARD_WATER_ENTRANCE_WATER_TEMPERATURE);
 			return this;
 		}
 		/**
-		 * Sets Nornal Operation/ modest o peration/high power operation and gets the status<br><br>Nornal Operation=0x41, modest operation=0x42�high power operation=0x43<br><br>Name : Special operation setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Special operation setting<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets Nornal Operation/ modest o peration/high power operation and gets the status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Nornal Operation=0x41, modest<br>
+		 * operation=0x42�high power<br>
+		 * operation=0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetSpecialOperationSetting() {
 			addProperty(EPC_SPECIAL_OPERATION_SETTING);
 			return this;
 		}
 		/**
-		 * Daily timer ON/OFF Up tp 2 kinds of timers can be used<br><br>Timer OFF=0x40, timer 1=0x41 timer 2=0x42<br><br>Name : Daily timer setting<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Daily timer setting<br>
+		 * <br>
+		 * EPC : 0xE6<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Daily timer ON/OFF<br>
+		 * Up tp 2 kinds of timers can be used<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Timer OFF=0x40, timer 1=0x41<br>
+		 * timer 2=0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetDailyTimerSetting() {
 			addProperty(EPC_DAILY_TIMER_SETTING);
 			return this;
 		}
 		/**
-		 * Time set by daily timer<br><br>Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes. Each bit 1: worked 0: stopped<br><br>Name : Daily timer setting 1<br>EPC : 0xE7<br>Data Type : unsigned char x 6<br>Data Size(Byte) : 6 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Daily timer setting 1<br>
+		 * <br>
+		 * EPC : 0xE7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Time set by daily timer<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes.<br>
+		 * Each bit 1: worked 0: stopped<br>
+		 * <br>
+		 * Data type : unsigned char
+x 6<br>
+		 * <br>
+		 * Data size : 6
+Bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetDailyTimerSetting1() {
 			addProperty(EPC_DAILY_TIMER_SETTING1);
 			return this;
 		}
 		/**
-		 * Time set by daily timer<br><br>Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes. Each bit 1: worked 0: stopped<br><br>Name : Daily timer setting 2<br>EPC : 0xE8<br>Data Type : unsigned char x 6<br>Data Size(Byte) : 6 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Daily timer setting 2<br>
+		 * <br>
+		 * EPC : 0xE8<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Time set by daily timer<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes.<br>
+		 * Each bit 1: worked 0: stopped<br>
+		 * <br>
+		 * Data type : unsigned char
+x 6<br>
+		 * <br>
+		 * Data size : 6
+Bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetDailyTimerSetting2() {
 			addProperty(EPC_DAILY_TIMER_SETTING2);
 			return this;
 		}
 		/**
-		 * Reservation ON/OFF<br><br>ON=0x41, OFF=0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer reservation setting<br>
+		 * <br>
+		 * EPC : 0x90<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Reservation ON/OFF<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x41, OFF=0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerReservationSetting() {
 			addProperty(EPC_ON_TIMER_RESERVATION_SETTING);
 			return this;
 		}
 		/**
-		 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer setting<br>
+		 * <br>
+		 * EPC : 0x91<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Timer value HH:MM<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x17: 0-0x3B<br>
+		 * (=0-23):(=0-59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x 2<br>
+		 * <br>
+		 * Data size : 2
+Bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerSetting() {
 			addProperty(EPC_ON_TIMER_SETTING);
 			return this;
 		}
 		/**
-		 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Relative ON timer setting<br>EPC : 0x92<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Relative ON
+timer setting<br>
+		 * <br>
+		 * EPC : 0x92<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Timer value HH:MM<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x17: 0-0x3B<br>
+		 * (=0-23):(=0-59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x 2<br>
+		 * <br>
+		 * Data size : 2
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetRelativeOnTimerSetting() {
 			addProperty(EPC_RELATIVE_ON_TIMER_SETTING);
 			return this;
 		}
 		/**
-		 * Reservation ON/OFF<br><br>ON��0x41, OFF��0x42<br><br>Name : OFF timer reservation setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : OFF timer reservation setting<br>
+		 * <br>
+		 * EPC : 0x94<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Reservation ON/OFF<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON��0x41, OFF��0x42<br>
+		 * <br>
+		 * Data type : unsigned
+char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetOffTimerReservationSetting() {
 			addProperty(EPC_OFF_TIMER_RESERVATION_SETTING);
 			return this;
 		}
 		/**
-		 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Time set by OFF timer<br>EPC : 0x95<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Time set by OFF
+timer<br>
+		 * <br>
+		 * EPC : 0x95<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Timer value HH:MM<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x17: 0-0x3B<br>
+		 * (=0-23):(=0-59)<br>
+		 * <br>
+		 * Data type : unsigned char
+�~2<br>
+		 * <br>
+		 * Data size : 2
+Bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetTimeSetByOffTimer() {
 			addProperty(EPC_TIME_SET_BY_OFF_TIMER);
 			return this;
 		}
 		/**
-		 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Relative OFF timer setting<br>EPC : 0x96<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Relative OFF
+timer setting<br>
+		 * <br>
+		 * EPC : 0x96<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Timer value HH:MM<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x17: 0-0x3B<br>
+		 * (=0-23):(=0-59)<br>
+		 * <br>
+		 * Data type : unsigned char
+�~2<br>
+		 * <br>
+		 * Data size : 2
+Bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetRelativeOffTimerSetting() {
 			addProperty(EPC_RELATIVE_OFF_TIMER_SETTING);
@@ -1115,103 +3169,16 @@ public abstract class ColdOrHotWaterHeatSourceEquipment extends DeviceObject {
 		}
 	}
 	
-	public interface Informer extends DeviceObject.Informer {
-		public Informer reqInform(byte epc);
-		
-		public Informer reqInformOperationStatus();
-		public Informer reqInformInstallationLocation();
-		public Informer reqInformStandardVersionInformation();
-		public Informer reqInformIdentificationNumber();
-		public Informer reqInformMeasuredInstantaneousPowerConsumption();
-		public Informer reqInformMeasuredCumulativePowerConsumption();
-		public Informer reqInformManufacturersFaultCode();
-		public Informer reqInformCurrentLimitSetting();
-		public Informer reqInformFaultStatus();
-		public Informer reqInformFaultDescription();
-		public Informer reqInformManufacturerCode();
-		public Informer reqInformBusinessFacilityCode();
-		public Informer reqInformProductCode();
-		public Informer reqInformProductionNumber();
-		public Informer reqInformProductionDate();
-		public Informer reqInformPowerSavingOperationSetting();
-		public Informer reqInformPositionInformation();
-		public Informer reqInformCurrentTimeSetting();
-		public Informer reqInformCurrentDateSetting();
-		public Informer reqInformPowerLimitSetting();
-		public Informer reqInformCumulativeOperatingTime();
-		public Informer reqInformStatusChangeAnnouncementPropertyMap();
-		public Informer reqInformSetPropertyMap();
-		public Informer reqInformGetPropertyMap();
-		
-		/**
-		 * Set the operation mode of heating (hot water)/cooling (cold water) and gets the status<br><br>Heating��0x41,Cooling��0x42<br><br>Name : Operation mode setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformOperationModeSetting();
-		/**
-		 * This property indicates water temperature setting�B<br><br>0x00-0x64�i0-100���j AUTO��0x71<br><br>Name : Water temperature setting 1<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
-		 */
-		public Informer reqInformWaterTemperatureSetting1();
-		/**
-		 * This property indicates water temperature setting level by 15 steps<br><br>Cooling (cold water):0x21-0x2F Heating (hot water):0x31-0x3F indicated the minimum to maximumlevel respectively AUTO=0x41<br><br>Name : Water temperature setting 2<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
-		 */
-		public Informer reqInformWaterTemperatureSetting2();
-		/**
-		 * Measured temperature of outward water<br><br>0x00-0x64�i0-100���j<br><br>Name : Measured temperature of outward water (Exit water Temperature)<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformMeasuredTemperatureOfOutwardWaterExitWaterTemperature();
-		/**
-		 * Measured temperature of inward water<br><br>0x00-0x64�i0-100���j<br><br>Name : Measured temperature of inward water (Entrance water temperature)<br>EPC : 0xE4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformMeasuredTemperatureOfInwardWaterEntranceWaterTemperature();
-		/**
-		 * Sets Nornal Operation/ modest o peration/high power operation and gets the status<br><br>Nornal Operation=0x41, modest operation=0x42�high power operation=0x43<br><br>Name : Special operation setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformSpecialOperationSetting();
-		/**
-		 * Daily timer ON/OFF Up tp 2 kinds of timers can be used<br><br>Timer OFF=0x40, timer 1=0x41 timer 2=0x42<br><br>Name : Daily timer setting<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformDailyTimerSetting();
-		/**
-		 * Time set by daily timer<br><br>Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes. Each bit 1: worked 0: stopped<br><br>Name : Daily timer setting 1<br>EPC : 0xE7<br>Data Type : unsigned char x 6<br>Data Size(Byte) : 6 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformDailyTimerSetting1();
-		/**
-		 * Time set by daily timer<br><br>Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes. Each bit 1: worked 0: stopped<br><br>Name : Daily timer setting 2<br>EPC : 0xE8<br>Data Type : unsigned char x 6<br>Data Size(Byte) : 6 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformDailyTimerSetting2();
-		/**
-		 * Reservation ON/OFF<br><br>ON=0x41, OFF=0x42<br><br>Name : ON timer reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformOnTimerReservationSetting();
-		/**
-		 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : ON timer setting<br>EPC : 0x91<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformOnTimerSetting();
-		/**
-		 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Relative ON timer setting<br>EPC : 0x92<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformRelativeOnTimerSetting();
-		/**
-		 * Reservation ON/OFF<br><br>ON��0x41, OFF��0x42<br><br>Name : OFF timer reservation setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformOffTimerReservationSetting();
-		/**
-		 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Time set by OFF timer<br>EPC : 0x95<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformTimeSetByOffTimer();
-		/**
-		 * Timer value HH:MM<br><br>0-0x17: 0-0x3B (=0-23):(=0-59)<br><br>Name : Relative OFF timer setting<br>EPC : 0x96<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformRelativeOffTimerSetting();
-	}
-
-	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
-		@Override
-		public Informer reqInform(byte epc) {
-			return (Informer)super.reqInform(epc);
+	public static class Informer extends DeviceObject.Informer {
+		public Informer(EchoObject eoj, boolean multicast) {
+			super(eoj, multicast);
 		}
 		
 		@Override
+		public Informer reqInformProperty(byte epc) {
+			return (Informer)super.reqInformProperty(epc);
+		}
+				@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();
 		}
@@ -1307,291 +3274,503 @@ public abstract class ColdOrHotWaterHeatSourceEquipment extends DeviceObject {
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
 		}
-
-		@Override
-		public Informer reqInformOperationModeSetting() {
-			byte epc = EPC_OPERATION_MODE_SETTING;
-			byte[] edt = _getOperationModeSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformWaterTemperatureSetting1() {
-			byte epc = EPC_WATER_TEMPERATURE_SETTING1;
-			byte[] edt = _getWaterTemperatureSetting1(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformWaterTemperatureSetting2() {
-			byte epc = EPC_WATER_TEMPERATURE_SETTING2;
-			byte[] edt = _getWaterTemperatureSetting2(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformMeasuredTemperatureOfOutwardWaterExitWaterTemperature() {
-			byte epc = EPC_MEASURED_TEMPERATURE_OF_OUTWARD_WATER_EXIT_WATER_TEMPERATURE;
-			byte[] edt = _getMeasuredTemperatureOfOutwardWaterExitWaterTemperature(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformMeasuredTemperatureOfInwardWaterEntranceWaterTemperature() {
-			byte epc = EPC_MEASURED_TEMPERATURE_OF_INWARD_WATER_ENTRANCE_WATER_TEMPERATURE;
-			byte[] edt = _getMeasuredTemperatureOfInwardWaterEntranceWaterTemperature(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformSpecialOperationSetting() {
-			byte epc = EPC_SPECIAL_OPERATION_SETTING;
-			byte[] edt = _getSpecialOperationSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformDailyTimerSetting() {
-			byte epc = EPC_DAILY_TIMER_SETTING;
-			byte[] edt = _getDailyTimerSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformDailyTimerSetting1() {
-			byte epc = EPC_DAILY_TIMER_SETTING1;
-			byte[] edt = _getDailyTimerSetting1(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 6)));
-			return this;
-		}
-		@Override
-		public Informer reqInformDailyTimerSetting2() {
-			byte epc = EPC_DAILY_TIMER_SETTING2;
-			byte[] edt = _getDailyTimerSetting2(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 6)));
-			return this;
-		}
-		@Override
-		public Informer reqInformOnTimerReservationSetting() {
-			byte epc = EPC_ON_TIMER_RESERVATION_SETTING;
-			byte[] edt = _getOnTimerReservationSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformOnTimerSetting() {
-			byte epc = EPC_ON_TIMER_SETTING;
-			byte[] edt = _getOnTimerSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Informer reqInformRelativeOnTimerSetting() {
-			byte epc = EPC_RELATIVE_ON_TIMER_SETTING;
-			byte[] edt = _getRelativeOnTimerSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Informer reqInformOffTimerReservationSetting() {
-			byte epc = EPC_OFF_TIMER_RESERVATION_SETTING;
-			byte[] edt = _getOffTimerReservationSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformTimeSetByOffTimer() {
-			byte epc = EPC_TIME_SET_BY_OFF_TIMER;
-			byte[] edt = _getTimeSetByOffTimer(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Informer reqInformRelativeOffTimerSetting() {
-			byte epc = EPC_RELATIVE_OFF_TIMER_SETTING;
-			byte[] edt = _getRelativeOffTimerSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-	}
-	
-	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
-		@Override
-		public Informer reqInform(byte epc) {
-			return (Informer)super.reqInform(epc);
-		}
 		
-		@Override
-		public Informer reqInformOperationStatus() {
-			return (Informer)super.reqInformOperationStatus();
-		}
-		@Override
-		public Informer reqInformInstallationLocation() {
-			return (Informer)super.reqInformInstallationLocation();
-		}
-		@Override
-		public Informer reqInformStandardVersionInformation() {
-			return (Informer)super.reqInformStandardVersionInformation();
-		}
-		@Override
-		public Informer reqInformIdentificationNumber() {
-			return (Informer)super.reqInformIdentificationNumber();
-		}
-		@Override
-		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
-			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Informer reqInformMeasuredCumulativePowerConsumption() {
-			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Informer reqInformManufacturersFaultCode() {
-			return (Informer)super.reqInformManufacturersFaultCode();
-		}
-		@Override
-		public Informer reqInformCurrentLimitSetting() {
-			return (Informer)super.reqInformCurrentLimitSetting();
-		}
-		@Override
-		public Informer reqInformFaultStatus() {
-			return (Informer)super.reqInformFaultStatus();
-		}
-		@Override
-		public Informer reqInformFaultDescription() {
-			return (Informer)super.reqInformFaultDescription();
-		}
-		@Override
-		public Informer reqInformManufacturerCode() {
-			return (Informer)super.reqInformManufacturerCode();
-		}
-		@Override
-		public Informer reqInformBusinessFacilityCode() {
-			return (Informer)super.reqInformBusinessFacilityCode();
-		}
-		@Override
-		public Informer reqInformProductCode() {
-			return (Informer)super.reqInformProductCode();
-		}
-		@Override
-		public Informer reqInformProductionNumber() {
-			return (Informer)super.reqInformProductionNumber();
-		}
-		@Override
-		public Informer reqInformProductionDate() {
-			return (Informer)super.reqInformProductionDate();
-		}
-		@Override
-		public Informer reqInformPowerSavingOperationSetting() {
-			return (Informer)super.reqInformPowerSavingOperationSetting();
-		}
-		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
-		}
-		@Override
-		public Informer reqInformCurrentTimeSetting() {
-			return (Informer)super.reqInformCurrentTimeSetting();
-		}
-		@Override
-		public Informer reqInformCurrentDateSetting() {
-			return (Informer)super.reqInformCurrentDateSetting();
-		}
-		@Override
-		public Informer reqInformPowerLimitSetting() {
-			return (Informer)super.reqInformPowerLimitSetting();
-		}
-		@Override
-		public Informer reqInformCumulativeOperatingTime() {
-			return (Informer)super.reqInformCumulativeOperatingTime();
-		}
-		@Override
-		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
-			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Informer reqInformSetPropertyMap() {
-			return (Informer)super.reqInformSetPropertyMap();
-		}
-		@Override
-		public Informer reqInformGetPropertyMap() {
-			return (Informer)super.reqInformGetPropertyMap();
-		}
-
-		@Override
+		/**
+		 * Property name : Operation mode setting<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Set the operation mode of heating (hot water)/cooling (cold water) and gets the status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Heating��0x41,Cooling��0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformOperationModeSetting() {
 			addProperty(EPC_OPERATION_MODE_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Water temperature setting 1<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates water<br>
+		 * temperature setting�B<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00-0x64�i0-100���j<br>
+		 * AUTO��0x71<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : ��<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
+		 */
 		public Informer reqInformWaterTemperatureSetting1() {
 			addProperty(EPC_WATER_TEMPERATURE_SETTING1);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Water temperature setting 2<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates water temperature setting level by 15 steps<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Cooling (cold water):0x21-0x2F Heating (hot water):0x31-0x3F<br>
+		 * indicated the minimum to maximumlevel respectively<br>
+		 * AUTO=0x41<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
+		 */
 		public Informer reqInformWaterTemperatureSetting2() {
 			addProperty(EPC_WATER_TEMPERATURE_SETTING2);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Measured temperature of outward water
+(Exit water
+Temperature)<br>
+		 * <br>
+		 * EPC : 0xE3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Measured temperature of outward water<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00-0x64�i0-100���j<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : ��<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformMeasuredTemperatureOfOutwardWaterExitWaterTemperature() {
 			addProperty(EPC_MEASURED_TEMPERATURE_OF_OUTWARD_WATER_EXIT_WATER_TEMPERATURE);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Measured temperature of inward water
+(Entrance water temperature)<br>
+		 * <br>
+		 * EPC : 0xE4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Measured temperature of inward water<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00-0x64�i0-100���j<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : ��<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformMeasuredTemperatureOfInwardWaterEntranceWaterTemperature() {
 			addProperty(EPC_MEASURED_TEMPERATURE_OF_INWARD_WATER_ENTRANCE_WATER_TEMPERATURE);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Special operation setting<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets Nornal Operation/ modest o peration/high power operation and gets the status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Nornal Operation=0x41, modest<br>
+		 * operation=0x42�high power<br>
+		 * operation=0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformSpecialOperationSetting() {
 			addProperty(EPC_SPECIAL_OPERATION_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Daily timer setting<br>
+		 * <br>
+		 * EPC : 0xE6<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Daily timer ON/OFF<br>
+		 * Up tp 2 kinds of timers can be used<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Timer OFF=0x40, timer 1=0x41<br>
+		 * timer 2=0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformDailyTimerSetting() {
 			addProperty(EPC_DAILY_TIMER_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Daily timer setting 1<br>
+		 * <br>
+		 * EPC : 0xE7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Time set by daily timer<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes.<br>
+		 * Each bit 1: worked 0: stopped<br>
+		 * <br>
+		 * Data type : unsigned char
+x 6<br>
+		 * <br>
+		 * Data size : 6
+Bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformDailyTimerSetting1() {
 			addProperty(EPC_DAILY_TIMER_SETTING1);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Daily timer setting 2<br>
+		 * <br>
+		 * EPC : 0xE8<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Time set by daily timer<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Set the time in the unit of 30 minutes, dividing 24 hours by 30 minutes and allocated 6 bytes.<br>
+		 * Each bit 1: worked 0: stopped<br>
+		 * <br>
+		 * Data type : unsigned char
+x 6<br>
+		 * <br>
+		 * Data size : 6
+Bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformDailyTimerSetting2() {
 			addProperty(EPC_DAILY_TIMER_SETTING2);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : ON timer reservation setting<br>
+		 * <br>
+		 * EPC : 0x90<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Reservation ON/OFF<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x41, OFF=0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformOnTimerReservationSetting() {
 			addProperty(EPC_ON_TIMER_RESERVATION_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : ON timer setting<br>
+		 * <br>
+		 * EPC : 0x91<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Timer value HH:MM<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x17: 0-0x3B<br>
+		 * (=0-23):(=0-59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x 2<br>
+		 * <br>
+		 * Data size : 2
+Bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformOnTimerSetting() {
 			addProperty(EPC_ON_TIMER_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Relative ON
+timer setting<br>
+		 * <br>
+		 * EPC : 0x92<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Timer value HH:MM<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x17: 0-0x3B<br>
+		 * (=0-23):(=0-59)<br>
+		 * <br>
+		 * Data type : unsigned char
+x 2<br>
+		 * <br>
+		 * Data size : 2
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformRelativeOnTimerSetting() {
 			addProperty(EPC_RELATIVE_ON_TIMER_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : OFF timer reservation setting<br>
+		 * <br>
+		 * EPC : 0x94<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Reservation ON/OFF<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON��0x41, OFF��0x42<br>
+		 * <br>
+		 * Data type : unsigned
+char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformOffTimerReservationSetting() {
 			addProperty(EPC_OFF_TIMER_RESERVATION_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Time set by OFF
+timer<br>
+		 * <br>
+		 * EPC : 0x95<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Timer value HH:MM<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x17: 0-0x3B<br>
+		 * (=0-23):(=0-59)<br>
+		 * <br>
+		 * Data type : unsigned char
+�~2<br>
+		 * <br>
+		 * Data size : 2
+Bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformTimeSetByOffTimer() {
 			addProperty(EPC_TIME_SET_BY_OFF_TIMER);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Relative OFF
+timer setting<br>
+		 * <br>
+		 * EPC : 0x96<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Timer value HH:MM<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x17: 0-0x3B<br>
+		 * (=0-23):(=0-59)<br>
+		 * <br>
+		 * Data type : unsigned char
+�~2<br>
+		 * <br>
+		 * Data size : 2
+Bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformRelativeOffTimerSetting() {
 			addProperty(EPC_RELATIVE_OFF_TIMER_SETTING);
 			return this;
 		}
 	}
+
+	public static class Proxy extends ColdOrHotWaterHeatSourceEquipment {
+		private byte mInstanceCode;
+		public Proxy(byte instanceCode) {
+			super();
+			mInstanceCode = instanceCode;
+		}
+		@Override
+		public byte getInstanceCode() {
+			return mInstanceCode;
+		}
+		@Override
+		protected byte[] getOperationStatus() {return null;}
+		@Override
+		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		@Override
+		protected byte[] getInstallationLocation() {return null;}
+		@Override
+		protected byte[] getStandardVersionInformation() {return null;}
+		@Override
+		protected byte[] getFaultStatus() {return null;}
+		@Override
+		protected byte[] getManufacturerCode() {return null;}
+		@Override
+		protected boolean setWaterTemperatureSetting1(byte[] edt) {return false;}
+		@Override
+		protected byte[] getWaterTemperatureSetting1() {return null;}
+		@Override
+		protected boolean setWaterTemperatureSetting2(byte[] edt) {return false;}
+		@Override
+		protected byte[] getWaterTemperatureSetting2() {return null;}
+	}
+	
+	public static Setter setG() {
+		return setG((byte)0);
+	}
+
+	public static Setter setG(byte instanceCode) {
+		return new Setter(new Proxy(instanceCode), true, true);
+	}
+
+	public static Setter setG(boolean responseRequired) {
+		return setG((byte)0, responseRequired);
+	}
+
+	public static Setter setG(byte instanceCode, boolean responseRequired) {
+		return new Setter(new Proxy(instanceCode), responseRequired, true);
+	}
+
+	public static Getter getG() {
+		return getG((byte)0);
+	}
+	
+	public static Getter getG(byte instanceCode) {
+		return new Getter(new Proxy(instanceCode), true);
+	}
+
+	public static Informer informG() {
+		return informG((byte)0);
+	}
+
+	public static Informer informG(byte instanceCode) {
+		return new Informer(new Proxy(instanceCode), true);
+	}
+
 }

@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sonycsl.echo.eoj.EchoObject;
+import com.sonycsl.echo.exception.OutOfFrameException;
 
 
 
@@ -32,15 +33,36 @@ import com.sonycsl.echo.eoj.EchoObject;
  */
 public final class EchoFrame {
 	
-	protected static final byte EHD1 = 0x10;
-	protected static final byte EHD2 = (byte)0x81; 
+	private static final byte EHD1 = 0x10;
+	private static final byte EHD2 = (byte)0x81; 
 
-	protected short mTID;
-	protected EchoObject mSeoj;
-	protected EchoObject mDeoj;
-	protected byte mEsv;
+
+	public static final byte ESV_SETI = 0x60;
+	public static final byte ESV_SETC = 0x61;
+	public static final byte ESV_GET  = 0x62;
+	public static final byte ESV_INF_REQ = 0x63;
+	public static final byte ESV_SET_RES = 0x71;
+	public static final byte ESV_GET_RES = 0x72;
+	public static final byte ESV_INF = 0x73;
+	public static final byte ESV_INFC = 0x74;
+	public static final byte ESV_INFC_RES = 0x7A;
+	public static final byte ESV_SETI_SNA = 0x50;
+	public static final byte ESV_SETC_SNA = 0x51;
+	public static final byte ESV_GET_SNA = 0x52;
+	public static final byte ESV_INF_SNA = 0x53;
 	
-	protected List<Property> mPropertyList;
+	public static final byte ESV_SET_NO_RES = 0x70;
+	
+	public static final byte ESV_SET_GET = 0x6E;
+	public static final byte ESV_SET_GET_RES = 0x7E;
+	public static final byte ESV_SET_GET_SNA = 0x5E;
+	
+	private short mTID;
+	private EchoObject mSeoj;
+	private EchoObject mDeoj;
+	private byte mEsv;
+	
+	protected List<EchoProperty> mPropertyList;
 	
 	
 
@@ -51,12 +73,12 @@ public final class EchoFrame {
 		mDeoj = deoj;
 		mEsv = esv;
 		
-		mPropertyList = new ArrayList<Property>();
+		mPropertyList = new ArrayList<EchoProperty>();
 		
 	}
 	
 	public EchoFrame(InetAddress address, byte[] data) {
-		if(data.length < 11) return;
+		if(data.length < 11) {return;}
 		if(data[0] != EHD1) return;
 		if(data[1] != EHD2) return;
 		ByteBuffer buffer = ByteBuffer.allocate(2);
@@ -64,30 +86,32 @@ public final class EchoFrame {
 		buffer.put(data[2]);
 		buffer.put(data[3]);
 		mTID = buffer.getShort(0);
-		Echo.putProxy(address, data[4], data[5], data[6]);
+		//Echo.putProxy(address, data[4], data[5], data[6]);
+		Echo.updateNodeInstance(address, data[4], data[5], data[6]);
 		mSeoj = Echo.getInstance(address, data[4], data[5], data[6]);
 		mDeoj = Echo.getInstance(Echo.getNode().getAddress(), 
 				data[7], data[8], data[9]);
 		mEsv = data[10];
 		int size = data[11] & 0xFF;
-		mPropertyList = new ArrayList<Property>();
+		mPropertyList = new ArrayList<EchoProperty>();
 		for(int i = 0, j = 12; i < size; i++) {
 			if(data.length == j) return;
-			Property p = new Property();
-			p.epc = data[j];
+			byte epc, pdc;
+			byte[] edt;
+			epc = data[j];
 			j++;
 			if(data.length == j) return;
-			p.pdc = data[j];
+			pdc = data[j];
 			j++;
-			if(p.pdc == 0) {
-				p.edt = null;
+			if(pdc == 0) {
+				edt = null;
 			} else {
-				if(data.length < j+(p.pdc & 0xFF)) return;
-				p.edt = new byte[(int)(p.pdc & 0xFF)];
-				System.arraycopy(data, j, p.edt, 0, (int)(p.pdc & 0xFF));
-				j += (p.pdc & 0xFF);
+				if(data.length < j+(pdc & 0xFF)) return;
+				edt = new byte[(int)(pdc & 0xFF)];
+				System.arraycopy(data, j, edt, 0, (int)(pdc & 0xFF));
+				j += (pdc & 0xFF);
 			}
-			mPropertyList.add(p);
+			mPropertyList.add(new EchoProperty(epc, pdc, edt));
 		}
 		
 	}
@@ -112,27 +136,21 @@ public final class EchoFrame {
 		return mEsv;
 	}
 	
-	public Property[] getProperties() {
-		return (Property[]) mPropertyList.toArray(new Property[]{});
+	public EchoProperty[] getProperties() {
+		return (EchoProperty[]) mPropertyList.toArray(new EchoProperty[]{});
+	}
+	
+	public void addProperty(EchoProperty property) {
+		mPropertyList.add(property);
 	}
 	
 	public void addProperty(byte epc, byte pdc, byte[] edt) {
-		Property prop = new Property();
-		prop.epc = epc;
-		prop.pdc = pdc;
-		prop.edt = edt;
+		EchoProperty prop = new EchoProperty(epc, pdc, edt);
 		mPropertyList.add(prop);
 	}
 
 	public void addProperty(byte epc, byte[] edt) {
-		Property prop = new Property();
-		prop.epc = epc;
-		if(edt == null) {
-			prop.pdc = (byte)0;
-		} else {
-			prop.pdc = (byte)edt.length;
-		}
-		prop.edt = edt;
+		EchoProperty prop = new EchoProperty(epc, edt);
 		mPropertyList.add(prop);
 	}
 	
@@ -144,49 +162,93 @@ public final class EchoFrame {
 	public void addProperty(byte epc, byte[] edt, boolean success) {
 		if(success) {
 			switch(mEsv) {
-			case EchoObject.ESV_SETI: case EchoObject.ESV_SETC:
+			case ESV_SETI: case ESV_SETC:
 				addProperty(epc, edt);
 				break;
-			case EchoObject.ESV_SET_NO_RES: case EchoObject.ESV_SETI_SNA:
-			case EchoObject.ESV_SET_RES: case EchoObject.ESV_SETC_SNA:
+			case ESV_SET_NO_RES: case ESV_SETI_SNA:
+			case ESV_SET_RES: case ESV_SETC_SNA:
 				addProperty(epc);
 				break;
-			case EchoObject.ESV_GET_RES: case EchoObject.ESV_GET_SNA:
+			case ESV_GET_RES: case ESV_GET_SNA:
 				addProperty(epc, edt);
 				break;
-			case EchoObject.ESV_INF: case EchoObject.ESV_INF_SNA:
+			case ESV_INF: case ESV_INF_SNA:
 				addProperty(epc, edt);
-			case EchoObject.ESV_INFC:
+			case ESV_INFC:
 				addProperty(epc, edt);
 				break;
 			}
 		} else {
 			switch(mEsv) {
-			case EchoObject.ESV_SET_NO_RES: case EchoObject.ESV_SETI_SNA:
+			case ESV_SET_NO_RES: case ESV_SETI_SNA:
 				addProperty(epc, edt);
-				setEsv(EchoObject.ESV_SETI_SNA);
+				setEsv(ESV_SETI_SNA);
 				break;
-			case EchoObject.ESV_SET_RES: case EchoObject.ESV_SETC_SNA:
+			case ESV_SET_RES: case ESV_SETC_SNA:
 				addProperty(epc, edt);
-				setEsv(EchoObject.ESV_SETC_SNA);
+				setEsv(ESV_SETC_SNA);
 				break;
-			case EchoObject.ESV_GET_RES: case EchoObject.ESV_GET_SNA:
+			case ESV_GET_RES: case ESV_GET_SNA:
 				addProperty(epc);
-				setEsv(EchoObject.ESV_GET_SNA);
+				setEsv(ESV_GET_SNA);
 				break;
-			case EchoObject.ESV_INF: case EchoObject.ESV_INF_SNA:
+			case ESV_INF: case ESV_INF_SNA:
 				addProperty(epc);
-				setEsv(EchoObject.ESV_INF_SNA);
+				setEsv(ESV_INF_SNA);
+				break;
+			}
+		}
+	}
+
+	public void addProperty(EchoProperty property, boolean success) {
+		if(success) {
+			switch(mEsv) {
+			case ESV_SETI: case ESV_SETC:
+				addProperty(property);
+				break;
+			case ESV_SET_NO_RES: case ESV_SETI_SNA:
+			case ESV_SET_RES: case ESV_SETC_SNA:
+				addProperty(property.epc);
+				break;
+			case ESV_GET_RES: case ESV_GET_SNA:
+				addProperty(property);
+				break;
+			case ESV_INF: case ESV_INF_SNA:
+				addProperty(property);
+			case ESV_INFC:
+				addProperty(property);
+				break;
+			}
+		} else {
+			switch(mEsv) {
+			case ESV_SET_NO_RES: case ESV_SETI_SNA:
+				addProperty(property);
+				setEsv(ESV_SETI_SNA);
+				break;
+			case ESV_SET_RES: case ESV_SETC_SNA:
+				addProperty(property);
+				setEsv(ESV_SETC_SNA);
+				break;
+			case ESV_GET_RES: case ESV_GET_SNA:
+				addProperty(property.epc);
+				setEsv(ESV_GET_SNA);
+				break;
+			case ESV_INF: case ESV_INF_SNA:
+				addProperty(property.epc);
+				setEsv(ESV_INF_SNA);
 				break;
 			}
 		}
 	}
 	
 	public byte[] getFrameByteArray() {
-		if(mPropertyList.size() > 255)return null;
+		int propertyListSize = mPropertyList.size();
+		if(propertyListSize > 255) {
+			propertyListSize = 255;
+		}
 		int size = 12;
-		for(Property p : mPropertyList) {
-			size += p.size();
+		for(int i = 0; i < propertyListSize; i++) {
+			size += mPropertyList.get(i).size();
 		}
 		if(size > EchoSocket.UDP_MAX_PACKET_SIZE) return null;
 		ByteBuffer buffer = ByteBuffer.allocate(size);
@@ -198,8 +260,8 @@ public final class EchoFrame {
 		buffer.put(EchoUtils.instanceToByteArray(mSeoj));
 		buffer.put(EchoUtils.instanceToByteArray(mDeoj));
 		buffer.put(mEsv);
-		buffer.put((byte)mPropertyList.size());
-		for(Property p : mPropertyList) {
+		buffer.put((byte)propertyListSize);
+		for(EchoProperty p : mPropertyList) {
 			buffer.put(p.epc);
 			buffer.put(p.pdc);
 			if(p.edt != null)
@@ -207,17 +269,6 @@ public final class EchoFrame {
 		}
 		return buffer.array();
 		
-	}
-	
-	public static class Property {
-		public byte epc;
-		public byte pdc;
-		public byte[] edt;
-
-		public int size() {
-			if(edt != null) return edt.length + 2;
-			return 2;
-		}
 	}
 	
 }

@@ -15,18 +15,16 @@
  */
 package com.sonycsl.echo.eoj.device.housingfacilities;
 
+import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
+import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
+import com.sonycsl.echo.node.EchoNode;
 
 public abstract class LPGasMeter extends DeviceObject {
 	
-	public static final byte CLASS_GROUP_CODE = (byte)0x02;
-	public static final byte CLASS_CODE = (byte)0x83;
-	
-	public LPGasMeter() {
-		setReceiver(new Receiver());
-	}
+	public static final short ECHO_CLASS_CODE = (short)0x0283;
 
 	public static final byte EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1 = (byte)0xE0;
 	public static final byte EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2 = (byte)0xE1;
@@ -54,751 +52,2312 @@ public abstract class LPGasMeter extends DeviceObject {
 	public static final byte EPC_TEST_CALL_SETTING = (byte)0xD7;
 
 	@Override
-	public byte getClassGroupCode() {
-		return CLASS_GROUP_CODE;
+	protected void setupPropertyMaps() {
+		super.setupPropertyMaps();
+		
+		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
+		removeSetProperty(EPC_OPERATION_STATUS);
+		addGetProperty(EPC_OPERATION_STATUS);
+		addGetProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1);
+		addGetProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2);
+		addStatusChangeAnnouncementProperty(EPC_ERROR_DETECTION_STATUSOF_METERING_DATA);
+		addStatusChangeAnnouncementProperty(EPC_CENTER_VALVE_SHUT_OFF_STATUS);
+		addStatusChangeAnnouncementProperty(EPC_RESIDUAL_VOLUME_CONTROL_WARNING);
 	}
-
+	
 	@Override
-	public byte getClassCode() {
-		return CLASS_CODE;
+	public void initialize(EchoNode node) {
+		super.initialize(node);
+		Echo.EventListener listener = Echo.getEventListener();
+		if(listener != null) listener.onNewLPGasMeter(this);
+	}
+	
+	@Override
+	public short getEchoClassCode() {
+		return ECHO_CLASS_CODE;
 	}
 
 	/**
-	 * This property indicates integral gas consumption in units of 0.0001 m3.<br><br>0.0x005F5E0FF (0.9999,9999 m3)<br><br>Name : Integral gas consumption of metering data 1<br>EPC : 0xE0<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the ON/OFF<br>
+	 * status.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30, OFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : �\<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setOperationStatus(byte[] edt) {return false;}
+	/**
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the ON/OFF<br>
+	 * status.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30, OFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : �\<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getOperationStatus();
+	/**
+	 * Property name : Integral gas consumption of metering data 1<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates integral gas consumption in units of 0.0001 m3.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0x005F5E0FF (0.9999,9999 m3)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * <br>
+	 * Data size : 4 bytes<br>
+	 * <br>
+	 * Unit : 0.0001 m3<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
 	 */
 	protected abstract byte[] getIntegralGasConsumptionOfMeteringData1();
-	private final byte[] _getIntegralGasConsumptionOfMeteringData1(byte epc) {
-		byte[] edt = getIntegralGasConsumptionOfMeteringData1();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Integral gas consumption of metering data 1<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates integral gas consumption in units of 0.0001 m3.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0x005F5E0FF (0.9999,9999 m3)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * <br>
+	 * Data size : 4 bytes<br>
+	 * <br>
+	 * Unit : 0.0001 m3<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidIntegralGasConsumptionOfMeteringData1(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates integral gas consumption in units of 0.001 m3.<br><br>0.0x005F5E0FF (0.99999,999 m3)<br><br>Name : Integral gas consumption of metering data 2<br>EPC : 0xE1<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
+	 * Property name : Integral gas consumption of metering data 2<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates integral gas consumption in units of 0.001 m3.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0x005F5E0FF (0.99999,999 m3)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * <br>
+	 * Data size : 4 bytes<br>
+	 * <br>
+	 * Unit : 0.001 m3<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
 	 */
 	protected abstract byte[] getIntegralGasConsumptionOfMeteringData2();
-	private final byte[] _getIntegralGasConsumptionOfMeteringData2(byte epc) {
-		byte[] edt = getIntegralGasConsumptionOfMeteringData2();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Integral gas consumption of metering data 2<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates integral gas consumption in units of 0.001 m3.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0x005F5E0FF (0.99999,999 m3)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * <br>
+	 * Data size : 4 bytes<br>
+	 * <br>
+	 * Unit : 0.001 m3<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidIntegralGasConsumptionOfMeteringData2(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates status where meter detected metering data error.<br><br>Error detection status found = 0x41 Error detection status not found = 0x42<br><br>Name : Error detection statusof metering data<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
+	 * Property name : Error detection statusof metering data<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates status where meter detected metering data error.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Error detection status found = 0x41<br>
+	 * Error detection status not found<br>
+	 * = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getErrorDetectionStatusofMeteringData() {return null;}
-	private final byte[] _getErrorDetectionStatusofMeteringData(byte epc) {
-		byte[] edt = getErrorDetectionStatusofMeteringData();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Error detection statusof metering data<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates status where meter detected metering data error.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Error detection status found = 0x41<br>
+	 * Error detection status not found<br>
+	 * = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidErrorDetectionStatusofMeteringData(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates security data to define security information on meter operation by bit allocation.<br><br>0.0xFFFFFFFF<br><br>Name : Security data 1<br>EPC : 0xE3<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Security data 1<br>
+	 * <br>
+	 * EPC : 0xE3<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates security data to define security information on meter operation by bit allocation.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0xFFFFFFFF<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * <br>
+	 * Data size : 4 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getSecurityData1() {return null;}
-	private final byte[] _getSecurityData1(byte epc) {
-		byte[] edt = getSecurityData1();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Security data 1<br>
+	 * <br>
+	 * EPC : 0xE3<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates security data to define security information on meter operation by bit allocation.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0xFFFFFFFF<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * <br>
+	 * Data size : 4 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidSecurityData1(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates security data to define security information on meter operation by bit allocation.<br><br>0.0xFFFFFFFF<br><br>Name : Security data 2<br>EPC : 0xE4<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Security data 2<br>
+	 * <br>
+	 * EPC : 0xE4<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates security data to define security information on meter operation by bit allocation.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0xFFFFFFFF<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * <br>
+	 * Data size : 4 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getSecurityData2() {return null;}
-	private final byte[] _getSecurityData2(byte epc) {
-		byte[] edt = getSecurityData2();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Security data 2<br>
+	 * <br>
+	 * EPC : 0xE4<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates security data to define security information on meter operation by bit allocation.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0xFFFFFFFF<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * <br>
+	 * Data size : 4 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidSecurityData2(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br><br>Center valve shut-off status found = 0x41 Center valve shut-off status not found = 0x42<br><br>Name : Center valve shut-off status<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
+	 * Property name : Center valve shut-off status<br>
+	 * <br>
+	 * EPC : 0xE5<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Center valve shut-off status found<br>
+	 * = 0x41<br>
+	 * Center valve shut-off status not found<br>
+	 * = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getCenterValveShutOffStatus() {return null;}
-	private final byte[] _getCenterValveShutOffStatus(byte epc) {
-		byte[] edt = getCenterValveShutOffStatus();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Center valve shut-off status<br>
+	 * <br>
+	 * EPC : 0xE5<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Center valve shut-off status found<br>
+	 * = 0x41<br>
+	 * Center valve shut-off status not found<br>
+	 * = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidCenterValveShutOffStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br><br>Center valve shut-off reset enable = 0x41 Center valve shut-off reset not enable = 0x42<br><br>Name : Center valve shut-off recovery permission setting status<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Center valve
+shut-off recovery permission setting status<br>
+	 * <br>
+	 * EPC : 0xE6<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Center valve shut-off reset enable =<br>
+	 * 0x41<br>
+	 * Center valve shut-off reset not enable<br>
+	 * = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getCenterValveShutOffRecoveryPermissionSettingStatus() {return null;}
-	private final byte[] _getCenterValveShutOffRecoveryPermissionSettingStatus(byte epc) {
-		byte[] edt = getCenterValveShutOffRecoveryPermissionSettingStatus();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Center valve
+shut-off recovery permission setting status<br>
+	 * <br>
+	 * EPC : 0xE6<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Center valve shut-off reset enable =<br>
+	 * 0x41<br>
+	 * Center valve shut-off reset not enable<br>
+	 * = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidCenterValveShutOffRecoveryPermissionSettingStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates status where gas shut-off valve of meter has been shut off.<br><br>Emergency valve shut-off status found = 0x41 Emergency valve shut-off status not found = 0x42<br><br>Name : Emergency valve shut-off status<br>EPC : 0xE7<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Emergency valve shut-off status<br>
+	 * <br>
+	 * EPC : 0xE7<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates status where gas shut-off valve of meter has been shut off.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Emergency valve shut-off status found<br>
+	 * = 0x41<br>
+	 * Emergency valve shut-off status not found = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getEmergencyValveShutOffStatus() {return null;}
-	private final byte[] _getEmergencyValveShutOffStatus(byte epc) {
-		byte[] edt = getEmergencyValveShutOffStatus();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Emergency valve shut-off status<br>
+	 * <br>
+	 * EPC : 0xE7<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates status where gas shut-off valve of meter has been shut off.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Emergency valve shut-off status found<br>
+	 * = 0x41<br>
+	 * Emergency valve shut-off status not found = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidEmergencyValveShutOffStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates open/close status of shut-off valve.<br><br>Shut-off valve open status = 0x41 Shut-off valve close status = 0x42<br><br>Name : Shut-off valve open/close status<br>EPC : 0xE8<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Shut-off valve open/close status<br>
+	 * <br>
+	 * EPC : 0xE8<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates open/close status of shut-off valve.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Shut-off valve open status = 0x41<br>
+	 * Shut-off valve close status = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getShutOffValveOpenCloseStatus() {return null;}
-	private final byte[] _getShutOffValveOpenCloseStatus(byte epc) {
-		byte[] edt = getShutOffValveOpenCloseStatus();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Shut-off valve open/close status<br>
+	 * <br>
+	 * EPC : 0xE8<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates open/close status of shut-off valve.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Shut-off valve open status = 0x41<br>
+	 * Shut-off valve close status = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidShutOffValveOpenCloseStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates status as warning where residual volume is very small.<br><br>Residual volume control warning level 1 0x31 Residual volume control warning level 2 0x32 Residual volume control warning level 3 0x33 No residual volume control warning 0x42<br><br>Name : Residual volume control warning<br>EPC : 0xE9<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
+	 * Property name : Residual volume control warning<br>
+	 * <br>
+	 * EPC : 0xE9<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates status as warning where residual volume is very small.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Residual volume control warning level<br>
+	 * 1 0x31<br>
+	 * Residual volume control warning level<br>
+	 * 2 0x32<br>
+	 * Residual volume control warning level<br>
+	 * 3 0x33<br>
+	 * No residual volume control warning<br>
+	 * 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getResidualVolumeControlWarning() {return null;}
-	private final byte[] _getResidualVolumeControlWarning(byte epc) {
-		byte[] edt = getResidualVolumeControlWarning();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Residual volume control warning<br>
+	 * <br>
+	 * EPC : 0xE9<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates status as warning where residual volume is very small.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Residual volume control warning level<br>
+	 * 1 0x31<br>
+	 * Residual volume control warning level<br>
+	 * 2 0x32<br>
+	 * Residual volume control warning level<br>
+	 * 3 0x33<br>
+	 * No residual volume control warning<br>
+	 * 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidResidualVolumeControlWarning(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Sets �gSmall residual volume detection level 1�h.<br><br>0.0xFFFFFF (0.16,777,215)<br><br>Name : Set value of residual volume control warning level 1<br>EPC : 0xEA<br>Data Type : unsigned char x 3<br>Data Size(Byte) : 3 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Set value of residual volume control warning level 1<br>
+	 * <br>
+	 * EPC : 0xEA<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets �gSmall residual volume detection level 1�h.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0xFFFFFF (0.16,777,215)<br>
+	 * <br>
+	 * Data type : unsigned char x 3<br>
+	 * <br>
+	 * Data size : 3 bytes<br>
+	 * <br>
+	 * Unit : Liter<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setSetValueOfResidualVolumeControlWarningLevel1(byte[] edt) {return false;}
-	private final boolean _setSetValueOfResidualVolumeControlWarningLevel1(byte epc, byte[] edt) {
-		boolean success = setSetValueOfResidualVolumeControlWarningLevel1(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Sets �gSmall residual volume detection level 1�h.<br><br>0.0xFFFFFF (0.16,777,215)<br><br>Name : Set value of residual volume control warning level 1<br>EPC : 0xEA<br>Data Type : unsigned char x 3<br>Data Size(Byte) : 3 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Set value of residual volume control warning level 1<br>
+	 * <br>
+	 * EPC : 0xEA<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets �gSmall residual volume detection level 1�h.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0xFFFFFF (0.16,777,215)<br>
+	 * <br>
+	 * Data type : unsigned char x 3<br>
+	 * <br>
+	 * Data size : 3 bytes<br>
+	 * <br>
+	 * Unit : Liter<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getSetValueOfResidualVolumeControlWarningLevel1() {return null;}
-	private final byte[] _getSetValueOfResidualVolumeControlWarningLevel1(byte epc) {
-		byte[] edt = getSetValueOfResidualVolumeControlWarningLevel1();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Set value of residual volume control warning level 1<br>
+	 * <br>
+	 * EPC : 0xEA<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets �gSmall residual volume detection level 1�h.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0xFFFFFF (0.16,777,215)<br>
+	 * <br>
+	 * Data type : unsigned char x 3<br>
+	 * <br>
+	 * Data size : 3 bytes<br>
+	 * <br>
+	 * Unit : Liter<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidSetValueOfResidualVolumeControlWarningLevel1(byte[] edt) {
+		if(edt == null || !(edt.length == 3)) return false;
+		return true;
 	}
 	/**
-	 * Sets �gSmall residual volume detection level 2�h.<br><br>0.0xFFFFFF (0.16,777,215)<br><br>Name : Set value of residual volume control warning level 2<br>EPC : 0xEB<br>Data Type : unsigned char x 3<br>Data Size(Byte) : 3 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Set value of residual volume control warning level 2<br>
+	 * <br>
+	 * EPC : 0xEB<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets �gSmall residual volume detection level 2�h.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0xFFFFFF (0.16,777,215)<br>
+	 * <br>
+	 * Data type : unsigned char x 3<br>
+	 * <br>
+	 * Data size : 3 bytes<br>
+	 * <br>
+	 * Unit : Liter<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setSetValueOfResidualVolumeControlWarningLevel2(byte[] edt) {return false;}
-	private final boolean _setSetValueOfResidualVolumeControlWarningLevel2(byte epc, byte[] edt) {
-		boolean success = setSetValueOfResidualVolumeControlWarningLevel2(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Sets �gSmall residual volume detection level 2�h.<br><br>0.0xFFFFFF (0.16,777,215)<br><br>Name : Set value of residual volume control warning level 2<br>EPC : 0xEB<br>Data Type : unsigned char x 3<br>Data Size(Byte) : 3 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Set value of residual volume control warning level 2<br>
+	 * <br>
+	 * EPC : 0xEB<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets �gSmall residual volume detection level 2�h.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0xFFFFFF (0.16,777,215)<br>
+	 * <br>
+	 * Data type : unsigned char x 3<br>
+	 * <br>
+	 * Data size : 3 bytes<br>
+	 * <br>
+	 * Unit : Liter<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getSetValueOfResidualVolumeControlWarningLevel2() {return null;}
-	private final byte[] _getSetValueOfResidualVolumeControlWarningLevel2(byte epc) {
-		byte[] edt = getSetValueOfResidualVolumeControlWarningLevel2();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Set value of residual volume control warning level 2<br>
+	 * <br>
+	 * EPC : 0xEB<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets �gSmall residual volume detection level 2�h.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0xFFFFFF (0.16,777,215)<br>
+	 * <br>
+	 * Data type : unsigned char x 3<br>
+	 * <br>
+	 * Data size : 3 bytes<br>
+	 * <br>
+	 * Unit : Liter<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidSetValueOfResidualVolumeControlWarningLevel2(byte[] edt) {
+		if(edt == null || !(edt.length == 3)) return false;
+		return true;
 	}
 	/**
-	 * Sets �gSmall residual volume detection level 3�h.<br><br>0.0xFFFFFF (0.16,777,215)<br><br>Name : Set value of residual volume control warning level 3<br>EPC : 0xEC<br>Data Type : unsigned char x3<br>Data Size(Byte) : 3 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Set value of residual volume control warning level 3<br>
+	 * <br>
+	 * EPC : 0xEC<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets �gSmall residual volume detection level 3�h.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0xFFFFFF (0.16,777,215)<br>
+	 * <br>
+	 * Data type : unsigned char x3<br>
+	 * <br>
+	 * Data size : 3 bytes<br>
+	 * <br>
+	 * Unit : Liter<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setSetValueOfResidualVolumeControlWarningLevel3(byte[] edt) {return false;}
-	private final boolean _setSetValueOfResidualVolumeControlWarningLevel3(byte epc, byte[] edt) {
-		boolean success = setSetValueOfResidualVolumeControlWarningLevel3(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Sets �gSmall residual volume detection level 3�h.<br><br>0.0xFFFFFF (0.16,777,215)<br><br>Name : Set value of residual volume control warning level 3<br>EPC : 0xEC<br>Data Type : unsigned char x3<br>Data Size(Byte) : 3 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Set value of residual volume control warning level 3<br>
+	 * <br>
+	 * EPC : 0xEC<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets �gSmall residual volume detection level 3�h.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0xFFFFFF (0.16,777,215)<br>
+	 * <br>
+	 * Data type : unsigned char x3<br>
+	 * <br>
+	 * Data size : 3 bytes<br>
+	 * <br>
+	 * Unit : Liter<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getSetValueOfResidualVolumeControlWarningLevel3() {return null;}
-	private final byte[] _getSetValueOfResidualVolumeControlWarningLevel3(byte epc) {
-		byte[] edt = getSetValueOfResidualVolumeControlWarningLevel3();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Set value of residual volume control warning level 3<br>
+	 * <br>
+	 * EPC : 0xEC<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets �gSmall residual volume detection level 3�h.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0xFFFFFF (0.16,777,215)<br>
+	 * <br>
+	 * Data type : unsigned char x3<br>
+	 * <br>
+	 * Data size : 3 bytes<br>
+	 * <br>
+	 * Unit : Liter<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidSetValueOfResidualVolumeControlWarningLevel3(byte[] edt) {
+		if(edt == null || !(edt.length == 3)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates number of days on which gas flow rate is continued.<br><br>0.0xFD (0.253) (0 to 253 days)<br><br>Name : Slight leak timer value (gas flow rate continuation)<br>EPC : 0xED<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Slight leak timer value (gas flow rate continuation)<br>
+	 * <br>
+	 * EPC : 0xED<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates number of days on which gas flow rate is continued.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0xFD (0.253) (0 to 253 days)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : Day<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getSlightLeakTimerValueGasFlowRateContinuation() {return null;}
-	private final byte[] _getSlightLeakTimerValueGasFlowRateContinuation(byte epc) {
-		byte[] edt = getSlightLeakTimerValueGasFlowRateContinuation();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Slight leak timer value (gas flow rate continuation)<br>
+	 * <br>
+	 * EPC : 0xED<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates number of days on which gas flow rate is continued.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0xFD (0.253) (0 to 253 days)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : Day<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidSlightLeakTimerValueGasFlowRateContinuation(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates number of days on which gas leak monitoring is performed without gas pressure increase.<br><br>0.0xFD (0.253) (0 to 253 days)<br><br>Name : Slight leak timer value (without pressure increase)<br>EPC : 0xEE<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Slight leak timer value (without pressure increase)<br>
+	 * <br>
+	 * EPC : 0xEE<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates number of days on which gas leak monitoring is performed without gas pressure increase.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0xFD (0.253) (0 to 253 days)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : Day<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getSlightLeakTimerValueWithoutPressureIncrease() {return null;}
-	private final byte[] _getSlightLeakTimerValueWithoutPressureIncrease(byte epc) {
-		byte[] edt = getSlightLeakTimerValueWithoutPressureIncrease();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Slight leak timer value (without pressure increase)<br>
+	 * <br>
+	 * EPC : 0xEE<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates number of days on which gas leak monitoring is performed without gas pressure increase.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0xFD (0.253) (0 to 253 days)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : Day<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidSlightLeakTimerValueWithoutPressureIncrease(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Defines log of reasons for gas shut-off by shut-off valve in 1 byte each with bits assigned. Shows the last three logs. Log 3: log 2: log 1<br><br>0xFF: 0xFF: 0xFF<br><br>Name : Shut-off reason log<br>EPC : 0xEF<br>Data Type : unsigned char x 3<br>Data Size(Byte) : 3 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Shut-off reason log<br>
+	 * <br>
+	 * EPC : 0xEF<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Defines log of reasons for gas shut-off by shut-off valve in 1 byte each with bits assigned. Shows the last three logs.<br>
+	 * Log 3: log 2: log 1<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0xFF: 0xFF: 0xFF<br>
+	 * <br>
+	 * Data type : unsigned char x 3<br>
+	 * <br>
+	 * Data size : 3 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getShutOffReasonLog() {return null;}
-	private final byte[] _getShutOffReasonLog(byte epc) {
-		byte[] edt = getShutOffReasonLog();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Shut-off reason log<br>
+	 * <br>
+	 * EPC : 0xEF<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Defines log of reasons for gas shut-off by shut-off valve in 1 byte each with bits assigned. Shows the last three logs.<br>
+	 * Log 3: log 2: log 1<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0xFF: 0xFF: 0xFF<br>
+	 * <br>
+	 * Data type : unsigned char x 3<br>
+	 * <br>
+	 * Data size : 3 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidShutOffReasonLog(byte[] edt) {
+		if(edt == null || !(edt.length == 3)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates maximum value of supply pressure data in units of 0.01 kPa.<br><br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Name : Maximum value of supply pressure data<br>EPC : 0xD0<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Maximum value of supply pressure data<br>
+	 * <br>
+	 * EPC : 0xD0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates maximum value of supply pressure data in units of 0.01 kPa.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : 0.01 kPa<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getMaximumValueOfSupplyPressureData() {return null;}
-	private final byte[] _getMaximumValueOfSupplyPressureData(byte epc) {
-		byte[] edt = getMaximumValueOfSupplyPressureData();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Maximum value of supply pressure data<br>
+	 * <br>
+	 * EPC : 0xD0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates maximum value of supply pressure data in units of 0.01 kPa.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : 0.01 kPa<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidMaximumValueOfSupplyPressureData(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br><br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Name : Minimum value of supply pressure data<br>EPC : 0xD1<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Minimum value of supply pressure data<br>
+	 * <br>
+	 * EPC : 0xD1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : 0.01 kPa<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getMinimumValueOfSupplyPressureData() {return null;}
-	private final byte[] _getMinimumValueOfSupplyPressureData(byte epc) {
-		byte[] edt = getMinimumValueOfSupplyPressureData();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Minimum value of supply pressure data<br>
+	 * <br>
+	 * EPC : 0xD1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : 0.01 kPa<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidMinimumValueOfSupplyPressureData(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates current value of supply pressure data in units of 0.01 kPa.<br><br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Name : Current value of supply pressure data<br>EPC : 0xD2<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Current value of supply pressure data<br>
+	 * <br>
+	 * EPC : 0xD2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates current value<br>
+	 * of supply pressure data in units of 0.01 kPa.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : 0.01 kPa<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getCurrentValueOfSupplyPressureData() {return null;}
-	private final byte[] _getCurrentValueOfSupplyPressureData(byte epc) {
-		byte[] edt = getCurrentValueOfSupplyPressureData();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Current value of supply pressure data<br>
+	 * <br>
+	 * EPC : 0xD2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates current value<br>
+	 * of supply pressure data in units of 0.01 kPa.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : 0.01 kPa<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidCurrentValueOfSupplyPressureData(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br><br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Name : Maximum value of block pressure data<br>EPC : 0xD3<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Maximum value of block pressure data<br>
+	 * <br>
+	 * EPC : 0xD3<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : 0.01 kPa<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getMaximumValueOfBlockPressureData() {return null;}
-	private final byte[] _getMaximumValueOfBlockPressureData(byte epc) {
-		byte[] edt = getMaximumValueOfBlockPressureData();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Maximum value of block pressure data<br>
+	 * <br>
+	 * EPC : 0xD3<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : 0.01 kPa<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidMaximumValueOfBlockPressureData(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br><br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Name : Minimum value of block pressure data<br>EPC : 0xD4<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Minimum value of block pressure data<br>
+	 * <br>
+	 * EPC : 0xD4<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : 0.01 kPa<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getMinimumValueOfBlockPressureData() {return null;}
-	private final byte[] _getMinimumValueOfBlockPressureData(byte epc) {
-		byte[] edt = getMinimumValueOfBlockPressureData();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Minimum value of block pressure data<br>
+	 * <br>
+	 * EPC : 0xD4<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : 0.01 kPa<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidMinimumValueOfBlockPressureData(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates current value of block pressure data in units of 0.01 kPa.<br><br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Name : Current value of block pressure data<br>EPC : 0xD5<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Current value of block pressure data<br>
+	 * <br>
+	 * EPC : 0xD5<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates current value of block pressure data in units of 0.01 kPa.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : 0.01 kPa<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getCurrentValueOfBlockPressureData() {return null;}
-	private final byte[] _getCurrentValueOfBlockPressureData(byte epc) {
-		byte[] edt = getCurrentValueOfBlockPressureData();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Current value of block pressure data<br>
+	 * <br>
+	 * EPC : 0xD5<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates current value of block pressure data in units of 0.01 kPa.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : 0.01 kPa<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidCurrentValueOfBlockPressureData(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates number of days on which block pressure/supply pressure errors occurred in 1 byte each.<br><br>Number of block pressure error days: Number of supply pressure error days: Number of block pressure error times: Number of supply pressure error times<br><br>Name : Number of block pressure/supply pressure error days:time<br>EPC : 0xD6<br>Data Type : unsigned char x 4<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Number of block pressure/supply pressure error days:time<br>
+	 * <br>
+	 * EPC : 0xD6<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates number of days on which block pressure/supply pressure errors occurred in 1 byte<br>
+	 * each.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Number of block pressure error days: Number of supply pressure error days: Number of block pressure error times: Number of supply pressure error times<br>
+	 * <br>
+	 * Data type : unsigned char x 4<br>
+	 * <br>
+	 * Data size : 4 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getNumberOfBlockPressureSupplyPressureErrorDaysTime() {return null;}
-	private final byte[] _getNumberOfBlockPressureSupplyPressureErrorDaysTime(byte epc) {
-		byte[] edt = getNumberOfBlockPressureSupplyPressureErrorDaysTime();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Number of block pressure/supply pressure error days:time<br>
+	 * <br>
+	 * EPC : 0xD6<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates number of days on which block pressure/supply pressure errors occurred in 1 byte<br>
+	 * each.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Number of block pressure error days: Number of supply pressure error days: Number of block pressure error times: Number of supply pressure error times<br>
+	 * <br>
+	 * Data type : unsigned char x 4<br>
+	 * <br>
+	 * Data size : 4 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidNumberOfBlockPressureSupplyPressureErrorDaysTime(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) return false;
+		return true;
 	}
 	/**
-	 * Performs test call operation setup.<br><br>Test call operation ON 0x41 Test call operation OFF 0x42<br><br>Name : Test call setting<br>EPC : 0xD7<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Test call setting<br>
+	 * <br>
+	 * EPC : 0xD7<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Performs test call operation setup.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Test call operation ON 0x41<br>
+	 * Test call operation OFF 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setTestCallSetting(byte[] edt) {return false;}
-	private final boolean _setTestCallSetting(byte epc, byte[] edt) {
-		boolean success = setTestCallSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Performs test call operation setup.<br><br>Test call operation ON 0x41 Test call operation OFF 0x42<br><br>Name : Test call setting<br>EPC : 0xD7<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Test call setting<br>
+	 * <br>
+	 * EPC : 0xD7<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Performs test call operation setup.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Test call operation ON 0x41<br>
+	 * Test call operation OFF 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getTestCallSetting() {return null;}
-	private final byte[] _getTestCallSetting(byte epc) {
-		byte[] edt = getTestCallSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Test call setting<br>
+	 * <br>
+	 * EPC : 0xD7<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Performs test call operation setup.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Test call operation ON 0x41<br>
+	 * Test call operation OFF 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidTestCallSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 
-
 	@Override
-	protected void onReceiveSet(EchoFrame res, byte epc, byte pdc, byte[] edt) {
-		super.onReceiveSet(res, epc, pdc, edt);
-		switch(epc) {
-		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1:
-			res.addProperty(epc, edt, _setSetValueOfResidualVolumeControlWarningLevel1(epc, edt));
-			break;
-		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2:
-			res.addProperty(epc, edt, _setSetValueOfResidualVolumeControlWarningLevel2(epc, edt));
-			break;
-		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3:
-			res.addProperty(epc, edt, _setSetValueOfResidualVolumeControlWarningLevel3(epc, edt));
-			break;
-		case EPC_TEST_CALL_SETTING:
-			res.addProperty(epc, edt, _setTestCallSetting(epc, edt));
-			break;
+	protected boolean setProperty(EchoProperty property) {
+		boolean success = super.setProperty(property);
+		if(success) return success;
 
-		}
-	}
-
-	@Override
-	protected void onReceiveGet(EchoFrame res, byte epc) {
-		super.onReceiveGet(res, epc);
-		byte[] edt;
-		switch(epc) {
-		case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1:
-			edt = _getIntegralGasConsumptionOfMeteringData1(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
-			break;
-		case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2:
-			edt = _getIntegralGasConsumptionOfMeteringData2(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
-			break;
-		case EPC_ERROR_DETECTION_STATUSOF_METERING_DATA:
-			edt = _getErrorDetectionStatusofMeteringData(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_SECURITY_DATA1:
-			edt = _getSecurityData1(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
-			break;
-		case EPC_SECURITY_DATA2:
-			edt = _getSecurityData2(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
-			break;
-		case EPC_CENTER_VALVE_SHUT_OFF_STATUS:
-			edt = _getCenterValveShutOffStatus(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_CENTER_VALVE_SHUT_OFF_RECOVERY_PERMISSION_SETTING_STATUS:
-			edt = _getCenterValveShutOffRecoveryPermissionSettingStatus(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_EMERGENCY_VALVE_SHUT_OFF_STATUS:
-			edt = _getEmergencyValveShutOffStatus(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_SHUT_OFF_VALVE_OPEN_CLOSE_STATUS:
-			edt = _getShutOffValveOpenCloseStatus(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_RESIDUAL_VOLUME_CONTROL_WARNING:
-			edt = _getResidualVolumeControlWarning(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1:
-			edt = _getSetValueOfResidualVolumeControlWarningLevel1(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 3)));
-			break;
-		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2:
-			edt = _getSetValueOfResidualVolumeControlWarningLevel2(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 3)));
-			break;
-		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3:
-			edt = _getSetValueOfResidualVolumeControlWarningLevel3(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 3)));
-			break;
-		case EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION:
-			edt = _getSlightLeakTimerValueGasFlowRateContinuation(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE:
-			edt = _getSlightLeakTimerValueWithoutPressureIncrease(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_SHUT_OFF_REASON_LOG:
-			edt = _getShutOffReasonLog(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 3)));
-			break;
-		case EPC_MAXIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA:
-			edt = _getMaximumValueOfSupplyPressureData(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			break;
-		case EPC_MINIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA:
-			edt = _getMinimumValueOfSupplyPressureData(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			break;
-		case EPC_CURRENT_VALUE_OF_SUPPLY_PRESSURE_DATA:
-			edt = _getCurrentValueOfSupplyPressureData(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			break;
-		case EPC_MAXIMUM_VALUE_OF_BLOCK_PRESSURE_DATA:
-			edt = _getMaximumValueOfBlockPressureData(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			break;
-		case EPC_MINIMUM_VALUE_OF_BLOCK_PRESSURE_DATA:
-			edt = _getMinimumValueOfBlockPressureData(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			break;
-		case EPC_CURRENT_VALUE_OF_BLOCK_PRESSURE_DATA:
-			edt = _getCurrentValueOfBlockPressureData(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			break;
-		case EPC_NUMBER_OF_BLOCK_PRESSURE_SUPPLY_PRESSURE_ERROR_DAYS_TIME:
-			edt = _getNumberOfBlockPressureSupplyPressureErrorDaysTime(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
-			break;
-		case EPC_TEST_CALL_SETTING:
-			edt = _getTestCallSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-
+		switch(property.epc) {
+		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1 : return setSetValueOfResidualVolumeControlWarningLevel1(property.edt);
+		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2 : return setSetValueOfResidualVolumeControlWarningLevel2(property.edt);
+		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3 : return setSetValueOfResidualVolumeControlWarningLevel3(property.edt);
+		case EPC_TEST_CALL_SETTING : return setTestCallSetting(property.edt);
+		default : return false;
 		}
 	}
 	
 	@Override
-	public Setter set() {
-		return new Setter(ESV_SETI);
+	protected byte[] getProperty(byte epc) {
+		byte[] edt = super.getProperty(epc);
+		if(edt != null) return edt;
+		
+		switch(epc) {
+		case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1 : return getIntegralGasConsumptionOfMeteringData1();
+		case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2 : return getIntegralGasConsumptionOfMeteringData2();
+		case EPC_ERROR_DETECTION_STATUSOF_METERING_DATA : return getErrorDetectionStatusofMeteringData();
+		case EPC_SECURITY_DATA1 : return getSecurityData1();
+		case EPC_SECURITY_DATA2 : return getSecurityData2();
+		case EPC_CENTER_VALVE_SHUT_OFF_STATUS : return getCenterValveShutOffStatus();
+		case EPC_CENTER_VALVE_SHUT_OFF_RECOVERY_PERMISSION_SETTING_STATUS : return getCenterValveShutOffRecoveryPermissionSettingStatus();
+		case EPC_EMERGENCY_VALVE_SHUT_OFF_STATUS : return getEmergencyValveShutOffStatus();
+		case EPC_SHUT_OFF_VALVE_OPEN_CLOSE_STATUS : return getShutOffValveOpenCloseStatus();
+		case EPC_RESIDUAL_VOLUME_CONTROL_WARNING : return getResidualVolumeControlWarning();
+		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1 : return getSetValueOfResidualVolumeControlWarningLevel1();
+		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2 : return getSetValueOfResidualVolumeControlWarningLevel2();
+		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3 : return getSetValueOfResidualVolumeControlWarningLevel3();
+		case EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION : return getSlightLeakTimerValueGasFlowRateContinuation();
+		case EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE : return getSlightLeakTimerValueWithoutPressureIncrease();
+		case EPC_SHUT_OFF_REASON_LOG : return getShutOffReasonLog();
+		case EPC_MAXIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA : return getMaximumValueOfSupplyPressureData();
+		case EPC_MINIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA : return getMinimumValueOfSupplyPressureData();
+		case EPC_CURRENT_VALUE_OF_SUPPLY_PRESSURE_DATA : return getCurrentValueOfSupplyPressureData();
+		case EPC_MAXIMUM_VALUE_OF_BLOCK_PRESSURE_DATA : return getMaximumValueOfBlockPressureData();
+		case EPC_MINIMUM_VALUE_OF_BLOCK_PRESSURE_DATA : return getMinimumValueOfBlockPressureData();
+		case EPC_CURRENT_VALUE_OF_BLOCK_PRESSURE_DATA : return getCurrentValueOfBlockPressureData();
+		case EPC_NUMBER_OF_BLOCK_PRESSURE_SUPPLY_PRESSURE_ERROR_DAYS_TIME : return getNumberOfBlockPressureSupplyPressureErrorDaysTime();
+		case EPC_TEST_CALL_SETTING : return getTestCallSetting();
+		default : return null;
+		}
 	}
 
 	@Override
-	public Setter setC() {
-		return new Setter(ESV_SETC);
+	protected boolean isValidProperty(EchoProperty property) {
+		boolean valid = super.isValidProperty(property);
+		if(valid) return valid;
+		
+		switch(property.epc) {
+		case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1 : return isValidIntegralGasConsumptionOfMeteringData1(property.edt);
+		case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2 : return isValidIntegralGasConsumptionOfMeteringData2(property.edt);
+		case EPC_ERROR_DETECTION_STATUSOF_METERING_DATA : return isValidErrorDetectionStatusofMeteringData(property.edt);
+		case EPC_SECURITY_DATA1 : return isValidSecurityData1(property.edt);
+		case EPC_SECURITY_DATA2 : return isValidSecurityData2(property.edt);
+		case EPC_CENTER_VALVE_SHUT_OFF_STATUS : return isValidCenterValveShutOffStatus(property.edt);
+		case EPC_CENTER_VALVE_SHUT_OFF_RECOVERY_PERMISSION_SETTING_STATUS : return isValidCenterValveShutOffRecoveryPermissionSettingStatus(property.edt);
+		case EPC_EMERGENCY_VALVE_SHUT_OFF_STATUS : return isValidEmergencyValveShutOffStatus(property.edt);
+		case EPC_SHUT_OFF_VALVE_OPEN_CLOSE_STATUS : return isValidShutOffValveOpenCloseStatus(property.edt);
+		case EPC_RESIDUAL_VOLUME_CONTROL_WARNING : return isValidResidualVolumeControlWarning(property.edt);
+		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1 : return isValidSetValueOfResidualVolumeControlWarningLevel1(property.edt);
+		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2 : return isValidSetValueOfResidualVolumeControlWarningLevel2(property.edt);
+		case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3 : return isValidSetValueOfResidualVolumeControlWarningLevel3(property.edt);
+		case EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION : return isValidSlightLeakTimerValueGasFlowRateContinuation(property.edt);
+		case EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE : return isValidSlightLeakTimerValueWithoutPressureIncrease(property.edt);
+		case EPC_SHUT_OFF_REASON_LOG : return isValidShutOffReasonLog(property.edt);
+		case EPC_MAXIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA : return isValidMaximumValueOfSupplyPressureData(property.edt);
+		case EPC_MINIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA : return isValidMinimumValueOfSupplyPressureData(property.edt);
+		case EPC_CURRENT_VALUE_OF_SUPPLY_PRESSURE_DATA : return isValidCurrentValueOfSupplyPressureData(property.edt);
+		case EPC_MAXIMUM_VALUE_OF_BLOCK_PRESSURE_DATA : return isValidMaximumValueOfBlockPressureData(property.edt);
+		case EPC_MINIMUM_VALUE_OF_BLOCK_PRESSURE_DATA : return isValidMinimumValueOfBlockPressureData(property.edt);
+		case EPC_CURRENT_VALUE_OF_BLOCK_PRESSURE_DATA : return isValidCurrentValueOfBlockPressureData(property.edt);
+		case EPC_NUMBER_OF_BLOCK_PRESSURE_SUPPLY_PRESSURE_ERROR_DAYS_TIME : return isValidNumberOfBlockPressureSupplyPressureErrorDaysTime(property.edt);
+		case EPC_TEST_CALL_SETTING : return isValidTestCallSetting(property.edt);
+		default : return false;
+		}
+	}
+
+	@Override
+	public Setter set() {
+		return new Setter(this, true, false);
+	}
+
+	@Override
+	public Setter set(boolean responseRequired) {
+		return new Setter(this, responseRequired, false);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter();
+		return new Getter(this, false);
 	}
 
 	@Override
 	public Informer inform() {
-		return new InformerImpl();
+		return new Informer(this, !isProxy());
+	}
+	
+	@Override
+	protected Informer inform(boolean multicast) {
+		return new Informer(this, multicast);
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
-			switch(epc) {
-			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1:
-				_onSetSetValueOfResidualVolumeControlWarningLevel1(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2:
-				_onSetSetValueOfResidualVolumeControlWarningLevel2(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3:
-				_onSetSetValueOfResidualVolumeControlWarningLevel3(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_TEST_CALL_SETTING:
-				_onSetTestCallSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-
+		protected boolean onSetProperty(EchoObject eoj, short tid, byte esv,
+				EchoProperty property, boolean success) {
+			boolean ret = super.onSetProperty(eoj, tid, esv, property, success);
+			if(ret) return true;
+			
+			switch(property.epc) {
+			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1 : 
+				onSetSetValueOfResidualVolumeControlWarningLevel1(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2 : 
+				onSetSetValueOfResidualVolumeControlWarningLevel2(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3 : 
+				onSetSetValueOfResidualVolumeControlWarningLevel3(eoj, tid, esv, property, success);
+				return true;
+			case EPC_TEST_CALL_SETTING : 
+				onSetTestCallSetting(eoj, tid, esv, property, success);
+				return true;
+			default :
+				return false;
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
-			switch(epc) {
-			case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1:
-				_onGetIntegralGasConsumptionOfMeteringData1(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2:
-				_onGetIntegralGasConsumptionOfMeteringData2(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_ERROR_DETECTION_STATUSOF_METERING_DATA:
-				_onGetErrorDetectionStatusofMeteringData(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_SECURITY_DATA1:
-				_onGetSecurityData1(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_SECURITY_DATA2:
-				_onGetSecurityData2(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_CENTER_VALVE_SHUT_OFF_STATUS:
-				_onGetCenterValveShutOffStatus(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_CENTER_VALVE_SHUT_OFF_RECOVERY_PERMISSION_SETTING_STATUS:
-				_onGetCenterValveShutOffRecoveryPermissionSettingStatus(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_EMERGENCY_VALVE_SHUT_OFF_STATUS:
-				_onGetEmergencyValveShutOffStatus(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_SHUT_OFF_VALVE_OPEN_CLOSE_STATUS:
-				_onGetShutOffValveOpenCloseStatus(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_RESIDUAL_VOLUME_CONTROL_WARNING:
-				_onGetResidualVolumeControlWarning(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1:
-				_onGetSetValueOfResidualVolumeControlWarningLevel1(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2:
-				_onGetSetValueOfResidualVolumeControlWarningLevel2(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3:
-				_onGetSetValueOfResidualVolumeControlWarningLevel3(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION:
-				_onGetSlightLeakTimerValueGasFlowRateContinuation(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE:
-				_onGetSlightLeakTimerValueWithoutPressureIncrease(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_SHUT_OFF_REASON_LOG:
-				_onGetShutOffReasonLog(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_MAXIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA:
-				_onGetMaximumValueOfSupplyPressureData(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_MINIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA:
-				_onGetMinimumValueOfSupplyPressureData(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_CURRENT_VALUE_OF_SUPPLY_PRESSURE_DATA:
-				_onGetCurrentValueOfSupplyPressureData(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_MAXIMUM_VALUE_OF_BLOCK_PRESSURE_DATA:
-				_onGetMaximumValueOfBlockPressureData(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_MINIMUM_VALUE_OF_BLOCK_PRESSURE_DATA:
-				_onGetMinimumValueOfBlockPressureData(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_CURRENT_VALUE_OF_BLOCK_PRESSURE_DATA:
-				_onGetCurrentValueOfBlockPressureData(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_NUMBER_OF_BLOCK_PRESSURE_SUPPLY_PRESSURE_ERROR_DAYS_TIME:
-				_onGetNumberOfBlockPressureSupplyPressureErrorDaysTime(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_TEST_CALL_SETTING:
-				_onGetTestCallSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-
+		protected boolean onGetProperty(EchoObject eoj, short tid, byte esv,
+				EchoProperty property, boolean success) {
+			boolean ret = super.onGetProperty(eoj, tid, esv, property, success);
+			if(ret) return true;
+			
+			switch(property.epc) {
+			case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1 : 
+				onGetIntegralGasConsumptionOfMeteringData1(eoj, tid, esv, property, success);
+				return true;
+			case EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2 : 
+				onGetIntegralGasConsumptionOfMeteringData2(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ERROR_DETECTION_STATUSOF_METERING_DATA : 
+				onGetErrorDetectionStatusofMeteringData(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SECURITY_DATA1 : 
+				onGetSecurityData1(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SECURITY_DATA2 : 
+				onGetSecurityData2(eoj, tid, esv, property, success);
+				return true;
+			case EPC_CENTER_VALVE_SHUT_OFF_STATUS : 
+				onGetCenterValveShutOffStatus(eoj, tid, esv, property, success);
+				return true;
+			case EPC_CENTER_VALVE_SHUT_OFF_RECOVERY_PERMISSION_SETTING_STATUS : 
+				onGetCenterValveShutOffRecoveryPermissionSettingStatus(eoj, tid, esv, property, success);
+				return true;
+			case EPC_EMERGENCY_VALVE_SHUT_OFF_STATUS : 
+				onGetEmergencyValveShutOffStatus(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SHUT_OFF_VALVE_OPEN_CLOSE_STATUS : 
+				onGetShutOffValveOpenCloseStatus(eoj, tid, esv, property, success);
+				return true;
+			case EPC_RESIDUAL_VOLUME_CONTROL_WARNING : 
+				onGetResidualVolumeControlWarning(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1 : 
+				onGetSetValueOfResidualVolumeControlWarningLevel1(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2 : 
+				onGetSetValueOfResidualVolumeControlWarningLevel2(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3 : 
+				onGetSetValueOfResidualVolumeControlWarningLevel3(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION : 
+				onGetSlightLeakTimerValueGasFlowRateContinuation(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE : 
+				onGetSlightLeakTimerValueWithoutPressureIncrease(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SHUT_OFF_REASON_LOG : 
+				onGetShutOffReasonLog(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MAXIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA : 
+				onGetMaximumValueOfSupplyPressureData(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MINIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA : 
+				onGetMinimumValueOfSupplyPressureData(eoj, tid, esv, property, success);
+				return true;
+			case EPC_CURRENT_VALUE_OF_SUPPLY_PRESSURE_DATA : 
+				onGetCurrentValueOfSupplyPressureData(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MAXIMUM_VALUE_OF_BLOCK_PRESSURE_DATA : 
+				onGetMaximumValueOfBlockPressureData(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MINIMUM_VALUE_OF_BLOCK_PRESSURE_DATA : 
+				onGetMinimumValueOfBlockPressureData(eoj, tid, esv, property, success);
+				return true;
+			case EPC_CURRENT_VALUE_OF_BLOCK_PRESSURE_DATA : 
+				onGetCurrentValueOfBlockPressureData(eoj, tid, esv, property, success);
+				return true;
+			case EPC_NUMBER_OF_BLOCK_PRESSURE_SUPPLY_PRESSURE_ERROR_DAYS_TIME : 
+				onGetNumberOfBlockPressureSupplyPressureErrorDaysTime(eoj, tid, esv, property, success);
+				return true;
+			case EPC_TEST_CALL_SETTING : 
+				onGetTestCallSetting(eoj, tid, esv, property, success);
+				return true;
+			default :
+				return false;
 			}
 		}
 		
 		/**
-		 * This property indicates integral gas consumption in units of 0.0001 m3.<br><br>0.0x005F5E0FF (0.9999,9999 m3)<br><br>Name : Integral gas consumption of metering data 1<br>EPC : 0xE0<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
+		 * Property name : Integral gas consumption of metering data 1<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates integral gas consumption in units of 0.0001 m3.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0x005F5E0FF (0.9999,9999 m3)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4 bytes<br>
+		 * <br>
+		 * Unit : 0.0001 m3<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
 		 */
-		protected void onGetIntegralGasConsumptionOfMeteringData1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetIntegralGasConsumptionOfMeteringData1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetIntegralGasConsumptionOfMeteringData1(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetIntegralGasConsumptionOfMeteringData1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates integral gas consumption in units of 0.001 m3.<br><br>0.0x005F5E0FF (0.99999,999 m3)<br><br>Name : Integral gas consumption of metering data 2<br>EPC : 0xE1<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
+		 * Property name : Integral gas consumption of metering data 2<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates integral gas consumption in units of 0.001 m3.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0x005F5E0FF (0.99999,999 m3)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4 bytes<br>
+		 * <br>
+		 * Unit : 0.001 m3<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
 		 */
-		protected void onGetIntegralGasConsumptionOfMeteringData2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetIntegralGasConsumptionOfMeteringData2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetIntegralGasConsumptionOfMeteringData2(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetIntegralGasConsumptionOfMeteringData2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates status where meter detected metering data error.<br><br>Error detection status found = 0x41 Error detection status not found = 0x42<br><br>Name : Error detection statusof metering data<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
+		 * Property name : Error detection statusof metering data<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates status where meter detected metering data error.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Error detection status found = 0x41<br>
+		 * Error detection status not found<br>
+		 * = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetErrorDetectionStatusofMeteringData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetErrorDetectionStatusofMeteringData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetErrorDetectionStatusofMeteringData(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetErrorDetectionStatusofMeteringData(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates security data to define security information on meter operation by bit allocation.<br><br>0.0xFFFFFFFF<br><br>Name : Security data 1<br>EPC : 0xE3<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Security data 1<br>
+		 * <br>
+		 * EPC : 0xE3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates security data to define security information on meter operation by bit allocation.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFFFFFFFF<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetSecurityData1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetSecurityData1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetSecurityData1(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetSecurityData1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates security data to define security information on meter operation by bit allocation.<br><br>0.0xFFFFFFFF<br><br>Name : Security data 2<br>EPC : 0xE4<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Security data 2<br>
+		 * <br>
+		 * EPC : 0xE4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates security data to define security information on meter operation by bit allocation.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFFFFFFFF<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetSecurityData2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetSecurityData2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetSecurityData2(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetSecurityData2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br><br>Center valve shut-off status found = 0x41 Center valve shut-off status not found = 0x42<br><br>Name : Center valve shut-off status<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
+		 * Property name : Center valve shut-off status<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Center valve shut-off status found<br>
+		 * = 0x41<br>
+		 * Center valve shut-off status not found<br>
+		 * = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetCenterValveShutOffStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetCenterValveShutOffStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetCenterValveShutOffStatus(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetCenterValveShutOffStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br><br>Center valve shut-off reset enable = 0x41 Center valve shut-off reset not enable = 0x42<br><br>Name : Center valve shut-off recovery permission setting status<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Center valve
+shut-off recovery permission setting status<br>
+		 * <br>
+		 * EPC : 0xE6<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Center valve shut-off reset enable =<br>
+		 * 0x41<br>
+		 * Center valve shut-off reset not enable<br>
+		 * = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetCenterValveShutOffRecoveryPermissionSettingStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetCenterValveShutOffRecoveryPermissionSettingStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetCenterValveShutOffRecoveryPermissionSettingStatus(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetCenterValveShutOffRecoveryPermissionSettingStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates status where gas shut-off valve of meter has been shut off.<br><br>Emergency valve shut-off status found = 0x41 Emergency valve shut-off status not found = 0x42<br><br>Name : Emergency valve shut-off status<br>EPC : 0xE7<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Emergency valve shut-off status<br>
+		 * <br>
+		 * EPC : 0xE7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates status where gas shut-off valve of meter has been shut off.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Emergency valve shut-off status found<br>
+		 * = 0x41<br>
+		 * Emergency valve shut-off status not found = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetEmergencyValveShutOffStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetEmergencyValveShutOffStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetEmergencyValveShutOffStatus(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetEmergencyValveShutOffStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates open/close status of shut-off valve.<br><br>Shut-off valve open status = 0x41 Shut-off valve close status = 0x42<br><br>Name : Shut-off valve open/close status<br>EPC : 0xE8<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Shut-off valve open/close status<br>
+		 * <br>
+		 * EPC : 0xE8<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates open/close status of shut-off valve.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Shut-off valve open status = 0x41<br>
+		 * Shut-off valve close status = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetShutOffValveOpenCloseStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetShutOffValveOpenCloseStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetShutOffValveOpenCloseStatus(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetShutOffValveOpenCloseStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates status as warning where residual volume is very small.<br><br>Residual volume control warning level 1 0x31 Residual volume control warning level 2 0x32 Residual volume control warning level 3 0x33 No residual volume control warning 0x42<br><br>Name : Residual volume control warning<br>EPC : 0xE9<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
+		 * Property name : Residual volume control warning<br>
+		 * <br>
+		 * EPC : 0xE9<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates status as warning where residual volume is very small.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Residual volume control warning level<br>
+		 * 1 0x31<br>
+		 * Residual volume control warning level<br>
+		 * 2 0x32<br>
+		 * Residual volume control warning level<br>
+		 * 3 0x33<br>
+		 * No residual volume control warning<br>
+		 * 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetResidualVolumeControlWarning(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetResidualVolumeControlWarning(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetResidualVolumeControlWarning(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetResidualVolumeControlWarning(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Sets �gSmall residual volume detection level 1�h.<br><br>0.0xFFFFFF (0.16,777,215)<br><br>Name : Set value of residual volume control warning level 1<br>EPC : 0xEA<br>Data Type : unsigned char x 3<br>Data Size(Byte) : 3 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Set value of residual volume control warning level 1<br>
+		 * <br>
+		 * EPC : 0xEA<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets �gSmall residual volume detection level 1�h.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFFFFFF (0.16,777,215)<br>
+		 * <br>
+		 * Data type : unsigned char x 3<br>
+		 * <br>
+		 * Data size : 3 bytes<br>
+		 * <br>
+		 * Unit : Liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetSetValueOfResidualVolumeControlWarningLevel1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetSetValueOfResidualVolumeControlWarningLevel1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetSetValueOfResidualVolumeControlWarningLevel1(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetSetValueOfResidualVolumeControlWarningLevel1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Sets �gSmall residual volume detection level 1�h.<br><br>0.0xFFFFFF (0.16,777,215)<br><br>Name : Set value of residual volume control warning level 1<br>EPC : 0xEA<br>Data Type : unsigned char x 3<br>Data Size(Byte) : 3 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Set value of residual volume control warning level 1<br>
+		 * <br>
+		 * EPC : 0xEA<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets �gSmall residual volume detection level 1�h.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFFFFFF (0.16,777,215)<br>
+		 * <br>
+		 * Data type : unsigned char x 3<br>
+		 * <br>
+		 * Data size : 3 bytes<br>
+		 * <br>
+		 * Unit : Liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetSetValueOfResidualVolumeControlWarningLevel1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetSetValueOfResidualVolumeControlWarningLevel1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetSetValueOfResidualVolumeControlWarningLevel1(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetSetValueOfResidualVolumeControlWarningLevel1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Sets �gSmall residual volume detection level 2�h.<br><br>0.0xFFFFFF (0.16,777,215)<br><br>Name : Set value of residual volume control warning level 2<br>EPC : 0xEB<br>Data Type : unsigned char x 3<br>Data Size(Byte) : 3 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Set value of residual volume control warning level 2<br>
+		 * <br>
+		 * EPC : 0xEB<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets �gSmall residual volume detection level 2�h.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFFFFFF (0.16,777,215)<br>
+		 * <br>
+		 * Data type : unsigned char x 3<br>
+		 * <br>
+		 * Data size : 3 bytes<br>
+		 * <br>
+		 * Unit : Liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetSetValueOfResidualVolumeControlWarningLevel2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetSetValueOfResidualVolumeControlWarningLevel2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetSetValueOfResidualVolumeControlWarningLevel2(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetSetValueOfResidualVolumeControlWarningLevel2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Sets �gSmall residual volume detection level 2�h.<br><br>0.0xFFFFFF (0.16,777,215)<br><br>Name : Set value of residual volume control warning level 2<br>EPC : 0xEB<br>Data Type : unsigned char x 3<br>Data Size(Byte) : 3 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Set value of residual volume control warning level 2<br>
+		 * <br>
+		 * EPC : 0xEB<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets �gSmall residual volume detection level 2�h.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFFFFFF (0.16,777,215)<br>
+		 * <br>
+		 * Data type : unsigned char x 3<br>
+		 * <br>
+		 * Data size : 3 bytes<br>
+		 * <br>
+		 * Unit : Liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetSetValueOfResidualVolumeControlWarningLevel2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetSetValueOfResidualVolumeControlWarningLevel2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetSetValueOfResidualVolumeControlWarningLevel2(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetSetValueOfResidualVolumeControlWarningLevel2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Sets �gSmall residual volume detection level 3�h.<br><br>0.0xFFFFFF (0.16,777,215)<br><br>Name : Set value of residual volume control warning level 3<br>EPC : 0xEC<br>Data Type : unsigned char x3<br>Data Size(Byte) : 3 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Set value of residual volume control warning level 3<br>
+		 * <br>
+		 * EPC : 0xEC<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets �gSmall residual volume detection level 3�h.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFFFFFF (0.16,777,215)<br>
+		 * <br>
+		 * Data type : unsigned char x3<br>
+		 * <br>
+		 * Data size : 3 bytes<br>
+		 * <br>
+		 * Unit : Liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetSetValueOfResidualVolumeControlWarningLevel3(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetSetValueOfResidualVolumeControlWarningLevel3(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetSetValueOfResidualVolumeControlWarningLevel3(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetSetValueOfResidualVolumeControlWarningLevel3(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Sets �gSmall residual volume detection level 3�h.<br><br>0.0xFFFFFF (0.16,777,215)<br><br>Name : Set value of residual volume control warning level 3<br>EPC : 0xEC<br>Data Type : unsigned char x3<br>Data Size(Byte) : 3 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Set value of residual volume control warning level 3<br>
+		 * <br>
+		 * EPC : 0xEC<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets �gSmall residual volume detection level 3�h.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFFFFFF (0.16,777,215)<br>
+		 * <br>
+		 * Data type : unsigned char x3<br>
+		 * <br>
+		 * Data size : 3 bytes<br>
+		 * <br>
+		 * Unit : Liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetSetValueOfResidualVolumeControlWarningLevel3(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetSetValueOfResidualVolumeControlWarningLevel3(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetSetValueOfResidualVolumeControlWarningLevel3(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetSetValueOfResidualVolumeControlWarningLevel3(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates number of days on which gas flow rate is continued.<br><br>0.0xFD (0.253) (0 to 253 days)<br><br>Name : Slight leak timer value (gas flow rate continuation)<br>EPC : 0xED<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Slight leak timer value (gas flow rate continuation)<br>
+		 * <br>
+		 * EPC : 0xED<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates number of days on which gas flow rate is continued.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFD (0.253) (0 to 253 days)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : Day<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetSlightLeakTimerValueGasFlowRateContinuation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetSlightLeakTimerValueGasFlowRateContinuation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetSlightLeakTimerValueGasFlowRateContinuation(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetSlightLeakTimerValueGasFlowRateContinuation(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates number of days on which gas leak monitoring is performed without gas pressure increase.<br><br>0.0xFD (0.253) (0 to 253 days)<br><br>Name : Slight leak timer value (without pressure increase)<br>EPC : 0xEE<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Slight leak timer value (without pressure increase)<br>
+		 * <br>
+		 * EPC : 0xEE<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates number of days on which gas leak monitoring is performed without gas pressure increase.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFD (0.253) (0 to 253 days)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : Day<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetSlightLeakTimerValueWithoutPressureIncrease(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetSlightLeakTimerValueWithoutPressureIncrease(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetSlightLeakTimerValueWithoutPressureIncrease(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetSlightLeakTimerValueWithoutPressureIncrease(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Defines log of reasons for gas shut-off by shut-off valve in 1 byte each with bits assigned. Shows the last three logs. Log 3: log 2: log 1<br><br>0xFF: 0xFF: 0xFF<br><br>Name : Shut-off reason log<br>EPC : 0xEF<br>Data Type : unsigned char x 3<br>Data Size(Byte) : 3 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Shut-off reason log<br>
+		 * <br>
+		 * EPC : 0xEF<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Defines log of reasons for gas shut-off by shut-off valve in 1 byte each with bits assigned. Shows the last three logs.<br>
+		 * Log 3: log 2: log 1<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0xFF: 0xFF: 0xFF<br>
+		 * <br>
+		 * Data type : unsigned char x 3<br>
+		 * <br>
+		 * Data size : 3 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetShutOffReasonLog(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetShutOffReasonLog(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetShutOffReasonLog(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetShutOffReasonLog(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates maximum value of supply pressure data in units of 0.01 kPa.<br><br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Name : Maximum value of supply pressure data<br>EPC : 0xD0<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Maximum value of supply pressure data<br>
+		 * <br>
+		 * EPC : 0xD0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates maximum value of supply pressure data in units of 0.01 kPa.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : 0.01 kPa<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetMaximumValueOfSupplyPressureData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetMaximumValueOfSupplyPressureData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetMaximumValueOfSupplyPressureData(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetMaximumValueOfSupplyPressureData(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br><br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Name : Minimum value of supply pressure data<br>EPC : 0xD1<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Minimum value of supply pressure data<br>
+		 * <br>
+		 * EPC : 0xD1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : 0.01 kPa<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetMinimumValueOfSupplyPressureData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetMinimumValueOfSupplyPressureData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetMinimumValueOfSupplyPressureData(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetMinimumValueOfSupplyPressureData(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates current value of supply pressure data in units of 0.01 kPa.<br><br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Name : Current value of supply pressure data<br>EPC : 0xD2<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Current value of supply pressure data<br>
+		 * <br>
+		 * EPC : 0xD2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates current value<br>
+		 * of supply pressure data in units of 0.01 kPa.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : 0.01 kPa<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetCurrentValueOfSupplyPressureData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetCurrentValueOfSupplyPressureData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetCurrentValueOfSupplyPressureData(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetCurrentValueOfSupplyPressureData(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br><br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Name : Maximum value of block pressure data<br>EPC : 0xD3<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Maximum value of block pressure data<br>
+		 * <br>
+		 * EPC : 0xD3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : 0.01 kPa<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetMaximumValueOfBlockPressureData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetMaximumValueOfBlockPressureData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetMaximumValueOfBlockPressureData(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetMaximumValueOfBlockPressureData(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br><br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Name : Minimum value of block pressure data<br>EPC : 0xD4<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Minimum value of block pressure data<br>
+		 * <br>
+		 * EPC : 0xD4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : 0.01 kPa<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetMinimumValueOfBlockPressureData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetMinimumValueOfBlockPressureData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetMinimumValueOfBlockPressureData(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetMinimumValueOfBlockPressureData(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates current value of block pressure data in units of 0.01 kPa.<br><br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Name : Current value of block pressure data<br>EPC : 0xD5<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Current value of block pressure data<br>
+		 * <br>
+		 * EPC : 0xD5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates current value of block pressure data in units of 0.01 kPa.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : 0.01 kPa<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetCurrentValueOfBlockPressureData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetCurrentValueOfBlockPressureData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetCurrentValueOfBlockPressureData(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetCurrentValueOfBlockPressureData(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates number of days on which block pressure/supply pressure errors occurred in 1 byte each.<br><br>Number of block pressure error days: Number of supply pressure error days: Number of block pressure error times: Number of supply pressure error times<br><br>Name : Number of block pressure/supply pressure error days:time<br>EPC : 0xD6<br>Data Type : unsigned char x 4<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Number of block pressure/supply pressure error days:time<br>
+		 * <br>
+		 * EPC : 0xD6<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates number of days on which block pressure/supply pressure errors occurred in 1 byte<br>
+		 * each.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Number of block pressure error days: Number of supply pressure error days: Number of block pressure error times: Number of supply pressure error times<br>
+		 * <br>
+		 * Data type : unsigned char x 4<br>
+		 * <br>
+		 * Data size : 4 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetNumberOfBlockPressureSupplyPressureErrorDaysTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetNumberOfBlockPressureSupplyPressureErrorDaysTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetNumberOfBlockPressureSupplyPressureErrorDaysTime(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetNumberOfBlockPressureSupplyPressureErrorDaysTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Performs test call operation setup.<br><br>Test call operation ON 0x41 Test call operation OFF 0x42<br><br>Name : Test call setting<br>EPC : 0xD7<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Test call setting<br>
+		 * <br>
+		 * EPC : 0xD7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Performs test call operation setup.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Test call operation ON 0x41<br>
+		 * Test call operation OFF 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetTestCallSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetTestCallSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetTestCallSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetTestCallSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Performs test call operation setup.<br><br>Test call operation ON 0x41 Test call operation OFF 0x42<br><br>Name : Test call setting<br>EPC : 0xD7<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Test call setting<br>
+		 * <br>
+		 * EPC : 0xD7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Performs test call operation setup.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Test call operation ON 0x41<br>
+		 * Test call operation OFF 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetTestCallSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetTestCallSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetTestCallSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
-
+		protected void onGetTestCallSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 	}
-	
-	public class Setter extends DeviceObject.Setter {
-		public Setter(byte esv) {
-			super(esv);
-		}
 
+	public static class Setter extends DeviceObject.Setter {
+		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
+			super(eoj, responseRequired, multicast);
+		}
+		
 		@Override
-		public Setter reqSet(byte epc, byte[] edt) {
-			return (Setter)super.reqSet(epc, edt);
+		public Setter reqSetProperty(byte epc, byte[] edt) {
+			return (Setter)super.reqSetProperty(epc, edt);
 		}
 		
 		@Override
@@ -833,39 +2392,124 @@ public abstract class LPGasMeter extends DeviceObject {
 		public Setter reqSetPowerLimitSetting(byte[] edt) {
 			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
-
+		
 		/**
-		 * Sets �gSmall residual volume detection level 1�h.<br><br>0.0xFFFFFF (0.16,777,215)<br><br>Name : Set value of residual volume control warning level 1<br>EPC : 0xEA<br>Data Type : unsigned char x 3<br>Data Size(Byte) : 3 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Set value of residual volume control warning level 1<br>
+		 * <br>
+		 * EPC : 0xEA<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets �gSmall residual volume detection level 1�h.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFFFFFF (0.16,777,215)<br>
+		 * <br>
+		 * Data type : unsigned char x 3<br>
+		 * <br>
+		 * Data size : 3 bytes<br>
+		 * <br>
+		 * Unit : Liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetSetValueOfResidualVolumeControlWarningLevel1(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1, edt, (edt != null && (edt.length == 3)));
+			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1, edt);
 			return this;
 		}
 		/**
-		 * Sets �gSmall residual volume detection level 2�h.<br><br>0.0xFFFFFF (0.16,777,215)<br><br>Name : Set value of residual volume control warning level 2<br>EPC : 0xEB<br>Data Type : unsigned char x 3<br>Data Size(Byte) : 3 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Set value of residual volume control warning level 2<br>
+		 * <br>
+		 * EPC : 0xEB<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets �gSmall residual volume detection level 2�h.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFFFFFF (0.16,777,215)<br>
+		 * <br>
+		 * Data type : unsigned char x 3<br>
+		 * <br>
+		 * Data size : 3 bytes<br>
+		 * <br>
+		 * Unit : Liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetSetValueOfResidualVolumeControlWarningLevel2(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2, edt, (edt != null && (edt.length == 3)));
+			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2, edt);
 			return this;
 		}
 		/**
-		 * Sets �gSmall residual volume detection level 3�h.<br><br>0.0xFFFFFF (0.16,777,215)<br><br>Name : Set value of residual volume control warning level 3<br>EPC : 0xEC<br>Data Type : unsigned char x3<br>Data Size(Byte) : 3 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Set value of residual volume control warning level 3<br>
+		 * <br>
+		 * EPC : 0xEC<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets �gSmall residual volume detection level 3�h.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFFFFFF (0.16,777,215)<br>
+		 * <br>
+		 * Data type : unsigned char x3<br>
+		 * <br>
+		 * Data size : 3 bytes<br>
+		 * <br>
+		 * Unit : Liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetSetValueOfResidualVolumeControlWarningLevel3(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3, edt, (edt != null && (edt.length == 3)));
+			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3, edt);
 			return this;
 		}
 		/**
-		 * Performs test call operation setup.<br><br>Test call operation ON 0x41 Test call operation OFF 0x42<br><br>Name : Test call setting<br>EPC : 0xD7<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Test call setting<br>
+		 * <br>
+		 * EPC : 0xD7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Performs test call operation setup.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Test call operation ON 0x41<br>
+		 * Test call operation OFF 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetTestCallSetting(byte[] edt) {
-			addProperty(EPC_TEST_CALL_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_TEST_CALL_SETTING, edt);
 			return this;
 		}
 	}
-
-	public class Getter extends DeviceObject.Getter {
-
+	
+	public static class Getter extends DeviceObject.Getter {
+		public Getter(EchoObject eoj, boolean multicast) {
+			super(eoj, multicast);
+		}
+		
+		@Override
+		public Getter reqGetProperty(byte epc) {
+			return (Getter)super.reqGetProperty(epc);
+		}
+		
 		@Override
 		public Getter reqGetOperationStatus() {
 			return (Getter)super.reqGetOperationStatus();
@@ -964,168 +2608,653 @@ public abstract class LPGasMeter extends DeviceObject {
 		}
 		
 		/**
-		 * This property indicates integral gas consumption in units of 0.0001 m3.<br><br>0.0x005F5E0FF (0.9999,9999 m3)<br><br>Name : Integral gas consumption of metering data 1<br>EPC : 0xE0<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
+		 * Property name : Integral gas consumption of metering data 1<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates integral gas consumption in units of 0.0001 m3.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0x005F5E0FF (0.9999,9999 m3)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4 bytes<br>
+		 * <br>
+		 * Unit : 0.0001 m3<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
 		 */
 		public Getter reqGetIntegralGasConsumptionOfMeteringData1() {
 			addProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1);
 			return this;
 		}
 		/**
-		 * This property indicates integral gas consumption in units of 0.001 m3.<br><br>0.0x005F5E0FF (0.99999,999 m3)<br><br>Name : Integral gas consumption of metering data 2<br>EPC : 0xE1<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
+		 * Property name : Integral gas consumption of metering data 2<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates integral gas consumption in units of 0.001 m3.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0x005F5E0FF (0.99999,999 m3)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4 bytes<br>
+		 * <br>
+		 * Unit : 0.001 m3<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
 		 */
 		public Getter reqGetIntegralGasConsumptionOfMeteringData2() {
 			addProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2);
 			return this;
 		}
 		/**
-		 * This property indicates status where meter detected metering data error.<br><br>Error detection status found = 0x41 Error detection status not found = 0x42<br><br>Name : Error detection statusof metering data<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
+		 * Property name : Error detection statusof metering data<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates status where meter detected metering data error.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Error detection status found = 0x41<br>
+		 * Error detection status not found<br>
+		 * = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetErrorDetectionStatusofMeteringData() {
 			addProperty(EPC_ERROR_DETECTION_STATUSOF_METERING_DATA);
 			return this;
 		}
 		/**
-		 * This property indicates security data to define security information on meter operation by bit allocation.<br><br>0.0xFFFFFFFF<br><br>Name : Security data 1<br>EPC : 0xE3<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Security data 1<br>
+		 * <br>
+		 * EPC : 0xE3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates security data to define security information on meter operation by bit allocation.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFFFFFFFF<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetSecurityData1() {
 			addProperty(EPC_SECURITY_DATA1);
 			return this;
 		}
 		/**
-		 * This property indicates security data to define security information on meter operation by bit allocation.<br><br>0.0xFFFFFFFF<br><br>Name : Security data 2<br>EPC : 0xE4<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Security data 2<br>
+		 * <br>
+		 * EPC : 0xE4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates security data to define security information on meter operation by bit allocation.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFFFFFFFF<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetSecurityData2() {
 			addProperty(EPC_SECURITY_DATA2);
 			return this;
 		}
 		/**
-		 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br><br>Center valve shut-off status found = 0x41 Center valve shut-off status not found = 0x42<br><br>Name : Center valve shut-off status<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
+		 * Property name : Center valve shut-off status<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Center valve shut-off status found<br>
+		 * = 0x41<br>
+		 * Center valve shut-off status not found<br>
+		 * = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetCenterValveShutOffStatus() {
 			addProperty(EPC_CENTER_VALVE_SHUT_OFF_STATUS);
 			return this;
 		}
 		/**
-		 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br><br>Center valve shut-off reset enable = 0x41 Center valve shut-off reset not enable = 0x42<br><br>Name : Center valve shut-off recovery permission setting status<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Center valve
+shut-off recovery permission setting status<br>
+		 * <br>
+		 * EPC : 0xE6<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Center valve shut-off reset enable =<br>
+		 * 0x41<br>
+		 * Center valve shut-off reset not enable<br>
+		 * = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetCenterValveShutOffRecoveryPermissionSettingStatus() {
 			addProperty(EPC_CENTER_VALVE_SHUT_OFF_RECOVERY_PERMISSION_SETTING_STATUS);
 			return this;
 		}
 		/**
-		 * This property indicates status where gas shut-off valve of meter has been shut off.<br><br>Emergency valve shut-off status found = 0x41 Emergency valve shut-off status not found = 0x42<br><br>Name : Emergency valve shut-off status<br>EPC : 0xE7<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Emergency valve shut-off status<br>
+		 * <br>
+		 * EPC : 0xE7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates status where gas shut-off valve of meter has been shut off.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Emergency valve shut-off status found<br>
+		 * = 0x41<br>
+		 * Emergency valve shut-off status not found = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetEmergencyValveShutOffStatus() {
 			addProperty(EPC_EMERGENCY_VALVE_SHUT_OFF_STATUS);
 			return this;
 		}
 		/**
-		 * This property indicates open/close status of shut-off valve.<br><br>Shut-off valve open status = 0x41 Shut-off valve close status = 0x42<br><br>Name : Shut-off valve open/close status<br>EPC : 0xE8<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Shut-off valve open/close status<br>
+		 * <br>
+		 * EPC : 0xE8<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates open/close status of shut-off valve.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Shut-off valve open status = 0x41<br>
+		 * Shut-off valve close status = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetShutOffValveOpenCloseStatus() {
 			addProperty(EPC_SHUT_OFF_VALVE_OPEN_CLOSE_STATUS);
 			return this;
 		}
 		/**
-		 * This property indicates status as warning where residual volume is very small.<br><br>Residual volume control warning level 1 0x31 Residual volume control warning level 2 0x32 Residual volume control warning level 3 0x33 No residual volume control warning 0x42<br><br>Name : Residual volume control warning<br>EPC : 0xE9<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
+		 * Property name : Residual volume control warning<br>
+		 * <br>
+		 * EPC : 0xE9<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates status as warning where residual volume is very small.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Residual volume control warning level<br>
+		 * 1 0x31<br>
+		 * Residual volume control warning level<br>
+		 * 2 0x32<br>
+		 * Residual volume control warning level<br>
+		 * 3 0x33<br>
+		 * No residual volume control warning<br>
+		 * 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetResidualVolumeControlWarning() {
 			addProperty(EPC_RESIDUAL_VOLUME_CONTROL_WARNING);
 			return this;
 		}
 		/**
-		 * Sets �gSmall residual volume detection level 1�h.<br><br>0.0xFFFFFF (0.16,777,215)<br><br>Name : Set value of residual volume control warning level 1<br>EPC : 0xEA<br>Data Type : unsigned char x 3<br>Data Size(Byte) : 3 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Set value of residual volume control warning level 1<br>
+		 * <br>
+		 * EPC : 0xEA<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets �gSmall residual volume detection level 1�h.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFFFFFF (0.16,777,215)<br>
+		 * <br>
+		 * Data type : unsigned char x 3<br>
+		 * <br>
+		 * Data size : 3 bytes<br>
+		 * <br>
+		 * Unit : Liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetSetValueOfResidualVolumeControlWarningLevel1() {
 			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1);
 			return this;
 		}
 		/**
-		 * Sets �gSmall residual volume detection level 2�h.<br><br>0.0xFFFFFF (0.16,777,215)<br><br>Name : Set value of residual volume control warning level 2<br>EPC : 0xEB<br>Data Type : unsigned char x 3<br>Data Size(Byte) : 3 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Set value of residual volume control warning level 2<br>
+		 * <br>
+		 * EPC : 0xEB<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets �gSmall residual volume detection level 2�h.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFFFFFF (0.16,777,215)<br>
+		 * <br>
+		 * Data type : unsigned char x 3<br>
+		 * <br>
+		 * Data size : 3 bytes<br>
+		 * <br>
+		 * Unit : Liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetSetValueOfResidualVolumeControlWarningLevel2() {
 			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2);
 			return this;
 		}
 		/**
-		 * Sets �gSmall residual volume detection level 3�h.<br><br>0.0xFFFFFF (0.16,777,215)<br><br>Name : Set value of residual volume control warning level 3<br>EPC : 0xEC<br>Data Type : unsigned char x3<br>Data Size(Byte) : 3 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Set value of residual volume control warning level 3<br>
+		 * <br>
+		 * EPC : 0xEC<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets �gSmall residual volume detection level 3�h.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFFFFFF (0.16,777,215)<br>
+		 * <br>
+		 * Data type : unsigned char x3<br>
+		 * <br>
+		 * Data size : 3 bytes<br>
+		 * <br>
+		 * Unit : Liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetSetValueOfResidualVolumeControlWarningLevel3() {
 			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3);
 			return this;
 		}
 		/**
-		 * This property indicates number of days on which gas flow rate is continued.<br><br>0.0xFD (0.253) (0 to 253 days)<br><br>Name : Slight leak timer value (gas flow rate continuation)<br>EPC : 0xED<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Slight leak timer value (gas flow rate continuation)<br>
+		 * <br>
+		 * EPC : 0xED<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates number of days on which gas flow rate is continued.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFD (0.253) (0 to 253 days)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : Day<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetSlightLeakTimerValueGasFlowRateContinuation() {
 			addProperty(EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION);
 			return this;
 		}
 		/**
-		 * This property indicates number of days on which gas leak monitoring is performed without gas pressure increase.<br><br>0.0xFD (0.253) (0 to 253 days)<br><br>Name : Slight leak timer value (without pressure increase)<br>EPC : 0xEE<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Slight leak timer value (without pressure increase)<br>
+		 * <br>
+		 * EPC : 0xEE<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates number of days on which gas leak monitoring is performed without gas pressure increase.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFD (0.253) (0 to 253 days)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : Day<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetSlightLeakTimerValueWithoutPressureIncrease() {
 			addProperty(EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE);
 			return this;
 		}
 		/**
-		 * Defines log of reasons for gas shut-off by shut-off valve in 1 byte each with bits assigned. Shows the last three logs. Log 3: log 2: log 1<br><br>0xFF: 0xFF: 0xFF<br><br>Name : Shut-off reason log<br>EPC : 0xEF<br>Data Type : unsigned char x 3<br>Data Size(Byte) : 3 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Shut-off reason log<br>
+		 * <br>
+		 * EPC : 0xEF<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Defines log of reasons for gas shut-off by shut-off valve in 1 byte each with bits assigned. Shows the last three logs.<br>
+		 * Log 3: log 2: log 1<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0xFF: 0xFF: 0xFF<br>
+		 * <br>
+		 * Data type : unsigned char x 3<br>
+		 * <br>
+		 * Data size : 3 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetShutOffReasonLog() {
 			addProperty(EPC_SHUT_OFF_REASON_LOG);
 			return this;
 		}
 		/**
-		 * This property indicates maximum value of supply pressure data in units of 0.01 kPa.<br><br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Name : Maximum value of supply pressure data<br>EPC : 0xD0<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Maximum value of supply pressure data<br>
+		 * <br>
+		 * EPC : 0xD0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates maximum value of supply pressure data in units of 0.01 kPa.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : 0.01 kPa<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetMaximumValueOfSupplyPressureData() {
 			addProperty(EPC_MAXIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA);
 			return this;
 		}
 		/**
-		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br><br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Name : Minimum value of supply pressure data<br>EPC : 0xD1<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Minimum value of supply pressure data<br>
+		 * <br>
+		 * EPC : 0xD1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : 0.01 kPa<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetMinimumValueOfSupplyPressureData() {
 			addProperty(EPC_MINIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA);
 			return this;
 		}
 		/**
-		 * This property indicates current value of supply pressure data in units of 0.01 kPa.<br><br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Name : Current value of supply pressure data<br>EPC : 0xD2<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Current value of supply pressure data<br>
+		 * <br>
+		 * EPC : 0xD2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates current value<br>
+		 * of supply pressure data in units of 0.01 kPa.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : 0.01 kPa<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetCurrentValueOfSupplyPressureData() {
 			addProperty(EPC_CURRENT_VALUE_OF_SUPPLY_PRESSURE_DATA);
 			return this;
 		}
 		/**
-		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br><br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Name : Maximum value of block pressure data<br>EPC : 0xD3<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Maximum value of block pressure data<br>
+		 * <br>
+		 * EPC : 0xD3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : 0.01 kPa<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetMaximumValueOfBlockPressureData() {
 			addProperty(EPC_MAXIMUM_VALUE_OF_BLOCK_PRESSURE_DATA);
 			return this;
 		}
 		/**
-		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br><br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Name : Minimum value of block pressure data<br>EPC : 0xD4<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Minimum value of block pressure data<br>
+		 * <br>
+		 * EPC : 0xD4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : 0.01 kPa<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetMinimumValueOfBlockPressureData() {
 			addProperty(EPC_MINIMUM_VALUE_OF_BLOCK_PRESSURE_DATA);
 			return this;
 		}
 		/**
-		 * This property indicates current value of block pressure data in units of 0.01 kPa.<br><br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Name : Current value of block pressure data<br>EPC : 0xD5<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Current value of block pressure data<br>
+		 * <br>
+		 * EPC : 0xD5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates current value of block pressure data in units of 0.01 kPa.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : 0.01 kPa<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetCurrentValueOfBlockPressureData() {
 			addProperty(EPC_CURRENT_VALUE_OF_BLOCK_PRESSURE_DATA);
 			return this;
 		}
 		/**
-		 * This property indicates number of days on which block pressure/supply pressure errors occurred in 1 byte each.<br><br>Number of block pressure error days: Number of supply pressure error days: Number of block pressure error times: Number of supply pressure error times<br><br>Name : Number of block pressure/supply pressure error days:time<br>EPC : 0xD6<br>Data Type : unsigned char x 4<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Number of block pressure/supply pressure error days:time<br>
+		 * <br>
+		 * EPC : 0xD6<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates number of days on which block pressure/supply pressure errors occurred in 1 byte<br>
+		 * each.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Number of block pressure error days: Number of supply pressure error days: Number of block pressure error times: Number of supply pressure error times<br>
+		 * <br>
+		 * Data type : unsigned char x 4<br>
+		 * <br>
+		 * Data size : 4 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetNumberOfBlockPressureSupplyPressureErrorDaysTime() {
 			addProperty(EPC_NUMBER_OF_BLOCK_PRESSURE_SUPPLY_PRESSURE_ERROR_DAYS_TIME);
 			return this;
 		}
 		/**
-		 * Performs test call operation setup.<br><br>Test call operation ON 0x41 Test call operation OFF 0x42<br><br>Name : Test call setting<br>EPC : 0xD7<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Test call setting<br>
+		 * <br>
+		 * EPC : 0xD7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Performs test call operation setup.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Test call operation ON 0x41<br>
+		 * Test call operation OFF 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetTestCallSetting() {
 			addProperty(EPC_TEST_CALL_SETTING);
@@ -1133,139 +3262,16 @@ public abstract class LPGasMeter extends DeviceObject {
 		}
 	}
 	
-	public interface Informer extends DeviceObject.Informer {
-		public Informer reqInform(byte epc);
-		
-		public Informer reqInformOperationStatus();
-		public Informer reqInformInstallationLocation();
-		public Informer reqInformStandardVersionInformation();
-		public Informer reqInformIdentificationNumber();
-		public Informer reqInformMeasuredInstantaneousPowerConsumption();
-		public Informer reqInformMeasuredCumulativePowerConsumption();
-		public Informer reqInformManufacturersFaultCode();
-		public Informer reqInformCurrentLimitSetting();
-		public Informer reqInformFaultStatus();
-		public Informer reqInformFaultDescription();
-		public Informer reqInformManufacturerCode();
-		public Informer reqInformBusinessFacilityCode();
-		public Informer reqInformProductCode();
-		public Informer reqInformProductionNumber();
-		public Informer reqInformProductionDate();
-		public Informer reqInformPowerSavingOperationSetting();
-		public Informer reqInformPositionInformation();
-		public Informer reqInformCurrentTimeSetting();
-		public Informer reqInformCurrentDateSetting();
-		public Informer reqInformPowerLimitSetting();
-		public Informer reqInformCumulativeOperatingTime();
-		public Informer reqInformStatusChangeAnnouncementPropertyMap();
-		public Informer reqInformSetPropertyMap();
-		public Informer reqInformGetPropertyMap();
-		
-		/**
-		 * This property indicates integral gas consumption in units of 0.0001 m3.<br><br>0.0x005F5E0FF (0.9999,9999 m3)<br><br>Name : Integral gas consumption of metering data 1<br>EPC : 0xE0<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
-		 */
-		public Informer reqInformIntegralGasConsumptionOfMeteringData1();
-		/**
-		 * This property indicates integral gas consumption in units of 0.001 m3.<br><br>0.0x005F5E0FF (0.99999,999 m3)<br><br>Name : Integral gas consumption of metering data 2<br>EPC : 0xE1<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
-		 */
-		public Informer reqInformIntegralGasConsumptionOfMeteringData2();
-		/**
-		 * This property indicates status where meter detected metering data error.<br><br>Error detection status found = 0x41 Error detection status not found = 0x42<br><br>Name : Error detection statusof metering data<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
-		 */
-		public Informer reqInformErrorDetectionStatusofMeteringData();
-		/**
-		 * This property indicates security data to define security information on meter operation by bit allocation.<br><br>0.0xFFFFFFFF<br><br>Name : Security data 1<br>EPC : 0xE3<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformSecurityData1();
-		/**
-		 * This property indicates security data to define security information on meter operation by bit allocation.<br><br>0.0xFFFFFFFF<br><br>Name : Security data 2<br>EPC : 0xE4<br>Data Type : unsigned long<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformSecurityData2();
-		/**
-		 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br><br>Center valve shut-off status found = 0x41 Center valve shut-off status not found = 0x42<br><br>Name : Center valve shut-off status<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
-		 */
-		public Informer reqInformCenterValveShutOffStatus();
-		/**
-		 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br><br>Center valve shut-off reset enable = 0x41 Center valve shut-off reset not enable = 0x42<br><br>Name : Center valve shut-off recovery permission setting status<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformCenterValveShutOffRecoveryPermissionSettingStatus();
-		/**
-		 * This property indicates status where gas shut-off valve of meter has been shut off.<br><br>Emergency valve shut-off status found = 0x41 Emergency valve shut-off status not found = 0x42<br><br>Name : Emergency valve shut-off status<br>EPC : 0xE7<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformEmergencyValveShutOffStatus();
-		/**
-		 * This property indicates open/close status of shut-off valve.<br><br>Shut-off valve open status = 0x41 Shut-off valve close status = 0x42<br><br>Name : Shut-off valve open/close status<br>EPC : 0xE8<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformShutOffValveOpenCloseStatus();
-		/**
-		 * This property indicates status as warning where residual volume is very small.<br><br>Residual volume control warning level 1 0x31 Residual volume control warning level 2 0x32 Residual volume control warning level 3 0x33 No residual volume control warning 0x42<br><br>Name : Residual volume control warning<br>EPC : 0xE9<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
-		 */
-		public Informer reqInformResidualVolumeControlWarning();
-		/**
-		 * Sets �gSmall residual volume detection level 1�h.<br><br>0.0xFFFFFF (0.16,777,215)<br><br>Name : Set value of residual volume control warning level 1<br>EPC : 0xEA<br>Data Type : unsigned char x 3<br>Data Size(Byte) : 3 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformSetValueOfResidualVolumeControlWarningLevel1();
-		/**
-		 * Sets �gSmall residual volume detection level 2�h.<br><br>0.0xFFFFFF (0.16,777,215)<br><br>Name : Set value of residual volume control warning level 2<br>EPC : 0xEB<br>Data Type : unsigned char x 3<br>Data Size(Byte) : 3 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformSetValueOfResidualVolumeControlWarningLevel2();
-		/**
-		 * Sets �gSmall residual volume detection level 3�h.<br><br>0.0xFFFFFF (0.16,777,215)<br><br>Name : Set value of residual volume control warning level 3<br>EPC : 0xEC<br>Data Type : unsigned char x3<br>Data Size(Byte) : 3 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformSetValueOfResidualVolumeControlWarningLevel3();
-		/**
-		 * This property indicates number of days on which gas flow rate is continued.<br><br>0.0xFD (0.253) (0 to 253 days)<br><br>Name : Slight leak timer value (gas flow rate continuation)<br>EPC : 0xED<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformSlightLeakTimerValueGasFlowRateContinuation();
-		/**
-		 * This property indicates number of days on which gas leak monitoring is performed without gas pressure increase.<br><br>0.0xFD (0.253) (0 to 253 days)<br><br>Name : Slight leak timer value (without pressure increase)<br>EPC : 0xEE<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformSlightLeakTimerValueWithoutPressureIncrease();
-		/**
-		 * Defines log of reasons for gas shut-off by shut-off valve in 1 byte each with bits assigned. Shows the last three logs. Log 3: log 2: log 1<br><br>0xFF: 0xFF: 0xFF<br><br>Name : Shut-off reason log<br>EPC : 0xEF<br>Data Type : unsigned char x 3<br>Data Size(Byte) : 3 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformShutOffReasonLog();
-		/**
-		 * This property indicates maximum value of supply pressure data in units of 0.01 kPa.<br><br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Name : Maximum value of supply pressure data<br>EPC : 0xD0<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformMaximumValueOfSupplyPressureData();
-		/**
-		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br><br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Name : Minimum value of supply pressure data<br>EPC : 0xD1<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformMinimumValueOfSupplyPressureData();
-		/**
-		 * This property indicates current value of supply pressure data in units of 0.01 kPa.<br><br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Name : Current value of supply pressure data<br>EPC : 0xD2<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformCurrentValueOfSupplyPressureData();
-		/**
-		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br><br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Name : Maximum value of block pressure data<br>EPC : 0xD3<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformMaximumValueOfBlockPressureData();
-		/**
-		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br><br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Name : Minimum value of block pressure data<br>EPC : 0xD4<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformMinimumValueOfBlockPressureData();
-		/**
-		 * This property indicates current value of block pressure data in units of 0.01 kPa.<br><br>0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br><br>Name : Current value of block pressure data<br>EPC : 0xD5<br>Data Type : unsigned short<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformCurrentValueOfBlockPressureData();
-		/**
-		 * This property indicates number of days on which block pressure/supply pressure errors occurred in 1 byte each.<br><br>Number of block pressure error days: Number of supply pressure error days: Number of block pressure error times: Number of supply pressure error times<br><br>Name : Number of block pressure/supply pressure error days:time<br>EPC : 0xD6<br>Data Type : unsigned char x 4<br>Data Size(Byte) : 4 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformNumberOfBlockPressureSupplyPressureErrorDaysTime();
-		/**
-		 * Performs test call operation setup.<br><br>Test call operation ON 0x41 Test call operation OFF 0x42<br><br>Name : Test call setting<br>EPC : 0xD7<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformTestCallSetting();
-	}
-
-	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
-		@Override
-		public Informer reqInform(byte epc) {
-			return (Informer)super.reqInform(epc);
+	public static class Informer extends DeviceObject.Informer {
+		public Informer(EchoObject eoj, boolean multicast) {
+			super(eoj, multicast);
 		}
 		
 		@Override
+		public Informer reqInformProperty(byte epc) {
+			return (Informer)super.reqInformProperty(epc);
+		}
+				@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();
 		}
@@ -1361,399 +3367,720 @@ public abstract class LPGasMeter extends DeviceObject {
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
 		}
-
-		@Override
-		public Informer reqInformIntegralGasConsumptionOfMeteringData1() {
-			byte epc = EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1;
-			byte[] edt = _getIntegralGasConsumptionOfMeteringData1(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 4)));
-			return this;
-		}
-		@Override
-		public Informer reqInformIntegralGasConsumptionOfMeteringData2() {
-			byte epc = EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2;
-			byte[] edt = _getIntegralGasConsumptionOfMeteringData2(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 4)));
-			return this;
-		}
-		@Override
-		public Informer reqInformErrorDetectionStatusofMeteringData() {
-			byte epc = EPC_ERROR_DETECTION_STATUSOF_METERING_DATA;
-			byte[] edt = _getErrorDetectionStatusofMeteringData(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformSecurityData1() {
-			byte epc = EPC_SECURITY_DATA1;
-			byte[] edt = _getSecurityData1(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 4)));
-			return this;
-		}
-		@Override
-		public Informer reqInformSecurityData2() {
-			byte epc = EPC_SECURITY_DATA2;
-			byte[] edt = _getSecurityData2(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 4)));
-			return this;
-		}
-		@Override
-		public Informer reqInformCenterValveShutOffStatus() {
-			byte epc = EPC_CENTER_VALVE_SHUT_OFF_STATUS;
-			byte[] edt = _getCenterValveShutOffStatus(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformCenterValveShutOffRecoveryPermissionSettingStatus() {
-			byte epc = EPC_CENTER_VALVE_SHUT_OFF_RECOVERY_PERMISSION_SETTING_STATUS;
-			byte[] edt = _getCenterValveShutOffRecoveryPermissionSettingStatus(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformEmergencyValveShutOffStatus() {
-			byte epc = EPC_EMERGENCY_VALVE_SHUT_OFF_STATUS;
-			byte[] edt = _getEmergencyValveShutOffStatus(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformShutOffValveOpenCloseStatus() {
-			byte epc = EPC_SHUT_OFF_VALVE_OPEN_CLOSE_STATUS;
-			byte[] edt = _getShutOffValveOpenCloseStatus(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformResidualVolumeControlWarning() {
-			byte epc = EPC_RESIDUAL_VOLUME_CONTROL_WARNING;
-			byte[] edt = _getResidualVolumeControlWarning(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformSetValueOfResidualVolumeControlWarningLevel1() {
-			byte epc = EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1;
-			byte[] edt = _getSetValueOfResidualVolumeControlWarningLevel1(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 3)));
-			return this;
-		}
-		@Override
-		public Informer reqInformSetValueOfResidualVolumeControlWarningLevel2() {
-			byte epc = EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2;
-			byte[] edt = _getSetValueOfResidualVolumeControlWarningLevel2(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 3)));
-			return this;
-		}
-		@Override
-		public Informer reqInformSetValueOfResidualVolumeControlWarningLevel3() {
-			byte epc = EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3;
-			byte[] edt = _getSetValueOfResidualVolumeControlWarningLevel3(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 3)));
-			return this;
-		}
-		@Override
-		public Informer reqInformSlightLeakTimerValueGasFlowRateContinuation() {
-			byte epc = EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION;
-			byte[] edt = _getSlightLeakTimerValueGasFlowRateContinuation(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformSlightLeakTimerValueWithoutPressureIncrease() {
-			byte epc = EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE;
-			byte[] edt = _getSlightLeakTimerValueWithoutPressureIncrease(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformShutOffReasonLog() {
-			byte epc = EPC_SHUT_OFF_REASON_LOG;
-			byte[] edt = _getShutOffReasonLog(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 3)));
-			return this;
-		}
-		@Override
-		public Informer reqInformMaximumValueOfSupplyPressureData() {
-			byte epc = EPC_MAXIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA;
-			byte[] edt = _getMaximumValueOfSupplyPressureData(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Informer reqInformMinimumValueOfSupplyPressureData() {
-			byte epc = EPC_MINIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA;
-			byte[] edt = _getMinimumValueOfSupplyPressureData(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Informer reqInformCurrentValueOfSupplyPressureData() {
-			byte epc = EPC_CURRENT_VALUE_OF_SUPPLY_PRESSURE_DATA;
-			byte[] edt = _getCurrentValueOfSupplyPressureData(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Informer reqInformMaximumValueOfBlockPressureData() {
-			byte epc = EPC_MAXIMUM_VALUE_OF_BLOCK_PRESSURE_DATA;
-			byte[] edt = _getMaximumValueOfBlockPressureData(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Informer reqInformMinimumValueOfBlockPressureData() {
-			byte epc = EPC_MINIMUM_VALUE_OF_BLOCK_PRESSURE_DATA;
-			byte[] edt = _getMinimumValueOfBlockPressureData(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Informer reqInformCurrentValueOfBlockPressureData() {
-			byte epc = EPC_CURRENT_VALUE_OF_BLOCK_PRESSURE_DATA;
-			byte[] edt = _getCurrentValueOfBlockPressureData(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Informer reqInformNumberOfBlockPressureSupplyPressureErrorDaysTime() {
-			byte epc = EPC_NUMBER_OF_BLOCK_PRESSURE_SUPPLY_PRESSURE_ERROR_DAYS_TIME;
-			byte[] edt = _getNumberOfBlockPressureSupplyPressureErrorDaysTime(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 4)));
-			return this;
-		}
-		@Override
-		public Informer reqInformTestCallSetting() {
-			byte epc = EPC_TEST_CALL_SETTING;
-			byte[] edt = _getTestCallSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-	}
-	
-	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
-		@Override
-		public Informer reqInform(byte epc) {
-			return (Informer)super.reqInform(epc);
-		}
 		
-		@Override
-		public Informer reqInformOperationStatus() {
-			return (Informer)super.reqInformOperationStatus();
-		}
-		@Override
-		public Informer reqInformInstallationLocation() {
-			return (Informer)super.reqInformInstallationLocation();
-		}
-		@Override
-		public Informer reqInformStandardVersionInformation() {
-			return (Informer)super.reqInformStandardVersionInformation();
-		}
-		@Override
-		public Informer reqInformIdentificationNumber() {
-			return (Informer)super.reqInformIdentificationNumber();
-		}
-		@Override
-		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
-			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Informer reqInformMeasuredCumulativePowerConsumption() {
-			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Informer reqInformManufacturersFaultCode() {
-			return (Informer)super.reqInformManufacturersFaultCode();
-		}
-		@Override
-		public Informer reqInformCurrentLimitSetting() {
-			return (Informer)super.reqInformCurrentLimitSetting();
-		}
-		@Override
-		public Informer reqInformFaultStatus() {
-			return (Informer)super.reqInformFaultStatus();
-		}
-		@Override
-		public Informer reqInformFaultDescription() {
-			return (Informer)super.reqInformFaultDescription();
-		}
-		@Override
-		public Informer reqInformManufacturerCode() {
-			return (Informer)super.reqInformManufacturerCode();
-		}
-		@Override
-		public Informer reqInformBusinessFacilityCode() {
-			return (Informer)super.reqInformBusinessFacilityCode();
-		}
-		@Override
-		public Informer reqInformProductCode() {
-			return (Informer)super.reqInformProductCode();
-		}
-		@Override
-		public Informer reqInformProductionNumber() {
-			return (Informer)super.reqInformProductionNumber();
-		}
-		@Override
-		public Informer reqInformProductionDate() {
-			return (Informer)super.reqInformProductionDate();
-		}
-		@Override
-		public Informer reqInformPowerSavingOperationSetting() {
-			return (Informer)super.reqInformPowerSavingOperationSetting();
-		}
-		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
-		}
-		@Override
-		public Informer reqInformCurrentTimeSetting() {
-			return (Informer)super.reqInformCurrentTimeSetting();
-		}
-		@Override
-		public Informer reqInformCurrentDateSetting() {
-			return (Informer)super.reqInformCurrentDateSetting();
-		}
-		@Override
-		public Informer reqInformPowerLimitSetting() {
-			return (Informer)super.reqInformPowerLimitSetting();
-		}
-		@Override
-		public Informer reqInformCumulativeOperatingTime() {
-			return (Informer)super.reqInformCumulativeOperatingTime();
-		}
-		@Override
-		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
-			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Informer reqInformSetPropertyMap() {
-			return (Informer)super.reqInformSetPropertyMap();
-		}
-		@Override
-		public Informer reqInformGetPropertyMap() {
-			return (Informer)super.reqInformGetPropertyMap();
-		}
-
-		@Override
+		/**
+		 * Property name : Integral gas consumption of metering data 1<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates integral gas consumption in units of 0.0001 m3.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0x005F5E0FF (0.9999,9999 m3)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4 bytes<br>
+		 * <br>
+		 * Unit : 0.0001 m3<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
 		public Informer reqInformIntegralGasConsumptionOfMeteringData1() {
 			addProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Integral gas consumption of metering data 2<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates integral gas consumption in units of 0.001 m3.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0x005F5E0FF (0.99999,999 m3)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4 bytes<br>
+		 * <br>
+		 * Unit : 0.001 m3<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
 		public Informer reqInformIntegralGasConsumptionOfMeteringData2() {
 			addProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Error detection statusof metering data<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates status where meter detected metering data error.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Error detection status found = 0x41<br>
+		 * Error detection status not found<br>
+		 * = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
 		public Informer reqInformErrorDetectionStatusofMeteringData() {
 			addProperty(EPC_ERROR_DETECTION_STATUSOF_METERING_DATA);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Security data 1<br>
+		 * <br>
+		 * EPC : 0xE3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates security data to define security information on meter operation by bit allocation.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFFFFFFFF<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformSecurityData1() {
 			addProperty(EPC_SECURITY_DATA1);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Security data 2<br>
+		 * <br>
+		 * EPC : 0xE4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates security data to define security information on meter operation by bit allocation.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFFFFFFFF<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformSecurityData2() {
 			addProperty(EPC_SECURITY_DATA2);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Center valve shut-off status<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Center valve shut-off status found<br>
+		 * = 0x41<br>
+		 * Center valve shut-off status not found<br>
+		 * = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
 		public Informer reqInformCenterValveShutOffStatus() {
 			addProperty(EPC_CENTER_VALVE_SHUT_OFF_STATUS);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Center valve
+shut-off recovery permission setting status<br>
+		 * <br>
+		 * EPC : 0xE6<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Center valve shut-off reset enable =<br>
+		 * 0x41<br>
+		 * Center valve shut-off reset not enable<br>
+		 * = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformCenterValveShutOffRecoveryPermissionSettingStatus() {
 			addProperty(EPC_CENTER_VALVE_SHUT_OFF_RECOVERY_PERMISSION_SETTING_STATUS);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Emergency valve shut-off status<br>
+		 * <br>
+		 * EPC : 0xE7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates status where gas shut-off valve of meter has been shut off.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Emergency valve shut-off status found<br>
+		 * = 0x41<br>
+		 * Emergency valve shut-off status not found = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformEmergencyValveShutOffStatus() {
 			addProperty(EPC_EMERGENCY_VALVE_SHUT_OFF_STATUS);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Shut-off valve open/close status<br>
+		 * <br>
+		 * EPC : 0xE8<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates open/close status of shut-off valve.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Shut-off valve open status = 0x41<br>
+		 * Shut-off valve close status = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformShutOffValveOpenCloseStatus() {
 			addProperty(EPC_SHUT_OFF_VALVE_OPEN_CLOSE_STATUS);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Residual volume control warning<br>
+		 * <br>
+		 * EPC : 0xE9<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates status as warning where residual volume is very small.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Residual volume control warning level<br>
+		 * 1 0x31<br>
+		 * Residual volume control warning level<br>
+		 * 2 0x32<br>
+		 * Residual volume control warning level<br>
+		 * 3 0x33<br>
+		 * No residual volume control warning<br>
+		 * 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
 		public Informer reqInformResidualVolumeControlWarning() {
 			addProperty(EPC_RESIDUAL_VOLUME_CONTROL_WARNING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Set value of residual volume control warning level 1<br>
+		 * <br>
+		 * EPC : 0xEA<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets �gSmall residual volume detection level 1�h.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFFFFFF (0.16,777,215)<br>
+		 * <br>
+		 * Data type : unsigned char x 3<br>
+		 * <br>
+		 * Data size : 3 bytes<br>
+		 * <br>
+		 * Unit : Liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformSetValueOfResidualVolumeControlWarningLevel1() {
 			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Set value of residual volume control warning level 2<br>
+		 * <br>
+		 * EPC : 0xEB<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets �gSmall residual volume detection level 2�h.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFFFFFF (0.16,777,215)<br>
+		 * <br>
+		 * Data type : unsigned char x 3<br>
+		 * <br>
+		 * Data size : 3 bytes<br>
+		 * <br>
+		 * Unit : Liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformSetValueOfResidualVolumeControlWarningLevel2() {
 			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Set value of residual volume control warning level 3<br>
+		 * <br>
+		 * EPC : 0xEC<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets �gSmall residual volume detection level 3�h.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFFFFFF (0.16,777,215)<br>
+		 * <br>
+		 * Data type : unsigned char x3<br>
+		 * <br>
+		 * Data size : 3 bytes<br>
+		 * <br>
+		 * Unit : Liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformSetValueOfResidualVolumeControlWarningLevel3() {
 			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Slight leak timer value (gas flow rate continuation)<br>
+		 * <br>
+		 * EPC : 0xED<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates number of days on which gas flow rate is continued.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFD (0.253) (0 to 253 days)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : Day<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformSlightLeakTimerValueGasFlowRateContinuation() {
 			addProperty(EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Slight leak timer value (without pressure increase)<br>
+		 * <br>
+		 * EPC : 0xEE<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates number of days on which gas leak monitoring is performed without gas pressure increase.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0xFD (0.253) (0 to 253 days)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : Day<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformSlightLeakTimerValueWithoutPressureIncrease() {
 			addProperty(EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Shut-off reason log<br>
+		 * <br>
+		 * EPC : 0xEF<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Defines log of reasons for gas shut-off by shut-off valve in 1 byte each with bits assigned. Shows the last three logs.<br>
+		 * Log 3: log 2: log 1<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0xFF: 0xFF: 0xFF<br>
+		 * <br>
+		 * Data type : unsigned char x 3<br>
+		 * <br>
+		 * Data size : 3 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformShutOffReasonLog() {
 			addProperty(EPC_SHUT_OFF_REASON_LOG);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Maximum value of supply pressure data<br>
+		 * <br>
+		 * EPC : 0xD0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates maximum value of supply pressure data in units of 0.01 kPa.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : 0.01 kPa<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformMaximumValueOfSupplyPressureData() {
 			addProperty(EPC_MAXIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Minimum value of supply pressure data<br>
+		 * <br>
+		 * EPC : 0xD1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : 0.01 kPa<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformMinimumValueOfSupplyPressureData() {
 			addProperty(EPC_MINIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Current value of supply pressure data<br>
+		 * <br>
+		 * EPC : 0xD2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates current value<br>
+		 * of supply pressure data in units of 0.01 kPa.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : 0.01 kPa<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformCurrentValueOfSupplyPressureData() {
 			addProperty(EPC_CURRENT_VALUE_OF_SUPPLY_PRESSURE_DATA);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Maximum value of block pressure data<br>
+		 * <br>
+		 * EPC : 0xD3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : 0.01 kPa<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformMaximumValueOfBlockPressureData() {
 			addProperty(EPC_MAXIMUM_VALUE_OF_BLOCK_PRESSURE_DATA);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Minimum value of block pressure data<br>
+		 * <br>
+		 * EPC : 0xD4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : 0.01 kPa<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformMinimumValueOfBlockPressureData() {
 			addProperty(EPC_MINIMUM_VALUE_OF_BLOCK_PRESSURE_DATA);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Current value of block pressure data<br>
+		 * <br>
+		 * EPC : 0xD5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates current value of block pressure data in units of 0.01 kPa.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : 0.01 kPa<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformCurrentValueOfBlockPressureData() {
 			addProperty(EPC_CURRENT_VALUE_OF_BLOCK_PRESSURE_DATA);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Number of block pressure/supply pressure error days:time<br>
+		 * <br>
+		 * EPC : 0xD6<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates number of days on which block pressure/supply pressure errors occurred in 1 byte<br>
+		 * each.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Number of block pressure error days: Number of supply pressure error days: Number of block pressure error times: Number of supply pressure error times<br>
+		 * <br>
+		 * Data type : unsigned char x 4<br>
+		 * <br>
+		 * Data size : 4 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformNumberOfBlockPressureSupplyPressureErrorDaysTime() {
 			addProperty(EPC_NUMBER_OF_BLOCK_PRESSURE_SUPPLY_PRESSURE_ERROR_DAYS_TIME);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Test call setting<br>
+		 * <br>
+		 * EPC : 0xD7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Performs test call operation setup.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Test call operation ON 0x41<br>
+		 * Test call operation OFF 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformTestCallSetting() {
 			addProperty(EPC_TEST_CALL_SETTING);
 			return this;
 		}
 	}
+
+	public static class Proxy extends LPGasMeter {
+		private byte mInstanceCode;
+		public Proxy(byte instanceCode) {
+			super();
+			mInstanceCode = instanceCode;
+		}
+		@Override
+		public byte getInstanceCode() {
+			return mInstanceCode;
+		}
+		@Override
+		protected byte[] getOperationStatus() {return null;}
+		@Override
+		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		@Override
+		protected byte[] getInstallationLocation() {return null;}
+		@Override
+		protected byte[] getStandardVersionInformation() {return null;}
+		@Override
+		protected byte[] getFaultStatus() {return null;}
+		@Override
+		protected byte[] getManufacturerCode() {return null;}
+		@Override
+		protected byte[] getIntegralGasConsumptionOfMeteringData1() {return null;}
+		@Override
+		protected byte[] getIntegralGasConsumptionOfMeteringData2() {return null;}
+	}
+	
+	public static Setter setG() {
+		return setG((byte)0);
+	}
+
+	public static Setter setG(byte instanceCode) {
+		return new Setter(new Proxy(instanceCode), true, true);
+	}
+
+	public static Setter setG(boolean responseRequired) {
+		return setG((byte)0, responseRequired);
+	}
+
+	public static Setter setG(byte instanceCode, boolean responseRequired) {
+		return new Setter(new Proxy(instanceCode), responseRequired, true);
+	}
+
+	public static Getter getG() {
+		return getG((byte)0);
+	}
+	
+	public static Getter getG(byte instanceCode) {
+		return new Getter(new Proxy(instanceCode), true);
+	}
+
+	public static Informer informG() {
+		return informG((byte)0);
+	}
+
+	public static Informer informG(byte instanceCode) {
+		return new Informer(new Proxy(instanceCode), true);
+	}
+
 }

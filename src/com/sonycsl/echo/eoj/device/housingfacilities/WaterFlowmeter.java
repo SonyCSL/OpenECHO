@@ -15,18 +15,16 @@
  */
 package com.sonycsl.echo.eoj.device.housingfacilities;
 
+import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
+import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
+import com.sonycsl.echo.node.EchoNode;
 
 public abstract class WaterFlowmeter extends DeviceObject {
 	
-	public static final byte CLASS_GROUP_CODE = (byte)0x02;
-	public static final byte CLASS_CODE = (byte)0x81;
-	
-	public WaterFlowmeter() {
-		setReceiver(new Receiver());
-	}
+	public static final short ECHO_CLASS_CODE = (short)0x0281;
 
 	public static final byte EPC_FLOWING_WATER_CLASSIFICATION = (byte)0xD0;
 	public static final byte EPC_OWNER_CLASSIFICATION = (byte)0xD1;
@@ -39,391 +37,1195 @@ public abstract class WaterFlowmeter extends DeviceObject {
 	public static final byte EPC_VERIFICATION_EXPIRATION_INFORMATION = (byte)0xE6;
 
 	@Override
-	public byte getClassGroupCode() {
-		return CLASS_GROUP_CODE;
+	protected void setupPropertyMaps() {
+		super.setupPropertyMaps();
+		
+		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
+		removeSetProperty(EPC_OPERATION_STATUS);
+		addGetProperty(EPC_OPERATION_STATUS);
+		addGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_FLOWING_WATER);
+		addGetProperty(EPC_UNIT_FOR_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER);
+		addStatusChangeAnnouncementProperty(EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA);
 	}
-
+	
 	@Override
-	public byte getClassCode() {
-		return CLASS_CODE;
+	public void initialize(EchoNode node) {
+		super.initialize(node);
+		Echo.EventListener listener = Echo.getEventListener();
+		if(listener != null) listener.onNewWaterFlowmeter(this);
+	}
+	
+	@Override
+	public short getEchoClassCode() {
+		return ECHO_CLASS_CODE;
 	}
 
 	/**
-	 * This property indicates the water flowmeter type.<br><br>0x30�Frunning water 0x31�Frecycled water 0x32�Fwarm water 0x33�Fother water<br><br>Name : Flowing water classification<br>EPC : 0xD0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the<br>
+	 * ON/OFF status.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30�COFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setOperationStatus(byte[] edt) {return false;}
+	/**
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the<br>
+	 * ON/OFF status.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30�COFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getOperationStatus();
+	/**
+	 * Property name : Flowing water classification<br>
+	 * <br>
+	 * EPC : 0xD0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the water flowmeter type.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x30�Frunning water<br>
+	 * 0x31�Frecycled water<br>
+	 * 0x32�Fwarm water<br>
+	 * 0x33�Fother water<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setFlowingWaterClassification(byte[] edt) {return false;}
-	private final boolean _setFlowingWaterClassification(byte epc, byte[] edt) {
-		boolean success = setFlowingWaterClassification(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * This property indicates the water flowmeter type.<br><br>0x30�Frunning water 0x31�Frecycled water 0x32�Fwarm water 0x33�Fother water<br><br>Name : Flowing water classification<br>EPC : 0xD0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Flowing water classification<br>
+	 * <br>
+	 * EPC : 0xD0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the water flowmeter type.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x30�Frunning water<br>
+	 * 0x31�Frecycled water<br>
+	 * 0x32�Fwarm water<br>
+	 * 0x33�Fother water<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getFlowingWaterClassification() {return null;}
-	private final byte[] _getFlowingWaterClassification(byte epc) {
-		byte[] edt = getFlowingWaterClassification();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Flowing water classification<br>
+	 * <br>
+	 * EPC : 0xD0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the water flowmeter type.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x30�Frunning water<br>
+	 * 0x31�Frecycled water<br>
+	 * 0x32�Fwarm water<br>
+	 * 0x33�Fother water<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidFlowingWaterClassification(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates the owner of the meter in the form of owner classification.<br><br>0x30�FNot specified 0x31�FPublic waterworks company 0x32�FPrivate sector company 0x33�FIndividual<br><br>Name : Owner classification<br>EPC : 0xD1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Owner classification<br>
+	 * <br>
+	 * EPC : 0xD1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the owner of the meter in the form of owner classification.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x30�FNot specified<br>
+	 * 0x31�FPublic waterworks company<br>
+	 * 0x32�FPrivate sector company<br>
+	 * 0x33�FIndividual<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setOwnerClassification(byte[] edt) {return false;}
-	private final boolean _setOwnerClassification(byte epc, byte[] edt) {
-		boolean success = setOwnerClassification(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * This property indicates the owner of the meter in the form of owner classification.<br><br>0x30�FNot specified 0x31�FPublic waterworks company 0x32�FPrivate sector company 0x33�FIndividual<br><br>Name : Owner classification<br>EPC : 0xD1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Owner classification<br>
+	 * <br>
+	 * EPC : 0xD1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the owner of the meter in the form of owner classification.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x30�FNot specified<br>
+	 * 0x31�FPublic waterworks company<br>
+	 * 0x32�FPrivate sector company<br>
+	 * 0x33�FIndividual<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getOwnerClassification() {return null;}
-	private final byte[] _getOwnerClassification(byte epc) {
-		byte[] edt = getOwnerClassification();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Owner classification<br>
+	 * <br>
+	 * EPC : 0xD1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the owner of the meter in the form of owner classification.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x30�FNot specified<br>
+	 * 0x31�FPublic waterworks company<br>
+	 * 0x32�FPrivate sector company<br>
+	 * 0x33�FIndividual<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidOwnerClassification(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates the cumulative amount (consumption) of flowing water using a 9-digit number.<br><br>0-0x3B9AC9FF (0-999,999,999�j<br><br>Name : Measured cumulative amount of flowing water<br>EPC : 0xE0<br>Data Type : unsigned long<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
+	 * Property name : Measured cumulative amount of flowing water<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the cumulative amount (consumption) of flowing water using a 9-digit number.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0-0x3B9AC9FF<br>
+	 * (0-999,999,999�j<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * <br>
+	 * Data size : 4
+Byte<br>
+	 * <br>
+	 * Unit : ��3<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
 	 */
 	protected abstract byte[] getMeasuredCumulativeAmountOfFlowingWater();
-	private final byte[] _getMeasuredCumulativeAmountOfFlowingWater(byte epc) {
-		byte[] edt = getMeasuredCumulativeAmountOfFlowingWater();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Measured cumulative amount of flowing water<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the cumulative amount (consumption) of flowing water using a 9-digit number.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0-0x3B9AC9FF<br>
+	 * (0-999,999,999�j<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * <br>
+	 * Data size : 4
+Byte<br>
+	 * <br>
+	 * Unit : ��3<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidMeasuredCumulativeAmountOfFlowingWater(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates the unit (multiplying factor) for the measured cumulative amount of flowing water and the historical data of measured cumulative amounts of flowing water.<br><br>0x00: 1��3 0x01: 0.1��3 0x02: 0.01��3 0x03: 0.001��3 0x04: 0.0001��3�iInitial value�j 0x05: 0.00001��3 0x06: 0.000001��3<br><br>Name : Unit for measured cumulative amounts of flowing water<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
+	 * Property name : Unit for measured cumulative amounts of flowing water<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the unit (multiplying factor) for the measured cumulative amount of flowing water and the historical data of measured cumulative amounts of flowing water.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00: 1��3<br>
+	 * 0x01: 0.1��3<br>
+	 * 0x02: 0.01��3<br>
+	 * 0x03: 0.001��3<br>
+	 * 0x04: 0.0001��3�iInitial value�j<br>
+	 * 0x05: 0.00001��3<br>
+	 * 0x06: 0.000001��3<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
 	 */
 	protected abstract byte[] getUnitForMeasuredCumulativeAmountsOfFlowingWater();
-	private final byte[] _getUnitForMeasuredCumulativeAmountsOfFlowingWater(byte epc) {
-		byte[] edt = getUnitForMeasuredCumulativeAmountsOfFlowingWater();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Unit for measured cumulative amounts of flowing water<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the unit (multiplying factor) for the measured cumulative amount of flowing water and the historical data of measured cumulative amounts of flowing water.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00: 1��3<br>
+	 * 0x01: 0.1��3<br>
+	 * 0x02: 0.01��3<br>
+	 * 0x03: 0.001��3<br>
+	 * 0x04: 0.0001��3�iInitial value�j<br>
+	 * 0x05: 0.00001��3<br>
+	 * 0x06: 0.000001��3<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidUnitForMeasuredCumulativeAmountsOfFlowingWater(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates the historical data of measured cumulative amounts (consumptions) of running water, which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br><br>0x0-0x3B9AC9FF (0-999,999.999m3�j<br><br>Name : Historical data of measured cumulative amounts of flowing water<br>EPC : 0xE2<br>Data Type : unsigned long �~48<br>Data Size(Byte) : 192 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Historical data of measured cumulative amounts of flowing water<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the historical data of measured cumulative amounts (consumptions) of running water, which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0-0x3B9AC9FF<br>
+	 * (0-999,999.999m3�j<br>
+	 * <br>
+	 * Data type : unsigned long
+�~48<br>
+	 * <br>
+	 * Data size : 192
+Byte<br>
+	 * <br>
+	 * Unit : 0.001
+��3<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getHistoricalDataOfMeasuredCumulativeAmountsOfFlowingWater() {return null;}
-	private final byte[] _getHistoricalDataOfMeasuredCumulativeAmountsOfFlowingWater(byte epc) {
-		byte[] edt = getHistoricalDataOfMeasuredCumulativeAmountsOfFlowingWater();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Historical data of measured cumulative amounts of flowing water<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the historical data of measured cumulative amounts (consumptions) of running water, which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0-0x3B9AC9FF<br>
+	 * (0-999,999.999m3�j<br>
+	 * <br>
+	 * Data type : unsigned long
+�~48<br>
+	 * <br>
+	 * Data size : 192
+Byte<br>
+	 * <br>
+	 * Unit : 0.001
+��3<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidHistoricalDataOfMeasuredCumulativeAmountsOfFlowingWater(byte[] edt) {
+		if(edt == null || !(edt.length == 192)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates whether the meter has detected an abnormal value in the metering data.<br><br>Abnormal value detected: 0x41 No abnormal value detected: 0x42<br><br>Name : Detection of abnormal value in metering data<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
+	 * Property name : Detection of abnormal value in metering data<br>
+	 * <br>
+	 * EPC : 0xE3<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates whether the meter has detected an abnormal value in the metering data.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Abnormal value detected: 0x41<br>
+	 * No abnormal value detected:<br>
+	 * 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getDetectionOfAbnormalValueInMeteringData() {return null;}
-	private final byte[] _getDetectionOfAbnormalValueInMeteringData(byte epc) {
-		byte[] edt = getDetectionOfAbnormalValueInMeteringData();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Detection of abnormal value in metering data<br>
+	 * <br>
+	 * EPC : 0xE3<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates whether the meter has detected an abnormal value in the metering data.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Abnormal value detected: 0x41<br>
+	 * No abnormal value detected:<br>
+	 * 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidDetectionOfAbnormalValueInMeteringData(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Provides security information about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br><br>0-0xFFFFFFFF<br><br>Name : Security data information<br>EPC : 0xE4<br>Data Type : unsigned long<br>Data Size(Byte) : 5 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Security data information<br>
+	 * <br>
+	 * EPC : 0xE4<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Provides security information about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0-0xFFFFFFFF<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * <br>
+	 * Data size : 5
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getSecurityDataInformation() {return null;}
-	private final byte[] _getSecurityDataInformation(byte epc) {
-		byte[] edt = getSecurityDataInformation();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Security data information<br>
+	 * <br>
+	 * EPC : 0xE4<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Provides security information about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0-0xFFFFFFFF<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * <br>
+	 * Data size : 5
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidSecurityDataInformation(byte[] edt) {
+		if(edt == null || !(edt.length == 5)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates the ID number of the meter.<br><br>The ID number is specified using ASCII code. �iInitial value�F�g000000�h�j<br><br>Name : ID number setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 6 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : ID number setting<br>
+	 * <br>
+	 * EPC : 0xE5<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the ID<br>
+	 * number of the meter.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * The ID number is specified using ASCII code.<br>
+	 * �iInitial value�F�g000000�h�j<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 6
+Byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setIdNumberSetting(byte[] edt) {return false;}
-	private final boolean _setIdNumberSetting(byte epc, byte[] edt) {
-		boolean success = setIdNumberSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * This property indicates the ID number of the meter.<br><br>The ID number is specified using ASCII code. �iInitial value�F�g000000�h�j<br><br>Name : ID number setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 6 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : ID number setting<br>
+	 * <br>
+	 * EPC : 0xE5<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the ID<br>
+	 * number of the meter.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * The ID number is specified using ASCII code.<br>
+	 * �iInitial value�F�g000000�h�j<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 6
+Byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getIdNumberSetting() {return null;}
-	private final byte[] _getIdNumberSetting(byte epc) {
-		byte[] edt = getIdNumberSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : ID number setting<br>
+	 * <br>
+	 * EPC : 0xE5<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the ID<br>
+	 * number of the meter.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * The ID number is specified using ASCII code.<br>
+	 * �iInitial value�F�g000000�h�j<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 6
+Byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidIdNumberSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 6)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates the month and year in which the verification of the meter will expire.<br><br>The month and year are specified using ASCII code. xxxx xx Year Month<br><br>Name : Verification expiration information<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 6 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Verification expiration information<br>
+	 * <br>
+	 * EPC : 0xE6<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the month and year in which the verification of the meter will expire.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * The month and year are specified using ASCII code.<br>
+	 * xxxx xx<br>
+	 * Year Month<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 6
+Byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setVerificationExpirationInformation(byte[] edt) {return false;}
-	private final boolean _setVerificationExpirationInformation(byte epc, byte[] edt) {
-		boolean success = setVerificationExpirationInformation(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * This property indicates the month and year in which the verification of the meter will expire.<br><br>The month and year are specified using ASCII code. xxxx xx Year Month<br><br>Name : Verification expiration information<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 6 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Verification expiration information<br>
+	 * <br>
+	 * EPC : 0xE6<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the month and year in which the verification of the meter will expire.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * The month and year are specified using ASCII code.<br>
+	 * xxxx xx<br>
+	 * Year Month<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 6
+Byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getVerificationExpirationInformation() {return null;}
-	private final byte[] _getVerificationExpirationInformation(byte epc) {
-		byte[] edt = getVerificationExpirationInformation();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Verification expiration information<br>
+	 * <br>
+	 * EPC : 0xE6<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the month and year in which the verification of the meter will expire.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * The month and year are specified using ASCII code.<br>
+	 * xxxx xx<br>
+	 * Year Month<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 6
+Byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidVerificationExpirationInformation(byte[] edt) {
+		if(edt == null || !(edt.length == 6)) return false;
+		return true;
 	}
 
-
 	@Override
-	protected void onReceiveSet(EchoFrame res, byte epc, byte pdc, byte[] edt) {
-		super.onReceiveSet(res, epc, pdc, edt);
-		switch(epc) {
-		case EPC_FLOWING_WATER_CLASSIFICATION:
-			res.addProperty(epc, edt, _setFlowingWaterClassification(epc, edt));
-			break;
-		case EPC_OWNER_CLASSIFICATION:
-			res.addProperty(epc, edt, _setOwnerClassification(epc, edt));
-			break;
-		case EPC_ID_NUMBER_SETTING:
-			res.addProperty(epc, edt, _setIdNumberSetting(epc, edt));
-			break;
-		case EPC_VERIFICATION_EXPIRATION_INFORMATION:
-			res.addProperty(epc, edt, _setVerificationExpirationInformation(epc, edt));
-			break;
+	protected boolean setProperty(EchoProperty property) {
+		boolean success = super.setProperty(property);
+		if(success) return success;
 
-		}
-	}
-
-	@Override
-	protected void onReceiveGet(EchoFrame res, byte epc) {
-		super.onReceiveGet(res, epc);
-		byte[] edt;
-		switch(epc) {
-		case EPC_FLOWING_WATER_CLASSIFICATION:
-			edt = _getFlowingWaterClassification(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_OWNER_CLASSIFICATION:
-			edt = _getOwnerClassification(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_FLOWING_WATER:
-			edt = _getMeasuredCumulativeAmountOfFlowingWater(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 4)));
-			break;
-		case EPC_UNIT_FOR_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER:
-			edt = _getUnitForMeasuredCumulativeAmountsOfFlowingWater(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER:
-			edt = _getHistoricalDataOfMeasuredCumulativeAmountsOfFlowingWater(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 192)));
-			break;
-		case EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA:
-			edt = _getDetectionOfAbnormalValueInMeteringData(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_SECURITY_DATA_INFORMATION:
-			edt = _getSecurityDataInformation(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 5)));
-			break;
-		case EPC_ID_NUMBER_SETTING:
-			edt = _getIdNumberSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 6)));
-			break;
-		case EPC_VERIFICATION_EXPIRATION_INFORMATION:
-			edt = _getVerificationExpirationInformation(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 6)));
-			break;
-
+		switch(property.epc) {
+		case EPC_FLOWING_WATER_CLASSIFICATION : return setFlowingWaterClassification(property.edt);
+		case EPC_OWNER_CLASSIFICATION : return setOwnerClassification(property.edt);
+		case EPC_ID_NUMBER_SETTING : return setIdNumberSetting(property.edt);
+		case EPC_VERIFICATION_EXPIRATION_INFORMATION : return setVerificationExpirationInformation(property.edt);
+		default : return false;
 		}
 	}
 	
 	@Override
-	public Setter set() {
-		return new Setter(ESV_SETI);
+	protected byte[] getProperty(byte epc) {
+		byte[] edt = super.getProperty(epc);
+		if(edt != null) return edt;
+		
+		switch(epc) {
+		case EPC_FLOWING_WATER_CLASSIFICATION : return getFlowingWaterClassification();
+		case EPC_OWNER_CLASSIFICATION : return getOwnerClassification();
+		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_FLOWING_WATER : return getMeasuredCumulativeAmountOfFlowingWater();
+		case EPC_UNIT_FOR_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER : return getUnitForMeasuredCumulativeAmountsOfFlowingWater();
+		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER : return getHistoricalDataOfMeasuredCumulativeAmountsOfFlowingWater();
+		case EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA : return getDetectionOfAbnormalValueInMeteringData();
+		case EPC_SECURITY_DATA_INFORMATION : return getSecurityDataInformation();
+		case EPC_ID_NUMBER_SETTING : return getIdNumberSetting();
+		case EPC_VERIFICATION_EXPIRATION_INFORMATION : return getVerificationExpirationInformation();
+		default : return null;
+		}
 	}
 
 	@Override
-	public Setter setC() {
-		return new Setter(ESV_SETC);
+	protected boolean isValidProperty(EchoProperty property) {
+		boolean valid = super.isValidProperty(property);
+		if(valid) return valid;
+		
+		switch(property.epc) {
+		case EPC_FLOWING_WATER_CLASSIFICATION : return isValidFlowingWaterClassification(property.edt);
+		case EPC_OWNER_CLASSIFICATION : return isValidOwnerClassification(property.edt);
+		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_FLOWING_WATER : return isValidMeasuredCumulativeAmountOfFlowingWater(property.edt);
+		case EPC_UNIT_FOR_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER : return isValidUnitForMeasuredCumulativeAmountsOfFlowingWater(property.edt);
+		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER : return isValidHistoricalDataOfMeasuredCumulativeAmountsOfFlowingWater(property.edt);
+		case EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA : return isValidDetectionOfAbnormalValueInMeteringData(property.edt);
+		case EPC_SECURITY_DATA_INFORMATION : return isValidSecurityDataInformation(property.edt);
+		case EPC_ID_NUMBER_SETTING : return isValidIdNumberSetting(property.edt);
+		case EPC_VERIFICATION_EXPIRATION_INFORMATION : return isValidVerificationExpirationInformation(property.edt);
+		default : return false;
+		}
+	}
+
+	@Override
+	public Setter set() {
+		return new Setter(this, true, false);
+	}
+
+	@Override
+	public Setter set(boolean responseRequired) {
+		return new Setter(this, responseRequired, false);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter();
+		return new Getter(this, false);
 	}
 
 	@Override
 	public Informer inform() {
-		return new InformerImpl();
+		return new Informer(this, !isProxy());
+	}
+	
+	@Override
+	protected Informer inform(boolean multicast) {
+		return new Informer(this, multicast);
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
-			switch(epc) {
-			case EPC_FLOWING_WATER_CLASSIFICATION:
-				_onSetFlowingWaterClassification(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_OWNER_CLASSIFICATION:
-				_onSetOwnerClassification(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_ID_NUMBER_SETTING:
-				_onSetIdNumberSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_VERIFICATION_EXPIRATION_INFORMATION:
-				_onSetVerificationExpirationInformation(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-
+		protected boolean onSetProperty(EchoObject eoj, short tid, byte esv,
+				EchoProperty property, boolean success) {
+			boolean ret = super.onSetProperty(eoj, tid, esv, property, success);
+			if(ret) return true;
+			
+			switch(property.epc) {
+			case EPC_FLOWING_WATER_CLASSIFICATION : 
+				onSetFlowingWaterClassification(eoj, tid, esv, property, success);
+				return true;
+			case EPC_OWNER_CLASSIFICATION : 
+				onSetOwnerClassification(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ID_NUMBER_SETTING : 
+				onSetIdNumberSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_VERIFICATION_EXPIRATION_INFORMATION : 
+				onSetVerificationExpirationInformation(eoj, tid, esv, property, success);
+				return true;
+			default :
+				return false;
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
-			switch(epc) {
-			case EPC_FLOWING_WATER_CLASSIFICATION:
-				_onGetFlowingWaterClassification(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_OWNER_CLASSIFICATION:
-				_onGetOwnerClassification(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_FLOWING_WATER:
-				_onGetMeasuredCumulativeAmountOfFlowingWater(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_UNIT_FOR_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER:
-				_onGetUnitForMeasuredCumulativeAmountsOfFlowingWater(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER:
-				_onGetHistoricalDataOfMeasuredCumulativeAmountsOfFlowingWater(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA:
-				_onGetDetectionOfAbnormalValueInMeteringData(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_SECURITY_DATA_INFORMATION:
-				_onGetSecurityDataInformation(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_ID_NUMBER_SETTING:
-				_onGetIdNumberSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_VERIFICATION_EXPIRATION_INFORMATION:
-				_onGetVerificationExpirationInformation(eoj, tid, esv, epc, pdc, edt);
-				break;
-
+		protected boolean onGetProperty(EchoObject eoj, short tid, byte esv,
+				EchoProperty property, boolean success) {
+			boolean ret = super.onGetProperty(eoj, tid, esv, property, success);
+			if(ret) return true;
+			
+			switch(property.epc) {
+			case EPC_FLOWING_WATER_CLASSIFICATION : 
+				onGetFlowingWaterClassification(eoj, tid, esv, property, success);
+				return true;
+			case EPC_OWNER_CLASSIFICATION : 
+				onGetOwnerClassification(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_FLOWING_WATER : 
+				onGetMeasuredCumulativeAmountOfFlowingWater(eoj, tid, esv, property, success);
+				return true;
+			case EPC_UNIT_FOR_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER : 
+				onGetUnitForMeasuredCumulativeAmountsOfFlowingWater(eoj, tid, esv, property, success);
+				return true;
+			case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER : 
+				onGetHistoricalDataOfMeasuredCumulativeAmountsOfFlowingWater(eoj, tid, esv, property, success);
+				return true;
+			case EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA : 
+				onGetDetectionOfAbnormalValueInMeteringData(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SECURITY_DATA_INFORMATION : 
+				onGetSecurityDataInformation(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ID_NUMBER_SETTING : 
+				onGetIdNumberSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_VERIFICATION_EXPIRATION_INFORMATION : 
+				onGetVerificationExpirationInformation(eoj, tid, esv, property, success);
+				return true;
+			default :
+				return false;
 			}
 		}
 		
 		/**
-		 * This property indicates the water flowmeter type.<br><br>0x30�Frunning water 0x31�Frecycled water 0x32�Fwarm water 0x33�Fother water<br><br>Name : Flowing water classification<br>EPC : 0xD0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Flowing water classification<br>
+		 * <br>
+		 * EPC : 0xD0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the water flowmeter type.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x30�Frunning water<br>
+		 * 0x31�Frecycled water<br>
+		 * 0x32�Fwarm water<br>
+		 * 0x33�Fother water<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetFlowingWaterClassification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetFlowingWaterClassification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetFlowingWaterClassification(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetFlowingWaterClassification(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates the water flowmeter type.<br><br>0x30�Frunning water 0x31�Frecycled water 0x32�Fwarm water 0x33�Fother water<br><br>Name : Flowing water classification<br>EPC : 0xD0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Flowing water classification<br>
+		 * <br>
+		 * EPC : 0xD0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the water flowmeter type.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x30�Frunning water<br>
+		 * 0x31�Frecycled water<br>
+		 * 0x32�Fwarm water<br>
+		 * 0x33�Fother water<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetFlowingWaterClassification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetFlowingWaterClassification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetFlowingWaterClassification(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetFlowingWaterClassification(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates the owner of the meter in the form of owner classification.<br><br>0x30�FNot specified 0x31�FPublic waterworks company 0x32�FPrivate sector company 0x33�FIndividual<br><br>Name : Owner classification<br>EPC : 0xD1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Owner classification<br>
+		 * <br>
+		 * EPC : 0xD1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the owner of the meter in the form of owner classification.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x30�FNot specified<br>
+		 * 0x31�FPublic waterworks company<br>
+		 * 0x32�FPrivate sector company<br>
+		 * 0x33�FIndividual<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetOwnerClassification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetOwnerClassification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetOwnerClassification(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetOwnerClassification(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates the owner of the meter in the form of owner classification.<br><br>0x30�FNot specified 0x31�FPublic waterworks company 0x32�FPrivate sector company 0x33�FIndividual<br><br>Name : Owner classification<br>EPC : 0xD1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Owner classification<br>
+		 * <br>
+		 * EPC : 0xD1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the owner of the meter in the form of owner classification.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x30�FNot specified<br>
+		 * 0x31�FPublic waterworks company<br>
+		 * 0x32�FPrivate sector company<br>
+		 * 0x33�FIndividual<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetOwnerClassification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetOwnerClassification(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetOwnerClassification(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetOwnerClassification(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates the cumulative amount (consumption) of flowing water using a 9-digit number.<br><br>0-0x3B9AC9FF (0-999,999,999�j<br><br>Name : Measured cumulative amount of flowing water<br>EPC : 0xE0<br>Data Type : unsigned long<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
+		 * Property name : Measured cumulative amount of flowing water<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the cumulative amount (consumption) of flowing water using a 9-digit number.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x3B9AC9FF<br>
+		 * (0-999,999,999�j<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4
+Byte<br>
+		 * <br>
+		 * Unit : ��3<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
 		 */
-		protected void onGetMeasuredCumulativeAmountOfFlowingWater(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetMeasuredCumulativeAmountOfFlowingWater(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetMeasuredCumulativeAmountOfFlowingWater(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetMeasuredCumulativeAmountOfFlowingWater(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates the unit (multiplying factor) for the measured cumulative amount of flowing water and the historical data of measured cumulative amounts of flowing water.<br><br>0x00: 1��3 0x01: 0.1��3 0x02: 0.01��3 0x03: 0.001��3 0x04: 0.0001��3�iInitial value�j 0x05: 0.00001��3 0x06: 0.000001��3<br><br>Name : Unit for measured cumulative amounts of flowing water<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
+		 * Property name : Unit for measured cumulative amounts of flowing water<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the unit (multiplying factor) for the measured cumulative amount of flowing water and the historical data of measured cumulative amounts of flowing water.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00: 1��3<br>
+		 * 0x01: 0.1��3<br>
+		 * 0x02: 0.01��3<br>
+		 * 0x03: 0.001��3<br>
+		 * 0x04: 0.0001��3�iInitial value�j<br>
+		 * 0x05: 0.00001��3<br>
+		 * 0x06: 0.000001��3<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
 		 */
-		protected void onGetUnitForMeasuredCumulativeAmountsOfFlowingWater(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetUnitForMeasuredCumulativeAmountsOfFlowingWater(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetUnitForMeasuredCumulativeAmountsOfFlowingWater(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetUnitForMeasuredCumulativeAmountsOfFlowingWater(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates the historical data of measured cumulative amounts (consumptions) of running water, which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br><br>0x0-0x3B9AC9FF (0-999,999.999m3�j<br><br>Name : Historical data of measured cumulative amounts of flowing water<br>EPC : 0xE2<br>Data Type : unsigned long �~48<br>Data Size(Byte) : 192 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Historical data of measured cumulative amounts of flowing water<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the historical data of measured cumulative amounts (consumptions) of running water, which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0-0x3B9AC9FF<br>
+		 * (0-999,999.999m3�j<br>
+		 * <br>
+		 * Data type : unsigned long
+�~48<br>
+		 * <br>
+		 * Data size : 192
+Byte<br>
+		 * <br>
+		 * Unit : 0.001
+��3<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetHistoricalDataOfMeasuredCumulativeAmountsOfFlowingWater(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetHistoricalDataOfMeasuredCumulativeAmountsOfFlowingWater(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetHistoricalDataOfMeasuredCumulativeAmountsOfFlowingWater(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetHistoricalDataOfMeasuredCumulativeAmountsOfFlowingWater(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates whether the meter has detected an abnormal value in the metering data.<br><br>Abnormal value detected: 0x41 No abnormal value detected: 0x42<br><br>Name : Detection of abnormal value in metering data<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
+		 * Property name : Detection of abnormal value in metering data<br>
+		 * <br>
+		 * EPC : 0xE3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates whether the meter has detected an abnormal value in the metering data.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Abnormal value detected: 0x41<br>
+		 * No abnormal value detected:<br>
+		 * 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetDetectionOfAbnormalValueInMeteringData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetDetectionOfAbnormalValueInMeteringData(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetDetectionOfAbnormalValueInMeteringData(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetDetectionOfAbnormalValueInMeteringData(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Provides security information about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br><br>0-0xFFFFFFFF<br><br>Name : Security data information<br>EPC : 0xE4<br>Data Type : unsigned long<br>Data Size(Byte) : 5 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Security data information<br>
+		 * <br>
+		 * EPC : 0xE4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Provides security information about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0xFFFFFFFF<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 5
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetSecurityDataInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetSecurityDataInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetSecurityDataInformation(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetSecurityDataInformation(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates the ID number of the meter.<br><br>The ID number is specified using ASCII code. �iInitial value�F�g000000�h�j<br><br>Name : ID number setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 6 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ID number setting<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the ID<br>
+		 * number of the meter.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * The ID number is specified using ASCII code.<br>
+		 * �iInitial value�F�g000000�h�j<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 6
+Byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetIdNumberSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetIdNumberSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetIdNumberSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetIdNumberSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates the ID number of the meter.<br><br>The ID number is specified using ASCII code. �iInitial value�F�g000000�h�j<br><br>Name : ID number setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 6 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ID number setting<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the ID<br>
+		 * number of the meter.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * The ID number is specified using ASCII code.<br>
+		 * �iInitial value�F�g000000�h�j<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 6
+Byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetIdNumberSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetIdNumberSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetIdNumberSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetIdNumberSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates the month and year in which the verification of the meter will expire.<br><br>The month and year are specified using ASCII code. xxxx xx Year Month<br><br>Name : Verification expiration information<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 6 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Verification expiration information<br>
+		 * <br>
+		 * EPC : 0xE6<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the month and year in which the verification of the meter will expire.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * The month and year are specified using ASCII code.<br>
+		 * xxxx xx<br>
+		 * Year Month<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 6
+Byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetVerificationExpirationInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetVerificationExpirationInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetVerificationExpirationInformation(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetVerificationExpirationInformation(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates the month and year in which the verification of the meter will expire.<br><br>The month and year are specified using ASCII code. xxxx xx Year Month<br><br>Name : Verification expiration information<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 6 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Verification expiration information<br>
+		 * <br>
+		 * EPC : 0xE6<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the month and year in which the verification of the meter will expire.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * The month and year are specified using ASCII code.<br>
+		 * xxxx xx<br>
+		 * Year Month<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 6
+Byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetVerificationExpirationInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetVerificationExpirationInformation(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetVerificationExpirationInformation(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
-
+		protected void onGetVerificationExpirationInformation(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 	}
-	
-	public class Setter extends DeviceObject.Setter {
-		public Setter(byte esv) {
-			super(esv);
-		}
 
+	public static class Setter extends DeviceObject.Setter {
+		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
+			super(eoj, responseRequired, multicast);
+		}
+		
 		@Override
-		public Setter reqSet(byte epc, byte[] edt) {
-			return (Setter)super.reqSet(epc, edt);
+		public Setter reqSetProperty(byte epc, byte[] edt) {
+			return (Setter)super.reqSetProperty(epc, edt);
 		}
 		
 		@Override
@@ -458,39 +1260,137 @@ public abstract class WaterFlowmeter extends DeviceObject {
 		public Setter reqSetPowerLimitSetting(byte[] edt) {
 			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
-
+		
 		/**
-		 * This property indicates the water flowmeter type.<br><br>0x30�Frunning water 0x31�Frecycled water 0x32�Fwarm water 0x33�Fother water<br><br>Name : Flowing water classification<br>EPC : 0xD0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Flowing water classification<br>
+		 * <br>
+		 * EPC : 0xD0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the water flowmeter type.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x30�Frunning water<br>
+		 * 0x31�Frecycled water<br>
+		 * 0x32�Fwarm water<br>
+		 * 0x33�Fother water<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetFlowingWaterClassification(byte[] edt) {
-			addProperty(EPC_FLOWING_WATER_CLASSIFICATION, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_FLOWING_WATER_CLASSIFICATION, edt);
 			return this;
 		}
 		/**
-		 * This property indicates the owner of the meter in the form of owner classification.<br><br>0x30�FNot specified 0x31�FPublic waterworks company 0x32�FPrivate sector company 0x33�FIndividual<br><br>Name : Owner classification<br>EPC : 0xD1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Owner classification<br>
+		 * <br>
+		 * EPC : 0xD1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the owner of the meter in the form of owner classification.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x30�FNot specified<br>
+		 * 0x31�FPublic waterworks company<br>
+		 * 0x32�FPrivate sector company<br>
+		 * 0x33�FIndividual<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetOwnerClassification(byte[] edt) {
-			addProperty(EPC_OWNER_CLASSIFICATION, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_OWNER_CLASSIFICATION, edt);
 			return this;
 		}
 		/**
-		 * This property indicates the ID number of the meter.<br><br>The ID number is specified using ASCII code. �iInitial value�F�g000000�h�j<br><br>Name : ID number setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 6 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ID number setting<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the ID<br>
+		 * number of the meter.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * The ID number is specified using ASCII code.<br>
+		 * �iInitial value�F�g000000�h�j<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 6
+Byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetIdNumberSetting(byte[] edt) {
-			addProperty(EPC_ID_NUMBER_SETTING, edt, (edt != null && (edt.length == 6)));
+			addProperty(EPC_ID_NUMBER_SETTING, edt);
 			return this;
 		}
 		/**
-		 * This property indicates the month and year in which the verification of the meter will expire.<br><br>The month and year are specified using ASCII code. xxxx xx Year Month<br><br>Name : Verification expiration information<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 6 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Verification expiration information<br>
+		 * <br>
+		 * EPC : 0xE6<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the month and year in which the verification of the meter will expire.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * The month and year are specified using ASCII code.<br>
+		 * xxxx xx<br>
+		 * Year Month<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 6
+Byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetVerificationExpirationInformation(byte[] edt) {
-			addProperty(EPC_VERIFICATION_EXPIRATION_INFORMATION, edt, (edt != null && (edt.length == 6)));
+			addProperty(EPC_VERIFICATION_EXPIRATION_INFORMATION, edt);
 			return this;
 		}
 	}
-
-	public class Getter extends DeviceObject.Getter {
-
+	
+	public static class Getter extends DeviceObject.Getter {
+		public Getter(EchoObject eoj, boolean multicast) {
+			super(eoj, multicast);
+		}
+		
+		@Override
+		public Getter reqGetProperty(byte epc) {
+			return (Getter)super.reqGetProperty(epc);
+		}
+		
 		@Override
 		public Getter reqGetOperationStatus() {
 			return (Getter)super.reqGetOperationStatus();
@@ -589,63 +1489,267 @@ public abstract class WaterFlowmeter extends DeviceObject {
 		}
 		
 		/**
-		 * This property indicates the water flowmeter type.<br><br>0x30�Frunning water 0x31�Frecycled water 0x32�Fwarm water 0x33�Fother water<br><br>Name : Flowing water classification<br>EPC : 0xD0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Flowing water classification<br>
+		 * <br>
+		 * EPC : 0xD0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the water flowmeter type.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x30�Frunning water<br>
+		 * 0x31�Frecycled water<br>
+		 * 0x32�Fwarm water<br>
+		 * 0x33�Fother water<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetFlowingWaterClassification() {
 			addProperty(EPC_FLOWING_WATER_CLASSIFICATION);
 			return this;
 		}
 		/**
-		 * This property indicates the owner of the meter in the form of owner classification.<br><br>0x30�FNot specified 0x31�FPublic waterworks company 0x32�FPrivate sector company 0x33�FIndividual<br><br>Name : Owner classification<br>EPC : 0xD1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Owner classification<br>
+		 * <br>
+		 * EPC : 0xD1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the owner of the meter in the form of owner classification.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x30�FNot specified<br>
+		 * 0x31�FPublic waterworks company<br>
+		 * 0x32�FPrivate sector company<br>
+		 * 0x33�FIndividual<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetOwnerClassification() {
 			addProperty(EPC_OWNER_CLASSIFICATION);
 			return this;
 		}
 		/**
-		 * This property indicates the cumulative amount (consumption) of flowing water using a 9-digit number.<br><br>0-0x3B9AC9FF (0-999,999,999�j<br><br>Name : Measured cumulative amount of flowing water<br>EPC : 0xE0<br>Data Type : unsigned long<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
+		 * Property name : Measured cumulative amount of flowing water<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the cumulative amount (consumption) of flowing water using a 9-digit number.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x3B9AC9FF<br>
+		 * (0-999,999,999�j<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4
+Byte<br>
+		 * <br>
+		 * Unit : ��3<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
 		 */
 		public Getter reqGetMeasuredCumulativeAmountOfFlowingWater() {
 			addProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_FLOWING_WATER);
 			return this;
 		}
 		/**
-		 * This property indicates the unit (multiplying factor) for the measured cumulative amount of flowing water and the historical data of measured cumulative amounts of flowing water.<br><br>0x00: 1��3 0x01: 0.1��3 0x02: 0.01��3 0x03: 0.001��3 0x04: 0.0001��3�iInitial value�j 0x05: 0.00001��3 0x06: 0.000001��3<br><br>Name : Unit for measured cumulative amounts of flowing water<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
+		 * Property name : Unit for measured cumulative amounts of flowing water<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the unit (multiplying factor) for the measured cumulative amount of flowing water and the historical data of measured cumulative amounts of flowing water.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00: 1��3<br>
+		 * 0x01: 0.1��3<br>
+		 * 0x02: 0.01��3<br>
+		 * 0x03: 0.001��3<br>
+		 * 0x04: 0.0001��3�iInitial value�j<br>
+		 * 0x05: 0.00001��3<br>
+		 * 0x06: 0.000001��3<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
 		 */
 		public Getter reqGetUnitForMeasuredCumulativeAmountsOfFlowingWater() {
 			addProperty(EPC_UNIT_FOR_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER);
 			return this;
 		}
 		/**
-		 * This property indicates the historical data of measured cumulative amounts (consumptions) of running water, which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br><br>0x0-0x3B9AC9FF (0-999,999.999m3�j<br><br>Name : Historical data of measured cumulative amounts of flowing water<br>EPC : 0xE2<br>Data Type : unsigned long �~48<br>Data Size(Byte) : 192 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Historical data of measured cumulative amounts of flowing water<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the historical data of measured cumulative amounts (consumptions) of running water, which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0-0x3B9AC9FF<br>
+		 * (0-999,999.999m3�j<br>
+		 * <br>
+		 * Data type : unsigned long
+�~48<br>
+		 * <br>
+		 * Data size : 192
+Byte<br>
+		 * <br>
+		 * Unit : 0.001
+��3<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetHistoricalDataOfMeasuredCumulativeAmountsOfFlowingWater() {
 			addProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER);
 			return this;
 		}
 		/**
-		 * This property indicates whether the meter has detected an abnormal value in the metering data.<br><br>Abnormal value detected: 0x41 No abnormal value detected: 0x42<br><br>Name : Detection of abnormal value in metering data<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
+		 * Property name : Detection of abnormal value in metering data<br>
+		 * <br>
+		 * EPC : 0xE3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates whether the meter has detected an abnormal value in the metering data.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Abnormal value detected: 0x41<br>
+		 * No abnormal value detected:<br>
+		 * 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetDetectionOfAbnormalValueInMeteringData() {
 			addProperty(EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA);
 			return this;
 		}
 		/**
-		 * Provides security information about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br><br>0-0xFFFFFFFF<br><br>Name : Security data information<br>EPC : 0xE4<br>Data Type : unsigned long<br>Data Size(Byte) : 5 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Security data information<br>
+		 * <br>
+		 * EPC : 0xE4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Provides security information about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0xFFFFFFFF<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 5
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetSecurityDataInformation() {
 			addProperty(EPC_SECURITY_DATA_INFORMATION);
 			return this;
 		}
 		/**
-		 * This property indicates the ID number of the meter.<br><br>The ID number is specified using ASCII code. �iInitial value�F�g000000�h�j<br><br>Name : ID number setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 6 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ID number setting<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the ID<br>
+		 * number of the meter.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * The ID number is specified using ASCII code.<br>
+		 * �iInitial value�F�g000000�h�j<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 6
+Byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetIdNumberSetting() {
 			addProperty(EPC_ID_NUMBER_SETTING);
 			return this;
 		}
 		/**
-		 * This property indicates the month and year in which the verification of the meter will expire.<br><br>The month and year are specified using ASCII code. xxxx xx Year Month<br><br>Name : Verification expiration information<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 6 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Verification expiration information<br>
+		 * <br>
+		 * EPC : 0xE6<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the month and year in which the verification of the meter will expire.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * The month and year are specified using ASCII code.<br>
+		 * xxxx xx<br>
+		 * Year Month<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 6
+Byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetVerificationExpirationInformation() {
 			addProperty(EPC_VERIFICATION_EXPIRATION_INFORMATION);
@@ -653,79 +1757,16 @@ public abstract class WaterFlowmeter extends DeviceObject {
 		}
 	}
 	
-	public interface Informer extends DeviceObject.Informer {
-		public Informer reqInform(byte epc);
-		
-		public Informer reqInformOperationStatus();
-		public Informer reqInformInstallationLocation();
-		public Informer reqInformStandardVersionInformation();
-		public Informer reqInformIdentificationNumber();
-		public Informer reqInformMeasuredInstantaneousPowerConsumption();
-		public Informer reqInformMeasuredCumulativePowerConsumption();
-		public Informer reqInformManufacturersFaultCode();
-		public Informer reqInformCurrentLimitSetting();
-		public Informer reqInformFaultStatus();
-		public Informer reqInformFaultDescription();
-		public Informer reqInformManufacturerCode();
-		public Informer reqInformBusinessFacilityCode();
-		public Informer reqInformProductCode();
-		public Informer reqInformProductionNumber();
-		public Informer reqInformProductionDate();
-		public Informer reqInformPowerSavingOperationSetting();
-		public Informer reqInformPositionInformation();
-		public Informer reqInformCurrentTimeSetting();
-		public Informer reqInformCurrentDateSetting();
-		public Informer reqInformPowerLimitSetting();
-		public Informer reqInformCumulativeOperatingTime();
-		public Informer reqInformStatusChangeAnnouncementPropertyMap();
-		public Informer reqInformSetPropertyMap();
-		public Informer reqInformGetPropertyMap();
-		
-		/**
-		 * This property indicates the water flowmeter type.<br><br>0x30�Frunning water 0x31�Frecycled water 0x32�Fwarm water 0x33�Fother water<br><br>Name : Flowing water classification<br>EPC : 0xD0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformFlowingWaterClassification();
-		/**
-		 * This property indicates the owner of the meter in the form of owner classification.<br><br>0x30�FNot specified 0x31�FPublic waterworks company 0x32�FPrivate sector company 0x33�FIndividual<br><br>Name : Owner classification<br>EPC : 0xD1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformOwnerClassification();
-		/**
-		 * This property indicates the cumulative amount (consumption) of flowing water using a 9-digit number.<br><br>0-0x3B9AC9FF (0-999,999,999�j<br><br>Name : Measured cumulative amount of flowing water<br>EPC : 0xE0<br>Data Type : unsigned long<br>Data Size(Byte) : 4 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
-		 */
-		public Informer reqInformMeasuredCumulativeAmountOfFlowingWater();
-		/**
-		 * This property indicates the unit (multiplying factor) for the measured cumulative amount of flowing water and the historical data of measured cumulative amounts of flowing water.<br><br>0x00: 1��3 0x01: 0.1��3 0x02: 0.01��3 0x03: 0.001��3 0x04: 0.0001��3�iInitial value�j 0x05: 0.00001��3 0x06: 0.000001��3<br><br>Name : Unit for measured cumulative amounts of flowing water<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : mandatory<br>
-		 */
-		public Informer reqInformUnitForMeasuredCumulativeAmountsOfFlowingWater();
-		/**
-		 * This property indicates the historical data of measured cumulative amounts (consumptions) of running water, which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br><br>0x0-0x3B9AC9FF (0-999,999.999m3�j<br><br>Name : Historical data of measured cumulative amounts of flowing water<br>EPC : 0xE2<br>Data Type : unsigned long �~48<br>Data Size(Byte) : 192 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformHistoricalDataOfMeasuredCumulativeAmountsOfFlowingWater();
-		/**
-		 * This property indicates whether the meter has detected an abnormal value in the metering data.<br><br>Abnormal value detected: 0x41 No abnormal value detected: 0x42<br><br>Name : Detection of abnormal value in metering data<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
-		 */
-		public Informer reqInformDetectionOfAbnormalValueInMeteringData();
-		/**
-		 * Provides security information about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br><br>0-0xFFFFFFFF<br><br>Name : Security data information<br>EPC : 0xE4<br>Data Type : unsigned long<br>Data Size(Byte) : 5 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformSecurityDataInformation();
-		/**
-		 * This property indicates the ID number of the meter.<br><br>The ID number is specified using ASCII code. �iInitial value�F�g000000�h�j<br><br>Name : ID number setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 6 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformIdNumberSetting();
-		/**
-		 * This property indicates the month and year in which the verification of the meter will expire.<br><br>The month and year are specified using ASCII code. xxxx xx Year Month<br><br>Name : Verification expiration information<br>EPC : 0xE6<br>Data Type : unsigned char<br>Data Size(Byte) : 6 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformVerificationExpirationInformation();
-	}
-
-	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
-		@Override
-		public Informer reqInform(byte epc) {
-			return (Informer)super.reqInform(epc);
+	public static class Informer extends DeviceObject.Informer {
+		public Informer(EchoObject eoj, boolean multicast) {
+			super(eoj, multicast);
 		}
 		
 		@Override
+		public Informer reqInformProperty(byte epc) {
+			return (Informer)super.reqInformProperty(epc);
+		}
+				@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();
 		}
@@ -821,219 +1862,334 @@ public abstract class WaterFlowmeter extends DeviceObject {
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
 		}
-
-		@Override
-		public Informer reqInformFlowingWaterClassification() {
-			byte epc = EPC_FLOWING_WATER_CLASSIFICATION;
-			byte[] edt = _getFlowingWaterClassification(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformOwnerClassification() {
-			byte epc = EPC_OWNER_CLASSIFICATION;
-			byte[] edt = _getOwnerClassification(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformMeasuredCumulativeAmountOfFlowingWater() {
-			byte epc = EPC_MEASURED_CUMULATIVE_AMOUNT_OF_FLOWING_WATER;
-			byte[] edt = _getMeasuredCumulativeAmountOfFlowingWater(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 4)));
-			return this;
-		}
-		@Override
-		public Informer reqInformUnitForMeasuredCumulativeAmountsOfFlowingWater() {
-			byte epc = EPC_UNIT_FOR_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER;
-			byte[] edt = _getUnitForMeasuredCumulativeAmountsOfFlowingWater(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformHistoricalDataOfMeasuredCumulativeAmountsOfFlowingWater() {
-			byte epc = EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER;
-			byte[] edt = _getHistoricalDataOfMeasuredCumulativeAmountsOfFlowingWater(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 192)));
-			return this;
-		}
-		@Override
-		public Informer reqInformDetectionOfAbnormalValueInMeteringData() {
-			byte epc = EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA;
-			byte[] edt = _getDetectionOfAbnormalValueInMeteringData(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformSecurityDataInformation() {
-			byte epc = EPC_SECURITY_DATA_INFORMATION;
-			byte[] edt = _getSecurityDataInformation(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 5)));
-			return this;
-		}
-		@Override
-		public Informer reqInformIdNumberSetting() {
-			byte epc = EPC_ID_NUMBER_SETTING;
-			byte[] edt = _getIdNumberSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 6)));
-			return this;
-		}
-		@Override
-		public Informer reqInformVerificationExpirationInformation() {
-			byte epc = EPC_VERIFICATION_EXPIRATION_INFORMATION;
-			byte[] edt = _getVerificationExpirationInformation(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 6)));
-			return this;
-		}
-	}
-	
-	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
-		@Override
-		public Informer reqInform(byte epc) {
-			return (Informer)super.reqInform(epc);
-		}
 		
-		@Override
-		public Informer reqInformOperationStatus() {
-			return (Informer)super.reqInformOperationStatus();
-		}
-		@Override
-		public Informer reqInformInstallationLocation() {
-			return (Informer)super.reqInformInstallationLocation();
-		}
-		@Override
-		public Informer reqInformStandardVersionInformation() {
-			return (Informer)super.reqInformStandardVersionInformation();
-		}
-		@Override
-		public Informer reqInformIdentificationNumber() {
-			return (Informer)super.reqInformIdentificationNumber();
-		}
-		@Override
-		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
-			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Informer reqInformMeasuredCumulativePowerConsumption() {
-			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Informer reqInformManufacturersFaultCode() {
-			return (Informer)super.reqInformManufacturersFaultCode();
-		}
-		@Override
-		public Informer reqInformCurrentLimitSetting() {
-			return (Informer)super.reqInformCurrentLimitSetting();
-		}
-		@Override
-		public Informer reqInformFaultStatus() {
-			return (Informer)super.reqInformFaultStatus();
-		}
-		@Override
-		public Informer reqInformFaultDescription() {
-			return (Informer)super.reqInformFaultDescription();
-		}
-		@Override
-		public Informer reqInformManufacturerCode() {
-			return (Informer)super.reqInformManufacturerCode();
-		}
-		@Override
-		public Informer reqInformBusinessFacilityCode() {
-			return (Informer)super.reqInformBusinessFacilityCode();
-		}
-		@Override
-		public Informer reqInformProductCode() {
-			return (Informer)super.reqInformProductCode();
-		}
-		@Override
-		public Informer reqInformProductionNumber() {
-			return (Informer)super.reqInformProductionNumber();
-		}
-		@Override
-		public Informer reqInformProductionDate() {
-			return (Informer)super.reqInformProductionDate();
-		}
-		@Override
-		public Informer reqInformPowerSavingOperationSetting() {
-			return (Informer)super.reqInformPowerSavingOperationSetting();
-		}
-		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
-		}
-		@Override
-		public Informer reqInformCurrentTimeSetting() {
-			return (Informer)super.reqInformCurrentTimeSetting();
-		}
-		@Override
-		public Informer reqInformCurrentDateSetting() {
-			return (Informer)super.reqInformCurrentDateSetting();
-		}
-		@Override
-		public Informer reqInformPowerLimitSetting() {
-			return (Informer)super.reqInformPowerLimitSetting();
-		}
-		@Override
-		public Informer reqInformCumulativeOperatingTime() {
-			return (Informer)super.reqInformCumulativeOperatingTime();
-		}
-		@Override
-		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
-			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Informer reqInformSetPropertyMap() {
-			return (Informer)super.reqInformSetPropertyMap();
-		}
-		@Override
-		public Informer reqInformGetPropertyMap() {
-			return (Informer)super.reqInformGetPropertyMap();
-		}
-
-		@Override
+		/**
+		 * Property name : Flowing water classification<br>
+		 * <br>
+		 * EPC : 0xD0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the water flowmeter type.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x30�Frunning water<br>
+		 * 0x31�Frecycled water<br>
+		 * 0x32�Fwarm water<br>
+		 * 0x33�Fother water<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformFlowingWaterClassification() {
 			addProperty(EPC_FLOWING_WATER_CLASSIFICATION);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Owner classification<br>
+		 * <br>
+		 * EPC : 0xD1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the owner of the meter in the form of owner classification.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x30�FNot specified<br>
+		 * 0x31�FPublic waterworks company<br>
+		 * 0x32�FPrivate sector company<br>
+		 * 0x33�FIndividual<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformOwnerClassification() {
 			addProperty(EPC_OWNER_CLASSIFICATION);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Measured cumulative amount of flowing water<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the cumulative amount (consumption) of flowing water using a 9-digit number.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x3B9AC9FF<br>
+		 * (0-999,999,999�j<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4
+Byte<br>
+		 * <br>
+		 * Unit : ��3<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
 		public Informer reqInformMeasuredCumulativeAmountOfFlowingWater() {
 			addProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_FLOWING_WATER);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Unit for measured cumulative amounts of flowing water<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the unit (multiplying factor) for the measured cumulative amount of flowing water and the historical data of measured cumulative amounts of flowing water.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00: 1��3<br>
+		 * 0x01: 0.1��3<br>
+		 * 0x02: 0.01��3<br>
+		 * 0x03: 0.001��3<br>
+		 * 0x04: 0.0001��3�iInitial value�j<br>
+		 * 0x05: 0.00001��3<br>
+		 * 0x06: 0.000001��3<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
 		public Informer reqInformUnitForMeasuredCumulativeAmountsOfFlowingWater() {
 			addProperty(EPC_UNIT_FOR_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Historical data of measured cumulative amounts of flowing water<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the historical data of measured cumulative amounts (consumptions) of running water, which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0-0x3B9AC9FF<br>
+		 * (0-999,999.999m3�j<br>
+		 * <br>
+		 * Data type : unsigned long
+�~48<br>
+		 * <br>
+		 * Data size : 192
+Byte<br>
+		 * <br>
+		 * Unit : 0.001
+��3<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformHistoricalDataOfMeasuredCumulativeAmountsOfFlowingWater() {
 			addProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Detection of abnormal value in metering data<br>
+		 * <br>
+		 * EPC : 0xE3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates whether the meter has detected an abnormal value in the metering data.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Abnormal value detected: 0x41<br>
+		 * No abnormal value detected:<br>
+		 * 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
 		public Informer reqInformDetectionOfAbnormalValueInMeteringData() {
 			addProperty(EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Security data information<br>
+		 * <br>
+		 * EPC : 0xE4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Provides security information about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0xFFFFFFFF<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 5
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformSecurityDataInformation() {
 			addProperty(EPC_SECURITY_DATA_INFORMATION);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : ID number setting<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the ID<br>
+		 * number of the meter.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * The ID number is specified using ASCII code.<br>
+		 * �iInitial value�F�g000000�h�j<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 6
+Byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformIdNumberSetting() {
 			addProperty(EPC_ID_NUMBER_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Verification expiration information<br>
+		 * <br>
+		 * EPC : 0xE6<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the month and year in which the verification of the meter will expire.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * The month and year are specified using ASCII code.<br>
+		 * xxxx xx<br>
+		 * Year Month<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 6
+Byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformVerificationExpirationInformation() {
 			addProperty(EPC_VERIFICATION_EXPIRATION_INFORMATION);
 			return this;
 		}
 	}
+
+	public static class Proxy extends WaterFlowmeter {
+		private byte mInstanceCode;
+		public Proxy(byte instanceCode) {
+			super();
+			mInstanceCode = instanceCode;
+		}
+		@Override
+		public byte getInstanceCode() {
+			return mInstanceCode;
+		}
+		@Override
+		protected byte[] getOperationStatus() {return null;}
+		@Override
+		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		@Override
+		protected byte[] getInstallationLocation() {return null;}
+		@Override
+		protected byte[] getStandardVersionInformation() {return null;}
+		@Override
+		protected byte[] getFaultStatus() {return null;}
+		@Override
+		protected byte[] getManufacturerCode() {return null;}
+		@Override
+		protected byte[] getMeasuredCumulativeAmountOfFlowingWater() {return null;}
+		@Override
+		protected byte[] getUnitForMeasuredCumulativeAmountsOfFlowingWater() {return null;}
+	}
+	
+	public static Setter setG() {
+		return setG((byte)0);
+	}
+
+	public static Setter setG(byte instanceCode) {
+		return new Setter(new Proxy(instanceCode), true, true);
+	}
+
+	public static Setter setG(boolean responseRequired) {
+		return setG((byte)0, responseRequired);
+	}
+
+	public static Setter setG(byte instanceCode, boolean responseRequired) {
+		return new Setter(new Proxy(instanceCode), responseRequired, true);
+	}
+
+	public static Getter getG() {
+		return getG((byte)0);
+	}
+	
+	public static Getter getG(byte instanceCode) {
+		return new Getter(new Proxy(instanceCode), true);
+	}
+
+	public static Informer informG() {
+		return informG((byte)0);
+	}
+
+	public static Informer informG(byte instanceCode) {
+		return new Informer(new Proxy(instanceCode), true);
+	}
+
 }

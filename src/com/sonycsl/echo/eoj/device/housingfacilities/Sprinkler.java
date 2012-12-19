@@ -15,18 +15,16 @@
  */
 package com.sonycsl.echo.eoj.device.housingfacilities;
 
+import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
+import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
+import com.sonycsl.echo.node.EchoNode;
 
 public abstract class Sprinkler extends DeviceObject {
 	
-	public static final byte CLASS_GROUP_CODE = (byte)0x02;
-	public static final byte CLASS_CODE = (byte)0x67;
-	
-	public Sprinkler() {
-		setReceiver(new Receiver());
-	}
+	public static final short ECHO_CLASS_CODE = (short)0x0267;
 
 	public static final byte EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING = (byte)0xE0;
 	public static final byte EPC_SPRINKLE_INTERVAL_SETTING = (byte)0xE1;
@@ -36,365 +34,991 @@ public abstract class Sprinkler extends DeviceObject {
 	public static final byte EPC_SPRINKLE_DURATION_SETTING = (byte)0xE5;
 
 	@Override
-	public byte getClassGroupCode() {
-		return CLASS_GROUP_CODE;
+	protected void setupPropertyMaps() {
+		super.setupPropertyMaps();
+		
+		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
+		removeSetProperty(EPC_OPERATION_STATUS);
+		addGetProperty(EPC_OPERATION_STATUS);
+		addSetProperty(EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING);
+		addGetProperty(EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING);
 	}
-
+	
 	@Override
-	public byte getClassCode() {
-		return CLASS_CODE;
+	public void initialize(EchoNode node) {
+		super.initialize(node);
+		Echo.EventListener listener = Echo.getEventListener();
+		if(listener != null) listener.onNewSprinkler(this);
+	}
+	
+	@Override
+	public short getEchoClassCode() {
+		return ECHO_CLASS_CODE;
 	}
 
 	/**
-	 * Open/close of sprinkle valve<br><br>Automatic ON=0x40    manual ON�� 0x41�Cmanual OFF��0x42<br><br>Name : Sprinkle valve open/close setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the ON/OFF<br>
+	 * status.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30, OFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setOperationStatus(byte[] edt) {return false;}
+	/**
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the ON/OFF<br>
+	 * status.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30, OFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getOperationStatus();
+	/**
+	 * Property name : Sprinkle valve open/close setting<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Open/close of sprinkle valve<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic ON=0x40    manual ON��<br>
+	 * 0x41�Cmanual OFF��0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
 	 */
 	protected abstract boolean setSprinkleValveOpenCloseSetting(byte[] edt);
-	private final boolean _setSprinkleValveOpenCloseSetting(byte epc, byte[] edt) {
-		boolean success = setSprinkleValveOpenCloseSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Open/close of sprinkle valve<br><br>Automatic ON=0x40    manual ON�� 0x41�Cmanual OFF��0x42<br><br>Name : Sprinkle valve open/close setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+	 * Property name : Sprinkle valve open/close setting<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Open/close of sprinkle valve<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic ON=0x40    manual ON��<br>
+	 * 0x41�Cmanual OFF��0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
 	 */
 	protected abstract byte[] getSprinkleValveOpenCloseSetting();
-	private final byte[] _getSprinkleValveOpenCloseSetting(byte epc) {
-		byte[] edt = getSprinkleValveOpenCloseSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Sprinkle valve open/close setting<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Open/close of sprinkle valve<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic ON=0x40    manual ON��<br>
+	 * 0x41�Cmanual OFF��0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidSprinkleValveOpenCloseSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * OFF / daily / every other day / every 3 days / once a week<br><br>0x40�^0x41�^0x42�^0x43�^0x44<br><br>Name : Sprinkle interval setting<br>EPC : 0xE1<br>Data Type : unsigned long<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Sprinkle interval setting<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * OFF / daily / every other day / every 3 days / once a week<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x40�^0x41�^0x42�^0x43�^0x44<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setSprinkleIntervalSetting(byte[] edt) {return false;}
-	private final boolean _setSprinkleIntervalSetting(byte epc, byte[] edt) {
-		boolean success = setSprinkleIntervalSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * OFF / daily / every other day / every 3 days / once a week<br><br>0x40�^0x41�^0x42�^0x43�^0x44<br><br>Name : Sprinkle interval setting<br>EPC : 0xE1<br>Data Type : unsigned long<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Sprinkle interval setting<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * OFF / daily / every other day / every 3 days / once a week<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x40�^0x41�^0x42�^0x43�^0x44<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getSprinkleIntervalSetting() {return null;}
-	private final byte[] _getSprinkleIntervalSetting(byte epc) {
-		byte[] edt = getSprinkleIntervalSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Sprinkle interval setting<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * OFF / daily / every other day / every 3 days / once a week<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x40�^0x41�^0x42�^0x43�^0x44<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidSprinkleIntervalSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Number of sprinkles in a day(up to 2 times) First ON�^second ON�^both ON<br><br>0x41�^0x42�^0x43<br><br>Name : Number of sprinkles setting<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Number of sprinkles setting<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Number of sprinkles in a day(up to 2 times)<br>
+	 * First ON�^second ON�^both ON<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x41�^0x42�^0x43<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setNumberOfSprinklesSetting(byte[] edt) {return false;}
-	private final boolean _setNumberOfSprinklesSetting(byte epc, byte[] edt) {
-		boolean success = setNumberOfSprinklesSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Number of sprinkles in a day(up to 2 times) First ON�^second ON�^both ON<br><br>0x41�^0x42�^0x43<br><br>Name : Number of sprinkles setting<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Number of sprinkles setting<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Number of sprinkles in a day(up to 2 times)<br>
+	 * First ON�^second ON�^both ON<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x41�^0x42�^0x43<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getNumberOfSprinklesSetting() {return null;}
-	private final byte[] _getNumberOfSprinklesSetting(byte epc) {
-		byte[] edt = getNumberOfSprinklesSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Number of sprinkles setting<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Number of sprinkles in a day(up to 2 times)<br>
+	 * First ON�^second ON�^both ON<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x41�^0x42�^0x43<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidNumberOfSprinklesSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Set timer value HH:MM and get updated time<br><br>0~0x17�F0~0x3B (=0~23)�F(=0~59)<br><br>Name : Sprinkle time setting 1<br>EPC : 0xE3<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Sprinkle time setting 1<br>
+	 * <br>
+	 * EPC : 0xE3<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Set timer value HH:MM and get updated time<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+	 * <br>
+	 * Data type : unsigned char
+�~2<br>
+	 * <br>
+	 * Data size : 2
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setSprinkleTimeSetting1(byte[] edt) {return false;}
-	private final boolean _setSprinkleTimeSetting1(byte epc, byte[] edt) {
-		boolean success = setSprinkleTimeSetting1(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Set timer value HH:MM and get updated time<br><br>0~0x17�F0~0x3B (=0~23)�F(=0~59)<br><br>Name : Sprinkle time setting 1<br>EPC : 0xE3<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Sprinkle time setting 1<br>
+	 * <br>
+	 * EPC : 0xE3<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Set timer value HH:MM and get updated time<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+	 * <br>
+	 * Data type : unsigned char
+�~2<br>
+	 * <br>
+	 * Data size : 2
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getSprinkleTimeSetting1() {return null;}
-	private final byte[] _getSprinkleTimeSetting1(byte epc) {
-		byte[] edt = getSprinkleTimeSetting1();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Sprinkle time setting 1<br>
+	 * <br>
+	 * EPC : 0xE3<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Set timer value HH:MM and get updated time<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+	 * <br>
+	 * Data type : unsigned char
+�~2<br>
+	 * <br>
+	 * Data size : 2
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidSprinkleTimeSetting1(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
+		return true;
 	}
 	/**
-	 * Set timer value HH:MM and get updated time<br><br>0~0x17�F0~0x3B (=0~23)�F(=0~59)<br><br>Name : Sprinkle time setting 2<br>EPC : 0xE4<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Sprinkle time setting 2<br>
+	 * <br>
+	 * EPC : 0xE4<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Set timer value HH:MM and get updated time<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+	 * <br>
+	 * Data type : unsigned char
+�~2<br>
+	 * <br>
+	 * Data size : 2
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setSprinkleTimeSetting2(byte[] edt) {return false;}
-	private final boolean _setSprinkleTimeSetting2(byte epc, byte[] edt) {
-		boolean success = setSprinkleTimeSetting2(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Set timer value HH:MM and get updated time<br><br>0~0x17�F0~0x3B (=0~23)�F(=0~59)<br><br>Name : Sprinkle time setting 2<br>EPC : 0xE4<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Sprinkle time setting 2<br>
+	 * <br>
+	 * EPC : 0xE4<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Set timer value HH:MM and get updated time<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+	 * <br>
+	 * Data type : unsigned char
+�~2<br>
+	 * <br>
+	 * Data size : 2
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getSprinkleTimeSetting2() {return null;}
-	private final byte[] _getSprinkleTimeSetting2(byte epc) {
-		byte[] edt = getSprinkleTimeSetting2();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Sprinkle time setting 2<br>
+	 * <br>
+	 * EPC : 0xE4<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Set timer value HH:MM and get updated time<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+	 * <br>
+	 * Data type : unsigned char
+�~2<br>
+	 * <br>
+	 * Data size : 2
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidSprinkleTimeSetting2(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
+		return true;
 	}
 	/**
-	 * Set timer value MM 0 to 59 minutes<br><br>0-0x3B (=0~59)<br><br>Name : Sprinkle duration setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Sprinkle duration setting<br>
+	 * <br>
+	 * EPC : 0xE5<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Set timer value MM<br>
+	 * 0 to 59 minutes<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0-0x3B (=0~59)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setSprinkleDurationSetting(byte[] edt) {return false;}
-	private final boolean _setSprinkleDurationSetting(byte epc, byte[] edt) {
-		boolean success = setSprinkleDurationSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Set timer value MM 0 to 59 minutes<br><br>0-0x3B (=0~59)<br><br>Name : Sprinkle duration setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Sprinkle duration setting<br>
+	 * <br>
+	 * EPC : 0xE5<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Set timer value MM<br>
+	 * 0 to 59 minutes<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0-0x3B (=0~59)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getSprinkleDurationSetting() {return null;}
-	private final byte[] _getSprinkleDurationSetting(byte epc) {
-		byte[] edt = getSprinkleDurationSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
-	}
-
-
-	@Override
-	protected void onReceiveSet(EchoFrame res, byte epc, byte pdc, byte[] edt) {
-		super.onReceiveSet(res, epc, pdc, edt);
-		switch(epc) {
-		case EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING:
-			res.addProperty(epc, edt, _setSprinkleValveOpenCloseSetting(epc, edt));
-			break;
-		case EPC_SPRINKLE_INTERVAL_SETTING:
-			res.addProperty(epc, edt, _setSprinkleIntervalSetting(epc, edt));
-			break;
-		case EPC_NUMBER_OF_SPRINKLES_SETTING:
-			res.addProperty(epc, edt, _setNumberOfSprinklesSetting(epc, edt));
-			break;
-		case EPC_SPRINKLE_TIME_SETTING1:
-			res.addProperty(epc, edt, _setSprinkleTimeSetting1(epc, edt));
-			break;
-		case EPC_SPRINKLE_TIME_SETTING2:
-			res.addProperty(epc, edt, _setSprinkleTimeSetting2(epc, edt));
-			break;
-		case EPC_SPRINKLE_DURATION_SETTING:
-			res.addProperty(epc, edt, _setSprinkleDurationSetting(epc, edt));
-			break;
-
-		}
+	/**
+	 * Property name : Sprinkle duration setting<br>
+	 * <br>
+	 * EPC : 0xE5<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Set timer value MM<br>
+	 * 0 to 59 minutes<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0-0x3B (=0~59)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+Byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidSprinkleDurationSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 
 	@Override
-	protected void onReceiveGet(EchoFrame res, byte epc) {
-		super.onReceiveGet(res, epc);
-		byte[] edt;
-		switch(epc) {
-		case EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING:
-			edt = _getSprinkleValveOpenCloseSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_SPRINKLE_INTERVAL_SETTING:
-			edt = _getSprinkleIntervalSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_NUMBER_OF_SPRINKLES_SETTING:
-			edt = _getNumberOfSprinklesSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_SPRINKLE_TIME_SETTING1:
-			edt = _getSprinkleTimeSetting1(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			break;
-		case EPC_SPRINKLE_TIME_SETTING2:
-			edt = _getSprinkleTimeSetting2(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			break;
-		case EPC_SPRINKLE_DURATION_SETTING:
-			edt = _getSprinkleDurationSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
+	protected boolean setProperty(EchoProperty property) {
+		boolean success = super.setProperty(property);
+		if(success) return success;
 
+		switch(property.epc) {
+		case EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING : return setSprinkleValveOpenCloseSetting(property.edt);
+		case EPC_SPRINKLE_INTERVAL_SETTING : return setSprinkleIntervalSetting(property.edt);
+		case EPC_NUMBER_OF_SPRINKLES_SETTING : return setNumberOfSprinklesSetting(property.edt);
+		case EPC_SPRINKLE_TIME_SETTING1 : return setSprinkleTimeSetting1(property.edt);
+		case EPC_SPRINKLE_TIME_SETTING2 : return setSprinkleTimeSetting2(property.edt);
+		case EPC_SPRINKLE_DURATION_SETTING : return setSprinkleDurationSetting(property.edt);
+		default : return false;
 		}
 	}
 	
 	@Override
-	public Setter set() {
-		return new Setter(ESV_SETI);
+	protected byte[] getProperty(byte epc) {
+		byte[] edt = super.getProperty(epc);
+		if(edt != null) return edt;
+		
+		switch(epc) {
+		case EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING : return getSprinkleValveOpenCloseSetting();
+		case EPC_SPRINKLE_INTERVAL_SETTING : return getSprinkleIntervalSetting();
+		case EPC_NUMBER_OF_SPRINKLES_SETTING : return getNumberOfSprinklesSetting();
+		case EPC_SPRINKLE_TIME_SETTING1 : return getSprinkleTimeSetting1();
+		case EPC_SPRINKLE_TIME_SETTING2 : return getSprinkleTimeSetting2();
+		case EPC_SPRINKLE_DURATION_SETTING : return getSprinkleDurationSetting();
+		default : return null;
+		}
 	}
 
 	@Override
-	public Setter setC() {
-		return new Setter(ESV_SETC);
+	protected boolean isValidProperty(EchoProperty property) {
+		boolean valid = super.isValidProperty(property);
+		if(valid) return valid;
+		
+		switch(property.epc) {
+		case EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING : return isValidSprinkleValveOpenCloseSetting(property.edt);
+		case EPC_SPRINKLE_INTERVAL_SETTING : return isValidSprinkleIntervalSetting(property.edt);
+		case EPC_NUMBER_OF_SPRINKLES_SETTING : return isValidNumberOfSprinklesSetting(property.edt);
+		case EPC_SPRINKLE_TIME_SETTING1 : return isValidSprinkleTimeSetting1(property.edt);
+		case EPC_SPRINKLE_TIME_SETTING2 : return isValidSprinkleTimeSetting2(property.edt);
+		case EPC_SPRINKLE_DURATION_SETTING : return isValidSprinkleDurationSetting(property.edt);
+		default : return false;
+		}
+	}
+
+	@Override
+	public Setter set() {
+		return new Setter(this, true, false);
+	}
+
+	@Override
+	public Setter set(boolean responseRequired) {
+		return new Setter(this, responseRequired, false);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter();
+		return new Getter(this, false);
 	}
 
 	@Override
 	public Informer inform() {
-		return new InformerImpl();
+		return new Informer(this, !isProxy());
+	}
+	
+	@Override
+	protected Informer inform(boolean multicast) {
+		return new Informer(this, multicast);
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
-			switch(epc) {
-			case EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING:
-				_onSetSprinkleValveOpenCloseSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_SPRINKLE_INTERVAL_SETTING:
-				_onSetSprinkleIntervalSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_NUMBER_OF_SPRINKLES_SETTING:
-				_onSetNumberOfSprinklesSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_SPRINKLE_TIME_SETTING1:
-				_onSetSprinkleTimeSetting1(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_SPRINKLE_TIME_SETTING2:
-				_onSetSprinkleTimeSetting2(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_SPRINKLE_DURATION_SETTING:
-				_onSetSprinkleDurationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-
+		protected boolean onSetProperty(EchoObject eoj, short tid, byte esv,
+				EchoProperty property, boolean success) {
+			boolean ret = super.onSetProperty(eoj, tid, esv, property, success);
+			if(ret) return true;
+			
+			switch(property.epc) {
+			case EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING : 
+				onSetSprinkleValveOpenCloseSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SPRINKLE_INTERVAL_SETTING : 
+				onSetSprinkleIntervalSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_NUMBER_OF_SPRINKLES_SETTING : 
+				onSetNumberOfSprinklesSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SPRINKLE_TIME_SETTING1 : 
+				onSetSprinkleTimeSetting1(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SPRINKLE_TIME_SETTING2 : 
+				onSetSprinkleTimeSetting2(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SPRINKLE_DURATION_SETTING : 
+				onSetSprinkleDurationSetting(eoj, tid, esv, property, success);
+				return true;
+			default :
+				return false;
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
-			switch(epc) {
-			case EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING:
-				_onGetSprinkleValveOpenCloseSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_SPRINKLE_INTERVAL_SETTING:
-				_onGetSprinkleIntervalSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_NUMBER_OF_SPRINKLES_SETTING:
-				_onGetNumberOfSprinklesSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_SPRINKLE_TIME_SETTING1:
-				_onGetSprinkleTimeSetting1(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_SPRINKLE_TIME_SETTING2:
-				_onGetSprinkleTimeSetting2(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_SPRINKLE_DURATION_SETTING:
-				_onGetSprinkleDurationSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-
+		protected boolean onGetProperty(EchoObject eoj, short tid, byte esv,
+				EchoProperty property, boolean success) {
+			boolean ret = super.onGetProperty(eoj, tid, esv, property, success);
+			if(ret) return true;
+			
+			switch(property.epc) {
+			case EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING : 
+				onGetSprinkleValveOpenCloseSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SPRINKLE_INTERVAL_SETTING : 
+				onGetSprinkleIntervalSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_NUMBER_OF_SPRINKLES_SETTING : 
+				onGetNumberOfSprinklesSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SPRINKLE_TIME_SETTING1 : 
+				onGetSprinkleTimeSetting1(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SPRINKLE_TIME_SETTING2 : 
+				onGetSprinkleTimeSetting2(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SPRINKLE_DURATION_SETTING : 
+				onGetSprinkleDurationSetting(eoj, tid, esv, property, success);
+				return true;
+			default :
+				return false;
 			}
 		}
 		
 		/**
-		 * Open/close of sprinkle valve<br><br>Automatic ON=0x40    manual ON�� 0x41�Cmanual OFF��0x42<br><br>Name : Sprinkle valve open/close setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Sprinkle valve open/close setting<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Open/close of sprinkle valve<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic ON=0x40    manual ON��<br>
+		 * 0x41�Cmanual OFF��0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
-		protected void onSetSprinkleValveOpenCloseSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetSprinkleValveOpenCloseSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetSprinkleValveOpenCloseSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetSprinkleValveOpenCloseSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Open/close of sprinkle valve<br><br>Automatic ON=0x40    manual ON�� 0x41�Cmanual OFF��0x42<br><br>Name : Sprinkle valve open/close setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Sprinkle valve open/close setting<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Open/close of sprinkle valve<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic ON=0x40    manual ON��<br>
+		 * 0x41�Cmanual OFF��0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
-		protected void onGetSprinkleValveOpenCloseSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetSprinkleValveOpenCloseSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetSprinkleValveOpenCloseSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetSprinkleValveOpenCloseSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * OFF / daily / every other day / every 3 days / once a week<br><br>0x40�^0x41�^0x42�^0x43�^0x44<br><br>Name : Sprinkle interval setting<br>EPC : 0xE1<br>Data Type : unsigned long<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Sprinkle interval setting<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * OFF / daily / every other day / every 3 days / once a week<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x40�^0x41�^0x42�^0x43�^0x44<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetSprinkleIntervalSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetSprinkleIntervalSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetSprinkleIntervalSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetSprinkleIntervalSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * OFF / daily / every other day / every 3 days / once a week<br><br>0x40�^0x41�^0x42�^0x43�^0x44<br><br>Name : Sprinkle interval setting<br>EPC : 0xE1<br>Data Type : unsigned long<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Sprinkle interval setting<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * OFF / daily / every other day / every 3 days / once a week<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x40�^0x41�^0x42�^0x43�^0x44<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetSprinkleIntervalSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetSprinkleIntervalSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetSprinkleIntervalSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetSprinkleIntervalSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Number of sprinkles in a day(up to 2 times) First ON�^second ON�^both ON<br><br>0x41�^0x42�^0x43<br><br>Name : Number of sprinkles setting<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Number of sprinkles setting<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Number of sprinkles in a day(up to 2 times)<br>
+		 * First ON�^second ON�^both ON<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x41�^0x42�^0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetNumberOfSprinklesSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetNumberOfSprinklesSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetNumberOfSprinklesSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetNumberOfSprinklesSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Number of sprinkles in a day(up to 2 times) First ON�^second ON�^both ON<br><br>0x41�^0x42�^0x43<br><br>Name : Number of sprinkles setting<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Number of sprinkles setting<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Number of sprinkles in a day(up to 2 times)<br>
+		 * First ON�^second ON�^both ON<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x41�^0x42�^0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetNumberOfSprinklesSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetNumberOfSprinklesSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetNumberOfSprinklesSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetNumberOfSprinklesSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Set timer value HH:MM and get updated time<br><br>0~0x17�F0~0x3B (=0~23)�F(=0~59)<br><br>Name : Sprinkle time setting 1<br>EPC : 0xE3<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Sprinkle time setting 1<br>
+		 * <br>
+		 * EPC : 0xE3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Set timer value HH:MM and get updated time<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+		 * <br>
+		 * Data type : unsigned char
+�~2<br>
+		 * <br>
+		 * Data size : 2
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetSprinkleTimeSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetSprinkleTimeSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetSprinkleTimeSetting1(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetSprinkleTimeSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Set timer value HH:MM and get updated time<br><br>0~0x17�F0~0x3B (=0~23)�F(=0~59)<br><br>Name : Sprinkle time setting 1<br>EPC : 0xE3<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Sprinkle time setting 1<br>
+		 * <br>
+		 * EPC : 0xE3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Set timer value HH:MM and get updated time<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+		 * <br>
+		 * Data type : unsigned char
+�~2<br>
+		 * <br>
+		 * Data size : 2
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetSprinkleTimeSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetSprinkleTimeSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetSprinkleTimeSetting1(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetSprinkleTimeSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Set timer value HH:MM and get updated time<br><br>0~0x17�F0~0x3B (=0~23)�F(=0~59)<br><br>Name : Sprinkle time setting 2<br>EPC : 0xE4<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Sprinkle time setting 2<br>
+		 * <br>
+		 * EPC : 0xE4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Set timer value HH:MM and get updated time<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+		 * <br>
+		 * Data type : unsigned char
+�~2<br>
+		 * <br>
+		 * Data size : 2
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetSprinkleTimeSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetSprinkleTimeSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetSprinkleTimeSetting2(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetSprinkleTimeSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Set timer value HH:MM and get updated time<br><br>0~0x17�F0~0x3B (=0~23)�F(=0~59)<br><br>Name : Sprinkle time setting 2<br>EPC : 0xE4<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Sprinkle time setting 2<br>
+		 * <br>
+		 * EPC : 0xE4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Set timer value HH:MM and get updated time<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+		 * <br>
+		 * Data type : unsigned char
+�~2<br>
+		 * <br>
+		 * Data size : 2
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetSprinkleTimeSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetSprinkleTimeSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetSprinkleTimeSetting2(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetSprinkleTimeSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Set timer value MM 0 to 59 minutes<br><br>0-0x3B (=0~59)<br><br>Name : Sprinkle duration setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Sprinkle duration setting<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Set timer value MM<br>
+		 * 0 to 59 minutes<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x3B (=0~59)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetSprinkleDurationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetSprinkleDurationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetSprinkleDurationSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetSprinkleDurationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Set timer value MM 0 to 59 minutes<br><br>0-0x3B (=0~59)<br><br>Name : Sprinkle duration setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Sprinkle duration setting<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Set timer value MM<br>
+		 * 0 to 59 minutes<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x3B (=0~59)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetSprinkleDurationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetSprinkleDurationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetSprinkleDurationSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
-
+		protected void onGetSprinkleDurationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 	}
-	
-	public class Setter extends DeviceObject.Setter {
-		public Setter(byte esv) {
-			super(esv);
-		}
 
+	public static class Setter extends DeviceObject.Setter {
+		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
+			super(eoj, responseRequired, multicast);
+		}
+		
 		@Override
-		public Setter reqSet(byte epc, byte[] edt) {
-			return (Setter)super.reqSet(epc, edt);
+		public Setter reqSetProperty(byte epc, byte[] edt) {
+			return (Setter)super.reqSetProperty(epc, edt);
 		}
 		
 		@Override
@@ -429,53 +1053,186 @@ public abstract class Sprinkler extends DeviceObject {
 		public Setter reqSetPowerLimitSetting(byte[] edt) {
 			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
-
+		
 		/**
-		 * Open/close of sprinkle valve<br><br>Automatic ON=0x40    manual ON�� 0x41�Cmanual OFF��0x42<br><br>Name : Sprinkle valve open/close setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Sprinkle valve open/close setting<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Open/close of sprinkle valve<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic ON=0x40    manual ON��<br>
+		 * 0x41�Cmanual OFF��0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		public Setter reqSetSprinkleValveOpenCloseSetting(byte[] edt) {
-			addProperty(EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING, edt);
 			return this;
 		}
 		/**
-		 * OFF / daily / every other day / every 3 days / once a week<br><br>0x40�^0x41�^0x42�^0x43�^0x44<br><br>Name : Sprinkle interval setting<br>EPC : 0xE1<br>Data Type : unsigned long<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Sprinkle interval setting<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * OFF / daily / every other day / every 3 days / once a week<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x40�^0x41�^0x42�^0x43�^0x44<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetSprinkleIntervalSetting(byte[] edt) {
-			addProperty(EPC_SPRINKLE_INTERVAL_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_SPRINKLE_INTERVAL_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Number of sprinkles in a day(up to 2 times) First ON�^second ON�^both ON<br><br>0x41�^0x42�^0x43<br><br>Name : Number of sprinkles setting<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Number of sprinkles setting<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Number of sprinkles in a day(up to 2 times)<br>
+		 * First ON�^second ON�^both ON<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x41�^0x42�^0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetNumberOfSprinklesSetting(byte[] edt) {
-			addProperty(EPC_NUMBER_OF_SPRINKLES_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_NUMBER_OF_SPRINKLES_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Set timer value HH:MM and get updated time<br><br>0~0x17�F0~0x3B (=0~23)�F(=0~59)<br><br>Name : Sprinkle time setting 1<br>EPC : 0xE3<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Sprinkle time setting 1<br>
+		 * <br>
+		 * EPC : 0xE3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Set timer value HH:MM and get updated time<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+		 * <br>
+		 * Data type : unsigned char
+�~2<br>
+		 * <br>
+		 * Data size : 2
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetSprinkleTimeSetting1(byte[] edt) {
-			addProperty(EPC_SPRINKLE_TIME_SETTING1, edt, (edt != null && (edt.length == 2)));
+			addProperty(EPC_SPRINKLE_TIME_SETTING1, edt);
 			return this;
 		}
 		/**
-		 * Set timer value HH:MM and get updated time<br><br>0~0x17�F0~0x3B (=0~23)�F(=0~59)<br><br>Name : Sprinkle time setting 2<br>EPC : 0xE4<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Sprinkle time setting 2<br>
+		 * <br>
+		 * EPC : 0xE4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Set timer value HH:MM and get updated time<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+		 * <br>
+		 * Data type : unsigned char
+�~2<br>
+		 * <br>
+		 * Data size : 2
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetSprinkleTimeSetting2(byte[] edt) {
-			addProperty(EPC_SPRINKLE_TIME_SETTING2, edt, (edt != null && (edt.length == 2)));
+			addProperty(EPC_SPRINKLE_TIME_SETTING2, edt);
 			return this;
 		}
 		/**
-		 * Set timer value MM 0 to 59 minutes<br><br>0-0x3B (=0~59)<br><br>Name : Sprinkle duration setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Sprinkle duration setting<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Set timer value MM<br>
+		 * 0 to 59 minutes<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x3B (=0~59)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetSprinkleDurationSetting(byte[] edt) {
-			addProperty(EPC_SPRINKLE_DURATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_SPRINKLE_DURATION_SETTING, edt);
 			return this;
 		}
 	}
-
-	public class Getter extends DeviceObject.Getter {
-
+	
+	public static class Getter extends DeviceObject.Getter {
+		public Getter(EchoObject eoj, boolean multicast) {
+			super(eoj, multicast);
+		}
+		
+		@Override
+		public Getter reqGetProperty(byte epc) {
+			return (Getter)super.reqGetProperty(epc);
+		}
+		
 		@Override
 		public Getter reqGetOperationStatus() {
 			return (Getter)super.reqGetOperationStatus();
@@ -574,42 +1331,167 @@ public abstract class Sprinkler extends DeviceObject {
 		}
 		
 		/**
-		 * Open/close of sprinkle valve<br><br>Automatic ON=0x40    manual ON�� 0x41�Cmanual OFF��0x42<br><br>Name : Sprinkle valve open/close setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Sprinkle valve open/close setting<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Open/close of sprinkle valve<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic ON=0x40    manual ON��<br>
+		 * 0x41�Cmanual OFF��0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		public Getter reqGetSprinkleValveOpenCloseSetting() {
 			addProperty(EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING);
 			return this;
 		}
 		/**
-		 * OFF / daily / every other day / every 3 days / once a week<br><br>0x40�^0x41�^0x42�^0x43�^0x44<br><br>Name : Sprinkle interval setting<br>EPC : 0xE1<br>Data Type : unsigned long<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Sprinkle interval setting<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * OFF / daily / every other day / every 3 days / once a week<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x40�^0x41�^0x42�^0x43�^0x44<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetSprinkleIntervalSetting() {
 			addProperty(EPC_SPRINKLE_INTERVAL_SETTING);
 			return this;
 		}
 		/**
-		 * Number of sprinkles in a day(up to 2 times) First ON�^second ON�^both ON<br><br>0x41�^0x42�^0x43<br><br>Name : Number of sprinkles setting<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Number of sprinkles setting<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Number of sprinkles in a day(up to 2 times)<br>
+		 * First ON�^second ON�^both ON<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x41�^0x42�^0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetNumberOfSprinklesSetting() {
 			addProperty(EPC_NUMBER_OF_SPRINKLES_SETTING);
 			return this;
 		}
 		/**
-		 * Set timer value HH:MM and get updated time<br><br>0~0x17�F0~0x3B (=0~23)�F(=0~59)<br><br>Name : Sprinkle time setting 1<br>EPC : 0xE3<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Sprinkle time setting 1<br>
+		 * <br>
+		 * EPC : 0xE3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Set timer value HH:MM and get updated time<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+		 * <br>
+		 * Data type : unsigned char
+�~2<br>
+		 * <br>
+		 * Data size : 2
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetSprinkleTimeSetting1() {
 			addProperty(EPC_SPRINKLE_TIME_SETTING1);
 			return this;
 		}
 		/**
-		 * Set timer value HH:MM and get updated time<br><br>0~0x17�F0~0x3B (=0~23)�F(=0~59)<br><br>Name : Sprinkle time setting 2<br>EPC : 0xE4<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Sprinkle time setting 2<br>
+		 * <br>
+		 * EPC : 0xE4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Set timer value HH:MM and get updated time<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+		 * <br>
+		 * Data type : unsigned char
+�~2<br>
+		 * <br>
+		 * Data size : 2
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetSprinkleTimeSetting2() {
 			addProperty(EPC_SPRINKLE_TIME_SETTING2);
 			return this;
 		}
 		/**
-		 * Set timer value MM 0 to 59 minutes<br><br>0-0x3B (=0~59)<br><br>Name : Sprinkle duration setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Sprinkle duration setting<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Set timer value MM<br>
+		 * 0 to 59 minutes<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x3B (=0~59)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetSprinkleDurationSetting() {
 			addProperty(EPC_SPRINKLE_DURATION_SETTING);
@@ -617,67 +1499,16 @@ public abstract class Sprinkler extends DeviceObject {
 		}
 	}
 	
-	public interface Informer extends DeviceObject.Informer {
-		public Informer reqInform(byte epc);
-		
-		public Informer reqInformOperationStatus();
-		public Informer reqInformInstallationLocation();
-		public Informer reqInformStandardVersionInformation();
-		public Informer reqInformIdentificationNumber();
-		public Informer reqInformMeasuredInstantaneousPowerConsumption();
-		public Informer reqInformMeasuredCumulativePowerConsumption();
-		public Informer reqInformManufacturersFaultCode();
-		public Informer reqInformCurrentLimitSetting();
-		public Informer reqInformFaultStatus();
-		public Informer reqInformFaultDescription();
-		public Informer reqInformManufacturerCode();
-		public Informer reqInformBusinessFacilityCode();
-		public Informer reqInformProductCode();
-		public Informer reqInformProductionNumber();
-		public Informer reqInformProductionDate();
-		public Informer reqInformPowerSavingOperationSetting();
-		public Informer reqInformPositionInformation();
-		public Informer reqInformCurrentTimeSetting();
-		public Informer reqInformCurrentDateSetting();
-		public Informer reqInformPowerLimitSetting();
-		public Informer reqInformCumulativeOperatingTime();
-		public Informer reqInformStatusChangeAnnouncementPropertyMap();
-		public Informer reqInformSetPropertyMap();
-		public Informer reqInformGetPropertyMap();
-		
-		/**
-		 * Open/close of sprinkle valve<br><br>Automatic ON=0x40    manual ON�� 0x41�Cmanual OFF��0x42<br><br>Name : Sprinkle valve open/close setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
-		 */
-		public Informer reqInformSprinkleValveOpenCloseSetting();
-		/**
-		 * OFF / daily / every other day / every 3 days / once a week<br><br>0x40�^0x41�^0x42�^0x43�^0x44<br><br>Name : Sprinkle interval setting<br>EPC : 0xE1<br>Data Type : unsigned long<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformSprinkleIntervalSetting();
-		/**
-		 * Number of sprinkles in a day(up to 2 times) First ON�^second ON�^both ON<br><br>0x41�^0x42�^0x43<br><br>Name : Number of sprinkles setting<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformNumberOfSprinklesSetting();
-		/**
-		 * Set timer value HH:MM and get updated time<br><br>0~0x17�F0~0x3B (=0~23)�F(=0~59)<br><br>Name : Sprinkle time setting 1<br>EPC : 0xE3<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformSprinkleTimeSetting1();
-		/**
-		 * Set timer value HH:MM and get updated time<br><br>0~0x17�F0~0x3B (=0~23)�F(=0~59)<br><br>Name : Sprinkle time setting 2<br>EPC : 0xE4<br>Data Type : unsigned char �~2<br>Data Size(Byte) : 2 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformSprinkleTimeSetting2();
-		/**
-		 * Set timer value MM 0 to 59 minutes<br><br>0-0x3B (=0~59)<br><br>Name : Sprinkle duration setting<br>EPC : 0xE5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 Byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformSprinkleDurationSetting();
-	}
-
-	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
-		@Override
-		public Informer reqInform(byte epc) {
-			return (Informer)super.reqInform(epc);
+	public static class Informer extends DeviceObject.Informer {
+		public Informer(EchoObject eoj, boolean multicast) {
+			super(eoj, multicast);
 		}
 		
 		@Override
+		public Informer reqInformProperty(byte epc) {
+			return (Informer)super.reqInformProperty(epc);
+		}
+				@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();
 		}
@@ -773,183 +1604,234 @@ public abstract class Sprinkler extends DeviceObject {
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
 		}
-
-		@Override
-		public Informer reqInformSprinkleValveOpenCloseSetting() {
-			byte epc = EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING;
-			byte[] edt = _getSprinkleValveOpenCloseSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformSprinkleIntervalSetting() {
-			byte epc = EPC_SPRINKLE_INTERVAL_SETTING;
-			byte[] edt = _getSprinkleIntervalSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformNumberOfSprinklesSetting() {
-			byte epc = EPC_NUMBER_OF_SPRINKLES_SETTING;
-			byte[] edt = _getNumberOfSprinklesSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformSprinkleTimeSetting1() {
-			byte epc = EPC_SPRINKLE_TIME_SETTING1;
-			byte[] edt = _getSprinkleTimeSetting1(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Informer reqInformSprinkleTimeSetting2() {
-			byte epc = EPC_SPRINKLE_TIME_SETTING2;
-			byte[] edt = _getSprinkleTimeSetting2(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Informer reqInformSprinkleDurationSetting() {
-			byte epc = EPC_SPRINKLE_DURATION_SETTING;
-			byte[] edt = _getSprinkleDurationSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-	}
-	
-	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
-		@Override
-		public Informer reqInform(byte epc) {
-			return (Informer)super.reqInform(epc);
-		}
 		
-		@Override
-		public Informer reqInformOperationStatus() {
-			return (Informer)super.reqInformOperationStatus();
-		}
-		@Override
-		public Informer reqInformInstallationLocation() {
-			return (Informer)super.reqInformInstallationLocation();
-		}
-		@Override
-		public Informer reqInformStandardVersionInformation() {
-			return (Informer)super.reqInformStandardVersionInformation();
-		}
-		@Override
-		public Informer reqInformIdentificationNumber() {
-			return (Informer)super.reqInformIdentificationNumber();
-		}
-		@Override
-		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
-			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Informer reqInformMeasuredCumulativePowerConsumption() {
-			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Informer reqInformManufacturersFaultCode() {
-			return (Informer)super.reqInformManufacturersFaultCode();
-		}
-		@Override
-		public Informer reqInformCurrentLimitSetting() {
-			return (Informer)super.reqInformCurrentLimitSetting();
-		}
-		@Override
-		public Informer reqInformFaultStatus() {
-			return (Informer)super.reqInformFaultStatus();
-		}
-		@Override
-		public Informer reqInformFaultDescription() {
-			return (Informer)super.reqInformFaultDescription();
-		}
-		@Override
-		public Informer reqInformManufacturerCode() {
-			return (Informer)super.reqInformManufacturerCode();
-		}
-		@Override
-		public Informer reqInformBusinessFacilityCode() {
-			return (Informer)super.reqInformBusinessFacilityCode();
-		}
-		@Override
-		public Informer reqInformProductCode() {
-			return (Informer)super.reqInformProductCode();
-		}
-		@Override
-		public Informer reqInformProductionNumber() {
-			return (Informer)super.reqInformProductionNumber();
-		}
-		@Override
-		public Informer reqInformProductionDate() {
-			return (Informer)super.reqInformProductionDate();
-		}
-		@Override
-		public Informer reqInformPowerSavingOperationSetting() {
-			return (Informer)super.reqInformPowerSavingOperationSetting();
-		}
-		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
-		}
-		@Override
-		public Informer reqInformCurrentTimeSetting() {
-			return (Informer)super.reqInformCurrentTimeSetting();
-		}
-		@Override
-		public Informer reqInformCurrentDateSetting() {
-			return (Informer)super.reqInformCurrentDateSetting();
-		}
-		@Override
-		public Informer reqInformPowerLimitSetting() {
-			return (Informer)super.reqInformPowerLimitSetting();
-		}
-		@Override
-		public Informer reqInformCumulativeOperatingTime() {
-			return (Informer)super.reqInformCumulativeOperatingTime();
-		}
-		@Override
-		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
-			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Informer reqInformSetPropertyMap() {
-			return (Informer)super.reqInformSetPropertyMap();
-		}
-		@Override
-		public Informer reqInformGetPropertyMap() {
-			return (Informer)super.reqInformGetPropertyMap();
-		}
-
-		@Override
+		/**
+		 * Property name : Sprinkle valve open/close setting<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Open/close of sprinkle valve<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic ON=0x40    manual ON��<br>
+		 * 0x41�Cmanual OFF��0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
+		 */
 		public Informer reqInformSprinkleValveOpenCloseSetting() {
 			addProperty(EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Sprinkle interval setting<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * OFF / daily / every other day / every 3 days / once a week<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x40�^0x41�^0x42�^0x43�^0x44<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformSprinkleIntervalSetting() {
 			addProperty(EPC_SPRINKLE_INTERVAL_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Number of sprinkles setting<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Number of sprinkles in a day(up to 2 times)<br>
+		 * First ON�^second ON�^both ON<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x41�^0x42�^0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformNumberOfSprinklesSetting() {
 			addProperty(EPC_NUMBER_OF_SPRINKLES_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Sprinkle time setting 1<br>
+		 * <br>
+		 * EPC : 0xE3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Set timer value HH:MM and get updated time<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+		 * <br>
+		 * Data type : unsigned char
+�~2<br>
+		 * <br>
+		 * Data size : 2
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformSprinkleTimeSetting1() {
 			addProperty(EPC_SPRINKLE_TIME_SETTING1);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Sprinkle time setting 2<br>
+		 * <br>
+		 * EPC : 0xE4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Set timer value HH:MM and get updated time<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+		 * <br>
+		 * Data type : unsigned char
+�~2<br>
+		 * <br>
+		 * Data size : 2
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformSprinkleTimeSetting2() {
 			addProperty(EPC_SPRINKLE_TIME_SETTING2);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Sprinkle duration setting<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Set timer value MM<br>
+		 * 0 to 59 minutes<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0-0x3B (=0~59)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+Byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformSprinkleDurationSetting() {
 			addProperty(EPC_SPRINKLE_DURATION_SETTING);
 			return this;
 		}
 	}
+
+	public static class Proxy extends Sprinkler {
+		private byte mInstanceCode;
+		public Proxy(byte instanceCode) {
+			super();
+			mInstanceCode = instanceCode;
+		}
+		@Override
+		public byte getInstanceCode() {
+			return mInstanceCode;
+		}
+		@Override
+		protected byte[] getOperationStatus() {return null;}
+		@Override
+		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		@Override
+		protected byte[] getInstallationLocation() {return null;}
+		@Override
+		protected byte[] getStandardVersionInformation() {return null;}
+		@Override
+		protected byte[] getFaultStatus() {return null;}
+		@Override
+		protected byte[] getManufacturerCode() {return null;}
+		@Override
+		protected boolean setSprinkleValveOpenCloseSetting(byte[] edt) {return false;}
+		@Override
+		protected byte[] getSprinkleValveOpenCloseSetting() {return null;}
+	}
+	
+	public static Setter setG() {
+		return setG((byte)0);
+	}
+
+	public static Setter setG(byte instanceCode) {
+		return new Setter(new Proxy(instanceCode), true, true);
+	}
+
+	public static Setter setG(boolean responseRequired) {
+		return setG((byte)0, responseRequired);
+	}
+
+	public static Setter setG(byte instanceCode, boolean responseRequired) {
+		return new Setter(new Proxy(instanceCode), responseRequired, true);
+	}
+
+	public static Getter getG() {
+		return getG((byte)0);
+	}
+	
+	public static Getter getG(byte instanceCode) {
+		return new Getter(new Proxy(instanceCode), true);
+	}
+
+	public static Informer informG() {
+		return informG((byte)0);
+	}
+
+	public static Informer informG(byte instanceCode) {
+		return new Informer(new Proxy(instanceCode), true);
+	}
+
 }

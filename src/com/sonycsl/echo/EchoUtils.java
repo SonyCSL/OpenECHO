@@ -54,13 +54,32 @@ public final class EchoUtils {
 		return ret;
 	}
 	
-	public static short getObjectClassCode(byte classGroupCode, byte classCode) {
+	public static short getEchoClassCode(byte classGroupCode, byte classCode) {
 		ByteBuffer buffer = ByteBuffer.allocate(2);
 		buffer.order(ByteOrder.BIG_ENDIAN);
 		buffer.put(classGroupCode);
 		buffer.put(classCode);
 		return buffer.getShort(0);
 		
+	}
+
+	public static int getEchoObjectCode(byte classGroupCode, byte classCode, byte instanceCode) {
+		ByteBuffer buffer = ByteBuffer.allocate(4);
+		buffer.order(ByteOrder.BIG_ENDIAN);
+		buffer.put((byte)0);
+		buffer.put(classGroupCode);
+		buffer.put(classCode);
+		buffer.put(instanceCode);
+		return buffer.getInt(0);
+	}
+
+	public static int getEchoObjectCode(short echoClassCode, byte instanceCode) {
+		ByteBuffer buffer = ByteBuffer.allocate(4);
+		buffer.order(ByteOrder.BIG_ENDIAN);
+		buffer.put((byte)0);
+		buffer.putShort(echoClassCode);
+		buffer.put(instanceCode);
+		return buffer.getInt(0);
 	}
 	
 	public static InetAddress getLocalIpAddress() throws SocketException {
@@ -99,5 +118,52 @@ public final class EchoUtils {
 		return String.format("%04x", s);
 	}
 	
+	public static byte[] propertiesToPropertyMap(byte[] properties) {
+		byte[] ret;
+		int length = properties.length;
+		if(length < 16) {
+			ret = new byte[length + 1];
+			ret[0] = (byte)length;
+			for(int i = 0; i < length; i++) {
+				ret[i+1] = properties[i];
+			}
+		} else {
+			ret = new byte[17];
+			ret[0] = (byte)length;
+			for(int i = 0; i < length; i++) {
+				ret[i+1] = (byte)0;
+			}
+			for(byte p : properties) {
+				int high = (int)((p >> 8) & 0x0F);
+				int low = (int)(p & 0x0F);
+				ret[low+1] = (byte)((ret[low+1] & 0xFF) | (1 << (15 - high)));
+			}
+		}
+		return ret;
+	}
+	
+	public static byte[] propertyMapToProperties(byte[] map) {
+		if(map == null || map.length == 0) return new byte[]{};
+		byte[] ret = new byte[(int)(map[0] & 0xFF)];
+		if(ret.length < 16) {
+			for(int i = 0; i < ret.length; i++) {
+				ret[i] = map[i+1];
+			}
+		} else {
+			int n = 0;
+			for(int i = 0; i < 16; i++) {
+				byte tmp = map[i+1];
+				for(int j = 0; j < 8; j++) {
+					if((tmp & 0x01) == 0x01) {
+						ret[n] = (byte)((int)(i & 0x0F) | ((int)((byte)15 - j) << 8));
+						n++;
+					}
+					tmp = (byte)((tmp & 0xFF) >> 1);
+				}
+			}
+		}
+		
+		return ret;
+	}
 }
 

@@ -15,18 +15,16 @@
  */
 package com.sonycsl.echo.eoj.device.airconditioner;
 
+import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
+import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
+import com.sonycsl.echo.node.EchoNode;
 
 public abstract class Humidifier extends DeviceObject {
 	
-	public static final byte CLASS_GROUP_CODE = (byte)0x01;
-	public static final byte CLASS_CODE = (byte)0x39;
-	
-	public Humidifier() {
-		setReceiver(new Receiver());
-	}
+	public static final short ECHO_CLASS_CODE = (short)0x0139;
 
 	public static final byte EPC_HUMIDIFYING_SETTING1 = (byte)0xC0;
 	public static final byte EPC_HUMIDIFYING_SETTING2 = (byte)0xC1;
@@ -39,437 +37,1190 @@ public abstract class Humidifier extends DeviceObject {
 	public static final byte EPC_WATER_AMOUNT_LEVEL = (byte)0xC5;
 
 	@Override
-	public byte getClassGroupCode() {
-		return CLASS_GROUP_CODE;
+	protected void setupPropertyMaps() {
+		super.setupPropertyMaps();
+		
+		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
+		addSetProperty(EPC_OPERATION_STATUS);
+		addGetProperty(EPC_OPERATION_STATUS);
+		addSetProperty(EPC_HUMIDIFYING_SETTING1);
+		addGetProperty(EPC_HUMIDIFYING_SETTING1);
+		addSetProperty(EPC_HUMIDIFYING_SETTING2);
+		addGetProperty(EPC_HUMIDIFYING_SETTING2);
 	}
-
+	
 	@Override
-	public byte getClassCode() {
-		return CLASS_CODE;
+	public void initialize(EchoNode node) {
+		super.initialize(node);
+		Echo.EventListener listener = Echo.getEventListener();
+		if(listener != null) listener.onNewHumidifier(this);
+	}
+	
+	@Override
+	public short getEchoClassCode() {
+		return ECHO_CLASS_CODE;
 	}
 
 	/**
-	 * Sets value of relative humidity and get setting status<br><br>0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br><br>Name : Humidifying setting 1<br>EPC : 0xC0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This  property  indicates  the  ON/OFF<br>
+	 * status.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30, OFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : �\<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract boolean setOperationStatus(byte[] edt);
+	/**
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This  property  indicates  the  ON/OFF<br>
+	 * status.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30, OFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : �\<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getOperationStatus();
+	/**
+	 * Property name : Humidifying setting 1<br>
+	 * <br>
+	 * EPC : 0xC0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets value of relative humidity and get setting status<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
 	 */
 	protected abstract boolean setHumidifyingSetting1(byte[] edt);
-	private final boolean _setHumidifyingSetting1(byte epc, byte[] edt) {
-		boolean success = setHumidifyingSetting1(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Sets value of relative humidity and get setting status<br><br>0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br><br>Name : Humidifying setting 1<br>EPC : 0xC0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+	 * Property name : Humidifying setting 1<br>
+	 * <br>
+	 * EPC : 0xC0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets value of relative humidity and get setting status<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
 	 */
 	protected abstract byte[] getHumidifyingSetting1();
-	private final byte[] _getHumidifyingSetting1(byte epc) {
-		byte[] edt = getHumidifyingSetting1();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Humidifying setting 1<br>
+	 * <br>
+	 * EPC : 0xC0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets value of relative humidity and get setting status<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidHumidifyingSetting1(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Sets humidifying level by 3 steps<br><br>Humidifying levels =0x31.0x33 Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br><br>Name : Humidifying setting 2<br>EPC : 0xC1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+	 * Property name : Humidifying setting 2<br>
+	 * <br>
+	 * EPC : 0xC1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets humidifying level by 3 steps<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Humidifying levels =0x31.0x33<br>
+	 * Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
 	 */
 	protected abstract boolean setHumidifyingSetting2(byte[] edt);
-	private final boolean _setHumidifyingSetting2(byte epc, byte[] edt) {
-		boolean success = setHumidifyingSetting2(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Sets humidifying level by 3 steps<br><br>Humidifying levels =0x31.0x33 Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br><br>Name : Humidifying setting 2<br>EPC : 0xC1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+	 * Property name : Humidifying setting 2<br>
+	 * <br>
+	 * EPC : 0xC1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets humidifying level by 3 steps<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Humidifying levels =0x31.0x33<br>
+	 * Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
 	 */
 	protected abstract byte[] getHumidifyingSetting2();
-	private final byte[] _getHumidifyingSetting2(byte epc) {
-		byte[] edt = getHumidifyingSetting2();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Humidifying setting 2<br>
+	 * <br>
+	 * EPC : 0xC1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets humidifying level by 3 steps<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Humidifying levels =0x31.0x33<br>
+	 * Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidHumidifyingSetting2(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates measured value of relative humidity<br><br>0x00.0x64, (0.100%)<br><br>Name : Measured value of relative humidity<br>EPC : 0xB4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Measured value of relative humidity<br>
+	 * <br>
+	 * EPC : 0xB4<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates measured value of relative humidity<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64, (0.100%)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getMeasuredValueOfRelativeHumidity() {return null;}
-	private final byte[] _getMeasuredValueOfRelativeHumidity(byte epc) {
-		byte[] edt = getMeasuredValueOfRelativeHumidity();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Measured value of relative humidity<br>
+	 * <br>
+	 * EPC : 0xB4<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates measured value of relative humidity<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64, (0.100%)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidMeasuredValueOfRelativeHumidity(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Sets reservation ON/OFF and set setting status<br><br>Reservation ON =0x41, OFF =0x42<br><br>Name : Reservation set of OFF timer<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Reservation set of OFF timer<br>
+	 * <br>
+	 * EPC : 0x94<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets reservation ON/OFF and set setting status<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reservation ON =0x41, OFF =0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setReservationSetOfOffTimer(byte[] edt) {return false;}
-	private final boolean _setReservationSetOfOffTimer(byte epc, byte[] edt) {
-		boolean success = setReservationSetOfOffTimer(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Sets reservation ON/OFF and set setting status<br><br>Reservation ON =0x41, OFF =0x42<br><br>Name : Reservation set of OFF timer<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Reservation set of OFF timer<br>
+	 * <br>
+	 * EPC : 0x94<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets reservation ON/OFF and set setting status<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reservation ON =0x41, OFF =0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getReservationSetOfOffTimer() {return null;}
-	private final byte[] _getReservationSetOfOffTimer(byte epc) {
-		byte[] edt = getReservationSetOfOffTimer();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Reservation set of OFF timer<br>
+	 * <br>
+	 * EPC : 0x94<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets reservation ON/OFF and set setting status<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reservation ON =0x41, OFF =0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidReservationSetOfOffTimer(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Sets timer value HH:MM and   get updated time<br><br>Reservation ON =0x41, OFF =0x42<br><br>Name : Relative time value set of OFF timer<br>EPC : 0x96<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Relative time value set of OFF timer<br>
+	 * <br>
+	 * EPC : 0x96<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets timer value HH:MM and   get updated time<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reservation ON =0x41, OFF =0x42<br>
+	 * <br>
+	 * Data type : unsigned char
+x2<br>
+	 * <br>
+	 * Data size : 2 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setRelativeTimeValueSetOfOffTimer(byte[] edt) {return false;}
-	private final boolean _setRelativeTimeValueSetOfOffTimer(byte epc, byte[] edt) {
-		boolean success = setRelativeTimeValueSetOfOffTimer(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Sets timer value HH:MM and   get updated time<br><br>Reservation ON =0x41, OFF =0x42<br><br>Name : Relative time value set of OFF timer<br>EPC : 0x96<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Relative time value set of OFF timer<br>
+	 * <br>
+	 * EPC : 0x96<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets timer value HH:MM and   get updated time<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reservation ON =0x41, OFF =0x42<br>
+	 * <br>
+	 * Data type : unsigned char
+x2<br>
+	 * <br>
+	 * Data size : 2 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getRelativeTimeValueSetOfOffTimer() {return null;}
-	private final byte[] _getRelativeTimeValueSetOfOffTimer(byte epc) {
-		byte[] edt = getRelativeTimeValueSetOfOffTimer();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Relative time value set of OFF timer<br>
+	 * <br>
+	 * EPC : 0x96<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets timer value HH:MM and   get updated time<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reservation ON =0x41, OFF =0x42<br>
+	 * <br>
+	 * Data type : unsigned char
+x2<br>
+	 * <br>
+	 * Data size : 2 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidRelativeTimeValueSetOfOffTimer(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
+		return true;
 	}
 	/**
-	 * Sets ON/OFF of ion emission and gets setting status<br><br>Emission ON= 0x41, OFF=0x42<br><br>Name : Ion emission setting<br>EPC : 0xC2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Ion emission setting<br>
+	 * <br>
+	 * EPC : 0xC2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets ON/OFF of ion emission and gets setting status<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Emission ON= 0x41, OFF=0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setIonEmissionSetting(byte[] edt) {return false;}
-	private final boolean _setIonEmissionSetting(byte epc, byte[] edt) {
-		boolean success = setIonEmissionSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Sets ON/OFF of ion emission and gets setting status<br><br>Emission ON= 0x41, OFF=0x42<br><br>Name : Ion emission setting<br>EPC : 0xC2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Ion emission setting<br>
+	 * <br>
+	 * EPC : 0xC2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets ON/OFF of ion emission and gets setting status<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Emission ON= 0x41, OFF=0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getIonEmissionSetting() {return null;}
-	private final byte[] _getIonEmissionSetting(byte epc) {
-		byte[] edt = getIonEmissionSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Ion emission setting<br>
+	 * <br>
+	 * EPC : 0xC2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets ON/OFF of ion emission and gets setting status<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Emission ON= 0x41, OFF=0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidIonEmissionSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Sets ion emission method equipped in humidifier by bit map<br><br>Bit 0: negative ion method, Bit 1: cluster ion method,<br><br>Name : Implemented ion emission method<br>EPC : 0xC3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Implemented ion emission method<br>
+	 * <br>
+	 * EPC : 0xC3<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets ion emission method equipped in humidifier by bit map<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Bit 0: negative ion method, Bit 1: cluster ion method,<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getImplementedIonEmissionMethod() {return null;}
-	private final byte[] _getImplementedIonEmissionMethod(byte epc) {
-		byte[] edt = getImplementedIonEmissionMethod();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Implemented ion emission method<br>
+	 * <br>
+	 * EPC : 0xC3<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets ion emission method equipped in humidifier by bit map<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Bit 0: negative ion method, Bit 1: cluster ion method,<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidImplementedIonEmissionMethod(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Sets special operation mode and gets setting status. Specifies by bit map<br><br>Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation Bit 2-7: for future reserved<br><br>Name : Special operation mode setting<br>EPC : 0xC4<br>Data Type : unsigned short<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Special operation mode setting<br>
+	 * <br>
+	 * EPC : 0xC4<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets special operation mode and gets setting status.<br>
+	 * Specifies by bit map<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation<br>
+	 * Bit 2-7: for future reserved<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setSpecialOperationModeSetting(byte[] edt) {return false;}
-	private final boolean _setSpecialOperationModeSetting(byte epc, byte[] edt) {
-		boolean success = setSpecialOperationModeSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Sets special operation mode and gets setting status. Specifies by bit map<br><br>Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation Bit 2-7: for future reserved<br><br>Name : Special operation mode setting<br>EPC : 0xC4<br>Data Type : unsigned short<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Special operation mode setting<br>
+	 * <br>
+	 * EPC : 0xC4<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets special operation mode and gets setting status.<br>
+	 * Specifies by bit map<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation<br>
+	 * Bit 2-7: for future reserved<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getSpecialOperationModeSetting() {return null;}
-	private final byte[] _getSpecialOperationModeSetting(byte epc) {
-		byte[] edt = getSpecialOperationModeSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Special operation mode setting<br>
+	 * <br>
+	 * EPC : 0xC4<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Sets special operation mode and gets setting status.<br>
+	 * Specifies by bit map<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation<br>
+	 * Bit 2-7: for future reserved<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidSpecialOperationModeSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates water amount level in water tank by 6 steps.<br><br>0x40: empty 0x41-0x45: minimum to maximum level<br><br>Name : Water amount level<br>EPC : 0xC5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Water amount level<br>
+	 * <br>
+	 * EPC : 0xC5<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates water amount level in water tank by 6 steps.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x40: empty<br>
+	 * 0x41-0x45: minimum to maximum level<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getWaterAmountLevel() {return null;}
-	private final byte[] _getWaterAmountLevel(byte epc) {
-		byte[] edt = getWaterAmountLevel();
-		onInvokedGetMethod(epc, edt);
-		return edt;
-	}
-
-
-	@Override
-	protected void onReceiveSet(EchoFrame res, byte epc, byte pdc, byte[] edt) {
-		super.onReceiveSet(res, epc, pdc, edt);
-		switch(epc) {
-		case EPC_HUMIDIFYING_SETTING1:
-			res.addProperty(epc, edt, _setHumidifyingSetting1(epc, edt));
-			break;
-		case EPC_HUMIDIFYING_SETTING2:
-			res.addProperty(epc, edt, _setHumidifyingSetting2(epc, edt));
-			break;
-		case EPC_RESERVATION_SET_OF_OFF_TIMER:
-			res.addProperty(epc, edt, _setReservationSetOfOffTimer(epc, edt));
-			break;
-		case EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER:
-			res.addProperty(epc, edt, _setRelativeTimeValueSetOfOffTimer(epc, edt));
-			break;
-		case EPC_ION_EMISSION_SETTING:
-			res.addProperty(epc, edt, _setIonEmissionSetting(epc, edt));
-			break;
-		case EPC_SPECIAL_OPERATION_MODE_SETTING:
-			res.addProperty(epc, edt, _setSpecialOperationModeSetting(epc, edt));
-			break;
-
-		}
+	/**
+	 * Property name : Water amount level<br>
+	 * <br>
+	 * EPC : 0xC5<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates water amount level in water tank by 6 steps.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x40: empty<br>
+	 * 0x41-0x45: minimum to maximum level<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidWaterAmountLevel(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 
 	@Override
-	protected void onReceiveGet(EchoFrame res, byte epc) {
-		super.onReceiveGet(res, epc);
-		byte[] edt;
-		switch(epc) {
-		case EPC_HUMIDIFYING_SETTING1:
-			edt = _getHumidifyingSetting1(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_HUMIDIFYING_SETTING2:
-			edt = _getHumidifyingSetting2(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY:
-			edt = _getMeasuredValueOfRelativeHumidity(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_RESERVATION_SET_OF_OFF_TIMER:
-			edt = _getReservationSetOfOffTimer(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER:
-			edt = _getRelativeTimeValueSetOfOffTimer(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			break;
-		case EPC_ION_EMISSION_SETTING:
-			edt = _getIonEmissionSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_IMPLEMENTED_ION_EMISSION_METHOD:
-			edt = _getImplementedIonEmissionMethod(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_SPECIAL_OPERATION_MODE_SETTING:
-			edt = _getSpecialOperationModeSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_WATER_AMOUNT_LEVEL:
-			edt = _getWaterAmountLevel(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
+	protected boolean setProperty(EchoProperty property) {
+		boolean success = super.setProperty(property);
+		if(success) return success;
 
+		switch(property.epc) {
+		case EPC_HUMIDIFYING_SETTING1 : return setHumidifyingSetting1(property.edt);
+		case EPC_HUMIDIFYING_SETTING2 : return setHumidifyingSetting2(property.edt);
+		case EPC_RESERVATION_SET_OF_OFF_TIMER : return setReservationSetOfOffTimer(property.edt);
+		case EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER : return setRelativeTimeValueSetOfOffTimer(property.edt);
+		case EPC_ION_EMISSION_SETTING : return setIonEmissionSetting(property.edt);
+		case EPC_SPECIAL_OPERATION_MODE_SETTING : return setSpecialOperationModeSetting(property.edt);
+		default : return false;
 		}
 	}
 	
 	@Override
-	public Setter set() {
-		return new Setter(ESV_SETI);
+	protected byte[] getProperty(byte epc) {
+		byte[] edt = super.getProperty(epc);
+		if(edt != null) return edt;
+		
+		switch(epc) {
+		case EPC_HUMIDIFYING_SETTING1 : return getHumidifyingSetting1();
+		case EPC_HUMIDIFYING_SETTING2 : return getHumidifyingSetting2();
+		case EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY : return getMeasuredValueOfRelativeHumidity();
+		case EPC_RESERVATION_SET_OF_OFF_TIMER : return getReservationSetOfOffTimer();
+		case EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER : return getRelativeTimeValueSetOfOffTimer();
+		case EPC_ION_EMISSION_SETTING : return getIonEmissionSetting();
+		case EPC_IMPLEMENTED_ION_EMISSION_METHOD : return getImplementedIonEmissionMethod();
+		case EPC_SPECIAL_OPERATION_MODE_SETTING : return getSpecialOperationModeSetting();
+		case EPC_WATER_AMOUNT_LEVEL : return getWaterAmountLevel();
+		default : return null;
+		}
 	}
 
 	@Override
-	public Setter setC() {
-		return new Setter(ESV_SETC);
+	protected boolean isValidProperty(EchoProperty property) {
+		boolean valid = super.isValidProperty(property);
+		if(valid) return valid;
+		
+		switch(property.epc) {
+		case EPC_HUMIDIFYING_SETTING1 : return isValidHumidifyingSetting1(property.edt);
+		case EPC_HUMIDIFYING_SETTING2 : return isValidHumidifyingSetting2(property.edt);
+		case EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY : return isValidMeasuredValueOfRelativeHumidity(property.edt);
+		case EPC_RESERVATION_SET_OF_OFF_TIMER : return isValidReservationSetOfOffTimer(property.edt);
+		case EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER : return isValidRelativeTimeValueSetOfOffTimer(property.edt);
+		case EPC_ION_EMISSION_SETTING : return isValidIonEmissionSetting(property.edt);
+		case EPC_IMPLEMENTED_ION_EMISSION_METHOD : return isValidImplementedIonEmissionMethod(property.edt);
+		case EPC_SPECIAL_OPERATION_MODE_SETTING : return isValidSpecialOperationModeSetting(property.edt);
+		case EPC_WATER_AMOUNT_LEVEL : return isValidWaterAmountLevel(property.edt);
+		default : return false;
+		}
+	}
+
+	@Override
+	public Setter set() {
+		return new Setter(this, true, false);
+	}
+
+	@Override
+	public Setter set(boolean responseRequired) {
+		return new Setter(this, responseRequired, false);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter();
+		return new Getter(this, false);
 	}
 
 	@Override
 	public Informer inform() {
-		return new InformerImpl();
+		return new Informer(this, !isProxy());
+	}
+	
+	@Override
+	protected Informer inform(boolean multicast) {
+		return new Informer(this, multicast);
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
-			switch(epc) {
-			case EPC_HUMIDIFYING_SETTING1:
-				_onSetHumidifyingSetting1(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_HUMIDIFYING_SETTING2:
-				_onSetHumidifyingSetting2(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_RESERVATION_SET_OF_OFF_TIMER:
-				_onSetReservationSetOfOffTimer(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER:
-				_onSetRelativeTimeValueSetOfOffTimer(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_ION_EMISSION_SETTING:
-				_onSetIonEmissionSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_SPECIAL_OPERATION_MODE_SETTING:
-				_onSetSpecialOperationModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-
+		protected boolean onSetProperty(EchoObject eoj, short tid, byte esv,
+				EchoProperty property, boolean success) {
+			boolean ret = super.onSetProperty(eoj, tid, esv, property, success);
+			if(ret) return true;
+			
+			switch(property.epc) {
+			case EPC_HUMIDIFYING_SETTING1 : 
+				onSetHumidifyingSetting1(eoj, tid, esv, property, success);
+				return true;
+			case EPC_HUMIDIFYING_SETTING2 : 
+				onSetHumidifyingSetting2(eoj, tid, esv, property, success);
+				return true;
+			case EPC_RESERVATION_SET_OF_OFF_TIMER : 
+				onSetReservationSetOfOffTimer(eoj, tid, esv, property, success);
+				return true;
+			case EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER : 
+				onSetRelativeTimeValueSetOfOffTimer(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ION_EMISSION_SETTING : 
+				onSetIonEmissionSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SPECIAL_OPERATION_MODE_SETTING : 
+				onSetSpecialOperationModeSetting(eoj, tid, esv, property, success);
+				return true;
+			default :
+				return false;
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
-			switch(epc) {
-			case EPC_HUMIDIFYING_SETTING1:
-				_onGetHumidifyingSetting1(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_HUMIDIFYING_SETTING2:
-				_onGetHumidifyingSetting2(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY:
-				_onGetMeasuredValueOfRelativeHumidity(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_RESERVATION_SET_OF_OFF_TIMER:
-				_onGetReservationSetOfOffTimer(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER:
-				_onGetRelativeTimeValueSetOfOffTimer(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_ION_EMISSION_SETTING:
-				_onGetIonEmissionSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_IMPLEMENTED_ION_EMISSION_METHOD:
-				_onGetImplementedIonEmissionMethod(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_SPECIAL_OPERATION_MODE_SETTING:
-				_onGetSpecialOperationModeSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_WATER_AMOUNT_LEVEL:
-				_onGetWaterAmountLevel(eoj, tid, esv, epc, pdc, edt);
-				break;
-
+		protected boolean onGetProperty(EchoObject eoj, short tid, byte esv,
+				EchoProperty property, boolean success) {
+			boolean ret = super.onGetProperty(eoj, tid, esv, property, success);
+			if(ret) return true;
+			
+			switch(property.epc) {
+			case EPC_HUMIDIFYING_SETTING1 : 
+				onGetHumidifyingSetting1(eoj, tid, esv, property, success);
+				return true;
+			case EPC_HUMIDIFYING_SETTING2 : 
+				onGetHumidifyingSetting2(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY : 
+				onGetMeasuredValueOfRelativeHumidity(eoj, tid, esv, property, success);
+				return true;
+			case EPC_RESERVATION_SET_OF_OFF_TIMER : 
+				onGetReservationSetOfOffTimer(eoj, tid, esv, property, success);
+				return true;
+			case EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER : 
+				onGetRelativeTimeValueSetOfOffTimer(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ION_EMISSION_SETTING : 
+				onGetIonEmissionSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_IMPLEMENTED_ION_EMISSION_METHOD : 
+				onGetImplementedIonEmissionMethod(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SPECIAL_OPERATION_MODE_SETTING : 
+				onGetSpecialOperationModeSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_WATER_AMOUNT_LEVEL : 
+				onGetWaterAmountLevel(eoj, tid, esv, property, success);
+				return true;
+			default :
+				return false;
 			}
 		}
 		
 		/**
-		 * Sets value of relative humidity and get setting status<br><br>0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br><br>Name : Humidifying setting 1<br>EPC : 0xC0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Humidifying setting 1<br>
+		 * <br>
+		 * EPC : 0xC0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets value of relative humidity and get setting status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
-		protected void onSetHumidifyingSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetHumidifyingSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetHumidifyingSetting1(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetHumidifyingSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Sets value of relative humidity and get setting status<br><br>0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br><br>Name : Humidifying setting 1<br>EPC : 0xC0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Humidifying setting 1<br>
+		 * <br>
+		 * EPC : 0xC0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets value of relative humidity and get setting status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
-		protected void onGetHumidifyingSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetHumidifyingSetting1(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetHumidifyingSetting1(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetHumidifyingSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Sets humidifying level by 3 steps<br><br>Humidifying levels =0x31.0x33 Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br><br>Name : Humidifying setting 2<br>EPC : 0xC1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Humidifying setting 2<br>
+		 * <br>
+		 * EPC : 0xC1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets humidifying level by 3 steps<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Humidifying levels =0x31.0x33<br>
+		 * Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
-		protected void onSetHumidifyingSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetHumidifyingSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetHumidifyingSetting2(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetHumidifyingSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Sets humidifying level by 3 steps<br><br>Humidifying levels =0x31.0x33 Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br><br>Name : Humidifying setting 2<br>EPC : 0xC1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Humidifying setting 2<br>
+		 * <br>
+		 * EPC : 0xC1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets humidifying level by 3 steps<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Humidifying levels =0x31.0x33<br>
+		 * Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
-		protected void onGetHumidifyingSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetHumidifyingSetting2(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetHumidifyingSetting2(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetHumidifyingSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates measured value of relative humidity<br><br>0x00.0x64, (0.100%)<br><br>Name : Measured value of relative humidity<br>EPC : 0xB4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Measured value of relative humidity<br>
+		 * <br>
+		 * EPC : 0xB4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates measured value of relative humidity<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64, (0.100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetMeasuredValueOfRelativeHumidity(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetMeasuredValueOfRelativeHumidity(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetMeasuredValueOfRelativeHumidity(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetMeasuredValueOfRelativeHumidity(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Sets reservation ON/OFF and set setting status<br><br>Reservation ON =0x41, OFF =0x42<br><br>Name : Reservation set of OFF timer<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Reservation set of OFF timer<br>
+		 * <br>
+		 * EPC : 0x94<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets reservation ON/OFF and set setting status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation ON =0x41, OFF =0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetReservationSetOfOffTimer(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetReservationSetOfOffTimer(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetReservationSetOfOffTimer(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetReservationSetOfOffTimer(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Sets reservation ON/OFF and set setting status<br><br>Reservation ON =0x41, OFF =0x42<br><br>Name : Reservation set of OFF timer<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Reservation set of OFF timer<br>
+		 * <br>
+		 * EPC : 0x94<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets reservation ON/OFF and set setting status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation ON =0x41, OFF =0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetReservationSetOfOffTimer(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetReservationSetOfOffTimer(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetReservationSetOfOffTimer(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetReservationSetOfOffTimer(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Sets timer value HH:MM and   get updated time<br><br>Reservation ON =0x41, OFF =0x42<br><br>Name : Relative time value set of OFF timer<br>EPC : 0x96<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Relative time value set of OFF timer<br>
+		 * <br>
+		 * EPC : 0x96<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets timer value HH:MM and   get updated time<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation ON =0x41, OFF =0x42<br>
+		 * <br>
+		 * Data type : unsigned char
+x2<br>
+		 * <br>
+		 * Data size : 2 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetRelativeTimeValueSetOfOffTimer(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetRelativeTimeValueSetOfOffTimer(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetRelativeTimeValueSetOfOffTimer(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetRelativeTimeValueSetOfOffTimer(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Sets timer value HH:MM and   get updated time<br><br>Reservation ON =0x41, OFF =0x42<br><br>Name : Relative time value set of OFF timer<br>EPC : 0x96<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Relative time value set of OFF timer<br>
+		 * <br>
+		 * EPC : 0x96<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets timer value HH:MM and   get updated time<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation ON =0x41, OFF =0x42<br>
+		 * <br>
+		 * Data type : unsigned char
+x2<br>
+		 * <br>
+		 * Data size : 2 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetRelativeTimeValueSetOfOffTimer(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetRelativeTimeValueSetOfOffTimer(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetRelativeTimeValueSetOfOffTimer(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetRelativeTimeValueSetOfOffTimer(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Sets ON/OFF of ion emission and gets setting status<br><br>Emission ON= 0x41, OFF=0x42<br><br>Name : Ion emission setting<br>EPC : 0xC2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Ion emission setting<br>
+		 * <br>
+		 * EPC : 0xC2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets ON/OFF of ion emission and gets setting status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Emission ON= 0x41, OFF=0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetIonEmissionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetIonEmissionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetIonEmissionSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetIonEmissionSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Sets ON/OFF of ion emission and gets setting status<br><br>Emission ON= 0x41, OFF=0x42<br><br>Name : Ion emission setting<br>EPC : 0xC2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Ion emission setting<br>
+		 * <br>
+		 * EPC : 0xC2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets ON/OFF of ion emission and gets setting status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Emission ON= 0x41, OFF=0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetIonEmissionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetIonEmissionSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetIonEmissionSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetIonEmissionSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Sets ion emission method equipped in humidifier by bit map<br><br>Bit 0: negative ion method, Bit 1: cluster ion method,<br><br>Name : Implemented ion emission method<br>EPC : 0xC3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Implemented ion emission method<br>
+		 * <br>
+		 * EPC : 0xC3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets ion emission method equipped in humidifier by bit map<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Bit 0: negative ion method, Bit 1: cluster ion method,<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetImplementedIonEmissionMethod(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetImplementedIonEmissionMethod(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetImplementedIonEmissionMethod(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetImplementedIonEmissionMethod(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Sets special operation mode and gets setting status. Specifies by bit map<br><br>Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation Bit 2-7: for future reserved<br><br>Name : Special operation mode setting<br>EPC : 0xC4<br>Data Type : unsigned short<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Special operation mode setting<br>
+		 * <br>
+		 * EPC : 0xC4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets special operation mode and gets setting status.<br>
+		 * Specifies by bit map<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation<br>
+		 * Bit 2-7: for future reserved<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetSpecialOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetSpecialOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetSpecialOperationModeSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetSpecialOperationModeSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Sets special operation mode and gets setting status. Specifies by bit map<br><br>Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation Bit 2-7: for future reserved<br><br>Name : Special operation mode setting<br>EPC : 0xC4<br>Data Type : unsigned short<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Special operation mode setting<br>
+		 * <br>
+		 * EPC : 0xC4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets special operation mode and gets setting status.<br>
+		 * Specifies by bit map<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation<br>
+		 * Bit 2-7: for future reserved<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetSpecialOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetSpecialOperationModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetSpecialOperationModeSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetSpecialOperationModeSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates water amount level in water tank by 6 steps.<br><br>0x40: empty 0x41-0x45: minimum to maximum level<br><br>Name : Water amount level<br>EPC : 0xC5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Water amount level<br>
+		 * <br>
+		 * EPC : 0xC5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates water amount level in water tank by 6 steps.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x40: empty<br>
+		 * 0x41-0x45: minimum to maximum level<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetWaterAmountLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetWaterAmountLevel(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetWaterAmountLevel(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
-
+		protected void onGetWaterAmountLevel(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 	}
-	
-	public class Setter extends DeviceObject.Setter {
-		public Setter(byte esv) {
-			super(esv);
-		}
 
+	public static class Setter extends DeviceObject.Setter {
+		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
+			super(eoj, responseRequired, multicast);
+		}
+		
 		@Override
-		public Setter reqSet(byte epc, byte[] edt) {
-			return (Setter)super.reqSet(epc, edt);
+		public Setter reqSetProperty(byte epc, byte[] edt) {
+			return (Setter)super.reqSetProperty(epc, edt);
 		}
 		
 		@Override
@@ -504,53 +1255,179 @@ public abstract class Humidifier extends DeviceObject {
 		public Setter reqSetPowerLimitSetting(byte[] edt) {
 			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
-
+		
 		/**
-		 * Sets value of relative humidity and get setting status<br><br>0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br><br>Name : Humidifying setting 1<br>EPC : 0xC0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Humidifying setting 1<br>
+		 * <br>
+		 * EPC : 0xC0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets value of relative humidity and get setting status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		public Setter reqSetHumidifyingSetting1(byte[] edt) {
-			addProperty(EPC_HUMIDIFYING_SETTING1, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_HUMIDIFYING_SETTING1, edt);
 			return this;
 		}
 		/**
-		 * Sets humidifying level by 3 steps<br><br>Humidifying levels =0x31.0x33 Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br><br>Name : Humidifying setting 2<br>EPC : 0xC1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Humidifying setting 2<br>
+		 * <br>
+		 * EPC : 0xC1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets humidifying level by 3 steps<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Humidifying levels =0x31.0x33<br>
+		 * Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		public Setter reqSetHumidifyingSetting2(byte[] edt) {
-			addProperty(EPC_HUMIDIFYING_SETTING2, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_HUMIDIFYING_SETTING2, edt);
 			return this;
 		}
 		/**
-		 * Sets reservation ON/OFF and set setting status<br><br>Reservation ON =0x41, OFF =0x42<br><br>Name : Reservation set of OFF timer<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Reservation set of OFF timer<br>
+		 * <br>
+		 * EPC : 0x94<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets reservation ON/OFF and set setting status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation ON =0x41, OFF =0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetReservationSetOfOffTimer(byte[] edt) {
-			addProperty(EPC_RESERVATION_SET_OF_OFF_TIMER, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_RESERVATION_SET_OF_OFF_TIMER, edt);
 			return this;
 		}
 		/**
-		 * Sets timer value HH:MM and   get updated time<br><br>Reservation ON =0x41, OFF =0x42<br><br>Name : Relative time value set of OFF timer<br>EPC : 0x96<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Relative time value set of OFF timer<br>
+		 * <br>
+		 * EPC : 0x96<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets timer value HH:MM and   get updated time<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation ON =0x41, OFF =0x42<br>
+		 * <br>
+		 * Data type : unsigned char
+x2<br>
+		 * <br>
+		 * Data size : 2 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetRelativeTimeValueSetOfOffTimer(byte[] edt) {
-			addProperty(EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER, edt, (edt != null && (edt.length == 2)));
+			addProperty(EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER, edt);
 			return this;
 		}
 		/**
-		 * Sets ON/OFF of ion emission and gets setting status<br><br>Emission ON= 0x41, OFF=0x42<br><br>Name : Ion emission setting<br>EPC : 0xC2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Ion emission setting<br>
+		 * <br>
+		 * EPC : 0xC2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets ON/OFF of ion emission and gets setting status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Emission ON= 0x41, OFF=0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetIonEmissionSetting(byte[] edt) {
-			addProperty(EPC_ION_EMISSION_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_ION_EMISSION_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Sets special operation mode and gets setting status. Specifies by bit map<br><br>Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation Bit 2-7: for future reserved<br><br>Name : Special operation mode setting<br>EPC : 0xC4<br>Data Type : unsigned short<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Special operation mode setting<br>
+		 * <br>
+		 * EPC : 0xC4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets special operation mode and gets setting status.<br>
+		 * Specifies by bit map<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation<br>
+		 * Bit 2-7: for future reserved<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetSpecialOperationModeSetting(byte[] edt) {
-			addProperty(EPC_SPECIAL_OPERATION_MODE_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_SPECIAL_OPERATION_MODE_SETTING, edt);
 			return this;
 		}
 	}
-
-	public class Getter extends DeviceObject.Getter {
-
+	
+	public static class Getter extends DeviceObject.Getter {
+		public Getter(EchoObject eoj, boolean multicast) {
+			super(eoj, multicast);
+		}
+		
+		@Override
+		public Getter reqGetProperty(byte epc) {
+			return (Getter)super.reqGetProperty(epc);
+		}
+		
 		@Override
 		public Getter reqGetOperationStatus() {
 			return (Getter)super.reqGetOperationStatus();
@@ -649,63 +1526,239 @@ public abstract class Humidifier extends DeviceObject {
 		}
 		
 		/**
-		 * Sets value of relative humidity and get setting status<br><br>0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br><br>Name : Humidifying setting 1<br>EPC : 0xC0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Humidifying setting 1<br>
+		 * <br>
+		 * EPC : 0xC0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets value of relative humidity and get setting status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		public Getter reqGetHumidifyingSetting1() {
 			addProperty(EPC_HUMIDIFYING_SETTING1);
 			return this;
 		}
 		/**
-		 * Sets humidifying level by 3 steps<br><br>Humidifying levels =0x31.0x33 Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br><br>Name : Humidifying setting 2<br>EPC : 0xC1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Humidifying setting 2<br>
+		 * <br>
+		 * EPC : 0xC1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets humidifying level by 3 steps<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Humidifying levels =0x31.0x33<br>
+		 * Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		public Getter reqGetHumidifyingSetting2() {
 			addProperty(EPC_HUMIDIFYING_SETTING2);
 			return this;
 		}
 		/**
-		 * This property indicates measured value of relative humidity<br><br>0x00.0x64, (0.100%)<br><br>Name : Measured value of relative humidity<br>EPC : 0xB4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Measured value of relative humidity<br>
+		 * <br>
+		 * EPC : 0xB4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates measured value of relative humidity<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64, (0.100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredValueOfRelativeHumidity() {
 			addProperty(EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY);
 			return this;
 		}
 		/**
-		 * Sets reservation ON/OFF and set setting status<br><br>Reservation ON =0x41, OFF =0x42<br><br>Name : Reservation set of OFF timer<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Reservation set of OFF timer<br>
+		 * <br>
+		 * EPC : 0x94<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets reservation ON/OFF and set setting status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation ON =0x41, OFF =0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetReservationSetOfOffTimer() {
 			addProperty(EPC_RESERVATION_SET_OF_OFF_TIMER);
 			return this;
 		}
 		/**
-		 * Sets timer value HH:MM and   get updated time<br><br>Reservation ON =0x41, OFF =0x42<br><br>Name : Relative time value set of OFF timer<br>EPC : 0x96<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Relative time value set of OFF timer<br>
+		 * <br>
+		 * EPC : 0x96<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets timer value HH:MM and   get updated time<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation ON =0x41, OFF =0x42<br>
+		 * <br>
+		 * Data type : unsigned char
+x2<br>
+		 * <br>
+		 * Data size : 2 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetRelativeTimeValueSetOfOffTimer() {
 			addProperty(EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER);
 			return this;
 		}
 		/**
-		 * Sets ON/OFF of ion emission and gets setting status<br><br>Emission ON= 0x41, OFF=0x42<br><br>Name : Ion emission setting<br>EPC : 0xC2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Ion emission setting<br>
+		 * <br>
+		 * EPC : 0xC2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets ON/OFF of ion emission and gets setting status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Emission ON= 0x41, OFF=0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetIonEmissionSetting() {
 			addProperty(EPC_ION_EMISSION_SETTING);
 			return this;
 		}
 		/**
-		 * Sets ion emission method equipped in humidifier by bit map<br><br>Bit 0: negative ion method, Bit 1: cluster ion method,<br><br>Name : Implemented ion emission method<br>EPC : 0xC3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Implemented ion emission method<br>
+		 * <br>
+		 * EPC : 0xC3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets ion emission method equipped in humidifier by bit map<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Bit 0: negative ion method, Bit 1: cluster ion method,<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetImplementedIonEmissionMethod() {
 			addProperty(EPC_IMPLEMENTED_ION_EMISSION_METHOD);
 			return this;
 		}
 		/**
-		 * Sets special operation mode and gets setting status. Specifies by bit map<br><br>Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation Bit 2-7: for future reserved<br><br>Name : Special operation mode setting<br>EPC : 0xC4<br>Data Type : unsigned short<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Special operation mode setting<br>
+		 * <br>
+		 * EPC : 0xC4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets special operation mode and gets setting status.<br>
+		 * Specifies by bit map<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation<br>
+		 * Bit 2-7: for future reserved<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetSpecialOperationModeSetting() {
 			addProperty(EPC_SPECIAL_OPERATION_MODE_SETTING);
 			return this;
 		}
 		/**
-		 * This property indicates water amount level in water tank by 6 steps.<br><br>0x40: empty 0x41-0x45: minimum to maximum level<br><br>Name : Water amount level<br>EPC : 0xC5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Water amount level<br>
+		 * <br>
+		 * EPC : 0xC5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates water amount level in water tank by 6 steps.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x40: empty<br>
+		 * 0x41-0x45: minimum to maximum level<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetWaterAmountLevel() {
 			addProperty(EPC_WATER_AMOUNT_LEVEL);
@@ -713,79 +1766,16 @@ public abstract class Humidifier extends DeviceObject {
 		}
 	}
 	
-	public interface Informer extends DeviceObject.Informer {
-		public Informer reqInform(byte epc);
-		
-		public Informer reqInformOperationStatus();
-		public Informer reqInformInstallationLocation();
-		public Informer reqInformStandardVersionInformation();
-		public Informer reqInformIdentificationNumber();
-		public Informer reqInformMeasuredInstantaneousPowerConsumption();
-		public Informer reqInformMeasuredCumulativePowerConsumption();
-		public Informer reqInformManufacturersFaultCode();
-		public Informer reqInformCurrentLimitSetting();
-		public Informer reqInformFaultStatus();
-		public Informer reqInformFaultDescription();
-		public Informer reqInformManufacturerCode();
-		public Informer reqInformBusinessFacilityCode();
-		public Informer reqInformProductCode();
-		public Informer reqInformProductionNumber();
-		public Informer reqInformProductionDate();
-		public Informer reqInformPowerSavingOperationSetting();
-		public Informer reqInformPositionInformation();
-		public Informer reqInformCurrentTimeSetting();
-		public Informer reqInformCurrentDateSetting();
-		public Informer reqInformPowerLimitSetting();
-		public Informer reqInformCumulativeOperatingTime();
-		public Informer reqInformStatusChangeAnnouncementPropertyMap();
-		public Informer reqInformSetPropertyMap();
-		public Informer reqInformGetPropertyMap();
-		
-		/**
-		 * Sets value of relative humidity and get setting status<br><br>0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br><br>Name : Humidifying setting 1<br>EPC : 0xC0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
-		 */
-		public Informer reqInformHumidifyingSetting1();
-		/**
-		 * Sets humidifying level by 3 steps<br><br>Humidifying levels =0x31.0x33 Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br><br>Name : Humidifying setting 2<br>EPC : 0xC1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
-		 */
-		public Informer reqInformHumidifyingSetting2();
-		/**
-		 * This property indicates measured value of relative humidity<br><br>0x00.0x64, (0.100%)<br><br>Name : Measured value of relative humidity<br>EPC : 0xB4<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformMeasuredValueOfRelativeHumidity();
-		/**
-		 * Sets reservation ON/OFF and set setting status<br><br>Reservation ON =0x41, OFF =0x42<br><br>Name : Reservation set of OFF timer<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformReservationSetOfOffTimer();
-		/**
-		 * Sets timer value HH:MM and   get updated time<br><br>Reservation ON =0x41, OFF =0x42<br><br>Name : Relative time value set of OFF timer<br>EPC : 0x96<br>Data Type : unsigned char x2<br>Data Size(Byte) : 2 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformRelativeTimeValueSetOfOffTimer();
-		/**
-		 * Sets ON/OFF of ion emission and gets setting status<br><br>Emission ON= 0x41, OFF=0x42<br><br>Name : Ion emission setting<br>EPC : 0xC2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformIonEmissionSetting();
-		/**
-		 * Sets ion emission method equipped in humidifier by bit map<br><br>Bit 0: negative ion method, Bit 1: cluster ion method,<br><br>Name : Implemented ion emission method<br>EPC : 0xC3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformImplementedIonEmissionMethod();
-		/**
-		 * Sets special operation mode and gets setting status. Specifies by bit map<br><br>Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation Bit 2-7: for future reserved<br><br>Name : Special operation mode setting<br>EPC : 0xC4<br>Data Type : unsigned short<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformSpecialOperationModeSetting();
-		/**
-		 * This property indicates water amount level in water tank by 6 steps.<br><br>0x40: empty 0x41-0x45: minimum to maximum level<br><br>Name : Water amount level<br>EPC : 0xC5<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformWaterAmountLevel();
-	}
-
-	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
-		@Override
-		public Informer reqInform(byte epc) {
-			return (Informer)super.reqInform(epc);
+	public static class Informer extends DeviceObject.Informer {
+		public Informer(EchoObject eoj, boolean multicast) {
+			super(eoj, multicast);
 		}
 		
 		@Override
+		public Informer reqInformProperty(byte epc) {
+			return (Informer)super.reqInformProperty(epc);
+		}
+				@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();
 		}
@@ -881,219 +1871,312 @@ public abstract class Humidifier extends DeviceObject {
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
 		}
-
-		@Override
-		public Informer reqInformHumidifyingSetting1() {
-			byte epc = EPC_HUMIDIFYING_SETTING1;
-			byte[] edt = _getHumidifyingSetting1(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformHumidifyingSetting2() {
-			byte epc = EPC_HUMIDIFYING_SETTING2;
-			byte[] edt = _getHumidifyingSetting2(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformMeasuredValueOfRelativeHumidity() {
-			byte epc = EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY;
-			byte[] edt = _getMeasuredValueOfRelativeHumidity(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformReservationSetOfOffTimer() {
-			byte epc = EPC_RESERVATION_SET_OF_OFF_TIMER;
-			byte[] edt = _getReservationSetOfOffTimer(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformRelativeTimeValueSetOfOffTimer() {
-			byte epc = EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER;
-			byte[] edt = _getRelativeTimeValueSetOfOffTimer(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Informer reqInformIonEmissionSetting() {
-			byte epc = EPC_ION_EMISSION_SETTING;
-			byte[] edt = _getIonEmissionSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformImplementedIonEmissionMethod() {
-			byte epc = EPC_IMPLEMENTED_ION_EMISSION_METHOD;
-			byte[] edt = _getImplementedIonEmissionMethod(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformSpecialOperationModeSetting() {
-			byte epc = EPC_SPECIAL_OPERATION_MODE_SETTING;
-			byte[] edt = _getSpecialOperationModeSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformWaterAmountLevel() {
-			byte epc = EPC_WATER_AMOUNT_LEVEL;
-			byte[] edt = _getWaterAmountLevel(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-	}
-	
-	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
-		@Override
-		public Informer reqInform(byte epc) {
-			return (Informer)super.reqInform(epc);
-		}
 		
-		@Override
-		public Informer reqInformOperationStatus() {
-			return (Informer)super.reqInformOperationStatus();
-		}
-		@Override
-		public Informer reqInformInstallationLocation() {
-			return (Informer)super.reqInformInstallationLocation();
-		}
-		@Override
-		public Informer reqInformStandardVersionInformation() {
-			return (Informer)super.reqInformStandardVersionInformation();
-		}
-		@Override
-		public Informer reqInformIdentificationNumber() {
-			return (Informer)super.reqInformIdentificationNumber();
-		}
-		@Override
-		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
-			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Informer reqInformMeasuredCumulativePowerConsumption() {
-			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Informer reqInformManufacturersFaultCode() {
-			return (Informer)super.reqInformManufacturersFaultCode();
-		}
-		@Override
-		public Informer reqInformCurrentLimitSetting() {
-			return (Informer)super.reqInformCurrentLimitSetting();
-		}
-		@Override
-		public Informer reqInformFaultStatus() {
-			return (Informer)super.reqInformFaultStatus();
-		}
-		@Override
-		public Informer reqInformFaultDescription() {
-			return (Informer)super.reqInformFaultDescription();
-		}
-		@Override
-		public Informer reqInformManufacturerCode() {
-			return (Informer)super.reqInformManufacturerCode();
-		}
-		@Override
-		public Informer reqInformBusinessFacilityCode() {
-			return (Informer)super.reqInformBusinessFacilityCode();
-		}
-		@Override
-		public Informer reqInformProductCode() {
-			return (Informer)super.reqInformProductCode();
-		}
-		@Override
-		public Informer reqInformProductionNumber() {
-			return (Informer)super.reqInformProductionNumber();
-		}
-		@Override
-		public Informer reqInformProductionDate() {
-			return (Informer)super.reqInformProductionDate();
-		}
-		@Override
-		public Informer reqInformPowerSavingOperationSetting() {
-			return (Informer)super.reqInformPowerSavingOperationSetting();
-		}
-		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
-		}
-		@Override
-		public Informer reqInformCurrentTimeSetting() {
-			return (Informer)super.reqInformCurrentTimeSetting();
-		}
-		@Override
-		public Informer reqInformCurrentDateSetting() {
-			return (Informer)super.reqInformCurrentDateSetting();
-		}
-		@Override
-		public Informer reqInformPowerLimitSetting() {
-			return (Informer)super.reqInformPowerLimitSetting();
-		}
-		@Override
-		public Informer reqInformCumulativeOperatingTime() {
-			return (Informer)super.reqInformCumulativeOperatingTime();
-		}
-		@Override
-		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
-			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Informer reqInformSetPropertyMap() {
-			return (Informer)super.reqInformSetPropertyMap();
-		}
-		@Override
-		public Informer reqInformGetPropertyMap() {
-			return (Informer)super.reqInformGetPropertyMap();
-		}
-
-		@Override
+		/**
+		 * Property name : Humidifying setting 1<br>
+		 * <br>
+		 * EPC : 0xC0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets value of relative humidity and get setting status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
+		 */
 		public Informer reqInformHumidifyingSetting1() {
 			addProperty(EPC_HUMIDIFYING_SETTING1);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Humidifying setting 2<br>
+		 * <br>
+		 * EPC : 0xC1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets humidifying level by 3 steps<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Humidifying levels =0x31.0x33<br>
+		 * Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
+		 */
 		public Informer reqInformHumidifyingSetting2() {
 			addProperty(EPC_HUMIDIFYING_SETTING2);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Measured value of relative humidity<br>
+		 * <br>
+		 * EPC : 0xB4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates measured value of relative humidity<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64, (0.100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformMeasuredValueOfRelativeHumidity() {
 			addProperty(EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Reservation set of OFF timer<br>
+		 * <br>
+		 * EPC : 0x94<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets reservation ON/OFF and set setting status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation ON =0x41, OFF =0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformReservationSetOfOffTimer() {
 			addProperty(EPC_RESERVATION_SET_OF_OFF_TIMER);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Relative time value set of OFF timer<br>
+		 * <br>
+		 * EPC : 0x96<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets timer value HH:MM and   get updated time<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation ON =0x41, OFF =0x42<br>
+		 * <br>
+		 * Data type : unsigned char
+x2<br>
+		 * <br>
+		 * Data size : 2 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformRelativeTimeValueSetOfOffTimer() {
 			addProperty(EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Ion emission setting<br>
+		 * <br>
+		 * EPC : 0xC2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets ON/OFF of ion emission and gets setting status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Emission ON= 0x41, OFF=0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformIonEmissionSetting() {
 			addProperty(EPC_ION_EMISSION_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Implemented ion emission method<br>
+		 * <br>
+		 * EPC : 0xC3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets ion emission method equipped in humidifier by bit map<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Bit 0: negative ion method, Bit 1: cluster ion method,<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformImplementedIonEmissionMethod() {
 			addProperty(EPC_IMPLEMENTED_ION_EMISSION_METHOD);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Special operation mode setting<br>
+		 * <br>
+		 * EPC : 0xC4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Sets special operation mode and gets setting status.<br>
+		 * Specifies by bit map<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation<br>
+		 * Bit 2-7: for future reserved<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformSpecialOperationModeSetting() {
 			addProperty(EPC_SPECIAL_OPERATION_MODE_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Water amount level<br>
+		 * <br>
+		 * EPC : 0xC5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates water amount level in water tank by 6 steps.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x40: empty<br>
+		 * 0x41-0x45: minimum to maximum level<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformWaterAmountLevel() {
 			addProperty(EPC_WATER_AMOUNT_LEVEL);
 			return this;
 		}
 	}
+
+	public static class Proxy extends Humidifier {
+		private byte mInstanceCode;
+		public Proxy(byte instanceCode) {
+			super();
+			mInstanceCode = instanceCode;
+		}
+		@Override
+		public byte getInstanceCode() {
+			return mInstanceCode;
+		}
+		@Override
+		protected byte[] getOperationStatus() {return null;}
+		@Override
+		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		@Override
+		protected byte[] getInstallationLocation() {return null;}
+		@Override
+		protected byte[] getStandardVersionInformation() {return null;}
+		@Override
+		protected byte[] getFaultStatus() {return null;}
+		@Override
+		protected byte[] getManufacturerCode() {return null;}
+		@Override
+		protected boolean setOperationStatus(byte[] edt) {return false;}
+		@Override
+		protected boolean setHumidifyingSetting1(byte[] edt) {return false;}
+		@Override
+		protected byte[] getHumidifyingSetting1() {return null;}
+		@Override
+		protected boolean setHumidifyingSetting2(byte[] edt) {return false;}
+		@Override
+		protected byte[] getHumidifyingSetting2() {return null;}
+	}
+	
+	public static Setter setG() {
+		return setG((byte)0);
+	}
+
+	public static Setter setG(byte instanceCode) {
+		return new Setter(new Proxy(instanceCode), true, true);
+	}
+
+	public static Setter setG(boolean responseRequired) {
+		return setG((byte)0, responseRequired);
+	}
+
+	public static Setter setG(byte instanceCode, boolean responseRequired) {
+		return new Setter(new Proxy(instanceCode), responseRequired, true);
+	}
+
+	public static Getter getG() {
+		return getG((byte)0);
+	}
+	
+	public static Getter getG(byte instanceCode) {
+		return new Getter(new Proxy(instanceCode), true);
+	}
+
+	public static Informer informG() {
+		return informG((byte)0);
+	}
+
+	public static Informer informG(byte instanceCode) {
+		return new Informer(new Proxy(instanceCode), true);
+	}
+
 }

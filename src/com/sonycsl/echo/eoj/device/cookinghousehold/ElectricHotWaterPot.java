@@ -15,18 +15,16 @@
  */
 package com.sonycsl.echo.eoj.device.cookinghousehold;
 
+import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
+import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
+import com.sonycsl.echo.node.EchoNode;
 
 public abstract class ElectricHotWaterPot extends DeviceObject {
 	
-	public static final byte CLASS_GROUP_CODE = (byte)0x03;
-	public static final byte CLASS_CODE = (byte)0xB2;
-	
-	public ElectricHotWaterPot() {
-		setReceiver(new Receiver());
-	}
+	public static final short ECHO_CLASS_CODE = (short)0x03B2;
 
 	public static final byte EPC_COVER_OPEN_CLOSE_STATUS = (byte)0xB0;
 	public static final byte EPC_NO_WATER_WARNING = (byte)0xB1;
@@ -37,320 +35,889 @@ public abstract class ElectricHotWaterPot extends DeviceObject {
 	public static final byte EPC_LOCK_STATUS = (byte)0xE3;
 
 	@Override
-	public byte getClassGroupCode() {
-		return CLASS_GROUP_CODE;
+	protected void setupPropertyMaps() {
+		super.setupPropertyMaps();
+		
+		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
+		removeSetProperty(EPC_OPERATION_STATUS);
+		addGetProperty(EPC_OPERATION_STATUS);
+		addStatusChangeAnnouncementProperty(EPC_NO_WATER_WARNING);
+		addStatusChangeAnnouncementProperty(EPC_HOT_WATER_DISCHARGE_STATUS);
 	}
-
+	
 	@Override
-	public byte getClassCode() {
-		return CLASS_CODE;
+	public void initialize(EchoNode node) {
+		super.initialize(node);
+		Echo.EventListener listener = Echo.getEventListener();
+		if(listener != null) listener.onNewElectricHotWaterPot(this);
+	}
+	
+	@Override
+	public short getEchoClassCode() {
+		return ECHO_CLASS_CODE;
 	}
 
 	/**
-	 * Cover open/close status<br><br>Cover open = 0x41, cover closed = 0x42<br><br>Name : Cover open/close status<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This  property  indicates  the  ON/OFF<br>
+	 * status.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30, OFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : �\<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setOperationStatus(byte[] edt) {return false;}
+	/**
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This  property  indicates  the  ON/OFF<br>
+	 * status.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30, OFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : �\<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getOperationStatus();
+	/**
+	 * Property name : Cover open/close status<br>
+	 * <br>
+	 * EPC : 0xB0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Cover open/close status<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Cover open = 0x41, cover closed =<br>
+	 * 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getCoverOpenCloseStatus() {return null;}
-	private final byte[] _getCoverOpenCloseStatus(byte epc) {
-		byte[] edt = getCoverOpenCloseStatus();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Cover open/close status<br>
+	 * <br>
+	 * EPC : 0xB0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Cover open/close status<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Cover open = 0x41, cover closed =<br>
+	 * 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidCoverOpenCloseStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Notifies that electric hot water pot is emptied of water.<br><br>No-water condition found = 0x41 No-water condition not found = 0x40<br><br>Name : No-water warning<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
+	 * Property name : No-water warning<br>
+	 * <br>
+	 * EPC : 0xB1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Notifies that electric hot water pot is emptied of water.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * No-water condition found = 0x41<br>
+	 * No-water condition not found = 0x40<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getNoWaterWarning() {return null;}
-	private final byte[] _getNoWaterWarning(byte epc) {
-		byte[] edt = getNoWaterWarning();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : No-water warning<br>
+	 * <br>
+	 * EPC : 0xB1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Notifies that electric hot water pot is emptied of water.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * No-water condition found = 0x41<br>
+	 * No-water condition not found = 0x40<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidNoWaterWarning(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Boil-up setting<br><br>Boil-up start - 0x41 Boil-up stop/warmer = 0x42<br><br>Name : Boil-up setting<br>EPC : 0xB2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Boil-up setting<br>
+	 * <br>
+	 * EPC : 0xB2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Boil-up setting<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Boil-up start - 0x41<br>
+	 * Boil-up stop/warmer = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setBoilUpSetting(byte[] edt) {return false;}
-	private final boolean _setBoilUpSetting(byte epc, byte[] edt) {
-		boolean success = setBoilUpSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Boil-up setting<br><br>Boil-up start - 0x41 Boil-up stop/warmer = 0x42<br><br>Name : Boil-up setting<br>EPC : 0xB2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Boil-up setting<br>
+	 * <br>
+	 * EPC : 0xB2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Boil-up setting<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Boil-up start - 0x41<br>
+	 * Boil-up stop/warmer = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getBoilUpSetting() {return null;}
-	private final byte[] _getBoilUpSetting(byte epc) {
-		byte[] edt = getBoilUpSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Boil-up setting<br>
+	 * <br>
+	 * EPC : 0xB2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Boil-up setting<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Boil-up start - 0x41<br>
+	 * Boil-up stop/warmer = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidBoilUpSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates citric acid cleaning, normal warmer, or power-saving warmer mode.<br><br>Citric acid cleaning = 0x41, normal warmer = 0x42, power-saving warmer = 0x43<br><br>Name : Boil-up/warmer mode setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Boil-up/warmer mode setting<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates citric acid cleaning, normal warmer, or power-saving warmer mode.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Citric acid cleaning = 0x41, normal warmer = 0x42, power-saving warmer<br>
+	 * = 0x43<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setBoilUpWarmerModeSetting(byte[] edt) {return false;}
-	private final boolean _setBoilUpWarmerModeSetting(byte epc, byte[] edt) {
-		boolean success = setBoilUpWarmerModeSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * This property indicates citric acid cleaning, normal warmer, or power-saving warmer mode.<br><br>Citric acid cleaning = 0x41, normal warmer = 0x42, power-saving warmer = 0x43<br><br>Name : Boil-up/warmer mode setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Boil-up/warmer mode setting<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates citric acid cleaning, normal warmer, or power-saving warmer mode.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Citric acid cleaning = 0x41, normal warmer = 0x42, power-saving warmer<br>
+	 * = 0x43<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getBoilUpWarmerModeSetting() {return null;}
-	private final byte[] _getBoilUpWarmerModeSetting(byte epc) {
-		byte[] edt = getBoilUpWarmerModeSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Boil-up/warmer mode setting<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates citric acid cleaning, normal warmer, or power-saving warmer mode.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Citric acid cleaning = 0x41, normal warmer = 0x42, power-saving warmer<br>
+	 * = 0x43<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidBoilUpWarmerModeSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates set value of warmer temperature in .C.<br><br>0x00.0x64 (0.100)<br><br>Name : Set value of warmer temperature<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Set value of warmer temperature<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates set value of warmer temperature in .C.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64 (0.100)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : . C<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setSetValueOfWarmerTemperature(byte[] edt) {return false;}
-	private final boolean _setSetValueOfWarmerTemperature(byte epc, byte[] edt) {
-		boolean success = setSetValueOfWarmerTemperature(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * This property indicates set value of warmer temperature in .C.<br><br>0x00.0x64 (0.100)<br><br>Name : Set value of warmer temperature<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Set value of warmer temperature<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates set value of warmer temperature in .C.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64 (0.100)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : . C<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getSetValueOfWarmerTemperature() {return null;}
-	private final byte[] _getSetValueOfWarmerTemperature(byte epc) {
-		byte[] edt = getSetValueOfWarmerTemperature();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Set value of warmer temperature<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates set value of warmer temperature in .C.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64 (0.100)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : . C<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidSetValueOfWarmerTemperature(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Hot water discharge status<br><br>Hot water discharged = 0x41, hot water not discharged = 0x42<br><br>Name : Hot water discharge status<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
+	 * Property name : Hot water discharge status<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Hot water discharge status<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Hot water discharged = 0x41, hot water not discharged = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getHotWaterDischargeStatus() {return null;}
-	private final byte[] _getHotWaterDischargeStatus(byte epc) {
-		byte[] edt = getHotWaterDischargeStatus();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Hot water discharge status<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Hot water discharge status<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Hot water discharged = 0x41, hot water not discharged = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidHotWaterDischargeStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Hot water discharge lock status<br><br>Locked = 0x41, unlocked = 0x42<br><br>Name : Lock status<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Lock status<br>
+	 * <br>
+	 * EPC : 0xE3<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Hot water discharge lock status<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Locked = 0x41, unlocked = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getLockStatus() {return null;}
-	private final byte[] _getLockStatus(byte epc) {
-		byte[] edt = getLockStatus();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Lock status<br>
+	 * <br>
+	 * EPC : 0xE3<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Hot water discharge lock status<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Locked = 0x41, unlocked = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidLockStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 
-
 	@Override
-	protected void onReceiveSet(EchoFrame res, byte epc, byte pdc, byte[] edt) {
-		super.onReceiveSet(res, epc, pdc, edt);
-		switch(epc) {
-		case EPC_BOIL_UP_SETTING:
-			res.addProperty(epc, edt, _setBoilUpSetting(epc, edt));
-			break;
-		case EPC_BOIL_UP_WARMER_MODE_SETTING:
-			res.addProperty(epc, edt, _setBoilUpWarmerModeSetting(epc, edt));
-			break;
-		case EPC_SET_VALUE_OF_WARMER_TEMPERATURE:
-			res.addProperty(epc, edt, _setSetValueOfWarmerTemperature(epc, edt));
-			break;
+	protected boolean setProperty(EchoProperty property) {
+		boolean success = super.setProperty(property);
+		if(success) return success;
 
-		}
-	}
-
-	@Override
-	protected void onReceiveGet(EchoFrame res, byte epc) {
-		super.onReceiveGet(res, epc);
-		byte[] edt;
-		switch(epc) {
-		case EPC_COVER_OPEN_CLOSE_STATUS:
-			edt = _getCoverOpenCloseStatus(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_NO_WATER_WARNING:
-			edt = _getNoWaterWarning(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_BOIL_UP_SETTING:
-			edt = _getBoilUpSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_BOIL_UP_WARMER_MODE_SETTING:
-			edt = _getBoilUpWarmerModeSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_SET_VALUE_OF_WARMER_TEMPERATURE:
-			edt = _getSetValueOfWarmerTemperature(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_HOT_WATER_DISCHARGE_STATUS:
-			edt = _getHotWaterDischargeStatus(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_LOCK_STATUS:
-			edt = _getLockStatus(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-
+		switch(property.epc) {
+		case EPC_BOIL_UP_SETTING : return setBoilUpSetting(property.edt);
+		case EPC_BOIL_UP_WARMER_MODE_SETTING : return setBoilUpWarmerModeSetting(property.edt);
+		case EPC_SET_VALUE_OF_WARMER_TEMPERATURE : return setSetValueOfWarmerTemperature(property.edt);
+		default : return false;
 		}
 	}
 	
 	@Override
-	public Setter set() {
-		return new Setter(ESV_SETI);
+	protected byte[] getProperty(byte epc) {
+		byte[] edt = super.getProperty(epc);
+		if(edt != null) return edt;
+		
+		switch(epc) {
+		case EPC_COVER_OPEN_CLOSE_STATUS : return getCoverOpenCloseStatus();
+		case EPC_NO_WATER_WARNING : return getNoWaterWarning();
+		case EPC_BOIL_UP_SETTING : return getBoilUpSetting();
+		case EPC_BOIL_UP_WARMER_MODE_SETTING : return getBoilUpWarmerModeSetting();
+		case EPC_SET_VALUE_OF_WARMER_TEMPERATURE : return getSetValueOfWarmerTemperature();
+		case EPC_HOT_WATER_DISCHARGE_STATUS : return getHotWaterDischargeStatus();
+		case EPC_LOCK_STATUS : return getLockStatus();
+		default : return null;
+		}
 	}
 
 	@Override
-	public Setter setC() {
-		return new Setter(ESV_SETC);
+	protected boolean isValidProperty(EchoProperty property) {
+		boolean valid = super.isValidProperty(property);
+		if(valid) return valid;
+		
+		switch(property.epc) {
+		case EPC_COVER_OPEN_CLOSE_STATUS : return isValidCoverOpenCloseStatus(property.edt);
+		case EPC_NO_WATER_WARNING : return isValidNoWaterWarning(property.edt);
+		case EPC_BOIL_UP_SETTING : return isValidBoilUpSetting(property.edt);
+		case EPC_BOIL_UP_WARMER_MODE_SETTING : return isValidBoilUpWarmerModeSetting(property.edt);
+		case EPC_SET_VALUE_OF_WARMER_TEMPERATURE : return isValidSetValueOfWarmerTemperature(property.edt);
+		case EPC_HOT_WATER_DISCHARGE_STATUS : return isValidHotWaterDischargeStatus(property.edt);
+		case EPC_LOCK_STATUS : return isValidLockStatus(property.edt);
+		default : return false;
+		}
+	}
+
+	@Override
+	public Setter set() {
+		return new Setter(this, true, false);
+	}
+
+	@Override
+	public Setter set(boolean responseRequired) {
+		return new Setter(this, responseRequired, false);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter();
+		return new Getter(this, false);
 	}
 
 	@Override
 	public Informer inform() {
-		return new InformerImpl();
+		return new Informer(this, !isProxy());
+	}
+	
+	@Override
+	protected Informer inform(boolean multicast) {
+		return new Informer(this, multicast);
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
-			switch(epc) {
-			case EPC_BOIL_UP_SETTING:
-				_onSetBoilUpSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_BOIL_UP_WARMER_MODE_SETTING:
-				_onSetBoilUpWarmerModeSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_SET_VALUE_OF_WARMER_TEMPERATURE:
-				_onSetSetValueOfWarmerTemperature(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-
+		protected boolean onSetProperty(EchoObject eoj, short tid, byte esv,
+				EchoProperty property, boolean success) {
+			boolean ret = super.onSetProperty(eoj, tid, esv, property, success);
+			if(ret) return true;
+			
+			switch(property.epc) {
+			case EPC_BOIL_UP_SETTING : 
+				onSetBoilUpSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_BOIL_UP_WARMER_MODE_SETTING : 
+				onSetBoilUpWarmerModeSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SET_VALUE_OF_WARMER_TEMPERATURE : 
+				onSetSetValueOfWarmerTemperature(eoj, tid, esv, property, success);
+				return true;
+			default :
+				return false;
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
-			switch(epc) {
-			case EPC_COVER_OPEN_CLOSE_STATUS:
-				_onGetCoverOpenCloseStatus(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_NO_WATER_WARNING:
-				_onGetNoWaterWarning(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_BOIL_UP_SETTING:
-				_onGetBoilUpSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_BOIL_UP_WARMER_MODE_SETTING:
-				_onGetBoilUpWarmerModeSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_SET_VALUE_OF_WARMER_TEMPERATURE:
-				_onGetSetValueOfWarmerTemperature(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_HOT_WATER_DISCHARGE_STATUS:
-				_onGetHotWaterDischargeStatus(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_LOCK_STATUS:
-				_onGetLockStatus(eoj, tid, esv, epc, pdc, edt);
-				break;
-
+		protected boolean onGetProperty(EchoObject eoj, short tid, byte esv,
+				EchoProperty property, boolean success) {
+			boolean ret = super.onGetProperty(eoj, tid, esv, property, success);
+			if(ret) return true;
+			
+			switch(property.epc) {
+			case EPC_COVER_OPEN_CLOSE_STATUS : 
+				onGetCoverOpenCloseStatus(eoj, tid, esv, property, success);
+				return true;
+			case EPC_NO_WATER_WARNING : 
+				onGetNoWaterWarning(eoj, tid, esv, property, success);
+				return true;
+			case EPC_BOIL_UP_SETTING : 
+				onGetBoilUpSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_BOIL_UP_WARMER_MODE_SETTING : 
+				onGetBoilUpWarmerModeSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SET_VALUE_OF_WARMER_TEMPERATURE : 
+				onGetSetValueOfWarmerTemperature(eoj, tid, esv, property, success);
+				return true;
+			case EPC_HOT_WATER_DISCHARGE_STATUS : 
+				onGetHotWaterDischargeStatus(eoj, tid, esv, property, success);
+				return true;
+			case EPC_LOCK_STATUS : 
+				onGetLockStatus(eoj, tid, esv, property, success);
+				return true;
+			default :
+				return false;
 			}
 		}
 		
 		/**
-		 * Cover open/close status<br><br>Cover open = 0x41, cover closed = 0x42<br><br>Name : Cover open/close status<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Cover open/close status<br>
+		 * <br>
+		 * EPC : 0xB0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Cover open/close status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Cover open = 0x41, cover closed =<br>
+		 * 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetCoverOpenCloseStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetCoverOpenCloseStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetCoverOpenCloseStatus(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetCoverOpenCloseStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Notifies that electric hot water pot is emptied of water.<br><br>No-water condition found = 0x41 No-water condition not found = 0x40<br><br>Name : No-water warning<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
+		 * Property name : No-water warning<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Notifies that electric hot water pot is emptied of water.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * No-water condition found = 0x41<br>
+		 * No-water condition not found = 0x40<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetNoWaterWarning(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetNoWaterWarning(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetNoWaterWarning(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetNoWaterWarning(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Boil-up setting<br><br>Boil-up start - 0x41 Boil-up stop/warmer = 0x42<br><br>Name : Boil-up setting<br>EPC : 0xB2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Boil-up setting<br>
+		 * <br>
+		 * EPC : 0xB2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Boil-up setting<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Boil-up start - 0x41<br>
+		 * Boil-up stop/warmer = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetBoilUpSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetBoilUpSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetBoilUpSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetBoilUpSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Boil-up setting<br><br>Boil-up start - 0x41 Boil-up stop/warmer = 0x42<br><br>Name : Boil-up setting<br>EPC : 0xB2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Boil-up setting<br>
+		 * <br>
+		 * EPC : 0xB2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Boil-up setting<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Boil-up start - 0x41<br>
+		 * Boil-up stop/warmer = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetBoilUpSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetBoilUpSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetBoilUpSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetBoilUpSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates citric acid cleaning, normal warmer, or power-saving warmer mode.<br><br>Citric acid cleaning = 0x41, normal warmer = 0x42, power-saving warmer = 0x43<br><br>Name : Boil-up/warmer mode setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Boil-up/warmer mode setting<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates citric acid cleaning, normal warmer, or power-saving warmer mode.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Citric acid cleaning = 0x41, normal warmer = 0x42, power-saving warmer<br>
+		 * = 0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetBoilUpWarmerModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetBoilUpWarmerModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetBoilUpWarmerModeSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetBoilUpWarmerModeSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates citric acid cleaning, normal warmer, or power-saving warmer mode.<br><br>Citric acid cleaning = 0x41, normal warmer = 0x42, power-saving warmer = 0x43<br><br>Name : Boil-up/warmer mode setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Boil-up/warmer mode setting<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates citric acid cleaning, normal warmer, or power-saving warmer mode.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Citric acid cleaning = 0x41, normal warmer = 0x42, power-saving warmer<br>
+		 * = 0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetBoilUpWarmerModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetBoilUpWarmerModeSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetBoilUpWarmerModeSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetBoilUpWarmerModeSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates set value of warmer temperature in .C.<br><br>0x00.0x64 (0.100)<br><br>Name : Set value of warmer temperature<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Set value of warmer temperature<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates set value of warmer temperature in .C.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : . C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetSetValueOfWarmerTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetSetValueOfWarmerTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetSetValueOfWarmerTemperature(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetSetValueOfWarmerTemperature(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates set value of warmer temperature in .C.<br><br>0x00.0x64 (0.100)<br><br>Name : Set value of warmer temperature<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Set value of warmer temperature<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates set value of warmer temperature in .C.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : . C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetSetValueOfWarmerTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetSetValueOfWarmerTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetSetValueOfWarmerTemperature(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetSetValueOfWarmerTemperature(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Hot water discharge status<br><br>Hot water discharged = 0x41, hot water not discharged = 0x42<br><br>Name : Hot water discharge status<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
+		 * Property name : Hot water discharge status<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Hot water discharge status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Hot water discharged = 0x41, hot water not discharged = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetHotWaterDischargeStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetHotWaterDischargeStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetHotWaterDischargeStatus(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetHotWaterDischargeStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Hot water discharge lock status<br><br>Locked = 0x41, unlocked = 0x42<br><br>Name : Lock status<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Lock status<br>
+		 * <br>
+		 * EPC : 0xE3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Hot water discharge lock status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Locked = 0x41, unlocked = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetLockStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetLockStatus(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetLockStatus(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
-
+		protected void onGetLockStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 	}
-	
-	public class Setter extends DeviceObject.Setter {
-		public Setter(byte esv) {
-			super(esv);
-		}
 
+	public static class Setter extends DeviceObject.Setter {
+		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
+			super(eoj, responseRequired, multicast);
+		}
+		
 		@Override
-		public Setter reqSet(byte epc, byte[] edt) {
-			return (Setter)super.reqSet(epc, edt);
+		public Setter reqSetProperty(byte epc, byte[] edt) {
+			return (Setter)super.reqSetProperty(epc, edt);
 		}
 		
 		@Override
@@ -385,32 +952,99 @@ public abstract class ElectricHotWaterPot extends DeviceObject {
 		public Setter reqSetPowerLimitSetting(byte[] edt) {
 			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
-
+		
 		/**
-		 * Boil-up setting<br><br>Boil-up start - 0x41 Boil-up stop/warmer = 0x42<br><br>Name : Boil-up setting<br>EPC : 0xB2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Boil-up setting<br>
+		 * <br>
+		 * EPC : 0xB2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Boil-up setting<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Boil-up start - 0x41<br>
+		 * Boil-up stop/warmer = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetBoilUpSetting(byte[] edt) {
-			addProperty(EPC_BOIL_UP_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_BOIL_UP_SETTING, edt);
 			return this;
 		}
 		/**
-		 * This property indicates citric acid cleaning, normal warmer, or power-saving warmer mode.<br><br>Citric acid cleaning = 0x41, normal warmer = 0x42, power-saving warmer = 0x43<br><br>Name : Boil-up/warmer mode setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Boil-up/warmer mode setting<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates citric acid cleaning, normal warmer, or power-saving warmer mode.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Citric acid cleaning = 0x41, normal warmer = 0x42, power-saving warmer<br>
+		 * = 0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetBoilUpWarmerModeSetting(byte[] edt) {
-			addProperty(EPC_BOIL_UP_WARMER_MODE_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_BOIL_UP_WARMER_MODE_SETTING, edt);
 			return this;
 		}
 		/**
-		 * This property indicates set value of warmer temperature in .C.<br><br>0x00.0x64 (0.100)<br><br>Name : Set value of warmer temperature<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Set value of warmer temperature<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates set value of warmer temperature in .C.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : . C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetSetValueOfWarmerTemperature(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_WARMER_TEMPERATURE, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_SET_VALUE_OF_WARMER_TEMPERATURE, edt);
 			return this;
 		}
 	}
-
-	public class Getter extends DeviceObject.Getter {
-
+	
+	public static class Getter extends DeviceObject.Getter {
+		public Getter(EchoObject eoj, boolean multicast) {
+			super(eoj, multicast);
+		}
+		
+		@Override
+		public Getter reqGetProperty(byte epc) {
+			return (Getter)super.reqGetProperty(epc);
+		}
+		
 		@Override
 		public Getter reqGetOperationStatus() {
 			return (Getter)super.reqGetOperationStatus();
@@ -509,49 +1143,190 @@ public abstract class ElectricHotWaterPot extends DeviceObject {
 		}
 		
 		/**
-		 * Cover open/close status<br><br>Cover open = 0x41, cover closed = 0x42<br><br>Name : Cover open/close status<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Cover open/close status<br>
+		 * <br>
+		 * EPC : 0xB0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Cover open/close status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Cover open = 0x41, cover closed =<br>
+		 * 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetCoverOpenCloseStatus() {
 			addProperty(EPC_COVER_OPEN_CLOSE_STATUS);
 			return this;
 		}
 		/**
-		 * Notifies that electric hot water pot is emptied of water.<br><br>No-water condition found = 0x41 No-water condition not found = 0x40<br><br>Name : No-water warning<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
+		 * Property name : No-water warning<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Notifies that electric hot water pot is emptied of water.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * No-water condition found = 0x41<br>
+		 * No-water condition not found = 0x40<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetNoWaterWarning() {
 			addProperty(EPC_NO_WATER_WARNING);
 			return this;
 		}
 		/**
-		 * Boil-up setting<br><br>Boil-up start - 0x41 Boil-up stop/warmer = 0x42<br><br>Name : Boil-up setting<br>EPC : 0xB2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Boil-up setting<br>
+		 * <br>
+		 * EPC : 0xB2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Boil-up setting<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Boil-up start - 0x41<br>
+		 * Boil-up stop/warmer = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetBoilUpSetting() {
 			addProperty(EPC_BOIL_UP_SETTING);
 			return this;
 		}
 		/**
-		 * This property indicates citric acid cleaning, normal warmer, or power-saving warmer mode.<br><br>Citric acid cleaning = 0x41, normal warmer = 0x42, power-saving warmer = 0x43<br><br>Name : Boil-up/warmer mode setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Boil-up/warmer mode setting<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates citric acid cleaning, normal warmer, or power-saving warmer mode.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Citric acid cleaning = 0x41, normal warmer = 0x42, power-saving warmer<br>
+		 * = 0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetBoilUpWarmerModeSetting() {
 			addProperty(EPC_BOIL_UP_WARMER_MODE_SETTING);
 			return this;
 		}
 		/**
-		 * This property indicates set value of warmer temperature in .C.<br><br>0x00.0x64 (0.100)<br><br>Name : Set value of warmer temperature<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Set value of warmer temperature<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates set value of warmer temperature in .C.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : . C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetSetValueOfWarmerTemperature() {
 			addProperty(EPC_SET_VALUE_OF_WARMER_TEMPERATURE);
 			return this;
 		}
 		/**
-		 * Hot water discharge status<br><br>Hot water discharged = 0x41, hot water not discharged = 0x42<br><br>Name : Hot water discharge status<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
+		 * Property name : Hot water discharge status<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Hot water discharge status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Hot water discharged = 0x41, hot water not discharged = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetHotWaterDischargeStatus() {
 			addProperty(EPC_HOT_WATER_DISCHARGE_STATUS);
 			return this;
 		}
 		/**
-		 * Hot water discharge lock status<br><br>Locked = 0x41, unlocked = 0x42<br><br>Name : Lock status<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Lock status<br>
+		 * <br>
+		 * EPC : 0xE3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Hot water discharge lock status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Locked = 0x41, unlocked = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetLockStatus() {
 			addProperty(EPC_LOCK_STATUS);
@@ -559,71 +1334,16 @@ public abstract class ElectricHotWaterPot extends DeviceObject {
 		}
 	}
 	
-	public interface Informer extends DeviceObject.Informer {
-		public Informer reqInform(byte epc);
-		
-		public Informer reqInformOperationStatus();
-		public Informer reqInformInstallationLocation();
-		public Informer reqInformStandardVersionInformation();
-		public Informer reqInformIdentificationNumber();
-		public Informer reqInformMeasuredInstantaneousPowerConsumption();
-		public Informer reqInformMeasuredCumulativePowerConsumption();
-		public Informer reqInformManufacturersFaultCode();
-		public Informer reqInformCurrentLimitSetting();
-		public Informer reqInformFaultStatus();
-		public Informer reqInformFaultDescription();
-		public Informer reqInformManufacturerCode();
-		public Informer reqInformBusinessFacilityCode();
-		public Informer reqInformProductCode();
-		public Informer reqInformProductionNumber();
-		public Informer reqInformProductionDate();
-		public Informer reqInformPowerSavingOperationSetting();
-		public Informer reqInformPositionInformation();
-		public Informer reqInformCurrentTimeSetting();
-		public Informer reqInformCurrentDateSetting();
-		public Informer reqInformPowerLimitSetting();
-		public Informer reqInformCumulativeOperatingTime();
-		public Informer reqInformStatusChangeAnnouncementPropertyMap();
-		public Informer reqInformSetPropertyMap();
-		public Informer reqInformGetPropertyMap();
-		
-		/**
-		 * Cover open/close status<br><br>Cover open = 0x41, cover closed = 0x42<br><br>Name : Cover open/close status<br>EPC : 0xB0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformCoverOpenCloseStatus();
-		/**
-		 * Notifies that electric hot water pot is emptied of water.<br><br>No-water condition found = 0x41 No-water condition not found = 0x40<br><br>Name : No-water warning<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
-		 */
-		public Informer reqInformNoWaterWarning();
-		/**
-		 * Boil-up setting<br><br>Boil-up start - 0x41 Boil-up stop/warmer = 0x42<br><br>Name : Boil-up setting<br>EPC : 0xB2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformBoilUpSetting();
-		/**
-		 * This property indicates citric acid cleaning, normal warmer, or power-saving warmer mode.<br><br>Citric acid cleaning = 0x41, normal warmer = 0x42, power-saving warmer = 0x43<br><br>Name : Boil-up/warmer mode setting<br>EPC : 0xE0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformBoilUpWarmerModeSetting();
-		/**
-		 * This property indicates set value of warmer temperature in .C.<br><br>0x00.0x64 (0.100)<br><br>Name : Set value of warmer temperature<br>EPC : 0xE1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformSetValueOfWarmerTemperature();
-		/**
-		 * Hot water discharge status<br><br>Hot water discharged = 0x41, hot water not discharged = 0x42<br><br>Name : Hot water discharge status<br>EPC : 0xE2<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br><br>Announcement at status change<br>
-		 */
-		public Informer reqInformHotWaterDischargeStatus();
-		/**
-		 * Hot water discharge lock status<br><br>Locked = 0x41, unlocked = 0x42<br><br>Name : Lock status<br>EPC : 0xE3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformLockStatus();
-	}
-
-	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
-		@Override
-		public Informer reqInform(byte epc) {
-			return (Informer)super.reqInform(epc);
+	public static class Informer extends DeviceObject.Informer {
+		public Informer(EchoObject eoj, boolean multicast) {
+			super(eoj, multicast);
 		}
 		
 		@Override
+		public Informer reqInformProperty(byte epc) {
+			return (Informer)super.reqInformProperty(epc);
+		}
+				@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();
 		}
@@ -719,195 +1439,253 @@ public abstract class ElectricHotWaterPot extends DeviceObject {
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
 		}
-
-		@Override
-		public Informer reqInformCoverOpenCloseStatus() {
-			byte epc = EPC_COVER_OPEN_CLOSE_STATUS;
-			byte[] edt = _getCoverOpenCloseStatus(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformNoWaterWarning() {
-			byte epc = EPC_NO_WATER_WARNING;
-			byte[] edt = _getNoWaterWarning(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformBoilUpSetting() {
-			byte epc = EPC_BOIL_UP_SETTING;
-			byte[] edt = _getBoilUpSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformBoilUpWarmerModeSetting() {
-			byte epc = EPC_BOIL_UP_WARMER_MODE_SETTING;
-			byte[] edt = _getBoilUpWarmerModeSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformSetValueOfWarmerTemperature() {
-			byte epc = EPC_SET_VALUE_OF_WARMER_TEMPERATURE;
-			byte[] edt = _getSetValueOfWarmerTemperature(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformHotWaterDischargeStatus() {
-			byte epc = EPC_HOT_WATER_DISCHARGE_STATUS;
-			byte[] edt = _getHotWaterDischargeStatus(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformLockStatus() {
-			byte epc = EPC_LOCK_STATUS;
-			byte[] edt = _getLockStatus(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-	}
-	
-	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
-		@Override
-		public Informer reqInform(byte epc) {
-			return (Informer)super.reqInform(epc);
-		}
 		
-		@Override
-		public Informer reqInformOperationStatus() {
-			return (Informer)super.reqInformOperationStatus();
-		}
-		@Override
-		public Informer reqInformInstallationLocation() {
-			return (Informer)super.reqInformInstallationLocation();
-		}
-		@Override
-		public Informer reqInformStandardVersionInformation() {
-			return (Informer)super.reqInformStandardVersionInformation();
-		}
-		@Override
-		public Informer reqInformIdentificationNumber() {
-			return (Informer)super.reqInformIdentificationNumber();
-		}
-		@Override
-		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
-			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Informer reqInformMeasuredCumulativePowerConsumption() {
-			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Informer reqInformManufacturersFaultCode() {
-			return (Informer)super.reqInformManufacturersFaultCode();
-		}
-		@Override
-		public Informer reqInformCurrentLimitSetting() {
-			return (Informer)super.reqInformCurrentLimitSetting();
-		}
-		@Override
-		public Informer reqInformFaultStatus() {
-			return (Informer)super.reqInformFaultStatus();
-		}
-		@Override
-		public Informer reqInformFaultDescription() {
-			return (Informer)super.reqInformFaultDescription();
-		}
-		@Override
-		public Informer reqInformManufacturerCode() {
-			return (Informer)super.reqInformManufacturerCode();
-		}
-		@Override
-		public Informer reqInformBusinessFacilityCode() {
-			return (Informer)super.reqInformBusinessFacilityCode();
-		}
-		@Override
-		public Informer reqInformProductCode() {
-			return (Informer)super.reqInformProductCode();
-		}
-		@Override
-		public Informer reqInformProductionNumber() {
-			return (Informer)super.reqInformProductionNumber();
-		}
-		@Override
-		public Informer reqInformProductionDate() {
-			return (Informer)super.reqInformProductionDate();
-		}
-		@Override
-		public Informer reqInformPowerSavingOperationSetting() {
-			return (Informer)super.reqInformPowerSavingOperationSetting();
-		}
-		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
-		}
-		@Override
-		public Informer reqInformCurrentTimeSetting() {
-			return (Informer)super.reqInformCurrentTimeSetting();
-		}
-		@Override
-		public Informer reqInformCurrentDateSetting() {
-			return (Informer)super.reqInformCurrentDateSetting();
-		}
-		@Override
-		public Informer reqInformPowerLimitSetting() {
-			return (Informer)super.reqInformPowerLimitSetting();
-		}
-		@Override
-		public Informer reqInformCumulativeOperatingTime() {
-			return (Informer)super.reqInformCumulativeOperatingTime();
-		}
-		@Override
-		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
-			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Informer reqInformSetPropertyMap() {
-			return (Informer)super.reqInformSetPropertyMap();
-		}
-		@Override
-		public Informer reqInformGetPropertyMap() {
-			return (Informer)super.reqInformGetPropertyMap();
-		}
-
-		@Override
+		/**
+		 * Property name : Cover open/close status<br>
+		 * <br>
+		 * EPC : 0xB0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Cover open/close status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Cover open = 0x41, cover closed =<br>
+		 * 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformCoverOpenCloseStatus() {
 			addProperty(EPC_COVER_OPEN_CLOSE_STATUS);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : No-water warning<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Notifies that electric hot water pot is emptied of water.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * No-water condition found = 0x41<br>
+		 * No-water condition not found = 0x40<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
 		public Informer reqInformNoWaterWarning() {
 			addProperty(EPC_NO_WATER_WARNING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Boil-up setting<br>
+		 * <br>
+		 * EPC : 0xB2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Boil-up setting<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Boil-up start - 0x41<br>
+		 * Boil-up stop/warmer = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformBoilUpSetting() {
 			addProperty(EPC_BOIL_UP_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Boil-up/warmer mode setting<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates citric acid cleaning, normal warmer, or power-saving warmer mode.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Citric acid cleaning = 0x41, normal warmer = 0x42, power-saving warmer<br>
+		 * = 0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformBoilUpWarmerModeSetting() {
 			addProperty(EPC_BOIL_UP_WARMER_MODE_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Set value of warmer temperature<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates set value of warmer temperature in .C.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : . C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformSetValueOfWarmerTemperature() {
 			addProperty(EPC_SET_VALUE_OF_WARMER_TEMPERATURE);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Hot water discharge status<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Hot water discharge status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Hot water discharged = 0x41, hot water not discharged = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
 		public Informer reqInformHotWaterDischargeStatus() {
 			addProperty(EPC_HOT_WATER_DISCHARGE_STATUS);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Lock status<br>
+		 * <br>
+		 * EPC : 0xE3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Hot water discharge lock status<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Locked = 0x41, unlocked = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformLockStatus() {
 			addProperty(EPC_LOCK_STATUS);
 			return this;
 		}
 	}
+
+	public static class Proxy extends ElectricHotWaterPot {
+		private byte mInstanceCode;
+		public Proxy(byte instanceCode) {
+			super();
+			mInstanceCode = instanceCode;
+		}
+		@Override
+		public byte getInstanceCode() {
+			return mInstanceCode;
+		}
+		@Override
+		protected byte[] getOperationStatus() {return null;}
+		@Override
+		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		@Override
+		protected byte[] getInstallationLocation() {return null;}
+		@Override
+		protected byte[] getStandardVersionInformation() {return null;}
+		@Override
+		protected byte[] getFaultStatus() {return null;}
+		@Override
+		protected byte[] getManufacturerCode() {return null;}
+	}
+	
+	public static Setter setG() {
+		return setG((byte)0);
+	}
+
+	public static Setter setG(byte instanceCode) {
+		return new Setter(new Proxy(instanceCode), true, true);
+	}
+
+	public static Setter setG(boolean responseRequired) {
+		return setG((byte)0, responseRequired);
+	}
+
+	public static Setter setG(byte instanceCode, boolean responseRequired) {
+		return new Setter(new Proxy(instanceCode), responseRequired, true);
+	}
+
+	public static Getter getG() {
+		return getG((byte)0);
+	}
+	
+	public static Getter getG(byte instanceCode) {
+		return new Getter(new Proxy(instanceCode), true);
+	}
+
+	public static Informer informG() {
+		return informG((byte)0);
+	}
+
+	public static Informer informG(byte instanceCode) {
+		return new Informer(new Proxy(instanceCode), true);
+	}
+
 }

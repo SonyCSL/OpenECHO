@@ -15,18 +15,16 @@
  */
 package com.sonycsl.echo.eoj.device.airconditioner;
 
+import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
+import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
+import com.sonycsl.echo.node.EchoNode;
 
 public abstract class ElectricHeater extends DeviceObject {
 	
-	public static final byte CLASS_GROUP_CODE = (byte)0x01;
-	public static final byte CLASS_CODE = (byte)0x42;
-	
-	public ElectricHeater() {
-		setReceiver(new Receiver());
-	}
+	public static final short ECHO_CLASS_CODE = (short)0x0142;
 
 	public static final byte EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING = (byte)0xB1;
 	public static final byte EPC_TEMPERATURE_SETTING = (byte)0xB3;
@@ -41,554 +39,1539 @@ public abstract class ElectricHeater extends DeviceObject {
 	public static final byte EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME = (byte)0x96;
 
 	@Override
-	public byte getClassGroupCode() {
-		return CLASS_GROUP_CODE;
+	protected void setupPropertyMaps() {
+		super.setupPropertyMaps();
+		
+		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
+		removeSetProperty(EPC_OPERATION_STATUS);
+		addGetProperty(EPC_OPERATION_STATUS);
+		addSetProperty(EPC_TEMPERATURE_SETTING);
+		addGetProperty(EPC_TEMPERATURE_SETTING);
 	}
-
+	
 	@Override
-	public byte getClassCode() {
-		return CLASS_CODE;
+	public void initialize(EchoNode node) {
+		super.initialize(node);
+		Echo.EventListener listener = Echo.getEventListener();
+		if(listener != null) listener.onNewElectricHeater(this);
+	}
+	
+	@Override
+	public short getEchoClassCode() {
+		return ECHO_CLASS_CODE;
 	}
 
 	/**
-	 * Used to specify whether or not to use the automatic temperature control function.<br><br>Automatic = 0x41, non-automatic = 0x42<br><br>Name : Automatic temperature control setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This  property  indicates  the  ON/OFF<br>
+	 * status.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30, OFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : �\<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setOperationStatus(byte[] edt) {return false;}
+	/**
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This  property  indicates  the  ON/OFF<br>
+	 * status.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30, OFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 bytes<br>
+	 * <br>
+	 * Unit : �\<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getOperationStatus();
+	/**
+	 * Property name : Automatic temperature control setting<br>
+	 * <br>
+	 * EPC : 0xB1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to specify whether or not to use the automatic temperature control function.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic = 0x41, non-automatic =<br>
+	 * 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setAutomaticTemperatureControlSetting(byte[] edt) {return false;}
-	private final boolean _setAutomaticTemperatureControlSetting(byte epc, byte[] edt) {
-		boolean success = setAutomaticTemperatureControlSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Used to specify whether or not to use the automatic temperature control function.<br><br>Automatic = 0x41, non-automatic = 0x42<br><br>Name : Automatic temperature control setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Automatic temperature control setting<br>
+	 * <br>
+	 * EPC : 0xB1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to specify whether or not to use the automatic temperature control function.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic = 0x41, non-automatic =<br>
+	 * 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getAutomaticTemperatureControlSetting() {return null;}
-	private final byte[] _getAutomaticTemperatureControlSetting(byte epc) {
-		byte[] edt = getAutomaticTemperatureControlSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Automatic temperature control setting<br>
+	 * <br>
+	 * EPC : 0xB1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to specify whether or not to use the automatic temperature control function.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic = 0x41, non-automatic =<br>
+	 * 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidAutomaticTemperatureControlSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Used to set the temperature.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : Temperature setting<br>EPC : 0xB3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+	 * Property name : Temperature setting<br>
+	 * <br>
+	 * EPC : 0xB3<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the temperature.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00 to 0x32 (0 to 50��C)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : . C<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
 	 */
 	protected abstract boolean setTemperatureSetting(byte[] edt);
-	private final boolean _setTemperatureSetting(byte epc, byte[] edt) {
-		boolean success = setTemperatureSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Used to set the temperature.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : Temperature setting<br>EPC : 0xB3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+	 * Property name : Temperature setting<br>
+	 * <br>
+	 * EPC : 0xB3<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the temperature.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00 to 0x32 (0 to 50��C)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : . C<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
 	 */
 	protected abstract byte[] getTemperatureSetting();
-	private final byte[] _getTemperatureSetting(byte epc) {
-		byte[] edt = getTemperatureSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Temperature setting<br>
+	 * <br>
+	 * EPC : 0xB3<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the temperature.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00 to 0x32 (0 to 50��C)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : . C<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidTemperatureSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates the measured room temperature.<br><br>0x81 to 0x7E (-128 to 127��C)<br><br>Name : Measured room temperature<br>EPC : 0xBB<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Measured room temperature<br>
+	 * <br>
+	 * EPC : 0xBB<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the measured room temperature.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x81 to 0x7E (-128 to 127��C)<br>
+	 * <br>
+	 * Data type : signed char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : . C<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getMeasuredRoomTemperature() {return null;}
-	private final byte[] _getMeasuredRoomTemperature(byte epc) {
-		byte[] edt = getMeasuredRoomTemperature();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Measured room temperature<br>
+	 * <br>
+	 * EPC : 0xBB<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the measured room temperature.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x81 to 0x7E (-128 to 127��C)<br>
+	 * <br>
+	 * Data type : signed char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : . C<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidMeasuredRoomTemperature(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * This property indicates the last temperature (��C) set by the user using a remote controller unit.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : Remotely set temperature<br>EPC : 0xBC<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+	 * Property name : Remotely set temperature<br>
+	 * <br>
+	 * EPC : 0xBC<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the last temperature (��C) set by the user using a remote controller unit.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00 to 0x32 (0 to 50��C)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : . C<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getRemotelySetTemperature() {return null;}
-	private final byte[] _getRemotelySetTemperature(byte epc) {
-		byte[] edt = getRemotelySetTemperature();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Remotely set temperature<br>
+	 * <br>
+	 * EPC : 0xBC<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the last temperature (��C) set by the user using a remote controller unit.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00 to 0x32 (0 to 50��C)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : . C<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidRemotelySetTemperature(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br><br>Automatic air flow rate control used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Name : Air flow rate setting<br>EPC : 0xA0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Air flow rate setting<br>
+	 * <br>
+	 * EPC : 0xA0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic air flow rate control used =<br>
+	 * 0x41<br>
+	 * Air flow rate = 0x31 to 0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setAirFlowRateSetting(byte[] edt) {return false;}
-	private final boolean _setAirFlowRateSetting(byte epc, byte[] edt) {
-		boolean success = setAirFlowRateSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br><br>Automatic air flow rate control used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Name : Air flow rate setting<br>EPC : 0xA0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Air flow rate setting<br>
+	 * <br>
+	 * EPC : 0xA0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic air flow rate control used =<br>
+	 * 0x41<br>
+	 * Air flow rate = 0x31 to 0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getAirFlowRateSetting() {return null;}
-	private final byte[] _getAirFlowRateSetting(byte epc) {
-		byte[] edt = getAirFlowRateSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : Air flow rate setting<br>
+	 * <br>
+	 * EPC : 0xA0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic air flow rate control used =<br>
+	 * 0x41<br>
+	 * Air flow rate = 0x31 to 0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidAirFlowRateSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Used to specify whether or not to use the ON timer-based reservation function.<br><br>ON timer-based reservation function ON: 0x41 ON timer-based reservation function OFF: 0x42<br><br>Name : ON timer-based reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : ON timer-based reservation setting<br>
+	 * <br>
+	 * EPC : 0x90<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to specify whether or not to use the ON timer-based reservation function.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON timer-based reservation function<br>
+	 * ON: 0x41<br>
+	 * ON timer-based reservation function<br>
+	 * OFF: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setOnTimerBasedReservationSetting(byte[] edt) {return false;}
-	private final boolean _setOnTimerBasedReservationSetting(byte epc, byte[] edt) {
-		boolean success = setOnTimerBasedReservationSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Used to specify whether or not to use the ON timer-based reservation function.<br><br>ON timer-based reservation function ON: 0x41 ON timer-based reservation function OFF: 0x42<br><br>Name : ON timer-based reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : ON timer-based reservation setting<br>
+	 * <br>
+	 * EPC : 0x90<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to specify whether or not to use the ON timer-based reservation function.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON timer-based reservation function<br>
+	 * ON: 0x41<br>
+	 * ON timer-based reservation function<br>
+	 * OFF: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getOnTimerBasedReservationSetting() {return null;}
-	private final byte[] _getOnTimerBasedReservationSetting(byte epc) {
-		byte[] edt = getOnTimerBasedReservationSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : ON timer-based reservation setting<br>
+	 * <br>
+	 * EPC : 0x90<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to specify whether or not to use the ON timer-based reservation function.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON timer-based reservation function<br>
+	 * ON: 0x41<br>
+	 * ON timer-based reservation function<br>
+	 * OFF: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidOnTimerBasedReservationSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (time)<br>EPC : 0x91<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : ON timer setting
+(time)<br>
+	 * <br>
+	 * EPC : 0x91<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0 to 0x17: 0 to 0x3B<br>
+	 * (= 0 to 23): (= 0 to 59)<br>
+	 * <br>
+	 * Data type : unsigned char x 2<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setOnTimerSettingTime(byte[] edt) {return false;}
-	private final boolean _setOnTimerSettingTime(byte epc, byte[] edt) {
-		boolean success = setOnTimerSettingTime(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (time)<br>EPC : 0x91<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : ON timer setting
+(time)<br>
+	 * <br>
+	 * EPC : 0x91<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0 to 0x17: 0 to 0x3B<br>
+	 * (= 0 to 23): (= 0 to 59)<br>
+	 * <br>
+	 * Data type : unsigned char x 2<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getOnTimerSettingTime() {return null;}
-	private final byte[] _getOnTimerSettingTime(byte epc) {
-		byte[] edt = getOnTimerSettingTime();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : ON timer setting
+(time)<br>
+	 * <br>
+	 * EPC : 0x91<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0 to 0x17: 0 to 0x3B<br>
+	 * (= 0 to 23): (= 0 to 59)<br>
+	 * <br>
+	 * Data type : unsigned char x 2<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidOnTimerSettingTime(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
+		return true;
 	}
 	/**
-	 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (relative time)<br>EPC : 0x92<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : ON timer setting
+(relative time)<br>
+	 * <br>
+	 * EPC : 0x92<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0 to 0x17: 0 to 0x3B<br>
+	 * (= 0 to 23): (= 0 to 59)<br>
+	 * <br>
+	 * Data type : unsigned char x 2<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setOnTimerSettingRelativeTime(byte[] edt) {return false;}
-	private final boolean _setOnTimerSettingRelativeTime(byte epc, byte[] edt) {
-		boolean success = setOnTimerSettingRelativeTime(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (relative time)<br>EPC : 0x92<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : ON timer setting
+(relative time)<br>
+	 * <br>
+	 * EPC : 0x92<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0 to 0x17: 0 to 0x3B<br>
+	 * (= 0 to 23): (= 0 to 59)<br>
+	 * <br>
+	 * Data type : unsigned char x 2<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getOnTimerSettingRelativeTime() {return null;}
-	private final byte[] _getOnTimerSettingRelativeTime(byte epc) {
-		byte[] edt = getOnTimerSettingRelativeTime();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : ON timer setting
+(relative time)<br>
+	 * <br>
+	 * EPC : 0x92<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0 to 0x17: 0 to 0x3B<br>
+	 * (= 0 to 23): (= 0 to 59)<br>
+	 * <br>
+	 * Data type : unsigned char x 2<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidOnTimerSettingRelativeTime(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
+		return true;
 	}
 	/**
-	 * Used to specify whether or not to use the OFF timer-based reservation function.<br><br>OFF timer-based reservation function ON: 0x41 OFF timer-based reservation function OFF: 0x42<br><br>Name : OFF timer-based reservation setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : OFF timer-based reservation setting<br>
+	 * <br>
+	 * EPC : 0x94<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to specify whether or not to use the OFF timer-based reservation function.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * OFF timer-based reservation function<br>
+	 * ON: 0x41<br>
+	 * OFF timer-based reservation function<br>
+	 * OFF: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setOffTimerBasedReservationSetting(byte[] edt) {return false;}
-	private final boolean _setOffTimerBasedReservationSetting(byte epc, byte[] edt) {
-		boolean success = setOffTimerBasedReservationSetting(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Used to specify whether or not to use the OFF timer-based reservation function.<br><br>OFF timer-based reservation function ON: 0x41 OFF timer-based reservation function OFF: 0x42<br><br>Name : OFF timer-based reservation setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : OFF timer-based reservation setting<br>
+	 * <br>
+	 * EPC : 0x94<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to specify whether or not to use the OFF timer-based reservation function.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * OFF timer-based reservation function<br>
+	 * ON: 0x41<br>
+	 * OFF timer-based reservation function<br>
+	 * OFF: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getOffTimerBasedReservationSetting() {return null;}
-	private final byte[] _getOffTimerBasedReservationSetting(byte epc) {
-		byte[] edt = getOffTimerBasedReservationSetting();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : OFF timer-based reservation setting<br>
+	 * <br>
+	 * EPC : 0x94<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to specify whether or not to use the OFF timer-based reservation function.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * OFF timer-based reservation function<br>
+	 * ON: 0x41<br>
+	 * OFF timer-based reservation function<br>
+	 * OFF: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidOffTimerBasedReservationSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
 	}
 	/**
-	 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (time)<br>EPC : 0x95<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : OFF timer setting (time)<br>
+	 * <br>
+	 * EPC : 0x95<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0 to 0x17: 0 to 0x3B<br>
+	 * (= 0 to 23): (= 0 to 59)<br>
+	 * <br>
+	 * Data type : unsigned char x 2<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setOffTimerSettingTime(byte[] edt) {return false;}
-	private final boolean _setOffTimerSettingTime(byte epc, byte[] edt) {
-		boolean success = setOffTimerSettingTime(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (time)<br>EPC : 0x95<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : OFF timer setting (time)<br>
+	 * <br>
+	 * EPC : 0x95<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0 to 0x17: 0 to 0x3B<br>
+	 * (= 0 to 23): (= 0 to 59)<br>
+	 * <br>
+	 * Data type : unsigned char x 2<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getOffTimerSettingTime() {return null;}
-	private final byte[] _getOffTimerSettingTime(byte epc) {
-		byte[] edt = getOffTimerSettingTime();
-		onInvokedGetMethod(epc, edt);
-		return edt;
+	/**
+	 * Property name : OFF timer setting (time)<br>
+	 * <br>
+	 * EPC : 0x95<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0 to 0x17: 0 to 0x3B<br>
+	 * (= 0 to 23): (= 0 to 59)<br>
+	 * <br>
+	 * Data type : unsigned char x 2<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidOffTimerSettingTime(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
+		return true;
 	}
 	/**
-	 * Timer value HH:MM<br><br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Name : Set value of OFF timer relative time<br>EPC : 0x96<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Set value of OFF timer relative time<br>
+	 * <br>
+	 * EPC : 0x96<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Timer value HH:MM<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
+	 * <br>
+	 * Data type : unsigned char x 2<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected boolean setSetValueOfOffTimerRelativeTime(byte[] edt) {return false;}
-	private final boolean _setSetValueOfOffTimerRelativeTime(byte epc, byte[] edt) {
-		boolean success = setSetValueOfOffTimerRelativeTime(edt);
-		onInvokedSetMethod(epc, edt, success);
-		return success;
-	}
 	/**
-	 * Timer value HH:MM<br><br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Name : Set value of OFF timer relative time<br>EPC : 0x96<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+	 * Property name : Set value of OFF timer relative time<br>
+	 * <br>
+	 * EPC : 0x96<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Timer value HH:MM<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
+	 * <br>
+	 * Data type : unsigned char x 2<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
 	 */
 	protected byte[] getSetValueOfOffTimerRelativeTime() {return null;}
-	private final byte[] _getSetValueOfOffTimerRelativeTime(byte epc) {
-		byte[] edt = getSetValueOfOffTimerRelativeTime();
-		onInvokedGetMethod(epc, edt);
-		return edt;
-	}
-
-
-	@Override
-	protected void onReceiveSet(EchoFrame res, byte epc, byte pdc, byte[] edt) {
-		super.onReceiveSet(res, epc, pdc, edt);
-		switch(epc) {
-		case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING:
-			res.addProperty(epc, edt, _setAutomaticTemperatureControlSetting(epc, edt));
-			break;
-		case EPC_TEMPERATURE_SETTING:
-			res.addProperty(epc, edt, _setTemperatureSetting(epc, edt));
-			break;
-		case EPC_AIR_FLOW_RATE_SETTING:
-			res.addProperty(epc, edt, _setAirFlowRateSetting(epc, edt));
-			break;
-		case EPC_ON_TIMER_BASED_RESERVATION_SETTING:
-			res.addProperty(epc, edt, _setOnTimerBasedReservationSetting(epc, edt));
-			break;
-		case EPC_ON_TIMER_SETTING_TIME:
-			res.addProperty(epc, edt, _setOnTimerSettingTime(epc, edt));
-			break;
-		case EPC_ON_TIMER_SETTING_RELATIVE_TIME:
-			res.addProperty(epc, edt, _setOnTimerSettingRelativeTime(epc, edt));
-			break;
-		case EPC_OFF_TIMER_BASED_RESERVATION_SETTING:
-			res.addProperty(epc, edt, _setOffTimerBasedReservationSetting(epc, edt));
-			break;
-		case EPC_OFF_TIMER_SETTING_TIME:
-			res.addProperty(epc, edt, _setOffTimerSettingTime(epc, edt));
-			break;
-		case EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME:
-			res.addProperty(epc, edt, _setSetValueOfOffTimerRelativeTime(epc, edt));
-			break;
-
-		}
+	/**
+	 * Property name : Set value of OFF timer relative time<br>
+	 * <br>
+	 * EPC : 0x96<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Timer value HH:MM<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
+	 * <br>
+	 * Data type : unsigned char x 2<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidSetValueOfOffTimerRelativeTime(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
+		return true;
 	}
 
 	@Override
-	protected void onReceiveGet(EchoFrame res, byte epc) {
-		super.onReceiveGet(res, epc);
-		byte[] edt;
-		switch(epc) {
-		case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING:
-			edt = _getAutomaticTemperatureControlSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_TEMPERATURE_SETTING:
-			edt = _getTemperatureSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_MEASURED_ROOM_TEMPERATURE:
-			edt = _getMeasuredRoomTemperature(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_REMOTELY_SET_TEMPERATURE:
-			edt = _getRemotelySetTemperature(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_AIR_FLOW_RATE_SETTING:
-			edt = _getAirFlowRateSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_ON_TIMER_BASED_RESERVATION_SETTING:
-			edt = _getOnTimerBasedReservationSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_ON_TIMER_SETTING_TIME:
-			edt = _getOnTimerSettingTime(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			break;
-		case EPC_ON_TIMER_SETTING_RELATIVE_TIME:
-			edt = _getOnTimerSettingRelativeTime(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			break;
-		case EPC_OFF_TIMER_BASED_RESERVATION_SETTING:
-			edt = _getOffTimerBasedReservationSetting(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			break;
-		case EPC_OFF_TIMER_SETTING_TIME:
-			edt = _getOffTimerSettingTime(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			break;
-		case EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME:
-			edt = _getSetValueOfOffTimerRelativeTime(epc);
-			res.addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			break;
+	protected boolean setProperty(EchoProperty property) {
+		boolean success = super.setProperty(property);
+		if(success) return success;
 
+		switch(property.epc) {
+		case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING : return setAutomaticTemperatureControlSetting(property.edt);
+		case EPC_TEMPERATURE_SETTING : return setTemperatureSetting(property.edt);
+		case EPC_AIR_FLOW_RATE_SETTING : return setAirFlowRateSetting(property.edt);
+		case EPC_ON_TIMER_BASED_RESERVATION_SETTING : return setOnTimerBasedReservationSetting(property.edt);
+		case EPC_ON_TIMER_SETTING_TIME : return setOnTimerSettingTime(property.edt);
+		case EPC_ON_TIMER_SETTING_RELATIVE_TIME : return setOnTimerSettingRelativeTime(property.edt);
+		case EPC_OFF_TIMER_BASED_RESERVATION_SETTING : return setOffTimerBasedReservationSetting(property.edt);
+		case EPC_OFF_TIMER_SETTING_TIME : return setOffTimerSettingTime(property.edt);
+		case EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME : return setSetValueOfOffTimerRelativeTime(property.edt);
+		default : return false;
 		}
 	}
 	
 	@Override
-	public Setter set() {
-		return new Setter(ESV_SETI);
+	protected byte[] getProperty(byte epc) {
+		byte[] edt = super.getProperty(epc);
+		if(edt != null) return edt;
+		
+		switch(epc) {
+		case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING : return getAutomaticTemperatureControlSetting();
+		case EPC_TEMPERATURE_SETTING : return getTemperatureSetting();
+		case EPC_MEASURED_ROOM_TEMPERATURE : return getMeasuredRoomTemperature();
+		case EPC_REMOTELY_SET_TEMPERATURE : return getRemotelySetTemperature();
+		case EPC_AIR_FLOW_RATE_SETTING : return getAirFlowRateSetting();
+		case EPC_ON_TIMER_BASED_RESERVATION_SETTING : return getOnTimerBasedReservationSetting();
+		case EPC_ON_TIMER_SETTING_TIME : return getOnTimerSettingTime();
+		case EPC_ON_TIMER_SETTING_RELATIVE_TIME : return getOnTimerSettingRelativeTime();
+		case EPC_OFF_TIMER_BASED_RESERVATION_SETTING : return getOffTimerBasedReservationSetting();
+		case EPC_OFF_TIMER_SETTING_TIME : return getOffTimerSettingTime();
+		case EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME : return getSetValueOfOffTimerRelativeTime();
+		default : return null;
+		}
 	}
 
 	@Override
-	public Setter setC() {
-		return new Setter(ESV_SETC);
+	protected boolean isValidProperty(EchoProperty property) {
+		boolean valid = super.isValidProperty(property);
+		if(valid) return valid;
+		
+		switch(property.epc) {
+		case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING : return isValidAutomaticTemperatureControlSetting(property.edt);
+		case EPC_TEMPERATURE_SETTING : return isValidTemperatureSetting(property.edt);
+		case EPC_MEASURED_ROOM_TEMPERATURE : return isValidMeasuredRoomTemperature(property.edt);
+		case EPC_REMOTELY_SET_TEMPERATURE : return isValidRemotelySetTemperature(property.edt);
+		case EPC_AIR_FLOW_RATE_SETTING : return isValidAirFlowRateSetting(property.edt);
+		case EPC_ON_TIMER_BASED_RESERVATION_SETTING : return isValidOnTimerBasedReservationSetting(property.edt);
+		case EPC_ON_TIMER_SETTING_TIME : return isValidOnTimerSettingTime(property.edt);
+		case EPC_ON_TIMER_SETTING_RELATIVE_TIME : return isValidOnTimerSettingRelativeTime(property.edt);
+		case EPC_OFF_TIMER_BASED_RESERVATION_SETTING : return isValidOffTimerBasedReservationSetting(property.edt);
+		case EPC_OFF_TIMER_SETTING_TIME : return isValidOffTimerSettingTime(property.edt);
+		case EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME : return isValidSetValueOfOffTimerRelativeTime(property.edt);
+		default : return false;
+		}
+	}
+
+	@Override
+	public Setter set() {
+		return new Setter(this, true, false);
+	}
+
+	@Override
+	public Setter set(boolean responseRequired) {
+		return new Setter(this, responseRequired, false);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter();
+		return new Getter(this, false);
 	}
 
 	@Override
 	public Informer inform() {
-		return new InformerImpl();
+		return new Informer(this, !isProxy());
+	}
+	
+	@Override
+	protected Informer inform(boolean multicast) {
+		return new Informer(this, multicast);
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
 
 		@Override
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			super.onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
-			switch(epc) {
-			case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING:
-				_onSetAutomaticTemperatureControlSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_TEMPERATURE_SETTING:
-				_onSetTemperatureSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_AIR_FLOW_RATE_SETTING:
-				_onSetAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_ON_TIMER_BASED_RESERVATION_SETTING:
-				_onSetOnTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_ON_TIMER_SETTING_TIME:
-				_onSetOnTimerSettingTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_ON_TIMER_SETTING_RELATIVE_TIME:
-				_onSetOnTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_OFF_TIMER_BASED_RESERVATION_SETTING:
-				_onSetOffTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_OFF_TIMER_SETTING_TIME:
-				_onSetOffTimerSettingTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-			case EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME:
-				_onSetSetValueOfOffTimerRelativeTime(eoj, tid, esv, epc, pdc, edt, (pdc == 0));
-				break;
-
+		protected boolean onSetProperty(EchoObject eoj, short tid, byte esv,
+				EchoProperty property, boolean success) {
+			boolean ret = super.onSetProperty(eoj, tid, esv, property, success);
+			if(ret) return true;
+			
+			switch(property.epc) {
+			case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING : 
+				onSetAutomaticTemperatureControlSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_TEMPERATURE_SETTING : 
+				onSetTemperatureSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_AIR_FLOW_RATE_SETTING : 
+				onSetAirFlowRateSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ON_TIMER_BASED_RESERVATION_SETTING : 
+				onSetOnTimerBasedReservationSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ON_TIMER_SETTING_TIME : 
+				onSetOnTimerSettingTime(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ON_TIMER_SETTING_RELATIVE_TIME : 
+				onSetOnTimerSettingRelativeTime(eoj, tid, esv, property, success);
+				return true;
+			case EPC_OFF_TIMER_BASED_RESERVATION_SETTING : 
+				onSetOffTimerBasedReservationSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_OFF_TIMER_SETTING_TIME : 
+				onSetOffTimerSettingTime(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME : 
+				onSetSetValueOfOffTimerRelativeTime(eoj, tid, esv, property, success);
+				return true;
+			default :
+				return false;
 			}
 		}
 
 		@Override
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			super.onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
-			switch(epc) {
-			case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING:
-				_onGetAutomaticTemperatureControlSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_TEMPERATURE_SETTING:
-				_onGetTemperatureSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_MEASURED_ROOM_TEMPERATURE:
-				_onGetMeasuredRoomTemperature(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_REMOTELY_SET_TEMPERATURE:
-				_onGetRemotelySetTemperature(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_AIR_FLOW_RATE_SETTING:
-				_onGetAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_ON_TIMER_BASED_RESERVATION_SETTING:
-				_onGetOnTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_ON_TIMER_SETTING_TIME:
-				_onGetOnTimerSettingTime(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_ON_TIMER_SETTING_RELATIVE_TIME:
-				_onGetOnTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_OFF_TIMER_BASED_RESERVATION_SETTING:
-				_onGetOffTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_OFF_TIMER_SETTING_TIME:
-				_onGetOffTimerSettingTime(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME:
-				_onGetSetValueOfOffTimerRelativeTime(eoj, tid, esv, epc, pdc, edt);
-				break;
-
+		protected boolean onGetProperty(EchoObject eoj, short tid, byte esv,
+				EchoProperty property, boolean success) {
+			boolean ret = super.onGetProperty(eoj, tid, esv, property, success);
+			if(ret) return true;
+			
+			switch(property.epc) {
+			case EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING : 
+				onGetAutomaticTemperatureControlSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_TEMPERATURE_SETTING : 
+				onGetTemperatureSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASURED_ROOM_TEMPERATURE : 
+				onGetMeasuredRoomTemperature(eoj, tid, esv, property, success);
+				return true;
+			case EPC_REMOTELY_SET_TEMPERATURE : 
+				onGetRemotelySetTemperature(eoj, tid, esv, property, success);
+				return true;
+			case EPC_AIR_FLOW_RATE_SETTING : 
+				onGetAirFlowRateSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ON_TIMER_BASED_RESERVATION_SETTING : 
+				onGetOnTimerBasedReservationSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ON_TIMER_SETTING_TIME : 
+				onGetOnTimerSettingTime(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ON_TIMER_SETTING_RELATIVE_TIME : 
+				onGetOnTimerSettingRelativeTime(eoj, tid, esv, property, success);
+				return true;
+			case EPC_OFF_TIMER_BASED_RESERVATION_SETTING : 
+				onGetOffTimerBasedReservationSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_OFF_TIMER_SETTING_TIME : 
+				onGetOffTimerSettingTime(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME : 
+				onGetSetValueOfOffTimerRelativeTime(eoj, tid, esv, property, success);
+				return true;
+			default :
+				return false;
 			}
 		}
 		
 		/**
-		 * Used to specify whether or not to use the automatic temperature control function.<br><br>Automatic = 0x41, non-automatic = 0x42<br><br>Name : Automatic temperature control setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Automatic temperature control setting<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify whether or not to use the automatic temperature control function.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic = 0x41, non-automatic =<br>
+		 * 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetAutomaticTemperatureControlSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to specify whether or not to use the automatic temperature control function.<br><br>Automatic = 0x41, non-automatic = 0x42<br><br>Name : Automatic temperature control setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Automatic temperature control setting<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify whether or not to use the automatic temperature control function.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic = 0x41, non-automatic =<br>
+		 * 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetAutomaticTemperatureControlSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetAutomaticTemperatureControlSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the temperature.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : Temperature setting<br>EPC : 0xB3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Temperature setting<br>
+		 * <br>
+		 * EPC : 0xB3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the temperature.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : . C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
-		protected void onSetTemperatureSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetTemperatureSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetTemperatureSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetTemperatureSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to set the temperature.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : Temperature setting<br>EPC : 0xB3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Temperature setting<br>
+		 * <br>
+		 * EPC : 0xB3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the temperature.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : . C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
-		protected void onGetTemperatureSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetTemperatureSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetTemperatureSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetTemperatureSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates the measured room temperature.<br><br>0x81 to 0x7E (-128 to 127��C)<br><br>Name : Measured room temperature<br>EPC : 0xBB<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Measured room temperature<br>
+		 * <br>
+		 * EPC : 0xBB<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the measured room temperature.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x81 to 0x7E (-128 to 127��C)<br>
+		 * <br>
+		 * Data type : signed char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : . C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetMeasuredRoomTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetMeasuredRoomTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetMeasuredRoomTemperature(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetMeasuredRoomTemperature(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * This property indicates the last temperature (��C) set by the user using a remote controller unit.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : Remotely set temperature<br>EPC : 0xBC<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Remotely set temperature<br>
+		 * <br>
+		 * EPC : 0xBC<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the last temperature (��C) set by the user using a remote controller unit.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : . C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetRemotelySetTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetRemotelySetTemperature(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetRemotelySetTemperature(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetRemotelySetTemperature(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br><br>Automatic air flow rate control used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Name : Air flow rate setting<br>EPC : 0xA0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Air flow rate setting<br>
+		 * <br>
+		 * EPC : 0xA0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic air flow rate control used =<br>
+		 * 0x41<br>
+		 * Air flow rate = 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br><br>Automatic air flow rate control used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Name : Air flow rate setting<br>EPC : 0xA0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Air flow rate setting<br>
+		 * <br>
+		 * EPC : 0xA0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic air flow rate control used =<br>
+		 * 0x41<br>
+		 * Air flow rate = 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetAirFlowRateSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to specify whether or not to use the ON timer-based reservation function.<br><br>ON timer-based reservation function ON: 0x41 ON timer-based reservation function OFF: 0x42<br><br>Name : ON timer-based reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer-based reservation setting<br>
+		 * <br>
+		 * EPC : 0x90<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify whether or not to use the ON timer-based reservation function.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON timer-based reservation function<br>
+		 * ON: 0x41<br>
+		 * ON timer-based reservation function<br>
+		 * OFF: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetOnTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetOnTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetOnTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetOnTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to specify whether or not to use the ON timer-based reservation function.<br><br>ON timer-based reservation function ON: 0x41 ON timer-based reservation function OFF: 0x42<br><br>Name : ON timer-based reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer-based reservation setting<br>
+		 * <br>
+		 * EPC : 0x90<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify whether or not to use the ON timer-based reservation function.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON timer-based reservation function<br>
+		 * ON: 0x41<br>
+		 * ON timer-based reservation function<br>
+		 * OFF: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetOnTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetOnTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetOnTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetOnTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (time)<br>EPC : 0x91<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer setting
+(time)<br>
+		 * <br>
+		 * EPC : 0x91<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char x 2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetOnTimerSettingTime(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (time)<br>EPC : 0x91<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer setting
+(time)<br>
+		 * <br>
+		 * EPC : 0x91<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char x 2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetOnTimerSettingTime(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (relative time)<br>EPC : 0x92<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer setting
+(relative time)<br>
+		 * <br>
+		 * EPC : 0x92<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char x 2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetOnTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (relative time)<br>EPC : 0x92<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer setting
+(relative time)<br>
+		 * <br>
+		 * EPC : 0x92<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char x 2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetOnTimerSettingRelativeTime(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to specify whether or not to use the OFF timer-based reservation function.<br><br>OFF timer-based reservation function ON: 0x41 OFF timer-based reservation function OFF: 0x42<br><br>Name : OFF timer-based reservation setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : OFF timer-based reservation setting<br>
+		 * <br>
+		 * EPC : 0x94<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify whether or not to use the OFF timer-based reservation function.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * OFF timer-based reservation function<br>
+		 * ON: 0x41<br>
+		 * OFF timer-based reservation function<br>
+		 * OFF: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetOffTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetOffTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetOffTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetOffTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to specify whether or not to use the OFF timer-based reservation function.<br><br>OFF timer-based reservation function ON: 0x41 OFF timer-based reservation function OFF: 0x42<br><br>Name : OFF timer-based reservation setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : OFF timer-based reservation setting<br>
+		 * <br>
+		 * EPC : 0x94<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify whether or not to use the OFF timer-based reservation function.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * OFF timer-based reservation function<br>
+		 * ON: 0x41<br>
+		 * OFF timer-based reservation function<br>
+		 * OFF: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetOffTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetOffTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetOffTimerBasedReservationSetting(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetOffTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (time)<br>EPC : 0x95<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : OFF timer setting (time)<br>
+		 * <br>
+		 * EPC : 0x95<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char x 2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetOffTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetOffTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetOffTimerSettingTime(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetOffTimerSettingTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (time)<br>EPC : 0x95<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : OFF timer setting (time)<br>
+		 * <br>
+		 * EPC : 0x95<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char x 2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetOffTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetOffTimerSettingTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetOffTimerSettingTime(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
+		protected void onGetOffTimerSettingTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Timer value HH:MM<br><br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Name : Set value of OFF timer relative time<br>EPC : 0x96<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Set value of OFF timer relative time<br>
+		 * <br>
+		 * EPC : 0x96<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Timer value HH:MM<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
+		 * <br>
+		 * Data type : unsigned char x 2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetSetValueOfOffTimerRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {}
-		private final void _onSetSetValueOfOffTimerRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			onSetSetValueOfOffTimerRelativeTime(eoj, tid, esv, epc, pdc, edt, success);
-			onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
+		protected void onSetSetValueOfOffTimerRelativeTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Timer value HH:MM<br><br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Name : Set value of OFF timer relative time<br>EPC : 0x96<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Set value of OFF timer relative time<br>
+		 * <br>
+		 * EPC : 0x96<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Timer value HH:MM<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
+		 * <br>
+		 * Data type : unsigned char x 2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetSetValueOfOffTimerRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {}
-		private final void _onGetSetValueOfOffTimerRelativeTime(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onGetSetValueOfOffTimerRelativeTime(eoj, tid, esv, epc, pdc, edt);
-			onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-		}
-
+		protected void onGetSetValueOfOffTimerRelativeTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 	}
-	
-	public class Setter extends DeviceObject.Setter {
-		public Setter(byte esv) {
-			super(esv);
-		}
 
+	public static class Setter extends DeviceObject.Setter {
+		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
+			super(eoj, responseRequired, multicast);
+		}
+		
 		@Override
-		public Setter reqSet(byte epc, byte[] edt) {
-			return (Setter)super.reqSet(epc, edt);
+		public Setter reqSetProperty(byte epc, byte[] edt) {
+			return (Setter)super.reqSetProperty(epc, edt);
 		}
 		
 		@Override
@@ -623,74 +1606,267 @@ public abstract class ElectricHeater extends DeviceObject {
 		public Setter reqSetPowerLimitSetting(byte[] edt) {
 			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
-
+		
 		/**
-		 * Used to specify whether or not to use the automatic temperature control function.<br><br>Automatic = 0x41, non-automatic = 0x42<br><br>Name : Automatic temperature control setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Automatic temperature control setting<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify whether or not to use the automatic temperature control function.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic = 0x41, non-automatic =<br>
+		 * 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetAutomaticTemperatureControlSetting(byte[] edt) {
-			addProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Used to set the temperature.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : Temperature setting<br>EPC : 0xB3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Temperature setting<br>
+		 * <br>
+		 * EPC : 0xB3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the temperature.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : . C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		public Setter reqSetTemperatureSetting(byte[] edt) {
-			addProperty(EPC_TEMPERATURE_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_TEMPERATURE_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br><br>Automatic air flow rate control used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Name : Air flow rate setting<br>EPC : 0xA0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Air flow rate setting<br>
+		 * <br>
+		 * EPC : 0xA0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic air flow rate control used =<br>
+		 * 0x41<br>
+		 * Air flow rate = 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetAirFlowRateSetting(byte[] edt) {
-			addProperty(EPC_AIR_FLOW_RATE_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_AIR_FLOW_RATE_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Used to specify whether or not to use the ON timer-based reservation function.<br><br>ON timer-based reservation function ON: 0x41 ON timer-based reservation function OFF: 0x42<br><br>Name : ON timer-based reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer-based reservation setting<br>
+		 * <br>
+		 * EPC : 0x90<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify whether or not to use the ON timer-based reservation function.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON timer-based reservation function<br>
+		 * ON: 0x41<br>
+		 * ON timer-based reservation function<br>
+		 * OFF: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerBasedReservationSetting(byte[] edt) {
-			addProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (time)<br>EPC : 0x91<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer setting
+(time)<br>
+		 * <br>
+		 * EPC : 0x91<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char x 2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerSettingTime(byte[] edt) {
-			addProperty(EPC_ON_TIMER_SETTING_TIME, edt, (edt != null && (edt.length == 2)));
+			addProperty(EPC_ON_TIMER_SETTING_TIME, edt);
 			return this;
 		}
 		/**
-		 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (relative time)<br>EPC : 0x92<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer setting
+(relative time)<br>
+		 * <br>
+		 * EPC : 0x92<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char x 2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerSettingRelativeTime(byte[] edt) {
-			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
+			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME, edt);
 			return this;
 		}
 		/**
-		 * Used to specify whether or not to use the OFF timer-based reservation function.<br><br>OFF timer-based reservation function ON: 0x41 OFF timer-based reservation function OFF: 0x42<br><br>Name : OFF timer-based reservation setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : OFF timer-based reservation setting<br>
+		 * <br>
+		 * EPC : 0x94<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify whether or not to use the OFF timer-based reservation function.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * OFF timer-based reservation function<br>
+		 * ON: 0x41<br>
+		 * OFF timer-based reservation function<br>
+		 * OFF: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetOffTimerBasedReservationSetting(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING, edt, (edt != null && (edt.length == 1)));
+			addProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (time)<br>EPC : 0x95<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : OFF timer setting (time)<br>
+		 * <br>
+		 * EPC : 0x95<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char x 2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetOffTimerSettingTime(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_SETTING_TIME, edt, (edt != null && (edt.length == 2)));
+			addProperty(EPC_OFF_TIMER_SETTING_TIME, edt);
 			return this;
 		}
 		/**
-		 * Timer value HH:MM<br><br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Name : Set value of OFF timer relative time<br>EPC : 0x96<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Set value of OFF timer relative time<br>
+		 * <br>
+		 * EPC : 0x96<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Timer value HH:MM<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
+		 * <br>
+		 * Data type : unsigned char x 2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Setter reqSetSetValueOfOffTimerRelativeTime(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME, edt, (edt != null && (edt.length == 2)));
+			addProperty(EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME, edt);
 			return this;
 		}
 	}
-
-	public class Getter extends DeviceObject.Getter {
-
+	
+	public static class Getter extends DeviceObject.Getter {
+		public Getter(EchoObject eoj, boolean multicast) {
+			super(eoj, multicast);
+		}
+		
+		@Override
+		public Getter reqGetProperty(byte epc) {
+			return (Getter)super.reqGetProperty(epc);
+		}
+		
 		@Override
 		public Getter reqGetOperationStatus() {
 			return (Getter)super.reqGetOperationStatus();
@@ -789,77 +1965,300 @@ public abstract class ElectricHeater extends DeviceObject {
 		}
 		
 		/**
-		 * Used to specify whether or not to use the automatic temperature control function.<br><br>Automatic = 0x41, non-automatic = 0x42<br><br>Name : Automatic temperature control setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Automatic temperature control setting<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify whether or not to use the automatic temperature control function.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic = 0x41, non-automatic =<br>
+		 * 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetAutomaticTemperatureControlSetting() {
 			addProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING);
 			return this;
 		}
 		/**
-		 * Used to set the temperature.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : Temperature setting<br>EPC : 0xB3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
+		 * Property name : Temperature setting<br>
+		 * <br>
+		 * EPC : 0xB3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the temperature.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : . C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		public Getter reqGetTemperatureSetting() {
 			addProperty(EPC_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
-		 * This property indicates the measured room temperature.<br><br>0x81 to 0x7E (-128 to 127��C)<br><br>Name : Measured room temperature<br>EPC : 0xBB<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Measured room temperature<br>
+		 * <br>
+		 * EPC : 0xBB<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the measured room temperature.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x81 to 0x7E (-128 to 127��C)<br>
+		 * <br>
+		 * Data type : signed char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : . C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredRoomTemperature() {
 			addProperty(EPC_MEASURED_ROOM_TEMPERATURE);
 			return this;
 		}
 		/**
-		 * This property indicates the last temperature (��C) set by the user using a remote controller unit.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : Remotely set temperature<br>EPC : 0xBC<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
+		 * Property name : Remotely set temperature<br>
+		 * <br>
+		 * EPC : 0xBC<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the last temperature (��C) set by the user using a remote controller unit.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : . C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetRemotelySetTemperature() {
 			addProperty(EPC_REMOTELY_SET_TEMPERATURE);
 			return this;
 		}
 		/**
-		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br><br>Automatic air flow rate control used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Name : Air flow rate setting<br>EPC : 0xA0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Air flow rate setting<br>
+		 * <br>
+		 * EPC : 0xA0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic air flow rate control used =<br>
+		 * 0x41<br>
+		 * Air flow rate = 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetAirFlowRateSetting() {
 			addProperty(EPC_AIR_FLOW_RATE_SETTING);
 			return this;
 		}
 		/**
-		 * Used to specify whether or not to use the ON timer-based reservation function.<br><br>ON timer-based reservation function ON: 0x41 ON timer-based reservation function OFF: 0x42<br><br>Name : ON timer-based reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer-based reservation setting<br>
+		 * <br>
+		 * EPC : 0x90<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify whether or not to use the ON timer-based reservation function.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON timer-based reservation function<br>
+		 * ON: 0x41<br>
+		 * ON timer-based reservation function<br>
+		 * OFF: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerBasedReservationSetting() {
 			addProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING);
 			return this;
 		}
 		/**
-		 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (time)<br>EPC : 0x91<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer setting
+(time)<br>
+		 * <br>
+		 * EPC : 0x91<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char x 2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerSettingTime() {
 			addProperty(EPC_ON_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
-		 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (relative time)<br>EPC : 0x92<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : ON timer setting
+(relative time)<br>
+		 * <br>
+		 * EPC : 0x92<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char x 2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerSettingRelativeTime() {
 			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 		/**
-		 * Used to specify whether or not to use the OFF timer-based reservation function.<br><br>OFF timer-based reservation function ON: 0x41 OFF timer-based reservation function OFF: 0x42<br><br>Name : OFF timer-based reservation setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : OFF timer-based reservation setting<br>
+		 * <br>
+		 * EPC : 0x94<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify whether or not to use the OFF timer-based reservation function.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * OFF timer-based reservation function<br>
+		 * ON: 0x41<br>
+		 * OFF timer-based reservation function<br>
+		 * OFF: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetOffTimerBasedReservationSetting() {
 			addProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING);
 			return this;
 		}
 		/**
-		 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (time)<br>EPC : 0x95<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : OFF timer setting (time)<br>
+		 * <br>
+		 * EPC : 0x95<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char x 2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetOffTimerSettingTime() {
 			addProperty(EPC_OFF_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
-		 * Timer value HH:MM<br><br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Name : Set value of OFF timer relative time<br>EPC : 0x96<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
+		 * Property name : Set value of OFF timer relative time<br>
+		 * <br>
+		 * EPC : 0x96<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Timer value HH:MM<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
+		 * <br>
+		 * Data type : unsigned char x 2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
 		 */
 		public Getter reqGetSetValueOfOffTimerRelativeTime() {
 			addProperty(EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME);
@@ -867,87 +2266,16 @@ public abstract class ElectricHeater extends DeviceObject {
 		}
 	}
 	
-	public interface Informer extends DeviceObject.Informer {
-		public Informer reqInform(byte epc);
-		
-		public Informer reqInformOperationStatus();
-		public Informer reqInformInstallationLocation();
-		public Informer reqInformStandardVersionInformation();
-		public Informer reqInformIdentificationNumber();
-		public Informer reqInformMeasuredInstantaneousPowerConsumption();
-		public Informer reqInformMeasuredCumulativePowerConsumption();
-		public Informer reqInformManufacturersFaultCode();
-		public Informer reqInformCurrentLimitSetting();
-		public Informer reqInformFaultStatus();
-		public Informer reqInformFaultDescription();
-		public Informer reqInformManufacturerCode();
-		public Informer reqInformBusinessFacilityCode();
-		public Informer reqInformProductCode();
-		public Informer reqInformProductionNumber();
-		public Informer reqInformProductionDate();
-		public Informer reqInformPowerSavingOperationSetting();
-		public Informer reqInformPositionInformation();
-		public Informer reqInformCurrentTimeSetting();
-		public Informer reqInformCurrentDateSetting();
-		public Informer reqInformPowerLimitSetting();
-		public Informer reqInformCumulativeOperatingTime();
-		public Informer reqInformStatusChangeAnnouncementPropertyMap();
-		public Informer reqInformSetPropertyMap();
-		public Informer reqInformGetPropertyMap();
-		
-		/**
-		 * Used to specify whether or not to use the automatic temperature control function.<br><br>Automatic = 0x41, non-automatic = 0x42<br><br>Name : Automatic temperature control setting<br>EPC : 0xB1<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformAutomaticTemperatureControlSetting();
-		/**
-		 * Used to set the temperature.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : Temperature setting<br>EPC : 0xB3<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : mandatory<br>Get : mandatory<br>
-		 */
-		public Informer reqInformTemperatureSetting();
-		/**
-		 * This property indicates the measured room temperature.<br><br>0x81 to 0x7E (-128 to 127��C)<br><br>Name : Measured room temperature<br>EPC : 0xBB<br>Data Type : signed char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformMeasuredRoomTemperature();
-		/**
-		 * This property indicates the last temperature (��C) set by the user using a remote controller unit.<br><br>0x00 to 0x32 (0 to 50��C)<br><br>Name : Remotely set temperature<br>EPC : 0xBC<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : undefined<br>Get : optional<br>
-		 */
-		public Informer reqInformRemotelySetTemperature();
-		/**
-		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br><br>Automatic air flow rate control used = 0x41 Air flow rate = 0x31 to 0x38<br><br>Name : Air flow rate setting<br>EPC : 0xA0<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformAirFlowRateSetting();
-		/**
-		 * Used to specify whether or not to use the ON timer-based reservation function.<br><br>ON timer-based reservation function ON: 0x41 ON timer-based reservation function OFF: 0x42<br><br>Name : ON timer-based reservation setting<br>EPC : 0x90<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformOnTimerBasedReservationSetting();
-		/**
-		 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (time)<br>EPC : 0x91<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformOnTimerSettingTime();
-		/**
-		 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : ON timer setting (relative time)<br>EPC : 0x92<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformOnTimerSettingRelativeTime();
-		/**
-		 * Used to specify whether or not to use the OFF timer-based reservation function.<br><br>OFF timer-based reservation function ON: 0x41 OFF timer-based reservation function OFF: 0x42<br><br>Name : OFF timer-based reservation setting<br>EPC : 0x94<br>Data Type : unsigned char<br>Data Size(Byte) : 1 byte<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformOffTimerBasedReservationSetting();
-		/**
-		 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br><br>0 to 0x17: 0 to 0x3B (= 0 to 23): (= 0 to 59)<br><br>Name : OFF timer setting (time)<br>EPC : 0x95<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformOffTimerSettingTime();
-		/**
-		 * Timer value HH:MM<br><br>0.0x17: 0.0x3B (= 0.23):(= 0.59)<br><br>Name : Set value of OFF timer relative time<br>EPC : 0x96<br>Data Type : unsigned char x 2<br>Data Size(Byte) : 2 bytes<br><br>AccessRule<br>Announce : undefined<br>Set : optional<br>Get : optional<br>
-		 */
-		public Informer reqInformSetValueOfOffTimerRelativeTime();
-	}
-
-	public class InformerImpl extends DeviceObject.InformerImpl implements Informer {
-		@Override
-		public Informer reqInform(byte epc) {
-			return (Informer)super.reqInform(epc);
+	public static class Informer extends DeviceObject.Informer {
+		public Informer(EchoObject eoj, boolean multicast) {
+			super(eoj, multicast);
 		}
 		
 		@Override
+		public Informer reqInformProperty(byte epc) {
+			return (Informer)super.reqInformProperty(epc);
+		}
+				@Override
 		public Informer reqInformOperationStatus() {
 			return (Informer)super.reqInformOperationStatus();
 		}
@@ -1043,243 +2371,367 @@ public abstract class ElectricHeater extends DeviceObject {
 		public Informer reqInformGetPropertyMap() {
 			return (Informer)super.reqInformGetPropertyMap();
 		}
-
-		@Override
-		public Informer reqInformAutomaticTemperatureControlSetting() {
-			byte epc = EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING;
-			byte[] edt = _getAutomaticTemperatureControlSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformTemperatureSetting() {
-			byte epc = EPC_TEMPERATURE_SETTING;
-			byte[] edt = _getTemperatureSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformMeasuredRoomTemperature() {
-			byte epc = EPC_MEASURED_ROOM_TEMPERATURE;
-			byte[] edt = _getMeasuredRoomTemperature(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformRemotelySetTemperature() {
-			byte epc = EPC_REMOTELY_SET_TEMPERATURE;
-			byte[] edt = _getRemotelySetTemperature(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformAirFlowRateSetting() {
-			byte epc = EPC_AIR_FLOW_RATE_SETTING;
-			byte[] edt = _getAirFlowRateSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformOnTimerBasedReservationSetting() {
-			byte epc = EPC_ON_TIMER_BASED_RESERVATION_SETTING;
-			byte[] edt = _getOnTimerBasedReservationSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformOnTimerSettingTime() {
-			byte epc = EPC_ON_TIMER_SETTING_TIME;
-			byte[] edt = _getOnTimerSettingTime(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Informer reqInformOnTimerSettingRelativeTime() {
-			byte epc = EPC_ON_TIMER_SETTING_RELATIVE_TIME;
-			byte[] edt = _getOnTimerSettingRelativeTime(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Informer reqInformOffTimerBasedReservationSetting() {
-			byte epc = EPC_OFF_TIMER_BASED_RESERVATION_SETTING;
-			byte[] edt = _getOffTimerBasedReservationSetting(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 1)));
-			return this;
-		}
-		@Override
-		public Informer reqInformOffTimerSettingTime() {
-			byte epc = EPC_OFF_TIMER_SETTING_TIME;
-			byte[] edt = _getOffTimerSettingTime(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-		@Override
-		public Informer reqInformSetValueOfOffTimerRelativeTime() {
-			byte epc = EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME;
-			byte[] edt = _getSetValueOfOffTimerRelativeTime(epc);
-			addProperty(epc, edt, (edt != null && (edt.length == 2)));
-			return this;
-		}
-	}
-	
-	public class InformerProxy extends DeviceObject.InformerProxy implements Informer {
-		@Override
-		public Informer reqInform(byte epc) {
-			return (Informer)super.reqInform(epc);
-		}
 		
-		@Override
-		public Informer reqInformOperationStatus() {
-			return (Informer)super.reqInformOperationStatus();
-		}
-		@Override
-		public Informer reqInformInstallationLocation() {
-			return (Informer)super.reqInformInstallationLocation();
-		}
-		@Override
-		public Informer reqInformStandardVersionInformation() {
-			return (Informer)super.reqInformStandardVersionInformation();
-		}
-		@Override
-		public Informer reqInformIdentificationNumber() {
-			return (Informer)super.reqInformIdentificationNumber();
-		}
-		@Override
-		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
-			return (Informer)super.reqInformMeasuredInstantaneousPowerConsumption();
-		}
-		@Override
-		public Informer reqInformMeasuredCumulativePowerConsumption() {
-			return (Informer)super.reqInformMeasuredCumulativePowerConsumption();
-		}
-		@Override
-		public Informer reqInformManufacturersFaultCode() {
-			return (Informer)super.reqInformManufacturersFaultCode();
-		}
-		@Override
-		public Informer reqInformCurrentLimitSetting() {
-			return (Informer)super.reqInformCurrentLimitSetting();
-		}
-		@Override
-		public Informer reqInformFaultStatus() {
-			return (Informer)super.reqInformFaultStatus();
-		}
-		@Override
-		public Informer reqInformFaultDescription() {
-			return (Informer)super.reqInformFaultDescription();
-		}
-		@Override
-		public Informer reqInformManufacturerCode() {
-			return (Informer)super.reqInformManufacturerCode();
-		}
-		@Override
-		public Informer reqInformBusinessFacilityCode() {
-			return (Informer)super.reqInformBusinessFacilityCode();
-		}
-		@Override
-		public Informer reqInformProductCode() {
-			return (Informer)super.reqInformProductCode();
-		}
-		@Override
-		public Informer reqInformProductionNumber() {
-			return (Informer)super.reqInformProductionNumber();
-		}
-		@Override
-		public Informer reqInformProductionDate() {
-			return (Informer)super.reqInformProductionDate();
-		}
-		@Override
-		public Informer reqInformPowerSavingOperationSetting() {
-			return (Informer)super.reqInformPowerSavingOperationSetting();
-		}
-		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
-		}
-		@Override
-		public Informer reqInformCurrentTimeSetting() {
-			return (Informer)super.reqInformCurrentTimeSetting();
-		}
-		@Override
-		public Informer reqInformCurrentDateSetting() {
-			return (Informer)super.reqInformCurrentDateSetting();
-		}
-		@Override
-		public Informer reqInformPowerLimitSetting() {
-			return (Informer)super.reqInformPowerLimitSetting();
-		}
-		@Override
-		public Informer reqInformCumulativeOperatingTime() {
-			return (Informer)super.reqInformCumulativeOperatingTime();
-		}
-		@Override
-		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
-			return (Informer)super.reqInformStatusChangeAnnouncementPropertyMap();
-		}
-		@Override
-		public Informer reqInformSetPropertyMap() {
-			return (Informer)super.reqInformSetPropertyMap();
-		}
-		@Override
-		public Informer reqInformGetPropertyMap() {
-			return (Informer)super.reqInformGetPropertyMap();
-		}
-
-		@Override
+		/**
+		 * Property name : Automatic temperature control setting<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify whether or not to use the automatic temperature control function.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic = 0x41, non-automatic =<br>
+		 * 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformAutomaticTemperatureControlSetting() {
 			addProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Temperature setting<br>
+		 * <br>
+		 * EPC : 0xB3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the temperature.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : . C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
+		 */
 		public Informer reqInformTemperatureSetting() {
 			addProperty(EPC_TEMPERATURE_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Measured room temperature<br>
+		 * <br>
+		 * EPC : 0xBB<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the measured room temperature.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x81 to 0x7E (-128 to 127��C)<br>
+		 * <br>
+		 * Data type : signed char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : . C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformMeasuredRoomTemperature() {
 			addProperty(EPC_MEASURED_ROOM_TEMPERATURE);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Remotely set temperature<br>
+		 * <br>
+		 * EPC : 0xBC<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the last temperature (��C) set by the user using a remote controller unit.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : . C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformRemotelySetTemperature() {
 			addProperty(EPC_REMOTELY_SET_TEMPERATURE);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Air flow rate setting<br>
+		 * <br>
+		 * EPC : 0xA0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic air flow rate control used =<br>
+		 * 0x41<br>
+		 * Air flow rate = 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformAirFlowRateSetting() {
 			addProperty(EPC_AIR_FLOW_RATE_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : ON timer-based reservation setting<br>
+		 * <br>
+		 * EPC : 0x90<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify whether or not to use the ON timer-based reservation function.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON timer-based reservation function<br>
+		 * ON: 0x41<br>
+		 * ON timer-based reservation function<br>
+		 * OFF: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformOnTimerBasedReservationSetting() {
 			addProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : ON timer setting
+(time)<br>
+		 * <br>
+		 * EPC : 0x91<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char x 2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformOnTimerSettingTime() {
 			addProperty(EPC_ON_TIMER_SETTING_TIME);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : ON timer setting
+(relative time)<br>
+		 * <br>
+		 * EPC : 0x92<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char x 2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformOnTimerSettingRelativeTime() {
 			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : OFF timer-based reservation setting<br>
+		 * <br>
+		 * EPC : 0x94<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify whether or not to use the OFF timer-based reservation function.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * OFF timer-based reservation function<br>
+		 * ON: 0x41<br>
+		 * OFF timer-based reservation function<br>
+		 * OFF: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformOffTimerBasedReservationSetting() {
 			addProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : OFF timer setting (time)<br>
+		 * <br>
+		 * EPC : 0x95<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0 to 0x17: 0 to 0x3B<br>
+		 * (= 0 to 23): (= 0 to 59)<br>
+		 * <br>
+		 * Data type : unsigned char x 2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformOffTimerSettingTime() {
 			addProperty(EPC_OFF_TIMER_SETTING_TIME);
 			return this;
 		}
-		@Override
+		/**
+		 * Property name : Set value of OFF timer relative time<br>
+		 * <br>
+		 * EPC : 0x96<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Timer value HH:MM<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
+		 * <br>
+		 * Data type : unsigned char x 2<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
 		public Informer reqInformSetValueOfOffTimerRelativeTime() {
 			addProperty(EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME);
 			return this;
 		}
 	}
+
+	public static class Proxy extends ElectricHeater {
+		private byte mInstanceCode;
+		public Proxy(byte instanceCode) {
+			super();
+			mInstanceCode = instanceCode;
+		}
+		@Override
+		public byte getInstanceCode() {
+			return mInstanceCode;
+		}
+		@Override
+		protected byte[] getOperationStatus() {return null;}
+		@Override
+		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		@Override
+		protected byte[] getInstallationLocation() {return null;}
+		@Override
+		protected byte[] getStandardVersionInformation() {return null;}
+		@Override
+		protected byte[] getFaultStatus() {return null;}
+		@Override
+		protected byte[] getManufacturerCode() {return null;}
+		@Override
+		protected boolean setTemperatureSetting(byte[] edt) {return false;}
+		@Override
+		protected byte[] getTemperatureSetting() {return null;}
+	}
+	
+	public static Setter setG() {
+		return setG((byte)0);
+	}
+
+	public static Setter setG(byte instanceCode) {
+		return new Setter(new Proxy(instanceCode), true, true);
+	}
+
+	public static Setter setG(boolean responseRequired) {
+		return setG((byte)0, responseRequired);
+	}
+
+	public static Setter setG(byte instanceCode, boolean responseRequired) {
+		return new Setter(new Proxy(instanceCode), responseRequired, true);
+	}
+
+	public static Getter getG() {
+		return getG((byte)0);
+	}
+	
+	public static Getter getG(byte instanceCode) {
+		return new Getter(new Proxy(instanceCode), true);
+	}
+
+	public static Informer informG() {
+		return informG((byte)0);
+	}
+
+	public static Informer informG(byte instanceCode) {
+		return new Informer(new Proxy(instanceCode), true);
+	}
+
 }

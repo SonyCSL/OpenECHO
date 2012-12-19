@@ -16,50 +16,119 @@
 package com.sonycsl.echo.eoj;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
+import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.EchoUtils;
+import com.sonycsl.echo.eoj.profile.NodeProfile;
+import com.sonycsl.echo.exception.InvalidPropertyException;
 import com.sonycsl.echo.node.EchoNode;
 
 
 public abstract class EchoObject {
 
-	@SuppressWarnings("unused")
-	private static final String TAG = EchoObject.class.getSimpleName();
-	private final EchoObject self = this;
-	
-	public static final byte ESV_SETI = 0x60;
-	public static final byte ESV_SETC = 0x61;
-	public static final byte ESV_GET  = 0x62;
-	public static final byte ESV_INF_REQ = 0x63;
-	public static final byte ESV_SET_RES = 0x71;
-	public static final byte ESV_GET_RES = 0x72;
-	public static final byte ESV_INF = 0x73;
-	public static final byte ESV_INFC = 0x74;
-	public static final byte ESV_INFC_RES = 0x7A;
-	public static final byte ESV_SETI_SNA = 0x50;
-	public static final byte ESV_SETC_SNA = 0x51;
-	public static final byte ESV_GET_SNA = 0x52;
-	public static final byte ESV_INF_SNA = 0x53;
-	
-	public static final byte ESV_SET_NO_RES = 0x70;
-	
-	public static final byte ESV_SET_GET = 0x6E;
-	public static final byte ESV_SET_GET_RES = 0x7E;
-	public static final byte ESV_SET_GET_SNA = 0x5E;
-	
-	private short mTid = 0;
-	
 	private EchoNode mNode = null;
 	
-	private EchoObject mSeoj = null;
-	private EchoObject mDeoj = null;
+	private long mUpdatedTime = 0;
 	
 	private Receiver mReceiver = null;
+	
+	private boolean mActive = true;
+	
+
+	private HashSet<Byte> mStatusChangeAnnouncementProperties;
+	private HashSet<Byte> mSetProperties;
+	private HashSet<Byte> mGetProperties;
+	
+	public EchoObject() {
+		super();
+
+		mStatusChangeAnnouncementProperties = new HashSet<Byte>();
+		mSetProperties = new HashSet<Byte>();
+		mGetProperties = new HashSet<Byte>();
+		
+		setupPropertyMaps();
+	}
+	
+	protected void setupPropertyMaps() {}
+
+	protected final void addStatusChangeAnnouncementProperty(byte epc) {
+		mStatusChangeAnnouncementProperties.add(epc);
+	}
+
+	protected final void removeStatusChangeAnnouncementProperty(byte epc) {
+		if(mStatusChangeAnnouncementProperties.contains(epc))
+			mStatusChangeAnnouncementProperties.remove(epc);
+	}
+	
+	protected final void clearStatusChangeAnnouncementProperties() {
+		mStatusChangeAnnouncementProperties.clear();
+	}
+	
+	public final byte[] getStatusChangeAnnouncementProperties() {
+		byte[] ret = new byte[mStatusChangeAnnouncementProperties.size()];
+		Iterator<Byte> it = mStatusChangeAnnouncementProperties.iterator();
+		for(int i = 0; i < ret.length; i++) {
+			ret[i] = it.next();
+		}
+		return ret;
+	}
+	
+	protected final void addSetProperty(byte epc) {
+		mSetProperties.add(epc);
+	}
+
+	
+	protected final void removeSetProperty(byte epc) {
+		if(mSetProperties.contains(epc))
+			mSetProperties.remove(epc);
+	}
+	
+	protected final void clearSetProperties() {
+		mSetProperties.clear();
+	}
+	
+	public final byte[] getSetProperties() {
+		byte[] ret = new byte[mSetProperties.size()];
+		Iterator<Byte> it = mSetProperties.iterator();
+		for(int i = 0; i < ret.length; i++) {
+			ret[i] = it.next();
+		}
+		return ret;
+	}
+	
+	protected final void addGetProperty(byte epc) {
+		mGetProperties.add(epc);
+	}
+	
+	protected final void removeGetProperty(byte epc) {
+		if(mGetProperties.contains(epc))
+			mGetProperties.remove(epc);
+	}
+	
+	protected final void clearGetProperties() {
+		mGetProperties.clear();
+	}
+	
+	public final byte[] getGetProperties() {
+		byte[] ret = new byte[mGetProperties.size()];
+		Iterator<Byte> it = mGetProperties.iterator();
+		for(int i = 0; i < ret.length; i++) {
+			ret[i] = it.next();
+		}
+		return ret;
+	}
+
 	
 	@Override
 	public String toString() {
@@ -77,146 +146,169 @@ public abstract class EchoObject {
 		return new String(sb);
 	}
 	
-	public abstract byte getClassGroupCode();
+	public final byte getClassGroupCode() {
+		short code = getEchoClassCode();
+		return (byte)((code >> 8) & 0xFF);
+	}
 	
-	public abstract byte getClassCode();
+	public final byte getClassCode() {
+		short code = getEchoClassCode();
+		return (byte)(code & 0xFF);
+	}
 	
 	public abstract byte getInstanceCode();
 	
-	public final short getObjectClassCode() {
-		return EchoUtils.getObjectClassCode(getClassGroupCode(), getClassCode());
+	public abstract short getEchoClassCode();
+	
+	public final int getEchoObjectCode() {
+		return EchoUtils.getEchoObjectCode(getEchoClassCode(), getInstanceCode());
 	}
 	
-	public boolean isProxy() {
-		return false;
-	}
-	
-	public final void setTid(short tid) {
-		mTid = tid;
-	}
-	
-	public final short getTid() {
-		return mTid;
-	}
-	
-	public final void setNode(EchoNode node) {
+	public void initialize(EchoNode node) {
 		mNode = node;
+		
+		update();
+		
+		Echo.EventListener listener = Echo.getEventListener();
+		try {
+			if(listener != null) listener.onNewEchoObject(this);
+		} catch(Exception e) {
+			try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
+		}
 	}
 	
-	public EchoNode getNode() {
+	public final void update() {
+		setActive(true);
+		mUpdatedTime = System.currentTimeMillis();
+		EchoNode node = getNode();
+		if(node != null) node.update();
+	}
+	
+	public final long getUpdatedTime() {
+		return mUpdatedTime;
+	}
+	
+	public final boolean isProxy() {
+		EchoNode node = getNode();
+		if(node==null) return true;
+		else return node.isProxy();
+	}
+	
+	public final EchoNode getNode() {
 		return mNode;
 	}
 	
-	public final void setSeoj(EchoObject seoj) {
-		mSeoj = seoj;
+	public final void setActive(boolean active) {
+		mActive = active;
 	}
 	
-	public final EchoObject getSeoj() {
-		if(mSeoj == null) {
-			mSeoj = Echo.getNode().getProfile();
-		}
-		return mSeoj;
+	public final boolean isActive() {
+		return mActive;
 	}
 	
-	protected void setDeoj(EchoObject deoj) {
-		mDeoj = deoj;
+	protected boolean setProperty(EchoProperty property) {
+		return false;
 	}
 	
-	protected EchoObject getDeoj() {
-		if(mDeoj == null) {
-			mDeoj = Echo.getNode().getProfile();
-		}
-		return mDeoj;
+	protected byte[] getProperty(byte epc) {
+		return null;
 	}
-
+	
+	protected boolean isValidProperty(EchoProperty property) {
+		return false;
+	}
+	
 	public final void setReceiver(Receiver receiver) {
 		mReceiver = receiver;
 	}
+	
+	protected boolean onReceiveProperty(EchoProperty property) {
+		return false;
+	}
+	
+	public final void receive(EchoFrame frame) {
+		update();
+		
+		EchoProperty[] properties = frame.getProperties();
 
-	public void onInvokedSetMethod(byte epc, byte[] edt, boolean success) {
-		if(Echo.getMethodInvokedListener() == null) return;
-		byte pdc = (edt == null) ? 0 : (byte)edt.length;
-		Echo.getMethodInvokedListener().onInvokedSetMethod(this, epc, pdc, edt, success);
-	}
-	public void onInvokedGetMethod(byte epc, byte[] edt) {
-		if(Echo.getMethodInvokedListener() == null) return;
-		byte pdc = (edt == null) ? 0 : (byte)edt.length;
-		Echo.getMethodInvokedListener().onInvokedGetMethod(this, epc, pdc, edt);
-	}
-	
-	public void onInvokedReqSetMethod(byte epc, byte[] edt) {
-		if(Echo.getMethodInvokedListener() == null) return;
-		byte pdc = (edt == null) ? 0 : (byte)edt.length;
-		Echo.getMethodInvokedListener().onInvokedReqSetMethod(this, epc, pdc, edt);
-	}
-	public void onInvokedReqGetMethod(byte epc) {
-		if(Echo.getMethodInvokedListener() == null) return;
-		Echo.getMethodInvokedListener().onInvokedReqGetMethod(this, epc);
-	}
-	public void onInvokedReqInformMethod(byte epc) {
-		if(Echo.getMethodInvokedListener() == null) return;
-		Echo.getMethodInvokedListener().onInvokedReqInformMethod(this, epc);
-	}
-	public void onInvokedReqInformMethod(byte epc, byte[] edt) {
-		if(Echo.getMethodInvokedListener() == null) return;
-		byte pdc = (edt == null) ? 0 : (byte)edt.length;
-		Echo.getMethodInvokedListener().onInvokedReqInformMethod(this, epc, pdc, edt);
-	}
-	public void onInvokedInformMethod(byte epc, byte[] edt) {
-		if(Echo.getMethodInvokedListener() == null) return;
-		byte pdc = (edt == null) ? 0 : (byte)edt.length;
-		Echo.getMethodInvokedListener().onInvokedInformMethod(this, epc, pdc, edt);
-	}
-	
-	public final void onReceive(EchoFrame frame) {
-		EchoFrame.Property[] properties = frame.getProperties();
-		if(mReceiver != null) {
-			for(EchoFrame.Property p : properties) {
-				mReceiver.onReceive(this, frame.getTid(), frame.getEsv(), p.epc, p.pdc, p.edt);
+		Echo.EventListener listener = Echo.getEventListener();
+		
+		// receive response
+		for(EchoProperty p : properties) {
+			try {
+				switch(frame.getEsv()) {
+				case EchoFrame.ESV_SET_RES: case EchoFrame.ESV_SETI_SNA: case EchoFrame.ESV_SETC_SNA:
+					if(mReceiver != null) mReceiver.onSetProperty(this, frame.getTid(), frame.getEsv(), p, (p.pdc == 0));
+					if(listener != null) listener.onSetProperty(this, frame.getTid(), frame.getEsv(), p, (p.pdc == 0));
+					break;
+				case EchoFrame.ESV_GET_RES: case EchoFrame.ESV_GET_SNA:
+				case EchoFrame.ESV_INF: case EchoFrame.ESV_INF_SNA:
+				case EchoFrame.ESV_INFC:
+					onReceiveProperty(p);
+					if(mReceiver != null) mReceiver.onGetProperty(this, frame.getTid(), frame.getEsv(), p, (p.pdc != 0));
+					if(listener != null) listener.onGetProperty(this, frame.getTid(), frame.getEsv(), p, (p.pdc == 0));
+					break;
+				case EchoFrame.ESV_INFC_RES:
+					if(mReceiver != null) mReceiver.onInformProperty(this, frame.getTid(), frame.getEsv(), p);
+					if(listener != null) listener.onInformProperty(this, frame.getTid(), frame.getEsv(), p);
+					break;
+				}
+			} catch(Exception e) {
+				try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
 			}
 		}
 
+		// receive request
 		EchoFrame res;
 		switch(frame.getEsv()) {
-		case ESV_SETI:
-			res = new EchoFrame(frame.getTid(), frame.getDeoj(), frame.getSeoj(), ESV_SET_NO_RES);
-			for(EchoFrame.Property p : properties) {
-				onReceiveSet(res, p.epc, p.pdc, p.edt);
+		case EchoFrame.ESV_SETI:
+			res = new EchoFrame(frame.getTid(), frame.getDeoj(), frame.getSeoj(), EchoFrame.ESV_SET_NO_RES);
+			for(EchoProperty p : properties) {
+				onReceiveSet(res, p);
 			}
-			if(res.getEsv() == ESV_SETI_SNA) {
+			if(res.getEsv() == EchoFrame.ESV_SETI_SNA) {
 				try {
 					EchoSocket.send(res.getDeoj().getNode().getAddress(), res.getFrameByteArray());
-				} catch (IOException e) {
-					e.printStackTrace();
+					if(listener != null) listener.sendEvent(res);
+				} catch (Exception e) {
+					try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
 				}
 			}
 			break;
-		case ESV_SETC:
-			res = new EchoFrame(frame.getTid(), frame.getDeoj(), frame.getSeoj(), ESV_SET_RES);
-			for(EchoFrame.Property p : properties) {
-				onReceiveSet(res, p.epc, p.pdc, p.edt);
+		case EchoFrame.ESV_SETC:
+			res = new EchoFrame(frame.getTid(), frame.getDeoj(), frame.getSeoj(), EchoFrame.ESV_SET_RES);
+			for(EchoProperty p : properties) {
+				onReceiveSet(res, p);
 			}
 			try {
 				EchoSocket.send(res.getDeoj().getNode().getAddress(), res.getFrameByteArray());
-			} catch (IOException e) {
-				e.printStackTrace();
+				if(listener != null) listener.sendEvent(res);
+			} catch (Exception e) {
+				try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
 			}
 			break;
-		case ESV_GET:
-			res = new EchoFrame(frame.getTid(), frame.getDeoj(), frame.getSeoj(), ESV_GET_RES);
-			for(EchoFrame.Property p : properties) {
+		case EchoFrame.ESV_GET:
+			res = new EchoFrame(frame.getTid(), frame.getDeoj(), frame.getSeoj(), EchoFrame.ESV_GET_RES);
+			for(EchoProperty p : properties) {
+				//if(!onReceiveGet(res, p.epc)) {
+				//	res.addProperty(p.epc, p.edt, false);
+				//}
 				onReceiveGet(res, p.epc);
 			}
 			try {
 				EchoSocket.send(res.getDeoj().getNode().getAddress(), res.getFrameByteArray());
-			} catch (IOException e) {
-				e.printStackTrace();
+				if(listener != null) listener.sendEvent(res);
+			} catch (Exception e) {
+				try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
 			}
 			break;
-		case ESV_INF_REQ:
-			res = new EchoFrame(frame.getTid(), frame.getDeoj(), frame.getSeoj(), ESV_INF);
-			for(EchoFrame.Property p : properties) {
-				onReceiveInfReq(res, p.epc);
+		case EchoFrame.ESV_INF_REQ:
+			res = new EchoFrame(frame.getTid(), frame.getDeoj(), frame.getSeoj(), EchoFrame.ESV_INF);
+			for(EchoProperty p : properties) {
+				//if(!onReceiveInfReq(res, p.epc)) {
+				//	res.addProperty(p.epc, p.edt, false);
+				//}
+				onReceiveGet(res, p.epc);
 			}
 			/*
 			try {
@@ -225,33 +317,37 @@ public abstract class EchoObject {
 				e.printStackTrace();
 			}
 			*/
-			if(res.getEsv() == ESV_INF) {
+			if(res.getEsv() == EchoFrame.ESV_INF) {
 				try {
 					EchoSocket.sendGroup(res.getFrameByteArray());
-				} catch (IOException e) {
-					e.printStackTrace();
+					if(listener != null) listener.sendEvent(res);
+				} catch (Exception e) {
+					try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
 				}
 			} else {
+				// ESV_INF_SNA
 				try {
 					EchoSocket.send(res.getDeoj().getNode().getAddress(), res.getFrameByteArray());
-				} catch (IOException e) {
-					e.printStackTrace();
+					if(listener != null) listener.sendEvent(res);
+				} catch (Exception e) {
+					try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
 				}
 			}
 			break;
-		case ESV_INFC:
-			res = new EchoFrame(frame.getTid(), frame.getDeoj(), frame.getSeoj(), ESV_INFC_RES);
-			for(EchoFrame.Property p : properties) {
+		case EchoFrame.ESV_INFC:
+			res = new EchoFrame(frame.getTid(), frame.getDeoj(), frame.getSeoj(), EchoFrame.ESV_INFC_RES);
+			for(EchoProperty p : properties) {
 				res.addProperty(p.epc);
 			}
 			try {
 				EchoSocket.send(res.getDeoj().getNode().getAddress(), res.getFrameByteArray());
-			} catch (IOException e) {
-				e.printStackTrace();
+				if(listener != null) listener.sendEvent(res);
+			} catch (Exception e) {
+				try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
 			}
 			break;
-		case ESV_SET_GET:
-			res = new EchoFrame(frame.getTid(), frame.getDeoj(), frame.getSeoj(), ESV_SET_GET_SNA);
+		case EchoFrame.ESV_SET_GET:
+			res = new EchoFrame(frame.getTid(), frame.getDeoj(), frame.getSeoj(), EchoFrame.ESV_SET_GET_SNA);
 			byte[] b = res.getFrameByteArray();
 			ByteBuffer buffer = ByteBuffer.allocate(b.length+1);
 			buffer.order(ByteOrder.BIG_ENDIAN);
@@ -259,8 +355,9 @@ public abstract class EchoObject {
 			buffer.put((byte)0);
 			try {
 				EchoSocket.send(res.getDeoj().getNode().getAddress(), buffer.array());
-			} catch (IOException e) {
-				e.printStackTrace();
+				if(listener != null) listener.sendEvent(res);
+			} catch (Exception e) {
+				try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
 			}
 		default :
 			return;
@@ -268,315 +365,207 @@ public abstract class EchoObject {
 		
 	}
 
-	
-	/**
-	 * ESV=0x60,0x61
-	 * @param res
-	 * @param epc
-	 * @param pdc
-	 * @param edt
-	 */
-	protected void onReceiveSet(EchoFrame res, byte epc, byte pdc, byte[] edt) {
-		
+	protected final void onReceiveSet(EchoFrame res, EchoProperty property) {
+		boolean success = false;
+		Echo.EventListener listener = Echo.getEventListener();
+		try {
+			if(mSetProperties.contains(property.epc)) {
+				boolean valid = isValidProperty(property);
+				if(listener != null) listener.isValidProperty(this, property, valid);
+				if(valid) {
+					// valid property
+					success = setProperty(property);
+					if(listener != null) listener.setProperty(this, property, success);
+				} else {
+					// invalid property
+					success = false;
+				}
+			} else {
+				
+			}
+		} catch (Exception e) {
+			//e.printStackTrace();
+			success = false;
+			try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
+		}
+		res.addProperty(property, success);
 	}
 	
-	/**
-	 * ESV=0x62
-	 * @param res
-	 * @param epc
-	 * @param pdc
-	 * @param edt
-	 */
-	protected void onReceiveGet(EchoFrame res, byte epc) {
-		
-	}
-	
-	/**
-	 * ESV=0x63
-	 * @param res
-	 * @param epc
-	 * @param pdc
-	 * @param edt
-	 */
-	protected void onReceiveInfReq(EchoFrame res, byte epc) {
-		onReceiveGet(res, epc);
+	protected final void onReceiveGet(EchoFrame res, byte epc) {
+		byte[] edt = null;
+		Echo.EventListener listener = Echo.getEventListener();
+		try {
+			edt = getProperty(epc);
+			EchoProperty property = new EchoProperty(epc, edt);
+			listener.getProperty(this, property);
+			boolean valid = isValidProperty(property);
+			if(listener != null) listener.isValidProperty(this, property, valid);
+			if(valid) {
+				// valid property
+			} else {
+				// invalid property
+				edt = null;
+			}
+		} catch (Exception e) {
+			//e.printStackTrace();
+			edt = null;
+			try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
+		}
+		res.addProperty(epc, edt, (edt != null));
 	}
 
 	public Setter set() {
-		return new Setter(ESV_SETI);
+		return new Setter(this, true, false);
 	}
 	
-	public Setter setC() {
-		return new Setter(ESV_SETC);
+	public Setter set(boolean responseRequired) {
+		return new Setter(this, responseRequired, false);
 	}
 	
 	public Getter get() {
-		return new Getter();
+		return new Getter(this, false);
 	}
 	
 	public Informer inform() {
-		return new InformerImpl();
+		return new Informer(this, !isProxy());
+	}
+	
+	protected Informer inform(boolean multicast) {
+		return new Informer(this, multicast);
 	}
 	
 	protected InformerC informC() {
-		return new InformerC();
+		return new InformerC(this);
 	}
+	
 	
 	public static class Receiver {
-		public final void onReceive(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			switch(esv) {
-			case ESV_SET_RES: case ESV_SETI_SNA: case ESV_SETC_SNA:
-				onReceiveSetRes(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case ESV_GET_RES: case ESV_GET_SNA:
-				onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case ESV_INF: case ESV_INF_SNA:
-				onReceiveInf(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case ESV_INFC:
-				onReceiveInfC(eoj, tid, esv, epc, pdc, edt);
-				break;
-			case ESV_INFC_RES:
-				onReceiveInfCRes(eoj, tid, esv, epc, pdc, edt);
-				break;
-			}
-		}
-		/**
-		 * ESV=0x71,0x50,0x51
-		 * @param eoj
-		 * @param tid
-		 * @param esv
-		 * @param epc
-		 * @param pdc
-		 * @param edt
-		 */
-		protected void onReceiveSetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			
+		
+		protected boolean onSetProperty(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {
+			return false;
 		}
 		
-		/**
-		 * ESV=0x72,0x52
-		 * @param eoj
-		 * @param tid
-		 * @param epc
-		 * @param pdc
-		 * @param edt
-		 */
-		protected void onReceiveGetRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			
-		}
-
-		/**
-		 * ESV=0x73,0x53
-		 * @param eoj
-		 * @param tid
-		 * @param esv
-		 * @param epc
-		 * @param pdc
-		 * @param edt
-		 */
-		protected final void onReceiveInf(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			onReceiveGetRes(eoj, tid, esv, epc, pdc, edt);
-			onReceiveInfC(eoj, tid, esv, epc, pdc, edt);
+		protected boolean onGetProperty(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {
+			return false;
 		}
 		
-		/**
-		 * ESV=0x74
-		 * @param eoj
-		 * @param tid
-		 * @param epc
-		 * @param pdc
-		 * @param edt
-		 */
-		protected void onReceiveInfC(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-		}
-		
-		/**
-		 * ESV=0x7A
-		 * @param eoj
-		 * @param tid
-		 * @param epc
-		 * @param pdc
-		 * @param edt
-		 */
-		protected void onReceiveInfCRes(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-		}
-		
-
-		public void onInvokedOnSetMethod(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt, boolean success) {
-			if(Echo.getMethodInvokedListener() == null) return;
-			Echo.getMethodInvokedListener().onInvokedOnSetMethod(eoj, tid, esv, epc, pdc, edt, success);
-		}
-		public void onInvokedOnGetMethod(EchoObject eoj, short tid, byte esv, byte epc, byte pdc, byte[] edt) {
-			if(Echo.getMethodInvokedListener() == null) return;
-			Echo.getMethodInvokedListener().onInvokedOnGetMethod(eoj, tid, esv, epc, pdc, edt);
-			
-		}
-		public void onInvokedOnInformMethod(EchoObject eoj, short tid, byte esv, byte epc) {
-			Echo.getMethodInvokedListener().onInvokedOnInformMethod(eoj, tid, esv, epc);
+		protected boolean onInformProperty(EchoObject eoj, short tid, byte esv, EchoProperty property) {
+			return false;
 		}
 		
 	}
 	
-	protected class Sender {
-		protected EchoFrame mFrame;
+	protected static class Sender {
+		private EchoObject mEoj;
 		
-		public Sender(EchoObject seoj, EchoObject deoj, byte esv) {
-			mFrame = new EchoFrame(mTid, seoj, deoj, esv);
+		private EchoObject mSeoj;
+		private EchoObject mDeoj;
+		
+		private byte mEsv;
+		
+		private boolean mMulticast;
+		
+		private ArrayList<EchoProperty> mPropertyList;
+		
+		public Sender(EchoObject eoj, EchoObject seoj, EchoObject deoj, byte esv, boolean multicast) {
+			//mFrame = new EchoFrame(mTid, seoj, deoj, esv);
+			mEoj = eoj;
+			
+			mSeoj = seoj;
+			mDeoj = deoj;
+			
+			mEsv = esv;
+			
+			mPropertyList = new ArrayList<EchoProperty>();
+			
+			mMulticast = multicast;
 		}
 		
 		protected void send() throws IOException {
-			byte[] data = mFrame.getFrameByteArray();
-			EchoSocket.send(mNode.getAddress(), data);
-			if(Echo.getMethodInvokedListener() == null) return;
-			Echo.getMethodInvokedListener().onInvokedSendMethod(getFrame());
-		}
-		
-		protected void sendGroup() throws IOException {
-			byte[] data = mFrame.getFrameByteArray();
-			EchoSocket.sendGroup(data);
-			if(Echo.getMethodInvokedListener() == null) return;
-			Echo.getMethodInvokedListener().onInvokedSendGroupMethod(getFrame());
-		}
-
-		
-		protected EchoFrame getFrame() {
-			return mFrame;
-		}
-
-		protected void setEsv(byte esv) {
-			mFrame.setEsv(esv);
-		}
-		
-		protected byte getEsv() {
-			return mFrame.getEsv();
-		}
-		
-		protected void addProperty(byte epc) {
-			mFrame.addProperty(epc);
-		}
-		
-		protected void addProperty(byte epc, byte[] edt) {
-			mFrame.addProperty(epc, edt);
-		}
-
-		protected void addProperty(byte epc, byte[] edt, boolean success) {
-			mFrame.addProperty(epc, edt, success);
-		}
-
-		
-	}
-	
-	public class Setter extends Sender {
-
-		public Setter(byte esv) {
-			super(getSeoj(), self, esv);
-		}
-		
-		@Override
-		public void send() throws IOException {
-			super.send();
-		}
-
-		@Override
-		public void sendGroup() throws IOException {
-			super.sendGroup();
-		}
-
-		public Setter reqSet(byte epc, byte[] edt) {
-			addProperty(epc, edt);
-			onInvokedReqSetMethod(epc, edt);
-			return this;
-		}
-
-		@Override
-		protected void addProperty(byte epc, byte[] edt, boolean success) {
-			super.addProperty(epc, edt, success);
-			if(success)
-				onInvokedReqSetMethod(epc, edt);
-		}
-
-	}
-	
-	public class Getter extends Sender {
-		public Getter() {
-			super(getSeoj(), self, ESV_GET);
-		}
-		
-		@Override
-		public void send() throws IOException {
-			super.send();
-		}
-
-		@Override
-		public void sendGroup() throws IOException {
-			super.sendGroup();
-		}
-
-		public Getter reqGet(byte epc) {
-			addProperty(epc);
-			onInvokedReqGetMethod(epc);
-			return this;
-		}
-
-		@Override
-		protected void addProperty(byte epc) {
-			super.addProperty(epc);
-			onInvokedReqGetMethod(epc);
-		}
-	}
-	
-	
-	
-	public interface Informer {
-		public void send() throws IOException;
-		public void sendGroup() throws IOException;
-
-		public Informer reqInform(byte epc);
-	}
-	
-	public class InformerImpl extends Sender implements Informer {
-
-		public InformerImpl() {
-			super(self, getDeoj(), ESV_INF);
-		}
-
-		@Override
-		public void send() throws IOException {
-			super.send();
-		}
-
-		@Override
-		public void sendGroup() throws IOException {
-			super.sendGroup();
-		}
-
-		protected void addProperty(byte epc, byte[] edt, boolean success) {
-			if(success) {
-				mFrame.addProperty(epc, edt);
-				onInvokedReqInformMethod(epc, edt);
+			short tid = EchoSocket.nextTID();
+			EchoFrame frame = new EchoFrame(tid, mSeoj, mDeoj, mEsv);
+			switch(mEsv) {
+			case EchoFrame.ESV_SETI : case EchoFrame.ESV_SETC :
+				for(EchoProperty p : mPropertyList) {
+					if(isValidProperty(p)) {
+						frame.addProperty(p);
+					}
+				}
+				break;
+			case EchoFrame.ESV_GET : case EchoFrame.ESV_INF_REQ :
+				for(EchoProperty p : mPropertyList) {
+					frame.addProperty(p);
+				}
+				break;
+			case EchoFrame.ESV_INF : case EchoFrame.ESV_INFC :
+				
+				for(EchoProperty p : mPropertyList) {
+					EchoProperty pp = new EchoProperty(p.epc, mEoj.getProperty(p.epc));
+					if(isValidProperty(pp)) {
+						frame.addProperty(pp);
+					}
+				}
+				break;
+			}
+			byte[] data = frame.getFrameByteArray();
+			
+			if (mMulticast) {
+				EchoSocket.sendGroup(data);
+			} else {
+				EchoSocket.send(mEoj.getNode().getAddress(), data);
+			}
+			//if(Echo.getMethodInvokedListener() == null) return;
+			//Echo.getMethodInvokedListener().onInvokedSendMethod(frame);
+			
+			
+			Echo.EventListener listener = Echo.getEventListener();
+			try {
+				if(listener != null) listener.sendEvent(frame);
+			} catch(Exception e) {
+				try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
 			}
 		}
-
-		@Override
-		public Informer reqInform(byte epc) {
-			getFrame().setEsv(ESV_INFC);
-			onReceiveInfReq(getFrame(), epc);
-			getFrame().setEsv(ESV_INF);
-			EchoFrame.Property[] props = getFrame().getProperties();
-			if(props.length == 0) return this;
-			EchoFrame.Property prop = props[props.length - 1];
-			if(prop.epc == epc)
-				onInvokedReqInformMethod(epc, prop.edt);
-			return this;
+		
+		protected void addProperty(byte epc) {
+			mPropertyList.add(new EchoProperty(epc));
 		}
+		
+		protected void addProperty(byte epc, byte[] edt) {
+			mPropertyList.add(new EchoProperty(epc, edt));
+		}
+		
+		
+		private boolean isValidProperty(EchoProperty property) {
+
+			Echo.EventListener listener = Echo.getEventListener();
+			
+			boolean valid = false;
+			try {
+				valid = mEoj.isValidProperty(property);
+				if(listener != null) listener.isValidProperty(mEoj, property, valid);
+			} catch(Exception e) {
+				valid = false;
+				try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
+			}
+			return valid;
+		}
+		
+		public void setSeoj(EchoObject seoj) {
+			mSeoj = seoj;
+		}
+		
+		public void setDeoj(EchoObject deoj) {
+			mDeoj = deoj;
+		}
+
 	}
 	
-	public class InformerProxy extends Sender implements Informer {
+	public static class Setter extends Sender {
 
-		public InformerProxy() {
-			super(getSeoj(), self, ESV_INF_REQ);
+		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
+			super(eoj, Echo.getNode().getNodeProfile(), eoj
+				, responseRequired ? EchoFrame.ESV_SETC : EchoFrame.ESV_SETI
+				, multicast);
 		}
 
 		@Override
@@ -584,40 +573,67 @@ public abstract class EchoObject {
 			super.send();
 		}
 
-		@Override
-		public void sendGroup() throws IOException {
-			super.sendGroup();
+		public Setter reqSetProperty(byte epc, byte[] edt) {
+			addProperty(epc, edt);
+			return this;
 		}
 
+	}
+	
+	public static class Getter extends Sender {
+		public Getter(EchoObject eoj, boolean multicast) {
+			super(eoj, Echo.getNode().getNodeProfile(), eoj, EchoFrame.ESV_GET, multicast);
+		}
+		
 		@Override
-		public Informer reqInform(byte epc) {
+		public void send() throws IOException {
+			super.send();
+		}
+
+		public Getter reqGetProperty(byte epc) {
 			addProperty(epc);
 			return this;
 		}
 
-		@Override
-		protected void addProperty(byte epc) {
-			super.addProperty(epc);
-			onInvokedReqInformMethod(epc);
-		}
 	}
+	
+	
+	public static class Informer extends Sender {
 
-	public class InformerC extends Sender {
-		public InformerC() {
-			super(self, getDeoj(), ESV_INFC);
+		public Informer(EchoObject eoj, boolean multicast) {
+			super(
+				eoj
+				, eoj.isProxy() ? Echo.getNode().getNodeProfile() : eoj
+				, eoj.isProxy() ? eoj : Echo.getNode().getNodeProfile()
+				, eoj.isProxy() ? EchoFrame.ESV_INF_REQ : EchoFrame.ESV_INF
+				, multicast);
 		}
 
 		@Override
 		public void send() throws IOException {
 			super.send();
 		}
+		
+		public Informer reqInformProperty(byte epc) {
+			addProperty(epc);
+			return this;
+		}
+	}
 
-		@Override
-		protected void addProperty(byte epc, byte[] edt) {
-			super.addProperty(epc, edt);
-			onInvokedInformMethod(epc, edt);
+	public static class InformerC extends Sender {
+		public InformerC(EchoObject eoj) {
+			super(eoj, eoj, Echo.getNode().getNodeProfile(), EchoFrame.ESV_INFC, false);
 		}
 
+		@Override
+		public void send() throws IOException {
+			super.send();
+		}
+		
+		public InformerC reqInformProperty(byte epc) {
+			addProperty(epc);
+			return this;
+		}
 	}
 
 }
