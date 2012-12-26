@@ -44,6 +44,8 @@ public abstract class NodeProfile extends ProfileObject {
 	public static final byte EPC_SELF_NODE_INSTANCE_LIST_S = (byte)0xD6;
 	public static final byte EPC_SELF_NODE_CLASS_LIST = (byte)0xD7; 
 	
+	public static final byte[] EDT_VERSION_INFORMATION = {(byte)0x01, (byte)0x00, (byte)0x01, (byte) 0x00};
+	
 	@Override
 	public byte getInstanceCode() {
 		return INSTANCE_CODE;
@@ -232,7 +234,7 @@ public abstract class NodeProfile extends ProfileObject {
 	 * Set : undefined<br>
 	 * Get : mandatory<br>
 	 */
-	protected abstract byte[] getVersionInformation();
+	protected byte[] getVersionInformation(){return EDT_VERSION_INFORMATION;}
 	
 	protected boolean isValidVersionInformation(byte[] edt) {
 		if(edt == null || !(edt.length == 4)) return false;

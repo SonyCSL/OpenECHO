@@ -57,11 +57,20 @@ public final class Echo {
 	
 	public static EchoNode start(NodeProfile profile, DeviceObject[] devices) throws IOException {
 
-		
 		EchoSocket.start();
-		EchoNode node = new EchoNode(profile, devices);
-		node.getNodeProfile().inform().reqInformInstanceListNotification().send();
-		return node;
+		if(sLocalNode != null && sLocalNode.getNodeProfile() == profile) {
+			// restart;
+			for(DeviceObject dev : devices) {
+				sLocalNode.addDevice(dev);
+			}
+		} else if(sLocalNode != null) {
+			// sLocalNode.getNodeProfile() != profile
+			return null;
+		} else {
+			sLocalNode = new EchoNode(profile, devices);
+		}
+		sLocalNode.getNodeProfile().inform().reqInformInstanceListNotification().send();
+		return sLocalNode;
 	}
 	
 	public static void stop() throws IOException {
@@ -97,6 +106,10 @@ public final class Echo {
 	
 	public static EchoObject getInstance(InetAddress address, byte classGroupCode, byte classCode, byte instanceCode) {
 		return getInstance(address, EchoUtils.getEchoClassCode(classGroupCode, classCode), instanceCode);
+	}
+	
+	public static EchoObject getInstance(InetAddress address, int objectCode){
+		return getInstance(address, EchoUtils.getEchoClassCodeFromObjectCode(objectCode), EchoUtils.getInstanceCodeFromObjectCode(objectCode));
 	}
 	
 	public static EchoObject getInstance(InetAddress address, short echoClassCode, byte instanceCode) {

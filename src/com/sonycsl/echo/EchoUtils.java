@@ -81,6 +81,13 @@ public final class EchoUtils {
 		buffer.put(instanceCode);
 		return buffer.getInt(0);
 	}
+
+	public static short getEchoClassCodeFromObjectCode(int objectCode) {
+		return (short)((objectCode >> 8) & 0xFFFF);
+	}
+	public static byte getInstanceCodeFromObjectCode(int objectCode) {
+		return (byte)(objectCode & 0xFF);
+	}
 	
 	public static InetAddress getLocalIpAddress() throws SocketException {
 		Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces();
