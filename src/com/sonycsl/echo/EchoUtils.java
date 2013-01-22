@@ -40,6 +40,48 @@ public final class EchoUtils {
 	public static final byte[] instanceToByteArray(EchoObject eoj) {
 		return new byte[]{eoj.getClassGroupCode(), eoj.getClassCode(), eoj.getInstanceCode()};
 	}
+	
+	public static byte[] devicesToByteArray(DeviceObject[] devices, int index) {
+		// index=0 : 1~84
+		// index=1 : 85~168
+		// index=2 : 169~252
+		// index=3 : 253~255
+		int length = devices.length;
+		byte[] ret = null;
+		int num = 0;
+		switch(index) {
+		case 0:
+			if(length > 84) num = 84;
+			else num = length;
+			break;
+		case 1:
+			if(length < 85) return null;
+			if(length > 168) num = 84;
+			else num = length - 84;
+			break;
+		case 2:
+			if(length < 169) return null;
+			if(length > 252) num = 84;
+			else num = length - 168;
+			break;
+		case 3:
+			if(length < 253) return null;
+			if(length > 255) return null;
+			num = length - 252;
+			break;
+		default:
+			return null;
+		}
+		
+		ret = new byte[num * 3 + 1];
+		for(int i = 0; i < num; i++) {
+			byte[] b = instanceToByteArray(devices[84 * index + i]);
+			ret[i*3+1] = b[0];
+			ret[i*3+2] = b[1];
+			ret[i*3+3] = b[2];
+		}
+		return ret;
+	}
 
 	public static byte[] devicesToByteArray(DeviceObject[] devices) {
 		int length = devices.length;
@@ -137,11 +179,14 @@ public final class EchoUtils {
 		} else {
 			ret = new byte[17];
 			ret[0] = (byte)length;
-			for(int i = 0; i < length; i++) {
-				ret[i+1] = (byte)0;
+			//for(int i = 0; i < length; i++) {
+			//	ret[i+1] = (byte)0;
+			//}
+			for(int i = 1; i < ret.length; i++) {
+				ret[i] = (byte)0;
 			}
 			for(byte p : properties) {
-				int high = (int)((p >> 8) & 0x0F);
+				int high = (int)((p >> 4) & 0x0F);
 				int low = (int)(p & 0x0F);
 				ret[low+1] = (byte)((ret[low+1] & 0xFF) | (1 << (15 - high)));
 			}
@@ -162,7 +207,7 @@ public final class EchoUtils {
 				byte tmp = map[i+1];
 				for(int j = 0; j < 8; j++) {
 					if((tmp & 0x01) == 0x01) {
-						ret[n] = (byte)((int)(i & 0x0F) | ((int)((byte)15 - j) << 8));
+						ret[n] = (byte)((int)(i & 0x0F) | (((int)(15 - j)) << 4));
 						n++;
 					}
 					tmp = (byte)((tmp & 0xFF) >> 1);
@@ -171,6 +216,62 @@ public final class EchoUtils {
 		}
 		
 		return ret;
+	}
+
+	public static byte[] toByteArray(byte arg, int length) {
+		byte[] ret = new byte[length];
+		byte num = arg;
+		for(int i = length - 1; i >= 0; i++) {
+			ret[i] = (byte)(num & 0xFF);
+			num >>= 8;
+		}
+		return ret;
+	}
+
+	public static byte[] toByteArray(byte arg) {
+		return toByteArray(arg, 1);
+	}
+	
+	public static byte[] toByteArray(short arg, int length) {
+		byte[] ret = new byte[length];
+		short num = arg;
+		for(int i = length - 1; i >= 0; i++) {
+			ret[i] = (byte)(num & 0xFF);
+			num >>= 8;
+		}
+		return ret;
+	}
+
+	public static byte[] toByteArray(short arg) {
+		return toByteArray(arg, 2);
+	}
+	
+	public static byte[] toByteArray(int arg, int length) {
+		byte[] ret = new byte[length];
+		int num = arg;
+		for(int i = length - 1; i >= 0; i++) {
+			ret[i] = (byte)(num & 0xFF);
+			num >>= 8;
+		}
+		return ret;
+	}
+
+	public static byte[] toByteArray(int arg) {
+		return toByteArray(arg, 4);
+	}
+
+	public static byte[] toByteArray(long arg, int length) {
+		byte[] ret = new byte[length];
+		long num = arg;
+		for(int i = length - 1; i >= 0; i++) {
+			ret[i] = (byte)(num & 0xFF);
+			num >>= 8;
+		}
+		return ret;
+	}
+
+	public static byte[] toByteArray(long arg) {
+		return toByteArray(arg, 8);
 	}
 }
 

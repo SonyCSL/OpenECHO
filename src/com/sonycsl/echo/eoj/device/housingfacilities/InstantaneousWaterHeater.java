@@ -1661,7 +1661,7 @@ timer time<br>
 	}
 
 	@Override
-	protected boolean setProperty(EchoProperty property) {
+	protected synchronized boolean setProperty(EchoProperty property) {
 		boolean success = super.setProperty(property);
 		if(success) return success;
 
@@ -1688,7 +1688,7 @@ timer time<br>
 	}
 	
 	@Override
-	protected byte[] getProperty(byte epc) {
+	protected synchronized byte[] getProperty(byte epc) {
 		byte[] edt = super.getProperty(epc);
 		if(edt != null) return edt;
 		
@@ -1720,7 +1720,7 @@ timer time<br>
 	}
 
 	@Override
-	protected boolean isValidProperty(EchoProperty property) {
+	protected synchronized boolean isValidProperty(EchoProperty property) {
 		boolean valid = super.isValidProperty(property);
 		if(valid) return valid;
 		

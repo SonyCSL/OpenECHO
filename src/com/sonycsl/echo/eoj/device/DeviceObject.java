@@ -93,7 +93,7 @@ public abstract class DeviceObject extends EchoObject {
 	}
 	
 	@Override
-	protected boolean setProperty(EchoProperty property) {
+	protected synchronized boolean setProperty(EchoProperty property) {
 		boolean success = super.setProperty(property);
 		if(success) return success;
 
@@ -111,7 +111,7 @@ public abstract class DeviceObject extends EchoObject {
 	}
 	
 	@Override
-	protected byte[] getProperty(byte epc) {
+	protected synchronized byte[] getProperty(byte epc) {
 		byte[] edt = super.getProperty(epc);
 		if(edt != null) return edt;
 		
@@ -145,7 +145,7 @@ public abstract class DeviceObject extends EchoObject {
 	}
 
 	@Override
-	protected boolean isValidProperty(EchoProperty property) {
+	protected synchronized boolean isValidProperty(EchoProperty property) {
 		boolean valid = super.isValidProperty(property);
 		if(valid) return valid;
 		
@@ -992,7 +992,7 @@ public abstract class DeviceObject extends EchoObject {
 				onGetMeasuredInstantaneousPowerConsumption(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MEASURED_CUMULATIVE_POWER_CONSUMPTION :
-				onGetMeasuredCumulativehPowerConsumption(eoj, tid, esv, property, success);
+				onGetMeasuredCumulativePowerConsumption(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MANUFACTURERS_FAULT_CODE :
 				onGetManufacturersFaultCode(eoj, tid, esv, property, success);
@@ -1153,7 +1153,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Set : undefined<br>
 		 * Get : optional
 		 */
-		protected void onGetMeasuredCumulativehPowerConsumption(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetMeasuredCumulativePowerConsumption(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		
 		/**
 		 * This property indicates the manufacturer-defined fault code.<br>

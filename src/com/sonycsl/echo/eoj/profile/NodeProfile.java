@@ -15,10 +15,14 @@
  */
 package com.sonycsl.echo.eoj.profile;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.sonycsl.echo.Echo;
+import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.EchoUtils;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -86,7 +90,7 @@ public abstract class NodeProfile extends ProfileObject {
 	}
 	
 	@Override
-	protected boolean setProperty(EchoProperty property) {
+	protected synchronized boolean setProperty(EchoProperty property) {
 		boolean success = super.setProperty(property);
 		if(success) return success;
 
@@ -98,7 +102,7 @@ public abstract class NodeProfile extends ProfileObject {
 	}
 	
 	@Override
-	protected byte[] getProperty(byte epc) {
+	protected synchronized byte[] getProperty(byte epc) {
 		byte[] edt = super.getProperty(epc);
 		if(edt != null) return edt;
 		
@@ -118,7 +122,7 @@ public abstract class NodeProfile extends ProfileObject {
 	}
 
 	@Override
-	protected boolean isValidProperty(EchoProperty property) {
+	protected synchronized boolean isValidProperty(EchoProperty property) {
 		boolean valid = super.isValidProperty(property);
 		if(valid) return valid;
 		
@@ -144,17 +148,20 @@ public abstract class NodeProfile extends ProfileObject {
 		
 		switch(property.epc) {
 		case EPC_INSTANCE_LIST_NOTIFICATION :
+			onReceiveInstanceListNotification(property.edt);
+			return true;
 		case EPC_SELF_NODE_INSTANCE_LIST_S :
-			onReceiveInstanceList(property.edt);
+			onReceiveSelfNodeInstanceListS(property.edt);
 			return true;
 		default :
 			return false;
 		}
 	}
-	private ArrayList<Integer> mEchoObjectCodeList;
-	private void onReceiveInstanceList(byte[] edt) {
+	//private ArrayList<Integer> mEchoObjectCodeList;
+	private void onReceiveInstanceListNotification(byte[] edt) {
 		if(!isProxy() || !isValidInstanceListNotification(edt))return;
 
+		/*
 		int num = (int)(edt[0] & 0xFF);
 		int size = num;
 		if(mEchoObjectCodeList != null) size = size - mEchoObjectCodeList.size();
@@ -169,7 +176,22 @@ public abstract class NodeProfile extends ProfileObject {
 		if(mEchoObjectCodeList.size() == num) {
 			Echo.updateNodeDevices(getNode().getAddress(), mEchoObjectCodeList);
 			mEchoObjectCodeList = null;
+		}*/
+		onReceiveSelfNodeInstanceListS(edt);
+	}
+	private void onReceiveSelfNodeInstanceListS(byte[] edt) {
+		if(!isProxy() || !isValidSelfNodeInstanceListS(edt))return;
+		
+		ArrayList<Integer> echoObjCodeList = new ArrayList<Integer>();
+		int num = (edt.length - 1) / 3;
+
+		for(int i = 1; i < num; i += 3) {
+			echoObjCodeList.add(EchoUtils.getEchoObjectCode(
+					edt[i], edt[i+1], edt[i+2]));
 		}
+
+		Echo.updateNodeDevices(getNode().getAddress(), echoObjCodeList);
+
 	}
 
 	/**
@@ -409,13 +431,18 @@ public abstract class NodeProfile extends ProfileObject {
 	 * Announcement at status change<br>
 	 */
 	protected byte[] getInstanceListNotification() {
-		return EchoUtils.devicesToByteArray(getNode().getDevices());
+		// deviceの数がが85以上の場合電文を分ける．
+		return EchoUtils.devicesToByteArray(getNode().getDevices(), 0);
 	}
 
 	protected boolean isValidInstanceListNotification(byte[] edt) {
 		if(edt == null || !(edt.length <= 253)) return false;
 		return true;
 	}
+	
+	//public void InstanceListNotification() {
+		
+	//}
 	
 	/**
 	 * Self-node instance list<br>
@@ -434,7 +461,9 @@ public abstract class NodeProfile extends ProfileObject {
 	 * Get : mandatory<br>
 	 */
 	protected byte[] getSelfNodeInstanceListS() {
-		return getInstanceListNotification();
+		// deviceの数は85以上の場合，85番目以降は電文に載せない．
+		//EchoUtils.devicesToByteArray(getNode().getDevices());
+		return EchoUtils.devicesToByteArray(getNode().getDevices(), 0);
 	}
 
 	protected boolean isValidSelfNodeInstanceListS(byte[] edt) {
@@ -1112,8 +1141,49 @@ public abstract class NodeProfile extends ProfileObject {
 	
 	public static class Informer extends ProfileObject.Informer {
 
+		//List<EchoFrame> mNotificationFrameList = null;
+		//EchoObject mEoj;
+
 		public Informer(EchoObject eoj, boolean multicast) {
 			super(eoj, multicast);
+			//mEoj = eoj;
+		}
+		
+		@Override
+		protected void addProperty(byte epc) {
+			super.addProperty(epc);
+			/*if(mEoj.isProxy() || epc != NodeProfile.EPC_INSTANCE_LIST_NOTIFICATION) return;
+			if(mNotificationFrameList == null) mNotificationFrameList = new ArrayList<EchoFrame>();
+			for(int i = 1; i < 4; i++) {
+				byte[] edt = EchoUtils.devicesToByteArray(mEoj.getNode().getDevices(), i);
+				if(edt == null) break;
+				short tid = EchoSocket.nextTID();
+				EchoFrame frame = new EchoFrame(tid, getSeoj(), getDeoj(), EchoFrame.ESV_INF);
+				mNotificationFrameList.add(frame);
+			}*/
+		}
+
+		@Override
+		public void send() throws IOException {
+			super.send();
+			/*if(mNotificationFrameList == null) return;
+			for(EchoFrame frame : mNotificationFrameList) {
+
+				byte[] data = frame.getFrameByteArray();
+				
+				if (isMulticast()) {
+					EchoSocket.sendGroup(data);
+				} else {
+					EchoSocket.send(getDeoj().getNode().getAddress(), data);
+				}
+				
+				Echo.EventListener listener = Echo.getEventListener();
+				try {
+					if(listener != null) listener.sendEvent(frame);
+				} catch(Exception e) {
+					try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
+				}
+			}*/
 		}
 
 		@Override

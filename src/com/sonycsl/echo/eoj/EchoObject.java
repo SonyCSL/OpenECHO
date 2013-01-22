@@ -206,15 +206,15 @@ public abstract class EchoObject {
 		return mActive;
 	}
 	
-	protected boolean setProperty(EchoProperty property) {
+	protected synchronized boolean setProperty(EchoProperty property) {
 		return false;
 	}
 	
-	protected byte[] getProperty(byte epc) {
+	protected synchronized byte[] getProperty(byte epc) {
 		return null;
 	}
 	
-	protected boolean isValidProperty(EchoProperty property) {
+	protected synchronized boolean isValidProperty(EchoProperty property) {
 		return false;
 	}
 	
@@ -512,7 +512,8 @@ public abstract class EchoObject {
 			if (mMulticast) {
 				EchoSocket.sendGroup(data);
 			} else {
-				EchoSocket.send(mEoj.getNode().getAddress(), data);
+				//EchoSocket.send(mEoj.getNode().getAddress(), data);
+				EchoSocket.send(getDeoj().getNode().getAddress(), data);
 			}
 			//if(Echo.getMethodInvokedListener() == null) return;
 			//Echo.getMethodInvokedListener().onInvokedSendMethod(frame);
@@ -549,15 +550,27 @@ public abstract class EchoObject {
 			}
 			return valid;
 		}
-		
+
 		public void setSeoj(EchoObject seoj) {
 			mSeoj = seoj;
 		}
 		
+		public EchoObject getSeoj() {
+			return mSeoj;
+		}
+		
+		
 		public void setDeoj(EchoObject deoj) {
 			mDeoj = deoj;
 		}
+		
+		public EchoObject getDeoj() {
+			return mDeoj;
+		}
 
+		public boolean isMulticast() {
+			return mMulticast;
+		}
 	}
 	
 	public static class Setter extends Sender {

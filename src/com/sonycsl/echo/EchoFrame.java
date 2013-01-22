@@ -174,6 +174,7 @@ public final class EchoFrame {
 				break;
 			case ESV_INF: case ESV_INF_SNA:
 				addProperty(epc, edt);
+				break;
 			case ESV_INFC:
 				addProperty(epc, edt);
 				break;
