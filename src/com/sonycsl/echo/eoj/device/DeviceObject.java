@@ -901,7 +901,7 @@ public abstract class DeviceObject extends EchoObject {
 	}
 	
 	protected boolean isValidGetPropertyMap(byte[] edt) {
-		if(edt == null || !(edt.length == 17)) return false;
+		if(edt == null || !(edt.length <= 17)) return false;
 		return true;
 	}
 

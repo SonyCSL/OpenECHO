@@ -323,7 +323,7 @@ public final class EchoNode {
 			if(active) {
 				dev.update();
 			} else {
-				dev.setActive(false);
+				//dev.setActive(false);
 			}
 		}
 	}

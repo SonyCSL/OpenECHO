@@ -147,21 +147,22 @@ public abstract class NodeProfile extends ProfileObject {
 		if(ret) return ret;
 		
 		switch(property.epc) {
+		case EPC_SELF_NODE_INSTANCE_LIST_S :
 		case EPC_INSTANCE_LIST_NOTIFICATION :
 			onReceiveInstanceListNotification(property.edt);
 			return true;
-		case EPC_SELF_NODE_INSTANCE_LIST_S :
-			onReceiveSelfNodeInstanceListS(property.edt);
-			return true;
+		//case EPC_SELF_NODE_INSTANCE_LIST_S :
+			//onReceiveSelfNodeInstanceListS(property.edt);
+		//	return true;
 		default :
 			return false;
 		}
 	}
-	//private ArrayList<Integer> mEchoObjectCodeList;
+	private ArrayList<Integer> mEchoObjectCodeList;
 	private void onReceiveInstanceListNotification(byte[] edt) {
 		if(!isProxy() || !isValidInstanceListNotification(edt))return;
 
-		/*
+		
 		int num = (int)(edt[0] & 0xFF);
 		int size = num;
 		if(mEchoObjectCodeList != null) size = size - mEchoObjectCodeList.size();
@@ -176,9 +177,10 @@ public abstract class NodeProfile extends ProfileObject {
 		if(mEchoObjectCodeList.size() == num) {
 			Echo.updateNodeDevices(getNode().getAddress(), mEchoObjectCodeList);
 			mEchoObjectCodeList = null;
-		}*/
-		onReceiveSelfNodeInstanceListS(edt);
+		}
+		//onReceiveSelfNodeInstanceListS(edt);
 	}
+	/*
 	private void onReceiveSelfNodeInstanceListS(byte[] edt) {
 		if(!isProxy() || !isValidSelfNodeInstanceListS(edt))return;
 		
@@ -193,7 +195,7 @@ public abstract class NodeProfile extends ProfileObject {
 		Echo.updateNodeDevices(getNode().getAddress(), echoObjCodeList);
 
 	}
-
+*/
 	/**
 	 * Indicates node operating status.<br>
 	 * <br>
