@@ -73,6 +73,11 @@ public final class Echo {
 		return sLocalNode;
 	}
 	
+	public static void restart() throws IOException {
+		EchoSocket.start();
+		sLocalNode.getNodeProfile().inform().reqInformInstanceListNotification().send();
+	}
+	
 	public static void stop() throws IOException {
 		EchoSocket.stop();
 		

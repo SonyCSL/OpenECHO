@@ -74,6 +74,7 @@ public final class EchoUtils {
 		}
 		
 		ret = new byte[num * 3 + 1];
+		ret[0] = (byte)num;
 		for(int i = 0; i < num; i++) {
 			byte[] b = instanceToByteArray(devices[84 * index + i]);
 			ret[i*3+1] = b[0];
