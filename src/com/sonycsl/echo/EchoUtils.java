@@ -222,7 +222,7 @@ public final class EchoUtils {
 	public static byte[] toByteArray(byte arg, int length) {
 		byte[] ret = new byte[length];
 		byte num = arg;
-		for(int i = length - 1; i >= 0; i++) {
+		for(int i = length - 1; i >= 0; i--) {
 			ret[i] = (byte)(num & 0xFF);
 			num >>= 8;
 		}
@@ -236,7 +236,7 @@ public final class EchoUtils {
 	public static byte[] toByteArray(short arg, int length) {
 		byte[] ret = new byte[length];
 		short num = arg;
-		for(int i = length - 1; i >= 0; i++) {
+		for(int i = length - 1; i >= 0; i--) {
 			ret[i] = (byte)(num & 0xFF);
 			num >>= 8;
 		}
@@ -250,7 +250,7 @@ public final class EchoUtils {
 	public static byte[] toByteArray(int arg, int length) {
 		byte[] ret = new byte[length];
 		int num = arg;
-		for(int i = length - 1; i >= 0; i++) {
+		for(int i = length - 1; i >= 0; i--) {
 			ret[i] = (byte)(num & 0xFF);
 			num >>= 8;
 		}
@@ -264,7 +264,7 @@ public final class EchoUtils {
 	public static byte[] toByteArray(long arg, int length) {
 		byte[] ret = new byte[length];
 		long num = arg;
-		for(int i = length - 1; i >= 0; i++) {
+		for(int i = length - 1; i >= 0; i--) {
 			ret[i] = (byte)(num & 0xFF);
 			num >>= 8;
 		}
