@@ -423,6 +423,14 @@ public final class EchoNode {
 	}
 	
 	public InetAddress getAddress() {
+		
+		if (!isProxy()) {
+			try {
+				mAddress = EchoUtils.getLocalIpAddress();
+			} catch (SocketException e) {
+				e.printStackTrace();
+			}
+		}
 		return mAddress;
 	}
 	

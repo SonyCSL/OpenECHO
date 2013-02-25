@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +40,7 @@ import com.sonycsl.echo.node.EchoNode;
 
 public final class Echo {
 	
-	private static Map<InetAddress, EchoNode> sNodes;
+	private static Map<InetAddress, EchoNode> sNodes; // remote nodes
 	private static EchoNode sLocalNode;
 	
 	private static Events sEvents = null;
@@ -84,9 +85,17 @@ public final class Echo {
 		//sNodes.clear();
 	}
 	
+	public static boolean isConnected() {
+		return EchoSocket.isConnected();
+	}
+	
 	public static void addNode(EchoNode node) {
-		if(!node.isProxy()) sLocalNode = node;
-		sNodes.put(node.getAddress(), node);
+		if(node.isProxy()) {
+			sNodes.put(node.getAddress(), node);
+		} else {
+			sLocalNode = node;
+		}
+
 		if(sEvents != null) {
 			sEvents.onNewNode(node);
 		}
@@ -105,7 +114,10 @@ public final class Echo {
 	}
 	
 	public static EchoNode[] getNodes() {
-		return (EchoNode[]) sNodes.values().toArray(new EchoNode[]{});
+		//return (EchoNode[]) sNodes.values().toArray(new EchoNode[]{});
+		Collection<EchoNode> nodes = sNodes.values();
+		nodes.add(sLocalNode);
+		return nodes.toArray(new EchoNode[]{});
 	}
 
 	
@@ -118,20 +130,30 @@ public final class Echo {
 	}
 	
 	public static EchoObject getInstance(InetAddress address, short echoClassCode, byte instanceCode) {
-		if(!sNodes.containsKey(address)) return null;
-		EchoNode node = sNodes.get(address);
-		if(!node.containsInstance(echoClassCode, instanceCode)) return null;
-		return node.getInstance(echoClassCode, instanceCode);
+		
+		if(sLocalNode.getAddress().equals(address)) {
+			if(!sLocalNode.containsInstance(echoClassCode, instanceCode)) return null;
+			return sLocalNode.getInstance(echoClassCode, instanceCode);
+		} else if(sNodes.containsKey(address)) {
+			EchoNode node = sNodes.get(address);
+			if(!node.containsInstance(echoClassCode, instanceCode)) return null;
+			return node.getInstance(echoClassCode, instanceCode);
+		} else {
+			return null;
+		}
 	}
 	
 	public static void updateNodeInstance(InetAddress address, byte classGroupCode, byte classCode, byte instanceCode) {
-		if(sNodes.containsKey(address)) {
+		if(sLocalNode.getAddress().equals(address)) {
+			//if(sLocalNode.containsInstance(classGroupCode, classCode, instanceCode)) return;
+			//sLocalNode.addDevice(EchoUtils.getEchoClassCode(classGroupCode, classCode), instanceCode);
+			return;
+		} else if(sNodes.containsKey(address)) {
 			EchoNode node = sNodes.get(address);
-			if(!node.isProxy()) return;
 			if(node.containsInstance(classGroupCode, classCode, instanceCode)) return;
 			node.addDevice(EchoUtils.getEchoClassCode(classGroupCode, classCode), instanceCode);
 		} else {
-			if(NodeProfile.ECHO_CLASS_CODE == EchoUtils.getEchoClassCode(classGroupCode, classCode)
+			if(NodeProfile.ECHO_CLASS_CODE == EchoUtils.getEchoClassCode(classGroupCode, classCode) 
 					&& NodeProfile.INSTANCE_CODE == instanceCode) {
 				new EchoNode(address, new ArrayList<Integer>());
 			} else {
@@ -143,9 +165,11 @@ public final class Echo {
 	}
 	
 	public static void updateNodeDevices(InetAddress address, List<Integer> echoObjectCodeList) {
-		if(sNodes.containsKey(address)) {
+		if(sLocalNode.getAddress().equals(address)) {
+			//sLocalNode.updateDevices(echoObjectCodeList);
+			return;
+		}else if(sNodes.containsKey(address)) {
 			EchoNode node = sNodes.get(address);
-			if(!node.isProxy()) return;
 			node.updateDevices(echoObjectCodeList);
 		} else {
 			new EchoNode(address, echoObjectCodeList);

@@ -52,7 +52,7 @@ public final class EchoSocket {
 	//	return mSocket.getLocalAddress();
 	//}
 	
-	public static void start() throws IOException {
+	protected static void start() throws IOException {
 
 		if(sSocket != null) {
 			stop();
@@ -68,7 +68,7 @@ public final class EchoSocket {
 		sSocket.joinGroup(sMulticastAddress);
 	}
 	
-	public static void stop() throws IOException {
+	protected static void stop() throws IOException {
 		sReceiver.close();
 		sSocket.leaveGroup(sMulticastAddress);
 		sSocket.close();
@@ -77,6 +77,12 @@ public final class EchoSocket {
 		//	sListeners.clear();
 		//	sListeners = null;
 		//}
+	}
+	
+	protected static boolean isConnected() {
+		if(sSocket == null) return false;
+		if(sSocket.isClosed()) return false;
+		return sSocket.isConnected();
 	}
 	
 	public static void send(InetAddress address, byte[] data) throws IOException {
