@@ -49,7 +49,7 @@ public final class EchoNode {
 	
 	private boolean mInitialized = false;
 	
-	private boolean mActive = true;
+	//private boolean mActive = true;
 	
 	
 	/**
@@ -221,7 +221,7 @@ public final class EchoNode {
 		return deviceList.toArray(new DeviceObject[]{});
 	}
 	
-	public DeviceObject[] getDevices() {
+	public DeviceObject[] getActiveDevices() {
 		ArrayList<DeviceObject> ret = new ArrayList<DeviceObject>();
 		for(List<DeviceObject> devices : mDeviceGroups.values()) {
 			//List<DeviceObject> list = new ArrayList<DeviceObject>(devices);
@@ -234,20 +234,33 @@ public final class EchoNode {
 		return (DeviceObject[]) ret.toArray(new DeviceObject[]{});
 	}
 	
-	private DeviceObject[] getAllDevices() {
+	public DeviceObject[] getDevices() {
 		ArrayList<DeviceObject> ret = new ArrayList<DeviceObject>();
 		for(List<DeviceObject> devices : mDeviceGroups.values()) {
-			ret.addAll(devices);
+			//List<DeviceObject> list = new ArrayList<DeviceObject>(devices);
+			//list.remove(null);
+			//ret.addAll(list);
+			for(DeviceObject dev : devices) {
+				ret.add(dev);
+			}
 		}
 		return (DeviceObject[]) ret.toArray(new DeviceObject[]{});
 	}
 	
 	public void setActive(boolean active) {
-		mActive = active;
+		//mActive = active;
+		mNodeProfile.setActive(active);
+		if(active)return;
+		for(List<DeviceObject> list : mDeviceGroups.values()) {
+			for(DeviceObject dev : list) {
+				dev.setActive(false);
+			}
+		}
 	}
 	
 	public boolean isActive() {
-		return mActive;
+		//return mActive;
+		return mNodeProfile.isActive();
 	}
 
 	public byte getDeviceNumber(DeviceObject device) {
@@ -298,7 +311,7 @@ public final class EchoNode {
 		}
 		return ret;
 	}
-	
+	/*
 	public void updateDevices(List<Integer> echoObjectCodeList) {
 		//ArrayList<DeviceObject> list = new ArrayList<DeviceObject>();
 		if(echoObjectCodeList == null) return;
@@ -311,7 +324,7 @@ public final class EchoNode {
 				addDevice(device);
 			}
 		}
-		DeviceObject[] devices = getAllDevices();
+		DeviceObject[] devices = getDevices();
 		for(DeviceObject dev : devices) {
 			boolean active = false;
 			for(int code : echoObjectCodeList) {
@@ -320,14 +333,10 @@ public final class EchoNode {
 					break;
 				}
 			}
-			if(active) {
-				dev.update();
-			} else {
-				//dev.setActive(false);
-			}
+			dev.setActive(active);
 		}
 	}
-	
+	*/
 	private static DeviceObject createDeviceProxy(short echoClassCode, byte instanceCode) {
 		switch(echoClassCode) {
 		case ActivityAmountSensor.ECHO_CLASS_CODE: return new ActivityAmountSensor.Proxy(instanceCode);

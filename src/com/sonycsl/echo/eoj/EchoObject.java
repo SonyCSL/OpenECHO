@@ -482,7 +482,7 @@ public abstract class EchoObject {
 		}
 		
 		protected void send() throws IOException {
-			short tid = EchoSocket.nextTID();
+			short tid = EchoSocket.getNextTID();
 			EchoFrame frame = new EchoFrame(tid, mSeoj, mDeoj, mEsv);
 			switch(mEsv) {
 			case EchoFrame.ESV_SETI : case EchoFrame.ESV_SETC :

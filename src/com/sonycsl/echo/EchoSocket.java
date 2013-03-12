@@ -55,7 +55,7 @@ public final class EchoSocket {
 	protected static void start() throws IOException {
 
 		if(sSocket != null) {
-			stop();
+			close();
 		}
 		//sListeners = new HashMap<Short, ResponseListener>();
 		
@@ -68,7 +68,7 @@ public final class EchoSocket {
 		sSocket.joinGroup(sMulticastAddress);
 	}
 	
-	protected static void stop() throws IOException {
+	protected static void close() throws IOException {
 		sReceiver.close();
 		sSocket.leaveGroup(sMulticastAddress);
 		sSocket.close();
@@ -79,10 +79,9 @@ public final class EchoSocket {
 		//}
 	}
 	
-	protected static boolean isConnected() {
+	protected static boolean isClosed() {
 		if(sSocket == null) return false;
-		if(sSocket.isClosed()) return false;
-		return sSocket.isConnected();
+		return sSocket.isClosed();
 	}
 	
 	public static void send(InetAddress address, byte[] data) throws IOException {
@@ -110,9 +109,11 @@ public final class EchoSocket {
 		
 	}
 	
-
+	public static short getLastTID() {
+		return sTID;
+	}
 	
-	public static short nextTID() {
+	public static short getNextTID() {
 		short tid = sTID;
 		sTID++;
 		return tid;

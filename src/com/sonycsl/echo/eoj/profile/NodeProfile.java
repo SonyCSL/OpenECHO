@@ -160,7 +160,8 @@ public abstract class NodeProfile extends ProfileObject {
 	}
 	private ArrayList<Integer> mEchoObjectCodeList;
 	private void onReceiveInstanceListNotification(byte[] edt) {
-		if(!isProxy() || !isValidInstanceListNotification(edt))return;
+		//if(!isProxy() || !isValidInstanceListNotification(edt))return;
+		if(!isValidInstanceListNotification(edt))return;
 
 		
 		int num = (int)(edt[0] & 0xFF);

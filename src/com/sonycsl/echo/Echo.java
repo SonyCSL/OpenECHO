@@ -80,13 +80,13 @@ public final class Echo {
 	}
 	
 	public static void stop() throws IOException {
-		EchoSocket.stop();
+		EchoSocket.close();
 		
 		//sNodes.clear();
 	}
 	
-	public static boolean isConnected() {
-		return EchoSocket.isConnected();
+	public static boolean isClosed() {
+		return EchoSocket.isClosed();
 	}
 	
 	public static void addNode(EchoNode node) {
@@ -116,8 +116,25 @@ public final class Echo {
 	public static EchoNode[] getNodes() {
 		//return (EchoNode[]) sNodes.values().toArray(new EchoNode[]{});
 		Collection<EchoNode> nodes = sNodes.values();
-		nodes.add(sLocalNode);
-		return nodes.toArray(new EchoNode[]{});
+		//nodes.add(sLocalNode);
+		//return nodes.toArray(new EchoNode[]{});
+		List<EchoNode> ret = new ArrayList<EchoNode>();
+		ret.add(sLocalNode);
+		for(EchoNode n : nodes) {
+			ret.add(n);
+		}
+		return ret.toArray(new EchoNode[]{});
+	}
+	
+	public static EchoNode[] getActiveNodes() {
+		Collection<EchoNode> nodes = sNodes.values();
+		List<EchoNode> ret = new ArrayList<EchoNode>();
+		if(sLocalNode.isActive())ret.add(sLocalNode);
+		for(EchoNode n : nodes) {
+			if(n.isActive())
+				ret.add(n);
+		}
+		return ret.toArray(new EchoNode[]{});
 	}
 
 	
@@ -147,11 +164,18 @@ public final class Echo {
 		if(sLocalNode.getAddress().equals(address)) {
 			//if(sLocalNode.containsInstance(classGroupCode, classCode, instanceCode)) return;
 			//sLocalNode.addDevice(EchoUtils.getEchoClassCode(classGroupCode, classCode), instanceCode);
-			return;
+			if(sLocalNode.containsInstance(classGroupCode, classCode, instanceCode)) {
+				sLocalNode.getInstance(classGroupCode, classCode, instanceCode).setActive(true);
+				return;
+			}
 		} else if(sNodes.containsKey(address)) {
 			EchoNode node = sNodes.get(address);
-			if(node.containsInstance(classGroupCode, classCode, instanceCode)) return;
-			node.addDevice(EchoUtils.getEchoClassCode(classGroupCode, classCode), instanceCode);
+			if(node.containsInstance(classGroupCode, classCode, instanceCode)){
+				node.getInstance(classGroupCode, classCode, instanceCode).setActive(true);
+				return;
+			} else {
+				node.addDevice(EchoUtils.getEchoClassCode(classGroupCode, classCode), instanceCode);
+			}
 		} else {
 			if(NodeProfile.ECHO_CLASS_CODE == EchoUtils.getEchoClassCode(classGroupCode, classCode) 
 					&& NodeProfile.INSTANCE_CODE == instanceCode) {
@@ -165,6 +189,8 @@ public final class Echo {
 	}
 	
 	public static void updateNodeDevices(InetAddress address, List<Integer> echoObjectCodeList) {
+		if(echoObjectCodeList == null) return;
+		/*
 		if(sLocalNode.getAddress().equals(address)) {
 			//sLocalNode.updateDevices(echoObjectCodeList);
 			return;
@@ -173,6 +199,26 @@ public final class Echo {
 			node.updateDevices(echoObjectCodeList);
 		} else {
 			new EchoNode(address, echoObjectCodeList);
+		}*/
+		if(!sLocalNode.getAddress().equals(address) &&
+				!sNodes.containsKey(address)) {
+			new EchoNode(address, echoObjectCodeList);
+			return;
+		}
+		for(int objCode: echoObjectCodeList) {
+			byte[] a = EchoUtils.toByteArray(objCode, 4);
+			updateNodeInstance(address, a[1],a[2],a[3]);
+		}
+		if(!sNodes.containsKey(address)) return;
+		for(DeviceObject dev : sNodes.get(address).getDevices()) {
+			boolean active = false;
+			for(int code : echoObjectCodeList) {
+				if(code == dev.getEchoObjectCode()) {
+					active = true;
+					break;
+				}
+			}
+			dev.setActive(active);
 		}
 	}
 	
