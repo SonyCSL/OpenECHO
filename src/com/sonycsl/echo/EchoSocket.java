@@ -80,7 +80,7 @@ public final class EchoSocket {
 	}
 	
 	protected static boolean isClosed() {
-		if(sSocket == null) return false;
+		if(sSocket == null) return true;
 		return sSocket.isClosed();
 	}
 	
