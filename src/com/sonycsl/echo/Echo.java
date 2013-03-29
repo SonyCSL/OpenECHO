@@ -50,7 +50,6 @@ public final class Echo {
 		sNodes = new HashMap<InetAddress, EchoNode>();
 		sListeners = new ArrayList<EventListener>();
 		sEvents = new Events();
-		
 	}
 	
 	private Echo() {
@@ -80,9 +79,21 @@ public final class Echo {
 	}
 	
 	public static void stop() throws IOException {
-		EchoSocket.close();
-		
+		if(!isClosed()) {
+			EchoSocket.close();
+		}
 		//sNodes.clear();
+	}
+	
+	public static void finish() throws IOException {
+		if(!isClosed()) {
+			stop();
+		}
+		sLocalNode = null;
+
+		sNodes = new HashMap<InetAddress, EchoNode>();
+		sListeners = new ArrayList<EventListener>();
+		sEvents = new Events();
 	}
 	
 	public static boolean isClosed() {

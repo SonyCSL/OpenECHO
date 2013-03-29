@@ -1167,8 +1167,8 @@ public abstract class NodeProfile extends ProfileObject {
 		}
 
 		@Override
-		public void send() throws IOException {
-			super.send();
+		public short send() throws IOException {
+			return super.send();
 			/*if(mNotificationFrameList == null) return;
 			for(EchoFrame frame : mNotificationFrameList) {
 

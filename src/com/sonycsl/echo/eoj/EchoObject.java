@@ -177,11 +177,17 @@ public abstract class EchoObject {
 		}
 	}
 	
+	public void clear() {
+		mNode = null;
+	}
+	
 	public final void update() {
 		setActive(true);
 		mUpdatedTime = System.currentTimeMillis();
 		EchoNode node = getNode();
-		if(node != null) node.update();
+		if(node != null) {
+			node.update();
+		}
 	}
 	
 	public final long getUpdatedTime() {
@@ -481,7 +487,7 @@ public abstract class EchoObject {
 			mMulticast = multicast;
 		}
 		
-		protected void send() throws IOException {
+		protected short send() throws IOException {
 			short tid = EchoSocket.getNextTID();
 			EchoFrame frame = new EchoFrame(tid, mSeoj, mDeoj, mEsv);
 			switch(mEsv) {
@@ -513,6 +519,9 @@ public abstract class EchoObject {
 				EchoSocket.sendGroup(data);
 			} else {
 				//EchoSocket.send(mEoj.getNode().getAddress(), data);
+				if(getDeoj().getNode() == null) {
+					throw new IOException("Not found target node.");
+				}
 				EchoSocket.send(getDeoj().getNode().getAddress(), data);
 			}
 			//if(Echo.getMethodInvokedListener() == null) return;
@@ -525,6 +534,7 @@ public abstract class EchoObject {
 			} catch(Exception e) {
 				try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
 			}
+			return tid;
 		}
 		
 		protected void addProperty(byte epc) {
@@ -582,8 +592,8 @@ public abstract class EchoObject {
 		}
 
 		@Override
-		public void send() throws IOException {
-			super.send();
+		public short send() throws IOException {
+			return super.send();
 		}
 
 		public Setter reqSetProperty(byte epc, byte[] edt) {
@@ -599,8 +609,8 @@ public abstract class EchoObject {
 		}
 		
 		@Override
-		public void send() throws IOException {
-			super.send();
+		public short send() throws IOException {
+			return super.send();
 		}
 
 		public Getter reqGetProperty(byte epc) {
@@ -623,8 +633,8 @@ public abstract class EchoObject {
 		}
 
 		@Override
-		public void send() throws IOException {
-			super.send();
+		public short send() throws IOException {
+			return super.send();
 		}
 		
 		public Informer reqInformProperty(byte epc) {
@@ -639,8 +649,8 @@ public abstract class EchoObject {
 		}
 
 		@Override
-		public void send() throws IOException {
-			super.send();
+		public short send() throws IOException {
+			return super.send();
 		}
 		
 		public InformerC reqInformProperty(byte epc) {

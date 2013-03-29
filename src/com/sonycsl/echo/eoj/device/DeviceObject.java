@@ -55,7 +55,7 @@ public abstract class DeviceObject extends EchoObject {
 	
 	@Override
 	public byte getInstanceCode() {
-		return getNode().getDeviceNumber(this);
+		return getNode().getNumberOfDevice(this);
 	}
 
 	

@@ -19,9 +19,13 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
@@ -38,7 +42,7 @@ public final class EchoSocket {
 	private static final int PORT = 3610;
 	private static MulticastSocket sSocket;
 	private static InetAddress sMulticastAddress;
-	private static ReceiverThread sReceiver;
+	private static ExecutorService sReceiverExecutors;
 	
 	//private static HashMap<Short, ResponseListener> sListeners;
 	
@@ -52,7 +56,7 @@ public final class EchoSocket {
 	//	return mSocket.getLocalAddress();
 	//}
 	
-	protected static void start() throws IOException {
+	protected synchronized static void start() throws IOException {
 
 		if(sSocket != null) {
 			close();
@@ -61,18 +65,24 @@ public final class EchoSocket {
 		
 		sMulticastAddress = InetAddress.getByName(ADDRESS);
 		sSocket = new MulticastSocket(PORT);
-
-		sReceiver = new ReceiverThread(sSocket);
-		sReceiver.start();
+		
+		sReceiverExecutors = Executors.newSingleThreadExecutor();
+		sReceiverExecutors.execute(new Receiver(sSocket));
 		
 		sSocket.joinGroup(sMulticastAddress);
 	}
 	
-	protected static void close() throws IOException {
-		sReceiver.close();
-		sSocket.leaveGroup(sMulticastAddress);
-		sSocket.close();
+	protected synchronized static void close() throws IOException {
+		if(sSocket == null){
+			return;
+		}
+		MulticastSocket s = sSocket;
 		sSocket = null;
+		
+		sReceiverExecutors.shutdown();
+		sReceiverExecutors.shutdownNow();
+		s.leaveGroup(sMulticastAddress);
+		s.close();
 		//if(sListeners != null) {
 		//	sListeners.clear();
 		//	sListeners = null;
@@ -81,7 +91,11 @@ public final class EchoSocket {
 	
 	protected static boolean isClosed() {
 		if(sSocket == null) return true;
-		return sSocket.isClosed();
+		if(sSocket.isClosed() == true) {
+			sSocket = null;
+			return true;
+		}
+		return false;
 	}
 	
 	public static void send(InetAddress address, byte[] data) throws IOException {
@@ -109,7 +123,7 @@ public final class EchoSocket {
 		
 	}
 	
-	public static short getLastTID() {
+	public static short getNextTIDNoIncrement() {
 		return sTID;
 	}
 	
@@ -120,27 +134,34 @@ public final class EchoSocket {
 	}
 	
 	
-	private static class ReceiverThread extends Thread {
+	private static class Receiver implements Runnable {
 		
 		MulticastSocket mSocket;
-		boolean mRunning = true;
 		
-		public ReceiverThread(MulticastSocket socket) {
+		public Receiver(MulticastSocket socket) {
 			mSocket = socket;
+			try {
+				mSocket.setSoTimeout(100);
+			} catch (SocketException e) {
+				e.printStackTrace();
+				mSocket.close();
+			}
 		}
 
 		@Override
 		public void run() {
-			while(mRunning) {
+			while(!Thread.currentThread().isInterrupted()) {
 				DatagramPacket packet = 
 						new DatagramPacket(
 								new byte[EchoSocket.UDP_MAX_PACKET_SIZE], 
 								EchoSocket.UDP_MAX_PACKET_SIZE);
 				try {
 					mSocket.receive(packet);
+				} catch(SocketTimeoutException e) {
+					continue;
 				} catch (IOException e) {
 					//e.printStackTrace();
-					mRunning = false;
+					Thread.currentThread().interrupt();
 					break;
 				}
 				byte[] data = new byte[packet.getLength()];
@@ -191,11 +212,6 @@ public final class EchoSocket {
 				}
 			}
 		}
-		
-		public void close() {
-			mRunning = false;
-		}
-		
 	}
 	
 	/*
