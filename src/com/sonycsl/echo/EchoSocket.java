@@ -105,6 +105,12 @@ public final class EchoSocket {
 		if(data == null) {
 			return;
 		}
+		if(!Echo.isStarted()) {
+			try {
+				close();
+			} catch(IOException e) {}
+			return;
+		}
 		DatagramPacket packet = new DatagramPacket(data, data.length,
 				address, PORT);
 		sSocket.send(packet);
@@ -115,6 +121,12 @@ public final class EchoSocket {
 			return;
 		}
 		if(data == null) {
+			return;
+		}
+		if(!Echo.isStarted()) {
+			try {
+				close();
+			} catch(IOException e) {}
 			return;
 		}
 		DatagramPacket packet = new DatagramPacket(data, data.length, 
@@ -151,6 +163,14 @@ public final class EchoSocket {
 		@Override
 		public void run() {
 			while(!Thread.currentThread().isInterrupted()) {
+
+				if(!Echo.isStarted()) {
+					try {
+						close();
+					} catch(IOException e) {}
+					return;
+				}
+				
 				DatagramPacket packet = 
 						new DatagramPacket(
 								new byte[EchoSocket.UDP_MAX_PACKET_SIZE], 
@@ -164,32 +184,43 @@ public final class EchoSocket {
 					Thread.currentThread().interrupt();
 					break;
 				}
-				byte[] data = new byte[packet.getLength()];
-				System.arraycopy(packet.getData(), 0, data, 0, packet.getLength());
-				
-				if(data.length < 12) continue;
 				List<EchoFrame> frameList = new ArrayList<EchoFrame>();
-				
-				Echo.EventListener listener = Echo.getEventListener();
-				try {
-					if(listener != null) Echo.getEventListener().receiveEvent(new EchoFrame(packet.getAddress(), data));
-				} catch(Exception e) {
-					try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
-				}
-				
-				if(data[9] == 0) {
-					DeviceObject[] devices = Echo.getNode().getDevices(data[7], data[8]);
-					if(devices != null) {
-						for(DeviceObject dev : devices) {
-							byte[] d = data.clone();
-							d[9] = dev.getInstanceCode();
-							frameList.add(new EchoFrame(packet.getAddress(), d));
+
+				synchronized(Echo.class) {
+					if(!Echo.isStarted()) {
+						Thread.currentThread().interrupt();
+						try {
+							close();
+						} catch (IOException e) {
+							e.printStackTrace();
 						}
+						break;
 					}
-				} else {
-					frameList.add(new EchoFrame(packet.getAddress(), data));
-				}
+					byte[] data = new byte[packet.getLength()];
+					System.arraycopy(packet.getData(), 0, data, 0, packet.getLength());
 				
+					if(data.length < 12) continue;
+				
+					Echo.EventListener listener = Echo.getEventListener();
+					try {
+						if(listener != null) Echo.getEventListener().receiveEvent(new EchoFrame(packet.getAddress(), data));
+					} catch(Exception e) {
+						try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
+					}
+				
+					if(data[9] == 0) {
+						DeviceObject[] devices = Echo.getNode().getDevices(data[7], data[8]);
+						if(devices != null) {
+							for(DeviceObject dev : devices) {
+								byte[] d = data.clone();
+								d[9] = dev.getInstanceCode();
+								frameList.add(new EchoFrame(packet.getAddress(), d));
+							}
+						}
+					} else {
+						frameList.add(new EchoFrame(packet.getAddress(), data));
+					}
+				}
 				for(EchoFrame frame : frameList) {
 					
 					if(frame.getDeoj() != null) {
@@ -199,7 +230,9 @@ public final class EchoSocket {
 						case EchoFrame.ESV_GET_RES: case EchoFrame.ESV_GET_SNA: 
 						case EchoFrame.ESV_INF: case EchoFrame.ESV_INF_SNA: 
 						case EchoFrame.ESV_INFC:
-							frame.getSeoj().receive(frame);
+							if(frame.getSeoj()!=null) {
+								frame.getSeoj().receive(frame);
+							}
 							break;
 						case EchoFrame.ESV_SETI: case EchoFrame.ESV_SETC:
 						case EchoFrame.ESV_GET:

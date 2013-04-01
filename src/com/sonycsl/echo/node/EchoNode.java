@@ -39,6 +39,8 @@ import com.sonycsl.echo.eoj.profile.*;
 
 
 public final class EchoNode {
+	private static HashMap<Short, DeviceProxyCreator> mProxyCreators = new HashMap<Short, DeviceProxyCreator>();
+	
 	private NodeProfile mNodeProfile;
 	private Map<Short, List<DeviceObject>> mDeviceGroups;
 	private InetAddress mAddress;
@@ -135,7 +137,9 @@ public final class EchoNode {
 	public void addDevice(short echoClassCode, byte instanceCode) {
 		if(containsInstance(echoClassCode, instanceCode)) return;
 		DeviceObject device = createDeviceProxy(echoClassCode, instanceCode);
-		addDevice(device);
+		if(device != null) {
+			addDevice(device);
+		}
 	}
 	
 	
@@ -356,6 +360,9 @@ public final class EchoNode {
 	}
 	*/
 	private static DeviceObject createDeviceProxy(short echoClassCode, byte instanceCode) {
+		if(mProxyCreators.containsKey(echoClassCode)) {
+			return mProxyCreators.get(echoClassCode).create(instanceCode);
+		}
 		switch(echoClassCode) {
 		case ActivityAmountSensor.ECHO_CLASS_CODE: return new ActivityAmountSensor.Proxy(instanceCode);
 		case AirPollutionSensor.ECHO_CLASS_CODE: return new AirPollutionSensor.Proxy(instanceCode);
@@ -447,6 +454,16 @@ public final class EchoNode {
 		case Television.ECHO_CLASS_CODE: return new Television.Proxy(instanceCode);
 		default: return null;
 		}
+	}
+	public static void putDeviceProxyCreator(short echoClassCode, DeviceProxyCreator creator) {
+		mProxyCreators.put(echoClassCode, creator);
+	}
+	public static void removeDeviceProxyCreator(short echoClassCode) {
+		mProxyCreators.remove(echoClassCode);
+	}
+	
+	public static interface DeviceProxyCreator {
+		public DeviceObject create(byte instanceCode);
 	}
 	
 	public InetAddress getAddress() {
