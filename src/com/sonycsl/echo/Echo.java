@@ -176,7 +176,10 @@ public final class Echo {
 		if(sCleared) {
 			return null;
 		}
-		if(sLocalNode.getAddress().equals(address)) {
+		if(address == null) {
+			return null;
+		}
+		if(address.equals(sLocalNode.getAddress())) {
 			if(!sLocalNode.containsInstance(echoClassCode, instanceCode)) return null;
 			return sLocalNode.getInstance(echoClassCode, instanceCode);
 		} else if(sNodes.containsKey(address)) {
@@ -193,7 +196,10 @@ public final class Echo {
 		if(sCleared) {
 			return;
 		}
-		if(sLocalNode.getAddress().equals(address)) {
+		if(address == null) {
+			return;
+		}
+		if(address.equals(sLocalNode.getAddress())) {
 			//if(sLocalNode.containsInstance(classGroupCode, classCode, instanceCode)) return;
 			//sLocalNode.addDevice(EchoUtils.getEchoClassCode(classGroupCode, classCode), instanceCode);
 			if(sLocalNode.containsInstance(classGroupCode, classCode, instanceCode)) {
@@ -236,8 +242,10 @@ public final class Echo {
 		if(sCleared) {
 			return;
 		}
-		
-		if(!sLocalNode.getAddress().equals(address) 
+		if(address == null) {
+			return;
+		}
+		if(!address.equals(sLocalNode.getAddress()) 
 				&& !sNodes.containsKey(address)) {
 			new EchoNode(address, echoObjectCodeList);
 			return;

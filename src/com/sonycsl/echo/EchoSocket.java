@@ -100,7 +100,7 @@ public final class EchoSocket {
 	
 	public static void send(InetAddress address, byte[] data) throws IOException {
 		if(sSocket == null) {
-			return;
+			throw new IOException();
 		}
 		if(data == null) {
 			return;
@@ -109,7 +109,8 @@ public final class EchoSocket {
 			try {
 				close();
 			} catch(IOException e) {}
-			return;
+			//return;
+			throw new IOException();
 		}
 		DatagramPacket packet = new DatagramPacket(data, data.length,
 				address, PORT);
