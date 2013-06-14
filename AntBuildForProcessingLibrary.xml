@@ -1,0 +1,54 @@
+<!--
+
+  This file is a config file to bulid the OpenECHO library for Processing.
+  In eclipse Package Explorer,
+
+  right click on this file -> Run As -> Ant build
+
+  will produce Processing/libraries/OpenECHO/library/OpenECHO.jar
+
+ -->
+ 
+<project name="OpenECHO" default="dist" basedir=".">
+
+     <description>
+          Build file for processing library
+     </description>
+
+     <property name="build" location="./bin" />
+
+     <!-- processing directory (Rewrite this to directly output into Processing folder)-->
+     <property name="dest" location="Processing/libraries/OpenECHO/library" />
+     <property name="code" location="Processing/libraries/OpenECHO/code" />
+     
+     <target name="compile" description = "Compile for OpenECHO Processing library">
+          <javac srcdir="." destdir=".">
+               <classpath>
+                    <pathelement path="${classpath}"/>
+               </classpath>
+          </javac>
+     </target>
+
+     <target name="dist" description="Export processing library">
+          <jar destfile="${dest}/OpenECHO.jar">
+              <fileset dir="${build}" includes="com/sonycsl/echo/*.class" />
+              <fileset dir="${build}" includes="com/sonycsl/echo/eoj/*.class" />
+              <fileset dir="${build}" includes="com/sonycsl/echo/eoj/device/*.class" />
+              <fileset dir="${build}" includes="com/sonycsl/echo/eoj/device/airconditioner/*.class" />
+              <fileset dir="${build}" includes="com/sonycsl/echo/eoj/device/audiovisual/*.class" />
+              <fileset dir="${build}" includes="com/sonycsl/echo/eoj/device/cookinghousehold/*.class" />
+              <fileset dir="${build}" includes="com/sonycsl/echo/eoj/device/health/*.class" />
+              <fileset dir="${build}" includes="com/sonycsl/echo/eoj/device/housingfacilities/*.class" />
+              <fileset dir="${build}" includes="com/sonycsl/echo/eoj/device/managementoperation/*.class" />
+              <fileset dir="${build}" includes="com/sonycsl/echo/eoj/device/sensor/*.class" />
+              <fileset dir="${build}" includes="com/sonycsl/echo/eoj/profile/*.class" />
+              <fileset dir="${build}" includes="com/sonycsl/echo/exception/*.class" />
+              <fileset dir="${build}" includes="com/sonycsl/echo/node/*.class" />
+              <fileset dir="${build}" includes="com/sonycsl/echo/processing/defaults/*.class" />
+              </jar>
+          <!-- copy todir="${code}">
+               <fileset dir="src/com/sonycsl/echo/samples" includes="*.java"/>
+          </copy -->
+     </target>
+
+</project>
