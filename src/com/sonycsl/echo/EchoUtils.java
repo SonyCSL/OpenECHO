@@ -188,8 +188,12 @@ public final class EchoUtils {
 			}
 			for(byte p : properties) {
 				int high = (int)((p >> 4) & 0x0F);
+				if (high < 0x08) {
+					continue;
+				}
 				int low = (int)(p & 0x0F);
-				ret[low+1] = (byte)((ret[low+1] & 0xFF) | (1 << (15 - high)));
+				//ret[low+1] = (byte)((ret[low+1] & 0xFF) | (1 << (0x0F - high)));
+				ret[low+1] = (byte)((ret[low+1] & 0xFF) | (1 << (high - 0x08)));
 			}
 		}
 		return ret;
@@ -204,14 +208,15 @@ public final class EchoUtils {
 			}
 		} else {
 			int n = 0;
-			for(int i = 0; i < 16; i++) {
-				byte tmp = map[i+1];
-				for(int j = 0; j < 8; j++) {
+			for(int low = 0; low < 16; low++) {
+				byte tmp = map[low + 1];
+				for(int high = 0; high < 8; high++) {
 					if((tmp & 0x01) == 0x01) {
-						ret[n] = (byte)((int)(i & 0x0F) | (((int)(15 - j)) << 4));
+						//ret[n] = (byte)(i | ((0x0F - j) << 4));
+						ret[n] = (byte)(low | ((high + 0x08) << 4));
 						n++;
 					}
-					tmp = (byte)((tmp & 0xFF) >> 1);
+					tmp = (byte)(tmp >> 1);
 				}
 			}
 		}
