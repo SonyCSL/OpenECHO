@@ -401,7 +401,11 @@ public abstract class EchoObject {
 		byte[] edt = null;
 		Echo.EventListener listener = Echo.getEventListener();
 		try {
-			edt = getProperty(epc);
+			if(res.getEsv() == EchoFrame.ESV_GET_RES || res.getEsv() == EchoFrame.ESV_GET_SNA) {
+				edt = mGetProperties.contains(epc) ? getProperty(epc) : null;
+			} else {
+				edt = getProperty(epc);
+			}
 			EchoProperty property = new EchoProperty(epc, edt);
 			listener.getProperty(this, property);
 			boolean valid = isValidProperty(property);

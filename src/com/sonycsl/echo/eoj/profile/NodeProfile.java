@@ -77,7 +77,7 @@ public abstract class NodeProfile extends ProfileObject {
 		addGetProperty(EPC_UNIQUE_IDENTIFIER_DATA);
 		addGetProperty(EPC_NUMBER_OF_SELF_NODE_INSTANCES);
 		addGetProperty(EPC_NUMBER_OF_SELF_NODE_CLASSES);
-		addGetProperty(EPC_INSTANCE_LIST_NOTIFICATION);
+		//addGetProperty(EPC_INSTANCE_LIST_NOTIFICATION);
 		addGetProperty(EPC_SELF_NODE_INSTANCE_LIST_S);
 		addGetProperty(EPC_SELF_NODE_CLASS_LIST);
 	}
