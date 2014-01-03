@@ -66,7 +66,7 @@ public abstract class DeviceObject extends EchoObject {
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		addStatusChangeAnnouncementProperty(EPC_INSTALLATION_LOCATION);
 		addStatusChangeAnnouncementProperty(EPC_FAULT_STATUS);
-		addStatusChangeAnnouncementProperty(EPC_POSITION_INFORMATION);
+		//addStatusChangeAnnouncementProperty(EPC_POSITION_INFORMATION);
 		
 		addSetProperty(EPC_INSTALLATION_LOCATION);
 
@@ -1040,7 +1040,7 @@ public abstract class DeviceObject extends EchoObject {
 				onGetCumulativeOperatingTime(eoj, tid, esv, property, success);
 				return true;
 			case EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP :
-				onGetStatusChageAnnouncementPropertyMap(eoj, tid, esv, property, success);
+				onGetStatusChangeAnnouncementPropertyMap(eoj, tid, esv, property, success);
 				return true;
 			case EPC_SET_PROPERTY_MAP :
 				onGetSetPropertyMap(eoj, tid, esv, property, success);
@@ -1383,7 +1383,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Set : undefined<br>
 		 * Get : mandatory
 		 */
-		protected void onGetStatusChageAnnouncementPropertyMap(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetStatusChangeAnnouncementPropertyMap(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		
 		/**
 		 * See Appendix 1.<br><br>

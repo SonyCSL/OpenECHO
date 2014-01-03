@@ -42,15 +42,24 @@ public final class EchoSocket {
 	private static final int PORT = 3610;
 	private static MulticastSocket sSocket;
 	private static InetAddress sMulticastAddress;
-	private static ExecutorService sReceiverExecutors;
+	private static ExecutorService sExecutors;
 	
 	//private static HashMap<Short, ResponseListener> sListeners;
 	
 
 	private static short sTID = 0;
 	
+	private static volatile InetAddress mMyAddress;
+
+	
 	private EchoSocket() {
+		try {
+			mMyAddress = EchoUtils.getLocalIpAddress();
+		} catch (SocketException e) {
+			e.printStackTrace();
+		}
 	}
+	
 	
 	//public static InetAddress getLocalAddress() {
 	//	return mSocket.getLocalAddress();
@@ -66,8 +75,28 @@ public final class EchoSocket {
 		sMulticastAddress = InetAddress.getByName(ADDRESS);
 		sSocket = new MulticastSocket(PORT);
 		
-		sReceiverExecutors = Executors.newSingleThreadExecutor();
-		sReceiverExecutors.execute(new Receiver(sSocket));
+		sExecutors = Executors.newFixedThreadPool(2);
+		sExecutors.execute(new Runnable(){
+			@Override
+			public void run() {
+				Thread currentThread = Thread.currentThread();
+				while(!currentThread.isInterrupted()) {
+					try {
+						mMyAddress = EchoUtils.getLocalIpAddress();
+					} catch (SocketException e) {
+						e.printStackTrace();
+					}
+					try {
+						Thread.sleep(1000*60*5);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						//e.printStackTrace();
+						break;
+					}
+				}
+			}
+		});
+		sExecutors.execute(new Receiver(sSocket));
 		
 		sSocket.joinGroup(sMulticastAddress);
 	}
@@ -79,8 +108,8 @@ public final class EchoSocket {
 		MulticastSocket s = sSocket;
 		sSocket = null;
 		
-		sReceiverExecutors.shutdown();
-		sReceiverExecutors.shutdownNow();
+		sExecutors.shutdown();
+		sExecutors.shutdownNow();
 		s.leaveGroup(sMulticastAddress);
 		s.close();
 		//if(sListeners != null) {
@@ -168,7 +197,7 @@ public final class EchoSocket {
 				if(!Echo.isStarted()) {
 					try {
 						close();
-					} catch(IOException e) {}
+					} catch(IOException e) {e.printStackTrace();}
 					return;
 				}
 				
@@ -286,4 +315,16 @@ public final class EchoSocket {
 		
 	}
 	*/
+	
+	public static InetAddress getMyAddress() {
+		//return mMyAddress;
+		
+		try {
+			return EchoUtils.getLocalIpAddress();
+		} catch (SocketException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

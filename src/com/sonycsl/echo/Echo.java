@@ -23,6 +23,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
@@ -41,16 +42,16 @@ import com.sonycsl.echo.node.EchoNode;
 public final class Echo {
 	
 	private static Map<InetAddress, EchoNode> sNodes; // remote nodes
-	private static EchoNode sLocalNode;
+	private static volatile EchoNode sLocalNode;
 	
 	private static Events sEvents = null;
 	private static ArrayList<EventListener> sListeners;
 	
-	private static boolean sStarted = false;
-	private static boolean sCleared= true;
+	private volatile static boolean sStarted = false;
+	private volatile static boolean sCleared= true;
 	
 	static {
-		sNodes = new HashMap<InetAddress, EchoNode>();
+		sNodes = new ConcurrentHashMap<InetAddress, EchoNode>();
 		sListeners = new ArrayList<EventListener>();
 		sEvents = new Events();
 	}
@@ -61,6 +62,9 @@ public final class Echo {
 	public synchronized static EchoNode start(NodeProfile profile, DeviceObject[] devices) throws IOException {
 		if(sStarted) return null;
 		if(!sCleared) return null;
+
+		sStarted = true;
+		sCleared = false;
 		
 		EchoSocket.start();
 		//if(sLocalNode != null && sLocalNode.getNodeProfile() == profile) {
@@ -73,8 +77,6 @@ public final class Echo {
 		//	return null;
 		//} else {
 
-		sStarted = true;
-		sCleared = false;
 		sLocalNode = new EchoNode(profile, devices);
 		//}
 		sLocalNode.getNodeProfile().inform().reqInformInstanceListNotification().send();
@@ -106,7 +108,7 @@ public final class Echo {
 		sListeners.clear();
 	}
 	
-	public synchronized static boolean isStarted() {
+	public static boolean isStarted() {
 		return sStarted;
 	}
 	
@@ -130,11 +132,11 @@ public final class Echo {
 	//	sNodes.clear();
 	//}
 	
-	public synchronized static EchoNode getNode() {
+	public static EchoNode getNode() {
 		return sLocalNode;
 	}
 	
-	public synchronized static EchoNode[] getNodes() {
+	public static EchoNode[] getNodes() {
 		//return (EchoNode[]) sNodes.values().toArray(new EchoNode[]{});
 		Collection<EchoNode> nodes = sNodes.values();
 		//nodes.add(sLocalNode);
@@ -163,15 +165,15 @@ public final class Echo {
 	}
 
 	
-	public synchronized static EchoObject getInstance(InetAddress address, byte classGroupCode, byte classCode, byte instanceCode) {
+	public static EchoObject getInstance(InetAddress address, byte classGroupCode, byte classCode, byte instanceCode) {
 		return getInstance(address, EchoUtils.getEchoClassCode(classGroupCode, classCode), instanceCode);
 	}
 	
-	public synchronized static EchoObject getInstance(InetAddress address, int objectCode){
+	public static EchoObject getInstance(InetAddress address, int objectCode){
 		return getInstance(address, EchoUtils.getEchoClassCodeFromObjectCode(objectCode), EchoUtils.getInstanceCodeFromObjectCode(objectCode));
 	}
 	
-	public synchronized static EchoObject getInstance(InetAddress address, short echoClassCode, byte instanceCode) {
+	public static EchoObject getInstance(InetAddress address, short echoClassCode, byte instanceCode) {
 
 		if(sCleared) {
 			return null;
@@ -267,11 +269,11 @@ public final class Echo {
 		}
 	}
 	
-	public synchronized static void addEventListener(EventListener listener) {
+	public static void addEventListener(EventListener listener) {
 		sListeners.add(listener);
 	}
 	
-	public synchronized static EventListener getEventListener() {
+	public static EventListener getEventListener() {
 		return sEvents;
 	}
 	

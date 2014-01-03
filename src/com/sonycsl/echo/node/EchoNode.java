@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.sonycsl.echo.Echo;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.EchoUtils;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
@@ -469,11 +470,12 @@ public final class EchoNode {
 	public InetAddress getAddress() {
 		
 		if (!isProxy()) {
-			try {
-				mAddress = EchoUtils.getLocalIpAddress();
-			} catch (SocketException e) {
-				e.printStackTrace();
-			}
+			//try {
+				//mAddress = EchoUtils.getLocalIpAddress();
+			//} catch (SocketException e) {
+			//	e.printStackTrace();
+			//}
+			mAddress = EchoSocket.getMyAddress();
 		}
 		return mAddress;
 	}
