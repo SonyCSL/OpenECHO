@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.housingfacilities;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -53,13 +54,6 @@ public abstract class SmartGasMeter extends DeviceObject {
 		addGetProperty(EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS);
 		addStatusChangeAnnouncementProperty(EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA);
 		addStatusChangeAnnouncementProperty(EPC_VALVE_CLOSURE_BY_THE_CENTER);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewSmartGasMeter(this);
 	}
 	
 	@Override
@@ -1182,27 +1176,36 @@ Byte<br>
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -1835,8 +1838,10 @@ Byte<br>
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -1904,7 +1909,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGasMeterClassification(byte[] edt) {
-			addProperty(EPC_GAS_METER_CLASSIFICATION, edt);
+			reqSetProperty(EPC_GAS_METER_CLASSIFICATION, edt);
 			return this;
 		}
 		/**
@@ -1935,7 +1940,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOwnerClassification(byte[] edt) {
-			addProperty(EPC_OWNER_CLASSIFICATION, edt);
+			reqSetProperty(EPC_OWNER_CLASSIFICATION, edt);
 			return this;
 		}
 		/**
@@ -1966,7 +1971,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(byte[] edt) {
-			addProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED, edt);
+			reqSetProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED, edt);
 			return this;
 		}
 		/**
@@ -1995,7 +2000,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetIdNumberSetting(byte[] edt) {
-			addProperty(EPC_ID_NUMBER_SETTING, edt);
+			reqSetProperty(EPC_ID_NUMBER_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2023,14 +2028,16 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetVerificationExpirationInformation(byte[] edt) {
-			addProperty(EPC_VERIFICATION_EXPIRATION_INFORMATION, edt);
+			reqSetProperty(EPC_VERIFICATION_EXPIRATION_INFORMATION, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -2162,7 +2169,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGasMeterClassification() {
-			addProperty(EPC_GAS_METER_CLASSIFICATION);
+			reqGetProperty(EPC_GAS_METER_CLASSIFICATION);
 			return this;
 		}
 		/**
@@ -2193,7 +2200,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOwnerClassification() {
-			addProperty(EPC_OWNER_CLASSIFICATION);
+			reqGetProperty(EPC_OWNER_CLASSIFICATION);
 			return this;
 		}
 		/**
@@ -2222,7 +2229,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetMeasuredCumulativeGasConsumption() {
-			addProperty(EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION);
+			reqGetProperty(EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION);
 			return this;
 		}
 		/**
@@ -2255,7 +2262,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetUnitForMeasuredCumulativeGasConsumptions() {
-			addProperty(EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS);
+			reqGetProperty(EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS);
 			return this;
 		}
 		/**
@@ -2291,7 +2298,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetHistoricalDataOfMeasuredCumulativeGasConsumptions() {
-			addProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS);
+			reqGetProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS);
 			return this;
 		}
 		/**
@@ -2322,7 +2329,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved() {
-			addProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED);
+			reqGetProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED);
 			return this;
 		}
 		/**
@@ -2353,7 +2360,7 @@ Byte<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetDetectionOfAbnormalValueInMeteringData() {
-			addProperty(EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA);
+			reqGetProperty(EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA);
 			return this;
 		}
 		/**
@@ -2381,7 +2388,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSecurityDataInformation() {
-			addProperty(EPC_SECURITY_DATA_INFORMATION);
+			reqGetProperty(EPC_SECURITY_DATA_INFORMATION);
 			return this;
 		}
 		/**
@@ -2412,7 +2419,7 @@ Byte<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetValveClosureByTheCenter() {
-			addProperty(EPC_VALVE_CLOSURE_BY_THE_CENTER);
+			reqGetProperty(EPC_VALVE_CLOSURE_BY_THE_CENTER);
 			return this;
 		}
 		/**
@@ -2442,7 +2449,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetPermissionFromTheCenterToReopenTheValveClosedByTheCenter() {
-			addProperty(EPC_PERMISSION_FROM_THE_CENTER_TO_REOPEN_THE_VALVE_CLOSED_BY_THE_CENTER);
+			reqGetProperty(EPC_PERMISSION_FROM_THE_CENTER_TO_REOPEN_THE_VALVE_CLOSED_BY_THE_CENTER);
 			return this;
 		}
 		/**
@@ -2470,7 +2477,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetEmergencyClosureOfShutoffValve() {
-			addProperty(EPC_EMERGENCY_CLOSURE_OF_SHUTOFF_VALVE);
+			reqGetProperty(EPC_EMERGENCY_CLOSURE_OF_SHUTOFF_VALVE);
 			return this;
 		}
 		/**
@@ -2498,7 +2505,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetShutoffValveStatus() {
-			addProperty(EPC_SHUTOFF_VALVE_STATUS);
+			reqGetProperty(EPC_SHUTOFF_VALVE_STATUS);
 			return this;
 		}
 		/**
@@ -2527,7 +2534,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetHistoricalDataOfShutoffReasons() {
-			addProperty(EPC_HISTORICAL_DATA_OF_SHUTOFF_REASONS);
+			reqGetProperty(EPC_HISTORICAL_DATA_OF_SHUTOFF_REASONS);
 			return this;
 		}
 		/**
@@ -2556,7 +2563,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetIdNumberSetting() {
-			addProperty(EPC_ID_NUMBER_SETTING);
+			reqGetProperty(EPC_ID_NUMBER_SETTING);
 			return this;
 		}
 		/**
@@ -2584,14 +2591,16 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetVerificationExpirationInformation() {
-			addProperty(EPC_VERIFICATION_EXPIRATION_INFORMATION);
+			reqGetProperty(EPC_VERIFICATION_EXPIRATION_INFORMATION);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -2722,7 +2731,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGasMeterClassification() {
-			addProperty(EPC_GAS_METER_CLASSIFICATION);
+			reqInformProperty(EPC_GAS_METER_CLASSIFICATION);
 			return this;
 		}
 		/**
@@ -2753,7 +2762,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOwnerClassification() {
-			addProperty(EPC_OWNER_CLASSIFICATION);
+			reqInformProperty(EPC_OWNER_CLASSIFICATION);
 			return this;
 		}
 		/**
@@ -2782,7 +2791,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformMeasuredCumulativeGasConsumption() {
-			addProperty(EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION);
+			reqInformProperty(EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION);
 			return this;
 		}
 		/**
@@ -2815,7 +2824,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformUnitForMeasuredCumulativeGasConsumptions() {
-			addProperty(EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS);
+			reqInformProperty(EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS);
 			return this;
 		}
 		/**
@@ -2851,7 +2860,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformHistoricalDataOfMeasuredCumulativeGasConsumptions() {
-			addProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS);
+			reqInformProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS);
 			return this;
 		}
 		/**
@@ -2882,7 +2891,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved() {
-			addProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED);
+			reqInformProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED);
 			return this;
 		}
 		/**
@@ -2913,7 +2922,7 @@ Byte<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformDetectionOfAbnormalValueInMeteringData() {
-			addProperty(EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA);
+			reqInformProperty(EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA);
 			return this;
 		}
 		/**
@@ -2941,7 +2950,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSecurityDataInformation() {
-			addProperty(EPC_SECURITY_DATA_INFORMATION);
+			reqInformProperty(EPC_SECURITY_DATA_INFORMATION);
 			return this;
 		}
 		/**
@@ -2972,7 +2981,7 @@ Byte<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformValveClosureByTheCenter() {
-			addProperty(EPC_VALVE_CLOSURE_BY_THE_CENTER);
+			reqInformProperty(EPC_VALVE_CLOSURE_BY_THE_CENTER);
 			return this;
 		}
 		/**
@@ -3002,7 +3011,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformPermissionFromTheCenterToReopenTheValveClosedByTheCenter() {
-			addProperty(EPC_PERMISSION_FROM_THE_CENTER_TO_REOPEN_THE_VALVE_CLOSED_BY_THE_CENTER);
+			reqInformProperty(EPC_PERMISSION_FROM_THE_CENTER_TO_REOPEN_THE_VALVE_CLOSED_BY_THE_CENTER);
 			return this;
 		}
 		/**
@@ -3030,7 +3039,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformEmergencyClosureOfShutoffValve() {
-			addProperty(EPC_EMERGENCY_CLOSURE_OF_SHUTOFF_VALVE);
+			reqInformProperty(EPC_EMERGENCY_CLOSURE_OF_SHUTOFF_VALVE);
 			return this;
 		}
 		/**
@@ -3058,7 +3067,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformShutoffValveStatus() {
-			addProperty(EPC_SHUTOFF_VALVE_STATUS);
+			reqInformProperty(EPC_SHUTOFF_VALVE_STATUS);
 			return this;
 		}
 		/**
@@ -3087,7 +3096,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformHistoricalDataOfShutoffReasons() {
-			addProperty(EPC_HISTORICAL_DATA_OF_SHUTOFF_REASONS);
+			reqInformProperty(EPC_HISTORICAL_DATA_OF_SHUTOFF_REASONS);
 			return this;
 		}
 		/**
@@ -3116,7 +3125,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformIdNumberSetting() {
-			addProperty(EPC_ID_NUMBER_SETTING);
+			reqInformProperty(EPC_ID_NUMBER_SETTING);
 			return this;
 		}
 		/**
@@ -3144,20 +3153,19 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformVerificationExpirationInformation() {
-			addProperty(EPC_VERIFICATION_EXPIRATION_INFORMATION);
+			reqInformProperty(EPC_VERIFICATION_EXPIRATION_INFORMATION);
 			return this;
 		}
 	}
 
 	public static class Proxy extends SmartGasMeter {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -3182,7 +3190,7 @@ Byte<br>
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -3190,7 +3198,8 @@ Byte<br>
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -3198,7 +3207,8 @@ Byte<br>
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -3206,7 +3216,8 @@ Byte<br>
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

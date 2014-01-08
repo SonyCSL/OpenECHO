@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.housingfacilities;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -58,13 +59,6 @@ public abstract class Battery extends DeviceObject {
 		addGetProperty(EPC_REMAINING_STORED_ELECTRICITY2_SEE_NOTE3);
 		addGetProperty(EPC_REMAINING_STORED_ELECTRICITY3_SEE_NOTE3_BATERY_STARE_OF_HEALTH);
 		addGetProperty(EPC_BATTERY_TYPE);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewBattery(this);
 	}
 	
 	@Override
@@ -1217,27 +1211,36 @@ Byte<br>
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -1857,8 +1860,10 @@ Byte<br>
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -1923,7 +1928,7 @@ Byte<br>
 		 * Get - undefined<br>
 		 */
 		public Setter reqSetGmeasuredCumulativeDischargeElectricEnergyHResetSetting(byte[] edt) {
-			addProperty(EPC_GMEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_H_RESET_SETTING, edt);
+			reqSetProperty(EPC_GMEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_H_RESET_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1950,7 +1955,7 @@ Byte<br>
 		 * Get - undefined<br>
 		 */
 		public Setter reqSetGmeasuredCumulativeChargeElectricEnergyHResetSetting(byte[] edt) {
-			addProperty(EPC_GMEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_H_RESET_SETTING, edt);
+			reqSetProperty(EPC_GMEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_H_RESET_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1982,7 +1987,7 @@ Byte<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOperationModeSettingSeeNote1(byte[] edt) {
-			addProperty(EPC_OPERATION_MODE_SETTING_SEE_NOTE1, edt);
+			reqSetProperty(EPC_OPERATION_MODE_SETTING_SEE_NOTE1, edt);
 			return this;
 		}
 		/**
@@ -2013,7 +2018,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetChargingDischaRgingAmountSetting1SeeNote2(byte[] edt) {
-			addProperty(EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING1_SEE_NOTE2, edt);
+			reqSetProperty(EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING1_SEE_NOTE2, edt);
 			return this;
 		}
 		/**
@@ -2045,14 +2050,16 @@ h<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetChargingDischaRgingAmountSetting2SeeNote2(byte[] edt) {
-			addProperty(EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING2_SEE_NOTE2, edt);
+			reqSetProperty(EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING2_SEE_NOTE2, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -2182,7 +2189,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRatedElectricEnergy() {
-			addProperty(EPC_RATED_ELECTRIC_ENERGY);
+			reqGetProperty(EPC_RATED_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -2210,7 +2217,7 @@ Ah<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRatedCapacity() {
-			addProperty(EPC_RATED_CAPACITY);
+			reqGetProperty(EPC_RATED_CAPACITY);
 			return this;
 		}
 		/**
@@ -2237,7 +2244,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRatedVoltage() {
-			addProperty(EPC_RATED_VOLTAGE);
+			reqGetProperty(EPC_RATED_VOLTAGE);
 			return this;
 		}
 		/**
@@ -2270,7 +2277,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredInstantaneousChargeDischargEElectricEnergy() {
-			addProperty(EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_ELECTRIC_ENERGY);
+			reqGetProperty(EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -2301,7 +2308,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredInstantaneousChargeDischargECurrent() {
-			addProperty(EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_CURRENT);
+			reqGetProperty(EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_CURRENT);
 			return this;
 		}
 		/**
@@ -2330,7 +2337,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredInstantaneousChargeDischargEVoltage() {
-			addProperty(EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_VOLTAGE);
+			reqGetProperty(EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_VOLTAGE);
 			return this;
 		}
 		/**
@@ -2358,7 +2365,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredCumulativeDischargeElectricEnergy() {
-			addProperty(EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY);
+			reqGetProperty(EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -2386,7 +2393,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredCumulativeChargeElectricEnergy() {
-			addProperty(EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY);
+			reqGetProperty(EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -2418,7 +2425,7 @@ Byte<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOperationModeSettingSeeNote1() {
-			addProperty(EPC_OPERATION_MODE_SETTING_SEE_NOTE1);
+			reqGetProperty(EPC_OPERATION_MODE_SETTING_SEE_NOTE1);
 			return this;
 		}
 		/**
@@ -2449,7 +2456,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetChargingDischaRgingAmountSetting1SeeNote2() {
-			addProperty(EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING1_SEE_NOTE2);
+			reqGetProperty(EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING1_SEE_NOTE2);
 			return this;
 		}
 		/**
@@ -2481,7 +2488,7 @@ h<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetChargingDischaRgingAmountSetting2SeeNote2() {
-			addProperty(EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING2_SEE_NOTE2);
+			reqGetProperty(EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING2_SEE_NOTE2);
 			return this;
 		}
 		/**
@@ -2509,7 +2516,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetRemainingStoredElectricity1SeeNote3() {
-			addProperty(EPC_REMAINING_STORED_ELECTRICITY1_SEE_NOTE3);
+			reqGetProperty(EPC_REMAINING_STORED_ELECTRICITY1_SEE_NOTE3);
 			return this;
 		}
 		/**
@@ -2537,7 +2544,7 @@ h<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetRemainingStoredElectricity2SeeNote3() {
-			addProperty(EPC_REMAINING_STORED_ELECTRICITY2_SEE_NOTE3);
+			reqGetProperty(EPC_REMAINING_STORED_ELECTRICITY2_SEE_NOTE3);
 			return this;
 		}
 		/**
@@ -2566,7 +2573,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetRemainingStoredElectricity3SeeNote3BateryStareOfHealth() {
-			addProperty(EPC_REMAINING_STORED_ELECTRICITY3_SEE_NOTE3_BATERY_STARE_OF_HEALTH);
+			reqGetProperty(EPC_REMAINING_STORED_ELECTRICITY3_SEE_NOTE3_BATERY_STARE_OF_HEALTH);
 			return this;
 		}
 		/**
@@ -2593,14 +2600,16 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetBatteryType() {
-			addProperty(EPC_BATTERY_TYPE);
+			reqGetProperty(EPC_BATTERY_TYPE);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -2729,7 +2738,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRatedElectricEnergy() {
-			addProperty(EPC_RATED_ELECTRIC_ENERGY);
+			reqInformProperty(EPC_RATED_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -2757,7 +2766,7 @@ Ah<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRatedCapacity() {
-			addProperty(EPC_RATED_CAPACITY);
+			reqInformProperty(EPC_RATED_CAPACITY);
 			return this;
 		}
 		/**
@@ -2784,7 +2793,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRatedVoltage() {
-			addProperty(EPC_RATED_VOLTAGE);
+			reqInformProperty(EPC_RATED_VOLTAGE);
 			return this;
 		}
 		/**
@@ -2817,7 +2826,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredInstantaneousChargeDischargEElectricEnergy() {
-			addProperty(EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_ELECTRIC_ENERGY);
+			reqInformProperty(EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -2848,7 +2857,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredInstantaneousChargeDischargECurrent() {
-			addProperty(EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_CURRENT);
+			reqInformProperty(EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_CURRENT);
 			return this;
 		}
 		/**
@@ -2877,7 +2886,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredInstantaneousChargeDischargEVoltage() {
-			addProperty(EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_VOLTAGE);
+			reqInformProperty(EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARG_E_VOLTAGE);
 			return this;
 		}
 		/**
@@ -2905,7 +2914,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredCumulativeDischargeElectricEnergy() {
-			addProperty(EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY);
+			reqInformProperty(EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -2933,7 +2942,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredCumulativeChargeElectricEnergy() {
-			addProperty(EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY);
+			reqInformProperty(EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -2965,7 +2974,7 @@ Byte<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOperationModeSettingSeeNote1() {
-			addProperty(EPC_OPERATION_MODE_SETTING_SEE_NOTE1);
+			reqInformProperty(EPC_OPERATION_MODE_SETTING_SEE_NOTE1);
 			return this;
 		}
 		/**
@@ -2996,7 +3005,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformChargingDischaRgingAmountSetting1SeeNote2() {
-			addProperty(EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING1_SEE_NOTE2);
+			reqInformProperty(EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING1_SEE_NOTE2);
 			return this;
 		}
 		/**
@@ -3028,7 +3037,7 @@ h<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformChargingDischaRgingAmountSetting2SeeNote2() {
-			addProperty(EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING2_SEE_NOTE2);
+			reqInformProperty(EPC_CHARGING_DISCHA_RGING_AMOUNT_SETTING2_SEE_NOTE2);
 			return this;
 		}
 		/**
@@ -3056,7 +3065,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformRemainingStoredElectricity1SeeNote3() {
-			addProperty(EPC_REMAINING_STORED_ELECTRICITY1_SEE_NOTE3);
+			reqInformProperty(EPC_REMAINING_STORED_ELECTRICITY1_SEE_NOTE3);
 			return this;
 		}
 		/**
@@ -3084,7 +3093,7 @@ h<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformRemainingStoredElectricity2SeeNote3() {
-			addProperty(EPC_REMAINING_STORED_ELECTRICITY2_SEE_NOTE3);
+			reqInformProperty(EPC_REMAINING_STORED_ELECTRICITY2_SEE_NOTE3);
 			return this;
 		}
 		/**
@@ -3113,7 +3122,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformRemainingStoredElectricity3SeeNote3BateryStareOfHealth() {
-			addProperty(EPC_REMAINING_STORED_ELECTRICITY3_SEE_NOTE3_BATERY_STARE_OF_HEALTH);
+			reqInformProperty(EPC_REMAINING_STORED_ELECTRICITY3_SEE_NOTE3_BATERY_STARE_OF_HEALTH);
 			return this;
 		}
 		/**
@@ -3140,20 +3149,19 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformBatteryType() {
-			addProperty(EPC_BATTERY_TYPE);
+			reqInformProperty(EPC_BATTERY_TYPE);
 			return this;
 		}
 	}
 
 	public static class Proxy extends Battery {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -3186,7 +3194,7 @@ Byte<br>
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -3194,7 +3202,8 @@ Byte<br>
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -3202,7 +3211,8 @@ Byte<br>
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -3210,7 +3220,8 @@ Byte<br>
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

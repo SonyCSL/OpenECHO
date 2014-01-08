@@ -33,6 +33,8 @@ import com.sonycsl.echo.exception.OutOfFrameException;
  */
 public final class EchoFrame {
 	
+	public static final int MIN_FRAME_SIZE = 12;
+	
 	private static final byte EHD1 = 0x10;
 	private static final byte EHD2 = (byte)0x81; 
 
@@ -58,27 +60,43 @@ public final class EchoFrame {
 	public static final byte ESV_SET_GET_SNA = 0x5E;
 	
 	private short mTID;
-	private EchoObject mSeoj;
-	private EchoObject mDeoj;
-	private byte mEsv;
+	private byte mESV;
+	
+	private short mSrcEchoClassCode;
+	private byte mSrcEchoInstanceCode;
+	private String mSrcEchoAddress;
+	private short mDstEchoClassCode;
+	private byte mDstEchoInstanceCode;
+	private String mDstEchoAddress;
 	
 	protected List<EchoProperty> mPropertyList;
 	
 	
 
 
-	public EchoFrame(short tid, EchoObject seoj, EchoObject deoj, byte esv) {
-		mTID = tid;
-		mSeoj = seoj;
-		mDeoj = deoj;
-		mEsv = esv;
+	public EchoFrame(short srcEchoClassCode, byte srcEchoInstanceCode
+			, short dstEchoClassCode, byte dstEchoInstanceCode
+			, String dstEchoAddress, byte esv) {
+		// send frame
+		mSrcEchoClassCode = srcEchoClassCode;
+		mSrcEchoInstanceCode = srcEchoInstanceCode;
+		mSrcEchoAddress = EchoSocket.SELF_ADDRESS;
+		mDstEchoClassCode = dstEchoClassCode;
+		mDstEchoInstanceCode = dstEchoInstanceCode;
+		mDstEchoAddress = dstEchoAddress;
+		
+		mESV = esv;
+		
+		mTID = 0;
 		
 		mPropertyList = new ArrayList<EchoProperty>();
-		
 	}
 	
-	public EchoFrame(InetAddress address, byte[] data) {
-		if(data.length < 11) {return;}
+	public EchoFrame(String srcEchoAddress, byte[] data) {
+		// receive frame
+		mSrcEchoAddress = srcEchoAddress;
+		mDstEchoAddress = EchoSocket.SELF_ADDRESS;
+		if(data.length < MIN_FRAME_SIZE) {return;}
 		if(data[0] != EHD1) return;
 		if(data[1] != EHD2) return;
 		ByteBuffer buffer = ByteBuffer.allocate(2);
@@ -87,11 +105,23 @@ public final class EchoFrame {
 		buffer.put(data[3]);
 		mTID = buffer.getShort(0);
 		//Echo.putProxy(address, data[4], data[5], data[6]);
-		Echo.updateNodeInstance(address, data[4], data[5], data[6]);
-		mSeoj = Echo.getInstance(address, data[4], data[5], data[6]);
-		mDeoj = Echo.getInstance(Echo.getNode().getAddress(), 
-				data[7], data[8], data[9]);
-		mEsv = data[10];
+		//Echo.updateNodeInstance(address, data[4], data[5], data[6]);
+		//mSeoj = Echo.getInstance(address, data[4], data[5], data[6]);
+		//mDeoj = Echo.getInstance(Echo.getNode().getAddress(), 
+		//		data[7], data[8], data[9]);
+		buffer = ByteBuffer.allocate(2);
+		buffer.order(ByteOrder.BIG_ENDIAN);
+		buffer.put(data[4]);
+		buffer.put(data[5]);
+		mSrcEchoClassCode = buffer.getShort(0);
+		mSrcEchoInstanceCode = data[6];
+		buffer = ByteBuffer.allocate(2);
+		buffer.order(ByteOrder.BIG_ENDIAN);
+		buffer.put(data[7]);
+		buffer.put(data[8]);
+		mDstEchoClassCode = buffer.getShort(0);
+		mDstEchoInstanceCode = data[9];
+		mESV = data[10];
 		int size = data[11] & 0xFF;
 		mPropertyList = new ArrayList<EchoProperty>();
 		for(int i = 0, j = 12; i < size; i++) {
@@ -116,132 +146,81 @@ public final class EchoFrame {
 		
 	}
 	
-	public short getTid() {
+	protected EchoFrame(short srcEchoClassCode, byte srcEchoInstanceCode
+			, short dstEchoClassCode, byte dstEchoInstanceCode
+			, String dstEchoAddress, byte esv, short tid, List<EchoProperty> propertyList) {
+		
+		// copy
+
+		mSrcEchoClassCode = srcEchoClassCode;
+		mSrcEchoInstanceCode = srcEchoInstanceCode;
+		mSrcEchoAddress = EchoSocket.SELF_ADDRESS;
+		mDstEchoClassCode = dstEchoClassCode;
+		mDstEchoInstanceCode = dstEchoInstanceCode;
+		mDstEchoAddress = dstEchoAddress;
+		
+		mESV = esv;
+		
+		mTID = tid;
+		
+		mPropertyList = new ArrayList<EchoProperty>();
+		for(EchoProperty property : propertyList) {
+			mPropertyList.add(property.copy());
+		}
+	}
+	
+	public void setTID(short tid) {
+		mTID = tid;
+	}
+	
+	public short getTID() {
 		return mTID;
 	}
-	
-	public EchoObject getSeoj() {
-		return mSeoj;
+
+	public byte getESV() {
+		return mESV;
 	}
 	
-	public EchoObject getDeoj() {
-		return mDeoj;
+	public short getSrcEchoClassCode() {
+		return mSrcEchoClassCode;
 	}
 	
-	public void setEsv(byte esv) {
-		mEsv = esv;
+	public byte getSrcEchoInstanceCode() {
+		return mSrcEchoInstanceCode;
+	}
+	
+	public String getSrcEchoAddress() {
+		return mSrcEchoAddress;
 	}
 
-	public byte getEsv() {
-		return mEsv;
+	public short getDstEchoClassCode() {
+		return mDstEchoClassCode;
+	}
+	
+	public void setDstEchoInstanceCode(byte dstEchoInstanceCode) {
+		mDstEchoInstanceCode = dstEchoInstanceCode;
+	}
+	
+	public byte getDstEchoInstanceCode() {
+		return mDstEchoInstanceCode;
+	}
+	
+	public void setDstEchoAddress(String dstEchoAddress) {
+		mDstEchoAddress = dstEchoAddress;
+	}
+	
+	public String getDstEchoAddress() {
+		return mDstEchoAddress;
+	}
+	
+	public List<EchoProperty> getPropertyList() {
+		return mPropertyList;
 	}
 	
 	public EchoProperty[] getProperties() {
-		return (EchoProperty[]) mPropertyList.toArray(new EchoProperty[]{});
-	}
-	
-	public void addProperty(EchoProperty property) {
-		mPropertyList.add(property);
-	}
-	
-	public void addProperty(byte epc, byte pdc, byte[] edt) {
-		EchoProperty prop = new EchoProperty(epc, pdc, edt);
-		mPropertyList.add(prop);
+		return mPropertyList.toArray(new EchoProperty[]{});
 	}
 
-	public void addProperty(byte epc, byte[] edt) {
-		EchoProperty prop = new EchoProperty(epc, edt);
-		mPropertyList.add(prop);
-	}
-	
-	public void addProperty(byte epc) {
-		addProperty(epc, (byte)0, null);
-	}
-	
-	
-	public void addProperty(byte epc, byte[] edt, boolean success) {
-		if(success) {
-			switch(mEsv) {
-			case ESV_SETI: case ESV_SETC:
-				addProperty(epc, edt);
-				break;
-			case ESV_SET_NO_RES: case ESV_SETI_SNA:
-			case ESV_SET_RES: case ESV_SETC_SNA:
-				addProperty(epc);
-				break;
-			case ESV_GET_RES: case ESV_GET_SNA:
-				addProperty(epc, edt);
-				break;
-			case ESV_INF: case ESV_INF_SNA:
-				addProperty(epc, edt);
-				break;
-			case ESV_INFC:
-				addProperty(epc, edt);
-				break;
-			}
-		} else {
-			switch(mEsv) {
-			case ESV_SET_NO_RES: case ESV_SETI_SNA:
-				addProperty(epc, edt);
-				setEsv(ESV_SETI_SNA);
-				break;
-			case ESV_SET_RES: case ESV_SETC_SNA:
-				addProperty(epc, edt);
-				setEsv(ESV_SETC_SNA);
-				break;
-			case ESV_GET_RES: case ESV_GET_SNA:
-				addProperty(epc);
-				setEsv(ESV_GET_SNA);
-				break;
-			case ESV_INF: case ESV_INF_SNA:
-				addProperty(epc);
-				setEsv(ESV_INF_SNA);
-				break;
-			}
-		}
-	}
-
-	public void addProperty(EchoProperty property, boolean success) {
-		if(success) {
-			switch(mEsv) {
-			case ESV_SETI: case ESV_SETC:
-				addProperty(property);
-				break;
-			case ESV_SET_NO_RES: case ESV_SETI_SNA:
-			case ESV_SET_RES: case ESV_SETC_SNA:
-				addProperty(property.epc);
-				break;
-			case ESV_GET_RES: case ESV_GET_SNA:
-				addProperty(property);
-				break;
-			case ESV_INF: case ESV_INF_SNA:
-				addProperty(property);
-			case ESV_INFC:
-				addProperty(property);
-				break;
-			}
-		} else {
-			switch(mEsv) {
-			case ESV_SET_NO_RES: case ESV_SETI_SNA:
-				addProperty(property);
-				setEsv(ESV_SETI_SNA);
-				break;
-			case ESV_SET_RES: case ESV_SETC_SNA:
-				addProperty(property);
-				setEsv(ESV_SETC_SNA);
-				break;
-			case ESV_GET_RES: case ESV_GET_SNA:
-				addProperty(property.epc);
-				setEsv(ESV_GET_SNA);
-				break;
-			case ESV_INF: case ESV_INF_SNA:
-				addProperty(property.epc);
-				setEsv(ESV_INF_SNA);
-				break;
-			}
-		}
-	}
-	
 	public byte[] getFrameByteArray() {
 		int propertyListSize = mPropertyList.size();
 		if(propertyListSize > 255) {
@@ -258,9 +237,11 @@ public final class EchoFrame {
 		buffer.put(EHD1);
 		buffer.put(EHD2);
 		buffer.putShort(mTID);
-		buffer.put(EchoUtils.instanceToByteArray(mSeoj));
-		buffer.put(EchoUtils.instanceToByteArray(mDeoj));
-		buffer.put(mEsv);
+		buffer.putShort(mSrcEchoClassCode);
+		buffer.put(mSrcEchoInstanceCode);
+		buffer.putShort(mDstEchoClassCode);
+		buffer.put(mDstEchoInstanceCode);
+		buffer.put(mESV);
 		buffer.put((byte)propertyListSize);
 		for(EchoProperty p : mPropertyList) {
 			buffer.put(p.epc);
@@ -271,5 +252,53 @@ public final class EchoFrame {
 		return buffer.array();
 		
 	}
+	
+	
+	public void addPropertyForResponse(byte epc) {
+		addPropertyForResponse(epc, null);
+	}
+	
+	public void addPropertyForResponse(byte epc, byte[] edt) {
+		EchoProperty property = new EchoProperty(epc, edt);
+		addPropertyForResponse(property);
+	}
+	
+	public void addPropertyForResponse(EchoProperty property) {
+		mPropertyList.add(property);
+		switch(mESV) {
+		case ESV_SET_NO_RES: case ESV_SETI_SNA:
+			if(property.pdc != 0) {
+				mESV = ESV_SETI_SNA;
+			}
+			break;
+		case ESV_SET_RES: case ESV_SETC_SNA:
+			if(property.pdc != 0) {
+				mESV = ESV_SETC_SNA;
+			}
+			break;
+		case ESV_GET_RES: case ESV_GET_SNA:
+			if(property.pdc == 0) {
+				mESV = ESV_GET_SNA;
+			}
+			break;
+		case ESV_INF: case ESV_INF_SNA:
+			if(property.pdc == 0) {
+				mESV = ESV_INF_SNA;
+			}
+			break;
+		}
+	}
+	
+	public void addProperty(EchoProperty property) {
+		mPropertyList.add(property);
+	}
+	
+	public EchoFrame copy() {
+		EchoFrame ret = new EchoFrame(mSrcEchoClassCode, mSrcEchoInstanceCode
+				, mDstEchoClassCode, mDstEchoInstanceCode
+				, mDstEchoAddress, mESV, mTID, mPropertyList);
+		return ret;
+	}
+	
 	
 }

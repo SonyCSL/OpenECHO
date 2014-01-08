@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.housingfacilities;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -46,13 +47,6 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		addGetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED);
 		addGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewHouseholdSolarPowerGeneration(this);
 	}
 	
 	@Override
@@ -753,27 +747,36 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -1170,8 +1173,10 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -1235,7 +1240,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Get - undefined<br>
 		 */
 		public Setter reqSetResettingCumulativeAmountOfElectricityGenerated(byte[] edt) {
-			addProperty(EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED, edt);
+			reqSetProperty(EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED, edt);
 			return this;
 		}
 		/**
@@ -1261,7 +1266,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Get - undefined<br>
 		 */
 		public Setter reqSetResettingCumulativeAmountOfElectricitySold(byte[] edt) {
-			addProperty(EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD, edt);
+			reqSetProperty(EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD, edt);
 			return this;
 		}
 		/**
@@ -1287,7 +1292,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetPowerGenerationOutputLimitSetting1(byte[] edt) {
-			addProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1, edt);
+			reqSetProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1, edt);
 			return this;
 		}
 		/**
@@ -1313,7 +1318,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetPowerGenerationOutputLimitSetting2(byte[] edt) {
-			addProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2, edt);
+			reqSetProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -1339,7 +1344,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetLimitSettingForTheAmountOfElectricitySold(byte[] edt) {
-			addProperty(EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD, edt);
+			reqSetProperty(EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD, edt);
 			return this;
 		}
 		/**
@@ -1365,14 +1370,16 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetRatedPowerGenerationOutput(byte[] edt) {
-			addProperty(EPC_RATED_POWER_GENERATION_OUTPUT, edt);
+			reqSetProperty(EPC_RATED_POWER_GENERATION_OUTPUT, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -1501,7 +1508,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSystemInterconnectionStatus() {
-			addProperty(EPC_SYSTEM_INTERCONNECTION_STATUS);
+			reqGetProperty(EPC_SYSTEM_INTERCONNECTION_STATUS);
 			return this;
 		}
 		/**
@@ -1527,7 +1534,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetMeasuredInstantaneousAmountOfElectricityGenerated() {
-			addProperty(EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED);
+			reqGetProperty(EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED);
 			return this;
 		}
 		/**
@@ -1553,7 +1560,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetMeasuredCumulativeAmountOfElectricityGenerated() {
-			addProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED);
+			reqGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED);
 			return this;
 		}
 		/**
@@ -1579,7 +1586,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredCumulativeAmountOfElectricitySold() {
-			addProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD);
+			reqGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD);
 			return this;
 		}
 		/**
@@ -1605,7 +1612,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetPowerGenerationOutputLimitSetting1() {
-			addProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1);
+			reqGetProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1);
 			return this;
 		}
 		/**
@@ -1631,7 +1638,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetPowerGenerationOutputLimitSetting2() {
-			addProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2);
+			reqGetProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2);
 			return this;
 		}
 		/**
@@ -1657,7 +1664,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetLimitSettingForTheAmountOfElectricitySold() {
-			addProperty(EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD);
+			reqGetProperty(EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD);
 			return this;
 		}
 		/**
@@ -1683,14 +1690,16 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRatedPowerGenerationOutput() {
-			addProperty(EPC_RATED_POWER_GENERATION_OUTPUT);
+			reqGetProperty(EPC_RATED_POWER_GENERATION_OUTPUT);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -1818,7 +1827,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSystemInterconnectionStatus() {
-			addProperty(EPC_SYSTEM_INTERCONNECTION_STATUS);
+			reqInformProperty(EPC_SYSTEM_INTERCONNECTION_STATUS);
 			return this;
 		}
 		/**
@@ -1844,7 +1853,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformMeasuredInstantaneousAmountOfElectricityGenerated() {
-			addProperty(EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED);
+			reqInformProperty(EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED);
 			return this;
 		}
 		/**
@@ -1870,7 +1879,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformMeasuredCumulativeAmountOfElectricityGenerated() {
-			addProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED);
+			reqInformProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED);
 			return this;
 		}
 		/**
@@ -1896,7 +1905,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredCumulativeAmountOfElectricitySold() {
-			addProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD);
+			reqInformProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD);
 			return this;
 		}
 		/**
@@ -1922,7 +1931,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformPowerGenerationOutputLimitSetting1() {
-			addProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1);
+			reqInformProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1);
 			return this;
 		}
 		/**
@@ -1948,7 +1957,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformPowerGenerationOutputLimitSetting2() {
-			addProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2);
+			reqInformProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2);
 			return this;
 		}
 		/**
@@ -1974,7 +1983,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformLimitSettingForTheAmountOfElectricitySold() {
-			addProperty(EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD);
+			reqInformProperty(EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD);
 			return this;
 		}
 		/**
@@ -2000,20 +2009,19 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRatedPowerGenerationOutput() {
-			addProperty(EPC_RATED_POWER_GENERATION_OUTPUT);
+			reqInformProperty(EPC_RATED_POWER_GENERATION_OUTPUT);
 			return this;
 		}
 	}
 
 	public static class Proxy extends HouseholdSolarPowerGeneration {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -2038,7 +2046,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -2046,7 +2054,8 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -2054,7 +2063,8 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -2062,7 +2072,8 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

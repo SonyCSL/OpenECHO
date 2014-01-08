@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.airconditioner;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -85,13 +86,6 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		addSetProperty(EPC_TEMPERATURE_SETTING2);
 		addGetProperty(EPC_TEMPERATURE_SETTING2);
 		addStatusChangeAnnouncementProperty(EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewPackageTypeCommercialAirConditionerIndoorUnit(this);
 	}
 	
 	@Override
@@ -3050,27 +3044,36 @@ char�~2<br>
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -4973,8 +4976,10 @@ char�~2<br>
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -5046,7 +5051,7 @@ char�~2<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOperationModeSetting(byte[] edt) {
-			addProperty(EPC_OPERATION_MODE_SETTING, edt);
+			reqSetProperty(EPC_OPERATION_MODE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5074,7 +5079,7 @@ char�~2<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetTemperatureSetting1(byte[] edt) {
-			addProperty(EPC_TEMPERATURE_SETTING1, edt);
+			reqSetProperty(EPC_TEMPERATURE_SETTING1, edt);
 			return this;
 		}
 		/**
@@ -5105,7 +5110,7 @@ tion�f .mode�h .1<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetGrelativeHumiditySettingForEdehumidificaTionFModeH1(byte[] edt) {
-			addProperty(EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1, edt);
+			reqSetProperty(EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1, edt);
 			return this;
 		}
 		/**
@@ -5134,7 +5139,7 @@ setting for
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGtemperatureSettingForEcoolingFModeH1(byte[] edt) {
-			addProperty(EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H1, edt);
+			reqSetProperty(EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H1, edt);
 			return this;
 		}
 		/**
@@ -5163,7 +5168,7 @@ setting for
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGtemperatureSettingForEheatingFModeH1(byte[] edt) {
-			addProperty(EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H1, edt);
+			reqSetProperty(EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H1, edt);
 			return this;
 		}
 		/**
@@ -5192,7 +5197,7 @@ tion�f .mode�h .1<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGtemperatureSettingForEdehumidificaTionFModeH1(byte[] edt) {
-			addProperty(EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1, edt);
+			reqSetProperty(EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1, edt);
 			return this;
 		}
 		/**
@@ -5219,7 +5224,7 @@ tion�f .mode�h .1<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetRelativeTemperatureSetting(byte[] edt) {
-			addProperty(EPC_RELATIVE_TEMPERATURE_SETTING, edt);
+			reqSetProperty(EPC_RELATIVE_TEMPERATURE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5247,7 +5252,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetAirFlowRateSetting(byte[] edt) {
-			addProperty(EPC_AIR_FLOW_RATE_SETTING, edt);
+			reqSetProperty(EPC_AIR_FLOW_RATE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5277,7 +5282,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGairFlowDirectionVerticalHSetting(byte[] edt) {
-			addProperty(EPC_GAIR_FLOW_DIRECTION_VERTICAL_H_SETTING, edt);
+			reqSetProperty(EPC_GAIR_FLOW_DIRECTION_VERTICAL_H_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5307,7 +5312,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGairFlowDirectionHorizontalHSetting(byte[] edt) {
-			addProperty(EPC_GAIR_FLOW_DIRECTION_HORIZONTAL_H_SETTING, edt);
+			reqSetProperty(EPC_GAIR_FLOW_DIRECTION_HORIZONTAL_H_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5335,7 +5340,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetVentilationModeSetting(byte[] edt) {
-			addProperty(EPC_VENTILATION_MODE_SETTING, edt);
+			reqSetProperty(EPC_VENTILATION_MODE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5364,7 +5369,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetCombinedOperationOfIndoorUnitAndTotalHeatExchanger(byte[] edt) {
-			addProperty(EPC_COMBINED_OPERATION_OF_INDOOR_UNIT_AND_TOTAL_HEAT_EXCHANGER, edt);
+			reqSetProperty(EPC_COMBINED_OPERATION_OF_INDOOR_UNIT_AND_TOTAL_HEAT_EXCHANGER, edt);
 			return this;
 		}
 		/**
@@ -5394,7 +5399,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetVentilationAirFlowRateSetting(byte[] edt) {
-			addProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING, edt);
+			reqSetProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5421,7 +5426,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGdisablingOfAirConditionerHSetting(byte[] edt) {
-			addProperty(EPC_GDISABLING_OF_AIR_CONDITIONER_H_SETTING, edt);
+			reqSetProperty(EPC_GDISABLING_OF_AIR_CONDITIONER_H_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5448,7 +5453,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetThermostatSettingOverrideFunction(byte[] edt) {
-			addProperty(EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION, edt);
+			reqSetProperty(EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION, edt);
 			return this;
 		}
 		/**
@@ -5477,7 +5482,7 @@ char<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetFilterCleaningReminderLampSetting(byte[] edt) {
-			addProperty(EPC_FILTER_CLEANING_REMINDER_LAMP_SETTING, edt);
+			reqSetProperty(EPC_FILTER_CLEANING_REMINDER_LAMP_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5506,7 +5511,7 @@ short<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetTemperatureSetting2(byte[] edt) {
-			addProperty(EPC_TEMPERATURE_SETTING2, edt);
+			reqSetProperty(EPC_TEMPERATURE_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -5536,7 +5541,7 @@ short<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetGrelativeHumiditySettingForEdehumidificatioNFModeH2(byte[] edt) {
-			addProperty(EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2, edt);
+			reqSetProperty(EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2, edt);
 			return this;
 		}
 		/**
@@ -5565,7 +5570,7 @@ short<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGtemperatureSettingForEcoolingFModeH2(byte[] edt) {
-			addProperty(EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H2, edt);
+			reqSetProperty(EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H2, edt);
 			return this;
 		}
 		/**
@@ -5594,7 +5599,7 @@ short<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGtemperatureSettingForEheatingFModeH2(byte[] edt) {
-			addProperty(EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H2, edt);
+			reqSetProperty(EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H2, edt);
 			return this;
 		}
 		/**
@@ -5622,7 +5627,7 @@ short<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGtemperatureSettingForEdehumidificatioNFModeH2(byte[] edt) {
-			addProperty(EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2, edt);
+			reqSetProperty(EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2, edt);
 			return this;
 		}
 		/**
@@ -5652,7 +5657,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGonTimerBasedReservationHSetting(byte[] edt) {
-			addProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING, edt);
+			reqSetProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5681,7 +5686,7 @@ char�~2<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerSettingTime(byte[] edt) {
-			addProperty(EPC_ON_TIMER_SETTING_TIME, edt);
+			reqSetProperty(EPC_ON_TIMER_SETTING_TIME, edt);
 			return this;
 		}
 		/**
@@ -5709,7 +5714,7 @@ char�~2<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerSettingRelativeTime(byte[] edt) {
-			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME, edt);
+			reqSetProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME, edt);
 			return this;
 		}
 		/**
@@ -5739,7 +5744,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGoffTimerBasedReservationHSetting(byte[] edt) {
-			addProperty(EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING, edt);
+			reqSetProperty(EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5768,7 +5773,7 @@ char�~2<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOffTimerSettingTime(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_SETTING_TIME, edt);
+			reqSetProperty(EPC_OFF_TIMER_SETTING_TIME, edt);
 			return this;
 		}
 		/**
@@ -5796,14 +5801,16 @@ char�~2<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOffTimerSettingRelativeTime(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME, edt);
+			reqSetProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -5939,7 +5946,7 @@ char�~2<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOperationModeSetting() {
-			addProperty(EPC_OPERATION_MODE_SETTING);
+			reqGetProperty(EPC_OPERATION_MODE_SETTING);
 			return this;
 		}
 		/**
@@ -5967,7 +5974,7 @@ char�~2<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetTemperatureSetting1() {
-			addProperty(EPC_TEMPERATURE_SETTING1);
+			reqGetProperty(EPC_TEMPERATURE_SETTING1);
 			return this;
 		}
 		/**
@@ -5998,7 +6005,7 @@ tion�f .mode�h .1<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetGrelativeHumiditySettingForEdehumidificaTionFModeH1() {
-			addProperty(EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1);
+			reqGetProperty(EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1);
 			return this;
 		}
 		/**
@@ -6027,7 +6034,7 @@ setting for
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGtemperatureSettingForEcoolingFModeH1() {
-			addProperty(EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H1);
+			reqGetProperty(EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H1);
 			return this;
 		}
 		/**
@@ -6056,7 +6063,7 @@ setting for
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGtemperatureSettingForEheatingFModeH1() {
-			addProperty(EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H1);
+			reqGetProperty(EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H1);
 			return this;
 		}
 		/**
@@ -6085,7 +6092,7 @@ tion�f .mode�h .1<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGtemperatureSettingForEdehumidificaTionFModeH1() {
-			addProperty(EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1);
+			reqGetProperty(EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1);
 			return this;
 		}
 		/**
@@ -6113,7 +6120,7 @@ tion�f .mode�h .1<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRatedPowerConsumptionOfIndoorUnit() {
-			addProperty(EPC_RATED_POWER_CONSUMPTION_OF_INDOOR_UNIT);
+			reqGetProperty(EPC_RATED_POWER_CONSUMPTION_OF_INDOOR_UNIT);
 			return this;
 		}
 		/**
@@ -6139,7 +6146,7 @@ tion�f .mode�h .1<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredElectricCurrentConsumptionOfIndoorUnit() {
-			addProperty(EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_INDOOR_UNIT);
+			reqGetProperty(EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_INDOOR_UNIT);
 			return this;
 		}
 		/**
@@ -6165,7 +6172,7 @@ tion�f .mode�h .1<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredIndoorRelativeHumidity1() {
-			addProperty(EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY1);
+			reqGetProperty(EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY1);
 			return this;
 		}
 		/**
@@ -6191,7 +6198,7 @@ tion�f .mode�h .1<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredIndoorTemperature1() {
-			addProperty(EPC_MEASURED_INDOOR_TEMPERATURE1);
+			reqGetProperty(EPC_MEASURED_INDOOR_TEMPERATURE1);
 			return this;
 		}
 		/**
@@ -6218,7 +6225,7 @@ tion�f .mode�h .1<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRelativeTemperatureSetting() {
-			addProperty(EPC_RELATIVE_TEMPERATURE_SETTING);
+			reqGetProperty(EPC_RELATIVE_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
@@ -6246,7 +6253,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetAirFlowRateSetting() {
-			addProperty(EPC_AIR_FLOW_RATE_SETTING);
+			reqGetProperty(EPC_AIR_FLOW_RATE_SETTING);
 			return this;
 		}
 		/**
@@ -6276,7 +6283,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGairFlowDirectionVerticalHSetting() {
-			addProperty(EPC_GAIR_FLOW_DIRECTION_VERTICAL_H_SETTING);
+			reqGetProperty(EPC_GAIR_FLOW_DIRECTION_VERTICAL_H_SETTING);
 			return this;
 		}
 		/**
@@ -6306,7 +6313,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGairFlowDirectionHorizontalHSetting() {
-			addProperty(EPC_GAIR_FLOW_DIRECTION_HORIZONTAL_H_SETTING);
+			reqGetProperty(EPC_GAIR_FLOW_DIRECTION_HORIZONTAL_H_SETTING);
 			return this;
 		}
 		/**
@@ -6333,7 +6340,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGspecialHState() {
-			addProperty(EPC_GSPECIAL_H_STATE);
+			reqGetProperty(EPC_GSPECIAL_H_STATE);
 			return this;
 		}
 		/**
@@ -6362,7 +6369,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetThermostatState() {
-			addProperty(EPC_THERMOSTAT_STATE);
+			reqGetProperty(EPC_THERMOSTAT_STATE);
 			return this;
 		}
 		/**
@@ -6395,7 +6402,7 @@ char<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetCurrentFunctionGautomaticHOperationMode() {
-			addProperty(EPC_CURRENT_FUNCTION_GAUTOMATIC_H_OPERATION_MODE);
+			reqGetProperty(EPC_CURRENT_FUNCTION_GAUTOMATIC_H_OPERATION_MODE);
 			return this;
 		}
 		/**
@@ -6423,7 +6430,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetVentilationModeSetting() {
-			addProperty(EPC_VENTILATION_MODE_SETTING);
+			reqGetProperty(EPC_VENTILATION_MODE_SETTING);
 			return this;
 		}
 		/**
@@ -6452,7 +6459,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetCombinedOperationOfIndoorUnitAndTotalHeatExchanger() {
-			addProperty(EPC_COMBINED_OPERATION_OF_INDOOR_UNIT_AND_TOTAL_HEAT_EXCHANGER);
+			reqGetProperty(EPC_COMBINED_OPERATION_OF_INDOOR_UNIT_AND_TOTAL_HEAT_EXCHANGER);
 			return this;
 		}
 		/**
@@ -6482,7 +6489,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetVentilationAirFlowRateSetting() {
-			addProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING);
+			reqGetProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING);
 			return this;
 		}
 		/**
@@ -6509,7 +6516,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGdisablingOfAirConditionerHSetting() {
-			addProperty(EPC_GDISABLING_OF_AIR_CONDITIONER_H_SETTING);
+			reqGetProperty(EPC_GDISABLING_OF_AIR_CONDITIONER_H_SETTING);
 			return this;
 		}
 		/**
@@ -6536,7 +6543,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetThermostatSettingOverrideFunction() {
-			addProperty(EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION);
+			reqGetProperty(EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION);
 			return this;
 		}
 		/**
@@ -6565,7 +6572,7 @@ char<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetFilterCleaningReminderLampSetting() {
-			addProperty(EPC_FILTER_CLEANING_REMINDER_LAMP_SETTING);
+			reqGetProperty(EPC_FILTER_CLEANING_REMINDER_LAMP_SETTING);
 			return this;
 		}
 		/**
@@ -6591,7 +6598,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredPowerConsumptionOfIndoorUnit() {
-			addProperty(EPC_MEASURED_POWER_CONSUMPTION_OF_INDOOR_UNIT);
+			reqGetProperty(EPC_MEASURED_POWER_CONSUMPTION_OF_INDOOR_UNIT);
 			return this;
 		}
 		/**
@@ -6618,7 +6625,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetApertureOfExpansionValve() {
-			addProperty(EPC_APERTURE_OF_EXPANSION_VALVE);
+			reqGetProperty(EPC_APERTURE_OF_EXPANSION_VALVE);
 			return this;
 		}
 		/**
@@ -6647,7 +6654,7 @@ short<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetTemperatureSetting2() {
-			addProperty(EPC_TEMPERATURE_SETTING2);
+			reqGetProperty(EPC_TEMPERATURE_SETTING2);
 			return this;
 		}
 		/**
@@ -6677,7 +6684,7 @@ short<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetGrelativeHumiditySettingForEdehumidificatioNFModeH2() {
-			addProperty(EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2);
+			reqGetProperty(EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2);
 			return this;
 		}
 		/**
@@ -6706,7 +6713,7 @@ short<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGtemperatureSettingForEcoolingFModeH2() {
-			addProperty(EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H2);
+			reqGetProperty(EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H2);
 			return this;
 		}
 		/**
@@ -6735,7 +6742,7 @@ short<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGtemperatureSettingForEheatingFModeH2() {
-			addProperty(EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H2);
+			reqGetProperty(EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H2);
 			return this;
 		}
 		/**
@@ -6763,7 +6770,7 @@ short<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGtemperatureSettingForEdehumidificatioNFModeH2() {
-			addProperty(EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2);
+			reqGetProperty(EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2);
 			return this;
 		}
 		/**
@@ -6790,7 +6797,7 @@ short<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredIndoorRelativeHumidity2() {
-			addProperty(EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY2);
+			reqGetProperty(EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY2);
 			return this;
 		}
 		/**
@@ -6818,7 +6825,7 @@ short<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredIndoorTemperature2() {
-			addProperty(EPC_MEASURED_INDOOR_TEMPERATURE2);
+			reqGetProperty(EPC_MEASURED_INDOOR_TEMPERATURE2);
 			return this;
 		}
 		/**
@@ -6848,7 +6855,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGonTimerBasedReservationHSetting() {
-			addProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING);
+			reqGetProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING);
 			return this;
 		}
 		/**
@@ -6877,7 +6884,7 @@ char�~2<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerSettingTime() {
-			addProperty(EPC_ON_TIMER_SETTING_TIME);
+			reqGetProperty(EPC_ON_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -6905,7 +6912,7 @@ char�~2<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerSettingRelativeTime() {
-			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
+			reqGetProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 		/**
@@ -6935,7 +6942,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGoffTimerBasedReservationHSetting() {
-			addProperty(EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING);
+			reqGetProperty(EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING);
 			return this;
 		}
 		/**
@@ -6964,7 +6971,7 @@ char�~2<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOffTimerSettingTime() {
-			addProperty(EPC_OFF_TIMER_SETTING_TIME);
+			reqGetProperty(EPC_OFF_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -6992,14 +6999,16 @@ char�~2<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOffTimerSettingRelativeTime() {
-			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME);
+			reqGetProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -7134,7 +7143,7 @@ char�~2<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOperationModeSetting() {
-			addProperty(EPC_OPERATION_MODE_SETTING);
+			reqInformProperty(EPC_OPERATION_MODE_SETTING);
 			return this;
 		}
 		/**
@@ -7162,7 +7171,7 @@ char�~2<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformTemperatureSetting1() {
-			addProperty(EPC_TEMPERATURE_SETTING1);
+			reqInformProperty(EPC_TEMPERATURE_SETTING1);
 			return this;
 		}
 		/**
@@ -7193,7 +7202,7 @@ tion�f .mode�h .1<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformGrelativeHumiditySettingForEdehumidificaTionFModeH1() {
-			addProperty(EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1);
+			reqInformProperty(EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1);
 			return this;
 		}
 		/**
@@ -7222,7 +7231,7 @@ setting for
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGtemperatureSettingForEcoolingFModeH1() {
-			addProperty(EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H1);
+			reqInformProperty(EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H1);
 			return this;
 		}
 		/**
@@ -7251,7 +7260,7 @@ setting for
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGtemperatureSettingForEheatingFModeH1() {
-			addProperty(EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H1);
+			reqInformProperty(EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H1);
 			return this;
 		}
 		/**
@@ -7280,7 +7289,7 @@ tion�f .mode�h .1<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGtemperatureSettingForEdehumidificaTionFModeH1() {
-			addProperty(EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1);
+			reqInformProperty(EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1);
 			return this;
 		}
 		/**
@@ -7308,7 +7317,7 @@ tion�f .mode�h .1<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRatedPowerConsumptionOfIndoorUnit() {
-			addProperty(EPC_RATED_POWER_CONSUMPTION_OF_INDOOR_UNIT);
+			reqInformProperty(EPC_RATED_POWER_CONSUMPTION_OF_INDOOR_UNIT);
 			return this;
 		}
 		/**
@@ -7334,7 +7343,7 @@ tion�f .mode�h .1<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredElectricCurrentConsumptionOfIndoorUnit() {
-			addProperty(EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_INDOOR_UNIT);
+			reqInformProperty(EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_INDOOR_UNIT);
 			return this;
 		}
 		/**
@@ -7360,7 +7369,7 @@ tion�f .mode�h .1<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredIndoorRelativeHumidity1() {
-			addProperty(EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY1);
+			reqInformProperty(EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY1);
 			return this;
 		}
 		/**
@@ -7386,7 +7395,7 @@ tion�f .mode�h .1<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredIndoorTemperature1() {
-			addProperty(EPC_MEASURED_INDOOR_TEMPERATURE1);
+			reqInformProperty(EPC_MEASURED_INDOOR_TEMPERATURE1);
 			return this;
 		}
 		/**
@@ -7413,7 +7422,7 @@ tion�f .mode�h .1<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRelativeTemperatureSetting() {
-			addProperty(EPC_RELATIVE_TEMPERATURE_SETTING);
+			reqInformProperty(EPC_RELATIVE_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
@@ -7441,7 +7450,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformAirFlowRateSetting() {
-			addProperty(EPC_AIR_FLOW_RATE_SETTING);
+			reqInformProperty(EPC_AIR_FLOW_RATE_SETTING);
 			return this;
 		}
 		/**
@@ -7471,7 +7480,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGairFlowDirectionVerticalHSetting() {
-			addProperty(EPC_GAIR_FLOW_DIRECTION_VERTICAL_H_SETTING);
+			reqInformProperty(EPC_GAIR_FLOW_DIRECTION_VERTICAL_H_SETTING);
 			return this;
 		}
 		/**
@@ -7501,7 +7510,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGairFlowDirectionHorizontalHSetting() {
-			addProperty(EPC_GAIR_FLOW_DIRECTION_HORIZONTAL_H_SETTING);
+			reqInformProperty(EPC_GAIR_FLOW_DIRECTION_HORIZONTAL_H_SETTING);
 			return this;
 		}
 		/**
@@ -7528,7 +7537,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGspecialHState() {
-			addProperty(EPC_GSPECIAL_H_STATE);
+			reqInformProperty(EPC_GSPECIAL_H_STATE);
 			return this;
 		}
 		/**
@@ -7557,7 +7566,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformThermostatState() {
-			addProperty(EPC_THERMOSTAT_STATE);
+			reqInformProperty(EPC_THERMOSTAT_STATE);
 			return this;
 		}
 		/**
@@ -7590,7 +7599,7 @@ char<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformCurrentFunctionGautomaticHOperationMode() {
-			addProperty(EPC_CURRENT_FUNCTION_GAUTOMATIC_H_OPERATION_MODE);
+			reqInformProperty(EPC_CURRENT_FUNCTION_GAUTOMATIC_H_OPERATION_MODE);
 			return this;
 		}
 		/**
@@ -7618,7 +7627,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformVentilationModeSetting() {
-			addProperty(EPC_VENTILATION_MODE_SETTING);
+			reqInformProperty(EPC_VENTILATION_MODE_SETTING);
 			return this;
 		}
 		/**
@@ -7647,7 +7656,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformCombinedOperationOfIndoorUnitAndTotalHeatExchanger() {
-			addProperty(EPC_COMBINED_OPERATION_OF_INDOOR_UNIT_AND_TOTAL_HEAT_EXCHANGER);
+			reqInformProperty(EPC_COMBINED_OPERATION_OF_INDOOR_UNIT_AND_TOTAL_HEAT_EXCHANGER);
 			return this;
 		}
 		/**
@@ -7677,7 +7686,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformVentilationAirFlowRateSetting() {
-			addProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING);
+			reqInformProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING);
 			return this;
 		}
 		/**
@@ -7704,7 +7713,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGdisablingOfAirConditionerHSetting() {
-			addProperty(EPC_GDISABLING_OF_AIR_CONDITIONER_H_SETTING);
+			reqInformProperty(EPC_GDISABLING_OF_AIR_CONDITIONER_H_SETTING);
 			return this;
 		}
 		/**
@@ -7731,7 +7740,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformThermostatSettingOverrideFunction() {
-			addProperty(EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION);
+			reqInformProperty(EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION);
 			return this;
 		}
 		/**
@@ -7760,7 +7769,7 @@ char<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformFilterCleaningReminderLampSetting() {
-			addProperty(EPC_FILTER_CLEANING_REMINDER_LAMP_SETTING);
+			reqInformProperty(EPC_FILTER_CLEANING_REMINDER_LAMP_SETTING);
 			return this;
 		}
 		/**
@@ -7786,7 +7795,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredPowerConsumptionOfIndoorUnit() {
-			addProperty(EPC_MEASURED_POWER_CONSUMPTION_OF_INDOOR_UNIT);
+			reqInformProperty(EPC_MEASURED_POWER_CONSUMPTION_OF_INDOOR_UNIT);
 			return this;
 		}
 		/**
@@ -7813,7 +7822,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformApertureOfExpansionValve() {
-			addProperty(EPC_APERTURE_OF_EXPANSION_VALVE);
+			reqInformProperty(EPC_APERTURE_OF_EXPANSION_VALVE);
 			return this;
 		}
 		/**
@@ -7842,7 +7851,7 @@ short<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformTemperatureSetting2() {
-			addProperty(EPC_TEMPERATURE_SETTING2);
+			reqInformProperty(EPC_TEMPERATURE_SETTING2);
 			return this;
 		}
 		/**
@@ -7872,7 +7881,7 @@ short<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformGrelativeHumiditySettingForEdehumidificatioNFModeH2() {
-			addProperty(EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2);
+			reqInformProperty(EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2);
 			return this;
 		}
 		/**
@@ -7901,7 +7910,7 @@ short<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGtemperatureSettingForEcoolingFModeH2() {
-			addProperty(EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H2);
+			reqInformProperty(EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H2);
 			return this;
 		}
 		/**
@@ -7930,7 +7939,7 @@ short<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGtemperatureSettingForEheatingFModeH2() {
-			addProperty(EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H2);
+			reqInformProperty(EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H2);
 			return this;
 		}
 		/**
@@ -7958,7 +7967,7 @@ short<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGtemperatureSettingForEdehumidificatioNFModeH2() {
-			addProperty(EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2);
+			reqInformProperty(EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2);
 			return this;
 		}
 		/**
@@ -7985,7 +7994,7 @@ short<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredIndoorRelativeHumidity2() {
-			addProperty(EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY2);
+			reqInformProperty(EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY2);
 			return this;
 		}
 		/**
@@ -8013,7 +8022,7 @@ short<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredIndoorTemperature2() {
-			addProperty(EPC_MEASURED_INDOOR_TEMPERATURE2);
+			reqInformProperty(EPC_MEASURED_INDOOR_TEMPERATURE2);
 			return this;
 		}
 		/**
@@ -8043,7 +8052,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGonTimerBasedReservationHSetting() {
-			addProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING);
+			reqInformProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING);
 			return this;
 		}
 		/**
@@ -8072,7 +8081,7 @@ char�~2<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOnTimerSettingTime() {
-			addProperty(EPC_ON_TIMER_SETTING_TIME);
+			reqInformProperty(EPC_ON_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -8100,7 +8109,7 @@ char�~2<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOnTimerSettingRelativeTime() {
-			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
+			reqInformProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 		/**
@@ -8130,7 +8139,7 @@ char<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGoffTimerBasedReservationHSetting() {
-			addProperty(EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING);
+			reqInformProperty(EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING);
 			return this;
 		}
 		/**
@@ -8159,7 +8168,7 @@ char�~2<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOffTimerSettingTime() {
-			addProperty(EPC_OFF_TIMER_SETTING_TIME);
+			reqInformProperty(EPC_OFF_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -8187,20 +8196,19 @@ char�~2<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOffTimerSettingRelativeTime() {
-			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME);
+			reqInformProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 	}
 
 	public static class Proxy extends PackageTypeCommercialAirConditionerIndoorUnit {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -8235,7 +8243,7 @@ char�~2<br>
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -8243,7 +8251,8 @@ char�~2<br>
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -8251,7 +8260,8 @@ char�~2<br>
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -8259,7 +8269,8 @@ char�~2<br>
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

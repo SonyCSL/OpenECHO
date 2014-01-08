@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.housingfacilities;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -45,13 +46,6 @@ public abstract class ElectricLock extends DeviceObject {
 		addSetProperty(EPC_LOCK_SETTING1);
 		addGetProperty(EPC_LOCK_SETTING1);
 		addStatusChangeAnnouncementProperty(EPC_ALARM_STATUS);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewElectricLock(this);
 	}
 	
 	@Override
@@ -583,27 +577,36 @@ public abstract class ElectricLock extends DeviceObject {
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -901,8 +904,10 @@ public abstract class ElectricLock extends DeviceObject {
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -968,7 +973,7 @@ public abstract class ElectricLock extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetLockSetting1(byte[] edt) {
-			addProperty(EPC_LOCK_SETTING1, edt);
+			reqSetProperty(EPC_LOCK_SETTING1, edt);
 			return this;
 		}
 		/**
@@ -994,7 +999,7 @@ public abstract class ElectricLock extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetLockSetting2(byte[] edt) {
-			addProperty(EPC_LOCK_SETTING2, edt);
+			reqSetProperty(EPC_LOCK_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -1020,14 +1025,16 @@ public abstract class ElectricLock extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetAutoLockModeSetting(byte[] edt) {
-			addProperty(EPC_AUTO_LOCK_MODE_SETTING, edt);
+			reqSetProperty(EPC_AUTO_LOCK_MODE_SETTING, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -1157,7 +1164,7 @@ public abstract class ElectricLock extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetLockSetting1() {
-			addProperty(EPC_LOCK_SETTING1);
+			reqGetProperty(EPC_LOCK_SETTING1);
 			return this;
 		}
 		/**
@@ -1183,7 +1190,7 @@ public abstract class ElectricLock extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetLockSetting2() {
-			addProperty(EPC_LOCK_SETTING2);
+			reqGetProperty(EPC_LOCK_SETTING2);
 			return this;
 		}
 		/**
@@ -1209,7 +1216,7 @@ public abstract class ElectricLock extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetLockStatusOfDoorGuard() {
-			addProperty(EPC_LOCK_STATUS_OF_DOOR_GUARD);
+			reqGetProperty(EPC_LOCK_STATUS_OF_DOOR_GUARD);
 			return this;
 		}
 		/**
@@ -1235,7 +1242,7 @@ public abstract class ElectricLock extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetDoorOpenCloseStatus() {
-			addProperty(EPC_DOOR_OPEN_CLOSE_STATUS);
+			reqGetProperty(EPC_DOOR_OPEN_CLOSE_STATUS);
 			return this;
 		}
 		/**
@@ -1261,7 +1268,7 @@ public abstract class ElectricLock extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOccupantNonOccupantStatus() {
-			addProperty(EPC_OCCUPANT_NON_OCCUPANT_STATUS);
+			reqGetProperty(EPC_OCCUPANT_NON_OCCUPANT_STATUS);
 			return this;
 		}
 		/**
@@ -1289,7 +1296,7 @@ public abstract class ElectricLock extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetAlarmStatus() {
-			addProperty(EPC_ALARM_STATUS);
+			reqGetProperty(EPC_ALARM_STATUS);
 			return this;
 		}
 		/**
@@ -1315,14 +1322,16 @@ public abstract class ElectricLock extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetAutoLockModeSetting() {
-			addProperty(EPC_AUTO_LOCK_MODE_SETTING);
+			reqGetProperty(EPC_AUTO_LOCK_MODE_SETTING);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -1451,7 +1460,7 @@ public abstract class ElectricLock extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformLockSetting1() {
-			addProperty(EPC_LOCK_SETTING1);
+			reqInformProperty(EPC_LOCK_SETTING1);
 			return this;
 		}
 		/**
@@ -1477,7 +1486,7 @@ public abstract class ElectricLock extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformLockSetting2() {
-			addProperty(EPC_LOCK_SETTING2);
+			reqInformProperty(EPC_LOCK_SETTING2);
 			return this;
 		}
 		/**
@@ -1503,7 +1512,7 @@ public abstract class ElectricLock extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformLockStatusOfDoorGuard() {
-			addProperty(EPC_LOCK_STATUS_OF_DOOR_GUARD);
+			reqInformProperty(EPC_LOCK_STATUS_OF_DOOR_GUARD);
 			return this;
 		}
 		/**
@@ -1529,7 +1538,7 @@ public abstract class ElectricLock extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformDoorOpenCloseStatus() {
-			addProperty(EPC_DOOR_OPEN_CLOSE_STATUS);
+			reqInformProperty(EPC_DOOR_OPEN_CLOSE_STATUS);
 			return this;
 		}
 		/**
@@ -1555,7 +1564,7 @@ public abstract class ElectricLock extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOccupantNonOccupantStatus() {
-			addProperty(EPC_OCCUPANT_NON_OCCUPANT_STATUS);
+			reqInformProperty(EPC_OCCUPANT_NON_OCCUPANT_STATUS);
 			return this;
 		}
 		/**
@@ -1583,7 +1592,7 @@ public abstract class ElectricLock extends DeviceObject {
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformAlarmStatus() {
-			addProperty(EPC_ALARM_STATUS);
+			reqInformProperty(EPC_ALARM_STATUS);
 			return this;
 		}
 		/**
@@ -1609,20 +1618,19 @@ public abstract class ElectricLock extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformAutoLockModeSetting() {
-			addProperty(EPC_AUTO_LOCK_MODE_SETTING);
+			reqInformProperty(EPC_AUTO_LOCK_MODE_SETTING);
 			return this;
 		}
 	}
 
 	public static class Proxy extends ElectricLock {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -1647,7 +1655,7 @@ public abstract class ElectricLock extends DeviceObject {
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -1655,7 +1663,8 @@ public abstract class ElectricLock extends DeviceObject {
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -1663,7 +1672,8 @@ public abstract class ElectricLock extends DeviceObject {
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -1671,7 +1681,8 @@ public abstract class ElectricLock extends DeviceObject {
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

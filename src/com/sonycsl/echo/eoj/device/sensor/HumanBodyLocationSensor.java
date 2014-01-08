@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.sensor;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -40,13 +41,6 @@ public abstract class HumanBodyLocationSensor extends DeviceObject {
 		addGetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_HUMAN_BODY_DETECTION_LOCATION1);
 		addGetProperty(EPC_HUMAN_BODY_DETECTION_LOCATION2);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewHumanBodyLocationSensor(this);
 	}
 	
 	@Override
@@ -353,27 +347,36 @@ human body ID�fs<br>
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -514,8 +517,10 @@ human body ID�fs<br>
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -559,8 +564,10 @@ human body ID�fs<br>
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -691,7 +698,7 @@ x max 128<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetHumanBodyDetectionLocation1() {
-			addProperty(EPC_HUMAN_BODY_DETECTION_LOCATION1);
+			reqGetProperty(EPC_HUMAN_BODY_DETECTION_LOCATION1);
 			return this;
 		}
 		/**
@@ -718,7 +725,7 @@ human body ID�fs<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMaximumNumberOfHumanBodyIdFs() {
-			addProperty(EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS);
+			reqGetProperty(EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS);
 			return this;
 		}
 		/**
@@ -745,7 +752,7 @@ human body ID�fs<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetHumanBodyDetectionLocation2() {
-			addProperty(EPC_HUMAN_BODY_DETECTION_LOCATION2);
+			reqGetProperty(EPC_HUMAN_BODY_DETECTION_LOCATION2);
 			return this;
 		}
 		/**
@@ -771,14 +778,16 @@ human body ID�fs<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetHumanBodyExistenceInformation() {
-			addProperty(EPC_HUMAN_BODY_EXISTENCE_INFORMATION);
+			reqGetProperty(EPC_HUMAN_BODY_EXISTENCE_INFORMATION);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -908,7 +917,7 @@ x max 128<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformHumanBodyDetectionLocation1() {
-			addProperty(EPC_HUMAN_BODY_DETECTION_LOCATION1);
+			reqInformProperty(EPC_HUMAN_BODY_DETECTION_LOCATION1);
 			return this;
 		}
 		/**
@@ -935,7 +944,7 @@ human body ID�fs<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMaximumNumberOfHumanBodyIdFs() {
-			addProperty(EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS);
+			reqInformProperty(EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS);
 			return this;
 		}
 		/**
@@ -962,7 +971,7 @@ human body ID�fs<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformHumanBodyDetectionLocation2() {
-			addProperty(EPC_HUMAN_BODY_DETECTION_LOCATION2);
+			reqInformProperty(EPC_HUMAN_BODY_DETECTION_LOCATION2);
 			return this;
 		}
 		/**
@@ -988,20 +997,19 @@ human body ID�fs<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformHumanBodyExistenceInformation() {
-			addProperty(EPC_HUMAN_BODY_EXISTENCE_INFORMATION);
+			reqInformProperty(EPC_HUMAN_BODY_EXISTENCE_INFORMATION);
 			return this;
 		}
 	}
 
 	public static class Proxy extends HumanBodyLocationSensor {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -1026,7 +1034,7 @@ human body ID�fs<br>
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -1034,7 +1042,8 @@ human body ID�fs<br>
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -1042,7 +1051,8 @@ human body ID�fs<br>
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -1050,7 +1060,8 @@ human body ID�fs<br>
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.housingfacilities;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -42,13 +43,6 @@ public abstract class Sprinkler extends DeviceObject {
 		addGetProperty(EPC_OPERATION_STATUS);
 		addSetProperty(EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING);
 		addGetProperty(EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewSprinkler(this);
 	}
 	
 	@Override
@@ -626,27 +620,36 @@ Byte<br>
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -1012,8 +1015,10 @@ Byte<br>
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -1079,7 +1084,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Setter reqSetSprinkleValveOpenCloseSetting(byte[] edt) {
-			addProperty(EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING, edt);
+			reqSetProperty(EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1106,7 +1111,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetSprinkleIntervalSetting(byte[] edt) {
-			addProperty(EPC_SPRINKLE_INTERVAL_SETTING, edt);
+			reqSetProperty(EPC_SPRINKLE_INTERVAL_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1134,7 +1139,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetNumberOfSprinklesSetting(byte[] edt) {
-			addProperty(EPC_NUMBER_OF_SPRINKLES_SETTING, edt);
+			reqSetProperty(EPC_NUMBER_OF_SPRINKLES_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1162,7 +1167,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetSprinkleTimeSetting1(byte[] edt) {
-			addProperty(EPC_SPRINKLE_TIME_SETTING1, edt);
+			reqSetProperty(EPC_SPRINKLE_TIME_SETTING1, edt);
 			return this;
 		}
 		/**
@@ -1190,7 +1195,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetSprinkleTimeSetting2(byte[] edt) {
-			addProperty(EPC_SPRINKLE_TIME_SETTING2, edt);
+			reqSetProperty(EPC_SPRINKLE_TIME_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -1218,14 +1223,16 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetSprinkleDurationSetting(byte[] edt) {
-			addProperty(EPC_SPRINKLE_DURATION_SETTING, edt);
+			reqSetProperty(EPC_SPRINKLE_DURATION_SETTING, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -1355,7 +1362,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetSprinkleValveOpenCloseSetting() {
-			addProperty(EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING);
+			reqGetProperty(EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING);
 			return this;
 		}
 		/**
@@ -1382,7 +1389,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSprinkleIntervalSetting() {
-			addProperty(EPC_SPRINKLE_INTERVAL_SETTING);
+			reqGetProperty(EPC_SPRINKLE_INTERVAL_SETTING);
 			return this;
 		}
 		/**
@@ -1410,7 +1417,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetNumberOfSprinklesSetting() {
-			addProperty(EPC_NUMBER_OF_SPRINKLES_SETTING);
+			reqGetProperty(EPC_NUMBER_OF_SPRINKLES_SETTING);
 			return this;
 		}
 		/**
@@ -1438,7 +1445,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSprinkleTimeSetting1() {
-			addProperty(EPC_SPRINKLE_TIME_SETTING1);
+			reqGetProperty(EPC_SPRINKLE_TIME_SETTING1);
 			return this;
 		}
 		/**
@@ -1466,7 +1473,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSprinkleTimeSetting2() {
-			addProperty(EPC_SPRINKLE_TIME_SETTING2);
+			reqGetProperty(EPC_SPRINKLE_TIME_SETTING2);
 			return this;
 		}
 		/**
@@ -1494,14 +1501,16 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSprinkleDurationSetting() {
-			addProperty(EPC_SPRINKLE_DURATION_SETTING);
+			reqGetProperty(EPC_SPRINKLE_DURATION_SETTING);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -1630,7 +1639,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformSprinkleValveOpenCloseSetting() {
-			addProperty(EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING);
+			reqInformProperty(EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING);
 			return this;
 		}
 		/**
@@ -1657,7 +1666,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSprinkleIntervalSetting() {
-			addProperty(EPC_SPRINKLE_INTERVAL_SETTING);
+			reqInformProperty(EPC_SPRINKLE_INTERVAL_SETTING);
 			return this;
 		}
 		/**
@@ -1685,7 +1694,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformNumberOfSprinklesSetting() {
-			addProperty(EPC_NUMBER_OF_SPRINKLES_SETTING);
+			reqInformProperty(EPC_NUMBER_OF_SPRINKLES_SETTING);
 			return this;
 		}
 		/**
@@ -1713,7 +1722,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSprinkleTimeSetting1() {
-			addProperty(EPC_SPRINKLE_TIME_SETTING1);
+			reqInformProperty(EPC_SPRINKLE_TIME_SETTING1);
 			return this;
 		}
 		/**
@@ -1741,7 +1750,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSprinkleTimeSetting2() {
-			addProperty(EPC_SPRINKLE_TIME_SETTING2);
+			reqInformProperty(EPC_SPRINKLE_TIME_SETTING2);
 			return this;
 		}
 		/**
@@ -1769,20 +1778,19 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSprinkleDurationSetting() {
-			addProperty(EPC_SPRINKLE_DURATION_SETTING);
+			reqInformProperty(EPC_SPRINKLE_DURATION_SETTING);
 			return this;
 		}
 	}
 
 	public static class Proxy extends Sprinkler {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -1807,7 +1815,7 @@ Byte<br>
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -1815,7 +1823,8 @@ Byte<br>
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -1823,7 +1832,8 @@ Byte<br>
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -1831,7 +1841,8 @@ Byte<br>
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

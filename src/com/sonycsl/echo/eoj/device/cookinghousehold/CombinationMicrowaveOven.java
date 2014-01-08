@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.cookinghousehold;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -54,13 +55,6 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewCombinationMicrowaveOven(this);
 	}
 	
 	@Override
@@ -2025,27 +2019,36 @@ heating setting
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -3331,8 +3334,10 @@ heating setting
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -3399,7 +3404,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Setter reqSetHeatingSetting(byte[] edt) {
-			addProperty(EPC_HEATING_SETTING, edt);
+			reqSetProperty(EPC_HEATING_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3434,7 +3439,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Setter reqSetHeatingModeSetting(byte[] edt) {
-			addProperty(EPC_HEATING_MODE_SETTING, edt);
+			reqSetProperty(EPC_HEATING_MODE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3462,7 +3467,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Setter reqSetAutomaticHeatingSetting(byte[] edt) {
-			addProperty(EPC_AUTOMATIC_HEATING_SETTING, edt);
+			reqSetProperty(EPC_AUTOMATIC_HEATING_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3488,7 +3493,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Setter reqSetAutomaticHeatingLevelSetting(byte[] edt) {
-			addProperty(EPC_AUTOMATIC_HEATING_LEVEL_SETTING, edt);
+			reqSetProperty(EPC_AUTOMATIC_HEATING_LEVEL_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3516,7 +3521,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Setter reqSetAutomaticHeatingMenuSetting(byte[] edt) {
-			addProperty(EPC_AUTOMATIC_HEATING_MENU_SETTING, edt);
+			reqSetProperty(EPC_AUTOMATIC_HEATING_MENU_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3547,7 +3552,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOvenModeSetting(byte[] edt) {
-			addProperty(EPC_OVEN_MODE_SETTING, edt);
+			reqSetProperty(EPC_OVEN_MODE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3576,7 +3581,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOvenPreheatingSetting(byte[] edt) {
-			addProperty(EPC_OVEN_PREHEATING_SETTING, edt);
+			reqSetProperty(EPC_OVEN_PREHEATING_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3607,7 +3612,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Setter reqSetFermentingModeSetting(byte[] edt) {
-			addProperty(EPC_FERMENTING_MODE_SETTING, edt);
+			reqSetProperty(EPC_FERMENTING_MODE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3643,7 +3648,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetChamberTemperatureSetting(byte[] edt) {
-			addProperty(EPC_CHAMBER_TEMPERATURE_SETTING, edt);
+			reqSetProperty(EPC_CHAMBER_TEMPERATURE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3674,7 +3679,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetFoodTemperatureSetting(byte[] edt) {
-			addProperty(EPC_FOOD_TEMPERATURE_SETTING, edt);
+			reqSetProperty(EPC_FOOD_TEMPERATURE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3704,7 +3709,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetHeatingTimeSetting(byte[] edt) {
-			addProperty(EPC_HEATING_TIME_SETTING, edt);
+			reqSetProperty(EPC_HEATING_TIME_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3736,7 +3741,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetRemainingHeatingTimeSetting(byte[] edt) {
-			addProperty(EPC_REMAINING_HEATING_TIME_SETTING, edt);
+			reqSetProperty(EPC_REMAINING_HEATING_TIME_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3776,7 +3781,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetMicrowaveHeatingPowerSetting(byte[] edt) {
-			addProperty(EPC_MICROWAVE_HEATING_POWER_SETTING, edt);
+			reqSetProperty(EPC_MICROWAVE_HEATING_POWER_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3823,7 +3828,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetPromptMessageSetting(byte[] edt) {
-			addProperty(EPC_PROMPT_MESSAGE_SETTING, edt);
+			reqSetProperty(EPC_PROMPT_MESSAGE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3862,7 +3867,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGaccessoriesToCombinationMicrowaveOvenHSetting(byte[] edt) {
-			addProperty(EPC_GACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_H_SETTING, edt);
+			reqSetProperty(EPC_GACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_H_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3891,7 +3896,7 @@ string setting<br>
 		 * Get - undefined<br>
 		 */
 		public Setter reqSetDisplayCharacterStringSetting(byte[] edt) {
-			addProperty(EPC_DISPLAY_CHARACTER_STRING_SETTING, edt);
+			reqSetProperty(EPC_DISPLAY_CHARACTER_STRING_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3937,7 +3942,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Setter reqSetTwoStageMicrowaveHeatingSettingDuration(byte[] edt) {
-			addProperty(EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION, edt);
+			reqSetProperty(EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION, edt);
 			return this;
 		}
 		/**
@@ -3981,14 +3986,16 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Setter reqSetTwoStageMicrowaveHeatingSettingHeatingPower(byte[] edt) {
-			addProperty(EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER, edt);
+			reqSetProperty(EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -4116,7 +4123,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Getter reqGetDoorOpenCloseStatus() {
-			addProperty(EPC_DOOR_OPEN_CLOSE_STATUS);
+			reqGetProperty(EPC_DOOR_OPEN_CLOSE_STATUS);
 			return this;
 		}
 		/**
@@ -4151,7 +4158,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Getter reqGetHeatingStatus() {
-			addProperty(EPC_HEATING_STATUS);
+			reqGetProperty(EPC_HEATING_STATUS);
 			return this;
 		}
 		/**
@@ -4180,7 +4187,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Getter reqGetHeatingSetting() {
-			addProperty(EPC_HEATING_SETTING);
+			reqGetProperty(EPC_HEATING_SETTING);
 			return this;
 		}
 		/**
@@ -4215,7 +4222,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Getter reqGetHeatingModeSetting() {
-			addProperty(EPC_HEATING_MODE_SETTING);
+			reqGetProperty(EPC_HEATING_MODE_SETTING);
 			return this;
 		}
 		/**
@@ -4243,7 +4250,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Getter reqGetAutomaticHeatingSetting() {
-			addProperty(EPC_AUTOMATIC_HEATING_SETTING);
+			reqGetProperty(EPC_AUTOMATIC_HEATING_SETTING);
 			return this;
 		}
 		/**
@@ -4269,7 +4276,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Getter reqGetAutomaticHeatingLevelSetting() {
-			addProperty(EPC_AUTOMATIC_HEATING_LEVEL_SETTING);
+			reqGetProperty(EPC_AUTOMATIC_HEATING_LEVEL_SETTING);
 			return this;
 		}
 		/**
@@ -4297,7 +4304,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Getter reqGetAutomaticHeatingMenuSetting() {
-			addProperty(EPC_AUTOMATIC_HEATING_MENU_SETTING);
+			reqGetProperty(EPC_AUTOMATIC_HEATING_MENU_SETTING);
 			return this;
 		}
 		/**
@@ -4328,7 +4335,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOvenModeSetting() {
-			addProperty(EPC_OVEN_MODE_SETTING);
+			reqGetProperty(EPC_OVEN_MODE_SETTING);
 			return this;
 		}
 		/**
@@ -4357,7 +4364,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOvenPreheatingSetting() {
-			addProperty(EPC_OVEN_PREHEATING_SETTING);
+			reqGetProperty(EPC_OVEN_PREHEATING_SETTING);
 			return this;
 		}
 		/**
@@ -4388,7 +4395,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Getter reqGetFermentingModeSetting() {
-			addProperty(EPC_FERMENTING_MODE_SETTING);
+			reqGetProperty(EPC_FERMENTING_MODE_SETTING);
 			return this;
 		}
 		/**
@@ -4424,7 +4431,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetChamberTemperatureSetting() {
-			addProperty(EPC_CHAMBER_TEMPERATURE_SETTING);
+			reqGetProperty(EPC_CHAMBER_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
@@ -4455,7 +4462,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetFoodTemperatureSetting() {
-			addProperty(EPC_FOOD_TEMPERATURE_SETTING);
+			reqGetProperty(EPC_FOOD_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
@@ -4485,7 +4492,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetHeatingTimeSetting() {
-			addProperty(EPC_HEATING_TIME_SETTING);
+			reqGetProperty(EPC_HEATING_TIME_SETTING);
 			return this;
 		}
 		/**
@@ -4517,7 +4524,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRemainingHeatingTimeSetting() {
-			addProperty(EPC_REMAINING_HEATING_TIME_SETTING);
+			reqGetProperty(EPC_REMAINING_HEATING_TIME_SETTING);
 			return this;
 		}
 		/**
@@ -4557,7 +4564,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMicrowaveHeatingPowerSetting() {
-			addProperty(EPC_MICROWAVE_HEATING_POWER_SETTING);
+			reqGetProperty(EPC_MICROWAVE_HEATING_POWER_SETTING);
 			return this;
 		}
 		/**
@@ -4604,7 +4611,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetPromptMessageSetting() {
-			addProperty(EPC_PROMPT_MESSAGE_SETTING);
+			reqGetProperty(EPC_PROMPT_MESSAGE_SETTING);
 			return this;
 		}
 		/**
@@ -4643,7 +4650,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGaccessoriesToCombinationMicrowaveOvenHSetting() {
-			addProperty(EPC_GACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_H_SETTING);
+			reqGetProperty(EPC_GACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_H_SETTING);
 			return this;
 		}
 		/**
@@ -4689,7 +4696,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Getter reqGetTwoStageMicrowaveHeatingSettingDuration() {
-			addProperty(EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION);
+			reqGetProperty(EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION);
 			return this;
 		}
 		/**
@@ -4733,14 +4740,16 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Getter reqGetTwoStageMicrowaveHeatingSettingHeatingPower() {
-			addProperty(EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER);
+			reqGetProperty(EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -4867,7 +4876,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Informer reqInformDoorOpenCloseStatus() {
-			addProperty(EPC_DOOR_OPEN_CLOSE_STATUS);
+			reqInformProperty(EPC_DOOR_OPEN_CLOSE_STATUS);
 			return this;
 		}
 		/**
@@ -4902,7 +4911,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Informer reqInformHeatingStatus() {
-			addProperty(EPC_HEATING_STATUS);
+			reqInformProperty(EPC_HEATING_STATUS);
 			return this;
 		}
 		/**
@@ -4931,7 +4940,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Informer reqInformHeatingSetting() {
-			addProperty(EPC_HEATING_SETTING);
+			reqInformProperty(EPC_HEATING_SETTING);
 			return this;
 		}
 		/**
@@ -4966,7 +4975,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Informer reqInformHeatingModeSetting() {
-			addProperty(EPC_HEATING_MODE_SETTING);
+			reqInformProperty(EPC_HEATING_MODE_SETTING);
 			return this;
 		}
 		/**
@@ -4994,7 +5003,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Informer reqInformAutomaticHeatingSetting() {
-			addProperty(EPC_AUTOMATIC_HEATING_SETTING);
+			reqInformProperty(EPC_AUTOMATIC_HEATING_SETTING);
 			return this;
 		}
 		/**
@@ -5020,7 +5029,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Informer reqInformAutomaticHeatingLevelSetting() {
-			addProperty(EPC_AUTOMATIC_HEATING_LEVEL_SETTING);
+			reqInformProperty(EPC_AUTOMATIC_HEATING_LEVEL_SETTING);
 			return this;
 		}
 		/**
@@ -5048,7 +5057,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Informer reqInformAutomaticHeatingMenuSetting() {
-			addProperty(EPC_AUTOMATIC_HEATING_MENU_SETTING);
+			reqInformProperty(EPC_AUTOMATIC_HEATING_MENU_SETTING);
 			return this;
 		}
 		/**
@@ -5079,7 +5088,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOvenModeSetting() {
-			addProperty(EPC_OVEN_MODE_SETTING);
+			reqInformProperty(EPC_OVEN_MODE_SETTING);
 			return this;
 		}
 		/**
@@ -5108,7 +5117,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOvenPreheatingSetting() {
-			addProperty(EPC_OVEN_PREHEATING_SETTING);
+			reqInformProperty(EPC_OVEN_PREHEATING_SETTING);
 			return this;
 		}
 		/**
@@ -5139,7 +5148,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Informer reqInformFermentingModeSetting() {
-			addProperty(EPC_FERMENTING_MODE_SETTING);
+			reqInformProperty(EPC_FERMENTING_MODE_SETTING);
 			return this;
 		}
 		/**
@@ -5175,7 +5184,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformChamberTemperatureSetting() {
-			addProperty(EPC_CHAMBER_TEMPERATURE_SETTING);
+			reqInformProperty(EPC_CHAMBER_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
@@ -5206,7 +5215,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformFoodTemperatureSetting() {
-			addProperty(EPC_FOOD_TEMPERATURE_SETTING);
+			reqInformProperty(EPC_FOOD_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
@@ -5236,7 +5245,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformHeatingTimeSetting() {
-			addProperty(EPC_HEATING_TIME_SETTING);
+			reqInformProperty(EPC_HEATING_TIME_SETTING);
 			return this;
 		}
 		/**
@@ -5268,7 +5277,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRemainingHeatingTimeSetting() {
-			addProperty(EPC_REMAINING_HEATING_TIME_SETTING);
+			reqInformProperty(EPC_REMAINING_HEATING_TIME_SETTING);
 			return this;
 		}
 		/**
@@ -5308,7 +5317,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMicrowaveHeatingPowerSetting() {
-			addProperty(EPC_MICROWAVE_HEATING_POWER_SETTING);
+			reqInformProperty(EPC_MICROWAVE_HEATING_POWER_SETTING);
 			return this;
 		}
 		/**
@@ -5355,7 +5364,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformPromptMessageSetting() {
-			addProperty(EPC_PROMPT_MESSAGE_SETTING);
+			reqInformProperty(EPC_PROMPT_MESSAGE_SETTING);
 			return this;
 		}
 		/**
@@ -5394,7 +5403,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGaccessoriesToCombinationMicrowaveOvenHSetting() {
-			addProperty(EPC_GACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_H_SETTING);
+			reqInformProperty(EPC_GACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_H_SETTING);
 			return this;
 		}
 		/**
@@ -5440,7 +5449,7 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Informer reqInformTwoStageMicrowaveHeatingSettingDuration() {
-			addProperty(EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION);
+			reqInformProperty(EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION);
 			return this;
 		}
 		/**
@@ -5484,20 +5493,19 @@ heating setting
 		 * Get - optional<br>
 		 */
 		public Informer reqInformTwoStageMicrowaveHeatingSettingHeatingPower() {
-			addProperty(EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER);
+			reqInformProperty(EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER);
 			return this;
 		}
 	}
 
 	public static class Proxy extends CombinationMicrowaveOven {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -5518,7 +5526,7 @@ heating setting
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -5526,7 +5534,8 @@ heating setting
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -5534,7 +5543,8 @@ heating setting
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -5542,7 +5552,8 @@ heating setting
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

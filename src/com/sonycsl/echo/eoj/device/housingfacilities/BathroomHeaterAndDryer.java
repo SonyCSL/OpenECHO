@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.housingfacilities;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -58,13 +59,6 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 		addGetProperty(EPC_BATHROOM_PRE_WARMER_OPERATION_SETTING);
 		addSetProperty(EPC_BATHROOM_DRYER_OPERATION_SETTING);
 		addGetProperty(EPC_BATHROOM_DRYER_OPERATION_SETTING);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewBathroomHeaterAndDryer(this);
 	}
 	
 	@Override
@@ -1590,27 +1584,36 @@ x2<br>
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -2604,8 +2607,10 @@ x2<br>
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -2677,7 +2682,7 @@ x2<br>
 		 * Get - mandatory<br>
 		 */
 		public Setter reqSetOperationSetting(byte[] edt) {
-			addProperty(EPC_OPERATION_SETTING, edt);
+			reqSetProperty(EPC_OPERATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2705,7 +2710,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetVentilationOperationSetting(byte[] edt) {
-			addProperty(EPC_VENTILATION_OPERATION_SETTING, edt);
+			reqSetProperty(EPC_VENTILATION_OPERATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2734,7 +2739,7 @@ x2<br>
 		 * Get - mandatory<br>
 		 */
 		public Setter reqSetBathroomPreWarmerOperationSetting(byte[] edt) {
-			addProperty(EPC_BATHROOM_PRE_WARMER_OPERATION_SETTING, edt);
+			reqSetProperty(EPC_BATHROOM_PRE_WARMER_OPERATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2763,7 +2768,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetBathroomHeaterOperationSetting(byte[] edt) {
-			addProperty(EPC_BATHROOM_HEATER_OPERATION_SETTING, edt);
+			reqSetProperty(EPC_BATHROOM_HEATER_OPERATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2792,7 +2797,7 @@ x2<br>
 		 * Get - mandatory<br>
 		 */
 		public Setter reqSetBathroomDryerOperationSetting(byte[] edt) {
-			addProperty(EPC_BATHROOM_DRYER_OPERATION_SETTING, edt);
+			reqSetProperty(EPC_BATHROOM_DRYER_OPERATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2821,7 +2826,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetCoolAirCirculatorOperationSetting(byte[] edt) {
-			addProperty(EPC_COOL_AIR_CIRCULATOR_OPERATION_SETTING, edt);
+			reqSetProperty(EPC_COOL_AIR_CIRCULATOR_OPERATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2848,7 +2853,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetVentilationAirFlowRateSetting(byte[] edt) {
-			addProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING, edt);
+			reqSetProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2876,7 +2881,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetFilterCleaningReminderSignSetting(byte[] edt) {
-			addProperty(EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING, edt);
+			reqSetProperty(EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2904,7 +2909,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGonTimerBasedReservationHSetting1(byte[] edt) {
-			addProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1, edt);
+			reqSetProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1, edt);
 			return this;
 		}
 		/**
@@ -2936,7 +2941,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGonTimerBasedReservationHSetting2(byte[] edt) {
-			addProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2, edt);
+			reqSetProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -2966,7 +2971,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerSettingTime(byte[] edt) {
-			addProperty(EPC_ON_TIMER_SETTING_TIME, edt);
+			reqSetProperty(EPC_ON_TIMER_SETTING_TIME, edt);
 			return this;
 		}
 		/**
@@ -2996,7 +3001,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerSettingRelativeTime(byte[] edt) {
-			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME, edt);
+			reqSetProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME, edt);
 			return this;
 		}
 		/**
@@ -3024,7 +3029,7 @@ timer-based reservation�h setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGoffTimerBasedReservationHSetting(byte[] edt) {
-			addProperty(EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING, edt);
+			reqSetProperty(EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3055,7 +3060,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOffTimerSettingTime(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_SETTING_TIME, edt);
+			reqSetProperty(EPC_OFF_TIMER_SETTING_TIME, edt);
 			return this;
 		}
 		/**
@@ -3084,14 +3089,16 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOffTimerSettingRelativeTime(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME, edt);
+			reqSetProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -3227,7 +3234,7 @@ x2<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetOperationSetting() {
-			addProperty(EPC_OPERATION_SETTING);
+			reqGetProperty(EPC_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -3255,7 +3262,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetVentilationOperationSetting() {
-			addProperty(EPC_VENTILATION_OPERATION_SETTING);
+			reqGetProperty(EPC_VENTILATION_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -3284,7 +3291,7 @@ x2<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetBathroomPreWarmerOperationSetting() {
-			addProperty(EPC_BATHROOM_PRE_WARMER_OPERATION_SETTING);
+			reqGetProperty(EPC_BATHROOM_PRE_WARMER_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -3313,7 +3320,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetBathroomHeaterOperationSetting() {
-			addProperty(EPC_BATHROOM_HEATER_OPERATION_SETTING);
+			reqGetProperty(EPC_BATHROOM_HEATER_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -3342,7 +3349,7 @@ x2<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetBathroomDryerOperationSetting() {
-			addProperty(EPC_BATHROOM_DRYER_OPERATION_SETTING);
+			reqGetProperty(EPC_BATHROOM_DRYER_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -3371,7 +3378,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetCoolAirCirculatorOperationSetting() {
-			addProperty(EPC_COOL_AIR_CIRCULATOR_OPERATION_SETTING);
+			reqGetProperty(EPC_COOL_AIR_CIRCULATOR_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -3398,7 +3405,7 @@ relative bathroom humidity<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredRelativeBathroomHumidity() {
-			addProperty(EPC_MEASURED_RELATIVE_BATHROOM_HUMIDITY);
+			reqGetProperty(EPC_MEASURED_RELATIVE_BATHROOM_HUMIDITY);
 			return this;
 		}
 		/**
@@ -3424,7 +3431,7 @@ relative bathroom humidity<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredBathroomTemperature() {
-			addProperty(EPC_MEASURED_BATHROOM_TEMPERATURE);
+			reqGetProperty(EPC_MEASURED_BATHROOM_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -3451,7 +3458,7 @@ relative bathroom humidity<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetVentilationAirFlowRateSetting() {
-			addProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING);
+			reqGetProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING);
 			return this;
 		}
 		/**
@@ -3479,7 +3486,7 @@ relative bathroom humidity<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetFilterCleaningReminderSignSetting() {
-			addProperty(EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING);
+			reqGetProperty(EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING);
 			return this;
 		}
 		/**
@@ -3506,7 +3513,7 @@ relative bathroom humidity<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetHumanBodyDetectionStatus() {
-			addProperty(EPC_HUMAN_BODY_DETECTION_STATUS);
+			reqGetProperty(EPC_HUMAN_BODY_DETECTION_STATUS);
 			return this;
 		}
 		/**
@@ -3534,7 +3541,7 @@ relative bathroom humidity<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGonTimerBasedReservationHSetting1() {
-			addProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1);
+			reqGetProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1);
 			return this;
 		}
 		/**
@@ -3566,7 +3573,7 @@ relative bathroom humidity<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGonTimerBasedReservationHSetting2() {
-			addProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2);
+			reqGetProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2);
 			return this;
 		}
 		/**
@@ -3596,7 +3603,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerSettingTime() {
-			addProperty(EPC_ON_TIMER_SETTING_TIME);
+			reqGetProperty(EPC_ON_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -3626,7 +3633,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerSettingRelativeTime() {
-			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
+			reqGetProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 		/**
@@ -3654,7 +3661,7 @@ timer-based reservation�h setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGoffTimerBasedReservationHSetting() {
-			addProperty(EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING);
+			reqGetProperty(EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING);
 			return this;
 		}
 		/**
@@ -3685,7 +3692,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOffTimerSettingTime() {
-			addProperty(EPC_OFF_TIMER_SETTING_TIME);
+			reqGetProperty(EPC_OFF_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -3714,14 +3721,16 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOffTimerSettingRelativeTime() {
-			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME);
+			reqGetProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -3856,7 +3865,7 @@ x2<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformOperationSetting() {
-			addProperty(EPC_OPERATION_SETTING);
+			reqInformProperty(EPC_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -3884,7 +3893,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformVentilationOperationSetting() {
-			addProperty(EPC_VENTILATION_OPERATION_SETTING);
+			reqInformProperty(EPC_VENTILATION_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -3913,7 +3922,7 @@ x2<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformBathroomPreWarmerOperationSetting() {
-			addProperty(EPC_BATHROOM_PRE_WARMER_OPERATION_SETTING);
+			reqInformProperty(EPC_BATHROOM_PRE_WARMER_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -3942,7 +3951,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformBathroomHeaterOperationSetting() {
-			addProperty(EPC_BATHROOM_HEATER_OPERATION_SETTING);
+			reqInformProperty(EPC_BATHROOM_HEATER_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -3971,7 +3980,7 @@ x2<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformBathroomDryerOperationSetting() {
-			addProperty(EPC_BATHROOM_DRYER_OPERATION_SETTING);
+			reqInformProperty(EPC_BATHROOM_DRYER_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -4000,7 +4009,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformCoolAirCirculatorOperationSetting() {
-			addProperty(EPC_COOL_AIR_CIRCULATOR_OPERATION_SETTING);
+			reqInformProperty(EPC_COOL_AIR_CIRCULATOR_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -4027,7 +4036,7 @@ relative bathroom humidity<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredRelativeBathroomHumidity() {
-			addProperty(EPC_MEASURED_RELATIVE_BATHROOM_HUMIDITY);
+			reqInformProperty(EPC_MEASURED_RELATIVE_BATHROOM_HUMIDITY);
 			return this;
 		}
 		/**
@@ -4053,7 +4062,7 @@ relative bathroom humidity<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredBathroomTemperature() {
-			addProperty(EPC_MEASURED_BATHROOM_TEMPERATURE);
+			reqInformProperty(EPC_MEASURED_BATHROOM_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -4080,7 +4089,7 @@ relative bathroom humidity<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformVentilationAirFlowRateSetting() {
-			addProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING);
+			reqInformProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING);
 			return this;
 		}
 		/**
@@ -4108,7 +4117,7 @@ relative bathroom humidity<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformFilterCleaningReminderSignSetting() {
-			addProperty(EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING);
+			reqInformProperty(EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING);
 			return this;
 		}
 		/**
@@ -4135,7 +4144,7 @@ relative bathroom humidity<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformHumanBodyDetectionStatus() {
-			addProperty(EPC_HUMAN_BODY_DETECTION_STATUS);
+			reqInformProperty(EPC_HUMAN_BODY_DETECTION_STATUS);
 			return this;
 		}
 		/**
@@ -4163,7 +4172,7 @@ relative bathroom humidity<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGonTimerBasedReservationHSetting1() {
-			addProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1);
+			reqInformProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1);
 			return this;
 		}
 		/**
@@ -4195,7 +4204,7 @@ relative bathroom humidity<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGonTimerBasedReservationHSetting2() {
-			addProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2);
+			reqInformProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2);
 			return this;
 		}
 		/**
@@ -4225,7 +4234,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOnTimerSettingTime() {
-			addProperty(EPC_ON_TIMER_SETTING_TIME);
+			reqInformProperty(EPC_ON_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -4255,7 +4264,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOnTimerSettingRelativeTime() {
-			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
+			reqInformProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 		/**
@@ -4283,7 +4292,7 @@ timer-based reservation�h setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGoffTimerBasedReservationHSetting() {
-			addProperty(EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING);
+			reqInformProperty(EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING);
 			return this;
 		}
 		/**
@@ -4314,7 +4323,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOffTimerSettingTime() {
-			addProperty(EPC_OFF_TIMER_SETTING_TIME);
+			reqInformProperty(EPC_OFF_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -4343,20 +4352,19 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOffTimerSettingRelativeTime() {
-			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME);
+			reqInformProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 	}
 
 	public static class Proxy extends BathroomHeaterAndDryer {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -4389,7 +4397,7 @@ x2<br>
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -4397,7 +4405,8 @@ x2<br>
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -4405,7 +4414,8 @@ x2<br>
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -4413,7 +4423,8 @@ x2<br>
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.airconditioner;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -82,13 +83,6 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		addGetProperty(EPC_OPERATION_MODE_SETTING);
 		addSetProperty(EPC_SET_TEMPERATURE_VALUE);
 		addGetProperty(EPC_SET_TEMPERATURE_VALUE);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewHomeAirConditioner(this);
 	}
 	
 	@Override
@@ -3276,27 +3270,36 @@ method<br>
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -5329,8 +5332,10 @@ method<br>
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -5401,7 +5406,7 @@ method<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOperationModeSetting(byte[] edt) {
-			addProperty(EPC_OPERATION_MODE_SETTING, edt);
+			reqSetProperty(EPC_OPERATION_MODE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5428,7 +5433,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetAutomaticTemperatureControlSetting(byte[] edt) {
-			addProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING, edt);
+			reqSetProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5458,7 +5463,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetNormalHighSpeedSilentOperationSetting(byte[] edt) {
-			addProperty(EPC_NORMAL_HIGH_SPEED_SILENT_OPERATION_SETTING, edt);
+			reqSetProperty(EPC_NORMAL_HIGH_SPEED_SILENT_OPERATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5485,7 +5490,7 @@ method<br>
 		 * Get - mandatory<br>
 		 */
 		public Setter reqSetSetTemperatureValue(byte[] edt) {
-			addProperty(EPC_SET_TEMPERATURE_VALUE, edt);
+			reqSetProperty(EPC_SET_TEMPERATURE_VALUE, edt);
 			return this;
 		}
 		/**
@@ -5511,7 +5516,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetSetValueOfRelativeHumidityInDehumidifyingMode(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_RELATIVE_HUMIDITY_IN_DEHUMIDIFYING_MODE, edt);
+			reqSetProperty(EPC_SET_VALUE_OF_RELATIVE_HUMIDITY_IN_DEHUMIDIFYING_MODE, edt);
 			return this;
 		}
 		/**
@@ -5537,7 +5542,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetSetTemperatureValueInCoolingMode(byte[] edt) {
-			addProperty(EPC_SET_TEMPERATURE_VALUE_IN_COOLING_MODE, edt);
+			reqSetProperty(EPC_SET_TEMPERATURE_VALUE_IN_COOLING_MODE, edt);
 			return this;
 		}
 		/**
@@ -5563,7 +5568,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetSetTemperatureValueInHeatingMode(byte[] edt) {
-			addProperty(EPC_SET_TEMPERATURE_VALUE_IN_HEATING_MODE, edt);
+			reqSetProperty(EPC_SET_TEMPERATURE_VALUE_IN_HEATING_MODE, edt);
 			return this;
 		}
 		/**
@@ -5589,7 +5594,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetSetTemperatureValueInDehumidifyingMode(byte[] edt) {
-			addProperty(EPC_SET_TEMPERATURE_VALUE_IN_DEHUMIDIFYING_MODE, edt);
+			reqSetProperty(EPC_SET_TEMPERATURE_VALUE_IN_DEHUMIDIFYING_MODE, edt);
 			return this;
 		}
 		/**
@@ -5616,7 +5621,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetRelativeTemperatureSetting(byte[] edt) {
-			addProperty(EPC_RELATIVE_TEMPERATURE_SETTING, edt);
+			reqSetProperty(EPC_RELATIVE_TEMPERATURE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5643,7 +5648,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetAirFlowRateSetting(byte[] edt) {
-			addProperty(EPC_AIR_FLOW_RATE_SETTING, edt);
+			reqSetProperty(EPC_AIR_FLOW_RATE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5673,7 +5678,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetAutomaticControlOfAirFlowDirectionSetting(byte[] edt) {
-			addProperty(EPC_AUTOMATIC_CONTROL_OF_AIR_FLOW_DIRECTION_SETTING, edt);
+			reqSetProperty(EPC_AUTOMATIC_CONTROL_OF_AIR_FLOW_DIRECTION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5701,7 +5706,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetAutomaticSwingOfAirFlowSetting(byte[] edt) {
-			addProperty(EPC_AUTOMATIC_SWING_OF_AIR_FLOW_SETTING, edt);
+			reqSetProperty(EPC_AUTOMATIC_SWING_OF_AIR_FLOW_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5727,7 +5732,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetAirFlowDirectionVerticalSetting(byte[] edt) {
-			addProperty(EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING, edt);
+			reqSetProperty(EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5755,7 +5760,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetAirFlowDirectionHorizontalSetting(byte[] edt) {
-			addProperty(EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING, edt);
+			reqSetProperty(EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5781,7 +5786,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetVentilationFunctionSetting(byte[] edt) {
-			addProperty(EPC_VENTILATION_FUNCTION_SETTING, edt);
+			reqSetProperty(EPC_VENTILATION_FUNCTION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5807,7 +5812,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetHumidifierFunctionSetting(byte[] edt) {
-			addProperty(EPC_HUMIDIFIER_FUNCTION_SETTING, edt);
+			reqSetProperty(EPC_HUMIDIFIER_FUNCTION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5834,7 +5839,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetVentilationAirFlowRateSetting(byte[] edt) {
-			addProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING, edt);
+			reqSetProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5862,7 +5867,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetDegreeOfHumidificationSetting(byte[] edt) {
-			addProperty(EPC_DEGREE_OF_HUMIDIFICATION_SETTING, edt);
+			reqSetProperty(EPC_DEGREE_OF_HUMIDIFICATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5890,7 +5895,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetAirPurifierFunctionSetting(byte[] edt) {
-			addProperty(EPC_AIR_PURIFIER_FUNCTION_SETTING, edt);
+			reqSetProperty(EPC_AIR_PURIFIER_FUNCTION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5918,7 +5923,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetAirRefresherFunctionSetting(byte[] edt) {
-			addProperty(EPC_AIR_REFRESHER_FUNCTION_SETTING, edt);
+			reqSetProperty(EPC_AIR_REFRESHER_FUNCTION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5949,7 +5954,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetSelfCleaningFunctionSetting(byte[] edt) {
-			addProperty(EPC_SELF_CLEANING_FUNCTION_SETTING, edt);
+			reqSetProperty(EPC_SELF_CLEANING_FUNCTION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5976,7 +5981,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetSpecialFunctionSetting(byte[] edt) {
-			addProperty(EPC_SPECIAL_FUNCTION_SETTING, edt);
+			reqSetProperty(EPC_SPECIAL_FUNCTION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -6002,7 +6007,7 @@ setting<br>
 		 * Get - undefined<br>
 		 */
 		public Setter reqSetThermostatSettingOverrideFunction(byte[] edt) {
-			addProperty(EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION, edt);
+			reqSetProperty(EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION, edt);
 			return this;
 		}
 		/**
@@ -6029,7 +6034,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetAirPurificationModeSetting(byte[] edt) {
-			addProperty(EPC_AIR_PURIFICATION_MODE_SETTING, edt);
+			reqSetProperty(EPC_AIR_PURIFICATION_MODE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -6058,7 +6063,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerBasedReservationSetting(byte[] edt) {
-			addProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING, edt);
+			reqSetProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -6088,7 +6093,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerSettingTime(byte[] edt) {
-			addProperty(EPC_ON_TIMER_SETTING_TIME, edt);
+			reqSetProperty(EPC_ON_TIMER_SETTING_TIME, edt);
 			return this;
 		}
 		/**
@@ -6116,7 +6121,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerSettingRelativeTime(byte[] edt) {
-			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME, edt);
+			reqSetProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME, edt);
 			return this;
 		}
 		/**
@@ -6143,7 +6148,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOffTimerBasedReservationSetting(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING, edt);
+			reqSetProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -6173,7 +6178,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOffTimerSettingTime(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_SETTING_TIME, edt);
+			reqSetProperty(EPC_OFF_TIMER_SETTING_TIME, edt);
 			return this;
 		}
 		/**
@@ -6200,14 +6205,16 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOffTimerSettingRelativeTime(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME, edt);
+			reqSetProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -6342,7 +6349,7 @@ setting<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOperationModeSetting() {
-			addProperty(EPC_OPERATION_MODE_SETTING);
+			reqGetProperty(EPC_OPERATION_MODE_SETTING);
 			return this;
 		}
 		/**
@@ -6369,7 +6376,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetAutomaticTemperatureControlSetting() {
-			addProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING);
+			reqGetProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING);
 			return this;
 		}
 		/**
@@ -6399,7 +6406,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetNormalHighSpeedSilentOperationSetting() {
-			addProperty(EPC_NORMAL_HIGH_SPEED_SILENT_OPERATION_SETTING);
+			reqGetProperty(EPC_NORMAL_HIGH_SPEED_SILENT_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -6426,7 +6433,7 @@ setting<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetSetTemperatureValue() {
-			addProperty(EPC_SET_TEMPERATURE_VALUE);
+			reqGetProperty(EPC_SET_TEMPERATURE_VALUE);
 			return this;
 		}
 		/**
@@ -6452,7 +6459,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSetValueOfRelativeHumidityInDehumidifyingMode() {
-			addProperty(EPC_SET_VALUE_OF_RELATIVE_HUMIDITY_IN_DEHUMIDIFYING_MODE);
+			reqGetProperty(EPC_SET_VALUE_OF_RELATIVE_HUMIDITY_IN_DEHUMIDIFYING_MODE);
 			return this;
 		}
 		/**
@@ -6478,7 +6485,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSetTemperatureValueInCoolingMode() {
-			addProperty(EPC_SET_TEMPERATURE_VALUE_IN_COOLING_MODE);
+			reqGetProperty(EPC_SET_TEMPERATURE_VALUE_IN_COOLING_MODE);
 			return this;
 		}
 		/**
@@ -6504,7 +6511,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSetTemperatureValueInHeatingMode() {
-			addProperty(EPC_SET_TEMPERATURE_VALUE_IN_HEATING_MODE);
+			reqGetProperty(EPC_SET_TEMPERATURE_VALUE_IN_HEATING_MODE);
 			return this;
 		}
 		/**
@@ -6530,7 +6537,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSetTemperatureValueInDehumidifyingMode() {
-			addProperty(EPC_SET_TEMPERATURE_VALUE_IN_DEHUMIDIFYING_MODE);
+			reqGetProperty(EPC_SET_TEMPERATURE_VALUE_IN_DEHUMIDIFYING_MODE);
 			return this;
 		}
 		/**
@@ -6556,7 +6563,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRatedPowerConsumption() {
-			addProperty(EPC_RATED_POWER_CONSUMPTION);
+			reqGetProperty(EPC_RATED_POWER_CONSUMPTION);
 			return this;
 		}
 		/**
@@ -6582,7 +6589,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredValueOfCurrentConsumption() {
-			addProperty(EPC_MEASURED_VALUE_OF_CURRENT_CONSUMPTION);
+			reqGetProperty(EPC_MEASURED_VALUE_OF_CURRENT_CONSUMPTION);
 			return this;
 		}
 		/**
@@ -6608,7 +6615,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredValueOfRoomRelativeHumidity() {
-			addProperty(EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY);
+			reqGetProperty(EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY);
 			return this;
 		}
 		/**
@@ -6634,7 +6641,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredValueOfRoomTemperature() {
-			addProperty(EPC_MEASURED_VALUE_OF_ROOM_TEMPERATURE);
+			reqGetProperty(EPC_MEASURED_VALUE_OF_ROOM_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -6660,7 +6667,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSetTemperatureValueOfUserRemoteControl() {
-			addProperty(EPC_SET_TEMPERATURE_VALUE_OF_USER_REMOTE_CONTROL);
+			reqGetProperty(EPC_SET_TEMPERATURE_VALUE_OF_USER_REMOTE_CONTROL);
 			return this;
 		}
 		/**
@@ -6686,7 +6693,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredCooledAirTemperature() {
-			addProperty(EPC_MEASURED_COOLED_AIR_TEMPERATURE);
+			reqGetProperty(EPC_MEASURED_COOLED_AIR_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -6712,7 +6719,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredOutdoorAirTemperature() {
-			addProperty(EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE);
+			reqGetProperty(EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -6739,7 +6746,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRelativeTemperatureSetting() {
-			addProperty(EPC_RELATIVE_TEMPERATURE_SETTING);
+			reqGetProperty(EPC_RELATIVE_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
@@ -6766,7 +6773,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetAirFlowRateSetting() {
-			addProperty(EPC_AIR_FLOW_RATE_SETTING);
+			reqGetProperty(EPC_AIR_FLOW_RATE_SETTING);
 			return this;
 		}
 		/**
@@ -6796,7 +6803,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetAutomaticControlOfAirFlowDirectionSetting() {
-			addProperty(EPC_AUTOMATIC_CONTROL_OF_AIR_FLOW_DIRECTION_SETTING);
+			reqGetProperty(EPC_AUTOMATIC_CONTROL_OF_AIR_FLOW_DIRECTION_SETTING);
 			return this;
 		}
 		/**
@@ -6824,7 +6831,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetAutomaticSwingOfAirFlowSetting() {
-			addProperty(EPC_AUTOMATIC_SWING_OF_AIR_FLOW_SETTING);
+			reqGetProperty(EPC_AUTOMATIC_SWING_OF_AIR_FLOW_SETTING);
 			return this;
 		}
 		/**
@@ -6850,7 +6857,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetAirFlowDirectionVerticalSetting() {
-			addProperty(EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING);
+			reqGetProperty(EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING);
 			return this;
 		}
 		/**
@@ -6878,7 +6885,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetAirFlowDirectionHorizontalSetting() {
-			addProperty(EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING);
+			reqGetProperty(EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING);
 			return this;
 		}
 		/**
@@ -6905,7 +6912,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSpecialState() {
-			addProperty(EPC_SPECIAL_STATE);
+			reqGetProperty(EPC_SPECIAL_STATE);
 			return this;
 		}
 		/**
@@ -6932,7 +6939,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetNonPriorityState() {
-			addProperty(EPC_NON_PRIORITY_STATE);
+			reqGetProperty(EPC_NON_PRIORITY_STATE);
 			return this;
 		}
 		/**
@@ -6958,7 +6965,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetVentilationFunctionSetting() {
-			addProperty(EPC_VENTILATION_FUNCTION_SETTING);
+			reqGetProperty(EPC_VENTILATION_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -6984,7 +6991,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetHumidifierFunctionSetting() {
-			addProperty(EPC_HUMIDIFIER_FUNCTION_SETTING);
+			reqGetProperty(EPC_HUMIDIFIER_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -7011,7 +7018,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetVentilationAirFlowRateSetting() {
-			addProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING);
+			reqGetProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING);
 			return this;
 		}
 		/**
@@ -7039,7 +7046,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetDegreeOfHumidificationSetting() {
-			addProperty(EPC_DEGREE_OF_HUMIDIFICATION_SETTING);
+			reqGetProperty(EPC_DEGREE_OF_HUMIDIFICATION_SETTING);
 			return this;
 		}
 		/**
@@ -7070,7 +7077,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMountedAirCleaningMethod() {
-			addProperty(EPC_MOUNTED_AIR_CLEANING_METHOD);
+			reqGetProperty(EPC_MOUNTED_AIR_CLEANING_METHOD);
 			return this;
 		}
 		/**
@@ -7098,7 +7105,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetAirPurifierFunctionSetting() {
-			addProperty(EPC_AIR_PURIFIER_FUNCTION_SETTING);
+			reqGetProperty(EPC_AIR_PURIFIER_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -7129,7 +7136,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMountedAirRefreshMethod() {
-			addProperty(EPC_MOUNTED_AIR_REFRESH_METHOD);
+			reqGetProperty(EPC_MOUNTED_AIR_REFRESH_METHOD);
 			return this;
 		}
 		/**
@@ -7157,7 +7164,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetAirRefresherFunctionSetting() {
-			addProperty(EPC_AIR_REFRESHER_FUNCTION_SETTING);
+			reqGetProperty(EPC_AIR_REFRESHER_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -7190,7 +7197,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMountedSelfCleaningMethod() {
-			addProperty(EPC_MOUNTED_SELF_CLEANING_METHOD);
+			reqGetProperty(EPC_MOUNTED_SELF_CLEANING_METHOD);
 			return this;
 		}
 		/**
@@ -7221,7 +7228,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSelfCleaningFunctionSetting() {
-			addProperty(EPC_SELF_CLEANING_FUNCTION_SETTING);
+			reqGetProperty(EPC_SELF_CLEANING_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -7248,7 +7255,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSpecialFunctionSetting() {
-			addProperty(EPC_SPECIAL_FUNCTION_SETTING);
+			reqGetProperty(EPC_SPECIAL_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -7280,7 +7287,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOperationStatusOfComponents() {
-			addProperty(EPC_OPERATION_STATUS_OF_COMPONENTS);
+			reqGetProperty(EPC_OPERATION_STATUS_OF_COMPONENTS);
 			return this;
 		}
 		/**
@@ -7307,7 +7314,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetAirPurificationModeSetting() {
-			addProperty(EPC_AIR_PURIFICATION_MODE_SETTING);
+			reqGetProperty(EPC_AIR_PURIFICATION_MODE_SETTING);
 			return this;
 		}
 		/**
@@ -7336,7 +7343,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerBasedReservationSetting() {
-			addProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING);
+			reqGetProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -7366,7 +7373,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerSettingTime() {
-			addProperty(EPC_ON_TIMER_SETTING_TIME);
+			reqGetProperty(EPC_ON_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -7394,7 +7401,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerSettingRelativeTime() {
-			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
+			reqGetProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 		/**
@@ -7421,7 +7428,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOffTimerBasedReservationSetting() {
-			addProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING);
+			reqGetProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -7451,7 +7458,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOffTimerSettingTime() {
-			addProperty(EPC_OFF_TIMER_SETTING_TIME);
+			reqGetProperty(EPC_OFF_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -7478,14 +7485,16 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOffTimerSettingRelativeTime() {
-			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME);
+			reqGetProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -7619,7 +7628,7 @@ method<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOperationModeSetting() {
-			addProperty(EPC_OPERATION_MODE_SETTING);
+			reqInformProperty(EPC_OPERATION_MODE_SETTING);
 			return this;
 		}
 		/**
@@ -7646,7 +7655,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformAutomaticTemperatureControlSetting() {
-			addProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING);
+			reqInformProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING);
 			return this;
 		}
 		/**
@@ -7676,7 +7685,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformNormalHighSpeedSilentOperationSetting() {
-			addProperty(EPC_NORMAL_HIGH_SPEED_SILENT_OPERATION_SETTING);
+			reqInformProperty(EPC_NORMAL_HIGH_SPEED_SILENT_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -7703,7 +7712,7 @@ method<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformSetTemperatureValue() {
-			addProperty(EPC_SET_TEMPERATURE_VALUE);
+			reqInformProperty(EPC_SET_TEMPERATURE_VALUE);
 			return this;
 		}
 		/**
@@ -7729,7 +7738,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSetValueOfRelativeHumidityInDehumidifyingMode() {
-			addProperty(EPC_SET_VALUE_OF_RELATIVE_HUMIDITY_IN_DEHUMIDIFYING_MODE);
+			reqInformProperty(EPC_SET_VALUE_OF_RELATIVE_HUMIDITY_IN_DEHUMIDIFYING_MODE);
 			return this;
 		}
 		/**
@@ -7755,7 +7764,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSetTemperatureValueInCoolingMode() {
-			addProperty(EPC_SET_TEMPERATURE_VALUE_IN_COOLING_MODE);
+			reqInformProperty(EPC_SET_TEMPERATURE_VALUE_IN_COOLING_MODE);
 			return this;
 		}
 		/**
@@ -7781,7 +7790,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSetTemperatureValueInHeatingMode() {
-			addProperty(EPC_SET_TEMPERATURE_VALUE_IN_HEATING_MODE);
+			reqInformProperty(EPC_SET_TEMPERATURE_VALUE_IN_HEATING_MODE);
 			return this;
 		}
 		/**
@@ -7807,7 +7816,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSetTemperatureValueInDehumidifyingMode() {
-			addProperty(EPC_SET_TEMPERATURE_VALUE_IN_DEHUMIDIFYING_MODE);
+			reqInformProperty(EPC_SET_TEMPERATURE_VALUE_IN_DEHUMIDIFYING_MODE);
 			return this;
 		}
 		/**
@@ -7833,7 +7842,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRatedPowerConsumption() {
-			addProperty(EPC_RATED_POWER_CONSUMPTION);
+			reqInformProperty(EPC_RATED_POWER_CONSUMPTION);
 			return this;
 		}
 		/**
@@ -7859,7 +7868,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredValueOfCurrentConsumption() {
-			addProperty(EPC_MEASURED_VALUE_OF_CURRENT_CONSUMPTION);
+			reqInformProperty(EPC_MEASURED_VALUE_OF_CURRENT_CONSUMPTION);
 			return this;
 		}
 		/**
@@ -7885,7 +7894,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredValueOfRoomRelativeHumidity() {
-			addProperty(EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY);
+			reqInformProperty(EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY);
 			return this;
 		}
 		/**
@@ -7911,7 +7920,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredValueOfRoomTemperature() {
-			addProperty(EPC_MEASURED_VALUE_OF_ROOM_TEMPERATURE);
+			reqInformProperty(EPC_MEASURED_VALUE_OF_ROOM_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -7937,7 +7946,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSetTemperatureValueOfUserRemoteControl() {
-			addProperty(EPC_SET_TEMPERATURE_VALUE_OF_USER_REMOTE_CONTROL);
+			reqInformProperty(EPC_SET_TEMPERATURE_VALUE_OF_USER_REMOTE_CONTROL);
 			return this;
 		}
 		/**
@@ -7963,7 +7972,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredCooledAirTemperature() {
-			addProperty(EPC_MEASURED_COOLED_AIR_TEMPERATURE);
+			reqInformProperty(EPC_MEASURED_COOLED_AIR_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -7989,7 +7998,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredOutdoorAirTemperature() {
-			addProperty(EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE);
+			reqInformProperty(EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -8016,7 +8025,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRelativeTemperatureSetting() {
-			addProperty(EPC_RELATIVE_TEMPERATURE_SETTING);
+			reqInformProperty(EPC_RELATIVE_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
@@ -8043,7 +8052,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformAirFlowRateSetting() {
-			addProperty(EPC_AIR_FLOW_RATE_SETTING);
+			reqInformProperty(EPC_AIR_FLOW_RATE_SETTING);
 			return this;
 		}
 		/**
@@ -8073,7 +8082,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformAutomaticControlOfAirFlowDirectionSetting() {
-			addProperty(EPC_AUTOMATIC_CONTROL_OF_AIR_FLOW_DIRECTION_SETTING);
+			reqInformProperty(EPC_AUTOMATIC_CONTROL_OF_AIR_FLOW_DIRECTION_SETTING);
 			return this;
 		}
 		/**
@@ -8101,7 +8110,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformAutomaticSwingOfAirFlowSetting() {
-			addProperty(EPC_AUTOMATIC_SWING_OF_AIR_FLOW_SETTING);
+			reqInformProperty(EPC_AUTOMATIC_SWING_OF_AIR_FLOW_SETTING);
 			return this;
 		}
 		/**
@@ -8127,7 +8136,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformAirFlowDirectionVerticalSetting() {
-			addProperty(EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING);
+			reqInformProperty(EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING);
 			return this;
 		}
 		/**
@@ -8155,7 +8164,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformAirFlowDirectionHorizontalSetting() {
-			addProperty(EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING);
+			reqInformProperty(EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING);
 			return this;
 		}
 		/**
@@ -8182,7 +8191,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSpecialState() {
-			addProperty(EPC_SPECIAL_STATE);
+			reqInformProperty(EPC_SPECIAL_STATE);
 			return this;
 		}
 		/**
@@ -8209,7 +8218,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformNonPriorityState() {
-			addProperty(EPC_NON_PRIORITY_STATE);
+			reqInformProperty(EPC_NON_PRIORITY_STATE);
 			return this;
 		}
 		/**
@@ -8235,7 +8244,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformVentilationFunctionSetting() {
-			addProperty(EPC_VENTILATION_FUNCTION_SETTING);
+			reqInformProperty(EPC_VENTILATION_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -8261,7 +8270,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformHumidifierFunctionSetting() {
-			addProperty(EPC_HUMIDIFIER_FUNCTION_SETTING);
+			reqInformProperty(EPC_HUMIDIFIER_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -8288,7 +8297,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformVentilationAirFlowRateSetting() {
-			addProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING);
+			reqInformProperty(EPC_VENTILATION_AIR_FLOW_RATE_SETTING);
 			return this;
 		}
 		/**
@@ -8316,7 +8325,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformDegreeOfHumidificationSetting() {
-			addProperty(EPC_DEGREE_OF_HUMIDIFICATION_SETTING);
+			reqInformProperty(EPC_DEGREE_OF_HUMIDIFICATION_SETTING);
 			return this;
 		}
 		/**
@@ -8347,7 +8356,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMountedAirCleaningMethod() {
-			addProperty(EPC_MOUNTED_AIR_CLEANING_METHOD);
+			reqInformProperty(EPC_MOUNTED_AIR_CLEANING_METHOD);
 			return this;
 		}
 		/**
@@ -8375,7 +8384,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformAirPurifierFunctionSetting() {
-			addProperty(EPC_AIR_PURIFIER_FUNCTION_SETTING);
+			reqInformProperty(EPC_AIR_PURIFIER_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -8406,7 +8415,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMountedAirRefreshMethod() {
-			addProperty(EPC_MOUNTED_AIR_REFRESH_METHOD);
+			reqInformProperty(EPC_MOUNTED_AIR_REFRESH_METHOD);
 			return this;
 		}
 		/**
@@ -8434,7 +8443,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformAirRefresherFunctionSetting() {
-			addProperty(EPC_AIR_REFRESHER_FUNCTION_SETTING);
+			reqInformProperty(EPC_AIR_REFRESHER_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -8467,7 +8476,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMountedSelfCleaningMethod() {
-			addProperty(EPC_MOUNTED_SELF_CLEANING_METHOD);
+			reqInformProperty(EPC_MOUNTED_SELF_CLEANING_METHOD);
 			return this;
 		}
 		/**
@@ -8498,7 +8507,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSelfCleaningFunctionSetting() {
-			addProperty(EPC_SELF_CLEANING_FUNCTION_SETTING);
+			reqInformProperty(EPC_SELF_CLEANING_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -8525,7 +8534,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSpecialFunctionSetting() {
-			addProperty(EPC_SPECIAL_FUNCTION_SETTING);
+			reqInformProperty(EPC_SPECIAL_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -8557,7 +8566,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOperationStatusOfComponents() {
-			addProperty(EPC_OPERATION_STATUS_OF_COMPONENTS);
+			reqInformProperty(EPC_OPERATION_STATUS_OF_COMPONENTS);
 			return this;
 		}
 		/**
@@ -8584,7 +8593,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformAirPurificationModeSetting() {
-			addProperty(EPC_AIR_PURIFICATION_MODE_SETTING);
+			reqInformProperty(EPC_AIR_PURIFICATION_MODE_SETTING);
 			return this;
 		}
 		/**
@@ -8613,7 +8622,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOnTimerBasedReservationSetting() {
-			addProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING);
+			reqInformProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -8643,7 +8652,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOnTimerSettingTime() {
-			addProperty(EPC_ON_TIMER_SETTING_TIME);
+			reqInformProperty(EPC_ON_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -8671,7 +8680,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOnTimerSettingRelativeTime() {
-			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
+			reqInformProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 		/**
@@ -8698,7 +8707,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOffTimerBasedReservationSetting() {
-			addProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING);
+			reqInformProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -8728,7 +8737,7 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOffTimerSettingTime() {
-			addProperty(EPC_OFF_TIMER_SETTING_TIME);
+			reqInformProperty(EPC_OFF_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -8755,20 +8764,19 @@ method<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOffTimerSettingRelativeTime() {
-			addProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME);
+			reqInformProperty(EPC_OFF_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 	}
 
 	public static class Proxy extends HomeAirConditioner {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -8799,7 +8807,7 @@ method<br>
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -8807,7 +8815,8 @@ method<br>
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -8815,7 +8824,8 @@ method<br>
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -8823,7 +8833,8 @@ method<br>
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

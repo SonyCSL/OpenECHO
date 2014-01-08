@@ -17,6 +17,8 @@ package com.sonycsl.echo.eoj.profile;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 import com.sonycsl.echo.Echo;
@@ -25,6 +27,10 @@ import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.EchoUtils;
 import com.sonycsl.echo.eoj.EchoObject;
+import com.sonycsl.echo.eoj.device.DeviceObject;
+import com.sonycsl.echo.eoj.profile.ProfileObject.Getter;
+import com.sonycsl.echo.eoj.profile.ProfileObject.Informer;
+import com.sonycsl.echo.eoj.profile.ProfileObject.Setter;
 import com.sonycsl.echo.node.EchoNode;
 
 public abstract class NodeProfile extends ProfileObject {
@@ -36,6 +42,8 @@ public abstract class NodeProfile extends ProfileObject {
 	//public static final byte CLASS_GROUP_CODE = (byte)0x0E;
 	//public static final byte CLASS_CODE = (byte)0xF0;
 	public static final byte INSTANCE_CODE = (byte)0x01;
+	public static final byte INSTANCE_CODE_TRANSMISSION_ONLY= 0x02;
+
 	
 	public static final byte EPC_OPERATING_STATUS = (byte)0x80;
 	public static final byte EPC_VERSION_INFORMATION = (byte)0x82;
@@ -80,13 +88,6 @@ public abstract class NodeProfile extends ProfileObject {
 		//addGetProperty(EPC_INSTANCE_LIST_NOTIFICATION);
 		addGetProperty(EPC_SELF_NODE_INSTANCE_LIST_S);
 		addGetProperty(EPC_SELF_NODE_CLASS_LIST);
-	}
-
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewNodeProfile(this);
 	}
 	
 	@Override
@@ -140,63 +141,7 @@ public abstract class NodeProfile extends ProfileObject {
 		default : return false;
 		}
 	}
-
-	@Override
-	protected boolean onReceiveProperty(EchoProperty property) {
-		boolean ret = super.onReceiveProperty(property);
-		if(ret) return ret;
-		
-		switch(property.epc) {
-		case EPC_SELF_NODE_INSTANCE_LIST_S :
-		case EPC_INSTANCE_LIST_NOTIFICATION :
-			onReceiveInstanceListNotification(property.edt);
-			return true;
-		//case EPC_SELF_NODE_INSTANCE_LIST_S :
-			//onReceiveSelfNodeInstanceListS(property.edt);
-		//	return true;
-		default :
-			return false;
-		}
-	}
-	private ArrayList<Integer> mEchoObjectCodeList;
-	private void onReceiveInstanceListNotification(byte[] edt) {
-		//if(!isProxy() || !isValidInstanceListNotification(edt))return;
-		if(!isValidInstanceListNotification(edt))return;
-
-		
-		int num = (int)(edt[0] & 0xFF);
-		int size = num;
-		if(mEchoObjectCodeList != null) size = size - mEchoObjectCodeList.size();
-		if(size > 84) size =  84;
-		size = size * 3 + 1;
-		if(size != edt.length) return;
-		mEchoObjectCodeList = new ArrayList<Integer>();
-		for(int i = 1; i < size; i += 3) {
-			mEchoObjectCodeList.add(EchoUtils.getEchoObjectCode(
-					edt[i], edt[i+1], edt[i+2]));
-		}
-		if(mEchoObjectCodeList.size() == num) {
-			Echo.updateNodeDevices(getNode().getAddress(), mEchoObjectCodeList);
-			mEchoObjectCodeList = null;
-		}
-		//onReceiveSelfNodeInstanceListS(edt);
-	}
-	/*
-	private void onReceiveSelfNodeInstanceListS(byte[] edt) {
-		if(!isProxy() || !isValidSelfNodeInstanceListS(edt))return;
-		
-		ArrayList<Integer> echoObjCodeList = new ArrayList<Integer>();
-		int num = (edt.length - 1) / 3;
-
-		for(int i = 1; i < num; i += 3) {
-			echoObjCodeList.add(EchoUtils.getEchoObjectCode(
-					edt[i], edt[i+1], edt[i+2]));
-		}
-
-		Echo.updateNodeDevices(getNode().getAddress(), echoObjCodeList);
-
-	}
-*/
+	
 	/**
 	 * Indicates node operating status.<br>
 	 * <br>
@@ -407,7 +352,16 @@ public abstract class NodeProfile extends ProfileObject {
 	 * Get : mandatory<br>
 	 */
 	protected byte[] getNumberOfSelfNodeClasses() {
-		return getNode().getNumberOfSelfNodeClasses();
+		HashSet<Short> hashSet = new HashSet<Short>();
+		DeviceObject[] devices = getNode().getDevices();
+		for(DeviceObject d : devices) {
+			hashSet.add(d.getEchoClassCode());
+		}
+		int size = hashSet.size() + 1;
+		byte[] edt = new byte[2];
+		edt[0] = (byte)((size >> 8) & 0xFF);
+		edt[1] = (byte)(size & 0xFF);
+		return edt;
 	}
 
 	protected boolean isValidNumberOfSelfNodeClasses(byte[] edt) {
@@ -491,7 +445,23 @@ public abstract class NodeProfile extends ProfileObject {
 	 * Get : mandatory<br>
 	 */
 	protected byte[] getSelfNodeClassList() {
-		return getNode().getSelfNodeClassList();
+
+		HashSet<Short> hashSet = new HashSet<Short>();
+		DeviceObject[] devices = getNode().getDevices();
+		for(DeviceObject d : devices) {
+			hashSet.add(d.getEchoClassCode());
+		}
+		int size = hashSet.size();
+		int s = (size >= 9) ? 8 : size;
+		byte[] edt = new byte[1+(s*2)];
+		edt[0] = (byte)size;
+		Iterator<Short> itr = hashSet.iterator();
+		for(int i = 0; i < s; i++) {
+			short echoClassCode = itr.next();
+			edt[1+(i*2)] = (byte)((echoClassCode >> 8) & 0xFF);
+			edt[2+(i*2)] = (byte)(echoClassCode & 0xFF);
+		}
+		return edt;
 	}
 
 	protected boolean isValidSelfNodeClassList(byte[] edt) {
@@ -500,32 +470,43 @@ public abstract class NodeProfile extends ProfileObject {
 	}
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
 
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
-	
+
+
 	@Override
-	protected InformerC informC() {
-		return new InformerC(this);
+	protected InformerC informC(String address) {
+		return new InformerC(getEchoClassCode(), getInstanceCode()
+				, address);
 	}
 
 
@@ -857,8 +838,10 @@ public abstract class NodeProfile extends ProfileObject {
 	
 	public static class Setter extends ProfileObject.Setter {
 
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -883,7 +866,7 @@ public abstract class NodeProfile extends ProfileObject {
 		 * Announcement at status change<br>
 		 */
 		public Setter reqSetOperatingStatus(byte[] edt) {
-			addProperty(EPC_OPERATING_STATUS, edt);
+			reqSetProperty(EPC_OPERATING_STATUS, edt);
 			return this;
 		}
 		/**
@@ -902,15 +885,16 @@ public abstract class NodeProfile extends ProfileObject {
 		 * Get : mandatory<br>
 		 */
 		public Setter reqSetUniqueIdentifierData(byte[] edt) {
-			addProperty(EPC_UNIQUE_IDENTIFIER_DATA, edt);
+			reqSetProperty(EPC_UNIQUE_IDENTIFIER_DATA, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends ProfileObject.Getter {
-		
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		@Override
 		public Getter reqGetProperty(byte epc) {
@@ -971,7 +955,7 @@ public abstract class NodeProfile extends ProfileObject {
 		 * Announcement at status change<br>
 		 */
 		public Getter reqGetOperatingStatus() {
-			addProperty(EPC_OPERATING_STATUS);
+			reqGetProperty(EPC_OPERATING_STATUS);
 			return this;
 		}
 		/**
@@ -993,7 +977,7 @@ public abstract class NodeProfile extends ProfileObject {
 		 * Get : mandatory<br>
 		 */
 		public Getter reqGetVersionInformation() {
-			addProperty(EPC_VERSION_INFORMATION);
+			reqGetProperty(EPC_VERSION_INFORMATION);
 			return this;
 		}
 		/**
@@ -1021,7 +1005,7 @@ public abstract class NodeProfile extends ProfileObject {
 		 * Get : mandatory<br>
 		 */
 		public Getter reqGetIdentificationNumber() {
-			addProperty(EPC_IDENTIFICATION_NUMBER);
+			reqGetProperty(EPC_IDENTIFICATION_NUMBER);
 			return this;
 		}
 		/**
@@ -1040,7 +1024,7 @@ public abstract class NodeProfile extends ProfileObject {
 		 * Get : optional<br>
 		 */
 		public Getter reqGetFaultContent() {
-			addProperty(EPC_FAULT_CONTENT);
+			reqGetProperty(EPC_FAULT_CONTENT);
 			return this;
 		}
 		/**
@@ -1059,7 +1043,7 @@ public abstract class NodeProfile extends ProfileObject {
 		 * Get : mandatory<br>
 		 */
 		public Getter reqGetUniqueIdentifierData() {
-			addProperty(EPC_UNIQUE_IDENTIFIER_DATA);
+			reqGetProperty(EPC_UNIQUE_IDENTIFIER_DATA);
 			return this;
 		}
 		/**
@@ -1078,7 +1062,7 @@ public abstract class NodeProfile extends ProfileObject {
 		 * Get : mandatory<br>
 		 */
 		public Getter reqGetNumberOfSelfNodeInstances() {
-			addProperty(EPC_NUMBER_OF_SELF_NODE_INSTANCES);
+			reqGetProperty(EPC_NUMBER_OF_SELF_NODE_INSTANCES);
 			return this;
 		}
 		/**
@@ -1097,7 +1081,7 @@ public abstract class NodeProfile extends ProfileObject {
 		 * Get : mandatory<br>
 		 */
 		public Getter reqGetNumberOfSelfNodeClasses() {
-			addProperty(EPC_NUMBER_OF_SELF_NODE_CLASSES);
+			reqGetProperty(EPC_NUMBER_OF_SELF_NODE_CLASSES);
 			return this;
 		}
 		/**
@@ -1117,7 +1101,7 @@ public abstract class NodeProfile extends ProfileObject {
 		 * Get : mandatory<br>
 		 */
 		public Getter reqGetSelfNodeInstanceListS() {
-			addProperty(EPC_SELF_NODE_INSTANCE_LIST_S);
+			reqGetProperty(EPC_SELF_NODE_INSTANCE_LIST_S);
 			return this;
 		}
 		/**
@@ -1137,7 +1121,7 @@ public abstract class NodeProfile extends ProfileObject {
 		 * Get : mandatory<br>
 		 */
 		public Getter reqGetSelfNodeClassList() {
-			addProperty(EPC_SELF_NODE_CLASS_LIST);
+			reqGetProperty(EPC_SELF_NODE_CLASS_LIST);
 			return this;
 		}
 	}
@@ -1147,46 +1131,10 @@ public abstract class NodeProfile extends ProfileObject {
 		//List<EchoFrame> mNotificationFrameList = null;
 		//EchoObject mEoj;
 
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
-			//mEoj = eoj;
-		}
-		
-		@Override
-		protected void addProperty(byte epc) {
-			super.addProperty(epc);
-			/*if(mEoj.isProxy() || epc != NodeProfile.EPC_INSTANCE_LIST_NOTIFICATION) return;
-			if(mNotificationFrameList == null) mNotificationFrameList = new ArrayList<EchoFrame>();
-			for(int i = 1; i < 4; i++) {
-				byte[] edt = EchoUtils.devicesToByteArray(mEoj.getNode().getDevices(), i);
-				if(edt == null) break;
-				short tid = EchoSocket.nextTID();
-				EchoFrame frame = new EchoFrame(tid, getSeoj(), getDeoj(), EchoFrame.ESV_INF);
-				mNotificationFrameList.add(frame);
-			}*/
-		}
-
-		@Override
-		public short send() throws IOException {
-			return super.send();
-			/*if(mNotificationFrameList == null) return;
-			for(EchoFrame frame : mNotificationFrameList) {
-
-				byte[] data = frame.getFrameByteArray();
-				
-				if (isMulticast()) {
-					EchoSocket.sendGroup(data);
-				} else {
-					EchoSocket.send(getDeoj().getNode().getAddress(), data);
-				}
-				
-				Echo.EventListener listener = Echo.getEventListener();
-				try {
-					if(listener != null) listener.sendEvent(frame);
-				} catch(Exception e) {
-					try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
-				}
-			}*/
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 
 		@Override
@@ -1249,7 +1197,7 @@ public abstract class NodeProfile extends ProfileObject {
 		 * Announcement at status change<br>
 		 */
 		public Informer reqInformOperatingStatus() {
-			addProperty(EPC_OPERATING_STATUS);
+			reqInformProperty(EPC_OPERATING_STATUS);
 			return this;
 		}
 		/**
@@ -1271,7 +1219,7 @@ public abstract class NodeProfile extends ProfileObject {
 		 * Get : mandatory<br>
 		 */
 		public Informer reqInformVersionInformation() {
-			addProperty(EPC_VERSION_INFORMATION);
+			reqInformProperty(EPC_VERSION_INFORMATION);
 			return this;
 		}
 		/**
@@ -1299,7 +1247,7 @@ public abstract class NodeProfile extends ProfileObject {
 		 * Get : mandatory<br>
 		 */
 		public Informer reqInformIdentificationNumber() {
-			addProperty(EPC_IDENTIFICATION_NUMBER);
+			reqInformProperty(EPC_IDENTIFICATION_NUMBER);
 			return this;
 		}
 		/**
@@ -1318,7 +1266,7 @@ public abstract class NodeProfile extends ProfileObject {
 		 * Get : optional<br>
 		 */
 		public Informer reqInformFaultContent() {
-			addProperty(EPC_FAULT_CONTENT);
+			reqInformProperty(EPC_FAULT_CONTENT);
 			return this;
 		}
 		/**
@@ -1337,7 +1285,7 @@ public abstract class NodeProfile extends ProfileObject {
 		 * Get : mandatory<br>
 		 */
 		public Informer reqInformUniqueIdentifierData() {
-			addProperty(EPC_UNIQUE_IDENTIFIER_DATA);
+			reqInformProperty(EPC_UNIQUE_IDENTIFIER_DATA);
 			return this;
 		}
 		/**
@@ -1356,7 +1304,7 @@ public abstract class NodeProfile extends ProfileObject {
 		 * Get : mandatory<br>
 		 */
 		public Informer reqInformNumberOfSelfNodeInstances() {
-			addProperty(EPC_NUMBER_OF_SELF_NODE_INSTANCES);
+			reqInformProperty(EPC_NUMBER_OF_SELF_NODE_INSTANCES);
 			return this;
 		}
 		/**
@@ -1375,7 +1323,7 @@ public abstract class NodeProfile extends ProfileObject {
 		 * Get : mandatory<br>
 		 */
 		public Informer reqInformNumberOfSelfNodeClasses() {
-			addProperty(EPC_NUMBER_OF_SELF_NODE_CLASSES);
+			reqInformProperty(EPC_NUMBER_OF_SELF_NODE_CLASSES);
 			return this;
 		}
 		/**
@@ -1397,7 +1345,7 @@ public abstract class NodeProfile extends ProfileObject {
 		 * Announcement at status change<br>
 		 */
 		public Informer reqInformInstanceListNotification() {
-			addProperty(EPC_INSTANCE_LIST_NOTIFICATION);
+			reqInformProperty(EPC_INSTANCE_LIST_NOTIFICATION);
 			return this;
 		}
 		/**
@@ -1417,7 +1365,7 @@ public abstract class NodeProfile extends ProfileObject {
 		 * Get : mandatory<br>
 		 */
 		public Informer reqInformSelfNodeInstanceListS() {
-			addProperty(EPC_SELF_NODE_INSTANCE_LIST_S);
+			reqInformProperty(EPC_SELF_NODE_INSTANCE_LIST_S);
 			return this;
 		}
 		/**
@@ -1437,14 +1385,16 @@ public abstract class NodeProfile extends ProfileObject {
 		 * Get : mandatory<br>
 		 */
 		public Informer reqInformSelfNodeClassList() {
-			addProperty(EPC_SELF_NODE_CLASS_LIST);
+			reqInformProperty(EPC_SELF_NODE_CLASS_LIST);
 			return this;
 		}
 	}
 	
 	public static class InformerC extends EchoObject.InformerC {
-		public InformerC(EchoObject eoj) {
-			super(eoj);
+		public InformerC(short srcEchoClassCode, byte srcEchoInstanceCode
+				, String dstEchoAddress) {
+			super(srcEchoClassCode, srcEchoInstanceCode
+					, dstEchoAddress);
 		}
 
 		/**
@@ -1466,7 +1416,7 @@ public abstract class NodeProfile extends ProfileObject {
 		 * Announcement at status change<br>
 		 */
 		public InformerC informInstanceListNotification() {
-			addProperty(EPC_INSTANCE_LIST_NOTIFICATION);
+			reqInformProperty(EPC_INSTANCE_LIST_NOTIFICATION);
 			return this;
 		}
 		
@@ -1474,6 +1424,17 @@ public abstract class NodeProfile extends ProfileObject {
 	
 	public static class Proxy extends NodeProfile {
 		
+		private byte mEchoInstanceCode = INSTANCE_CODE;
+		
+		public void setInstanceCode(byte echoInstanceCode) {
+			mEchoInstanceCode = echoInstanceCode;
+		}
+		
+		@Override
+		public byte getInstanceCode() {
+			return mEchoInstanceCode;
+		}
+
 		@Override
 		protected byte[] getOperatingStatus() {
 			// TODO Auto-generated method stub
@@ -1513,18 +1474,21 @@ public abstract class NodeProfile extends ProfileObject {
 	}
 	
 	public static Setter setG() {
-		return new Setter(new Proxy(), true, true);
+		return setG(true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
-		return new Setter(new Proxy(), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, INSTANCE_CODE
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
-		return new Getter(new Proxy(), true);
+		return new Getter(ECHO_CLASS_CODE, INSTANCE_CODE
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
-		return new Informer(new Proxy(), true);
+		return new Informer(ECHO_CLASS_CODE, INSTANCE_CODE
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 }

@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.cookinghousehold;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -70,13 +71,6 @@ public abstract class Refrigerator extends DeviceObject {
 		addGetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_DOOR_OPEN_CLOSE_STATUS);
 		addStatusChangeAnnouncementProperty(EPC_DOOR_OPEN_WARNING);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewRefrigerator(this);
 	}
 	
 	@Override
@@ -2343,27 +2337,36 @@ multi-refrigeratin g mode compartment temperature<br>
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -3726,8 +3729,10 @@ multi-refrigeratin g mode compartment temperature<br>
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -3791,7 +3796,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetRefrigeratorCompartmentTemperatureSetting(byte[] edt) {
-			addProperty(EPC_REFRIGERATOR_COMPARTMENT_TEMPERATURE_SETTING, edt);
+			reqSetProperty(EPC_REFRIGERATOR_COMPARTMENT_TEMPERATURE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3817,7 +3822,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetFreezerCompartmentTemperatureSetting(byte[] edt) {
-			addProperty(EPC_FREEZER_COMPARTMENT_TEMPERATURE_SETTING, edt);
+			reqSetProperty(EPC_FREEZER_COMPARTMENT_TEMPERATURE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3843,7 +3848,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetIceTemperatureSetting(byte[] edt) {
-			addProperty(EPC_ICE_TEMPERATURE_SETTING, edt);
+			reqSetProperty(EPC_ICE_TEMPERATURE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3869,7 +3874,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetVegetableCompartmentTemperatureSetting(byte[] edt) {
-			addProperty(EPC_VEGETABLE_COMPARTMENT_TEMPERATURE_SETTING, edt);
+			reqSetProperty(EPC_VEGETABLE_COMPARTMENT_TEMPERATURE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3895,7 +3900,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetMultiRefrigeraTingModeCompartmentTemperatureSetting(byte[] edt) {
-			addProperty(EPC_MULTI_REFRIGERA_TING_MODE_COMPARTMENT_TEMPERATURE_SETTING, edt);
+			reqSetProperty(EPC_MULTI_REFRIGERA_TING_MODE_COMPARTMENT_TEMPERATURE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3921,7 +3926,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetRefrigeratorCompartmentTemperatureLevelSetting(byte[] edt) {
-			addProperty(EPC_REFRIGERATOR_COMPARTMENT_TEMPERATURE_LEVEL_SETTING, edt);
+			reqSetProperty(EPC_REFRIGERATOR_COMPARTMENT_TEMPERATURE_LEVEL_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3947,7 +3952,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetFreezerCompartmentTemperatureLevelSetting(byte[] edt) {
-			addProperty(EPC_FREEZER_COMPARTMENT_TEMPERATURE_LEVEL_SETTING, edt);
+			reqSetProperty(EPC_FREEZER_COMPARTMENT_TEMPERATURE_LEVEL_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3973,7 +3978,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetIceCompartmentTemperatureLevelSetting(byte[] edt) {
-			addProperty(EPC_ICE_COMPARTMENT_TEMPERATURE_LEVEL_SETTING, edt);
+			reqSetProperty(EPC_ICE_COMPARTMENT_TEMPERATURE_LEVEL_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3999,7 +4004,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetVegetableCompartmentTemperatureLevelSetting(byte[] edt) {
-			addProperty(EPC_VEGETABLE_COMPARTMENT_TEMPERATURE_LEVEL_SETTING, edt);
+			reqSetProperty(EPC_VEGETABLE_COMPARTMENT_TEMPERATURE_LEVEL_SETTING, edt);
 			return this;
 		}
 		/**
@@ -4025,7 +4030,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetMultiRefrigeraTingModeCompartmentTemperatureLevelSetting(byte[] edt) {
-			addProperty(EPC_MULTI_REFRIGERA_TING_MODE_COMPARTMENT_TEMPERATURE_LEVEL_SETTING, edt);
+			reqSetProperty(EPC_MULTI_REFRIGERA_TING_MODE_COMPARTMENT_TEMPERATURE_LEVEL_SETTING, edt);
 			return this;
 		}
 		/**
@@ -4052,7 +4057,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetQuickFreezeFunctionSetting(byte[] edt) {
-			addProperty(EPC_QUICK_FREEZE_FUNCTION_SETTING, edt);
+			reqSetProperty(EPC_QUICK_FREEZE_FUNCTION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -4079,7 +4084,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetQuickRefrigerationFunctionSetting(byte[] edt) {
-			addProperty(EPC_QUICK_REFRIGERATION_FUNCTION_SETTING, edt);
+			reqSetProperty(EPC_QUICK_REFRIGERATION_FUNCTION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -4106,7 +4111,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetIcemakerSetting(byte[] edt) {
-			addProperty(EPC_ICEMAKER_SETTING, edt);
+			reqSetProperty(EPC_ICEMAKER_SETTING, edt);
 			return this;
 		}
 		/**
@@ -4133,7 +4138,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetRefrigeratorCompartmentHumidificationFunctionSetting(byte[] edt) {
-			addProperty(EPC_REFRIGERATOR_COMPARTMENT_HUMIDIFICATION_FUNCTION_SETTING, edt);
+			reqSetProperty(EPC_REFRIGERATOR_COMPARTMENT_HUMIDIFICATION_FUNCTION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -4160,7 +4165,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetVegetableCompartmentHumidificationFunctionSetting(byte[] edt) {
-			addProperty(EPC_VEGETABLE_COMPARTMENT_HUMIDIFICATION_FUNCTION_SETTING, edt);
+			reqSetProperty(EPC_VEGETABLE_COMPARTMENT_HUMIDIFICATION_FUNCTION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -4187,14 +4192,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetDeodorizationFunctionSetting(byte[] edt) {
-			addProperty(EPC_DEODORIZATION_FUNCTION_SETTING, edt);
+			reqSetProperty(EPC_DEODORIZATION_FUNCTION_SETTING, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -4322,7 +4329,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetDoorOpenCloseStatus() {
-			addProperty(EPC_DOOR_OPEN_CLOSE_STATUS);
+			reqGetProperty(EPC_DOOR_OPEN_CLOSE_STATUS);
 			return this;
 		}
 		/**
@@ -4351,7 +4358,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetDoorOpenWarning() {
-			addProperty(EPC_DOOR_OPEN_WARNING);
+			reqGetProperty(EPC_DOOR_OPEN_WARNING);
 			return this;
 		}
 		/**
@@ -4378,7 +4385,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRefrigeratorCompartmentDoorStatus() {
-			addProperty(EPC_REFRIGERATOR_COMPARTMENT_DOOR_STATUS);
+			reqGetProperty(EPC_REFRIGERATOR_COMPARTMENT_DOOR_STATUS);
 			return this;
 		}
 		/**
@@ -4404,7 +4411,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetFreezerCompartmentDoorStatus() {
-			addProperty(EPC_FREEZER_COMPARTMENT_DOOR_STATUS);
+			reqGetProperty(EPC_FREEZER_COMPARTMENT_DOOR_STATUS);
 			return this;
 		}
 		/**
@@ -4430,7 +4437,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetIceCompartmentDoorStatus() {
-			addProperty(EPC_ICE_COMPARTMENT_DOOR_STATUS);
+			reqGetProperty(EPC_ICE_COMPARTMENT_DOOR_STATUS);
 			return this;
 		}
 		/**
@@ -4456,7 +4463,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetVegetableCompartmentDoorStatus() {
-			addProperty(EPC_VEGETABLE_COMPARTMENT_DOOR_STATUS);
+			reqGetProperty(EPC_VEGETABLE_COMPARTMENT_DOOR_STATUS);
 			return this;
 		}
 		/**
@@ -4482,7 +4489,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMultiRefrigeraTingModeCompartmentDoor() {
-			addProperty(EPC_MULTI_REFRIGERA_TING_MODE_COMPARTMENT_DOOR);
+			reqGetProperty(EPC_MULTI_REFRIGERA_TING_MODE_COMPARTMENT_DOOR);
 			return this;
 		}
 		/**
@@ -4516,7 +4523,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMaximumAllowableTemperatureSettingLevel() {
-			addProperty(EPC_MAXIMUM_ALLOWABLE_TEMPERATURE_SETTING_LEVEL);
+			reqGetProperty(EPC_MAXIMUM_ALLOWABLE_TEMPERATURE_SETTING_LEVEL);
 			return this;
 		}
 		/**
@@ -4542,7 +4549,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRefrigeratorCompartmentTemperatureSetting() {
-			addProperty(EPC_REFRIGERATOR_COMPARTMENT_TEMPERATURE_SETTING);
+			reqGetProperty(EPC_REFRIGERATOR_COMPARTMENT_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
@@ -4568,7 +4575,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetFreezerCompartmentTemperatureSetting() {
-			addProperty(EPC_FREEZER_COMPARTMENT_TEMPERATURE_SETTING);
+			reqGetProperty(EPC_FREEZER_COMPARTMENT_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
@@ -4594,7 +4601,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetIceTemperatureSetting() {
-			addProperty(EPC_ICE_TEMPERATURE_SETTING);
+			reqGetProperty(EPC_ICE_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
@@ -4620,7 +4627,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetVegetableCompartmentTemperatureSetting() {
-			addProperty(EPC_VEGETABLE_COMPARTMENT_TEMPERATURE_SETTING);
+			reqGetProperty(EPC_VEGETABLE_COMPARTMENT_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
@@ -4646,7 +4653,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMultiRefrigeraTingModeCompartmentTemperatureSetting() {
-			addProperty(EPC_MULTI_REFRIGERA_TING_MODE_COMPARTMENT_TEMPERATURE_SETTING);
+			reqGetProperty(EPC_MULTI_REFRIGERA_TING_MODE_COMPARTMENT_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
@@ -4672,7 +4679,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRefrigeratorCompartmentTemperatureLevelSetting() {
-			addProperty(EPC_REFRIGERATOR_COMPARTMENT_TEMPERATURE_LEVEL_SETTING);
+			reqGetProperty(EPC_REFRIGERATOR_COMPARTMENT_TEMPERATURE_LEVEL_SETTING);
 			return this;
 		}
 		/**
@@ -4698,7 +4705,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetFreezerCompartmentTemperatureLevelSetting() {
-			addProperty(EPC_FREEZER_COMPARTMENT_TEMPERATURE_LEVEL_SETTING);
+			reqGetProperty(EPC_FREEZER_COMPARTMENT_TEMPERATURE_LEVEL_SETTING);
 			return this;
 		}
 		/**
@@ -4724,7 +4731,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetIceCompartmentTemperatureLevelSetting() {
-			addProperty(EPC_ICE_COMPARTMENT_TEMPERATURE_LEVEL_SETTING);
+			reqGetProperty(EPC_ICE_COMPARTMENT_TEMPERATURE_LEVEL_SETTING);
 			return this;
 		}
 		/**
@@ -4750,7 +4757,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetVegetableCompartmentTemperatureLevelSetting() {
-			addProperty(EPC_VEGETABLE_COMPARTMENT_TEMPERATURE_LEVEL_SETTING);
+			reqGetProperty(EPC_VEGETABLE_COMPARTMENT_TEMPERATURE_LEVEL_SETTING);
 			return this;
 		}
 		/**
@@ -4776,7 +4783,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMultiRefrigeraTingModeCompartmentTemperatureLevelSetting() {
-			addProperty(EPC_MULTI_REFRIGERA_TING_MODE_COMPARTMENT_TEMPERATURE_LEVEL_SETTING);
+			reqGetProperty(EPC_MULTI_REFRIGERA_TING_MODE_COMPARTMENT_TEMPERATURE_LEVEL_SETTING);
 			return this;
 		}
 		/**
@@ -4802,7 +4809,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredRefrigeratorCompartmentTemperature() {
-			addProperty(EPC_MEASURED_REFRIGERATOR_COMPARTMENT_TEMPERATURE);
+			reqGetProperty(EPC_MEASURED_REFRIGERATOR_COMPARTMENT_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -4828,7 +4835,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredFreezerCompartmentTemperature() {
-			addProperty(EPC_MEASURED_FREEZER_COMPARTMENT_TEMPERATURE);
+			reqGetProperty(EPC_MEASURED_FREEZER_COMPARTMENT_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -4854,7 +4861,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredSubzeroFreshCompartmentTemperature() {
-			addProperty(EPC_MEASURED_SUBZERO_FRESH_COMPARTMENT_TEMPERATURE);
+			reqGetProperty(EPC_MEASURED_SUBZERO_FRESH_COMPARTMENT_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -4880,7 +4887,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredVegetableCompartmentTemperature() {
-			addProperty(EPC_MEASURED_VEGETABLE_COMPARTMENT_TEMPERATURE);
+			reqGetProperty(EPC_MEASURED_VEGETABLE_COMPARTMENT_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -4908,7 +4915,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredMultiRefrigeratinGModeCompartmentTemperature() {
-			addProperty(EPC_MEASURED_MULTI_REFRIGERATIN_G_MODE_COMPARTMENT_TEMPERATURE);
+			reqGetProperty(EPC_MEASURED_MULTI_REFRIGERATIN_G_MODE_COMPARTMENT_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -4936,7 +4943,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetCompressorRotationSpeed() {
-			addProperty(EPC_COMPRESSOR_ROTATION_SPEED);
+			reqGetProperty(EPC_COMPRESSOR_ROTATION_SPEED);
 			return this;
 		}
 		/**
@@ -4962,7 +4969,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredElectricCurrentConsumption() {
-			addProperty(EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION);
+			reqGetProperty(EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION);
 			return this;
 		}
 		/**
@@ -4988,7 +4995,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRatedPowerConsumption() {
-			addProperty(EPC_RATED_POWER_CONSUMPTION);
+			reqGetProperty(EPC_RATED_POWER_CONSUMPTION);
 			return this;
 		}
 		/**
@@ -5015,7 +5022,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetQuickFreezeFunctionSetting() {
-			addProperty(EPC_QUICK_FREEZE_FUNCTION_SETTING);
+			reqGetProperty(EPC_QUICK_FREEZE_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -5042,7 +5049,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetQuickRefrigerationFunctionSetting() {
-			addProperty(EPC_QUICK_REFRIGERATION_FUNCTION_SETTING);
+			reqGetProperty(EPC_QUICK_REFRIGERATION_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -5069,7 +5076,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetIcemakerSetting() {
-			addProperty(EPC_ICEMAKER_SETTING);
+			reqGetProperty(EPC_ICEMAKER_SETTING);
 			return this;
 		}
 		/**
@@ -5096,7 +5103,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetIcemakerOperationStatus() {
-			addProperty(EPC_ICEMAKER_OPERATION_STATUS);
+			reqGetProperty(EPC_ICEMAKER_OPERATION_STATUS);
 			return this;
 		}
 		/**
@@ -5124,7 +5131,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetIcemakerTankStatus() {
-			addProperty(EPC_ICEMAKER_TANK_STATUS);
+			reqGetProperty(EPC_ICEMAKER_TANK_STATUS);
 			return this;
 		}
 		/**
@@ -5151,7 +5158,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRefrigeratorCompartmentHumidificationFunctionSetting() {
-			addProperty(EPC_REFRIGERATOR_COMPARTMENT_HUMIDIFICATION_FUNCTION_SETTING);
+			reqGetProperty(EPC_REFRIGERATOR_COMPARTMENT_HUMIDIFICATION_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -5178,7 +5185,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetVegetableCompartmentHumidificationFunctionSetting() {
-			addProperty(EPC_VEGETABLE_COMPARTMENT_HUMIDIFICATION_FUNCTION_SETTING);
+			reqGetProperty(EPC_VEGETABLE_COMPARTMENT_HUMIDIFICATION_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -5205,14 +5212,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetDeodorizationFunctionSetting() {
-			addProperty(EPC_DEODORIZATION_FUNCTION_SETTING);
+			reqGetProperty(EPC_DEODORIZATION_FUNCTION_SETTING);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -5339,7 +5348,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformDoorOpenCloseStatus() {
-			addProperty(EPC_DOOR_OPEN_CLOSE_STATUS);
+			reqInformProperty(EPC_DOOR_OPEN_CLOSE_STATUS);
 			return this;
 		}
 		/**
@@ -5368,7 +5377,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformDoorOpenWarning() {
-			addProperty(EPC_DOOR_OPEN_WARNING);
+			reqInformProperty(EPC_DOOR_OPEN_WARNING);
 			return this;
 		}
 		/**
@@ -5395,7 +5404,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRefrigeratorCompartmentDoorStatus() {
-			addProperty(EPC_REFRIGERATOR_COMPARTMENT_DOOR_STATUS);
+			reqInformProperty(EPC_REFRIGERATOR_COMPARTMENT_DOOR_STATUS);
 			return this;
 		}
 		/**
@@ -5421,7 +5430,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformFreezerCompartmentDoorStatus() {
-			addProperty(EPC_FREEZER_COMPARTMENT_DOOR_STATUS);
+			reqInformProperty(EPC_FREEZER_COMPARTMENT_DOOR_STATUS);
 			return this;
 		}
 		/**
@@ -5447,7 +5456,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformIceCompartmentDoorStatus() {
-			addProperty(EPC_ICE_COMPARTMENT_DOOR_STATUS);
+			reqInformProperty(EPC_ICE_COMPARTMENT_DOOR_STATUS);
 			return this;
 		}
 		/**
@@ -5473,7 +5482,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformVegetableCompartmentDoorStatus() {
-			addProperty(EPC_VEGETABLE_COMPARTMENT_DOOR_STATUS);
+			reqInformProperty(EPC_VEGETABLE_COMPARTMENT_DOOR_STATUS);
 			return this;
 		}
 		/**
@@ -5499,7 +5508,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMultiRefrigeraTingModeCompartmentDoor() {
-			addProperty(EPC_MULTI_REFRIGERA_TING_MODE_COMPARTMENT_DOOR);
+			reqInformProperty(EPC_MULTI_REFRIGERA_TING_MODE_COMPARTMENT_DOOR);
 			return this;
 		}
 		/**
@@ -5533,7 +5542,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMaximumAllowableTemperatureSettingLevel() {
-			addProperty(EPC_MAXIMUM_ALLOWABLE_TEMPERATURE_SETTING_LEVEL);
+			reqInformProperty(EPC_MAXIMUM_ALLOWABLE_TEMPERATURE_SETTING_LEVEL);
 			return this;
 		}
 		/**
@@ -5559,7 +5568,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRefrigeratorCompartmentTemperatureSetting() {
-			addProperty(EPC_REFRIGERATOR_COMPARTMENT_TEMPERATURE_SETTING);
+			reqInformProperty(EPC_REFRIGERATOR_COMPARTMENT_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
@@ -5585,7 +5594,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformFreezerCompartmentTemperatureSetting() {
-			addProperty(EPC_FREEZER_COMPARTMENT_TEMPERATURE_SETTING);
+			reqInformProperty(EPC_FREEZER_COMPARTMENT_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
@@ -5611,7 +5620,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformIceTemperatureSetting() {
-			addProperty(EPC_ICE_TEMPERATURE_SETTING);
+			reqInformProperty(EPC_ICE_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
@@ -5637,7 +5646,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformVegetableCompartmentTemperatureSetting() {
-			addProperty(EPC_VEGETABLE_COMPARTMENT_TEMPERATURE_SETTING);
+			reqInformProperty(EPC_VEGETABLE_COMPARTMENT_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
@@ -5663,7 +5672,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMultiRefrigeraTingModeCompartmentTemperatureSetting() {
-			addProperty(EPC_MULTI_REFRIGERA_TING_MODE_COMPARTMENT_TEMPERATURE_SETTING);
+			reqInformProperty(EPC_MULTI_REFRIGERA_TING_MODE_COMPARTMENT_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
@@ -5689,7 +5698,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRefrigeratorCompartmentTemperatureLevelSetting() {
-			addProperty(EPC_REFRIGERATOR_COMPARTMENT_TEMPERATURE_LEVEL_SETTING);
+			reqInformProperty(EPC_REFRIGERATOR_COMPARTMENT_TEMPERATURE_LEVEL_SETTING);
 			return this;
 		}
 		/**
@@ -5715,7 +5724,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformFreezerCompartmentTemperatureLevelSetting() {
-			addProperty(EPC_FREEZER_COMPARTMENT_TEMPERATURE_LEVEL_SETTING);
+			reqInformProperty(EPC_FREEZER_COMPARTMENT_TEMPERATURE_LEVEL_SETTING);
 			return this;
 		}
 		/**
@@ -5741,7 +5750,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformIceCompartmentTemperatureLevelSetting() {
-			addProperty(EPC_ICE_COMPARTMENT_TEMPERATURE_LEVEL_SETTING);
+			reqInformProperty(EPC_ICE_COMPARTMENT_TEMPERATURE_LEVEL_SETTING);
 			return this;
 		}
 		/**
@@ -5767,7 +5776,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformVegetableCompartmentTemperatureLevelSetting() {
-			addProperty(EPC_VEGETABLE_COMPARTMENT_TEMPERATURE_LEVEL_SETTING);
+			reqInformProperty(EPC_VEGETABLE_COMPARTMENT_TEMPERATURE_LEVEL_SETTING);
 			return this;
 		}
 		/**
@@ -5793,7 +5802,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMultiRefrigeraTingModeCompartmentTemperatureLevelSetting() {
-			addProperty(EPC_MULTI_REFRIGERA_TING_MODE_COMPARTMENT_TEMPERATURE_LEVEL_SETTING);
+			reqInformProperty(EPC_MULTI_REFRIGERA_TING_MODE_COMPARTMENT_TEMPERATURE_LEVEL_SETTING);
 			return this;
 		}
 		/**
@@ -5819,7 +5828,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredRefrigeratorCompartmentTemperature() {
-			addProperty(EPC_MEASURED_REFRIGERATOR_COMPARTMENT_TEMPERATURE);
+			reqInformProperty(EPC_MEASURED_REFRIGERATOR_COMPARTMENT_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -5845,7 +5854,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredFreezerCompartmentTemperature() {
-			addProperty(EPC_MEASURED_FREEZER_COMPARTMENT_TEMPERATURE);
+			reqInformProperty(EPC_MEASURED_FREEZER_COMPARTMENT_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -5871,7 +5880,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredSubzeroFreshCompartmentTemperature() {
-			addProperty(EPC_MEASURED_SUBZERO_FRESH_COMPARTMENT_TEMPERATURE);
+			reqInformProperty(EPC_MEASURED_SUBZERO_FRESH_COMPARTMENT_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -5897,7 +5906,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredVegetableCompartmentTemperature() {
-			addProperty(EPC_MEASURED_VEGETABLE_COMPARTMENT_TEMPERATURE);
+			reqInformProperty(EPC_MEASURED_VEGETABLE_COMPARTMENT_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -5925,7 +5934,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredMultiRefrigeratinGModeCompartmentTemperature() {
-			addProperty(EPC_MEASURED_MULTI_REFRIGERATIN_G_MODE_COMPARTMENT_TEMPERATURE);
+			reqInformProperty(EPC_MEASURED_MULTI_REFRIGERATIN_G_MODE_COMPARTMENT_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -5953,7 +5962,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformCompressorRotationSpeed() {
-			addProperty(EPC_COMPRESSOR_ROTATION_SPEED);
+			reqInformProperty(EPC_COMPRESSOR_ROTATION_SPEED);
 			return this;
 		}
 		/**
@@ -5979,7 +5988,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredElectricCurrentConsumption() {
-			addProperty(EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION);
+			reqInformProperty(EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION);
 			return this;
 		}
 		/**
@@ -6005,7 +6014,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRatedPowerConsumption() {
-			addProperty(EPC_RATED_POWER_CONSUMPTION);
+			reqInformProperty(EPC_RATED_POWER_CONSUMPTION);
 			return this;
 		}
 		/**
@@ -6032,7 +6041,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformQuickFreezeFunctionSetting() {
-			addProperty(EPC_QUICK_FREEZE_FUNCTION_SETTING);
+			reqInformProperty(EPC_QUICK_FREEZE_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -6059,7 +6068,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformQuickRefrigerationFunctionSetting() {
-			addProperty(EPC_QUICK_REFRIGERATION_FUNCTION_SETTING);
+			reqInformProperty(EPC_QUICK_REFRIGERATION_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -6086,7 +6095,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformIcemakerSetting() {
-			addProperty(EPC_ICEMAKER_SETTING);
+			reqInformProperty(EPC_ICEMAKER_SETTING);
 			return this;
 		}
 		/**
@@ -6113,7 +6122,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformIcemakerOperationStatus() {
-			addProperty(EPC_ICEMAKER_OPERATION_STATUS);
+			reqInformProperty(EPC_ICEMAKER_OPERATION_STATUS);
 			return this;
 		}
 		/**
@@ -6141,7 +6150,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformIcemakerTankStatus() {
-			addProperty(EPC_ICEMAKER_TANK_STATUS);
+			reqInformProperty(EPC_ICEMAKER_TANK_STATUS);
 			return this;
 		}
 		/**
@@ -6168,7 +6177,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRefrigeratorCompartmentHumidificationFunctionSetting() {
-			addProperty(EPC_REFRIGERATOR_COMPARTMENT_HUMIDIFICATION_FUNCTION_SETTING);
+			reqInformProperty(EPC_REFRIGERATOR_COMPARTMENT_HUMIDIFICATION_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -6195,7 +6204,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformVegetableCompartmentHumidificationFunctionSetting() {
-			addProperty(EPC_VEGETABLE_COMPARTMENT_HUMIDIFICATION_FUNCTION_SETTING);
+			reqInformProperty(EPC_VEGETABLE_COMPARTMENT_HUMIDIFICATION_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -6222,20 +6231,19 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformDeodorizationFunctionSetting() {
-			addProperty(EPC_DEODORIZATION_FUNCTION_SETTING);
+			reqInformProperty(EPC_DEODORIZATION_FUNCTION_SETTING);
 			return this;
 		}
 	}
 
 	public static class Proxy extends Refrigerator {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -6258,7 +6266,7 @@ multi-refrigeratin g mode compartment temperature<br>
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -6266,7 +6274,8 @@ multi-refrigeratin g mode compartment temperature<br>
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -6274,7 +6283,8 @@ multi-refrigeratin g mode compartment temperature<br>
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -6282,7 +6292,8 @@ multi-refrigeratin g mode compartment temperature<br>
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

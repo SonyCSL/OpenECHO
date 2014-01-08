@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.housingfacilities;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -46,13 +47,6 @@ public abstract class WaterFlowmeter extends DeviceObject {
 		addGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_FLOWING_WATER);
 		addGetProperty(EPC_UNIT_FOR_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER);
 		addStatusChangeAnnouncementProperty(EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewWaterFlowmeter(this);
 	}
 	
 	@Override
@@ -782,27 +776,36 @@ Byte<br>
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -1219,8 +1222,10 @@ Byte<br>
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -1288,7 +1293,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetFlowingWaterClassification(byte[] edt) {
-			addProperty(EPC_FLOWING_WATER_CLASSIFICATION, edt);
+			reqSetProperty(EPC_FLOWING_WATER_CLASSIFICATION, edt);
 			return this;
 		}
 		/**
@@ -1318,7 +1323,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOwnerClassification(byte[] edt) {
-			addProperty(EPC_OWNER_CLASSIFICATION, edt);
+			reqSetProperty(EPC_OWNER_CLASSIFICATION, edt);
 			return this;
 		}
 		/**
@@ -1347,7 +1352,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetIdNumberSetting(byte[] edt) {
-			addProperty(EPC_ID_NUMBER_SETTING, edt);
+			reqSetProperty(EPC_ID_NUMBER_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1376,14 +1381,16 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetVerificationExpirationInformation(byte[] edt) {
-			addProperty(EPC_VERIFICATION_EXPIRATION_INFORMATION, edt);
+			reqSetProperty(EPC_VERIFICATION_EXPIRATION_INFORMATION, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -1515,7 +1522,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetFlowingWaterClassification() {
-			addProperty(EPC_FLOWING_WATER_CLASSIFICATION);
+			reqGetProperty(EPC_FLOWING_WATER_CLASSIFICATION);
 			return this;
 		}
 		/**
@@ -1545,7 +1552,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOwnerClassification() {
-			addProperty(EPC_OWNER_CLASSIFICATION);
+			reqGetProperty(EPC_OWNER_CLASSIFICATION);
 			return this;
 		}
 		/**
@@ -1573,7 +1580,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetMeasuredCumulativeAmountOfFlowingWater() {
-			addProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_FLOWING_WATER);
+			reqGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_FLOWING_WATER);
 			return this;
 		}
 		/**
@@ -1606,7 +1613,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetUnitForMeasuredCumulativeAmountsOfFlowingWater() {
-			addProperty(EPC_UNIT_FOR_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER);
+			reqGetProperty(EPC_UNIT_FOR_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER);
 			return this;
 		}
 		/**
@@ -1636,7 +1643,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetHistoricalDataOfMeasuredCumulativeAmountsOfFlowingWater() {
-			addProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER);
+			reqGetProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER);
 			return this;
 		}
 		/**
@@ -1667,7 +1674,7 @@ Byte<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetDetectionOfAbnormalValueInMeteringData() {
-			addProperty(EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA);
+			reqGetProperty(EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA);
 			return this;
 		}
 		/**
@@ -1694,7 +1701,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSecurityDataInformation() {
-			addProperty(EPC_SECURITY_DATA_INFORMATION);
+			reqGetProperty(EPC_SECURITY_DATA_INFORMATION);
 			return this;
 		}
 		/**
@@ -1723,7 +1730,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetIdNumberSetting() {
-			addProperty(EPC_ID_NUMBER_SETTING);
+			reqGetProperty(EPC_ID_NUMBER_SETTING);
 			return this;
 		}
 		/**
@@ -1752,14 +1759,16 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetVerificationExpirationInformation() {
-			addProperty(EPC_VERIFICATION_EXPIRATION_INFORMATION);
+			reqGetProperty(EPC_VERIFICATION_EXPIRATION_INFORMATION);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -1890,7 +1899,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformFlowingWaterClassification() {
-			addProperty(EPC_FLOWING_WATER_CLASSIFICATION);
+			reqInformProperty(EPC_FLOWING_WATER_CLASSIFICATION);
 			return this;
 		}
 		/**
@@ -1920,7 +1929,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOwnerClassification() {
-			addProperty(EPC_OWNER_CLASSIFICATION);
+			reqInformProperty(EPC_OWNER_CLASSIFICATION);
 			return this;
 		}
 		/**
@@ -1948,7 +1957,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformMeasuredCumulativeAmountOfFlowingWater() {
-			addProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_FLOWING_WATER);
+			reqInformProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_FLOWING_WATER);
 			return this;
 		}
 		/**
@@ -1981,7 +1990,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformUnitForMeasuredCumulativeAmountsOfFlowingWater() {
-			addProperty(EPC_UNIT_FOR_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER);
+			reqInformProperty(EPC_UNIT_FOR_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER);
 			return this;
 		}
 		/**
@@ -2011,7 +2020,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformHistoricalDataOfMeasuredCumulativeAmountsOfFlowingWater() {
-			addProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER);
+			reqInformProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_FLOWING_WATER);
 			return this;
 		}
 		/**
@@ -2042,7 +2051,7 @@ Byte<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformDetectionOfAbnormalValueInMeteringData() {
-			addProperty(EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA);
+			reqInformProperty(EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA);
 			return this;
 		}
 		/**
@@ -2069,7 +2078,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSecurityDataInformation() {
-			addProperty(EPC_SECURITY_DATA_INFORMATION);
+			reqInformProperty(EPC_SECURITY_DATA_INFORMATION);
 			return this;
 		}
 		/**
@@ -2098,7 +2107,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformIdNumberSetting() {
-			addProperty(EPC_ID_NUMBER_SETTING);
+			reqInformProperty(EPC_ID_NUMBER_SETTING);
 			return this;
 		}
 		/**
@@ -2127,20 +2136,19 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformVerificationExpirationInformation() {
-			addProperty(EPC_VERIFICATION_EXPIRATION_INFORMATION);
+			reqInformProperty(EPC_VERIFICATION_EXPIRATION_INFORMATION);
 			return this;
 		}
 	}
 
 	public static class Proxy extends WaterFlowmeter {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -2165,7 +2173,7 @@ Byte<br>
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -2173,7 +2181,8 @@ Byte<br>
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -2181,7 +2190,8 @@ Byte<br>
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -2189,7 +2199,8 @@ Byte<br>
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

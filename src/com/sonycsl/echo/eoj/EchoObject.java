@@ -39,11 +39,9 @@ public abstract class EchoObject {
 
 	private EchoNode mNode = null;
 	
-	private long mUpdatedTime = 0;
 	
 	private Receiver mReceiver = null;
 	
-	private boolean mActive = true;
 	
 
 	private HashSet<Byte> mStatusChangeAnnouncementProperties;
@@ -141,7 +139,7 @@ public abstract class EchoObject {
 		sb.append(String.format("%02x", getInstanceCode()));
 		sb.append(",address:");
 		if(getNode() != null) {
-			sb.append(getNode().getAddress().getHostAddress());
+			sb.append(getNode().getAddressStr());
 		}
 		return new String(sb);
 	}
@@ -164,34 +162,23 @@ public abstract class EchoObject {
 		return EchoUtils.getEchoObjectCode(getEchoClassCode(), getInstanceCode());
 	}
 	
-	public void initialize(EchoNode node) {
+	public final void setNode(EchoNode node) {
 		mNode = node;
-		
-		update();
-		
-		Echo.EventListener listener = Echo.getEventListener();
-		try {
-			if(listener != null) listener.onNewEchoObject(this);
-		} catch(Exception e) {
-			try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
-		}
 	}
 	
-	public void clear() {
+	public final EchoNode getNode() {
+		return mNode;
+	}
+	
+	public final void removeNode() {
 		mNode = null;
 	}
-	
-	public final void update() {
-		setActive(true);
-		mUpdatedTime = System.currentTimeMillis();
+
+	public final boolean isSelfObject() {
 		EchoNode node = getNode();
-		if(node != null) {
-			node.update();
-		}
-	}
-	
-	public final long getUpdatedTime() {
-		return mUpdatedTime;
+		if(node==null) return false;
+		else return node.isSelfNode();
+		
 	}
 	
 	public final boolean isProxy() {
@@ -200,17 +187,6 @@ public abstract class EchoObject {
 		else return node.isProxy();
 	}
 	
-	public final EchoNode getNode() {
-		return mNode;
-	}
-	
-	public final void setActive(boolean active) {
-		mActive = active;
-	}
-	
-	public final boolean isActive() {
-		return mActive;
-	}
 	
 	protected synchronized boolean setProperty(EchoProperty property) {
 		return false;
@@ -228,13 +204,12 @@ public abstract class EchoObject {
 		mReceiver = receiver;
 	}
 	
-	protected boolean onReceiveProperty(EchoProperty property) {
-		return false;
+	public final Receiver getReceiver() {
+		return mReceiver;
 	}
-	
-	public final void receive(EchoFrame frame) {
-		update();
 		
+	public final EchoFrame onReceiveRequest(EchoFrame frame) {
+		/*
 		EchoProperty[] properties = frame.getProperties();
 
 		Echo.EventListener listener = Echo.getEventListener();
@@ -242,136 +217,79 @@ public abstract class EchoObject {
 		// receive response
 		for(EchoProperty p : properties) {
 			try {
-				switch(frame.getEsv()) {
+				switch(frame.getESV()) {
 				case EchoFrame.ESV_SET_RES: case EchoFrame.ESV_SETI_SNA: case EchoFrame.ESV_SETC_SNA:
-					if(mReceiver != null) mReceiver.onSetProperty(this, frame.getTid(), frame.getEsv(), p, (p.pdc == 0));
-					if(listener != null) listener.onSetProperty(this, frame.getTid(), frame.getEsv(), p, (p.pdc == 0));
+					if(mReceiver != null) mReceiver.onSetProperty(this, frame.getTid(), frame.getESV(), p, (p.pdc == 0));
+					if(listener != null) listener.onSetProperty(this, frame.getTid(), frame.getESV(), p, (p.pdc == 0));
 					break;
 				case EchoFrame.ESV_GET_RES: case EchoFrame.ESV_GET_SNA:
 				case EchoFrame.ESV_INF: case EchoFrame.ESV_INF_SNA:
 				case EchoFrame.ESV_INFC:
 					onReceiveProperty(p);
-					if(mReceiver != null) mReceiver.onGetProperty(this, frame.getTid(), frame.getEsv(), p, (p.pdc != 0));
-					if(listener != null) listener.onGetProperty(this, frame.getTid(), frame.getEsv(), p, (p.pdc != 0));
+					if(mReceiver != null) mReceiver.onGetProperty(this, frame.getTid(), frame.getESV(), p, (p.pdc != 0));
+					if(listener != null) listener.onGetProperty(this, frame.getTid(), frame.getESV(), p, (p.pdc != 0));
 					break;
 				case EchoFrame.ESV_INFC_RES:
-					if(mReceiver != null) mReceiver.onInformProperty(this, frame.getTid(), frame.getEsv(), p);
-					if(listener != null) listener.onInformProperty(this, frame.getTid(), frame.getEsv(), p);
+					if(mReceiver != null) mReceiver.onInformProperty(this, frame.getTid(), frame.getESV(), p);
+					if(listener != null) listener.onInformProperty(this, frame.getTid(), frame.getESV(), p);
 					break;
 				}
 			} catch(Exception e) {
 				try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
 			}
-		}
+		}*/
 
 		// receive request
-		EchoFrame res;
-		switch(frame.getEsv()) {
+		byte esv = 0;
+		switch(frame.getESV()) {
 		case EchoFrame.ESV_SETI:
-			res = new EchoFrame(frame.getTid(), frame.getDeoj(), frame.getSeoj(), EchoFrame.ESV_SET_NO_RES);
-			for(EchoProperty p : properties) {
-				onReceiveSet(res, p);
-			}
-			if(res.getEsv() == EchoFrame.ESV_SETI_SNA) {
-				try {
-					EchoSocket.send(res.getDeoj().getNode().getAddress(), res.getFrameByteArray());
-					if(listener != null) listener.sendEvent(res);
-				} catch (Exception e) {
-					try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
-				}
-			}
+			esv = EchoFrame.ESV_SET_NO_RES;
 			break;
 		case EchoFrame.ESV_SETC:
-			res = new EchoFrame(frame.getTid(), frame.getDeoj(), frame.getSeoj(), EchoFrame.ESV_SET_RES);
-			for(EchoProperty p : properties) {
-				onReceiveSet(res, p);
-			}
-			try {
-				EchoSocket.send(res.getDeoj().getNode().getAddress(), res.getFrameByteArray());
-				if(listener != null) listener.sendEvent(res);
-			} catch (Exception e) {
-				try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
+			esv = EchoFrame.ESV_SET_RES;
+			break;
+		case EchoFrame.ESV_GET:
+			esv = EchoFrame.ESV_GET_RES;
+			break;
+		case EchoFrame.ESV_INF_REQ:
+			esv = EchoFrame.ESV_INF;
+			break;
+		case EchoFrame.ESV_INFC:
+			esv =  EchoFrame.ESV_INFC_RES;
+			break;
+		case EchoFrame.ESV_SET_GET:
+			esv = EchoFrame.ESV_SET_GET_SNA;
+			break;
+		}
+		EchoFrame response = new EchoFrame(frame.getDstEchoClassCode(), frame.getDstEchoInstanceCode()
+				, frame.getSrcEchoClassCode(), frame.getSrcEchoInstanceCode()
+				, frame.getSrcEchoAddress(), esv);
+		response.setTID(frame.getTID());
+		switch(frame.getESV()) {
+		case EchoFrame.ESV_SETI:
+		case EchoFrame.ESV_SETC:
+			for(EchoProperty p : frame.getPropertyList()) {
+				onReceiveSetRequest(p, response);
 			}
 			break;
 		case EchoFrame.ESV_GET:
-			res = new EchoFrame(frame.getTid(), frame.getDeoj(), frame.getSeoj(), EchoFrame.ESV_GET_RES);
-			for(EchoProperty p : properties) {
-				//if(!onReceiveGet(res, p.epc)) {
-				//	res.addProperty(p.epc, p.edt, false);
-				//}
-				onReceiveGet(res, p.epc);
-			}
-			try {
-				EchoSocket.send(res.getDeoj().getNode().getAddress(), res.getFrameByteArray());
-				if(listener != null) listener.sendEvent(res);
-			} catch (Exception e) {
-				try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
-			}
-			break;
 		case EchoFrame.ESV_INF_REQ:
-			res = new EchoFrame(frame.getTid(), frame.getDeoj(), frame.getSeoj(), EchoFrame.ESV_INF);
-			for(EchoProperty p : properties) {
-				//if(!onReceiveInfReq(res, p.epc)) {
-				//	res.addProperty(p.epc, p.edt, false);
-				//}
-				onReceiveGet(res, p.epc);
-			}
-			/*
-			try {
-				EchoSocket.sendGroup(res.getFrameByteArray());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			*/
-			if(res.getEsv() == EchoFrame.ESV_INF) {
-				try {
-					EchoSocket.sendGroup(res.getFrameByteArray());
-					if(listener != null) listener.sendEvent(res);
-				} catch (Exception e) {
-					try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
-				}
-			} else {
-				// ESV_INF_SNA
-				try {
-					EchoSocket.send(res.getDeoj().getNode().getAddress(), res.getFrameByteArray());
-					if(listener != null) listener.sendEvent(res);
-				} catch (Exception e) {
-					try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
-				}
+			for(EchoProperty p : frame.getPropertyList()) {
+				onReceiveGetRequest(p.epc, response);
 			}
 			break;
 		case EchoFrame.ESV_INFC:
-			res = new EchoFrame(frame.getTid(), frame.getDeoj(), frame.getSeoj(), EchoFrame.ESV_INFC_RES);
-			for(EchoProperty p : properties) {
-				res.addProperty(p.epc);
-			}
-			try {
-				EchoSocket.send(res.getDeoj().getNode().getAddress(), res.getFrameByteArray());
-				if(listener != null) listener.sendEvent(res);
-			} catch (Exception e) {
-				try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
+			for(EchoProperty p : frame.getPropertyList()) {
+				response.addPropertyForResponse(p.epc);
 			}
 			break;
-		case EchoFrame.ESV_SET_GET:
-			res = new EchoFrame(frame.getTid(), frame.getDeoj(), frame.getSeoj(), EchoFrame.ESV_SET_GET_SNA);
-			byte[] b = res.getFrameByteArray();
-			ByteBuffer buffer = ByteBuffer.allocate(b.length+1);
-			buffer.order(ByteOrder.BIG_ENDIAN);
-			buffer.put(b);
-			buffer.put((byte)0);
-			try {
-				EchoSocket.send(res.getDeoj().getNode().getAddress(), buffer.array());
-				if(listener != null) listener.sendEvent(res);
-			} catch (Exception e) {
-				try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
-			}
-		default :
-			return;
 		}
+		return response;
+
 		
 	}
 
-	protected final void onReceiveSet(EchoFrame res, EchoProperty property) {
+	protected final void onReceiveSetRequest(EchoProperty property, EchoFrame response) {
 		boolean success = false;
 		Echo.EventListener listener = Echo.getEventListener();
 		try {
@@ -387,21 +305,26 @@ public abstract class EchoObject {
 					success = false;
 				}
 			} else {
-				
+				success = false;
 			}
 		} catch (Exception e) {
 			//e.printStackTrace();
 			success = false;
 			try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
 		}
-		res.addProperty(property, success);
+
+		if(success) {
+			response.addPropertyForResponse(property.epc);
+		} else {
+			response.addPropertyForResponse(property.epc, property.edt);
+		}
 	}
 	
-	protected final void onReceiveGet(EchoFrame res, byte epc) {
+	protected final void onReceiveGetRequest(byte epc, EchoFrame response) {
 		byte[] edt = null;
 		Echo.EventListener listener = Echo.getEventListener();
 		try {
-			if(res.getEsv() == EchoFrame.ESV_GET_RES || res.getEsv() == EchoFrame.ESV_GET_SNA) {
+			if(response.getESV() == EchoFrame.ESV_GET_RES || response.getESV() == EchoFrame.ESV_GET_SNA) {
 				edt = mGetProperties.contains(epc) ? getProperty(epc) : null;
 			} else {
 				edt = getProperty(epc);
@@ -421,35 +344,74 @@ public abstract class EchoObject {
 			edt = null;
 			try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
 		}
-		res.addProperty(epc, edt, (edt != null));
+		response.addPropertyForResponse(epc, edt);
 	}
 
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 	
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 	
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 	
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
 	
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
-	protected InformerC informC() {
-		return new InformerC(this);
+	protected InformerC informC(String address) {
+		return new InformerC(getEchoClassCode(), getInstanceCode()
+				, address);
 	}
 	
 	
 	public static class Receiver {
+		
+		public void onReceive(EchoObject eoj, EchoFrame frame){
+			onReceiveFrame(eoj, frame);
+
+			switch(frame.getESV()) {
+			case EchoFrame.ESV_SET_RES: case EchoFrame.ESV_SETI_SNA: case EchoFrame.ESV_SETC_SNA:
+				for(EchoProperty p : frame.getPropertyList()) {
+					onSetProperty(eoj, frame.getTID(), frame.getESV(), p, (p.pdc == 0));
+				}
+				break;
+			case EchoFrame.ESV_GET_RES: case EchoFrame.ESV_GET_SNA:
+			case EchoFrame.ESV_INF: case EchoFrame.ESV_INF_SNA:
+			case EchoFrame.ESV_INFC:
+				for(EchoProperty p : frame.getPropertyList()) {
+					onGetProperty(eoj, frame.getTID(), frame.getESV(), p, (p.pdc != 0));
+				}
+				break;
+			case EchoFrame.ESV_INFC_RES:
+				for(EchoProperty p : frame.getPropertyList()) {
+					onInformProperty(eoj, frame.getTID(), frame.getESV(), p);
+				}
+				break;
+			}
+		}
+		
+		public void onReceiveFrame(EchoObject eoj, EchoFrame frame) {
+			
+		}
 		
 		protected boolean onSetProperty(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {
 			return false;
@@ -465,33 +427,27 @@ public abstract class EchoObject {
 		
 	}
 	
-	protected static class Sender {
-		private EchoObject mEoj;
+	protected static abstract class Sender {
+		protected short mSrcEchoClassCode;
+		protected byte mSrcEchoInstanceCode;
+		protected short mDstEchoClassCode;
+		protected byte mDstEchoInstanceCode;
+		protected String mDstEchoAddress;
+		protected byte mESV;
 		
-		private EchoObject mSeoj;
-		private EchoObject mDeoj;
 		
-		private byte mEsv;
-		
-		private boolean mMulticast;
-		
-		private ArrayList<EchoProperty> mPropertyList;
-		
-		public Sender(EchoObject eoj, EchoObject seoj, EchoObject deoj, byte esv, boolean multicast) {
-			//mFrame = new EchoFrame(mTid, seoj, deoj, esv);
-			mEoj = eoj;
-			
-			mSeoj = seoj;
-			mDeoj = deoj;
-			
-			mEsv = esv;
-			
-			mPropertyList = new ArrayList<EchoProperty>();
-			
-			mMulticast = multicast;
+		public Sender(short srcEchoClassCode, byte srcEchoInstanceCode
+				, short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, byte esv) {
+			mSrcEchoClassCode = srcEchoClassCode;
+			mSrcEchoInstanceCode = srcEchoInstanceCode;
+			mDstEchoClassCode = dstEchoClassCode;
+			mDstEchoInstanceCode = dstEchoInstanceCode;
+			mDstEchoAddress = dstEchoAddress;
+			mESV = esv;
 		}
-		
-		protected short send() throws IOException {
+		/*
+		protected EchoFrame send() throws IOException {
 			short tid = EchoSocket.getNextTID();
 			EchoFrame frame = new EchoFrame(tid, mSeoj, mDeoj, mEsv);
 			switch(mEsv) {
@@ -539,86 +495,131 @@ public abstract class EchoObject {
 				try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
 			}
 			return tid;
-		}
-		
-		protected void addProperty(byte epc) {
-			mPropertyList.add(new EchoProperty(epc));
-		}
-		
-		protected void addProperty(byte epc, byte[] edt) {
-			mPropertyList.add(new EchoProperty(epc, edt));
-		}
-		
-		
-		private boolean isValidProperty(EchoProperty property) {
+		}*/
 
-			Echo.EventListener listener = Echo.getEventListener();
-			
-			boolean valid = false;
-			try {
-				valid = mEoj.isValidProperty(property);
-				if(listener != null) listener.isValidProperty(mEoj, property, valid);
-			} catch(Exception e) {
-				valid = false;
-				try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
-			}
-			return valid;
+		abstract EchoFrame send() throws IOException ;
+		public void send(EchoFrame frame) throws IOException {
+			short tid = EchoSocket.nextTID();
+			frame.setTID(tid);
+			EchoSocket.sendUDPFrame(frame);
 		}
-
-		public void setSeoj(EchoObject seoj) {
-			mSeoj = seoj;
+		abstract EchoFrame sendTCP() throws IOException ;
+		public void sendTCP(EchoFrame frame) throws IOException {
+			short tid = EchoSocket.nextTID();
+			frame.setTID(tid);
+			EchoSocket.sendTCPFrame(frame);
 		}
 		
-		public EchoObject getSeoj() {
-			return mSeoj;
+		public void setSeoj(short srcEchoClassCode, byte srcEchoInstanceCode) {
+			mSrcEchoClassCode = srcEchoClassCode;
+			mSrcEchoInstanceCode = srcEchoInstanceCode;
 		}
 		
 		
-		public void setDeoj(EchoObject deoj) {
-			mDeoj = deoj;
-		}
-		
-		public EchoObject getDeoj() {
-			return mDeoj;
+		public void setDeoj(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			mDstEchoClassCode = dstEchoClassCode;
+			mDstEchoInstanceCode = dstEchoInstanceCode;
+			mDstEchoAddress = dstEchoAddress;
 		}
 
-		public boolean isMulticast() {
-			return mMulticast;
-		}
 	}
 	
 	public static class Setter extends Sender {
 
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, Echo.getNode().getNodeProfile(), eoj
-				, responseRequired ? EchoFrame.ESV_SETC : EchoFrame.ESV_SETI
-				, multicast);
+		
+		protected ArrayList<EchoProperty> mPropertyList;
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(NodeProfile.ECHO_CLASS_CODE
+				, Echo.getSelfNode().getNodeProfile().getInstanceCode()
+				, dstEchoClassCode, dstEchoInstanceCode, dstEchoAddress
+					, responseRequired ? EchoFrame.ESV_SETC : EchoFrame.ESV_SETI);
+			mPropertyList = new ArrayList<EchoProperty>();
 		}
 
 		@Override
-		public short send() throws IOException {
-			return super.send();
+		public EchoFrame send() throws IOException {
+
+			EchoFrame frame = new EchoFrame(mSrcEchoClassCode, mSrcEchoInstanceCode
+					, mDstEchoClassCode, mDstEchoInstanceCode
+					, mDstEchoAddress, mESV);
+
+			for(EchoProperty p : mPropertyList) {
+				frame.addProperty(p);
+			}
+			send(frame);
+			return frame;
 		}
 
+		@Override
+		EchoFrame sendTCP() throws IOException {
+
+			EchoFrame frame = new EchoFrame(mSrcEchoClassCode, mSrcEchoInstanceCode
+					, mDstEchoClassCode, mDstEchoInstanceCode
+					, mDstEchoAddress, mESV);
+
+			for(EchoProperty p : mPropertyList) {
+				frame.addProperty(p);
+			}
+			sendTCP(frame);
+			return frame;
+		}
+		
 		public Setter reqSetProperty(byte epc, byte[] edt) {
-			addProperty(epc, edt);
+			mPropertyList.add(new EchoProperty(epc, edt));
 			return this;
 		}
+
 
 	}
 	
 	public static class Getter extends Sender {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, Echo.getNode().getNodeProfile(), eoj, EchoFrame.ESV_GET, multicast);
+		protected ArrayList<Byte> mEPCList;
+
+		
+		
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(NodeProfile.ECHO_CLASS_CODE
+					, Echo.getSelfNode().getNodeProfile().getInstanceCode()
+					, dstEchoClassCode, dstEchoInstanceCode, dstEchoAddress
+					, EchoFrame.ESV_GET);
+			mEPCList = new ArrayList<Byte>();
 		}
 		
 		@Override
-		public short send() throws IOException {
-			return super.send();
+		public EchoFrame send() throws IOException {
+
+			EchoFrame frame = new EchoFrame(mSrcEchoClassCode, mSrcEchoInstanceCode
+					, mDstEchoClassCode, mDstEchoInstanceCode
+					, mDstEchoAddress, mESV);
+
+
+			for(Byte epc : mEPCList) {
+				frame.addProperty(new EchoProperty(epc));
+			}
+			send(frame);
+			return frame;
+		}
+
+		@Override
+		EchoFrame sendTCP() throws IOException {
+
+			EchoFrame frame = new EchoFrame(mSrcEchoClassCode, mSrcEchoInstanceCode
+					, mDstEchoClassCode, mDstEchoInstanceCode
+					, mDstEchoAddress, mESV);
+
+
+			for(Byte epc : mEPCList) {
+				frame.addProperty(new EchoProperty(epc));
+			}
+			sendTCP(frame);
+			return frame;
 		}
 
 		public Getter reqGetProperty(byte epc) {
-			addProperty(epc);
+			mEPCList.add(epc);
 			return this;
 		}
 
@@ -626,40 +627,173 @@ public abstract class EchoObject {
 	
 	
 	public static class Informer extends Sender {
+		protected ArrayList<Byte> mEPCList;
 
-		public Informer(EchoObject eoj, boolean multicast) {
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
 			super(
-				eoj
-				, eoj.isProxy() ? Echo.getNode().getNodeProfile() : eoj
-				, eoj.isProxy() ? eoj : Echo.getNode().getNodeProfile()
-				, eoj.isProxy() ? EchoFrame.ESV_INF_REQ : EchoFrame.ESV_INF
-				, multicast);
+					isSelfObject ? echoClassCode : NodeProfile.ECHO_CLASS_CODE
+							, isSelfObject ? echoInstanceCode : Echo.getSelfNode().getNodeProfile().getInstanceCode()
+							, isSelfObject ? NodeProfile.ECHO_CLASS_CODE : echoClassCode
+							, isSelfObject ? NodeProfile.INSTANCE_CODE : echoInstanceCode
+							, dstEchoAddress
+							, isSelfObject ? EchoFrame.ESV_INF : EchoFrame.ESV_INF_REQ);
+			mEPCList = new ArrayList<Byte>();
 		}
 
 		@Override
-		public short send() throws IOException {
-			return super.send();
+		public EchoFrame send() throws IOException {
+
+			EchoFrame frame = new EchoFrame(mSrcEchoClassCode, mSrcEchoInstanceCode
+					, mDstEchoClassCode, mDstEchoInstanceCode
+					, mDstEchoAddress, mESV);
+
+			if(mESV == EchoFrame.ESV_INF_REQ) {
+				for(Byte epc : mEPCList) {
+					frame.addProperty(new EchoProperty(epc));
+				}
+			} else {
+				EchoNode node = Echo.getSelfNode();
+				EchoObject seoj = node.getInstance(mSrcEchoClassCode, mSrcEchoInstanceCode);
+				if(seoj.get() == null) {
+					return frame;
+				}
+				for(Byte epc : mEPCList) {
+					byte[] edt = seoj.getProperty(epc);
+
+					if(edt != null) {
+						EchoProperty property = new EchoProperty(epc, edt);
+
+						if(seoj.isValidProperty(property)) {
+							frame.addProperty(property);
+						}
+					}
+				}
+			}
+
+			send(frame);
+			return frame;
 		}
 		
 		public Informer reqInformProperty(byte epc) {
-			addProperty(epc);
+			mEPCList.add(epc);
 			return this;
+		}
+
+		@Override
+		EchoFrame sendTCP() throws IOException {
+
+			EchoFrame frame = new EchoFrame(mSrcEchoClassCode, mSrcEchoInstanceCode
+					, mDstEchoClassCode, mDstEchoInstanceCode
+					, mDstEchoAddress, mESV);
+
+			if(mESV == EchoFrame.ESV_INF_REQ) {
+				for(Byte epc : mEPCList) {
+					frame.addProperty(new EchoProperty(epc));
+				}
+			} else {
+				EchoNode node = Echo.getSelfNode();
+				if(node == null) {
+					return frame;
+				}
+				EchoObject seoj = node.getInstance(mSrcEchoClassCode, mSrcEchoInstanceCode);
+				if(seoj.get() == null) {
+					return frame;
+				}
+				for(Byte epc : mEPCList) {
+					byte[] edt = seoj.getProperty(epc);
+
+					if(edt != null) {
+						EchoProperty property = new EchoProperty(epc, edt);
+
+						if(seoj.isValidProperty(property)) {
+							frame.addProperty(property);
+						}
+					}
+				}
+			}
+
+			sendTCP(frame);
+			return frame;
 		}
 	}
 
 	public static class InformerC extends Sender {
-		public InformerC(EchoObject eoj) {
-			super(eoj, eoj, Echo.getNode().getNodeProfile(), EchoFrame.ESV_INFC, false);
+		protected ArrayList<Byte> mEPCList;
+		
+		public InformerC(short srcEchoClassCode, byte srcEchoInstanceCode
+				, String dstEchoAddress) {
+			super(NodeProfile.ECHO_CLASS_CODE
+					, Echo.getSelfNode().getNodeProfile().getInstanceCode()
+					, NodeProfile.ECHO_CLASS_CODE, NodeProfile.INSTANCE_CODE, dstEchoAddress
+					, EchoFrame.ESV_INFC);
+			mEPCList = new ArrayList<Byte>();
 		}
 
 		@Override
-		public short send() throws IOException {
-			return super.send();
+		public EchoFrame send() throws IOException {
+
+			EchoFrame frame = new EchoFrame(mSrcEchoClassCode, mSrcEchoInstanceCode
+					, mDstEchoClassCode, mDstEchoInstanceCode
+					, mDstEchoAddress, mESV);
+
+			EchoNode node = Echo.getSelfNode();
+			if(node == null) {
+				return frame;
+			}
+			EchoObject seoj = node.getInstance(mSrcEchoClassCode, mSrcEchoInstanceCode);
+			if(seoj.get() == null) {
+				return frame;
+			}
+			for(Byte epc : mEPCList) {
+				byte[] edt = seoj.getProperty(epc);
+
+				if(edt != null) {
+					EchoProperty property = new EchoProperty(epc, edt);
+
+					if(seoj.isValidProperty(property)) {
+						frame.addProperty(property);
+					}
+				}
+			}
+
+			send(frame);
+			return frame;
 		}
 		
 		public InformerC reqInformProperty(byte epc) {
-			addProperty(epc);
+			mEPCList.add(epc);
 			return this;
+		}
+
+		@Override
+		EchoFrame sendTCP() throws IOException {
+			EchoFrame frame = new EchoFrame(mSrcEchoClassCode, mSrcEchoInstanceCode
+					, mDstEchoClassCode, mDstEchoInstanceCode
+					, mDstEchoAddress, mESV);
+
+			EchoNode node = Echo.getSelfNode();
+			if(node == null) {
+				return frame;
+			}
+			EchoObject seoj = node.getInstance(mSrcEchoClassCode, mSrcEchoInstanceCode);
+			if(seoj.get() == null) {
+				return frame;
+			}
+			for(Byte epc : mEPCList) {
+				byte[] edt = seoj.getProperty(epc);
+
+				if(edt != null) {
+					EchoProperty property = new EchoProperty(epc, edt);
+
+					if(seoj.isValidProperty(property)) {
+						frame.addProperty(property);
+					}
+				}
+			}
+
+			sendTCP(frame);
+			return frame;
 		}
 	}
 

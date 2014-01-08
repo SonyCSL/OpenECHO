@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.airconditioner;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -50,13 +51,6 @@ public abstract class FanHeater extends DeviceObject {
 		addGetProperty(EPC_OPERATION_STATUS);
 		addSetProperty(EPC_TEMPERATURE_SETTING_VALUE);
 		addGetProperty(EPC_TEMPERATURE_SETTING_VALUE);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewFanHeater(this);
 	}
 	
 	@Override
@@ -1153,27 +1147,36 @@ public abstract class FanHeater extends DeviceObject {
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -1872,8 +1875,10 @@ public abstract class FanHeater extends DeviceObject {
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -1937,7 +1942,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - mandatory<br>
 		 */
 		public Setter reqSetTemperatureSettingValue(byte[] edt) {
-			addProperty(EPC_TEMPERATURE_SETTING_VALUE, edt);
+			reqSetProperty(EPC_TEMPERATURE_SETTING_VALUE, edt);
 			return this;
 		}
 		/**
@@ -1964,7 +1969,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetAutomaticTemperatureControlSetting(byte[] edt) {
-			addProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING, edt);
+			reqSetProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1991,7 +1996,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerReservationSetting(byte[] edt) {
-			addProperty(EPC_ON_TIMER_RESERVATION_SETTING, edt);
+			reqSetProperty(EPC_ON_TIMER_RESERVATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2018,7 +2023,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerSettingValueTime(byte[] edt) {
-			addProperty(EPC_ON_TIMER_SETTING_VALUE_TIME, edt);
+			reqSetProperty(EPC_ON_TIMER_SETTING_VALUE_TIME, edt);
 			return this;
 		}
 		/**
@@ -2045,7 +2050,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerSettingValueRelativeTime(byte[] edt) {
-			addProperty(EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME, edt);
+			reqSetProperty(EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME, edt);
 			return this;
 		}
 		/**
@@ -2072,7 +2077,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOffTimerReservationSetting(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_RESERVATION_SETTING, edt);
+			reqSetProperty(EPC_OFF_TIMER_RESERVATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2099,7 +2104,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOffTimerSettingValueTime(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_SETTING_VALUE_TIME, edt);
+			reqSetProperty(EPC_OFF_TIMER_SETTING_VALUE_TIME, edt);
 			return this;
 		}
 		/**
@@ -2126,7 +2131,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOffTimerValueRelativeTime(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_VALUE_RELATIVE_TIME, edt);
+			reqSetProperty(EPC_OFF_TIMER_VALUE_RELATIVE_TIME, edt);
 			return this;
 		}
 		/**
@@ -2152,7 +2157,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetExtentionalOperationSetting(byte[] edt) {
-			addProperty(EPC_EXTENTIONAL_OPERATION_SETTING, edt);
+			reqSetProperty(EPC_EXTENTIONAL_OPERATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2179,7 +2184,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetExtentionalOperationTimerTimeSettingValue(byte[] edt) {
-			addProperty(EPC_EXTENTIONAL_OPERATION_TIMER_TIME_SETTING_VALUE, edt);
+			reqSetProperty(EPC_EXTENTIONAL_OPERATION_TIMER_TIME_SETTING_VALUE, edt);
 			return this;
 		}
 		/**
@@ -2205,14 +2210,16 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetIonEmissionSetting(byte[] edt) {
-			addProperty(EPC_ION_EMISSION_SETTING, edt);
+			reqSetProperty(EPC_ION_EMISSION_SETTING, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -2340,7 +2347,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetTemperatureSettingValue() {
-			addProperty(EPC_TEMPERATURE_SETTING_VALUE);
+			reqGetProperty(EPC_TEMPERATURE_SETTING_VALUE);
 			return this;
 		}
 		/**
@@ -2366,7 +2373,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredTemperature() {
-			addProperty(EPC_MEASURED_TEMPERATURE);
+			reqGetProperty(EPC_MEASURED_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -2393,7 +2400,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetAutomaticTemperatureControlSetting() {
-			addProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING);
+			reqGetProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING);
 			return this;
 		}
 		/**
@@ -2420,7 +2427,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerReservationSetting() {
-			addProperty(EPC_ON_TIMER_RESERVATION_SETTING);
+			reqGetProperty(EPC_ON_TIMER_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -2447,7 +2454,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerSettingValueTime() {
-			addProperty(EPC_ON_TIMER_SETTING_VALUE_TIME);
+			reqGetProperty(EPC_ON_TIMER_SETTING_VALUE_TIME);
 			return this;
 		}
 		/**
@@ -2474,7 +2481,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerSettingValueRelativeTime() {
-			addProperty(EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME);
+			reqGetProperty(EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME);
 			return this;
 		}
 		/**
@@ -2501,7 +2508,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOffTimerReservationSetting() {
-			addProperty(EPC_OFF_TIMER_RESERVATION_SETTING);
+			reqGetProperty(EPC_OFF_TIMER_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -2528,7 +2535,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOffTimerSettingValueTime() {
-			addProperty(EPC_OFF_TIMER_SETTING_VALUE_TIME);
+			reqGetProperty(EPC_OFF_TIMER_SETTING_VALUE_TIME);
 			return this;
 		}
 		/**
@@ -2555,7 +2562,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOffTimerValueRelativeTime() {
-			addProperty(EPC_OFF_TIMER_VALUE_RELATIVE_TIME);
+			reqGetProperty(EPC_OFF_TIMER_VALUE_RELATIVE_TIME);
 			return this;
 		}
 		/**
@@ -2581,7 +2588,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetExtentionalOperationSetting() {
-			addProperty(EPC_EXTENTIONAL_OPERATION_SETTING);
+			reqGetProperty(EPC_EXTENTIONAL_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -2608,7 +2615,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetExtentionalOperationTimerTimeSettingValue() {
-			addProperty(EPC_EXTENTIONAL_OPERATION_TIMER_TIME_SETTING_VALUE);
+			reqGetProperty(EPC_EXTENTIONAL_OPERATION_TIMER_TIME_SETTING_VALUE);
 			return this;
 		}
 		/**
@@ -2634,7 +2641,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetIonEmissionSetting() {
-			addProperty(EPC_ION_EMISSION_SETTING);
+			reqGetProperty(EPC_ION_EMISSION_SETTING);
 			return this;
 		}
 		/**
@@ -2660,7 +2667,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetImplementedIonEmissionMethod() {
-			addProperty(EPC_IMPLEMENTED_ION_EMISSION_METHOD);
+			reqGetProperty(EPC_IMPLEMENTED_ION_EMISSION_METHOD);
 			return this;
 		}
 		/**
@@ -2687,14 +2694,16 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOilAmountLevel() {
-			addProperty(EPC_OIL_AMOUNT_LEVEL);
+			reqGetProperty(EPC_OIL_AMOUNT_LEVEL);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -2821,7 +2830,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformTemperatureSettingValue() {
-			addProperty(EPC_TEMPERATURE_SETTING_VALUE);
+			reqInformProperty(EPC_TEMPERATURE_SETTING_VALUE);
 			return this;
 		}
 		/**
@@ -2847,7 +2856,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredTemperature() {
-			addProperty(EPC_MEASURED_TEMPERATURE);
+			reqInformProperty(EPC_MEASURED_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -2874,7 +2883,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformAutomaticTemperatureControlSetting() {
-			addProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING);
+			reqInformProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING);
 			return this;
 		}
 		/**
@@ -2901,7 +2910,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOnTimerReservationSetting() {
-			addProperty(EPC_ON_TIMER_RESERVATION_SETTING);
+			reqInformProperty(EPC_ON_TIMER_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -2928,7 +2937,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOnTimerSettingValueTime() {
-			addProperty(EPC_ON_TIMER_SETTING_VALUE_TIME);
+			reqInformProperty(EPC_ON_TIMER_SETTING_VALUE_TIME);
 			return this;
 		}
 		/**
@@ -2955,7 +2964,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOnTimerSettingValueRelativeTime() {
-			addProperty(EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME);
+			reqInformProperty(EPC_ON_TIMER_SETTING_VALUE_RELATIVE_TIME);
 			return this;
 		}
 		/**
@@ -2982,7 +2991,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOffTimerReservationSetting() {
-			addProperty(EPC_OFF_TIMER_RESERVATION_SETTING);
+			reqInformProperty(EPC_OFF_TIMER_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -3009,7 +3018,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOffTimerSettingValueTime() {
-			addProperty(EPC_OFF_TIMER_SETTING_VALUE_TIME);
+			reqInformProperty(EPC_OFF_TIMER_SETTING_VALUE_TIME);
 			return this;
 		}
 		/**
@@ -3036,7 +3045,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOffTimerValueRelativeTime() {
-			addProperty(EPC_OFF_TIMER_VALUE_RELATIVE_TIME);
+			reqInformProperty(EPC_OFF_TIMER_VALUE_RELATIVE_TIME);
 			return this;
 		}
 		/**
@@ -3062,7 +3071,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformExtentionalOperationSetting() {
-			addProperty(EPC_EXTENTIONAL_OPERATION_SETTING);
+			reqInformProperty(EPC_EXTENTIONAL_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -3089,7 +3098,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformExtentionalOperationTimerTimeSettingValue() {
-			addProperty(EPC_EXTENTIONAL_OPERATION_TIMER_TIME_SETTING_VALUE);
+			reqInformProperty(EPC_EXTENTIONAL_OPERATION_TIMER_TIME_SETTING_VALUE);
 			return this;
 		}
 		/**
@@ -3115,7 +3124,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformIonEmissionSetting() {
-			addProperty(EPC_ION_EMISSION_SETTING);
+			reqInformProperty(EPC_ION_EMISSION_SETTING);
 			return this;
 		}
 		/**
@@ -3141,7 +3150,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformImplementedIonEmissionMethod() {
-			addProperty(EPC_IMPLEMENTED_ION_EMISSION_METHOD);
+			reqInformProperty(EPC_IMPLEMENTED_ION_EMISSION_METHOD);
 			return this;
 		}
 		/**
@@ -3168,20 +3177,19 @@ public abstract class FanHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOilAmountLevel() {
-			addProperty(EPC_OIL_AMOUNT_LEVEL);
+			reqInformProperty(EPC_OIL_AMOUNT_LEVEL);
 			return this;
 		}
 	}
 
 	public static class Proxy extends FanHeater {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -3208,7 +3216,7 @@ public abstract class FanHeater extends DeviceObject {
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -3216,7 +3224,8 @@ public abstract class FanHeater extends DeviceObject {
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -3224,7 +3233,8 @@ public abstract class FanHeater extends DeviceObject {
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -3232,7 +3242,8 @@ public abstract class FanHeater extends DeviceObject {
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

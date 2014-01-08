@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.audiovisual;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -44,13 +45,6 @@ public abstract class Display extends DeviceObject {
 		addGetProperty(EPC_SUPPORTED_CHARACTER_CODES);
 		addSetProperty(EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER);
 		addGetProperty(EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewDisplay(this);
 	}
 	
 	@Override
@@ -574,27 +568,36 @@ Byte<br>
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -883,8 +886,10 @@ Byte<br>
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -950,7 +955,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetDisplayControlSetting(byte[] edt) {
-			addProperty(EPC_DISPLAY_CONTROL_SETTING, edt);
+			reqSetProperty(EPC_DISPLAY_CONTROL_SETTING, edt);
 			return this;
 		}
 		/**
@@ -996,14 +1001,16 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetCharacterStringToPresentToTheUser(byte[] edt) {
-			addProperty(EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER, edt);
+			reqSetProperty(EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -1133,7 +1140,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetDisplayControlSetting() {
-			addProperty(EPC_DISPLAY_CONTROL_SETTING);
+			reqGetProperty(EPC_DISPLAY_CONTROL_SETTING);
 			return this;
 		}
 		/**
@@ -1162,7 +1169,7 @@ Byte<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetCharacterStringSettingAcceptanceStatus() {
-			addProperty(EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS);
+			reqGetProperty(EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS);
 			return this;
 		}
 		/**
@@ -1212,7 +1219,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetSupportedCharacterCodes() {
-			addProperty(EPC_SUPPORTED_CHARACTER_CODES);
+			reqGetProperty(EPC_SUPPORTED_CHARACTER_CODES);
 			return this;
 		}
 		/**
@@ -1258,7 +1265,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetCharacterStringToPresentToTheUser() {
-			addProperty(EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER);
+			reqGetProperty(EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER);
 			return this;
 		}
 		/**
@@ -1288,14 +1295,16 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetLengthOfCharacterStringAccepted() {
-			addProperty(EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED);
+			reqGetProperty(EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -1424,7 +1433,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformDisplayControlSetting() {
-			addProperty(EPC_DISPLAY_CONTROL_SETTING);
+			reqInformProperty(EPC_DISPLAY_CONTROL_SETTING);
 			return this;
 		}
 		/**
@@ -1453,7 +1462,7 @@ Byte<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformCharacterStringSettingAcceptanceStatus() {
-			addProperty(EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS);
+			reqInformProperty(EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS);
 			return this;
 		}
 		/**
@@ -1503,7 +1512,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformSupportedCharacterCodes() {
-			addProperty(EPC_SUPPORTED_CHARACTER_CODES);
+			reqInformProperty(EPC_SUPPORTED_CHARACTER_CODES);
 			return this;
 		}
 		/**
@@ -1549,7 +1558,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformCharacterStringToPresentToTheUser() {
-			addProperty(EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER);
+			reqInformProperty(EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER);
 			return this;
 		}
 		/**
@@ -1579,20 +1588,19 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformLengthOfCharacterStringAccepted() {
-			addProperty(EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED);
+			reqInformProperty(EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED);
 			return this;
 		}
 	}
 
 	public static class Proxy extends Display {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -1623,7 +1631,7 @@ Byte<br>
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -1631,7 +1639,8 @@ Byte<br>
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -1639,7 +1648,8 @@ Byte<br>
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -1647,7 +1657,8 @@ Byte<br>
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

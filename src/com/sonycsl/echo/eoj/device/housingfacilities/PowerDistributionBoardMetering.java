@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.housingfacilities;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -78,13 +79,6 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		addGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
 		addGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
 		addGetProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewPowerDistributionBoardMetering(this);
 	}
 	
 	@Override
@@ -3054,27 +3048,36 @@ Byte<br>
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -4581,8 +4584,10 @@ Byte<br>
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -4652,14 +4657,16 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(byte[] edt) {
-			addProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED, edt);
+			reqSetProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -4790,7 +4797,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetMeasuredCumulativeAmountOfElectricEnergyNormalDirection() {
-			addProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
+			reqGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
 			return this;
 		}
 		/**
@@ -4819,7 +4826,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetMeasuredCumulativeAmountOfElectricEnergyReverseDirection() {
-			addProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
+			reqGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
 			return this;
 		}
 		/**
@@ -4854,7 +4861,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetUnitForCumulativeAmountsOfElectricEnergy() {
-			addProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY);
+			reqGetProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -4888,7 +4895,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection() {
-			addProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
+			reqGetProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
 			return this;
 		}
 		/**
@@ -4922,7 +4929,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection() {
-			addProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
+			reqGetProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
 			return this;
 		}
 		/**
@@ -4954,7 +4961,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved() {
-			addProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED);
+			reqGetProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED);
 			return this;
 		}
 		/**
@@ -4983,7 +4990,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredInstantaneoUsAmountOfElectricEnergy() {
-			addProperty(EPC_MEASURED_INSTANTANEO_US_AMOUNT_OF_ELECTRIC_ENERGY);
+			reqGetProperty(EPC_MEASURED_INSTANTANEO_US_AMOUNT_OF_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -5017,7 +5024,7 @@ A<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredInstantaneousCurrents() {
-			addProperty(EPC_MEASURED_INSTANTANEOUS_CURRENTS);
+			reqGetProperty(EPC_MEASURED_INSTANTANEOUS_CURRENTS);
 			return this;
 		}
 		/**
@@ -5052,7 +5059,7 @@ V<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredInstantaneousVoltages() {
-			addProperty(EPC_MEASURED_INSTANTANEOUS_VOLTAGES);
+			reqGetProperty(EPC_MEASURED_INSTANTANEOUS_VOLTAGES);
 			return this;
 		}
 		/**
@@ -5088,7 +5095,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel1() {
-			addProperty(EPC_MEASUREMENT_CHANNEL1);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL1);
 			return this;
 		}
 		/**
@@ -5124,7 +5131,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel2() {
-			addProperty(EPC_MEASUREMENT_CHANNEL2);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL2);
 			return this;
 		}
 		/**
@@ -5160,7 +5167,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel3() {
-			addProperty(EPC_MEASUREMENT_CHANNEL3);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL3);
 			return this;
 		}
 		/**
@@ -5196,7 +5203,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel4() {
-			addProperty(EPC_MEASUREMENT_CHANNEL4);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL4);
 			return this;
 		}
 		/**
@@ -5232,7 +5239,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel5() {
-			addProperty(EPC_MEASUREMENT_CHANNEL5);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL5);
 			return this;
 		}
 		/**
@@ -5268,7 +5275,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel6() {
-			addProperty(EPC_MEASUREMENT_CHANNEL6);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL6);
 			return this;
 		}
 		/**
@@ -5304,7 +5311,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel7() {
-			addProperty(EPC_MEASUREMENT_CHANNEL7);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL7);
 			return this;
 		}
 		/**
@@ -5340,7 +5347,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel8() {
-			addProperty(EPC_MEASUREMENT_CHANNEL8);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL8);
 			return this;
 		}
 		/**
@@ -5376,7 +5383,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel9() {
-			addProperty(EPC_MEASUREMENT_CHANNEL9);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL9);
 			return this;
 		}
 		/**
@@ -5412,7 +5419,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel10() {
-			addProperty(EPC_MEASUREMENT_CHANNEL10);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL10);
 			return this;
 		}
 		/**
@@ -5448,7 +5455,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel11() {
-			addProperty(EPC_MEASUREMENT_CHANNEL11);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL11);
 			return this;
 		}
 		/**
@@ -5484,7 +5491,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel12() {
-			addProperty(EPC_MEASUREMENT_CHANNEL12);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL12);
 			return this;
 		}
 		/**
@@ -5520,7 +5527,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel13() {
-			addProperty(EPC_MEASUREMENT_CHANNEL13);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL13);
 			return this;
 		}
 		/**
@@ -5556,7 +5563,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel14() {
-			addProperty(EPC_MEASUREMENT_CHANNEL14);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL14);
 			return this;
 		}
 		/**
@@ -5592,7 +5599,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel15() {
-			addProperty(EPC_MEASUREMENT_CHANNEL15);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL15);
 			return this;
 		}
 		/**
@@ -5628,7 +5635,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel16() {
-			addProperty(EPC_MEASUREMENT_CHANNEL16);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL16);
 			return this;
 		}
 		/**
@@ -5664,7 +5671,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel17() {
-			addProperty(EPC_MEASUREMENT_CHANNEL17);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL17);
 			return this;
 		}
 		/**
@@ -5700,7 +5707,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel18() {
-			addProperty(EPC_MEASUREMENT_CHANNEL18);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL18);
 			return this;
 		}
 		/**
@@ -5736,7 +5743,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel19() {
-			addProperty(EPC_MEASUREMENT_CHANNEL19);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL19);
 			return this;
 		}
 		/**
@@ -5772,7 +5779,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel20() {
-			addProperty(EPC_MEASUREMENT_CHANNEL20);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL20);
 			return this;
 		}
 		/**
@@ -5808,7 +5815,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel21() {
-			addProperty(EPC_MEASUREMENT_CHANNEL21);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL21);
 			return this;
 		}
 		/**
@@ -5844,7 +5851,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel22() {
-			addProperty(EPC_MEASUREMENT_CHANNEL22);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL22);
 			return this;
 		}
 		/**
@@ -5880,7 +5887,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel23() {
-			addProperty(EPC_MEASUREMENT_CHANNEL23);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL23);
 			return this;
 		}
 		/**
@@ -5916,7 +5923,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel24() {
-			addProperty(EPC_MEASUREMENT_CHANNEL24);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL24);
 			return this;
 		}
 		/**
@@ -5952,7 +5959,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel25() {
-			addProperty(EPC_MEASUREMENT_CHANNEL25);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL25);
 			return this;
 		}
 		/**
@@ -5988,7 +5995,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel26() {
-			addProperty(EPC_MEASUREMENT_CHANNEL26);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL26);
 			return this;
 		}
 		/**
@@ -6024,7 +6031,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel27() {
-			addProperty(EPC_MEASUREMENT_CHANNEL27);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL27);
 			return this;
 		}
 		/**
@@ -6060,7 +6067,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel28() {
-			addProperty(EPC_MEASUREMENT_CHANNEL28);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL28);
 			return this;
 		}
 		/**
@@ -6096,7 +6103,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel29() {
-			addProperty(EPC_MEASUREMENT_CHANNEL29);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL29);
 			return this;
 		}
 		/**
@@ -6132,7 +6139,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel30() {
-			addProperty(EPC_MEASUREMENT_CHANNEL30);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL30);
 			return this;
 		}
 		/**
@@ -6168,7 +6175,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel31() {
-			addProperty(EPC_MEASUREMENT_CHANNEL31);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL31);
 			return this;
 		}
 		/**
@@ -6204,14 +6211,16 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasurementChannel32() {
-			addProperty(EPC_MEASUREMENT_CHANNEL32);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL32);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -6341,7 +6350,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformMeasuredCumulativeAmountOfElectricEnergyNormalDirection() {
-			addProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
+			reqInformProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
 			return this;
 		}
 		/**
@@ -6370,7 +6379,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformMeasuredCumulativeAmountOfElectricEnergyReverseDirection() {
-			addProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
+			reqInformProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
 			return this;
 		}
 		/**
@@ -6405,7 +6414,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformUnitForCumulativeAmountsOfElectricEnergy() {
-			addProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY);
+			reqInformProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -6439,7 +6448,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection() {
-			addProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
+			reqInformProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
 			return this;
 		}
 		/**
@@ -6473,7 +6482,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection() {
-			addProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
+			reqInformProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
 			return this;
 		}
 		/**
@@ -6505,7 +6514,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved() {
-			addProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED);
+			reqInformProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED);
 			return this;
 		}
 		/**
@@ -6534,7 +6543,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredInstantaneoUsAmountOfElectricEnergy() {
-			addProperty(EPC_MEASURED_INSTANTANEO_US_AMOUNT_OF_ELECTRIC_ENERGY);
+			reqInformProperty(EPC_MEASURED_INSTANTANEO_US_AMOUNT_OF_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -6568,7 +6577,7 @@ A<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredInstantaneousCurrents() {
-			addProperty(EPC_MEASURED_INSTANTANEOUS_CURRENTS);
+			reqInformProperty(EPC_MEASURED_INSTANTANEOUS_CURRENTS);
 			return this;
 		}
 		/**
@@ -6603,7 +6612,7 @@ V<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredInstantaneousVoltages() {
-			addProperty(EPC_MEASURED_INSTANTANEOUS_VOLTAGES);
+			reqInformProperty(EPC_MEASURED_INSTANTANEOUS_VOLTAGES);
 			return this;
 		}
 		/**
@@ -6639,7 +6648,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel1() {
-			addProperty(EPC_MEASUREMENT_CHANNEL1);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL1);
 			return this;
 		}
 		/**
@@ -6675,7 +6684,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel2() {
-			addProperty(EPC_MEASUREMENT_CHANNEL2);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL2);
 			return this;
 		}
 		/**
@@ -6711,7 +6720,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel3() {
-			addProperty(EPC_MEASUREMENT_CHANNEL3);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL3);
 			return this;
 		}
 		/**
@@ -6747,7 +6756,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel4() {
-			addProperty(EPC_MEASUREMENT_CHANNEL4);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL4);
 			return this;
 		}
 		/**
@@ -6783,7 +6792,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel5() {
-			addProperty(EPC_MEASUREMENT_CHANNEL5);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL5);
 			return this;
 		}
 		/**
@@ -6819,7 +6828,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel6() {
-			addProperty(EPC_MEASUREMENT_CHANNEL6);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL6);
 			return this;
 		}
 		/**
@@ -6855,7 +6864,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel7() {
-			addProperty(EPC_MEASUREMENT_CHANNEL7);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL7);
 			return this;
 		}
 		/**
@@ -6891,7 +6900,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel8() {
-			addProperty(EPC_MEASUREMENT_CHANNEL8);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL8);
 			return this;
 		}
 		/**
@@ -6927,7 +6936,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel9() {
-			addProperty(EPC_MEASUREMENT_CHANNEL9);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL9);
 			return this;
 		}
 		/**
@@ -6963,7 +6972,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel10() {
-			addProperty(EPC_MEASUREMENT_CHANNEL10);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL10);
 			return this;
 		}
 		/**
@@ -6999,7 +7008,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel11() {
-			addProperty(EPC_MEASUREMENT_CHANNEL11);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL11);
 			return this;
 		}
 		/**
@@ -7035,7 +7044,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel12() {
-			addProperty(EPC_MEASUREMENT_CHANNEL12);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL12);
 			return this;
 		}
 		/**
@@ -7071,7 +7080,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel13() {
-			addProperty(EPC_MEASUREMENT_CHANNEL13);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL13);
 			return this;
 		}
 		/**
@@ -7107,7 +7116,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel14() {
-			addProperty(EPC_MEASUREMENT_CHANNEL14);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL14);
 			return this;
 		}
 		/**
@@ -7143,7 +7152,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel15() {
-			addProperty(EPC_MEASUREMENT_CHANNEL15);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL15);
 			return this;
 		}
 		/**
@@ -7179,7 +7188,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel16() {
-			addProperty(EPC_MEASUREMENT_CHANNEL16);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL16);
 			return this;
 		}
 		/**
@@ -7215,7 +7224,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel17() {
-			addProperty(EPC_MEASUREMENT_CHANNEL17);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL17);
 			return this;
 		}
 		/**
@@ -7251,7 +7260,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel18() {
-			addProperty(EPC_MEASUREMENT_CHANNEL18);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL18);
 			return this;
 		}
 		/**
@@ -7287,7 +7296,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel19() {
-			addProperty(EPC_MEASUREMENT_CHANNEL19);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL19);
 			return this;
 		}
 		/**
@@ -7323,7 +7332,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel20() {
-			addProperty(EPC_MEASUREMENT_CHANNEL20);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL20);
 			return this;
 		}
 		/**
@@ -7359,7 +7368,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel21() {
-			addProperty(EPC_MEASUREMENT_CHANNEL21);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL21);
 			return this;
 		}
 		/**
@@ -7395,7 +7404,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel22() {
-			addProperty(EPC_MEASUREMENT_CHANNEL22);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL22);
 			return this;
 		}
 		/**
@@ -7431,7 +7440,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel23() {
-			addProperty(EPC_MEASUREMENT_CHANNEL23);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL23);
 			return this;
 		}
 		/**
@@ -7467,7 +7476,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel24() {
-			addProperty(EPC_MEASUREMENT_CHANNEL24);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL24);
 			return this;
 		}
 		/**
@@ -7503,7 +7512,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel25() {
-			addProperty(EPC_MEASUREMENT_CHANNEL25);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL25);
 			return this;
 		}
 		/**
@@ -7539,7 +7548,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel26() {
-			addProperty(EPC_MEASUREMENT_CHANNEL26);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL26);
 			return this;
 		}
 		/**
@@ -7575,7 +7584,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel27() {
-			addProperty(EPC_MEASUREMENT_CHANNEL27);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL27);
 			return this;
 		}
 		/**
@@ -7611,7 +7620,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel28() {
-			addProperty(EPC_MEASUREMENT_CHANNEL28);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL28);
 			return this;
 		}
 		/**
@@ -7647,7 +7656,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel29() {
-			addProperty(EPC_MEASUREMENT_CHANNEL29);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL29);
 			return this;
 		}
 		/**
@@ -7683,7 +7692,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel30() {
-			addProperty(EPC_MEASUREMENT_CHANNEL30);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL30);
 			return this;
 		}
 		/**
@@ -7719,7 +7728,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel31() {
-			addProperty(EPC_MEASUREMENT_CHANNEL31);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL31);
 			return this;
 		}
 		/**
@@ -7755,20 +7764,19 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasurementChannel32() {
-			addProperty(EPC_MEASUREMENT_CHANNEL32);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL32);
 			return this;
 		}
 	}
 
 	public static class Proxy extends PowerDistributionBoardMetering {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -7795,7 +7803,7 @@ Byte<br>
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -7803,7 +7811,8 @@ Byte<br>
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -7811,7 +7820,8 @@ Byte<br>
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -7819,7 +7829,8 @@ Byte<br>
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

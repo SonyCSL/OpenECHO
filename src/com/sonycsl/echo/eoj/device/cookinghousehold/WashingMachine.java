@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.cookinghousehold;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -41,13 +42,6 @@ public abstract class WashingMachine extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewWashingMachine(this);
 	}
 	
 	@Override
@@ -629,27 +623,36 @@ timer setting<br>
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -990,8 +993,10 @@ timer setting<br>
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -1060,7 +1065,7 @@ timer setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetWashingMachineSetting(byte[] edt) {
-			addProperty(EPC_WASHING_MACHINE_SETTING, edt);
+			reqSetProperty(EPC_WASHING_MACHINE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1087,7 +1092,7 @@ timer setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerReservationSetting(byte[] edt) {
-			addProperty(EPC_ON_TIMER_RESERVATION_SETTING, edt);
+			reqSetProperty(EPC_ON_TIMER_RESERVATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1114,7 +1119,7 @@ timer setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerSetting(byte[] edt) {
-			addProperty(EPC_ON_TIMER_SETTING, edt);
+			reqSetProperty(EPC_ON_TIMER_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1143,14 +1148,16 @@ timer setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetRelativeTimeBasedOnTimerSetting(byte[] edt) {
-			addProperty(EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING, edt);
+			reqSetProperty(EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -1279,7 +1286,7 @@ timer setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetDoorCoverOpenCloseStatus() {
-			addProperty(EPC_DOOR_COVER_OPEN_CLOSE_STATUS);
+			reqGetProperty(EPC_DOOR_COVER_OPEN_CLOSE_STATUS);
 			return this;
 		}
 		/**
@@ -1310,7 +1317,7 @@ timer setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetWashingMachineSetting() {
-			addProperty(EPC_WASHING_MACHINE_SETTING);
+			reqGetProperty(EPC_WASHING_MACHINE_SETTING);
 			return this;
 		}
 		/**
@@ -1337,7 +1344,7 @@ timer setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetCurrentStageOfWashingCycle() {
-			addProperty(EPC_CURRENT_STAGE_OF_WASHING_CYCLE);
+			reqGetProperty(EPC_CURRENT_STAGE_OF_WASHING_CYCLE);
 			return this;
 		}
 		/**
@@ -1364,7 +1371,7 @@ timer setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetTimeRemainingToCompleteWashingCycle() {
-			addProperty(EPC_TIME_REMAINING_TO_COMPLETE_WASHING_CYCLE);
+			reqGetProperty(EPC_TIME_REMAINING_TO_COMPLETE_WASHING_CYCLE);
 			return this;
 		}
 		/**
@@ -1391,7 +1398,7 @@ timer setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerReservationSetting() {
-			addProperty(EPC_ON_TIMER_RESERVATION_SETTING);
+			reqGetProperty(EPC_ON_TIMER_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -1418,7 +1425,7 @@ timer setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerSetting() {
-			addProperty(EPC_ON_TIMER_SETTING);
+			reqGetProperty(EPC_ON_TIMER_SETTING);
 			return this;
 		}
 		/**
@@ -1447,14 +1454,16 @@ timer setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRelativeTimeBasedOnTimerSetting() {
-			addProperty(EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING);
+			reqGetProperty(EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -1582,7 +1591,7 @@ timer setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformDoorCoverOpenCloseStatus() {
-			addProperty(EPC_DOOR_COVER_OPEN_CLOSE_STATUS);
+			reqInformProperty(EPC_DOOR_COVER_OPEN_CLOSE_STATUS);
 			return this;
 		}
 		/**
@@ -1613,7 +1622,7 @@ timer setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformWashingMachineSetting() {
-			addProperty(EPC_WASHING_MACHINE_SETTING);
+			reqInformProperty(EPC_WASHING_MACHINE_SETTING);
 			return this;
 		}
 		/**
@@ -1640,7 +1649,7 @@ timer setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformCurrentStageOfWashingCycle() {
-			addProperty(EPC_CURRENT_STAGE_OF_WASHING_CYCLE);
+			reqInformProperty(EPC_CURRENT_STAGE_OF_WASHING_CYCLE);
 			return this;
 		}
 		/**
@@ -1667,7 +1676,7 @@ timer setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformTimeRemainingToCompleteWashingCycle() {
-			addProperty(EPC_TIME_REMAINING_TO_COMPLETE_WASHING_CYCLE);
+			reqInformProperty(EPC_TIME_REMAINING_TO_COMPLETE_WASHING_CYCLE);
 			return this;
 		}
 		/**
@@ -1694,7 +1703,7 @@ timer setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOnTimerReservationSetting() {
-			addProperty(EPC_ON_TIMER_RESERVATION_SETTING);
+			reqInformProperty(EPC_ON_TIMER_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -1721,7 +1730,7 @@ timer setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOnTimerSetting() {
-			addProperty(EPC_ON_TIMER_SETTING);
+			reqInformProperty(EPC_ON_TIMER_SETTING);
 			return this;
 		}
 		/**
@@ -1750,20 +1759,19 @@ timer setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRelativeTimeBasedOnTimerSetting() {
-			addProperty(EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING);
+			reqInformProperty(EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING);
 			return this;
 		}
 	}
 
 	public static class Proxy extends WashingMachine {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -1784,7 +1792,7 @@ timer setting<br>
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -1792,7 +1800,8 @@ timer setting<br>
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -1800,7 +1809,8 @@ timer setting<br>
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -1808,7 +1818,8 @@ timer setting<br>
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

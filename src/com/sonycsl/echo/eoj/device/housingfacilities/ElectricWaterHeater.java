@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.housingfacilities;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -58,13 +59,6 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		addGetProperty(EPC_OPERATION_STATUS);
 		addSetProperty(EPC_WATER_HEATING_TEMPERATURE_SETTING);
 		addGetProperty(EPC_WATER_HEATING_TEMPERATURE_SETTING);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewElectricWaterHeater(this);
 	}
 	
 	@Override
@@ -1690,27 +1684,36 @@ Byte<br>
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -2736,8 +2739,10 @@ Byte<br>
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -2803,7 +2808,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGautomaticWaterHeatingHSetting(byte[] edt) {
-			addProperty(EPC_GAUTOMATIC_WATER_HEATING_H_SETTING, edt);
+			reqSetProperty(EPC_GAUTOMATIC_WATER_HEATING_H_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2830,7 +2835,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGautomaticWaterTemperatureControlHSetting(byte[] edt) {
-			addProperty(EPC_GAUTOMATIC_WATER_TEMPERATURE_CONTROL_H_SETTING, edt);
+			reqSetProperty(EPC_GAUTOMATIC_WATER_TEMPERATURE_CONTROL_H_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2856,7 +2861,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Setter reqSetWaterHeatingTemperatureSetting(byte[] edt) {
-			addProperty(EPC_WATER_HEATING_TEMPERATURE_SETTING, edt);
+			reqSetProperty(EPC_WATER_HEATING_TEMPERATURE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2883,7 +2888,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGdaytimeReheatingPermissionHSetting(byte[] edt) {
-			addProperty(EPC_GDAYTIME_REHEATING_PERMISSION_H_SETTING, edt);
+			reqSetProperty(EPC_GDAYTIME_REHEATING_PERMISSION_H_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2909,7 +2914,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGtemperatureOfSuppliedWaterHSetting(byte[] edt) {
-			addProperty(EPC_GTEMPERATURE_OF_SUPPLIED_WATER_H_SETTING, edt);
+			reqSetProperty(EPC_GTEMPERATURE_OF_SUPPLIED_WATER_H_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2935,7 +2940,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetBathWaterTemperatureSetting(byte[] edt) {
-			addProperty(EPC_BATH_WATER_TEMPERATURE_SETTING, edt);
+			reqSetProperty(EPC_BATH_WATER_TEMPERATURE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2961,7 +2966,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetBathWaterVolumeSetting(byte[] edt) {
-			addProperty(EPC_BATH_WATER_VOLUME_SETTING, edt);
+			reqSetProperty(EPC_BATH_WATER_VOLUME_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2990,7 +2995,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGautomaticBathWaterHeatingHModeSetting(byte[] edt) {
-			addProperty(EPC_GAUTOMATIC_BATH_WATER_HEATING_H_MODE_SETTING, edt);
+			reqSetProperty(EPC_GAUTOMATIC_BATH_WATER_HEATING_H_MODE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3019,7 +3024,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGadditionOfHotWaterHFunctionSetting(byte[] edt) {
-			addProperty(EPC_GADDITION_OF_HOT_WATER_H_FUNCTION_SETTING, edt);
+			reqSetProperty(EPC_GADDITION_OF_HOT_WATER_H_FUNCTION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3046,7 +3051,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGslightBathWaterTemperatureLoweringHFunctionSetting(byte[] edt) {
-			addProperty(EPC_GSLIGHT_BATH_WATER_TEMPERATURE_LOWERING_H_FUNCTION_SETTING, edt);
+			reqSetProperty(EPC_GSLIGHT_BATH_WATER_TEMPERATURE_LOWERING_H_FUNCTION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3072,7 +3077,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetBathWaterVolumeSetting1(byte[] edt) {
-			addProperty(EPC_BATH_WATER_VOLUME_SETTING1, edt);
+			reqSetProperty(EPC_BATH_WATER_VOLUME_SETTING1, edt);
 			return this;
 		}
 		/**
@@ -3098,7 +3103,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetBathWaterVolumeSetting2(byte[] edt) {
-			addProperty(EPC_BATH_WATER_VOLUME_SETTING2, edt);
+			reqSetProperty(EPC_BATH_WATER_VOLUME_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -3124,7 +3129,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetBathWaterVolumeSetting3(byte[] edt) {
-			addProperty(EPC_BATH_WATER_VOLUME_SETTING3, edt);
+			reqSetProperty(EPC_BATH_WATER_VOLUME_SETTING3, edt);
 			return this;
 		}
 		/**
@@ -3151,7 +3156,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerReservationSetting(byte[] edt) {
-			addProperty(EPC_ON_TIMER_RESERVATION_SETTING, edt);
+			reqSetProperty(EPC_ON_TIMER_RESERVATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3178,14 +3183,16 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerSetting(byte[] edt) {
-			addProperty(EPC_ON_TIMER_SETTING, edt);
+			reqSetProperty(EPC_ON_TIMER_SETTING, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -3315,7 +3322,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGautomaticWaterHeatingHSetting() {
-			addProperty(EPC_GAUTOMATIC_WATER_HEATING_H_SETTING);
+			reqGetProperty(EPC_GAUTOMATIC_WATER_HEATING_H_SETTING);
 			return this;
 		}
 		/**
@@ -3342,7 +3349,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGautomaticWaterTemperatureControlHSetting() {
-			addProperty(EPC_GAUTOMATIC_WATER_TEMPERATURE_CONTROL_H_SETTING);
+			reqGetProperty(EPC_GAUTOMATIC_WATER_TEMPERATURE_CONTROL_H_SETTING);
 			return this;
 		}
 		/**
@@ -3369,7 +3376,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetWaterHeaterStatus() {
-			addProperty(EPC_WATER_HEATER_STATUS);
+			reqGetProperty(EPC_WATER_HEATER_STATUS);
 			return this;
 		}
 		/**
@@ -3395,7 +3402,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetWaterHeatingTemperatureSetting() {
-			addProperty(EPC_WATER_HEATING_TEMPERATURE_SETTING);
+			reqGetProperty(EPC_WATER_HEATING_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
@@ -3422,7 +3429,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGdaytimeReheatingPermissionHSetting() {
-			addProperty(EPC_GDAYTIME_REHEATING_PERMISSION_H_SETTING);
+			reqGetProperty(EPC_GDAYTIME_REHEATING_PERMISSION_H_SETTING);
 			return this;
 		}
 		/**
@@ -3448,7 +3455,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredTemperatureOfWaterInWaterHeater() {
-			addProperty(EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER);
+			reqGetProperty(EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER);
 			return this;
 		}
 		/**
@@ -3474,7 +3481,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGtemperatureOfSuppliedWaterHSetting() {
-			addProperty(EPC_GTEMPERATURE_OF_SUPPLIED_WATER_H_SETTING);
+			reqGetProperty(EPC_GTEMPERATURE_OF_SUPPLIED_WATER_H_SETTING);
 			return this;
 		}
 		/**
@@ -3500,7 +3507,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetBathWaterTemperatureSetting() {
-			addProperty(EPC_BATH_WATER_TEMPERATURE_SETTING);
+			reqGetProperty(EPC_BATH_WATER_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
@@ -3526,7 +3533,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetBathWaterVolumeSetting() {
-			addProperty(EPC_BATH_WATER_VOLUME_SETTING);
+			reqGetProperty(EPC_BATH_WATER_VOLUME_SETTING);
 			return this;
 		}
 		/**
@@ -3552,7 +3559,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredAmountOfWaterRemainingInTank() {
-			addProperty(EPC_MEASURED_AMOUNT_OF_WATER_REMAINING_IN_TANK);
+			reqGetProperty(EPC_MEASURED_AMOUNT_OF_WATER_REMAINING_IN_TANK);
 			return this;
 		}
 		/**
@@ -3578,7 +3585,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetTankCapacity() {
-			addProperty(EPC_TANK_CAPACITY);
+			reqGetProperty(EPC_TANK_CAPACITY);
 			return this;
 		}
 		/**
@@ -3607,7 +3614,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGautomaticBathWaterHeatingHModeSetting() {
-			addProperty(EPC_GAUTOMATIC_BATH_WATER_HEATING_H_MODE_SETTING);
+			reqGetProperty(EPC_GAUTOMATIC_BATH_WATER_HEATING_H_MODE_SETTING);
 			return this;
 		}
 		/**
@@ -3636,7 +3643,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGadditionOfHotWaterHFunctionSetting() {
-			addProperty(EPC_GADDITION_OF_HOT_WATER_H_FUNCTION_SETTING);
+			reqGetProperty(EPC_GADDITION_OF_HOT_WATER_H_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -3663,7 +3670,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGslightBathWaterTemperatureLoweringHFunctionSetting() {
-			addProperty(EPC_GSLIGHT_BATH_WATER_TEMPERATURE_LOWERING_H_FUNCTION_SETTING);
+			reqGetProperty(EPC_GSLIGHT_BATH_WATER_TEMPERATURE_LOWERING_H_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -3689,7 +3696,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetBathWaterVolumeSetting1() {
-			addProperty(EPC_BATH_WATER_VOLUME_SETTING1);
+			reqGetProperty(EPC_BATH_WATER_VOLUME_SETTING1);
 			return this;
 		}
 		/**
@@ -3715,7 +3722,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetBathWaterVolumeSetting2() {
-			addProperty(EPC_BATH_WATER_VOLUME_SETTING2);
+			reqGetProperty(EPC_BATH_WATER_VOLUME_SETTING2);
 			return this;
 		}
 		/**
@@ -3741,7 +3748,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetBathWaterVolumeSetting3() {
-			addProperty(EPC_BATH_WATER_VOLUME_SETTING3);
+			reqGetProperty(EPC_BATH_WATER_VOLUME_SETTING3);
 			return this;
 		}
 		/**
@@ -3768,7 +3775,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerReservationSetting() {
-			addProperty(EPC_ON_TIMER_RESERVATION_SETTING);
+			reqGetProperty(EPC_ON_TIMER_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -3795,7 +3802,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerSetting() {
-			addProperty(EPC_ON_TIMER_SETTING);
+			reqGetProperty(EPC_ON_TIMER_SETTING);
 			return this;
 		}
 		/**
@@ -3822,7 +3829,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRatedPowerConsumptionOfHPUnitInWintertime() {
-			addProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_WINTERTIME);
+			reqGetProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_WINTERTIME);
 			return this;
 		}
 		/**
@@ -3851,7 +3858,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRatedPowerConsumptionOfHPUnitInInBetweenSeasons() {
-			addProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_IN_BETWEEN_SEASONS);
+			reqGetProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_IN_BETWEEN_SEASONS);
 			return this;
 		}
 		/**
@@ -3878,14 +3885,16 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRatedPowerConsumptionOfHPUnitInSummertime() {
-			addProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_SUMMERTIME);
+			reqGetProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_SUMMERTIME);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -4014,7 +4023,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGautomaticWaterHeatingHSetting() {
-			addProperty(EPC_GAUTOMATIC_WATER_HEATING_H_SETTING);
+			reqInformProperty(EPC_GAUTOMATIC_WATER_HEATING_H_SETTING);
 			return this;
 		}
 		/**
@@ -4041,7 +4050,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGautomaticWaterTemperatureControlHSetting() {
-			addProperty(EPC_GAUTOMATIC_WATER_TEMPERATURE_CONTROL_H_SETTING);
+			reqInformProperty(EPC_GAUTOMATIC_WATER_TEMPERATURE_CONTROL_H_SETTING);
 			return this;
 		}
 		/**
@@ -4068,7 +4077,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformWaterHeaterStatus() {
-			addProperty(EPC_WATER_HEATER_STATUS);
+			reqInformProperty(EPC_WATER_HEATER_STATUS);
 			return this;
 		}
 		/**
@@ -4094,7 +4103,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformWaterHeatingTemperatureSetting() {
-			addProperty(EPC_WATER_HEATING_TEMPERATURE_SETTING);
+			reqInformProperty(EPC_WATER_HEATING_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
@@ -4121,7 +4130,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGdaytimeReheatingPermissionHSetting() {
-			addProperty(EPC_GDAYTIME_REHEATING_PERMISSION_H_SETTING);
+			reqInformProperty(EPC_GDAYTIME_REHEATING_PERMISSION_H_SETTING);
 			return this;
 		}
 		/**
@@ -4147,7 +4156,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredTemperatureOfWaterInWaterHeater() {
-			addProperty(EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER);
+			reqInformProperty(EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER);
 			return this;
 		}
 		/**
@@ -4173,7 +4182,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGtemperatureOfSuppliedWaterHSetting() {
-			addProperty(EPC_GTEMPERATURE_OF_SUPPLIED_WATER_H_SETTING);
+			reqInformProperty(EPC_GTEMPERATURE_OF_SUPPLIED_WATER_H_SETTING);
 			return this;
 		}
 		/**
@@ -4199,7 +4208,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformBathWaterTemperatureSetting() {
-			addProperty(EPC_BATH_WATER_TEMPERATURE_SETTING);
+			reqInformProperty(EPC_BATH_WATER_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
@@ -4225,7 +4234,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformBathWaterVolumeSetting() {
-			addProperty(EPC_BATH_WATER_VOLUME_SETTING);
+			reqInformProperty(EPC_BATH_WATER_VOLUME_SETTING);
 			return this;
 		}
 		/**
@@ -4251,7 +4260,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredAmountOfWaterRemainingInTank() {
-			addProperty(EPC_MEASURED_AMOUNT_OF_WATER_REMAINING_IN_TANK);
+			reqInformProperty(EPC_MEASURED_AMOUNT_OF_WATER_REMAINING_IN_TANK);
 			return this;
 		}
 		/**
@@ -4277,7 +4286,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformTankCapacity() {
-			addProperty(EPC_TANK_CAPACITY);
+			reqInformProperty(EPC_TANK_CAPACITY);
 			return this;
 		}
 		/**
@@ -4306,7 +4315,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGautomaticBathWaterHeatingHModeSetting() {
-			addProperty(EPC_GAUTOMATIC_BATH_WATER_HEATING_H_MODE_SETTING);
+			reqInformProperty(EPC_GAUTOMATIC_BATH_WATER_HEATING_H_MODE_SETTING);
 			return this;
 		}
 		/**
@@ -4335,7 +4344,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGadditionOfHotWaterHFunctionSetting() {
-			addProperty(EPC_GADDITION_OF_HOT_WATER_H_FUNCTION_SETTING);
+			reqInformProperty(EPC_GADDITION_OF_HOT_WATER_H_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -4362,7 +4371,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGslightBathWaterTemperatureLoweringHFunctionSetting() {
-			addProperty(EPC_GSLIGHT_BATH_WATER_TEMPERATURE_LOWERING_H_FUNCTION_SETTING);
+			reqInformProperty(EPC_GSLIGHT_BATH_WATER_TEMPERATURE_LOWERING_H_FUNCTION_SETTING);
 			return this;
 		}
 		/**
@@ -4388,7 +4397,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformBathWaterVolumeSetting1() {
-			addProperty(EPC_BATH_WATER_VOLUME_SETTING1);
+			reqInformProperty(EPC_BATH_WATER_VOLUME_SETTING1);
 			return this;
 		}
 		/**
@@ -4414,7 +4423,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformBathWaterVolumeSetting2() {
-			addProperty(EPC_BATH_WATER_VOLUME_SETTING2);
+			reqInformProperty(EPC_BATH_WATER_VOLUME_SETTING2);
 			return this;
 		}
 		/**
@@ -4440,7 +4449,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformBathWaterVolumeSetting3() {
-			addProperty(EPC_BATH_WATER_VOLUME_SETTING3);
+			reqInformProperty(EPC_BATH_WATER_VOLUME_SETTING3);
 			return this;
 		}
 		/**
@@ -4467,7 +4476,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOnTimerReservationSetting() {
-			addProperty(EPC_ON_TIMER_RESERVATION_SETTING);
+			reqInformProperty(EPC_ON_TIMER_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -4494,7 +4503,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOnTimerSetting() {
-			addProperty(EPC_ON_TIMER_SETTING);
+			reqInformProperty(EPC_ON_TIMER_SETTING);
 			return this;
 		}
 		/**
@@ -4521,7 +4530,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRatedPowerConsumptionOfHPUnitInWintertime() {
-			addProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_WINTERTIME);
+			reqInformProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_WINTERTIME);
 			return this;
 		}
 		/**
@@ -4550,7 +4559,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRatedPowerConsumptionOfHPUnitInInBetweenSeasons() {
-			addProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_IN_BETWEEN_SEASONS);
+			reqInformProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_IN_BETWEEN_SEASONS);
 			return this;
 		}
 		/**
@@ -4577,20 +4586,19 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRatedPowerConsumptionOfHPUnitInSummertime() {
-			addProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_SUMMERTIME);
+			reqInformProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_SUMMERTIME);
 			return this;
 		}
 	}
 
 	public static class Proxy extends ElectricWaterHeater {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -4615,7 +4623,7 @@ Byte<br>
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -4623,7 +4631,8 @@ Byte<br>
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -4631,7 +4640,8 @@ Byte<br>
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -4639,7 +4649,8 @@ Byte<br>
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

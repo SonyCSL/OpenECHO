@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.housingfacilities;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -49,13 +50,6 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		addGetProperty(EPC_OPERATION_STATUS);
 		addSetProperty(EPC_HEATER_SETTING_OF_TOILET_SEAT);
 		addGetProperty(EPC_HEATER_SETTING_OF_TOILET_SEAT);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewElectricToiletSeat(this);
 	}
 	
 	@Override
@@ -1135,27 +1129,36 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -1861,8 +1864,10 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -1927,7 +1932,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetTemperatureLevelOfToiletSeat(byte[] edt) {
-			addProperty(EPC_TEMPERATURE_LEVEL_OF_TOILET_SEAT, edt);
+			reqSetProperty(EPC_TEMPERATURE_LEVEL_OF_TOILET_SEAT, edt);
 			return this;
 		}
 		/**
@@ -1953,7 +1958,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - mandatory<br>
 		 */
 		public Setter reqSetHeaterSettingOfToiletSeat(byte[] edt) {
-			addProperty(EPC_HEATER_SETTING_OF_TOILET_SEAT, edt);
+			reqSetProperty(EPC_HEATER_SETTING_OF_TOILET_SEAT, edt);
 			return this;
 		}
 		/**
@@ -1980,7 +1985,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetTemporalHaltSettingOfToiletSeat(byte[] edt) {
-			addProperty(EPC_TEMPORAL_HALT_SETTING_OF_TOILET_SEAT, edt);
+			reqSetProperty(EPC_TEMPORAL_HALT_SETTING_OF_TOILET_SEAT, edt);
 			return this;
 		}
 		/**
@@ -2008,7 +2013,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetTemporalHaltStartTimeOfToiletSeat(byte[] edt) {
-			addProperty(EPC_TEMPORAL_HALT_START_TIME_OF_TOILET_SEAT, edt);
+			reqSetProperty(EPC_TEMPORAL_HALT_START_TIME_OF_TOILET_SEAT, edt);
 			return this;
 		}
 		/**
@@ -2036,7 +2041,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetTemporalHaltTimeDurationOfToiletSeat(byte[] edt) {
-			addProperty(EPC_TEMPORAL_HALT_TIME_DURATION_OF_TOILET_SEAT, edt);
+			reqSetProperty(EPC_TEMPORAL_HALT_TIME_DURATION_OF_TOILET_SEAT, edt);
 			return this;
 		}
 		/**
@@ -2062,7 +2067,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetTemperatureLevelSettingOfRoomHeating(byte[] edt) {
-			addProperty(EPC_TEMPERATURE_LEVEL_SETTING_OF_ROOM_HEATING, edt);
+			reqSetProperty(EPC_TEMPERATURE_LEVEL_SETTING_OF_ROOM_HEATING, edt);
 			return this;
 		}
 		/**
@@ -2089,7 +2094,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetRoomHeatingSetting(byte[] edt) {
-			addProperty(EPC_ROOM_HEATING_SETTING, edt);
+			reqSetProperty(EPC_ROOM_HEATING_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2116,7 +2121,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetStartTimeOfRoomHeating(byte[] edt) {
-			addProperty(EPC_START_TIME_OF_ROOM_HEATING, edt);
+			reqSetProperty(EPC_START_TIME_OF_ROOM_HEATING, edt);
 			return this;
 		}
 		/**
@@ -2143,7 +2148,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetDurationTimeOfRoomHreating(byte[] edt) {
-			addProperty(EPC_DURATION_TIME_OF_ROOM_HREATING, edt);
+			reqSetProperty(EPC_DURATION_TIME_OF_ROOM_HREATING, edt);
 			return this;
 		}
 		/**
@@ -2170,7 +2175,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetSpecialOperationModeSetting(byte[] edt) {
-			addProperty(EPC_SPECIAL_OPERATION_MODE_SETTING, edt);
+			reqSetProperty(EPC_SPECIAL_OPERATION_MODE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2197,7 +2202,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetHumanDetectionStatus(byte[] edt) {
-			addProperty(EPC_HUMAN_DETECTION_STATUS, edt);
+			reqSetProperty(EPC_HUMAN_DETECTION_STATUS, edt);
 			return this;
 		}
 		/**
@@ -2224,14 +2229,16 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetSeatingDetectionStatus(byte[] edt) {
-			addProperty(EPC_SEATING_DETECTION_STATUS, edt);
+			reqSetProperty(EPC_SEATING_DETECTION_STATUS, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -2360,7 +2367,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetTemperatureLevelOfToiletSeat() {
-			addProperty(EPC_TEMPERATURE_LEVEL_OF_TOILET_SEAT);
+			reqGetProperty(EPC_TEMPERATURE_LEVEL_OF_TOILET_SEAT);
 			return this;
 		}
 		/**
@@ -2386,7 +2393,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetHeaterSettingOfToiletSeat() {
-			addProperty(EPC_HEATER_SETTING_OF_TOILET_SEAT);
+			reqGetProperty(EPC_HEATER_SETTING_OF_TOILET_SEAT);
 			return this;
 		}
 		/**
@@ -2413,7 +2420,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetTemporalHaltSettingOfToiletSeat() {
-			addProperty(EPC_TEMPORAL_HALT_SETTING_OF_TOILET_SEAT);
+			reqGetProperty(EPC_TEMPORAL_HALT_SETTING_OF_TOILET_SEAT);
 			return this;
 		}
 		/**
@@ -2441,7 +2448,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetTemporalHaltStartTimeOfToiletSeat() {
-			addProperty(EPC_TEMPORAL_HALT_START_TIME_OF_TOILET_SEAT);
+			reqGetProperty(EPC_TEMPORAL_HALT_START_TIME_OF_TOILET_SEAT);
 			return this;
 		}
 		/**
@@ -2469,7 +2476,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetTemporalHaltTimeDurationOfToiletSeat() {
-			addProperty(EPC_TEMPORAL_HALT_TIME_DURATION_OF_TOILET_SEAT);
+			reqGetProperty(EPC_TEMPORAL_HALT_TIME_DURATION_OF_TOILET_SEAT);
 			return this;
 		}
 		/**
@@ -2495,7 +2502,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetTemperatureLevelSettingOfRoomHeating() {
-			addProperty(EPC_TEMPERATURE_LEVEL_SETTING_OF_ROOM_HEATING);
+			reqGetProperty(EPC_TEMPERATURE_LEVEL_SETTING_OF_ROOM_HEATING);
 			return this;
 		}
 		/**
@@ -2522,7 +2529,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRoomHeatingSetting() {
-			addProperty(EPC_ROOM_HEATING_SETTING);
+			reqGetProperty(EPC_ROOM_HEATING_SETTING);
 			return this;
 		}
 		/**
@@ -2548,7 +2555,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRoomHeatingStatus() {
-			addProperty(EPC_ROOM_HEATING_STATUS);
+			reqGetProperty(EPC_ROOM_HEATING_STATUS);
 			return this;
 		}
 		/**
@@ -2575,7 +2582,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetStartTimeOfRoomHeating() {
-			addProperty(EPC_START_TIME_OF_ROOM_HEATING);
+			reqGetProperty(EPC_START_TIME_OF_ROOM_HEATING);
 			return this;
 		}
 		/**
@@ -2602,7 +2609,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetDurationTimeOfRoomHreating() {
-			addProperty(EPC_DURATION_TIME_OF_ROOM_HREATING);
+			reqGetProperty(EPC_DURATION_TIME_OF_ROOM_HREATING);
 			return this;
 		}
 		/**
@@ -2629,7 +2636,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSpecialOperationModeSetting() {
-			addProperty(EPC_SPECIAL_OPERATION_MODE_SETTING);
+			reqGetProperty(EPC_SPECIAL_OPERATION_MODE_SETTING);
 			return this;
 		}
 		/**
@@ -2656,7 +2663,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetHumanDetectionStatus() {
-			addProperty(EPC_HUMAN_DETECTION_STATUS);
+			reqGetProperty(EPC_HUMAN_DETECTION_STATUS);
 			return this;
 		}
 		/**
@@ -2683,14 +2690,16 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSeatingDetectionStatus() {
-			addProperty(EPC_SEATING_DETECTION_STATUS);
+			reqGetProperty(EPC_SEATING_DETECTION_STATUS);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -2818,7 +2827,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformTemperatureLevelOfToiletSeat() {
-			addProperty(EPC_TEMPERATURE_LEVEL_OF_TOILET_SEAT);
+			reqInformProperty(EPC_TEMPERATURE_LEVEL_OF_TOILET_SEAT);
 			return this;
 		}
 		/**
@@ -2844,7 +2853,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformHeaterSettingOfToiletSeat() {
-			addProperty(EPC_HEATER_SETTING_OF_TOILET_SEAT);
+			reqInformProperty(EPC_HEATER_SETTING_OF_TOILET_SEAT);
 			return this;
 		}
 		/**
@@ -2871,7 +2880,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformTemporalHaltSettingOfToiletSeat() {
-			addProperty(EPC_TEMPORAL_HALT_SETTING_OF_TOILET_SEAT);
+			reqInformProperty(EPC_TEMPORAL_HALT_SETTING_OF_TOILET_SEAT);
 			return this;
 		}
 		/**
@@ -2899,7 +2908,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformTemporalHaltStartTimeOfToiletSeat() {
-			addProperty(EPC_TEMPORAL_HALT_START_TIME_OF_TOILET_SEAT);
+			reqInformProperty(EPC_TEMPORAL_HALT_START_TIME_OF_TOILET_SEAT);
 			return this;
 		}
 		/**
@@ -2927,7 +2936,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformTemporalHaltTimeDurationOfToiletSeat() {
-			addProperty(EPC_TEMPORAL_HALT_TIME_DURATION_OF_TOILET_SEAT);
+			reqInformProperty(EPC_TEMPORAL_HALT_TIME_DURATION_OF_TOILET_SEAT);
 			return this;
 		}
 		/**
@@ -2953,7 +2962,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformTemperatureLevelSettingOfRoomHeating() {
-			addProperty(EPC_TEMPERATURE_LEVEL_SETTING_OF_ROOM_HEATING);
+			reqInformProperty(EPC_TEMPERATURE_LEVEL_SETTING_OF_ROOM_HEATING);
 			return this;
 		}
 		/**
@@ -2980,7 +2989,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRoomHeatingSetting() {
-			addProperty(EPC_ROOM_HEATING_SETTING);
+			reqInformProperty(EPC_ROOM_HEATING_SETTING);
 			return this;
 		}
 		/**
@@ -3006,7 +3015,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRoomHeatingStatus() {
-			addProperty(EPC_ROOM_HEATING_STATUS);
+			reqInformProperty(EPC_ROOM_HEATING_STATUS);
 			return this;
 		}
 		/**
@@ -3033,7 +3042,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformStartTimeOfRoomHeating() {
-			addProperty(EPC_START_TIME_OF_ROOM_HEATING);
+			reqInformProperty(EPC_START_TIME_OF_ROOM_HEATING);
 			return this;
 		}
 		/**
@@ -3060,7 +3069,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformDurationTimeOfRoomHreating() {
-			addProperty(EPC_DURATION_TIME_OF_ROOM_HREATING);
+			reqInformProperty(EPC_DURATION_TIME_OF_ROOM_HREATING);
 			return this;
 		}
 		/**
@@ -3087,7 +3096,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSpecialOperationModeSetting() {
-			addProperty(EPC_SPECIAL_OPERATION_MODE_SETTING);
+			reqInformProperty(EPC_SPECIAL_OPERATION_MODE_SETTING);
 			return this;
 		}
 		/**
@@ -3114,7 +3123,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformHumanDetectionStatus() {
-			addProperty(EPC_HUMAN_DETECTION_STATUS);
+			reqInformProperty(EPC_HUMAN_DETECTION_STATUS);
 			return this;
 		}
 		/**
@@ -3141,20 +3150,19 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSeatingDetectionStatus() {
-			addProperty(EPC_SEATING_DETECTION_STATUS);
+			reqInformProperty(EPC_SEATING_DETECTION_STATUS);
 			return this;
 		}
 	}
 
 	public static class Proxy extends ElectricToiletSeat {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -3179,7 +3187,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -3187,7 +3195,8 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -3195,7 +3204,8 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -3203,7 +3213,8 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

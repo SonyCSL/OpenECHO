@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.airconditioner;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -47,13 +48,6 @@ public abstract class ElectricHeater extends DeviceObject {
 		addGetProperty(EPC_OPERATION_STATUS);
 		addSetProperty(EPC_TEMPERATURE_SETTING);
 		addGetProperty(EPC_TEMPERATURE_SETTING);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewElectricHeater(this);
 	}
 	
 	@Override
@@ -965,27 +959,36 @@ public abstract class ElectricHeater extends DeviceObject {
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -1565,8 +1568,10 @@ public abstract class ElectricHeater extends DeviceObject {
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -1631,7 +1636,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetAutomaticTemperatureControlSetting(byte[] edt) {
-			addProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING, edt);
+			reqSetProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1657,7 +1662,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - mandatory<br>
 		 */
 		public Setter reqSetTemperatureSetting(byte[] edt) {
-			addProperty(EPC_TEMPERATURE_SETTING, edt);
+			reqSetProperty(EPC_TEMPERATURE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1685,7 +1690,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetAirFlowRateSetting(byte[] edt) {
-			addProperty(EPC_AIR_FLOW_RATE_SETTING, edt);
+			reqSetProperty(EPC_AIR_FLOW_RATE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1714,7 +1719,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerBasedReservationSetting(byte[] edt) {
-			addProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING, edt);
+			reqSetProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1742,7 +1747,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerSettingTime(byte[] edt) {
-			addProperty(EPC_ON_TIMER_SETTING_TIME, edt);
+			reqSetProperty(EPC_ON_TIMER_SETTING_TIME, edt);
 			return this;
 		}
 		/**
@@ -1770,7 +1775,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerSettingRelativeTime(byte[] edt) {
-			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME, edt);
+			reqSetProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME, edt);
 			return this;
 		}
 		/**
@@ -1799,7 +1804,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOffTimerBasedReservationSetting(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING, edt);
+			reqSetProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1826,7 +1831,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOffTimerSettingTime(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_SETTING_TIME, edt);
+			reqSetProperty(EPC_OFF_TIMER_SETTING_TIME, edt);
 			return this;
 		}
 		/**
@@ -1852,14 +1857,16 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetSetValueOfOffTimerRelativeTime(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME, edt);
+			reqSetProperty(EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -1988,7 +1995,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetAutomaticTemperatureControlSetting() {
-			addProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING);
+			reqGetProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING);
 			return this;
 		}
 		/**
@@ -2014,7 +2021,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetTemperatureSetting() {
-			addProperty(EPC_TEMPERATURE_SETTING);
+			reqGetProperty(EPC_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
@@ -2040,7 +2047,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredRoomTemperature() {
-			addProperty(EPC_MEASURED_ROOM_TEMPERATURE);
+			reqGetProperty(EPC_MEASURED_ROOM_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -2066,7 +2073,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRemotelySetTemperature() {
-			addProperty(EPC_REMOTELY_SET_TEMPERATURE);
+			reqGetProperty(EPC_REMOTELY_SET_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -2094,7 +2101,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetAirFlowRateSetting() {
-			addProperty(EPC_AIR_FLOW_RATE_SETTING);
+			reqGetProperty(EPC_AIR_FLOW_RATE_SETTING);
 			return this;
 		}
 		/**
@@ -2123,7 +2130,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerBasedReservationSetting() {
-			addProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING);
+			reqGetProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -2151,7 +2158,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerSettingTime() {
-			addProperty(EPC_ON_TIMER_SETTING_TIME);
+			reqGetProperty(EPC_ON_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -2179,7 +2186,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerSettingRelativeTime() {
-			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
+			reqGetProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 		/**
@@ -2208,7 +2215,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOffTimerBasedReservationSetting() {
-			addProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING);
+			reqGetProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -2235,7 +2242,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOffTimerSettingTime() {
-			addProperty(EPC_OFF_TIMER_SETTING_TIME);
+			reqGetProperty(EPC_OFF_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -2261,14 +2268,16 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSetValueOfOffTimerRelativeTime() {
-			addProperty(EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME);
+			reqGetProperty(EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -2396,7 +2405,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformAutomaticTemperatureControlSetting() {
-			addProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING);
+			reqInformProperty(EPC_AUTOMATIC_TEMPERATURE_CONTROL_SETTING);
 			return this;
 		}
 		/**
@@ -2422,7 +2431,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformTemperatureSetting() {
-			addProperty(EPC_TEMPERATURE_SETTING);
+			reqInformProperty(EPC_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
@@ -2448,7 +2457,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredRoomTemperature() {
-			addProperty(EPC_MEASURED_ROOM_TEMPERATURE);
+			reqInformProperty(EPC_MEASURED_ROOM_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -2474,7 +2483,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRemotelySetTemperature() {
-			addProperty(EPC_REMOTELY_SET_TEMPERATURE);
+			reqInformProperty(EPC_REMOTELY_SET_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -2502,7 +2511,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformAirFlowRateSetting() {
-			addProperty(EPC_AIR_FLOW_RATE_SETTING);
+			reqInformProperty(EPC_AIR_FLOW_RATE_SETTING);
 			return this;
 		}
 		/**
@@ -2531,7 +2540,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOnTimerBasedReservationSetting() {
-			addProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING);
+			reqInformProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -2559,7 +2568,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOnTimerSettingTime() {
-			addProperty(EPC_ON_TIMER_SETTING_TIME);
+			reqInformProperty(EPC_ON_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -2587,7 +2596,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOnTimerSettingRelativeTime() {
-			addProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
+			reqInformProperty(EPC_ON_TIMER_SETTING_RELATIVE_TIME);
 			return this;
 		}
 		/**
@@ -2616,7 +2625,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOffTimerBasedReservationSetting() {
-			addProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING);
+			reqInformProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -2643,7 +2652,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOffTimerSettingTime() {
-			addProperty(EPC_OFF_TIMER_SETTING_TIME);
+			reqInformProperty(EPC_OFF_TIMER_SETTING_TIME);
 			return this;
 		}
 		/**
@@ -2669,20 +2678,19 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSetValueOfOffTimerRelativeTime() {
-			addProperty(EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME);
+			reqInformProperty(EPC_SET_VALUE_OF_OFF_TIMER_RELATIVE_TIME);
 			return this;
 		}
 	}
 
 	public static class Proxy extends ElectricHeater {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -2707,7 +2715,7 @@ public abstract class ElectricHeater extends DeviceObject {
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -2715,7 +2723,8 @@ public abstract class ElectricHeater extends DeviceObject {
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -2723,7 +2732,8 @@ public abstract class ElectricHeater extends DeviceObject {
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -2731,7 +2741,8 @@ public abstract class ElectricHeater extends DeviceObject {
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.airconditioner;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -47,13 +48,6 @@ public abstract class Humidifier extends DeviceObject {
 		addGetProperty(EPC_HUMIDIFYING_SETTING1);
 		addSetProperty(EPC_HUMIDIFYING_SETTING2);
 		addGetProperty(EPC_HUMIDIFYING_SETTING2);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewHumidifier(this);
 	}
 	
 	@Override
@@ -763,27 +757,36 @@ x2<br>
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -1214,8 +1217,10 @@ x2<br>
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -1279,7 +1284,7 @@ x2<br>
 		 * Get - mandatory<br>
 		 */
 		public Setter reqSetHumidifyingSetting1(byte[] edt) {
-			addProperty(EPC_HUMIDIFYING_SETTING1, edt);
+			reqSetProperty(EPC_HUMIDIFYING_SETTING1, edt);
 			return this;
 		}
 		/**
@@ -1306,7 +1311,7 @@ x2<br>
 		 * Get - mandatory<br>
 		 */
 		public Setter reqSetHumidifyingSetting2(byte[] edt) {
-			addProperty(EPC_HUMIDIFYING_SETTING2, edt);
+			reqSetProperty(EPC_HUMIDIFYING_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -1332,7 +1337,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetReservationSetOfOffTimer(byte[] edt) {
-			addProperty(EPC_RESERVATION_SET_OF_OFF_TIMER, edt);
+			reqSetProperty(EPC_RESERVATION_SET_OF_OFF_TIMER, edt);
 			return this;
 		}
 		/**
@@ -1359,7 +1364,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetRelativeTimeValueSetOfOffTimer(byte[] edt) {
-			addProperty(EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER, edt);
+			reqSetProperty(EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER, edt);
 			return this;
 		}
 		/**
@@ -1385,7 +1390,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetIonEmissionSetting(byte[] edt) {
-			addProperty(EPC_ION_EMISSION_SETTING, edt);
+			reqSetProperty(EPC_ION_EMISSION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1413,14 +1418,16 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetSpecialOperationModeSetting(byte[] edt) {
-			addProperty(EPC_SPECIAL_OPERATION_MODE_SETTING, edt);
+			reqSetProperty(EPC_SPECIAL_OPERATION_MODE_SETTING, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -1548,7 +1555,7 @@ x2<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetHumidifyingSetting1() {
-			addProperty(EPC_HUMIDIFYING_SETTING1);
+			reqGetProperty(EPC_HUMIDIFYING_SETTING1);
 			return this;
 		}
 		/**
@@ -1575,7 +1582,7 @@ x2<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetHumidifyingSetting2() {
-			addProperty(EPC_HUMIDIFYING_SETTING2);
+			reqGetProperty(EPC_HUMIDIFYING_SETTING2);
 			return this;
 		}
 		/**
@@ -1601,7 +1608,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredValueOfRelativeHumidity() {
-			addProperty(EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY);
+			reqGetProperty(EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY);
 			return this;
 		}
 		/**
@@ -1627,7 +1634,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetReservationSetOfOffTimer() {
-			addProperty(EPC_RESERVATION_SET_OF_OFF_TIMER);
+			reqGetProperty(EPC_RESERVATION_SET_OF_OFF_TIMER);
 			return this;
 		}
 		/**
@@ -1654,7 +1661,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRelativeTimeValueSetOfOffTimer() {
-			addProperty(EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER);
+			reqGetProperty(EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER);
 			return this;
 		}
 		/**
@@ -1680,7 +1687,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetIonEmissionSetting() {
-			addProperty(EPC_ION_EMISSION_SETTING);
+			reqGetProperty(EPC_ION_EMISSION_SETTING);
 			return this;
 		}
 		/**
@@ -1706,7 +1713,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetImplementedIonEmissionMethod() {
-			addProperty(EPC_IMPLEMENTED_ION_EMISSION_METHOD);
+			reqGetProperty(EPC_IMPLEMENTED_ION_EMISSION_METHOD);
 			return this;
 		}
 		/**
@@ -1734,7 +1741,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSpecialOperationModeSetting() {
-			addProperty(EPC_SPECIAL_OPERATION_MODE_SETTING);
+			reqGetProperty(EPC_SPECIAL_OPERATION_MODE_SETTING);
 			return this;
 		}
 		/**
@@ -1761,14 +1768,16 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetWaterAmountLevel() {
-			addProperty(EPC_WATER_AMOUNT_LEVEL);
+			reqGetProperty(EPC_WATER_AMOUNT_LEVEL);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -1895,7 +1904,7 @@ x2<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformHumidifyingSetting1() {
-			addProperty(EPC_HUMIDIFYING_SETTING1);
+			reqInformProperty(EPC_HUMIDIFYING_SETTING1);
 			return this;
 		}
 		/**
@@ -1922,7 +1931,7 @@ x2<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformHumidifyingSetting2() {
-			addProperty(EPC_HUMIDIFYING_SETTING2);
+			reqInformProperty(EPC_HUMIDIFYING_SETTING2);
 			return this;
 		}
 		/**
@@ -1948,7 +1957,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredValueOfRelativeHumidity() {
-			addProperty(EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY);
+			reqInformProperty(EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY);
 			return this;
 		}
 		/**
@@ -1974,7 +1983,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformReservationSetOfOffTimer() {
-			addProperty(EPC_RESERVATION_SET_OF_OFF_TIMER);
+			reqInformProperty(EPC_RESERVATION_SET_OF_OFF_TIMER);
 			return this;
 		}
 		/**
@@ -2001,7 +2010,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRelativeTimeValueSetOfOffTimer() {
-			addProperty(EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER);
+			reqInformProperty(EPC_RELATIVE_TIME_VALUE_SET_OF_OFF_TIMER);
 			return this;
 		}
 		/**
@@ -2027,7 +2036,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformIonEmissionSetting() {
-			addProperty(EPC_ION_EMISSION_SETTING);
+			reqInformProperty(EPC_ION_EMISSION_SETTING);
 			return this;
 		}
 		/**
@@ -2053,7 +2062,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformImplementedIonEmissionMethod() {
-			addProperty(EPC_IMPLEMENTED_ION_EMISSION_METHOD);
+			reqInformProperty(EPC_IMPLEMENTED_ION_EMISSION_METHOD);
 			return this;
 		}
 		/**
@@ -2081,7 +2090,7 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSpecialOperationModeSetting() {
-			addProperty(EPC_SPECIAL_OPERATION_MODE_SETTING);
+			reqInformProperty(EPC_SPECIAL_OPERATION_MODE_SETTING);
 			return this;
 		}
 		/**
@@ -2108,20 +2117,19 @@ x2<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformWaterAmountLevel() {
-			addProperty(EPC_WATER_AMOUNT_LEVEL);
+			reqInformProperty(EPC_WATER_AMOUNT_LEVEL);
 			return this;
 		}
 	}
 
 	public static class Proxy extends Humidifier {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -2152,7 +2160,7 @@ x2<br>
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -2160,7 +2168,8 @@ x2<br>
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -2168,7 +2177,8 @@ x2<br>
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -2176,7 +2186,8 @@ x2<br>
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

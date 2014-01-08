@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.sensor;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -40,13 +41,6 @@ public abstract class ElectricEnergySensor extends DeviceObject {
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewElectricEnergySensor(this);
 	}
 	
 	@Override
@@ -404,27 +398,36 @@ Wh<br>
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -591,8 +594,10 @@ Wh<br>
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -636,8 +641,10 @@ Wh<br>
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -766,7 +773,7 @@ Wh<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetIntegralElectricEnergy() {
-			addProperty(EPC_INTEGRAL_ELECTRIC_ENERGY);
+			reqGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -793,7 +800,7 @@ Wh<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSmallCapacitySensorInstantaneousElectricEnergy() {
-			addProperty(EPC_SMALL_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY);
+			reqGetProperty(EPC_SMALL_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -820,7 +827,7 @@ Wh<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetLargeCapacitySensorInstantaneousElectricEnergy() {
-			addProperty(EPC_LARGE_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY);
+			reqGetProperty(EPC_LARGE_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -848,7 +855,7 @@ Wh<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetIntegralElectricEnergyMeasurementLog() {
-			addProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG);
+			reqGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG);
 			return this;
 		}
 		/**
@@ -874,14 +881,16 @@ Wh<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetEffectiveVoltageValue() {
-			addProperty(EPC_EFFECTIVE_VOLTAGE_VALUE);
+			reqGetProperty(EPC_EFFECTIVE_VOLTAGE_VALUE);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -1009,7 +1018,7 @@ Wh<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformIntegralElectricEnergy() {
-			addProperty(EPC_INTEGRAL_ELECTRIC_ENERGY);
+			reqInformProperty(EPC_INTEGRAL_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -1036,7 +1045,7 @@ Wh<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSmallCapacitySensorInstantaneousElectricEnergy() {
-			addProperty(EPC_SMALL_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY);
+			reqInformProperty(EPC_SMALL_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -1063,7 +1072,7 @@ Wh<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformLargeCapacitySensorInstantaneousElectricEnergy() {
-			addProperty(EPC_LARGE_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY);
+			reqInformProperty(EPC_LARGE_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -1091,7 +1100,7 @@ Wh<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformIntegralElectricEnergyMeasurementLog() {
-			addProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG);
+			reqInformProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG);
 			return this;
 		}
 		/**
@@ -1117,20 +1126,19 @@ Wh<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformEffectiveVoltageValue() {
-			addProperty(EPC_EFFECTIVE_VOLTAGE_VALUE);
+			reqInformProperty(EPC_EFFECTIVE_VOLTAGE_VALUE);
 			return this;
 		}
 	}
 
 	public static class Proxy extends ElectricEnergySensor {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -1153,7 +1161,7 @@ Wh<br>
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -1161,7 +1169,8 @@ Wh<br>
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -1169,7 +1178,8 @@ Wh<br>
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -1177,7 +1187,8 @@ Wh<br>
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

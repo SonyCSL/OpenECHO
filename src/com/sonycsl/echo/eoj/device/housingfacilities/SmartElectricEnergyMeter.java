@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.housingfacilities;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -53,13 +54,6 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 		addGetProperty(EPC_METER_TYPE_CERTIFICATION_NUMBER_TYPE_APPROVAL_NUMBER_IN_JAPAN);
 		addGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
 		addGetProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewSmartElectricEnergyMeter(this);
 	}
 	
 	@Override
@@ -1265,27 +1259,36 @@ V<br>
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -1946,8 +1949,10 @@ V<br>
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -2017,7 +2022,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetElectricEnergyMeterClassification(byte[] edt) {
-			addProperty(EPC_ELECTRIC_ENERGY_METER_CLASSIFICATION, edt);
+			reqSetProperty(EPC_ELECTRIC_ENERGY_METER_CLASSIFICATION, edt);
 			return this;
 		}
 		/**
@@ -2047,7 +2052,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOwnerClassification(byte[] edt) {
-			addProperty(EPC_OWNER_CLASSIFICATION, edt);
+			reqSetProperty(EPC_OWNER_CLASSIFICATION, edt);
 			return this;
 		}
 		/**
@@ -2076,7 +2081,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetVerificationExpirationDate(byte[] edt) {
-			addProperty(EPC_VERIFICATION_EXPIRATION_DATE, edt);
+			reqSetProperty(EPC_VERIFICATION_EXPIRATION_DATE, edt);
 			return this;
 		}
 		/**
@@ -2108,14 +2113,16 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(byte[] edt) {
-			addProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED, edt);
+			reqSetProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -2249,7 +2256,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetElectricEnergyMeterClassification() {
-			addProperty(EPC_ELECTRIC_ENERGY_METER_CLASSIFICATION);
+			reqGetProperty(EPC_ELECTRIC_ENERGY_METER_CLASSIFICATION);
 			return this;
 		}
 		/**
@@ -2279,7 +2286,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOwnerClassification() {
-			addProperty(EPC_OWNER_CLASSIFICATION);
+			reqGetProperty(EPC_OWNER_CLASSIFICATION);
 			return this;
 		}
 		/**
@@ -2313,7 +2320,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetConfigurationInformationOfPhasesAndWiresOfTheSystems() {
-			addProperty(EPC_CONFIGURATION_INFORMATION_OF_PHASES_AND_WIRES_OF_THE_SYSTEMS);
+			reqGetProperty(EPC_CONFIGURATION_INFORMATION_OF_PHASES_AND_WIRES_OF_THE_SYSTEMS);
 			return this;
 		}
 		/**
@@ -2341,7 +2348,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetCompositeTransformationRatio() {
-			addProperty(EPC_COMPOSITE_TRANSFORMATION_RATIO);
+			reqGetProperty(EPC_COMPOSITE_TRANSFORMATION_RATIO);
 			return this;
 		}
 		/**
@@ -2371,7 +2378,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMultiplyingFactorForCompositeTransformationRatio() {
-			addProperty(EPC_MULTIPLYING_FACTOR_FOR_COMPOSITE_TRANSFORMATION_RATIO);
+			reqGetProperty(EPC_MULTIPLYING_FACTOR_FOR_COMPOSITE_TRANSFORMATION_RATIO);
 			return this;
 		}
 		/**
@@ -2403,7 +2410,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetMeterTypeCertificationNumberTypeApprovalNumberInJapan() {
-			addProperty(EPC_METER_TYPE_CERTIFICATION_NUMBER_TYPE_APPROVAL_NUMBER_IN_JAPAN);
+			reqGetProperty(EPC_METER_TYPE_CERTIFICATION_NUMBER_TYPE_APPROVAL_NUMBER_IN_JAPAN);
 			return this;
 		}
 		/**
@@ -2432,7 +2439,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetVerificationExpirationDate() {
-			addProperty(EPC_VERIFICATION_EXPIRATION_DATE);
+			reqGetProperty(EPC_VERIFICATION_EXPIRATION_DATE);
 			return this;
 		}
 		/**
@@ -2460,7 +2467,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetMeasuredCumulativeAmountOfElectricEnergyNormalDirection() {
-			addProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
+			reqGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
 			return this;
 		}
 		/**
@@ -2495,7 +2502,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetUnitForCumulativeAmountsOfElectricEnergyNormalAndReverseDirections() {
-			addProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS);
+			reqGetProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS);
 			return this;
 		}
 		/**
@@ -2529,7 +2536,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection() {
-			addProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
+			reqGetProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
 			return this;
 		}
 		/**
@@ -2557,7 +2564,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredCumulativeAmountOfElectricEnergyReverseDirection() {
-			addProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
+			reqGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
 			return this;
 		}
 		/**
@@ -2594,7 +2601,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection() {
-			addProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
+			reqGetProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
 			return this;
 		}
 		/**
@@ -2626,7 +2633,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved() {
-			addProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED);
+			reqGetProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED);
 			return this;
 		}
 		/**
@@ -2654,7 +2661,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredInstantaneousAmountOfElectricEnergy() {
-			addProperty(EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRIC_ENERGY);
+			reqGetProperty(EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -2687,7 +2694,7 @@ A<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredInstantaneousCurrents() {
-			addProperty(EPC_MEASURED_INSTANTANEOUS_CURRENTS);
+			reqGetProperty(EPC_MEASURED_INSTANTANEOUS_CURRENTS);
 			return this;
 		}
 		/**
@@ -2723,14 +2730,16 @@ V<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredInstantaneousVoltages() {
-			addProperty(EPC_MEASURED_INSTANTANEOUS_VOLTAGES);
+			reqGetProperty(EPC_MEASURED_INSTANTANEOUS_VOLTAGES);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -2863,7 +2872,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformElectricEnergyMeterClassification() {
-			addProperty(EPC_ELECTRIC_ENERGY_METER_CLASSIFICATION);
+			reqInformProperty(EPC_ELECTRIC_ENERGY_METER_CLASSIFICATION);
 			return this;
 		}
 		/**
@@ -2893,7 +2902,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOwnerClassification() {
-			addProperty(EPC_OWNER_CLASSIFICATION);
+			reqInformProperty(EPC_OWNER_CLASSIFICATION);
 			return this;
 		}
 		/**
@@ -2927,7 +2936,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformConfigurationInformationOfPhasesAndWiresOfTheSystems() {
-			addProperty(EPC_CONFIGURATION_INFORMATION_OF_PHASES_AND_WIRES_OF_THE_SYSTEMS);
+			reqInformProperty(EPC_CONFIGURATION_INFORMATION_OF_PHASES_AND_WIRES_OF_THE_SYSTEMS);
 			return this;
 		}
 		/**
@@ -2955,7 +2964,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformCompositeTransformationRatio() {
-			addProperty(EPC_COMPOSITE_TRANSFORMATION_RATIO);
+			reqInformProperty(EPC_COMPOSITE_TRANSFORMATION_RATIO);
 			return this;
 		}
 		/**
@@ -2985,7 +2994,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMultiplyingFactorForCompositeTransformationRatio() {
-			addProperty(EPC_MULTIPLYING_FACTOR_FOR_COMPOSITE_TRANSFORMATION_RATIO);
+			reqInformProperty(EPC_MULTIPLYING_FACTOR_FOR_COMPOSITE_TRANSFORMATION_RATIO);
 			return this;
 		}
 		/**
@@ -3017,7 +3026,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformMeterTypeCertificationNumberTypeApprovalNumberInJapan() {
-			addProperty(EPC_METER_TYPE_CERTIFICATION_NUMBER_TYPE_APPROVAL_NUMBER_IN_JAPAN);
+			reqInformProperty(EPC_METER_TYPE_CERTIFICATION_NUMBER_TYPE_APPROVAL_NUMBER_IN_JAPAN);
 			return this;
 		}
 		/**
@@ -3046,7 +3055,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformVerificationExpirationDate() {
-			addProperty(EPC_VERIFICATION_EXPIRATION_DATE);
+			reqInformProperty(EPC_VERIFICATION_EXPIRATION_DATE);
 			return this;
 		}
 		/**
@@ -3074,7 +3083,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformMeasuredCumulativeAmountOfElectricEnergyNormalDirection() {
-			addProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
+			reqInformProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
 			return this;
 		}
 		/**
@@ -3109,7 +3118,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformUnitForCumulativeAmountsOfElectricEnergyNormalAndReverseDirections() {
-			addProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS);
+			reqInformProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS);
 			return this;
 		}
 		/**
@@ -3143,7 +3152,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection() {
-			addProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
+			reqInformProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
 			return this;
 		}
 		/**
@@ -3171,7 +3180,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredCumulativeAmountOfElectricEnergyReverseDirection() {
-			addProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
+			reqInformProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
 			return this;
 		}
 		/**
@@ -3208,7 +3217,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection() {
-			addProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
+			reqInformProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
 			return this;
 		}
 		/**
@@ -3240,7 +3249,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved() {
-			addProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED);
+			reqInformProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED);
 			return this;
 		}
 		/**
@@ -3268,7 +3277,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredInstantaneousAmountOfElectricEnergy() {
-			addProperty(EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRIC_ENERGY);
+			reqInformProperty(EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -3301,7 +3310,7 @@ A<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredInstantaneousCurrents() {
-			addProperty(EPC_MEASURED_INSTANTANEOUS_CURRENTS);
+			reqInformProperty(EPC_MEASURED_INSTANTANEOUS_CURRENTS);
 			return this;
 		}
 		/**
@@ -3337,20 +3346,19 @@ V<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredInstantaneousVoltages() {
-			addProperty(EPC_MEASURED_INSTANTANEOUS_VOLTAGES);
+			reqInformProperty(EPC_MEASURED_INSTANTANEOUS_VOLTAGES);
 			return this;
 		}
 	}
 
 	public static class Proxy extends SmartElectricEnergyMeter {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -3377,7 +3385,7 @@ V<br>
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -3385,7 +3393,8 @@ V<br>
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -3393,7 +3402,8 @@ V<br>
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -3401,7 +3411,8 @@ V<br>
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

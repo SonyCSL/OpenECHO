@@ -37,89 +37,73 @@ import com.sonycsl.echo.eoj.device.housingfacilities.*;
 import com.sonycsl.echo.eoj.device.managementoperation.*;
 import com.sonycsl.echo.eoj.device.sensor.*;
 import com.sonycsl.echo.eoj.profile.*;
+import com.sonycsl.echo.eoj.profile.NodeProfile.Proxy;
 
 
 public final class EchoNode {
 	private static HashMap<Short, DeviceProxyCreator> mProxyCreators = new HashMap<Short, DeviceProxyCreator>();
 	
 	private NodeProfile mNodeProfile;
-	private Map<Short, List<DeviceObject>> mDeviceGroups;
-	private InetAddress mAddress;
+	private List<DeviceObject> mDevices = new ArrayList<DeviceObject>();
+	private String mAddress;
 	
-	private long mUpdatedTime = 0;
-	
-	private boolean mProxy = true;
-	
-	private boolean mInitialized = false;
-	
-	//private boolean mActive = true;
-	
-	
-	/**
-	 * 自ipアドレスを取得
-	 * @throws UnknownHostException 
-	 * @throws SocketException 
-	 * @throws IOException 
-	 */
-	public EchoNode(NodeProfile profile, DeviceObject[] devices) throws IOException {
-		initialize(EchoUtils.getLocalIpAddress(), profile, devices, false);
-		
-	}
-	
-	public EchoNode(InetAddress address, List<Integer> echoObjectCodeList) {
-		ArrayList<DeviceObject> list = new ArrayList<DeviceObject>();
-		if(echoObjectCodeList != null) {
-			for(int code : echoObjectCodeList) {
-				short echoClassCode = (short)((code >> 8) & 0xFFFF);
-				byte instanceCode = (byte)(code & 0xFF);
-				DeviceObject device = createDeviceProxy(echoClassCode, instanceCode);
-				if(device != null) list.add(device);
-			}
+	public EchoNode(NodeProfile nodeProfile, DeviceObject[] devices) {
+		// selfNode
+		mAddress = EchoSocket.SELF_ADDRESS;
+		mNodeProfile = nodeProfile;
+		for(DeviceObject d : devices) {
+			addDevice(d);
 		}
-		initialize(address, new NodeProfile.Proxy(), list.toArray(new DeviceObject[]{}), true);
-	}
-
-	public EchoNode(InetAddress address, DeviceObject[] devices) {
-		initialize(address, new NodeProfile.Proxy(), devices, true);
+		
 	}
 	
-	private void initialize(InetAddress address, NodeProfile profile, DeviceObject[] devices, boolean proxy) {
-		if(mInitialized) return;
-		
+	public EchoNode(String address) {
+		// otherNode
 		mAddress = address;
-		mNodeProfile = profile;
-		
-		mDeviceGroups = new HashMap<Short, List<DeviceObject>>();
-		
-		mProxy = proxy;
-		
-		addDevices(devices);
-		
-		Echo.addNode(this);
-		
-		mInitialized = true;
-		
-		mNodeProfile.initialize(this);
-		if(devices == null) return;
-		for(DeviceObject dev : devices) {
-			dev.initialize(this);
+		mNodeProfile = new NodeProfile.Proxy();
+	}
+	
+	public boolean isSelfNode() {
+		return EchoSocket.SELF_ADDRESS.equals(mAddress);
+	}
+	
+	public boolean isProxy() {
+		return !(EchoSocket.SELF_ADDRESS.equals(mAddress));
+	}
+	
+	public InetAddress getAddress() {
+		InetAddress address = null;
+		try {
+			address = InetAddress.getByName(mAddress);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		return address;
+	}
+	
+	public String getAddressStr() {
+		return mAddress;
 	}
 	
 	public NodeProfile getNodeProfile() {
 		return mNodeProfile;
 	}
 	
-	public void addDevices(DeviceObject[] devices) {
-		if(devices == null) return;
-		for(DeviceObject dev : devices) {
-			addDevice(dev);
-		}
+	public DeviceObject addOtherDevice(short echoClassCode, byte echoInstanceCode) {
+		DeviceObject device = newOtherDevice(echoClassCode, echoInstanceCode);
+		addDevice(device);
+		return device;
 	}
 	
 	public void addDevice(DeviceObject device) {
 		if(device == null) return;
 		if(device.getNode() == this) return;
+		
+		if(isSelfNode()) {
+			device.allocateSelfDeviceInstanceCode();
+		}
+		/*
 		short code = device.getEchoClassCode();
 		if(mDeviceGroups.containsKey(code)) {
 			List<DeviceObject> deviceList = mDeviceGroups.get(code);
@@ -132,29 +116,43 @@ public final class EchoNode {
 		}
 		if(mInitialized) {
 			device.initialize(this);
-		}
-	}
-	
-	public void addDevice(short echoClassCode, byte instanceCode) {
-		if(containsInstance(echoClassCode, instanceCode)) return;
-		DeviceObject device = createDeviceProxy(echoClassCode, instanceCode);
-		if(device != null) {
-			addDevice(device);
-		}
+		}*/
+		mDevices.add(device);
 	}
 	
 	
 	public void removeDevice(DeviceObject device) {
 		if(device == null) return;
 		if(device.getNode() != this) return;
-		List<DeviceObject> list = mDeviceGroups.get(device.getEchoClassCode());
-		if(list == null) return;
-		if(!list.contains(device)) return;
-		
-		list.set(list.indexOf(device), null);
-		//list.remove(device);
-		
-		device.clear();
+		mDevices.remove(device);
+	}
+	
+	public boolean containsDevice(short echoClassCode, byte echoInstanceCode) {
+		for(DeviceObject d : mDevices) {
+			if(d.getEchoClassCode() == echoClassCode
+					&& d.getInstanceCode() == echoInstanceCode) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean containsDevice(DeviceObject device) {
+		if(device == null) return false;
+		if(device.getNode() != this) return false;
+		return mDevices.contains(device);
+	}
+
+	public EchoObject getInstance(byte classGroupCode, byte classCode, byte instanceCode) {
+		return getInstance(EchoUtils.getEchoClassCode(classGroupCode, classCode), instanceCode);
+	}
+	
+	public EchoObject getInstance(short echoClassCode, byte echoInstanceCode) {
+		if(mNodeProfile.getEchoClassCode() == echoClassCode
+				&& mNodeProfile.getInstanceCode() == echoInstanceCode) {
+			return mNodeProfile;
+		}
+		return getDevice(echoClassCode, echoInstanceCode);
 	}
 	
 	
@@ -163,61 +161,24 @@ public final class EchoNode {
 		return containsInstance(echoClassCode, instanceCode);
 	}
 	
-	public boolean containsInstance(short echoClassCode, byte instanceCode) {
-		if(NodeProfile.ECHO_CLASS_CODE == echoClassCode
-				&& NodeProfile.INSTANCE_CODE == instanceCode) return true;
-		if(!mDeviceGroups.containsKey(echoClassCode)) return false;
-		List<DeviceObject> list = mDeviceGroups.get(echoClassCode);
-		if(list == null) return false;
-		for(DeviceObject device : list) {
-			if(device != null) {
-				if(device.getInstanceCode() == instanceCode) return true;
-			}
+	public boolean containsInstance(short echoClassCode, byte echoInstanceCode) {
+		if(mNodeProfile.getEchoClassCode() == echoClassCode
+				&& mNodeProfile.getInstanceCode() == echoInstanceCode) {
+			return true;
 		}
-		return false;
-	}
 	
-	public boolean containsNodeProfile(NodeProfile profile) {
-		return profile.getNode() == this;
-	}
-	
-	public boolean containsDevice(DeviceObject device) {
-		if(device == null) return false;
-		if(device.getNode() != this) return false;
-		if(!mDeviceGroups.containsKey(device.getEchoClassCode())) return false;
-		List<DeviceObject> list = mDeviceGroups.get(device.getEchoClassCode());
-		if(list == null) return false;
-		return list.contains(device);
-	}
-	
-	public EchoObject getInstance(byte classGroupCode, byte classCode, byte instanceCode) {
-		return getInstance(EchoUtils.getEchoClassCode(classGroupCode, classCode), instanceCode);
-	}
-	
-	public EchoObject getInstance(short echoClassCode, byte instanceCode) {
-		if(NodeProfile.ECHO_CLASS_CODE == echoClassCode) return mNodeProfile;
-		if(!mDeviceGroups.containsKey(echoClassCode)) return null;
-		List<DeviceObject> list = mDeviceGroups.get(echoClassCode);
-		if(list == null) return null;
-		for(DeviceObject device : list) {
-			if(device != null) {
-				if(device.getInstanceCode() == instanceCode) return device;
-			}
-		}
-		return null;
+		return containsDevice(echoClassCode, echoInstanceCode);
 	}
 	
 	public DeviceObject getDevice(byte classGroupCode, byte classCode, byte instanceCode) {
 		return getDevice(EchoUtils.getEchoClassCode(classGroupCode, classCode), instanceCode);
 	}
 	
-	public DeviceObject getDevice(short echoClassCode, byte instanceCode) {
-		if(!mDeviceGroups.containsKey(echoClassCode))
-			return null;
-		List<DeviceObject> list = mDeviceGroups.get(echoClassCode);
-		for(DeviceObject device : list) {
-			if(device != null && device.getInstanceCode() == instanceCode) {
-				return device;
+	public DeviceObject getDevice(short echoClassCode, byte echoInstanceCode) {
+		for(DeviceObject d : mDevices) {
+			if(d.getEchoClassCode() == echoClassCode
+					&& d.getInstanceCode() == echoInstanceCode) {
+				return d;
 			}
 		}
 		return null;
@@ -228,139 +189,20 @@ public final class EchoNode {
 	}
 	
 	public DeviceObject[] getDevices(short echoClassCode) {
-		if(!mDeviceGroups.containsKey(echoClassCode))
-			return null;
-		List<DeviceObject> deviceList = new ArrayList<DeviceObject>(mDeviceGroups.get(echoClassCode));
-		deviceList.remove(null);
-		return deviceList.toArray(new DeviceObject[]{});
-	}
-	
-	public DeviceObject[] getActiveDevices() {
-		ArrayList<DeviceObject> ret = new ArrayList<DeviceObject>();
-		for(List<DeviceObject> devices : mDeviceGroups.values()) {
-			//List<DeviceObject> list = new ArrayList<DeviceObject>(devices);
-			//list.remove(null);
-			//ret.addAll(list);
-			for(DeviceObject dev : devices) {
-				if(dev != null && dev.isActive()) {
-					ret.add(dev);
-				}
+		List<DeviceObject> ret = new ArrayList<DeviceObject>();
+		for(DeviceObject d : mDevices) {
+			if(d.getEchoClassCode() == echoClassCode) {
+				ret.add(d);
 			}
 		}
-		return (DeviceObject[]) ret.toArray(new DeviceObject[]{});
+		return ret.toArray(new DeviceObject[]{});
 	}
 	
 	public DeviceObject[] getDevices() {
-		ArrayList<DeviceObject> ret = new ArrayList<DeviceObject>();
-		for(List<DeviceObject> devices : mDeviceGroups.values()) {
-			//List<DeviceObject> list = new ArrayList<DeviceObject>(devices);
-			//list.remove(null);
-			//ret.addAll(list);
-			for(DeviceObject dev : devices) {
-				if(dev != null) {
-					ret.add(dev);
-				}
-			}
-		}
-		return (DeviceObject[]) ret.toArray(new DeviceObject[]{});
+		return (DeviceObject[]) mDevices.toArray(new DeviceObject[]{});
 	}
 	
-	public void setActive(boolean active) {
-		//mActive = active;
-		mNodeProfile.setActive(active);
-		if(active)return;
-		for(List<DeviceObject> list : mDeviceGroups.values()) {
-			for(DeviceObject dev : list) {
-				if(dev != null) {
-					dev.setActive(false);
-				}
-			}
-		}
-	}
-	
-	public boolean isActive() {
-		//return mActive;
-		return mNodeProfile.isActive();
-	}
-
-	public byte getNumberOfDevice(DeviceObject device) {
-		if(device == null) return -1;
-		List<DeviceObject> list = mDeviceGroups.get(device.getEchoClassCode());
-		if(list == null) return -1;
-		return (byte) ((list.indexOf(device) + 1) & 0xFF);
-	}
-	
-	
-	public byte[] getNumberOfSelfNodeClasses() {
-		byte[] ret = new byte[2];
-		//int size = getDeviceGroupList().size();
-		// number of classes (contains NodeProfile)
-		int size = getDeviceGroupList().size() + 1;
-		ret[0] = (byte)((size >> 8) & 0xFF);
-		ret[1] = (byte)(size & 0xFF);
-		return ret;
-	}
-	
-	public byte[] getSelfNodeClassList() {
-		
-		List<DeviceObject[]>  groupList = getDeviceGroupList();
-		int size = groupList.size();
-		byte[] ret;
-		if(size > 8) {
-			ret = new byte[17];
-		} else {
-			ret = new byte[size * 2 + 1];
-		}
-		ret[0] = (byte)(size & 0xFF);
-		for(int i = 0; i < 8 && i < size; i++) {
-			ret[i*2+1] = groupList.get(i)[0].getClassGroupCode();
-			ret[i*2+2] = groupList.get(i)[0].getClassCode();
-		}
-		return ret;
-	}
-	
-	private List<DeviceObject[]> getDeviceGroupList() {
-
-		List<DeviceObject[]> ret = new ArrayList<DeviceObject[]>();
-		for(short code : mDeviceGroups.keySet()) {
-			List<DeviceObject> list = new ArrayList<DeviceObject>(mDeviceGroups.get(code));
-			//
-			list.remove(null);
-			if(!list.isEmpty()) {
-				ret.add(list.toArray(new DeviceObject[]{}));
-			}
-			//
-			//ret.add(list.toArray(new DeviceObject[]{}));
-		}
-		return ret;
-	}
-	/*
-	public void updateDevices(List<Integer> echoObjectCodeList) {
-		//ArrayList<DeviceObject> list = new ArrayList<DeviceObject>();
-		if(echoObjectCodeList == null) return;
-		for(int code : echoObjectCodeList) {
-			short echoClassCode = (short)((code >> 8) & 0xFFFF);
-			byte instanceCode = (byte)(code & 0xFF);
-			if(!containsInstance(echoClassCode, instanceCode)) {
-				DeviceObject device = createDeviceProxy(echoClassCode, instanceCode);
-
-				addDevice(device);
-			}
-		}
-		DeviceObject[] devices = getDevices();
-		for(DeviceObject dev : devices) {
-			boolean active = false;
-			for(int code : echoObjectCodeList) {
-				if(code == dev.getEchoObjectCode()) {
-					active = true;
-					break;
-				}
-			}
-			dev.setActive(active);
-		}
-	}
-	*/
-	private static DeviceObject createDeviceProxy(short echoClassCode, byte instanceCode) {
+	private static DeviceObject newOtherDevice(short echoClassCode, byte instanceCode) {
 		if(mProxyCreators.containsKey(echoClassCode)) {
 			return mProxyCreators.get(echoClassCode).create(instanceCode);
 		}
@@ -466,33 +308,5 @@ public final class EchoNode {
 	public static interface DeviceProxyCreator {
 		public DeviceObject create(byte instanceCode);
 	}
-	
-	public InetAddress getAddress() {
-		
-		if (!isProxy()) {
-			//try {
-				//mAddress = EchoUtils.getLocalIpAddress();
-			//} catch (SocketException e) {
-			//	e.printStackTrace();
-			//}
-			mAddress = EchoSocket.getMyAddress();
-		}
-		return mAddress;
-	}
-	
-	public boolean isProxy() {
-		return mProxy;
-	}
-	
-	public void update() {
-		mUpdatedTime = System.currentTimeMillis();
-		setActive(true);
-	}
-	
-	public long getUpdatedTime() {
-		return mUpdatedTime;
-	}
-	
-	
 
 }

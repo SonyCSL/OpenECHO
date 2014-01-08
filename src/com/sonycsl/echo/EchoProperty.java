@@ -25,4 +25,18 @@ public class EchoProperty {
 		if(edt != null) return edt.length + 2;
 		return 2;
 	}
+	
+	public EchoProperty copy() {
+		EchoProperty ret;
+		if(edt == null) {
+			ret = new EchoProperty(epc, null);
+		} else {
+			byte[] edt_ = new byte[edt.length];
+			for(int i = 0; i < edt.length; i++) {
+				edt_[i] = edt[i];
+			}
+			ret = new EchoProperty(epc, edt_);
+		}
+		return ret;
+	}
 }

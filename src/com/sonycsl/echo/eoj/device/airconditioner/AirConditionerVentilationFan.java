@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.airconditioner;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -41,13 +42,6 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		addSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewAirConditionerVentilationFan(this);
 	}
 	
 	@Override
@@ -606,27 +600,36 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -952,8 +955,10 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -1017,7 +1022,7 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetSetValueOfRoomRelativeHumidity(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY, edt);
+			reqSetProperty(EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY, edt);
 			return this;
 		}
 		/**
@@ -1043,7 +1048,7 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetVentilationAutoSetting(byte[] edt) {
-			addProperty(EPC_VENTILATION_AUTO_SETTING, edt);
+			reqSetProperty(EPC_VENTILATION_AUTO_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1072,7 +1077,7 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetSetValueOfVentilationAirFlowRate(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE, edt);
+			reqSetProperty(EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE, edt);
 			return this;
 		}
 		/**
@@ -1098,14 +1103,16 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Setter reqSetHeatExchangerOperationSetting(byte[] edt) {
-			addProperty(EPC_HEAT_EXCHANGER_OPERATION_SETTING, edt);
+			reqSetProperty(EPC_HEAT_EXCHANGER_OPERATION_SETTING, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -1233,7 +1240,7 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSetValueOfRoomRelativeHumidity() {
-			addProperty(EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY);
+			reqGetProperty(EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY);
 			return this;
 		}
 		/**
@@ -1259,7 +1266,7 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetVentilationAutoSetting() {
-			addProperty(EPC_VENTILATION_AUTO_SETTING);
+			reqGetProperty(EPC_VENTILATION_AUTO_SETTING);
 			return this;
 		}
 		/**
@@ -1285,7 +1292,7 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredValueOfRoomRelativeHumidity() {
-			addProperty(EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY);
+			reqGetProperty(EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY);
 			return this;
 		}
 		/**
@@ -1314,7 +1321,7 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSetValueOfVentilationAirFlowRate() {
-			addProperty(EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE);
+			reqGetProperty(EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE);
 			return this;
 		}
 		/**
@@ -1340,7 +1347,7 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetHeatExchangerOperationSetting() {
-			addProperty(EPC_HEAT_EXCHANGER_OPERATION_SETTING);
+			reqGetProperty(EPC_HEAT_EXCHANGER_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -1366,7 +1373,7 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredValueOfCo2Concentration() {
-			addProperty(EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION);
+			reqGetProperty(EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION);
 			return this;
 		}
 		/**
@@ -1394,14 +1401,16 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSmokeCigaretteDetectionStatus() {
-			addProperty(EPC_SMOKE_CIGARETTE_DETECTION_STATUS);
+			reqGetProperty(EPC_SMOKE_CIGARETTE_DETECTION_STATUS);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -1528,7 +1537,7 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSetValueOfRoomRelativeHumidity() {
-			addProperty(EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY);
+			reqInformProperty(EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY);
 			return this;
 		}
 		/**
@@ -1554,7 +1563,7 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformVentilationAutoSetting() {
-			addProperty(EPC_VENTILATION_AUTO_SETTING);
+			reqInformProperty(EPC_VENTILATION_AUTO_SETTING);
 			return this;
 		}
 		/**
@@ -1580,7 +1589,7 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredValueOfRoomRelativeHumidity() {
-			addProperty(EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY);
+			reqInformProperty(EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY);
 			return this;
 		}
 		/**
@@ -1609,7 +1618,7 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSetValueOfVentilationAirFlowRate() {
-			addProperty(EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE);
+			reqInformProperty(EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE);
 			return this;
 		}
 		/**
@@ -1635,7 +1644,7 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformHeatExchangerOperationSetting() {
-			addProperty(EPC_HEAT_EXCHANGER_OPERATION_SETTING);
+			reqInformProperty(EPC_HEAT_EXCHANGER_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -1661,7 +1670,7 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredValueOfCo2Concentration() {
-			addProperty(EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION);
+			reqInformProperty(EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION);
 			return this;
 		}
 		/**
@@ -1689,20 +1698,19 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSmokeCigaretteDetectionStatus() {
-			addProperty(EPC_SMOKE_CIGARETTE_DETECTION_STATUS);
+			reqInformProperty(EPC_SMOKE_CIGARETTE_DETECTION_STATUS);
 			return this;
 		}
 	}
 
 	public static class Proxy extends AirConditionerVentilationFan {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -1725,7 +1733,7 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -1733,7 +1741,8 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -1741,7 +1750,8 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -1749,7 +1759,8 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.housingfacilities;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -53,13 +54,6 @@ public abstract class FloorHeater extends DeviceObject {
 		addGetProperty(EPC_TEMPERATURE_SETTING1);
 		addSetProperty(EPC_TEMPERATURE_SETTING2);
 		addGetProperty(EPC_TEMPERATURE_SETTING2);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewFloorHeater(this);
 	}
 	
 	@Override
@@ -1351,27 +1345,36 @@ Bytes<br>
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -2211,8 +2214,10 @@ Bytes<br>
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -2278,7 +2283,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Setter reqSetTemperatureSetting1(byte[] edt) {
-			addProperty(EPC_TEMPERATURE_SETTING1, edt);
+			reqSetProperty(EPC_TEMPERATURE_SETTING1, edt);
 			return this;
 		}
 		/**
@@ -2308,7 +2313,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Setter reqSetTemperatureSetting2(byte[] edt) {
-			addProperty(EPC_TEMPERATURE_SETTING2, edt);
+			reqSetProperty(EPC_TEMPERATURE_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -2336,7 +2341,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetZoneChangeSetting(byte[] edt) {
-			addProperty(EPC_ZONE_CHANGE_SETTING, edt);
+			reqSetProperty(EPC_ZONE_CHANGE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2365,7 +2370,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetSpecialOperationSetting(byte[] edt) {
-			addProperty(EPC_SPECIAL_OPERATION_SETTING, edt);
+			reqSetProperty(EPC_SPECIAL_OPERATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2393,7 +2398,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetDailyTimerSetting(byte[] edt) {
-			addProperty(EPC_DAILY_TIMER_SETTING, edt);
+			reqSetProperty(EPC_DAILY_TIMER_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2422,7 +2427,7 @@ Bytes<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetDailyTimerSetting1(byte[] edt) {
-			addProperty(EPC_DAILY_TIMER_SETTING1, edt);
+			reqSetProperty(EPC_DAILY_TIMER_SETTING1, edt);
 			return this;
 		}
 		/**
@@ -2451,7 +2456,7 @@ Bytes<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetDailyTimerSetting2(byte[] edt) {
-			addProperty(EPC_DAILY_TIMER_SETTING2, edt);
+			reqSetProperty(EPC_DAILY_TIMER_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -2478,7 +2483,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerReservationSetting(byte[] edt) {
-			addProperty(EPC_ON_TIMER_RESERVATION_SETTING, edt);
+			reqSetProperty(EPC_ON_TIMER_RESERVATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2508,7 +2513,7 @@ Bytes<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetTimeSetByOnTimer(byte[] edt) {
-			addProperty(EPC_TIME_SET_BY_ON_TIMER, edt);
+			reqSetProperty(EPC_TIME_SET_BY_ON_TIMER, edt);
 			return this;
 		}
 		/**
@@ -2538,7 +2543,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetRelativeOnTimerSetting(byte[] edt) {
-			addProperty(EPC_RELATIVE_ON_TIMER_SETTING, edt);
+			reqSetProperty(EPC_RELATIVE_ON_TIMER_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2566,7 +2571,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOffTimerReservationSetting(byte[] edt) {
-			addProperty(EPC_OFF_TIMER_RESERVATION_SETTING, edt);
+			reqSetProperty(EPC_OFF_TIMER_RESERVATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -2596,7 +2601,7 @@ Bytes<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetTimeSetByOffTimer(byte[] edt) {
-			addProperty(EPC_TIME_SET_BY_OFF_TIMER, edt);
+			reqSetProperty(EPC_TIME_SET_BY_OFF_TIMER, edt);
 			return this;
 		}
 		/**
@@ -2626,14 +2631,16 @@ Bytes<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetRelativeOffTimerSetting(byte[] edt) {
-			addProperty(EPC_RELATIVE_OFF_TIMER_SETTING, edt);
+			reqSetProperty(EPC_RELATIVE_OFF_TIMER_SETTING, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -2763,7 +2770,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetTemperatureSetting1() {
-			addProperty(EPC_TEMPERATURE_SETTING1);
+			reqGetProperty(EPC_TEMPERATURE_SETTING1);
 			return this;
 		}
 		/**
@@ -2793,7 +2800,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetTemperatureSetting2() {
-			addProperty(EPC_TEMPERATURE_SETTING2);
+			reqGetProperty(EPC_TEMPERATURE_SETTING2);
 			return this;
 		}
 		/**
@@ -2821,7 +2828,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredRoomTeemperature() {
-			addProperty(EPC_MEASURED_ROOM_TEEMPERATURE);
+			reqGetProperty(EPC_MEASURED_ROOM_TEEMPERATURE);
 			return this;
 		}
 		/**
@@ -2849,7 +2856,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMeasuredFloorTemperature() {
-			addProperty(EPC_MEASURED_FLOOR_TEMPERATURE);
+			reqGetProperty(EPC_MEASURED_FLOOR_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -2877,7 +2884,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetZoneChangeSetting() {
-			addProperty(EPC_ZONE_CHANGE_SETTING);
+			reqGetProperty(EPC_ZONE_CHANGE_SETTING);
 			return this;
 		}
 		/**
@@ -2906,7 +2913,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSpecialOperationSetting() {
-			addProperty(EPC_SPECIAL_OPERATION_SETTING);
+			reqGetProperty(EPC_SPECIAL_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -2934,7 +2941,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetDailyTimerSetting() {
-			addProperty(EPC_DAILY_TIMER_SETTING);
+			reqGetProperty(EPC_DAILY_TIMER_SETTING);
 			return this;
 		}
 		/**
@@ -2963,7 +2970,7 @@ Bytes<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetDailyTimerSetting1() {
-			addProperty(EPC_DAILY_TIMER_SETTING1);
+			reqGetProperty(EPC_DAILY_TIMER_SETTING1);
 			return this;
 		}
 		/**
@@ -2992,7 +2999,7 @@ Bytes<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetDailyTimerSetting2() {
-			addProperty(EPC_DAILY_TIMER_SETTING2);
+			reqGetProperty(EPC_DAILY_TIMER_SETTING2);
 			return this;
 		}
 		/**
@@ -3019,7 +3026,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerReservationSetting() {
-			addProperty(EPC_ON_TIMER_RESERVATION_SETTING);
+			reqGetProperty(EPC_ON_TIMER_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -3049,7 +3056,7 @@ Bytes<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetTimeSetByOnTimer() {
-			addProperty(EPC_TIME_SET_BY_ON_TIMER);
+			reqGetProperty(EPC_TIME_SET_BY_ON_TIMER);
 			return this;
 		}
 		/**
@@ -3079,7 +3086,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRelativeOnTimerSetting() {
-			addProperty(EPC_RELATIVE_ON_TIMER_SETTING);
+			reqGetProperty(EPC_RELATIVE_ON_TIMER_SETTING);
 			return this;
 		}
 		/**
@@ -3107,7 +3114,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOffTimerReservationSetting() {
-			addProperty(EPC_OFF_TIMER_RESERVATION_SETTING);
+			reqGetProperty(EPC_OFF_TIMER_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -3137,7 +3144,7 @@ Bytes<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetTimeSetByOffTimer() {
-			addProperty(EPC_TIME_SET_BY_OFF_TIMER);
+			reqGetProperty(EPC_TIME_SET_BY_OFF_TIMER);
 			return this;
 		}
 		/**
@@ -3167,14 +3174,16 @@ Bytes<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRelativeOffTimerSetting() {
-			addProperty(EPC_RELATIVE_OFF_TIMER_SETTING);
+			reqGetProperty(EPC_RELATIVE_OFF_TIMER_SETTING);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -3303,7 +3312,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformTemperatureSetting1() {
-			addProperty(EPC_TEMPERATURE_SETTING1);
+			reqInformProperty(EPC_TEMPERATURE_SETTING1);
 			return this;
 		}
 		/**
@@ -3333,7 +3342,7 @@ Byte<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformTemperatureSetting2() {
-			addProperty(EPC_TEMPERATURE_SETTING2);
+			reqInformProperty(EPC_TEMPERATURE_SETTING2);
 			return this;
 		}
 		/**
@@ -3361,7 +3370,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredRoomTeemperature() {
-			addProperty(EPC_MEASURED_ROOM_TEEMPERATURE);
+			reqInformProperty(EPC_MEASURED_ROOM_TEEMPERATURE);
 			return this;
 		}
 		/**
@@ -3389,7 +3398,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMeasuredFloorTemperature() {
-			addProperty(EPC_MEASURED_FLOOR_TEMPERATURE);
+			reqInformProperty(EPC_MEASURED_FLOOR_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -3417,7 +3426,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformZoneChangeSetting() {
-			addProperty(EPC_ZONE_CHANGE_SETTING);
+			reqInformProperty(EPC_ZONE_CHANGE_SETTING);
 			return this;
 		}
 		/**
@@ -3446,7 +3455,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSpecialOperationSetting() {
-			addProperty(EPC_SPECIAL_OPERATION_SETTING);
+			reqInformProperty(EPC_SPECIAL_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -3474,7 +3483,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformDailyTimerSetting() {
-			addProperty(EPC_DAILY_TIMER_SETTING);
+			reqInformProperty(EPC_DAILY_TIMER_SETTING);
 			return this;
 		}
 		/**
@@ -3503,7 +3512,7 @@ Bytes<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformDailyTimerSetting1() {
-			addProperty(EPC_DAILY_TIMER_SETTING1);
+			reqInformProperty(EPC_DAILY_TIMER_SETTING1);
 			return this;
 		}
 		/**
@@ -3532,7 +3541,7 @@ Bytes<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformDailyTimerSetting2() {
-			addProperty(EPC_DAILY_TIMER_SETTING2);
+			reqInformProperty(EPC_DAILY_TIMER_SETTING2);
 			return this;
 		}
 		/**
@@ -3559,7 +3568,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOnTimerReservationSetting() {
-			addProperty(EPC_ON_TIMER_RESERVATION_SETTING);
+			reqInformProperty(EPC_ON_TIMER_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -3589,7 +3598,7 @@ Bytes<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformTimeSetByOnTimer() {
-			addProperty(EPC_TIME_SET_BY_ON_TIMER);
+			reqInformProperty(EPC_TIME_SET_BY_ON_TIMER);
 			return this;
 		}
 		/**
@@ -3619,7 +3628,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRelativeOnTimerSetting() {
-			addProperty(EPC_RELATIVE_ON_TIMER_SETTING);
+			reqInformProperty(EPC_RELATIVE_ON_TIMER_SETTING);
 			return this;
 		}
 		/**
@@ -3647,7 +3656,7 @@ Byte<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOffTimerReservationSetting() {
-			addProperty(EPC_OFF_TIMER_RESERVATION_SETTING);
+			reqInformProperty(EPC_OFF_TIMER_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -3677,7 +3686,7 @@ Bytes<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformTimeSetByOffTimer() {
-			addProperty(EPC_TIME_SET_BY_OFF_TIMER);
+			reqInformProperty(EPC_TIME_SET_BY_OFF_TIMER);
 			return this;
 		}
 		/**
@@ -3707,20 +3716,19 @@ Bytes<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRelativeOffTimerSetting() {
-			addProperty(EPC_RELATIVE_OFF_TIMER_SETTING);
+			reqInformProperty(EPC_RELATIVE_OFF_TIMER_SETTING);
 			return this;
 		}
 	}
 
 	public static class Proxy extends FloorHeater {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -3751,7 +3759,7 @@ Bytes<br>
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -3759,7 +3767,8 @@ Bytes<br>
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -3767,7 +3776,8 @@ Bytes<br>
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -3775,7 +3785,8 @@ Bytes<br>
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

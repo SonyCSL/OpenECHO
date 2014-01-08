@@ -40,9 +40,9 @@ import com.sonycsl.echo.node.EchoNode;
 
 
 public final class Echo {
-	
-	private static Map<InetAddress, EchoNode> sNodes; // remote nodes
-	private static volatile EchoNode sLocalNode;
+
+	private static volatile EchoNode sSelfNode;
+	private static Map<String, EchoNode> sOtherNodes;
 	
 	private static Events sEvents = null;
 	private static ArrayList<EventListener> sListeners;
@@ -51,7 +51,7 @@ public final class Echo {
 	private volatile static boolean sCleared= true;
 	
 	static {
-		sNodes = new ConcurrentHashMap<InetAddress, EchoNode>();
+		sOtherNodes = new ConcurrentHashMap<String, EchoNode>();
 		sListeners = new ArrayList<EventListener>();
 		sEvents = new Events();
 	}
@@ -66,34 +66,31 @@ public final class Echo {
 		sStarted = true;
 		sCleared = false;
 		
-		EchoSocket.start();
-		//if(sLocalNode != null && sLocalNode.getNodeProfile() == profile) {
-			// restart;
-		//	for(DeviceObject dev : devices) {
-		//		sLocalNode.addDevice(dev);
-		//	}
-		//} else if(sLocalNode != null) {
-		//	// sLocalNode.getNodeProfile() != profile
-		//	return null;
-		//} else {
+		sSelfNode = new EchoNode(profile, devices);
+		profile.setNode(sSelfNode);
+		for(DeviceObject dev : devices) {
+			dev.setNode(sSelfNode);
+		}
+		EchoSocket.openSocket();
+		EchoSocket.startReceiverThread();
 
-		sLocalNode = new EchoNode(profile, devices);
-		//}
-		sLocalNode.getNodeProfile().inform().reqInformInstanceListNotification().send();
-		return sLocalNode;
+		Echo.getEventListener().onNewNode(sSelfNode);
+		Echo.getEventListener().onFoundNode(sSelfNode);
+		sSelfNode.getNodeProfile().inform().reqInformInstanceListNotification().send();
+		return sSelfNode;
 	}
 	
 	public synchronized static void restart() throws IOException {
 		if(sCleared) return;
 		sStarted = true;
-		EchoSocket.start();
-		sLocalNode.getNodeProfile().inform().reqInformInstanceListNotification().send();
+		EchoSocket.openSocket();
+		sSelfNode.getNodeProfile().inform().reqInformInstanceListNotification().send();
 	}
 	
 	public synchronized static void stop() throws IOException {
-		if(!EchoSocket.isClosed()) {
-			EchoSocket.close();
-		}
+		//if(!EchoSocket.isClosed()) {
+			EchoSocket.closeSocket();
+		//}
 		sStarted = false;
 		//sNodes.clear();
 	}
@@ -102,48 +99,29 @@ public final class Echo {
 		stop();
 		sCleared = true;
 		
-		sLocalNode = null;
+		sSelfNode = null;
 
-		sNodes.clear();
+		sOtherNodes.clear();
 		sListeners.clear();
 	}
 	
 	public static boolean isStarted() {
 		return sStarted;
 	}
-	
-	public synchronized static void addNode(EchoNode node) {
-		if(node.isProxy()) {
-			sNodes.put(node.getAddress(), node);
-		} else {
-			sLocalNode = node;
-		}
 
-		if(sEvents != null) {
-			sEvents.onNewNode(node);
-		}
-	}
-	
-	//public static void removeNode(EchoNode node) {
-	//	sNodes.remove(node.getAddress());
-	//}
-	
-	//public static void removeAllNode() {
-	//	sNodes.clear();
-	//}
-	
+	@Deprecated
 	public static EchoNode getNode() {
-		return sLocalNode;
+		return sSelfNode;
+	}
+	public static EchoNode getSelfNode() {
+		return sSelfNode;
 	}
 	
 	public static EchoNode[] getNodes() {
-		//return (EchoNode[]) sNodes.values().toArray(new EchoNode[]{});
-		Collection<EchoNode> nodes = sNodes.values();
-		//nodes.add(sLocalNode);
-		//return nodes.toArray(new EchoNode[]{});
+		Collection<EchoNode> nodes = sOtherNodes.values();
 		List<EchoNode> ret = new ArrayList<EchoNode>();
-		if(sLocalNode != null) {
-			ret.add(sLocalNode);
+		if(sSelfNode != null) {
+			ret.add(sSelfNode);
 		}
 		for(EchoNode n : nodes) {
 			ret.add(n);
@@ -151,28 +129,55 @@ public final class Echo {
 		return ret.toArray(new EchoNode[]{});
 	}
 	
+	public static EchoNode getNode(String address) {
+		if(EchoSocket.SELF_ADDRESS.equals(address)) {
+			return sSelfNode;
+		}
+		return sOtherNodes.get(address);
+	}
+	
+	public synchronized static EchoNode addOtherNode(String address) {
+		EchoNode node = new EchoNode(address);
+		node.getNodeProfile().setNode(node);
+		sOtherNodes.put(address, node);
+		
+		return node;
+	}
+	
+	public static void removeOtherNode(String address) {
+		sOtherNodes.remove(address);
+	}
+	
+	//public static void removeAllNode() {
+	//	sNodes.clear();
+	//}
+	
+	/*
 	public synchronized static EchoNode[] getActiveNodes() {
-		Collection<EchoNode> nodes = sNodes.values();
+		Collection<EchoNode> nodes = sOtherNodes.values();
 		List<EchoNode> ret = new ArrayList<EchoNode>();
-		if(sLocalNode != null && sLocalNode.isActive()){
-			ret.add(sLocalNode);
+		if(sSelfNode != null && sSelfNode.isActive()){
+			ret.add(sSelfNode);
 		}
 		for(EchoNode n : nodes) {
 			if(n.isActive())
 				ret.add(n);
 		}
 		return ret.toArray(new EchoNode[]{});
-	}
+	}*/
 
-	
+
+	@Deprecated
 	public static EchoObject getInstance(InetAddress address, byte classGroupCode, byte classCode, byte instanceCode) {
 		return getInstance(address, EchoUtils.getEchoClassCode(classGroupCode, classCode), instanceCode);
 	}
-	
+
+	@Deprecated
 	public static EchoObject getInstance(InetAddress address, int objectCode){
 		return getInstance(address, EchoUtils.getEchoClassCodeFromObjectCode(objectCode), EchoUtils.getInstanceCodeFromObjectCode(objectCode));
 	}
-	
+
+	@Deprecated
 	public static EchoObject getInstance(InetAddress address, short echoClassCode, byte instanceCode) {
 
 		if(sCleared) {
@@ -181,18 +186,18 @@ public final class Echo {
 		if(address == null) {
 			return null;
 		}
-		if(address.equals(sLocalNode.getAddress())) {
-			if(!sLocalNode.containsInstance(echoClassCode, instanceCode)) return null;
-			return sLocalNode.getInstance(echoClassCode, instanceCode);
-		} else if(sNodes.containsKey(address)) {
-			EchoNode node = sNodes.get(address);
+		if(address.equals(sSelfNode.getAddressStr())) {
+			if(!sSelfNode.containsInstance(echoClassCode, instanceCode)) return null;
+			return sSelfNode.getInstance(echoClassCode, instanceCode);
+		} else if(sOtherNodes.containsKey(address)) {
+			EchoNode node = sOtherNodes.get(address);
 			if(!node.containsInstance(echoClassCode, instanceCode)) return null;
 			return node.getInstance(echoClassCode, instanceCode);
 		} else {
 			return null;
 		}
 	}
-	
+	/*
 	public synchronized static void updateNodeInstance(InetAddress address, byte classGroupCode, byte classCode, byte instanceCode) {
 
 		if(sCleared) {
@@ -201,15 +206,15 @@ public final class Echo {
 		if(address == null) {
 			return;
 		}
-		if(address.equals(sLocalNode.getAddress())) {
+		if(address.equals(sSelfNode.getAddress())) {
 			//if(sLocalNode.containsInstance(classGroupCode, classCode, instanceCode)) return;
 			//sLocalNode.addDevice(EchoUtils.getEchoClassCode(classGroupCode, classCode), instanceCode);
-			if(sLocalNode.containsInstance(classGroupCode, classCode, instanceCode)) {
-				sLocalNode.getInstance(classGroupCode, classCode, instanceCode).setActive(true);
+			if(sSelfNode.containsInstance(classGroupCode, classCode, instanceCode)) {
+				sSelfNode.getInstance(classGroupCode, classCode, instanceCode).setActive(true);
 				return;
 			}
-		} else if(sNodes.containsKey(address)) {
-			EchoNode node = sNodes.get(address);
+		} else if(sOtherNodes.containsKey(address)) {
+			EchoNode node = sOtherNodes.get(address);
 			if(node.containsInstance(classGroupCode, classCode, instanceCode)){
 				node.getInstance(classGroupCode, classCode, instanceCode).setActive(true);
 				return;
@@ -227,9 +232,9 @@ public final class Echo {
 			}
 		}
 	}
-	
-	public synchronized static void updateNodeDevices(InetAddress address, List<Integer> echoObjectCodeList) {
-		if(echoObjectCodeList == null) return;
+	*/
+	//public synchronized static void updateNodeDevices(InetAddress address, List<Integer> echoObjectCodeList) {
+	//	if(echoObjectCodeList == null) return;
 		/*
 		if(sLocalNode.getAddress().equals(address)) {
 			//sLocalNode.updateDevices(echoObjectCodeList);
@@ -240,15 +245,15 @@ public final class Echo {
 		} else {
 			new EchoNode(address, echoObjectCodeList);
 		}*/
-
+/*
 		if(sCleared) {
 			return;
 		}
 		if(address == null) {
 			return;
 		}
-		if(!address.equals(sLocalNode.getAddress()) 
-				&& !sNodes.containsKey(address)) {
+		if(!address.equals(sSelfNode.getAddress()) 
+				&& !sOtherNodes.containsKey(address)) {
 			new EchoNode(address, echoObjectCodeList);
 			return;
 		}
@@ -256,8 +261,8 @@ public final class Echo {
 			byte[] a = EchoUtils.toByteArray(objCode, 4);
 			updateNodeInstance(address, a[1],a[2],a[3]);
 		}
-		if(!sNodes.containsKey(address)) return;
-		for(DeviceObject dev : sNodes.get(address).getDevices()) {
+		if(!sOtherNodes.containsKey(address)) return;
+		for(DeviceObject dev : sOtherNodes.get(address).getDevices()) {
 			boolean active = false;
 			for(int code : echoObjectCodeList) {
 				if(code == dev.getEchoObjectCode()) {
@@ -267,7 +272,7 @@ public final class Echo {
 			}
 			dev.setActive(active);
 		}
-	}
+	}*/
 	
 	public static void addEventListener(EventListener listener) {
 		sListeners.add(listener);
@@ -295,6 +300,9 @@ public final class Echo {
 		public void receiveEvent(EchoFrame frame) {}
 		
 		public void onCatchException(Exception e) {}
+
+		public void onFoundNode(EchoNode node){}
+		public void onFoundEchoObject(EchoObject eoj){}
 		
 		public void onNewNode(EchoNode node) {}
 		public void onNewEchoObject(EchoObject eoj) {}
@@ -511,10 +519,12 @@ public final class Echo {
 		public void sendEvent(EchoFrame frame) {
 			long millis = System.currentTimeMillis();
 			mOut.println("millis:"+millis
-					+",method:send,tid:"+EchoUtils.toHexString(frame.getTid())
-					+",esv:"+EchoUtils.toHexString(frame.getEsv())
-					+",seoj:["+frame.getSeoj()
-					+"],deoj:["+(frame.getDeoj()!=null?frame.getDeoj().toString():"")
+					+",method:send,tid:"+EchoUtils.toHexString(frame.getTID())
+					+",esv:"+EchoUtils.toHexString(frame.getESV())
+					+",seoj:[class:"+String.format("%04x", frame.getSrcEchoClassCode())
+					+",instance:"+String.format("%02x", frame.getSrcEchoInstanceCode())
+					+"],deoj:[class:"+String.format("%04x", frame.getDstEchoClassCode())
+					+",instance:"+String.format("%02x", frame.getDstEchoInstanceCode())
 					+"],data:"+EchoUtils.toHexString(frame.getFrameByteArray()));
 		}
 
@@ -522,10 +532,12 @@ public final class Echo {
 		public void receiveEvent(EchoFrame frame) {
 			long millis = System.currentTimeMillis();
 			mOut.println("millis:"+millis
-					+",method:receive,tid:"+EchoUtils.toHexString(frame.getTid())
-					+",esv:"+EchoUtils.toHexString(frame.getEsv())
-					+",seoj:["+frame.getSeoj()
-					+"],deoj:["+(frame.getDeoj()!=null?frame.getDeoj().toString():"")
+					+",method:receive,tid:"+EchoUtils.toHexString(frame.getTID())
+					+",esv:"+EchoUtils.toHexString(frame.getESV())
+					+",seoj:[class:"+String.format("%04x", frame.getSrcEchoClassCode())
+					+",instance:"+String.format("%02x", frame.getSrcEchoInstanceCode())
+					+"],deoj:[class:"+String.format("%04x", frame.getDstEchoClassCode())
+					+",instance:"+String.format("%02x", frame.getDstEchoInstanceCode())
 					+"],data:"+EchoUtils.toHexString(frame.getFrameByteArray()));
 		}
 
@@ -540,7 +552,7 @@ public final class Echo {
 			long millis = System.currentTimeMillis();
 			mOut.println("millis:"+millis
 					+",method:new,type:node,address:"
-					+node.getAddress().getHostAddress());
+					+node.getAddressStr());
 		}
 
 		@Override

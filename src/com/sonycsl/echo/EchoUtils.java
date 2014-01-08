@@ -23,6 +23,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 
 import com.sonycsl.echo.eoj.EchoObject;
@@ -141,6 +142,22 @@ public final class EchoUtils {
 				InetAddress inetAddress = enumIpAddr.nextElement();
 				if (!inetAddress.isLoopbackAddress() && inetAddress instanceof Inet4Address) {
 					return inetAddress;
+				}
+			}
+		}
+		return null;
+	}
+	
+	public static NetworkInterface getNetworkInterface() throws SocketException {
+
+		Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces();
+		while(en.hasMoreElements()) {
+			NetworkInterface intf = en.nextElement();
+			Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses();
+			while(enumIpAddr.hasMoreElements()) {
+				InetAddress inetAddress = enumIpAddr.nextElement();
+				if (!inetAddress.isLoopbackAddress() && inetAddress instanceof Inet4Address) {
+					return intf;
 				}
 			}
 		}
@@ -278,6 +295,23 @@ public final class EchoUtils {
 
 	public static byte[] toByteArray(long arg) {
 		return toByteArray(arg, 8);
+	}
+	
+	private static HashMap<Short, Byte> sAllocatedSelfDeviceInstanceCode = new HashMap<Short, Byte>();
+	
+	public static byte allocateSelfDeviceInstanceCode(short echoClassCode) {
+
+		if (sAllocatedSelfDeviceInstanceCode.containsKey(echoClassCode)) {
+
+			byte code =  sAllocatedSelfDeviceInstanceCode.get(echoClassCode);
+			code += 1;
+			sAllocatedSelfDeviceInstanceCode.put(echoClassCode, code);
+			return code;
+		} else {
+			sAllocatedSelfDeviceInstanceCode.put(echoClassCode, (byte)1);
+			return 1;
+
+		}
 	}
 }
 

@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.cookinghousehold;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -66,13 +67,6 @@ public abstract class WasherAndDryer extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewWasherAndDryer(this);
 	}
 	
 	@Override
@@ -2971,27 +2965,36 @@ Char
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -4828,8 +4831,10 @@ Char
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -4895,7 +4900,7 @@ Char
 		 * Get - optional<br>
 		 */
 		public Setter reqSetWasherAndDryerSetting(byte[] edt) {
-			addProperty(EPC_WASHER_AND_DRYER_SETTING, edt);
+			reqSetProperty(EPC_WASHER_AND_DRYER_SETTING, edt);
 			return this;
 		}
 		/**
@@ -4950,7 +4955,7 @@ Char
 		 * Get - optional<br>
 		 */
 		public Setter reqSetWasherAndDryerCycleSetting1Note1(byte[] edt) {
-			addProperty(EPC_WASHER_AND_DRYER_CYCLE_SETTING1_NOTE1, edt);
+			reqSetProperty(EPC_WASHER_AND_DRYER_CYCLE_SETTING1_NOTE1, edt);
 			return this;
 		}
 		/**
@@ -4988,7 +4993,7 @@ Char
 		 * Get - optional<br>
 		 */
 		public Setter reqSetWasherAndDryerCycleSetting2Note1(byte[] edt) {
-			addProperty(EPC_WASHER_AND_DRYER_CYCLE_SETTING2_NOTE1, edt);
+			reqSetProperty(EPC_WASHER_AND_DRYER_CYCLE_SETTING2_NOTE1, edt);
 			return this;
 		}
 		/**
@@ -5022,7 +5027,7 @@ Char
 		 * Get - optional<br>
 		 */
 		public Setter reqSetDryingCycleSettingNote1(byte[] edt) {
-			addProperty(EPC_DRYING_CYCLE_SETTING_NOTE1, edt);
+			reqSetProperty(EPC_DRYING_CYCLE_SETTING_NOTE1, edt);
 			return this;
 		}
 		/**
@@ -5057,7 +5062,7 @@ Char
 		 * Get - optional<br>
 		 */
 		public Setter reqSetWaterFlowRateSetting(byte[] edt) {
-			addProperty(EPC_WATER_FLOW_RATE_SETTING, edt);
+			reqSetProperty(EPC_WATER_FLOW_RATE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5092,7 +5097,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGrotationSpeedForSpinDryingHSetting(byte[] edt) {
-			addProperty(EPC_GROTATION_SPEED_FOR_SPIN_DRYING_H_SETTING, edt);
+			reqSetProperty(EPC_GROTATION_SPEED_FOR_SPIN_DRYING_H_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5127,7 +5132,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGdegreeOfDryingHSetting(byte[] edt) {
-			addProperty(EPC_GDEGREE_OF_DRYING_H_SETTING, edt);
+			reqSetProperty(EPC_GDEGREE_OF_DRYING_H_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5163,7 +5168,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetPresoakingTimeSetting(byte[] edt) {
-			addProperty(EPC_PRESOAKING_TIME_SETTING, edt);
+			reqSetProperty(EPC_PRESOAKING_TIME_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5197,7 +5202,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetWaterVolumeSetting1(byte[] edt) {
-			addProperty(EPC_WATER_VOLUME_SETTING1, edt);
+			reqSetProperty(EPC_WATER_VOLUME_SETTING1, edt);
 			return this;
 		}
 		/**
@@ -5232,7 +5237,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetWaterVolumeSetting2(byte[] edt) {
-			addProperty(EPC_WATER_VOLUME_SETTING2, edt);
+			reqSetProperty(EPC_WATER_VOLUME_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -5268,7 +5273,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetWashingTimeSetting(byte[] edt) {
-			addProperty(EPC_WASHING_TIME_SETTING, edt);
+			reqSetProperty(EPC_WASHING_TIME_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5295,7 +5300,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetGnumberOfTimesOfRinsingHSetting(byte[] edt) {
-			addProperty(EPC_GNUMBER_OF_TIMES_OF_RINSING_H_SETTING, edt);
+			reqSetProperty(EPC_GNUMBER_OF_TIMES_OF_RINSING_H_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5326,7 +5331,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetRinsingProcessSetting(byte[] edt) {
-			addProperty(EPC_RINSING_PROCESS_SETTING, edt);
+			reqSetProperty(EPC_RINSING_PROCESS_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5360,7 +5365,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetSpinDryingTimeSetting(byte[] edt) {
-			addProperty(EPC_SPIN_DRYING_TIME_SETTING, edt);
+			reqSetProperty(EPC_SPIN_DRYING_TIME_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5396,7 +5401,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetDryingTimeSetting(byte[] edt) {
-			addProperty(EPC_DRYING_TIME_SETTING, edt);
+			reqSetProperty(EPC_DRYING_TIME_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5424,7 +5429,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetWarmWaterSetting(byte[] edt) {
-			addProperty(EPC_WARM_WATER_SETTING, edt);
+			reqSetProperty(EPC_WARM_WATER_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5456,7 +5461,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetBathtubWaterRecycleSetting(byte[] edt) {
-			addProperty(EPC_BATHTUB_WATER_RECYCLE_SETTING, edt);
+			reqSetProperty(EPC_BATHTUB_WATER_RECYCLE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5485,7 +5490,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetWrinklingMinimizationSetting(byte[] edt) {
-			addProperty(EPC_WRINKLING_MINIMIZATION_SETTING, edt);
+			reqSetProperty(EPC_WRINKLING_MINIMIZATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5512,7 +5517,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetDoorCoverLockSetting(byte[] edt) {
-			addProperty(EPC_DOOR_COVER_LOCK_SETTING, edt);
+			reqSetProperty(EPC_DOOR_COVER_LOCK_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5539,7 +5544,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerReservationSetting(byte[] edt) {
-			addProperty(EPC_ON_TIMER_RESERVATION_SETTING, edt);
+			reqSetProperty(EPC_ON_TIMER_RESERVATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5567,7 +5572,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetOnTimerSetting(byte[] edt) {
-			addProperty(EPC_ON_TIMER_SETTING, edt);
+			reqSetProperty(EPC_ON_TIMER_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5595,14 +5600,16 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetRelativeTimeBasedOnTimerSetting(byte[] edt) {
-			addProperty(EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING, edt);
+			reqSetProperty(EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -5731,7 +5738,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetDoorCoverOpenCloseStatus() {
-			addProperty(EPC_DOOR_COVER_OPEN_CLOSE_STATUS);
+			reqGetProperty(EPC_DOOR_COVER_OPEN_CLOSE_STATUS);
 			return this;
 		}
 		/**
@@ -5759,7 +5766,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetWasherAndDryerSetting() {
-			addProperty(EPC_WASHER_AND_DRYER_SETTING);
+			reqGetProperty(EPC_WASHER_AND_DRYER_SETTING);
 			return this;
 		}
 		/**
@@ -5814,7 +5821,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetWasherAndDryerCycleSetting1Note1() {
-			addProperty(EPC_WASHER_AND_DRYER_CYCLE_SETTING1_NOTE1);
+			reqGetProperty(EPC_WASHER_AND_DRYER_CYCLE_SETTING1_NOTE1);
 			return this;
 		}
 		/**
@@ -5852,7 +5859,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetWasherAndDryerCycleSetting2Note1() {
-			addProperty(EPC_WASHER_AND_DRYER_CYCLE_SETTING2_NOTE1);
+			reqGetProperty(EPC_WASHER_AND_DRYER_CYCLE_SETTING2_NOTE1);
 			return this;
 		}
 		/**
@@ -5886,7 +5893,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetDryingCycleSettingNote1() {
-			addProperty(EPC_DRYING_CYCLE_SETTING_NOTE1);
+			reqGetProperty(EPC_DRYING_CYCLE_SETTING_NOTE1);
 			return this;
 		}
 		/**
@@ -5916,7 +5923,7 @@ char
 		 * Get - optional<br>
 		 */
 		public Getter reqGetWasherAndDryerCycleOptionList1() {
-			addProperty(EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST1);
+			reqGetProperty(EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST1);
 			return this;
 		}
 		/**
@@ -5946,7 +5953,7 @@ char
 		 * Get - optional<br>
 		 */
 		public Getter reqGetWasherAndDryerCycleOptionList2() {
-			addProperty(EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST2);
+			reqGetProperty(EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST2);
 			return this;
 		}
 		/**
@@ -5974,7 +5981,7 @@ char
 		 * Get - optional<br>
 		 */
 		public Getter reqGetWasherAndDryerCycleOptionList3() {
-			addProperty(EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST3);
+			reqGetProperty(EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST3);
 			return this;
 		}
 		/**
@@ -6009,7 +6016,7 @@ char
 		 * Get - optional<br>
 		 */
 		public Getter reqGetWaterFlowRateSetting() {
-			addProperty(EPC_WATER_FLOW_RATE_SETTING);
+			reqGetProperty(EPC_WATER_FLOW_RATE_SETTING);
 			return this;
 		}
 		/**
@@ -6044,7 +6051,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGrotationSpeedForSpinDryingHSetting() {
-			addProperty(EPC_GROTATION_SPEED_FOR_SPIN_DRYING_H_SETTING);
+			reqGetProperty(EPC_GROTATION_SPEED_FOR_SPIN_DRYING_H_SETTING);
 			return this;
 		}
 		/**
@@ -6079,7 +6086,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGdegreeOfDryingHSetting() {
-			addProperty(EPC_GDEGREE_OF_DRYING_H_SETTING);
+			reqGetProperty(EPC_GDEGREE_OF_DRYING_H_SETTING);
 			return this;
 		}
 		/**
@@ -6111,7 +6118,7 @@ char
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRemainingWashingTime() {
-			addProperty(EPC_REMAINING_WASHING_TIME);
+			reqGetProperty(EPC_REMAINING_WASHING_TIME);
 			return this;
 		}
 		/**
@@ -6141,7 +6148,7 @@ char
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRemainingDryingTime() {
-			addProperty(EPC_REMAINING_DRYING_TIME);
+			reqGetProperty(EPC_REMAINING_DRYING_TIME);
 			return this;
 		}
 		/**
@@ -6171,7 +6178,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetElapsedTimeOnTheOnTimer() {
-			addProperty(EPC_ELAPSED_TIME_ON_THE_ON_TIMER);
+			reqGetProperty(EPC_ELAPSED_TIME_ON_THE_ON_TIMER);
 			return this;
 		}
 		/**
@@ -6207,7 +6214,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetPresoakingTimeSetting() {
-			addProperty(EPC_PRESOAKING_TIME_SETTING);
+			reqGetProperty(EPC_PRESOAKING_TIME_SETTING);
 			return this;
 		}
 		/**
@@ -6260,7 +6267,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetCurrentStageOfWasherAndDryerCycle() {
-			addProperty(EPC_CURRENT_STAGE_OF_WASHER_AND_DRYER_CYCLE);
+			reqGetProperty(EPC_CURRENT_STAGE_OF_WASHER_AND_DRYER_CYCLE);
 			return this;
 		}
 		/**
@@ -6294,7 +6301,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetWaterVolumeSetting1() {
-			addProperty(EPC_WATER_VOLUME_SETTING1);
+			reqGetProperty(EPC_WATER_VOLUME_SETTING1);
 			return this;
 		}
 		/**
@@ -6329,7 +6336,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetWaterVolumeSetting2() {
-			addProperty(EPC_WATER_VOLUME_SETTING2);
+			reqGetProperty(EPC_WATER_VOLUME_SETTING2);
 			return this;
 		}
 		/**
@@ -6365,7 +6372,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetWashingTimeSetting() {
-			addProperty(EPC_WASHING_TIME_SETTING);
+			reqGetProperty(EPC_WASHING_TIME_SETTING);
 			return this;
 		}
 		/**
@@ -6392,7 +6399,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetGnumberOfTimesOfRinsingHSetting() {
-			addProperty(EPC_GNUMBER_OF_TIMES_OF_RINSING_H_SETTING);
+			reqGetProperty(EPC_GNUMBER_OF_TIMES_OF_RINSING_H_SETTING);
 			return this;
 		}
 		/**
@@ -6423,7 +6430,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRinsingProcessSetting() {
-			addProperty(EPC_RINSING_PROCESS_SETTING);
+			reqGetProperty(EPC_RINSING_PROCESS_SETTING);
 			return this;
 		}
 		/**
@@ -6457,7 +6464,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSpinDryingTimeSetting() {
-			addProperty(EPC_SPIN_DRYING_TIME_SETTING);
+			reqGetProperty(EPC_SPIN_DRYING_TIME_SETTING);
 			return this;
 		}
 		/**
@@ -6493,7 +6500,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetDryingTimeSetting() {
-			addProperty(EPC_DRYING_TIME_SETTING);
+			reqGetProperty(EPC_DRYING_TIME_SETTING);
 			return this;
 		}
 		/**
@@ -6521,7 +6528,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetWarmWaterSetting() {
-			addProperty(EPC_WARM_WATER_SETTING);
+			reqGetProperty(EPC_WARM_WATER_SETTING);
 			return this;
 		}
 		/**
@@ -6553,7 +6560,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetBathtubWaterRecycleSetting() {
-			addProperty(EPC_BATHTUB_WATER_RECYCLE_SETTING);
+			reqGetProperty(EPC_BATHTUB_WATER_RECYCLE_SETTING);
 			return this;
 		}
 		/**
@@ -6582,7 +6589,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetWrinklingMinimizationSetting() {
-			addProperty(EPC_WRINKLING_MINIMIZATION_SETTING);
+			reqGetProperty(EPC_WRINKLING_MINIMIZATION_SETTING);
 			return this;
 		}
 		/**
@@ -6613,7 +6620,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetTimeRemainingToCompleteWasherAndDryerCycle() {
-			addProperty(EPC_TIME_REMAINING_TO_COMPLETE_WASHER_AND_DRYER_CYCLE);
+			reqGetProperty(EPC_TIME_REMAINING_TO_COMPLETE_WASHER_AND_DRYER_CYCLE);
 			return this;
 		}
 		/**
@@ -6640,7 +6647,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetDoorCoverLockSetting() {
-			addProperty(EPC_DOOR_COVER_LOCK_SETTING);
+			reqGetProperty(EPC_DOOR_COVER_LOCK_SETTING);
 			return this;
 		}
 		/**
@@ -6698,7 +6705,7 @@ Char
 		 * Get - optional<br>
 		 */
 		public Getter reqGetWasherAndDryerCycle() {
-			addProperty(EPC_WASHER_AND_DRYER_CYCLE);
+			reqGetProperty(EPC_WASHER_AND_DRYER_CYCLE);
 			return this;
 		}
 		/**
@@ -6725,7 +6732,7 @@ Char
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerReservationSetting() {
-			addProperty(EPC_ON_TIMER_RESERVATION_SETTING);
+			reqGetProperty(EPC_ON_TIMER_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -6753,7 +6760,7 @@ Char
 		 * Get - optional<br>
 		 */
 		public Getter reqGetOnTimerSetting() {
-			addProperty(EPC_ON_TIMER_SETTING);
+			reqGetProperty(EPC_ON_TIMER_SETTING);
 			return this;
 		}
 		/**
@@ -6781,14 +6788,16 @@ Char
 		 * Get - optional<br>
 		 */
 		public Getter reqGetRelativeTimeBasedOnTimerSetting() {
-			addProperty(EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING);
+			reqGetProperty(EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -6916,7 +6925,7 @@ Char
 		 * Get - optional<br>
 		 */
 		public Informer reqInformDoorCoverOpenCloseStatus() {
-			addProperty(EPC_DOOR_COVER_OPEN_CLOSE_STATUS);
+			reqInformProperty(EPC_DOOR_COVER_OPEN_CLOSE_STATUS);
 			return this;
 		}
 		/**
@@ -6944,7 +6953,7 @@ Char
 		 * Get - optional<br>
 		 */
 		public Informer reqInformWasherAndDryerSetting() {
-			addProperty(EPC_WASHER_AND_DRYER_SETTING);
+			reqInformProperty(EPC_WASHER_AND_DRYER_SETTING);
 			return this;
 		}
 		/**
@@ -6999,7 +7008,7 @@ Char
 		 * Get - optional<br>
 		 */
 		public Informer reqInformWasherAndDryerCycleSetting1Note1() {
-			addProperty(EPC_WASHER_AND_DRYER_CYCLE_SETTING1_NOTE1);
+			reqInformProperty(EPC_WASHER_AND_DRYER_CYCLE_SETTING1_NOTE1);
 			return this;
 		}
 		/**
@@ -7037,7 +7046,7 @@ Char
 		 * Get - optional<br>
 		 */
 		public Informer reqInformWasherAndDryerCycleSetting2Note1() {
-			addProperty(EPC_WASHER_AND_DRYER_CYCLE_SETTING2_NOTE1);
+			reqInformProperty(EPC_WASHER_AND_DRYER_CYCLE_SETTING2_NOTE1);
 			return this;
 		}
 		/**
@@ -7071,7 +7080,7 @@ Char
 		 * Get - optional<br>
 		 */
 		public Informer reqInformDryingCycleSettingNote1() {
-			addProperty(EPC_DRYING_CYCLE_SETTING_NOTE1);
+			reqInformProperty(EPC_DRYING_CYCLE_SETTING_NOTE1);
 			return this;
 		}
 		/**
@@ -7101,7 +7110,7 @@ char
 		 * Get - optional<br>
 		 */
 		public Informer reqInformWasherAndDryerCycleOptionList1() {
-			addProperty(EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST1);
+			reqInformProperty(EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST1);
 			return this;
 		}
 		/**
@@ -7131,7 +7140,7 @@ char
 		 * Get - optional<br>
 		 */
 		public Informer reqInformWasherAndDryerCycleOptionList2() {
-			addProperty(EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST2);
+			reqInformProperty(EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST2);
 			return this;
 		}
 		/**
@@ -7159,7 +7168,7 @@ char
 		 * Get - optional<br>
 		 */
 		public Informer reqInformWasherAndDryerCycleOptionList3() {
-			addProperty(EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST3);
+			reqInformProperty(EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST3);
 			return this;
 		}
 		/**
@@ -7194,7 +7203,7 @@ char
 		 * Get - optional<br>
 		 */
 		public Informer reqInformWaterFlowRateSetting() {
-			addProperty(EPC_WATER_FLOW_RATE_SETTING);
+			reqInformProperty(EPC_WATER_FLOW_RATE_SETTING);
 			return this;
 		}
 		/**
@@ -7229,7 +7238,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGrotationSpeedForSpinDryingHSetting() {
-			addProperty(EPC_GROTATION_SPEED_FOR_SPIN_DRYING_H_SETTING);
+			reqInformProperty(EPC_GROTATION_SPEED_FOR_SPIN_DRYING_H_SETTING);
 			return this;
 		}
 		/**
@@ -7264,7 +7273,7 @@ setting<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGdegreeOfDryingHSetting() {
-			addProperty(EPC_GDEGREE_OF_DRYING_H_SETTING);
+			reqInformProperty(EPC_GDEGREE_OF_DRYING_H_SETTING);
 			return this;
 		}
 		/**
@@ -7296,7 +7305,7 @@ char
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRemainingWashingTime() {
-			addProperty(EPC_REMAINING_WASHING_TIME);
+			reqInformProperty(EPC_REMAINING_WASHING_TIME);
 			return this;
 		}
 		/**
@@ -7326,7 +7335,7 @@ char
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRemainingDryingTime() {
-			addProperty(EPC_REMAINING_DRYING_TIME);
+			reqInformProperty(EPC_REMAINING_DRYING_TIME);
 			return this;
 		}
 		/**
@@ -7356,7 +7365,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformElapsedTimeOnTheOnTimer() {
-			addProperty(EPC_ELAPSED_TIME_ON_THE_ON_TIMER);
+			reqInformProperty(EPC_ELAPSED_TIME_ON_THE_ON_TIMER);
 			return this;
 		}
 		/**
@@ -7392,7 +7401,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformPresoakingTimeSetting() {
-			addProperty(EPC_PRESOAKING_TIME_SETTING);
+			reqInformProperty(EPC_PRESOAKING_TIME_SETTING);
 			return this;
 		}
 		/**
@@ -7445,7 +7454,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformCurrentStageOfWasherAndDryerCycle() {
-			addProperty(EPC_CURRENT_STAGE_OF_WASHER_AND_DRYER_CYCLE);
+			reqInformProperty(EPC_CURRENT_STAGE_OF_WASHER_AND_DRYER_CYCLE);
 			return this;
 		}
 		/**
@@ -7479,7 +7488,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformWaterVolumeSetting1() {
-			addProperty(EPC_WATER_VOLUME_SETTING1);
+			reqInformProperty(EPC_WATER_VOLUME_SETTING1);
 			return this;
 		}
 		/**
@@ -7514,7 +7523,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformWaterVolumeSetting2() {
-			addProperty(EPC_WATER_VOLUME_SETTING2);
+			reqInformProperty(EPC_WATER_VOLUME_SETTING2);
 			return this;
 		}
 		/**
@@ -7550,7 +7559,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformWashingTimeSetting() {
-			addProperty(EPC_WASHING_TIME_SETTING);
+			reqInformProperty(EPC_WASHING_TIME_SETTING);
 			return this;
 		}
 		/**
@@ -7577,7 +7586,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformGnumberOfTimesOfRinsingHSetting() {
-			addProperty(EPC_GNUMBER_OF_TIMES_OF_RINSING_H_SETTING);
+			reqInformProperty(EPC_GNUMBER_OF_TIMES_OF_RINSING_H_SETTING);
 			return this;
 		}
 		/**
@@ -7608,7 +7617,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRinsingProcessSetting() {
-			addProperty(EPC_RINSING_PROCESS_SETTING);
+			reqInformProperty(EPC_RINSING_PROCESS_SETTING);
 			return this;
 		}
 		/**
@@ -7642,7 +7651,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSpinDryingTimeSetting() {
-			addProperty(EPC_SPIN_DRYING_TIME_SETTING);
+			reqInformProperty(EPC_SPIN_DRYING_TIME_SETTING);
 			return this;
 		}
 		/**
@@ -7678,7 +7687,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformDryingTimeSetting() {
-			addProperty(EPC_DRYING_TIME_SETTING);
+			reqInformProperty(EPC_DRYING_TIME_SETTING);
 			return this;
 		}
 		/**
@@ -7706,7 +7715,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformWarmWaterSetting() {
-			addProperty(EPC_WARM_WATER_SETTING);
+			reqInformProperty(EPC_WARM_WATER_SETTING);
 			return this;
 		}
 		/**
@@ -7738,7 +7747,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformBathtubWaterRecycleSetting() {
-			addProperty(EPC_BATHTUB_WATER_RECYCLE_SETTING);
+			reqInformProperty(EPC_BATHTUB_WATER_RECYCLE_SETTING);
 			return this;
 		}
 		/**
@@ -7767,7 +7776,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformWrinklingMinimizationSetting() {
-			addProperty(EPC_WRINKLING_MINIMIZATION_SETTING);
+			reqInformProperty(EPC_WRINKLING_MINIMIZATION_SETTING);
 			return this;
 		}
 		/**
@@ -7798,7 +7807,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformTimeRemainingToCompleteWasherAndDryerCycle() {
-			addProperty(EPC_TIME_REMAINING_TO_COMPLETE_WASHER_AND_DRYER_CYCLE);
+			reqInformProperty(EPC_TIME_REMAINING_TO_COMPLETE_WASHER_AND_DRYER_CYCLE);
 			return this;
 		}
 		/**
@@ -7825,7 +7834,7 @@ minut es<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformDoorCoverLockSetting() {
-			addProperty(EPC_DOOR_COVER_LOCK_SETTING);
+			reqInformProperty(EPC_DOOR_COVER_LOCK_SETTING);
 			return this;
 		}
 		/**
@@ -7883,7 +7892,7 @@ Char
 		 * Get - optional<br>
 		 */
 		public Informer reqInformWasherAndDryerCycle() {
-			addProperty(EPC_WASHER_AND_DRYER_CYCLE);
+			reqInformProperty(EPC_WASHER_AND_DRYER_CYCLE);
 			return this;
 		}
 		/**
@@ -7910,7 +7919,7 @@ Char
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOnTimerReservationSetting() {
-			addProperty(EPC_ON_TIMER_RESERVATION_SETTING);
+			reqInformProperty(EPC_ON_TIMER_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -7938,7 +7947,7 @@ Char
 		 * Get - optional<br>
 		 */
 		public Informer reqInformOnTimerSetting() {
-			addProperty(EPC_ON_TIMER_SETTING);
+			reqInformProperty(EPC_ON_TIMER_SETTING);
 			return this;
 		}
 		/**
@@ -7966,20 +7975,19 @@ Char
 		 * Get - optional<br>
 		 */
 		public Informer reqInformRelativeTimeBasedOnTimerSetting() {
-			addProperty(EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING);
+			reqInformProperty(EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING);
 			return this;
 		}
 	}
 
 	public static class Proxy extends WasherAndDryer {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -8000,7 +8008,7 @@ Char
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -8008,7 +8016,8 @@ Char
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -8016,7 +8025,8 @@ Char
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -8024,7 +8034,8 @@ Char
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

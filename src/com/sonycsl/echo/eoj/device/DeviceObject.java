@@ -17,8 +17,12 @@ package com.sonycsl.echo.eoj.device;
 
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.EchoUtils;
 import com.sonycsl.echo.eoj.EchoObject;
+import com.sonycsl.echo.eoj.profile.NodeProfile.Getter;
+import com.sonycsl.echo.eoj.profile.NodeProfile.Informer;
+import com.sonycsl.echo.eoj.profile.NodeProfile.Setter;
 import com.sonycsl.echo.node.EchoNode;
 
 public abstract class DeviceObject extends EchoObject {
@@ -53,9 +57,15 @@ public abstract class DeviceObject extends EchoObject {
 	
 	public static final byte[] EDT_STANDARD_VERSION_INFORMATION = {(byte)0x00, (byte)0x00, (byte)0x41, (byte)0x00};
 	
+	protected byte mEchoInstanceCode = 0;
+	
 	@Override
 	public byte getInstanceCode() {
-		return getNode().getNumberOfDevice(this);
+		return mEchoInstanceCode;
+	}
+	
+	public void allocateSelfDeviceInstanceCode() {
+		mEchoInstanceCode = EchoUtils.allocateSelfDeviceInstanceCode(getEchoClassCode());
 	}
 
 	
@@ -78,18 +88,6 @@ public abstract class DeviceObject extends EchoObject {
 		addGetProperty(EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP);
 		addGetProperty(EPC_SET_PROPERTY_MAP);
 		addGetProperty(EPC_GET_PROPERTY_MAP);
-	}
-
-
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		try {
-			if(listener != null) listener.onNewDeviceObject(this);
-		} catch(Exception e) {
-			try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
-		}
 	}
 	
 	@Override
@@ -177,53 +175,7 @@ public abstract class DeviceObject extends EchoObject {
 		default : return false;
 		}
 	}
-
-	@Override
-	protected boolean onReceiveProperty(EchoProperty property) {
-		boolean ret = super.onReceiveProperty(property);
-		if(ret) return ret;
-		
-		switch(property.epc) {
-		case EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP :
-			onReceiveStatusChangeAnnouncementPropertyMap(property.edt);
-			return true;
-		case EPC_SET_PROPERTY_MAP :
-			onReceiveSetPropertyMap(property.edt);
-			return true;
-		case EPC_GET_PROPERTY_MAP :
-			onReceiveGetPropertyMap(property.edt);
-			return true;
-		default :
-			return false;
-		}
-	}
-
-	private void onReceiveStatusChangeAnnouncementPropertyMap(byte[] edt) {
-		byte[] properties = EchoUtils.propertyMapToProperties(edt);
-		if(properties == null || properties.length == 0) return;
-		clearStatusChangeAnnouncementProperties();
-		for(byte p : properties) {
-			addStatusChangeAnnouncementProperty(p);
-		}
-	}
-
-	private void onReceiveSetPropertyMap(byte[] edt) {
-		byte[] properties = EchoUtils.propertyMapToProperties(edt);
-		if(properties == null || properties.length == 0) return;
-		clearSetProperties();
-		for(byte p : properties) {
-			addSetProperty(p);
-		}
-	}
 	
-	private void onReceiveGetPropertyMap(byte[] edt) {
-		byte[] properties = EchoUtils.propertyMapToProperties(edt);
-		if(properties == null || properties.length == 0) return;
-		clearGetProperties();
-		for(byte p : properties) {
-			addGetProperty(p);
-		}
-	}
 	/**This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * ON＝0x30，OFF＝0x31<br>
@@ -905,31 +857,40 @@ public abstract class DeviceObject extends EchoObject {
 		return true;
 	}
 
-
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
+
 
 	public static class Receiver extends EchoObject.Receiver {
 
@@ -1405,9 +1366,12 @@ public abstract class DeviceObject extends EchoObject {
 	}
 
 	public static class Setter extends EchoObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
+		
 		
 		@Override
 		public Setter reqSetProperty(byte epc, byte[] edt) {
@@ -1424,7 +1388,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Announcement at status change
 		 */
 		public Setter reqSetOperationStatus(byte[] edt) {
-			addProperty(EPC_OPERATION_STATUS, edt);
+			reqSetProperty(EPC_OPERATION_STATUS, edt);
 			return this;
 		}
 		/**
@@ -1437,7 +1401,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Announcement at status change
 		 */
 		public Setter reqSetInstallationLocation(byte[] edt) {
-			addProperty(EPC_INSTALLATION_LOCATION, edt);
+			reqSetProperty(EPC_INSTALLATION_LOCATION, edt);
 			return this;
 		}
 		/**
@@ -1449,7 +1413,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Setter reqSetCurrentLimitSetting(byte[] edt) {
-			addProperty(EPC_CURRENT_LIMIT_SETTING, edt);
+			reqSetProperty(EPC_CURRENT_LIMIT_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1462,7 +1426,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Setter reqSetPowerSavingOperationSetting(byte[] edt) {
-			addProperty(EPC_POWER_SAVING_OPERATION_SETTING, edt);
+			reqSetProperty(EPC_POWER_SAVING_OPERATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1474,7 +1438,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Announcement at status change
 		 */
 		public Setter reqSetPositionInformation(byte[] edt) {
-			addProperty(EPC_POSITION_INFORMATION, edt);
+			reqSetProperty(EPC_POSITION_INFORMATION, edt);
 			return this;
 		}
 		/**
@@ -1486,7 +1450,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
-			addProperty(EPC_CURRENT_TIME_SETTING, edt);
+			reqSetProperty(EPC_CURRENT_TIME_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1498,7 +1462,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Setter reqSetCurrentDateSetting(byte[] edt) {
-			addProperty(EPC_CURRENT_DATE_SETTING, edt);
+			reqSetProperty(EPC_CURRENT_DATE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1510,15 +1474,17 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Setter reqSetPowerLimitSetting(byte[] edt) {
-			addProperty(EPC_POWER_LIMIT_SETTING, edt);
+			reqSetProperty(EPC_POWER_LIMIT_SETTING, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends EchoObject.Getter {
-		
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		@Override
 		public Getter reqGetProperty(byte epc) {
@@ -1534,7 +1500,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Announcement at status change
 		 */
 		public Getter reqGetOperationStatus() {
-			addProperty(EPC_OPERATION_STATUS);
+			reqGetProperty(EPC_OPERATION_STATUS);
 			return this;
 		}
 		/**
@@ -1547,7 +1513,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Announcement at status change
 		 */
 		public Getter reqGetInstallationLocation() {
-			addProperty(EPC_INSTALLATION_LOCATION);
+			reqGetProperty(EPC_INSTALLATION_LOCATION);
 			return this;
 		}
 		/**
@@ -1562,7 +1528,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : mandatory
 		 */
 		public Getter reqGetStandardVersionInformation() {
-			addProperty(EPC_STANDARD_VERSION_INFORMATION);
+			reqGetProperty(EPC_STANDARD_VERSION_INFORMATION);
 			return this;
 		}
 		/**
@@ -1589,7 +1555,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Getter reqGetIdentificationNumber() {
-			addProperty(EPC_IDENTIFICATION_NUMBER);
+			reqGetProperty(EPC_IDENTIFICATION_NUMBER);
 			return this;
 		}
 		/**
@@ -1601,7 +1567,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Getter reqGetMeasuredInstantaneousPowerConsumption() {
-			addProperty(EPC_MEASURED_INSTANTANEOUS_POWER_CONSUMPTION);
+			reqGetProperty(EPC_MEASURED_INSTANTANEOUS_POWER_CONSUMPTION);
 			return this;
 		}
 		/**
@@ -1613,7 +1579,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Getter reqGetMeasuredCumulativePowerConsumption() {
-			addProperty(EPC_MEASURED_CUMULATIVE_POWER_CONSUMPTION);
+			reqGetProperty(EPC_MEASURED_CUMULATIVE_POWER_CONSUMPTION);
 			return this;
 		}
 		/**
@@ -1627,7 +1593,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Getter reqGetManufacturersFaultCode() {
-			addProperty(EPC_MANUFACTURERS_FAULT_CODE);
+			reqGetProperty(EPC_MANUFACTURERS_FAULT_CODE);
 			return this;
 		}
 		/**
@@ -1639,7 +1605,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Getter reqGetCurrentLimitSetting() {
-			addProperty(EPC_CURRENT_LIMIT_SETTING);
+			reqGetProperty(EPC_CURRENT_LIMIT_SETTING);
 			return this;
 		}
 		/**
@@ -1652,7 +1618,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Announcement at status change
 		 */
 		public Getter reqGetFaultStatus() {
-			addProperty(EPC_FAULT_STATUS);
+			reqGetProperty(EPC_FAULT_STATUS);
 			return this;
 		}
 		/**
@@ -1664,7 +1630,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Getter reqGetFaultDescription() {
-			addProperty(EPC_FAULT_DESCRIPTION);
+			reqGetProperty(EPC_FAULT_DESCRIPTION);
 			return this;
 		}
 		/**
@@ -1676,7 +1642,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : mandatory
 		 */
 		public Getter reqGetManufacturerCode() {
-			addProperty(EPC_MANUFACTURER_CODE);
+			reqGetProperty(EPC_MANUFACTURER_CODE);
 			return this;
 		}
 		/**
@@ -1688,7 +1654,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Getter reqGetBusinessFacilityCode() {
-			addProperty(EPC_BUSINESS_FACILITY_CODE);
+			reqGetProperty(EPC_BUSINESS_FACILITY_CODE);
 			return this;
 		}
 		/**
@@ -1700,7 +1666,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Getter reqGetProductCode() {
-			addProperty(EPC_PRODUCT_CODE);
+			reqGetProperty(EPC_PRODUCT_CODE);
 			return this;
 		}
 		/**
@@ -1712,7 +1678,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Getter reqGetProductionNumber() {
-			addProperty(EPC_PRODUCTION_NUMBER);
+			reqGetProperty(EPC_PRODUCTION_NUMBER);
 			return this;
 		}
 		/**
@@ -1727,7 +1693,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Getter reqGetProductionDate() {
-			addProperty(EPC_PRODUCTION_DATE);
+			reqGetProperty(EPC_PRODUCTION_DATE);
 			return this;
 		}
 		/**
@@ -1740,7 +1706,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Getter reqGetPowerSavingOperationSetting() {
-			addProperty(EPC_POWER_SAVING_OPERATION_SETTING);
+			reqGetProperty(EPC_POWER_SAVING_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -1752,7 +1718,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Announcement at status change
 		 */
 		public Getter reqGetPositionInformation() {
-			addProperty(EPC_POSITION_INFORMATION);
+			reqGetProperty(EPC_POSITION_INFORMATION);
 			return this;
 		}
 		/**
@@ -1764,7 +1730,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Getter reqGetCurrentTimeSetting() {
-			addProperty(EPC_CURRENT_TIME_SETTING);
+			reqGetProperty(EPC_CURRENT_TIME_SETTING);
 			return this;
 		}
 		/**
@@ -1776,7 +1742,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Getter reqGetCurrentDateSetting() {
-			addProperty(EPC_CURRENT_DATE_SETTING);
+			reqGetProperty(EPC_CURRENT_DATE_SETTING);
 			return this;
 		}
 		/**
@@ -1788,7 +1754,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Getter reqGetPowerLimitSetting() {
-			addProperty(EPC_POWER_LIMIT_SETTING);
+			reqGetProperty(EPC_POWER_LIMIT_SETTING);
 			return this;
 		}
 		/**
@@ -1803,7 +1769,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Getter reqGetCumulativeOperatingTime() {
-			addProperty(EPC_CUMULATIVE_OPERATING_TIME);
+			reqGetProperty(EPC_CUMULATIVE_OPERATING_TIME);
 			return this;
 		}
 		/**
@@ -1814,7 +1780,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : mandatory
 		 */
 		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			addProperty(EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP);
+			reqGetProperty(EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP);
 			return this;
 		}
 		/**
@@ -1825,7 +1791,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : mandatory
 		 */
 		public Getter reqGetSetPropertyMap() {
-			addProperty(EPC_SET_PROPERTY_MAP);
+			reqGetProperty(EPC_SET_PROPERTY_MAP);
 			return this;
 		}
 		/**
@@ -1836,15 +1802,18 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : mandatory
 		 */
 		public Getter reqGetGetPropertyMap() {
-			addProperty(EPC_GET_PROPERTY_MAP);
+			reqGetProperty(EPC_GET_PROPERTY_MAP);
 			return this;
 		}
 	}
 	
 	public static class Informer extends EchoObject.Informer {
 
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 
 		@Override
@@ -1862,7 +1831,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Announcement at status change
 		 */
 		public Informer reqInformOperationStatus() {
-			addProperty(EPC_OPERATION_STATUS);
+			reqInformProperty(EPC_OPERATION_STATUS);
 			return this;
 		}
 		/**
@@ -1875,7 +1844,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Announcement at status change
 		 */
 		public Informer reqInformInstallationLocation() {
-			addProperty(EPC_INSTALLATION_LOCATION);
+			reqInformProperty(EPC_INSTALLATION_LOCATION);
 			return this;
 		}
 		/**
@@ -1890,7 +1859,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : mandatory
 		 */
 		public Informer reqInformStandardVersionInformation() {
-			addProperty(EPC_STANDARD_VERSION_INFORMATION);
+			reqInformProperty(EPC_STANDARD_VERSION_INFORMATION);
 			return this;
 		}
 		/**
@@ -1917,7 +1886,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Informer reqInformIdentificationNumber() {
-			addProperty(EPC_IDENTIFICATION_NUMBER);
+			reqInformProperty(EPC_IDENTIFICATION_NUMBER);
 			return this;
 		}
 		/**
@@ -1929,7 +1898,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Informer reqInformMeasuredInstantaneousPowerConsumption() {
-			addProperty(EPC_MEASURED_INSTANTANEOUS_POWER_CONSUMPTION);
+			reqInformProperty(EPC_MEASURED_INSTANTANEOUS_POWER_CONSUMPTION);
 			return this;
 		}
 		/**
@@ -1941,7 +1910,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Informer reqInformMeasuredCumulativePowerConsumption() {
-			addProperty(EPC_MEASURED_CUMULATIVE_POWER_CONSUMPTION);
+			reqInformProperty(EPC_MEASURED_CUMULATIVE_POWER_CONSUMPTION);
 			return this;
 		}
 		/**
@@ -1955,7 +1924,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Informer reqInformManufacturersFaultCode() {
-			addProperty(EPC_MANUFACTURERS_FAULT_CODE);
+			reqInformProperty(EPC_MANUFACTURERS_FAULT_CODE);
 			return this;
 		}
 		/**
@@ -1967,7 +1936,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Informer reqInformCurrentLimitSetting() {
-			addProperty(EPC_CURRENT_LIMIT_SETTING);
+			reqInformProperty(EPC_CURRENT_LIMIT_SETTING);
 			return this;
 		}
 		/**
@@ -1980,7 +1949,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Announcement at status change
 		 */
 		public Informer reqInformFaultStatus() {
-			addProperty(EPC_FAULT_STATUS);
+			reqInformProperty(EPC_FAULT_STATUS);
 			return this;
 		}
 		/**
@@ -1992,7 +1961,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Informer reqInformFaultDescription() {
-			addProperty(EPC_FAULT_DESCRIPTION);
+			reqInformProperty(EPC_FAULT_DESCRIPTION);
 			return this;
 		}
 		/**
@@ -2004,7 +1973,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : mandatory
 		 */
 		public Informer reqInformManufacturerCode() {
-			addProperty(EPC_MANUFACTURER_CODE);
+			reqInformProperty(EPC_MANUFACTURER_CODE);
 			return this;
 		}
 		/**
@@ -2016,7 +1985,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Informer reqInformBusinessFacilityCode() {
-			addProperty(EPC_BUSINESS_FACILITY_CODE);
+			reqInformProperty(EPC_BUSINESS_FACILITY_CODE);
 			return this;
 		}
 		/**
@@ -2028,7 +1997,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Informer reqInformProductCode() {
-			addProperty(EPC_PRODUCT_CODE);
+			reqInformProperty(EPC_PRODUCT_CODE);
 			return this;
 		}
 		/**
@@ -2040,7 +2009,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Informer reqInformProductionNumber() {
-			addProperty(EPC_PRODUCTION_NUMBER);
+			reqInformProperty(EPC_PRODUCTION_NUMBER);
 			return this;
 		}
 		/**
@@ -2055,7 +2024,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Informer reqInformProductionDate() {
-			addProperty(EPC_PRODUCTION_DATE);
+			reqInformProperty(EPC_PRODUCTION_DATE);
 			return this;
 		}
 		/**
@@ -2068,7 +2037,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Informer reqInformPowerSavingOperationSetting() {
-			addProperty(EPC_POWER_SAVING_OPERATION_SETTING);
+			reqInformProperty(EPC_POWER_SAVING_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -2080,7 +2049,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Announcement at status change
 		 */
 		public Informer reqInformPositionInformation() {
-			addProperty(EPC_POSITION_INFORMATION);
+			reqInformProperty(EPC_POSITION_INFORMATION);
 			return this;
 		}
 		/**
@@ -2092,7 +2061,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Informer reqInformCurrentTimeSetting() {
-			addProperty(EPC_CURRENT_TIME_SETTING);
+			reqInformProperty(EPC_CURRENT_TIME_SETTING);
 			return this;
 		}
 		/**
@@ -2104,7 +2073,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Informer reqInformCurrentDateSetting() {
-			addProperty(EPC_CURRENT_DATE_SETTING);
+			reqInformProperty(EPC_CURRENT_DATE_SETTING);
 			return this;
 		}
 		/**
@@ -2116,7 +2085,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Informer reqInformPowerLimitSetting() {
-			addProperty(EPC_POWER_LIMIT_SETTING);
+			reqInformProperty(EPC_POWER_LIMIT_SETTING);
 			return this;
 		}
 		/**
@@ -2131,7 +2100,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : optional
 		 */
 		public Informer reqInformCumulativeOperatingTime() {
-			addProperty(EPC_CUMULATIVE_OPERATING_TIME);
+			reqInformProperty(EPC_CUMULATIVE_OPERATING_TIME);
 			return this;
 		}
 		/**
@@ -2142,7 +2111,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : mandatory
 		 */
 		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
-			addProperty(EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP);
+			reqInformProperty(EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP);
 			return this;
 		}
 		/**
@@ -2153,7 +2122,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : mandatory
 		 */
 		public Informer reqInformSetPropertyMap() {
-			addProperty(EPC_SET_PROPERTY_MAP);
+			reqInformProperty(EPC_SET_PROPERTY_MAP);
 			return this;
 		}
 		/**
@@ -2164,7 +2133,7 @@ public abstract class DeviceObject extends EchoObject {
 		 * Get : mandatory
 		 */
 		public Informer reqInformGetPropertyMap() {
-			addProperty(EPC_GET_PROPERTY_MAP);
+			reqInformProperty(EPC_GET_PROPERTY_MAP);
 			return this;
 		}
 	}

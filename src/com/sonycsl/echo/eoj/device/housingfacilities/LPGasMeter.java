@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.housingfacilities;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -63,13 +64,6 @@ public abstract class LPGasMeter extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_ERROR_DETECTION_STATUSOF_METERING_DATA);
 		addStatusChangeAnnouncementProperty(EPC_CENTER_VALVE_SHUT_OFF_STATUS);
 		addStatusChangeAnnouncementProperty(EPC_RESIDUAL_VOLUME_CONTROL_WARNING);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewLPGasMeter(this);
 	}
 	
 	@Override
@@ -1541,27 +1535,36 @@ shut-off recovery permission setting status<br>
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -2351,8 +2354,10 @@ shut-off recovery permission setting status<br>
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -2416,7 +2421,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetSetValueOfResidualVolumeControlWarningLevel1(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1, edt);
+			reqSetProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1, edt);
 			return this;
 		}
 		/**
@@ -2442,7 +2447,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetSetValueOfResidualVolumeControlWarningLevel2(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2, edt);
+			reqSetProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2, edt);
 			return this;
 		}
 		/**
@@ -2468,7 +2473,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetSetValueOfResidualVolumeControlWarningLevel3(byte[] edt) {
-			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3, edt);
+			reqSetProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3, edt);
 			return this;
 		}
 		/**
@@ -2495,14 +2500,16 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Setter reqSetTestCallSetting(byte[] edt) {
-			addProperty(EPC_TEST_CALL_SETTING, edt);
+			reqSetProperty(EPC_TEST_CALL_SETTING, edt);
 			return this;
 		}
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -2630,7 +2637,7 @@ shut-off recovery permission setting status<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetIntegralGasConsumptionOfMeteringData1() {
-			addProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1);
+			reqGetProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1);
 			return this;
 		}
 		/**
@@ -2656,7 +2663,7 @@ shut-off recovery permission setting status<br>
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetIntegralGasConsumptionOfMeteringData2() {
-			addProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2);
+			reqGetProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2);
 			return this;
 		}
 		/**
@@ -2686,7 +2693,7 @@ shut-off recovery permission setting status<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetErrorDetectionStatusofMeteringData() {
-			addProperty(EPC_ERROR_DETECTION_STATUSOF_METERING_DATA);
+			reqGetProperty(EPC_ERROR_DETECTION_STATUSOF_METERING_DATA);
 			return this;
 		}
 		/**
@@ -2712,7 +2719,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSecurityData1() {
-			addProperty(EPC_SECURITY_DATA1);
+			reqGetProperty(EPC_SECURITY_DATA1);
 			return this;
 		}
 		/**
@@ -2738,7 +2745,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSecurityData2() {
-			addProperty(EPC_SECURITY_DATA2);
+			reqGetProperty(EPC_SECURITY_DATA2);
 			return this;
 		}
 		/**
@@ -2769,7 +2776,7 @@ shut-off recovery permission setting status<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetCenterValveShutOffStatus() {
-			addProperty(EPC_CENTER_VALVE_SHUT_OFF_STATUS);
+			reqGetProperty(EPC_CENTER_VALVE_SHUT_OFF_STATUS);
 			return this;
 		}
 		/**
@@ -2799,7 +2806,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetCenterValveShutOffRecoveryPermissionSettingStatus() {
-			addProperty(EPC_CENTER_VALVE_SHUT_OFF_RECOVERY_PERMISSION_SETTING_STATUS);
+			reqGetProperty(EPC_CENTER_VALVE_SHUT_OFF_RECOVERY_PERMISSION_SETTING_STATUS);
 			return this;
 		}
 		/**
@@ -2827,7 +2834,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetEmergencyValveShutOffStatus() {
-			addProperty(EPC_EMERGENCY_VALVE_SHUT_OFF_STATUS);
+			reqGetProperty(EPC_EMERGENCY_VALVE_SHUT_OFF_STATUS);
 			return this;
 		}
 		/**
@@ -2854,7 +2861,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetShutOffValveOpenCloseStatus() {
-			addProperty(EPC_SHUT_OFF_VALVE_OPEN_CLOSE_STATUS);
+			reqGetProperty(EPC_SHUT_OFF_VALVE_OPEN_CLOSE_STATUS);
 			return this;
 		}
 		/**
@@ -2889,7 +2896,7 @@ shut-off recovery permission setting status<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetResidualVolumeControlWarning() {
-			addProperty(EPC_RESIDUAL_VOLUME_CONTROL_WARNING);
+			reqGetProperty(EPC_RESIDUAL_VOLUME_CONTROL_WARNING);
 			return this;
 		}
 		/**
@@ -2915,7 +2922,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSetValueOfResidualVolumeControlWarningLevel1() {
-			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1);
+			reqGetProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1);
 			return this;
 		}
 		/**
@@ -2941,7 +2948,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSetValueOfResidualVolumeControlWarningLevel2() {
-			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2);
+			reqGetProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2);
 			return this;
 		}
 		/**
@@ -2967,7 +2974,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSetValueOfResidualVolumeControlWarningLevel3() {
-			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3);
+			reqGetProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3);
 			return this;
 		}
 		/**
@@ -2993,7 +3000,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSlightLeakTimerValueGasFlowRateContinuation() {
-			addProperty(EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION);
+			reqGetProperty(EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION);
 			return this;
 		}
 		/**
@@ -3019,7 +3026,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSlightLeakTimerValueWithoutPressureIncrease() {
-			addProperty(EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE);
+			reqGetProperty(EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE);
 			return this;
 		}
 		/**
@@ -3046,7 +3053,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetShutOffReasonLog() {
-			addProperty(EPC_SHUT_OFF_REASON_LOG);
+			reqGetProperty(EPC_SHUT_OFF_REASON_LOG);
 			return this;
 		}
 		/**
@@ -3072,7 +3079,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMaximumValueOfSupplyPressureData() {
-			addProperty(EPC_MAXIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA);
+			reqGetProperty(EPC_MAXIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA);
 			return this;
 		}
 		/**
@@ -3098,7 +3105,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMinimumValueOfSupplyPressureData() {
-			addProperty(EPC_MINIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA);
+			reqGetProperty(EPC_MINIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA);
 			return this;
 		}
 		/**
@@ -3125,7 +3132,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetCurrentValueOfSupplyPressureData() {
-			addProperty(EPC_CURRENT_VALUE_OF_SUPPLY_PRESSURE_DATA);
+			reqGetProperty(EPC_CURRENT_VALUE_OF_SUPPLY_PRESSURE_DATA);
 			return this;
 		}
 		/**
@@ -3151,7 +3158,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMaximumValueOfBlockPressureData() {
-			addProperty(EPC_MAXIMUM_VALUE_OF_BLOCK_PRESSURE_DATA);
+			reqGetProperty(EPC_MAXIMUM_VALUE_OF_BLOCK_PRESSURE_DATA);
 			return this;
 		}
 		/**
@@ -3177,7 +3184,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetMinimumValueOfBlockPressureData() {
-			addProperty(EPC_MINIMUM_VALUE_OF_BLOCK_PRESSURE_DATA);
+			reqGetProperty(EPC_MINIMUM_VALUE_OF_BLOCK_PRESSURE_DATA);
 			return this;
 		}
 		/**
@@ -3203,7 +3210,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetCurrentValueOfBlockPressureData() {
-			addProperty(EPC_CURRENT_VALUE_OF_BLOCK_PRESSURE_DATA);
+			reqGetProperty(EPC_CURRENT_VALUE_OF_BLOCK_PRESSURE_DATA);
 			return this;
 		}
 		/**
@@ -3230,7 +3237,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetNumberOfBlockPressureSupplyPressureErrorDaysTime() {
-			addProperty(EPC_NUMBER_OF_BLOCK_PRESSURE_SUPPLY_PRESSURE_ERROR_DAYS_TIME);
+			reqGetProperty(EPC_NUMBER_OF_BLOCK_PRESSURE_SUPPLY_PRESSURE_ERROR_DAYS_TIME);
 			return this;
 		}
 		/**
@@ -3257,14 +3264,16 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetTestCallSetting() {
-			addProperty(EPC_TEST_CALL_SETTING);
+			reqGetProperty(EPC_TEST_CALL_SETTING);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -3391,7 +3400,7 @@ shut-off recovery permission setting status<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformIntegralGasConsumptionOfMeteringData1() {
-			addProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1);
+			reqInformProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA1);
 			return this;
 		}
 		/**
@@ -3417,7 +3426,7 @@ shut-off recovery permission setting status<br>
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformIntegralGasConsumptionOfMeteringData2() {
-			addProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2);
+			reqInformProperty(EPC_INTEGRAL_GAS_CONSUMPTION_OF_METERING_DATA2);
 			return this;
 		}
 		/**
@@ -3447,7 +3456,7 @@ shut-off recovery permission setting status<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformErrorDetectionStatusofMeteringData() {
-			addProperty(EPC_ERROR_DETECTION_STATUSOF_METERING_DATA);
+			reqInformProperty(EPC_ERROR_DETECTION_STATUSOF_METERING_DATA);
 			return this;
 		}
 		/**
@@ -3473,7 +3482,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSecurityData1() {
-			addProperty(EPC_SECURITY_DATA1);
+			reqInformProperty(EPC_SECURITY_DATA1);
 			return this;
 		}
 		/**
@@ -3499,7 +3508,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSecurityData2() {
-			addProperty(EPC_SECURITY_DATA2);
+			reqInformProperty(EPC_SECURITY_DATA2);
 			return this;
 		}
 		/**
@@ -3530,7 +3539,7 @@ shut-off recovery permission setting status<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformCenterValveShutOffStatus() {
-			addProperty(EPC_CENTER_VALVE_SHUT_OFF_STATUS);
+			reqInformProperty(EPC_CENTER_VALVE_SHUT_OFF_STATUS);
 			return this;
 		}
 		/**
@@ -3560,7 +3569,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformCenterValveShutOffRecoveryPermissionSettingStatus() {
-			addProperty(EPC_CENTER_VALVE_SHUT_OFF_RECOVERY_PERMISSION_SETTING_STATUS);
+			reqInformProperty(EPC_CENTER_VALVE_SHUT_OFF_RECOVERY_PERMISSION_SETTING_STATUS);
 			return this;
 		}
 		/**
@@ -3588,7 +3597,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformEmergencyValveShutOffStatus() {
-			addProperty(EPC_EMERGENCY_VALVE_SHUT_OFF_STATUS);
+			reqInformProperty(EPC_EMERGENCY_VALVE_SHUT_OFF_STATUS);
 			return this;
 		}
 		/**
@@ -3615,7 +3624,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformShutOffValveOpenCloseStatus() {
-			addProperty(EPC_SHUT_OFF_VALVE_OPEN_CLOSE_STATUS);
+			reqInformProperty(EPC_SHUT_OFF_VALVE_OPEN_CLOSE_STATUS);
 			return this;
 		}
 		/**
@@ -3650,7 +3659,7 @@ shut-off recovery permission setting status<br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformResidualVolumeControlWarning() {
-			addProperty(EPC_RESIDUAL_VOLUME_CONTROL_WARNING);
+			reqInformProperty(EPC_RESIDUAL_VOLUME_CONTROL_WARNING);
 			return this;
 		}
 		/**
@@ -3676,7 +3685,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSetValueOfResidualVolumeControlWarningLevel1() {
-			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1);
+			reqInformProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL1);
 			return this;
 		}
 		/**
@@ -3702,7 +3711,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSetValueOfResidualVolumeControlWarningLevel2() {
-			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2);
+			reqInformProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL2);
 			return this;
 		}
 		/**
@@ -3728,7 +3737,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSetValueOfResidualVolumeControlWarningLevel3() {
-			addProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3);
+			reqInformProperty(EPC_SET_VALUE_OF_RESIDUAL_VOLUME_CONTROL_WARNING_LEVEL3);
 			return this;
 		}
 		/**
@@ -3754,7 +3763,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSlightLeakTimerValueGasFlowRateContinuation() {
-			addProperty(EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION);
+			reqInformProperty(EPC_SLIGHT_LEAK_TIMER_VALUE_GAS_FLOW_RATE_CONTINUATION);
 			return this;
 		}
 		/**
@@ -3780,7 +3789,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSlightLeakTimerValueWithoutPressureIncrease() {
-			addProperty(EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE);
+			reqInformProperty(EPC_SLIGHT_LEAK_TIMER_VALUE_WITHOUT_PRESSURE_INCREASE);
 			return this;
 		}
 		/**
@@ -3807,7 +3816,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformShutOffReasonLog() {
-			addProperty(EPC_SHUT_OFF_REASON_LOG);
+			reqInformProperty(EPC_SHUT_OFF_REASON_LOG);
 			return this;
 		}
 		/**
@@ -3833,7 +3842,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMaximumValueOfSupplyPressureData() {
-			addProperty(EPC_MAXIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA);
+			reqInformProperty(EPC_MAXIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA);
 			return this;
 		}
 		/**
@@ -3859,7 +3868,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMinimumValueOfSupplyPressureData() {
-			addProperty(EPC_MINIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA);
+			reqInformProperty(EPC_MINIMUM_VALUE_OF_SUPPLY_PRESSURE_DATA);
 			return this;
 		}
 		/**
@@ -3886,7 +3895,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformCurrentValueOfSupplyPressureData() {
-			addProperty(EPC_CURRENT_VALUE_OF_SUPPLY_PRESSURE_DATA);
+			reqInformProperty(EPC_CURRENT_VALUE_OF_SUPPLY_PRESSURE_DATA);
 			return this;
 		}
 		/**
@@ -3912,7 +3921,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMaximumValueOfBlockPressureData() {
-			addProperty(EPC_MAXIMUM_VALUE_OF_BLOCK_PRESSURE_DATA);
+			reqInformProperty(EPC_MAXIMUM_VALUE_OF_BLOCK_PRESSURE_DATA);
 			return this;
 		}
 		/**
@@ -3938,7 +3947,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformMinimumValueOfBlockPressureData() {
-			addProperty(EPC_MINIMUM_VALUE_OF_BLOCK_PRESSURE_DATA);
+			reqInformProperty(EPC_MINIMUM_VALUE_OF_BLOCK_PRESSURE_DATA);
 			return this;
 		}
 		/**
@@ -3964,7 +3973,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformCurrentValueOfBlockPressureData() {
-			addProperty(EPC_CURRENT_VALUE_OF_BLOCK_PRESSURE_DATA);
+			reqInformProperty(EPC_CURRENT_VALUE_OF_BLOCK_PRESSURE_DATA);
 			return this;
 		}
 		/**
@@ -3991,7 +4000,7 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformNumberOfBlockPressureSupplyPressureErrorDaysTime() {
-			addProperty(EPC_NUMBER_OF_BLOCK_PRESSURE_SUPPLY_PRESSURE_ERROR_DAYS_TIME);
+			reqInformProperty(EPC_NUMBER_OF_BLOCK_PRESSURE_SUPPLY_PRESSURE_ERROR_DAYS_TIME);
 			return this;
 		}
 		/**
@@ -4018,20 +4027,19 @@ shut-off recovery permission setting status<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformTestCallSetting() {
-			addProperty(EPC_TEST_CALL_SETTING);
+			reqInformProperty(EPC_TEST_CALL_SETTING);
 			return this;
 		}
 	}
 
 	public static class Proxy extends LPGasMeter {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -4056,7 +4064,7 @@ shut-off recovery permission setting status<br>
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -4064,7 +4072,8 @@ shut-off recovery permission setting status<br>
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -4072,7 +4081,8 @@ shut-off recovery permission setting status<br>
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -4080,7 +4090,8 @@ shut-off recovery permission setting status<br>
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

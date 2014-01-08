@@ -18,6 +18,7 @@ package com.sonycsl.echo.eoj.device.housingfacilities;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
@@ -37,13 +38,6 @@ public abstract class GasMeter extends DeviceObject {
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_VALUE);
-	}
-	
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewGasMeter(this);
 	}
 	
 	@Override
@@ -242,27 +236,36 @@ public abstract class GasMeter extends DeviceObject {
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
-	
+
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 	
 	public static class Receiver extends DeviceObject.Receiver {
@@ -348,8 +351,10 @@ public abstract class GasMeter extends DeviceObject {
 	}
 
 	public static class Setter extends DeviceObject.Setter {
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 		
 		@Override
@@ -393,8 +398,10 @@ public abstract class GasMeter extends DeviceObject {
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 		
 		@Override
@@ -523,7 +530,7 @@ public abstract class GasMeter extends DeviceObject {
 		 * Get - mandatory<br>
 		 */
 		public Getter reqGetIntegralGasConsumptionMeasurementValue() {
-			addProperty(EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_VALUE);
+			reqGetProperty(EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_VALUE);
 			return this;
 		}
 		/**
@@ -550,14 +557,16 @@ public abstract class GasMeter extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Getter reqGetIntegralGasConsumptionMeasurementLog() {
-			addProperty(EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_LOG);
+			reqGetProperty(EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_LOG);
 			return this;
 		}
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 		
 		@Override
@@ -685,7 +694,7 @@ public abstract class GasMeter extends DeviceObject {
 		 * Get - mandatory<br>
 		 */
 		public Informer reqInformIntegralGasConsumptionMeasurementValue() {
-			addProperty(EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_VALUE);
+			reqInformProperty(EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_VALUE);
 			return this;
 		}
 		/**
@@ -712,20 +721,19 @@ public abstract class GasMeter extends DeviceObject {
 		 * Get - optional<br>
 		 */
 		public Informer reqInformIntegralGasConsumptionMeasurementLog() {
-			addProperty(EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_LOG);
+			reqInformProperty(EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_LOG);
 			return this;
 		}
 	}
 
 	public static class Proxy extends GasMeter {
-		private byte mInstanceCode;
 		public Proxy(byte instanceCode) {
 			super();
-			mInstanceCode = instanceCode;
+			mEchoInstanceCode = instanceCode;
 		}
 		@Override
 		public byte getInstanceCode() {
-			return mInstanceCode;
+			return mEchoInstanceCode;
 		}
 		@Override
 		protected byte[] getOperationStatus() {return null;}
@@ -748,7 +756,7 @@ public abstract class GasMeter extends DeviceObject {
 	}
 
 	public static Setter setG(byte instanceCode) {
-		return new Setter(new Proxy(instanceCode), true, true);
+		return setG(instanceCode, true);
 	}
 
 	public static Setter setG(boolean responseRequired) {
@@ -756,7 +764,8 @@ public abstract class GasMeter extends DeviceObject {
 	}
 
 	public static Setter setG(byte instanceCode, boolean responseRequired) {
-		return new Setter(new Proxy(instanceCode), responseRequired, true);
+		return new Setter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, responseRequired);
 	}
 
 	public static Getter getG() {
@@ -764,7 +773,8 @@ public abstract class GasMeter extends DeviceObject {
 	}
 	
 	public static Getter getG(byte instanceCode) {
-		return new Getter(new Proxy(instanceCode), true);
+		return new Getter(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS);
 	}
 
 	public static Informer informG() {
@@ -772,7 +782,8 @@ public abstract class GasMeter extends DeviceObject {
 	}
 
 	public static Informer informG(byte instanceCode) {
-		return new Informer(new Proxy(instanceCode), true);
+		return new Informer(ECHO_CLASS_CODE, instanceCode
+				, EchoSocket.MULTICAST_ADDRESS, false);
 	}
 
 }

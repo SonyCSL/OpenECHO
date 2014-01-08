@@ -21,6 +21,7 @@ import java.util.Iterator;
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
+import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.EchoUtils;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.EchoObject.Getter;
@@ -49,14 +50,7 @@ public abstract class ProfileObject extends EchoObject {
 		addGetProperty(EPC_SET_PROPERTY_MAP);
 		addGetProperty(EPC_GET_PROPERTY_MAP);
 	}
-
-	@Override
-	public void initialize(EchoNode node) {
-		super.initialize(node);
-		Echo.EventListener listener = Echo.getEventListener();
-		if(listener != null) listener.onNewProfileObject(this);
-	}
-
+	
 	@Override
 	protected synchronized boolean setProperty(EchoProperty property) {
 		boolean success = super.setProperty(property);
@@ -104,7 +98,7 @@ public abstract class ProfileObject extends EchoObject {
 		default : return false;
 		}
 	}
-
+/*
 	@Override
 	protected boolean onReceiveProperty(EchoProperty property) {
 		boolean ret = super.onReceiveProperty(property);
@@ -123,7 +117,7 @@ public abstract class ProfileObject extends EchoObject {
 		default :
 			return false;
 		}
-	}
+	}*/
 
 	private void onReceiveStatusChangeAnnouncementPropertyMap(byte[] edt) {
 		byte[] properties = EchoUtils.propertyMapToProperties(edt);
@@ -303,27 +297,36 @@ public abstract class ProfileObject extends EchoObject {
 
 	@Override
 	public Setter set() {
-		return new Setter(this, true, false);
+		return set(true);
 	}
 
 	@Override
 	public Setter set(boolean responseRequired) {
-		return new Setter(this, responseRequired, false);
+		return new Setter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr(), responseRequired);
 	}
 
 	@Override
 	public Getter get() {
-		return new Getter(this, false);
+		return new Getter(getEchoClassCode(), getInstanceCode()
+				, getNode().getAddressStr());
 	}
 
 	@Override
 	public Informer inform() {
-		return new Informer(this, !isProxy());
+		return inform(isSelfObject());
 	}
 
 	@Override
 	protected Informer inform(boolean multicast) {
-		return new Informer(this, multicast);
+		String address;
+		if(multicast) {
+			address = EchoSocket.MULTICAST_ADDRESS;
+		} else {
+			address = getNode().getAddressStr();
+		}
+		return new Informer(getEchoClassCode(), getInstanceCode()
+				, address, isSelfObject());
 	}
 
 	public static class Receiver extends EchoObject.Receiver {
@@ -488,8 +491,10 @@ public abstract class ProfileObject extends EchoObject {
 
 	public static class Setter extends EchoObject.Setter {
 
-		public Setter(EchoObject eoj, boolean responseRequired, boolean multicast) {
-			super(eoj, responseRequired, multicast);
+		public Setter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress, boolean responseRequired) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress, responseRequired);
 		}
 
 		@Override
@@ -501,8 +506,10 @@ public abstract class ProfileObject extends EchoObject {
 	}
 	
 	public static class Getter extends EchoObject.Getter {
-		public Getter(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Getter(short dstEchoClassCode, byte dstEchoInstanceCode
+				, String dstEchoAddress) {
+			super(dstEchoClassCode, dstEchoInstanceCode
+					, dstEchoAddress);
 		}
 
 		@Override
@@ -519,7 +526,7 @@ public abstract class ProfileObject extends EchoObject {
 		 * Get : optional<br>
 		 */
 		public Getter reqGetFaultStatus() {
-			addProperty(EPC_FAULT_STATUS);
+			reqGetProperty(EPC_FAULT_STATUS);
 			return this;
 		}
 		/**
@@ -531,7 +538,7 @@ public abstract class ProfileObject extends EchoObject {
 		 * Get : mandatory<br>
 		 */
 		public Getter reqGetManufacturerCode() {
-			addProperty(EPC_MANUFACTURER_CODE);
+			reqGetProperty(EPC_MANUFACTURER_CODE);
 			return this;
 		}
 		/**
@@ -543,7 +550,7 @@ public abstract class ProfileObject extends EchoObject {
 		 * Get : optional<br>
 		 */
 		public Getter reqGetPlaceOfBusinessCode() {
-			addProperty(EPC_PLACE_OF_BUSINESS_CODE);
+			reqGetProperty(EPC_PLACE_OF_BUSINESS_CODE);
 			return this;
 		}
 		/**
@@ -555,7 +562,7 @@ public abstract class ProfileObject extends EchoObject {
 		 * Get : optional<br>
 		 */
 		public Getter reqGetProductCode() {
-			addProperty(EPC_PRODUCT_CODE);
+			reqGetProperty(EPC_PRODUCT_CODE);
 			return this;
 		}
 		/**
@@ -567,7 +574,7 @@ public abstract class ProfileObject extends EchoObject {
 		 * Get : optional<br>
 		 */
 		public Getter reqGetSerialNumber() {
-			addProperty(EPC_SERIAL_NUMBER);
+			reqGetProperty(EPC_SERIAL_NUMBER);
 			return this;
 		}
 		/**
@@ -581,7 +588,7 @@ public abstract class ProfileObject extends EchoObject {
 		 * Get : optional<br>
 		 */
 		public Getter reqGetDateOfManufacture() {
-			addProperty(EPC_DATE_OF_MANUFACTURE);
+			reqGetProperty(EPC_DATE_OF_MANUFACTURE);
 			return this;
 		}
 		/**
@@ -592,7 +599,7 @@ public abstract class ProfileObject extends EchoObject {
 		 * Get : mandatory
 		 */
 		public Getter reqGetStatusChangeAnnouncementPropertyMap() {
-			addProperty(EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP);
+			reqGetProperty(EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP);
 			return this;
 		}
 		/**
@@ -603,7 +610,7 @@ public abstract class ProfileObject extends EchoObject {
 		 * Get : mandatory
 		 */
 		public Getter reqGetSetPropertyMap() {
-			addProperty(EPC_SET_PROPERTY_MAP);
+			reqGetProperty(EPC_SET_PROPERTY_MAP);
 			return this;
 		}
 		/**
@@ -614,15 +621,17 @@ public abstract class ProfileObject extends EchoObject {
 		 * Get : mandatory
 		 */
 		public Getter reqGetGetPropertyMap() {
-			addProperty(EPC_GET_PROPERTY_MAP);
+			reqGetProperty(EPC_GET_PROPERTY_MAP);
 			return this;
 		}
 	}
 	
 	public static class Informer extends EchoObject.Informer {
 
-		public Informer(EchoObject eoj, boolean multicast) {
-			super(eoj, multicast);
+		public Informer(short echoClassCode, byte echoInstanceCode
+				, String dstEchoAddress, boolean isSelfObject) {
+			super(echoClassCode, echoInstanceCode
+					, dstEchoAddress, isSelfObject);
 		}
 
 		@Override
@@ -639,7 +648,7 @@ public abstract class ProfileObject extends EchoObject {
 		 * Get : optional<br>
 		 */
 		public Informer reqInformFaultStatus() {
-			addProperty(EPC_FAULT_STATUS);
+			reqInformProperty(EPC_FAULT_STATUS);
 			return this;
 		}
 		/**
@@ -651,7 +660,7 @@ public abstract class ProfileObject extends EchoObject {
 		 * Get : mandatory<br>
 		 */
 		public Informer reqInformManufacturerCode() {
-			addProperty(EPC_MANUFACTURER_CODE);
+			reqInformProperty(EPC_MANUFACTURER_CODE);
 			return this;
 		}
 		/**
@@ -663,7 +672,7 @@ public abstract class ProfileObject extends EchoObject {
 		 * Get : optional<br>
 		 */
 		public Informer reqInformPlaceOfBusinessCode() {
-			addProperty(EPC_PLACE_OF_BUSINESS_CODE);
+			reqInformProperty(EPC_PLACE_OF_BUSINESS_CODE);
 			return this;
 		}
 		/**
@@ -675,7 +684,7 @@ public abstract class ProfileObject extends EchoObject {
 		 * Get : optional<br>
 		 */
 		public Informer reqInformProductCode() {
-			addProperty(EPC_PRODUCT_CODE);
+			reqInformProperty(EPC_PRODUCT_CODE);
 			return this;
 		}
 		/**
@@ -687,7 +696,7 @@ public abstract class ProfileObject extends EchoObject {
 		 * Get : optional<br>
 		 */
 		public Informer reqInformSerialNumber() {
-			addProperty(EPC_SERIAL_NUMBER);
+			reqInformProperty(EPC_SERIAL_NUMBER);
 			return this;
 		}
 		/**
@@ -701,7 +710,7 @@ public abstract class ProfileObject extends EchoObject {
 		 * Get : optional<br>
 		 */
 		public Informer reqInformDateOfManufacture() {
-			addProperty(EPC_DATE_OF_MANUFACTURE);
+			reqInformProperty(EPC_DATE_OF_MANUFACTURE);
 			return this;
 		}
 		/**
@@ -712,7 +721,7 @@ public abstract class ProfileObject extends EchoObject {
 		 * Get : mandatory
 		 */
 		public Informer reqInformStatusChangeAnnouncementPropertyMap() {
-			addProperty(EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP);
+			reqInformProperty(EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP);
 			return this;
 		}
 		/**
@@ -723,7 +732,7 @@ public abstract class ProfileObject extends EchoObject {
 		 * Get : mandatory
 		 */
 		public Informer reqInformSetPropertyMap() {
-			addProperty(EPC_SET_PROPERTY_MAP);
+			reqInformProperty(EPC_SET_PROPERTY_MAP);
 			return this;
 		}
 		/**
@@ -734,7 +743,7 @@ public abstract class ProfileObject extends EchoObject {
 		 * Get : mandatory
 		 */
 		public Informer reqInformGetPropertyMap() {
-			addProperty(EPC_GET_PROPERTY_MAP);
+			reqInformProperty(EPC_GET_PROPERTY_MAP);
 			return this;
 		}
 	}
