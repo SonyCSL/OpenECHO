@@ -185,16 +185,18 @@ public final class EchoSocket {
 	}
 	
 	private static void onReceiveUDPRequestFrame(EchoObject deoj, EchoFrame frame){
-		checkNewObjectInResponse(frame);
+		checkNewObjectInResponse(frame.copy());
 		EchoFrame request = frame.copy();
-		frame.setDstEchoInstanceCode(deoj.getInstanceCode());
+		request.setDstEchoInstanceCode(deoj.getInstanceCode());
 		EchoFrame response = deoj.onReceiveRequest(request);
+
 		if(response.getESV() == EchoFrame.ESV_INF) {
 			response.setDstEchoAddress(MULTICAST_ADDRESS);
 		}
 		if(response.getESV() == EchoFrame.ESV_SET_NO_RES) {
 			return;
 		}
+
 		try {
 			sendUDPFrame(response);
 		} catch (IOException e) {
@@ -205,7 +207,7 @@ public final class EchoSocket {
 	
 	private static void onReceiveNotRequest(EchoFrame frame) {
 		// check new node or instance
-		checkNewObjectInResponse(frame);
+		checkNewObjectInResponse(frame.copy());
 		EchoNode node = Echo.getNode(frame.getSrcEchoAddress());
 		EchoObject seoj = node.getInstance(frame.getSrcEchoClassCode(), frame.getSrcEchoInstanceCode());
 		
