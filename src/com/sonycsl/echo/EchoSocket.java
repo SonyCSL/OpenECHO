@@ -19,21 +19,15 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.DatagramPacket;
-import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.MulticastSocket;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.SocketException;
-import java.net.SocketTimeoutException;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -63,7 +57,7 @@ public final class EchoSocket {
 	
 	// for TCP.
 	private static ServerSocket sServerSocket;
-	private static ExecutorService sConnectedTCPSocketThreads = Executors.newCachedThreadPool();
+	private static ExecutorService sConnectedTCPSocketThreads;
 	//  may be connected from same source many times.
 	//private static Map<String,LinkedList<Socket>> sConnectedTCPSockets;
 	
@@ -77,7 +71,6 @@ public final class EchoSocket {
 	private EchoSocket() {
 	}
 	private static class Receiver implements Runnable {
-
 		@Override
 		public void run() {
 			while(!Thread.currentThread().isInterrupted()) {
@@ -118,7 +111,8 @@ public final class EchoSocket {
 		sServerSocket.setSoTimeout(10);
 		sServerSocket.setReuseAddress(true);
 		sServerSocket.bind(new InetSocketAddress(PORT));
-		sConnectedTCPSocketThreads.shutdownNow();
+		//sConnectedTCPSocketThreads.shutdownNow();
+		sConnectedTCPSocketThreads = Executors.newCachedThreadPool();
 		
 	}
 	
@@ -133,6 +127,10 @@ public final class EchoSocket {
 			ServerSocket s = sServerSocket;
 			sServerSocket = null;
 			s.close();
+		}
+		if(sConnectedTCPSocketThreads != null){
+			sConnectedTCPSocketThreads.shutdownNow();
+			sConnectedTCPSocketThreads = null;
 		}
 	}
 	
@@ -436,6 +434,7 @@ public final class EchoSocket {
 		public void run() {
 			// Thread.interrupt is called by executor.
 			try {
+				System.err.println("Socket add" + sock.getInetAddress() + "[" + Thread.currentThread().getId() + "]");
 				while (!Thread.interrupted() && sock.isConnected()) {
 					DataOutputStream out = new DataOutputStream(sock.getOutputStream());
 					DataInputStream in = new DataInputStream(sock.getInputStream());
@@ -444,6 +443,7 @@ public final class EchoSocket {
 				e.printStackTrace();
 			} finally{
 				try {
+					System.err.println("Socket close" + sock.getInetAddress() + "[" + Thread.currentThread().getId() + "]");
 					sock.close();
 				} catch (IOException e) {
 					e.printStackTrace();
