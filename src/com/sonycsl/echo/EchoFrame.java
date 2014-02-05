@@ -80,6 +80,7 @@ public final class EchoFrame {
 		// send frame
 		mSrcEchoClassCode = srcEchoClassCode;
 		mSrcEchoInstanceCode = srcEchoInstanceCode;
+		
 		mSrcEchoAddress = EchoSocket.SELF_ADDRESS;
 		mDstEchoClassCode = dstEchoClassCode;
 		mDstEchoInstanceCode = dstEchoInstanceCode;
@@ -146,7 +147,8 @@ public final class EchoFrame {
 		
 	}
 	
-	protected EchoFrame(short srcEchoClassCode, byte srcEchoInstanceCode
+	protected EchoFrame(short srcEchoClassCode, byte srcEchoInstanceCode,
+			String srcEchoAddress
 			, short dstEchoClassCode, byte dstEchoInstanceCode
 			, String dstEchoAddress, byte esv, short tid, List<EchoProperty> propertyList) {
 		
@@ -154,7 +156,7 @@ public final class EchoFrame {
 
 		mSrcEchoClassCode = srcEchoClassCode;
 		mSrcEchoInstanceCode = srcEchoInstanceCode;
-		mSrcEchoAddress = EchoSocket.SELF_ADDRESS;
+		mSrcEchoAddress = srcEchoAddress;
 		mDstEchoClassCode = dstEchoClassCode;
 		mDstEchoInstanceCode = dstEchoInstanceCode;
 		mDstEchoAddress = dstEchoAddress;
@@ -293,12 +295,21 @@ public final class EchoFrame {
 		mPropertyList.add(property);
 	}
 	
-	public EchoFrame copy() {
+	public EchoFrame copy() { 
 		EchoFrame ret = new EchoFrame(mSrcEchoClassCode, mSrcEchoInstanceCode
+				,mSrcEchoAddress
 				, mDstEchoClassCode, mDstEchoInstanceCode
 				, mDstEchoAddress, mESV, mTID, mPropertyList);
 		return ret;
 	}
 	
+	@Override
+	public String toString(){
+		return "class:"+getSrcEchoClassCode()+"(i:"+getSrcEchoInstanceCode()+
+				"["+getSrcEchoAddress()+"]" + "->" +
+				"class:"+getDstEchoClassCode()+"(i:"+getDstEchoInstanceCode()
+				+"["+getDstEchoAddress()+"] epv:"+ getESV() + " tid:" + getTID();
+		
+	}
 	
 }
