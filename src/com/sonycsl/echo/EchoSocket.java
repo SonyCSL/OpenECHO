@@ -15,11 +15,16 @@
  */
 package com.sonycsl.echo;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.Inet4Address;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.MulticastSocket;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
@@ -44,6 +49,7 @@ public final class EchoSocket {
 	private static final String TAG = EchoSocket.class.getSimpleName();
 
 	public static int UDP_MAX_PACKET_SIZE = 65507;
+	public static int TCP_MAX_PACKET_SIZE = 65507;
 
 	public static final String SELF_ADDRESS = "127.0.0.1";
 	public static final String MULTICAST_ADDRESS = "224.0.23.0";
@@ -53,6 +59,9 @@ public final class EchoSocket {
 	private static MulticastSocket sMulticastSocket;
 	private static InetAddress sMulticastAddress;
 	private static ExecutorService sExecutors;
+	
+	// mServerSocket is for TCP.
+	private static ServerSocket sServerSocket;
 	
 	//private static HashMap<Short, ResponseListener> sListeners;
 	
@@ -68,9 +77,9 @@ public final class EchoSocket {
 		@Override
 		public void run() {
 			while(!Thread.currentThread().isInterrupted()) {
-
 				try {
 					receiveUDP();
+					receiveTCP();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					//e.printStackTrace();
@@ -87,203 +96,7 @@ public final class EchoSocket {
 		}
 
 	}
-	
-	
-	//public static InetAddress getLocalAddress() {
-	//	return mSocket.getLocalAddress();
-	//}
-	/*
-	protected synchronized static void start() throws IOException {
 
-		if(sMulticastSocket != null) {
-			close();
-		}
-		//sListeners = new HashMap<Short, ResponseListener>();
-		
-		sMulticastAddress = InetAddress.getByName(MULTICAST_ADDRESS);
-		sMulticastSocket = new MulticastSocket(PORT);
-		
-		sExecutors = Executors.newSingleThreadExecutor();
-		
-		sMulticastSocket.joinGroup(sMulticastAddress);
-	}
-	
-	protected synchronized static void close() throws IOException {
-		if(sMulticastSocket == null){
-			return;
-		}
-		MulticastSocket s = sMulticastSocket;
-		sMulticastSocket = null;
-		
-		sExecutors.shutdown();
-		sExecutors.shutdownNow();
-		s.leaveGroup(sMulticastAddress);
-		s.close();
-		//if(sListeners != null) {
-		//	sListeners.clear();
-		//	sListeners = null;
-		//}
-	}
-	
-	protected static boolean isClosed() {
-		if(sMulticastSocket == null) return true;
-		if(sMulticastSocket.isClosed() == true) {
-			sMulticastSocket = null;
-			return true;
-		}
-		return false;
-	}
-	
-	public static void send(InetAddress address, byte[] data) throws IOException {
-		if(sMulticastSocket == null) {
-			throw new IOException();
-		}
-		if(data == null) {
-			return;
-		}
-		if(!Echo.isStarted()) {
-			try {
-				close();
-			} catch(IOException e) {}
-			//return;
-			throw new IOException();
-		}
-		DatagramPacket packet = new DatagramPacket(data, data.length,
-				address, PORT);
-		sMulticastSocket.send(packet);
-	}
-	
-	public static void sendGroup(byte[] data) throws IOException {
-		if(sMulticastSocket == null) {
-			return;
-		}
-		if(data == null) {
-			return;
-		}
-		if(!Echo.isStarted()) {
-			try {
-				close();
-			} catch(IOException e) {}
-			return;
-		}
-		DatagramPacket packet = new DatagramPacket(data, data.length, 
-				sMulticastAddress, PORT);
-		sMulticastSocket.send(packet);
-		
-	}
-	
-	public static short getNextTIDNoIncrement() {
-		return sNextTID;
-	}
-	
-	public static short getNextTID() {
-		short tid = sNextTID;
-		sNextTID++;
-		return tid;
-	}
-	
-	
-	private static class Receiver implements Runnable {
-		
-		MulticastSocket mSocket;
-		
-		public Receiver(MulticastSocket socket) {
-			mSocket = socket;
-			try {
-				mSocket.setSoTimeout(100);
-			} catch (SocketException e) {
-				e.printStackTrace();
-				mSocket.close();
-			}
-		}
-
-		@Override
-		public void run() {
-			while(!Thread.currentThread().isInterrupted()) {
-
-				if(!Echo.isStarted()) {
-					try {
-						close();
-					} catch(IOException e) {e.printStackTrace();}
-					return;
-				}
-				
-				DatagramPacket packet = 
-						new DatagramPacket(
-								new byte[EchoSocket.UDP_MAX_PACKET_SIZE], 
-								EchoSocket.UDP_MAX_PACKET_SIZE);
-				try {
-					mSocket.receive(packet);
-				} catch(SocketTimeoutException e) {
-					continue;
-				} catch (IOException e) {
-					//e.printStackTrace();
-					Thread.currentThread().interrupt();
-					break;
-				}
-				List<EchoFrame> frameList = new ArrayList<EchoFrame>();
-
-				synchronized(Echo.class) {
-					if(!Echo.isStarted()) {
-						Thread.currentThread().interrupt();
-						try {
-							close();
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-						break;
-					}
-					byte[] data = new byte[packet.getLength()];
-					System.arraycopy(packet.getData(), 0, data, 0, packet.getLength());
-				
-					if(data.length < 12) continue;
-				
-					Echo.EventListener listener = Echo.getEventListener();
-					try {
-						if(listener != null) Echo.getEventListener().receiveEvent(new EchoFrame(packet.getAddress(), data));
-					} catch(Exception e) {
-						try{if(listener != null) listener.onCatchException(e);}catch(Exception ex){}
-					}
-				
-					if(data[9] == 0) {
-						DeviceObject[] devices = Echo.getNode().getDevices(data[7], data[8]);
-						if(devices != null) {
-							for(DeviceObject dev : devices) {
-								byte[] d = data.clone();
-								d[9] = dev.getInstanceCode();
-								frameList.add(new EchoFrame(packet.getAddress(), d));
-							}
-						}
-					} else {
-						frameList.add(new EchoFrame(packet.getAddress(), data));
-					}
-				}
-				for(EchoFrame frame : frameList) {
-					
-					if(frame.getDeoj() != null) {
-						switch(frame.getESV()) {
-						case EchoFrame.ESV_SETI_SNA:
-						case EchoFrame.ESV_SET_RES: case EchoFrame.ESV_SETC_SNA:
-						case EchoFrame.ESV_GET_RES: case EchoFrame.ESV_GET_SNA: 
-						case EchoFrame.ESV_INF: case EchoFrame.ESV_INF_SNA: 
-						case EchoFrame.ESV_INFC:
-							if(frame.getSeoj()!=null) {
-								frame.getSeoj().receive(frame);
-							}
-							break;
-						case EchoFrame.ESV_SETI: case EchoFrame.ESV_SETC:
-						case EchoFrame.ESV_GET:
-						case EchoFrame.ESV_INF_REQ:
-						case EchoFrame.ESV_INFC_RES:
-							frame.getDeoj().receive(frame);
-							break;
-						}
-					}
-				}
-			}
-		}
-	}*/
-	
 	public static void openSocket() throws IOException {
 
 		sMulticastAddress = InetAddress.getByName(MULTICAST_ADDRESS);
@@ -299,23 +112,28 @@ public final class EchoSocket {
 		sMulticastSocket.setLoopbackMode(true);
 		sMulticastSocket.setSoTimeout(10);
 
+		sServerSocket = new ServerSocket();
+		sServerSocket.setSoTimeout(10);
+		sServerSocket.setReuseAddress(true);
+		sServerSocket.bind(new InetSocketAddress(PORT));
 	}
 	
 	public static void closeSocket() throws IOException {
-
-		if(sMulticastSocket == null){
-			return;
+		if(sMulticastSocket != null){
+			MulticastSocket s = sMulticastSocket;
+			sMulticastSocket = null;
+			s.leaveGroup(sMulticastAddress);
+			s.close();
 		}
-		MulticastSocket s = sMulticastSocket;
-		sMulticastSocket = null;
-		
-		s.leaveGroup(sMulticastAddress);
-		s.close();
+		if(sServerSocket != null){
+			ServerSocket s = sServerSocket;
+			sServerSocket = null;
+			s.close();
+		}
 	}
 	
 	private static void sendFrameToSelfNode(EchoFrame frame) {
 		mSelfFrameQueue.offer(frame);
-		
 	}
 	private static void receiveFrameFromSelfNode() {
 		EchoFrame frame = mSelfFrameQueue.poll();
@@ -367,7 +185,7 @@ public final class EchoSocket {
 	}
 	
 	private static void onReceiveUDPRequestFrame(EchoObject deoj, EchoFrame frame){
-
+		checkNewObjectInResponse(frame);
 		EchoFrame request = frame.copy();
 		frame.setDstEchoInstanceCode(deoj.getInstanceCode());
 		EchoFrame response = deoj.onReceiveRequest(request);
@@ -386,12 +204,27 @@ public final class EchoSocket {
 	}
 	
 	private static void onReceiveNotRequest(EchoFrame frame) {
+		// check new node or instance
+		checkNewObjectInResponse(frame);
+		EchoNode node = Echo.getNode(frame.getSrcEchoAddress());
+		EchoObject seoj = node.getInstance(frame.getSrcEchoClassCode(), frame.getSrcEchoInstanceCode());
+		
+		if(seoj == null) {return;}
+		seoj.setNode(node);
+
+		// receiver
+		EchoObject.Receiver receiver = seoj.getReceiver();
+		if(receiver != null) {
+			receiver.onReceive(seoj, frame);
+		}
+	}
+	
+	private static void checkNewObjectInResponse(EchoFrame frame) {
 		EchoNode node = Echo.getNode(frame.getSrcEchoAddress());
 		boolean flagNewNode = false;
 		if(node == null) {
 			node = Echo.addOtherNode(frame.getSrcEchoAddress());
 			flagNewNode = true;
-			
 			if(node == null) {return;}
 			
 			node.getNodeProfile().setNode(node);
@@ -418,22 +251,6 @@ public final class EchoSocket {
 
 			//seoj = node.get()->getInstnace(frame.getSrcEchoClassCode(), frame.getSrcEchoInstanceCode());
 		}
-
-		// check new node or instance
-		checkNewObjectInResponse(frame, node, seoj, flagNewNode, flagNewDevice);
-
-		if(seoj == null) {return;}
-		seoj.setNode(node);
-
-		// receiver
-		EchoObject.Receiver receiver = seoj.getReceiver();
-		if(receiver != null) {
-			receiver.onReceive(seoj, frame);
-		}
-	}
-	
-	private static void checkNewObjectInResponse(EchoFrame frame, EchoNode node, EchoObject seoj, boolean flagNewNode, boolean flagNewDevice) {
-
 		if(seoj == null) {
 			if(flagNewNode) {
 				Echo.getEventListener().onNewNode(node);
@@ -534,7 +351,20 @@ public final class EchoSocket {
 		
 	}
 	
-	public static void sendTCPFrame(EchoFrame frame) {
+	public static void sendTCPFrame(EchoFrame frame) throws IOException {
+		Echo.getEventListener().sendEvent(frame);
+		// will not be occured?
+		if(frame.getDstEchoAddress().equals(SELF_ADDRESS)){
+			sendFrameToSelfNode(frame.copy());
+			return;
+		}
+		byte[] data = frame.getFrameByteArray();
+		InetAddress address = InetAddress.getByName(frame.getDstEchoAddress());
+		Socket sock = new Socket(address,PORT);
+		// should write data length?
+		DataOutputStream out = new DataOutputStream(sock.getOutputStream());
+		out.write(data);
+		// 要求電文に対する応答電文は同一のコネクションで送信するものとする。
 		
 	}
 	
@@ -569,7 +399,9 @@ public final class EchoSocket {
 		onReceiveUDPFrame(frame);
 	}
 	
-	public static void receiveTCP() {
+	public static void receiveTCP() throws IOException {
+		Socket sock = sServerSocket.accept();
+		DataInputStream in = new DataInputStream(sock.getInputStream());
 		
 	}
 	
