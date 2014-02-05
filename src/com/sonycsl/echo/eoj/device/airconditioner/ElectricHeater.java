@@ -61,17 +61,16 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -87,17 +86,16 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -116,14 +114,13 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Used to specify whether or not to use the automatic temperature control function.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic = 0x41, non-automatic =<br>
-	 * 0x42<br>
+	 * Automatic = 0x41, non-automatic = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -140,14 +137,13 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Used to specify whether or not to use the automatic temperature control function.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic = 0x41, non-automatic =<br>
-	 * 0x42<br>
+	 * Automatic = 0x41, non-automatic = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -164,14 +160,13 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Used to specify whether or not to use the automatic temperature control function.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic = 0x41, non-automatic =<br>
-	 * 0x42<br>
+	 * Automatic = 0x41, non-automatic = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -191,13 +186,13 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Used to set the temperature.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50��C)<br>
+	 * 0x00.0x32 (0.50°C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -214,13 +209,13 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Used to set the temperature.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50��C)<br>
+	 * 0x00.0x32 (0.50°C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -237,13 +232,13 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Used to set the temperature.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50��C)<br>
+	 * 0x00.0x32 (0.50°C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -263,13 +258,13 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * This property indicates the measured room temperature.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-128 to 127��C)<br>
+	 * 0x81.0x7E (-128.127°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -286,13 +281,13 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * This property indicates the measured room temperature.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-128 to 127��C)<br>
+	 * 0x81.0x7E (-128.127°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -309,16 +304,16 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * EPC : 0xBC<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the last temperature (��C) set by the user using a remote controller unit.<br>
+	 * This property indicates the last temperature (°C) set by the user using a remote controller unit.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50��C)<br>
+	 * 0x00.0x32 (0.50°C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -332,16 +327,16 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * EPC : 0xBC<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the last temperature (��C) set by the user using a remote controller unit.<br>
+	 * This property indicates the last temperature (°C) set by the user using a remote controller unit.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50��C)<br>
+	 * 0x00.0x32 (0.50°C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -361,15 +356,14 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic air flow rate control used =<br>
-	 * 0x41<br>
+	 * Automatic air flow rate control used = 0x41<br>
 	 * Air flow rate = 0x31 to 0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -386,15 +380,14 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic air flow rate control used =<br>
-	 * 0x41<br>
+	 * Automatic air flow rate control used = 0x41<br>
 	 * Air flow rate = 0x31 to 0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -411,15 +404,14 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic air flow rate control used =<br>
-	 * 0x41<br>
+	 * Automatic air flow rate control used = 0x41<br>
 	 * Air flow rate = 0x31 to 0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -439,16 +431,14 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Used to specify whether or not to use the ON timer-based reservation function.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON timer-based reservation function<br>
-	 * ON: 0x41<br>
-	 * ON timer-based reservation function<br>
-	 * OFF: 0x42<br>
+	 * ON timer-based reservation function ON: 0x41<br>
+	 * ON timer-based reservation function OFF: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -465,16 +455,14 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Used to specify whether or not to use the ON timer-based reservation function.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON timer-based reservation function<br>
-	 * ON: 0x41<br>
-	 * ON timer-based reservation function<br>
-	 * OFF: 0x42<br>
+	 * ON timer-based reservation function ON: 0x41<br>
+	 * ON timer-based reservation function OFF: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -491,16 +479,14 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Used to specify whether or not to use the ON timer-based reservation function.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON timer-based reservation function<br>
-	 * ON: 0x41<br>
-	 * ON timer-based reservation function<br>
-	 * OFF: 0x42<br>
+	 * ON timer-based reservation function ON: 0x41<br>
+	 * ON timer-based reservation function OFF: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -512,8 +498,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		return true;
 	}
 	/**
-	 * Property name : ON timer setting
-(time)<br>
+	 * Property name : ON timer setting (time)<br>
 	 * <br>
 	 * EPC : 0x91<br>
 	 * <br>
@@ -521,14 +506,13 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -537,8 +521,7 @@ public abstract class ElectricHeater extends DeviceObject {
 	 */
 	protected boolean setOnTimerSettingTime(byte[] edt) {return false;}
 	/**
-	 * Property name : ON timer setting
-(time)<br>
+	 * Property name : ON timer setting (time)<br>
 	 * <br>
 	 * EPC : 0x91<br>
 	 * <br>
@@ -546,14 +529,13 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -562,8 +544,7 @@ public abstract class ElectricHeater extends DeviceObject {
 	 */
 	protected byte[] getOnTimerSettingTime() {return null;}
 	/**
-	 * Property name : ON timer setting
-(time)<br>
+	 * Property name : ON timer setting (time)<br>
 	 * <br>
 	 * EPC : 0x91<br>
 	 * <br>
@@ -571,14 +552,13 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -590,8 +570,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		return true;
 	}
 	/**
-	 * Property name : ON timer setting
-(relative time)<br>
+	 * Property name : ON timer setting (relative time)<br>
 	 * <br>
 	 * EPC : 0x92<br>
 	 * <br>
@@ -599,14 +578,13 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -615,8 +593,7 @@ public abstract class ElectricHeater extends DeviceObject {
 	 */
 	protected boolean setOnTimerSettingRelativeTime(byte[] edt) {return false;}
 	/**
-	 * Property name : ON timer setting
-(relative time)<br>
+	 * Property name : ON timer setting (relative time)<br>
 	 * <br>
 	 * EPC : 0x92<br>
 	 * <br>
@@ -624,14 +601,13 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -640,8 +616,7 @@ public abstract class ElectricHeater extends DeviceObject {
 	 */
 	protected byte[] getOnTimerSettingRelativeTime() {return null;}
 	/**
-	 * Property name : ON timer setting
-(relative time)<br>
+	 * Property name : ON timer setting (relative time)<br>
 	 * <br>
 	 * EPC : 0x92<br>
 	 * <br>
@@ -649,14 +624,13 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -676,16 +650,14 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Used to specify whether or not to use the OFF timer-based reservation function.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * OFF timer-based reservation function<br>
-	 * ON: 0x41<br>
-	 * OFF timer-based reservation function<br>
-	 * OFF: 0x42<br>
+	 * OFF timer-based reservation function ON: 0x41<br>
+	 * OFF timer-based reservation function OFF: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -702,16 +674,14 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Used to specify whether or not to use the OFF timer-based reservation function.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * OFF timer-based reservation function<br>
-	 * ON: 0x41<br>
-	 * OFF timer-based reservation function<br>
-	 * OFF: 0x42<br>
+	 * OFF timer-based reservation function ON: 0x41<br>
+	 * OFF timer-based reservation function OFF: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -728,16 +698,14 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Used to specify whether or not to use the OFF timer-based reservation function.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * OFF timer-based reservation function<br>
-	 * ON: 0x41<br>
-	 * OFF timer-based reservation function<br>
-	 * OFF: 0x42<br>
+	 * OFF timer-based reservation function ON: 0x41<br>
+	 * OFF timer-based reservation function OFF: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -757,14 +725,13 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -781,14 +748,13 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -805,14 +771,13 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -834,11 +799,11 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Value range (decimal notation) :<br>
 	 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -857,11 +822,11 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Value range (decimal notation) :<br>
 	 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -880,11 +845,11 @@ public abstract class ElectricHeater extends DeviceObject {
 	 * Value range (decimal notation) :<br>
 	 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1086,14 +1051,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify whether or not to use the automatic temperature control function.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x41, non-automatic =<br>
-		 * 0x42<br>
+		 * Automatic = 0x41, non-automatic = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1110,14 +1074,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify whether or not to use the automatic temperature control function.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x41, non-automatic =<br>
-		 * 0x42<br>
+		 * Automatic = 0x41, non-automatic = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1134,13 +1097,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to set the temperature.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1157,13 +1120,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to set the temperature.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1180,13 +1143,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * This property indicates the measured room temperature.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-128 to 127��C)<br>
+		 * 0x81.0x7E (-128.127°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1200,16 +1163,16 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * EPC : 0xBC<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the last temperature (��C) set by the user using a remote controller unit.<br>
+		 * This property indicates the last temperature (°C) set by the user using a remote controller unit.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1226,15 +1189,14 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic air flow rate control used =<br>
-		 * 0x41<br>
+		 * Automatic air flow rate control used = 0x41<br>
 		 * Air flow rate = 0x31 to 0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1251,15 +1213,14 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic air flow rate control used =<br>
-		 * 0x41<br>
+		 * Automatic air flow rate control used = 0x41<br>
 		 * Air flow rate = 0x31 to 0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1276,16 +1237,14 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify whether or not to use the ON timer-based reservation function.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * ON timer-based reservation function<br>
-		 * ON: 0x41<br>
-		 * ON timer-based reservation function<br>
-		 * OFF: 0x42<br>
+		 * ON timer-based reservation function ON: 0x41<br>
+		 * ON timer-based reservation function OFF: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1302,16 +1261,14 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify whether or not to use the ON timer-based reservation function.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * ON timer-based reservation function<br>
-		 * ON: 0x41<br>
-		 * ON timer-based reservation function<br>
-		 * OFF: 0x42<br>
+		 * ON timer-based reservation function ON: 0x41<br>
+		 * ON timer-based reservation function OFF: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1320,8 +1277,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 */
 		protected void onGetOnTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : ON timer setting
-(time)<br>
+		 * Property name : ON timer setting (time)<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
@@ -1329,14 +1285,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1345,8 +1300,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 */
 		protected void onSetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : ON timer setting
-(time)<br>
+		 * Property name : ON timer setting (time)<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
@@ -1354,14 +1308,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1370,8 +1323,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 */
 		protected void onGetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : ON timer setting
-(relative time)<br>
+		 * Property name : ON timer setting (relative time)<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -1379,14 +1331,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1395,8 +1346,7 @@ public abstract class ElectricHeater extends DeviceObject {
 		 */
 		protected void onSetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : ON timer setting
-(relative time)<br>
+		 * Property name : ON timer setting (relative time)<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -1404,14 +1354,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1428,16 +1377,14 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify whether or not to use the OFF timer-based reservation function.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * OFF timer-based reservation function<br>
-		 * ON: 0x41<br>
-		 * OFF timer-based reservation function<br>
-		 * OFF: 0x42<br>
+		 * OFF timer-based reservation function ON: 0x41<br>
+		 * OFF timer-based reservation function OFF: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1454,16 +1401,14 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify whether or not to use the OFF timer-based reservation function.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * OFF timer-based reservation function<br>
-		 * ON: 0x41<br>
-		 * OFF timer-based reservation function<br>
-		 * OFF: 0x42<br>
+		 * OFF timer-based reservation function ON: 0x41<br>
+		 * OFF timer-based reservation function OFF: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1480,14 +1425,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1504,14 +1448,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1530,11 +1473,11 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1553,11 +1496,11 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1596,8 +1539,8 @@ public abstract class ElectricHeater extends DeviceObject {
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -1621,14 +1564,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify whether or not to use the automatic temperature control function.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x41, non-automatic =<br>
-		 * 0x42<br>
+		 * Automatic = 0x41, non-automatic = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1648,13 +1590,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to set the temperature.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1674,15 +1616,14 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic air flow rate control used =<br>
-		 * 0x41<br>
+		 * Automatic air flow rate control used = 0x41<br>
 		 * Air flow rate = 0x31 to 0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1702,16 +1643,14 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify whether or not to use the ON timer-based reservation function.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * ON timer-based reservation function<br>
-		 * ON: 0x41<br>
-		 * ON timer-based reservation function<br>
-		 * OFF: 0x42<br>
+		 * ON timer-based reservation function ON: 0x41<br>
+		 * ON timer-based reservation function OFF: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1723,8 +1662,7 @@ public abstract class ElectricHeater extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : ON timer setting
-(time)<br>
+		 * Property name : ON timer setting (time)<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
@@ -1732,14 +1670,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1751,8 +1688,7 @@ public abstract class ElectricHeater extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : ON timer setting
-(relative time)<br>
+		 * Property name : ON timer setting (relative time)<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -1760,14 +1696,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1787,16 +1722,14 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify whether or not to use the OFF timer-based reservation function.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * OFF timer-based reservation function<br>
-		 * ON: 0x41<br>
-		 * OFF timer-based reservation function<br>
-		 * OFF: 0x42<br>
+		 * OFF timer-based reservation function ON: 0x41<br>
+		 * OFF timer-based reservation function OFF: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1816,14 +1749,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1845,11 +1777,11 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1939,8 +1871,8 @@ public abstract class ElectricHeater extends DeviceObject {
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -1980,14 +1912,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify whether or not to use the automatic temperature control function.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x41, non-automatic =<br>
-		 * 0x42<br>
+		 * Automatic = 0x41, non-automatic = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2007,13 +1938,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to set the temperature.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2033,13 +1964,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * This property indicates the measured room temperature.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-128 to 127��C)<br>
+		 * 0x81.0x7E (-128.127°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2056,16 +1987,16 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * EPC : 0xBC<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the last temperature (��C) set by the user using a remote controller unit.<br>
+		 * This property indicates the last temperature (°C) set by the user using a remote controller unit.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2085,15 +2016,14 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic air flow rate control used =<br>
-		 * 0x41<br>
+		 * Automatic air flow rate control used = 0x41<br>
 		 * Air flow rate = 0x31 to 0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2113,16 +2043,14 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify whether or not to use the ON timer-based reservation function.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * ON timer-based reservation function<br>
-		 * ON: 0x41<br>
-		 * ON timer-based reservation function<br>
-		 * OFF: 0x42<br>
+		 * ON timer-based reservation function ON: 0x41<br>
+		 * ON timer-based reservation function OFF: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2134,8 +2062,7 @@ public abstract class ElectricHeater extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : ON timer setting
-(time)<br>
+		 * Property name : ON timer setting (time)<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
@@ -2143,14 +2070,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2162,8 +2088,7 @@ public abstract class ElectricHeater extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : ON timer setting
-(relative time)<br>
+		 * Property name : ON timer setting (relative time)<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -2171,14 +2096,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2198,16 +2122,14 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify whether or not to use the OFF timer-based reservation function.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * OFF timer-based reservation function<br>
-		 * ON: 0x41<br>
-		 * OFF timer-based reservation function<br>
-		 * OFF: 0x42<br>
+		 * OFF timer-based reservation function ON: 0x41<br>
+		 * OFF timer-based reservation function OFF: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2227,14 +2149,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2256,11 +2177,11 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2349,8 +2270,8 @@ public abstract class ElectricHeater extends DeviceObject {
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -2390,14 +2311,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify whether or not to use the automatic temperature control function.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x41, non-automatic =<br>
-		 * 0x42<br>
+		 * Automatic = 0x41, non-automatic = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2417,13 +2337,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to set the temperature.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2443,13 +2363,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * This property indicates the measured room temperature.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-128 to 127��C)<br>
+		 * 0x81.0x7E (-128.127°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2466,16 +2386,16 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * EPC : 0xBC<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the last temperature (��C) set by the user using a remote controller unit.<br>
+		 * This property indicates the last temperature (°C) set by the user using a remote controller unit.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2495,15 +2415,14 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify the air flow rate or to specify using the function to automatically control the air flow rate. The air flow rate is selected from among the 8 predefined levels.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic air flow rate control used =<br>
-		 * 0x41<br>
+		 * Automatic air flow rate control used = 0x41<br>
 		 * Air flow rate = 0x31 to 0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2523,16 +2442,14 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify whether or not to use the ON timer-based reservation function.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * ON timer-based reservation function<br>
-		 * ON: 0x41<br>
-		 * ON timer-based reservation function<br>
-		 * OFF: 0x42<br>
+		 * ON timer-based reservation function ON: 0x41<br>
+		 * ON timer-based reservation function OFF: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2544,8 +2461,7 @@ public abstract class ElectricHeater extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : ON timer setting
-(time)<br>
+		 * Property name : ON timer setting (time)<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
@@ -2553,14 +2469,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify the time for the ON timer-based reservation function in the HH:MM format.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2572,8 +2487,7 @@ public abstract class ElectricHeater extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : ON timer setting
-(relative time)<br>
+		 * Property name : ON timer setting (relative time)<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -2581,14 +2495,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify the relative time for the ON timer-based reservation function in the HH:MM format<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2608,16 +2521,14 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify whether or not to use the OFF timer-based reservation function.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * OFF timer-based reservation function<br>
-		 * ON: 0x41<br>
-		 * OFF timer-based reservation function<br>
-		 * OFF: 0x42<br>
+		 * OFF timer-based reservation function ON: 0x41<br>
+		 * OFF timer-based reservation function OFF: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2637,14 +2548,13 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Used to specify the time for the OFF timer-based reservation function in the HH:MM format.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2666,11 +2576,11 @@ public abstract class ElectricHeater extends DeviceObject {
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>

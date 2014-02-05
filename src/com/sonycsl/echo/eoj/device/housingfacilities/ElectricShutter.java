@@ -61,17 +61,16 @@ public abstract class ElectricShutter extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit :  �<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -87,17 +86,16 @@ public abstract class ElectricShutter extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit :  �<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -108,8 +106,7 @@ public abstract class ElectricShutter extends DeviceObject {
 	 */
 	protected abstract byte[] getOperationStatus();
 	/**
-	 * Property name : Open/close setting
-1<br>
+	 * Property name : Open/close setting 1<br>
 	 * <br>
 	 * EPC : 0xE0<br>
 	 * <br>
@@ -123,7 +120,7 @@ public abstract class ElectricShutter extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -134,8 +131,7 @@ public abstract class ElectricShutter extends DeviceObject {
 	 */
 	protected abstract boolean setOpenCloseSetting1(byte[] edt);
 	/**
-	 * Property name : Open/close setting
-1<br>
+	 * Property name : Open/close setting 1<br>
 	 * <br>
 	 * EPC : 0xE0<br>
 	 * <br>
@@ -149,7 +145,7 @@ public abstract class ElectricShutter extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -160,8 +156,7 @@ public abstract class ElectricShutter extends DeviceObject {
 	 */
 	protected abstract byte[] getOpenCloseSetting1();
 	/**
-	 * Property name : Open/close setting
-1<br>
+	 * Property name : Open/close setting 1<br>
 	 * <br>
 	 * EPC : 0xE0<br>
 	 * <br>
@@ -175,7 +170,7 @@ public abstract class ElectricShutter extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -189,8 +184,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		return true;
 	}
 	/**
-	 * Property name : Extent of opening
-1<br>
+	 * Property name : Extent of opening 1<br>
 	 * <br>
 	 * EPC : 0xE1<br>
 	 * <br>
@@ -198,13 +192,13 @@ public abstract class ElectricShutter extends DeviceObject {
 	 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x31 to 0x38<br>
+	 * 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -213,8 +207,7 @@ public abstract class ElectricShutter extends DeviceObject {
 	 */
 	protected boolean setExtentOfOpening1(byte[] edt) {return false;}
 	/**
-	 * Property name : Extent of opening
-1<br>
+	 * Property name : Extent of opening 1<br>
 	 * <br>
 	 * EPC : 0xE1<br>
 	 * <br>
@@ -222,13 +215,13 @@ public abstract class ElectricShutter extends DeviceObject {
 	 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x31 to 0x38<br>
+	 * 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -237,8 +230,7 @@ public abstract class ElectricShutter extends DeviceObject {
 	 */
 	protected byte[] getExtentOfOpening1() {return null;}
 	/**
-	 * Property name : Extent of opening
-1<br>
+	 * Property name : Extent of opening 1<br>
 	 * <br>
 	 * EPC : 0xE1<br>
 	 * <br>
@@ -246,13 +238,13 @@ public abstract class ElectricShutter extends DeviceObject {
 	 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x31 to 0x38<br>
+	 * 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -272,7 +264,7 @@ public abstract class ElectricShutter extends DeviceObject {
 	 * Blind angle<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0xB4 (0 to 180  )<br>
+	 * 0x00.0xB4 (0.180°)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -295,7 +287,7 @@ public abstract class ElectricShutter extends DeviceObject {
 	 * Blind angle<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0xB4 (0 to 180  )<br>
+	 * 0x00.0xB4 (0.180°)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -318,7 +310,7 @@ public abstract class ElectricShutter extends DeviceObject {
 	 * Blind angle<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0xB4 (0 to 180  )<br>
+	 * 0x00.0xB4 (0.180°)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -344,14 +336,13 @@ public abstract class ElectricShutter extends DeviceObject {
 	 * Low/medium/high<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Low = 0x41, medium = 0x42, high =<br>
-	 * 0x43<br>
+	 * Low = 0x41, medium = 0x42, high = 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -368,14 +359,13 @@ public abstract class ElectricShutter extends DeviceObject {
 	 * Low/medium/high<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Low = 0x41, medium = 0x42, high =<br>
-	 * 0x43<br>
+	 * Low = 0x41, medium = 0x42, high = 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -392,14 +382,13 @@ public abstract class ElectricShutter extends DeviceObject {
 	 * Low/medium/high<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Low = 0x41, medium = 0x42, high =<br>
-	 * 0x43<br>
+	 * Low = 0x41, medium = 0x42, high = 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -411,23 +400,21 @@ public abstract class ElectricShutter extends DeviceObject {
 		return true;
 	}
 	/**
-	 * Property name : Extent of opening
-2<br>
+	 * Property name : Extent of opening 2<br>
 	 * <br>
 	 * EPC : 0xE4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the extent of opening by selecting a level from among the<br>
-	 * 256 predefined levels, and to acquire the current setting.<br>
+	 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0xFF (0 to 255)<br>
+	 * 0x00.0xFF (0.255)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -436,23 +423,21 @@ public abstract class ElectricShutter extends DeviceObject {
 	 */
 	protected boolean setExtentOfOpening2(byte[] edt) {return false;}
 	/**
-	 * Property name : Extent of opening
-2<br>
+	 * Property name : Extent of opening 2<br>
 	 * <br>
 	 * EPC : 0xE4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the extent of opening by selecting a level from among the<br>
-	 * 256 predefined levels, and to acquire the current setting.<br>
+	 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0xFF (0 to 255)<br>
+	 * 0x00.0xFF (0.255)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -461,23 +446,21 @@ public abstract class ElectricShutter extends DeviceObject {
 	 */
 	protected byte[] getExtentOfOpening2() {return null;}
 	/**
-	 * Property name : Extent of opening
-2<br>
+	 * Property name : Extent of opening 2<br>
 	 * <br>
 	 * EPC : 0xE4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the extent of opening by selecting a level from among the<br>
-	 * 256 predefined levels, and to acquire the current setting.<br>
+	 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0xFF (0 to 255)<br>
+	 * 0x00.0xFF (0.255)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -503,7 +486,7 @@ public abstract class ElectricShutter extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -526,7 +509,7 @@ public abstract class ElectricShutter extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -549,7 +532,7 @@ public abstract class ElectricShutter extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -561,8 +544,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		return true;
 	}
 	/**
-	 * Property name : Open/close setting
-2<br>
+	 * Property name : Open/close setting 2<br>
 	 * <br>
 	 * EPC : 0xE7<br>
 	 * <br>
@@ -576,7 +558,7 @@ public abstract class ElectricShutter extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -587,8 +569,7 @@ public abstract class ElectricShutter extends DeviceObject {
 	 */
 	protected abstract boolean setOpenCloseSetting2(byte[] edt);
 	/**
-	 * Property name : Open/close setting
-2<br>
+	 * Property name : Open/close setting 2<br>
 	 * <br>
 	 * EPC : 0xE7<br>
 	 * <br>
@@ -602,7 +583,7 @@ public abstract class ElectricShutter extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -613,8 +594,7 @@ public abstract class ElectricShutter extends DeviceObject {
 	 */
 	protected abstract byte[] getOpenCloseSetting2();
 	/**
-	 * Property name : Open/close setting
-2<br>
+	 * Property name : Open/close setting 2<br>
 	 * <br>
 	 * EPC : 0xE7<br>
 	 * <br>
@@ -628,7 +608,7 @@ public abstract class ElectricShutter extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -796,8 +776,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : Open/close setting
-1<br>
+		 * Property name : Open/close setting 1<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
@@ -811,7 +790,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -822,8 +801,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 */
 		protected void onSetOpenCloseSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Open/close setting
-1<br>
+		 * Property name : Open/close setting 1<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
@@ -837,7 +815,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -848,8 +826,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 */
 		protected void onGetOpenCloseSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Extent of opening
-1<br>
+		 * Property name : Extent of opening 1<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
@@ -857,13 +834,13 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x31 to 0x38<br>
+		 * 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -872,8 +849,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 */
 		protected void onSetExtentOfOpening1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Extent of opening
-1<br>
+		 * Property name : Extent of opening 1<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
@@ -881,13 +857,13 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x31 to 0x38<br>
+		 * 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -904,7 +880,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * Blind angle<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0xB4 (0 to 180  )<br>
+		 * 0x00.0xB4 (0.180°)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -927,7 +903,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * Blind angle<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0xB4 (0 to 180  )<br>
+		 * 0x00.0xB4 (0.180°)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -950,14 +926,13 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * Low/medium/high<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Low = 0x41, medium = 0x42, high =<br>
-		 * 0x43<br>
+		 * Low = 0x41, medium = 0x42, high = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -974,14 +949,13 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * Low/medium/high<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Low = 0x41, medium = 0x42, high =<br>
-		 * 0x43<br>
+		 * Low = 0x41, medium = 0x42, high = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -990,23 +964,21 @@ public abstract class ElectricShutter extends DeviceObject {
 		 */
 		protected void onGetShutterSpeed(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Extent of opening
-2<br>
+		 * Property name : Extent of opening 2<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the extent of opening by selecting a level from among the<br>
-		 * 256 predefined levels, and to acquire the current setting.<br>
+		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0xFF (0 to 255)<br>
+		 * 0x00.0xFF (0.255)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1015,23 +987,21 @@ public abstract class ElectricShutter extends DeviceObject {
 		 */
 		protected void onSetExtentOfOpening2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Extent of opening
-2<br>
+		 * Property name : Extent of opening 2<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the extent of opening by selecting a level from among the<br>
-		 * 256 predefined levels, and to acquire the current setting.<br>
+		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0xFF (0 to 255)<br>
+		 * 0x00.0xFF (0.255)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1054,7 +1024,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1077,7 +1047,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1086,8 +1056,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 */
 		protected void onGetElectricLockSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Open/close setting
-2<br>
+		 * Property name : Open/close setting 2<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
@@ -1101,7 +1070,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1112,8 +1081,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 */
 		protected void onSetOpenCloseSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Open/close setting
-2<br>
+		 * Property name : Open/close setting 2<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
@@ -1127,7 +1095,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1168,8 +1136,8 @@ public abstract class ElectricShutter extends DeviceObject {
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -1185,8 +1153,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : Open/close setting
-1<br>
+		 * Property name : Open/close setting 1<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
@@ -1200,7 +1167,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1214,8 +1181,7 @@ public abstract class ElectricShutter extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : Extent of opening
-1<br>
+		 * Property name : Extent of opening 1<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
@@ -1223,13 +1189,13 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x31 to 0x38<br>
+		 * 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1249,7 +1215,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * Blind angle<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0xB4 (0 to 180  )<br>
+		 * 0x00.0xB4 (0.180°)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -1275,14 +1241,13 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * Low/medium/high<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Low = 0x41, medium = 0x42, high =<br>
-		 * 0x43<br>
+		 * Low = 0x41, medium = 0x42, high = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1294,23 +1259,21 @@ public abstract class ElectricShutter extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : Extent of opening
-2<br>
+		 * Property name : Extent of opening 2<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the extent of opening by selecting a level from among the<br>
-		 * 256 predefined levels, and to acquire the current setting.<br>
+		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0xFF (0 to 255)<br>
+		 * 0x00.0xFF (0.255)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1336,7 +1299,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1348,8 +1311,7 @@ public abstract class ElectricShutter extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : Open/close setting
-2<br>
+		 * Property name : Open/close setting 2<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
@@ -1363,7 +1325,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1455,8 +1417,8 @@ public abstract class ElectricShutter extends DeviceObject {
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -1488,8 +1450,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : Open/close setting
-1<br>
+		 * Property name : Open/close setting 1<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
@@ -1503,7 +1464,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1517,8 +1478,7 @@ public abstract class ElectricShutter extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : Extent of opening
-1<br>
+		 * Property name : Extent of opening 1<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
@@ -1526,13 +1486,13 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x31 to 0x38<br>
+		 * 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1552,7 +1512,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * Blind angle<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0xB4 (0 to 180  )<br>
+		 * 0x00.0xB4 (0.180°)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -1578,14 +1538,13 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * Low/medium/high<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Low = 0x41, medium = 0x42, high =<br>
-		 * 0x43<br>
+		 * Low = 0x41, medium = 0x42, high = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1597,23 +1556,21 @@ public abstract class ElectricShutter extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : Extent of opening
-2<br>
+		 * Property name : Extent of opening 2<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the extent of opening by selecting a level from among the<br>
-		 * 256 predefined levels, and to acquire the current setting.<br>
+		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0xFF (0 to 255)<br>
+		 * 0x00.0xFF (0.255)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1639,7 +1596,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1651,8 +1608,7 @@ public abstract class ElectricShutter extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : Open/close setting
-2<br>
+		 * Property name : Open/close setting 2<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
@@ -1666,7 +1622,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1757,8 +1713,8 @@ public abstract class ElectricShutter extends DeviceObject {
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -1790,8 +1746,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : Open/close setting
-1<br>
+		 * Property name : Open/close setting 1<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
@@ -1805,7 +1760,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1819,8 +1774,7 @@ public abstract class ElectricShutter extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : Extent of opening
-1<br>
+		 * Property name : Extent of opening 1<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
@@ -1828,13 +1782,13 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x31 to 0x38<br>
+		 * 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1854,7 +1808,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * Blind angle<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0xB4 (0 to 180  )<br>
+		 * 0x00.0xB4 (0.180°)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -1880,14 +1834,13 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * Low/medium/high<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Low = 0x41, medium = 0x42, high =<br>
-		 * 0x43<br>
+		 * Low = 0x41, medium = 0x42, high = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1899,23 +1852,21 @@ public abstract class ElectricShutter extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : Extent of opening
-2<br>
+		 * Property name : Extent of opening 2<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the extent of opening by selecting a level from among the<br>
-		 * 256 predefined levels, and to acquire the current setting.<br>
+		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0xFF (0 to 255)<br>
+		 * 0x00.0xFF (0.255)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1941,7 +1892,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1953,8 +1904,7 @@ public abstract class ElectricShutter extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : Open/close setting
-2<br>
+		 * Property name : Open/close setting 2<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
@@ -1968,7 +1918,7 @@ public abstract class ElectricShutter extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>

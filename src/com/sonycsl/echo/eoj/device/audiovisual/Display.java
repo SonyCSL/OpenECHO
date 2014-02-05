@@ -63,10 +63,9 @@ public abstract class Display extends DeviceObject {
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
-	 * Data type : unsigne d char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1
-Byte<br>
+	 * Data size : 1 byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -89,10 +88,9 @@ Byte<br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
-	 * Data type : unsigne d char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1
-Byte<br>
+	 * Data size : 1 byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -113,13 +111,11 @@ Byte<br>
 	 * Sets the status as to whether the displaying of characters is enabled or disabled and acquires the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Displaying enabled: 0x30<br>
-	 * Displaying disabled: 0x31<br>
+	 * Displaying enabled: 0x30 Displaying disabled: 0x31<br>
 	 * <br>
-	 * Data type : unsigne d char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1
-Byte<br>
+	 * Data size : 1 byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -138,13 +134,11 @@ Byte<br>
 	 * Sets the status as to whether the displaying of characters is enabled or disabled and acquires the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Displaying enabled: 0x30<br>
-	 * Displaying disabled: 0x31<br>
+	 * Displaying enabled: 0x30 Displaying disabled: 0x31<br>
 	 * <br>
-	 * Data type : unsigne d char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1
-Byte<br>
+	 * Data size : 1 byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -163,13 +157,11 @@ Byte<br>
 	 * Sets the status as to whether the displaying of characters is enabled or disabled and acquires the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Displaying enabled: 0x30<br>
-	 * Displaying disabled: 0x31<br>
+	 * Displaying enabled: 0x30 Displaying disabled: 0x31<br>
 	 * <br>
-	 * Data type : unsigne d char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1
-Byte<br>
+	 * Data size : 1 byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -191,12 +183,11 @@ Byte<br>
 	 * This property indicates whether or not the device is ready to accept the character string to present to the user.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Ready: 0x30        Busy: 0x31<br>
+	 * Ready: 0x30       Busy: 0x31<br>
 	 * <br>
-	 * Data type : unsigne d char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1
-Byte<br>
+	 * Data size : 1 byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -217,12 +208,11 @@ Byte<br>
 	 * This property indicates whether or not the device is ready to accept the character string to present to the user.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Ready: 0x30        Busy: 0x31<br>
+	 * Ready: 0x30       Busy: 0x31<br>
 	 * <br>
-	 * Data type : unsigne d char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1
-Byte<br>
+	 * Data size : 1 byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -249,11 +239,13 @@ Byte<br>
 	 * Bit 0   ANSI X3.4<br>
 	 * Implemented: 1<br>
 	 * Not implemented: 0<br>
-	 * Bit 1   Shift-JIS Implemented: 1<br>
+	 * Bit 1   Shift-JIS<br>
+	 * Implemented: 1<br>
 	 * Not implemented: 0<br>
-	 * Bit 2   JIS Implemented: 1<br>
-	 * Not implemented: 0<br>
-	 * Bit 3   Japanese EUC Implemented: 1<br>
+	 * Bit 2   JIS<br>
+	 * Implemented: 1<br>
+	 * Not implemented: 0 Bit 3   Japanese EUC<br>
+	 * Implemented: 1<br>
 	 * Not implemented: 0<br>
 	 * Bit 4   UCS-4<br>
 	 * Implemented: 1<br>
@@ -264,17 +256,14 @@ Byte<br>
 	 * Bit 6   Latin-1<br>
 	 * Implemented: 1<br>
 	 * Not implemented: 0<br>
-	 * Bit 7   UTF-8<br>
+	 * Bit 7    UTF-8<br>
 	 * Implemented: 1<br>
-	 * Not implemented: 0<br>
-	 * Bit 8 and succeeding bits:<br>
-	 * for future reserved    0<br>
+	 * Not implemented: 0 Bit 8 and succeeding bits: for future reserved    0<br>
 	 * <br>
-	 * Data type : unsigne d char ~
-2<br>
+	 * Data type : unsigned char×2<br>
 	 * <br>
 	 * Data size : 2
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -296,11 +285,13 @@ Byte<br>
 	 * Bit 0   ANSI X3.4<br>
 	 * Implemented: 1<br>
 	 * Not implemented: 0<br>
-	 * Bit 1   Shift-JIS Implemented: 1<br>
+	 * Bit 1   Shift-JIS<br>
+	 * Implemented: 1<br>
 	 * Not implemented: 0<br>
-	 * Bit 2   JIS Implemented: 1<br>
-	 * Not implemented: 0<br>
-	 * Bit 3   Japanese EUC Implemented: 1<br>
+	 * Bit 2   JIS<br>
+	 * Implemented: 1<br>
+	 * Not implemented: 0 Bit 3   Japanese EUC<br>
+	 * Implemented: 1<br>
 	 * Not implemented: 0<br>
 	 * Bit 4   UCS-4<br>
 	 * Implemented: 1<br>
@@ -311,17 +302,14 @@ Byte<br>
 	 * Bit 6   Latin-1<br>
 	 * Implemented: 1<br>
 	 * Not implemented: 0<br>
-	 * Bit 7   UTF-8<br>
+	 * Bit 7    UTF-8<br>
 	 * Implemented: 1<br>
-	 * Not implemented: 0<br>
-	 * Bit 8 and succeeding bits:<br>
-	 * for future reserved    0<br>
+	 * Not implemented: 0 Bit 8 and succeeding bits: for future reserved    0<br>
 	 * <br>
-	 * Data type : unsigne d char ~
-2<br>
+	 * Data type : unsigned char×2<br>
 	 * <br>
 	 * Data size : 2
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -342,32 +330,26 @@ Byte<br>
 	 * Contents of property :<br>
 	 * Sets the character string to present to the user, the length of the character string and the character code to use to present the character string and acquires the stored setting.<br>
 	 * The highest-order byte shall indicate the byte sequence data length of the character string to present to the user and the second-highest-order byte shall<br>
-	 * indicate the character code to use. The second-highest-order byte shall be followed by a byte containing  g0x00 h (for future reserved), which shall be followed by a number of bytes, each assigned with one of the first and succeeding bytes, starting with the first byte, of the character string to present to the user. The lowest-order byte shall be assigned with the last byte of the character<br>
+	 * indicate the character code to use. The second-highest-order byte shall be followed by a byte containing “0x00” (for future reserved), which shall be followed by a number of bytes, each assigned with one of the first and succeeding bytes, starting with the first byte, of the character string to present to the user. The lowest-order byte shall be assigned with the last byte of the character<br>
 	 * string to present to the user.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * First byte: Byte code sequence data length of the character string to present to the user converted to the hexadecimal format<br>
 	 * Second byte: Character code to use Third byte: for future reserved Fourth and succeeding bytes: Byte<br>
-	 * code sequence of the character string to present to the user (max.<br>
-	 * 244 bytes)<br>
+	 * code sequence of the character string to present to the user (max. 244 bytes)<br>
 	 * Each of the character codes listed below shall be assigned with the indicated code value.<br>
 	 * ANSI X3.4=0x01<br>
-	 * Shift .JIS=0x02<br>
-	 * JIS =0x03<br>
+	 * Shift .JIS=0x02 JIS =0x03<br>
 	 * Japanese EUC=0x04<br>
-	 * UCS-4 =0x05<br>
-	 * UCS-2 =0x06<br>
-	 * Latin -1=0x07<br>
-	 * UTF-8=0x08<br>
+	 * UCS-4 =0x05 UCS-2 =0x06<br>
+	 * Latin -1=0x07 UTF-8=0x08<br>
 	 * 0x09 and succeeding values = for future reserved<br>
 	 * <br>
-	 * Data type : unsigne d    char
- ~
-Max
-247<br>
+	 * Data type : unsigned char×
+Max 247<br>
 	 * <br>
 	 * Data size : Max247
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -385,32 +367,26 @@ Byte<br>
 	 * Contents of property :<br>
 	 * Sets the character string to present to the user, the length of the character string and the character code to use to present the character string and acquires the stored setting.<br>
 	 * The highest-order byte shall indicate the byte sequence data length of the character string to present to the user and the second-highest-order byte shall<br>
-	 * indicate the character code to use. The second-highest-order byte shall be followed by a byte containing  g0x00 h (for future reserved), which shall be followed by a number of bytes, each assigned with one of the first and succeeding bytes, starting with the first byte, of the character string to present to the user. The lowest-order byte shall be assigned with the last byte of the character<br>
+	 * indicate the character code to use. The second-highest-order byte shall be followed by a byte containing “0x00” (for future reserved), which shall be followed by a number of bytes, each assigned with one of the first and succeeding bytes, starting with the first byte, of the character string to present to the user. The lowest-order byte shall be assigned with the last byte of the character<br>
 	 * string to present to the user.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * First byte: Byte code sequence data length of the character string to present to the user converted to the hexadecimal format<br>
 	 * Second byte: Character code to use Third byte: for future reserved Fourth and succeeding bytes: Byte<br>
-	 * code sequence of the character string to present to the user (max.<br>
-	 * 244 bytes)<br>
+	 * code sequence of the character string to present to the user (max. 244 bytes)<br>
 	 * Each of the character codes listed below shall be assigned with the indicated code value.<br>
 	 * ANSI X3.4=0x01<br>
-	 * Shift .JIS=0x02<br>
-	 * JIS =0x03<br>
+	 * Shift .JIS=0x02 JIS =0x03<br>
 	 * Japanese EUC=0x04<br>
-	 * UCS-4 =0x05<br>
-	 * UCS-2 =0x06<br>
-	 * Latin -1=0x07<br>
-	 * UTF-8=0x08<br>
+	 * UCS-4 =0x05 UCS-2 =0x06<br>
+	 * Latin -1=0x07 UTF-8=0x08<br>
 	 * 0x09 and succeeding values = for future reserved<br>
 	 * <br>
-	 * Data type : unsigne d    char
- ~
-Max
-247<br>
+	 * Data type : unsigned char×
+Max 247<br>
 	 * <br>
 	 * Data size : Max247
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -428,32 +404,26 @@ Byte<br>
 	 * Contents of property :<br>
 	 * Sets the character string to present to the user, the length of the character string and the character code to use to present the character string and acquires the stored setting.<br>
 	 * The highest-order byte shall indicate the byte sequence data length of the character string to present to the user and the second-highest-order byte shall<br>
-	 * indicate the character code to use. The second-highest-order byte shall be followed by a byte containing  g0x00 h (for future reserved), which shall be followed by a number of bytes, each assigned with one of the first and succeeding bytes, starting with the first byte, of the character string to present to the user. The lowest-order byte shall be assigned with the last byte of the character<br>
+	 * indicate the character code to use. The second-highest-order byte shall be followed by a byte containing “0x00” (for future reserved), which shall be followed by a number of bytes, each assigned with one of the first and succeeding bytes, starting with the first byte, of the character string to present to the user. The lowest-order byte shall be assigned with the last byte of the character<br>
 	 * string to present to the user.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * First byte: Byte code sequence data length of the character string to present to the user converted to the hexadecimal format<br>
 	 * Second byte: Character code to use Third byte: for future reserved Fourth and succeeding bytes: Byte<br>
-	 * code sequence of the character string to present to the user (max.<br>
-	 * 244 bytes)<br>
+	 * code sequence of the character string to present to the user (max. 244 bytes)<br>
 	 * Each of the character codes listed below shall be assigned with the indicated code value.<br>
 	 * ANSI X3.4=0x01<br>
-	 * Shift .JIS=0x02<br>
-	 * JIS =0x03<br>
+	 * Shift .JIS=0x02 JIS =0x03<br>
 	 * Japanese EUC=0x04<br>
-	 * UCS-4 =0x05<br>
-	 * UCS-2 =0x06<br>
-	 * Latin -1=0x07<br>
-	 * UTF-8=0x08<br>
+	 * UCS-4 =0x05 UCS-2 =0x06<br>
+	 * Latin -1=0x07 UTF-8=0x08<br>
 	 * 0x09 and succeeding values = for future reserved<br>
 	 * <br>
-	 * Data type : unsigne d    char
- ~
-Max
-247<br>
+	 * Data type : unsigned char×
+Max 247<br>
 	 * <br>
 	 * Data size : Max247
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -467,23 +437,20 @@ Byte<br>
 		return true;
 	}
 	/**
-	 * Property name : Length of character
-string accepted<br>
+	 * Property name : Length of character string accepted<br>
 	 * <br>
 	 * EPC : 0xB4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the total number of bytes of the newest character string to present to the<br>
-	 * user which has been set and is being held.<br>
+	 * This property indicates the total number of bytes of the newest character string to present to the user which has been set and is being held.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * First byte: 0x00 to 0xF4<br>
-	 * Second byte: 0x00 (for future reserved)<br>
+	 * First byte: 0x00 to 0xF4 Second byte: 0x00 (for future reserved)<br>
 	 * <br>
-	 * Data type : unsigne d char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 2
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -494,23 +461,20 @@ Byte<br>
 	 */
 	protected abstract byte[] getLengthOfCharacterStringAccepted();
 	/**
-	 * Property name : Length of character
-string accepted<br>
+	 * Property name : Length of character string accepted<br>
 	 * <br>
 	 * EPC : 0xB4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the total number of bytes of the newest character string to present to the<br>
-	 * user which has been set and is being held.<br>
+	 * This property indicates the total number of bytes of the newest character string to present to the user which has been set and is being held.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * First byte: 0x00 to 0xF4<br>
-	 * Second byte: 0x00 (for future reserved)<br>
+	 * First byte: 0x00 to 0xF4 Second byte: 0x00 (for future reserved)<br>
 	 * <br>
-	 * Data type : unsigne d char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 2
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -656,13 +620,11 @@ Byte<br>
 		 * Sets the status as to whether the displaying of characters is enabled or disabled and acquires the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Displaying enabled: 0x30<br>
-		 * Displaying disabled: 0x31<br>
+		 * Displaying enabled: 0x30 Displaying disabled: 0x31<br>
 		 * <br>
-		 * Data type : unsigne d char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1
-Byte<br>
+		 * Data size : 1 byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -681,13 +643,11 @@ Byte<br>
 		 * Sets the status as to whether the displaying of characters is enabled or disabled and acquires the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Displaying enabled: 0x30<br>
-		 * Displaying disabled: 0x31<br>
+		 * Displaying enabled: 0x30 Displaying disabled: 0x31<br>
 		 * <br>
-		 * Data type : unsigne d char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1
-Byte<br>
+		 * Data size : 1 byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -706,12 +666,11 @@ Byte<br>
 		 * This property indicates whether or not the device is ready to accept the character string to present to the user.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Ready: 0x30        Busy: 0x31<br>
+		 * Ready: 0x30       Busy: 0x31<br>
 		 * <br>
-		 * Data type : unsigne d char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1
-Byte<br>
+		 * Data size : 1 byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -735,11 +694,13 @@ Byte<br>
 		 * Bit 0   ANSI X3.4<br>
 		 * Implemented: 1<br>
 		 * Not implemented: 0<br>
-		 * Bit 1   Shift-JIS Implemented: 1<br>
+		 * Bit 1   Shift-JIS<br>
+		 * Implemented: 1<br>
 		 * Not implemented: 0<br>
-		 * Bit 2   JIS Implemented: 1<br>
-		 * Not implemented: 0<br>
-		 * Bit 3   Japanese EUC Implemented: 1<br>
+		 * Bit 2   JIS<br>
+		 * Implemented: 1<br>
+		 * Not implemented: 0 Bit 3   Japanese EUC<br>
+		 * Implemented: 1<br>
 		 * Not implemented: 0<br>
 		 * Bit 4   UCS-4<br>
 		 * Implemented: 1<br>
@@ -750,17 +711,14 @@ Byte<br>
 		 * Bit 6   Latin-1<br>
 		 * Implemented: 1<br>
 		 * Not implemented: 0<br>
-		 * Bit 7   UTF-8<br>
+		 * Bit 7    UTF-8<br>
 		 * Implemented: 1<br>
-		 * Not implemented: 0<br>
-		 * Bit 8 and succeeding bits:<br>
-		 * for future reserved    0<br>
+		 * Not implemented: 0 Bit 8 and succeeding bits: for future reserved    0<br>
 		 * <br>
-		 * Data type : unsigne d char ~
-2<br>
+		 * Data type : unsigned char×2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -778,32 +736,26 @@ Byte<br>
 		 * Contents of property :<br>
 		 * Sets the character string to present to the user, the length of the character string and the character code to use to present the character string and acquires the stored setting.<br>
 		 * The highest-order byte shall indicate the byte sequence data length of the character string to present to the user and the second-highest-order byte shall<br>
-		 * indicate the character code to use. The second-highest-order byte shall be followed by a byte containing  g0x00 h (for future reserved), which shall be followed by a number of bytes, each assigned with one of the first and succeeding bytes, starting with the first byte, of the character string to present to the user. The lowest-order byte shall be assigned with the last byte of the character<br>
+		 * indicate the character code to use. The second-highest-order byte shall be followed by a byte containing “0x00” (for future reserved), which shall be followed by a number of bytes, each assigned with one of the first and succeeding bytes, starting with the first byte, of the character string to present to the user. The lowest-order byte shall be assigned with the last byte of the character<br>
 		 * string to present to the user.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * First byte: Byte code sequence data length of the character string to present to the user converted to the hexadecimal format<br>
 		 * Second byte: Character code to use Third byte: for future reserved Fourth and succeeding bytes: Byte<br>
-		 * code sequence of the character string to present to the user (max.<br>
-		 * 244 bytes)<br>
+		 * code sequence of the character string to present to the user (max. 244 bytes)<br>
 		 * Each of the character codes listed below shall be assigned with the indicated code value.<br>
 		 * ANSI X3.4=0x01<br>
-		 * Shift .JIS=0x02<br>
-		 * JIS =0x03<br>
+		 * Shift .JIS=0x02 JIS =0x03<br>
 		 * Japanese EUC=0x04<br>
-		 * UCS-4 =0x05<br>
-		 * UCS-2 =0x06<br>
-		 * Latin -1=0x07<br>
-		 * UTF-8=0x08<br>
+		 * UCS-4 =0x05 UCS-2 =0x06<br>
+		 * Latin -1=0x07 UTF-8=0x08<br>
 		 * 0x09 and succeeding values = for future reserved<br>
 		 * <br>
-		 * Data type : unsigne d    char
- ~
-Max
-247<br>
+		 * Data type : unsigned char×
+Max 247<br>
 		 * <br>
 		 * Data size : Max247
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -821,32 +773,26 @@ Byte<br>
 		 * Contents of property :<br>
 		 * Sets the character string to present to the user, the length of the character string and the character code to use to present the character string and acquires the stored setting.<br>
 		 * The highest-order byte shall indicate the byte sequence data length of the character string to present to the user and the second-highest-order byte shall<br>
-		 * indicate the character code to use. The second-highest-order byte shall be followed by a byte containing  g0x00 h (for future reserved), which shall be followed by a number of bytes, each assigned with one of the first and succeeding bytes, starting with the first byte, of the character string to present to the user. The lowest-order byte shall be assigned with the last byte of the character<br>
+		 * indicate the character code to use. The second-highest-order byte shall be followed by a byte containing “0x00” (for future reserved), which shall be followed by a number of bytes, each assigned with one of the first and succeeding bytes, starting with the first byte, of the character string to present to the user. The lowest-order byte shall be assigned with the last byte of the character<br>
 		 * string to present to the user.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * First byte: Byte code sequence data length of the character string to present to the user converted to the hexadecimal format<br>
 		 * Second byte: Character code to use Third byte: for future reserved Fourth and succeeding bytes: Byte<br>
-		 * code sequence of the character string to present to the user (max.<br>
-		 * 244 bytes)<br>
+		 * code sequence of the character string to present to the user (max. 244 bytes)<br>
 		 * Each of the character codes listed below shall be assigned with the indicated code value.<br>
 		 * ANSI X3.4=0x01<br>
-		 * Shift .JIS=0x02<br>
-		 * JIS =0x03<br>
+		 * Shift .JIS=0x02 JIS =0x03<br>
 		 * Japanese EUC=0x04<br>
-		 * UCS-4 =0x05<br>
-		 * UCS-2 =0x06<br>
-		 * Latin -1=0x07<br>
-		 * UTF-8=0x08<br>
+		 * UCS-4 =0x05 UCS-2 =0x06<br>
+		 * Latin -1=0x07 UTF-8=0x08<br>
 		 * 0x09 and succeeding values = for future reserved<br>
 		 * <br>
-		 * Data type : unsigne d    char
- ~
-Max
-247<br>
+		 * Data type : unsigned char×
+Max 247<br>
 		 * <br>
 		 * Data size : Max247
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -857,23 +803,20 @@ Byte<br>
 		 */
 		protected void onGetCharacterStringToPresentToTheUser(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Length of character
-string accepted<br>
+		 * Property name : Length of character string accepted<br>
 		 * <br>
 		 * EPC : 0xB4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the total number of bytes of the newest character string to present to the<br>
-		 * user which has been set and is being held.<br>
+		 * This property indicates the total number of bytes of the newest character string to present to the user which has been set and is being held.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * First byte: 0x00 to 0xF4<br>
-		 * Second byte: 0x00 (for future reserved)<br>
+		 * First byte: 0x00 to 0xF4 Second byte: 0x00 (for future reserved)<br>
 		 * <br>
-		 * Data type : unsigne d char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -914,8 +857,8 @@ Byte<br>
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -939,13 +882,11 @@ Byte<br>
 		 * Sets the status as to whether the displaying of characters is enabled or disabled and acquires the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Displaying enabled: 0x30<br>
-		 * Displaying disabled: 0x31<br>
+		 * Displaying enabled: 0x30 Displaying disabled: 0x31<br>
 		 * <br>
-		 * Data type : unsigne d char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1
-Byte<br>
+		 * Data size : 1 byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -966,32 +907,26 @@ Byte<br>
 		 * Contents of property :<br>
 		 * Sets the character string to present to the user, the length of the character string and the character code to use to present the character string and acquires the stored setting.<br>
 		 * The highest-order byte shall indicate the byte sequence data length of the character string to present to the user and the second-highest-order byte shall<br>
-		 * indicate the character code to use. The second-highest-order byte shall be followed by a byte containing  g0x00 h (for future reserved), which shall be followed by a number of bytes, each assigned with one of the first and succeeding bytes, starting with the first byte, of the character string to present to the user. The lowest-order byte shall be assigned with the last byte of the character<br>
+		 * indicate the character code to use. The second-highest-order byte shall be followed by a byte containing “0x00” (for future reserved), which shall be followed by a number of bytes, each assigned with one of the first and succeeding bytes, starting with the first byte, of the character string to present to the user. The lowest-order byte shall be assigned with the last byte of the character<br>
 		 * string to present to the user.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * First byte: Byte code sequence data length of the character string to present to the user converted to the hexadecimal format<br>
 		 * Second byte: Character code to use Third byte: for future reserved Fourth and succeeding bytes: Byte<br>
-		 * code sequence of the character string to present to the user (max.<br>
-		 * 244 bytes)<br>
+		 * code sequence of the character string to present to the user (max. 244 bytes)<br>
 		 * Each of the character codes listed below shall be assigned with the indicated code value.<br>
 		 * ANSI X3.4=0x01<br>
-		 * Shift .JIS=0x02<br>
-		 * JIS =0x03<br>
+		 * Shift .JIS=0x02 JIS =0x03<br>
 		 * Japanese EUC=0x04<br>
-		 * UCS-4 =0x05<br>
-		 * UCS-2 =0x06<br>
-		 * Latin -1=0x07<br>
-		 * UTF-8=0x08<br>
+		 * UCS-4 =0x05 UCS-2 =0x06<br>
+		 * Latin -1=0x07 UTF-8=0x08<br>
 		 * 0x09 and succeeding values = for future reserved<br>
 		 * <br>
-		 * Data type : unsigne d    char
- ~
-Max
-247<br>
+		 * Data type : unsigned char×
+Max 247<br>
 		 * <br>
 		 * Data size : Max247
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1083,8 +1018,8 @@ Byte<br>
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -1124,13 +1059,11 @@ Byte<br>
 		 * Sets the status as to whether the displaying of characters is enabled or disabled and acquires the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Displaying enabled: 0x30<br>
-		 * Displaying disabled: 0x31<br>
+		 * Displaying enabled: 0x30 Displaying disabled: 0x31<br>
 		 * <br>
-		 * Data type : unsigne d char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1
-Byte<br>
+		 * Data size : 1 byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1152,12 +1085,11 @@ Byte<br>
 		 * This property indicates whether or not the device is ready to accept the character string to present to the user.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Ready: 0x30        Busy: 0x31<br>
+		 * Ready: 0x30       Busy: 0x31<br>
 		 * <br>
-		 * Data type : unsigne d char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1
-Byte<br>
+		 * Data size : 1 byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1184,11 +1116,13 @@ Byte<br>
 		 * Bit 0   ANSI X3.4<br>
 		 * Implemented: 1<br>
 		 * Not implemented: 0<br>
-		 * Bit 1   Shift-JIS Implemented: 1<br>
+		 * Bit 1   Shift-JIS<br>
+		 * Implemented: 1<br>
 		 * Not implemented: 0<br>
-		 * Bit 2   JIS Implemented: 1<br>
-		 * Not implemented: 0<br>
-		 * Bit 3   Japanese EUC Implemented: 1<br>
+		 * Bit 2   JIS<br>
+		 * Implemented: 1<br>
+		 * Not implemented: 0 Bit 3   Japanese EUC<br>
+		 * Implemented: 1<br>
 		 * Not implemented: 0<br>
 		 * Bit 4   UCS-4<br>
 		 * Implemented: 1<br>
@@ -1199,17 +1133,14 @@ Byte<br>
 		 * Bit 6   Latin-1<br>
 		 * Implemented: 1<br>
 		 * Not implemented: 0<br>
-		 * Bit 7   UTF-8<br>
+		 * Bit 7    UTF-8<br>
 		 * Implemented: 1<br>
-		 * Not implemented: 0<br>
-		 * Bit 8 and succeeding bits:<br>
-		 * for future reserved    0<br>
+		 * Not implemented: 0 Bit 8 and succeeding bits: for future reserved    0<br>
 		 * <br>
-		 * Data type : unsigne d char ~
-2<br>
+		 * Data type : unsigned char×2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1230,32 +1161,26 @@ Byte<br>
 		 * Contents of property :<br>
 		 * Sets the character string to present to the user, the length of the character string and the character code to use to present the character string and acquires the stored setting.<br>
 		 * The highest-order byte shall indicate the byte sequence data length of the character string to present to the user and the second-highest-order byte shall<br>
-		 * indicate the character code to use. The second-highest-order byte shall be followed by a byte containing  g0x00 h (for future reserved), which shall be followed by a number of bytes, each assigned with one of the first and succeeding bytes, starting with the first byte, of the character string to present to the user. The lowest-order byte shall be assigned with the last byte of the character<br>
+		 * indicate the character code to use. The second-highest-order byte shall be followed by a byte containing “0x00” (for future reserved), which shall be followed by a number of bytes, each assigned with one of the first and succeeding bytes, starting with the first byte, of the character string to present to the user. The lowest-order byte shall be assigned with the last byte of the character<br>
 		 * string to present to the user.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * First byte: Byte code sequence data length of the character string to present to the user converted to the hexadecimal format<br>
 		 * Second byte: Character code to use Third byte: for future reserved Fourth and succeeding bytes: Byte<br>
-		 * code sequence of the character string to present to the user (max.<br>
-		 * 244 bytes)<br>
+		 * code sequence of the character string to present to the user (max. 244 bytes)<br>
 		 * Each of the character codes listed below shall be assigned with the indicated code value.<br>
 		 * ANSI X3.4=0x01<br>
-		 * Shift .JIS=0x02<br>
-		 * JIS =0x03<br>
+		 * Shift .JIS=0x02 JIS =0x03<br>
 		 * Japanese EUC=0x04<br>
-		 * UCS-4 =0x05<br>
-		 * UCS-2 =0x06<br>
-		 * Latin -1=0x07<br>
-		 * UTF-8=0x08<br>
+		 * UCS-4 =0x05 UCS-2 =0x06<br>
+		 * Latin -1=0x07 UTF-8=0x08<br>
 		 * 0x09 and succeeding values = for future reserved<br>
 		 * <br>
-		 * Data type : unsigne d    char
- ~
-Max
-247<br>
+		 * Data type : unsigned char×
+Max 247<br>
 		 * <br>
 		 * Data size : Max247
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1269,23 +1194,20 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Length of character
-string accepted<br>
+		 * Property name : Length of character string accepted<br>
 		 * <br>
 		 * EPC : 0xB4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the total number of bytes of the newest character string to present to the<br>
-		 * user which has been set and is being held.<br>
+		 * This property indicates the total number of bytes of the newest character string to present to the user which has been set and is being held.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * First byte: 0x00 to 0xF4<br>
-		 * Second byte: 0x00 (for future reserved)<br>
+		 * First byte: 0x00 to 0xF4 Second byte: 0x00 (for future reserved)<br>
 		 * <br>
-		 * Data type : unsigne d char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1376,8 +1298,8 @@ Byte<br>
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -1417,13 +1339,11 @@ Byte<br>
 		 * Sets the status as to whether the displaying of characters is enabled or disabled and acquires the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Displaying enabled: 0x30<br>
-		 * Displaying disabled: 0x31<br>
+		 * Displaying enabled: 0x30 Displaying disabled: 0x31<br>
 		 * <br>
-		 * Data type : unsigne d char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1
-Byte<br>
+		 * Data size : 1 byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1445,12 +1365,11 @@ Byte<br>
 		 * This property indicates whether or not the device is ready to accept the character string to present to the user.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Ready: 0x30        Busy: 0x31<br>
+		 * Ready: 0x30       Busy: 0x31<br>
 		 * <br>
-		 * Data type : unsigne d char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1
-Byte<br>
+		 * Data size : 1 byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1477,11 +1396,13 @@ Byte<br>
 		 * Bit 0   ANSI X3.4<br>
 		 * Implemented: 1<br>
 		 * Not implemented: 0<br>
-		 * Bit 1   Shift-JIS Implemented: 1<br>
+		 * Bit 1   Shift-JIS<br>
+		 * Implemented: 1<br>
 		 * Not implemented: 0<br>
-		 * Bit 2   JIS Implemented: 1<br>
-		 * Not implemented: 0<br>
-		 * Bit 3   Japanese EUC Implemented: 1<br>
+		 * Bit 2   JIS<br>
+		 * Implemented: 1<br>
+		 * Not implemented: 0 Bit 3   Japanese EUC<br>
+		 * Implemented: 1<br>
 		 * Not implemented: 0<br>
 		 * Bit 4   UCS-4<br>
 		 * Implemented: 1<br>
@@ -1492,17 +1413,14 @@ Byte<br>
 		 * Bit 6   Latin-1<br>
 		 * Implemented: 1<br>
 		 * Not implemented: 0<br>
-		 * Bit 7   UTF-8<br>
+		 * Bit 7    UTF-8<br>
 		 * Implemented: 1<br>
-		 * Not implemented: 0<br>
-		 * Bit 8 and succeeding bits:<br>
-		 * for future reserved    0<br>
+		 * Not implemented: 0 Bit 8 and succeeding bits: for future reserved    0<br>
 		 * <br>
-		 * Data type : unsigne d char ~
-2<br>
+		 * Data type : unsigned char×2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1523,32 +1441,26 @@ Byte<br>
 		 * Contents of property :<br>
 		 * Sets the character string to present to the user, the length of the character string and the character code to use to present the character string and acquires the stored setting.<br>
 		 * The highest-order byte shall indicate the byte sequence data length of the character string to present to the user and the second-highest-order byte shall<br>
-		 * indicate the character code to use. The second-highest-order byte shall be followed by a byte containing  g0x00 h (for future reserved), which shall be followed by a number of bytes, each assigned with one of the first and succeeding bytes, starting with the first byte, of the character string to present to the user. The lowest-order byte shall be assigned with the last byte of the character<br>
+		 * indicate the character code to use. The second-highest-order byte shall be followed by a byte containing “0x00” (for future reserved), which shall be followed by a number of bytes, each assigned with one of the first and succeeding bytes, starting with the first byte, of the character string to present to the user. The lowest-order byte shall be assigned with the last byte of the character<br>
 		 * string to present to the user.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * First byte: Byte code sequence data length of the character string to present to the user converted to the hexadecimal format<br>
 		 * Second byte: Character code to use Third byte: for future reserved Fourth and succeeding bytes: Byte<br>
-		 * code sequence of the character string to present to the user (max.<br>
-		 * 244 bytes)<br>
+		 * code sequence of the character string to present to the user (max. 244 bytes)<br>
 		 * Each of the character codes listed below shall be assigned with the indicated code value.<br>
 		 * ANSI X3.4=0x01<br>
-		 * Shift .JIS=0x02<br>
-		 * JIS =0x03<br>
+		 * Shift .JIS=0x02 JIS =0x03<br>
 		 * Japanese EUC=0x04<br>
-		 * UCS-4 =0x05<br>
-		 * UCS-2 =0x06<br>
-		 * Latin -1=0x07<br>
-		 * UTF-8=0x08<br>
+		 * UCS-4 =0x05 UCS-2 =0x06<br>
+		 * Latin -1=0x07 UTF-8=0x08<br>
 		 * 0x09 and succeeding values = for future reserved<br>
 		 * <br>
-		 * Data type : unsigne d    char
- ~
-Max
-247<br>
+		 * Data type : unsigned char×
+Max 247<br>
 		 * <br>
 		 * Data size : Max247
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1562,23 +1474,20 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Length of character
-string accepted<br>
+		 * Property name : Length of character string accepted<br>
 		 * <br>
 		 * EPC : 0xB4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the total number of bytes of the newest character string to present to the<br>
-		 * user which has been set and is being held.<br>
+		 * This property indicates the total number of bytes of the newest character string to present to the user which has been set and is being held.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * First byte: 0x00 to 0xF4<br>
-		 * Second byte: 0x00 (for future reserved)<br>
+		 * First byte: 0x00 to 0xF4 Second byte: 0x00 (for future reserved)<br>
 		 * <br>
-		 * Data type : unsigne d char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>

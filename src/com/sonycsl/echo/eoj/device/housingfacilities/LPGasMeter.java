@@ -77,17 +77,16 @@ public abstract class LPGasMeter extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -103,17 +102,16 @@ public abstract class LPGasMeter extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -138,7 +136,8 @@ public abstract class LPGasMeter extends DeviceObject {
 	 * <br>
 	 * Data size : 4 bytes<br>
 	 * <br>
-	 * Unit : 0.0001 m3<br>
+	 * Unit : 0.0001
+m3<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -161,7 +160,8 @@ public abstract class LPGasMeter extends DeviceObject {
 	 * <br>
 	 * Data size : 4 bytes<br>
 	 * <br>
-	 * Unit : 0.0001 m3<br>
+	 * Unit : 0.0001
+m3<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -187,7 +187,8 @@ public abstract class LPGasMeter extends DeviceObject {
 	 * <br>
 	 * Data size : 4 bytes<br>
 	 * <br>
-	 * Unit : 0.001 m3<br>
+	 * Unit : 0.001
+m3<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -210,7 +211,8 @@ public abstract class LPGasMeter extends DeviceObject {
 	 * <br>
 	 * Data size : 4 bytes<br>
 	 * <br>
-	 * Unit : 0.001 m3<br>
+	 * Unit : 0.001
+m3<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -230,15 +232,14 @@ public abstract class LPGasMeter extends DeviceObject {
 	 * This property indicates status where meter detected metering data error.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Error detection status found = 0x41<br>
-	 * Error detection status not found<br>
+	 * Error detection status found = 0x41 Error detection status not found<br>
 	 * = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -257,15 +258,14 @@ public abstract class LPGasMeter extends DeviceObject {
 	 * This property indicates status where meter detected metering data error.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Error detection status found = 0x41<br>
-	 * Error detection status not found<br>
+	 * Error detection status found = 0x41 Error detection status not found<br>
 	 * = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -293,7 +293,7 @@ public abstract class LPGasMeter extends DeviceObject {
 	 * <br>
 	 * Data size : 4 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -316,7 +316,7 @@ public abstract class LPGasMeter extends DeviceObject {
 	 * <br>
 	 * Data size : 4 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -342,7 +342,7 @@ public abstract class LPGasMeter extends DeviceObject {
 	 * <br>
 	 * Data size : 4 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -365,7 +365,7 @@ public abstract class LPGasMeter extends DeviceObject {
 	 * <br>
 	 * Data size : 4 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -394,7 +394,7 @@ public abstract class LPGasMeter extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -422,7 +422,7 @@ public abstract class LPGasMeter extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -436,8 +436,7 @@ public abstract class LPGasMeter extends DeviceObject {
 		return true;
 	}
 	/**
-	 * Property name : Center valve
-shut-off recovery permission setting status<br>
+	 * Property name : Center valve shut-off recovery permission setting status<br>
 	 * <br>
 	 * EPC : 0xE6<br>
 	 * <br>
@@ -445,8 +444,7 @@ shut-off recovery permission setting status<br>
 	 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Center valve shut-off reset enable =<br>
-	 * 0x41<br>
+	 * Center valve shut-off reset enable = 0x41<br>
 	 * Center valve shut-off reset not enable<br>
 	 * = 0x42<br>
 	 * <br>
@@ -454,7 +452,7 @@ shut-off recovery permission setting status<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -463,8 +461,7 @@ shut-off recovery permission setting status<br>
 	 */
 	protected byte[] getCenterValveShutOffRecoveryPermissionSettingStatus() {return null;}
 	/**
-	 * Property name : Center valve
-shut-off recovery permission setting status<br>
+	 * Property name : Center valve shut-off recovery permission setting status<br>
 	 * <br>
 	 * EPC : 0xE6<br>
 	 * <br>
@@ -472,8 +469,7 @@ shut-off recovery permission setting status<br>
 	 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Center valve shut-off reset enable =<br>
-	 * 0x41<br>
+	 * Center valve shut-off reset enable = 0x41<br>
 	 * Center valve shut-off reset not enable<br>
 	 * = 0x42<br>
 	 * <br>
@@ -481,7 +477,7 @@ shut-off recovery permission setting status<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -509,7 +505,7 @@ shut-off recovery permission setting status<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -534,7 +530,7 @@ shut-off recovery permission setting status<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -554,14 +550,13 @@ shut-off recovery permission setting status<br>
 	 * This property indicates open/close status of shut-off valve.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Shut-off valve open status = 0x41<br>
-	 * Shut-off valve close status = 0x42<br>
+	 * Shut-off valve open status = 0x41 Shut-off valve close status = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -578,14 +573,13 @@ shut-off recovery permission setting status<br>
 	 * This property indicates open/close status of shut-off valve.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Shut-off valve open status = 0x41<br>
-	 * Shut-off valve close status = 0x42<br>
+	 * Shut-off valve open status = 0x41 Shut-off valve close status = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -605,20 +599,16 @@ shut-off recovery permission setting status<br>
 	 * This property indicates status as warning where residual volume is very small.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Residual volume control warning level<br>
-	 * 1 0x31<br>
-	 * Residual volume control warning level<br>
-	 * 2 0x32<br>
-	 * Residual volume control warning level<br>
-	 * 3 0x33<br>
-	 * No residual volume control warning<br>
-	 * 0x42<br>
+	 * Residual volume control warning level 1 0x31<br>
+	 * Residual volume control warning level 2 0x32<br>
+	 * Residual volume control warning level 3 0x33<br>
+	 * No residual volume control warning 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -637,20 +627,16 @@ shut-off recovery permission setting status<br>
 	 * This property indicates status as warning where residual volume is very small.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Residual volume control warning level<br>
-	 * 1 0x31<br>
-	 * Residual volume control warning level<br>
-	 * 2 0x32<br>
-	 * Residual volume control warning level<br>
-	 * 3 0x33<br>
-	 * No residual volume control warning<br>
-	 * 0x42<br>
+	 * Residual volume control warning level 1 0x31<br>
+	 * Residual volume control warning level 2 0x32<br>
+	 * Residual volume control warning level 3 0x33<br>
+	 * No residual volume control warning 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -669,16 +655,16 @@ shut-off recovery permission setting status<br>
 	 * EPC : 0xEA<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Sets �gSmall residual volume detection level 1�h.<br>
+	 * Sets “Small residual volume detection level 1”.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0.0xFFFFFF (0.16,777,215)<br>
 	 * <br>
-	 * Data type : unsigned char x 3<br>
+	 * Data type : unsigned char × 3<br>
 	 * <br>
 	 * Data size : 3 bytes<br>
 	 * <br>
-	 * Unit : Liter<br>
+	 * Unit : liter<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -692,16 +678,16 @@ shut-off recovery permission setting status<br>
 	 * EPC : 0xEA<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Sets �gSmall residual volume detection level 1�h.<br>
+	 * Sets “Small residual volume detection level 1”.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0.0xFFFFFF (0.16,777,215)<br>
 	 * <br>
-	 * Data type : unsigned char x 3<br>
+	 * Data type : unsigned char × 3<br>
 	 * <br>
 	 * Data size : 3 bytes<br>
 	 * <br>
-	 * Unit : Liter<br>
+	 * Unit : liter<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -715,16 +701,16 @@ shut-off recovery permission setting status<br>
 	 * EPC : 0xEA<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Sets �gSmall residual volume detection level 1�h.<br>
+	 * Sets “Small residual volume detection level 1”.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0.0xFFFFFF (0.16,777,215)<br>
 	 * <br>
-	 * Data type : unsigned char x 3<br>
+	 * Data type : unsigned char × 3<br>
 	 * <br>
 	 * Data size : 3 bytes<br>
 	 * <br>
-	 * Unit : Liter<br>
+	 * Unit : liter<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -741,16 +727,16 @@ shut-off recovery permission setting status<br>
 	 * EPC : 0xEB<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Sets �gSmall residual volume detection level 2�h.<br>
+	 * Sets “Small residual volume detection level 2”.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0.0xFFFFFF (0.16,777,215)<br>
 	 * <br>
-	 * Data type : unsigned char x 3<br>
+	 * Data type : unsigned char × 3<br>
 	 * <br>
 	 * Data size : 3 bytes<br>
 	 * <br>
-	 * Unit : Liter<br>
+	 * Unit : liter<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -764,16 +750,16 @@ shut-off recovery permission setting status<br>
 	 * EPC : 0xEB<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Sets �gSmall residual volume detection level 2�h.<br>
+	 * Sets “Small residual volume detection level 2”.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0.0xFFFFFF (0.16,777,215)<br>
 	 * <br>
-	 * Data type : unsigned char x 3<br>
+	 * Data type : unsigned char × 3<br>
 	 * <br>
 	 * Data size : 3 bytes<br>
 	 * <br>
-	 * Unit : Liter<br>
+	 * Unit : liter<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -787,16 +773,16 @@ shut-off recovery permission setting status<br>
 	 * EPC : 0xEB<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Sets �gSmall residual volume detection level 2�h.<br>
+	 * Sets “Small residual volume detection level 2”.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0.0xFFFFFF (0.16,777,215)<br>
 	 * <br>
-	 * Data type : unsigned char x 3<br>
+	 * Data type : unsigned char × 3<br>
 	 * <br>
 	 * Data size : 3 bytes<br>
 	 * <br>
-	 * Unit : Liter<br>
+	 * Unit : liter<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -813,16 +799,16 @@ shut-off recovery permission setting status<br>
 	 * EPC : 0xEC<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Sets �gSmall residual volume detection level 3�h.<br>
+	 * Sets “Small residual volume detection level 3”.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0.0xFFFFFF (0.16,777,215)<br>
 	 * <br>
-	 * Data type : unsigned char x3<br>
+	 * Data type : unsigned char ×3<br>
 	 * <br>
 	 * Data size : 3 bytes<br>
 	 * <br>
-	 * Unit : Liter<br>
+	 * Unit : liter<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -836,16 +822,16 @@ shut-off recovery permission setting status<br>
 	 * EPC : 0xEC<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Sets �gSmall residual volume detection level 3�h.<br>
+	 * Sets “Small residual volume detection level 3”.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0.0xFFFFFF (0.16,777,215)<br>
 	 * <br>
-	 * Data type : unsigned char x3<br>
+	 * Data type : unsigned char ×3<br>
 	 * <br>
 	 * Data size : 3 bytes<br>
 	 * <br>
-	 * Unit : Liter<br>
+	 * Unit : liter<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -859,16 +845,16 @@ shut-off recovery permission setting status<br>
 	 * EPC : 0xEC<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Sets �gSmall residual volume detection level 3�h.<br>
+	 * Sets “Small residual volume detection level 3”.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0.0xFFFFFF (0.16,777,215)<br>
 	 * <br>
-	 * Data type : unsigned char x3<br>
+	 * Data type : unsigned char ×3<br>
 	 * <br>
 	 * Data size : 3 bytes<br>
 	 * <br>
-	 * Unit : Liter<br>
+	 * Unit : liter<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -888,7 +874,8 @@ shut-off recovery permission setting status<br>
 	 * This property indicates number of days on which gas flow rate is continued.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0.0xFD (0.253) (0 to 253 days)<br>
+	 * 0.0xFD (0.253)<br>
+	 * (0 to 253 days)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -911,7 +898,8 @@ shut-off recovery permission setting status<br>
 	 * This property indicates number of days on which gas flow rate is continued.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0.0xFD (0.253) (0 to 253 days)<br>
+	 * 0.0xFD (0.253)<br>
+	 * (0 to 253 days)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -937,7 +925,8 @@ shut-off recovery permission setting status<br>
 	 * This property indicates number of days on which gas leak monitoring is performed without gas pressure increase.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0.0xFD (0.253) (0 to 253 days)<br>
+	 * 0.0xFD (0.253)<br>
+	 * (0 to 253 days)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -960,7 +949,8 @@ shut-off recovery permission setting status<br>
 	 * This property indicates number of days on which gas leak monitoring is performed without gas pressure increase.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0.0xFD (0.253) (0 to 253 days)<br>
+	 * 0.0xFD (0.253)<br>
+	 * (0 to 253 days)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -989,11 +979,11 @@ shut-off recovery permission setting status<br>
 	 * Value range (decimal notation) :<br>
 	 * 0xFF: 0xFF: 0xFF<br>
 	 * <br>
-	 * Data type : unsigned char x 3<br>
+	 * Data type : unsigned char × 3<br>
 	 * <br>
 	 * Data size : 3 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1013,11 +1003,11 @@ shut-off recovery permission setting status<br>
 	 * Value range (decimal notation) :<br>
 	 * 0xFF: 0xFF: 0xFF<br>
 	 * <br>
-	 * Data type : unsigned char x 3<br>
+	 * Data type : unsigned char × 3<br>
 	 * <br>
 	 * Data size : 3 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1037,13 +1027,15 @@ shut-off recovery permission setting status<br>
 	 * This property indicates maximum value of supply pressure data in units of 0.01 kPa.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+	 * 0x0000.0xFFFD (0.655.33)<br>
+	 * (0.655.33 kPa)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.01 kPa<br>
+	 * Unit : 0.01
+kPa<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1060,13 +1052,15 @@ shut-off recovery permission setting status<br>
 	 * This property indicates maximum value of supply pressure data in units of 0.01 kPa.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+	 * 0x0000.0xFFFD (0.655.33)<br>
+	 * (0.655.33 kPa)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.01 kPa<br>
+	 * Unit : 0.01
+kPa<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1086,13 +1080,15 @@ shut-off recovery permission setting status<br>
 	 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+	 * 0x0000.0xFFFD (0.655.33)<br>
+	 * (0.655.33 kPa)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.01 kPa<br>
+	 * Unit : 0.01
+kPa<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1109,13 +1105,15 @@ shut-off recovery permission setting status<br>
 	 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+	 * 0x0000.0xFFFD (0.655.33)<br>
+	 * (0.655.33 kPa)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.01 kPa<br>
+	 * Unit : 0.01
+kPa<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1132,17 +1130,18 @@ shut-off recovery permission setting status<br>
 	 * EPC : 0xD2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates current value<br>
-	 * of supply pressure data in units of 0.01 kPa.<br>
+	 * This property indicates current value of supply pressure data in units of 0.01 kPa.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+	 * 0x0000.0xFFFD (0.655.33)<br>
+	 * (0.655.33 kPa)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.01 kPa<br>
+	 * Unit : 0.01
+kPa<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1156,17 +1155,18 @@ shut-off recovery permission setting status<br>
 	 * EPC : 0xD2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates current value<br>
-	 * of supply pressure data in units of 0.01 kPa.<br>
+	 * This property indicates current value of supply pressure data in units of 0.01 kPa.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+	 * 0x0000.0xFFFD (0.655.33)<br>
+	 * (0.655.33 kPa)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.01 kPa<br>
+	 * Unit : 0.01
+kPa<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1186,13 +1186,15 @@ shut-off recovery permission setting status<br>
 	 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+	 * 0x0000.0xFFFD (0.655.33)<br>
+	 * (0.655.33 kPa)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.01 kPa<br>
+	 * Unit : 0.01
+kPa<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1209,13 +1211,15 @@ shut-off recovery permission setting status<br>
 	 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+	 * 0x0000.0xFFFD (0.655.33)<br>
+	 * (0.655.33 kPa)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.01 kPa<br>
+	 * Unit : 0.01
+kPa<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1235,13 +1239,15 @@ shut-off recovery permission setting status<br>
 	 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+	 * 0x0000.0xFFFD (0.655.33)<br>
+	 * (0.655.33 kPa)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.01 kPa<br>
+	 * Unit : 0.01
+kPa<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1258,13 +1264,15 @@ shut-off recovery permission setting status<br>
 	 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+	 * 0x0000.0xFFFD (0.655.33)<br>
+	 * (0.655.33 kPa)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.01 kPa<br>
+	 * Unit : 0.01
+kPa<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1284,13 +1292,15 @@ shut-off recovery permission setting status<br>
 	 * This property indicates current value of block pressure data in units of 0.01 kPa.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+	 * 0x0000.0xFFFD (0.655.33)<br>
+	 * (0.655.33 kPa)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.01 kPa<br>
+	 * Unit : 0.01
+kPa<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1307,13 +1317,15 @@ shut-off recovery permission setting status<br>
 	 * This property indicates current value of block pressure data in units of 0.01 kPa.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+	 * 0x0000.0xFFFD (0.655.33)<br>
+	 * (0.655.33 kPa)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.01 kPa<br>
+	 * Unit : 0.01
+kPa<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1330,17 +1342,16 @@ shut-off recovery permission setting status<br>
 	 * EPC : 0xD6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates number of days on which block pressure/supply pressure errors occurred in 1 byte<br>
-	 * each.<br>
+	 * This property indicates number of days on which block pressure/supply pressure errors occurred in 1 byte  each.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Number of block pressure error days: Number of supply pressure error days: Number of block pressure error times: Number of supply pressure error times<br>
 	 * <br>
-	 * Data type : unsigned char x 4<br>
+	 * Data type : unsigned char × 4<br>
 	 * <br>
 	 * Data size : 4 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1354,17 +1365,16 @@ shut-off recovery permission setting status<br>
 	 * EPC : 0xD6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates number of days on which block pressure/supply pressure errors occurred in 1 byte<br>
-	 * each.<br>
+	 * This property indicates number of days on which block pressure/supply pressure errors occurred in 1 byte  each.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Number of block pressure error days: Number of supply pressure error days: Number of block pressure error times: Number of supply pressure error times<br>
 	 * <br>
-	 * Data type : unsigned char x 4<br>
+	 * Data type : unsigned char × 4<br>
 	 * <br>
 	 * Data size : 4 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1384,14 +1394,13 @@ shut-off recovery permission setting status<br>
 	 * Performs test call operation setup.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Test call operation ON 0x41<br>
-	 * Test call operation OFF 0x42<br>
+	 * Test call operation ON 0x41 Test call operation OFF 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1408,14 +1417,13 @@ shut-off recovery permission setting status<br>
 	 * Performs test call operation setup.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Test call operation ON 0x41<br>
-	 * Test call operation OFF 0x42<br>
+	 * Test call operation ON 0x41 Test call operation OFF 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1432,14 +1440,13 @@ shut-off recovery permission setting status<br>
 	 * Performs test call operation setup.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Test call operation ON 0x41<br>
-	 * Test call operation OFF 0x42<br>
+	 * Test call operation ON 0x41 Test call operation OFF 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1692,7 +1699,8 @@ shut-off recovery permission setting status<br>
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : 0.0001 m3<br>
+		 * Unit : 0.0001
+m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1715,7 +1723,8 @@ shut-off recovery permission setting status<br>
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : 0.001 m3<br>
+		 * Unit : 0.001
+m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1732,15 +1741,14 @@ shut-off recovery permission setting status<br>
 		 * This property indicates status where meter detected metering data error.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Error detection status found = 0x41<br>
-		 * Error detection status not found<br>
+		 * Error detection status found = 0x41 Error detection status not found<br>
 		 * = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1765,7 +1773,7 @@ shut-off recovery permission setting status<br>
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1788,7 +1796,7 @@ shut-off recovery permission setting status<br>
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1814,7 +1822,7 @@ shut-off recovery permission setting status<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1825,8 +1833,7 @@ shut-off recovery permission setting status<br>
 		 */
 		protected void onGetCenterValveShutOffStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Center valve
-shut-off recovery permission setting status<br>
+		 * Property name : Center valve shut-off recovery permission setting status<br>
 		 * <br>
 		 * EPC : 0xE6<br>
 		 * <br>
@@ -1834,8 +1841,7 @@ shut-off recovery permission setting status<br>
 		 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Center valve shut-off reset enable =<br>
-		 * 0x41<br>
+		 * Center valve shut-off reset enable = 0x41<br>
 		 * Center valve shut-off reset not enable<br>
 		 * = 0x42<br>
 		 * <br>
@@ -1843,7 +1849,7 @@ shut-off recovery permission setting status<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1868,7 +1874,7 @@ shut-off recovery permission setting status<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1885,14 +1891,13 @@ shut-off recovery permission setting status<br>
 		 * This property indicates open/close status of shut-off valve.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Shut-off valve open status = 0x41<br>
-		 * Shut-off valve close status = 0x42<br>
+		 * Shut-off valve open status = 0x41 Shut-off valve close status = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1909,20 +1914,16 @@ shut-off recovery permission setting status<br>
 		 * This property indicates status as warning where residual volume is very small.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Residual volume control warning level<br>
-		 * 1 0x31<br>
-		 * Residual volume control warning level<br>
-		 * 2 0x32<br>
-		 * Residual volume control warning level<br>
-		 * 3 0x33<br>
-		 * No residual volume control warning<br>
-		 * 0x42<br>
+		 * Residual volume control warning level 1 0x31<br>
+		 * Residual volume control warning level 2 0x32<br>
+		 * Residual volume control warning level 3 0x33<br>
+		 * No residual volume control warning 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1938,16 +1939,16 @@ shut-off recovery permission setting status<br>
 		 * EPC : 0xEA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Sets �gSmall residual volume detection level 1�h.<br>
+		 * Sets “Small residual volume detection level 1”.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0xFFFFFF (0.16,777,215)<br>
 		 * <br>
-		 * Data type : unsigned char x 3<br>
+		 * Data type : unsigned char × 3<br>
 		 * <br>
 		 * Data size : 3 bytes<br>
 		 * <br>
-		 * Unit : Liter<br>
+		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1961,16 +1962,16 @@ shut-off recovery permission setting status<br>
 		 * EPC : 0xEA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Sets �gSmall residual volume detection level 1�h.<br>
+		 * Sets “Small residual volume detection level 1”.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0xFFFFFF (0.16,777,215)<br>
 		 * <br>
-		 * Data type : unsigned char x 3<br>
+		 * Data type : unsigned char × 3<br>
 		 * <br>
 		 * Data size : 3 bytes<br>
 		 * <br>
-		 * Unit : Liter<br>
+		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1984,16 +1985,16 @@ shut-off recovery permission setting status<br>
 		 * EPC : 0xEB<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Sets �gSmall residual volume detection level 2�h.<br>
+		 * Sets “Small residual volume detection level 2”.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0xFFFFFF (0.16,777,215)<br>
 		 * <br>
-		 * Data type : unsigned char x 3<br>
+		 * Data type : unsigned char × 3<br>
 		 * <br>
 		 * Data size : 3 bytes<br>
 		 * <br>
-		 * Unit : Liter<br>
+		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2007,16 +2008,16 @@ shut-off recovery permission setting status<br>
 		 * EPC : 0xEB<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Sets �gSmall residual volume detection level 2�h.<br>
+		 * Sets “Small residual volume detection level 2”.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0xFFFFFF (0.16,777,215)<br>
 		 * <br>
-		 * Data type : unsigned char x 3<br>
+		 * Data type : unsigned char × 3<br>
 		 * <br>
 		 * Data size : 3 bytes<br>
 		 * <br>
-		 * Unit : Liter<br>
+		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2030,16 +2031,16 @@ shut-off recovery permission setting status<br>
 		 * EPC : 0xEC<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Sets �gSmall residual volume detection level 3�h.<br>
+		 * Sets “Small residual volume detection level 3”.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0xFFFFFF (0.16,777,215)<br>
 		 * <br>
-		 * Data type : unsigned char x3<br>
+		 * Data type : unsigned char ×3<br>
 		 * <br>
 		 * Data size : 3 bytes<br>
 		 * <br>
-		 * Unit : Liter<br>
+		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2053,16 +2054,16 @@ shut-off recovery permission setting status<br>
 		 * EPC : 0xEC<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Sets �gSmall residual volume detection level 3�h.<br>
+		 * Sets “Small residual volume detection level 3”.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0xFFFFFF (0.16,777,215)<br>
 		 * <br>
-		 * Data type : unsigned char x3<br>
+		 * Data type : unsigned char ×3<br>
 		 * <br>
 		 * Data size : 3 bytes<br>
 		 * <br>
-		 * Unit : Liter<br>
+		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2079,7 +2080,8 @@ shut-off recovery permission setting status<br>
 		 * This property indicates number of days on which gas flow rate is continued.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0.0xFD (0.253) (0 to 253 days)<br>
+		 * 0.0xFD (0.253)<br>
+		 * (0 to 253 days)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -2102,7 +2104,8 @@ shut-off recovery permission setting status<br>
 		 * This property indicates number of days on which gas leak monitoring is performed without gas pressure increase.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0.0xFD (0.253) (0 to 253 days)<br>
+		 * 0.0xFD (0.253)<br>
+		 * (0 to 253 days)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -2128,11 +2131,11 @@ shut-off recovery permission setting status<br>
 		 * Value range (decimal notation) :<br>
 		 * 0xFF: 0xFF: 0xFF<br>
 		 * <br>
-		 * Data type : unsigned char x 3<br>
+		 * Data type : unsigned char × 3<br>
 		 * <br>
 		 * Data size : 3 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2149,13 +2152,15 @@ shut-off recovery permission setting status<br>
 		 * This property indicates maximum value of supply pressure data in units of 0.01 kPa.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * 0x0000.0xFFFD (0.655.33)<br>
+		 * (0.655.33 kPa)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.01 kPa<br>
+		 * Unit : 0.01
+kPa<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2172,13 +2177,15 @@ shut-off recovery permission setting status<br>
 		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * 0x0000.0xFFFD (0.655.33)<br>
+		 * (0.655.33 kPa)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.01 kPa<br>
+		 * Unit : 0.01
+kPa<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2192,17 +2199,18 @@ shut-off recovery permission setting status<br>
 		 * EPC : 0xD2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates current value<br>
-		 * of supply pressure data in units of 0.01 kPa.<br>
+		 * This property indicates current value of supply pressure data in units of 0.01 kPa.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * 0x0000.0xFFFD (0.655.33)<br>
+		 * (0.655.33 kPa)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.01 kPa<br>
+		 * Unit : 0.01
+kPa<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2219,13 +2227,15 @@ shut-off recovery permission setting status<br>
 		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * 0x0000.0xFFFD (0.655.33)<br>
+		 * (0.655.33 kPa)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.01 kPa<br>
+		 * Unit : 0.01
+kPa<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2242,13 +2252,15 @@ shut-off recovery permission setting status<br>
 		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * 0x0000.0xFFFD (0.655.33)<br>
+		 * (0.655.33 kPa)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.01 kPa<br>
+		 * Unit : 0.01
+kPa<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2265,13 +2277,15 @@ shut-off recovery permission setting status<br>
 		 * This property indicates current value of block pressure data in units of 0.01 kPa.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * 0x0000.0xFFFD (0.655.33)<br>
+		 * (0.655.33 kPa)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.01 kPa<br>
+		 * Unit : 0.01
+kPa<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2285,17 +2299,16 @@ shut-off recovery permission setting status<br>
 		 * EPC : 0xD6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates number of days on which block pressure/supply pressure errors occurred in 1 byte<br>
-		 * each.<br>
+		 * This property indicates number of days on which block pressure/supply pressure errors occurred in 1 byte  each.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Number of block pressure error days: Number of supply pressure error days: Number of block pressure error times: Number of supply pressure error times<br>
 		 * <br>
-		 * Data type : unsigned char x 4<br>
+		 * Data type : unsigned char × 4<br>
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2312,14 +2325,13 @@ shut-off recovery permission setting status<br>
 		 * Performs test call operation setup.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Test call operation ON 0x41<br>
-		 * Test call operation OFF 0x42<br>
+		 * Test call operation ON 0x41 Test call operation OFF 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2336,14 +2348,13 @@ shut-off recovery permission setting status<br>
 		 * Performs test call operation setup.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Test call operation ON 0x41<br>
-		 * Test call operation OFF 0x42<br>
+		 * Test call operation ON 0x41 Test call operation OFF 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2382,8 +2393,8 @@ shut-off recovery permission setting status<br>
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -2404,16 +2415,16 @@ shut-off recovery permission setting status<br>
 		 * EPC : 0xEA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Sets �gSmall residual volume detection level 1�h.<br>
+		 * Sets “Small residual volume detection level 1”.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0xFFFFFF (0.16,777,215)<br>
 		 * <br>
-		 * Data type : unsigned char x 3<br>
+		 * Data type : unsigned char × 3<br>
 		 * <br>
 		 * Data size : 3 bytes<br>
 		 * <br>
-		 * Unit : Liter<br>
+		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2430,16 +2441,16 @@ shut-off recovery permission setting status<br>
 		 * EPC : 0xEB<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Sets �gSmall residual volume detection level 2�h.<br>
+		 * Sets “Small residual volume detection level 2”.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0xFFFFFF (0.16,777,215)<br>
 		 * <br>
-		 * Data type : unsigned char x 3<br>
+		 * Data type : unsigned char × 3<br>
 		 * <br>
 		 * Data size : 3 bytes<br>
 		 * <br>
-		 * Unit : Liter<br>
+		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2456,16 +2467,16 @@ shut-off recovery permission setting status<br>
 		 * EPC : 0xEC<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Sets �gSmall residual volume detection level 3�h.<br>
+		 * Sets “Small residual volume detection level 3”.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0xFFFFFF (0.16,777,215)<br>
 		 * <br>
-		 * Data type : unsigned char x3<br>
+		 * Data type : unsigned char ×3<br>
 		 * <br>
 		 * Data size : 3 bytes<br>
 		 * <br>
-		 * Unit : Liter<br>
+		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2485,14 +2496,13 @@ shut-off recovery permission setting status<br>
 		 * Performs test call operation setup.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Test call operation ON 0x41<br>
-		 * Test call operation OFF 0x42<br>
+		 * Test call operation ON 0x41 Test call operation OFF 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2582,8 +2592,8 @@ shut-off recovery permission setting status<br>
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -2629,7 +2639,8 @@ shut-off recovery permission setting status<br>
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : 0.0001 m3<br>
+		 * Unit : 0.0001
+m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2655,7 +2666,8 @@ shut-off recovery permission setting status<br>
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : 0.001 m3<br>
+		 * Unit : 0.001
+m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2675,15 +2687,14 @@ shut-off recovery permission setting status<br>
 		 * This property indicates status where meter detected metering data error.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Error detection status found = 0x41<br>
-		 * Error detection status not found<br>
+		 * Error detection status found = 0x41 Error detection status not found<br>
 		 * = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2711,7 +2722,7 @@ shut-off recovery permission setting status<br>
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2737,7 +2748,7 @@ shut-off recovery permission setting status<br>
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2766,7 +2777,7 @@ shut-off recovery permission setting status<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2780,8 +2791,7 @@ shut-off recovery permission setting status<br>
 			return this;
 		}
 		/**
-		 * Property name : Center valve
-shut-off recovery permission setting status<br>
+		 * Property name : Center valve shut-off recovery permission setting status<br>
 		 * <br>
 		 * EPC : 0xE6<br>
 		 * <br>
@@ -2789,8 +2799,7 @@ shut-off recovery permission setting status<br>
 		 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Center valve shut-off reset enable =<br>
-		 * 0x41<br>
+		 * Center valve shut-off reset enable = 0x41<br>
 		 * Center valve shut-off reset not enable<br>
 		 * = 0x42<br>
 		 * <br>
@@ -2798,7 +2807,7 @@ shut-off recovery permission setting status<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2826,7 +2835,7 @@ shut-off recovery permission setting status<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2846,14 +2855,13 @@ shut-off recovery permission setting status<br>
 		 * This property indicates open/close status of shut-off valve.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Shut-off valve open status = 0x41<br>
-		 * Shut-off valve close status = 0x42<br>
+		 * Shut-off valve open status = 0x41 Shut-off valve close status = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2873,20 +2881,16 @@ shut-off recovery permission setting status<br>
 		 * This property indicates status as warning where residual volume is very small.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Residual volume control warning level<br>
-		 * 1 0x31<br>
-		 * Residual volume control warning level<br>
-		 * 2 0x32<br>
-		 * Residual volume control warning level<br>
-		 * 3 0x33<br>
-		 * No residual volume control warning<br>
-		 * 0x42<br>
+		 * Residual volume control warning level 1 0x31<br>
+		 * Residual volume control warning level 2 0x32<br>
+		 * Residual volume control warning level 3 0x33<br>
+		 * No residual volume control warning 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2905,16 +2909,16 @@ shut-off recovery permission setting status<br>
 		 * EPC : 0xEA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Sets �gSmall residual volume detection level 1�h.<br>
+		 * Sets “Small residual volume detection level 1”.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0xFFFFFF (0.16,777,215)<br>
 		 * <br>
-		 * Data type : unsigned char x 3<br>
+		 * Data type : unsigned char × 3<br>
 		 * <br>
 		 * Data size : 3 bytes<br>
 		 * <br>
-		 * Unit : Liter<br>
+		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2931,16 +2935,16 @@ shut-off recovery permission setting status<br>
 		 * EPC : 0xEB<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Sets �gSmall residual volume detection level 2�h.<br>
+		 * Sets “Small residual volume detection level 2”.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0xFFFFFF (0.16,777,215)<br>
 		 * <br>
-		 * Data type : unsigned char x 3<br>
+		 * Data type : unsigned char × 3<br>
 		 * <br>
 		 * Data size : 3 bytes<br>
 		 * <br>
-		 * Unit : Liter<br>
+		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2957,16 +2961,16 @@ shut-off recovery permission setting status<br>
 		 * EPC : 0xEC<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Sets �gSmall residual volume detection level 3�h.<br>
+		 * Sets “Small residual volume detection level 3”.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0xFFFFFF (0.16,777,215)<br>
 		 * <br>
-		 * Data type : unsigned char x3<br>
+		 * Data type : unsigned char ×3<br>
 		 * <br>
 		 * Data size : 3 bytes<br>
 		 * <br>
-		 * Unit : Liter<br>
+		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2986,7 +2990,8 @@ shut-off recovery permission setting status<br>
 		 * This property indicates number of days on which gas flow rate is continued.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0.0xFD (0.253) (0 to 253 days)<br>
+		 * 0.0xFD (0.253)<br>
+		 * (0 to 253 days)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -3012,7 +3017,8 @@ shut-off recovery permission setting status<br>
 		 * This property indicates number of days on which gas leak monitoring is performed without gas pressure increase.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0.0xFD (0.253) (0 to 253 days)<br>
+		 * 0.0xFD (0.253)<br>
+		 * (0 to 253 days)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -3041,11 +3047,11 @@ shut-off recovery permission setting status<br>
 		 * Value range (decimal notation) :<br>
 		 * 0xFF: 0xFF: 0xFF<br>
 		 * <br>
-		 * Data type : unsigned char x 3<br>
+		 * Data type : unsigned char × 3<br>
 		 * <br>
 		 * Data size : 3 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3065,13 +3071,15 @@ shut-off recovery permission setting status<br>
 		 * This property indicates maximum value of supply pressure data in units of 0.01 kPa.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * 0x0000.0xFFFD (0.655.33)<br>
+		 * (0.655.33 kPa)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.01 kPa<br>
+		 * Unit : 0.01
+kPa<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3091,13 +3099,15 @@ shut-off recovery permission setting status<br>
 		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * 0x0000.0xFFFD (0.655.33)<br>
+		 * (0.655.33 kPa)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.01 kPa<br>
+		 * Unit : 0.01
+kPa<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3114,17 +3124,18 @@ shut-off recovery permission setting status<br>
 		 * EPC : 0xD2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates current value<br>
-		 * of supply pressure data in units of 0.01 kPa.<br>
+		 * This property indicates current value of supply pressure data in units of 0.01 kPa.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * 0x0000.0xFFFD (0.655.33)<br>
+		 * (0.655.33 kPa)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.01 kPa<br>
+		 * Unit : 0.01
+kPa<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3144,13 +3155,15 @@ shut-off recovery permission setting status<br>
 		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * 0x0000.0xFFFD (0.655.33)<br>
+		 * (0.655.33 kPa)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.01 kPa<br>
+		 * Unit : 0.01
+kPa<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3170,13 +3183,15 @@ shut-off recovery permission setting status<br>
 		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * 0x0000.0xFFFD (0.655.33)<br>
+		 * (0.655.33 kPa)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.01 kPa<br>
+		 * Unit : 0.01
+kPa<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3196,13 +3211,15 @@ shut-off recovery permission setting status<br>
 		 * This property indicates current value of block pressure data in units of 0.01 kPa.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * 0x0000.0xFFFD (0.655.33)<br>
+		 * (0.655.33 kPa)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.01 kPa<br>
+		 * Unit : 0.01
+kPa<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3219,17 +3236,16 @@ shut-off recovery permission setting status<br>
 		 * EPC : 0xD6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates number of days on which block pressure/supply pressure errors occurred in 1 byte<br>
-		 * each.<br>
+		 * This property indicates number of days on which block pressure/supply pressure errors occurred in 1 byte  each.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Number of block pressure error days: Number of supply pressure error days: Number of block pressure error times: Number of supply pressure error times<br>
 		 * <br>
-		 * Data type : unsigned char x 4<br>
+		 * Data type : unsigned char × 4<br>
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3249,14 +3265,13 @@ shut-off recovery permission setting status<br>
 		 * Performs test call operation setup.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Test call operation ON 0x41<br>
-		 * Test call operation OFF 0x42<br>
+		 * Test call operation ON 0x41 Test call operation OFF 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3345,8 +3360,8 @@ shut-off recovery permission setting status<br>
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -3392,7 +3407,8 @@ shut-off recovery permission setting status<br>
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : 0.0001 m3<br>
+		 * Unit : 0.0001
+m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3418,7 +3434,8 @@ shut-off recovery permission setting status<br>
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : 0.001 m3<br>
+		 * Unit : 0.001
+m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3438,15 +3455,14 @@ shut-off recovery permission setting status<br>
 		 * This property indicates status where meter detected metering data error.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Error detection status found = 0x41<br>
-		 * Error detection status not found<br>
+		 * Error detection status found = 0x41 Error detection status not found<br>
 		 * = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3474,7 +3490,7 @@ shut-off recovery permission setting status<br>
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3500,7 +3516,7 @@ shut-off recovery permission setting status<br>
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3529,7 +3545,7 @@ shut-off recovery permission setting status<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3543,8 +3559,7 @@ shut-off recovery permission setting status<br>
 			return this;
 		}
 		/**
-		 * Property name : Center valve
-shut-off recovery permission setting status<br>
+		 * Property name : Center valve shut-off recovery permission setting status<br>
 		 * <br>
 		 * EPC : 0xE6<br>
 		 * <br>
@@ -3552,8 +3567,7 @@ shut-off recovery permission setting status<br>
 		 * This property indicates status where gas shut-off valve of meter has been shut off by center.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Center valve shut-off reset enable =<br>
-		 * 0x41<br>
+		 * Center valve shut-off reset enable = 0x41<br>
 		 * Center valve shut-off reset not enable<br>
 		 * = 0x42<br>
 		 * <br>
@@ -3561,7 +3575,7 @@ shut-off recovery permission setting status<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3589,7 +3603,7 @@ shut-off recovery permission setting status<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3609,14 +3623,13 @@ shut-off recovery permission setting status<br>
 		 * This property indicates open/close status of shut-off valve.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Shut-off valve open status = 0x41<br>
-		 * Shut-off valve close status = 0x42<br>
+		 * Shut-off valve open status = 0x41 Shut-off valve close status = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3636,20 +3649,16 @@ shut-off recovery permission setting status<br>
 		 * This property indicates status as warning where residual volume is very small.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Residual volume control warning level<br>
-		 * 1 0x31<br>
-		 * Residual volume control warning level<br>
-		 * 2 0x32<br>
-		 * Residual volume control warning level<br>
-		 * 3 0x33<br>
-		 * No residual volume control warning<br>
-		 * 0x42<br>
+		 * Residual volume control warning level 1 0x31<br>
+		 * Residual volume control warning level 2 0x32<br>
+		 * Residual volume control warning level 3 0x33<br>
+		 * No residual volume control warning 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3668,16 +3677,16 @@ shut-off recovery permission setting status<br>
 		 * EPC : 0xEA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Sets �gSmall residual volume detection level 1�h.<br>
+		 * Sets “Small residual volume detection level 1”.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0xFFFFFF (0.16,777,215)<br>
 		 * <br>
-		 * Data type : unsigned char x 3<br>
+		 * Data type : unsigned char × 3<br>
 		 * <br>
 		 * Data size : 3 bytes<br>
 		 * <br>
-		 * Unit : Liter<br>
+		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3694,16 +3703,16 @@ shut-off recovery permission setting status<br>
 		 * EPC : 0xEB<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Sets �gSmall residual volume detection level 2�h.<br>
+		 * Sets “Small residual volume detection level 2”.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0xFFFFFF (0.16,777,215)<br>
 		 * <br>
-		 * Data type : unsigned char x 3<br>
+		 * Data type : unsigned char × 3<br>
 		 * <br>
 		 * Data size : 3 bytes<br>
 		 * <br>
-		 * Unit : Liter<br>
+		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3720,16 +3729,16 @@ shut-off recovery permission setting status<br>
 		 * EPC : 0xEC<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Sets �gSmall residual volume detection level 3�h.<br>
+		 * Sets “Small residual volume detection level 3”.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0xFFFFFF (0.16,777,215)<br>
 		 * <br>
-		 * Data type : unsigned char x3<br>
+		 * Data type : unsigned char ×3<br>
 		 * <br>
 		 * Data size : 3 bytes<br>
 		 * <br>
-		 * Unit : Liter<br>
+		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3749,7 +3758,8 @@ shut-off recovery permission setting status<br>
 		 * This property indicates number of days on which gas flow rate is continued.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0.0xFD (0.253) (0 to 253 days)<br>
+		 * 0.0xFD (0.253)<br>
+		 * (0 to 253 days)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -3775,7 +3785,8 @@ shut-off recovery permission setting status<br>
 		 * This property indicates number of days on which gas leak monitoring is performed without gas pressure increase.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0.0xFD (0.253) (0 to 253 days)<br>
+		 * 0.0xFD (0.253)<br>
+		 * (0 to 253 days)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -3804,11 +3815,11 @@ shut-off recovery permission setting status<br>
 		 * Value range (decimal notation) :<br>
 		 * 0xFF: 0xFF: 0xFF<br>
 		 * <br>
-		 * Data type : unsigned char x 3<br>
+		 * Data type : unsigned char × 3<br>
 		 * <br>
 		 * Data size : 3 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3828,13 +3839,15 @@ shut-off recovery permission setting status<br>
 		 * This property indicates maximum value of supply pressure data in units of 0.01 kPa.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * 0x0000.0xFFFD (0.655.33)<br>
+		 * (0.655.33 kPa)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.01 kPa<br>
+		 * Unit : 0.01
+kPa<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3854,13 +3867,15 @@ shut-off recovery permission setting status<br>
 		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * 0x0000.0xFFFD (0.655.33)<br>
+		 * (0.655.33 kPa)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.01 kPa<br>
+		 * Unit : 0.01
+kPa<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3877,17 +3892,18 @@ shut-off recovery permission setting status<br>
 		 * EPC : 0xD2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates current value<br>
-		 * of supply pressure data in units of 0.01 kPa.<br>
+		 * This property indicates current value of supply pressure data in units of 0.01 kPa.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * 0x0000.0xFFFD (0.655.33)<br>
+		 * (0.655.33 kPa)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.01 kPa<br>
+		 * Unit : 0.01
+kPa<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3907,13 +3923,15 @@ shut-off recovery permission setting status<br>
 		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * 0x0000.0xFFFD (0.655.33)<br>
+		 * (0.655.33 kPa)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.01 kPa<br>
+		 * Unit : 0.01
+kPa<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3933,13 +3951,15 @@ shut-off recovery permission setting status<br>
 		 * This property indicates minimum value of supply pressure data in units of 0.01 kPa.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * 0x0000.0xFFFD (0.655.33)<br>
+		 * (0.655.33 kPa)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.01 kPa<br>
+		 * Unit : 0.01
+kPa<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3959,13 +3979,15 @@ shut-off recovery permission setting status<br>
 		 * This property indicates current value of block pressure data in units of 0.01 kPa.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.655.33) (0.655.33 kPa)<br>
+		 * 0x0000.0xFFFD (0.655.33)<br>
+		 * (0.655.33 kPa)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.01 kPa<br>
+		 * Unit : 0.01
+kPa<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3982,17 +4004,16 @@ shut-off recovery permission setting status<br>
 		 * EPC : 0xD6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates number of days on which block pressure/supply pressure errors occurred in 1 byte<br>
-		 * each.<br>
+		 * This property indicates number of days on which block pressure/supply pressure errors occurred in 1 byte  each.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Number of block pressure error days: Number of supply pressure error days: Number of block pressure error times: Number of supply pressure error times<br>
 		 * <br>
-		 * Data type : unsigned char x 4<br>
+		 * Data type : unsigned char × 4<br>
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4012,14 +4033,13 @@ shut-off recovery permission setting status<br>
 		 * Performs test call operation setup.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Test call operation ON 0x41<br>
-		 * Test call operation OFF 0x42<br>
+		 * Test call operation ON 0x41 Test call operation OFF 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>

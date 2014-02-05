@@ -51,17 +51,16 @@ public abstract class GasMeter extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -77,17 +76,16 @@ public abstract class GasMeter extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -112,8 +110,7 @@ public abstract class GasMeter extends DeviceObject {
 	 * <br>
 	 * Data size : 4 bytes<br>
 	 * <br>
-	 * Unit : 0.001m
-3<br>
+	 * Unit : 0.001m3<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -136,8 +133,7 @@ public abstract class GasMeter extends DeviceObject {
 	 * <br>
 	 * Data size : 4 bytes<br>
 	 * <br>
-	 * Unit : 0.001m
-3<br>
+	 * Unit : 0.001m3<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -159,12 +155,12 @@ public abstract class GasMeter extends DeviceObject {
 	 * Value range (decimal notation) :<br>
 	 * 0x0.0x3B9AC9FF (0.999999,999m3)<br>
 	 * <br>
-	 * Data type : unsigned long x 48<br>
+	 * Data type : unsigned long × 48<br>
 	 * <br>
-	 * Data size : 192 bytes<br>
+	 * Data size : 192
+bytes<br>
 	 * <br>
-	 * Unit : 0.001m
-3<br>
+	 * Unit : 0.001m3<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -183,12 +179,12 @@ public abstract class GasMeter extends DeviceObject {
 	 * Value range (decimal notation) :<br>
 	 * 0x0.0x3B9AC9FF (0.999999,999m3)<br>
 	 * <br>
-	 * Data type : unsigned long x 48<br>
+	 * Data type : unsigned long × 48<br>
 	 * <br>
-	 * Data size : 192 bytes<br>
+	 * Data size : 192
+bytes<br>
 	 * <br>
-	 * Unit : 0.001m
-3<br>
+	 * Unit : 0.001m3<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -315,8 +311,7 @@ public abstract class GasMeter extends DeviceObject {
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : 0.001m
-3<br>
+		 * Unit : 0.001m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -335,12 +330,12 @@ public abstract class GasMeter extends DeviceObject {
 		 * Value range (decimal notation) :<br>
 		 * 0x0.0x3B9AC9FF (0.999999,999m3)<br>
 		 * <br>
-		 * Data type : unsigned long x 48<br>
+		 * Data type : unsigned long × 48<br>
 		 * <br>
-		 * Data size : 192 bytes<br>
+		 * Data size : 192
+bytes<br>
 		 * <br>
-		 * Unit : 0.001m
-3<br>
+		 * Unit : 0.001m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -379,8 +374,8 @@ public abstract class GasMeter extends DeviceObject {
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -474,8 +469,8 @@ public abstract class GasMeter extends DeviceObject {
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -521,8 +516,7 @@ public abstract class GasMeter extends DeviceObject {
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : 0.001m
-3<br>
+		 * Unit : 0.001m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -544,12 +538,12 @@ public abstract class GasMeter extends DeviceObject {
 		 * Value range (decimal notation) :<br>
 		 * 0x0.0x3B9AC9FF (0.999999,999m3)<br>
 		 * <br>
-		 * Data type : unsigned long x 48<br>
+		 * Data type : unsigned long × 48<br>
 		 * <br>
-		 * Data size : 192 bytes<br>
+		 * Data size : 192
+bytes<br>
 		 * <br>
-		 * Unit : 0.001m
-3<br>
+		 * Unit : 0.001m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -638,8 +632,8 @@ public abstract class GasMeter extends DeviceObject {
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -685,8 +679,7 @@ public abstract class GasMeter extends DeviceObject {
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : 0.001m
-3<br>
+		 * Unit : 0.001m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -708,12 +701,12 @@ public abstract class GasMeter extends DeviceObject {
 		 * Value range (decimal notation) :<br>
 		 * 0x0.0x3B9AC9FF (0.999999,999m3)<br>
 		 * <br>
-		 * Data type : unsigned long x 48<br>
+		 * Data type : unsigned long × 48<br>
 		 * <br>
-		 * Data size : 192 bytes<br>
+		 * Data size : 192
+bytes<br>
 		 * <br>
-		 * Unit : 0.001m
-3<br>
+		 * Unit : 0.001m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>

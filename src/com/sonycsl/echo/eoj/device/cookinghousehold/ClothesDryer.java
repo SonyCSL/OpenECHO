@@ -55,16 +55,15 @@ public abstract class ClothesDryer extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the<br>
-	 * ON/OFF status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON=0x30 COFF=0x31<br>
+	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -82,16 +81,15 @@ Byte<br>
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the<br>
-	 * ON/OFF status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON=0x30 COFF=0x31<br>
+	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -109,16 +107,15 @@ Byte<br>
 	 * EPC : 0xB0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the status of the door or cover as to whether it is open or closed.<br>
+	 * This property indicates the status  of the door or cover as to whether it is open or closed.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Door/cover open = 0x41<br>
-	 * Door/cover closed = 0x42<br>
+	 * Door/cover open = 0x41 Door/cover closed = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -134,16 +131,15 @@ Byte<br>
 	 * EPC : 0xB0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the status of the door or cover as to whether it is open or closed.<br>
+	 * This property indicates the status  of the door or cover as to whether it is open or closed.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Door/cover open = 0x41<br>
-	 * Door/cover closed = 0x42<br>
+	 * Door/cover open = 0x41 Door/cover closed = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -165,13 +161,12 @@ Byte<br>
 	 * Drying setting<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Start/restart drying  0x41, Suspend drying  0x42,<br>
-	 * Stop drying  0x43<br>
+	 * Start/restart drying=0x41, Suspend drying=0x42, Stop drying=0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -190,13 +185,12 @@ Byte<br>
 	 * Drying setting<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Start/restart drying  0x41, Suspend drying  0x42,<br>
-	 * Stop drying  0x43<br>
+	 * Start/restart drying=0x41, Suspend drying=0x42, Stop drying=0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -215,13 +209,12 @@ Byte<br>
 	 * Drying setting<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Start/restart drying  0x41, Suspend drying  0x42,<br>
-	 * Stop drying  0x43<br>
+	 * Start/restart drying=0x41, Suspend drying=0x42, Stop drying=0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -243,14 +236,13 @@ Byte<br>
 	 * Drying status<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Drying in progress  0x41<br>
-	 * Drying suspended  0x42<br>
-	 * Drying completed/stopped  0x43<br>
+	 * Drying in progress=0x41 Drying suspended=0x42<br>
+	 * Drying completed/stopped=0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -269,14 +261,13 @@ Byte<br>
 	 * Drying status<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Drying in progress  0x41<br>
-	 * Drying suspended  0x42<br>
-	 * Drying completed/stopped  0x43<br>
+	 * Drying in progress=0x41 Drying suspended=0x42<br>
+	 * Drying completed/stopped=0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -295,17 +286,16 @@ Byte<br>
 	 * EPC : 0xE6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the remaining drying time in the  gHH:MM:SS h .format.<br>
+	 * This property indicates the remaining drying time in the “HH:MM:SS” format.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17: 0-0x3B : 0-0x3B<br>
-	 * (=0-23):(=0-59):(=0-59)<br>
+	 * 0.0x17: 0.0x3B : 0.0x3B (=0.23):(=0.59):(=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
- ~3<br>
+×3<br>
 	 * <br>
 	 * Data size : 3
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -321,17 +311,16 @@ Byte<br>
 	 * EPC : 0xE6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the remaining drying time in the  gHH:MM:SS h .format.<br>
+	 * This property indicates the remaining drying time in the “HH:MM:SS” format.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17: 0-0x3B : 0-0x3B<br>
-	 * (=0-23):(=0-59):(=0-59)<br>
+	 * 0.0x17: 0.0x3B : 0.0x3B (=0.23):(=0.59):(=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
- ~3<br>
+×3<br>
 	 * <br>
 	 * Data size : 3
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -353,13 +342,12 @@ Byte<br>
 	 * Reservation ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation ON  0x41<br>
-	 * Reservation OFF  0x42<br>
+	 * Reservation ON=0x41 Reservation OFF=0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -378,13 +366,12 @@ Byte<br>
 	 * Reservation ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation ON  0x41<br>
-	 * Reservation OFF  0x42<br>
+	 * Reservation ON=0x41 Reservation OFF=0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -403,13 +390,12 @@ Byte<br>
 	 * Reservation ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation ON  0x41<br>
-	 * Reservation OFF  0x42<br>
+	 * Reservation ON=0x41 Reservation OFF=0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -431,14 +417,13 @@ Byte<br>
 	 * Timer value    HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17: 0-0x3B<br>
-	 * (=0-23):(=0-59)<br>
+	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
- ~ Q<br>
+×2<br>
 	 * <br>
 	 * Data size : 2
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -457,14 +442,13 @@ Byte<br>
 	 * Timer value    HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17: 0-0x3B<br>
-	 * (=0-23):(=0-59)<br>
+	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
- ~ Q<br>
+×2<br>
 	 * <br>
 	 * Data size : 2
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -483,14 +467,13 @@ Byte<br>
 	 * Timer value    HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17: 0-0x3B<br>
-	 * (=0-23):(=0-59)<br>
+	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
- ~ Q<br>
+×2<br>
 	 * <br>
 	 * Data size : 2
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -505,8 +488,7 @@ Byte<br>
 	}
 	/**
 	 * Property name : Relative
-time-based ON
-timer setting<br>
+time-based ON timer setting<br>
 	 * <br>
 	 * EPC : 0x92<br>
 	 * <br>
@@ -514,14 +496,13 @@ timer setting<br>
 	 * Timer value    HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17: 0-0x3B<br>
-	 * (=0-23):(=0-59)<br>
+	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
- ~ Q<br>
+×2<br>
 	 * <br>
 	 * Data size : 2
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -533,8 +514,7 @@ Byte<br>
 	protected boolean setRelativeTimeBasedOnTimerSetting(byte[] edt) {return false;}
 	/**
 	 * Property name : Relative
-time-based ON
-timer setting<br>
+time-based ON timer setting<br>
 	 * <br>
 	 * EPC : 0x92<br>
 	 * <br>
@@ -542,14 +522,13 @@ timer setting<br>
 	 * Timer value    HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17: 0-0x3B<br>
-	 * (=0-23):(=0-59)<br>
+	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
- ~ Q<br>
+×2<br>
 	 * <br>
 	 * Data size : 2
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -561,8 +540,7 @@ Byte<br>
 	protected byte[] getRelativeTimeBasedOnTimerSetting() {return null;}
 	/**
 	 * Property name : Relative
-time-based ON
-timer setting<br>
+time-based ON timer setting<br>
 	 * <br>
 	 * EPC : 0x92<br>
 	 * <br>
@@ -570,14 +548,13 @@ timer setting<br>
 	 * Timer value    HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17: 0-0x3B<br>
-	 * (=0-23):(=0-59)<br>
+	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
- ~ Q<br>
+×2<br>
 	 * <br>
 	 * Data size : 2
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -738,16 +715,15 @@ Byte<br>
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the status of the door or cover as to whether it is open or closed.<br>
+		 * This property indicates the status  of the door or cover as to whether it is open or closed.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Door/cover open = 0x41<br>
-		 * Door/cover closed = 0x42<br>
+		 * Door/cover open = 0x41 Door/cover closed = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -766,13 +742,12 @@ Byte<br>
 		 * Drying setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Start/restart drying  0x41, Suspend drying  0x42,<br>
-		 * Stop drying  0x43<br>
+		 * Start/restart drying=0x41, Suspend drying=0x42, Stop drying=0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -791,13 +766,12 @@ Byte<br>
 		 * Drying setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Start/restart drying  0x41, Suspend drying  0x42,<br>
-		 * Stop drying  0x43<br>
+		 * Start/restart drying=0x41, Suspend drying=0x42, Stop drying=0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -816,14 +790,13 @@ Byte<br>
 		 * Drying status<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Drying in progress  0x41<br>
-		 * Drying suspended  0x42<br>
-		 * Drying completed/stopped  0x43<br>
+		 * Drying in progress=0x41 Drying suspended=0x42<br>
+		 * Drying completed/stopped=0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -839,17 +812,16 @@ Byte<br>
 		 * EPC : 0xE6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the remaining drying time in the  gHH:MM:SS h .format.<br>
+		 * This property indicates the remaining drying time in the “HH:MM:SS” format.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0-0x3B : 0-0x3B<br>
-		 * (=0-23):(=0-59):(=0-59)<br>
+		 * 0.0x17: 0.0x3B : 0.0x3B (=0.23):(=0.59):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
- ~3<br>
+×3<br>
 		 * <br>
 		 * Data size : 3
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -868,13 +840,12 @@ Byte<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON  0x41<br>
-		 * Reservation OFF  0x42<br>
+		 * Reservation ON=0x41 Reservation OFF=0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -893,13 +864,12 @@ Byte<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON  0x41<br>
-		 * Reservation OFF  0x42<br>
+		 * Reservation ON=0x41 Reservation OFF=0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -918,14 +888,13 @@ Byte<br>
 		 * Timer value    HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
- ~ Q<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -944,14 +913,13 @@ Byte<br>
 		 * Timer value    HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
- ~ Q<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -963,8 +931,7 @@ Byte<br>
 		protected void onGetOnTimerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Relative
-time-based ON
-timer setting<br>
+time-based ON timer setting<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -972,14 +939,13 @@ timer setting<br>
 		 * Timer value    HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
- ~ Q<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -991,8 +957,7 @@ Byte<br>
 		protected void onSetRelativeTimeBasedOnTimerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Relative
-time-based ON
-timer setting<br>
+time-based ON timer setting<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -1000,14 +965,13 @@ timer setting<br>
 		 * Timer value    HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
- ~ Q<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1048,8 +1012,8 @@ Byte<br>
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -1073,13 +1037,12 @@ Byte<br>
 		 * Drying setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Start/restart drying  0x41, Suspend drying  0x42,<br>
-		 * Stop drying  0x43<br>
+		 * Start/restart drying=0x41, Suspend drying=0x42, Stop drying=0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1101,13 +1064,12 @@ Byte<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON  0x41<br>
-		 * Reservation OFF  0x42<br>
+		 * Reservation ON=0x41 Reservation OFF=0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1129,14 +1091,13 @@ Byte<br>
 		 * Timer value    HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
- ~ Q<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1151,8 +1112,7 @@ Byte<br>
 		}
 		/**
 		 * Property name : Relative
-time-based ON
-timer setting<br>
+time-based ON timer setting<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -1160,14 +1120,13 @@ timer setting<br>
 		 * Timer value    HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
- ~ Q<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1259,8 +1218,8 @@ Byte<br>
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -1297,16 +1256,15 @@ Byte<br>
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the status of the door or cover as to whether it is open or closed.<br>
+		 * This property indicates the status  of the door or cover as to whether it is open or closed.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Door/cover open = 0x41<br>
-		 * Door/cover closed = 0x42<br>
+		 * Door/cover open = 0x41 Door/cover closed = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1328,13 +1286,12 @@ Byte<br>
 		 * Drying setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Start/restart drying  0x41, Suspend drying  0x42,<br>
-		 * Stop drying  0x43<br>
+		 * Start/restart drying=0x41, Suspend drying=0x42, Stop drying=0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1356,14 +1313,13 @@ Byte<br>
 		 * Drying status<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Drying in progress  0x41<br>
-		 * Drying suspended  0x42<br>
-		 * Drying completed/stopped  0x43<br>
+		 * Drying in progress=0x41 Drying suspended=0x42<br>
+		 * Drying completed/stopped=0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1382,17 +1338,16 @@ Byte<br>
 		 * EPC : 0xE6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the remaining drying time in the  gHH:MM:SS h .format.<br>
+		 * This property indicates the remaining drying time in the “HH:MM:SS” format.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0-0x3B : 0-0x3B<br>
-		 * (=0-23):(=0-59):(=0-59)<br>
+		 * 0.0x17: 0.0x3B : 0.0x3B (=0.23):(=0.59):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
- ~3<br>
+×3<br>
 		 * <br>
 		 * Data size : 3
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1414,13 +1369,12 @@ Byte<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON  0x41<br>
-		 * Reservation OFF  0x42<br>
+		 * Reservation ON=0x41 Reservation OFF=0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1442,14 +1396,13 @@ Byte<br>
 		 * Timer value    HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
- ~ Q<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1464,8 +1417,7 @@ Byte<br>
 		}
 		/**
 		 * Property name : Relative
-time-based ON
-timer setting<br>
+time-based ON timer setting<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -1473,14 +1425,13 @@ timer setting<br>
 		 * Timer value    HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
- ~ Q<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1571,8 +1522,8 @@ Byte<br>
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -1609,16 +1560,15 @@ Byte<br>
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the status of the door or cover as to whether it is open or closed.<br>
+		 * This property indicates the status  of the door or cover as to whether it is open or closed.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Door/cover open = 0x41<br>
-		 * Door/cover closed = 0x42<br>
+		 * Door/cover open = 0x41 Door/cover closed = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1640,13 +1590,12 @@ Byte<br>
 		 * Drying setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Start/restart drying  0x41, Suspend drying  0x42,<br>
-		 * Stop drying  0x43<br>
+		 * Start/restart drying=0x41, Suspend drying=0x42, Stop drying=0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1668,14 +1617,13 @@ Byte<br>
 		 * Drying status<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Drying in progress  0x41<br>
-		 * Drying suspended  0x42<br>
-		 * Drying completed/stopped  0x43<br>
+		 * Drying in progress=0x41 Drying suspended=0x42<br>
+		 * Drying completed/stopped=0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1694,17 +1642,16 @@ Byte<br>
 		 * EPC : 0xE6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the remaining drying time in the  gHH:MM:SS h .format.<br>
+		 * This property indicates the remaining drying time in the “HH:MM:SS” format.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0-0x3B : 0-0x3B<br>
-		 * (=0-23):(=0-59):(=0-59)<br>
+		 * 0.0x17: 0.0x3B : 0.0x3B (=0.23):(=0.59):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
- ~3<br>
+×3<br>
 		 * <br>
 		 * Data size : 3
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1726,13 +1673,12 @@ Byte<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON  0x41<br>
-		 * Reservation OFF  0x42<br>
+		 * Reservation ON=0x41 Reservation OFF=0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1754,14 +1700,13 @@ Byte<br>
 		 * Timer value    HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
- ~ Q<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1776,8 +1721,7 @@ Byte<br>
 		}
 		/**
 		 * Property name : Relative
-time-based ON
-timer setting<br>
+time-based ON timer setting<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -1785,14 +1729,13 @@ timer setting<br>
 		 * Timer value    HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
- ~ Q<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>

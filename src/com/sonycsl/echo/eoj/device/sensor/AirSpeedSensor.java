@@ -51,17 +51,16 @@ public abstract class AirSpeedSensor extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -77,17 +76,16 @@ public abstract class AirSpeedSensor extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -106,13 +104,15 @@ public abstract class AirSpeedSensor extends DeviceObject {
 	 * This property indicates the measured value of air speed in units of 0.01 m/sec.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533) (0.655.33 m/sec)<br>
+	 * 0x0000.0xFFFD (0.65533)<br>
+	 * (0.655.33 m/sec)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.01 m/sec<br>
+	 * Unit : 0.01
+m/sec<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -129,13 +129,15 @@ public abstract class AirSpeedSensor extends DeviceObject {
 	 * This property indicates the measured value of air speed in units of 0.01 m/sec.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533) (0.655.33 m/sec)<br>
+	 * 0x0000.0xFFFD (0.65533)<br>
+	 * (0.655.33 m/sec)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.01 m/sec<br>
+	 * Unit : 0.01
+m/sec<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -155,7 +157,7 @@ public abstract class AirSpeedSensor extends DeviceObject {
 	 * This property indicates air flow direction in units of degrees.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000-0x0168 (0-360degree)<br>
+	 * 0x0000-0x0168 (0-360°)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
@@ -178,7 +180,7 @@ public abstract class AirSpeedSensor extends DeviceObject {
 	 * This property indicates air flow direction in units of degrees.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000-0x0168 (0-360degree)<br>
+	 * 0x0000-0x0168 (0-360°)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
@@ -305,13 +307,15 @@ public abstract class AirSpeedSensor extends DeviceObject {
 		 * This property indicates the measured value of air speed in units of 0.01 m/sec.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533) (0.655.33 m/sec)<br>
+		 * 0x0000.0xFFFD (0.65533)<br>
+		 * (0.655.33 m/sec)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.01 m/sec<br>
+		 * Unit : 0.01
+m/sec<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -328,7 +332,7 @@ public abstract class AirSpeedSensor extends DeviceObject {
 		 * This property indicates air flow direction in units of degrees.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0x0168 (0-360degree)<br>
+		 * 0x0000-0x0168 (0-360°)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
@@ -373,8 +377,8 @@ public abstract class AirSpeedSensor extends DeviceObject {
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -468,8 +472,8 @@ public abstract class AirSpeedSensor extends DeviceObject {
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -509,13 +513,15 @@ public abstract class AirSpeedSensor extends DeviceObject {
 		 * This property indicates the measured value of air speed in units of 0.01 m/sec.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533) (0.655.33 m/sec)<br>
+		 * 0x0000.0xFFFD (0.65533)<br>
+		 * (0.655.33 m/sec)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.01 m/sec<br>
+		 * Unit : 0.01
+m/sec<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -535,7 +541,7 @@ public abstract class AirSpeedSensor extends DeviceObject {
 		 * This property indicates air flow direction in units of degrees.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0x0168 (0-360degree)<br>
+		 * 0x0000-0x0168 (0-360°)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
@@ -630,8 +636,8 @@ public abstract class AirSpeedSensor extends DeviceObject {
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -671,13 +677,15 @@ public abstract class AirSpeedSensor extends DeviceObject {
 		 * This property indicates the measured value of air speed in units of 0.01 m/sec.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533) (0.655.33 m/sec)<br>
+		 * 0x0000.0xFFFD (0.65533)<br>
+		 * (0.655.33 m/sec)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.01 m/sec<br>
+		 * Unit : 0.01
+m/sec<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -697,7 +705,7 @@ public abstract class AirSpeedSensor extends DeviceObject {
 		 * This property indicates air flow direction in units of degrees.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0x0168 (0-360degree)<br>
+		 * 0x0000-0x0168 (0-360°)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>

@@ -54,17 +54,16 @@ public abstract class WattHourMeter extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -80,17 +79,16 @@ public abstract class WattHourMeter extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -116,7 +114,8 @@ public abstract class WattHourMeter extends DeviceObject {
 	 * Data size : 4 bytes<br>
 	 * <br>
 	 * Unit : 0.1 or
-0.01 kWh<br>
+0.01
+kWh<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -140,7 +139,8 @@ public abstract class WattHourMeter extends DeviceObject {
 	 * Data size : 4 bytes<br>
 	 * <br>
 	 * Unit : 0.1 or
-0.01 kWh<br>
+0.01
+kWh<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -203,24 +203,24 @@ public abstract class WattHourMeter extends DeviceObject {
 		return true;
 	}
 	/**
-	 * Property name : Integral electric energy measurement log
-1<br>
+	 * Property name : Integral electric energy measurement log 1<br>
 	 * <br>
 	 * EPC : 0xE3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates integral<br>
-	 * electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours.<br>
+	 * This property indicates integral electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 	 * <br>
-	 * Data type : unsigned long x 48<br>
+	 * Data type : unsigned long × 48<br>
 	 * <br>
-	 * Data size : 192 bytes<br>
+	 * Data size : 192
+bytes<br>
 	 * <br>
 	 * Unit : 0.1 or
-0.01 kWh<br>
+0.01
+kWh<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -229,24 +229,24 @@ public abstract class WattHourMeter extends DeviceObject {
 	 */
 	protected byte[] getIntegralElectricEnergyMeasurementLog1() {return null;}
 	/**
-	 * Property name : Integral electric energy measurement log
-1<br>
+	 * Property name : Integral electric energy measurement log 1<br>
 	 * <br>
 	 * EPC : 0xE3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates integral<br>
-	 * electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours.<br>
+	 * This property indicates integral electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 	 * <br>
-	 * Data type : unsigned long x 48<br>
+	 * Data type : unsigned long × 48<br>
 	 * <br>
-	 * Data size : 192 bytes<br>
+	 * Data size : 192
+bytes<br>
 	 * <br>
 	 * Unit : 0.1 or
-0.01 kWh<br>
+0.01
+kWh<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -258,24 +258,27 @@ public abstract class WattHourMeter extends DeviceObject {
 		return true;
 	}
 	/**
-	 * Property name : Integral electric energy measurement log
-2<br>
+	 * Property name : Integral electric energy measurement log 2<br>
 	 * <br>
 	 * EPC : 0xE4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates integral<br>
-	 * electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments.<br>
+	 * This property indicates integral electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 	 * <br>
-	 * Data type : unsigned long x48 x45<br>
+	 * Data type : unsigned long
+×48
+×45<br>
 	 * <br>
-	 * Data size : 192 bytes x 45<br>
+	 * Data size : 192
+bytes
+× 45<br>
 	 * <br>
 	 * Unit : 0.1 or
-0.01 kWh<br>
+0.01
+kWh<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -284,24 +287,27 @@ public abstract class WattHourMeter extends DeviceObject {
 	 */
 	protected byte[] getIntegralElectricEnergyMeasurementLog2() {return null;}
 	/**
-	 * Property name : Integral electric energy measurement log
-2<br>
+	 * Property name : Integral electric energy measurement log 2<br>
 	 * <br>
 	 * EPC : 0xE4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates integral<br>
-	 * electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments.<br>
+	 * This property indicates integral electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 	 * <br>
-	 * Data type : unsigned long x48 x45<br>
+	 * Data type : unsigned long
+×48
+×45<br>
 	 * <br>
-	 * Data size : 192 bytes x 45<br>
+	 * Data size : 192
+bytes
+× 45<br>
 	 * <br>
 	 * Unit : 0.1 or
-0.01 kWh<br>
+0.01
+kWh<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -439,7 +445,8 @@ public abstract class WattHourMeter extends DeviceObject {
 		 * Data size : 4 bytes<br>
 		 * <br>
 		 * Unit : 0.1 or
-0.01 kWh<br>
+0.01
+kWh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -472,24 +479,24 @@ public abstract class WattHourMeter extends DeviceObject {
 		 */
 		protected void onGetIntegralElectricEnergyUnit(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Integral electric energy measurement log
-1<br>
+		 * Property name : Integral electric energy measurement log 1<br>
 		 * <br>
 		 * EPC : 0xE3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates integral<br>
-		 * electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours.<br>
+		 * This property indicates integral electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
-		 * Data type : unsigned long x 48<br>
+		 * Data type : unsigned long × 48<br>
 		 * <br>
-		 * Data size : 192 bytes<br>
+		 * Data size : 192
+bytes<br>
 		 * <br>
 		 * Unit : 0.1 or
-0.01 kWh<br>
+0.01
+kWh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -498,24 +505,27 @@ public abstract class WattHourMeter extends DeviceObject {
 		 */
 		protected void onGetIntegralElectricEnergyMeasurementLog1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Integral electric energy measurement log
-2<br>
+		 * Property name : Integral electric energy measurement log 2<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates integral<br>
-		 * electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments.<br>
+		 * This property indicates integral electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
-		 * Data type : unsigned long x48 x45<br>
+		 * Data type : unsigned long
+×48
+×45<br>
 		 * <br>
-		 * Data size : 192 bytes x 45<br>
+		 * Data size : 192
+bytes
+× 45<br>
 		 * <br>
 		 * Unit : 0.1 or
-0.01 kWh<br>
+0.01
+kWh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -554,8 +564,8 @@ public abstract class WattHourMeter extends DeviceObject {
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -649,8 +659,8 @@ public abstract class WattHourMeter extends DeviceObject {
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -697,7 +707,8 @@ public abstract class WattHourMeter extends DeviceObject {
 		 * Data size : 4 bytes<br>
 		 * <br>
 		 * Unit : 0.1 or
-0.01 kWh<br>
+0.01
+kWh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -736,24 +747,24 @@ public abstract class WattHourMeter extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : Integral electric energy measurement log
-1<br>
+		 * Property name : Integral electric energy measurement log 1<br>
 		 * <br>
 		 * EPC : 0xE3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates integral<br>
-		 * electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours.<br>
+		 * This property indicates integral electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
-		 * Data type : unsigned long x 48<br>
+		 * Data type : unsigned long × 48<br>
 		 * <br>
-		 * Data size : 192 bytes<br>
+		 * Data size : 192
+bytes<br>
 		 * <br>
 		 * Unit : 0.1 or
-0.01 kWh<br>
+0.01
+kWh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -765,24 +776,27 @@ public abstract class WattHourMeter extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : Integral electric energy measurement log
-2<br>
+		 * Property name : Integral electric energy measurement log 2<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates integral<br>
-		 * electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments.<br>
+		 * This property indicates integral electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
-		 * Data type : unsigned long x48 x45<br>
+		 * Data type : unsigned long
+×48
+×45<br>
 		 * <br>
-		 * Data size : 192 bytes x 45<br>
+		 * Data size : 192
+bytes
+× 45<br>
 		 * <br>
 		 * Unit : 0.1 or
-0.01 kWh<br>
+0.01
+kWh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -871,8 +885,8 @@ public abstract class WattHourMeter extends DeviceObject {
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -919,7 +933,8 @@ public abstract class WattHourMeter extends DeviceObject {
 		 * Data size : 4 bytes<br>
 		 * <br>
 		 * Unit : 0.1 or
-0.01 kWh<br>
+0.01
+kWh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -958,24 +973,24 @@ public abstract class WattHourMeter extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : Integral electric energy measurement log
-1<br>
+		 * Property name : Integral electric energy measurement log 1<br>
 		 * <br>
 		 * EPC : 0xE3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates integral<br>
-		 * electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours.<br>
+		 * This property indicates integral electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
-		 * Data type : unsigned long x 48<br>
+		 * Data type : unsigned long × 48<br>
 		 * <br>
-		 * Data size : 192 bytes<br>
+		 * Data size : 192
+bytes<br>
 		 * <br>
 		 * Unit : 0.1 or
-0.01 kWh<br>
+0.01
+kWh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -987,24 +1002,27 @@ public abstract class WattHourMeter extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : Integral electric energy measurement log
-2<br>
+		 * Property name : Integral electric energy measurement log 2<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates integral<br>
-		 * electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments.<br>
+		 * This property indicates integral electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
-		 * Data type : unsigned long x48 x45<br>
+		 * Data type : unsigned long
+×48
+×45<br>
 		 * <br>
-		 * Data size : 192 bytes x 45<br>
+		 * Data size : 192
+bytes
+× 45<br>
 		 * <br>
 		 * Unit : 0.1 or
-0.01 kWh<br>
+0.01
+kWh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>

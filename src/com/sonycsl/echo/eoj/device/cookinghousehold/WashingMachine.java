@@ -55,17 +55,16 @@ public abstract class WashingMachine extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This  property  indicates  the  ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -81,17 +80,16 @@ public abstract class WashingMachine extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This  property  indicates  the  ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -110,14 +108,13 @@ public abstract class WashingMachine extends DeviceObject {
 	 * This property indicates whether the door/cover is open or closed.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Door/cover open = 0x41<br>
-	 * Door/cover closed = 0x42<br>
+	 * Door/cover open = 0x41 Door/cover closed = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -134,14 +131,13 @@ public abstract class WashingMachine extends DeviceObject {
 	 * This property indicates whether the door/cover is open or closed.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Door/cover open = 0x41<br>
-	 * Door/cover closed = 0x42<br>
+	 * Door/cover open = 0x41 Door/cover closed = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -161,18 +157,15 @@ public abstract class WashingMachine extends DeviceObject {
 	 * Washing machine setting<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Start/restart the washing cycle<br>
-	 * (started/restarted) = 0x41<br>
-	 * Suspend the washing cycle<br>
-	 * (suspended) = 0x42<br>
-	 * Stop the washing cycle (stopped) =<br>
-	 * 0x43<br>
+	 * Start/restart the washing cycle (started/restarted) = 0x41<br>
+	 * Suspend the washing cycle (suspended) = 0x42<br>
+	 * Stop the washing cycle (stopped) = 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -189,18 +182,15 @@ public abstract class WashingMachine extends DeviceObject {
 	 * Washing machine setting<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Start/restart the washing cycle<br>
-	 * (started/restarted) = 0x41<br>
-	 * Suspend the washing cycle<br>
-	 * (suspended) = 0x42<br>
-	 * Stop the washing cycle (stopped) =<br>
-	 * 0x43<br>
+	 * Start/restart the washing cycle (started/restarted) = 0x41<br>
+	 * Suspend the washing cycle (suspended) = 0x42<br>
+	 * Stop the washing cycle (stopped) = 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -217,18 +207,15 @@ public abstract class WashingMachine extends DeviceObject {
 	 * Washing machine setting<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Start/restart the washing cycle<br>
-	 * (started/restarted) = 0x41<br>
-	 * Suspend the washing cycle<br>
-	 * (suspended) = 0x42<br>
-	 * Stop the washing cycle (stopped) =<br>
-	 * 0x43<br>
+	 * Start/restart the washing cycle (started/restarted) = 0x41<br>
+	 * Suspend the washing cycle (suspended) = 0x42<br>
+	 * Stop the washing cycle (stopped) = 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -248,14 +235,13 @@ public abstract class WashingMachine extends DeviceObject {
 	 * This property indicates the current stage of the washing cycle.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Washing = 0x41, rinsing = 0x42, spin drying = 0x43, suspended = 0x44, washing cycle stopped/completed =<br>
-	 * 0x45<br>
+	 * Washing = 0x41, rinsing = 0x42, spin drying = 0x43, suspended = 0x44, washing cycle stopped/completed = 0x45<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -272,14 +258,13 @@ public abstract class WashingMachine extends DeviceObject {
 	 * This property indicates the current stage of the washing cycle.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Washing = 0x41, rinsing = 0x42, spin drying = 0x43, suspended = 0x44, washing cycle stopped/completed =<br>
-	 * 0x45<br>
+	 * Washing = 0x41, rinsing = 0x42, spin drying = 0x43, suspended = 0x44, washing cycle stopped/completed = 0x45<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -299,14 +284,13 @@ public abstract class WashingMachine extends DeviceObject {
 	 * This property indicates the time remaining to complete the current washing cycle in the HH:MM:SS format.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B: 0.0x3B  (= 0.23): (= 0.59): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 3<br>
+	 * Data type : unsigned char × 3<br>
 	 * <br>
 	 * Data size : 3 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -323,14 +307,13 @@ public abstract class WashingMachine extends DeviceObject {
 	 * This property indicates the time remaining to complete the current washing cycle in the HH:MM:SS format.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B: 0.0x3B  (= 0.23): (= 0.59): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 3<br>
+	 * Data type : unsigned char × 3<br>
 	 * <br>
 	 * Data size : 3 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -350,14 +333,13 @@ public abstract class WashingMachine extends DeviceObject {
 	 * Reservation ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation ON = 0x41, reservation<br>
-	 * OFF = 0x42<br>
+	 * Reservation ON = 0x41, reservation OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -374,14 +356,13 @@ public abstract class WashingMachine extends DeviceObject {
 	 * Reservation ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation ON = 0x41, reservation<br>
-	 * OFF = 0x42<br>
+	 * Reservation ON = 0x41, reservation OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -398,14 +379,13 @@ public abstract class WashingMachine extends DeviceObject {
 	 * Reservation ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation ON = 0x41, reservation<br>
-	 * OFF = 0x42<br>
+	 * Reservation ON = 0x41, reservation OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -425,14 +405,13 @@ public abstract class WashingMachine extends DeviceObject {
 	 * Timer value (HH:MM)<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -449,14 +428,13 @@ public abstract class WashingMachine extends DeviceObject {
 	 * Timer value (HH:MM)<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -473,14 +451,13 @@ public abstract class WashingMachine extends DeviceObject {
 	 * Timer value (HH:MM)<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -493,8 +470,7 @@ public abstract class WashingMachine extends DeviceObject {
 	}
 	/**
 	 * Property name : Relative
-time-based ON
-timer setting<br>
+time-based ON timer setting<br>
 	 * <br>
 	 * EPC : 0x92<br>
 	 * <br>
@@ -502,14 +478,13 @@ timer setting<br>
 	 * Timer value (HH:MM)<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -519,8 +494,7 @@ timer setting<br>
 	protected boolean setRelativeTimeBasedOnTimerSetting(byte[] edt) {return false;}
 	/**
 	 * Property name : Relative
-time-based ON
-timer setting<br>
+time-based ON timer setting<br>
 	 * <br>
 	 * EPC : 0x92<br>
 	 * <br>
@@ -528,14 +502,13 @@ timer setting<br>
 	 * Timer value (HH:MM)<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -545,8 +518,7 @@ timer setting<br>
 	protected byte[] getRelativeTimeBasedOnTimerSetting() {return null;}
 	/**
 	 * Property name : Relative
-time-based ON
-timer setting<br>
+time-based ON timer setting<br>
 	 * <br>
 	 * EPC : 0x92<br>
 	 * <br>
@@ -554,14 +526,13 @@ timer setting<br>
 	 * Timer value (HH:MM)<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -723,14 +694,13 @@ timer setting<br>
 		 * This property indicates whether the door/cover is open or closed.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Door/cover open = 0x41<br>
-		 * Door/cover closed = 0x42<br>
+		 * Door/cover open = 0x41 Door/cover closed = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -747,18 +717,15 @@ timer setting<br>
 		 * Washing machine setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Start/restart the washing cycle<br>
-		 * (started/restarted) = 0x41<br>
-		 * Suspend the washing cycle<br>
-		 * (suspended) = 0x42<br>
-		 * Stop the washing cycle (stopped) =<br>
-		 * 0x43<br>
+		 * Start/restart the washing cycle (started/restarted) = 0x41<br>
+		 * Suspend the washing cycle (suspended) = 0x42<br>
+		 * Stop the washing cycle (stopped) = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -775,18 +742,15 @@ timer setting<br>
 		 * Washing machine setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Start/restart the washing cycle<br>
-		 * (started/restarted) = 0x41<br>
-		 * Suspend the washing cycle<br>
-		 * (suspended) = 0x42<br>
-		 * Stop the washing cycle (stopped) =<br>
-		 * 0x43<br>
+		 * Start/restart the washing cycle (started/restarted) = 0x41<br>
+		 * Suspend the washing cycle (suspended) = 0x42<br>
+		 * Stop the washing cycle (stopped) = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -803,14 +767,13 @@ timer setting<br>
 		 * This property indicates the current stage of the washing cycle.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Washing = 0x41, rinsing = 0x42, spin drying = 0x43, suspended = 0x44, washing cycle stopped/completed =<br>
-		 * 0x45<br>
+		 * Washing = 0x41, rinsing = 0x42, spin drying = 0x43, suspended = 0x44, washing cycle stopped/completed = 0x45<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -827,14 +790,13 @@ timer setting<br>
 		 * This property indicates the time remaining to complete the current washing cycle in the HH:MM:SS format.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B: 0.0x3B  (= 0.23): (= 0.59): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 3<br>
+		 * Data type : unsigned char × 3<br>
 		 * <br>
 		 * Data size : 3 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -851,14 +813,13 @@ timer setting<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON = 0x41, reservation<br>
-		 * OFF = 0x42<br>
+		 * Reservation ON = 0x41, reservation OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -875,14 +836,13 @@ timer setting<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON = 0x41, reservation<br>
-		 * OFF = 0x42<br>
+		 * Reservation ON = 0x41, reservation OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -899,14 +859,13 @@ timer setting<br>
 		 * Timer value (HH:MM)<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -923,14 +882,13 @@ timer setting<br>
 		 * Timer value (HH:MM)<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -940,8 +898,7 @@ timer setting<br>
 		protected void onGetOnTimerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Relative
-time-based ON
-timer setting<br>
+time-based ON timer setting<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -949,14 +906,13 @@ timer setting<br>
 		 * Timer value (HH:MM)<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -966,8 +922,7 @@ timer setting<br>
 		protected void onSetRelativeTimeBasedOnTimerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Relative
-time-based ON
-timer setting<br>
+time-based ON timer setting<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -975,14 +930,13 @@ timer setting<br>
 		 * Timer value (HH:MM)<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1021,8 +975,8 @@ timer setting<br>
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -1046,18 +1000,15 @@ timer setting<br>
 		 * Washing machine setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Start/restart the washing cycle<br>
-		 * (started/restarted) = 0x41<br>
-		 * Suspend the washing cycle<br>
-		 * (suspended) = 0x42<br>
-		 * Stop the washing cycle (stopped) =<br>
-		 * 0x43<br>
+		 * Start/restart the washing cycle (started/restarted) = 0x41<br>
+		 * Suspend the washing cycle (suspended) = 0x42<br>
+		 * Stop the washing cycle (stopped) = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1077,14 +1028,13 @@ timer setting<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON = 0x41, reservation<br>
-		 * OFF = 0x42<br>
+		 * Reservation ON = 0x41, reservation OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1104,14 +1054,13 @@ timer setting<br>
 		 * Timer value (HH:MM)<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1124,8 +1073,7 @@ timer setting<br>
 		}
 		/**
 		 * Property name : Relative
-time-based ON
-timer setting<br>
+time-based ON timer setting<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -1133,14 +1081,13 @@ timer setting<br>
 		 * Timer value (HH:MM)<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1230,8 +1177,8 @@ timer setting<br>
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -1271,14 +1218,13 @@ timer setting<br>
 		 * This property indicates whether the door/cover is open or closed.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Door/cover open = 0x41<br>
-		 * Door/cover closed = 0x42<br>
+		 * Door/cover open = 0x41 Door/cover closed = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1298,18 +1244,15 @@ timer setting<br>
 		 * Washing machine setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Start/restart the washing cycle<br>
-		 * (started/restarted) = 0x41<br>
-		 * Suspend the washing cycle<br>
-		 * (suspended) = 0x42<br>
-		 * Stop the washing cycle (stopped) =<br>
-		 * 0x43<br>
+		 * Start/restart the washing cycle (started/restarted) = 0x41<br>
+		 * Suspend the washing cycle (suspended) = 0x42<br>
+		 * Stop the washing cycle (stopped) = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1329,14 +1272,13 @@ timer setting<br>
 		 * This property indicates the current stage of the washing cycle.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Washing = 0x41, rinsing = 0x42, spin drying = 0x43, suspended = 0x44, washing cycle stopped/completed =<br>
-		 * 0x45<br>
+		 * Washing = 0x41, rinsing = 0x42, spin drying = 0x43, suspended = 0x44, washing cycle stopped/completed = 0x45<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1356,14 +1298,13 @@ timer setting<br>
 		 * This property indicates the time remaining to complete the current washing cycle in the HH:MM:SS format.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B: 0.0x3B  (= 0.23): (= 0.59): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 3<br>
+		 * Data type : unsigned char × 3<br>
 		 * <br>
 		 * Data size : 3 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1383,14 +1324,13 @@ timer setting<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON = 0x41, reservation<br>
-		 * OFF = 0x42<br>
+		 * Reservation ON = 0x41, reservation OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1410,14 +1350,13 @@ timer setting<br>
 		 * Timer value (HH:MM)<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1430,8 +1369,7 @@ timer setting<br>
 		}
 		/**
 		 * Property name : Relative
-time-based ON
-timer setting<br>
+time-based ON timer setting<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -1439,14 +1377,13 @@ timer setting<br>
 		 * Timer value (HH:MM)<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1535,8 +1472,8 @@ timer setting<br>
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -1576,14 +1513,13 @@ timer setting<br>
 		 * This property indicates whether the door/cover is open or closed.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Door/cover open = 0x41<br>
-		 * Door/cover closed = 0x42<br>
+		 * Door/cover open = 0x41 Door/cover closed = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1603,18 +1539,15 @@ timer setting<br>
 		 * Washing machine setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Start/restart the washing cycle<br>
-		 * (started/restarted) = 0x41<br>
-		 * Suspend the washing cycle<br>
-		 * (suspended) = 0x42<br>
-		 * Stop the washing cycle (stopped) =<br>
-		 * 0x43<br>
+		 * Start/restart the washing cycle (started/restarted) = 0x41<br>
+		 * Suspend the washing cycle (suspended) = 0x42<br>
+		 * Stop the washing cycle (stopped) = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1634,14 +1567,13 @@ timer setting<br>
 		 * This property indicates the current stage of the washing cycle.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Washing = 0x41, rinsing = 0x42, spin drying = 0x43, suspended = 0x44, washing cycle stopped/completed =<br>
-		 * 0x45<br>
+		 * Washing = 0x41, rinsing = 0x42, spin drying = 0x43, suspended = 0x44, washing cycle stopped/completed = 0x45<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1661,14 +1593,13 @@ timer setting<br>
 		 * This property indicates the time remaining to complete the current washing cycle in the HH:MM:SS format.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B: 0.0x3B  (= 0.23): (= 0.59): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 3<br>
+		 * Data type : unsigned char × 3<br>
 		 * <br>
 		 * Data size : 3 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1688,14 +1619,13 @@ timer setting<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON = 0x41, reservation<br>
-		 * OFF = 0x42<br>
+		 * Reservation ON = 0x41, reservation OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1715,14 +1645,13 @@ timer setting<br>
 		 * Timer value (HH:MM)<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1735,8 +1664,7 @@ timer setting<br>
 		}
 		/**
 		 * Property name : Relative
-time-based ON
-timer setting<br>
+time-based ON timer setting<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -1744,14 +1672,13 @@ timer setting<br>
 		 * Timer value (HH:MM)<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>

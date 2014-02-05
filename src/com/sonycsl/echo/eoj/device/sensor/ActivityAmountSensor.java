@@ -27,7 +27,8 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x002A;
 
-	public static final byte EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS = (byte)0xE1;
+	public static final byte EPC_ACTIVITY_AMOUNT_LEVEL1 = (byte)0xE0;
+	public static final byte EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_S = (byte)0xE1;
 	public static final byte EPC_ACTIVITY_AMOUNT_LEVEL2 = (byte)0xE2;
 	public static final byte EPC_HUMAN_BODY_EXISTENCE_INFORMATION = (byte)0xE3;
 
@@ -38,6 +39,7 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
+		addGetProperty(EPC_ACTIVITY_AMOUNT_LEVEL1);
 		addGetProperty(EPC_ACTIVITY_AMOUNT_LEVEL2);
 	}
 	
@@ -52,17 +54,16 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This  property  indicates  the  ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit :  �<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -78,17 +79,16 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This  property  indicates  the  ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit :  �<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -99,32 +99,60 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 	 */
 	protected abstract byte[] getOperationStatus();
 	/**
-	 * Property name : Maximum number of
-human body ID fs<br>
+	 * Property name : Activity amount level 1<br>
 	 * <br>
-	 * EPC : 0xE1<br>
+	 * EPC : 0xE0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates maximum number of human body IDs that can be registered for activity amount level 1.<br>
+	 * This property indicates 8 different activity mount levels. The array element number represents a human body ID.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0001.0x0080 (= 1.128)<br>
+	 * 0x31.0x38<br>
 	 * <br>
-	 * Data type : unsigned short<br>
+	 * Data type : unsigned char
+× max 128<br>
 	 * <br>
-	 * Data size : 2 bytes<br>
+	 * Data size : Max128
+bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Get - mandatory<br>
 	 */
-	protected byte[] getMaximumNumberOfHumanBodyIdFs() {return null;}
+	protected abstract byte[] getActivityAmountLevel1();
 	/**
-	 * Property name : Maximum number of
-human body ID fs<br>
+	 * Property name : Activity amount level 1<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates 8 different activity mount levels. The array element number represents a human body ID.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x31.0x38<br>
+	 * <br>
+	 * Data type : unsigned char
+× max 128<br>
+	 * <br>
+	 * Data size : Max128
+bytes<br>
+	 * <br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidActivityAmountLevel1(byte[] edt) {
+		if(edt == null || !(edt.length <= 128)) return false;
+		return true;
+	}
+	/**
+	 * Property name : Maximum number of human body ID’s<br>
 	 * <br>
 	 * EPC : 0xE1<br>
 	 * <br>
@@ -138,14 +166,37 @@ human body ID fs<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidMaximumNumberOfHumanBodyIdFs(byte[] edt) {
+	protected byte[] getMaximumNumberOfHumanBodyIdS() {return null;}
+	/**
+	 * Property name : Maximum number of human body ID’s<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates maximum number of human body IDs that can be registered for activity amount level 1.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0001.0x0080 (= 1.128)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidMaximumNumberOfHumanBodyIdS(byte[] edt) {
 		if(edt == null || !(edt.length == 2)) return false;
 		return true;
 	}
@@ -164,7 +215,7 @@ human body ID fs<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -187,7 +238,7 @@ human body ID fs<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -209,11 +260,12 @@ human body ID fs<br>
 	 * Value range (decimal notation) :<br>
 	 * (See (5) below for details.)<br>
 	 * <br>
-	 * Data type : unsigned char x 16<br>
+	 * Data type : unsigned char × 16<br>
 	 * <br>
-	 * Data size : 16 bytes<br>
+	 * Data size : 16
+bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -232,11 +284,12 @@ human body ID fs<br>
 	 * Value range (decimal notation) :<br>
 	 * (See (5) below for details.)<br>
 	 * <br>
-	 * Data type : unsigned char x 16<br>
+	 * Data type : unsigned char × 16<br>
 	 * <br>
-	 * Data size : 16 bytes<br>
+	 * Data size : 16
+bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -264,7 +317,8 @@ human body ID fs<br>
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS : return getMaximumNumberOfHumanBodyIdFs();
+		case EPC_ACTIVITY_AMOUNT_LEVEL1 : return getActivityAmountLevel1();
+		case EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_S : return getMaximumNumberOfHumanBodyIdS();
 		case EPC_ACTIVITY_AMOUNT_LEVEL2 : return getActivityAmountLevel2();
 		case EPC_HUMAN_BODY_EXISTENCE_INFORMATION : return getHumanBodyExistenceInformation();
 		default : return null;
@@ -277,7 +331,8 @@ human body ID fs<br>
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS : return isValidMaximumNumberOfHumanBodyIdFs(property.edt);
+		case EPC_ACTIVITY_AMOUNT_LEVEL1 : return isValidActivityAmountLevel1(property.edt);
+		case EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_S : return isValidMaximumNumberOfHumanBodyIdS(property.edt);
 		case EPC_ACTIVITY_AMOUNT_LEVEL2 : return isValidActivityAmountLevel2(property.edt);
 		case EPC_HUMAN_BODY_EXISTENCE_INFORMATION : return isValidHumanBodyExistenceInformation(property.edt);
 		default : return false;
@@ -339,8 +394,11 @@ human body ID fs<br>
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS : 
-				onGetMaximumNumberOfHumanBodyIdFs(eoj, tid, esv, property, success);
+			case EPC_ACTIVITY_AMOUNT_LEVEL1 : 
+				onGetActivityAmountLevel1(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_S : 
+				onGetMaximumNumberOfHumanBodyIdS(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ACTIVITY_AMOUNT_LEVEL2 : 
 				onGetActivityAmountLevel2(eoj, tid, esv, property, success);
@@ -354,8 +412,32 @@ human body ID fs<br>
 		}
 		
 		/**
-		 * Property name : Maximum number of
-human body ID fs<br>
+		 * Property name : Activity amount level 1<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates 8 different activity mount levels. The array element number represents a human body ID.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x31.0x38<br>
+		 * <br>
+		 * Data type : unsigned char
+× max 128<br>
+		 * <br>
+		 * Data size : Max128
+bytes<br>
+		 * <br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		protected void onGetActivityAmountLevel1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Maximum number of human body ID’s<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
@@ -369,14 +451,14 @@ human body ID fs<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetMaximumNumberOfHumanBodyIdFs(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetMaximumNumberOfHumanBodyIdS(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Activity amount level 2<br>
 		 * <br>
@@ -392,7 +474,7 @@ human body ID fs<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -411,11 +493,12 @@ human body ID fs<br>
 		 * Value range (decimal notation) :<br>
 		 * (See (5) below for details.)<br>
 		 * <br>
-		 * Data type : unsigned char x 16<br>
+		 * Data type : unsigned char × 16<br>
 		 * <br>
-		 * Data size : 16 bytes<br>
+		 * Data size : 16
+bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -454,8 +537,8 @@ human body ID fs<br>
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -549,8 +632,8 @@ human body ID fs<br>
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -582,8 +665,35 @@ human body ID fs<br>
 		}
 		
 		/**
-		 * Property name : Maximum number of
-human body ID fs<br>
+		 * Property name : Activity amount level 1<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates 8 different activity mount levels. The array element number represents a human body ID.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x31.0x38<br>
+		 * <br>
+		 * Data type : unsigned char
+× max 128<br>
+		 * <br>
+		 * Data size : Max128
+bytes<br>
+		 * <br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Getter reqGetActivityAmountLevel1() {
+			reqGetProperty(EPC_ACTIVITY_AMOUNT_LEVEL1);
+			return this;
+		}
+		/**
+		 * Property name : Maximum number of human body ID’s<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
@@ -597,15 +707,15 @@ human body ID fs<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetMaximumNumberOfHumanBodyIdFs() {
-			reqGetProperty(EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS);
+		public Getter reqGetMaximumNumberOfHumanBodyIdS() {
+			reqGetProperty(EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_S);
 			return this;
 		}
 		/**
@@ -623,7 +733,7 @@ human body ID fs<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -645,11 +755,12 @@ human body ID fs<br>
 		 * Value range (decimal notation) :<br>
 		 * (See (5) below for details.)<br>
 		 * <br>
-		 * Data type : unsigned char x 16<br>
+		 * Data type : unsigned char × 16<br>
 		 * <br>
-		 * Data size : 16 bytes<br>
+		 * Data size : 16
+bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -738,8 +849,8 @@ human body ID fs<br>
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -771,8 +882,35 @@ human body ID fs<br>
 		}
 		
 		/**
-		 * Property name : Maximum number of
-human body ID fs<br>
+		 * Property name : Activity amount level 1<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates 8 different activity mount levels. The array element number represents a human body ID.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x31.0x38<br>
+		 * <br>
+		 * Data type : unsigned char
+× max 128<br>
+		 * <br>
+		 * Data size : Max128
+bytes<br>
+		 * <br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Informer reqInformActivityAmountLevel1() {
+			reqInformProperty(EPC_ACTIVITY_AMOUNT_LEVEL1);
+			return this;
+		}
+		/**
+		 * Property name : Maximum number of human body ID’s<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
@@ -786,15 +924,15 @@ human body ID fs<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformMaximumNumberOfHumanBodyIdFs() {
-			reqInformProperty(EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS);
+		public Informer reqInformMaximumNumberOfHumanBodyIdS() {
+			reqInformProperty(EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_S);
 			return this;
 		}
 		/**
@@ -812,7 +950,7 @@ human body ID fs<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -834,11 +972,12 @@ human body ID fs<br>
 		 * Value range (decimal notation) :<br>
 		 * (See (5) below for details.)<br>
 		 * <br>
-		 * Data type : unsigned char x 16<br>
+		 * Data type : unsigned char × 16<br>
 		 * <br>
-		 * Data size : 16 bytes<br>
+		 * Data size : 16
+bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -872,6 +1011,8 @@ human body ID fs<br>
 		protected byte[] getFaultStatus() {return null;}
 		@Override
 		protected byte[] getManufacturerCode() {return null;}
+		@Override
+		protected byte[] getActivityAmountLevel1() {return null;}
 		@Override
 		protected byte[] getActivityAmountLevel2() {return null;}
 	}

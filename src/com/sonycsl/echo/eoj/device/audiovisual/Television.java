@@ -31,6 +31,7 @@ public abstract class Television extends DeviceObject {
 	public static final byte EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS = (byte)0xB1;
 	public static final byte EPC_SUPPORTED_CHARACTER_CODES = (byte)0xB2;
 	public static final byte EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER = (byte)0xB3;
+	public static final byte EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED = (byte)0xB4;
 
 	@Override
 	protected void setupPropertyMaps() {
@@ -43,6 +44,7 @@ public abstract class Television extends DeviceObject {
 		addGetProperty(EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS);
 		addGetProperty(EPC_SUPPORTED_CHARACTER_CODES);
 		addSetProperty(EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER);
+		addGetProperty(EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED);
 	}
 	
 	@Override
@@ -60,14 +62,14 @@ public abstract class Television extends DeviceObject {
 	 * = 0x01).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 *  <br>
+	 * <br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -87,14 +89,14 @@ Byte<br>
 	 * = 0x01).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 *  <br>
+	 * <br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -114,14 +116,14 @@ Byte<br>
 	 * = 0x01).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 *  <br>
+	 * <br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -139,14 +141,14 @@ Byte<br>
 	 * = 0x01).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 *  <br>
+	 * <br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -164,14 +166,14 @@ Byte<br>
 	 * = 0x01).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 *  <br>
+	 * <br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -192,14 +194,14 @@ Byte<br>
 	 * = 0x01).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 *  <br>
+	 * <br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : null<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -219,14 +221,14 @@ Byte<br>
 	 * = 0x01).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 *  <br>
+	 * <br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : null<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -249,15 +251,15 @@ Byte<br>
 	 * = 0x01).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 *  <br>
 	 * <br>
-	 * Data type : unsigned char ~
+	 * <br>
+	 * Data type : unsigned char×
 2<br>
 	 * <br>
 	 * Data size : 2
-Byte<br>
+bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -275,15 +277,15 @@ Byte<br>
 	 * = 0x01).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 *  <br>
 	 * <br>
-	 * Data type : unsigned char ~
+	 * <br>
+	 * Data type : unsigned char×
 2<br>
 	 * <br>
 	 * Data size : 2
-Byte<br>
+bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -301,18 +303,16 @@ Byte<br>
 	 * <br>
 	 * Contents of property :<br>
 	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-	 * = 0x01).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 *  <br>
 	 * <br>
-	 * Data type : unsigned char ~
+	 * <br>
+	 * Data type : unsigned char×
 Max 247<br>
 	 * <br>
-	 * Data size : Max247 B
-yte<br>
+	 * Data size : Max247 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -327,18 +327,16 @@ yte<br>
 	 * <br>
 	 * Contents of property :<br>
 	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-	 * = 0x01).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 *  <br>
 	 * <br>
-	 * Data type : unsigned char ~
+	 * <br>
+	 * Data type : unsigned char×
 Max 247<br>
 	 * <br>
-	 * Data size : Max247 B
-yte<br>
+	 * Data size : Max247 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -353,18 +351,16 @@ yte<br>
 	 * <br>
 	 * Contents of property :<br>
 	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-	 * = 0x01).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 *  <br>
 	 * <br>
-	 * Data type : unsigned char ~
+	 * <br>
+	 * Data type : unsigned char×
 Max 247<br>
 	 * <br>
-	 * Data size : Max247 B
-yte<br>
+	 * Data size : Max247 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -373,6 +369,61 @@ yte<br>
 	 */
 	protected boolean isValidCharacterStringToPresentToTheUser(byte[] edt) {
 		if(edt == null || !(edt.length <= 247)) return false;
+		return true;
+	}
+	/**
+	 * Property name : Length of character string accepted<br>
+	 * <br>
+	 * EPC : 0xB4<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
+	 * = 0x01).<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * <br>
+	 * <br>
+	 * Data type : unsigned char×
+2<br>
+	 * <br>
+	 * Data size : 2
+bytes<br>
+	 * <br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected abstract byte[] getLengthOfCharacterStringAccepted();
+	/**
+	 * Property name : Length of character string accepted<br>
+	 * <br>
+	 * EPC : 0xB4<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
+	 * = 0x01).<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * <br>
+	 * <br>
+	 * Data type : unsigned char×
+2<br>
+	 * <br>
+	 * Data size : 2
+bytes<br>
+	 * <br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidLengthOfCharacterStringAccepted(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
 		return true;
 	}
 
@@ -398,6 +449,7 @@ yte<br>
 		case EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS : return getCharacterStringSettingAcceptanceStatus();
 		case EPC_SUPPORTED_CHARACTER_CODES : return getSupportedCharacterCodes();
 		case EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER : return getCharacterStringToPresentToTheUser();
+		case EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED : return getLengthOfCharacterStringAccepted();
 		default : return null;
 		}
 	}
@@ -412,6 +464,7 @@ yte<br>
 		case EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS : return isValidCharacterStringSettingAcceptanceStatus(property.edt);
 		case EPC_SUPPORTED_CHARACTER_CODES : return isValidSupportedCharacterCodes(property.edt);
 		case EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER : return isValidCharacterStringToPresentToTheUser(property.edt);
+		case EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED : return isValidLengthOfCharacterStringAccepted(property.edt);
 		default : return false;
 		}
 	}
@@ -489,6 +542,9 @@ yte<br>
 			case EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER : 
 				onGetCharacterStringToPresentToTheUser(eoj, tid, esv, property, success);
 				return true;
+			case EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED : 
+				onGetLengthOfCharacterStringAccepted(eoj, tid, esv, property, success);
+				return true;
 			default :
 				return false;
 			}
@@ -504,14 +560,14 @@ yte<br>
 		 * = 0x01).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 *  <br>
+		 * <br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -529,14 +585,14 @@ Byte<br>
 		 * = 0x01).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 *  <br>
+		 * <br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -554,14 +610,14 @@ Byte<br>
 		 * = 0x01).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 *  <br>
+		 * <br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : null<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -581,15 +637,15 @@ Byte<br>
 		 * = 0x01).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 *  <br>
 		 * <br>
-		 * Data type : unsigned char ~
+		 * <br>
+		 * Data type : unsigned char×
 2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -604,18 +660,16 @@ Byte<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-		 * = 0x01).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 *  <br>
 		 * <br>
-		 * Data type : unsigned char ~
+		 * <br>
+		 * Data type : unsigned char×
 Max 247<br>
 		 * <br>
-		 * Data size : Max247 B
-yte<br>
+		 * Data size : Max247 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -630,18 +684,16 @@ yte<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-		 * = 0x01).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 *  <br>
 		 * <br>
-		 * Data type : unsigned char ~
+		 * <br>
+		 * Data type : unsigned char×
 Max 247<br>
 		 * <br>
-		 * Data size : Max247 B
-yte<br>
+		 * Data size : Max247 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -649,6 +701,32 @@ yte<br>
 		 * Get - optional<br>
 		 */
 		protected void onGetCharacterStringToPresentToTheUser(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Length of character string accepted<br>
+		 * <br>
+		 * EPC : 0xB4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
+		 * = 0x01).<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * <br>
+		 * <br>
+		 * Data type : unsigned char×
+2<br>
+		 * <br>
+		 * Data size : 2
+bytes<br>
+		 * <br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		protected void onGetLengthOfCharacterStringAccepted(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 	}
 
 	public static class Setter extends DeviceObject.Setter {
@@ -680,8 +758,8 @@ yte<br>
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -706,14 +784,14 @@ yte<br>
 		 * = 0x01).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 *  <br>
+		 * <br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -731,18 +809,16 @@ Byte<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-		 * = 0x01).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 *  <br>
 		 * <br>
-		 * Data type : unsigned char ~
+		 * <br>
+		 * Data type : unsigned char×
 Max 247<br>
 		 * <br>
-		 * Data size : Max247 B
-yte<br>
+		 * Data size : Max247 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -832,8 +908,8 @@ yte<br>
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -874,14 +950,14 @@ yte<br>
 		 * = 0x01).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 *  <br>
+		 * <br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -902,14 +978,14 @@ Byte<br>
 		 * = 0x01).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 *  <br>
+		 * <br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : null<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -932,15 +1008,15 @@ Byte<br>
 		 * = 0x01).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 *  <br>
 		 * <br>
-		 * Data type : unsigned char ~
+		 * <br>
+		 * Data type : unsigned char×
 2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -958,18 +1034,16 @@ Byte<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-		 * = 0x01).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 *  <br>
 		 * <br>
-		 * Data type : unsigned char ~
+		 * <br>
+		 * Data type : unsigned char×
 Max 247<br>
 		 * <br>
-		 * Data size : Max247 B
-yte<br>
+		 * Data size : Max247 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -978,6 +1052,35 @@ yte<br>
 		 */
 		public Getter reqGetCharacterStringToPresentToTheUser() {
 			reqGetProperty(EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER);
+			return this;
+		}
+		/**
+		 * Property name : Length of character string accepted<br>
+		 * <br>
+		 * EPC : 0xB4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
+		 * = 0x01).<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * <br>
+		 * <br>
+		 * Data type : unsigned char×
+2<br>
+		 * <br>
+		 * Data size : 2
+bytes<br>
+		 * <br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Getter reqGetLengthOfCharacterStringAccepted() {
+			reqGetProperty(EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED);
 			return this;
 		}
 	}
@@ -1058,8 +1161,8 @@ yte<br>
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -1100,14 +1203,14 @@ yte<br>
 		 * = 0x01).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 *  <br>
+		 * <br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1128,14 +1231,14 @@ Byte<br>
 		 * = 0x01).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 *  <br>
+		 * <br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : null<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1158,15 +1261,15 @@ Byte<br>
 		 * = 0x01).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 *  <br>
 		 * <br>
-		 * Data type : unsigned char ~
+		 * <br>
+		 * Data type : unsigned char×
 2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1184,18 +1287,16 @@ Byte<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-		 * = 0x01).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 *  <br>
 		 * <br>
-		 * Data type : unsigned char ~
+		 * <br>
+		 * Data type : unsigned char×
 Max 247<br>
 		 * <br>
-		 * Data size : Max247 B
-yte<br>
+		 * Data size : Max247 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1204,6 +1305,35 @@ yte<br>
 		 */
 		public Informer reqInformCharacterStringToPresentToTheUser() {
 			reqInformProperty(EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER);
+			return this;
+		}
+		/**
+		 * Property name : Length of character string accepted<br>
+		 * <br>
+		 * EPC : 0xB4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
+		 * = 0x01).<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * <br>
+		 * <br>
+		 * Data type : unsigned char×
+2<br>
+		 * <br>
+		 * Data size : 2
+bytes<br>
+		 * <br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Informer reqInformLengthOfCharacterStringAccepted() {
+			reqInformProperty(EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED);
 			return this;
 		}
 	}
@@ -1237,6 +1367,8 @@ yte<br>
 		protected byte[] getSupportedCharacterCodes() {return null;}
 		@Override
 		protected boolean setCharacterStringToPresentToTheUser(byte[] edt) {return false;}
+		@Override
+		protected byte[] getLengthOfCharacterStringAccepted() {return null;}
 	}
 	
 	public static Setter setG() {

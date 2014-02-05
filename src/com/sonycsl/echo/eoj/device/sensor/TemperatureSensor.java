@@ -50,17 +50,16 @@ public abstract class TemperatureSensor extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -76,17 +75,16 @@ public abstract class TemperatureSensor extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -102,10 +100,10 @@ public abstract class TemperatureSensor extends DeviceObject {
 	 * EPC : 0xE0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured temperature value in units of 0.1. C.<br>
+	 * This property indicates the measured temperature value in units of 0.1.C.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0xF554.0x7FFF (-2732.32766) (-273.2.3276.6.C)<br>
+	 * 0xF554.0x7FFE (-2732.32766) (-273.2.3276.6.C)<br>
 	 * <br>
 	 * Data type : signed short<br>
 	 * <br>
@@ -125,10 +123,10 @@ public abstract class TemperatureSensor extends DeviceObject {
 	 * EPC : 0xE0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured temperature value in units of 0.1. C.<br>
+	 * This property indicates the measured temperature value in units of 0.1.C.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0xF554.0x7FFF (-2732.32766) (-273.2.3276.6.C)<br>
+	 * 0xF554.0x7FFE (-2732.32766) (-273.2.3276.6.C)<br>
 	 * <br>
 	 * Data type : signed short<br>
 	 * <br>
@@ -247,10 +245,10 @@ public abstract class TemperatureSensor extends DeviceObject {
 		 * EPC : 0xE0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured temperature value in units of 0.1. C.<br>
+		 * This property indicates the measured temperature value in units of 0.1.C.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xF554.0x7FFF (-2732.32766) (-273.2.3276.6.C)<br>
+		 * 0xF554.0x7FFE (-2732.32766) (-273.2.3276.6.C)<br>
 		 * <br>
 		 * Data type : signed short<br>
 		 * <br>
@@ -295,8 +293,8 @@ public abstract class TemperatureSensor extends DeviceObject {
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -390,8 +388,8 @@ public abstract class TemperatureSensor extends DeviceObject {
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -428,10 +426,10 @@ public abstract class TemperatureSensor extends DeviceObject {
 		 * EPC : 0xE0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured temperature value in units of 0.1. C.<br>
+		 * This property indicates the measured temperature value in units of 0.1.C.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xF554.0x7FFF (-2732.32766) (-273.2.3276.6.C)<br>
+		 * 0xF554.0x7FFE (-2732.32766) (-273.2.3276.6.C)<br>
 		 * <br>
 		 * Data type : signed short<br>
 		 * <br>
@@ -526,8 +524,8 @@ public abstract class TemperatureSensor extends DeviceObject {
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -564,10 +562,10 @@ public abstract class TemperatureSensor extends DeviceObject {
 		 * EPC : 0xE0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured temperature value in units of 0.1. C.<br>
+		 * This property indicates the measured temperature value in units of 0.1.C.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xF554.0x7FFF (-2732.32766) (-273.2.3276.6.C)<br>
+		 * 0xF554.0x7FFE (-2732.32766) (-273.2.3276.6.C)<br>
 		 * <br>
 		 * Data type : signed short<br>
 		 * <br>

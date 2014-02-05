@@ -52,16 +52,15 @@ public abstract class SnowSensor extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates ON/OFFstatus<br>
+	 * This property indicates ON/OFF status<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -79,16 +78,15 @@ Byte<br>
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates ON/OFFstatus<br>
+	 * This property indicates ON/OFF status<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -106,16 +104,15 @@ Byte<br>
 	 * EPC : 0xB0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This    property    indicates    threshold levels with 8 steps<br>
+	 * This property indicates threshold levels with 8 steps<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x31-0x38<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -131,16 +128,15 @@ Byte<br>
 	 * EPC : 0xB0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This    property    indicates    threshold levels with 8 steps<br>
+	 * This property indicates threshold levels with 8 steps<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x31-0x38<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -156,16 +152,15 @@ Byte<br>
 	 * EPC : 0xB0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This    property    indicates    threshold levels with 8 steps<br>
+	 * This property indicates threshold levels with 8 steps<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x31-0x38<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -189,11 +184,10 @@ Byte<br>
 	 * Value range (decimal notation) :<br>
 	 * detected 0x41, not detected 0x42<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -216,11 +210,10 @@ Byte<br>
 	 * Value range (decimal notation) :<br>
 	 * detected 0x41, not detected 0x42<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -346,16 +339,15 @@ Byte<br>
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This    property    indicates    threshold levels with 8 steps<br>
+		 * This property indicates threshold levels with 8 steps<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31-0x38<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -371,16 +363,15 @@ Byte<br>
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This    property    indicates    threshold levels with 8 steps<br>
+		 * This property indicates threshold levels with 8 steps<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31-0x38<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -401,11 +392,10 @@ Byte<br>
 		 * Value range (decimal notation) :<br>
 		 * detected 0x41, not detected 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -448,8 +438,8 @@ Byte<br>
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -470,16 +460,15 @@ Byte<br>
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This    property    indicates    threshold levels with 8 steps<br>
+		 * This property indicates threshold levels with 8 steps<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31-0x38<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -571,8 +560,8 @@ Byte<br>
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -609,16 +598,15 @@ Byte<br>
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This    property    indicates    threshold levels with 8 steps<br>
+		 * This property indicates threshold levels with 8 steps<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31-0x38<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -642,11 +630,10 @@ Byte<br>
 		 * Value range (decimal notation) :<br>
 		 * detected 0x41, not detected 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -739,8 +726,8 @@ Byte<br>
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -777,16 +764,15 @@ Byte<br>
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This    property    indicates    threshold levels with 8 steps<br>
+		 * This property indicates threshold levels with 8 steps<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31-0x38<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -810,11 +796,10 @@ Byte<br>
 		 * Value range (decimal notation) :<br>
 		 * detected 0x41, not detected 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>

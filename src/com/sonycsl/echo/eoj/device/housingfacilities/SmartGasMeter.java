@@ -27,12 +27,12 @@ public abstract class SmartGasMeter extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x0289;
 
-	public static final byte EPC_GAS_METER_CLASSIFICATION = (byte)0xE0;
-	public static final byte EPC_OWNER_CLASSIFICATION = (byte)0xE1;
+	public static final byte EPC_GAS_METER_CLASSIFICATION_SETTING = (byte)0xE0;
+	public static final byte EPC_OWNER_CLASSIFICATION_SETTING = (byte)0xE1;
 	public static final byte EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION = (byte)0xE2;
-	public static final byte EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS = (byte)0xE3;
-	public static final byte EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS = (byte)0xE4;
-	public static final byte EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED = (byte)0xE5;
+	public static final byte EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTION = (byte)0xE3;
+	public static final byte EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTION = (byte)0xE4;
+	public static final byte EPC_DAY_SETTING_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTION_IS_TO_BE_RETRIEVED = (byte)0xE5;
 	public static final byte EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA = (byte)0xE6;
 	public static final byte EPC_SECURITY_DATA_INFORMATION = (byte)0xE7;
 	public static final byte EPC_VALVE_CLOSURE_BY_THE_CENTER = (byte)0xE8;
@@ -41,7 +41,9 @@ public abstract class SmartGasMeter extends DeviceObject {
 	public static final byte EPC_SHUTOFF_VALVE_STATUS = (byte)0xEB;
 	public static final byte EPC_HISTORICAL_DATA_OF_SHUTOFF_REASONS = (byte)0xEC;
 	public static final byte EPC_ID_NUMBER_SETTING = (byte)0xED;
-	public static final byte EPC_VERIFICATION_EXPIRATION_INFORMATION = (byte)0xEE;
+	public static final byte EPC_VERIFICATION_EXPIRATION_SETTING = (byte)0xEE;
+	public static final byte EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION_INFORMATION_WITH_DATE_AND_TIME = (byte)0xD0;
+	public static final byte EPC_HISTORICAL_INFORMATION_OF_CUMULATIVE_GAS_CONSUMPTION = (byte)0xD1;
 
 	@Override
 	protected void setupPropertyMaps() {
@@ -51,9 +53,7 @@ public abstract class SmartGasMeter extends DeviceObject {
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION);
-		addGetProperty(EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS);
-		addStatusChangeAnnouncementProperty(EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA);
-		addStatusChangeAnnouncementProperty(EPC_VALVE_CLOSURE_BY_THE_CENTER);
+		addGetProperty(EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION_INFORMATION_WITH_DATE_AND_TIME);
 	}
 	
 	@Override
@@ -67,16 +67,15 @@ public abstract class SmartGasMeter extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the<br>
-	 * ON/OFF status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON=0x30�COFF=0x31<br>
+	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -94,16 +93,15 @@ Byte<br>
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the<br>
-	 * ON/OFF status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON=0x30�COFF=0x31<br>
+	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -116,7 +114,7 @@ Byte<br>
 	 */
 	protected abstract byte[] getOperationStatus();
 	/**
-	 * Property name : Gas meter classification<br>
+	 * Property name : Gas meter classification setting<br>
 	 * <br>
 	 * EPC : 0xE0<br>
 	 * <br>
@@ -124,15 +122,12 @@ Byte<br>
 	 * This property indicates the type of the gas meter.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x30�Fcity gas<br>
-	 * 0x31�FLP gas<br>
-	 * 0x32�Fnatural gas<br>
-	 * 0x33�Fothers<br>
+	 * 0x30: city gas 0x31: LP gas 0x32: natural gas 0x33: others<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -141,9 +136,9 @@ Byte<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setGasMeterClassification(byte[] edt) {return false;}
+	protected boolean setGasMeterClassificationSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : Gas meter classification<br>
+	 * Property name : Gas meter classification setting<br>
 	 * <br>
 	 * EPC : 0xE0<br>
 	 * <br>
@@ -151,15 +146,12 @@ Byte<br>
 	 * This property indicates the type of the gas meter.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x30�Fcity gas<br>
-	 * 0x31�FLP gas<br>
-	 * 0x32�Fnatural gas<br>
-	 * 0x33�Fothers<br>
+	 * 0x30: city gas 0x31: LP gas 0x32: natural gas 0x33: others<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -168,9 +160,9 @@ Byte<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getGasMeterClassification() {return null;}
+	protected byte[] getGasMeterClassificationSetting() {return null;}
 	/**
-	 * Property name : Gas meter classification<br>
+	 * Property name : Gas meter classification setting<br>
 	 * <br>
 	 * EPC : 0xE0<br>
 	 * <br>
@@ -178,15 +170,12 @@ Byte<br>
 	 * This property indicates the type of the gas meter.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x30�Fcity gas<br>
-	 * 0x31�FLP gas<br>
-	 * 0x32�Fnatural gas<br>
-	 * 0x33�Fothers<br>
+	 * 0x30: city gas 0x31: LP gas 0x32: natural gas 0x33: others<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -195,29 +184,26 @@ Byte<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidGasMeterClassification(byte[] edt) {
+	protected boolean isValidGasMeterClassificationSetting(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
 	/**
-	 * Property name : Owner classification<br>
+	 * Property name : Owner classification setting<br>
 	 * <br>
 	 * EPC : 0xE1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the type of the owner of the meter.<br>
+	 * This property indicates the type of owner of the meter.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x30�Fnot specified<br>
-	 * 0x31�Fcity gas<br>
-	 * 0x32�FLP gas<br>
-	 * 0x33�Fprivate-sector company<br>
-	 * 0x34�Findividual<br>
+	 * 0x30: not specified 0x31: city gas 0x32: LP gas<br>
+	 * 0x33: private-sector company 0x34: individual<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -226,26 +212,23 @@ Byte<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setOwnerClassification(byte[] edt) {return false;}
+	protected boolean setOwnerClassificationSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : Owner classification<br>
+	 * Property name : Owner classification setting<br>
 	 * <br>
 	 * EPC : 0xE1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the type of the owner of the meter.<br>
+	 * This property indicates the type of owner of the meter.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x30�Fnot specified<br>
-	 * 0x31�Fcity gas<br>
-	 * 0x32�FLP gas<br>
-	 * 0x33�Fprivate-sector company<br>
-	 * 0x34�Findividual<br>
+	 * 0x30: not specified 0x31: city gas 0x32: LP gas<br>
+	 * 0x33: private-sector company 0x34: individual<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -254,26 +237,23 @@ Byte<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getOwnerClassification() {return null;}
+	protected byte[] getOwnerClassificationSetting() {return null;}
 	/**
-	 * Property name : Owner classification<br>
+	 * Property name : Owner classification setting<br>
 	 * <br>
 	 * EPC : 0xE1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the type of the owner of the meter.<br>
+	 * This property indicates the type of owner of the meter.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x30�Fnot specified<br>
-	 * 0x31�Fcity gas<br>
-	 * 0x32�FLP gas<br>
-	 * 0x33�Fprivate-sector company<br>
-	 * 0x34�Findividual<br>
+	 * 0x30: not specified 0x31: city gas 0x32: LP gas<br>
+	 * 0x33: private-sector company 0x34: individual<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -282,7 +262,7 @@ Byte<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidOwnerClassification(byte[] edt) {
+	protected boolean isValidOwnerClassificationSetting(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
@@ -295,16 +275,15 @@ Byte<br>
 	 * This property indicates the measured cumulative gas consumption in m3.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x3B9AC9FF<br>
-	 * (0-999,999,999�j<br>
+	 * 0.0x3B9AC9FF (0.999,999,999)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : 0.001
-��3<br>
+m3<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -321,16 +300,15 @@ Byte<br>
 	 * This property indicates the measured cumulative gas consumption in m3.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x3B9AC9FF<br>
-	 * (0-999,999,999�j<br>
+	 * 0.0x3B9AC9FF (0.999,999,999)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : 0.001
-��3<br>
+m3<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -342,156 +320,146 @@ Byte<br>
 		return true;
 	}
 	/**
-	 * Property name : Unit for measured cumulative gas consumptions<br>
+	 * Property name : Unit for measured cumulative gas consumption<br>
 	 * <br>
 	 * EPC : 0xE3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the unit (multiplying factor) for the measured cumulative gas consumption and the historical data of measured cumulative gas consumptions.<br>
+	 * This property indicates the unit (multiplying factor) for the measured cumulative gas consumption and the historical data of measured cumulative gas consumption.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00: 1��3<br>
-	 * 0x01: 0.1��3<br>
-	 * 0x02: 0.01��3<br>
-	 * 0x03: 0.001��3�iinitial value�j<br>
-	 * 0x04: 0.0001��3<br>
-	 * 0x05: 0.00001��3<br>
-	 * 0x06: 0.000001��3<br>
+	 * 0x00: 1m3<br>
+	 * 0x01: 0.1m3<br>
+	 * 0x02: 0.01m3<br>
+	 * 0x03: 0.001m3<br>
+	 * 0x04: 0.0001m3<br>
+	 * 0x05: 0.00001m3<br>
+	 * 0x06: 0.000001m3<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
-	 * Get - mandatory<br>
+	 * Get - optional<br>
 	 */
-	protected abstract byte[] getUnitForMeasuredCumulativeGasConsumptions();
+	protected byte[] getUnitForMeasuredCumulativeGasConsumption() {return null;}
 	/**
-	 * Property name : Unit for measured cumulative gas consumptions<br>
+	 * Property name : Unit for measured cumulative gas consumption<br>
 	 * <br>
 	 * EPC : 0xE3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the unit (multiplying factor) for the measured cumulative gas consumption and the historical data of measured cumulative gas consumptions.<br>
+	 * This property indicates the unit (multiplying factor) for the measured cumulative gas consumption and the historical data of measured cumulative gas consumption.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00: 1��3<br>
-	 * 0x01: 0.1��3<br>
-	 * 0x02: 0.01��3<br>
-	 * 0x03: 0.001��3�iinitial value�j<br>
-	 * 0x04: 0.0001��3<br>
-	 * 0x05: 0.00001��3<br>
-	 * 0x06: 0.000001��3<br>
+	 * 0x00: 1m3<br>
+	 * 0x01: 0.1m3<br>
+	 * 0x02: 0.01m3<br>
+	 * 0x03: 0.001m3<br>
+	 * 0x04: 0.0001m3<br>
+	 * 0x05: 0.00001m3<br>
+	 * 0x06: 0.000001m3<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
-	 * Get - mandatory<br>
+	 * Get - optional<br>
 	 */
-	protected boolean isValidUnitForMeasuredCumulativeGasConsumptions(byte[] edt) {
+	protected boolean isValidUnitForMeasuredCumulativeGasConsumption(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
 	/**
-	 * Property name : Historical data of measured cumulative gas consumptions<br>
+	 * Property name : Historical data of measured cumulative gas consumption<br>
 	 * <br>
 	 * EPC : 0xE4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative gas consumptions is to be retrieved and the historical data of measured cumulative gas consumptions, which consists of 48 pieces of<br>
-	 * half-hourly data for the preceding<br>
-	 * 24 hours.<br>
+	 * This property indicates the day for which the historical data of measured cumulative gas consumption is to be retrieved and the historical data of measured cumulative gas consumption, which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000-0x0063:<br>
-	 * 0x0-0x3B9AC9FF<br>
-	 * (0-99) : (0-999,999.999�j<br>
+	 * 0x0000.0x0063:<br>
+	 * 0x0.0x3B9AC9FF (0.99) : (0.999,999.999)<br>
 	 * <br>
 	 * Data type : unsigned short
-�{
-unsigned
++unsigne d
 long
-�~48<br>
+×48<br>
 	 * <br>
 	 * Data size : 194
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : 0.001
-��3<br>
+m3<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getHistoricalDataOfMeasuredCumulativeGasConsumptions() {return null;}
+	protected byte[] getHistoricalDataOfMeasuredCumulativeGasConsumption() {return null;}
 	/**
-	 * Property name : Historical data of measured cumulative gas consumptions<br>
+	 * Property name : Historical data of measured cumulative gas consumption<br>
 	 * <br>
 	 * EPC : 0xE4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative gas consumptions is to be retrieved and the historical data of measured cumulative gas consumptions, which consists of 48 pieces of<br>
-	 * half-hourly data for the preceding<br>
-	 * 24 hours.<br>
+	 * This property indicates the day for which the historical data of measured cumulative gas consumption is to be retrieved and the historical data of measured cumulative gas consumption, which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000-0x0063:<br>
-	 * 0x0-0x3B9AC9FF<br>
-	 * (0-99) : (0-999,999.999�j<br>
+	 * 0x0000.0x0063:<br>
+	 * 0x0.0x3B9AC9FF (0.99) : (0.999,999.999)<br>
 	 * <br>
 	 * Data type : unsigned short
-�{
-unsigned
++unsigne d
 long
-�~48<br>
+×48<br>
 	 * <br>
 	 * Data size : 194
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : 0.001
-��3<br>
+m3<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidHistoricalDataOfMeasuredCumulativeGasConsumptions(byte[] edt) {
+	protected boolean isValidHistoricalDataOfMeasuredCumulativeGasConsumption(byte[] edt) {
 		if(edt == null || !(edt.length == 194)) return false;
 		return true;
 	}
 	/**
-	 * Property name : Day for which the historical data of measured cumulative gas consumptions is to be retrieved<br>
+	 * Property name : Day setting for which the historical data of measured cumulative gas consumption is to be retrieved<br>
 	 * <br>
 	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative gas consumptions (which consists of<br>
-	 * 48 pieces of half-hourly data for<br>
-	 * the preceding 24 hours) is to be retrieved.<br>
+	 * This property indicates the day for which the historical data of measured cumulative gas consumption (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00-0x63 ( 0-99)<br>
+	 * 0x00.0x63 (0.99)<br>
 	 * 0: current day<br>
-	 * 1 - 99: previous day - day that precedes the current day by 99 days<br>
+	 * 1.99: previous day.day that precedes the current day by 99 days<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -500,26 +468,24 @@ Byte<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(byte[] edt) {return false;}
+	protected boolean setDaySettingForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionIsToBeRetrieved(byte[] edt) {return false;}
 	/**
-	 * Property name : Day for which the historical data of measured cumulative gas consumptions is to be retrieved<br>
+	 * Property name : Day setting for which the historical data of measured cumulative gas consumption is to be retrieved<br>
 	 * <br>
 	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative gas consumptions (which consists of<br>
-	 * 48 pieces of half-hourly data for<br>
-	 * the preceding 24 hours) is to be retrieved.<br>
+	 * This property indicates the day for which the historical data of measured cumulative gas consumption (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00-0x63 ( 0-99)<br>
+	 * 0x00.0x63 (0.99)<br>
 	 * 0: current day<br>
-	 * 1 - 99: previous day - day that precedes the current day by 99 days<br>
+	 * 1.99: previous day.day that precedes the current day by 99 days<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -528,26 +494,24 @@ Byte<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved() {return null;}
+	protected byte[] getDaySettingForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionIsToBeRetrieved() {return null;}
 	/**
-	 * Property name : Day for which the historical data of measured cumulative gas consumptions is to be retrieved<br>
+	 * Property name : Day setting for which the historical data of measured cumulative gas consumption is to be retrieved<br>
 	 * <br>
 	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative gas consumptions (which consists of<br>
-	 * 48 pieces of half-hourly data for<br>
-	 * the preceding 24 hours) is to be retrieved.<br>
+	 * This property indicates the day for which the historical data of measured cumulative gas consumption (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00-0x63 ( 0-99)<br>
+	 * 0x00.0x63 (0.99)<br>
 	 * 0: current day<br>
-	 * 1 - 99: previous day - day that precedes the current day by 99 days<br>
+	 * 1.99: previous day.day that precedes the current day by 99 days<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -556,13 +520,12 @@ Byte<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(byte[] edt) {
+	protected boolean isValidDaySettingForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionIsToBeRetrieved(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
 	/**
-	 * Property name : Detection of abnormal value in metering
-data<br>
+	 * Property name : Detection of abnormal value in metering data<br>
 	 * <br>
 	 * EPC : 0xE6<br>
 	 * <br>
@@ -570,13 +533,12 @@ data<br>
 	 * This property indicates whether the meter has detected an abnormal value in the metering data.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Abnormal value detected: 0x41<br>
-	 * No abnormal value detected: 0x42<br>
+	 * Abnormal value detected: 0x41 No abnormal value detected: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -584,13 +546,10 @@ Byte<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
 	 * Get - optional<br>
-	 * <br>
-	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getDetectionOfAbnormalValueInMeteringData() {return null;}
 	/**
-	 * Property name : Detection of abnormal value in metering
-data<br>
+	 * Property name : Detection of abnormal value in metering data<br>
 	 * <br>
 	 * EPC : 0xE6<br>
 	 * <br>
@@ -598,13 +557,12 @@ data<br>
 	 * This property indicates whether the meter has detected an abnormal value in the metering data.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Abnormal value detected: 0x41<br>
-	 * No abnormal value detected: 0x42<br>
+	 * Abnormal value detected: 0x41 No abnormal value detected: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -612,8 +570,6 @@ Byte<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
 	 * Get - optional<br>
-	 * <br>
-	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidDetectionOfAbnormalValueInMeteringData(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
@@ -625,16 +581,16 @@ Byte<br>
 	 * EPC : 0xE7<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Provides security information about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>
+	 * Provides security information  about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * For details, refer to the explanations under (9).<br>
 	 * <br>
 	 * Data type : unsigned char
-�~10<br>
+×10<br>
 	 * <br>
 	 * Data size : 10
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -650,16 +606,16 @@ Byte<br>
 	 * EPC : 0xE7<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Provides security information about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>
+	 * Provides security information  about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * For details, refer to the explanations under (9).<br>
 	 * <br>
 	 * Data type : unsigned char
-�~10<br>
+×10<br>
 	 * <br>
 	 * Data size : 10
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -681,14 +637,13 @@ Byte<br>
 	 * This property indicates whether the Center has closed the gas shutoff valve of the meter.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Center has closed the valve: 0x41<br>
-	 * Center has not closed the valve:<br>
+	 * Center has closed the valve: 0x41 Center has not closed the valve:<br>
 	 * 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -696,8 +651,6 @@ Byte<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
 	 * Get - optional<br>
-	 * <br>
-	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getValveClosureByTheCenter() {return null;}
 	/**
@@ -709,14 +662,13 @@ Byte<br>
 	 * This property indicates whether the Center has closed the gas shutoff valve of the meter.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Center has closed the valve: 0x41<br>
-	 * Center has not closed the valve:<br>
+	 * Center has closed the valve: 0x41 Center has not closed the valve:<br>
 	 * 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -724,16 +676,13 @@ Byte<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
 	 * Get - optional<br>
-	 * <br>
-	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidValveClosureByTheCenter(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
 	/**
-	 * Property name : Permission
-from the Center to reopen the valve closed by the Center<br>
+	 * Property name : Permission from the Center to reopen the valve closed by the Center<br>
 	 * <br>
 	 * EPC : 0xE9<br>
 	 * <br>
@@ -742,13 +691,12 @@ from the Center to reopen the valve closed by the Center<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Permission has been given by the Center to reopen the gas shutoff valve closed by the Center: 0x41<br>
-	 * Permission to reopen the gas shutoff valve closed by the Center has not been given by the Center:<br>
-	 * 0x42<br>
+	 * Permission to reopen the gas shutoff valve closed by the Center has not been given by the Center: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -759,8 +707,7 @@ Byte<br>
 	 */
 	protected byte[] getPermissionFromTheCenterToReopenTheValveClosedByTheCenter() {return null;}
 	/**
-	 * Property name : Permission
-from the Center to reopen the valve closed by the Center<br>
+	 * Property name : Permission from the Center to reopen the valve closed by the Center<br>
 	 * <br>
 	 * EPC : 0xE9<br>
 	 * <br>
@@ -769,13 +716,12 @@ from the Center to reopen the valve closed by the Center<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Permission has been given by the Center to reopen the gas shutoff valve closed by the Center: 0x41<br>
-	 * Permission to reopen the gas shutoff valve closed by the Center has not been given by the Center:<br>
-	 * 0x42<br>
+	 * Permission to reopen the gas shutoff valve closed by the Center has not been given by the Center: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -803,7 +749,7 @@ Byte<br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -828,7 +774,7 @@ Byte<br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -850,13 +796,12 @@ Byte<br>
 	 * This property indicates whether the shutoff valve is open or closed.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Shutoff valve open: 0x41<br>
-	 * Shutoff valve closed: 0x42<br>
+	 * Shutoff valve open: 0x41 Shutoff valve closed: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -875,13 +820,12 @@ Byte<br>
 	 * This property indicates whether the shutoff valve is open or closed.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Shutoff valve open: 0x41<br>
-	 * Shutoff valve closed: 0x42<br>
+	 * Shutoff valve open: 0x41 Shutoff valve closed: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -901,16 +845,16 @@ Byte<br>
 	 * <br>
 	 * Contents of property :<br>
 	 * This property indicates the reasons for the 3 past shutoff valve-based gas shutoffs by means of bit assignment with one byte used for each of the 3 shutoff reasons.<br>
-	 * Historical data3�FHistorical data2�FHistorical data 1<br>
+	 * Historical data3: Historical data2: Historical data 1<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0xFF: 0xFF: 0xFF<br>
 	 * <br>
 	 * Data type : unsigned char
-�~3<br>
+×3<br>
 	 * <br>
 	 * Data size : 3
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -927,16 +871,16 @@ Byte<br>
 	 * <br>
 	 * Contents of property :<br>
 	 * This property indicates the reasons for the 3 past shutoff valve-based gas shutoffs by means of bit assignment with one byte used for each of the 3 shutoff reasons.<br>
-	 * Historical data3�FHistorical data2�FHistorical data 1<br>
+	 * Historical data3: Historical data2: Historical data 1<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0xFF: 0xFF: 0xFF<br>
 	 * <br>
 	 * Data type : unsigned char
-�~3<br>
+×3<br>
 	 * <br>
 	 * Data size : 3
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -955,17 +899,16 @@ Byte<br>
 	 * EPC : 0xED<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ID<br>
-	 * number of the meter.<br>
+	 * This property indicates the ID number of the meter.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 000000-FFFFFF<br>
-	 * �iInitial .value .: .�g000000�h�j<br>
+	 * 000000.FFFFFF<br>
+	 * (Initial value : “000000”)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 6
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -981,17 +924,16 @@ Byte<br>
 	 * EPC : 0xED<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ID<br>
-	 * number of the meter.<br>
+	 * This property indicates the ID number of the meter.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 000000-FFFFFF<br>
-	 * �iInitial .value .: .�g000000�h�j<br>
+	 * 000000.FFFFFF<br>
+	 * (Initial value : “000000”)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 6
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -1007,17 +949,16 @@ Byte<br>
 	 * EPC : 0xED<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ID<br>
-	 * number of the meter.<br>
+	 * This property indicates the ID number of the meter.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 000000-FFFFFF<br>
-	 * �iInitial .value .: .�g000000�h�j<br>
+	 * 000000.FFFFFF<br>
+	 * (Initial value : “000000”)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 6
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -1031,7 +972,7 @@ Byte<br>
 		return true;
 	}
 	/**
-	 * Property name : Verification expiration information<br>
+	 * Property name : Verification expiration setting<br>
 	 * <br>
 	 * EPC : 0xEE<br>
 	 * <br>
@@ -1040,12 +981,12 @@ Byte<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * YYYYMM<br>
-	 * YYYY�iYear�j�CMM�iMonth�j<br>
+	 * YYYY (Year), MM (Month)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 6
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -1054,9 +995,9 @@ Byte<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setVerificationExpirationInformation(byte[] edt) {return false;}
+	protected boolean setVerificationExpirationSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : Verification expiration information<br>
+	 * Property name : Verification expiration setting<br>
 	 * <br>
 	 * EPC : 0xEE<br>
 	 * <br>
@@ -1065,12 +1006,12 @@ Byte<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * YYYYMM<br>
-	 * YYYY�iYear�j�CMM�iMonth�j<br>
+	 * YYYY (Year), MM (Month)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 6
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -1079,9 +1020,9 @@ Byte<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getVerificationExpirationInformation() {return null;}
+	protected byte[] getVerificationExpirationSetting() {return null;}
 	/**
-	 * Property name : Verification expiration information<br>
+	 * Property name : Verification expiration setting<br>
 	 * <br>
 	 * EPC : 0xEE<br>
 	 * <br>
@@ -1090,12 +1031,12 @@ Byte<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * YYYYMM<br>
-	 * YYYY�iYear�j�CMM�iMonth�j<br>
+	 * YYYY (Year), MM (Month)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 6
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -1104,8 +1045,119 @@ Byte<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidVerificationExpirationInformation(byte[] edt) {
+	protected boolean isValidVerificationExpirationSetting(byte[] edt) {
 		if(edt == null || !(edt.length == 6)) return false;
+		return true;
+	}
+	/**
+	 * Property name : Measured cumulative gas consumption information with date and time<br>
+	 * <br>
+	 * EPC : 0xD0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the cumulative gas consumption and the date and time of measurement.<br>
+	 * Date of measurement: YYYY:MM:DD<br>
+	 * Time of measurement: HH:MM:SS<br>
+	 * Cumulative gas consumption: 9 digits<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 1.4 bytes: 0.0x270f:1.0x0C:1.0x1F (=0.9999):(=1.12):(1.31)<br>
+	 * 5.7 bytes: 0.0x17:0.0x3B:0.-0x3B (=0.23):(=0.59): (=0.59)<br>
+	 * 8.11 bytes: 0x00000000.0x3B9AC9FF<br>
+	 * (0.999,999,999)<br>
+	 * <br>
+	 * Data type : unsigne d char×4+
+unsigne d char×3+
+unsigne d long<br>
+	 * <br>
+	 * Data size : 11 bytes<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected abstract byte[] getMeasuredCumulativeGasConsumptionInformationWithDateAndTime();
+	/**
+	 * Property name : Measured cumulative gas consumption information with date and time<br>
+	 * <br>
+	 * EPC : 0xD0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the cumulative gas consumption and the date and time of measurement.<br>
+	 * Date of measurement: YYYY:MM:DD<br>
+	 * Time of measurement: HH:MM:SS<br>
+	 * Cumulative gas consumption: 9 digits<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 1.4 bytes: 0.0x270f:1.0x0C:1.0x1F (=0.9999):(=1.12):(1.31)<br>
+	 * 5.7 bytes: 0.0x17:0.0x3B:0.-0x3B (=0.23):(=0.59): (=0.59)<br>
+	 * 8.11 bytes: 0x00000000.0x3B9AC9FF<br>
+	 * (0.999,999,999)<br>
+	 * <br>
+	 * Data type : unsigne d char×4+
+unsigne d char×3+
+unsigne d long<br>
+	 * <br>
+	 * Data size : 11 bytes<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidMeasuredCumulativeGasConsumptionInformationWithDateAndTime(byte[] edt) {
+		if(edt == null || !(edt.length == 11)) return false;
+		return true;
+	}
+	/**
+	 * Property name : Historical information of cumulative gas consumption<br>
+	 * <br>
+	 * EPC : 0xD1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the historical information of gas consumption measured at every hour, the date and time of history start, cumulative gas consumption at history start and cumulative time interval.<br>
+	 * Date: YYYY:MM:DD Time: HH:MM:SS<br>
+	 * Historical information of gas consumption<br>
+	 * Cumulative gas consumption at history start<br>
+	 * Cumulative time interval: 5 digits, every minute<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 1.4 bytes:<br>
+	 * 0.0x270f:1.0x0C:1.0x1F<br>
+	 * (=0.9999):(=1.12):(1.31)<br>
+	 * 5.7 bytes:<br>
+	 * 0.0x17:0.0x3B:0.0x3B<br>
+	 * (=0.23):(=0.59):(=0.59)<br>
+	 * 8.103 bytes:<br>
+	 * 0x00000000.0x0001869F×24<br>
+	 * (0.99.999m3)×24<br>
+	 * 104.107 bytes:<br>
+	 * 0x00000000.0x3B9AC9FF<br>
+	 * (0.999,999,999 m3)<br>
+	 * 108.109 bytes:<br>
+	 * 0x0001.0xFFFF<br>
+	 * (1.65535)<br>
+	 * <br>
+	 * Data type : unsigne d char×4+ unsigne d char×3+ unsigne d long×24
++unsign ed long+un signed
+short<br>
+	 * <br>
+	 * Data size : 109 bytes<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - undefined<br>
+	 */
+	protected boolean isValidHistoricalInformationOfCumulativeGasConsumption(byte[] edt) {
+		if(edt == null || !(edt.length == 109)) return false;
 		return true;
 	}
 
@@ -1115,11 +1167,11 @@ Byte<br>
 		if(success) return success;
 
 		switch(property.epc) {
-		case EPC_GAS_METER_CLASSIFICATION : return setGasMeterClassification(property.edt);
-		case EPC_OWNER_CLASSIFICATION : return setOwnerClassification(property.edt);
-		case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED : return setDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(property.edt);
+		case EPC_GAS_METER_CLASSIFICATION_SETTING : return setGasMeterClassificationSetting(property.edt);
+		case EPC_OWNER_CLASSIFICATION_SETTING : return setOwnerClassificationSetting(property.edt);
+		case EPC_DAY_SETTING_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTION_IS_TO_BE_RETRIEVED : return setDaySettingForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionIsToBeRetrieved(property.edt);
 		case EPC_ID_NUMBER_SETTING : return setIdNumberSetting(property.edt);
-		case EPC_VERIFICATION_EXPIRATION_INFORMATION : return setVerificationExpirationInformation(property.edt);
+		case EPC_VERIFICATION_EXPIRATION_SETTING : return setVerificationExpirationSetting(property.edt);
 		default : return false;
 		}
 	}
@@ -1130,12 +1182,12 @@ Byte<br>
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_GAS_METER_CLASSIFICATION : return getGasMeterClassification();
-		case EPC_OWNER_CLASSIFICATION : return getOwnerClassification();
+		case EPC_GAS_METER_CLASSIFICATION_SETTING : return getGasMeterClassificationSetting();
+		case EPC_OWNER_CLASSIFICATION_SETTING : return getOwnerClassificationSetting();
 		case EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION : return getMeasuredCumulativeGasConsumption();
-		case EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS : return getUnitForMeasuredCumulativeGasConsumptions();
-		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS : return getHistoricalDataOfMeasuredCumulativeGasConsumptions();
-		case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED : return getDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved();
+		case EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTION : return getUnitForMeasuredCumulativeGasConsumption();
+		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTION : return getHistoricalDataOfMeasuredCumulativeGasConsumption();
+		case EPC_DAY_SETTING_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTION_IS_TO_BE_RETRIEVED : return getDaySettingForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionIsToBeRetrieved();
 		case EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA : return getDetectionOfAbnormalValueInMeteringData();
 		case EPC_SECURITY_DATA_INFORMATION : return getSecurityDataInformation();
 		case EPC_VALVE_CLOSURE_BY_THE_CENTER : return getValveClosureByTheCenter();
@@ -1144,7 +1196,8 @@ Byte<br>
 		case EPC_SHUTOFF_VALVE_STATUS : return getShutoffValveStatus();
 		case EPC_HISTORICAL_DATA_OF_SHUTOFF_REASONS : return getHistoricalDataOfShutoffReasons();
 		case EPC_ID_NUMBER_SETTING : return getIdNumberSetting();
-		case EPC_VERIFICATION_EXPIRATION_INFORMATION : return getVerificationExpirationInformation();
+		case EPC_VERIFICATION_EXPIRATION_SETTING : return getVerificationExpirationSetting();
+		case EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION_INFORMATION_WITH_DATE_AND_TIME : return getMeasuredCumulativeGasConsumptionInformationWithDateAndTime();
 		default : return null;
 		}
 	}
@@ -1155,12 +1208,12 @@ Byte<br>
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_GAS_METER_CLASSIFICATION : return isValidGasMeterClassification(property.edt);
-		case EPC_OWNER_CLASSIFICATION : return isValidOwnerClassification(property.edt);
+		case EPC_GAS_METER_CLASSIFICATION_SETTING : return isValidGasMeterClassificationSetting(property.edt);
+		case EPC_OWNER_CLASSIFICATION_SETTING : return isValidOwnerClassificationSetting(property.edt);
 		case EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION : return isValidMeasuredCumulativeGasConsumption(property.edt);
-		case EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS : return isValidUnitForMeasuredCumulativeGasConsumptions(property.edt);
-		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS : return isValidHistoricalDataOfMeasuredCumulativeGasConsumptions(property.edt);
-		case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED : return isValidDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(property.edt);
+		case EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTION : return isValidUnitForMeasuredCumulativeGasConsumption(property.edt);
+		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTION : return isValidHistoricalDataOfMeasuredCumulativeGasConsumption(property.edt);
+		case EPC_DAY_SETTING_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTION_IS_TO_BE_RETRIEVED : return isValidDaySettingForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionIsToBeRetrieved(property.edt);
 		case EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA : return isValidDetectionOfAbnormalValueInMeteringData(property.edt);
 		case EPC_SECURITY_DATA_INFORMATION : return isValidSecurityDataInformation(property.edt);
 		case EPC_VALVE_CLOSURE_BY_THE_CENTER : return isValidValveClosureByTheCenter(property.edt);
@@ -1169,7 +1222,9 @@ Byte<br>
 		case EPC_SHUTOFF_VALVE_STATUS : return isValidShutoffValveStatus(property.edt);
 		case EPC_HISTORICAL_DATA_OF_SHUTOFF_REASONS : return isValidHistoricalDataOfShutoffReasons(property.edt);
 		case EPC_ID_NUMBER_SETTING : return isValidIdNumberSetting(property.edt);
-		case EPC_VERIFICATION_EXPIRATION_INFORMATION : return isValidVerificationExpirationInformation(property.edt);
+		case EPC_VERIFICATION_EXPIRATION_SETTING : return isValidVerificationExpirationSetting(property.edt);
+		case EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION_INFORMATION_WITH_DATE_AND_TIME : return isValidMeasuredCumulativeGasConsumptionInformationWithDateAndTime(property.edt);
+		case EPC_HISTORICAL_INFORMATION_OF_CUMULATIVE_GAS_CONSUMPTION : return isValidHistoricalInformationOfCumulativeGasConsumption(property.edt);
 		default : return false;
 		}
 	}
@@ -1217,20 +1272,20 @@ Byte<br>
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_GAS_METER_CLASSIFICATION : 
-				onSetGasMeterClassification(eoj, tid, esv, property, success);
+			case EPC_GAS_METER_CLASSIFICATION_SETTING : 
+				onSetGasMeterClassificationSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_OWNER_CLASSIFICATION : 
-				onSetOwnerClassification(eoj, tid, esv, property, success);
+			case EPC_OWNER_CLASSIFICATION_SETTING : 
+				onSetOwnerClassificationSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED : 
-				onSetDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(eoj, tid, esv, property, success);
+			case EPC_DAY_SETTING_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTION_IS_TO_BE_RETRIEVED : 
+				onSetDaySettingForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionIsToBeRetrieved(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ID_NUMBER_SETTING : 
 				onSetIdNumberSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_VERIFICATION_EXPIRATION_INFORMATION : 
-				onSetVerificationExpirationInformation(eoj, tid, esv, property, success);
+			case EPC_VERIFICATION_EXPIRATION_SETTING : 
+				onSetVerificationExpirationSetting(eoj, tid, esv, property, success);
 				return true;
 			default :
 				return false;
@@ -1244,23 +1299,23 @@ Byte<br>
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_GAS_METER_CLASSIFICATION : 
-				onGetGasMeterClassification(eoj, tid, esv, property, success);
+			case EPC_GAS_METER_CLASSIFICATION_SETTING : 
+				onGetGasMeterClassificationSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_OWNER_CLASSIFICATION : 
-				onGetOwnerClassification(eoj, tid, esv, property, success);
+			case EPC_OWNER_CLASSIFICATION_SETTING : 
+				onGetOwnerClassificationSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION : 
 				onGetMeasuredCumulativeGasConsumption(eoj, tid, esv, property, success);
 				return true;
-			case EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS : 
-				onGetUnitForMeasuredCumulativeGasConsumptions(eoj, tid, esv, property, success);
+			case EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTION : 
+				onGetUnitForMeasuredCumulativeGasConsumption(eoj, tid, esv, property, success);
 				return true;
-			case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS : 
-				onGetHistoricalDataOfMeasuredCumulativeGasConsumptions(eoj, tid, esv, property, success);
+			case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTION : 
+				onGetHistoricalDataOfMeasuredCumulativeGasConsumption(eoj, tid, esv, property, success);
 				return true;
-			case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED : 
-				onGetDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(eoj, tid, esv, property, success);
+			case EPC_DAY_SETTING_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTION_IS_TO_BE_RETRIEVED : 
+				onGetDaySettingForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionIsToBeRetrieved(eoj, tid, esv, property, success);
 				return true;
 			case EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA : 
 				onGetDetectionOfAbnormalValueInMeteringData(eoj, tid, esv, property, success);
@@ -1286,8 +1341,11 @@ Byte<br>
 			case EPC_ID_NUMBER_SETTING : 
 				onGetIdNumberSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_VERIFICATION_EXPIRATION_INFORMATION : 
-				onGetVerificationExpirationInformation(eoj, tid, esv, property, success);
+			case EPC_VERIFICATION_EXPIRATION_SETTING : 
+				onGetVerificationExpirationSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION_INFORMATION_WITH_DATE_AND_TIME : 
+				onGetMeasuredCumulativeGasConsumptionInformationWithDateAndTime(eoj, tid, esv, property, success);
 				return true;
 			default :
 				return false;
@@ -1295,7 +1353,7 @@ Byte<br>
 		}
 		
 		/**
-		 * Property name : Gas meter classification<br>
+		 * Property name : Gas meter classification setting<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
@@ -1303,15 +1361,12 @@ Byte<br>
 		 * This property indicates the type of the gas meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�Fcity gas<br>
-		 * 0x31�FLP gas<br>
-		 * 0x32�Fnatural gas<br>
-		 * 0x33�Fothers<br>
+		 * 0x30: city gas 0x31: LP gas 0x32: natural gas 0x33: others<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1320,9 +1375,9 @@ Byte<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetGasMeterClassification(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetGasMeterClassificationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Gas meter classification<br>
+		 * Property name : Gas meter classification setting<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
@@ -1330,15 +1385,12 @@ Byte<br>
 		 * This property indicates the type of the gas meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�Fcity gas<br>
-		 * 0x31�FLP gas<br>
-		 * 0x32�Fnatural gas<br>
-		 * 0x33�Fothers<br>
+		 * 0x30: city gas 0x31: LP gas 0x32: natural gas 0x33: others<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1347,26 +1399,23 @@ Byte<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetGasMeterClassification(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetGasMeterClassificationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Owner classification<br>
+		 * Property name : Owner classification setting<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the type of the owner of the meter.<br>
+		 * This property indicates the type of owner of the meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�Fnot specified<br>
-		 * 0x31�Fcity gas<br>
-		 * 0x32�FLP gas<br>
-		 * 0x33�Fprivate-sector company<br>
-		 * 0x34�Findividual<br>
+		 * 0x30: not specified 0x31: city gas 0x32: LP gas<br>
+		 * 0x33: private-sector company 0x34: individual<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1375,26 +1424,23 @@ Byte<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetOwnerClassification(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetOwnerClassificationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Owner classification<br>
+		 * Property name : Owner classification setting<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the type of the owner of the meter.<br>
+		 * This property indicates the type of owner of the meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�Fnot specified<br>
-		 * 0x31�Fcity gas<br>
-		 * 0x32�FLP gas<br>
-		 * 0x33�Fprivate-sector company<br>
-		 * 0x34�Findividual<br>
+		 * 0x30: not specified 0x31: city gas 0x32: LP gas<br>
+		 * 0x33: private-sector company 0x34: individual<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1403,7 +1449,7 @@ Byte<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetOwnerClassification(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetOwnerClassificationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Measured cumulative gas consumption<br>
 		 * <br>
@@ -1413,16 +1459,15 @@ Byte<br>
 		 * This property indicates the measured cumulative gas consumption in m3.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x3B9AC9FF<br>
-		 * (0-999,999,999�j<br>
+		 * 0.0x3B9AC9FF (0.999,999,999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : 0.001
-��3<br>
+m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1431,87 +1476,81 @@ Byte<br>
 		 */
 		protected void onGetMeasuredCumulativeGasConsumption(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Unit for measured cumulative gas consumptions<br>
+		 * Property name : Unit for measured cumulative gas consumption<br>
 		 * <br>
 		 * EPC : 0xE3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the unit (multiplying factor) for the measured cumulative gas consumption and the historical data of measured cumulative gas consumptions.<br>
+		 * This property indicates the unit (multiplying factor) for the measured cumulative gas consumption and the historical data of measured cumulative gas consumption.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00: 1��3<br>
-		 * 0x01: 0.1��3<br>
-		 * 0x02: 0.01��3<br>
-		 * 0x03: 0.001��3�iinitial value�j<br>
-		 * 0x04: 0.0001��3<br>
-		 * 0x05: 0.00001��3<br>
-		 * 0x06: 0.000001��3<br>
+		 * 0x00: 1m3<br>
+		 * 0x01: 0.1m3<br>
+		 * 0x02: 0.01m3<br>
+		 * 0x03: 0.001m3<br>
+		 * 0x04: 0.0001m3<br>
+		 * 0x05: 0.00001m3<br>
+		 * 0x06: 0.000001m3<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Get - optional<br>
 		 */
-		protected void onGetUnitForMeasuredCumulativeGasConsumptions(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetUnitForMeasuredCumulativeGasConsumption(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Historical data of measured cumulative gas consumptions<br>
+		 * Property name : Historical data of measured cumulative gas consumption<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative gas consumptions is to be retrieved and the historical data of measured cumulative gas consumptions, which consists of 48 pieces of<br>
-		 * half-hourly data for the preceding<br>
-		 * 24 hours.<br>
+		 * This property indicates the day for which the historical data of measured cumulative gas consumption is to be retrieved and the historical data of measured cumulative gas consumption, which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0x0063:<br>
-		 * 0x0-0x3B9AC9FF<br>
-		 * (0-99) : (0-999,999.999�j<br>
+		 * 0x0000.0x0063:<br>
+		 * 0x0.0x3B9AC9FF (0.99) : (0.999,999.999)<br>
 		 * <br>
 		 * Data type : unsigned short
-�{
-unsigned
++unsigne d
 long
-�~48<br>
+×48<br>
 		 * <br>
 		 * Data size : 194
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : 0.001
-��3<br>
+m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetHistoricalDataOfMeasuredCumulativeGasConsumptions(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetHistoricalDataOfMeasuredCumulativeGasConsumption(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Day for which the historical data of measured cumulative gas consumptions is to be retrieved<br>
+		 * Property name : Day setting for which the historical data of measured cumulative gas consumption is to be retrieved<br>
 		 * <br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative gas consumptions (which consists of<br>
-		 * 48 pieces of half-hourly data for<br>
-		 * the preceding 24 hours) is to be retrieved.<br>
+		 * This property indicates the day for which the historical data of measured cumulative gas consumption (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00-0x63 ( 0-99)<br>
+		 * 0x00.0x63 (0.99)<br>
 		 * 0: current day<br>
-		 * 1 - 99: previous day - day that precedes the current day by 99 days<br>
+		 * 1.99: previous day.day that precedes the current day by 99 days<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1520,26 +1559,24 @@ Byte<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetDaySettingForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionIsToBeRetrieved(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Day for which the historical data of measured cumulative gas consumptions is to be retrieved<br>
+		 * Property name : Day setting for which the historical data of measured cumulative gas consumption is to be retrieved<br>
 		 * <br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative gas consumptions (which consists of<br>
-		 * 48 pieces of half-hourly data for<br>
-		 * the preceding 24 hours) is to be retrieved.<br>
+		 * This property indicates the day for which the historical data of measured cumulative gas consumption (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00-0x63 ( 0-99)<br>
+		 * 0x00.0x63 (0.99)<br>
 		 * 0: current day<br>
-		 * 1 - 99: previous day - day that precedes the current day by 99 days<br>
+		 * 1.99: previous day.day that precedes the current day by 99 days<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1548,10 +1585,9 @@ Byte<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetDaySettingForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionIsToBeRetrieved(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Detection of abnormal value in metering
-data<br>
+		 * Property name : Detection of abnormal value in metering data<br>
 		 * <br>
 		 * EPC : 0xE6<br>
 		 * <br>
@@ -1559,13 +1595,12 @@ data<br>
 		 * This property indicates whether the meter has detected an abnormal value in the metering data.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Abnormal value detected: 0x41<br>
-		 * No abnormal value detected: 0x42<br>
+		 * Abnormal value detected: 0x41 No abnormal value detected: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1573,8 +1608,6 @@ Byte<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
-		 * <br>
-		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetDetectionOfAbnormalValueInMeteringData(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -1583,16 +1616,16 @@ Byte<br>
 		 * EPC : 0xE7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Provides security information about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>
+		 * Provides security information  about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * For details, refer to the explanations under (9).<br>
 		 * <br>
 		 * Data type : unsigned char
-�~10<br>
+×10<br>
 		 * <br>
 		 * Data size : 10
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1611,14 +1644,13 @@ Byte<br>
 		 * This property indicates whether the Center has closed the gas shutoff valve of the meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Center has closed the valve: 0x41<br>
-		 * Center has not closed the valve:<br>
+		 * Center has closed the valve: 0x41 Center has not closed the valve:<br>
 		 * 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1626,13 +1658,10 @@ Byte<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
-		 * <br>
-		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetValveClosureByTheCenter(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Permission
-from the Center to reopen the valve closed by the Center<br>
+		 * Property name : Permission from the Center to reopen the valve closed by the Center<br>
 		 * <br>
 		 * EPC : 0xE9<br>
 		 * <br>
@@ -1641,13 +1670,12 @@ from the Center to reopen the valve closed by the Center<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Permission has been given by the Center to reopen the gas shutoff valve closed by the Center: 0x41<br>
-		 * Permission to reopen the gas shutoff valve closed by the Center has not been given by the Center:<br>
-		 * 0x42<br>
+		 * Permission to reopen the gas shutoff valve closed by the Center has not been given by the Center: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1672,7 +1700,7 @@ Byte<br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1691,13 +1719,12 @@ Byte<br>
 		 * This property indicates whether the shutoff valve is open or closed.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Shutoff valve open: 0x41<br>
-		 * Shutoff valve closed: 0x42<br>
+		 * Shutoff valve open: 0x41 Shutoff valve closed: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1714,16 +1741,16 @@ Byte<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * This property indicates the reasons for the 3 past shutoff valve-based gas shutoffs by means of bit assignment with one byte used for each of the 3 shutoff reasons.<br>
-		 * Historical data3�FHistorical data2�FHistorical data 1<br>
+		 * Historical data3: Historical data2: Historical data 1<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0xFF: 0xFF: 0xFF<br>
 		 * <br>
 		 * Data type : unsigned char
-�~3<br>
+×3<br>
 		 * <br>
 		 * Data size : 3
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1739,17 +1766,16 @@ Byte<br>
 		 * EPC : 0xED<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the ID<br>
-		 * number of the meter.<br>
+		 * This property indicates the ID number of the meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 000000-FFFFFF<br>
-		 * �iInitial .value .: .�g000000�h�j<br>
+		 * 000000.FFFFFF<br>
+		 * (Initial value : “000000”)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 6
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1765,17 +1791,16 @@ Byte<br>
 		 * EPC : 0xED<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the ID<br>
-		 * number of the meter.<br>
+		 * This property indicates the ID number of the meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 000000-FFFFFF<br>
-		 * �iInitial .value .: .�g000000�h�j<br>
+		 * 000000.FFFFFF<br>
+		 * (Initial value : “000000”)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 6
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1786,7 +1811,7 @@ Byte<br>
 		 */
 		protected void onGetIdNumberSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Verification expiration information<br>
+		 * Property name : Verification expiration setting<br>
 		 * <br>
 		 * EPC : 0xEE<br>
 		 * <br>
@@ -1795,12 +1820,12 @@ Byte<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * YYYYMM<br>
-		 * YYYY�iYear�j�CMM�iMonth�j<br>
+		 * YYYY (Year), MM (Month)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 6
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1809,9 +1834,9 @@ Byte<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetVerificationExpirationInformation(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetVerificationExpirationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Verification expiration information<br>
+		 * Property name : Verification expiration setting<br>
 		 * <br>
 		 * EPC : 0xEE<br>
 		 * <br>
@@ -1820,12 +1845,12 @@ Byte<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * YYYYMM<br>
-		 * YYYY�iYear�j�CMM�iMonth�j<br>
+		 * YYYY (Year), MM (Month)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 6
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1834,7 +1859,38 @@ Byte<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetVerificationExpirationInformation(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetVerificationExpirationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measured cumulative gas consumption information with date and time<br>
+		 * <br>
+		 * EPC : 0xD0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the cumulative gas consumption and the date and time of measurement.<br>
+		 * Date of measurement: YYYY:MM:DD<br>
+		 * Time of measurement: HH:MM:SS<br>
+		 * Cumulative gas consumption: 9 digits<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 1.4 bytes: 0.0x270f:1.0x0C:1.0x1F (=0.9999):(=1.12):(1.31)<br>
+		 * 5.7 bytes: 0.0x17:0.0x3B:0.-0x3B (=0.23):(=0.59): (=0.59)<br>
+		 * 8.11 bytes: 0x00000000.0x3B9AC9FF<br>
+		 * (0.999,999,999)<br>
+		 * <br>
+		 * Data type : unsigne d char×4+
+unsigne d char×3+
+unsigne d long<br>
+		 * <br>
+		 * Data size : 11 bytes<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		protected void onGetMeasuredCumulativeGasConsumptionInformationWithDateAndTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 	}
 
 	public static class Setter extends DeviceObject.Setter {
@@ -1866,8 +1922,8 @@ Byte<br>
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -1883,7 +1939,7 @@ Byte<br>
 		}
 		
 		/**
-		 * Property name : Gas meter classification<br>
+		 * Property name : Gas meter classification setting<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
@@ -1891,15 +1947,12 @@ Byte<br>
 		 * This property indicates the type of the gas meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�Fcity gas<br>
-		 * 0x31�FLP gas<br>
-		 * 0x32�Fnatural gas<br>
-		 * 0x33�Fothers<br>
+		 * 0x30: city gas 0x31: LP gas 0x32: natural gas 0x33: others<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1908,29 +1961,26 @@ Byte<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetGasMeterClassification(byte[] edt) {
-			reqSetProperty(EPC_GAS_METER_CLASSIFICATION, edt);
+		public Setter reqSetGasMeterClassificationSetting(byte[] edt) {
+			reqSetProperty(EPC_GAS_METER_CLASSIFICATION_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Property name : Owner classification<br>
+		 * Property name : Owner classification setting<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the type of the owner of the meter.<br>
+		 * This property indicates the type of owner of the meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�Fnot specified<br>
-		 * 0x31�Fcity gas<br>
-		 * 0x32�FLP gas<br>
-		 * 0x33�Fprivate-sector company<br>
-		 * 0x34�Findividual<br>
+		 * 0x30: not specified 0x31: city gas 0x32: LP gas<br>
+		 * 0x33: private-sector company 0x34: individual<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1939,29 +1989,27 @@ Byte<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetOwnerClassification(byte[] edt) {
-			reqSetProperty(EPC_OWNER_CLASSIFICATION, edt);
+		public Setter reqSetOwnerClassificationSetting(byte[] edt) {
+			reqSetProperty(EPC_OWNER_CLASSIFICATION_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Property name : Day for which the historical data of measured cumulative gas consumptions is to be retrieved<br>
+		 * Property name : Day setting for which the historical data of measured cumulative gas consumption is to be retrieved<br>
 		 * <br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative gas consumptions (which consists of<br>
-		 * 48 pieces of half-hourly data for<br>
-		 * the preceding 24 hours) is to be retrieved.<br>
+		 * This property indicates the day for which the historical data of measured cumulative gas consumption (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00-0x63 ( 0-99)<br>
+		 * 0x00.0x63 (0.99)<br>
 		 * 0: current day<br>
-		 * 1 - 99: previous day - day that precedes the current day by 99 days<br>
+		 * 1.99: previous day.day that precedes the current day by 99 days<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1970,8 +2018,8 @@ Byte<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved(byte[] edt) {
-			reqSetProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED, edt);
+		public Setter reqSetDaySettingForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionIsToBeRetrieved(byte[] edt) {
+			reqSetProperty(EPC_DAY_SETTING_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTION_IS_TO_BE_RETRIEVED, edt);
 			return this;
 		}
 		/**
@@ -1980,17 +2028,16 @@ Byte<br>
 		 * EPC : 0xED<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the ID<br>
-		 * number of the meter.<br>
+		 * This property indicates the ID number of the meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 000000-FFFFFF<br>
-		 * �iInitial .value .: .�g000000�h�j<br>
+		 * 000000.FFFFFF<br>
+		 * (Initial value : “000000”)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 6
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -2004,7 +2051,7 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Verification expiration information<br>
+		 * Property name : Verification expiration setting<br>
 		 * <br>
 		 * EPC : 0xEE<br>
 		 * <br>
@@ -2013,12 +2060,12 @@ Byte<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * YYYYMM<br>
-		 * YYYY�iYear�j�CMM�iMonth�j<br>
+		 * YYYY (Year), MM (Month)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 6
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -2027,8 +2074,8 @@ Byte<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetVerificationExpirationInformation(byte[] edt) {
-			reqSetProperty(EPC_VERIFICATION_EXPIRATION_INFORMATION, edt);
+		public Setter reqSetVerificationExpirationSetting(byte[] edt) {
+			reqSetProperty(EPC_VERIFICATION_EXPIRATION_SETTING, edt);
 			return this;
 		}
 	}
@@ -2110,8 +2157,8 @@ Byte<br>
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -2143,7 +2190,7 @@ Byte<br>
 		}
 		
 		/**
-		 * Property name : Gas meter classification<br>
+		 * Property name : Gas meter classification setting<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
@@ -2151,15 +2198,12 @@ Byte<br>
 		 * This property indicates the type of the gas meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�Fcity gas<br>
-		 * 0x31�FLP gas<br>
-		 * 0x32�Fnatural gas<br>
-		 * 0x33�Fothers<br>
+		 * 0x30: city gas 0x31: LP gas 0x32: natural gas 0x33: others<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2168,29 +2212,26 @@ Byte<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetGasMeterClassification() {
-			reqGetProperty(EPC_GAS_METER_CLASSIFICATION);
+		public Getter reqGetGasMeterClassificationSetting() {
+			reqGetProperty(EPC_GAS_METER_CLASSIFICATION_SETTING);
 			return this;
 		}
 		/**
-		 * Property name : Owner classification<br>
+		 * Property name : Owner classification setting<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the type of the owner of the meter.<br>
+		 * This property indicates the type of owner of the meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�Fnot specified<br>
-		 * 0x31�Fcity gas<br>
-		 * 0x32�FLP gas<br>
-		 * 0x33�Fprivate-sector company<br>
-		 * 0x34�Findividual<br>
+		 * 0x30: not specified 0x31: city gas 0x32: LP gas<br>
+		 * 0x33: private-sector company 0x34: individual<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2199,8 +2240,8 @@ Byte<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetOwnerClassification() {
-			reqGetProperty(EPC_OWNER_CLASSIFICATION);
+		public Getter reqGetOwnerClassificationSetting() {
+			reqGetProperty(EPC_OWNER_CLASSIFICATION_SETTING);
 			return this;
 		}
 		/**
@@ -2212,16 +2253,15 @@ Byte<br>
 		 * This property indicates the measured cumulative gas consumption in m3.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x3B9AC9FF<br>
-		 * (0-999,999,999�j<br>
+		 * 0.0x3B9AC9FF (0.999,999,999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : 0.001
-��3<br>
+m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2233,93 +2273,87 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Unit for measured cumulative gas consumptions<br>
+		 * Property name : Unit for measured cumulative gas consumption<br>
 		 * <br>
 		 * EPC : 0xE3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the unit (multiplying factor) for the measured cumulative gas consumption and the historical data of measured cumulative gas consumptions.<br>
+		 * This property indicates the unit (multiplying factor) for the measured cumulative gas consumption and the historical data of measured cumulative gas consumption.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00: 1��3<br>
-		 * 0x01: 0.1��3<br>
-		 * 0x02: 0.01��3<br>
-		 * 0x03: 0.001��3�iinitial value�j<br>
-		 * 0x04: 0.0001��3<br>
-		 * 0x05: 0.00001��3<br>
-		 * 0x06: 0.000001��3<br>
+		 * 0x00: 1m3<br>
+		 * 0x01: 0.1m3<br>
+		 * 0x02: 0.01m3<br>
+		 * 0x03: 0.001m3<br>
+		 * 0x04: 0.0001m3<br>
+		 * 0x05: 0.00001m3<br>
+		 * 0x06: 0.000001m3<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Get - optional<br>
 		 */
-		public Getter reqGetUnitForMeasuredCumulativeGasConsumptions() {
-			reqGetProperty(EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS);
+		public Getter reqGetUnitForMeasuredCumulativeGasConsumption() {
+			reqGetProperty(EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTION);
 			return this;
 		}
 		/**
-		 * Property name : Historical data of measured cumulative gas consumptions<br>
+		 * Property name : Historical data of measured cumulative gas consumption<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative gas consumptions is to be retrieved and the historical data of measured cumulative gas consumptions, which consists of 48 pieces of<br>
-		 * half-hourly data for the preceding<br>
-		 * 24 hours.<br>
+		 * This property indicates the day for which the historical data of measured cumulative gas consumption is to be retrieved and the historical data of measured cumulative gas consumption, which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0x0063:<br>
-		 * 0x0-0x3B9AC9FF<br>
-		 * (0-99) : (0-999,999.999�j<br>
+		 * 0x0000.0x0063:<br>
+		 * 0x0.0x3B9AC9FF (0.99) : (0.999,999.999)<br>
 		 * <br>
 		 * Data type : unsigned short
-�{
-unsigned
++unsigne d
 long
-�~48<br>
+×48<br>
 		 * <br>
 		 * Data size : 194
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : 0.001
-��3<br>
+m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetHistoricalDataOfMeasuredCumulativeGasConsumptions() {
-			reqGetProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS);
+		public Getter reqGetHistoricalDataOfMeasuredCumulativeGasConsumption() {
+			reqGetProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTION);
 			return this;
 		}
 		/**
-		 * Property name : Day for which the historical data of measured cumulative gas consumptions is to be retrieved<br>
+		 * Property name : Day setting for which the historical data of measured cumulative gas consumption is to be retrieved<br>
 		 * <br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative gas consumptions (which consists of<br>
-		 * 48 pieces of half-hourly data for<br>
-		 * the preceding 24 hours) is to be retrieved.<br>
+		 * This property indicates the day for which the historical data of measured cumulative gas consumption (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00-0x63 ( 0-99)<br>
+		 * 0x00.0x63 (0.99)<br>
 		 * 0: current day<br>
-		 * 1 - 99: previous day - day that precedes the current day by 99 days<br>
+		 * 1.99: previous day.day that precedes the current day by 99 days<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -2328,13 +2362,12 @@ Byte<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved() {
-			reqGetProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED);
+		public Getter reqGetDaySettingForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionIsToBeRetrieved() {
+			reqGetProperty(EPC_DAY_SETTING_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTION_IS_TO_BE_RETRIEVED);
 			return this;
 		}
 		/**
-		 * Property name : Detection of abnormal value in metering
-data<br>
+		 * Property name : Detection of abnormal value in metering data<br>
 		 * <br>
 		 * EPC : 0xE6<br>
 		 * <br>
@@ -2342,13 +2375,12 @@ data<br>
 		 * This property indicates whether the meter has detected an abnormal value in the metering data.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Abnormal value detected: 0x41<br>
-		 * No abnormal value detected: 0x42<br>
+		 * Abnormal value detected: 0x41 No abnormal value detected: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2356,8 +2388,6 @@ Byte<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
-		 * <br>
-		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetDetectionOfAbnormalValueInMeteringData() {
 			reqGetProperty(EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA);
@@ -2369,16 +2399,16 @@ Byte<br>
 		 * EPC : 0xE7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Provides security information about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>
+		 * Provides security information  about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * For details, refer to the explanations under (9).<br>
 		 * <br>
 		 * Data type : unsigned char
-�~10<br>
+×10<br>
 		 * <br>
 		 * Data size : 10
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2400,14 +2430,13 @@ Byte<br>
 		 * This property indicates whether the Center has closed the gas shutoff valve of the meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Center has closed the valve: 0x41<br>
-		 * Center has not closed the valve:<br>
+		 * Center has closed the valve: 0x41 Center has not closed the valve:<br>
 		 * 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2415,16 +2444,13 @@ Byte<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
-		 * <br>
-		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetValveClosureByTheCenter() {
 			reqGetProperty(EPC_VALVE_CLOSURE_BY_THE_CENTER);
 			return this;
 		}
 		/**
-		 * Property name : Permission
-from the Center to reopen the valve closed by the Center<br>
+		 * Property name : Permission from the Center to reopen the valve closed by the Center<br>
 		 * <br>
 		 * EPC : 0xE9<br>
 		 * <br>
@@ -2433,13 +2459,12 @@ from the Center to reopen the valve closed by the Center<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Permission has been given by the Center to reopen the gas shutoff valve closed by the Center: 0x41<br>
-		 * Permission to reopen the gas shutoff valve closed by the Center has not been given by the Center:<br>
-		 * 0x42<br>
+		 * Permission to reopen the gas shutoff valve closed by the Center has not been given by the Center: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2467,7 +2492,7 @@ Byte<br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2489,13 +2514,12 @@ Byte<br>
 		 * This property indicates whether the shutoff valve is open or closed.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Shutoff valve open: 0x41<br>
-		 * Shutoff valve closed: 0x42<br>
+		 * Shutoff valve open: 0x41 Shutoff valve closed: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2515,16 +2539,16 @@ Byte<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * This property indicates the reasons for the 3 past shutoff valve-based gas shutoffs by means of bit assignment with one byte used for each of the 3 shutoff reasons.<br>
-		 * Historical data3�FHistorical data2�FHistorical data 1<br>
+		 * Historical data3: Historical data2: Historical data 1<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0xFF: 0xFF: 0xFF<br>
 		 * <br>
 		 * Data type : unsigned char
-�~3<br>
+×3<br>
 		 * <br>
 		 * Data size : 3
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2543,17 +2567,16 @@ Byte<br>
 		 * EPC : 0xED<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the ID<br>
-		 * number of the meter.<br>
+		 * This property indicates the ID number of the meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 000000-FFFFFF<br>
-		 * �iInitial .value .: .�g000000�h�j<br>
+		 * 000000.FFFFFF<br>
+		 * (Initial value : “000000”)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 6
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -2567,7 +2590,7 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Verification expiration information<br>
+		 * Property name : Verification expiration setting<br>
 		 * <br>
 		 * EPC : 0xEE<br>
 		 * <br>
@@ -2576,12 +2599,12 @@ Byte<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * YYYYMM<br>
-		 * YYYY�iYear�j�CMM�iMonth�j<br>
+		 * YYYY (Year), MM (Month)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 6
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -2590,8 +2613,42 @@ Byte<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetVerificationExpirationInformation() {
-			reqGetProperty(EPC_VERIFICATION_EXPIRATION_INFORMATION);
+		public Getter reqGetVerificationExpirationSetting() {
+			reqGetProperty(EPC_VERIFICATION_EXPIRATION_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : Measured cumulative gas consumption information with date and time<br>
+		 * <br>
+		 * EPC : 0xD0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the cumulative gas consumption and the date and time of measurement.<br>
+		 * Date of measurement: YYYY:MM:DD<br>
+		 * Time of measurement: HH:MM:SS<br>
+		 * Cumulative gas consumption: 9 digits<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 1.4 bytes: 0.0x270f:1.0x0C:1.0x1F (=0.9999):(=1.12):(1.31)<br>
+		 * 5.7 bytes: 0.0x17:0.0x3B:0.-0x3B (=0.23):(=0.59): (=0.59)<br>
+		 * 8.11 bytes: 0x00000000.0x3B9AC9FF<br>
+		 * (0.999,999,999)<br>
+		 * <br>
+		 * Data type : unsigne d char×4+
+unsigne d char×3+
+unsigne d long<br>
+		 * <br>
+		 * Data size : 11 bytes<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Getter reqGetMeasuredCumulativeGasConsumptionInformationWithDateAndTime() {
+			reqGetProperty(EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION_INFORMATION_WITH_DATE_AND_TIME);
 			return this;
 		}
 	}
@@ -2672,8 +2729,8 @@ Byte<br>
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -2705,7 +2762,7 @@ Byte<br>
 		}
 		
 		/**
-		 * Property name : Gas meter classification<br>
+		 * Property name : Gas meter classification setting<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
@@ -2713,15 +2770,12 @@ Byte<br>
 		 * This property indicates the type of the gas meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�Fcity gas<br>
-		 * 0x31�FLP gas<br>
-		 * 0x32�Fnatural gas<br>
-		 * 0x33�Fothers<br>
+		 * 0x30: city gas 0x31: LP gas 0x32: natural gas 0x33: others<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2730,29 +2784,26 @@ Byte<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformGasMeterClassification() {
-			reqInformProperty(EPC_GAS_METER_CLASSIFICATION);
+		public Informer reqInformGasMeterClassificationSetting() {
+			reqInformProperty(EPC_GAS_METER_CLASSIFICATION_SETTING);
 			return this;
 		}
 		/**
-		 * Property name : Owner classification<br>
+		 * Property name : Owner classification setting<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the type of the owner of the meter.<br>
+		 * This property indicates the type of owner of the meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�Fnot specified<br>
-		 * 0x31�Fcity gas<br>
-		 * 0x32�FLP gas<br>
-		 * 0x33�Fprivate-sector company<br>
-		 * 0x34�Findividual<br>
+		 * 0x30: not specified 0x31: city gas 0x32: LP gas<br>
+		 * 0x33: private-sector company 0x34: individual<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2761,8 +2812,8 @@ Byte<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformOwnerClassification() {
-			reqInformProperty(EPC_OWNER_CLASSIFICATION);
+		public Informer reqInformOwnerClassificationSetting() {
+			reqInformProperty(EPC_OWNER_CLASSIFICATION_SETTING);
 			return this;
 		}
 		/**
@@ -2774,16 +2825,15 @@ Byte<br>
 		 * This property indicates the measured cumulative gas consumption in m3.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x3B9AC9FF<br>
-		 * (0-999,999,999�j<br>
+		 * 0.0x3B9AC9FF (0.999,999,999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : 0.001
-��3<br>
+m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2795,93 +2845,87 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Unit for measured cumulative gas consumptions<br>
+		 * Property name : Unit for measured cumulative gas consumption<br>
 		 * <br>
 		 * EPC : 0xE3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the unit (multiplying factor) for the measured cumulative gas consumption and the historical data of measured cumulative gas consumptions.<br>
+		 * This property indicates the unit (multiplying factor) for the measured cumulative gas consumption and the historical data of measured cumulative gas consumption.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00: 1��3<br>
-		 * 0x01: 0.1��3<br>
-		 * 0x02: 0.01��3<br>
-		 * 0x03: 0.001��3�iinitial value�j<br>
-		 * 0x04: 0.0001��3<br>
-		 * 0x05: 0.00001��3<br>
-		 * 0x06: 0.000001��3<br>
+		 * 0x00: 1m3<br>
+		 * 0x01: 0.1m3<br>
+		 * 0x02: 0.01m3<br>
+		 * 0x03: 0.001m3<br>
+		 * 0x04: 0.0001m3<br>
+		 * 0x05: 0.00001m3<br>
+		 * 0x06: 0.000001m3<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Get - optional<br>
 		 */
-		public Informer reqInformUnitForMeasuredCumulativeGasConsumptions() {
-			reqInformProperty(EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS);
+		public Informer reqInformUnitForMeasuredCumulativeGasConsumption() {
+			reqInformProperty(EPC_UNIT_FOR_MEASURED_CUMULATIVE_GAS_CONSUMPTION);
 			return this;
 		}
 		/**
-		 * Property name : Historical data of measured cumulative gas consumptions<br>
+		 * Property name : Historical data of measured cumulative gas consumption<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative gas consumptions is to be retrieved and the historical data of measured cumulative gas consumptions, which consists of 48 pieces of<br>
-		 * half-hourly data for the preceding<br>
-		 * 24 hours.<br>
+		 * This property indicates the day for which the historical data of measured cumulative gas consumption is to be retrieved and the historical data of measured cumulative gas consumption, which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0x0063:<br>
-		 * 0x0-0x3B9AC9FF<br>
-		 * (0-99) : (0-999,999.999�j<br>
+		 * 0x0000.0x0063:<br>
+		 * 0x0.0x3B9AC9FF (0.99) : (0.999,999.999)<br>
 		 * <br>
 		 * Data type : unsigned short
-�{
-unsigned
++unsigne d
 long
-�~48<br>
+×48<br>
 		 * <br>
 		 * Data size : 194
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : 0.001
-��3<br>
+m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformHistoricalDataOfMeasuredCumulativeGasConsumptions() {
-			reqInformProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS);
+		public Informer reqInformHistoricalDataOfMeasuredCumulativeGasConsumption() {
+			reqInformProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTION);
 			return this;
 		}
 		/**
-		 * Property name : Day for which the historical data of measured cumulative gas consumptions is to be retrieved<br>
+		 * Property name : Day setting for which the historical data of measured cumulative gas consumption is to be retrieved<br>
 		 * <br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative gas consumptions (which consists of<br>
-		 * 48 pieces of half-hourly data for<br>
-		 * the preceding 24 hours) is to be retrieved.<br>
+		 * This property indicates the day for which the historical data of measured cumulative gas consumption (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00-0x63 ( 0-99)<br>
+		 * 0x00.0x63 (0.99)<br>
 		 * 0: current day<br>
-		 * 1 - 99: previous day - day that precedes the current day by 99 days<br>
+		 * 1.99: previous day.day that precedes the current day by 99 days<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -2890,13 +2934,12 @@ Byte<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformDayForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionsIsToBeRetrieved() {
-			reqInformProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTIONS_IS_TO_BE_RETRIEVED);
+		public Informer reqInformDaySettingForWhichTheHistoricalDataOfMeasuredCumulativeGasConsumptionIsToBeRetrieved() {
+			reqInformProperty(EPC_DAY_SETTING_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_GAS_CONSUMPTION_IS_TO_BE_RETRIEVED);
 			return this;
 		}
 		/**
-		 * Property name : Detection of abnormal value in metering
-data<br>
+		 * Property name : Detection of abnormal value in metering data<br>
 		 * <br>
 		 * EPC : 0xE6<br>
 		 * <br>
@@ -2904,13 +2947,12 @@ data<br>
 		 * This property indicates whether the meter has detected an abnormal value in the metering data.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Abnormal value detected: 0x41<br>
-		 * No abnormal value detected: 0x42<br>
+		 * Abnormal value detected: 0x41 No abnormal value detected: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2918,8 +2960,6 @@ Byte<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
-		 * <br>
-		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformDetectionOfAbnormalValueInMeteringData() {
 			reqInformProperty(EPC_DETECTION_OF_ABNORMAL_VALUE_IN_METERING_DATA);
@@ -2931,16 +2971,16 @@ Byte<br>
 		 * EPC : 0xE7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Provides security information about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>
+		 * Provides security information  about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * For details, refer to the explanations under (9).<br>
 		 * <br>
 		 * Data type : unsigned char
-�~10<br>
+×10<br>
 		 * <br>
 		 * Data size : 10
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2962,14 +3002,13 @@ Byte<br>
 		 * This property indicates whether the Center has closed the gas shutoff valve of the meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Center has closed the valve: 0x41<br>
-		 * Center has not closed the valve:<br>
+		 * Center has closed the valve: 0x41 Center has not closed the valve:<br>
 		 * 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2977,16 +3016,13 @@ Byte<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
-		 * <br>
-		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformValveClosureByTheCenter() {
 			reqInformProperty(EPC_VALVE_CLOSURE_BY_THE_CENTER);
 			return this;
 		}
 		/**
-		 * Property name : Permission
-from the Center to reopen the valve closed by the Center<br>
+		 * Property name : Permission from the Center to reopen the valve closed by the Center<br>
 		 * <br>
 		 * EPC : 0xE9<br>
 		 * <br>
@@ -2995,13 +3031,12 @@ from the Center to reopen the valve closed by the Center<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Permission has been given by the Center to reopen the gas shutoff valve closed by the Center: 0x41<br>
-		 * Permission to reopen the gas shutoff valve closed by the Center has not been given by the Center:<br>
-		 * 0x42<br>
+		 * Permission to reopen the gas shutoff valve closed by the Center has not been given by the Center: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -3029,7 +3064,7 @@ Byte<br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -3051,13 +3086,12 @@ Byte<br>
 		 * This property indicates whether the shutoff valve is open or closed.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Shutoff valve open: 0x41<br>
-		 * Shutoff valve closed: 0x42<br>
+		 * Shutoff valve open: 0x41 Shutoff valve closed: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -3077,16 +3111,16 @@ Byte<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * This property indicates the reasons for the 3 past shutoff valve-based gas shutoffs by means of bit assignment with one byte used for each of the 3 shutoff reasons.<br>
-		 * Historical data3�FHistorical data2�FHistorical data 1<br>
+		 * Historical data3: Historical data2: Historical data 1<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0xFF: 0xFF: 0xFF<br>
 		 * <br>
 		 * Data type : unsigned char
-�~3<br>
+×3<br>
 		 * <br>
 		 * Data size : 3
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -3105,17 +3139,16 @@ Byte<br>
 		 * EPC : 0xED<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the ID<br>
-		 * number of the meter.<br>
+		 * This property indicates the ID number of the meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 000000-FFFFFF<br>
-		 * �iInitial .value .: .�g000000�h�j<br>
+		 * 000000.FFFFFF<br>
+		 * (Initial value : “000000”)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 6
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -3129,7 +3162,7 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Verification expiration information<br>
+		 * Property name : Verification expiration setting<br>
 		 * <br>
 		 * EPC : 0xEE<br>
 		 * <br>
@@ -3138,12 +3171,12 @@ Byte<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * YYYYMM<br>
-		 * YYYY�iYear�j�CMM�iMonth�j<br>
+		 * YYYY (Year), MM (Month)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 6
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -3152,8 +3185,42 @@ Byte<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformVerificationExpirationInformation() {
-			reqInformProperty(EPC_VERIFICATION_EXPIRATION_INFORMATION);
+		public Informer reqInformVerificationExpirationSetting() {
+			reqInformProperty(EPC_VERIFICATION_EXPIRATION_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : Measured cumulative gas consumption information with date and time<br>
+		 * <br>
+		 * EPC : 0xD0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the cumulative gas consumption and the date and time of measurement.<br>
+		 * Date of measurement: YYYY:MM:DD<br>
+		 * Time of measurement: HH:MM:SS<br>
+		 * Cumulative gas consumption: 9 digits<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 1.4 bytes: 0.0x270f:1.0x0C:1.0x1F (=0.9999):(=1.12):(1.31)<br>
+		 * 5.7 bytes: 0.0x17:0.0x3B:0.-0x3B (=0.23):(=0.59): (=0.59)<br>
+		 * 8.11 bytes: 0x00000000.0x3B9AC9FF<br>
+		 * (0.999,999,999)<br>
+		 * <br>
+		 * Data type : unsigne d char×4+
+unsigne d char×3+
+unsigne d long<br>
+		 * <br>
+		 * Data size : 11 bytes<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Informer reqInformMeasuredCumulativeGasConsumptionInformationWithDateAndTime() {
+			reqInformProperty(EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION_INFORMATION_WITH_DATE_AND_TIME);
 			return this;
 		}
 	}
@@ -3182,7 +3249,7 @@ Byte<br>
 		@Override
 		protected byte[] getMeasuredCumulativeGasConsumption() {return null;}
 		@Override
-		protected byte[] getUnitForMeasuredCumulativeGasConsumptions() {return null;}
+		protected byte[] getMeasuredCumulativeGasConsumptionInformationWithDateAndTime() {return null;}
 	}
 	
 	public static Setter setG() {

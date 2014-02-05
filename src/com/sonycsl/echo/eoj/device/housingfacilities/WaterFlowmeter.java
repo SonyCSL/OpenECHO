@@ -60,16 +60,15 @@ public abstract class WaterFlowmeter extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the<br>
-	 * ON/OFF status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON=0x30�COFF=0x31<br>
+	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -87,16 +86,15 @@ Byte<br>
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the<br>
-	 * ON/OFF status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON=0x30�COFF=0x31<br>
+	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -117,15 +115,12 @@ Byte<br>
 	 * This property indicates the water flowmeter type.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x30�Frunning water<br>
-	 * 0x31�Frecycled water<br>
-	 * 0x32�Fwarm water<br>
-	 * 0x33�Fother water<br>
+	 * 0x30 : running water 0x31 : recycled water 0x32 : warm water 0x33 : other water<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -144,15 +139,12 @@ Byte<br>
 	 * This property indicates the water flowmeter type.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x30�Frunning water<br>
-	 * 0x31�Frecycled water<br>
-	 * 0x32�Fwarm water<br>
-	 * 0x33�Fother water<br>
+	 * 0x30 : running water 0x31 : recycled water 0x32 : warm water 0x33 : other water<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -171,15 +163,12 @@ Byte<br>
 	 * This property indicates the water flowmeter type.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x30�Frunning water<br>
-	 * 0x31�Frecycled water<br>
-	 * 0x32�Fwarm water<br>
-	 * 0x33�Fother water<br>
+	 * 0x30 : running water 0x31 : recycled water 0x32 : warm water 0x33 : other water<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -201,15 +190,14 @@ Byte<br>
 	 * This property indicates the owner of the meter in the form of owner classification.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x30�FNot specified<br>
-	 * 0x31�FPublic waterworks company<br>
-	 * 0x32�FPrivate sector company<br>
-	 * 0x33�FIndividual<br>
+	 * 0x30 : Not specified  0x31 : Public waterworks<br>
+	 * company<br>
+	 * 0x32 : Private sector company 0x33 : Individual<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -228,15 +216,14 @@ Byte<br>
 	 * This property indicates the owner of the meter in the form of owner classification.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x30�FNot specified<br>
-	 * 0x31�FPublic waterworks company<br>
-	 * 0x32�FPrivate sector company<br>
-	 * 0x33�FIndividual<br>
+	 * 0x30 : Not specified  0x31 : Public waterworks<br>
+	 * company<br>
+	 * 0x32 : Private sector company 0x33 : Individual<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -255,15 +242,14 @@ Byte<br>
 	 * This property indicates the owner of the meter in the form of owner classification.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x30�FNot specified<br>
-	 * 0x31�FPublic waterworks company<br>
-	 * 0x32�FPrivate sector company<br>
-	 * 0x33�FIndividual<br>
+	 * 0x30 : Not specified  0x31 : Public waterworks<br>
+	 * company<br>
+	 * 0x32 : Private sector company 0x33 : Individual<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -285,15 +271,14 @@ Byte<br>
 	 * This property indicates the cumulative amount (consumption) of flowing water using a 9-digit number.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x3B9AC9FF<br>
-	 * (0-999,999,999�j<br>
+	 * 0.0x3B9AC9FF (0.999,999,999)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
-	 * Unit : ��3<br>
+	 * Unit : m3<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -310,15 +295,14 @@ Byte<br>
 	 * This property indicates the cumulative amount (consumption) of flowing water using a 9-digit number.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x3B9AC9FF<br>
-	 * (0-999,999,999�j<br>
+	 * 0.0x3B9AC9FF (0.999,999,999)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
-	 * Unit : ��3<br>
+	 * Unit : m3<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -338,18 +322,17 @@ Byte<br>
 	 * This property indicates the unit (multiplying factor) for the measured cumulative amount of flowing water and the historical data of measured cumulative amounts of flowing water.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00: 1��3<br>
-	 * 0x01: 0.1��3<br>
-	 * 0x02: 0.01��3<br>
-	 * 0x03: 0.001��3<br>
-	 * 0x04: 0.0001��3�iInitial value�j<br>
-	 * 0x05: 0.00001��3<br>
-	 * 0x06: 0.000001��3<br>
+	 * 0x00: 1m3<br>
+	 * 0x01: 0.1m3<br>
+	 * 0x02: 0.01m3<br>
+	 * 0x03: 0.001m3<br>
+	 * 0x04: 0.0001m3 (Initial value) 0x05: 0.00001m3<br>
+	 * 0x06: 0.000001m3<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -368,18 +351,17 @@ Byte<br>
 	 * This property indicates the unit (multiplying factor) for the measured cumulative amount of flowing water and the historical data of measured cumulative amounts of flowing water.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00: 1��3<br>
-	 * 0x01: 0.1��3<br>
-	 * 0x02: 0.01��3<br>
-	 * 0x03: 0.001��3<br>
-	 * 0x04: 0.0001��3�iInitial value�j<br>
-	 * 0x05: 0.00001��3<br>
-	 * 0x06: 0.000001��3<br>
+	 * 0x00: 1m3<br>
+	 * 0x01: 0.1m3<br>
+	 * 0x02: 0.01m3<br>
+	 * 0x03: 0.001m3<br>
+	 * 0x04: 0.0001m3 (Initial value) 0x05: 0.00001m3<br>
+	 * 0x06: 0.000001m3<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -401,17 +383,16 @@ Byte<br>
 	 * This property indicates the historical data of measured cumulative amounts (consumptions) of running water, which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0-0x3B9AC9FF<br>
-	 * (0-999,999.999m3�j<br>
+	 * 0x0.0x3B9AC9FF (0.999,999.999m3)<br>
 	 * <br>
 	 * Data type : unsigned long
-�~48<br>
+×48<br>
 	 * <br>
 	 * Data size : 192
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : 0.001
-��3<br>
+m3<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -428,17 +409,16 @@ Byte<br>
 	 * This property indicates the historical data of measured cumulative amounts (consumptions) of running water, which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0-0x3B9AC9FF<br>
-	 * (0-999,999.999m3�j<br>
+	 * 0x0.0x3B9AC9FF (0.999,999.999m3)<br>
 	 * <br>
 	 * Data type : unsigned long
-�~48<br>
+×48<br>
 	 * <br>
 	 * Data size : 192
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : 0.001
-��3<br>
+m3<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -458,14 +438,12 @@ Byte<br>
 	 * This property indicates whether the meter has detected an abnormal value in the metering data.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Abnormal value detected: 0x41<br>
-	 * No abnormal value detected:<br>
-	 * 0x42<br>
+	 * Abnormal value detected: 0x41 No abnormal value detected: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -486,14 +464,12 @@ Byte<br>
 	 * This property indicates whether the meter has detected an abnormal value in the metering data.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Abnormal value detected: 0x41<br>
-	 * No abnormal value detected:<br>
-	 * 0x42<br>
+	 * Abnormal value detected: 0x41 No abnormal value detected: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -514,15 +490,14 @@ Byte<br>
 	 * EPC : 0xE4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Provides security information about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>
+	 * Provides security information  about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0xFFFFFFFF<br>
+	 * 0.0xFFFFFFFF<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 5
-Byte<br>
+	 * Data size : 4 bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -538,15 +513,14 @@ Byte<br>
 	 * EPC : 0xE4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Provides security information about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>
+	 * Provides security information  about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0xFFFFFFFF<br>
+	 * 0.0xFFFFFFFF<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 5
-Byte<br>
+	 * Data size : 4 bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -556,7 +530,7 @@ Byte<br>
 	 * Get - optional<br>
 	 */
 	protected boolean isValidSecurityDataInformation(byte[] edt) {
-		if(edt == null || !(edt.length == 5)) return false;
+		if(edt == null || !(edt.length == 4)) return false;
 		return true;
 	}
 	/**
@@ -565,17 +539,16 @@ Byte<br>
 	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ID<br>
-	 * number of the meter.<br>
+	 * This property indicates the ID number of the meter.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * The ID number is specified using ASCII code.<br>
-	 * �iInitial value�F�g000000�h�j<br>
+	 * (Initial value : “000000”)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 6
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -591,17 +564,16 @@ Byte<br>
 	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ID<br>
-	 * number of the meter.<br>
+	 * This property indicates the ID number of the meter.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * The ID number is specified using ASCII code.<br>
-	 * �iInitial value�F�g000000�h�j<br>
+	 * (Initial value : “000000”)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 6
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -617,17 +589,16 @@ Byte<br>
 	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ID<br>
-	 * number of the meter.<br>
+	 * This property indicates the ID number of the meter.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * The ID number is specified using ASCII code.<br>
-	 * �iInitial value�F�g000000�h�j<br>
+	 * (Initial value : “000000”)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 6
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -650,13 +621,12 @@ Byte<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * The month and year are specified using ASCII code.<br>
-	 * xxxx xx<br>
-	 * Year Month<br>
+	 * xxxx xx Year Month<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 6
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -676,13 +646,12 @@ Byte<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * The month and year are specified using ASCII code.<br>
-	 * xxxx xx<br>
-	 * Year Month<br>
+	 * xxxx xx Year Month<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 6
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -702,13 +671,12 @@ Byte<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * The month and year are specified using ASCII code.<br>
-	 * xxxx xx<br>
-	 * Year Month<br>
+	 * xxxx xx Year Month<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 6
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -882,15 +850,12 @@ Byte<br>
 		 * This property indicates the water flowmeter type.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�Frunning water<br>
-		 * 0x31�Frecycled water<br>
-		 * 0x32�Fwarm water<br>
-		 * 0x33�Fother water<br>
+		 * 0x30 : running water 0x31 : recycled water 0x32 : warm water 0x33 : other water<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -909,15 +874,12 @@ Byte<br>
 		 * This property indicates the water flowmeter type.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�Frunning water<br>
-		 * 0x31�Frecycled water<br>
-		 * 0x32�Fwarm water<br>
-		 * 0x33�Fother water<br>
+		 * 0x30 : running water 0x31 : recycled water 0x32 : warm water 0x33 : other water<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -936,15 +898,14 @@ Byte<br>
 		 * This property indicates the owner of the meter in the form of owner classification.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�FNot specified<br>
-		 * 0x31�FPublic waterworks company<br>
-		 * 0x32�FPrivate sector company<br>
-		 * 0x33�FIndividual<br>
+		 * 0x30 : Not specified  0x31 : Public waterworks<br>
+		 * company<br>
+		 * 0x32 : Private sector company 0x33 : Individual<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -963,15 +924,14 @@ Byte<br>
 		 * This property indicates the owner of the meter in the form of owner classification.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�FNot specified<br>
-		 * 0x31�FPublic waterworks company<br>
-		 * 0x32�FPrivate sector company<br>
-		 * 0x33�FIndividual<br>
+		 * 0x30 : Not specified  0x31 : Public waterworks<br>
+		 * company<br>
+		 * 0x32 : Private sector company 0x33 : Individual<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -990,15 +950,14 @@ Byte<br>
 		 * This property indicates the cumulative amount (consumption) of flowing water using a 9-digit number.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x3B9AC9FF<br>
-		 * (0-999,999,999�j<br>
+		 * 0.0x3B9AC9FF (0.999,999,999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
-		 * Unit : ��3<br>
+		 * Unit : m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1015,18 +974,17 @@ Byte<br>
 		 * This property indicates the unit (multiplying factor) for the measured cumulative amount of flowing water and the historical data of measured cumulative amounts of flowing water.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00: 1��3<br>
-		 * 0x01: 0.1��3<br>
-		 * 0x02: 0.01��3<br>
-		 * 0x03: 0.001��3<br>
-		 * 0x04: 0.0001��3�iInitial value�j<br>
-		 * 0x05: 0.00001��3<br>
-		 * 0x06: 0.000001��3<br>
+		 * 0x00: 1m3<br>
+		 * 0x01: 0.1m3<br>
+		 * 0x02: 0.01m3<br>
+		 * 0x03: 0.001m3<br>
+		 * 0x04: 0.0001m3 (Initial value) 0x05: 0.00001m3<br>
+		 * 0x06: 0.000001m3<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1045,17 +1003,16 @@ Byte<br>
 		 * This property indicates the historical data of measured cumulative amounts (consumptions) of running water, which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0-0x3B9AC9FF<br>
-		 * (0-999,999.999m3�j<br>
+		 * 0x0.0x3B9AC9FF (0.999,999.999m3)<br>
 		 * <br>
 		 * Data type : unsigned long
-�~48<br>
+×48<br>
 		 * <br>
 		 * Data size : 192
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : 0.001
-��3<br>
+m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1072,14 +1029,12 @@ Byte<br>
 		 * This property indicates whether the meter has detected an abnormal value in the metering data.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Abnormal value detected: 0x41<br>
-		 * No abnormal value detected:<br>
-		 * 0x42<br>
+		 * Abnormal value detected: 0x41 No abnormal value detected: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1097,15 +1052,14 @@ Byte<br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Provides security information about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>
+		 * Provides security information  about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0xFFFFFFFF<br>
+		 * 0.0xFFFFFFFF<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 5
-Byte<br>
+		 * Data size : 4 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1121,17 +1075,16 @@ Byte<br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the ID<br>
-		 * number of the meter.<br>
+		 * This property indicates the ID number of the meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The ID number is specified using ASCII code.<br>
-		 * �iInitial value�F�g000000�h�j<br>
+		 * (Initial value : “000000”)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 6
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1147,17 +1100,16 @@ Byte<br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the ID<br>
-		 * number of the meter.<br>
+		 * This property indicates the ID number of the meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The ID number is specified using ASCII code.<br>
-		 * �iInitial value�F�g000000�h�j<br>
+		 * (Initial value : “000000”)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 6
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1177,13 +1129,12 @@ Byte<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The month and year are specified using ASCII code.<br>
-		 * xxxx xx<br>
-		 * Year Month<br>
+		 * xxxx xx Year Month<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 6
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1203,13 +1154,12 @@ Byte<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The month and year are specified using ASCII code.<br>
-		 * xxxx xx<br>
-		 * Year Month<br>
+		 * xxxx xx Year Month<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 6
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1250,8 +1200,8 @@ Byte<br>
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -1275,15 +1225,12 @@ Byte<br>
 		 * This property indicates the water flowmeter type.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�Frunning water<br>
-		 * 0x31�Frecycled water<br>
-		 * 0x32�Fwarm water<br>
-		 * 0x33�Fother water<br>
+		 * 0x30 : running water 0x31 : recycled water 0x32 : warm water 0x33 : other water<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1305,15 +1252,14 @@ Byte<br>
 		 * This property indicates the owner of the meter in the form of owner classification.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�FNot specified<br>
-		 * 0x31�FPublic waterworks company<br>
-		 * 0x32�FPrivate sector company<br>
-		 * 0x33�FIndividual<br>
+		 * 0x30 : Not specified  0x31 : Public waterworks<br>
+		 * company<br>
+		 * 0x32 : Private sector company 0x33 : Individual<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1332,17 +1278,16 @@ Byte<br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the ID<br>
-		 * number of the meter.<br>
+		 * This property indicates the ID number of the meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The ID number is specified using ASCII code.<br>
-		 * �iInitial value�F�g000000�h�j<br>
+		 * (Initial value : “000000”)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 6
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1365,13 +1310,12 @@ Byte<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The month and year are specified using ASCII code.<br>
-		 * xxxx xx<br>
-		 * Year Month<br>
+		 * xxxx xx Year Month<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 6
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1463,8 +1407,8 @@ Byte<br>
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -1504,15 +1448,12 @@ Byte<br>
 		 * This property indicates the water flowmeter type.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�Frunning water<br>
-		 * 0x31�Frecycled water<br>
-		 * 0x32�Fwarm water<br>
-		 * 0x33�Fother water<br>
+		 * 0x30 : running water 0x31 : recycled water 0x32 : warm water 0x33 : other water<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1534,15 +1475,14 @@ Byte<br>
 		 * This property indicates the owner of the meter in the form of owner classification.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�FNot specified<br>
-		 * 0x31�FPublic waterworks company<br>
-		 * 0x32�FPrivate sector company<br>
-		 * 0x33�FIndividual<br>
+		 * 0x30 : Not specified  0x31 : Public waterworks<br>
+		 * company<br>
+		 * 0x32 : Private sector company 0x33 : Individual<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1564,15 +1504,14 @@ Byte<br>
 		 * This property indicates the cumulative amount (consumption) of flowing water using a 9-digit number.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x3B9AC9FF<br>
-		 * (0-999,999,999�j<br>
+		 * 0.0x3B9AC9FF (0.999,999,999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
-		 * Unit : ��3<br>
+		 * Unit : m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1592,18 +1531,17 @@ Byte<br>
 		 * This property indicates the unit (multiplying factor) for the measured cumulative amount of flowing water and the historical data of measured cumulative amounts of flowing water.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00: 1��3<br>
-		 * 0x01: 0.1��3<br>
-		 * 0x02: 0.01��3<br>
-		 * 0x03: 0.001��3<br>
-		 * 0x04: 0.0001��3�iInitial value�j<br>
-		 * 0x05: 0.00001��3<br>
-		 * 0x06: 0.000001��3<br>
+		 * 0x00: 1m3<br>
+		 * 0x01: 0.1m3<br>
+		 * 0x02: 0.01m3<br>
+		 * 0x03: 0.001m3<br>
+		 * 0x04: 0.0001m3 (Initial value) 0x05: 0.00001m3<br>
+		 * 0x06: 0.000001m3<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1625,17 +1563,16 @@ Byte<br>
 		 * This property indicates the historical data of measured cumulative amounts (consumptions) of running water, which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0-0x3B9AC9FF<br>
-		 * (0-999,999.999m3�j<br>
+		 * 0x0.0x3B9AC9FF (0.999,999.999m3)<br>
 		 * <br>
 		 * Data type : unsigned long
-�~48<br>
+×48<br>
 		 * <br>
 		 * Data size : 192
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : 0.001
-��3<br>
+m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1655,14 +1592,12 @@ Byte<br>
 		 * This property indicates whether the meter has detected an abnormal value in the metering data.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Abnormal value detected: 0x41<br>
-		 * No abnormal value detected:<br>
-		 * 0x42<br>
+		 * Abnormal value detected: 0x41 No abnormal value detected: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1683,15 +1618,14 @@ Byte<br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Provides security information about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>
+		 * Provides security information  about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0xFFFFFFFF<br>
+		 * 0.0xFFFFFFFF<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 5
-Byte<br>
+		 * Data size : 4 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1710,17 +1644,16 @@ Byte<br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the ID<br>
-		 * number of the meter.<br>
+		 * This property indicates the ID number of the meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The ID number is specified using ASCII code.<br>
-		 * �iInitial value�F�g000000�h�j<br>
+		 * (Initial value : “000000”)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 6
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1743,13 +1676,12 @@ Byte<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The month and year are specified using ASCII code.<br>
-		 * xxxx xx<br>
-		 * Year Month<br>
+		 * xxxx xx Year Month<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 6
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1840,8 +1772,8 @@ Byte<br>
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -1881,15 +1813,12 @@ Byte<br>
 		 * This property indicates the water flowmeter type.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�Frunning water<br>
-		 * 0x31�Frecycled water<br>
-		 * 0x32�Fwarm water<br>
-		 * 0x33�Fother water<br>
+		 * 0x30 : running water 0x31 : recycled water 0x32 : warm water 0x33 : other water<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1911,15 +1840,14 @@ Byte<br>
 		 * This property indicates the owner of the meter in the form of owner classification.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�FNot specified<br>
-		 * 0x31�FPublic waterworks company<br>
-		 * 0x32�FPrivate sector company<br>
-		 * 0x33�FIndividual<br>
+		 * 0x30 : Not specified  0x31 : Public waterworks<br>
+		 * company<br>
+		 * 0x32 : Private sector company 0x33 : Individual<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1941,15 +1869,14 @@ Byte<br>
 		 * This property indicates the cumulative amount (consumption) of flowing water using a 9-digit number.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x3B9AC9FF<br>
-		 * (0-999,999,999�j<br>
+		 * 0.0x3B9AC9FF (0.999,999,999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
-		 * Unit : ��3<br>
+		 * Unit : m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1969,18 +1896,17 @@ Byte<br>
 		 * This property indicates the unit (multiplying factor) for the measured cumulative amount of flowing water and the historical data of measured cumulative amounts of flowing water.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00: 1��3<br>
-		 * 0x01: 0.1��3<br>
-		 * 0x02: 0.01��3<br>
-		 * 0x03: 0.001��3<br>
-		 * 0x04: 0.0001��3�iInitial value�j<br>
-		 * 0x05: 0.00001��3<br>
-		 * 0x06: 0.000001��3<br>
+		 * 0x00: 1m3<br>
+		 * 0x01: 0.1m3<br>
+		 * 0x02: 0.01m3<br>
+		 * 0x03: 0.001m3<br>
+		 * 0x04: 0.0001m3 (Initial value) 0x05: 0.00001m3<br>
+		 * 0x06: 0.000001m3<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2002,17 +1928,16 @@ Byte<br>
 		 * This property indicates the historical data of measured cumulative amounts (consumptions) of running water, which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0-0x3B9AC9FF<br>
-		 * (0-999,999.999m3�j<br>
+		 * 0x0.0x3B9AC9FF (0.999,999.999m3)<br>
 		 * <br>
 		 * Data type : unsigned long
-�~48<br>
+×48<br>
 		 * <br>
 		 * Data size : 192
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : 0.001
-��3<br>
+m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2032,14 +1957,12 @@ Byte<br>
 		 * This property indicates whether the meter has detected an abnormal value in the metering data.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Abnormal value detected: 0x41<br>
-		 * No abnormal value detected:<br>
-		 * 0x42<br>
+		 * Abnormal value detected: 0x41 No abnormal value detected: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2060,15 +1983,14 @@ Byte<br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Provides security information about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>
+		 * Provides security information  about the abnormal states detected by the meter in the form of security data that identifies the abnormal states by means of bit assignment.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0xFFFFFFFF<br>
+		 * 0.0xFFFFFFFF<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 5
-Byte<br>
+		 * Data size : 4 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2087,17 +2009,16 @@ Byte<br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the ID<br>
-		 * number of the meter.<br>
+		 * This property indicates the ID number of the meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The ID number is specified using ASCII code.<br>
-		 * �iInitial value�F�g000000�h�j<br>
+		 * (Initial value : “000000”)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 6
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -2120,13 +2041,12 @@ Byte<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The month and year are specified using ASCII code.<br>
-		 * xxxx xx<br>
-		 * Year Month<br>
+		 * xxxx xx Year Month<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 6
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>

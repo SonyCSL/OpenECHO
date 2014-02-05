@@ -61,17 +61,16 @@ public abstract class Humidifier extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -87,17 +86,16 @@ public abstract class Humidifier extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -116,7 +114,8 @@ public abstract class Humidifier extends DeviceObject {
 	 * Sets value of relative humidity and get setting status<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+	 * 0x00.0x64, (0.100%)<br>
+	 * Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -139,7 +138,8 @@ public abstract class Humidifier extends DeviceObject {
 	 * Sets value of relative humidity and get setting status<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+	 * 0x00.0x64, (0.100%)<br>
+	 * Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -162,7 +162,8 @@ public abstract class Humidifier extends DeviceObject {
 	 * Sets value of relative humidity and get setting status<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+	 * 0x00.0x64, (0.100%)<br>
+	 * Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -188,8 +189,7 @@ public abstract class Humidifier extends DeviceObject {
 	 * Sets humidifying level by 3 steps<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Humidifying levels =0x31.0x33<br>
-	 * Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+	 * Humidifying levels =0x31.0x33 Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -212,8 +212,7 @@ public abstract class Humidifier extends DeviceObject {
 	 * Sets humidifying level by 3 steps<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Humidifying levels =0x31.0x33<br>
-	 * Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+	 * Humidifying levels =0x31.0x33 Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -236,8 +235,7 @@ public abstract class Humidifier extends DeviceObject {
 	 * Sets humidifying level by 3 steps<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Humidifying levels =0x31.0x33<br>
-	 * Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+	 * Humidifying levels =0x31.0x33 Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -269,7 +267,7 @@ public abstract class Humidifier extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -292,7 +290,7 @@ public abstract class Humidifier extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -387,9 +385,9 @@ public abstract class Humidifier extends DeviceObject {
 	 * Reservation ON =0x41, OFF =0x42<br>
 	 * <br>
 	 * Data type : unsigned char
-x2<br>
+×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -411,9 +409,9 @@ x2<br>
 	 * Reservation ON =0x41, OFF =0x42<br>
 	 * <br>
 	 * Data type : unsigned char
-x2<br>
+×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -435,9 +433,9 @@ x2<br>
 	 * Reservation ON =0x41, OFF =0x42<br>
 	 * <br>
 	 * Data type : unsigned char
-x2<br>
+×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -465,7 +463,7 @@ x2<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -488,7 +486,7 @@ x2<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -511,7 +509,7 @@ x2<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -537,7 +535,7 @@ x2<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -560,7 +558,7 @@ x2<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -582,7 +580,7 @@ x2<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation<br>
-	 * Bit 2-7: for future reserved<br>
+	 * Bit 2.7: for future reserved<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
@@ -607,7 +605,7 @@ x2<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation<br>
-	 * Bit 2-7: for future reserved<br>
+	 * Bit 2.7: for future reserved<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
@@ -632,7 +630,7 @@ x2<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation<br>
-	 * Bit 2-7: for future reserved<br>
+	 * Bit 2.7: for future reserved<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
@@ -659,13 +657,13 @@ x2<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x40: empty<br>
-	 * 0x41-0x45: minimum to maximum level<br>
+	 * 0x41.0x45: minimum to maximum level<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -683,13 +681,13 @@ x2<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x40: empty<br>
-	 * 0x41-0x45: minimum to maximum level<br>
+	 * 0x41.0x45: minimum to maximum level<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -869,7 +867,8 @@ x2<br>
 		 * Sets value of relative humidity and get setting status<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+		 * 0x00.0x64, (0.100%)<br>
+		 * Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -892,7 +891,8 @@ x2<br>
 		 * Sets value of relative humidity and get setting status<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+		 * 0x00.0x64, (0.100%)<br>
+		 * Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -915,8 +915,7 @@ x2<br>
 		 * Sets humidifying level by 3 steps<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Humidifying levels =0x31.0x33<br>
-		 * Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+		 * Humidifying levels =0x31.0x33 Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -939,8 +938,7 @@ x2<br>
 		 * Sets humidifying level by 3 steps<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Humidifying levels =0x31.0x33<br>
-		 * Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+		 * Humidifying levels =0x31.0x33 Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -969,7 +967,7 @@ x2<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1035,9 +1033,9 @@ x2<br>
 		 * Reservation ON =0x41, OFF =0x42<br>
 		 * <br>
 		 * Data type : unsigned char
-x2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1059,9 +1057,9 @@ x2<br>
 		 * Reservation ON =0x41, OFF =0x42<br>
 		 * <br>
 		 * Data type : unsigned char
-x2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1086,7 +1084,7 @@ x2<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1109,7 +1107,7 @@ x2<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1132,7 +1130,7 @@ x2<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1151,7 +1149,7 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation<br>
-		 * Bit 2-7: for future reserved<br>
+		 * Bit 2.7: for future reserved<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
@@ -1176,7 +1174,7 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation<br>
-		 * Bit 2-7: for future reserved<br>
+		 * Bit 2.7: for future reserved<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
@@ -1200,13 +1198,13 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x40: empty<br>
-		 * 0x41-0x45: minimum to maximum level<br>
+		 * 0x41.0x45: minimum to maximum level<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1245,8 +1243,8 @@ x2<br>
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -1270,7 +1268,8 @@ x2<br>
 		 * Sets value of relative humidity and get setting status<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+		 * 0x00.0x64, (0.100%)<br>
+		 * Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -1296,8 +1295,7 @@ x2<br>
 		 * Sets humidifying level by 3 steps<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Humidifying levels =0x31.0x33<br>
-		 * Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+		 * Humidifying levels =0x31.0x33 Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -1352,9 +1350,9 @@ x2<br>
 		 * Reservation ON =0x41, OFF =0x42<br>
 		 * <br>
 		 * Data type : unsigned char
-x2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1382,7 +1380,7 @@ x2<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1404,7 +1402,7 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation<br>
-		 * Bit 2-7: for future reserved<br>
+		 * Bit 2.7: for future reserved<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
@@ -1500,8 +1498,8 @@ x2<br>
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -1541,7 +1539,8 @@ x2<br>
 		 * Sets value of relative humidity and get setting status<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+		 * 0x00.0x64, (0.100%)<br>
+		 * Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -1567,8 +1566,7 @@ x2<br>
 		 * Sets humidifying level by 3 steps<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Humidifying levels =0x31.0x33<br>
-		 * Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+		 * Humidifying levels =0x31.0x33 Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -1600,7 +1598,7 @@ x2<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1649,9 +1647,9 @@ x2<br>
 		 * Reservation ON =0x41, OFF =0x42<br>
 		 * <br>
 		 * Data type : unsigned char
-x2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1679,7 +1677,7 @@ x2<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1705,7 +1703,7 @@ x2<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1727,7 +1725,7 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation<br>
-		 * Bit 2-7: for future reserved<br>
+		 * Bit 2.7: for future reserved<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
@@ -1754,13 +1752,13 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x40: empty<br>
-		 * 0x41-0x45: minimum to maximum level<br>
+		 * 0x41.0x45: minimum to maximum level<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1849,8 +1847,8 @@ x2<br>
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -1890,7 +1888,8 @@ x2<br>
 		 * Sets value of relative humidity and get setting status<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64, (0.100%) Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+		 * 0x00.0x64, (0.100%)<br>
+		 * Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -1916,8 +1915,7 @@ x2<br>
 		 * Sets humidifying level by 3 steps<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Humidifying levels =0x31.0x33<br>
-		 * Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
+		 * Humidifying levels =0x31.0x33 Automatic setting =0x70, Continuous operation =0x71, intermittent operation =0x72<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -1949,7 +1947,7 @@ x2<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1998,9 +1996,9 @@ x2<br>
 		 * Reservation ON =0x41, OFF =0x42<br>
 		 * <br>
 		 * Data type : unsigned char
-x2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -2028,7 +2026,7 @@ x2<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2054,7 +2052,7 @@ x2<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2076,7 +2074,7 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Specifies 1 for effective setting Bit 0: Throat dry prevention Bit 1: Quiet operation<br>
-		 * Bit 2-7: for future reserved<br>
+		 * Bit 2.7: for future reserved<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
@@ -2103,13 +2101,13 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x40: empty<br>
-		 * 0x41-0x45: minimum to maximum level<br>
+		 * 0x41.0x45: minimum to maximum level<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>

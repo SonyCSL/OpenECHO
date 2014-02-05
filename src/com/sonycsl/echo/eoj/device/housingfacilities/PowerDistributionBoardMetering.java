@@ -92,16 +92,15 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON=0x30�COFF=0x31<br>
+	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -119,16 +118,15 @@ Byte<br>
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON=0x30�COFF=0x31<br>
+	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -146,17 +144,15 @@ Byte<br>
 	 * EPC : 0xC0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured cumulative amount of electric<br>
-	 * energy using an 8-digit decimal notation number.<br>
+	 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00000000-0x05F5E0FF<br>
-	 * (0-99,999,999)<br>
+	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh<br>
 	 * <br>
@@ -172,17 +168,15 @@ Byte<br>
 	 * EPC : 0xC0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured cumulative amount of electric<br>
-	 * energy using an 8-digit decimal notation number.<br>
+	 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00000000-0x05F5E0FF<br>
-	 * (0-99,999,999)<br>
+	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh<br>
 	 * <br>
@@ -201,17 +195,15 @@ Byte<br>
 	 * EPC : 0xC1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured cumulative amount of electric<br>
-	 * energy using an 8-digit decimal notation number.<br>
+	 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00000000-0x05F5E0FF<br>
-	 * (0-99,999,999)<br>
+	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh<br>
 	 * <br>
@@ -227,17 +219,15 @@ Byte<br>
 	 * EPC : 0xC1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured cumulative amount of electric<br>
-	 * energy using an 8-digit decimal notation number.<br>
+	 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00000000-0x05F5E0FF<br>
-	 * (0-99,999,999)<br>
+	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh<br>
 	 * <br>
@@ -259,20 +249,17 @@ Byte<br>
 	 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00: 1kWh<br>
-	 * 0x01: 0.1kWh<br>
+	 * 0x00: 1kWh 0x01: 0.1kWh<br>
 	 * 0x02: 0.01kWh<br>
-	 * 0x03: 0.001kWh�iInitial value�j<br>
-	 * 0x04: 0.0001kWh<br>
-	 * 0x0A: 10kWh<br>
-	 * 0x0B: 100kWh<br>
+	 * 0x03: 0.001kWh (Initial value) 0x04: 0.0001kWh<br>
+	 * 0x0A: 10kWh 0x0B: 100kWh<br>
 	 * 0x0C: 1000kWh<br>
 	 * 0x0D: 10000kWh<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -291,20 +278,17 @@ Byte<br>
 	 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00: 1kWh<br>
-	 * 0x01: 0.1kWh<br>
+	 * 0x00: 1kWh 0x01: 0.1kWh<br>
 	 * 0x02: 0.01kWh<br>
-	 * 0x03: 0.001kWh�iInitial value�j<br>
-	 * 0x04: 0.0001kWh<br>
-	 * 0x0A: 10kWh<br>
-	 * 0x0B: 100kWh<br>
+	 * 0x03: 0.001kWh (Initial value) 0x04: 0.0001kWh<br>
+	 * 0x0A: 10kWh 0x0B: 100kWh<br>
 	 * 0x0C: 1000kWh<br>
 	 * 0x0D: 10000kWh<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -324,21 +308,19 @@ Byte<br>
 	 * EPC : 0xC3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of<br>
-	 * 48 pieces of half-hourly data for the preceding 24 hours.<br>
+	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000-0x0063�F<br>
-	 * 0x00000000-0x05F5E0FF (0-99)�F(0-99,999,999)<br>
+	 * 0x0000.0x0063 :<br>
+	 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
 	 * <br>
 	 * Data type : unsigned short
-�{
-unsigned
++unsign ed
 long
-�~48<br>
+×48<br>
 	 * <br>
 	 * Data size : 194
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh<br>
 	 * <br>
@@ -355,21 +337,19 @@ Byte<br>
 	 * EPC : 0xC3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of<br>
-	 * 48 pieces of half-hourly data for the preceding 24 hours.<br>
+	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000-0x0063�F<br>
-	 * 0x00000000-0x05F5E0FF (0-99)�F(0-99,999,999)<br>
+	 * 0x0000.0x0063 :<br>
+	 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
 	 * <br>
 	 * Data type : unsigned short
-�{
-unsigned
++unsign ed
 long
-�~48<br>
+×48<br>
 	 * <br>
 	 * Data size : 194
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh<br>
 	 * <br>
@@ -389,21 +369,19 @@ Byte<br>
 	 * EPC : 0xC4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of<br>
-	 * 48 pieces of half-hourly data for the preceding 24 hours.<br>
+	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000-0x0063�F<br>
-	 * 0x00000000-0x05F5E0FF (0-99)�F(0-99,999,999)<br>
+	 * 0x0000.0x0063 :<br>
+	 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
 	 * <br>
 	 * Data type : unsigned short
-�{
-unsigned
++unsign ed
 long
-�~48<br>
+×48<br>
 	 * <br>
 	 * Data size : 194
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh<br>
 	 * <br>
@@ -420,21 +398,19 @@ Byte<br>
 	 * EPC : 0xC4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of<br>
-	 * 48 pieces of half-hourly data for the preceding 24 hours.<br>
+	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000-0x0063�F<br>
-	 * 0x00000000-0x05F5E0FF (0-99)�F(0-99,999,999)<br>
+	 * 0x0000.0x0063 :<br>
+	 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
 	 * <br>
 	 * Data type : unsigned short
-�{
-unsigned
++unsign ed
 long
-�~48<br>
+×48<br>
 	 * <br>
 	 * Data size : 194
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh<br>
 	 * <br>
@@ -448,25 +424,22 @@ Byte<br>
 		return true;
 	}
 	/**
-	 * Property name : Day for which the historical data of measured cumulative amounts of electric
-energy is to be retrieved<br>
+	 * Property name : Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved<br>
 	 * <br>
 	 * EPC : 0xC5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative amounts of<br>
-	 * electric energy (which consists of 48 pieces of half-hourly data for the<br>
-	 * preceding 24 hours) is to be retrieved.<br>
+	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00-0x63 ( 0-99)<br>
+	 * 0x00.0x63 ( 0.99)<br>
 	 * 0: current day<br>
-	 * 1  . 99: previous day . day that precedes the current day by 99 days<br>
+	 * 1. 99: previous day.day that precedes the current day by 99 days<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -477,25 +450,22 @@ Byte<br>
 	 */
 	protected boolean setDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(byte[] edt) {return false;}
 	/**
-	 * Property name : Day for which the historical data of measured cumulative amounts of electric
-energy is to be retrieved<br>
+	 * Property name : Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved<br>
 	 * <br>
 	 * EPC : 0xC5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative amounts of<br>
-	 * electric energy (which consists of 48 pieces of half-hourly data for the<br>
-	 * preceding 24 hours) is to be retrieved.<br>
+	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00-0x63 ( 0-99)<br>
+	 * 0x00.0x63 ( 0.99)<br>
 	 * 0: current day<br>
-	 * 1  . 99: previous day . day that precedes the current day by 99 days<br>
+	 * 1. 99: previous day.day that precedes the current day by 99 days<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -506,25 +476,22 @@ Byte<br>
 	 */
 	protected byte[] getDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved() {return null;}
 	/**
-	 * Property name : Day for which the historical data of measured cumulative amounts of electric
-energy is to be retrieved<br>
+	 * Property name : Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved<br>
 	 * <br>
 	 * EPC : 0xC5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative amounts of<br>
-	 * electric energy (which consists of 48 pieces of half-hourly data for the<br>
-	 * preceding 24 hours) is to be retrieved.<br>
+	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00-0x63 ( 0-99)<br>
+	 * 0x00.0x63 ( 0.99)<br>
 	 * 0: current day<br>
-	 * 1  . 99: previous day . day that precedes the current day by 99 days<br>
+	 * 1. 99: previous day.day that precedes the current day by 99 days<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -543,17 +510,16 @@ Byte<br>
 	 * EPC : 0xC6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured effective<br>
-	 * instantaneous amount of electric energy in watts.<br>
+	 * This property indicates the measured effective instantaneous amount of electric energy in watts.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x80000001-0x7FFFFFFD (-2,147,483,647-<br>
-	 * 2,147,483,645)<br>
+	 * 0x80000001.0x7FFFFFFD<br>
+	 * (-2,147,483,647.2,147,483,645)<br>
 	 * <br>
 	 * Data type : signed long<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -569,17 +535,16 @@ Byte<br>
 	 * EPC : 0xC6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured effective<br>
-	 * instantaneous amount of electric energy in watts.<br>
+	 * This property indicates the measured effective instantaneous amount of electric energy in watts.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x80000001-0x7FFFFFFD (-2,147,483,647-<br>
-	 * 2,147,483,645)<br>
+	 * 0x80000001.0x7FFFFFFD<br>
+	 * (-2,147,483,647.2,147,483,645)<br>
 	 * <br>
 	 * Data type : signed long<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -598,21 +563,21 @@ Byte<br>
 	 * EPC : 0xC7<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured effective instantaneous R and T<br>
-	 * phase currents in amperes.<br>
+	 * This property indicates the measured effective instantaneous R and T phase currents in amperes.<br>
 	 * In the case of a single-phase,<br>
 	 * two-wire system, 0x7FFE shall be used for the T phase.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x8001-0x7FFD�iR phase�j<br>
-	 * : 0x8001-0x7FFD�iT phase�j<br>
-	 * (-3,276.7-3,276.5): (-3,276.7-3,276.5)<br>
+	 * 0x8001-0x7FFD (R phase)<br>
+	 * : 0x8001-0x7FFD (T phase)<br>
+	 * (-3,276.7.3,276.5):<br>
+	 * (-3,276.7.3,276.5)<br>
 	 * <br>
 	 * Data type : signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : 0.1
 A<br>
@@ -629,21 +594,21 @@ A<br>
 	 * EPC : 0xC7<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured effective instantaneous R and T<br>
-	 * phase currents in amperes.<br>
+	 * This property indicates the measured effective instantaneous R and T phase currents in amperes.<br>
 	 * In the case of a single-phase,<br>
 	 * two-wire system, 0x7FFE shall be used for the T phase.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x8001-0x7FFD�iR phase�j<br>
-	 * : 0x8001-0x7FFD�iT phase�j<br>
-	 * (-3,276.7-3,276.5): (-3,276.7-3,276.5)<br>
+	 * 0x8001-0x7FFD (R phase)<br>
+	 * : 0x8001-0x7FFD (T phase)<br>
+	 * (-3,276.7.3,276.5):<br>
+	 * (-3,276.7.3,276.5)<br>
 	 * <br>
 	 * Data type : signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : 0.1
 A<br>
@@ -663,22 +628,18 @@ A<br>
 	 * EPC : 0xC8<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system,<br>
-	 * 0xFFFE shall be used for the S(N)-T<br>
-	 * voltage.<br>
+	 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system, 0xFFFE shall be used for the S(N)-T voltage.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000-0xFFFD (between R and<br>
-	 * S(N))�F<br>
-	 * 0x0000-0xFFFD (between S(N) and<br>
-	 * T)<br>
-	 * (0-6,553.3) : (0-6,553.3)<br>
+	 * 0x0000.0xFFFD (between R and S(N)) :<br>
+	 * 0x0000.0xFFFD (between S(N) and T)<br>
+	 * (0.6,553.3) : (0.6,553.3)<br>
 	 * <br>
 	 * Data type : unsigned short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : 0.1
 V<br>
@@ -695,22 +656,18 @@ V<br>
 	 * EPC : 0xC8<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system,<br>
-	 * 0xFFFE shall be used for the S(N)-T<br>
-	 * voltage.<br>
+	 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system, 0xFFFE shall be used for the S(N)-T voltage.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000-0xFFFD (between R and<br>
-	 * S(N))�F<br>
-	 * 0x0000-0xFFFD (between S(N) and<br>
-	 * T)<br>
-	 * (0-6,553.3) : (0-6,553.3)<br>
+	 * 0x0000.0xFFFD (between R and S(N)) :<br>
+	 * 0x0000.0xFFFD (between S(N) and T)<br>
+	 * (0.6,553.3) : (0.6,553.3)<br>
 	 * <br>
 	 * Data type : unsigned short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : 0.1
 V<br>
@@ -733,23 +690,21 @@ V<br>
 	 * This property indicates the measurement data for Measurement channel 1 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -766,23 +721,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 1 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -802,23 +755,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 2 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -835,23 +786,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 2 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -871,23 +820,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 3 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -904,23 +851,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 3 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -940,23 +885,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 4 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -973,23 +916,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 4 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1009,23 +950,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 5 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1042,23 +981,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 5 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1078,23 +1015,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 6 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1111,23 +1046,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 6 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1147,23 +1080,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 7 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1180,23 +1111,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 7 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1216,23 +1145,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 8 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1249,23 +1176,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 8 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1285,23 +1210,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 9 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1318,23 +1241,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 9 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1354,23 +1275,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 10 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
-uigned short
-�~2<br>
++
+signed short
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1387,23 +1306,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 10 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
-uigned short
-�~2<br>
++
+signed short
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1423,23 +1340,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 11 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1456,23 +1371,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 11 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1492,23 +1405,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 12 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1525,23 +1436,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 12 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1561,23 +1470,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 13 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1594,23 +1501,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 13 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1630,23 +1535,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 14 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1663,23 +1566,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 14 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1699,23 +1600,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 15 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1732,23 +1631,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 15 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1768,23 +1665,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 16 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1801,23 +1696,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 16 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1837,23 +1730,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 17 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1870,23 +1761,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 17 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1906,23 +1795,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 18 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1939,23 +1826,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 18 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1975,23 +1860,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 19 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2008,23 +1891,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 19 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2044,23 +1925,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 20 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2077,23 +1956,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 20 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2113,23 +1990,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 21 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2146,23 +2021,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 21 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2182,23 +2055,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 22 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2215,23 +2086,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 22 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2251,23 +2120,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 23 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2284,23 +2151,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 23 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2320,23 +2185,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 24 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2353,23 +2216,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 24 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2389,23 +2250,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 25 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2422,23 +2281,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 25 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2458,23 +2315,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 26 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2491,23 +2346,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 26 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2527,23 +2380,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 27 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2560,23 +2411,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 27 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2596,23 +2445,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 28 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2629,23 +2476,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 28 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2665,23 +2510,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 29 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2698,23 +2541,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 29 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2734,23 +2575,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 30 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2767,23 +2606,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 30 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2803,23 +2640,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 31 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2836,23 +2671,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 31 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2872,23 +2705,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 32 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2905,23 +2736,21 @@ Byte<br>
 	 * This property indicates the measurement data for Measurement channel 32 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy:<br>
-	 * same as 0xC0<br>
+	 * Data format for the electric energy: same as 0xC0<br>
 	 * Unit: same as 0xC2<br>
 	 * Data format for the currents: same as 0xC7<br>
 	 * <br>
 	 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 8
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -3238,17 +3067,15 @@ Byte<br>
 		 * EPC : 0xC0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured cumulative amount of electric<br>
-		 * energy using an 8-digit decimal notation number.<br>
+		 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000-0x05F5E0FF<br>
-		 * (0-99,999,999)<br>
+		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh<br>
 		 * <br>
@@ -3264,17 +3091,15 @@ Byte<br>
 		 * EPC : 0xC1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured cumulative amount of electric<br>
-		 * energy using an 8-digit decimal notation number.<br>
+		 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000-0x05F5E0FF<br>
-		 * (0-99,999,999)<br>
+		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh<br>
 		 * <br>
@@ -3293,20 +3118,17 @@ Byte<br>
 		 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00: 1kWh<br>
-		 * 0x01: 0.1kWh<br>
+		 * 0x00: 1kWh 0x01: 0.1kWh<br>
 		 * 0x02: 0.01kWh<br>
-		 * 0x03: 0.001kWh�iInitial value�j<br>
-		 * 0x04: 0.0001kWh<br>
-		 * 0x0A: 10kWh<br>
-		 * 0x0B: 100kWh<br>
+		 * 0x03: 0.001kWh (Initial value) 0x04: 0.0001kWh<br>
+		 * 0x0A: 10kWh 0x0B: 100kWh<br>
 		 * 0x0C: 1000kWh<br>
 		 * 0x0D: 10000kWh<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -3323,21 +3145,19 @@ Byte<br>
 		 * EPC : 0xC3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of<br>
-		 * 48 pieces of half-hourly data for the preceding 24 hours.<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0x0063�F<br>
-		 * 0x00000000-0x05F5E0FF (0-99)�F(0-99,999,999)<br>
+		 * 0x0000.0x0063 :<br>
+		 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
 		 * <br>
 		 * Data type : unsigned short
-�{
-unsigned
++unsign ed
 long
-�~48<br>
+×48<br>
 		 * <br>
 		 * Data size : 194
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh<br>
 		 * <br>
@@ -3354,21 +3174,19 @@ Byte<br>
 		 * EPC : 0xC4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of<br>
-		 * 48 pieces of half-hourly data for the preceding 24 hours.<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0x0063�F<br>
-		 * 0x00000000-0x05F5E0FF (0-99)�F(0-99,999,999)<br>
+		 * 0x0000.0x0063 :<br>
+		 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
 		 * <br>
 		 * Data type : unsigned short
-�{
-unsigned
++unsign ed
 long
-�~48<br>
+×48<br>
 		 * <br>
 		 * Data size : 194
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh<br>
 		 * <br>
@@ -3379,25 +3197,22 @@ Byte<br>
 		 */
 		protected void onGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Day for which the historical data of measured cumulative amounts of electric
-energy is to be retrieved<br>
+		 * Property name : Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved<br>
 		 * <br>
 		 * EPC : 0xC5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of<br>
-		 * electric energy (which consists of 48 pieces of half-hourly data for the<br>
-		 * preceding 24 hours) is to be retrieved.<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00-0x63 ( 0-99)<br>
+		 * 0x00.0x63 ( 0.99)<br>
 		 * 0: current day<br>
-		 * 1  . 99: previous day . day that precedes the current day by 99 days<br>
+		 * 1. 99: previous day.day that precedes the current day by 99 days<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -3408,25 +3223,22 @@ Byte<br>
 		 */
 		protected void onSetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Day for which the historical data of measured cumulative amounts of electric
-energy is to be retrieved<br>
+		 * Property name : Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved<br>
 		 * <br>
 		 * EPC : 0xC5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of<br>
-		 * electric energy (which consists of 48 pieces of half-hourly data for the<br>
-		 * preceding 24 hours) is to be retrieved.<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00-0x63 ( 0-99)<br>
+		 * 0x00.0x63 ( 0.99)<br>
 		 * 0: current day<br>
-		 * 1  . 99: previous day . day that precedes the current day by 99 days<br>
+		 * 1. 99: previous day.day that precedes the current day by 99 days<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -3442,17 +3254,16 @@ Byte<br>
 		 * EPC : 0xC6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured effective<br>
-		 * instantaneous amount of electric energy in watts.<br>
+		 * This property indicates the measured effective instantaneous amount of electric energy in watts.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x80000001-0x7FFFFFFD (-2,147,483,647-<br>
-		 * 2,147,483,645)<br>
+		 * 0x80000001.0x7FFFFFFD<br>
+		 * (-2,147,483,647.2,147,483,645)<br>
 		 * <br>
 		 * Data type : signed long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -3468,21 +3279,21 @@ Byte<br>
 		 * EPC : 0xC7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured effective instantaneous R and T<br>
-		 * phase currents in amperes.<br>
+		 * This property indicates the measured effective instantaneous R and T phase currents in amperes.<br>
 		 * In the case of a single-phase,<br>
 		 * two-wire system, 0x7FFE shall be used for the T phase.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x8001-0x7FFD�iR phase�j<br>
-		 * : 0x8001-0x7FFD�iT phase�j<br>
-		 * (-3,276.7-3,276.5): (-3,276.7-3,276.5)<br>
+		 * 0x8001-0x7FFD (R phase)<br>
+		 * : 0x8001-0x7FFD (T phase)<br>
+		 * (-3,276.7.3,276.5):<br>
+		 * (-3,276.7.3,276.5)<br>
 		 * <br>
 		 * Data type : signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : 0.1
 A<br>
@@ -3499,22 +3310,18 @@ A<br>
 		 * EPC : 0xC8<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system,<br>
-		 * 0xFFFE shall be used for the S(N)-T<br>
-		 * voltage.<br>
+		 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system, 0xFFFE shall be used for the S(N)-T voltage.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0xFFFD (between R and<br>
-		 * S(N))�F<br>
-		 * 0x0000-0xFFFD (between S(N) and<br>
-		 * T)<br>
-		 * (0-6,553.3) : (0-6,553.3)<br>
+		 * 0x0000.0xFFFD (between R and S(N)) :<br>
+		 * 0x0000.0xFFFD (between S(N) and T)<br>
+		 * (0.6,553.3) : (0.6,553.3)<br>
 		 * <br>
 		 * Data type : unsigned short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : 0.1
 V<br>
@@ -3534,23 +3341,21 @@ V<br>
 		 * This property indicates the measurement data for Measurement channel 1 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3567,23 +3372,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 2 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3600,23 +3403,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 3 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3633,23 +3434,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 4 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3666,23 +3465,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 5 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3699,23 +3496,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 6 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3732,23 +3527,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 7 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3765,23 +3558,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 8 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3798,23 +3589,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 9 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3831,23 +3620,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 10 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
-uigned short
-�~2<br>
++
+signed short
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3864,23 +3651,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 11 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3897,23 +3682,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 12 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3930,23 +3713,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 13 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3963,23 +3744,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 14 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3996,23 +3775,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 15 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4029,23 +3806,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 16 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4062,23 +3837,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 17 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4095,23 +3868,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 18 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4128,23 +3899,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 19 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4161,23 +3930,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 20 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4194,23 +3961,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 21 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4227,23 +3992,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 22 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4260,23 +4023,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 23 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4293,23 +4054,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 24 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4326,23 +4085,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 25 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4359,23 +4116,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 26 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4392,23 +4147,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 27 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4425,23 +4178,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 28 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4458,23 +4209,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 29 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4491,23 +4240,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 30 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4524,23 +4271,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 31 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4557,23 +4302,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 32 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4612,8 +4355,8 @@ Byte<br>
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -4629,25 +4372,22 @@ Byte<br>
 		}
 		
 		/**
-		 * Property name : Day for which the historical data of measured cumulative amounts of electric
-energy is to be retrieved<br>
+		 * Property name : Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved<br>
 		 * <br>
 		 * EPC : 0xC5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of<br>
-		 * electric energy (which consists of 48 pieces of half-hourly data for the<br>
-		 * preceding 24 hours) is to be retrieved.<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00-0x63 ( 0-99)<br>
+		 * 0x00.0x63 ( 0.99)<br>
 		 * 0: current day<br>
-		 * 1  . 99: previous day . day that precedes the current day by 99 days<br>
+		 * 1. 99: previous day.day that precedes the current day by 99 days<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -4739,8 +4479,8 @@ Byte<br>
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -4777,17 +4517,15 @@ Byte<br>
 		 * EPC : 0xC0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured cumulative amount of electric<br>
-		 * energy using an 8-digit decimal notation number.<br>
+		 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000-0x05F5E0FF<br>
-		 * (0-99,999,999)<br>
+		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh<br>
 		 * <br>
@@ -4806,17 +4544,15 @@ Byte<br>
 		 * EPC : 0xC1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured cumulative amount of electric<br>
-		 * energy using an 8-digit decimal notation number.<br>
+		 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000-0x05F5E0FF<br>
-		 * (0-99,999,999)<br>
+		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh<br>
 		 * <br>
@@ -4838,20 +4574,17 @@ Byte<br>
 		 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00: 1kWh<br>
-		 * 0x01: 0.1kWh<br>
+		 * 0x00: 1kWh 0x01: 0.1kWh<br>
 		 * 0x02: 0.01kWh<br>
-		 * 0x03: 0.001kWh�iInitial value�j<br>
-		 * 0x04: 0.0001kWh<br>
-		 * 0x0A: 10kWh<br>
-		 * 0x0B: 100kWh<br>
+		 * 0x03: 0.001kWh (Initial value) 0x04: 0.0001kWh<br>
+		 * 0x0A: 10kWh 0x0B: 100kWh<br>
 		 * 0x0C: 1000kWh<br>
 		 * 0x0D: 10000kWh<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -4871,21 +4604,19 @@ Byte<br>
 		 * EPC : 0xC3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of<br>
-		 * 48 pieces of half-hourly data for the preceding 24 hours.<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0x0063�F<br>
-		 * 0x00000000-0x05F5E0FF (0-99)�F(0-99,999,999)<br>
+		 * 0x0000.0x0063 :<br>
+		 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
 		 * <br>
 		 * Data type : unsigned short
-�{
-unsigned
++unsign ed
 long
-�~48<br>
+×48<br>
 		 * <br>
 		 * Data size : 194
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh<br>
 		 * <br>
@@ -4905,21 +4636,19 @@ Byte<br>
 		 * EPC : 0xC4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of<br>
-		 * 48 pieces of half-hourly data for the preceding 24 hours.<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0x0063�F<br>
-		 * 0x00000000-0x05F5E0FF (0-99)�F(0-99,999,999)<br>
+		 * 0x0000.0x0063 :<br>
+		 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
 		 * <br>
 		 * Data type : unsigned short
-�{
-unsigned
++unsign ed
 long
-�~48<br>
+×48<br>
 		 * <br>
 		 * Data size : 194
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh<br>
 		 * <br>
@@ -4933,25 +4662,22 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Day for which the historical data of measured cumulative amounts of electric
-energy is to be retrieved<br>
+		 * Property name : Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved<br>
 		 * <br>
 		 * EPC : 0xC5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of<br>
-		 * electric energy (which consists of 48 pieces of half-hourly data for the<br>
-		 * preceding 24 hours) is to be retrieved.<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00-0x63 ( 0-99)<br>
+		 * 0x00.0x63 ( 0.99)<br>
 		 * 0: current day<br>
-		 * 1  . 99: previous day . day that precedes the current day by 99 days<br>
+		 * 1. 99: previous day.day that precedes the current day by 99 days<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -4970,17 +4696,16 @@ Byte<br>
 		 * EPC : 0xC6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured effective<br>
-		 * instantaneous amount of electric energy in watts.<br>
+		 * This property indicates the measured effective instantaneous amount of electric energy in watts.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x80000001-0x7FFFFFFD (-2,147,483,647-<br>
-		 * 2,147,483,645)<br>
+		 * 0x80000001.0x7FFFFFFD<br>
+		 * (-2,147,483,647.2,147,483,645)<br>
 		 * <br>
 		 * Data type : signed long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -4999,21 +4724,21 @@ Byte<br>
 		 * EPC : 0xC7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured effective instantaneous R and T<br>
-		 * phase currents in amperes.<br>
+		 * This property indicates the measured effective instantaneous R and T phase currents in amperes.<br>
 		 * In the case of a single-phase,<br>
 		 * two-wire system, 0x7FFE shall be used for the T phase.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x8001-0x7FFD�iR phase�j<br>
-		 * : 0x8001-0x7FFD�iT phase�j<br>
-		 * (-3,276.7-3,276.5): (-3,276.7-3,276.5)<br>
+		 * 0x8001-0x7FFD (R phase)<br>
+		 * : 0x8001-0x7FFD (T phase)<br>
+		 * (-3,276.7.3,276.5):<br>
+		 * (-3,276.7.3,276.5)<br>
 		 * <br>
 		 * Data type : signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : 0.1
 A<br>
@@ -5033,22 +4758,18 @@ A<br>
 		 * EPC : 0xC8<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system,<br>
-		 * 0xFFFE shall be used for the S(N)-T<br>
-		 * voltage.<br>
+		 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system, 0xFFFE shall be used for the S(N)-T voltage.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0xFFFD (between R and<br>
-		 * S(N))�F<br>
-		 * 0x0000-0xFFFD (between S(N) and<br>
-		 * T)<br>
-		 * (0-6,553.3) : (0-6,553.3)<br>
+		 * 0x0000.0xFFFD (between R and S(N)) :<br>
+		 * 0x0000.0xFFFD (between S(N) and T)<br>
+		 * (0.6,553.3) : (0.6,553.3)<br>
 		 * <br>
 		 * Data type : unsigned short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : 0.1
 V<br>
@@ -5071,23 +4792,21 @@ V<br>
 		 * This property indicates the measurement data for Measurement channel 1 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5107,23 +4826,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 2 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5143,23 +4860,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 3 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5179,23 +4894,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 4 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5215,23 +4928,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 5 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5251,23 +4962,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 6 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5287,23 +4996,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 7 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5323,23 +5030,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 8 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5359,23 +5064,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 9 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5395,23 +5098,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 10 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
-uigned short
-�~2<br>
++
+signed short
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5431,23 +5132,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 11 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5467,23 +5166,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 12 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5503,23 +5200,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 13 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5539,23 +5234,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 14 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5575,23 +5268,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 15 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5611,23 +5302,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 16 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5647,23 +5336,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 17 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5683,23 +5370,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 18 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5719,23 +5404,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 19 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5755,23 +5438,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 20 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5791,23 +5472,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 21 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5827,23 +5506,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 22 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5863,23 +5540,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 23 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5899,23 +5574,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 24 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5935,23 +5608,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 25 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5971,23 +5642,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 26 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6007,23 +5676,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 27 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6043,23 +5710,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 28 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6079,23 +5744,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 29 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6115,23 +5778,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 30 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6151,23 +5812,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 31 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6187,23 +5846,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 32 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6292,8 +5949,8 @@ Byte<br>
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -6330,17 +5987,15 @@ Byte<br>
 		 * EPC : 0xC0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured cumulative amount of electric<br>
-		 * energy using an 8-digit decimal notation number.<br>
+		 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000-0x05F5E0FF<br>
-		 * (0-99,999,999)<br>
+		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh<br>
 		 * <br>
@@ -6359,17 +6014,15 @@ Byte<br>
 		 * EPC : 0xC1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured cumulative amount of electric<br>
-		 * energy using an 8-digit decimal notation number.<br>
+		 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000-0x05F5E0FF<br>
-		 * (0-99,999,999)<br>
+		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh<br>
 		 * <br>
@@ -6391,20 +6044,17 @@ Byte<br>
 		 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00: 1kWh<br>
-		 * 0x01: 0.1kWh<br>
+		 * 0x00: 1kWh 0x01: 0.1kWh<br>
 		 * 0x02: 0.01kWh<br>
-		 * 0x03: 0.001kWh�iInitial value�j<br>
-		 * 0x04: 0.0001kWh<br>
-		 * 0x0A: 10kWh<br>
-		 * 0x0B: 100kWh<br>
+		 * 0x03: 0.001kWh (Initial value) 0x04: 0.0001kWh<br>
+		 * 0x0A: 10kWh 0x0B: 100kWh<br>
 		 * 0x0C: 1000kWh<br>
 		 * 0x0D: 10000kWh<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -6424,21 +6074,19 @@ Byte<br>
 		 * EPC : 0xC3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of<br>
-		 * 48 pieces of half-hourly data for the preceding 24 hours.<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0x0063�F<br>
-		 * 0x00000000-0x05F5E0FF (0-99)�F(0-99,999,999)<br>
+		 * 0x0000.0x0063 :<br>
+		 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
 		 * <br>
 		 * Data type : unsigned short
-�{
-unsigned
++unsign ed
 long
-�~48<br>
+×48<br>
 		 * <br>
 		 * Data size : 194
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh<br>
 		 * <br>
@@ -6458,21 +6106,19 @@ Byte<br>
 		 * EPC : 0xC4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of<br>
-		 * 48 pieces of half-hourly data for the preceding 24 hours.<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0x0063�F<br>
-		 * 0x00000000-0x05F5E0FF (0-99)�F(0-99,999,999)<br>
+		 * 0x0000.0x0063 :<br>
+		 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
 		 * <br>
 		 * Data type : unsigned short
-�{
-unsigned
++unsign ed
 long
-�~48<br>
+×48<br>
 		 * <br>
 		 * Data size : 194
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh<br>
 		 * <br>
@@ -6486,25 +6132,22 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Day for which the historical data of measured cumulative amounts of electric
-energy is to be retrieved<br>
+		 * Property name : Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved<br>
 		 * <br>
 		 * EPC : 0xC5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of<br>
-		 * electric energy (which consists of 48 pieces of half-hourly data for the<br>
-		 * preceding 24 hours) is to be retrieved.<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00-0x63 ( 0-99)<br>
+		 * 0x00.0x63 ( 0.99)<br>
 		 * 0: current day<br>
-		 * 1  . 99: previous day . day that precedes the current day by 99 days<br>
+		 * 1. 99: previous day.day that precedes the current day by 99 days<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -6523,17 +6166,16 @@ Byte<br>
 		 * EPC : 0xC6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured effective<br>
-		 * instantaneous amount of electric energy in watts.<br>
+		 * This property indicates the measured effective instantaneous amount of electric energy in watts.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x80000001-0x7FFFFFFD (-2,147,483,647-<br>
-		 * 2,147,483,645)<br>
+		 * 0x80000001.0x7FFFFFFD<br>
+		 * (-2,147,483,647.2,147,483,645)<br>
 		 * <br>
 		 * Data type : signed long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -6552,21 +6194,21 @@ Byte<br>
 		 * EPC : 0xC7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured effective instantaneous R and T<br>
-		 * phase currents in amperes.<br>
+		 * This property indicates the measured effective instantaneous R and T phase currents in amperes.<br>
 		 * In the case of a single-phase,<br>
 		 * two-wire system, 0x7FFE shall be used for the T phase.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x8001-0x7FFD�iR phase�j<br>
-		 * : 0x8001-0x7FFD�iT phase�j<br>
-		 * (-3,276.7-3,276.5): (-3,276.7-3,276.5)<br>
+		 * 0x8001-0x7FFD (R phase)<br>
+		 * : 0x8001-0x7FFD (T phase)<br>
+		 * (-3,276.7.3,276.5):<br>
+		 * (-3,276.7.3,276.5)<br>
 		 * <br>
 		 * Data type : signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : 0.1
 A<br>
@@ -6586,22 +6228,18 @@ A<br>
 		 * EPC : 0xC8<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system,<br>
-		 * 0xFFFE shall be used for the S(N)-T<br>
-		 * voltage.<br>
+		 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system, 0xFFFE shall be used for the S(N)-T voltage.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0xFFFD (between R and<br>
-		 * S(N))�F<br>
-		 * 0x0000-0xFFFD (between S(N) and<br>
-		 * T)<br>
-		 * (0-6,553.3) : (0-6,553.3)<br>
+		 * 0x0000.0xFFFD (between R and S(N)) :<br>
+		 * 0x0000.0xFFFD (between S(N) and T)<br>
+		 * (0.6,553.3) : (0.6,553.3)<br>
 		 * <br>
 		 * Data type : unsigned short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : 0.1
 V<br>
@@ -6624,23 +6262,21 @@ V<br>
 		 * This property indicates the measurement data for Measurement channel 1 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6660,23 +6296,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 2 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6696,23 +6330,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 3 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6732,23 +6364,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 4 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6768,23 +6398,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 5 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6804,23 +6432,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 6 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6840,23 +6466,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 7 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6876,23 +6500,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 8 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6912,23 +6534,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 9 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6948,23 +6568,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 10 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
-uigned short
-�~2<br>
++
+signed short
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6984,23 +6602,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 11 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7020,23 +6636,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 12 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7056,23 +6670,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 13 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7092,23 +6704,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 14 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7128,23 +6738,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 15 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7164,23 +6772,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 16 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7200,23 +6806,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 17 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7236,23 +6840,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 18 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7272,23 +6874,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 19 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7308,23 +6908,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 20 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7344,23 +6942,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 21 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7380,23 +6976,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 22 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7416,23 +7010,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 23 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7452,23 +7044,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 24 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7488,23 +7078,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 25 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7524,23 +7112,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 26 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7560,23 +7146,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 27 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7596,23 +7180,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 28 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7632,23 +7214,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 29 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7668,23 +7248,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 30 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7704,23 +7282,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 31 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7740,23 +7316,21 @@ Byte<br>
 		 * This property indicates the measurement data for Measurement channel 32 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy:<br>
-		 * same as 0xC0<br>
+		 * Data format for the electric energy: same as 0xC0<br>
 		 * Unit: same as 0xC2<br>
 		 * Data format for the currents: same as 0xC7<br>
 		 * <br>
 		 * Data type : unsigned long
-�{
++
 signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 8
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh
-+
-0.1A
-�~2<br>
++ 0.1A
+×2<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>

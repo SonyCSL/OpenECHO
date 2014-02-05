@@ -36,7 +36,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	public static final byte EPC_ROOM_HEATING_SETTING = (byte)0xE6;
 	public static final byte EPC_ROOM_HEATING_STATUS = (byte)0xE7;
 	public static final byte EPC_START_TIME_OF_ROOM_HEATING = (byte)0xE8;
-	public static final byte EPC_DURATION_TIME_OF_ROOM_HREATING = (byte)0xE9;
+	public static final byte EPC_DURATION_TIME_OF_ROOM_HEATING = (byte)0xE9;
 	public static final byte EPC_SPECIAL_OPERATION_MODE_SETTING = (byte)0xEA;
 	public static final byte EPC_HUMAN_DETECTION_STATUS = (byte)0xEB;
 	public static final byte EPC_SEATING_DETECTION_STATUS = (byte)0xEC;
@@ -63,17 +63,16 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit :  �<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -89,17 +88,16 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit :  �<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -115,8 +113,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * EPC : 0xE0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Low to high temperature (10 steps)<br>
-	 * 0x31 for the lowest level, 0x3A for the highest level.<br>
+	 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x31 to 0x3A<br>
@@ -125,7 +122,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -139,8 +136,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * EPC : 0xE0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Low to high temperature (10 steps)<br>
-	 * 0x31 for the lowest level, 0x3A for the highest level.<br>
+	 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x31 to 0x3A<br>
@@ -149,7 +145,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -163,8 +159,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * EPC : 0xE0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Low to high temperature (10 steps)<br>
-	 * 0x31 for the lowest level, 0x3A for the highest level.<br>
+	 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x31 to 0x3A<br>
@@ -173,7 +168,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -199,7 +194,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -222,7 +217,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -245,7 +240,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -262,8 +257,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * EPC : 0xE2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Continuous setting / one time setting /<br>
-	 * no setting.<br>
+	 * Continuous setting / one time setting / no setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Continuous setting=0x41, one time setting=0x42, no setting=0x43<br>
@@ -272,7 +266,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -286,8 +280,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * EPC : 0xE2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Continuous setting / one time setting /<br>
-	 * no setting.<br>
+	 * Continuous setting / one time setting / no setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Continuous setting=0x41, one time setting=0x42, no setting=0x43<br>
@@ -296,7 +289,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -310,8 +303,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * EPC : 0xE2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Continuous setting / one time setting /<br>
-	 * no setting.<br>
+	 * Continuous setting / one time setting / no setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Continuous setting=0x41, one time setting=0x42, no setting=0x43<br>
@@ -320,7 +312,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -340,15 +332,14 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * Temporal halt start time of toilet seat timer value: HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17 : 0 to 0x3B<br>
-	 * (=0 to 23) : (=0 to 59)<br>
+	 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-*2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -365,15 +356,14 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * Temporal halt start time of toilet seat timer value: HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17 : 0 to 0x3B<br>
-	 * (=0 to 23) : (=0 to 59)<br>
+	 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-*2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -390,15 +380,14 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * Temporal halt start time of toilet seat timer value: HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17 : 0 to 0x3B<br>
-	 * (=0 to 23) : (=0 to 59)<br>
+	 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-*2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -419,14 +408,14 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * timer value: HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br>
+	 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-*2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -444,14 +433,14 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * timer value: HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br>
+	 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-*2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -469,14 +458,14 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * timer value: HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br>
+	 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-*2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -493,7 +482,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Low / midium / high temperature<br>
+	 * Low / medium / high temperature<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x31 / 0x32 / 0x33<br>
@@ -502,7 +491,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -516,7 +505,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Low / midium / high temperature<br>
+	 * Low / medium / high temperature<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x31 / 0x32 / 0x33<br>
@@ -525,7 +514,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -539,7 +528,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Low / midium / high temperature<br>
+	 * Low / medium / high temperature<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x31 / 0x32 / 0x33<br>
@@ -548,7 +537,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -575,7 +564,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -599,7 +588,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -623,7 +612,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -649,7 +638,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -672,7 +661,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -695,11 +684,11 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * 0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br>
 	 * <br>
 	 * Data type : unsigned char
-*2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -719,11 +708,11 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * 0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br>
 	 * <br>
 	 * Data type : unsigned char
-*2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -743,11 +732,11 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * 0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br>
 	 * <br>
 	 * Data type : unsigned char
-*2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -759,7 +748,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		return true;
 	}
 	/**
-	 * Property name : Duration time of room hreating<br>
+	 * Property name : Duration time of room heating<br>
 	 * <br>
 	 * EPC : 0xE9<br>
 	 * <br>
@@ -767,23 +756,23 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * Duration time HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br>
+	 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-*2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setDurationTimeOfRoomHreating(byte[] edt) {return false;}
+	protected boolean setDurationTimeOfRoomHeating(byte[] edt) {return false;}
 	/**
-	 * Property name : Duration time of room hreating<br>
+	 * Property name : Duration time of room heating<br>
 	 * <br>
 	 * EPC : 0xE9<br>
 	 * <br>
@@ -791,23 +780,23 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * Duration time HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br>
+	 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-*2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getDurationTimeOfRoomHreating() {return null;}
+	protected byte[] getDurationTimeOfRoomHeating() {return null;}
 	/**
-	 * Property name : Duration time of room hreating<br>
+	 * Property name : Duration time of room heating<br>
 	 * <br>
 	 * EPC : 0xE9<br>
 	 * <br>
@@ -815,21 +804,21 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * Duration time HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br>
+	 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-*2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidDurationTimeOfRoomHreating(byte[] edt) {
+	protected boolean isValidDurationTimeOfRoomHeating(byte[] edt) {
 		if(edt == null || !(edt.length == 2)) return false;
 		return true;
 	}
@@ -849,7 +838,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -873,7 +862,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -897,7 +886,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -924,35 +913,11 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setHumanDetectionStatus(byte[] edt) {return false;}
-	/**
-	 * Property name : Human detection status<br>
-	 * <br>
-	 * EPC : 0xEB<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Indicate detection of human body<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Detected = 0x41<br>
-	 * Non detecteed = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : .<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
+	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
 	protected byte[] getHumanDetectionStatus() {return null;}
@@ -972,11 +937,11 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
-	 * Set - optional<br>
+	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
 	protected boolean isValidHumanDetectionStatus(byte[] edt) {
@@ -999,35 +964,11 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setSeatingDetectionStatus(byte[] edt) {return false;}
-	/**
-	 * Property name : Seating detection status<br>
-	 * <br>
-	 * EPC : 0xEC<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates detection of seating<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Detected = 0x41<br>
-	 * Non detecteed = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : .<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
+	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
 	protected byte[] getSeatingDetectionStatus() {return null;}
@@ -1047,11 +988,11 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
-	 * Set - optional<br>
+	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
 	protected boolean isValidSeatingDetectionStatus(byte[] edt) {
@@ -1073,10 +1014,8 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		case EPC_TEMPERATURE_LEVEL_SETTING_OF_ROOM_HEATING : return setTemperatureLevelSettingOfRoomHeating(property.edt);
 		case EPC_ROOM_HEATING_SETTING : return setRoomHeatingSetting(property.edt);
 		case EPC_START_TIME_OF_ROOM_HEATING : return setStartTimeOfRoomHeating(property.edt);
-		case EPC_DURATION_TIME_OF_ROOM_HREATING : return setDurationTimeOfRoomHreating(property.edt);
+		case EPC_DURATION_TIME_OF_ROOM_HEATING : return setDurationTimeOfRoomHeating(property.edt);
 		case EPC_SPECIAL_OPERATION_MODE_SETTING : return setSpecialOperationModeSetting(property.edt);
-		case EPC_HUMAN_DETECTION_STATUS : return setHumanDetectionStatus(property.edt);
-		case EPC_SEATING_DETECTION_STATUS : return setSeatingDetectionStatus(property.edt);
 		default : return false;
 		}
 	}
@@ -1096,7 +1035,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		case EPC_ROOM_HEATING_SETTING : return getRoomHeatingSetting();
 		case EPC_ROOM_HEATING_STATUS : return getRoomHeatingStatus();
 		case EPC_START_TIME_OF_ROOM_HEATING : return getStartTimeOfRoomHeating();
-		case EPC_DURATION_TIME_OF_ROOM_HREATING : return getDurationTimeOfRoomHreating();
+		case EPC_DURATION_TIME_OF_ROOM_HEATING : return getDurationTimeOfRoomHeating();
 		case EPC_SPECIAL_OPERATION_MODE_SETTING : return getSpecialOperationModeSetting();
 		case EPC_HUMAN_DETECTION_STATUS : return getHumanDetectionStatus();
 		case EPC_SEATING_DETECTION_STATUS : return getSeatingDetectionStatus();
@@ -1119,7 +1058,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		case EPC_ROOM_HEATING_SETTING : return isValidRoomHeatingSetting(property.edt);
 		case EPC_ROOM_HEATING_STATUS : return isValidRoomHeatingStatus(property.edt);
 		case EPC_START_TIME_OF_ROOM_HEATING : return isValidStartTimeOfRoomHeating(property.edt);
-		case EPC_DURATION_TIME_OF_ROOM_HREATING : return isValidDurationTimeOfRoomHreating(property.edt);
+		case EPC_DURATION_TIME_OF_ROOM_HEATING : return isValidDurationTimeOfRoomHeating(property.edt);
 		case EPC_SPECIAL_OPERATION_MODE_SETTING : return isValidSpecialOperationModeSetting(property.edt);
 		case EPC_HUMAN_DETECTION_STATUS : return isValidHumanDetectionStatus(property.edt);
 		case EPC_SEATING_DETECTION_STATUS : return isValidSeatingDetectionStatus(property.edt);
@@ -1194,17 +1133,11 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			case EPC_START_TIME_OF_ROOM_HEATING : 
 				onSetStartTimeOfRoomHeating(eoj, tid, esv, property, success);
 				return true;
-			case EPC_DURATION_TIME_OF_ROOM_HREATING : 
-				onSetDurationTimeOfRoomHreating(eoj, tid, esv, property, success);
+			case EPC_DURATION_TIME_OF_ROOM_HEATING : 
+				onSetDurationTimeOfRoomHeating(eoj, tid, esv, property, success);
 				return true;
 			case EPC_SPECIAL_OPERATION_MODE_SETTING : 
 				onSetSpecialOperationModeSetting(eoj, tid, esv, property, success);
-				return true;
-			case EPC_HUMAN_DETECTION_STATUS : 
-				onSetHumanDetectionStatus(eoj, tid, esv, property, success);
-				return true;
-			case EPC_SEATING_DETECTION_STATUS : 
-				onSetSeatingDetectionStatus(eoj, tid, esv, property, success);
 				return true;
 			default :
 				return false;
@@ -1245,8 +1178,8 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			case EPC_START_TIME_OF_ROOM_HEATING : 
 				onGetStartTimeOfRoomHeating(eoj, tid, esv, property, success);
 				return true;
-			case EPC_DURATION_TIME_OF_ROOM_HREATING : 
-				onGetDurationTimeOfRoomHreating(eoj, tid, esv, property, success);
+			case EPC_DURATION_TIME_OF_ROOM_HEATING : 
+				onGetDurationTimeOfRoomHeating(eoj, tid, esv, property, success);
 				return true;
 			case EPC_SPECIAL_OPERATION_MODE_SETTING : 
 				onGetSpecialOperationModeSetting(eoj, tid, esv, property, success);
@@ -1268,8 +1201,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * EPC : 0xE0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Low to high temperature (10 steps)<br>
-		 * 0x31 for the lowest level, 0x3A for the highest level.<br>
+		 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31 to 0x3A<br>
@@ -1278,7 +1210,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1292,8 +1224,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * EPC : 0xE0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Low to high temperature (10 steps)<br>
-		 * 0x31 for the lowest level, 0x3A for the highest level.<br>
+		 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31 to 0x3A<br>
@@ -1302,7 +1233,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1325,7 +1256,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1348,7 +1279,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1362,8 +1293,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * EPC : 0xE2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Continuous setting / one time setting /<br>
-		 * no setting.<br>
+		 * Continuous setting / one time setting / no setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Continuous setting=0x41, one time setting=0x42, no setting=0x43<br>
@@ -1372,7 +1302,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1386,8 +1316,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * EPC : 0xE2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Continuous setting / one time setting /<br>
-		 * no setting.<br>
+		 * Continuous setting / one time setting / no setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Continuous setting=0x41, one time setting=0x42, no setting=0x43<br>
@@ -1396,7 +1325,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1413,15 +1342,14 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Temporal halt start time of toilet seat timer value: HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17 : 0 to 0x3B<br>
-		 * (=0 to 23) : (=0 to 59)<br>
+		 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-*2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1438,15 +1366,14 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Temporal halt start time of toilet seat timer value: HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17 : 0 to 0x3B<br>
-		 * (=0 to 23) : (=0 to 59)<br>
+		 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-*2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1464,14 +1391,14 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * timer value: HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br>
+		 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-*2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1489,14 +1416,14 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * timer value: HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br>
+		 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-*2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1510,7 +1437,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Low / midium / high temperature<br>
+		 * Low / medium / high temperature<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31 / 0x32 / 0x33<br>
@@ -1519,7 +1446,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1533,7 +1460,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Low / midium / high temperature<br>
+		 * Low / medium / high temperature<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31 / 0x32 / 0x33<br>
@@ -1542,7 +1469,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1566,7 +1493,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1590,7 +1517,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1613,7 +1540,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1633,11 +1560,11 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * 0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br>
 		 * <br>
 		 * Data type : unsigned char
-*2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1657,11 +1584,11 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * 0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br>
 		 * <br>
 		 * Data type : unsigned char
-*2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1670,7 +1597,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 */
 		protected void onGetStartTimeOfRoomHeating(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Duration time of room hreating<br>
+		 * Property name : Duration time of room heating<br>
 		 * <br>
 		 * EPC : 0xE9<br>
 		 * <br>
@@ -1678,23 +1605,23 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Duration time HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br>
+		 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-*2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetDurationTimeOfRoomHreating(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetDurationTimeOfRoomHeating(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Duration time of room hreating<br>
+		 * Property name : Duration time of room heating<br>
 		 * <br>
 		 * EPC : 0xE9<br>
 		 * <br>
@@ -1702,21 +1629,21 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Duration time HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br>
+		 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-*2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetDurationTimeOfRoomHreating(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetDurationTimeOfRoomHeating(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Special operation mode setting<br>
 		 * <br>
@@ -1733,7 +1660,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1757,7 +1684,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1781,35 +1708,11 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetHumanDetectionStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Human detection status<br>
-		 * <br>
-		 * EPC : 0xEB<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Indicate detection of human body<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Detected = 0x41<br>
-		 * Non detecteed = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
+		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
 		protected void onGetHumanDetectionStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
@@ -1829,35 +1732,11 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetSeatingDetectionStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Seating detection status<br>
-		 * <br>
-		 * EPC : 0xEC<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates detection of seating<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Detected = 0x41<br>
-		 * Non detecteed = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
+		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
 		protected void onGetSeatingDetectionStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
@@ -1892,8 +1771,8 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -1914,8 +1793,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * EPC : 0xE0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Low to high temperature (10 steps)<br>
-		 * 0x31 for the lowest level, 0x3A for the highest level.<br>
+		 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31 to 0x3A<br>
@@ -1924,7 +1802,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1950,7 +1828,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1967,8 +1845,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * EPC : 0xE2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Continuous setting / one time setting /<br>
-		 * no setting.<br>
+		 * Continuous setting / one time setting / no setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Continuous setting=0x41, one time setting=0x42, no setting=0x43<br>
@@ -1977,7 +1854,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1997,15 +1874,14 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Temporal halt start time of toilet seat timer value: HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17 : 0 to 0x3B<br>
-		 * (=0 to 23) : (=0 to 59)<br>
+		 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-*2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2026,14 +1902,14 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * timer value: HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br>
+		 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-*2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2050,7 +1926,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Low / midium / high temperature<br>
+		 * Low / medium / high temperature<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31 / 0x32 / 0x33<br>
@@ -2059,7 +1935,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2086,7 +1962,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2109,11 +1985,11 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * 0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br>
 		 * <br>
 		 * Data type : unsigned char
-*2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2125,7 +2001,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : Duration time of room hreating<br>
+		 * Property name : Duration time of room heating<br>
 		 * <br>
 		 * EPC : 0xE9<br>
 		 * <br>
@@ -2133,22 +2009,22 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Duration time HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br>
+		 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-*2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetDurationTimeOfRoomHreating(byte[] edt) {
-			reqSetProperty(EPC_DURATION_TIME_OF_ROOM_HREATING, edt);
+		public Setter reqSetDurationTimeOfRoomHeating(byte[] edt) {
+			reqSetProperty(EPC_DURATION_TIME_OF_ROOM_HEATING, edt);
 			return this;
 		}
 		/**
@@ -2167,7 +2043,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2176,60 +2052,6 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 */
 		public Setter reqSetSpecialOperationModeSetting(byte[] edt) {
 			reqSetProperty(EPC_SPECIAL_OPERATION_MODE_SETTING, edt);
-			return this;
-		}
-		/**
-		 * Property name : Human detection status<br>
-		 * <br>
-		 * EPC : 0xEB<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Indicate detection of human body<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Detected = 0x41<br>
-		 * Non detecteed = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Setter reqSetHumanDetectionStatus(byte[] edt) {
-			reqSetProperty(EPC_HUMAN_DETECTION_STATUS, edt);
-			return this;
-		}
-		/**
-		 * Property name : Seating detection status<br>
-		 * <br>
-		 * EPC : 0xEC<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates detection of seating<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Detected = 0x41<br>
-		 * Non detecteed = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Setter reqSetSeatingDetectionStatus(byte[] edt) {
-			reqSetProperty(EPC_SEATING_DETECTION_STATUS, edt);
 			return this;
 		}
 	}
@@ -2311,8 +2133,8 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -2349,8 +2171,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * EPC : 0xE0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Low to high temperature (10 steps)<br>
-		 * 0x31 for the lowest level, 0x3A for the highest level.<br>
+		 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31 to 0x3A<br>
@@ -2359,7 +2180,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2385,7 +2206,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2402,8 +2223,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * EPC : 0xE2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Continuous setting / one time setting /<br>
-		 * no setting.<br>
+		 * Continuous setting / one time setting / no setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Continuous setting=0x41, one time setting=0x42, no setting=0x43<br>
@@ -2412,7 +2232,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2432,15 +2252,14 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Temporal halt start time of toilet seat timer value: HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17 : 0 to 0x3B<br>
-		 * (=0 to 23) : (=0 to 59)<br>
+		 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-*2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2461,14 +2280,14 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * timer value: HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br>
+		 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-*2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2485,7 +2304,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Low / midium / high temperature<br>
+		 * Low / medium / high temperature<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31 / 0x32 / 0x33<br>
@@ -2494,7 +2313,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2521,7 +2340,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2547,7 +2366,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2570,11 +2389,11 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * 0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br>
 		 * <br>
 		 * Data type : unsigned char
-*2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2586,7 +2405,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : Duration time of room hreating<br>
+		 * Property name : Duration time of room heating<br>
 		 * <br>
 		 * EPC : 0xE9<br>
 		 * <br>
@@ -2594,22 +2413,22 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Duration time HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br>
+		 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-*2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetDurationTimeOfRoomHreating() {
-			reqGetProperty(EPC_DURATION_TIME_OF_ROOM_HREATING);
+		public Getter reqGetDurationTimeOfRoomHeating() {
+			reqGetProperty(EPC_DURATION_TIME_OF_ROOM_HEATING);
 			return this;
 		}
 		/**
@@ -2628,7 +2447,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2655,11 +2474,11 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
-		 * Set - optional<br>
+		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetHumanDetectionStatus() {
@@ -2682,11 +2501,11 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
-		 * Set - optional<br>
+		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
 		public Getter reqGetSeatingDetectionStatus() {
@@ -2771,8 +2590,8 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -2809,8 +2628,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * EPC : 0xE0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Low to high temperature (10 steps)<br>
-		 * 0x31 for the lowest level, 0x3A for the highest level.<br>
+		 * Low to high temperature (10 steps) 0x31 for the lowest level, 0x3A for the highest level.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31 to 0x3A<br>
@@ -2819,7 +2637,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2845,7 +2663,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2862,8 +2680,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * EPC : 0xE2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Continuous setting / one time setting /<br>
-		 * no setting.<br>
+		 * Continuous setting / one time setting / no setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Continuous setting=0x41, one time setting=0x42, no setting=0x43<br>
@@ -2872,7 +2689,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2892,15 +2709,14 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Temporal halt start time of toilet seat timer value: HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17 : 0 to 0x3B<br>
-		 * (=0 to 23) : (=0 to 59)<br>
+		 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-*2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2921,14 +2737,14 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * timer value: HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br>
+		 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-*2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2945,7 +2761,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Low / midium / high temperature<br>
+		 * Low / medium / high temperature<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31 / 0x32 / 0x33<br>
@@ -2954,7 +2770,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2981,7 +2797,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3007,7 +2823,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3030,11 +2846,11 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * 0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br>
 		 * <br>
 		 * Data type : unsigned char
-*2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3046,7 +2862,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : Duration time of room hreating<br>
+		 * Property name : Duration time of room heating<br>
 		 * <br>
 		 * EPC : 0xE9<br>
 		 * <br>
@@ -3054,22 +2870,22 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * Duration time HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17 : 0 to 0x3B (=0 to 23) : (=0 to 59)<br>
+		 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-*2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformDurationTimeOfRoomHreating() {
-			reqInformProperty(EPC_DURATION_TIME_OF_ROOM_HREATING);
+		public Informer reqInformDurationTimeOfRoomHeating() {
+			reqInformProperty(EPC_DURATION_TIME_OF_ROOM_HEATING);
 			return this;
 		}
 		/**
@@ -3088,7 +2904,7 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3115,11 +2931,11 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
-		 * Set - optional<br>
+		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformHumanDetectionStatus() {
@@ -3142,11 +2958,11 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
-		 * Set - optional<br>
+		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
 		public Informer reqInformSeatingDetectionStatus() {

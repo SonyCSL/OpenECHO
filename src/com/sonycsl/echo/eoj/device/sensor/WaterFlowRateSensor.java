@@ -51,17 +51,16 @@ public abstract class WaterFlowRateSensor extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -77,17 +76,16 @@ public abstract class WaterFlowRateSensor extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -106,7 +104,8 @@ public abstract class WaterFlowRateSensor extends DeviceObject {
 	 * This property indicates measured integral flow in cm3.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x3B9AC9FF (0.999,999,999)<br>
+	 * 0x00000000.0x3B9AC9FF (0.<br>
+	 * 999,999,999)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
@@ -129,7 +128,8 @@ public abstract class WaterFlowRateSensor extends DeviceObject {
 	 * This property indicates measured integral flow in cm3.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x3B9AC9FF (0.999,999,999)<br>
+	 * 0x00000000.0x3B9AC9FF (0.<br>
+	 * 999,999,999)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
@@ -152,16 +152,17 @@ public abstract class WaterFlowRateSensor extends DeviceObject {
 	 * EPC : 0xE2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates measured instantaneous flow rate in cm3/mm.<br>
+	 * This property indicates measured instantaneous flow rate in cm3/min.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0x3B9AC9FF (0.999,999,999)<br>
+	 * 0x0000.0x3B9AC9FF (0.<br>
+	 * 999,999,999)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
 	 * Data size : 4 bytes<br>
 	 * <br>
-	 * Unit : cm3/mi n<br>
+	 * Unit : cm3/min<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -175,16 +176,17 @@ public abstract class WaterFlowRateSensor extends DeviceObject {
 	 * EPC : 0xE2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates measured instantaneous flow rate in cm3/mm.<br>
+	 * This property indicates measured instantaneous flow rate in cm3/min.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0x3B9AC9FF (0.999,999,999)<br>
+	 * 0x0000.0x3B9AC9FF (0.<br>
+	 * 999,999,999)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
 	 * Data size : 4 bytes<br>
 	 * <br>
-	 * Unit : cm3/mi n<br>
+	 * Unit : cm3/min<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -305,7 +307,8 @@ public abstract class WaterFlowRateSensor extends DeviceObject {
 		 * This property indicates measured integral flow in cm3.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x3B9AC9FF (0.999,999,999)<br>
+		 * 0x00000000.0x3B9AC9FF (0.<br>
+		 * 999,999,999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
@@ -325,16 +328,17 @@ public abstract class WaterFlowRateSensor extends DeviceObject {
 		 * EPC : 0xE2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates measured instantaneous flow rate in cm3/mm.<br>
+		 * This property indicates measured instantaneous flow rate in cm3/min.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0x3B9AC9FF (0.999,999,999)<br>
+		 * 0x0000.0x3B9AC9FF (0.<br>
+		 * 999,999,999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : cm3/mi n<br>
+		 * Unit : cm3/min<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -373,8 +377,8 @@ public abstract class WaterFlowRateSensor extends DeviceObject {
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -468,8 +472,8 @@ public abstract class WaterFlowRateSensor extends DeviceObject {
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -509,7 +513,8 @@ public abstract class WaterFlowRateSensor extends DeviceObject {
 		 * This property indicates measured integral flow in cm3.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x3B9AC9FF (0.999,999,999)<br>
+		 * 0x00000000.0x3B9AC9FF (0.<br>
+		 * 999,999,999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
@@ -532,16 +537,17 @@ public abstract class WaterFlowRateSensor extends DeviceObject {
 		 * EPC : 0xE2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates measured instantaneous flow rate in cm3/mm.<br>
+		 * This property indicates measured instantaneous flow rate in cm3/min.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0x3B9AC9FF (0.999,999,999)<br>
+		 * 0x0000.0x3B9AC9FF (0.<br>
+		 * 999,999,999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : cm3/mi n<br>
+		 * Unit : cm3/min<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -630,8 +636,8 @@ public abstract class WaterFlowRateSensor extends DeviceObject {
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -671,7 +677,8 @@ public abstract class WaterFlowRateSensor extends DeviceObject {
 		 * This property indicates measured integral flow in cm3.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x3B9AC9FF (0.999,999,999)<br>
+		 * 0x00000000.0x3B9AC9FF (0.<br>
+		 * 999,999,999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
@@ -694,16 +701,17 @@ public abstract class WaterFlowRateSensor extends DeviceObject {
 		 * EPC : 0xE2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates measured instantaneous flow rate in cm3/mm.<br>
+		 * This property indicates measured instantaneous flow rate in cm3/min.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0x3B9AC9FF (0.999,999,999)<br>
+		 * 0x0000.0x3B9AC9FF (0.<br>
+		 * 999,999,999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : cm3/mi n<br>
+		 * Unit : cm3/min<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>

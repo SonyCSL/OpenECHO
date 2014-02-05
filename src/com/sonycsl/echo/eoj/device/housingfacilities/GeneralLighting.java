@@ -28,10 +28,22 @@ public abstract class GeneralLighting extends DeviceObject {
 	public static final short ECHO_CLASS_CODE = (short)0x0290;
 
 	public static final byte EPC_ILLUMINANCE_LEVEL = (byte)0xB0;
+	public static final byte EPC_LIGHT_COLOR_SETTING = (byte)0xB1;
 	public static final byte EPC_ILLUMINANCE_LEVEL_STEP_SETTING = (byte)0xB2;
 	public static final byte EPC_LIGHT_COLOR_STEP_SETTING = (byte)0xB3;
 	public static final byte EPC_MAXIMUM_SPECIFIABLE_VALUES = (byte)0xB4;
-	public static final byte EPC_LIGHT_COLOR_SETTING = (byte)0xB1;
+	public static final byte EPC_MAXIMUM_VALUE_OF_SETTABLE_LEVEL_FOR_NIGHT_LIGHTING = (byte)0xB5;
+	public static final byte EPC_LIGHTING_MODE_SETTING = (byte)0xB6;
+	public static final byte EPC_ILLUMINANCE_LEVEL_SETTING_FOR_MAIN_LIGHTING = (byte)0xB7;
+	public static final byte EPC_ILLUMINANCE_LEVEL_STEP_SETTING_FOR_MAIN_LIGHTING = (byte)0xB8;
+	public static final byte EPC_ILLUMINANCE_LEVEL_SETTING_FOR_NIGHT_LIGHTING = (byte)0xB9;
+	public static final byte EPC_ILLUMINANCE_LEVEL_STEP_SETTING_FOR_NIGHT_LIGHTING = (byte)0xBA;
+	public static final byte EPC_LIGHT_COLOR_SETTING_FOR_MAIN_LIGHTING = (byte)0xBB;
+	public static final byte EPC_LIGHT_COLOR_LEVEL_STEP_SETTING_FOR_MAIN_LIGHTING = (byte)0xBC;
+	public static final byte EPC_LIGHT_COLOR_SETTING_FOR_NIGHT_LIGHTING = (byte)0xBD;
+	public static final byte EPC_LIGHT_COLOR_LEVEL_STEP_SETTING_FOR_NIGHT_LIGHTING = (byte)0xBE;
+	public static final byte EPC_LIGHTING_MODE_STATUS_IN_AUTO_MODE = (byte)0xBF;
+	public static final byte EPC_RGB_SETTING_FOR_COLOR_LIGHTING = (byte)0xC0;
 	public static final byte EPC_ON_TIMER_RESERVATION_SETTING = (byte)0x90;
 	public static final byte EPC_ON_TIMER_SETTING = (byte)0x91;
 	public static final byte EPC_OFF_TIMER_RESERVATION_SETTING = (byte)0x94;
@@ -44,6 +56,8 @@ public abstract class GeneralLighting extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		addSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
+		addSetProperty(EPC_LIGHTING_MODE_SETTING);
+		addGetProperty(EPC_LIGHTING_MODE_SETTING);
 	}
 	
 	@Override
@@ -64,10 +78,9 @@ public abstract class GeneralLighting extends DeviceObject {
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1
-bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -90,10 +103,9 @@ bytes<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1
-bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -176,8 +188,82 @@ bytes<br>
 		return true;
 	}
 	/**
-	 * Property name : Illuminance level step
-setting<br>
+	 * Property name : Light color setting<br>
+	 * <br>
+	 * EPC : 0xB1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the color setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Incandescent lamp color = 0x41, white = 0x42, daylight white = 0x43, daylight color = 0x44, other = 0x40<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean setLightColorSetting(byte[] edt) {return false;}
+	/**
+	 * Property name : Light color setting<br>
+	 * <br>
+	 * EPC : 0xB1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the color setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Incandescent lamp color = 0x41, white = 0x42, daylight white = 0x43, daylight color = 0x44, other = 0x40<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected byte[] getLightColorSetting() {return null;}
+	/**
+	 * Property name : Light color setting<br>
+	 * <br>
+	 * EPC : 0xB1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the color setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Incandescent lamp color = 0x41, white = 0x42, daylight white = 0x43, daylight color = 0x44, other = 0x40<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+byte<br>
+	 * <br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidLightColorSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
+	}
+	/**
+	 * Property name : Illuminance level step setting<br>
 	 * <br>
 	 * EPC : 0xB2<br>
 	 * <br>
@@ -185,14 +271,12 @@ setting<br>
 	 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * From 0x01 to the maximum specifiable<br>
-	 * illuminance level value (from dark to bright)<br>
+	 * From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br>
 	 * <br>
-	 * Data type : unsign ed
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byt e<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -203,8 +287,7 @@ Byt e<br>
 	 */
 	protected boolean setIlluminanceLevelStepSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : Illuminance level step
-setting<br>
+	 * Property name : Illuminance level step setting<br>
 	 * <br>
 	 * EPC : 0xB2<br>
 	 * <br>
@@ -212,14 +295,12 @@ setting<br>
 	 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * From 0x01 to the maximum specifiable<br>
-	 * illuminance level value (from dark to bright)<br>
+	 * From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br>
 	 * <br>
-	 * Data type : unsign ed
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byt e<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -230,8 +311,7 @@ Byt e<br>
 	 */
 	protected byte[] getIlluminanceLevelStepSetting() {return null;}
 	/**
-	 * Property name : Illuminance level step
-setting<br>
+	 * Property name : Illuminance level step setting<br>
 	 * <br>
 	 * EPC : 0xB2<br>
 	 * <br>
@@ -239,14 +319,12 @@ setting<br>
 	 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * From 0x01 to the maximum specifiable<br>
-	 * illuminance level value (from dark to bright)<br>
+	 * From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br>
 	 * <br>
-	 * Data type : unsign ed
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byt e<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -270,11 +348,10 @@ Byt e<br>
 	 * Value range (decimal notation) :<br>
 	 * From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br>
 	 * <br>
-	 * Data type : unsign ed
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byt e<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -295,11 +372,10 @@ Byt e<br>
 	 * Value range (decimal notation) :<br>
 	 * From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br>
 	 * <br>
-	 * Data type : unsign ed
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byt e<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -320,11 +396,10 @@ Byt e<br>
 	 * Value range (decimal notation) :<br>
 	 * From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br>
 	 * <br>
-	 * Data type : unsign ed
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byt e<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -338,27 +413,22 @@ Byt e<br>
 		return true;
 	}
 	/**
-	 * Property name : Maximum
-specifiable values<br>
+	 * Property name : Maximum specifiable values<br>
 	 * <br>
 	 * EPC : 0xB4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire the maximum specifiable<br>
-	 * illuminance level value and the maximum specifiable light color value.<br>
+	 * Used to acquire the maximum specifiable illuminance level value and the maximum specifiable light color value.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * First byte: illuminance<br>
-	 * Second byte: light color<br>
-	 * 0x01-0xFF(Step 1 -Step 255)<br>
-	 * 0x00(when the function is not implemented)<br>
+	 * First byte: illuminance  Second byte: light color 0x01.0xFF (Step 1.Step 255)<br>
+	 * 0x00 (when the function is not implemented)<br>
 	 * <br>
-	 * Data type : unsign ed
-char
-�~2<br>
+	 * Data type : unsigned char
+×2<br>
 	 * <br>
 	 * Data size : 2
-Byt e<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -369,27 +439,22 @@ Byt e<br>
 	 */
 	protected byte[] getMaximumSpecifiableValues() {return null;}
 	/**
-	 * Property name : Maximum
-specifiable values<br>
+	 * Property name : Maximum specifiable values<br>
 	 * <br>
 	 * EPC : 0xB4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire the maximum specifiable<br>
-	 * illuminance level value and the maximum specifiable light color value.<br>
+	 * Used to acquire the maximum specifiable illuminance level value and the maximum specifiable light color value.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * First byte: illuminance<br>
-	 * Second byte: light color<br>
-	 * 0x01-0xFF(Step 1 -Step 255)<br>
-	 * 0x00(when the function is not implemented)<br>
+	 * First byte: illuminance  Second byte: light color 0x01.0xFF (Step 1.Step 255)<br>
+	 * 0x00 (when the function is not implemented)<br>
 	 * <br>
-	 * Data type : unsign ed
-char
-�~2<br>
+	 * Data type : unsigned char
+×2<br>
 	 * <br>
 	 * Data size : 2
-Byt e<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -403,86 +468,870 @@ Byt e<br>
 		return true;
 	}
 	/**
-	 * Property name : Light color setting<br>
+	 * Property name : Maximum value of settable level for night lighting
+<br>
 	 * <br>
-	 * EPC : 0xB1<br>
+	 * EPC : 0xB5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the light color.<br>
+	 * Used to acquire the maximum values of illuminance and light color settable levels for night lighting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br>
+	 * First byte: illuminance<br>
+	 * Second byte: light color<br>
+	 * 0x01–0xFF (Step 1–Step 255)<br>
+	 * 0x00 (when the function is not implemented)<br>
 	 * <br>
-	 * Data type : unsign ed
-char<br>
+	 * Data type : unsigned char
+×2<br>
 	 * <br>
-	 * Data size : 1
-Byt e<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : null<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
-	 * Set - optional<br>
+	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setLightColorSetting(byte[] edt) {return false;}
+	protected byte[] getMaximumValueOfSettableLevelForNightLighting() {return null;}
 	/**
-	 * Property name : Light color setting<br>
+	 * Property name : Maximum value of settable level for night lighting
+<br>
 	 * <br>
-	 * EPC : 0xB1<br>
+	 * EPC : 0xB5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the light color.<br>
+	 * Used to acquire the maximum values of illuminance and light color settable levels for night lighting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br>
+	 * First byte: illuminance<br>
+	 * Second byte: light color<br>
+	 * 0x01–0xFF (Step 1–Step 255)<br>
+	 * 0x00 (when the function is not implemented)<br>
 	 * <br>
-	 * Data type : unsign ed
-char<br>
+	 * Data type : unsigned char
+×2<br>
 	 * <br>
-	 * Data size : 1
-Byt e<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : null<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
-	 * Set - optional<br>
+	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getLightColorSetting() {return null;}
+	protected boolean isValidMaximumValueOfSettableLevelForNightLighting(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
+		return true;
+	}
 	/**
-	 * Property name : Light color setting<br>
+	 * Property name : Lighting mode setting<br>
 	 * <br>
-	 * EPC : 0xB1<br>
+	 * EPC : 0xB6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the light color.<br>
+	 * Auto/main lighting/night lighting/color lighting<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br>
+	 * Auto=0x41, main lighting=0x42,<br>
+	 * night lighting=0x43, color lighting=0x45<br>
 	 * <br>
-	 * Data type : unsign ed
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1
-Byt e<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : null<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
 	 */
-	protected boolean isValidLightColorSetting(byte[] edt) {
+	protected abstract boolean setLightingModeSetting(byte[] edt);
+	/**
+	 * Property name : Lighting mode setting<br>
+	 * <br>
+	 * EPC : 0xB6<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Auto/main lighting/night lighting/color lighting<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Auto=0x41, main lighting=0x42,<br>
+	 * night lighting=0x43, color lighting=0x45<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
+	 */
+	protected abstract byte[] getLightingModeSetting();
+	/**
+	 * Property name : Lighting mode setting<br>
+	 * <br>
+	 * EPC : 0xB6<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Auto/main lighting/night lighting/color lighting<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Auto=0x41, main lighting=0x42,<br>
+	 * night lighting=0x43, color lighting=0x45<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidLightingModeSetting(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
 	/**
-	 * Property name : ON timer
-reservation setting<br>
+	 * Property name : Illuminance level setting for main lighting<br>
+	 * <br>
+	 * EPC : 0xB7<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Indicates the illuminance level of main lighting in %.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00–0x64(0–100%)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : %<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean setIlluminanceLevelSettingForMainLighting(byte[] edt) {return false;}
+	/**
+	 * Property name : Illuminance level setting for main lighting<br>
+	 * <br>
+	 * EPC : 0xB7<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Indicates the illuminance level of main lighting in %.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00–0x64(0–100%)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : %<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected byte[] getIlluminanceLevelSettingForMainLighting() {return null;}
+	/**
+	 * Property name : Illuminance level setting for main lighting<br>
+	 * <br>
+	 * EPC : 0xB7<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Indicates the illuminance level of main lighting in %.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00–0x64(0–100%)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : %<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidIlluminanceLevelSettingForMainLighting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
+	}
+	/**
+	 * Property name : Illuminance level step setting for main lighting<br>
+	 * <br>
+	 * EPC : 0xB8<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the illuminance level by the number of steps for main lighting and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x01 to the maximum value of settable illuminance level(dark to bright)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean setIlluminanceLevelStepSettingForMainLighting(byte[] edt) {return false;}
+	/**
+	 * Property name : Illuminance level step setting for main lighting<br>
+	 * <br>
+	 * EPC : 0xB8<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the illuminance level by the number of steps for main lighting and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x01 to the maximum value of settable illuminance level(dark to bright)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected byte[] getIlluminanceLevelStepSettingForMainLighting() {return null;}
+	/**
+	 * Property name : Illuminance level step setting for main lighting<br>
+	 * <br>
+	 * EPC : 0xB8<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the illuminance level by the number of steps for main lighting and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x01 to the maximum value of settable illuminance level(dark to bright)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidIlluminanceLevelStepSettingForMainLighting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
+	}
+	/**
+	 * Property name : Illuminance level setting for night lighting<br>
+	 * <br>
+	 * EPC : 0xB9<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Indicates the illuminance level of night lighting in %.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00–0x64 (0–100%)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : %<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean setIlluminanceLevelSettingForNightLighting(byte[] edt) {return false;}
+	/**
+	 * Property name : Illuminance level setting for night lighting<br>
+	 * <br>
+	 * EPC : 0xB9<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Indicates the illuminance level of night lighting in %.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00–0x64 (0–100%)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : %<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected byte[] getIlluminanceLevelSettingForNightLighting() {return null;}
+	/**
+	 * Property name : Illuminance level setting for night lighting<br>
+	 * <br>
+	 * EPC : 0xB9<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Indicates the illuminance level of night lighting in %.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00–0x64 (0–100%)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : %<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidIlluminanceLevelSettingForNightLighting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
+	}
+	/**
+	 * Property name : Illuminance level step setting for night lighting<br>
+	 * <br>
+	 * EPC : 0xBA<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the illuminance level by the number of steps for night lighting and to acquire the current setting status.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x01 to the maximum value of settable illuminance level (dark to bright)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean setIlluminanceLevelStepSettingForNightLighting(byte[] edt) {return false;}
+	/**
+	 * Property name : Illuminance level step setting for night lighting<br>
+	 * <br>
+	 * EPC : 0xBA<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the illuminance level by the number of steps for night lighting and to acquire the current setting status.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x01 to the maximum value of settable illuminance level (dark to bright)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected byte[] getIlluminanceLevelStepSettingForNightLighting() {return null;}
+	/**
+	 * Property name : Illuminance level step setting for night lighting<br>
+	 * <br>
+	 * EPC : 0xBA<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the illuminance level by the number of steps for night lighting and to acquire the current setting status.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x01 to the maximum value of settable illuminance level (dark to bright)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidIlluminanceLevelStepSettingForNightLighting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
+	}
+	/**
+	 * Property name : Light color setting for main lighting<br>
+	 * <br>
+	 * EPC : 0xBB<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the light color for main lighting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Incandescent lamp color=0x41, white= 0x42, daylight white=0x43, daylight color= 0x44, other=0x40<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean setLightColorSettingForMainLighting(byte[] edt) {return false;}
+	/**
+	 * Property name : Light color setting for main lighting<br>
+	 * <br>
+	 * EPC : 0xBB<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the light color for main lighting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Incandescent lamp color=0x41, white= 0x42, daylight white=0x43, daylight color= 0x44, other=0x40<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected byte[] getLightColorSettingForMainLighting() {return null;}
+	/**
+	 * Property name : Light color setting for main lighting<br>
+	 * <br>
+	 * EPC : 0xBB<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the light color for main lighting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Incandescent lamp color=0x41, white= 0x42, daylight white=0x43, daylight color= 0x44, other=0x40<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidLightColorSettingForMainLighting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
+	}
+	/**
+	 * Property name : Light color level step setting for main lighting<br>
+	 * <br>
+	 * EPC : 0xBC<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the light color level by the number of steps for main lighting and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x01to the maximum value of settable light color level (incandescent lamp color to white)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean setLightColorLevelStepSettingForMainLighting(byte[] edt) {return false;}
+	/**
+	 * Property name : Light color level step setting for main lighting<br>
+	 * <br>
+	 * EPC : 0xBC<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the light color level by the number of steps for main lighting and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x01to the maximum value of settable light color level (incandescent lamp color to white)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected byte[] getLightColorLevelStepSettingForMainLighting() {return null;}
+	/**
+	 * Property name : Light color level step setting for main lighting<br>
+	 * <br>
+	 * EPC : 0xBC<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the light color level by the number of steps for main lighting and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x01to the maximum value of settable light color level (incandescent lamp color to white)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidLightColorLevelStepSettingForMainLighting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
+	}
+	/**
+	 * Property name : Light color setting for night lighting<br>
+	 * <br>
+	 * EPC : 0xBD<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the light color for night lighting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * incandescent lamp color=0x41, white=0x42, daylight white=0x43, daylight color=0x44<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean setLightColorSettingForNightLighting(byte[] edt) {return false;}
+	/**
+	 * Property name : Light color setting for night lighting<br>
+	 * <br>
+	 * EPC : 0xBD<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the light color for night lighting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * incandescent lamp color=0x41, white=0x42, daylight white=0x43, daylight color=0x44<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected byte[] getLightColorSettingForNightLighting() {return null;}
+	/**
+	 * Property name : Light color setting for night lighting<br>
+	 * <br>
+	 * EPC : 0xBD<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the light color for night lighting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * incandescent lamp color=0x41, white=0x42, daylight white=0x43, daylight color=0x44<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidLightColorSettingForNightLighting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
+	}
+	/**
+	 * Property name : Light color level step setting for night lighting<br>
+	 * <br>
+	 * EPC : 0xBE<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the light color level by the number of steps for night lighting and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x01 to the maximum value of settable light color level (incandescent lamp color to white)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean setLightColorLevelStepSettingForNightLighting(byte[] edt) {return false;}
+	/**
+	 * Property name : Light color level step setting for night lighting<br>
+	 * <br>
+	 * EPC : 0xBE<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the light color level by the number of steps for night lighting and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x01 to the maximum value of settable light color level (incandescent lamp color to white)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected byte[] getLightColorLevelStepSettingForNightLighting() {return null;}
+	/**
+	 * Property name : Light color level step setting for night lighting<br>
+	 * <br>
+	 * EPC : 0xBE<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the light color level by the number of steps for night lighting and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x01 to the maximum value of settable light color level (incandescent lamp color to white)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidLightColorLevelStepSettingForNightLighting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
+	}
+	/**
+	 * Property name : Lighting mode status in auto mode<br>
+	 * <br>
+	 * EPC : 0xBF<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to acquire the current lighting mode in auto mode.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * main lighting=0x42, night lighting=0x43, off=0x44, color lighting=0x45<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean setLightingModeStatusInAutoMode(byte[] edt) {return false;}
+	/**
+	 * Property name : Lighting mode status in auto mode<br>
+	 * <br>
+	 * EPC : 0xBF<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to acquire the current lighting mode in auto mode.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * main lighting=0x42, night lighting=0x43, off=0x44, color lighting=0x45<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected byte[] getLightingModeStatusInAutoMode() {return null;}
+	/**
+	 * Property name : Lighting mode status in auto mode<br>
+	 * <br>
+	 * EPC : 0xBF<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to acquire the current lighting mode in auto mode.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * main lighting=0x42, night lighting=0x43, off=0x44, color lighting=0x45<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1 byte<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidLightingModeStatusInAutoMode(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
+	}
+	/**
+	 * Property name : RGB setting for color lighting<br>
+	 * <br>
+	 * EPC : 0xC0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the RGB value for color lighting and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Byte 1: R<br>
+	 * Byte 2: G<br>
+	 * Byte 3: B 0x00–0xFF (0–255)<br>
+	 * Minimum brightness=0x00,maximum brightness=0xFF<br>
+	 * <br>
+	 * Data type : unsigned char×3<br>
+	 * <br>
+	 * Data size : 3 bytes<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean setRgbSettingForColorLighting(byte[] edt) {return false;}
+	/**
+	 * Property name : RGB setting for color lighting<br>
+	 * <br>
+	 * EPC : 0xC0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the RGB value for color lighting and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Byte 1: R<br>
+	 * Byte 2: G<br>
+	 * Byte 3: B 0x00–0xFF (0–255)<br>
+	 * Minimum brightness=0x00,maximum brightness=0xFF<br>
+	 * <br>
+	 * Data type : unsigned char×3<br>
+	 * <br>
+	 * Data size : 3 bytes<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected byte[] getRgbSettingForColorLighting() {return null;}
+	/**
+	 * Property name : RGB setting for color lighting<br>
+	 * <br>
+	 * EPC : 0xC0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * Used to set the RGB value for color lighting and to acquire the current setting.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Byte 1: R<br>
+	 * Byte 2: G<br>
+	 * Byte 3: B 0x00–0xFF (0–255)<br>
+	 * Minimum brightness=0x00,maximum brightness=0xFF<br>
+	 * <br>
+	 * Data type : unsigned char×3<br>
+	 * <br>
+	 * Data size : 3 bytes<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidRgbSettingForColorLighting(byte[] edt) {
+		if(edt == null || !(edt.length == 3)) return false;
+		return true;
+	}
+	/**
+	 * Property name : ON timer reservation setting<br>
 	 * <br>
 	 * EPC : 0x90<br>
 	 * <br>
@@ -490,14 +1339,12 @@ reservation setting<br>
 	 * Reservation ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation ON��0x41,<br>
-	 * Reservation OFF��0x42<br>
+	 * Reservation ON=0x41, Reservation OFF=0x42<br>
 	 * <br>
-	 * Data type : unsign ed
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byt e<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -508,8 +1355,7 @@ Byt e<br>
 	 */
 	protected boolean setOnTimerReservationSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : ON timer
-reservation setting<br>
+	 * Property name : ON timer reservation setting<br>
 	 * <br>
 	 * EPC : 0x90<br>
 	 * <br>
@@ -517,14 +1363,12 @@ reservation setting<br>
 	 * Reservation ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation ON��0x41,<br>
-	 * Reservation OFF��0x42<br>
+	 * Reservation ON=0x41, Reservation OFF=0x42<br>
 	 * <br>
-	 * Data type : unsign ed
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byt e<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -535,8 +1379,7 @@ Byt e<br>
 	 */
 	protected byte[] getOnTimerReservationSetting() {return null;}
 	/**
-	 * Property name : ON timer
-reservation setting<br>
+	 * Property name : ON timer reservation setting<br>
 	 * <br>
 	 * EPC : 0x90<br>
 	 * <br>
@@ -544,14 +1387,12 @@ reservation setting<br>
 	 * Reservation ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation ON��0x41,<br>
-	 * Reservation OFF��0x42<br>
+	 * Reservation ON=0x41, Reservation OFF=0x42<br>
 	 * <br>
-	 * Data type : unsign ed
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byt e<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -573,14 +1414,13 @@ Byt e<br>
 	 * Timer value HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17: 0 -0x3B (=0-23):(=0 -59)<br>
+	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 	 * <br>
-	 * Data type : unsign ed
-char
-�~2<br>
+	 * Data type : unsigned char
+×2<br>
 	 * <br>
 	 * Data size : 2
-Byt e<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -599,14 +1439,13 @@ Byt e<br>
 	 * Timer value HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17: 0 -0x3B (=0-23):(=0 -59)<br>
+	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 	 * <br>
-	 * Data type : unsign ed
-char
-�~2<br>
+	 * Data type : unsigned char
+×2<br>
 	 * <br>
 	 * Data size : 2
-Byt e<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -625,14 +1464,13 @@ Byt e<br>
 	 * Timer value HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17: 0 -0x3B (=0-23):(=0 -59)<br>
+	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 	 * <br>
-	 * Data type : unsign ed
-char
-�~2<br>
+	 * Data type : unsigned char
+×2<br>
 	 * <br>
 	 * Data size : 2
-Byt e<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -646,8 +1484,7 @@ Byt e<br>
 		return true;
 	}
 	/**
-	 * Property name : OFF timer
-reservation setting<br>
+	 * Property name : OFF timer reservation setting<br>
 	 * <br>
 	 * EPC : 0x94<br>
 	 * <br>
@@ -655,14 +1492,12 @@ reservation setting<br>
 	 * Reservation ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation ON��0x41,<br>
-	 * Reservation OFF��0x42<br>
+	 * Reservation ON=0x41, Reservation OFF=0x42<br>
 	 * <br>
-	 * Data type : unsign ed
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byt e<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -673,8 +1508,7 @@ Byt e<br>
 	 */
 	protected boolean setOffTimerReservationSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : OFF timer
-reservation setting<br>
+	 * Property name : OFF timer reservation setting<br>
 	 * <br>
 	 * EPC : 0x94<br>
 	 * <br>
@@ -682,14 +1516,12 @@ reservation setting<br>
 	 * Reservation ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation ON��0x41,<br>
-	 * Reservation OFF��0x42<br>
+	 * Reservation ON=0x41, Reservation OFF=0x42<br>
 	 * <br>
-	 * Data type : unsign ed
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byt e<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -700,8 +1532,7 @@ Byt e<br>
 	 */
 	protected byte[] getOffTimerReservationSetting() {return null;}
 	/**
-	 * Property name : OFF timer
-reservation setting<br>
+	 * Property name : OFF timer reservation setting<br>
 	 * <br>
 	 * EPC : 0x94<br>
 	 * <br>
@@ -709,14 +1540,12 @@ reservation setting<br>
 	 * Reservation ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation ON��0x41,<br>
-	 * Reservation OFF��0x42<br>
+	 * Reservation ON=0x41, Reservation OFF=0x42<br>
 	 * <br>
-	 * Data type : unsign ed
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byt e<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -738,14 +1567,13 @@ Byt e<br>
 	 * Timer value HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17: 0 -0x3B (=0-23):(=0 -59)<br>
+	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 	 * <br>
-	 * Data type : unsign ed
-char
-�~2<br>
+	 * Data type : unsigned char
+×2<br>
 	 * <br>
 	 * Data size : 2
-Byt e<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -764,14 +1592,13 @@ Byt e<br>
 	 * Timer value HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17: 0 -0x3B (=0-23):(=0 -59)<br>
+	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 	 * <br>
-	 * Data type : unsign ed
-char
-�~2<br>
+	 * Data type : unsigned char
+×2<br>
 	 * <br>
 	 * Data size : 2
-Byt e<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -790,14 +1617,13 @@ Byt e<br>
 	 * Timer value HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17: 0 -0x3B (=0-23):(=0 -59)<br>
+	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 	 * <br>
-	 * Data type : unsign ed
-char
-�~2<br>
+	 * Data type : unsigned char
+×2<br>
 	 * <br>
 	 * Data size : 2
-Byt e<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -818,9 +1644,20 @@ Byt e<br>
 
 		switch(property.epc) {
 		case EPC_ILLUMINANCE_LEVEL : return setIlluminanceLevel(property.edt);
+		case EPC_LIGHT_COLOR_SETTING : return setLightColorSetting(property.edt);
 		case EPC_ILLUMINANCE_LEVEL_STEP_SETTING : return setIlluminanceLevelStepSetting(property.edt);
 		case EPC_LIGHT_COLOR_STEP_SETTING : return setLightColorStepSetting(property.edt);
-		case EPC_LIGHT_COLOR_SETTING : return setLightColorSetting(property.edt);
+		case EPC_LIGHTING_MODE_SETTING : return setLightingModeSetting(property.edt);
+		case EPC_ILLUMINANCE_LEVEL_SETTING_FOR_MAIN_LIGHTING : return setIlluminanceLevelSettingForMainLighting(property.edt);
+		case EPC_ILLUMINANCE_LEVEL_STEP_SETTING_FOR_MAIN_LIGHTING : return setIlluminanceLevelStepSettingForMainLighting(property.edt);
+		case EPC_ILLUMINANCE_LEVEL_SETTING_FOR_NIGHT_LIGHTING : return setIlluminanceLevelSettingForNightLighting(property.edt);
+		case EPC_ILLUMINANCE_LEVEL_STEP_SETTING_FOR_NIGHT_LIGHTING : return setIlluminanceLevelStepSettingForNightLighting(property.edt);
+		case EPC_LIGHT_COLOR_SETTING_FOR_MAIN_LIGHTING : return setLightColorSettingForMainLighting(property.edt);
+		case EPC_LIGHT_COLOR_LEVEL_STEP_SETTING_FOR_MAIN_LIGHTING : return setLightColorLevelStepSettingForMainLighting(property.edt);
+		case EPC_LIGHT_COLOR_SETTING_FOR_NIGHT_LIGHTING : return setLightColorSettingForNightLighting(property.edt);
+		case EPC_LIGHT_COLOR_LEVEL_STEP_SETTING_FOR_NIGHT_LIGHTING : return setLightColorLevelStepSettingForNightLighting(property.edt);
+		case EPC_LIGHTING_MODE_STATUS_IN_AUTO_MODE : return setLightingModeStatusInAutoMode(property.edt);
+		case EPC_RGB_SETTING_FOR_COLOR_LIGHTING : return setRgbSettingForColorLighting(property.edt);
 		case EPC_ON_TIMER_RESERVATION_SETTING : return setOnTimerReservationSetting(property.edt);
 		case EPC_ON_TIMER_SETTING : return setOnTimerSetting(property.edt);
 		case EPC_OFF_TIMER_RESERVATION_SETTING : return setOffTimerReservationSetting(property.edt);
@@ -836,10 +1673,22 @@ Byt e<br>
 		
 		switch(epc) {
 		case EPC_ILLUMINANCE_LEVEL : return getIlluminanceLevel();
+		case EPC_LIGHT_COLOR_SETTING : return getLightColorSetting();
 		case EPC_ILLUMINANCE_LEVEL_STEP_SETTING : return getIlluminanceLevelStepSetting();
 		case EPC_LIGHT_COLOR_STEP_SETTING : return getLightColorStepSetting();
 		case EPC_MAXIMUM_SPECIFIABLE_VALUES : return getMaximumSpecifiableValues();
-		case EPC_LIGHT_COLOR_SETTING : return getLightColorSetting();
+		case EPC_MAXIMUM_VALUE_OF_SETTABLE_LEVEL_FOR_NIGHT_LIGHTING : return getMaximumValueOfSettableLevelForNightLighting();
+		case EPC_LIGHTING_MODE_SETTING : return getLightingModeSetting();
+		case EPC_ILLUMINANCE_LEVEL_SETTING_FOR_MAIN_LIGHTING : return getIlluminanceLevelSettingForMainLighting();
+		case EPC_ILLUMINANCE_LEVEL_STEP_SETTING_FOR_MAIN_LIGHTING : return getIlluminanceLevelStepSettingForMainLighting();
+		case EPC_ILLUMINANCE_LEVEL_SETTING_FOR_NIGHT_LIGHTING : return getIlluminanceLevelSettingForNightLighting();
+		case EPC_ILLUMINANCE_LEVEL_STEP_SETTING_FOR_NIGHT_LIGHTING : return getIlluminanceLevelStepSettingForNightLighting();
+		case EPC_LIGHT_COLOR_SETTING_FOR_MAIN_LIGHTING : return getLightColorSettingForMainLighting();
+		case EPC_LIGHT_COLOR_LEVEL_STEP_SETTING_FOR_MAIN_LIGHTING : return getLightColorLevelStepSettingForMainLighting();
+		case EPC_LIGHT_COLOR_SETTING_FOR_NIGHT_LIGHTING : return getLightColorSettingForNightLighting();
+		case EPC_LIGHT_COLOR_LEVEL_STEP_SETTING_FOR_NIGHT_LIGHTING : return getLightColorLevelStepSettingForNightLighting();
+		case EPC_LIGHTING_MODE_STATUS_IN_AUTO_MODE : return getLightingModeStatusInAutoMode();
+		case EPC_RGB_SETTING_FOR_COLOR_LIGHTING : return getRgbSettingForColorLighting();
 		case EPC_ON_TIMER_RESERVATION_SETTING : return getOnTimerReservationSetting();
 		case EPC_ON_TIMER_SETTING : return getOnTimerSetting();
 		case EPC_OFF_TIMER_RESERVATION_SETTING : return getOffTimerReservationSetting();
@@ -855,10 +1704,22 @@ Byt e<br>
 		
 		switch(property.epc) {
 		case EPC_ILLUMINANCE_LEVEL : return isValidIlluminanceLevel(property.edt);
+		case EPC_LIGHT_COLOR_SETTING : return isValidLightColorSetting(property.edt);
 		case EPC_ILLUMINANCE_LEVEL_STEP_SETTING : return isValidIlluminanceLevelStepSetting(property.edt);
 		case EPC_LIGHT_COLOR_STEP_SETTING : return isValidLightColorStepSetting(property.edt);
 		case EPC_MAXIMUM_SPECIFIABLE_VALUES : return isValidMaximumSpecifiableValues(property.edt);
-		case EPC_LIGHT_COLOR_SETTING : return isValidLightColorSetting(property.edt);
+		case EPC_MAXIMUM_VALUE_OF_SETTABLE_LEVEL_FOR_NIGHT_LIGHTING : return isValidMaximumValueOfSettableLevelForNightLighting(property.edt);
+		case EPC_LIGHTING_MODE_SETTING : return isValidLightingModeSetting(property.edt);
+		case EPC_ILLUMINANCE_LEVEL_SETTING_FOR_MAIN_LIGHTING : return isValidIlluminanceLevelSettingForMainLighting(property.edt);
+		case EPC_ILLUMINANCE_LEVEL_STEP_SETTING_FOR_MAIN_LIGHTING : return isValidIlluminanceLevelStepSettingForMainLighting(property.edt);
+		case EPC_ILLUMINANCE_LEVEL_SETTING_FOR_NIGHT_LIGHTING : return isValidIlluminanceLevelSettingForNightLighting(property.edt);
+		case EPC_ILLUMINANCE_LEVEL_STEP_SETTING_FOR_NIGHT_LIGHTING : return isValidIlluminanceLevelStepSettingForNightLighting(property.edt);
+		case EPC_LIGHT_COLOR_SETTING_FOR_MAIN_LIGHTING : return isValidLightColorSettingForMainLighting(property.edt);
+		case EPC_LIGHT_COLOR_LEVEL_STEP_SETTING_FOR_MAIN_LIGHTING : return isValidLightColorLevelStepSettingForMainLighting(property.edt);
+		case EPC_LIGHT_COLOR_SETTING_FOR_NIGHT_LIGHTING : return isValidLightColorSettingForNightLighting(property.edt);
+		case EPC_LIGHT_COLOR_LEVEL_STEP_SETTING_FOR_NIGHT_LIGHTING : return isValidLightColorLevelStepSettingForNightLighting(property.edt);
+		case EPC_LIGHTING_MODE_STATUS_IN_AUTO_MODE : return isValidLightingModeStatusInAutoMode(property.edt);
+		case EPC_RGB_SETTING_FOR_COLOR_LIGHTING : return isValidRgbSettingForColorLighting(property.edt);
 		case EPC_ON_TIMER_RESERVATION_SETTING : return isValidOnTimerReservationSetting(property.edt);
 		case EPC_ON_TIMER_SETTING : return isValidOnTimerSetting(property.edt);
 		case EPC_OFF_TIMER_RESERVATION_SETTING : return isValidOffTimerReservationSetting(property.edt);
@@ -913,14 +1774,47 @@ Byt e<br>
 			case EPC_ILLUMINANCE_LEVEL : 
 				onSetIlluminanceLevel(eoj, tid, esv, property, success);
 				return true;
+			case EPC_LIGHT_COLOR_SETTING : 
+				onSetLightColorSetting(eoj, tid, esv, property, success);
+				return true;
 			case EPC_ILLUMINANCE_LEVEL_STEP_SETTING : 
 				onSetIlluminanceLevelStepSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_LIGHT_COLOR_STEP_SETTING : 
 				onSetLightColorStepSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_LIGHT_COLOR_SETTING : 
-				onSetLightColorSetting(eoj, tid, esv, property, success);
+			case EPC_LIGHTING_MODE_SETTING : 
+				onSetLightingModeSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ILLUMINANCE_LEVEL_SETTING_FOR_MAIN_LIGHTING : 
+				onSetIlluminanceLevelSettingForMainLighting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ILLUMINANCE_LEVEL_STEP_SETTING_FOR_MAIN_LIGHTING : 
+				onSetIlluminanceLevelStepSettingForMainLighting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ILLUMINANCE_LEVEL_SETTING_FOR_NIGHT_LIGHTING : 
+				onSetIlluminanceLevelSettingForNightLighting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ILLUMINANCE_LEVEL_STEP_SETTING_FOR_NIGHT_LIGHTING : 
+				onSetIlluminanceLevelStepSettingForNightLighting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_LIGHT_COLOR_SETTING_FOR_MAIN_LIGHTING : 
+				onSetLightColorSettingForMainLighting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_LIGHT_COLOR_LEVEL_STEP_SETTING_FOR_MAIN_LIGHTING : 
+				onSetLightColorLevelStepSettingForMainLighting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_LIGHT_COLOR_SETTING_FOR_NIGHT_LIGHTING : 
+				onSetLightColorSettingForNightLighting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_LIGHT_COLOR_LEVEL_STEP_SETTING_FOR_NIGHT_LIGHTING : 
+				onSetLightColorLevelStepSettingForNightLighting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_LIGHTING_MODE_STATUS_IN_AUTO_MODE : 
+				onSetLightingModeStatusInAutoMode(eoj, tid, esv, property, success);
+				return true;
+			case EPC_RGB_SETTING_FOR_COLOR_LIGHTING : 
+				onSetRgbSettingForColorLighting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ON_TIMER_RESERVATION_SETTING : 
 				onSetOnTimerReservationSetting(eoj, tid, esv, property, success);
@@ -949,6 +1843,9 @@ Byt e<br>
 			case EPC_ILLUMINANCE_LEVEL : 
 				onGetIlluminanceLevel(eoj, tid, esv, property, success);
 				return true;
+			case EPC_LIGHT_COLOR_SETTING : 
+				onGetLightColorSetting(eoj, tid, esv, property, success);
+				return true;
 			case EPC_ILLUMINANCE_LEVEL_STEP_SETTING : 
 				onGetIlluminanceLevelStepSetting(eoj, tid, esv, property, success);
 				return true;
@@ -958,8 +1855,41 @@ Byt e<br>
 			case EPC_MAXIMUM_SPECIFIABLE_VALUES : 
 				onGetMaximumSpecifiableValues(eoj, tid, esv, property, success);
 				return true;
-			case EPC_LIGHT_COLOR_SETTING : 
-				onGetLightColorSetting(eoj, tid, esv, property, success);
+			case EPC_MAXIMUM_VALUE_OF_SETTABLE_LEVEL_FOR_NIGHT_LIGHTING : 
+				onGetMaximumValueOfSettableLevelForNightLighting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_LIGHTING_MODE_SETTING : 
+				onGetLightingModeSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ILLUMINANCE_LEVEL_SETTING_FOR_MAIN_LIGHTING : 
+				onGetIlluminanceLevelSettingForMainLighting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ILLUMINANCE_LEVEL_STEP_SETTING_FOR_MAIN_LIGHTING : 
+				onGetIlluminanceLevelStepSettingForMainLighting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ILLUMINANCE_LEVEL_SETTING_FOR_NIGHT_LIGHTING : 
+				onGetIlluminanceLevelSettingForNightLighting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ILLUMINANCE_LEVEL_STEP_SETTING_FOR_NIGHT_LIGHTING : 
+				onGetIlluminanceLevelStepSettingForNightLighting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_LIGHT_COLOR_SETTING_FOR_MAIN_LIGHTING : 
+				onGetLightColorSettingForMainLighting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_LIGHT_COLOR_LEVEL_STEP_SETTING_FOR_MAIN_LIGHTING : 
+				onGetLightColorLevelStepSettingForMainLighting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_LIGHT_COLOR_SETTING_FOR_NIGHT_LIGHTING : 
+				onGetLightColorSettingForNightLighting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_LIGHT_COLOR_LEVEL_STEP_SETTING_FOR_NIGHT_LIGHTING : 
+				onGetLightColorLevelStepSettingForNightLighting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_LIGHTING_MODE_STATUS_IN_AUTO_MODE : 
+				onGetLightingModeStatusInAutoMode(eoj, tid, esv, property, success);
+				return true;
+			case EPC_RGB_SETTING_FOR_COLOR_LIGHTING : 
+				onGetRgbSettingForColorLighting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ON_TIMER_RESERVATION_SETTING : 
 				onGetOnTimerReservationSetting(eoj, tid, esv, property, success);
@@ -1025,8 +1955,55 @@ Byt e<br>
 		 */
 		protected void onGetIlluminanceLevel(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Illuminance level step
-setting<br>
+		 * Property name : Light color setting<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the color setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Incandescent lamp color = 0x41, white = 0x42, daylight white = 0x43, daylight color = 0x44, other = 0x40<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onSetLightColorSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Light color setting<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the color setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Incandescent lamp color = 0x41, white = 0x42, daylight white = 0x43, daylight color = 0x44, other = 0x40<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onGetLightColorSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Illuminance level step setting<br>
 		 * <br>
 		 * EPC : 0xB2<br>
 		 * <br>
@@ -1034,14 +2011,12 @@ setting<br>
 		 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * From 0x01 to the maximum specifiable<br>
-		 * illuminance level value (from dark to bright)<br>
+		 * From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br>
 		 * <br>
-		 * Data type : unsign ed
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byt e<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1052,8 +2027,7 @@ Byt e<br>
 		 */
 		protected void onSetIlluminanceLevelStepSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Illuminance level step
-setting<br>
+		 * Property name : Illuminance level step setting<br>
 		 * <br>
 		 * EPC : 0xB2<br>
 		 * <br>
@@ -1061,14 +2035,12 @@ setting<br>
 		 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * From 0x01 to the maximum specifiable<br>
-		 * illuminance level value (from dark to bright)<br>
+		 * From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br>
 		 * <br>
-		 * Data type : unsign ed
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byt e<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1089,11 +2061,10 @@ Byt e<br>
 		 * Value range (decimal notation) :<br>
 		 * From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br>
 		 * <br>
-		 * Data type : unsign ed
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byt e<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1114,11 +2085,10 @@ Byt e<br>
 		 * Value range (decimal notation) :<br>
 		 * From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br>
 		 * <br>
-		 * Data type : unsign ed
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byt e<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1129,27 +2099,22 @@ Byt e<br>
 		 */
 		protected void onGetLightColorStepSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Maximum
-specifiable values<br>
+		 * Property name : Maximum specifiable values<br>
 		 * <br>
 		 * EPC : 0xB4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the maximum specifiable<br>
-		 * illuminance level value and the maximum specifiable light color value.<br>
+		 * Used to acquire the maximum specifiable illuminance level value and the maximum specifiable light color value.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * First byte: illuminance<br>
-		 * Second byte: light color<br>
-		 * 0x01-0xFF(Step 1 -Step 255)<br>
-		 * 0x00(when the function is not implemented)<br>
+		 * First byte: illuminance  Second byte: light color 0x01.0xFF (Step 1.Step 255)<br>
+		 * 0x00 (when the function is not implemented)<br>
 		 * <br>
-		 * Data type : unsign ed
-char
-�~2<br>
+		 * Data type : unsigned char
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byt e<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1160,58 +2125,549 @@ Byt e<br>
 		 */
 		protected void onGetMaximumSpecifiableValues(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Light color setting<br>
+		 * Property name : Maximum value of settable level for night lighting
+<br>
 		 * <br>
-		 * EPC : 0xB1<br>
+		 * EPC : 0xB5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the light color.<br>
+		 * Used to acquire the maximum values of illuminance and light color settable levels for night lighting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br>
+		 * First byte: illuminance<br>
+		 * Second byte: light color<br>
+		 * 0x01–0xFF (Step 1–Step 255)<br>
+		 * 0x00 (when the function is not implemented)<br>
 		 * <br>
-		 * Data type : unsign ed
-char<br>
+		 * Data type : unsigned char
+×2<br>
 		 * <br>
-		 * Data size : 1
-Byt e<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
+		protected void onGetMaximumValueOfSettableLevelForNightLighting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Lighting mode setting<br>
+		 * <br>
+		 * EPC : 0xB6<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Auto/main lighting/night lighting/color lighting<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Auto=0x41, main lighting=0x42,<br>
+		 * night lighting=0x43, color lighting=0x45<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
+		 */
+		protected void onSetLightingModeSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Lighting mode setting<br>
+		 * <br>
+		 * EPC : 0xB6<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Auto/main lighting/night lighting/color lighting<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Auto=0x41, main lighting=0x42,<br>
+		 * night lighting=0x43, color lighting=0x45<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
+		 */
+		protected void onGetLightingModeSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Illuminance level setting for main lighting<br>
+		 * <br>
+		 * EPC : 0xB7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Indicates the illuminance level of main lighting in %.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00–0x64(0–100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : %<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetLightColorSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetIlluminanceLevelSettingForMainLighting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Light color setting<br>
+		 * Property name : Illuminance level setting for main lighting<br>
 		 * <br>
-		 * EPC : 0xB1<br>
+		 * EPC : 0xB7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the light color.<br>
+		 * Indicates the illuminance level of main lighting in %.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br>
+		 * 0x00–0x64(0–100%)<br>
 		 * <br>
-		 * Data type : unsign ed
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1
-Byt e<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : %<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetLightColorSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetIlluminanceLevelSettingForMainLighting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : ON timer
-reservation setting<br>
+		 * Property name : Illuminance level step setting for main lighting<br>
+		 * <br>
+		 * EPC : 0xB8<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the illuminance level by the number of steps for main lighting and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01 to the maximum value of settable illuminance level(dark to bright)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onSetIlluminanceLevelStepSettingForMainLighting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Illuminance level step setting for main lighting<br>
+		 * <br>
+		 * EPC : 0xB8<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the illuminance level by the number of steps for main lighting and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01 to the maximum value of settable illuminance level(dark to bright)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onGetIlluminanceLevelStepSettingForMainLighting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Illuminance level setting for night lighting<br>
+		 * <br>
+		 * EPC : 0xB9<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Indicates the illuminance level of night lighting in %.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00–0x64 (0–100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onSetIlluminanceLevelSettingForNightLighting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Illuminance level setting for night lighting<br>
+		 * <br>
+		 * EPC : 0xB9<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Indicates the illuminance level of night lighting in %.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00–0x64 (0–100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onGetIlluminanceLevelSettingForNightLighting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Illuminance level step setting for night lighting<br>
+		 * <br>
+		 * EPC : 0xBA<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the illuminance level by the number of steps for night lighting and to acquire the current setting status.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01 to the maximum value of settable illuminance level (dark to bright)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onSetIlluminanceLevelStepSettingForNightLighting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Illuminance level step setting for night lighting<br>
+		 * <br>
+		 * EPC : 0xBA<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the illuminance level by the number of steps for night lighting and to acquire the current setting status.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01 to the maximum value of settable illuminance level (dark to bright)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onGetIlluminanceLevelStepSettingForNightLighting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Light color setting for main lighting<br>
+		 * <br>
+		 * EPC : 0xBB<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the light color for main lighting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Incandescent lamp color=0x41, white= 0x42, daylight white=0x43, daylight color= 0x44, other=0x40<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onSetLightColorSettingForMainLighting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Light color setting for main lighting<br>
+		 * <br>
+		 * EPC : 0xBB<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the light color for main lighting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Incandescent lamp color=0x41, white= 0x42, daylight white=0x43, daylight color= 0x44, other=0x40<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onGetLightColorSettingForMainLighting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Light color level step setting for main lighting<br>
+		 * <br>
+		 * EPC : 0xBC<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the light color level by the number of steps for main lighting and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01to the maximum value of settable light color level (incandescent lamp color to white)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onSetLightColorLevelStepSettingForMainLighting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Light color level step setting for main lighting<br>
+		 * <br>
+		 * EPC : 0xBC<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the light color level by the number of steps for main lighting and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01to the maximum value of settable light color level (incandescent lamp color to white)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onGetLightColorLevelStepSettingForMainLighting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Light color setting for night lighting<br>
+		 * <br>
+		 * EPC : 0xBD<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the light color for night lighting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * incandescent lamp color=0x41, white=0x42, daylight white=0x43, daylight color=0x44<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onSetLightColorSettingForNightLighting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Light color setting for night lighting<br>
+		 * <br>
+		 * EPC : 0xBD<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the light color for night lighting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * incandescent lamp color=0x41, white=0x42, daylight white=0x43, daylight color=0x44<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onGetLightColorSettingForNightLighting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Light color level step setting for night lighting<br>
+		 * <br>
+		 * EPC : 0xBE<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the light color level by the number of steps for night lighting and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01 to the maximum value of settable light color level (incandescent lamp color to white)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onSetLightColorLevelStepSettingForNightLighting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Light color level step setting for night lighting<br>
+		 * <br>
+		 * EPC : 0xBE<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the light color level by the number of steps for night lighting and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01 to the maximum value of settable light color level (incandescent lamp color to white)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onGetLightColorLevelStepSettingForNightLighting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Lighting mode status in auto mode<br>
+		 * <br>
+		 * EPC : 0xBF<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to acquire the current lighting mode in auto mode.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * main lighting=0x42, night lighting=0x43, off=0x44, color lighting=0x45<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onSetLightingModeStatusInAutoMode(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Lighting mode status in auto mode<br>
+		 * <br>
+		 * EPC : 0xBF<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to acquire the current lighting mode in auto mode.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * main lighting=0x42, night lighting=0x43, off=0x44, color lighting=0x45<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onGetLightingModeStatusInAutoMode(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : RGB setting for color lighting<br>
+		 * <br>
+		 * EPC : 0xC0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the RGB value for color lighting and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Byte 1: R<br>
+		 * Byte 2: G<br>
+		 * Byte 3: B 0x00–0xFF (0–255)<br>
+		 * Minimum brightness=0x00,maximum brightness=0xFF<br>
+		 * <br>
+		 * Data type : unsigned char×3<br>
+		 * <br>
+		 * Data size : 3 bytes<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onSetRgbSettingForColorLighting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : RGB setting for color lighting<br>
+		 * <br>
+		 * EPC : 0xC0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the RGB value for color lighting and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Byte 1: R<br>
+		 * Byte 2: G<br>
+		 * Byte 3: B 0x00–0xFF (0–255)<br>
+		 * Minimum brightness=0x00,maximum brightness=0xFF<br>
+		 * <br>
+		 * Data type : unsigned char×3<br>
+		 * <br>
+		 * Data size : 3 bytes<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onGetRgbSettingForColorLighting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : ON timer reservation setting<br>
 		 * <br>
 		 * EPC : 0x90<br>
 		 * <br>
@@ -1219,14 +2675,12 @@ reservation setting<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON��0x41,<br>
-		 * Reservation OFF��0x42<br>
+		 * Reservation ON=0x41, Reservation OFF=0x42<br>
 		 * <br>
-		 * Data type : unsign ed
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byt e<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1237,8 +2691,7 @@ Byt e<br>
 		 */
 		protected void onSetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : ON timer
-reservation setting<br>
+		 * Property name : ON timer reservation setting<br>
 		 * <br>
 		 * EPC : 0x90<br>
 		 * <br>
@@ -1246,14 +2699,12 @@ reservation setting<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON��0x41,<br>
-		 * Reservation OFF��0x42<br>
+		 * Reservation ON=0x41, Reservation OFF=0x42<br>
 		 * <br>
-		 * Data type : unsign ed
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byt e<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1272,14 +2723,13 @@ Byt e<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0 -0x3B (=0-23):(=0 -59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
-		 * Data type : unsign ed
-char
-�~2<br>
+		 * Data type : unsigned char
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byt e<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1298,14 +2748,13 @@ Byt e<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0 -0x3B (=0-23):(=0 -59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
-		 * Data type : unsign ed
-char
-�~2<br>
+		 * Data type : unsigned char
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byt e<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1316,8 +2765,7 @@ Byt e<br>
 		 */
 		protected void onGetOnTimerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : OFF timer
-reservation setting<br>
+		 * Property name : OFF timer reservation setting<br>
 		 * <br>
 		 * EPC : 0x94<br>
 		 * <br>
@@ -1325,14 +2773,12 @@ reservation setting<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON��0x41,<br>
-		 * Reservation OFF��0x42<br>
+		 * Reservation ON=0x41, Reservation OFF=0x42<br>
 		 * <br>
-		 * Data type : unsign ed
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byt e<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1343,8 +2789,7 @@ Byt e<br>
 		 */
 		protected void onSetOffTimerReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : OFF timer
-reservation setting<br>
+		 * Property name : OFF timer reservation setting<br>
 		 * <br>
 		 * EPC : 0x94<br>
 		 * <br>
@@ -1352,14 +2797,12 @@ reservation setting<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON��0x41,<br>
-		 * Reservation OFF��0x42<br>
+		 * Reservation ON=0x41, Reservation OFF=0x42<br>
 		 * <br>
-		 * Data type : unsign ed
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byt e<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1378,14 +2821,13 @@ Byt e<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0 -0x3B (=0-23):(=0 -59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
-		 * Data type : unsign ed
-char
-�~2<br>
+		 * Data type : unsigned char
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byt e<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1404,14 +2846,13 @@ Byt e<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0 -0x3B (=0-23):(=0 -59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
-		 * Data type : unsign ed
-char
-�~2<br>
+		 * Data type : unsigned char
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byt e<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1452,8 +2893,8 @@ Byt e<br>
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -1495,8 +2936,34 @@ Byt e<br>
 			return this;
 		}
 		/**
-		 * Property name : Illuminance level step
-setting<br>
+		 * Property name : Light color setting<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the color setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Incandescent lamp color = 0x41, white = 0x42, daylight white = 0x43, daylight color = 0x44, other = 0x40<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Setter reqSetLightColorSetting(byte[] edt) {
+			reqSetProperty(EPC_LIGHT_COLOR_SETTING, edt);
+			return this;
+		}
+		/**
+		 * Property name : Illuminance level step setting<br>
 		 * <br>
 		 * EPC : 0xB2<br>
 		 * <br>
@@ -1504,14 +2971,12 @@ setting<br>
 		 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * From 0x01 to the maximum specifiable<br>
-		 * illuminance level value (from dark to bright)<br>
+		 * From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br>
 		 * <br>
-		 * Data type : unsign ed
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byt e<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1535,11 +3000,10 @@ Byt e<br>
 		 * Value range (decimal notation) :<br>
 		 * From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br>
 		 * <br>
-		 * Data type : unsign ed
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byt e<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1553,36 +3017,297 @@ Byt e<br>
 			return this;
 		}
 		/**
-		 * Property name : Light color setting<br>
+		 * Property name : Lighting mode setting<br>
 		 * <br>
-		 * EPC : 0xB1<br>
+		 * EPC : 0xB6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the light color.<br>
+		 * Auto/main lighting/night lighting/color lighting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br>
+		 * Auto=0x41, main lighting=0x42,<br>
+		 * night lighting=0x43, color lighting=0x45<br>
 		 * <br>
-		 * Data type : unsign ed
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1
-Byt e<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
+		 */
+		public Setter reqSetLightingModeSetting(byte[] edt) {
+			reqSetProperty(EPC_LIGHTING_MODE_SETTING, edt);
+			return this;
+		}
+		/**
+		 * Property name : Illuminance level setting for main lighting<br>
+		 * <br>
+		 * EPC : 0xB7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Indicates the illuminance level of main lighting in %.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00–0x64(0–100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : %<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetLightColorSetting(byte[] edt) {
-			reqSetProperty(EPC_LIGHT_COLOR_SETTING, edt);
+		public Setter reqSetIlluminanceLevelSettingForMainLighting(byte[] edt) {
+			reqSetProperty(EPC_ILLUMINANCE_LEVEL_SETTING_FOR_MAIN_LIGHTING, edt);
 			return this;
 		}
 		/**
-		 * Property name : ON timer
-reservation setting<br>
+		 * Property name : Illuminance level step setting for main lighting<br>
+		 * <br>
+		 * EPC : 0xB8<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the illuminance level by the number of steps for main lighting and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01 to the maximum value of settable illuminance level(dark to bright)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Setter reqSetIlluminanceLevelStepSettingForMainLighting(byte[] edt) {
+			reqSetProperty(EPC_ILLUMINANCE_LEVEL_STEP_SETTING_FOR_MAIN_LIGHTING, edt);
+			return this;
+		}
+		/**
+		 * Property name : Illuminance level setting for night lighting<br>
+		 * <br>
+		 * EPC : 0xB9<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Indicates the illuminance level of night lighting in %.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00–0x64 (0–100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Setter reqSetIlluminanceLevelSettingForNightLighting(byte[] edt) {
+			reqSetProperty(EPC_ILLUMINANCE_LEVEL_SETTING_FOR_NIGHT_LIGHTING, edt);
+			return this;
+		}
+		/**
+		 * Property name : Illuminance level step setting for night lighting<br>
+		 * <br>
+		 * EPC : 0xBA<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the illuminance level by the number of steps for night lighting and to acquire the current setting status.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01 to the maximum value of settable illuminance level (dark to bright)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Setter reqSetIlluminanceLevelStepSettingForNightLighting(byte[] edt) {
+			reqSetProperty(EPC_ILLUMINANCE_LEVEL_STEP_SETTING_FOR_NIGHT_LIGHTING, edt);
+			return this;
+		}
+		/**
+		 * Property name : Light color setting for main lighting<br>
+		 * <br>
+		 * EPC : 0xBB<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the light color for main lighting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Incandescent lamp color=0x41, white= 0x42, daylight white=0x43, daylight color= 0x44, other=0x40<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Setter reqSetLightColorSettingForMainLighting(byte[] edt) {
+			reqSetProperty(EPC_LIGHT_COLOR_SETTING_FOR_MAIN_LIGHTING, edt);
+			return this;
+		}
+		/**
+		 * Property name : Light color level step setting for main lighting<br>
+		 * <br>
+		 * EPC : 0xBC<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the light color level by the number of steps for main lighting and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01to the maximum value of settable light color level (incandescent lamp color to white)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Setter reqSetLightColorLevelStepSettingForMainLighting(byte[] edt) {
+			reqSetProperty(EPC_LIGHT_COLOR_LEVEL_STEP_SETTING_FOR_MAIN_LIGHTING, edt);
+			return this;
+		}
+		/**
+		 * Property name : Light color setting for night lighting<br>
+		 * <br>
+		 * EPC : 0xBD<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the light color for night lighting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * incandescent lamp color=0x41, white=0x42, daylight white=0x43, daylight color=0x44<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Setter reqSetLightColorSettingForNightLighting(byte[] edt) {
+			reqSetProperty(EPC_LIGHT_COLOR_SETTING_FOR_NIGHT_LIGHTING, edt);
+			return this;
+		}
+		/**
+		 * Property name : Light color level step setting for night lighting<br>
+		 * <br>
+		 * EPC : 0xBE<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the light color level by the number of steps for night lighting and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01 to the maximum value of settable light color level (incandescent lamp color to white)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Setter reqSetLightColorLevelStepSettingForNightLighting(byte[] edt) {
+			reqSetProperty(EPC_LIGHT_COLOR_LEVEL_STEP_SETTING_FOR_NIGHT_LIGHTING, edt);
+			return this;
+		}
+		/**
+		 * Property name : Lighting mode status in auto mode<br>
+		 * <br>
+		 * EPC : 0xBF<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to acquire the current lighting mode in auto mode.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * main lighting=0x42, night lighting=0x43, off=0x44, color lighting=0x45<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Setter reqSetLightingModeStatusInAutoMode(byte[] edt) {
+			reqSetProperty(EPC_LIGHTING_MODE_STATUS_IN_AUTO_MODE, edt);
+			return this;
+		}
+		/**
+		 * Property name : RGB setting for color lighting<br>
+		 * <br>
+		 * EPC : 0xC0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the RGB value for color lighting and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Byte 1: R<br>
+		 * Byte 2: G<br>
+		 * Byte 3: B 0x00–0xFF (0–255)<br>
+		 * Minimum brightness=0x00,maximum brightness=0xFF<br>
+		 * <br>
+		 * Data type : unsigned char×3<br>
+		 * <br>
+		 * Data size : 3 bytes<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Setter reqSetRgbSettingForColorLighting(byte[] edt) {
+			reqSetProperty(EPC_RGB_SETTING_FOR_COLOR_LIGHTING, edt);
+			return this;
+		}
+		/**
+		 * Property name : ON timer reservation setting<br>
 		 * <br>
 		 * EPC : 0x90<br>
 		 * <br>
@@ -1590,14 +3315,12 @@ reservation setting<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON��0x41,<br>
-		 * Reservation OFF��0x42<br>
+		 * Reservation ON=0x41, Reservation OFF=0x42<br>
 		 * <br>
-		 * Data type : unsign ed
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byt e<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1619,14 +3342,13 @@ Byt e<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0 -0x3B (=0-23):(=0 -59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
-		 * Data type : unsign ed
-char
-�~2<br>
+		 * Data type : unsigned char
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byt e<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1640,8 +3362,7 @@ Byt e<br>
 			return this;
 		}
 		/**
-		 * Property name : OFF timer
-reservation setting<br>
+		 * Property name : OFF timer reservation setting<br>
 		 * <br>
 		 * EPC : 0x94<br>
 		 * <br>
@@ -1649,14 +3370,12 @@ reservation setting<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON��0x41,<br>
-		 * Reservation OFF��0x42<br>
+		 * Reservation ON=0x41, Reservation OFF=0x42<br>
 		 * <br>
-		 * Data type : unsign ed
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byt e<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1678,14 +3397,13 @@ Byt e<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0 -0x3B (=0-23):(=0 -59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
-		 * Data type : unsign ed
-char
-�~2<br>
+		 * Data type : unsigned char
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byt e<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1777,8 +3495,8 @@ Byt e<br>
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -1836,8 +3554,34 @@ Byt e<br>
 			return this;
 		}
 		/**
-		 * Property name : Illuminance level step
-setting<br>
+		 * Property name : Light color setting<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the color setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Incandescent lamp color = 0x41, white = 0x42, daylight white = 0x43, daylight color = 0x44, other = 0x40<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Getter reqGetLightColorSetting() {
+			reqGetProperty(EPC_LIGHT_COLOR_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : Illuminance level step setting<br>
 		 * <br>
 		 * EPC : 0xB2<br>
 		 * <br>
@@ -1845,14 +3589,12 @@ setting<br>
 		 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * From 0x01 to the maximum specifiable<br>
-		 * illuminance level value (from dark to bright)<br>
+		 * From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br>
 		 * <br>
-		 * Data type : unsign ed
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byt e<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1876,11 +3618,10 @@ Byt e<br>
 		 * Value range (decimal notation) :<br>
 		 * From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br>
 		 * <br>
-		 * Data type : unsign ed
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byt e<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1894,27 +3635,22 @@ Byt e<br>
 			return this;
 		}
 		/**
-		 * Property name : Maximum
-specifiable values<br>
+		 * Property name : Maximum specifiable values<br>
 		 * <br>
 		 * EPC : 0xB4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the maximum specifiable<br>
-		 * illuminance level value and the maximum specifiable light color value.<br>
+		 * Used to acquire the maximum specifiable illuminance level value and the maximum specifiable light color value.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * First byte: illuminance<br>
-		 * Second byte: light color<br>
-		 * 0x01-0xFF(Step 1 -Step 255)<br>
-		 * 0x00(when the function is not implemented)<br>
+		 * First byte: illuminance  Second byte: light color 0x01.0xFF (Step 1.Step 255)<br>
+		 * 0x00 (when the function is not implemented)<br>
 		 * <br>
-		 * Data type : unsign ed
-char
-�~2<br>
+		 * Data type : unsigned char
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byt e<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1928,36 +3664,328 @@ Byt e<br>
 			return this;
 		}
 		/**
-		 * Property name : Light color setting<br>
+		 * Property name : Maximum value of settable level for night lighting
+<br>
 		 * <br>
-		 * EPC : 0xB1<br>
+		 * EPC : 0xB5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the light color.<br>
+		 * Used to acquire the maximum values of illuminance and light color settable levels for night lighting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br>
+		 * First byte: illuminance<br>
+		 * Second byte: light color<br>
+		 * 0x01–0xFF (Step 1–Step 255)<br>
+		 * 0x00 (when the function is not implemented)<br>
 		 * <br>
-		 * Data type : unsign ed
-char<br>
+		 * Data type : unsigned char
+×2<br>
 		 * <br>
-		 * Data size : 1
-Byt e<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
+		public Getter reqGetMaximumValueOfSettableLevelForNightLighting() {
+			reqGetProperty(EPC_MAXIMUM_VALUE_OF_SETTABLE_LEVEL_FOR_NIGHT_LIGHTING);
+			return this;
+		}
+		/**
+		 * Property name : Lighting mode setting<br>
+		 * <br>
+		 * EPC : 0xB6<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Auto/main lighting/night lighting/color lighting<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Auto=0x41, main lighting=0x42,<br>
+		 * night lighting=0x43, color lighting=0x45<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
+		 */
+		public Getter reqGetLightingModeSetting() {
+			reqGetProperty(EPC_LIGHTING_MODE_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : Illuminance level setting for main lighting<br>
+		 * <br>
+		 * EPC : 0xB7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Indicates the illuminance level of main lighting in %.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00–0x64(0–100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : %<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetLightColorSetting() {
-			reqGetProperty(EPC_LIGHT_COLOR_SETTING);
+		public Getter reqGetIlluminanceLevelSettingForMainLighting() {
+			reqGetProperty(EPC_ILLUMINANCE_LEVEL_SETTING_FOR_MAIN_LIGHTING);
 			return this;
 		}
 		/**
-		 * Property name : ON timer
-reservation setting<br>
+		 * Property name : Illuminance level step setting for main lighting<br>
+		 * <br>
+		 * EPC : 0xB8<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the illuminance level by the number of steps for main lighting and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01 to the maximum value of settable illuminance level(dark to bright)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Getter reqGetIlluminanceLevelStepSettingForMainLighting() {
+			reqGetProperty(EPC_ILLUMINANCE_LEVEL_STEP_SETTING_FOR_MAIN_LIGHTING);
+			return this;
+		}
+		/**
+		 * Property name : Illuminance level setting for night lighting<br>
+		 * <br>
+		 * EPC : 0xB9<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Indicates the illuminance level of night lighting in %.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00–0x64 (0–100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Getter reqGetIlluminanceLevelSettingForNightLighting() {
+			reqGetProperty(EPC_ILLUMINANCE_LEVEL_SETTING_FOR_NIGHT_LIGHTING);
+			return this;
+		}
+		/**
+		 * Property name : Illuminance level step setting for night lighting<br>
+		 * <br>
+		 * EPC : 0xBA<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the illuminance level by the number of steps for night lighting and to acquire the current setting status.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01 to the maximum value of settable illuminance level (dark to bright)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Getter reqGetIlluminanceLevelStepSettingForNightLighting() {
+			reqGetProperty(EPC_ILLUMINANCE_LEVEL_STEP_SETTING_FOR_NIGHT_LIGHTING);
+			return this;
+		}
+		/**
+		 * Property name : Light color setting for main lighting<br>
+		 * <br>
+		 * EPC : 0xBB<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the light color for main lighting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Incandescent lamp color=0x41, white= 0x42, daylight white=0x43, daylight color= 0x44, other=0x40<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Getter reqGetLightColorSettingForMainLighting() {
+			reqGetProperty(EPC_LIGHT_COLOR_SETTING_FOR_MAIN_LIGHTING);
+			return this;
+		}
+		/**
+		 * Property name : Light color level step setting for main lighting<br>
+		 * <br>
+		 * EPC : 0xBC<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the light color level by the number of steps for main lighting and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01to the maximum value of settable light color level (incandescent lamp color to white)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Getter reqGetLightColorLevelStepSettingForMainLighting() {
+			reqGetProperty(EPC_LIGHT_COLOR_LEVEL_STEP_SETTING_FOR_MAIN_LIGHTING);
+			return this;
+		}
+		/**
+		 * Property name : Light color setting for night lighting<br>
+		 * <br>
+		 * EPC : 0xBD<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the light color for night lighting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * incandescent lamp color=0x41, white=0x42, daylight white=0x43, daylight color=0x44<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Getter reqGetLightColorSettingForNightLighting() {
+			reqGetProperty(EPC_LIGHT_COLOR_SETTING_FOR_NIGHT_LIGHTING);
+			return this;
+		}
+		/**
+		 * Property name : Light color level step setting for night lighting<br>
+		 * <br>
+		 * EPC : 0xBE<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the light color level by the number of steps for night lighting and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01 to the maximum value of settable light color level (incandescent lamp color to white)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Getter reqGetLightColorLevelStepSettingForNightLighting() {
+			reqGetProperty(EPC_LIGHT_COLOR_LEVEL_STEP_SETTING_FOR_NIGHT_LIGHTING);
+			return this;
+		}
+		/**
+		 * Property name : Lighting mode status in auto mode<br>
+		 * <br>
+		 * EPC : 0xBF<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to acquire the current lighting mode in auto mode.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * main lighting=0x42, night lighting=0x43, off=0x44, color lighting=0x45<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Getter reqGetLightingModeStatusInAutoMode() {
+			reqGetProperty(EPC_LIGHTING_MODE_STATUS_IN_AUTO_MODE);
+			return this;
+		}
+		/**
+		 * Property name : RGB setting for color lighting<br>
+		 * <br>
+		 * EPC : 0xC0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the RGB value for color lighting and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Byte 1: R<br>
+		 * Byte 2: G<br>
+		 * Byte 3: B 0x00–0xFF (0–255)<br>
+		 * Minimum brightness=0x00,maximum brightness=0xFF<br>
+		 * <br>
+		 * Data type : unsigned char×3<br>
+		 * <br>
+		 * Data size : 3 bytes<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Getter reqGetRgbSettingForColorLighting() {
+			reqGetProperty(EPC_RGB_SETTING_FOR_COLOR_LIGHTING);
+			return this;
+		}
+		/**
+		 * Property name : ON timer reservation setting<br>
 		 * <br>
 		 * EPC : 0x90<br>
 		 * <br>
@@ -1965,14 +3993,12 @@ reservation setting<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON��0x41,<br>
-		 * Reservation OFF��0x42<br>
+		 * Reservation ON=0x41, Reservation OFF=0x42<br>
 		 * <br>
-		 * Data type : unsign ed
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byt e<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1994,14 +4020,13 @@ Byt e<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0 -0x3B (=0-23):(=0 -59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
-		 * Data type : unsign ed
-char
-�~2<br>
+		 * Data type : unsigned char
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byt e<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2015,8 +4040,7 @@ Byt e<br>
 			return this;
 		}
 		/**
-		 * Property name : OFF timer
-reservation setting<br>
+		 * Property name : OFF timer reservation setting<br>
 		 * <br>
 		 * EPC : 0x94<br>
 		 * <br>
@@ -2024,14 +4048,12 @@ reservation setting<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON��0x41,<br>
-		 * Reservation OFF��0x42<br>
+		 * Reservation ON=0x41, Reservation OFF=0x42<br>
 		 * <br>
-		 * Data type : unsign ed
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byt e<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2053,14 +4075,13 @@ Byt e<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0 -0x3B (=0-23):(=0 -59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
-		 * Data type : unsign ed
-char
-�~2<br>
+		 * Data type : unsigned char
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byt e<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2151,8 +4172,8 @@ Byt e<br>
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -2210,8 +4231,34 @@ Byt e<br>
 			return this;
 		}
 		/**
-		 * Property name : Illuminance level step
-setting<br>
+		 * Property name : Light color setting<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the color setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Incandescent lamp color = 0x41, white = 0x42, daylight white = 0x43, daylight color = 0x44, other = 0x40<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+byte<br>
+		 * <br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Informer reqInformLightColorSetting() {
+			reqInformProperty(EPC_LIGHT_COLOR_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : Illuminance level step setting<br>
 		 * <br>
 		 * EPC : 0xB2<br>
 		 * <br>
@@ -2219,14 +4266,12 @@ setting<br>
 		 * Used to specify the illuminance level in terms of steps and acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * From 0x01 to the maximum specifiable<br>
-		 * illuminance level value (from dark to bright)<br>
+		 * From 0x01 to the maximum specifiable illuminance level value (from dark to bright)<br>
 		 * <br>
-		 * Data type : unsign ed
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byt e<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2250,11 +4295,10 @@ Byt e<br>
 		 * Value range (decimal notation) :<br>
 		 * From 0x01 to the maximum specifiable light color value (from incandescent lamp color to white)<br>
 		 * <br>
-		 * Data type : unsign ed
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byt e<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2268,27 +4312,22 @@ Byt e<br>
 			return this;
 		}
 		/**
-		 * Property name : Maximum
-specifiable values<br>
+		 * Property name : Maximum specifiable values<br>
 		 * <br>
 		 * EPC : 0xB4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the maximum specifiable<br>
-		 * illuminance level value and the maximum specifiable light color value.<br>
+		 * Used to acquire the maximum specifiable illuminance level value and the maximum specifiable light color value.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * First byte: illuminance<br>
-		 * Second byte: light color<br>
-		 * 0x01-0xFF(Step 1 -Step 255)<br>
-		 * 0x00(when the function is not implemented)<br>
+		 * First byte: illuminance  Second byte: light color 0x01.0xFF (Step 1.Step 255)<br>
+		 * 0x00 (when the function is not implemented)<br>
 		 * <br>
-		 * Data type : unsign ed
-char
-�~2<br>
+		 * Data type : unsigned char
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byt e<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2302,36 +4341,328 @@ Byt e<br>
 			return this;
 		}
 		/**
-		 * Property name : Light color setting<br>
+		 * Property name : Maximum value of settable level for night lighting
+<br>
 		 * <br>
-		 * EPC : 0xB1<br>
+		 * EPC : 0xB5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the light color.<br>
+		 * Used to acquire the maximum values of illuminance and light color settable levels for night lighting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * incandescent lamp color��0x41, white��0x42, daylight white��0x43, daylight color��0x44<br>
+		 * First byte: illuminance<br>
+		 * Second byte: light color<br>
+		 * 0x01–0xFF (Step 1–Step 255)<br>
+		 * 0x00 (when the function is not implemented)<br>
 		 * <br>
-		 * Data type : unsign ed
-char<br>
+		 * Data type : unsigned char
+×2<br>
 		 * <br>
-		 * Data size : 1
-Byt e<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
+		public Informer reqInformMaximumValueOfSettableLevelForNightLighting() {
+			reqInformProperty(EPC_MAXIMUM_VALUE_OF_SETTABLE_LEVEL_FOR_NIGHT_LIGHTING);
+			return this;
+		}
+		/**
+		 * Property name : Lighting mode setting<br>
+		 * <br>
+		 * EPC : 0xB6<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Auto/main lighting/night lighting/color lighting<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Auto=0x41, main lighting=0x42,<br>
+		 * night lighting=0x43, color lighting=0x45<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
+		 */
+		public Informer reqInformLightingModeSetting() {
+			reqInformProperty(EPC_LIGHTING_MODE_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : Illuminance level setting for main lighting<br>
+		 * <br>
+		 * EPC : 0xB7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Indicates the illuminance level of main lighting in %.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00–0x64(0–100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : %<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformLightColorSetting() {
-			reqInformProperty(EPC_LIGHT_COLOR_SETTING);
+		public Informer reqInformIlluminanceLevelSettingForMainLighting() {
+			reqInformProperty(EPC_ILLUMINANCE_LEVEL_SETTING_FOR_MAIN_LIGHTING);
 			return this;
 		}
 		/**
-		 * Property name : ON timer
-reservation setting<br>
+		 * Property name : Illuminance level step setting for main lighting<br>
+		 * <br>
+		 * EPC : 0xB8<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the illuminance level by the number of steps for main lighting and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01 to the maximum value of settable illuminance level(dark to bright)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Informer reqInformIlluminanceLevelStepSettingForMainLighting() {
+			reqInformProperty(EPC_ILLUMINANCE_LEVEL_STEP_SETTING_FOR_MAIN_LIGHTING);
+			return this;
+		}
+		/**
+		 * Property name : Illuminance level setting for night lighting<br>
+		 * <br>
+		 * EPC : 0xB9<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Indicates the illuminance level of night lighting in %.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00–0x64 (0–100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Informer reqInformIlluminanceLevelSettingForNightLighting() {
+			reqInformProperty(EPC_ILLUMINANCE_LEVEL_SETTING_FOR_NIGHT_LIGHTING);
+			return this;
+		}
+		/**
+		 * Property name : Illuminance level step setting for night lighting<br>
+		 * <br>
+		 * EPC : 0xBA<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the illuminance level by the number of steps for night lighting and to acquire the current setting status.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01 to the maximum value of settable illuminance level (dark to bright)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Informer reqInformIlluminanceLevelStepSettingForNightLighting() {
+			reqInformProperty(EPC_ILLUMINANCE_LEVEL_STEP_SETTING_FOR_NIGHT_LIGHTING);
+			return this;
+		}
+		/**
+		 * Property name : Light color setting for main lighting<br>
+		 * <br>
+		 * EPC : 0xBB<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the light color for main lighting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Incandescent lamp color=0x41, white= 0x42, daylight white=0x43, daylight color= 0x44, other=0x40<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Informer reqInformLightColorSettingForMainLighting() {
+			reqInformProperty(EPC_LIGHT_COLOR_SETTING_FOR_MAIN_LIGHTING);
+			return this;
+		}
+		/**
+		 * Property name : Light color level step setting for main lighting<br>
+		 * <br>
+		 * EPC : 0xBC<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the light color level by the number of steps for main lighting and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01to the maximum value of settable light color level (incandescent lamp color to white)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Informer reqInformLightColorLevelStepSettingForMainLighting() {
+			reqInformProperty(EPC_LIGHT_COLOR_LEVEL_STEP_SETTING_FOR_MAIN_LIGHTING);
+			return this;
+		}
+		/**
+		 * Property name : Light color setting for night lighting<br>
+		 * <br>
+		 * EPC : 0xBD<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the light color for night lighting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * incandescent lamp color=0x41, white=0x42, daylight white=0x43, daylight color=0x44<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Informer reqInformLightColorSettingForNightLighting() {
+			reqInformProperty(EPC_LIGHT_COLOR_SETTING_FOR_NIGHT_LIGHTING);
+			return this;
+		}
+		/**
+		 * Property name : Light color level step setting for night lighting<br>
+		 * <br>
+		 * EPC : 0xBE<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the light color level by the number of steps for night lighting and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01 to the maximum value of settable light color level (incandescent lamp color to white)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Informer reqInformLightColorLevelStepSettingForNightLighting() {
+			reqInformProperty(EPC_LIGHT_COLOR_LEVEL_STEP_SETTING_FOR_NIGHT_LIGHTING);
+			return this;
+		}
+		/**
+		 * Property name : Lighting mode status in auto mode<br>
+		 * <br>
+		 * EPC : 0xBF<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to acquire the current lighting mode in auto mode.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * main lighting=0x42, night lighting=0x43, off=0x44, color lighting=0x45<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1 byte<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Informer reqInformLightingModeStatusInAutoMode() {
+			reqInformProperty(EPC_LIGHTING_MODE_STATUS_IN_AUTO_MODE);
+			return this;
+		}
+		/**
+		 * Property name : RGB setting for color lighting<br>
+		 * <br>
+		 * EPC : 0xC0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * Used to set the RGB value for color lighting and to acquire the current setting.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Byte 1: R<br>
+		 * Byte 2: G<br>
+		 * Byte 3: B 0x00–0xFF (0–255)<br>
+		 * Minimum brightness=0x00,maximum brightness=0xFF<br>
+		 * <br>
+		 * Data type : unsigned char×3<br>
+		 * <br>
+		 * Data size : 3 bytes<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Informer reqInformRgbSettingForColorLighting() {
+			reqInformProperty(EPC_RGB_SETTING_FOR_COLOR_LIGHTING);
+			return this;
+		}
+		/**
+		 * Property name : ON timer reservation setting<br>
 		 * <br>
 		 * EPC : 0x90<br>
 		 * <br>
@@ -2339,14 +4670,12 @@ reservation setting<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON��0x41,<br>
-		 * Reservation OFF��0x42<br>
+		 * Reservation ON=0x41, Reservation OFF=0x42<br>
 		 * <br>
-		 * Data type : unsign ed
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byt e<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2368,14 +4697,13 @@ Byt e<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0 -0x3B (=0-23):(=0 -59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
-		 * Data type : unsign ed
-char
-�~2<br>
+		 * Data type : unsigned char
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byt e<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2389,8 +4717,7 @@ Byt e<br>
 			return this;
 		}
 		/**
-		 * Property name : OFF timer
-reservation setting<br>
+		 * Property name : OFF timer reservation setting<br>
 		 * <br>
 		 * EPC : 0x94<br>
 		 * <br>
@@ -2398,14 +4725,12 @@ reservation setting<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON��0x41,<br>
-		 * Reservation OFF��0x42<br>
+		 * Reservation ON=0x41, Reservation OFF=0x42<br>
 		 * <br>
-		 * Data type : unsign ed
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byt e<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2427,14 +4752,13 @@ Byt e<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0 -0x3B (=0-23):(=0 -59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
-		 * Data type : unsign ed
-char
-�~2<br>
+		 * Data type : unsigned char
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byt e<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2472,6 +4796,10 @@ Byt e<br>
 		protected byte[] getManufacturerCode() {return null;}
 		@Override
 		protected boolean setOperationStatus(byte[] edt) {return false;}
+		@Override
+		protected boolean setLightingModeSetting(byte[] edt) {return false;}
+		@Override
+		protected byte[] getLightingModeSetting() {return null;}
 	}
 	
 	public static Setter setG() {

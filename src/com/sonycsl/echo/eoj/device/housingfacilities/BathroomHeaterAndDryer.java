@@ -38,11 +38,11 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	public static final byte EPC_VENTILATION_AIR_FLOW_RATE_SETTING = (byte)0xC2;
 	public static final byte EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING = (byte)0xCF;
 	public static final byte EPC_HUMAN_BODY_DETECTION_STATUS = (byte)0xE0;
-	public static final byte EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1 = (byte)0x90;
-	public static final byte EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2 = (byte)0xE1;
+	public static final byte EPC_ON_TIMER_BASED_RESERVATION_SETTING1 = (byte)0x90;
+	public static final byte EPC_ON_TIMER_BASED_RESERVATION_SETTING2 = (byte)0xE1;
 	public static final byte EPC_ON_TIMER_SETTING_TIME = (byte)0x91;
 	public static final byte EPC_ON_TIMER_SETTING_RELATIVE_TIME = (byte)0x92;
-	public static final byte EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING = (byte)0x94;
+	public static final byte EPC_OFF_TIMER_BASED_RESERVATION_SETTING = (byte)0x94;
 	public static final byte EPC_OFF_TIMER_SETTING_TIME = (byte)0x95;
 	public static final byte EPC_OFF_TIMER_SETTING_RELATIVE_TIME = (byte)0x96;
 
@@ -50,7 +50,7 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
-		removeStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
+		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
 		addSetProperty(EPC_OPERATION_SETTING);
@@ -72,8 +72,7 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON           : 0x30<br>
@@ -89,6 +88,8 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean setOperationStatus(byte[] edt) {return false;}
 	/**
@@ -97,8 +98,7 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON           : 0x30<br>
@@ -114,6 +114,8 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected abstract byte[] getOperationStatus();
 	/**
@@ -122,24 +124,20 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	 * EPC : 0xB0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the operation mode<br>
-	 * (ventilation mode, bathroom<br>
-	 * pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>
+	 * Used to set the operation mode (ventilation mode, bathroom<br>
+	 * pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or “stop”), and to<br>
+	 * acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Ventilation operation             : 0x10<br>
-	 * Bathroom pre-warmer operation :<br>
+	 * Ventilation operation              : 0x10 Bathroom pre-warmer operation :<br>
 	 * 0x20<br>
-	 * Bathroom heater operation   : 0x30<br>
-	 * Bathroom dryer operation      : 0x40<br>
-	 * Cool air circulator operation : 0x50<br>
-	 * Stop                                           :0x00<br>
+	 * Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -153,24 +151,20 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	 * EPC : 0xB0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the operation mode<br>
-	 * (ventilation mode, bathroom<br>
-	 * pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>
+	 * Used to set the operation mode (ventilation mode, bathroom<br>
+	 * pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or “stop”), and to<br>
+	 * acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Ventilation operation             : 0x10<br>
-	 * Bathroom pre-warmer operation :<br>
+	 * Ventilation operation              : 0x10 Bathroom pre-warmer operation :<br>
 	 * 0x20<br>
-	 * Bathroom heater operation   : 0x30<br>
-	 * Bathroom dryer operation      : 0x40<br>
-	 * Cool air circulator operation : 0x50<br>
-	 * Stop                                           :0x00<br>
+	 * Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -184,24 +178,20 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	 * EPC : 0xB0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the operation mode<br>
-	 * (ventilation mode, bathroom<br>
-	 * pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>
+	 * Used to set the operation mode (ventilation mode, bathroom<br>
+	 * pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or “stop”), and to<br>
+	 * acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Ventilation operation             : 0x10<br>
-	 * Bathroom pre-warmer operation :<br>
+	 * Ventilation operation              : 0x10 Bathroom pre-warmer operation :<br>
 	 * 0x20<br>
-	 * Bathroom heater operation   : 0x30<br>
-	 * Bathroom dryer operation      : 0x40<br>
-	 * Cool air circulator operation : 0x50<br>
-	 * Stop                                           :0x00<br>
+	 * Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -223,13 +213,13 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	 * Value range (decimal notation) :<br>
 	 * Automatic        : 0x41<br>
 	 * Standard          : 0x42<br>
-	 * Air flow rate level    : 0x31 to 0x38<br>
+	 * Air flow rate level    : 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -248,13 +238,13 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	 * Value range (decimal notation) :<br>
 	 * Automatic        : 0x41<br>
 	 * Standard          : 0x42<br>
-	 * Air flow rate level    : 0x31 to 0x38<br>
+	 * Air flow rate level    : 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -273,13 +263,13 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	 * Value range (decimal notation) :<br>
 	 * Automatic        : 0x41<br>
 	 * Standard          : 0x42<br>
-	 * Air flow rate level    : 0x31 to 0x38<br>
+	 * Air flow rate level    : 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -291,7 +281,8 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 		return true;
 	}
 	/**
-	 * Property name : Bathroom pre-warmer operation setting<br>
+	 * Property name : Bathroom pre-warmer
+operation setting<br>
 	 * <br>
 	 * EPC : 0xB2<br>
 	 * <br>
@@ -300,15 +291,14 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic        : 0x41<br>
-	 * Standard          : 0x42<br>
-	 * Bathroom pre-warming level<br>
-	 * : 0x31 to 0x38<br>
+	 * Standard          : 0x42 Bathroom pre-warming level<br>
+	 * : 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -317,7 +307,8 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	 */
 	protected abstract boolean setBathroomPreWarmerOperationSetting(byte[] edt);
 	/**
-	 * Property name : Bathroom pre-warmer operation setting<br>
+	 * Property name : Bathroom pre-warmer
+operation setting<br>
 	 * <br>
 	 * EPC : 0xB2<br>
 	 * <br>
@@ -326,15 +317,14 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic        : 0x41<br>
-	 * Standard          : 0x42<br>
-	 * Bathroom pre-warming level<br>
-	 * : 0x31 to 0x38<br>
+	 * Standard          : 0x42 Bathroom pre-warming level<br>
+	 * : 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -343,7 +333,8 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	 */
 	protected abstract byte[] getBathroomPreWarmerOperationSetting();
 	/**
-	 * Property name : Bathroom pre-warmer operation setting<br>
+	 * Property name : Bathroom pre-warmer
+operation setting<br>
 	 * <br>
 	 * EPC : 0xB2<br>
 	 * <br>
@@ -352,15 +343,14 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic        : 0x41<br>
-	 * Standard          : 0x42<br>
-	 * Bathroom pre-warming level<br>
-	 * : 0x31 to 0x38<br>
+	 * Standard          : 0x42 Bathroom pre-warming level<br>
+	 * : 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -381,15 +371,14 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic        : 0x41<br>
-	 * Standard          : 0x42<br>
-	 * Bathroom heating level<br>
-	 * : 0x31 to 0x38<br>
+	 * Standard          : 0x42 Bathroom heating level<br>
+	 * : 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -407,15 +396,14 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic        : 0x41<br>
-	 * Standard          : 0x42<br>
-	 * Bathroom heating level<br>
-	 * : 0x31 to 0x38<br>
+	 * Standard          : 0x42 Bathroom heating level<br>
+	 * : 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -433,15 +421,14 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic        : 0x41<br>
-	 * Standard          : 0x42<br>
-	 * Bathroom heating level<br>
-	 * : 0x31 to 0x38<br>
+	 * Standard          : 0x42 Bathroom heating level<br>
+	 * : 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -462,15 +449,14 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic        : 0x41<br>
-	 * Standard          : 0x42<br>
-	 * Bathroom drying level<br>
-	 * : 0x31 to 0x38<br>
+	 * Standard          : 0x42 Bathroom drying level<br>
+	 * : 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -488,15 +474,14 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic        : 0x41<br>
-	 * Standard          : 0x42<br>
-	 * Bathroom drying level<br>
-	 * : 0x31 to 0x38<br>
+	 * Standard          : 0x42 Bathroom drying level<br>
+	 * : 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -514,15 +499,14 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic        : 0x41<br>
-	 * Standard          : 0x42<br>
-	 * Bathroom drying level<br>
-	 * : 0x31 to 0x38<br>
+	 * Standard          : 0x42 Bathroom drying level<br>
+	 * : 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -543,15 +527,14 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic        : 0x41<br>
-	 * Standard          : 0x42<br>
-	 * Cool air circulation level<br>
-	 * : 0x31 to 0x38<br>
+	 * Standard          : 0x42 Cool air circulation level<br>
+	 * : 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -569,15 +552,14 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic        : 0x41<br>
-	 * Standard          : 0x42<br>
-	 * Cool air circulation level<br>
-	 * : 0x31 to 0x38<br>
+	 * Standard          : 0x42 Cool air circulation level<br>
+	 * : 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -595,15 +577,14 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic        : 0x41<br>
-	 * Standard          : 0x42<br>
-	 * Cool air circulation level<br>
-	 * : 0x31 to 0x38<br>
+	 * Standard          : 0x42 Cool air circulation level<br>
+	 * : 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -615,8 +596,7 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 		return true;
 	}
 	/**
-	 * Property name : Measured
-relative bathroom humidity<br>
+	 * Property name : Measured relative bathroom humidity<br>
 	 * <br>
 	 * EPC : 0xBA<br>
 	 * <br>
@@ -624,11 +604,11 @@ relative bathroom humidity<br>
 	 * Used to acquire the measured relative humidity of the bathroom.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x64 (0 to 100%)<br>
+	 * 0x00.0x64 (0.100%)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
 	 * Unit : %<br>
 	 * <br>
@@ -639,8 +619,7 @@ relative bathroom humidity<br>
 	 */
 	protected byte[] getMeasuredRelativeBathroomHumidity() {return null;}
 	/**
-	 * Property name : Measured
-relative bathroom humidity<br>
+	 * Property name : Measured relative bathroom humidity<br>
 	 * <br>
 	 * EPC : 0xBA<br>
 	 * <br>
@@ -648,11 +627,11 @@ relative bathroom humidity<br>
 	 * Used to acquire the measured relative humidity of the bathroom.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x64 (0 to 100%)<br>
+	 * 0x00.0x64 (0.100%)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
 	 * Unit : %<br>
 	 * <br>
@@ -674,13 +653,13 @@ relative bathroom humidity<br>
 	 * Used to acquire the measured temperature of the bathroom.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7D (.127 to �{125��)<br>
+	 * 0x81.0x7D (-127.+125.C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : ��<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -697,13 +676,13 @@ relative bathroom humidity<br>
 	 * Used to acquire the measured temperature of the bathroom.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7D (.127 to �{125��)<br>
+	 * 0x81.0x7D (-127.+125.C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : ��<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -724,13 +703,13 @@ relative bathroom humidity<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic: 0x41<br>
-	 * Air flow rate level: 0x31 to 0x38<br>
+	 * Air flow rate level: 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -748,13 +727,13 @@ relative bathroom humidity<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic: 0x41<br>
-	 * Air flow rate level: 0x31 to 0x38<br>
+	 * Air flow rate level: 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -772,13 +751,13 @@ relative bathroom humidity<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic: 0x41<br>
-	 * Air flow rate level: 0x31 to 0x38<br>
+	 * Air flow rate level: 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -799,14 +778,13 @@ relative bathroom humidity<br>
 	 * sign status (lit/not lit) and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Lit: 0x41<br>
-	 * Not lit: 0x42<br>
+	 * Lit: 0x41 Not lit: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -824,14 +802,13 @@ relative bathroom humidity<br>
 	 * sign status (lit/not lit) and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Lit: 0x41<br>
-	 * Not lit: 0x42<br>
+	 * Lit: 0x41 Not lit: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -849,14 +826,13 @@ relative bathroom humidity<br>
 	 * sign status (lit/not lit) and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Lit: 0x41<br>
-	 * Not lit: 0x42<br>
+	 * Lit: 0x41 Not lit: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -876,14 +852,13 @@ relative bathroom humidity<br>
 	 * Used to acquire the human body detection status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Detected: 0x41<br>
-	 * Not detected: 0x42<br>
+	 * Detected: 0x41 Not detected: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -900,14 +875,13 @@ relative bathroom humidity<br>
 	 * Used to acquire the human body detection status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Detected: 0x41<br>
-	 * Not detected: 0x42<br>
+	 * Detected: 0x41 Not detected: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -919,7 +893,7 @@ relative bathroom humidity<br>
 		return true;
 	}
 	/**
-	 * Property name : �gON timer-based reservation�h setting 1<br>
+	 * Property name : “ON timer-based reservation” setting 1<br>
 	 * <br>
 	 * EPC : 0x90<br>
 	 * <br>
@@ -933,18 +907,18 @@ relative bathroom humidity<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setGonTimerBasedReservationHSetting1(byte[] edt) {return false;}
+	protected boolean setOnTimerBasedReservationSetting1(byte[] edt) {return false;}
 	/**
-	 * Property name : �gON timer-based reservation�h setting 1<br>
+	 * Property name : “ON timer-based reservation” setting 1<br>
 	 * <br>
 	 * EPC : 0x90<br>
 	 * <br>
@@ -958,18 +932,18 @@ relative bathroom humidity<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getGonTimerBasedReservationHSetting1() {return null;}
+	protected byte[] getOnTimerBasedReservationSetting1() {return null;}
 	/**
-	 * Property name : �gON timer-based reservation�h setting 1<br>
+	 * Property name : “ON timer-based reservation” setting 1<br>
 	 * <br>
 	 * EPC : 0x90<br>
 	 * <br>
@@ -983,112 +957,111 @@ relative bathroom humidity<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidGonTimerBasedReservationHSetting1(byte[] edt) {
+	protected boolean isValidOnTimerBasedReservationSetting1(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
 	/**
-	 * Property name : �gON timer-based reservation�h setting 2<br>
+	 * Property name : “ON timer-based reservation” setting 2<br>
 	 * <br>
 	 * EPC : 0xE1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the ON/OFF status of the<br>
-	 * ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>
+	 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to<br>
+	 * acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation function ON for the ventilation mode                      : 0x10<br>
+	 * Reservation function ON for the ventilation mode                     : 0x10<br>
 	 * Reservation function ON for the bathroom pre-warmer mode : 0x20<br>
-	 * Reservation function ON for the bathroom heater mode          : 0x30<br>
+	 * Reservation function ON for the bathroom heater mode         : 0x30<br>
 	 * Reservation function ON for the bathroom dryer mode            : 0x40<br>
 	 * Reservation function ON for the cool air circulator mode       : 0x50<br>
 	 * Reservation function OFF : 0x00<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setGonTimerBasedReservationHSetting2(byte[] edt) {return false;}
+	protected boolean setOnTimerBasedReservationSetting2(byte[] edt) {return false;}
 	/**
-	 * Property name : �gON timer-based reservation�h setting 2<br>
+	 * Property name : “ON timer-based reservation” setting 2<br>
 	 * <br>
 	 * EPC : 0xE1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the ON/OFF status of the<br>
-	 * ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>
+	 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to<br>
+	 * acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation function ON for the ventilation mode                      : 0x10<br>
+	 * Reservation function ON for the ventilation mode                     : 0x10<br>
 	 * Reservation function ON for the bathroom pre-warmer mode : 0x20<br>
-	 * Reservation function ON for the bathroom heater mode          : 0x30<br>
+	 * Reservation function ON for the bathroom heater mode         : 0x30<br>
 	 * Reservation function ON for the bathroom dryer mode            : 0x40<br>
 	 * Reservation function ON for the cool air circulator mode       : 0x50<br>
 	 * Reservation function OFF : 0x00<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getGonTimerBasedReservationHSetting2() {return null;}
+	protected byte[] getOnTimerBasedReservationSetting2() {return null;}
 	/**
-	 * Property name : �gON timer-based reservation�h setting 2<br>
+	 * Property name : “ON timer-based reservation” setting 2<br>
 	 * <br>
 	 * EPC : 0xE1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the ON/OFF status of the<br>
-	 * ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>
+	 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to<br>
+	 * acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation function ON for the ventilation mode                      : 0x10<br>
+	 * Reservation function ON for the ventilation mode                     : 0x10<br>
 	 * Reservation function ON for the bathroom pre-warmer mode : 0x20<br>
-	 * Reservation function ON for the bathroom heater mode          : 0x30<br>
+	 * Reservation function ON for the bathroom heater mode         : 0x30<br>
 	 * Reservation function ON for the bathroom dryer mode            : 0x40<br>
 	 * Reservation function ON for the cool air circulator mode       : 0x50<br>
 	 * Reservation function OFF : 0x00<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidGonTimerBasedReservationHSetting2(byte[] edt) {
+	protected boolean isValidOnTimerBasedReservationSetting2(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
 	/**
-	 * Property name : ON timer setting
-(time)<br>
+	 * Property name : ON timer setting (time)<br>
 	 * <br>
 	 * EPC : 0x91<br>
 	 * <br>
@@ -1097,15 +1070,14 @@ relative bathroom humidity<br>
 	 * time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-x2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1114,8 +1086,7 @@ x2<br>
 	 */
 	protected boolean setOnTimerSettingTime(byte[] edt) {return false;}
 	/**
-	 * Property name : ON timer setting
-(time)<br>
+	 * Property name : ON timer setting (time)<br>
 	 * <br>
 	 * EPC : 0x91<br>
 	 * <br>
@@ -1124,15 +1095,14 @@ x2<br>
 	 * time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-x2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1141,8 +1111,7 @@ x2<br>
 	 */
 	protected byte[] getOnTimerSettingTime() {return null;}
 	/**
-	 * Property name : ON timer setting
-(time)<br>
+	 * Property name : ON timer setting (time)<br>
 	 * <br>
 	 * EPC : 0x91<br>
 	 * <br>
@@ -1151,15 +1120,14 @@ x2<br>
 	 * time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-x2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1171,8 +1139,7 @@ x2<br>
 		return true;
 	}
 	/**
-	 * Property name : ON timer setting
-(relative time)<br>
+	 * Property name : ON timer setting (relative time)<br>
 	 * <br>
 	 * EPC : 0x92<br>
 	 * <br>
@@ -1181,15 +1148,14 @@ x2<br>
 	 * the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-x2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1198,8 +1164,7 @@ x2<br>
 	 */
 	protected boolean setOnTimerSettingRelativeTime(byte[] edt) {return false;}
 	/**
-	 * Property name : ON timer setting
-(relative time)<br>
+	 * Property name : ON timer setting (relative time)<br>
 	 * <br>
 	 * EPC : 0x92<br>
 	 * <br>
@@ -1208,15 +1173,14 @@ x2<br>
 	 * the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-x2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1225,8 +1189,7 @@ x2<br>
 	 */
 	protected byte[] getOnTimerSettingRelativeTime() {return null;}
 	/**
-	 * Property name : ON timer setting
-(relative time)<br>
+	 * Property name : ON timer setting (relative time)<br>
 	 * <br>
 	 * EPC : 0x92<br>
 	 * <br>
@@ -1235,15 +1198,14 @@ x2<br>
 	 * the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-x2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1255,8 +1217,8 @@ x2<br>
 		return true;
 	}
 	/**
-	 * Property name : �gOFF
-timer-based reservation�h setting<br>
+	 * Property name : “OFF
+timer-based reservation” setting<br>
 	 * <br>
 	 * EPC : 0x94<br>
 	 * <br>
@@ -1264,24 +1226,23 @@ timer-based reservation�h setting<br>
 	 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation function ON: 0x41<br>
-	 * Reservation function OFF: 0x42<br>
+	 * Reservation function ON: 0x41 Reservation function OFF: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setGoffTimerBasedReservationHSetting(byte[] edt) {return false;}
+	protected boolean setOffTimerBasedReservationSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : �gOFF
-timer-based reservation�h setting<br>
+	 * Property name : “OFF
+timer-based reservation” setting<br>
 	 * <br>
 	 * EPC : 0x94<br>
 	 * <br>
@@ -1289,24 +1250,23 @@ timer-based reservation�h setting<br>
 	 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation function ON: 0x41<br>
-	 * Reservation function OFF: 0x42<br>
+	 * Reservation function ON: 0x41 Reservation function OFF: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getGoffTimerBasedReservationHSetting() {return null;}
+	protected byte[] getOffTimerBasedReservationSetting() {return null;}
 	/**
-	 * Property name : �gOFF
-timer-based reservation�h setting<br>
+	 * Property name : “OFF
+timer-based reservation” setting<br>
 	 * <br>
 	 * EPC : 0x94<br>
 	 * <br>
@@ -1314,21 +1274,20 @@ timer-based reservation�h setting<br>
 	 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation function ON: 0x41<br>
-	 * Reservation function OFF: 0x42<br>
+	 * Reservation function ON: 0x41 Reservation function OFF: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidGoffTimerBasedReservationHSetting(byte[] edt) {
+	protected boolean isValidOffTimerBasedReservationSetting(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
@@ -1339,20 +1298,17 @@ timer-based reservation�h setting<br>
 	 * <br>
 	 * Contents of property :<br>
 	 * Used to set the time setting for the<br>
-	 * time-based reservation function for the<br>
-	 * OFF timer (in the HH:MM format)<br>
-	 * and to acquire the current setting.<br>
+	 * time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-x2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1367,20 +1323,17 @@ x2<br>
 	 * <br>
 	 * Contents of property :<br>
 	 * Used to set the time setting for the<br>
-	 * time-based reservation function for the<br>
-	 * OFF timer (in the HH:MM format)<br>
-	 * and to acquire the current setting.<br>
+	 * time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-x2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1395,20 +1348,17 @@ x2<br>
 	 * <br>
 	 * Contents of property :<br>
 	 * Used to set the time setting for the<br>
-	 * time-based reservation function for the<br>
-	 * OFF timer (in the HH:MM format)<br>
-	 * and to acquire the current setting.<br>
+	 * time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-x2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1425,19 +1375,18 @@ x2<br>
 	 * EPC : 0x96<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the<br>
-	 * current setting.<br>
+	 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the<br>
+	 * HH:MM format) and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-x2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1451,19 +1400,18 @@ x2<br>
 	 * EPC : 0x96<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the<br>
-	 * current setting.<br>
+	 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the<br>
+	 * HH:MM format) and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-x2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1477,19 +1425,18 @@ x2<br>
 	 * EPC : 0x96<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the<br>
-	 * current setting.<br>
+	 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the<br>
+	 * HH:MM format) and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-x2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1515,11 +1462,11 @@ x2<br>
 		case EPC_COOL_AIR_CIRCULATOR_OPERATION_SETTING : return setCoolAirCirculatorOperationSetting(property.edt);
 		case EPC_VENTILATION_AIR_FLOW_RATE_SETTING : return setVentilationAirFlowRateSetting(property.edt);
 		case EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING : return setFilterCleaningReminderSignSetting(property.edt);
-		case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1 : return setGonTimerBasedReservationHSetting1(property.edt);
-		case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2 : return setGonTimerBasedReservationHSetting2(property.edt);
+		case EPC_ON_TIMER_BASED_RESERVATION_SETTING1 : return setOnTimerBasedReservationSetting1(property.edt);
+		case EPC_ON_TIMER_BASED_RESERVATION_SETTING2 : return setOnTimerBasedReservationSetting2(property.edt);
 		case EPC_ON_TIMER_SETTING_TIME : return setOnTimerSettingTime(property.edt);
 		case EPC_ON_TIMER_SETTING_RELATIVE_TIME : return setOnTimerSettingRelativeTime(property.edt);
-		case EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING : return setGoffTimerBasedReservationHSetting(property.edt);
+		case EPC_OFF_TIMER_BASED_RESERVATION_SETTING : return setOffTimerBasedReservationSetting(property.edt);
 		case EPC_OFF_TIMER_SETTING_TIME : return setOffTimerSettingTime(property.edt);
 		case EPC_OFF_TIMER_SETTING_RELATIVE_TIME : return setOffTimerSettingRelativeTime(property.edt);
 		default : return false;
@@ -1543,11 +1490,11 @@ x2<br>
 		case EPC_VENTILATION_AIR_FLOW_RATE_SETTING : return getVentilationAirFlowRateSetting();
 		case EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING : return getFilterCleaningReminderSignSetting();
 		case EPC_HUMAN_BODY_DETECTION_STATUS : return getHumanBodyDetectionStatus();
-		case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1 : return getGonTimerBasedReservationHSetting1();
-		case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2 : return getGonTimerBasedReservationHSetting2();
+		case EPC_ON_TIMER_BASED_RESERVATION_SETTING1 : return getOnTimerBasedReservationSetting1();
+		case EPC_ON_TIMER_BASED_RESERVATION_SETTING2 : return getOnTimerBasedReservationSetting2();
 		case EPC_ON_TIMER_SETTING_TIME : return getOnTimerSettingTime();
 		case EPC_ON_TIMER_SETTING_RELATIVE_TIME : return getOnTimerSettingRelativeTime();
-		case EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING : return getGoffTimerBasedReservationHSetting();
+		case EPC_OFF_TIMER_BASED_RESERVATION_SETTING : return getOffTimerBasedReservationSetting();
 		case EPC_OFF_TIMER_SETTING_TIME : return getOffTimerSettingTime();
 		case EPC_OFF_TIMER_SETTING_RELATIVE_TIME : return getOffTimerSettingRelativeTime();
 		default : return null;
@@ -1571,11 +1518,11 @@ x2<br>
 		case EPC_VENTILATION_AIR_FLOW_RATE_SETTING : return isValidVentilationAirFlowRateSetting(property.edt);
 		case EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING : return isValidFilterCleaningReminderSignSetting(property.edt);
 		case EPC_HUMAN_BODY_DETECTION_STATUS : return isValidHumanBodyDetectionStatus(property.edt);
-		case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1 : return isValidGonTimerBasedReservationHSetting1(property.edt);
-		case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2 : return isValidGonTimerBasedReservationHSetting2(property.edt);
+		case EPC_ON_TIMER_BASED_RESERVATION_SETTING1 : return isValidOnTimerBasedReservationSetting1(property.edt);
+		case EPC_ON_TIMER_BASED_RESERVATION_SETTING2 : return isValidOnTimerBasedReservationSetting2(property.edt);
 		case EPC_ON_TIMER_SETTING_TIME : return isValidOnTimerSettingTime(property.edt);
 		case EPC_ON_TIMER_SETTING_RELATIVE_TIME : return isValidOnTimerSettingRelativeTime(property.edt);
-		case EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING : return isValidGoffTimerBasedReservationHSetting(property.edt);
+		case EPC_OFF_TIMER_BASED_RESERVATION_SETTING : return isValidOffTimerBasedReservationSetting(property.edt);
 		case EPC_OFF_TIMER_SETTING_TIME : return isValidOffTimerSettingTime(property.edt);
 		case EPC_OFF_TIMER_SETTING_RELATIVE_TIME : return isValidOffTimerSettingRelativeTime(property.edt);
 		default : return false;
@@ -1649,11 +1596,11 @@ x2<br>
 			case EPC_FILTER_CLEANING_REMINDER_SIGN_SETTING : 
 				onSetFilterCleaningReminderSignSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1 : 
-				onSetGonTimerBasedReservationHSetting1(eoj, tid, esv, property, success);
+			case EPC_ON_TIMER_BASED_RESERVATION_SETTING1 : 
+				onSetOnTimerBasedReservationSetting1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2 : 
-				onSetGonTimerBasedReservationHSetting2(eoj, tid, esv, property, success);
+			case EPC_ON_TIMER_BASED_RESERVATION_SETTING2 : 
+				onSetOnTimerBasedReservationSetting2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ON_TIMER_SETTING_TIME : 
 				onSetOnTimerSettingTime(eoj, tid, esv, property, success);
@@ -1661,8 +1608,8 @@ x2<br>
 			case EPC_ON_TIMER_SETTING_RELATIVE_TIME : 
 				onSetOnTimerSettingRelativeTime(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING : 
-				onSetGoffTimerBasedReservationHSetting(eoj, tid, esv, property, success);
+			case EPC_OFF_TIMER_BASED_RESERVATION_SETTING : 
+				onSetOffTimerBasedReservationSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_OFF_TIMER_SETTING_TIME : 
 				onSetOffTimerSettingTime(eoj, tid, esv, property, success);
@@ -1715,11 +1662,11 @@ x2<br>
 			case EPC_HUMAN_BODY_DETECTION_STATUS : 
 				onGetHumanBodyDetectionStatus(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1 : 
-				onGetGonTimerBasedReservationHSetting1(eoj, tid, esv, property, success);
+			case EPC_ON_TIMER_BASED_RESERVATION_SETTING1 : 
+				onGetOnTimerBasedReservationSetting1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2 : 
-				onGetGonTimerBasedReservationHSetting2(eoj, tid, esv, property, success);
+			case EPC_ON_TIMER_BASED_RESERVATION_SETTING2 : 
+				onGetOnTimerBasedReservationSetting2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ON_TIMER_SETTING_TIME : 
 				onGetOnTimerSettingTime(eoj, tid, esv, property, success);
@@ -1727,8 +1674,8 @@ x2<br>
 			case EPC_ON_TIMER_SETTING_RELATIVE_TIME : 
 				onGetOnTimerSettingRelativeTime(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING : 
-				onGetGoffTimerBasedReservationHSetting(eoj, tid, esv, property, success);
+			case EPC_OFF_TIMER_BASED_RESERVATION_SETTING : 
+				onGetOffTimerBasedReservationSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_OFF_TIMER_SETTING_TIME : 
 				onGetOffTimerSettingTime(eoj, tid, esv, property, success);
@@ -1747,24 +1694,20 @@ x2<br>
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the operation mode<br>
-		 * (ventilation mode, bathroom<br>
-		 * pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>
+		 * Used to set the operation mode (ventilation mode, bathroom<br>
+		 * pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or “stop”), and to<br>
+		 * acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Ventilation operation             : 0x10<br>
-		 * Bathroom pre-warmer operation :<br>
+		 * Ventilation operation              : 0x10 Bathroom pre-warmer operation :<br>
 		 * 0x20<br>
-		 * Bathroom heater operation   : 0x30<br>
-		 * Bathroom dryer operation      : 0x40<br>
-		 * Cool air circulator operation : 0x50<br>
-		 * Stop                                           :0x00<br>
+		 * Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1778,24 +1721,20 @@ x2<br>
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the operation mode<br>
-		 * (ventilation mode, bathroom<br>
-		 * pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>
+		 * Used to set the operation mode (ventilation mode, bathroom<br>
+		 * pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or “stop”), and to<br>
+		 * acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Ventilation operation             : 0x10<br>
-		 * Bathroom pre-warmer operation :<br>
+		 * Ventilation operation              : 0x10 Bathroom pre-warmer operation :<br>
 		 * 0x20<br>
-		 * Bathroom heater operation   : 0x30<br>
-		 * Bathroom dryer operation      : 0x40<br>
-		 * Cool air circulator operation : 0x50<br>
-		 * Stop                                           :0x00<br>
+		 * Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1814,13 +1753,13 @@ x2<br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic        : 0x41<br>
 		 * Standard          : 0x42<br>
-		 * Air flow rate level    : 0x31 to 0x38<br>
+		 * Air flow rate level    : 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1839,13 +1778,13 @@ x2<br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic        : 0x41<br>
 		 * Standard          : 0x42<br>
-		 * Air flow rate level    : 0x31 to 0x38<br>
+		 * Air flow rate level    : 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1854,7 +1793,8 @@ x2<br>
 		 */
 		protected void onGetVentilationOperationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Bathroom pre-warmer operation setting<br>
+		 * Property name : Bathroom pre-warmer
+operation setting<br>
 		 * <br>
 		 * EPC : 0xB2<br>
 		 * <br>
@@ -1863,15 +1803,14 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic        : 0x41<br>
-		 * Standard          : 0x42<br>
-		 * Bathroom pre-warming level<br>
-		 * : 0x31 to 0x38<br>
+		 * Standard          : 0x42 Bathroom pre-warming level<br>
+		 * : 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1880,7 +1819,8 @@ x2<br>
 		 */
 		protected void onSetBathroomPreWarmerOperationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Bathroom pre-warmer operation setting<br>
+		 * Property name : Bathroom pre-warmer
+operation setting<br>
 		 * <br>
 		 * EPC : 0xB2<br>
 		 * <br>
@@ -1889,15 +1829,14 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic        : 0x41<br>
-		 * Standard          : 0x42<br>
-		 * Bathroom pre-warming level<br>
-		 * : 0x31 to 0x38<br>
+		 * Standard          : 0x42 Bathroom pre-warming level<br>
+		 * : 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1915,15 +1854,14 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic        : 0x41<br>
-		 * Standard          : 0x42<br>
-		 * Bathroom heating level<br>
-		 * : 0x31 to 0x38<br>
+		 * Standard          : 0x42 Bathroom heating level<br>
+		 * : 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1941,15 +1879,14 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic        : 0x41<br>
-		 * Standard          : 0x42<br>
-		 * Bathroom heating level<br>
-		 * : 0x31 to 0x38<br>
+		 * Standard          : 0x42 Bathroom heating level<br>
+		 * : 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1967,15 +1904,14 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic        : 0x41<br>
-		 * Standard          : 0x42<br>
-		 * Bathroom drying level<br>
-		 * : 0x31 to 0x38<br>
+		 * Standard          : 0x42 Bathroom drying level<br>
+		 * : 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1993,15 +1929,14 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic        : 0x41<br>
-		 * Standard          : 0x42<br>
-		 * Bathroom drying level<br>
-		 * : 0x31 to 0x38<br>
+		 * Standard          : 0x42 Bathroom drying level<br>
+		 * : 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2019,15 +1954,14 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic        : 0x41<br>
-		 * Standard          : 0x42<br>
-		 * Cool air circulation level<br>
-		 * : 0x31 to 0x38<br>
+		 * Standard          : 0x42 Cool air circulation level<br>
+		 * : 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2045,15 +1979,14 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic        : 0x41<br>
-		 * Standard          : 0x42<br>
-		 * Cool air circulation level<br>
-		 * : 0x31 to 0x38<br>
+		 * Standard          : 0x42 Cool air circulation level<br>
+		 * : 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2062,8 +1995,7 @@ x2<br>
 		 */
 		protected void onGetCoolAirCirculatorOperationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Measured
-relative bathroom humidity<br>
+		 * Property name : Measured relative bathroom humidity<br>
 		 * <br>
 		 * EPC : 0xBA<br>
 		 * <br>
@@ -2071,11 +2003,11 @@ relative bathroom humidity<br>
 		 * Used to acquire the measured relative humidity of the bathroom.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
 		 * Unit : %<br>
 		 * <br>
@@ -2094,13 +2026,13 @@ relative bathroom humidity<br>
 		 * Used to acquire the measured temperature of the bathroom.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (.127 to �{125��)<br>
+		 * 0x81.0x7D (-127.+125.C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : ��<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2118,13 +2050,13 @@ relative bathroom humidity<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic: 0x41<br>
-		 * Air flow rate level: 0x31 to 0x38<br>
+		 * Air flow rate level: 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2142,13 +2074,13 @@ relative bathroom humidity<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic: 0x41<br>
-		 * Air flow rate level: 0x31 to 0x38<br>
+		 * Air flow rate level: 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2166,14 +2098,13 @@ relative bathroom humidity<br>
 		 * sign status (lit/not lit) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Lit: 0x41<br>
-		 * Not lit: 0x42<br>
+		 * Lit: 0x41 Not lit: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2191,14 +2122,13 @@ relative bathroom humidity<br>
 		 * sign status (lit/not lit) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Lit: 0x41<br>
-		 * Not lit: 0x42<br>
+		 * Lit: 0x41 Not lit: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2215,14 +2145,13 @@ relative bathroom humidity<br>
 		 * Used to acquire the human body detection status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Detected: 0x41<br>
-		 * Not detected: 0x42<br>
+		 * Detected: 0x41 Not detected: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2231,7 +2160,7 @@ relative bathroom humidity<br>
 		 */
 		protected void onGetHumanBodyDetectionStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gON timer-based reservation�h setting 1<br>
+		 * Property name : “ON timer-based reservation” setting 1<br>
 		 * <br>
 		 * EPC : 0x90<br>
 		 * <br>
@@ -2245,18 +2174,18 @@ relative bathroom humidity<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetGonTimerBasedReservationHSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetOnTimerBasedReservationSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gON timer-based reservation�h setting 1<br>
+		 * Property name : “ON timer-based reservation” setting 1<br>
 		 * <br>
 		 * EPC : 0x90<br>
 		 * <br>
@@ -2270,77 +2199,76 @@ relative bathroom humidity<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetGonTimerBasedReservationHSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetOnTimerBasedReservationSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gON timer-based reservation�h setting 2<br>
+		 * Property name : “ON timer-based reservation” setting 2<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the ON/OFF status of the<br>
-		 * ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>
+		 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to<br>
+		 * acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation function ON for the ventilation mode                      : 0x10<br>
+		 * Reservation function ON for the ventilation mode                     : 0x10<br>
 		 * Reservation function ON for the bathroom pre-warmer mode : 0x20<br>
-		 * Reservation function ON for the bathroom heater mode          : 0x30<br>
+		 * Reservation function ON for the bathroom heater mode         : 0x30<br>
 		 * Reservation function ON for the bathroom dryer mode            : 0x40<br>
 		 * Reservation function ON for the cool air circulator mode       : 0x50<br>
 		 * Reservation function OFF : 0x00<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetGonTimerBasedReservationHSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetOnTimerBasedReservationSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gON timer-based reservation�h setting 2<br>
+		 * Property name : “ON timer-based reservation” setting 2<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the ON/OFF status of the<br>
-		 * ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>
+		 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to<br>
+		 * acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation function ON for the ventilation mode                      : 0x10<br>
+		 * Reservation function ON for the ventilation mode                     : 0x10<br>
 		 * Reservation function ON for the bathroom pre-warmer mode : 0x20<br>
-		 * Reservation function ON for the bathroom heater mode          : 0x30<br>
+		 * Reservation function ON for the bathroom heater mode         : 0x30<br>
 		 * Reservation function ON for the bathroom dryer mode            : 0x40<br>
 		 * Reservation function ON for the cool air circulator mode       : 0x50<br>
 		 * Reservation function OFF : 0x00<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetGonTimerBasedReservationHSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetOnTimerBasedReservationSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : ON timer setting
-(time)<br>
+		 * Property name : ON timer setting (time)<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
@@ -2349,15 +2277,14 @@ relative bathroom humidity<br>
 		 * time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2366,8 +2293,7 @@ x2<br>
 		 */
 		protected void onSetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : ON timer setting
-(time)<br>
+		 * Property name : ON timer setting (time)<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
@@ -2376,15 +2302,14 @@ x2<br>
 		 * time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2393,8 +2318,7 @@ x2<br>
 		 */
 		protected void onGetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : ON timer setting
-(relative time)<br>
+		 * Property name : ON timer setting (relative time)<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -2403,15 +2327,14 @@ x2<br>
 		 * the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2420,8 +2343,7 @@ x2<br>
 		 */
 		protected void onSetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : ON timer setting
-(relative time)<br>
+		 * Property name : ON timer setting (relative time)<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -2430,15 +2352,14 @@ x2<br>
 		 * the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2447,8 +2368,8 @@ x2<br>
 		 */
 		protected void onGetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gOFF
-timer-based reservation�h setting<br>
+		 * Property name : “OFF
+timer-based reservation” setting<br>
 		 * <br>
 		 * EPC : 0x94<br>
 		 * <br>
@@ -2456,24 +2377,23 @@ timer-based reservation�h setting<br>
 		 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation function ON: 0x41<br>
-		 * Reservation function OFF: 0x42<br>
+		 * Reservation function ON: 0x41 Reservation function OFF: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetGoffTimerBasedReservationHSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetOffTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gOFF
-timer-based reservation�h setting<br>
+		 * Property name : “OFF
+timer-based reservation” setting<br>
 		 * <br>
 		 * EPC : 0x94<br>
 		 * <br>
@@ -2481,21 +2401,20 @@ timer-based reservation�h setting<br>
 		 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation function ON: 0x41<br>
-		 * Reservation function OFF: 0x42<br>
+		 * Reservation function ON: 0x41 Reservation function OFF: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetGoffTimerBasedReservationHSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetOffTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : OFF timer setting (time)<br>
 		 * <br>
@@ -2503,20 +2422,17 @@ timer-based reservation�h setting<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Used to set the time setting for the<br>
-		 * time-based reservation function for the<br>
-		 * OFF timer (in the HH:MM format)<br>
-		 * and to acquire the current setting.<br>
+		 * time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2531,20 +2447,17 @@ x2<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Used to set the time setting for the<br>
-		 * time-based reservation function for the<br>
-		 * OFF timer (in the HH:MM format)<br>
-		 * and to acquire the current setting.<br>
+		 * time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2558,19 +2471,18 @@ x2<br>
 		 * EPC : 0x96<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the<br>
-		 * current setting.<br>
+		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the<br>
+		 * HH:MM format) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2584,19 +2496,18 @@ x2<br>
 		 * EPC : 0x96<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the<br>
-		 * current setting.<br>
+		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the<br>
+		 * HH:MM format) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2635,8 +2546,8 @@ x2<br>
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -2657,24 +2568,20 @@ x2<br>
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the operation mode<br>
-		 * (ventilation mode, bathroom<br>
-		 * pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>
+		 * Used to set the operation mode (ventilation mode, bathroom<br>
+		 * pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or “stop”), and to<br>
+		 * acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Ventilation operation             : 0x10<br>
-		 * Bathroom pre-warmer operation :<br>
+		 * Ventilation operation              : 0x10 Bathroom pre-warmer operation :<br>
 		 * 0x20<br>
-		 * Bathroom heater operation   : 0x30<br>
-		 * Bathroom dryer operation      : 0x40<br>
-		 * Cool air circulator operation : 0x50<br>
-		 * Stop                                           :0x00<br>
+		 * Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2696,13 +2603,13 @@ x2<br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic        : 0x41<br>
 		 * Standard          : 0x42<br>
-		 * Air flow rate level    : 0x31 to 0x38<br>
+		 * Air flow rate level    : 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2714,7 +2621,8 @@ x2<br>
 			return this;
 		}
 		/**
-		 * Property name : Bathroom pre-warmer operation setting<br>
+		 * Property name : Bathroom pre-warmer
+operation setting<br>
 		 * <br>
 		 * EPC : 0xB2<br>
 		 * <br>
@@ -2723,15 +2631,14 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic        : 0x41<br>
-		 * Standard          : 0x42<br>
-		 * Bathroom pre-warming level<br>
-		 * : 0x31 to 0x38<br>
+		 * Standard          : 0x42 Bathroom pre-warming level<br>
+		 * : 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2752,15 +2659,14 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic        : 0x41<br>
-		 * Standard          : 0x42<br>
-		 * Bathroom heating level<br>
-		 * : 0x31 to 0x38<br>
+		 * Standard          : 0x42 Bathroom heating level<br>
+		 * : 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2781,15 +2687,14 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic        : 0x41<br>
-		 * Standard          : 0x42<br>
-		 * Bathroom drying level<br>
-		 * : 0x31 to 0x38<br>
+		 * Standard          : 0x42 Bathroom drying level<br>
+		 * : 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2810,15 +2715,14 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic        : 0x41<br>
-		 * Standard          : 0x42<br>
-		 * Cool air circulation level<br>
-		 * : 0x31 to 0x38<br>
+		 * Standard          : 0x42 Cool air circulation level<br>
+		 * : 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2839,13 +2743,13 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic: 0x41<br>
-		 * Air flow rate level: 0x31 to 0x38<br>
+		 * Air flow rate level: 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2866,14 +2770,13 @@ x2<br>
 		 * sign status (lit/not lit) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Lit: 0x41<br>
-		 * Not lit: 0x42<br>
+		 * Lit: 0x41 Not lit: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2885,7 +2788,7 @@ x2<br>
 			return this;
 		}
 		/**
-		 * Property name : �gON timer-based reservation�h setting 1<br>
+		 * Property name : “ON timer-based reservation” setting 1<br>
 		 * <br>
 		 * EPC : 0x90<br>
 		 * <br>
@@ -2899,54 +2802,53 @@ x2<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetGonTimerBasedReservationHSetting1(byte[] edt) {
-			reqSetProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1, edt);
+		public Setter reqSetOnTimerBasedReservationSetting1(byte[] edt) {
+			reqSetProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING1, edt);
 			return this;
 		}
 		/**
-		 * Property name : �gON timer-based reservation�h setting 2<br>
+		 * Property name : “ON timer-based reservation” setting 2<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the ON/OFF status of the<br>
-		 * ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>
+		 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to<br>
+		 * acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation function ON for the ventilation mode                      : 0x10<br>
+		 * Reservation function ON for the ventilation mode                     : 0x10<br>
 		 * Reservation function ON for the bathroom pre-warmer mode : 0x20<br>
-		 * Reservation function ON for the bathroom heater mode          : 0x30<br>
+		 * Reservation function ON for the bathroom heater mode         : 0x30<br>
 		 * Reservation function ON for the bathroom dryer mode            : 0x40<br>
 		 * Reservation function ON for the cool air circulator mode       : 0x50<br>
 		 * Reservation function OFF : 0x00<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetGonTimerBasedReservationHSetting2(byte[] edt) {
-			reqSetProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2, edt);
+		public Setter reqSetOnTimerBasedReservationSetting2(byte[] edt) {
+			reqSetProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING2, edt);
 			return this;
 		}
 		/**
-		 * Property name : ON timer setting
-(time)<br>
+		 * Property name : ON timer setting (time)<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
@@ -2955,15 +2857,14 @@ x2<br>
 		 * time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2975,8 +2876,7 @@ x2<br>
 			return this;
 		}
 		/**
-		 * Property name : ON timer setting
-(relative time)<br>
+		 * Property name : ON timer setting (relative time)<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -2985,15 +2885,14 @@ x2<br>
 		 * the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3005,8 +2904,8 @@ x2<br>
 			return this;
 		}
 		/**
-		 * Property name : �gOFF
-timer-based reservation�h setting<br>
+		 * Property name : “OFF
+timer-based reservation” setting<br>
 		 * <br>
 		 * EPC : 0x94<br>
 		 * <br>
@@ -3014,22 +2913,21 @@ timer-based reservation�h setting<br>
 		 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation function ON: 0x41<br>
-		 * Reservation function OFF: 0x42<br>
+		 * Reservation function ON: 0x41 Reservation function OFF: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetGoffTimerBasedReservationHSetting(byte[] edt) {
-			reqSetProperty(EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING, edt);
+		public Setter reqSetOffTimerBasedReservationSetting(byte[] edt) {
+			reqSetProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3039,20 +2937,17 @@ timer-based reservation�h setting<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Used to set the time setting for the<br>
-		 * time-based reservation function for the<br>
-		 * OFF timer (in the HH:MM format)<br>
-		 * and to acquire the current setting.<br>
+		 * time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3069,19 +2964,18 @@ x2<br>
 		 * EPC : 0x96<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the<br>
-		 * current setting.<br>
+		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the<br>
+		 * HH:MM format) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3171,8 +3065,8 @@ x2<br>
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -3209,24 +3103,20 @@ x2<br>
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the operation mode<br>
-		 * (ventilation mode, bathroom<br>
-		 * pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>
+		 * Used to set the operation mode (ventilation mode, bathroom<br>
+		 * pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or “stop”), and to<br>
+		 * acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Ventilation operation             : 0x10<br>
-		 * Bathroom pre-warmer operation :<br>
+		 * Ventilation operation              : 0x10 Bathroom pre-warmer operation :<br>
 		 * 0x20<br>
-		 * Bathroom heater operation   : 0x30<br>
-		 * Bathroom dryer operation      : 0x40<br>
-		 * Cool air circulator operation : 0x50<br>
-		 * Stop                                           :0x00<br>
+		 * Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3248,13 +3138,13 @@ x2<br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic        : 0x41<br>
 		 * Standard          : 0x42<br>
-		 * Air flow rate level    : 0x31 to 0x38<br>
+		 * Air flow rate level    : 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3266,7 +3156,8 @@ x2<br>
 			return this;
 		}
 		/**
-		 * Property name : Bathroom pre-warmer operation setting<br>
+		 * Property name : Bathroom pre-warmer
+operation setting<br>
 		 * <br>
 		 * EPC : 0xB2<br>
 		 * <br>
@@ -3275,15 +3166,14 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic        : 0x41<br>
-		 * Standard          : 0x42<br>
-		 * Bathroom pre-warming level<br>
-		 * : 0x31 to 0x38<br>
+		 * Standard          : 0x42 Bathroom pre-warming level<br>
+		 * : 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3304,15 +3194,14 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic        : 0x41<br>
-		 * Standard          : 0x42<br>
-		 * Bathroom heating level<br>
-		 * : 0x31 to 0x38<br>
+		 * Standard          : 0x42 Bathroom heating level<br>
+		 * : 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3333,15 +3222,14 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic        : 0x41<br>
-		 * Standard          : 0x42<br>
-		 * Bathroom drying level<br>
-		 * : 0x31 to 0x38<br>
+		 * Standard          : 0x42 Bathroom drying level<br>
+		 * : 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3362,15 +3250,14 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic        : 0x41<br>
-		 * Standard          : 0x42<br>
-		 * Cool air circulation level<br>
-		 * : 0x31 to 0x38<br>
+		 * Standard          : 0x42 Cool air circulation level<br>
+		 * : 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3382,8 +3269,7 @@ x2<br>
 			return this;
 		}
 		/**
-		 * Property name : Measured
-relative bathroom humidity<br>
+		 * Property name : Measured relative bathroom humidity<br>
 		 * <br>
 		 * EPC : 0xBA<br>
 		 * <br>
@@ -3391,11 +3277,11 @@ relative bathroom humidity<br>
 		 * Used to acquire the measured relative humidity of the bathroom.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
 		 * Unit : %<br>
 		 * <br>
@@ -3417,13 +3303,13 @@ relative bathroom humidity<br>
 		 * Used to acquire the measured temperature of the bathroom.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (.127 to �{125��)<br>
+		 * 0x81.0x7D (-127.+125.C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : ��<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3444,13 +3330,13 @@ relative bathroom humidity<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic: 0x41<br>
-		 * Air flow rate level: 0x31 to 0x38<br>
+		 * Air flow rate level: 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3471,14 +3357,13 @@ relative bathroom humidity<br>
 		 * sign status (lit/not lit) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Lit: 0x41<br>
-		 * Not lit: 0x42<br>
+		 * Lit: 0x41 Not lit: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3498,14 +3383,13 @@ relative bathroom humidity<br>
 		 * Used to acquire the human body detection status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Detected: 0x41<br>
-		 * Not detected: 0x42<br>
+		 * Detected: 0x41 Not detected: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3517,7 +3401,7 @@ relative bathroom humidity<br>
 			return this;
 		}
 		/**
-		 * Property name : �gON timer-based reservation�h setting 1<br>
+		 * Property name : “ON timer-based reservation” setting 1<br>
 		 * <br>
 		 * EPC : 0x90<br>
 		 * <br>
@@ -3531,54 +3415,53 @@ relative bathroom humidity<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetGonTimerBasedReservationHSetting1() {
-			reqGetProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1);
+		public Getter reqGetOnTimerBasedReservationSetting1() {
+			reqGetProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING1);
 			return this;
 		}
 		/**
-		 * Property name : �gON timer-based reservation�h setting 2<br>
+		 * Property name : “ON timer-based reservation” setting 2<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the ON/OFF status of the<br>
-		 * ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>
+		 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to<br>
+		 * acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation function ON for the ventilation mode                      : 0x10<br>
+		 * Reservation function ON for the ventilation mode                     : 0x10<br>
 		 * Reservation function ON for the bathroom pre-warmer mode : 0x20<br>
-		 * Reservation function ON for the bathroom heater mode          : 0x30<br>
+		 * Reservation function ON for the bathroom heater mode         : 0x30<br>
 		 * Reservation function ON for the bathroom dryer mode            : 0x40<br>
 		 * Reservation function ON for the cool air circulator mode       : 0x50<br>
 		 * Reservation function OFF : 0x00<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetGonTimerBasedReservationHSetting2() {
-			reqGetProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2);
+		public Getter reqGetOnTimerBasedReservationSetting2() {
+			reqGetProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING2);
 			return this;
 		}
 		/**
-		 * Property name : ON timer setting
-(time)<br>
+		 * Property name : ON timer setting (time)<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
@@ -3587,15 +3470,14 @@ relative bathroom humidity<br>
 		 * time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3607,8 +3489,7 @@ x2<br>
 			return this;
 		}
 		/**
-		 * Property name : ON timer setting
-(relative time)<br>
+		 * Property name : ON timer setting (relative time)<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -3617,15 +3498,14 @@ x2<br>
 		 * the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3637,8 +3517,8 @@ x2<br>
 			return this;
 		}
 		/**
-		 * Property name : �gOFF
-timer-based reservation�h setting<br>
+		 * Property name : “OFF
+timer-based reservation” setting<br>
 		 * <br>
 		 * EPC : 0x94<br>
 		 * <br>
@@ -3646,22 +3526,21 @@ timer-based reservation�h setting<br>
 		 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation function ON: 0x41<br>
-		 * Reservation function OFF: 0x42<br>
+		 * Reservation function ON: 0x41 Reservation function OFF: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetGoffTimerBasedReservationHSetting() {
-			reqGetProperty(EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING);
+		public Getter reqGetOffTimerBasedReservationSetting() {
+			reqGetProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -3671,20 +3550,17 @@ timer-based reservation�h setting<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Used to set the time setting for the<br>
-		 * time-based reservation function for the<br>
-		 * OFF timer (in the HH:MM format)<br>
-		 * and to acquire the current setting.<br>
+		 * time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3701,19 +3577,18 @@ x2<br>
 		 * EPC : 0x96<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the<br>
-		 * current setting.<br>
+		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the<br>
+		 * HH:MM format) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3802,8 +3677,8 @@ x2<br>
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -3840,24 +3715,20 @@ x2<br>
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the operation mode<br>
-		 * (ventilation mode, bathroom<br>
-		 * pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or �gstop�h), and to acquire the current setting.<br>
+		 * Used to set the operation mode (ventilation mode, bathroom<br>
+		 * pre-warmer mode, bathroom heater mode, bathroom dryer mode, cool air circulator mode or “stop”), and to<br>
+		 * acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Ventilation operation             : 0x10<br>
-		 * Bathroom pre-warmer operation :<br>
+		 * Ventilation operation              : 0x10 Bathroom pre-warmer operation :<br>
 		 * 0x20<br>
-		 * Bathroom heater operation   : 0x30<br>
-		 * Bathroom dryer operation      : 0x40<br>
-		 * Cool air circulator operation : 0x50<br>
-		 * Stop                                           :0x00<br>
+		 * Bathroom heater operation   : 0x30 Bathroom dryer operation      : 0x40 Cool air circulator operation : 0x50 Stop                                           :0x00<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3879,13 +3750,13 @@ x2<br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic        : 0x41<br>
 		 * Standard          : 0x42<br>
-		 * Air flow rate level    : 0x31 to 0x38<br>
+		 * Air flow rate level    : 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3897,7 +3768,8 @@ x2<br>
 			return this;
 		}
 		/**
-		 * Property name : Bathroom pre-warmer operation setting<br>
+		 * Property name : Bathroom pre-warmer
+operation setting<br>
 		 * <br>
 		 * EPC : 0xB2<br>
 		 * <br>
@@ -3906,15 +3778,14 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic        : 0x41<br>
-		 * Standard          : 0x42<br>
-		 * Bathroom pre-warming level<br>
-		 * : 0x31 to 0x38<br>
+		 * Standard          : 0x42 Bathroom pre-warming level<br>
+		 * : 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3935,15 +3806,14 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic        : 0x41<br>
-		 * Standard          : 0x42<br>
-		 * Bathroom heating level<br>
-		 * : 0x31 to 0x38<br>
+		 * Standard          : 0x42 Bathroom heating level<br>
+		 * : 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3964,15 +3834,14 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic        : 0x41<br>
-		 * Standard          : 0x42<br>
-		 * Bathroom drying level<br>
-		 * : 0x31 to 0x38<br>
+		 * Standard          : 0x42 Bathroom drying level<br>
+		 * : 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3993,15 +3862,14 @@ x2<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic        : 0x41<br>
-		 * Standard          : 0x42<br>
-		 * Cool air circulation level<br>
-		 * : 0x31 to 0x38<br>
+		 * Standard          : 0x42 Cool air circulation level<br>
+		 * : 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4013,8 +3881,7 @@ x2<br>
 			return this;
 		}
 		/**
-		 * Property name : Measured
-relative bathroom humidity<br>
+		 * Property name : Measured relative bathroom humidity<br>
 		 * <br>
 		 * EPC : 0xBA<br>
 		 * <br>
@@ -4022,11 +3889,11 @@ relative bathroom humidity<br>
 		 * Used to acquire the measured relative humidity of the bathroom.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
 		 * Unit : %<br>
 		 * <br>
@@ -4048,13 +3915,13 @@ relative bathroom humidity<br>
 		 * Used to acquire the measured temperature of the bathroom.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (.127 to �{125��)<br>
+		 * 0x81.0x7D (-127.+125.C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : ��<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4075,13 +3942,13 @@ relative bathroom humidity<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic: 0x41<br>
-		 * Air flow rate level: 0x31 to 0x38<br>
+		 * Air flow rate level: 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4102,14 +3969,13 @@ relative bathroom humidity<br>
 		 * sign status (lit/not lit) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Lit: 0x41<br>
-		 * Not lit: 0x42<br>
+		 * Lit: 0x41 Not lit: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4129,14 +3995,13 @@ relative bathroom humidity<br>
 		 * Used to acquire the human body detection status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Detected: 0x41<br>
-		 * Not detected: 0x42<br>
+		 * Detected: 0x41 Not detected: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4148,7 +4013,7 @@ relative bathroom humidity<br>
 			return this;
 		}
 		/**
-		 * Property name : �gON timer-based reservation�h setting 1<br>
+		 * Property name : “ON timer-based reservation” setting 1<br>
 		 * <br>
 		 * EPC : 0x90<br>
 		 * <br>
@@ -4162,54 +4027,53 @@ relative bathroom humidity<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformGonTimerBasedReservationHSetting1() {
-			reqInformProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING1);
+		public Informer reqInformOnTimerBasedReservationSetting1() {
+			reqInformProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING1);
 			return this;
 		}
 		/**
-		 * Property name : �gON timer-based reservation�h setting 2<br>
+		 * Property name : “ON timer-based reservation” setting 2<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the ON/OFF status of the<br>
-		 * ON timer-based reservation function with the mode in which the device starts operating specified, and to acquire the current setting.<br>
+		 * Used to set the ON/OFF status of the ON timer-based reservation function with the mode in which the device starts operating specified, and to<br>
+		 * acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation function ON for the ventilation mode                      : 0x10<br>
+		 * Reservation function ON for the ventilation mode                     : 0x10<br>
 		 * Reservation function ON for the bathroom pre-warmer mode : 0x20<br>
-		 * Reservation function ON for the bathroom heater mode          : 0x30<br>
+		 * Reservation function ON for the bathroom heater mode         : 0x30<br>
 		 * Reservation function ON for the bathroom dryer mode            : 0x40<br>
 		 * Reservation function ON for the cool air circulator mode       : 0x50<br>
 		 * Reservation function OFF : 0x00<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformGonTimerBasedReservationHSetting2() {
-			reqInformProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING2);
+		public Informer reqInformOnTimerBasedReservationSetting2() {
+			reqInformProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING2);
 			return this;
 		}
 		/**
-		 * Property name : ON timer setting
-(time)<br>
+		 * Property name : ON timer setting (time)<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
@@ -4218,15 +4082,14 @@ relative bathroom humidity<br>
 		 * time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4238,8 +4101,7 @@ x2<br>
 			return this;
 		}
 		/**
-		 * Property name : ON timer setting
-(relative time)<br>
+		 * Property name : ON timer setting (relative time)<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -4248,15 +4110,14 @@ x2<br>
 		 * the relative time-based reservation function for the ON timer (in the HH:MM format) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4268,8 +4129,8 @@ x2<br>
 			return this;
 		}
 		/**
-		 * Property name : �gOFF
-timer-based reservation�h setting<br>
+		 * Property name : “OFF
+timer-based reservation” setting<br>
 		 * <br>
 		 * EPC : 0x94<br>
 		 * <br>
@@ -4277,22 +4138,21 @@ timer-based reservation�h setting<br>
 		 * Used to set the ON/OFF status of the OFF timer-based reservation function and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation function ON: 0x41<br>
-		 * Reservation function OFF: 0x42<br>
+		 * Reservation function ON: 0x41 Reservation function OFF: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformGoffTimerBasedReservationHSetting() {
-			reqInformProperty(EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING);
+		public Informer reqInformOffTimerBasedReservationSetting() {
+			reqInformProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -4302,20 +4162,17 @@ timer-based reservation�h setting<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Used to set the time setting for the<br>
-		 * time-based reservation function for the<br>
-		 * OFF timer (in the HH:MM format)<br>
-		 * and to acquire the current setting.<br>
+		 * time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4332,19 +4189,18 @@ x2<br>
 		 * EPC : 0x96<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the HH:MM format) and to acquire the<br>
-		 * current setting.<br>
+		 * Used to set the relative time setting for the relative time-based reservation function for the OFF timer (in the<br>
+		 * HH:MM format) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>

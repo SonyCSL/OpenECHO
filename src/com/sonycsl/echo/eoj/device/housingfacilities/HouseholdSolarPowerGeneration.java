@@ -27,7 +27,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x0279;
 
-	public static final byte EPC_SYSTEM_INTERCONNECTION_STATUS = (byte)0xD0;
+	public static final byte EPC_SYSTEM_INTERCONN_ECTED_TYPE = (byte)0xD0;
 	public static final byte EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED = (byte)0xE0;
 	public static final byte EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED = (byte)0xE1;
 	public static final byte EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED = (byte)0xE2;
@@ -36,7 +36,8 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	public static final byte EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1 = (byte)0xE5;
 	public static final byte EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2 = (byte)0xE6;
 	public static final byte EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD = (byte)0xE7;
-	public static final byte EPC_RATED_POWER_GENERATION_OUTPUT = (byte)0xE8;
+	public static final byte EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED = (byte)0xE8;
+	public static final byte EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT = (byte)0xE9;
 
 	@Override
 	protected void setupPropertyMaps() {
@@ -60,17 +61,16 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -86,17 +86,16 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -107,7 +106,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 */
 	protected abstract byte[] getOperationStatus();
 	/**
-	 * Property name : System interconnection status<br>
+	 * Property name : System-interconn ected type<br>
 	 * <br>
 	 * EPC : 0xD0<br>
 	 * <br>
@@ -115,23 +114,23 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * This property indicates system interconnection status<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * System-linked type = 0x00<br>
-	 * Independent type = 0x01<br>
+	 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01<br>
+	 * System-linked   type    (reverse power flow not acceptable) =0x02<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getSystemInterconnectionStatus() {return null;}
+	protected byte[] getSystemInterconnEctedType() {return null;}
 	/**
-	 * Property name : System interconnection status<br>
+	 * Property name : System-interconn ected type<br>
 	 * <br>
 	 * EPC : 0xD0<br>
 	 * <br>
@@ -139,21 +138,21 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * This property indicates system interconnection status<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * System-linked type = 0x00<br>
-	 * Independent type = 0x01<br>
+	 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01<br>
+	 * System-linked   type    (reverse power flow not acceptable) =0x02<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidSystemInterconnectionStatus(byte[] edt) {
+	protected boolean isValidSystemInterconnEctedType(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
@@ -215,13 +214,14 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * This property indicates integral electric energy in 0.001 kWh.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0.0x3B9AC9FF (0.999999.999 kWh)<br>
+	 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
 	 * Data size : 4 bytes<br>
 	 * <br>
-	 * Unit : 0.001 kWh<br>
+	 * Unit : 0.001
+kWh<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -238,13 +238,14 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * This property indicates integral electric energy in 0.001 kWh.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0.0x3B9AC9FF (0.999999.999 kWh)<br>
+	 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
 	 * Data size : 4 bytes<br>
 	 * <br>
-	 * Unit : 0.001 kWh<br>
+	 * Unit : 0.001
+kWh<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -270,7 +271,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -293,7 +294,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -313,13 +314,14 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * This property indicates integral value of sold power in 0.001 kWh.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0.0x3B9AC9FF (0.999999.999 kWh)<br>
+	 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
 	 * Data size : 4 bytes<br>
 	 * <br>
-	 * Unit : 0.001 kWh<br>
+	 * Unit : 0.001
+kWh<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -336,13 +338,14 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * This property indicates integral value of sold power in 0.001 kWh.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0.0x3B9AC9FF (0.999999.999 kWh)<br>
+	 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
 	 * Data size : 4 bytes<br>
 	 * <br>
-	 * Unit : 0.001 kWh<br>
+	 * Unit : 0.001
+kWh<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -368,7 +371,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -391,7 +394,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -411,7 +414,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x64 (0 to 100%)<br>
+	 * 0x00.0x64 (0.100%)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -434,7 +437,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x64 (0 to 100%)<br>
+	 * 0x00.0x64 (0.100%)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -457,7 +460,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x64 (0 to 100%)<br>
+	 * 0x00.0x64 (0.100%)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -483,11 +486,11 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * Specifies the power generation output in watts and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 00xFFFD (0 to 65533)<br>
+	 * 0x0000.0xFFFD (0.65533)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -506,11 +509,11 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * Specifies the power generation output in watts and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 00xFFFD (0 to 65533)<br>
+	 * 0x0000.0xFFFD (0.65533)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -529,11 +532,11 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * Specifies the power generation output in watts and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 00xFFFD (0 to 65533)<br>
+	 * 0x0000.0xFFFD (0.65533)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -555,11 +558,11 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * Specifies, in watts, the amount of electricity sold and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 00xFFFD (0 to 65533)<br>
+	 * 0x0000.0xFFFD (0.65533)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -578,11 +581,11 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * Specifies, in watts, the amount of electricity sold and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 00xFFFD (0 to 65533)<br>
+	 * 0x0000.0xFFFD (0.65533)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -601,11 +604,11 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * Specifies, in watts, the amount of electricity sold and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 00xFFFD (0 to 65533)<br>
+	 * 0x0000.0xFFFD (0.65533)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -619,19 +622,19 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		return true;
 	}
 	/**
-	 * Property name : Rated power generation output<br>
+	 * Property name : Rated power generation output(System-interconnected)<br>
 	 * <br>
 	 * EPC : 0xE8<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the rated power generation output (catalog value) in watts.<br>
+	 * This property indicates the rated power output in the system-interconnected status in watts.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 00xFFFD (0 to 65533)<br>
+	 * 0x0000–0xFFFD (0–65,533)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -640,21 +643,21 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setRatedPowerGenerationOutput(byte[] edt) {return false;}
+	protected boolean setRatedPowerGenerationOutputSystemInterconnected(byte[] edt) {return false;}
 	/**
-	 * Property name : Rated power generation output<br>
+	 * Property name : Rated power generation output(System-interconnected)<br>
 	 * <br>
 	 * EPC : 0xE8<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the rated power generation output (catalog value) in watts.<br>
+	 * This property indicates the rated power output in the system-interconnected status in watts.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 00xFFFD (0 to 65533)<br>
+	 * 0x0000–0xFFFD (0–65,533)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -663,21 +666,21 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getRatedPowerGenerationOutput() {return null;}
+	protected byte[] getRatedPowerGenerationOutputSystemInterconnected() {return null;}
 	/**
-	 * Property name : Rated power generation output<br>
+	 * Property name : Rated power generation output(System-interconnected)<br>
 	 * <br>
 	 * EPC : 0xE8<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the rated power generation output (catalog value) in watts.<br>
+	 * This property indicates the rated power output in the system-interconnected status in watts.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 00xFFFD (0 to 65533)<br>
+	 * 0x0000–0xFFFD (0–65,533)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -686,7 +689,79 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidRatedPowerGenerationOutput(byte[] edt) {
+	protected boolean isValidRatedPowerGenerationOutputSystemInterconnected(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
+		return true;
+	}
+	/**
+	 * Property name : Rated power generation output (Independent)<br>
+	 * <br>
+	 * EPC : 0xE9<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the rated power output in the independent status in watts.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000–0xFFFD (0–65,533)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean setRatedPowerGenerationOutputIndependent(byte[] edt) {return false;}
+	/**
+	 * Property name : Rated power generation output (Independent)<br>
+	 * <br>
+	 * EPC : 0xE9<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the rated power output in the independent status in watts.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000–0xFFFD (0–65,533)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected byte[] getRatedPowerGenerationOutputIndependent() {return null;}
+	/**
+	 * Property name : Rated power generation output (Independent)<br>
+	 * <br>
+	 * EPC : 0xE9<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the rated power output in the independent status in watts.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000–0xFFFD (0–65,533)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * <br>
+	 * Data size : 2 bytes<br>
+	 * <br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidRatedPowerGenerationOutputIndependent(byte[] edt) {
 		if(edt == null || !(edt.length == 2)) return false;
 		return true;
 	}
@@ -702,7 +777,8 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1 : return setPowerGenerationOutputLimitSetting1(property.edt);
 		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2 : return setPowerGenerationOutputLimitSetting2(property.edt);
 		case EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD : return setLimitSettingForTheAmountOfElectricitySold(property.edt);
-		case EPC_RATED_POWER_GENERATION_OUTPUT : return setRatedPowerGenerationOutput(property.edt);
+		case EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED : return setRatedPowerGenerationOutputSystemInterconnected(property.edt);
+		case EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT : return setRatedPowerGenerationOutputIndependent(property.edt);
 		default : return false;
 		}
 	}
@@ -713,14 +789,15 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_SYSTEM_INTERCONNECTION_STATUS : return getSystemInterconnectionStatus();
+		case EPC_SYSTEM_INTERCONN_ECTED_TYPE : return getSystemInterconnEctedType();
 		case EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED : return getMeasuredInstantaneousAmountOfElectricityGenerated();
 		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED : return getMeasuredCumulativeAmountOfElectricityGenerated();
 		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD : return getMeasuredCumulativeAmountOfElectricitySold();
 		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1 : return getPowerGenerationOutputLimitSetting1();
 		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2 : return getPowerGenerationOutputLimitSetting2();
 		case EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD : return getLimitSettingForTheAmountOfElectricitySold();
-		case EPC_RATED_POWER_GENERATION_OUTPUT : return getRatedPowerGenerationOutput();
+		case EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED : return getRatedPowerGenerationOutputSystemInterconnected();
+		case EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT : return getRatedPowerGenerationOutputIndependent();
 		default : return null;
 		}
 	}
@@ -731,7 +808,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_SYSTEM_INTERCONNECTION_STATUS : return isValidSystemInterconnectionStatus(property.edt);
+		case EPC_SYSTEM_INTERCONN_ECTED_TYPE : return isValidSystemInterconnEctedType(property.edt);
 		case EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED : return isValidMeasuredInstantaneousAmountOfElectricityGenerated(property.edt);
 		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED : return isValidMeasuredCumulativeAmountOfElectricityGenerated(property.edt);
 		case EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED : return isValidResettingCumulativeAmountOfElectricityGenerated(property.edt);
@@ -740,7 +817,8 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1 : return isValidPowerGenerationOutputLimitSetting1(property.edt);
 		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2 : return isValidPowerGenerationOutputLimitSetting2(property.edt);
 		case EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD : return isValidLimitSettingForTheAmountOfElectricitySold(property.edt);
-		case EPC_RATED_POWER_GENERATION_OUTPUT : return isValidRatedPowerGenerationOutput(property.edt);
+		case EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED : return isValidRatedPowerGenerationOutputSystemInterconnected(property.edt);
+		case EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT : return isValidRatedPowerGenerationOutputIndependent(property.edt);
 		default : return false;
 		}
 	}
@@ -803,8 +881,11 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 			case EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD : 
 				onSetLimitSettingForTheAmountOfElectricitySold(eoj, tid, esv, property, success);
 				return true;
-			case EPC_RATED_POWER_GENERATION_OUTPUT : 
-				onSetRatedPowerGenerationOutput(eoj, tid, esv, property, success);
+			case EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED : 
+				onSetRatedPowerGenerationOutputSystemInterconnected(eoj, tid, esv, property, success);
+				return true;
+			case EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT : 
+				onSetRatedPowerGenerationOutputIndependent(eoj, tid, esv, property, success);
 				return true;
 			default :
 				return false;
@@ -818,8 +899,8 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_SYSTEM_INTERCONNECTION_STATUS : 
-				onGetSystemInterconnectionStatus(eoj, tid, esv, property, success);
+			case EPC_SYSTEM_INTERCONN_ECTED_TYPE : 
+				onGetSystemInterconnEctedType(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED : 
 				onGetMeasuredInstantaneousAmountOfElectricityGenerated(eoj, tid, esv, property, success);
@@ -839,8 +920,11 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 			case EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD : 
 				onGetLimitSettingForTheAmountOfElectricitySold(eoj, tid, esv, property, success);
 				return true;
-			case EPC_RATED_POWER_GENERATION_OUTPUT : 
-				onGetRatedPowerGenerationOutput(eoj, tid, esv, property, success);
+			case EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED : 
+				onGetRatedPowerGenerationOutputSystemInterconnected(eoj, tid, esv, property, success);
+				return true;
+			case EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT : 
+				onGetRatedPowerGenerationOutputIndependent(eoj, tid, esv, property, success);
 				return true;
 			default :
 				return false;
@@ -848,7 +932,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : System interconnection status<br>
+		 * Property name : System-interconn ected type<br>
 		 * <br>
 		 * EPC : 0xD0<br>
 		 * <br>
@@ -856,21 +940,21 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * This property indicates system interconnection status<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * System-linked type = 0x00<br>
-		 * Independent type = 0x01<br>
+		 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01<br>
+		 * System-linked   type    (reverse power flow not acceptable) =0x02<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetSystemInterconnectionStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetSystemInterconnEctedType(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Measured instantaneous amount of electricity generated<br>
 		 * <br>
@@ -903,13 +987,14 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * This property indicates integral electric energy in 0.001 kWh.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0.0x3B9AC9FF (0.999999.999 kWh)<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : 0.001 kWh<br>
+		 * Unit : 0.001
+kWh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -932,7 +1017,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -949,13 +1034,14 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * This property indicates integral value of sold power in 0.001 kWh.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0.0x3B9AC9FF (0.999999.999 kWh)<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : 0.001 kWh<br>
+		 * Unit : 0.001
+kWh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -978,7 +1064,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -995,7 +1081,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -1018,7 +1104,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -1041,11 +1127,11 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Specifies the power generation output in watts and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 00xFFFD (0 to 65533)<br>
+		 * 0x0000.0xFFFD (0.65533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -1064,11 +1150,11 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Specifies the power generation output in watts and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 00xFFFD (0 to 65533)<br>
+		 * 0x0000.0xFFFD (0.65533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -1087,11 +1173,11 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Specifies, in watts, the amount of electricity sold and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 00xFFFD (0 to 65533)<br>
+		 * 0x0000.0xFFFD (0.65533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -1110,11 +1196,11 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Specifies, in watts, the amount of electricity sold and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 00xFFFD (0 to 65533)<br>
+		 * 0x0000.0xFFFD (0.65533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -1125,19 +1211,19 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 */
 		protected void onGetLimitSettingForTheAmountOfElectricitySold(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Rated power generation output<br>
+		 * Property name : Rated power generation output(System-interconnected)<br>
 		 * <br>
 		 * EPC : 0xE8<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the rated power generation output (catalog value) in watts.<br>
+		 * This property indicates the rated power output in the system-interconnected status in watts.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 00xFFFD (0 to 65533)<br>
+		 * 0x0000–0xFFFD (0–65,533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -1146,21 +1232,21 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetRatedPowerGenerationOutput(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetRatedPowerGenerationOutputSystemInterconnected(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Rated power generation output<br>
+		 * Property name : Rated power generation output(System-interconnected)<br>
 		 * <br>
 		 * EPC : 0xE8<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the rated power generation output (catalog value) in watts.<br>
+		 * This property indicates the rated power output in the system-interconnected status in watts.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 00xFFFD (0 to 65533)<br>
+		 * 0x0000–0xFFFD (0–65,533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -1169,7 +1255,53 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetRatedPowerGenerationOutput(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetRatedPowerGenerationOutputSystemInterconnected(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Rated power generation output (Independent)<br>
+		 * <br>
+		 * EPC : 0xE9<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the rated power output in the independent status in watts.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000–0xFFFD (0–65,533)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onSetRatedPowerGenerationOutputIndependent(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Rated power generation output (Independent)<br>
+		 * <br>
+		 * EPC : 0xE9<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the rated power output in the independent status in watts.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000–0xFFFD (0–65,533)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onGetRatedPowerGenerationOutputIndependent(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 	}
 
 	public static class Setter extends DeviceObject.Setter {
@@ -1201,8 +1333,8 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -1232,7 +1364,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1258,7 +1390,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1278,7 +1410,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -1304,11 +1436,11 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Specifies the power generation output in watts and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 00xFFFD (0 to 65533)<br>
+		 * 0x0000.0xFFFD (0.65533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -1330,11 +1462,11 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Specifies, in watts, the amount of electricity sold and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 00xFFFD (0 to 65533)<br>
+		 * 0x0000.0xFFFD (0.65533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -1348,19 +1480,19 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : Rated power generation output<br>
+		 * Property name : Rated power generation output(System-interconnected)<br>
 		 * <br>
 		 * EPC : 0xE8<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the rated power generation output (catalog value) in watts.<br>
+		 * This property indicates the rated power output in the system-interconnected status in watts.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 00xFFFD (0 to 65533)<br>
+		 * 0x0000–0xFFFD (0–65,533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -1369,8 +1501,34 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetRatedPowerGenerationOutput(byte[] edt) {
-			reqSetProperty(EPC_RATED_POWER_GENERATION_OUTPUT, edt);
+		public Setter reqSetRatedPowerGenerationOutputSystemInterconnected(byte[] edt) {
+			reqSetProperty(EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED, edt);
+			return this;
+		}
+		/**
+		 * Property name : Rated power generation output (Independent)<br>
+		 * <br>
+		 * EPC : 0xE9<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the rated power output in the independent status in watts.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000–0xFFFD (0–65,533)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Setter reqSetRatedPowerGenerationOutputIndependent(byte[] edt) {
+			reqSetProperty(EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT, edt);
 			return this;
 		}
 	}
@@ -1452,8 +1610,8 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -1485,7 +1643,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : System interconnection status<br>
+		 * Property name : System-interconn ected type<br>
 		 * <br>
 		 * EPC : 0xD0<br>
 		 * <br>
@@ -1493,22 +1651,22 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * This property indicates system interconnection status<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * System-linked type = 0x00<br>
-		 * Independent type = 0x01<br>
+		 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01<br>
+		 * System-linked   type    (reverse power flow not acceptable) =0x02<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetSystemInterconnectionStatus() {
-			reqGetProperty(EPC_SYSTEM_INTERCONNECTION_STATUS);
+		public Getter reqGetSystemInterconnEctedType() {
+			reqGetProperty(EPC_SYSTEM_INTERCONN_ECTED_TYPE);
 			return this;
 		}
 		/**
@@ -1546,13 +1704,14 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * This property indicates integral electric energy in 0.001 kWh.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0.0x3B9AC9FF (0.999999.999 kWh)<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : 0.001 kWh<br>
+		 * Unit : 0.001
+kWh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1572,13 +1731,14 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * This property indicates integral value of sold power in 0.001 kWh.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0.0x3B9AC9FF (0.999999.999 kWh)<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : 0.001 kWh<br>
+		 * Unit : 0.001
+kWh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1598,7 +1758,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -1624,11 +1784,11 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Specifies the power generation output in watts and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 00xFFFD (0 to 65533)<br>
+		 * 0x0000.0xFFFD (0.65533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -1650,11 +1810,11 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Specifies, in watts, the amount of electricity sold and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 00xFFFD (0 to 65533)<br>
+		 * 0x0000.0xFFFD (0.65533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -1668,19 +1828,19 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : Rated power generation output<br>
+		 * Property name : Rated power generation output(System-interconnected)<br>
 		 * <br>
 		 * EPC : 0xE8<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the rated power generation output (catalog value) in watts.<br>
+		 * This property indicates the rated power output in the system-interconnected status in watts.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 00xFFFD (0 to 65533)<br>
+		 * 0x0000–0xFFFD (0–65,533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -1689,8 +1849,34 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetRatedPowerGenerationOutput() {
-			reqGetProperty(EPC_RATED_POWER_GENERATION_OUTPUT);
+		public Getter reqGetRatedPowerGenerationOutputSystemInterconnected() {
+			reqGetProperty(EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED);
+			return this;
+		}
+		/**
+		 * Property name : Rated power generation output (Independent)<br>
+		 * <br>
+		 * EPC : 0xE9<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the rated power output in the independent status in watts.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000–0xFFFD (0–65,533)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Getter reqGetRatedPowerGenerationOutputIndependent() {
+			reqGetProperty(EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT);
 			return this;
 		}
 	}
@@ -1771,8 +1957,8 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -1804,7 +1990,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : System interconnection status<br>
+		 * Property name : System-interconn ected type<br>
 		 * <br>
 		 * EPC : 0xD0<br>
 		 * <br>
@@ -1812,22 +1998,22 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * This property indicates system interconnection status<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * System-linked type = 0x00<br>
-		 * Independent type = 0x01<br>
+		 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01<br>
+		 * System-linked   type    (reverse power flow not acceptable) =0x02<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformSystemInterconnectionStatus() {
-			reqInformProperty(EPC_SYSTEM_INTERCONNECTION_STATUS);
+		public Informer reqInformSystemInterconnEctedType() {
+			reqInformProperty(EPC_SYSTEM_INTERCONN_ECTED_TYPE);
 			return this;
 		}
 		/**
@@ -1865,13 +2051,14 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * This property indicates integral electric energy in 0.001 kWh.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0.0x3B9AC9FF (0.999999.999 kWh)<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : 0.001 kWh<br>
+		 * Unit : 0.001
+kWh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1891,13 +2078,14 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * This property indicates integral value of sold power in 0.001 kWh.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0.0x3B9AC9FF (0.999999.999 kWh)<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : 0.001 kWh<br>
+		 * Unit : 0.001
+kWh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1917,7 +2105,7 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -1943,11 +2131,11 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Specifies the power generation output in watts and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 00xFFFD (0 to 65533)<br>
+		 * 0x0000.0xFFFD (0.65533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -1969,11 +2157,11 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Specifies, in watts, the amount of electricity sold and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 00xFFFD (0 to 65533)<br>
+		 * 0x0000.0xFFFD (0.65533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -1987,19 +2175,19 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : Rated power generation output<br>
+		 * Property name : Rated power generation output(System-interconnected)<br>
 		 * <br>
 		 * EPC : 0xE8<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the rated power generation output (catalog value) in watts.<br>
+		 * This property indicates the rated power output in the system-interconnected status in watts.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 00xFFFD (0 to 65533)<br>
+		 * 0x0000–0xFFFD (0–65,533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -2008,8 +2196,34 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformRatedPowerGenerationOutput() {
-			reqInformProperty(EPC_RATED_POWER_GENERATION_OUTPUT);
+		public Informer reqInformRatedPowerGenerationOutputSystemInterconnected() {
+			reqInformProperty(EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED);
+			return this;
+		}
+		/**
+		 * Property name : Rated power generation output (Independent)<br>
+		 * <br>
+		 * EPC : 0xE9<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the rated power output in the independent status in watts.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000–0xFFFD (0–65,533)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2 bytes<br>
+		 * <br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Informer reqInformRatedPowerGenerationOutputIndependent() {
+			reqInformProperty(EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT);
 			return this;
 		}
 	}

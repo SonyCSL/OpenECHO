@@ -31,7 +31,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	public static final byte EPC_RATED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT = (byte)0xB8;
 	public static final byte EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_OUTDOOR_UNIT = (byte)0xB9;
 	public static final byte EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE1 = (byte)0xBE;
-	public static final byte EPC_GSPECIAL_H_STATE = (byte)0xAA;
+	public static final byte EPC_SPECIAL_STATE = (byte)0xAA;
 	public static final byte EPC_OPERATION_STATUS_OF_COMPRESSOR = (byte)0xD0;
 	public static final byte EPC_OPERATION_MODE_INFORMATION = (byte)0xD1;
 	public static final byte EPC_FAN_ROTATION_SPEED = (byte)0xD2;
@@ -60,17 +60,16 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -86,17 +85,16 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -112,12 +110,11 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	 * EPC : 0xB0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br>
+	 * Used to acquire the current operation mode setting (i.e. “automatic,” “cooling,” “heating,” “dehumidification” or “air circulator”).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * The following values shall be used: Automatic: 0x41<br>
-	 * Cooling: 0x42<br>
-	 * Heating: 0x43<br>
+	 * Cooling: 0x42 Heating: 0x43<br>
 	 * Dehumidification: 0x44<br>
 	 * Air circulator: 0x45<br>
 	 * <br>
@@ -141,12 +138,11 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	 * EPC : 0xB0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br>
+	 * Used to acquire the current operation mode setting (i.e. “automatic,” “cooling,” “heating,” “dehumidification” or “air circulator”).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * The following values shall be used: Automatic: 0x41<br>
-	 * Cooling: 0x42<br>
-	 * Heating: 0x43<br>
+	 * Cooling: 0x42 Heating: 0x43<br>
 	 * Dehumidification: 0x44<br>
 	 * Air circulator: 0x45<br>
 	 * <br>
@@ -170,12 +166,11 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	 * EPC : 0xB0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br>
+	 * Used to acquire the current operation mode setting (i.e. “automatic,” “cooling,” “heating,” “dehumidification” or “air circulator”).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * The following values shall be used: Automatic: 0x41<br>
-	 * Cooling: 0x42<br>
-	 * Heating: 0x43<br>
+	 * Cooling: 0x42 Heating: 0x43<br>
 	 * Dehumidification: 0x44<br>
 	 * Air circulator: 0x45<br>
 	 * <br>
@@ -205,9 +200,10 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	 * Used to acquire the rated power consumption for the cooling, heating and dehumidification modes.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 0xFFFD (0 to 65533W) Cooling: heating: dehumidification<br>
+	 * 0x0000.0xFFFD (0.65533W)<br>
+	 * Cooling: heating: dehumidification<br>
 	 * <br>
-	 * Data type : unsigned short x 3<br>
+	 * Data type : unsigned short × 3<br>
 	 * <br>
 	 * Data size : 6 bytes<br>
 	 * <br>
@@ -228,9 +224,10 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	 * Used to acquire the rated power consumption for the cooling, heating and dehumidification modes.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 0xFFFD (0 to 65533W) Cooling: heating: dehumidification<br>
+	 * 0x0000.0xFFFD (0.65533W)<br>
+	 * Cooling: heating: dehumidification<br>
 	 * <br>
-	 * Data type : unsigned short x 3<br>
+	 * Data type : unsigned short × 3<br>
 	 * <br>
 	 * Data size : 6 bytes<br>
 	 * <br>
@@ -254,7 +251,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	 * Used to acquire the measured electric current consumption.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 0xFFFD (0 to 6553.3A)<br>
+	 * 0x0000.0xFFFD (0.6553.3A)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
@@ -277,7 +274,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	 * Used to acquire the measured electric current consumption.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 0xFFFD (0 to 6553.3A)<br>
+	 * 0x0000.0xFFFD (0.6553.3A)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
@@ -303,13 +300,13 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	 * Used to acquire the measured temperature of the outdoor air.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7D (-127 to 125��C)<br>
+	 * 0x81.0x7D (-127.125°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : 1��C<br>
+	 * Unit : 1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -326,13 +323,13 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	 * Used to acquire the measured temperature of the outdoor air.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7D (-127 to 125��C)<br>
+	 * 0x81.0x7D (-127.125°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : 1��C<br>
+	 * Unit : 1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -344,16 +341,17 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		return true;
 	}
 	/**
-	 * Property name : �gSpecial�h state<br>
+	 * Property name : “Special” state<br>
 	 * <br>
 	 * EPC : 0xAA<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates when the air conditioner is in the �gspecial�h state (i.e. �gdefrosting�h state).<br>
+	 * This property indicates when the air conditioner is in the “special” state<br>
+	 * (i.e. “defrosting” state).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * �gNormal operation�h state = 0x40,<br>
-	 * �gdefrosting�h state = 0x41<br>
+	 * “Normal operation” state = 0x40,<br>
+	 * “defrosting” state = 0x41<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -366,18 +364,19 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getGspecialHState() {return null;}
+	protected byte[] getSpecialState() {return null;}
 	/**
-	 * Property name : �gSpecial�h state<br>
+	 * Property name : “Special” state<br>
 	 * <br>
 	 * EPC : 0xAA<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates when the air conditioner is in the �gspecial�h state (i.e. �gdefrosting�h state).<br>
+	 * This property indicates when the air conditioner is in the “special” state<br>
+	 * (i.e. “defrosting” state).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * �gNormal operation�h state = 0x40,<br>
-	 * �gdefrosting�h state = 0x41<br>
+	 * “Normal operation” state = 0x40,<br>
+	 * “defrosting” state = 0x41<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -390,7 +389,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidGspecialHState(byte[] edt) {
+	protected boolean isValidSpecialState(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
@@ -404,8 +403,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	 * (i.e. ON or OFF) of the compressor.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Compressor ON: 0x41<br>
-	 * Compressor OFF: 0x42<br>
+	 * Compressor ON: 0x41 Compressor OFF: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -429,8 +427,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	 * (i.e. ON or OFF) of the compressor.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Compressor ON: 0x41<br>
-	 * Compressor OFF: 0x42<br>
+	 * Compressor ON: 0x41 Compressor OFF: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -453,13 +450,11 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	 * EPC : 0xD1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire the current operation mode (i.e. �gcooling,�h �gheating,�h �gdehumidification�h or �gother�h).<br>
+	 * Used to acquire the current operation mode (i.e. “cooling,” “heating,” “dehumidification” or “other”).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Cooling: 0x42<br>
-	 * Heating: 0x43<br>
-	 * Dehumidification: 0x44<br>
-	 * Other: 0x40<br>
+	 * Cooling: 0x42 Heating: 0x43<br>
+	 * Dehumidification: 0x44 Other: 0x40<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -479,13 +474,11 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	 * EPC : 0xD1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire the current operation mode (i.e. �gcooling,�h �gheating,�h �gdehumidification�h or �gother�h).<br>
+	 * Used to acquire the current operation mode (i.e. “cooling,” “heating,” “dehumidification” or “other”).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Cooling: 0x42<br>
-	 * Heating: 0x43<br>
-	 * Dehumidification: 0x44<br>
-	 * Other: 0x40<br>
+	 * Cooling: 0x42 Heating: 0x43<br>
+	 * Dehumidification: 0x44 Other: 0x40<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -511,7 +504,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	 * Used to acquire the rotation speed of the fan of the outdoor unit (expressed in %).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x64 (0 to 100%)<br>
+	 * 0x00.0x64 (0.100%)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -534,7 +527,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	 * Used to acquire the rotation speed of the fan of the outdoor unit (expressed in %).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x64 (0 to 100%)<br>
+	 * 0x00.0x64 (0.100%)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -560,7 +553,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	 * Used to acquire the measured power consumption of the outdoor unit.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+	 * 0x0000.0xFFFD (0.65533W)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
@@ -583,7 +576,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	 * Used to acquire the measured power consumption of the outdoor unit.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+	 * 0x0000.0xFFFD (0.65533W)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
@@ -609,14 +602,13 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	 * Used to acquire the measured temperature of the outdoor air.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0xF554 to 0x7FFD (-273,2 to<br>
-	 * 3276.5��C)<br>
+	 * 0xF554.0x7FFD (-273,2 .3276.5°C)<br>
 	 * <br>
 	 * Data type : signed short<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.1��C<br>
+	 * Unit : 0.1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -633,14 +625,13 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 	 * Used to acquire the measured temperature of the outdoor air.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0xF554 to 0x7FFD (-273,2 to<br>
-	 * 3276.5��C)<br>
+	 * 0xF554.0x7FFD (-273,2 .3276.5°C)<br>
 	 * <br>
 	 * Data type : signed short<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.1��C<br>
+	 * Unit : 0.1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -673,7 +664,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		case EPC_RATED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT : return getRatedPowerConsumptionOfOutdoorUnit();
 		case EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_OUTDOOR_UNIT : return getMeasuredElectricCurrentConsumptionOfOutdoorUnit();
 		case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE1 : return getMeasuredOutdoorAirTemperature1();
-		case EPC_GSPECIAL_H_STATE : return getGspecialHState();
+		case EPC_SPECIAL_STATE : return getSpecialState();
 		case EPC_OPERATION_STATUS_OF_COMPRESSOR : return getOperationStatusOfCompressor();
 		case EPC_OPERATION_MODE_INFORMATION : return getOperationModeInformation();
 		case EPC_FAN_ROTATION_SPEED : return getFanRotationSpeed();
@@ -693,7 +684,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		case EPC_RATED_POWER_CONSUMPTION_OF_OUTDOOR_UNIT : return isValidRatedPowerConsumptionOfOutdoorUnit(property.edt);
 		case EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_OUTDOOR_UNIT : return isValidMeasuredElectricCurrentConsumptionOfOutdoorUnit(property.edt);
 		case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE1 : return isValidMeasuredOutdoorAirTemperature1(property.edt);
-		case EPC_GSPECIAL_H_STATE : return isValidGspecialHState(property.edt);
+		case EPC_SPECIAL_STATE : return isValidSpecialState(property.edt);
 		case EPC_OPERATION_STATUS_OF_COMPRESSOR : return isValidOperationStatusOfCompressor(property.edt);
 		case EPC_OPERATION_MODE_INFORMATION : return isValidOperationModeInformation(property.edt);
 		case EPC_FAN_ROTATION_SPEED : return isValidFanRotationSpeed(property.edt);
@@ -773,8 +764,8 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 			case EPC_MEASURED_OUTDOOR_AIR_TEMPERATURE1 : 
 				onGetMeasuredOutdoorAirTemperature1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GSPECIAL_H_STATE : 
-				onGetGspecialHState(eoj, tid, esv, property, success);
+			case EPC_SPECIAL_STATE : 
+				onGetSpecialState(eoj, tid, esv, property, success);
 				return true;
 			case EPC_OPERATION_STATUS_OF_COMPRESSOR : 
 				onGetOperationStatusOfCompressor(eoj, tid, esv, property, success);
@@ -802,12 +793,11 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br>
+		 * Used to acquire the current operation mode setting (i.e. “automatic,” “cooling,” “heating,” “dehumidification” or “air circulator”).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The following values shall be used: Automatic: 0x41<br>
-		 * Cooling: 0x42<br>
-		 * Heating: 0x43<br>
+		 * Cooling: 0x42 Heating: 0x43<br>
 		 * Dehumidification: 0x44<br>
 		 * Air circulator: 0x45<br>
 		 * <br>
@@ -831,12 +821,11 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br>
+		 * Used to acquire the current operation mode setting (i.e. “automatic,” “cooling,” “heating,” “dehumidification” or “air circulator”).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The following values shall be used: Automatic: 0x41<br>
-		 * Cooling: 0x42<br>
-		 * Heating: 0x43<br>
+		 * Cooling: 0x42 Heating: 0x43<br>
 		 * Dehumidification: 0x44<br>
 		 * Air circulator: 0x45<br>
 		 * <br>
@@ -863,9 +852,10 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * Used to acquire the rated power consumption for the cooling, heating and dehumidification modes.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W) Cooling: heating: dehumidification<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
+		 * Cooling: heating: dehumidification<br>
 		 * <br>
-		 * Data type : unsigned short x 3<br>
+		 * Data type : unsigned short × 3<br>
 		 * <br>
 		 * Data size : 6 bytes<br>
 		 * <br>
@@ -886,7 +876,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * Used to acquire the measured electric current consumption.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 6553.3A)<br>
+		 * 0x0000.0xFFFD (0.6553.3A)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
@@ -909,13 +899,13 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * Used to acquire the measured temperature of the outdoor air.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (-127 to 125��C)<br>
+		 * 0x81.0x7D (-127.125°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -924,16 +914,17 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 */
 		protected void onGetMeasuredOutdoorAirTemperature1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gSpecial�h state<br>
+		 * Property name : “Special” state<br>
 		 * <br>
 		 * EPC : 0xAA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates when the air conditioner is in the �gspecial�h state (i.e. �gdefrosting�h state).<br>
+		 * This property indicates when the air conditioner is in the “special” state<br>
+		 * (i.e. “defrosting” state).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gNormal operation�h state = 0x40,<br>
-		 * �gdefrosting�h state = 0x41<br>
+		 * “Normal operation” state = 0x40,<br>
+		 * “defrosting” state = 0x41<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -946,7 +937,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetGspecialHState(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetSpecialState(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Operation status of compressor<br>
 		 * <br>
@@ -957,8 +948,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * (i.e. ON or OFF) of the compressor.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Compressor ON: 0x41<br>
-		 * Compressor OFF: 0x42<br>
+		 * Compressor ON: 0x41 Compressor OFF: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -978,13 +968,11 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * EPC : 0xD1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the current operation mode (i.e. �gcooling,�h �gheating,�h �gdehumidification�h or �gother�h).<br>
+		 * Used to acquire the current operation mode (i.e. “cooling,” “heating,” “dehumidification” or “other”).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Cooling: 0x42<br>
-		 * Heating: 0x43<br>
-		 * Dehumidification: 0x44<br>
-		 * Other: 0x40<br>
+		 * Cooling: 0x42 Heating: 0x43<br>
+		 * Dehumidification: 0x44 Other: 0x40<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -1007,7 +995,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * Used to acquire the rotation speed of the fan of the outdoor unit (expressed in %).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -1030,7 +1018,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * Used to acquire the measured power consumption of the outdoor unit.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
@@ -1053,14 +1041,13 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * Used to acquire the measured temperature of the outdoor air.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xF554 to 0x7FFD (-273,2 to<br>
-		 * 3276.5��C)<br>
+		 * 0xF554.0x7FFD (-273,2 .3276.5°C)<br>
 		 * <br>
 		 * Data type : signed short<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1099,8 +1086,8 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -1121,12 +1108,11 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br>
+		 * Used to acquire the current operation mode setting (i.e. “automatic,” “cooling,” “heating,” “dehumidification” or “air circulator”).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The following values shall be used: Automatic: 0x41<br>
-		 * Cooling: 0x42<br>
-		 * Heating: 0x43<br>
+		 * Cooling: 0x42 Heating: 0x43<br>
 		 * Dehumidification: 0x44<br>
 		 * Air circulator: 0x45<br>
 		 * <br>
@@ -1226,8 +1212,8 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -1264,12 +1250,11 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br>
+		 * Used to acquire the current operation mode setting (i.e. “automatic,” “cooling,” “heating,” “dehumidification” or “air circulator”).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The following values shall be used: Automatic: 0x41<br>
-		 * Cooling: 0x42<br>
-		 * Heating: 0x43<br>
+		 * Cooling: 0x42 Heating: 0x43<br>
 		 * Dehumidification: 0x44<br>
 		 * Air circulator: 0x45<br>
 		 * <br>
@@ -1299,9 +1284,10 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * Used to acquire the rated power consumption for the cooling, heating and dehumidification modes.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W) Cooling: heating: dehumidification<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
+		 * Cooling: heating: dehumidification<br>
 		 * <br>
-		 * Data type : unsigned short x 3<br>
+		 * Data type : unsigned short × 3<br>
 		 * <br>
 		 * Data size : 6 bytes<br>
 		 * <br>
@@ -1325,7 +1311,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * Used to acquire the measured electric current consumption.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 6553.3A)<br>
+		 * 0x0000.0xFFFD (0.6553.3A)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
@@ -1351,13 +1337,13 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * Used to acquire the measured temperature of the outdoor air.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (-127 to 125��C)<br>
+		 * 0x81.0x7D (-127.125°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1369,16 +1355,17 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 			return this;
 		}
 		/**
-		 * Property name : �gSpecial�h state<br>
+		 * Property name : “Special” state<br>
 		 * <br>
 		 * EPC : 0xAA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates when the air conditioner is in the �gspecial�h state (i.e. �gdefrosting�h state).<br>
+		 * This property indicates when the air conditioner is in the “special” state<br>
+		 * (i.e. “defrosting” state).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gNormal operation�h state = 0x40,<br>
-		 * �gdefrosting�h state = 0x41<br>
+		 * “Normal operation” state = 0x40,<br>
+		 * “defrosting” state = 0x41<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -1391,8 +1378,8 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetGspecialHState() {
-			reqGetProperty(EPC_GSPECIAL_H_STATE);
+		public Getter reqGetSpecialState() {
+			reqGetProperty(EPC_SPECIAL_STATE);
 			return this;
 		}
 		/**
@@ -1405,8 +1392,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * (i.e. ON or OFF) of the compressor.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Compressor ON: 0x41<br>
-		 * Compressor OFF: 0x42<br>
+		 * Compressor ON: 0x41 Compressor OFF: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -1429,13 +1415,11 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * EPC : 0xD1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the current operation mode (i.e. �gcooling,�h �gheating,�h �gdehumidification�h or �gother�h).<br>
+		 * Used to acquire the current operation mode (i.e. “cooling,” “heating,” “dehumidification” or “other”).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Cooling: 0x42<br>
-		 * Heating: 0x43<br>
-		 * Dehumidification: 0x44<br>
-		 * Other: 0x40<br>
+		 * Cooling: 0x42 Heating: 0x43<br>
+		 * Dehumidification: 0x44 Other: 0x40<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -1461,7 +1445,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * Used to acquire the rotation speed of the fan of the outdoor unit (expressed in %).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -1487,7 +1471,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * Used to acquire the measured power consumption of the outdoor unit.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
@@ -1513,14 +1497,13 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * Used to acquire the measured temperature of the outdoor air.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xF554 to 0x7FFD (-273,2 to<br>
-		 * 3276.5��C)<br>
+		 * 0xF554.0x7FFD (-273,2 .3276.5°C)<br>
 		 * <br>
 		 * Data type : signed short<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1609,8 +1592,8 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -1647,12 +1630,11 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the current operation mode setting (i.e. �gautomatic,�h �gcooling,�h �gheating,�h �gdehumidification�h or �gair circulator�h).<br>
+		 * Used to acquire the current operation mode setting (i.e. “automatic,” “cooling,” “heating,” “dehumidification” or “air circulator”).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The following values shall be used: Automatic: 0x41<br>
-		 * Cooling: 0x42<br>
-		 * Heating: 0x43<br>
+		 * Cooling: 0x42 Heating: 0x43<br>
 		 * Dehumidification: 0x44<br>
 		 * Air circulator: 0x45<br>
 		 * <br>
@@ -1682,9 +1664,10 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * Used to acquire the rated power consumption for the cooling, heating and dehumidification modes.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W) Cooling: heating: dehumidification<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
+		 * Cooling: heating: dehumidification<br>
 		 * <br>
-		 * Data type : unsigned short x 3<br>
+		 * Data type : unsigned short × 3<br>
 		 * <br>
 		 * Data size : 6 bytes<br>
 		 * <br>
@@ -1708,7 +1691,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * Used to acquire the measured electric current consumption.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 6553.3A)<br>
+		 * 0x0000.0xFFFD (0.6553.3A)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
@@ -1734,13 +1717,13 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * Used to acquire the measured temperature of the outdoor air.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (-127 to 125��C)<br>
+		 * 0x81.0x7D (-127.125°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1752,16 +1735,17 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 			return this;
 		}
 		/**
-		 * Property name : �gSpecial�h state<br>
+		 * Property name : “Special” state<br>
 		 * <br>
 		 * EPC : 0xAA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates when the air conditioner is in the �gspecial�h state (i.e. �gdefrosting�h state).<br>
+		 * This property indicates when the air conditioner is in the “special” state<br>
+		 * (i.e. “defrosting” state).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gNormal operation�h state = 0x40,<br>
-		 * �gdefrosting�h state = 0x41<br>
+		 * “Normal operation” state = 0x40,<br>
+		 * “defrosting” state = 0x41<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -1774,8 +1758,8 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformGspecialHState() {
-			reqInformProperty(EPC_GSPECIAL_H_STATE);
+		public Informer reqInformSpecialState() {
+			reqInformProperty(EPC_SPECIAL_STATE);
 			return this;
 		}
 		/**
@@ -1788,8 +1772,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * (i.e. ON or OFF) of the compressor.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Compressor ON: 0x41<br>
-		 * Compressor OFF: 0x42<br>
+		 * Compressor ON: 0x41 Compressor OFF: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -1812,13 +1795,11 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * EPC : 0xD1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the current operation mode (i.e. �gcooling,�h �gheating,�h �gdehumidification�h or �gother�h).<br>
+		 * Used to acquire the current operation mode (i.e. “cooling,” “heating,” “dehumidification” or “other”).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Cooling: 0x42<br>
-		 * Heating: 0x43<br>
-		 * Dehumidification: 0x44<br>
-		 * Other: 0x40<br>
+		 * Cooling: 0x42 Heating: 0x43<br>
+		 * Dehumidification: 0x44 Other: 0x40<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -1844,7 +1825,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * Used to acquire the rotation speed of the fan of the outdoor unit (expressed in %).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -1870,7 +1851,7 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * Used to acquire the measured power consumption of the outdoor unit.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
@@ -1896,14 +1877,13 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		 * Used to acquire the measured temperature of the outdoor air.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xF554 to 0x7FFD (-273,2 to<br>
-		 * 3276.5��C)<br>
+		 * 0xF554.0x7FFD (-273,2 .3276.5°C)<br>
 		 * <br>
 		 * Data type : signed short<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>

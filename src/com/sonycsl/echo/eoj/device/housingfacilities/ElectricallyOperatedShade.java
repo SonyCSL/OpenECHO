@@ -42,6 +42,8 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_OPEN_CLOSE_SETTING);
 		addSetProperty(EPC_OPEN_CLOSE_SETTING);
 		addGetProperty(EPC_OPEN_CLOSE_SETTING);
+		addSetProperty(EPC_DEGREE_OF_OPENI_NG_LEVEL);
+		addGetProperty(EPC_DEGREE_OF_OPENI_NG_LEVEL);
 	}
 	
 	@Override
@@ -55,17 +57,16 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -81,17 +82,16 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -116,7 +116,7 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -141,7 +141,7 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -166,7 +166,7 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -194,14 +194,14 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
 	 */
-	protected boolean setDegreeOfOpeniNgLevel(byte[] edt) {return false;}
+	protected abstract boolean setDegreeOfOpeniNgLevel(byte[] edt);
 	/**
 	 * Property name : Degree-of-openi ng level<br>
 	 * <br>
@@ -217,14 +217,14 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
 	 */
-	protected byte[] getDegreeOfOpeniNgLevel() {return null;}
+	protected abstract byte[] getDegreeOfOpeniNgLevel();
 	/**
 	 * Property name : Degree-of-openi ng level<br>
 	 * <br>
@@ -240,12 +240,12 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
 	 */
 	protected boolean isValidDegreeOfOpeniNgLevel(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
@@ -260,13 +260,13 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	 * Shade angle value<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00.0xB4 (0.180. )<br>
+	 * 0x00.0xB4 (0.180.)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : Degree<br>
+	 * Unit : deg<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -283,13 +283,13 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	 * Shade angle value<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00.0xB4 (0.180. )<br>
+	 * 0x00.0xB4 (0.180.)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : Degree<br>
+	 * Unit : deg<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -306,13 +306,13 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	 * Shade angle value<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00.0xB4 (0.180. )<br>
+	 * 0x00.0xB4 (0.180.)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : Degree<br>
+	 * Unit : deg<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -338,7 +338,7 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -361,7 +361,7 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -384,7 +384,7 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -537,7 +537,7 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -562,7 +562,7 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -587,12 +587,12 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		protected void onSetDegreeOfOpeniNgLevel(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -610,12 +610,12 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		protected void onGetDegreeOfOpeniNgLevel(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -627,13 +627,13 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		 * Shade angle value<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0xB4 (0.180. )<br>
+		 * 0x00.0xB4 (0.180.)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : Degree<br>
+		 * Unit : deg<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -650,13 +650,13 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		 * Shade angle value<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0xB4 (0.180. )<br>
+		 * 0x00.0xB4 (0.180.)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : Degree<br>
+		 * Unit : deg<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -679,7 +679,7 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -702,7 +702,7 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -741,8 +741,8 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -772,7 +772,7 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -800,12 +800,12 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		public Setter reqSetDegreeOfOpeniNgLevel(byte[] edt) {
 			reqSetProperty(EPC_DEGREE_OF_OPENI_NG_LEVEL, edt);
@@ -820,13 +820,13 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		 * Shade angle value<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0xB4 (0.180. )<br>
+		 * 0x00.0xB4 (0.180.)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : Degree<br>
+		 * Unit : deg<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -852,7 +852,7 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -942,8 +942,8 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -989,7 +989,7 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1017,12 +1017,12 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		public Getter reqGetDegreeOfOpeniNgLevel() {
 			reqGetProperty(EPC_DEGREE_OF_OPENI_NG_LEVEL);
@@ -1037,13 +1037,13 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		 * Shade angle value<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0xB4 (0.180. )<br>
+		 * 0x00.0xB4 (0.180.)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : Degree<br>
+		 * Unit : deg<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1069,7 +1069,7 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1158,8 +1158,8 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -1205,7 +1205,7 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1233,12 +1233,12 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		public Informer reqInformDegreeOfOpeniNgLevel() {
 			reqInformProperty(EPC_DEGREE_OF_OPENI_NG_LEVEL);
@@ -1253,13 +1253,13 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		 * Shade angle value<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0xB4 (0.180. )<br>
+		 * 0x00.0xB4 (0.180.)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : Degree<br>
+		 * Unit : deg<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1285,7 +1285,7 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1323,6 +1323,10 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		protected boolean setOpenCloseSetting(byte[] edt) {return false;}
 		@Override
 		protected byte[] getOpenCloseSetting() {return null;}
+		@Override
+		protected boolean setDegreeOfOpeniNgLevel(byte[] edt) {return false;}
+		@Override
+		protected byte[] getDegreeOfOpeniNgLevel() {return null;}
 	}
 	
 	public static Setter setG() {

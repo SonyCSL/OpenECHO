@@ -28,7 +28,7 @@ public abstract class HumanBodyLocationSensor extends DeviceObject {
 	public static final short ECHO_CLASS_CODE = (short)0x002B;
 
 	public static final byte EPC_HUMAN_BODY_DETECTION_LOCATION1 = (byte)0xE0;
-	public static final byte EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS = (byte)0xE1;
+	public static final byte EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_S = (byte)0xE1;
 	public static final byte EPC_HUMAN_BODY_DETECTION_LOCATION2 = (byte)0xE2;
 	public static final byte EPC_HUMAN_BODY_EXISTENCE_INFORMATION = (byte)0xE3;
 
@@ -54,17 +54,16 @@ public abstract class HumanBodyLocationSensor extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This  property  indicates  the  ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -80,17 +79,16 @@ public abstract class HumanBodyLocationSensor extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This  property  indicates  the  ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -109,16 +107,16 @@ public abstract class HumanBodyLocationSensor extends DeviceObject {
 	 * This property indicates human body detection location. The array element number indicates a human body ID.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 1st byte: X coordinate; 2nd byte: Y<br>
-	 * coordinate; 3rd byte: Z coordinate<br>
+	 * 1st byte: X coordinate; 2nd byte: Y coordinate; 3rd byte: Z coordinate<br>
 	 * <br>
-	 * Data type : unsigned char x 3
+	 * Data type : unsigned char × 3
 x max 128<br>
 	 * <br>
-	 * Data size : 3 x max
-128 bytes<br>
+	 * Data size : 3 × max
+128
+bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -135,16 +133,16 @@ x max 128<br>
 	 * This property indicates human body detection location. The array element number indicates a human body ID.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 1st byte: X coordinate; 2nd byte: Y<br>
-	 * coordinate; 3rd byte: Z coordinate<br>
+	 * 1st byte: X coordinate; 2nd byte: Y coordinate; 3rd byte: Z coordinate<br>
 	 * <br>
-	 * Data type : unsigned char x 3
+	 * Data type : unsigned char × 3
 x max 128<br>
 	 * <br>
-	 * Data size : 3 x max
-128 bytes<br>
+	 * Data size : 3 × max
+128
+bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -156,8 +154,7 @@ x max 128<br>
 		return true;
 	}
 	/**
-	 * Property name : Maximum number of
-human body ID�fs<br>
+	 * Property name : Maximum number of human body ID’s<br>
 	 * <br>
 	 * EPC : 0xE1<br>
 	 * <br>
@@ -171,17 +168,16 @@ human body ID�fs<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getMaximumNumberOfHumanBodyIdFs() {return null;}
+	protected byte[] getMaximumNumberOfHumanBodyIdS() {return null;}
 	/**
-	 * Property name : Maximum number of
-human body ID�fs<br>
+	 * Property name : Maximum number of human body ID’s<br>
 	 * <br>
 	 * EPC : 0xE1<br>
 	 * <br>
@@ -195,14 +191,14 @@ human body ID�fs<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidMaximumNumberOfHumanBodyIdFs(byte[] edt) {
+	protected boolean isValidMaximumNumberOfHumanBodyIdS(byte[] edt) {
 		if(edt == null || !(edt.length == 2)) return false;
 		return true;
 	}
@@ -215,14 +211,13 @@ human body ID�fs<br>
 	 * This property indicates human body detection location.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 1st byte: X coordinate; 2nd byte: Y<br>
-	 * coordinate; 3rd byte: Z coordinate<br>
+	 * 1st byte: X coordinate; 2nd byte: Y coordinate; 3rd byte: Z coordinate<br>
 	 * <br>
-	 * Data type : unsigned char x 3<br>
+	 * Data type : unsigned char × 3<br>
 	 * <br>
 	 * Data size : 3 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -239,14 +234,13 @@ human body ID�fs<br>
 	 * This property indicates human body detection location.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 1st byte: X coordinate; 2nd byte: Y<br>
-	 * coordinate; 3rd byte: Z coordinate<br>
+	 * 1st byte: X coordinate; 2nd byte: Y coordinate; 3rd byte: Z coordinate<br>
 	 * <br>
-	 * Data type : unsigned char x 3<br>
+	 * Data type : unsigned char × 3<br>
 	 * <br>
 	 * Data size : 3 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -268,11 +262,12 @@ human body ID�fs<br>
 	 * Value range (decimal notation) :<br>
 	 * (See (5) below for details.)<br>
 	 * <br>
-	 * Data type : unsigned char x 16<br>
+	 * Data type : unsigned char × 16<br>
 	 * <br>
-	 * Data size : 16 bytes<br>
+	 * Data size : 16
+bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -291,11 +286,12 @@ human body ID�fs<br>
 	 * Value range (decimal notation) :<br>
 	 * (See (5) below for details.)<br>
 	 * <br>
-	 * Data type : unsigned char x 16<br>
+	 * Data type : unsigned char × 16<br>
 	 * <br>
-	 * Data size : 16 bytes<br>
+	 * Data size : 16
+bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -324,7 +320,7 @@ human body ID�fs<br>
 		
 		switch(epc) {
 		case EPC_HUMAN_BODY_DETECTION_LOCATION1 : return getHumanBodyDetectionLocation1();
-		case EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS : return getMaximumNumberOfHumanBodyIdFs();
+		case EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_S : return getMaximumNumberOfHumanBodyIdS();
 		case EPC_HUMAN_BODY_DETECTION_LOCATION2 : return getHumanBodyDetectionLocation2();
 		case EPC_HUMAN_BODY_EXISTENCE_INFORMATION : return getHumanBodyExistenceInformation();
 		default : return null;
@@ -338,7 +334,7 @@ human body ID�fs<br>
 		
 		switch(property.epc) {
 		case EPC_HUMAN_BODY_DETECTION_LOCATION1 : return isValidHumanBodyDetectionLocation1(property.edt);
-		case EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS : return isValidMaximumNumberOfHumanBodyIdFs(property.edt);
+		case EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_S : return isValidMaximumNumberOfHumanBodyIdS(property.edt);
 		case EPC_HUMAN_BODY_DETECTION_LOCATION2 : return isValidHumanBodyDetectionLocation2(property.edt);
 		case EPC_HUMAN_BODY_EXISTENCE_INFORMATION : return isValidHumanBodyExistenceInformation(property.edt);
 		default : return false;
@@ -403,8 +399,8 @@ human body ID�fs<br>
 			case EPC_HUMAN_BODY_DETECTION_LOCATION1 : 
 				onGetHumanBodyDetectionLocation1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS : 
-				onGetMaximumNumberOfHumanBodyIdFs(eoj, tid, esv, property, success);
+			case EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_S : 
+				onGetMaximumNumberOfHumanBodyIdS(eoj, tid, esv, property, success);
 				return true;
 			case EPC_HUMAN_BODY_DETECTION_LOCATION2 : 
 				onGetHumanBodyDetectionLocation2(eoj, tid, esv, property, success);
@@ -426,16 +422,16 @@ human body ID�fs<br>
 		 * This property indicates human body detection location. The array element number indicates a human body ID.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 1st byte: X coordinate; 2nd byte: Y<br>
-		 * coordinate; 3rd byte: Z coordinate<br>
+		 * 1st byte: X coordinate; 2nd byte: Y coordinate; 3rd byte: Z coordinate<br>
 		 * <br>
-		 * Data type : unsigned char x 3
+		 * Data type : unsigned char × 3
 x max 128<br>
 		 * <br>
-		 * Data size : 3 x max
-128 bytes<br>
+		 * Data size : 3 × max
+128
+bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -444,8 +440,7 @@ x max 128<br>
 		 */
 		protected void onGetHumanBodyDetectionLocation1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Maximum number of
-human body ID�fs<br>
+		 * Property name : Maximum number of human body ID’s<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
@@ -459,14 +454,14 @@ human body ID�fs<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetMaximumNumberOfHumanBodyIdFs(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetMaximumNumberOfHumanBodyIdS(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Human body detection location 2<br>
 		 * <br>
@@ -476,14 +471,13 @@ human body ID�fs<br>
 		 * This property indicates human body detection location.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 1st byte: X coordinate; 2nd byte: Y<br>
-		 * coordinate; 3rd byte: Z coordinate<br>
+		 * 1st byte: X coordinate; 2nd byte: Y coordinate; 3rd byte: Z coordinate<br>
 		 * <br>
-		 * Data type : unsigned char x 3<br>
+		 * Data type : unsigned char × 3<br>
 		 * <br>
 		 * Data size : 3 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -502,11 +496,12 @@ human body ID�fs<br>
 		 * Value range (decimal notation) :<br>
 		 * (See (5) below for details.)<br>
 		 * <br>
-		 * Data type : unsigned char x 16<br>
+		 * Data type : unsigned char × 16<br>
 		 * <br>
-		 * Data size : 16 bytes<br>
+		 * Data size : 16
+bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -545,8 +540,8 @@ human body ID�fs<br>
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -640,8 +635,8 @@ human body ID�fs<br>
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -681,16 +676,16 @@ human body ID�fs<br>
 		 * This property indicates human body detection location. The array element number indicates a human body ID.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 1st byte: X coordinate; 2nd byte: Y<br>
-		 * coordinate; 3rd byte: Z coordinate<br>
+		 * 1st byte: X coordinate; 2nd byte: Y coordinate; 3rd byte: Z coordinate<br>
 		 * <br>
-		 * Data type : unsigned char x 3
+		 * Data type : unsigned char × 3
 x max 128<br>
 		 * <br>
-		 * Data size : 3 x max
-128 bytes<br>
+		 * Data size : 3 × max
+128
+bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -702,8 +697,7 @@ x max 128<br>
 			return this;
 		}
 		/**
-		 * Property name : Maximum number of
-human body ID�fs<br>
+		 * Property name : Maximum number of human body ID’s<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
@@ -717,15 +711,15 @@ human body ID�fs<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetMaximumNumberOfHumanBodyIdFs() {
-			reqGetProperty(EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS);
+		public Getter reqGetMaximumNumberOfHumanBodyIdS() {
+			reqGetProperty(EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_S);
 			return this;
 		}
 		/**
@@ -737,14 +731,13 @@ human body ID�fs<br>
 		 * This property indicates human body detection location.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 1st byte: X coordinate; 2nd byte: Y<br>
-		 * coordinate; 3rd byte: Z coordinate<br>
+		 * 1st byte: X coordinate; 2nd byte: Y coordinate; 3rd byte: Z coordinate<br>
 		 * <br>
-		 * Data type : unsigned char x 3<br>
+		 * Data type : unsigned char × 3<br>
 		 * <br>
 		 * Data size : 3 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -766,11 +759,12 @@ human body ID�fs<br>
 		 * Value range (decimal notation) :<br>
 		 * (See (5) below for details.)<br>
 		 * <br>
-		 * Data type : unsigned char x 16<br>
+		 * Data type : unsigned char × 16<br>
 		 * <br>
-		 * Data size : 16 bytes<br>
+		 * Data size : 16
+bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -859,8 +853,8 @@ human body ID�fs<br>
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -900,16 +894,16 @@ human body ID�fs<br>
 		 * This property indicates human body detection location. The array element number indicates a human body ID.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 1st byte: X coordinate; 2nd byte: Y<br>
-		 * coordinate; 3rd byte: Z coordinate<br>
+		 * 1st byte: X coordinate; 2nd byte: Y coordinate; 3rd byte: Z coordinate<br>
 		 * <br>
-		 * Data type : unsigned char x 3
+		 * Data type : unsigned char × 3
 x max 128<br>
 		 * <br>
-		 * Data size : 3 x max
-128 bytes<br>
+		 * Data size : 3 × max
+128
+bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -921,8 +915,7 @@ x max 128<br>
 			return this;
 		}
 		/**
-		 * Property name : Maximum number of
-human body ID�fs<br>
+		 * Property name : Maximum number of human body ID’s<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
@@ -936,15 +929,15 @@ human body ID�fs<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformMaximumNumberOfHumanBodyIdFs() {
-			reqInformProperty(EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_FS);
+		public Informer reqInformMaximumNumberOfHumanBodyIdS() {
+			reqInformProperty(EPC_MAXIMUM_NUMBER_OF_HUMAN_BODY_ID_S);
 			return this;
 		}
 		/**
@@ -956,14 +949,13 @@ human body ID�fs<br>
 		 * This property indicates human body detection location.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 1st byte: X coordinate; 2nd byte: Y<br>
-		 * coordinate; 3rd byte: Z coordinate<br>
+		 * 1st byte: X coordinate; 2nd byte: Y coordinate; 3rd byte: Z coordinate<br>
 		 * <br>
-		 * Data type : unsigned char x 3<br>
+		 * Data type : unsigned char × 3<br>
 		 * <br>
 		 * Data size : 3 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -985,11 +977,12 @@ human body ID�fs<br>
 		 * Value range (decimal notation) :<br>
 		 * (See (5) below for details.)<br>
 		 * <br>
-		 * Data type : unsigned char x 16<br>
+		 * Data type : unsigned char × 16<br>
 		 * <br>
-		 * Data size : 16 bytes<br>
+		 * Data size : 16
+bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>

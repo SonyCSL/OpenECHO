@@ -64,17 +64,16 @@ public abstract class FanHeater extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -90,17 +89,16 @@ public abstract class FanHeater extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -119,13 +117,13 @@ public abstract class FanHeater extends DeviceObject {
 	 * Sets the temperature and gets the setting status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50��C)<br>
+	 * 0x00.0x32 (0.50°C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -142,13 +140,13 @@ public abstract class FanHeater extends DeviceObject {
 	 * Sets the temperature and gets the setting status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50��C)<br>
+	 * 0x00.0x32 (0.50°C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -165,13 +163,13 @@ public abstract class FanHeater extends DeviceObject {
 	 * Sets the temperature and gets the setting status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50��C)<br>
+	 * 0x00.0x32 (0.50°C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -191,13 +189,13 @@ public abstract class FanHeater extends DeviceObject {
 	 * This property indicates the measured room temperature.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7D (-128 to 125��C)<br>
+	 * 0x81.0x7D (-128.125°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -214,13 +212,13 @@ public abstract class FanHeater extends DeviceObject {
 	 * This property indicates the measured room temperature.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7D (-128 to 125��C)<br>
+	 * 0x81.0x7D (-128.125°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -240,14 +238,13 @@ public abstract class FanHeater extends DeviceObject {
 	 * Sets automatic / non-automatic and gets the setting status<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic = 0x41, non-automatic =<br>
-	 * 0x42<br>
+	 * Automatic = 0x41, non-automatic = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -264,14 +261,13 @@ public abstract class FanHeater extends DeviceObject {
 	 * Sets automatic / non-automatic and gets the setting status<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic = 0x41, non-automatic =<br>
-	 * 0x42<br>
+	 * Automatic = 0x41, non-automatic = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -288,14 +284,13 @@ public abstract class FanHeater extends DeviceObject {
 	 * Sets automatic / non-automatic and gets the setting status<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic = 0x41, non-automatic =<br>
-	 * 0x42<br>
+	 * Automatic = 0x41, non-automatic = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -322,7 +317,7 @@ public abstract class FanHeater extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -346,7 +341,7 @@ public abstract class FanHeater extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -370,7 +365,7 @@ public abstract class FanHeater extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -390,14 +385,13 @@ public abstract class FanHeater extends DeviceObject {
 	 * Sets timer value HH:MM and gets setting status<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -414,14 +408,13 @@ public abstract class FanHeater extends DeviceObject {
 	 * Sets timer value HH:MM and gets setting status<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -438,14 +431,13 @@ public abstract class FanHeater extends DeviceObject {
 	 * Sets timer value HH:MM and gets setting status<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -465,14 +457,13 @@ public abstract class FanHeater extends DeviceObject {
 	 * Sets timer value HH:MM and gets the updated time<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -489,14 +480,13 @@ public abstract class FanHeater extends DeviceObject {
 	 * Sets timer value HH:MM and gets the updated time<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -513,14 +503,13 @@ public abstract class FanHeater extends DeviceObject {
 	 * Sets timer value HH:MM and gets the updated time<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -547,7 +536,7 @@ public abstract class FanHeater extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -571,7 +560,7 @@ public abstract class FanHeater extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -595,7 +584,7 @@ public abstract class FanHeater extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -615,14 +604,13 @@ public abstract class FanHeater extends DeviceObject {
 	 * Sets timer value HH:MM and gets the setting status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -639,14 +627,13 @@ public abstract class FanHeater extends DeviceObject {
 	 * Sets timer value HH:MM and gets the setting status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -663,14 +650,13 @@ public abstract class FanHeater extends DeviceObject {
 	 * Sets timer value HH:MM and gets the setting status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -682,8 +668,7 @@ public abstract class FanHeater extends DeviceObject {
 		return true;
 	}
 	/**
-	 * Property name : OFF timer value
-( relative time)<br>
+	 * Property name : OFF timer value ( relative time)<br>
 	 * <br>
 	 * EPC : 0x96<br>
 	 * <br>
@@ -693,11 +678,11 @@ public abstract class FanHeater extends DeviceObject {
 	 * Value range (decimal notation) :<br>
 	 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -706,8 +691,7 @@ public abstract class FanHeater extends DeviceObject {
 	 */
 	protected boolean setOffTimerValueRelativeTime(byte[] edt) {return false;}
 	/**
-	 * Property name : OFF timer value
-( relative time)<br>
+	 * Property name : OFF timer value ( relative time)<br>
 	 * <br>
 	 * EPC : 0x96<br>
 	 * <br>
@@ -717,11 +701,11 @@ public abstract class FanHeater extends DeviceObject {
 	 * Value range (decimal notation) :<br>
 	 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -730,8 +714,7 @@ public abstract class FanHeater extends DeviceObject {
 	 */
 	protected byte[] getOffTimerValueRelativeTime() {return null;}
 	/**
-	 * Property name : OFF timer value
-( relative time)<br>
+	 * Property name : OFF timer value ( relative time)<br>
 	 * <br>
 	 * EPC : 0x96<br>
 	 * <br>
@@ -741,11 +724,11 @@ public abstract class FanHeater extends DeviceObject {
 	 * Value range (decimal notation) :<br>
 	 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -771,7 +754,7 @@ public abstract class FanHeater extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -794,7 +777,7 @@ public abstract class FanHeater extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -817,7 +800,7 @@ public abstract class FanHeater extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -837,14 +820,13 @@ public abstract class FanHeater extends DeviceObject {
 	 * Setsextension time HH:MM and gets the extended time<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0.0x17: 0.0x3B<br>
-	 * (= 0.23):(= 0.59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -861,14 +843,13 @@ public abstract class FanHeater extends DeviceObject {
 	 * Setsextension time HH:MM and gets the extended time<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0.0x17: 0.0x3B<br>
-	 * (= 0.23):(= 0.59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -885,14 +866,13 @@ public abstract class FanHeater extends DeviceObject {
 	 * Setsextension time HH:MM and gets the extended time<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0.0x17: 0.0x3B<br>
-	 * (= 0.23):(= 0.59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -918,7 +898,7 @@ public abstract class FanHeater extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -941,7 +921,7 @@ public abstract class FanHeater extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -964,7 +944,7 @@ public abstract class FanHeater extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -981,7 +961,7 @@ public abstract class FanHeater extends DeviceObject {
 	 * EPC : 0xC3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Specifies ion emission method imlemented in humidifier by bit map<br>
+	 * Specifies ion emission method implemented in humidifier by bit map<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Extension ON=0x41, OFF=0x42<br>
@@ -990,7 +970,7 @@ public abstract class FanHeater extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1004,7 +984,7 @@ public abstract class FanHeater extends DeviceObject {
 	 * EPC : 0xC3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Specifies ion emission method imlemented in humidifier by bit map<br>
+	 * Specifies ion emission method implemented in humidifier by bit map<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Extension ON=0x41, OFF=0x42<br>
@@ -1013,7 +993,7 @@ public abstract class FanHeater extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1040,7 +1020,7 @@ public abstract class FanHeater extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1064,7 +1044,7 @@ public abstract class FanHeater extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1289,13 +1269,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Sets the temperature and gets the setting status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1312,13 +1292,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Sets the temperature and gets the setting status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1335,13 +1315,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * This property indicates the measured room temperature.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (-128 to 125��C)<br>
+		 * 0x81.0x7D (-128.125°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1358,14 +1338,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Sets automatic / non-automatic and gets the setting status<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x41, non-automatic =<br>
-		 * 0x42<br>
+		 * Automatic = 0x41, non-automatic = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1382,14 +1361,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Sets automatic / non-automatic and gets the setting status<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x41, non-automatic =<br>
-		 * 0x42<br>
+		 * Automatic = 0x41, non-automatic = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1413,7 +1391,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1437,7 +1415,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1454,14 +1432,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Sets timer value HH:MM and gets setting status<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1478,14 +1455,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Sets timer value HH:MM and gets setting status<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1502,14 +1478,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Sets timer value HH:MM and gets the updated time<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1526,14 +1501,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Sets timer value HH:MM and gets the updated time<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1557,7 +1531,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1581,7 +1555,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1598,14 +1572,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Sets timer value HH:MM and gets the setting status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1622,14 +1595,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Sets timer value HH:MM and gets the setting status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1638,8 +1610,7 @@ public abstract class FanHeater extends DeviceObject {
 		 */
 		protected void onGetOffTimerSettingValueTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : OFF timer value
-( relative time)<br>
+		 * Property name : OFF timer value ( relative time)<br>
 		 * <br>
 		 * EPC : 0x96<br>
 		 * <br>
@@ -1649,11 +1620,11 @@ public abstract class FanHeater extends DeviceObject {
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1662,8 +1633,7 @@ public abstract class FanHeater extends DeviceObject {
 		 */
 		protected void onSetOffTimerValueRelativeTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : OFF timer value
-( relative time)<br>
+		 * Property name : OFF timer value ( relative time)<br>
 		 * <br>
 		 * EPC : 0x96<br>
 		 * <br>
@@ -1673,11 +1643,11 @@ public abstract class FanHeater extends DeviceObject {
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1700,7 +1670,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1723,7 +1693,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1740,14 +1710,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Setsextension time HH:MM and gets the extended time<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0.0x17: 0.0x3B<br>
-		 * (= 0.23):(= 0.59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1764,14 +1733,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Setsextension time HH:MM and gets the extended time<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0.0x17: 0.0x3B<br>
-		 * (= 0.23):(= 0.59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1794,7 +1762,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1817,7 +1785,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1831,7 +1799,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * EPC : 0xC3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Specifies ion emission method imlemented in humidifier by bit map<br>
+		 * Specifies ion emission method implemented in humidifier by bit map<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Extension ON=0x41, OFF=0x42<br>
@@ -1840,7 +1808,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1864,7 +1832,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1903,8 +1871,8 @@ public abstract class FanHeater extends DeviceObject {
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -1928,13 +1896,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Sets the temperature and gets the setting status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1954,14 +1922,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Sets automatic / non-automatic and gets the setting status<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x41, non-automatic =<br>
-		 * 0x42<br>
+		 * Automatic = 0x41, non-automatic = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1988,7 +1955,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2008,14 +1975,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Sets timer value HH:MM and gets setting status<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2035,14 +2001,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Sets timer value HH:MM and gets the updated time<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2069,7 +2034,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2089,14 +2054,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Sets timer value HH:MM and gets the setting status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2108,8 +2072,7 @@ public abstract class FanHeater extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : OFF timer value
-( relative time)<br>
+		 * Property name : OFF timer value ( relative time)<br>
 		 * <br>
 		 * EPC : 0x96<br>
 		 * <br>
@@ -2119,11 +2082,11 @@ public abstract class FanHeater extends DeviceObject {
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2149,7 +2112,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2169,14 +2132,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Setsextension time HH:MM and gets the extended time<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0.0x17: 0.0x3B<br>
-		 * (= 0.23):(= 0.59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2202,7 +2164,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2292,8 +2254,8 @@ public abstract class FanHeater extends DeviceObject {
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -2333,13 +2295,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Sets the temperature and gets the setting status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2359,13 +2321,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * This property indicates the measured room temperature.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (-128 to 125��C)<br>
+		 * 0x81.0x7D (-128.125°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2385,14 +2347,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Sets automatic / non-automatic and gets the setting status<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x41, non-automatic =<br>
-		 * 0x42<br>
+		 * Automatic = 0x41, non-automatic = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2419,7 +2380,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2439,14 +2400,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Sets timer value HH:MM and gets setting status<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2466,14 +2426,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Sets timer value HH:MM and gets the updated time<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2500,7 +2459,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2520,14 +2479,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Sets timer value HH:MM and gets the setting status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2539,8 +2497,7 @@ public abstract class FanHeater extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : OFF timer value
-( relative time)<br>
+		 * Property name : OFF timer value ( relative time)<br>
 		 * <br>
 		 * EPC : 0x96<br>
 		 * <br>
@@ -2550,11 +2507,11 @@ public abstract class FanHeater extends DeviceObject {
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2580,7 +2537,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2600,14 +2557,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Setsextension time HH:MM and gets the extended time<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0.0x17: 0.0x3B<br>
-		 * (= 0.23):(= 0.59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2633,7 +2589,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2650,7 +2606,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * EPC : 0xC3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Specifies ion emission method imlemented in humidifier by bit map<br>
+		 * Specifies ion emission method implemented in humidifier by bit map<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Extension ON=0x41, OFF=0x42<br>
@@ -2659,7 +2615,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2686,7 +2642,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2775,8 +2731,8 @@ public abstract class FanHeater extends DeviceObject {
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -2816,13 +2772,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Sets the temperature and gets the setting status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2842,13 +2798,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * This property indicates the measured room temperature.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (-128 to 125��C)<br>
+		 * 0x81.0x7D (-128.125°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2868,14 +2824,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Sets automatic / non-automatic and gets the setting status<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x41, non-automatic =<br>
-		 * 0x42<br>
+		 * Automatic = 0x41, non-automatic = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2902,7 +2857,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2922,14 +2877,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Sets timer value HH:MM and gets setting status<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2949,14 +2903,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Sets timer value HH:MM and gets the updated time<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2983,7 +2936,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3003,14 +2956,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Sets timer value HH:MM and gets the setting status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3022,8 +2974,7 @@ public abstract class FanHeater extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : OFF timer value
-( relative time)<br>
+		 * Property name : OFF timer value ( relative time)<br>
 		 * <br>
 		 * EPC : 0x96<br>
 		 * <br>
@@ -3033,11 +2984,11 @@ public abstract class FanHeater extends DeviceObject {
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3063,7 +3014,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3083,14 +3034,13 @@ public abstract class FanHeater extends DeviceObject {
 		 * Setsextension time HH:MM and gets the extended time<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0.0x17: 0.0x3B<br>
-		 * (= 0.23):(= 0.59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3116,7 +3066,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3133,7 +3083,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * EPC : 0xC3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Specifies ion emission method imlemented in humidifier by bit map<br>
+		 * Specifies ion emission method implemented in humidifier by bit map<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Extension ON=0x41, OFF=0x42<br>
@@ -3142,7 +3092,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3169,7 +3119,7 @@ public abstract class FanHeater extends DeviceObject {
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>

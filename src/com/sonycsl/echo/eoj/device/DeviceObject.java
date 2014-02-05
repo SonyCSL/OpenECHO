@@ -43,7 +43,7 @@ public abstract class DeviceObject extends EchoObject {
 	public static final byte EPC_PRODUCTION_NUMBER = (byte)0x8D;
 	public static final byte EPC_PRODUCTION_DATE = (byte)0x8E;
 	public static final byte EPC_POWER_SAVING_OPERATION_SETTING = (byte)0x8F;
-	public static final byte EPC_POSITION_INFORMATION = (byte)0x93;
+	public static final byte EPC_REMOTE_CONTROL_SETTING = (byte)0x93;
 	public static final byte EPC_CURRENT_TIME_SETTING = (byte)0x97;
 	public static final byte EPC_CURRENT_DATE_SETTING = (byte)0x98;
 	public static final byte EPC_POWER_LIMIT_SETTING = (byte)0x99;
@@ -76,7 +76,6 @@ public abstract class DeviceObject extends EchoObject {
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		addStatusChangeAnnouncementProperty(EPC_INSTALLATION_LOCATION);
 		addStatusChangeAnnouncementProperty(EPC_FAULT_STATUS);
-		//addStatusChangeAnnouncementProperty(EPC_POSITION_INFORMATION);
 		
 		addSetProperty(EPC_INSTALLATION_LOCATION);
 
@@ -100,14 +99,14 @@ public abstract class DeviceObject extends EchoObject {
 		case EPC_INSTALLATION_LOCATION : return setInstallationLocation(property.edt);
 		case EPC_CURRENT_LIMIT_SETTING : return setCurrentLimitSetting(property.edt);
 		case EPC_POWER_SAVING_OPERATION_SETTING : return setPowerSavingOperationSetting(property.edt);
-		case EPC_POSITION_INFORMATION : return setPositionInformation(property.edt);
+		case EPC_REMOTE_CONTROL_SETTING : return setRemoteControlSetting(property.edt);
 		case EPC_CURRENT_TIME_SETTING : return setCurrentTimeSetting(property.edt);
 		case EPC_CURRENT_DATE_SETTING : return setCurrentDateSetting(property.edt);
 		case EPC_POWER_LIMIT_SETTING : return setPowerLimitSetting(property.edt);
 		default : return false;
 		}
 	}
-	
+
 	@Override
 	protected synchronized byte[] getProperty(byte epc) {
 		byte[] edt = super.getProperty(epc);
@@ -130,7 +129,7 @@ public abstract class DeviceObject extends EchoObject {
 		case EPC_PRODUCTION_NUMBER : return getProductionNumber();
 		case EPC_PRODUCTION_DATE : return getProductionDate();
 		case EPC_POWER_SAVING_OPERATION_SETTING : return getPowerSavingOperationSetting();
-		case EPC_POSITION_INFORMATION : return getPositionInformation();
+		case EPC_REMOTE_CONTROL_SETTING : return getRemoteControlSetting();
 		case EPC_CURRENT_TIME_SETTING : return getCurrentTimeSetting();
 		case EPC_CURRENT_DATE_SETTING : return getCurrentDateSetting();
 		case EPC_POWER_LIMIT_SETTING : return getPowerLimitSetting();
@@ -164,7 +163,7 @@ public abstract class DeviceObject extends EchoObject {
 		case EPC_PRODUCTION_NUMBER : return isValidProductionNumber(property.edt);
 		case EPC_PRODUCTION_DATE : return isValidProductionDate(property.edt);
 		case EPC_POWER_SAVING_OPERATION_SETTING : return isValidPowerSavingOperationSetting(property.edt);
-		case EPC_POSITION_INFORMATION : return isValidPositionInformation(property.edt);
+		case EPC_REMOTE_CONTROL_SETTING : return isValidRemoteControlSetting(property.edt);
 		case EPC_CURRENT_TIME_SETTING : return isValidCurrentTimeSetting(property.edt);
 		case EPC_CURRENT_DATE_SETTING : return isValidCurrentDateSetting(property.edt);
 		case EPC_POWER_LIMIT_SETTING : return isValidPowerLimitSetting(property.edt);
@@ -617,41 +616,45 @@ public abstract class DeviceObject extends EchoObject {
 	}
 
 	/**
-	 * This property indicates the latitude, longitude and altitude of the installation location.<br>
+	 * This property indicates whether remote control is through a public network or not.<br>
 	 * <br>
-	 * Data Type : unsigned char×16<br>
-	 * Data Size(Byte) : 16<br>
+	 * Not through a public network=0x41<br>
+	 * Through a public network=0x42<br>
+	 * <br>
+	 * Data Type : unsigned char<br>
+	 * Data Size(Byte) : 1<br>
 	 * <br>
 	 * AccessRule<br>
 	 * Announce : undefined<br>
 	 * Set : optional<br>
 	 * Get : optional<br>
 	 * <br>
-	 * Announcement at status change<br>
 	 */
-	protected boolean setPositionInformation(byte[] edt) {
+	protected boolean setRemoteControlSetting(byte[] edt) {
 		return false;
 	}
-	
+
 	/**
-	 * This property indicates the latitude, longitude and altitude of the installation location.<br>
+	 * This property indicates whether remote control is through a public network or not.<br>
 	 * <br>
-	 * Data Type : unsigned char×16<br>
-	 * Data Size(Byte) : 16<br>
+	 * Not through a public network=0x41<br>
+	 * Through a public network=0x42<br>
+	 * <br>
+	 * Data Type : unsigned char<br>
+	 * Data Size(Byte) : 1<br>
 	 * <br>
 	 * AccessRule<br>
 	 * Announce : undefined<br>
 	 * Set : optional<br>
 	 * Get : optional<br>
 	 * <br>
-	 * Announcement at status change<br>
-	 */	
-	protected byte[] getPositionInformation() {
+	 */
+	protected byte[] getRemoteControlSetting() {
 		return null;
 	}
-	
-	protected boolean isValidPositionInformation(byte[] edt) {
-		if(edt == null || !(edt.length == 16)) return false;
+
+	protected boolean isValidRemoteControlSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
 
@@ -913,8 +916,8 @@ public abstract class DeviceObject extends EchoObject {
 			case EPC_POWER_SAVING_OPERATION_SETTING :
 				onSetPowerSavingOperationSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_POSITION_INFORMATION :
-				onSetPositionInformation(eoj, tid, esv, property, success);
+			case EPC_REMOTE_CONTROL_SETTING :
+				onSetRemoteControlSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_CURRENT_TIME_SETTING :
 				onSetCurrentTimeSetting(eoj, tid, esv, property, success);
@@ -985,8 +988,8 @@ public abstract class DeviceObject extends EchoObject {
 			case EPC_POWER_SAVING_OPERATION_SETTING :
 				onGetPowerSavingOperationSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_POSITION_INFORMATION :
-				onGetPositionInformation(eoj, tid, esv, property, success);
+			case EPC_REMOTE_CONTROL_SETTING :
+				onGetRemoteControlSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_CURRENT_TIME_SETTING :
 				onGetCurrentTimeSetting(eoj, tid, esv, property, success);
@@ -1245,24 +1248,22 @@ public abstract class DeviceObject extends EchoObject {
 		protected void onGetPowerSavingOperationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		
 		/**
-		 * This property indicates the latitude, longitude and altitude of the installation location.<br><br>
-		 * Data Type : unsigned char×16<br>
-		 * Data Size(Byte) : 16<br>
+		 * This property indicates whether remote control is through a public network or not.<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : optional<br>
 		 * Get : optional<br>
-		 * Announcement at status change
 		 */
-		protected void onSetPositionInformation(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetRemoteControlSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 
 		/**
-		 * This property indicates the latitude, longitude and altitude of the installation location.<br><br>
-		 * Data Type : unsigned char×16<br>
-		 * Data Size(Byte) : 16<br>
+		 * This property indicates whether remote control is through a public network or not.<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : optional<br>
 		 * Get : optional<br>
-		 * Announcement at status change
 		 */
-		protected void onGetPositionInformation(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetRemoteControlSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		
 		/**
 		 * Current time (HH：MM format)<br>
@@ -1429,16 +1430,16 @@ public abstract class DeviceObject extends EchoObject {
 			reqSetProperty(EPC_POWER_SAVING_OPERATION_SETTING, edt);
 			return this;
 		}
+
 		/**
-		 * This property indicates the latitude, longitude and altitude of the installation location.<br><br>
-		 * Data Type : unsigned char×16<br>
-		 * Data Size(Byte) : 16<br>
+		 * This property indicates whether remote control is through a public network or not.<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : optional<br>
 		 * Get : optional<br>
-		 * Announcement at status change
 		 */
-		public Setter reqSetPositionInformation(byte[] edt) {
-			reqSetProperty(EPC_POSITION_INFORMATION, edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			reqSetProperty(EPC_REMOTE_CONTROL_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1710,15 +1711,14 @@ public abstract class DeviceObject extends EchoObject {
 			return this;
 		}
 		/**
-		 * This property indicates the latitude, longitude and altitude of the installation location.<br><br>
-		 * Data Type : unsigned char×16<br>
-		 * Data Size(Byte) : 16<br>
+		 * This property indicates whether remote control is through a public network or not.<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : optional<br>
 		 * Get : optional<br>
-		 * Announcement at status change
 		 */
-		public Getter reqGetPositionInformation() {
-			reqGetProperty(EPC_POSITION_INFORMATION);
+		public Getter reqGetRemoteControlSetting() {
+			reqGetProperty(EPC_REMOTE_CONTROL_SETTING);
 			return this;
 		}
 		/**
@@ -2041,15 +2041,14 @@ public abstract class DeviceObject extends EchoObject {
 			return this;
 		}
 		/**
-		 * This property indicates the latitude, longitude and altitude of the installation location.<br><br>
-		 * Data Type : unsigned char×16<br>
-		 * Data Size(Byte) : 16<br>
+		 * This property indicates whether remote control is through a public network or not.<br>
+		 * Data Type : unsigned char<br>
+		 * Data Size(Byte) : 1<br>
 		 * Set : optional<br>
 		 * Get : optional<br>
-		 * Announcement at status change
 		 */
-		public Informer reqInformPositionInformation() {
-			reqInformProperty(EPC_POSITION_INFORMATION);
+		public Informer reqInformRemoteControlSetting() {
+			reqInformProperty(EPC_REMOTE_CONTROL_SETTING);
 			return this;
 		}
 		/**

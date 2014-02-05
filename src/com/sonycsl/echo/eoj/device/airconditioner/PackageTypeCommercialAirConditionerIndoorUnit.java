@@ -29,40 +29,40 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 
 	public static final byte EPC_OPERATION_MODE_SETTING = (byte)0xB0;
 	public static final byte EPC_TEMPERATURE_SETTING1 = (byte)0xB3;
-	public static final byte EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1 = (byte)0xB4;
-	public static final byte EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H1 = (byte)0xB5;
-	public static final byte EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H1 = (byte)0xB6;
-	public static final byte EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1 = (byte)0xB7;
+	public static final byte EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE1 = (byte)0xB4;
+	public static final byte EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE1 = (byte)0xB5;
+	public static final byte EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE1 = (byte)0xB6;
+	public static final byte EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICA_TION_MODE1 = (byte)0xB7;
 	public static final byte EPC_RATED_POWER_CONSUMPTION_OF_INDOOR_UNIT = (byte)0xB8;
 	public static final byte EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_INDOOR_UNIT = (byte)0xB9;
 	public static final byte EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY1 = (byte)0xBA;
 	public static final byte EPC_MEASURED_INDOOR_TEMPERATURE1 = (byte)0xBB;
 	public static final byte EPC_RELATIVE_TEMPERATURE_SETTING = (byte)0xBF;
 	public static final byte EPC_AIR_FLOW_RATE_SETTING = (byte)0xA0;
-	public static final byte EPC_GAIR_FLOW_DIRECTION_VERTICAL_H_SETTING = (byte)0xA4;
-	public static final byte EPC_GAIR_FLOW_DIRECTION_HORIZONTAL_H_SETTING = (byte)0xA5;
-	public static final byte EPC_GSPECIAL_H_STATE = (byte)0xAA;
+	public static final byte EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING = (byte)0xA4;
+	public static final byte EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING = (byte)0xA5;
+	public static final byte EPC_SPECIAL_STATE = (byte)0xAA;
 	public static final byte EPC_THERMOSTAT_STATE = (byte)0xAC;
-	public static final byte EPC_CURRENT_FUNCTION_GAUTOMATIC_H_OPERATION_MODE = (byte)0xAE;
+	public static final byte EPC_CURRENT_FUNCTION_AUTOMATIC_OPERATION_MODE = (byte)0xAE;
 	public static final byte EPC_VENTILATION_MODE_SETTING = (byte)0xC0;
 	public static final byte EPC_COMBINED_OPERATION_OF_INDOOR_UNIT_AND_TOTAL_HEAT_EXCHANGER = (byte)0xC1;
 	public static final byte EPC_VENTILATION_AIR_FLOW_RATE_SETTING = (byte)0xC2;
-	public static final byte EPC_GDISABLING_OF_AIR_CONDITIONER_H_SETTING = (byte)0xCD;
+	public static final byte EPC_DISABLING_OF_AIR_CONDITIONER_SETTING = (byte)0xCD;
 	public static final byte EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION = (byte)0xCE;
 	public static final byte EPC_FILTER_CLEANING_REMINDER_LAMP_SETTING = (byte)0xCF;
 	public static final byte EPC_MEASURED_POWER_CONSUMPTION_OF_INDOOR_UNIT = (byte)0xDB;
 	public static final byte EPC_APERTURE_OF_EXPANSION_VALVE = (byte)0xDC;
 	public static final byte EPC_TEMPERATURE_SETTING2 = (byte)0xE3;
-	public static final byte EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2 = (byte)0xE4;
-	public static final byte EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H2 = (byte)0xE5;
-	public static final byte EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H2 = (byte)0xE6;
-	public static final byte EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2 = (byte)0xE7;
+	public static final byte EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE2 = (byte)0xE4;
+	public static final byte EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE2 = (byte)0xE5;
+	public static final byte EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE2 = (byte)0xE6;
+	public static final byte EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE2 = (byte)0xE7;
 	public static final byte EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY2 = (byte)0xEA;
 	public static final byte EPC_MEASURED_INDOOR_TEMPERATURE2 = (byte)0xEB;
-	public static final byte EPC_GON_TIMER_BASED_RESERVATION_H_SETTING = (byte)0x90;
+	public static final byte EPC_ON_TIMER_BASED_RESERVATION_SETTING = (byte)0x90;
 	public static final byte EPC_ON_TIMER_SETTING_TIME = (byte)0x91;
 	public static final byte EPC_ON_TIMER_SETTING_RELATIVE_TIME = (byte)0x92;
-	public static final byte EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING = (byte)0x94;
+	public static final byte EPC_OFF_TIMER_BASED_RESERVATION_SETTING = (byte)0x94;
 	public static final byte EPC_OFF_TIMER_SETTING_TIME = (byte)0x95;
 	public static final byte EPC_OFF_TIMER_SETTING_RELATIVE_TIME = (byte)0x96;
 
@@ -79,13 +79,13 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		addStatusChangeAnnouncementProperty(EPC_TEMPERATURE_SETTING1);
 		addSetProperty(EPC_TEMPERATURE_SETTING1);
 		addGetProperty(EPC_TEMPERATURE_SETTING1);
-		addStatusChangeAnnouncementProperty(EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1);
-		addStatusChangeAnnouncementProperty(EPC_CURRENT_FUNCTION_GAUTOMATIC_H_OPERATION_MODE);
+		addStatusChangeAnnouncementProperty(EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE1);
+		addStatusChangeAnnouncementProperty(EPC_CURRENT_FUNCTION_AUTOMATIC_OPERATION_MODE);
 		addStatusChangeAnnouncementProperty(EPC_FILTER_CLEANING_REMINDER_LAMP_SETTING);
 		addStatusChangeAnnouncementProperty(EPC_TEMPERATURE_SETTING2);
 		addSetProperty(EPC_TEMPERATURE_SETTING2);
 		addGetProperty(EPC_TEMPERATURE_SETTING2);
-		addStatusChangeAnnouncementProperty(EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2);
+		addStatusChangeAnnouncementProperty(EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE2);
 	}
 	
 	@Override
@@ -99,17 +99,16 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -125,17 +124,16 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -151,16 +149,12 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 	 * EPC : 0xB0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the operation mode (�gautomatic,�h .�gcooling,�h .�gheating,�h . �gdehumidification�h .or .�gair .<br>
-	 * circulator�h) .and .to .acquire .the .current .<br>
-	 * setting.<br>
+	 * Used to specify the operation mode (“automatic,” “cooling,” “heating,” “dehumidification” or “air circulator”) and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * The following values shall be used: Automatic: 0x41<br>
 	 * Cooling: 0x42<br>
-	 * Heating: 0x43<br>
-	 * Dehumidification: 0x44<br>
-	 * Air circulator: 0x45<br>
+	 * Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -182,16 +176,12 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 	 * EPC : 0xB0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the operation mode (�gautomatic,�h .�gcooling,�h .�gheating,�h . �gdehumidification�h .or .�gair .<br>
-	 * circulator�h) .and .to .acquire .the .current .<br>
-	 * setting.<br>
+	 * Used to specify the operation mode (“automatic,” “cooling,” “heating,” “dehumidification” or “air circulator”) and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * The following values shall be used: Automatic: 0x41<br>
 	 * Cooling: 0x42<br>
-	 * Heating: 0x43<br>
-	 * Dehumidification: 0x44<br>
-	 * Air circulator: 0x45<br>
+	 * Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -213,16 +203,12 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 	 * EPC : 0xB0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the operation mode (�gautomatic,�h .�gcooling,�h .�gheating,�h . �gdehumidification�h .or .�gair .<br>
-	 * circulator�h) .and .to .acquire .the .current .<br>
-	 * setting.<br>
+	 * Used to specify the operation mode (“automatic,” “cooling,” “heating,” “dehumidification” or “air circulator”) and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * The following values shall be used: Automatic: 0x41<br>
 	 * Cooling: 0x42<br>
-	 * Heating: 0x43<br>
-	 * Dehumidification: 0x44<br>
-	 * Air circulator: 0x45<br>
+	 * Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -250,13 +236,13 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 	 * Used to set the temperature and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50��C)<br>
+	 * 0x00.0x32 (0.50°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : 1��C<br>
+	 * Unit : 1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -275,13 +261,13 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 	 * Used to set the temperature and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50��C)<br>
+	 * 0x00.0x32 (0.50°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : 1��C<br>
+	 * Unit : 1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -300,13 +286,13 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 	 * Used to set the temperature and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50��C)<br>
+	 * 0x00.0x32 (0.50°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : 1��C<br>
+	 * Unit : 1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -320,18 +306,16 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		return true;
 	}
 	/**
-	 * Property name : �gRelative .
-humidity setting for
-�edehumidifica-
-tion�f .mode�h .1<br>
+	 * Property name : “Relative
+humidity setting for ‘dehumidifica- tion’ mode” 1<br>
 	 * <br>
 	 * EPC : 0xB4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the relative humidity for the .�gdehumidification�h .mode .and .to . acquire the current setting.<br>
+	 * Used to set the relative humidity for the “dehumidification” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x64 (0 to 100%)<br>
+	 * 0x00.0x64 (0.100%)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -346,20 +330,18 @@ tion�f .mode�h .1<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean setGrelativeHumiditySettingForEdehumidificaTionFModeH1(byte[] edt) {return false;}
+	protected boolean setRelativeHumiditySettingForDehumidificaTionMode1(byte[] edt) {return false;}
 	/**
-	 * Property name : �gRelative .
-humidity setting for
-�edehumidifica-
-tion�f .mode�h .1<br>
+	 * Property name : “Relative
+humidity setting for ‘dehumidifica- tion’ mode” 1<br>
 	 * <br>
 	 * EPC : 0xB4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the relative humidity for the .�gdehumidification�h .mode .and .to . acquire the current setting.<br>
+	 * Used to set the relative humidity for the “dehumidification” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x64 (0 to 100%)<br>
+	 * 0x00.0x64 (0.100%)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -374,20 +356,18 @@ tion�f .mode�h .1<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
-	protected byte[] getGrelativeHumiditySettingForEdehumidificaTionFModeH1() {return null;}
+	protected byte[] getRelativeHumiditySettingForDehumidificaTionMode1() {return null;}
 	/**
-	 * Property name : �gRelative .
-humidity setting for
-�edehumidifica-
-tion�f .mode�h .1<br>
+	 * Property name : “Relative
+humidity setting for ‘dehumidifica- tion’ mode” 1<br>
 	 * <br>
 	 * EPC : 0xB4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the relative humidity for the .�gdehumidification�h .mode .and .to . acquire the current setting.<br>
+	 * Used to set the relative humidity for the “dehumidification” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x64 (0 to 100%)<br>
+	 * 0x00.0x64 (0.100%)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -402,250 +382,226 @@ tion�f .mode�h .1<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean isValidGrelativeHumiditySettingForEdehumidificaTionFModeH1(byte[] edt) {
+	protected boolean isValidRelativeHumiditySettingForDehumidificaTionMode1(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
 	/**
-	 * Property name : �gTemperature .
-setting for
-�ecooling�f .mode�h .
-1<br>
+	 * Property name : “Temperature setting for ‘cooling’ mode” 1<br>
 	 * <br>
 	 * EPC : 0xB5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the �gcooling�h .mode .and .to .acquire .the . current setting.<br>
+	 * Used to set the temperature for the “cooling” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50��C)<br>
+	 * 0x00.0x32 (0.50°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : 1��C<br>
+	 * Unit : 1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setGtemperatureSettingForEcoolingFModeH1(byte[] edt) {return false;}
+	protected boolean setTemperatureSettingForCoolingMode1(byte[] edt) {return false;}
 	/**
-	 * Property name : �gTemperature .
-setting for
-�ecooling�f .mode�h .
-1<br>
+	 * Property name : “Temperature setting for ‘cooling’ mode” 1<br>
 	 * <br>
 	 * EPC : 0xB5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the �gcooling�h .mode .and .to .acquire .the . current setting.<br>
+	 * Used to set the temperature for the “cooling” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50��C)<br>
+	 * 0x00.0x32 (0.50°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : 1��C<br>
+	 * Unit : 1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getGtemperatureSettingForEcoolingFModeH1() {return null;}
+	protected byte[] getTemperatureSettingForCoolingMode1() {return null;}
 	/**
-	 * Property name : �gTemperature .
-setting for
-�ecooling�f .mode�h .
-1<br>
+	 * Property name : “Temperature setting for ‘cooling’ mode” 1<br>
 	 * <br>
 	 * EPC : 0xB5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the �gcooling�h .mode .and .to .acquire .the . current setting.<br>
+	 * Used to set the temperature for the “cooling” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50��C)<br>
+	 * 0x00.0x32 (0.50°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : 1��C<br>
+	 * Unit : 1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidGtemperatureSettingForEcoolingFModeH1(byte[] edt) {
+	protected boolean isValidTemperatureSettingForCoolingMode1(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
 	/**
-	 * Property name : �gTemperature .
-setting for
-�eheating�f .mode�h .
-1<br>
+	 * Property name : “Temperature setting for ‘heating’ mode” 1<br>
 	 * <br>
 	 * EPC : 0xB6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the �gheating�h .mode .and .to .acquire .the . current setting.<br>
+	 * Used to set the temperature for the “heating” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50��C)<br>
+	 * 0x00.0x32 (0.50°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : 1��C<br>
+	 * Unit : 1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setGtemperatureSettingForEheatingFModeH1(byte[] edt) {return false;}
+	protected boolean setTemperatureSettingForHeatingMode1(byte[] edt) {return false;}
 	/**
-	 * Property name : �gTemperature .
-setting for
-�eheating�f .mode�h .
-1<br>
+	 * Property name : “Temperature setting for ‘heating’ mode” 1<br>
 	 * <br>
 	 * EPC : 0xB6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the �gheating�h .mode .and .to .acquire .the . current setting.<br>
+	 * Used to set the temperature for the “heating” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50��C)<br>
+	 * 0x00.0x32 (0.50°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : 1��C<br>
+	 * Unit : 1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getGtemperatureSettingForEheatingFModeH1() {return null;}
+	protected byte[] getTemperatureSettingForHeatingMode1() {return null;}
 	/**
-	 * Property name : �gTemperature .
-setting for
-�eheating�f .mode�h .
-1<br>
+	 * Property name : “Temperature setting for ‘heating’ mode” 1<br>
 	 * <br>
 	 * EPC : 0xB6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the �gheating�h .mode .and .to .acquire .the . current setting.<br>
+	 * Used to set the temperature for the “heating” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50��C)<br>
+	 * 0x00.0x32 (0.50°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : 1��C<br>
+	 * Unit : 1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidGtemperatureSettingForEheatingFModeH1(byte[] edt) {
+	protected boolean isValidTemperatureSettingForHeatingMode1(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
 	/**
-	 * Property name : �gTemperature .
-setting for
-�edehumidifica-
-tion�f .mode�h .1<br>
+	 * Property name : “Temperature
+setting for ‘dehumidifica- tion’ mode” 1<br>
 	 * <br>
 	 * EPC : 0xB7<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the �gdehumidification�h .mode .and .to . acquire the current setting.<br>
+	 * Used to set the temperature for the “dehumidification” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50��C)<br>
+	 * 0x00.0x32 (0.50°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : 1��C<br>
+	 * Unit : 1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setGtemperatureSettingForEdehumidificaTionFModeH1(byte[] edt) {return false;}
+	protected boolean setTemperatureSettingForDehumidificaTionMode1(byte[] edt) {return false;}
 	/**
-	 * Property name : �gTemperature .
-setting for
-�edehumidifica-
-tion�f .mode�h .1<br>
+	 * Property name : “Temperature
+setting for ‘dehumidifica- tion’ mode” 1<br>
 	 * <br>
 	 * EPC : 0xB7<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the �gdehumidification�h .mode .and .to . acquire the current setting.<br>
+	 * Used to set the temperature for the “dehumidification” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50��C)<br>
+	 * 0x00.0x32 (0.50°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : 1��C<br>
+	 * Unit : 1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getGtemperatureSettingForEdehumidificaTionFModeH1() {return null;}
+	protected byte[] getTemperatureSettingForDehumidificaTionMode1() {return null;}
 	/**
-	 * Property name : �gTemperature .
-setting for
-�edehumidifica-
-tion�f .mode�h .1<br>
+	 * Property name : “Temperature
+setting for ‘dehumidifica- tion’ mode” 1<br>
 	 * <br>
 	 * EPC : 0xB7<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the �gdehumidification�h .mode .and .to . acquire the current setting.<br>
+	 * Used to set the temperature for the “dehumidification” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50��C)<br>
+	 * 0x00.0x32 (0.50°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : 1��C<br>
+	 * Unit : 1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidGtemperatureSettingForEdehumidificaTionFModeH1(byte[] edt) {
+	protected boolean isValidTemperatureSettingForDehumidificaTionMode1(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
@@ -658,11 +614,10 @@ tion�f .mode�h .1<br>
 	 * This property indicates the rated power consumption for the cooling, heating, dehumidification and air circulator modes.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 0xFFFD (0 to 65533W)<br>
-	 * Cooling: heating: dehumidification:<br>
-	 * air circulator<br>
+	 * 0x0000.0xFFFD (0.65533W)<br>
+	 * Cooling: heating: dehumidification: air circulator<br>
 	 * <br>
-	 * Data type : unsigned short x 4<br>
+	 * Data type : unsigned short × 4<br>
 	 * <br>
 	 * Data size : 8 bytes<br>
 	 * <br>
@@ -683,11 +638,10 @@ tion�f .mode�h .1<br>
 	 * This property indicates the rated power consumption for the cooling, heating, dehumidification and air circulator modes.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 0xFFFD (0 to 65533W)<br>
-	 * Cooling: heating: dehumidification:<br>
-	 * air circulator<br>
+	 * 0x0000.0xFFFD (0.65533W)<br>
+	 * Cooling: heating: dehumidification: air circulator<br>
 	 * <br>
-	 * Data type : unsigned short x 4<br>
+	 * Data type : unsigned short × 4<br>
 	 * <br>
 	 * Data size : 8 bytes<br>
 	 * <br>
@@ -711,7 +665,7 @@ tion�f .mode�h .1<br>
 	 * This property indicates the measured electric current consumption.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 0xFFFD (0 to 6553.3A)<br>
+	 * 0x0000.0xFFFD (0.6553.3A)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
@@ -734,7 +688,7 @@ tion�f .mode�h .1<br>
 	 * This property indicates the measured electric current consumption.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 0xFFFD (0 to 6553.3A)<br>
+	 * 0x0000.0xFFFD (0.6553.3A)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
@@ -760,7 +714,7 @@ tion�f .mode�h .1<br>
 	 * Used to acquire the measured indoor relative humidity.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x64 (0 to 100%)<br>
+	 * 0x00.0x64 (0.100%)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -783,7 +737,7 @@ tion�f .mode�h .1<br>
 	 * Used to acquire the measured indoor relative humidity.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x64 (0 to 100%)<br>
+	 * 0x00.0x64 (0.100%)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -809,13 +763,13 @@ tion�f .mode�h .1<br>
 	 * Used to acquire the measured indoor temperature.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7D (-127 to 125��C)<br>
+	 * 0x81.0x7D (-127.125°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : 1��C<br>
+	 * Unit : 1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -832,13 +786,13 @@ tion�f .mode�h .1<br>
 	 * Used to acquire the measured indoor temperature.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7D (-127 to 125��C)<br>
+	 * 0x81.0x7D (-127.125°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : 1��C<br>
+	 * Unit : 1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -855,17 +809,16 @@ tion�f .mode�h .1<br>
 	 * EPC : 0xBF<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the relative temperature relative to the target temperature for<br>
-	 * an air conditioner operation mode and to acquire the current setting.<br>
+	 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7D (-12.7��C to 12.5��C)<br>
+	 * 0x81.0x7D (-12.7°C.12.5°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : 0.1��C<br>
+	 * Unit : 0.1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -879,17 +832,16 @@ tion�f .mode�h .1<br>
 	 * EPC : 0xBF<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the relative temperature relative to the target temperature for<br>
-	 * an air conditioner operation mode and to acquire the current setting.<br>
+	 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7D (-12.7��C to 12.5��C)<br>
+	 * 0x81.0x7D (-12.7°C.12.5°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : 0.1��C<br>
+	 * Unit : 0.1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -903,17 +855,16 @@ tion�f .mode�h .1<br>
 	 * EPC : 0xBF<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the relative temperature relative to the target temperature for<br>
-	 * an air conditioner operation mode and to acquire the current setting.<br>
+	 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7D (-12.7��C to 12.5��C)<br>
+	 * 0x81.0x7D (-12.7°C.12.5°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : 0.1��C<br>
+	 * Unit : 0.1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -934,10 +885,9 @@ tion�f .mode�h .1<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic air flow rate control function used = 0x41<br>
-	 * Air flow rate = 0x31 to 0x38<br>
+	 * Air flow rate = 0x31.0x38<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -959,10 +909,9 @@ char<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic air flow rate control function used = 0x41<br>
-	 * Air flow rate = 0x31 to 0x38<br>
+	 * Air flow rate = 0x31.0x38<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -984,10 +933,9 @@ char<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic air flow rate control function used = 0x41<br>
-	 * Air flow rate = 0x31 to 0x38<br>
+	 * Air flow rate = 0x31.0x38<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1003,7 +951,7 @@ char<br>
 		return true;
 	}
 	/**
-	 * Property name : �gAir flow direction (vertical)�h setting<br>
+	 * Property name : “Air flow direction (vertical)” setting<br>
 	 * <br>
 	 * EPC : 0xA4<br>
 	 * <br>
@@ -1011,13 +959,11 @@ char<br>
 	 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 9 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic = 0x31, swing = 0x32<br>
-	 * Air flow direction: 0x41 to 0x49 (0x41 and 0x49 shall be used for the<br>
+	 * Automatic = 0x31, swing = 0x32 Air flow direction: 0x41.0x49 (0x41 and 0x49 shall be used for the<br>
 	 * uppermost and lowermost directions,<br>
 	 * respectively.)<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1028,9 +974,9 @@ char<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setGairFlowDirectionVerticalHSetting(byte[] edt) {return false;}
+	protected boolean setAirFlowDirectionVerticalSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : �gAir flow direction (vertical)�h setting<br>
+	 * Property name : “Air flow direction (vertical)” setting<br>
 	 * <br>
 	 * EPC : 0xA4<br>
 	 * <br>
@@ -1038,13 +984,11 @@ char<br>
 	 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 9 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic = 0x31, swing = 0x32<br>
-	 * Air flow direction: 0x41 to 0x49 (0x41 and 0x49 shall be used for the<br>
+	 * Automatic = 0x31, swing = 0x32 Air flow direction: 0x41.0x49 (0x41 and 0x49 shall be used for the<br>
 	 * uppermost and lowermost directions,<br>
 	 * respectively.)<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1055,9 +999,9 @@ char<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getGairFlowDirectionVerticalHSetting() {return null;}
+	protected byte[] getAirFlowDirectionVerticalSetting() {return null;}
 	/**
-	 * Property name : �gAir flow direction (vertical)�h setting<br>
+	 * Property name : “Air flow direction (vertical)” setting<br>
 	 * <br>
 	 * EPC : 0xA4<br>
 	 * <br>
@@ -1065,13 +1009,11 @@ char<br>
 	 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 9 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic = 0x31, swing = 0x32<br>
-	 * Air flow direction: 0x41 to 0x49 (0x41 and 0x49 shall be used for the<br>
+	 * Automatic = 0x31, swing = 0x32 Air flow direction: 0x41.0x49 (0x41 and 0x49 shall be used for the<br>
 	 * uppermost and lowermost directions,<br>
 	 * respectively.)<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1082,12 +1024,12 @@ char<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidGairFlowDirectionVerticalHSetting(byte[] edt) {
+	protected boolean isValidAirFlowDirectionVerticalSetting(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
 	/**
-	 * Property name : �gAir flow direction (horizontal)�h setting<br>
+	 * Property name : “Air flow direction (horizontal)” setting<br>
 	 * <br>
 	 * EPC : 0xA5<br>
 	 * <br>
@@ -1095,13 +1037,11 @@ char<br>
 	 * Used to specify the air flow direction in the horizontal plane by selecting a pattern from among the 6 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic = 0x31, swing = 0x32<br>
-	 * Air flow direction:<br>
+	 * Automatic = 0x31, swing = 0x32 Air flow direction:<br>
 	 * Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward<br>
 	 * = 0x44<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1112,9 +1052,9 @@ char<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setGairFlowDirectionHorizontalHSetting(byte[] edt) {return false;}
+	protected boolean setAirFlowDirectionHorizontalSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : �gAir flow direction (horizontal)�h setting<br>
+	 * Property name : “Air flow direction (horizontal)” setting<br>
 	 * <br>
 	 * EPC : 0xA5<br>
 	 * <br>
@@ -1122,13 +1062,11 @@ char<br>
 	 * Used to specify the air flow direction in the horizontal plane by selecting a pattern from among the 6 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic = 0x31, swing = 0x32<br>
-	 * Air flow direction:<br>
+	 * Automatic = 0x31, swing = 0x32 Air flow direction:<br>
 	 * Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward<br>
 	 * = 0x44<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1139,9 +1077,9 @@ char<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getGairFlowDirectionHorizontalHSetting() {return null;}
+	protected byte[] getAirFlowDirectionHorizontalSetting() {return null;}
 	/**
-	 * Property name : �gAir flow direction (horizontal)�h setting<br>
+	 * Property name : “Air flow direction (horizontal)” setting<br>
 	 * <br>
 	 * EPC : 0xA5<br>
 	 * <br>
@@ -1149,13 +1087,11 @@ char<br>
 	 * Used to specify the air flow direction in the horizontal plane by selecting a pattern from among the 6 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic = 0x31, swing = 0x32<br>
-	 * Air flow direction:<br>
+	 * Automatic = 0x31, swing = 0x32 Air flow direction:<br>
 	 * Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward<br>
 	 * = 0x44<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1166,23 +1102,22 @@ char<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidGairFlowDirectionHorizontalHSetting(byte[] edt) {
+	protected boolean isValidAirFlowDirectionHorizontalSetting(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
 	/**
-	 * Property name : �gSpecial�h state<br>
+	 * Property name : “Special” state<br>
 	 * <br>
 	 * EPC : 0xAA<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates when the air conditioner is in a �gspecial�h state.<br>
+	 * This property indicates when the air conditioner is in a “special” state.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * �gNormal operation�h state = 0x40, �gpreheating�h state = 0x42, �gheat removal�h state = 0x43<br>
+	 * “Normal operation” state = 0x40, “preheating” state = 0x42, “heat removal” state = 0x43<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1193,20 +1128,19 @@ char<br>
 	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getGspecialHState() {return null;}
+	protected byte[] getSpecialState() {return null;}
 	/**
-	 * Property name : �gSpecial�h state<br>
+	 * Property name : “Special” state<br>
 	 * <br>
 	 * EPC : 0xAA<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates when the air conditioner is in a �gspecial�h state.<br>
+	 * This property indicates when the air conditioner is in a “special” state.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * �gNormal operation�h state = 0x40, �gpreheating�h state = 0x42, �gheat removal�h state = 0x43<br>
+	 * “Normal operation” state = 0x40, “preheating” state = 0x42, “heat removal” state = 0x43<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1217,7 +1151,7 @@ char<br>
 	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidGspecialHState(byte[] edt) {
+	protected boolean isValidSpecialState(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
@@ -1227,15 +1161,12 @@ char<br>
 	 * EPC : 0xAC<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the state (ON<br>
-	 * or OFF) of the thermostat.<br>
+	 * This property indicates the state (ON or OFF) of the thermostat.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Thermostat ON = 0x41<br>
-	 * Thermostat OFF = 0x42<br>
+	 * Thermostat ON = 0x41 Thermostat OFF = 0x42<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1253,15 +1184,12 @@ char<br>
 	 * EPC : 0xAC<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the state (ON<br>
-	 * or OFF) of the thermostat.<br>
+	 * This property indicates the state (ON or OFF) of the thermostat.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Thermostat ON = 0x41<br>
-	 * Thermostat OFF = 0x42<br>
+	 * Thermostat ON = 0x41 Thermostat OFF = 0x42<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1277,22 +1205,18 @@ char<br>
 		return true;
 	}
 	/**
-	 * Property name : Current function (�gautomatic�h operation mode)<br>
+	 * Property name : Current function (“automatic” operation mode)<br>
 	 * <br>
 	 * EPC : 0xAE<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates, when the air conditioner is operating in the �gautomatic�h operation mode, the function (�gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h) that is currently being used.<br>
+	 * This property indicates, when the air conditioner is operating in the “automatic” operation mode, the function (“cooling,” “heating,” “dehumidification,” “air circulator” or “other”) that is currently being used.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * The following values shall be used: Cooling: 0x42<br>
-	 * Heating: 0x43<br>
-	 * Dehumidification: 0x44<br>
-	 * Air circulator: 0x45<br>
-	 * Other: 0x40<br>
+	 * Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1305,24 +1229,20 @@ char<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
-	protected byte[] getCurrentFunctionGautomaticHOperationMode() {return null;}
+	protected byte[] getCurrentFunctionAutomaticOperationMode() {return null;}
 	/**
-	 * Property name : Current function (�gautomatic�h operation mode)<br>
+	 * Property name : Current function (“automatic” operation mode)<br>
 	 * <br>
 	 * EPC : 0xAE<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates, when the air conditioner is operating in the �gautomatic�h operation mode, the function (�gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h) that is currently being used.<br>
+	 * This property indicates, when the air conditioner is operating in the “automatic” operation mode, the function (“cooling,” “heating,” “dehumidification,” “air circulator” or “other”) that is currently being used.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * The following values shall be used: Cooling: 0x42<br>
-	 * Heating: 0x43<br>
-	 * Dehumidification: 0x44<br>
-	 * Air circulator: 0x45<br>
-	 * Other: 0x40<br>
+	 * Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1335,7 +1255,7 @@ char<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean isValidCurrentFunctionGautomaticHOperationMode(byte[] edt) {
+	protected boolean isValidCurrentFunctionAutomaticOperationMode(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
@@ -1349,10 +1269,10 @@ char<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Ordinary ventilation = 0x41, ventilation plus total heat exchanger-based heat exchange =<br>
-	 * 0x42, automatic control of ventilation (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br>
+	 * 0x42, automatic control of ventilation<br>
+	 * (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1374,10 +1294,10 @@ char<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Ordinary ventilation = 0x41, ventilation plus total heat exchanger-based heat exchange =<br>
-	 * 0x42, automatic control of ventilation (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br>
+	 * 0x42, automatic control of ventilation<br>
+	 * (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1399,10 +1319,10 @@ char<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Ordinary ventilation = 0x41, ventilation plus total heat exchanger-based heat exchange =<br>
-	 * 0x42, automatic control of ventilation (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br>
+	 * 0x42, automatic control of ventilation<br>
+	 * (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1423,15 +1343,13 @@ char<br>
 	 * EPC : 0xC1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify whether or not to use the �gcombined operation of indoor unit and total heat exchanger�h function,<br>
-	 * and to acquire the current setting.<br>
+	 * Used to specify whether or not to use the “combined operation of indoor unit and total heat exchanger” function,  and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * �gCombined operation of indoor unit and total heat exchanger�h function used = 0x41<br>
-	 * �gCombined operation of indoor unit and total heat exchanger�h function not used= 0x42<br>
+	 * “Combined operation of indoor unit and total heat exchanger” function used = 0x41<br>
+	 * “Combined operation of indoor unit and total heat exchanger” function not used= 0x42<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1449,15 +1367,13 @@ char<br>
 	 * EPC : 0xC1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify whether or not to use the �gcombined operation of indoor unit and total heat exchanger�h function,<br>
-	 * and to acquire the current setting.<br>
+	 * Used to specify whether or not to use the “combined operation of indoor unit and total heat exchanger” function,  and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * �gCombined operation of indoor unit and total heat exchanger�h function used = 0x41<br>
-	 * �gCombined operation of indoor unit and total heat exchanger�h function not used= 0x42<br>
+	 * “Combined operation of indoor unit and total heat exchanger” function used = 0x41<br>
+	 * “Combined operation of indoor unit and total heat exchanger” function not used= 0x42<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1475,15 +1391,13 @@ char<br>
 	 * EPC : 0xC1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify whether or not to use the �gcombined operation of indoor unit and total heat exchanger�h function,<br>
-	 * and to acquire the current setting.<br>
+	 * Used to specify whether or not to use the “combined operation of indoor unit and total heat exchanger” function,  and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * �gCombined operation of indoor unit and total heat exchanger�h function used = 0x41<br>
-	 * �gCombined operation of indoor unit and total heat exchanger�h function not used= 0x42<br>
+	 * “Combined operation of indoor unit and total heat exchanger” function used = 0x41<br>
+	 * “Combined operation of indoor unit and total heat exchanger” function not used= 0x42<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1504,16 +1418,13 @@ char<br>
 	 * EPC : 0xC2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire<br>
-	 * the current setting.<br>
+	 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire  the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic control of ventilation air flow rate = 0x41<br>
-	 * Ventilation air flow rate = 0x31 to<br>
-	 * 0x38<br>
+	 * Ventilation air flow rate = 0x31 to 0x38<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1531,16 +1442,13 @@ char<br>
 	 * EPC : 0xC2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire<br>
-	 * the current setting.<br>
+	 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire  the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic control of ventilation air flow rate = 0x41<br>
-	 * Ventilation air flow rate = 0x31 to<br>
-	 * 0x38<br>
+	 * Ventilation air flow rate = 0x31 to 0x38<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1558,16 +1466,13 @@ char<br>
 	 * EPC : 0xC2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire<br>
-	 * the current setting.<br>
+	 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire  the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic control of ventilation air flow rate = 0x41<br>
-	 * Ventilation air flow rate = 0x31 to<br>
-	 * 0x38<br>
+	 * Ventilation air flow rate = 0x31 to 0x38<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1583,7 +1488,7 @@ char<br>
 		return true;
 	}
 	/**
-	 * Property name : �gDisabling of air conditioner�h setting<br>
+	 * Property name : “Disabling of air conditioner” setting<br>
 	 * <br>
 	 * EPC : 0xCD<br>
 	 * <br>
@@ -1593,8 +1498,7 @@ char<br>
 	 * Value range (decimal notation) :<br>
 	 * Disabled = 0x41, not disabled = 0x42<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1605,9 +1509,9 @@ char<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setGdisablingOfAirConditionerHSetting(byte[] edt) {return false;}
+	protected boolean setDisablingOfAirConditionerSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : �gDisabling of air conditioner�h setting<br>
+	 * Property name : “Disabling of air conditioner” setting<br>
 	 * <br>
 	 * EPC : 0xCD<br>
 	 * <br>
@@ -1617,8 +1521,7 @@ char<br>
 	 * Value range (decimal notation) :<br>
 	 * Disabled = 0x41, not disabled = 0x42<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1629,9 +1532,9 @@ char<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getGdisablingOfAirConditionerHSetting() {return null;}
+	protected byte[] getDisablingOfAirConditionerSetting() {return null;}
 	/**
-	 * Property name : �gDisabling of air conditioner�h setting<br>
+	 * Property name : “Disabling of air conditioner” setting<br>
 	 * <br>
 	 * EPC : 0xCD<br>
 	 * <br>
@@ -1641,8 +1544,7 @@ char<br>
 	 * Value range (decimal notation) :<br>
 	 * Disabled = 0x41, not disabled = 0x42<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1653,7 +1555,7 @@ char<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidGdisablingOfAirConditionerHSetting(byte[] edt) {
+	protected boolean isValidDisablingOfAirConditionerSetting(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
@@ -1668,8 +1570,7 @@ char<br>
 	 * Value range (decimal notation) :<br>
 	 * Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1692,8 +1593,7 @@ char<br>
 	 * Value range (decimal notation) :<br>
 	 * Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1716,8 +1616,7 @@ char<br>
 	 * Value range (decimal notation) :<br>
 	 * Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1743,8 +1642,7 @@ char<br>
 	 * Value range (decimal notation) :<br>
 	 * Enabled = 0x41, disabled = 0x42<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1769,8 +1667,7 @@ char<br>
 	 * Value range (decimal notation) :<br>
 	 * Enabled = 0x41, disabled = 0x42<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1795,8 +1692,7 @@ char<br>
 	 * Value range (decimal notation) :<br>
 	 * Enabled = 0x41, disabled = 0x42<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1822,11 +1718,11 @@ char<br>
 	 * This property indicates the measured power consumption of the indoor unit.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+	 * 0x0000.0xFFFD (0.65533W)<br>
 	 * <br>
-	 * Data type : unsigned<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -1845,11 +1741,11 @@ char<br>
 	 * This property indicates the measured power consumption of the indoor unit.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+	 * 0x0000.0xFFFD (0.65533W)<br>
 	 * <br>
-	 * Data type : unsigned<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -1871,10 +1767,9 @@ char<br>
 	 * This property indicates the aperture of the expansion valve in %.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x64 (0 to 100%)<br>
+	 * 0.0x64 (0.100%)<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1895,10 +1790,9 @@ char<br>
 	 * This property indicates the aperture of the expansion valve in %.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x64 (0 to 100%)<br>
+	 * 0.0x64 (0.100%)<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -1922,14 +1816,13 @@ char<br>
 	 * Used to set the temperature and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+	 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 	 * <br>
-	 * Data type : unsigned
-short<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.1��C<br>
+	 * Unit : 0.1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1948,14 +1841,13 @@ short<br>
 	 * Used to set the temperature and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+	 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 	 * <br>
-	 * Data type : unsigned
-short<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.1��C<br>
+	 * Unit : 0.1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1974,14 +1866,13 @@ short<br>
 	 * Used to set the temperature and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+	 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 	 * <br>
-	 * Data type : unsigned
-short<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.1��C<br>
+	 * Unit : 0.1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1995,21 +1886,19 @@ short<br>
 		return true;
 	}
 	/**
-	 * Property name : �gRelative humidity setting for
-�edehumidificatio n�f mode�h 2<br>
+	 * Property name : “Relative humidity setting for ‘dehumidificatio n’ mode” 2<br>
 	 * <br>
 	 * EPC : 0xE4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>
+	 * Used to set the relative humidity for the “dehumidification” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 0x3E8 (0.0 to 100.0%)<br>
+	 * 0x0000.0x3E8 (0.0.100.0%)<br>
 	 * <br>
-	 * Data type : unsigned
-short<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : 0.1%<br>
 	 * <br>
@@ -2020,23 +1909,21 @@ short<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean setGrelativeHumiditySettingForEdehumidificatioNFModeH2(byte[] edt) {return false;}
+	protected boolean setRelativeHumiditySettingForDehumidificatioNMode2(byte[] edt) {return false;}
 	/**
-	 * Property name : �gRelative humidity setting for
-�edehumidificatio n�f mode�h 2<br>
+	 * Property name : “Relative humidity setting for ‘dehumidificatio n’ mode” 2<br>
 	 * <br>
 	 * EPC : 0xE4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>
+	 * Used to set the relative humidity for the “dehumidification” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 0x3E8 (0.0 to 100.0%)<br>
+	 * 0x0000.0x3E8 (0.0.100.0%)<br>
 	 * <br>
-	 * Data type : unsigned
-short<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : 0.1%<br>
 	 * <br>
@@ -2047,23 +1934,21 @@ short<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
-	protected byte[] getGrelativeHumiditySettingForEdehumidificatioNFModeH2() {return null;}
+	protected byte[] getRelativeHumiditySettingForDehumidificatioNMode2() {return null;}
 	/**
-	 * Property name : �gRelative humidity setting for
-�edehumidificatio n�f mode�h 2<br>
+	 * Property name : “Relative humidity setting for ‘dehumidificatio n’ mode” 2<br>
 	 * <br>
 	 * EPC : 0xE4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>
+	 * Used to set the relative humidity for the “dehumidification” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 0x3E8 (0.0 to 100.0%)<br>
+	 * 0x0000.0x3E8 (0.0.100.0%)<br>
 	 * <br>
-	 * Data type : unsigned
-short<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : 0.1%<br>
 	 * <br>
@@ -2074,247 +1959,223 @@ short<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean isValidGrelativeHumiditySettingForEdehumidificatioNFModeH2(byte[] edt) {
+	protected boolean isValidRelativeHumiditySettingForDehumidificatioNMode2(byte[] edt) {
 		if(edt == null || !(edt.length == 2)) return false;
 		return true;
 	}
 	/**
-	 * Property name : �gTemperature setting for
-�ecooling�f mode�h
-2<br>
+	 * Property name : “Temperature setting for ‘cooling’ mode” 2<br>
 	 * <br>
 	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>
+	 * Used to set the temperature for the “cooling” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+	 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 	 * <br>
-	 * Data type : unsigned
-short<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.1��C<br>
+	 * Unit : 0.1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setGtemperatureSettingForEcoolingFModeH2(byte[] edt) {return false;}
+	protected boolean setTemperatureSettingForCoolingMode2(byte[] edt) {return false;}
 	/**
-	 * Property name : �gTemperature setting for
-�ecooling�f mode�h
-2<br>
+	 * Property name : “Temperature setting for ‘cooling’ mode” 2<br>
 	 * <br>
 	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>
+	 * Used to set the temperature for the “cooling” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+	 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 	 * <br>
-	 * Data type : unsigned
-short<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.1��C<br>
+	 * Unit : 0.1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getGtemperatureSettingForEcoolingFModeH2() {return null;}
+	protected byte[] getTemperatureSettingForCoolingMode2() {return null;}
 	/**
-	 * Property name : �gTemperature setting for
-�ecooling�f mode�h
-2<br>
+	 * Property name : “Temperature setting for ‘cooling’ mode” 2<br>
 	 * <br>
 	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>
+	 * Used to set the temperature for the “cooling” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+	 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 	 * <br>
-	 * Data type : unsigned
-short<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.1��C<br>
+	 * Unit : 0.1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidGtemperatureSettingForEcoolingFModeH2(byte[] edt) {
+	protected boolean isValidTemperatureSettingForCoolingMode2(byte[] edt) {
 		if(edt == null || !(edt.length == 2)) return false;
 		return true;
 	}
 	/**
-	 * Property name : �gTemperature setting for
-�eheating�f mode�h
-2<br>
+	 * Property name : “Temperature setting for ‘heating’ mode” 2<br>
 	 * <br>
 	 * EPC : 0xE6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>
+	 * Used to set the temperature for the “heating” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+	 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 	 * <br>
-	 * Data type : unsigned
-short<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.1��C<br>
+	 * Unit : 0.1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setGtemperatureSettingForEheatingFModeH2(byte[] edt) {return false;}
+	protected boolean setTemperatureSettingForHeatingMode2(byte[] edt) {return false;}
 	/**
-	 * Property name : �gTemperature setting for
-�eheating�f mode�h
-2<br>
+	 * Property name : “Temperature setting for ‘heating’ mode” 2<br>
 	 * <br>
 	 * EPC : 0xE6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>
+	 * Used to set the temperature for the “heating” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+	 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 	 * <br>
-	 * Data type : unsigned
-short<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.1��C<br>
+	 * Unit : 0.1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getGtemperatureSettingForEheatingFModeH2() {return null;}
+	protected byte[] getTemperatureSettingForHeatingMode2() {return null;}
 	/**
-	 * Property name : �gTemperature setting for
-�eheating�f mode�h
-2<br>
+	 * Property name : “Temperature setting for ‘heating’ mode” 2<br>
 	 * <br>
 	 * EPC : 0xE6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>
+	 * Used to set the temperature for the “heating” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+	 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 	 * <br>
-	 * Data type : unsigned
-short<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.1��C<br>
+	 * Unit : 0.1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidGtemperatureSettingForEheatingFModeH2(byte[] edt) {
+	protected boolean isValidTemperatureSettingForHeatingMode2(byte[] edt) {
 		if(edt == null || !(edt.length == 2)) return false;
 		return true;
 	}
 	/**
-	 * Property name : �gTemperature setting for
-�edehumidificatio n�f mode�h 2<br>
+	 * Property name : “Temperature setting for ‘dehumidificatio n’ mode” 2<br>
 	 * <br>
 	 * EPC : 0xE7<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>
+	 * Used to set the temperature for the “dehumidification” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+	 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 	 * <br>
-	 * Data type : unsigned
-short<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.1��C<br>
+	 * Unit : 0.1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setGtemperatureSettingForEdehumidificatioNFModeH2(byte[] edt) {return false;}
+	protected boolean setTemperatureSettingForDehumidificatioNMode2(byte[] edt) {return false;}
 	/**
-	 * Property name : �gTemperature setting for
-�edehumidificatio n�f mode�h 2<br>
+	 * Property name : “Temperature setting for ‘dehumidificatio n’ mode” 2<br>
 	 * <br>
 	 * EPC : 0xE7<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>
+	 * Used to set the temperature for the “dehumidification” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+	 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 	 * <br>
-	 * Data type : unsigned
-short<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.1��C<br>
+	 * Unit : 0.1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getGtemperatureSettingForEdehumidificatioNFModeH2() {return null;}
+	protected byte[] getTemperatureSettingForDehumidificatioNMode2() {return null;}
 	/**
-	 * Property name : �gTemperature setting for
-�edehumidificatio n�f mode�h 2<br>
+	 * Property name : “Temperature setting for ‘dehumidificatio n’ mode” 2<br>
 	 * <br>
 	 * EPC : 0xE7<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>
+	 * Used to set the temperature for the “dehumidification” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+	 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 	 * <br>
-	 * Data type : unsigned
-short<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.1��C<br>
+	 * Unit : 0.1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidGtemperatureSettingForEdehumidificatioNFModeH2(byte[] edt) {
+	protected boolean isValidTemperatureSettingForDehumidificatioNMode2(byte[] edt) {
 		if(edt == null || !(edt.length == 2)) return false;
 		return true;
 	}
@@ -2327,12 +2188,11 @@ short<br>
 	 * Used to acquire the measured indoor relative humidity.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 0x3E8 (0.0 to 100.0%)<br>
+	 * 0x0000.0x3E8 (0.0.100.0%)<br>
 	 * <br>
-	 * Data type : unsigned
-short<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : 0.1%<br>
 	 * <br>
@@ -2351,12 +2211,11 @@ short<br>
 	 * Used to acquire the measured indoor relative humidity.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 0x3E8 (0.0 to 100.0%)<br>
+	 * 0x0000.0x3E8 (0.0.100.0%)<br>
 	 * <br>
-	 * Data type : unsigned
-short<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : 0.1%<br>
 	 * <br>
@@ -2378,15 +2237,13 @@ short<br>
 	 * Used to acquire the measured indoor temperature.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0xF554 to 0x7FFD (-273,2 to<br>
-	 * 3276,5��C)<br>
+	 * 0xF554.0x7FFD (-273,2.3276,5°C)<br>
 	 * <br>
-	 * Data type : unsigned
-short<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.1��C<br>
+	 * Unit : 0.1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2403,15 +2260,13 @@ short<br>
 	 * Used to acquire the measured indoor temperature.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0xF554 to 0x7FFD (-273,2 to<br>
-	 * 3276,5��C)<br>
+	 * 0xF554.0x7FFD (-273,2.3276,5°C)<br>
 	 * <br>
-	 * Data type : unsigned
-short<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.1��C<br>
+	 * Unit : 0.1°C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2423,8 +2278,8 @@ short<br>
 		return true;
 	}
 	/**
-	 * Property name : �gON
-timer-based reservation�h setting<br>
+	 * Property name : “ON
+timer-based reservation” setting<br>
 	 * <br>
 	 * EPC : 0x90<br>
 	 * <br>
@@ -2432,12 +2287,9 @@ timer-based reservation�h setting<br>
 	 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-	 * 0x42, time-based reservation function is ON = 0x43, relative time-based<br>
-	 * reservation function is ON = 0x44<br>
+	 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -2448,10 +2300,10 @@ char<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setGonTimerBasedReservationHSetting(byte[] edt) {return false;}
+	protected boolean setOnTimerBasedReservationSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : �gON
-timer-based reservation�h setting<br>
+	 * Property name : “ON
+timer-based reservation” setting<br>
 	 * <br>
 	 * EPC : 0x90<br>
 	 * <br>
@@ -2459,12 +2311,9 @@ timer-based reservation�h setting<br>
 	 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-	 * 0x42, time-based reservation function is ON = 0x43, relative time-based<br>
-	 * reservation function is ON = 0x44<br>
+	 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -2475,10 +2324,10 @@ char<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getGonTimerBasedReservationHSetting() {return null;}
+	protected byte[] getOnTimerBasedReservationSetting() {return null;}
 	/**
-	 * Property name : �gON
-timer-based reservation�h setting<br>
+	 * Property name : “ON
+timer-based reservation” setting<br>
 	 * <br>
 	 * EPC : 0x90<br>
 	 * <br>
@@ -2486,12 +2335,9 @@ timer-based reservation�h setting<br>
 	 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-	 * 0x42, time-based reservation function is ON = 0x43, relative time-based<br>
-	 * reservation function is ON = 0x44<br>
+	 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
@@ -2502,7 +2348,7 @@ char<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidGonTimerBasedReservationHSetting(byte[] edt) {
+	protected boolean isValidOnTimerBasedReservationSetting(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
@@ -2516,13 +2362,11 @@ char<br>
 	 * time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned
-char�~2<br>
+	 * Data type : unsigned char×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -2542,13 +2386,11 @@ char�~2<br>
 	 * time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned
-char�~2<br>
+	 * Data type : unsigned char×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -2568,13 +2410,11 @@ char�~2<br>
 	 * time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned
-char�~2<br>
+	 * Data type : unsigned char×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -2596,13 +2436,12 @@ char�~2<br>
 	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0xFF: 0 to 0x3B<br>
-	 * (= 0 to 255): (= 0 to 59)<br>
+	 * 0.0xFF: 0.0x3B<br>
+	 * (= 0.255): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned
-char�~2<br>
+	 * Data type : unsigned char×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -2621,13 +2460,12 @@ char�~2<br>
 	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0xFF: 0 to 0x3B<br>
-	 * (= 0 to 255): (= 0 to 59)<br>
+	 * 0.0xFF: 0.0x3B<br>
+	 * (= 0.255): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned
-char�~2<br>
+	 * Data type : unsigned char×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -2646,13 +2484,12 @@ char�~2<br>
 	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0xFF: 0 to 0x3B<br>
-	 * (= 0 to 255): (= 0 to 59)<br>
+	 * 0.0xFF: 0.0x3B<br>
+	 * (= 0.255): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned
-char�~2<br>
+	 * Data type : unsigned char×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -2666,8 +2503,8 @@ char�~2<br>
 		return true;
 	}
 	/**
-	 * Property name : �gOFF
-timer-based reservation�h setting<br>
+	 * Property name : “OFF
+timer-based reservation” setting<br>
 	 * <br>
 	 * EPC : 0x94<br>
 	 * <br>
@@ -2675,14 +2512,11 @@ timer-based reservation�h setting<br>
 	 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-	 * 0x42, time-based reservation function is ON = 0x43, relative time-based<br>
-	 * reservation function is ON = 0x44<br>
+	 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 byte<br>
+	 * Data size : 1 bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -2691,10 +2525,10 @@ char<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setGoffTimerBasedReservationHSetting(byte[] edt) {return false;}
+	protected boolean setOffTimerBasedReservationSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : �gOFF
-timer-based reservation�h setting<br>
+	 * Property name : “OFF
+timer-based reservation” setting<br>
 	 * <br>
 	 * EPC : 0x94<br>
 	 * <br>
@@ -2702,14 +2536,11 @@ timer-based reservation�h setting<br>
 	 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-	 * 0x42, time-based reservation function is ON = 0x43, relative time-based<br>
-	 * reservation function is ON = 0x44<br>
+	 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 byte<br>
+	 * Data size : 1 bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -2718,10 +2549,10 @@ char<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getGoffTimerBasedReservationHSetting() {return null;}
+	protected byte[] getOffTimerBasedReservationSetting() {return null;}
 	/**
-	 * Property name : �gOFF
-timer-based reservation�h setting<br>
+	 * Property name : “OFF
+timer-based reservation” setting<br>
 	 * <br>
 	 * EPC : 0x94<br>
 	 * <br>
@@ -2729,14 +2560,11 @@ timer-based reservation�h setting<br>
 	 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-	 * 0x42, time-based reservation function is ON = 0x43, relative time-based<br>
-	 * reservation function is ON = 0x44<br>
+	 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 byte<br>
+	 * Data size : 1 bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -2745,7 +2573,7 @@ char<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidGoffTimerBasedReservationHSetting(byte[] edt) {
+	protected boolean isValidOffTimerBasedReservationSetting(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
@@ -2759,13 +2587,11 @@ char<br>
 	 * time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned
-char�~2<br>
+	 * Data type : unsigned char×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -2785,13 +2611,11 @@ char�~2<br>
 	 * time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned
-char�~2<br>
+	 * Data type : unsigned char×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -2811,13 +2635,11 @@ char�~2<br>
 	 * time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned
-char�~2<br>
+	 * Data type : unsigned char×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -2839,13 +2661,12 @@ char�~2<br>
 	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0xFF: 0 to 0x3B<br>
-	 * (= 0 to 255): (= 0 to 59)<br>
+	 * 0.0xFF: 0.0x3B<br>
+	 * (= 0.255): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned
-char�~2<br>
+	 * Data type : unsigned char×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -2864,13 +2685,12 @@ char�~2<br>
 	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0xFF: 0 to 0x3B<br>
-	 * (= 0 to 255): (= 0 to 59)<br>
+	 * 0.0xFF: 0.0x3B<br>
+	 * (= 0.255): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned
-char�~2<br>
+	 * Data type : unsigned char×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -2889,13 +2709,12 @@ char�~2<br>
 	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0xFF: 0 to 0x3B<br>
-	 * (= 0 to 255): (= 0 to 59)<br>
+	 * 0.0xFF: 0.0x3B<br>
+	 * (= 0.255): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned
-char�~2<br>
+	 * Data type : unsigned char×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -2917,29 +2736,29 @@ char�~2<br>
 		switch(property.epc) {
 		case EPC_OPERATION_MODE_SETTING : return setOperationModeSetting(property.edt);
 		case EPC_TEMPERATURE_SETTING1 : return setTemperatureSetting1(property.edt);
-		case EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1 : return setGrelativeHumiditySettingForEdehumidificaTionFModeH1(property.edt);
-		case EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H1 : return setGtemperatureSettingForEcoolingFModeH1(property.edt);
-		case EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H1 : return setGtemperatureSettingForEheatingFModeH1(property.edt);
-		case EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1 : return setGtemperatureSettingForEdehumidificaTionFModeH1(property.edt);
+		case EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE1 : return setRelativeHumiditySettingForDehumidificaTionMode1(property.edt);
+		case EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE1 : return setTemperatureSettingForCoolingMode1(property.edt);
+		case EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE1 : return setTemperatureSettingForHeatingMode1(property.edt);
+		case EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICA_TION_MODE1 : return setTemperatureSettingForDehumidificaTionMode1(property.edt);
 		case EPC_RELATIVE_TEMPERATURE_SETTING : return setRelativeTemperatureSetting(property.edt);
 		case EPC_AIR_FLOW_RATE_SETTING : return setAirFlowRateSetting(property.edt);
-		case EPC_GAIR_FLOW_DIRECTION_VERTICAL_H_SETTING : return setGairFlowDirectionVerticalHSetting(property.edt);
-		case EPC_GAIR_FLOW_DIRECTION_HORIZONTAL_H_SETTING : return setGairFlowDirectionHorizontalHSetting(property.edt);
+		case EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING : return setAirFlowDirectionVerticalSetting(property.edt);
+		case EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING : return setAirFlowDirectionHorizontalSetting(property.edt);
 		case EPC_VENTILATION_MODE_SETTING : return setVentilationModeSetting(property.edt);
 		case EPC_COMBINED_OPERATION_OF_INDOOR_UNIT_AND_TOTAL_HEAT_EXCHANGER : return setCombinedOperationOfIndoorUnitAndTotalHeatExchanger(property.edt);
 		case EPC_VENTILATION_AIR_FLOW_RATE_SETTING : return setVentilationAirFlowRateSetting(property.edt);
-		case EPC_GDISABLING_OF_AIR_CONDITIONER_H_SETTING : return setGdisablingOfAirConditionerHSetting(property.edt);
+		case EPC_DISABLING_OF_AIR_CONDITIONER_SETTING : return setDisablingOfAirConditionerSetting(property.edt);
 		case EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION : return setThermostatSettingOverrideFunction(property.edt);
 		case EPC_FILTER_CLEANING_REMINDER_LAMP_SETTING : return setFilterCleaningReminderLampSetting(property.edt);
 		case EPC_TEMPERATURE_SETTING2 : return setTemperatureSetting2(property.edt);
-		case EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2 : return setGrelativeHumiditySettingForEdehumidificatioNFModeH2(property.edt);
-		case EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H2 : return setGtemperatureSettingForEcoolingFModeH2(property.edt);
-		case EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H2 : return setGtemperatureSettingForEheatingFModeH2(property.edt);
-		case EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2 : return setGtemperatureSettingForEdehumidificatioNFModeH2(property.edt);
-		case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING : return setGonTimerBasedReservationHSetting(property.edt);
+		case EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE2 : return setRelativeHumiditySettingForDehumidificatioNMode2(property.edt);
+		case EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE2 : return setTemperatureSettingForCoolingMode2(property.edt);
+		case EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE2 : return setTemperatureSettingForHeatingMode2(property.edt);
+		case EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE2 : return setTemperatureSettingForDehumidificatioNMode2(property.edt);
+		case EPC_ON_TIMER_BASED_RESERVATION_SETTING : return setOnTimerBasedReservationSetting(property.edt);
 		case EPC_ON_TIMER_SETTING_TIME : return setOnTimerSettingTime(property.edt);
 		case EPC_ON_TIMER_SETTING_RELATIVE_TIME : return setOnTimerSettingRelativeTime(property.edt);
-		case EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING : return setGoffTimerBasedReservationHSetting(property.edt);
+		case EPC_OFF_TIMER_BASED_RESERVATION_SETTING : return setOffTimerBasedReservationSetting(property.edt);
 		case EPC_OFF_TIMER_SETTING_TIME : return setOffTimerSettingTime(property.edt);
 		case EPC_OFF_TIMER_SETTING_RELATIVE_TIME : return setOffTimerSettingRelativeTime(property.edt);
 		default : return false;
@@ -2954,40 +2773,40 @@ char�~2<br>
 		switch(epc) {
 		case EPC_OPERATION_MODE_SETTING : return getOperationModeSetting();
 		case EPC_TEMPERATURE_SETTING1 : return getTemperatureSetting1();
-		case EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1 : return getGrelativeHumiditySettingForEdehumidificaTionFModeH1();
-		case EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H1 : return getGtemperatureSettingForEcoolingFModeH1();
-		case EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H1 : return getGtemperatureSettingForEheatingFModeH1();
-		case EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1 : return getGtemperatureSettingForEdehumidificaTionFModeH1();
+		case EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE1 : return getRelativeHumiditySettingForDehumidificaTionMode1();
+		case EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE1 : return getTemperatureSettingForCoolingMode1();
+		case EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE1 : return getTemperatureSettingForHeatingMode1();
+		case EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICA_TION_MODE1 : return getTemperatureSettingForDehumidificaTionMode1();
 		case EPC_RATED_POWER_CONSUMPTION_OF_INDOOR_UNIT : return getRatedPowerConsumptionOfIndoorUnit();
 		case EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_INDOOR_UNIT : return getMeasuredElectricCurrentConsumptionOfIndoorUnit();
 		case EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY1 : return getMeasuredIndoorRelativeHumidity1();
 		case EPC_MEASURED_INDOOR_TEMPERATURE1 : return getMeasuredIndoorTemperature1();
 		case EPC_RELATIVE_TEMPERATURE_SETTING : return getRelativeTemperatureSetting();
 		case EPC_AIR_FLOW_RATE_SETTING : return getAirFlowRateSetting();
-		case EPC_GAIR_FLOW_DIRECTION_VERTICAL_H_SETTING : return getGairFlowDirectionVerticalHSetting();
-		case EPC_GAIR_FLOW_DIRECTION_HORIZONTAL_H_SETTING : return getGairFlowDirectionHorizontalHSetting();
-		case EPC_GSPECIAL_H_STATE : return getGspecialHState();
+		case EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING : return getAirFlowDirectionVerticalSetting();
+		case EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING : return getAirFlowDirectionHorizontalSetting();
+		case EPC_SPECIAL_STATE : return getSpecialState();
 		case EPC_THERMOSTAT_STATE : return getThermostatState();
-		case EPC_CURRENT_FUNCTION_GAUTOMATIC_H_OPERATION_MODE : return getCurrentFunctionGautomaticHOperationMode();
+		case EPC_CURRENT_FUNCTION_AUTOMATIC_OPERATION_MODE : return getCurrentFunctionAutomaticOperationMode();
 		case EPC_VENTILATION_MODE_SETTING : return getVentilationModeSetting();
 		case EPC_COMBINED_OPERATION_OF_INDOOR_UNIT_AND_TOTAL_HEAT_EXCHANGER : return getCombinedOperationOfIndoorUnitAndTotalHeatExchanger();
 		case EPC_VENTILATION_AIR_FLOW_RATE_SETTING : return getVentilationAirFlowRateSetting();
-		case EPC_GDISABLING_OF_AIR_CONDITIONER_H_SETTING : return getGdisablingOfAirConditionerHSetting();
+		case EPC_DISABLING_OF_AIR_CONDITIONER_SETTING : return getDisablingOfAirConditionerSetting();
 		case EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION : return getThermostatSettingOverrideFunction();
 		case EPC_FILTER_CLEANING_REMINDER_LAMP_SETTING : return getFilterCleaningReminderLampSetting();
 		case EPC_MEASURED_POWER_CONSUMPTION_OF_INDOOR_UNIT : return getMeasuredPowerConsumptionOfIndoorUnit();
 		case EPC_APERTURE_OF_EXPANSION_VALVE : return getApertureOfExpansionValve();
 		case EPC_TEMPERATURE_SETTING2 : return getTemperatureSetting2();
-		case EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2 : return getGrelativeHumiditySettingForEdehumidificatioNFModeH2();
-		case EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H2 : return getGtemperatureSettingForEcoolingFModeH2();
-		case EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H2 : return getGtemperatureSettingForEheatingFModeH2();
-		case EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2 : return getGtemperatureSettingForEdehumidificatioNFModeH2();
+		case EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE2 : return getRelativeHumiditySettingForDehumidificatioNMode2();
+		case EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE2 : return getTemperatureSettingForCoolingMode2();
+		case EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE2 : return getTemperatureSettingForHeatingMode2();
+		case EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE2 : return getTemperatureSettingForDehumidificatioNMode2();
 		case EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY2 : return getMeasuredIndoorRelativeHumidity2();
 		case EPC_MEASURED_INDOOR_TEMPERATURE2 : return getMeasuredIndoorTemperature2();
-		case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING : return getGonTimerBasedReservationHSetting();
+		case EPC_ON_TIMER_BASED_RESERVATION_SETTING : return getOnTimerBasedReservationSetting();
 		case EPC_ON_TIMER_SETTING_TIME : return getOnTimerSettingTime();
 		case EPC_ON_TIMER_SETTING_RELATIVE_TIME : return getOnTimerSettingRelativeTime();
-		case EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING : return getGoffTimerBasedReservationHSetting();
+		case EPC_OFF_TIMER_BASED_RESERVATION_SETTING : return getOffTimerBasedReservationSetting();
 		case EPC_OFF_TIMER_SETTING_TIME : return getOffTimerSettingTime();
 		case EPC_OFF_TIMER_SETTING_RELATIVE_TIME : return getOffTimerSettingRelativeTime();
 		default : return null;
@@ -3002,40 +2821,40 @@ char�~2<br>
 		switch(property.epc) {
 		case EPC_OPERATION_MODE_SETTING : return isValidOperationModeSetting(property.edt);
 		case EPC_TEMPERATURE_SETTING1 : return isValidTemperatureSetting1(property.edt);
-		case EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1 : return isValidGrelativeHumiditySettingForEdehumidificaTionFModeH1(property.edt);
-		case EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H1 : return isValidGtemperatureSettingForEcoolingFModeH1(property.edt);
-		case EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H1 : return isValidGtemperatureSettingForEheatingFModeH1(property.edt);
-		case EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1 : return isValidGtemperatureSettingForEdehumidificaTionFModeH1(property.edt);
+		case EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE1 : return isValidRelativeHumiditySettingForDehumidificaTionMode1(property.edt);
+		case EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE1 : return isValidTemperatureSettingForCoolingMode1(property.edt);
+		case EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE1 : return isValidTemperatureSettingForHeatingMode1(property.edt);
+		case EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICA_TION_MODE1 : return isValidTemperatureSettingForDehumidificaTionMode1(property.edt);
 		case EPC_RATED_POWER_CONSUMPTION_OF_INDOOR_UNIT : return isValidRatedPowerConsumptionOfIndoorUnit(property.edt);
 		case EPC_MEASURED_ELECTRIC_CURRENT_CONSUMPTION_OF_INDOOR_UNIT : return isValidMeasuredElectricCurrentConsumptionOfIndoorUnit(property.edt);
 		case EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY1 : return isValidMeasuredIndoorRelativeHumidity1(property.edt);
 		case EPC_MEASURED_INDOOR_TEMPERATURE1 : return isValidMeasuredIndoorTemperature1(property.edt);
 		case EPC_RELATIVE_TEMPERATURE_SETTING : return isValidRelativeTemperatureSetting(property.edt);
 		case EPC_AIR_FLOW_RATE_SETTING : return isValidAirFlowRateSetting(property.edt);
-		case EPC_GAIR_FLOW_DIRECTION_VERTICAL_H_SETTING : return isValidGairFlowDirectionVerticalHSetting(property.edt);
-		case EPC_GAIR_FLOW_DIRECTION_HORIZONTAL_H_SETTING : return isValidGairFlowDirectionHorizontalHSetting(property.edt);
-		case EPC_GSPECIAL_H_STATE : return isValidGspecialHState(property.edt);
+		case EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING : return isValidAirFlowDirectionVerticalSetting(property.edt);
+		case EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING : return isValidAirFlowDirectionHorizontalSetting(property.edt);
+		case EPC_SPECIAL_STATE : return isValidSpecialState(property.edt);
 		case EPC_THERMOSTAT_STATE : return isValidThermostatState(property.edt);
-		case EPC_CURRENT_FUNCTION_GAUTOMATIC_H_OPERATION_MODE : return isValidCurrentFunctionGautomaticHOperationMode(property.edt);
+		case EPC_CURRENT_FUNCTION_AUTOMATIC_OPERATION_MODE : return isValidCurrentFunctionAutomaticOperationMode(property.edt);
 		case EPC_VENTILATION_MODE_SETTING : return isValidVentilationModeSetting(property.edt);
 		case EPC_COMBINED_OPERATION_OF_INDOOR_UNIT_AND_TOTAL_HEAT_EXCHANGER : return isValidCombinedOperationOfIndoorUnitAndTotalHeatExchanger(property.edt);
 		case EPC_VENTILATION_AIR_FLOW_RATE_SETTING : return isValidVentilationAirFlowRateSetting(property.edt);
-		case EPC_GDISABLING_OF_AIR_CONDITIONER_H_SETTING : return isValidGdisablingOfAirConditionerHSetting(property.edt);
+		case EPC_DISABLING_OF_AIR_CONDITIONER_SETTING : return isValidDisablingOfAirConditionerSetting(property.edt);
 		case EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION : return isValidThermostatSettingOverrideFunction(property.edt);
 		case EPC_FILTER_CLEANING_REMINDER_LAMP_SETTING : return isValidFilterCleaningReminderLampSetting(property.edt);
 		case EPC_MEASURED_POWER_CONSUMPTION_OF_INDOOR_UNIT : return isValidMeasuredPowerConsumptionOfIndoorUnit(property.edt);
 		case EPC_APERTURE_OF_EXPANSION_VALVE : return isValidApertureOfExpansionValve(property.edt);
 		case EPC_TEMPERATURE_SETTING2 : return isValidTemperatureSetting2(property.edt);
-		case EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2 : return isValidGrelativeHumiditySettingForEdehumidificatioNFModeH2(property.edt);
-		case EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H2 : return isValidGtemperatureSettingForEcoolingFModeH2(property.edt);
-		case EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H2 : return isValidGtemperatureSettingForEheatingFModeH2(property.edt);
-		case EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2 : return isValidGtemperatureSettingForEdehumidificatioNFModeH2(property.edt);
+		case EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE2 : return isValidRelativeHumiditySettingForDehumidificatioNMode2(property.edt);
+		case EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE2 : return isValidTemperatureSettingForCoolingMode2(property.edt);
+		case EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE2 : return isValidTemperatureSettingForHeatingMode2(property.edt);
+		case EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE2 : return isValidTemperatureSettingForDehumidificatioNMode2(property.edt);
 		case EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY2 : return isValidMeasuredIndoorRelativeHumidity2(property.edt);
 		case EPC_MEASURED_INDOOR_TEMPERATURE2 : return isValidMeasuredIndoorTemperature2(property.edt);
-		case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING : return isValidGonTimerBasedReservationHSetting(property.edt);
+		case EPC_ON_TIMER_BASED_RESERVATION_SETTING : return isValidOnTimerBasedReservationSetting(property.edt);
 		case EPC_ON_TIMER_SETTING_TIME : return isValidOnTimerSettingTime(property.edt);
 		case EPC_ON_TIMER_SETTING_RELATIVE_TIME : return isValidOnTimerSettingRelativeTime(property.edt);
-		case EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING : return isValidGoffTimerBasedReservationHSetting(property.edt);
+		case EPC_OFF_TIMER_BASED_RESERVATION_SETTING : return isValidOffTimerBasedReservationSetting(property.edt);
 		case EPC_OFF_TIMER_SETTING_TIME : return isValidOffTimerSettingTime(property.edt);
 		case EPC_OFF_TIMER_SETTING_RELATIVE_TIME : return isValidOffTimerSettingRelativeTime(property.edt);
 		default : return false;
@@ -3091,17 +2910,17 @@ char�~2<br>
 			case EPC_TEMPERATURE_SETTING1 : 
 				onSetTemperatureSetting1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1 : 
-				onSetGrelativeHumiditySettingForEdehumidificaTionFModeH1(eoj, tid, esv, property, success);
+			case EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE1 : 
+				onSetRelativeHumiditySettingForDehumidificaTionMode1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H1 : 
-				onSetGtemperatureSettingForEcoolingFModeH1(eoj, tid, esv, property, success);
+			case EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE1 : 
+				onSetTemperatureSettingForCoolingMode1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H1 : 
-				onSetGtemperatureSettingForEheatingFModeH1(eoj, tid, esv, property, success);
+			case EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE1 : 
+				onSetTemperatureSettingForHeatingMode1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1 : 
-				onSetGtemperatureSettingForEdehumidificaTionFModeH1(eoj, tid, esv, property, success);
+			case EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICA_TION_MODE1 : 
+				onSetTemperatureSettingForDehumidificaTionMode1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_RELATIVE_TEMPERATURE_SETTING : 
 				onSetRelativeTemperatureSetting(eoj, tid, esv, property, success);
@@ -3109,11 +2928,11 @@ char�~2<br>
 			case EPC_AIR_FLOW_RATE_SETTING : 
 				onSetAirFlowRateSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GAIR_FLOW_DIRECTION_VERTICAL_H_SETTING : 
-				onSetGairFlowDirectionVerticalHSetting(eoj, tid, esv, property, success);
+			case EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING : 
+				onSetAirFlowDirectionVerticalSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GAIR_FLOW_DIRECTION_HORIZONTAL_H_SETTING : 
-				onSetGairFlowDirectionHorizontalHSetting(eoj, tid, esv, property, success);
+			case EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING : 
+				onSetAirFlowDirectionHorizontalSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_VENTILATION_MODE_SETTING : 
 				onSetVentilationModeSetting(eoj, tid, esv, property, success);
@@ -3124,8 +2943,8 @@ char�~2<br>
 			case EPC_VENTILATION_AIR_FLOW_RATE_SETTING : 
 				onSetVentilationAirFlowRateSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GDISABLING_OF_AIR_CONDITIONER_H_SETTING : 
-				onSetGdisablingOfAirConditionerHSetting(eoj, tid, esv, property, success);
+			case EPC_DISABLING_OF_AIR_CONDITIONER_SETTING : 
+				onSetDisablingOfAirConditionerSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION : 
 				onSetThermostatSettingOverrideFunction(eoj, tid, esv, property, success);
@@ -3136,20 +2955,20 @@ char�~2<br>
 			case EPC_TEMPERATURE_SETTING2 : 
 				onSetTemperatureSetting2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2 : 
-				onSetGrelativeHumiditySettingForEdehumidificatioNFModeH2(eoj, tid, esv, property, success);
+			case EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE2 : 
+				onSetRelativeHumiditySettingForDehumidificatioNMode2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H2 : 
-				onSetGtemperatureSettingForEcoolingFModeH2(eoj, tid, esv, property, success);
+			case EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE2 : 
+				onSetTemperatureSettingForCoolingMode2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H2 : 
-				onSetGtemperatureSettingForEheatingFModeH2(eoj, tid, esv, property, success);
+			case EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE2 : 
+				onSetTemperatureSettingForHeatingMode2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2 : 
-				onSetGtemperatureSettingForEdehumidificatioNFModeH2(eoj, tid, esv, property, success);
+			case EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE2 : 
+				onSetTemperatureSettingForDehumidificatioNMode2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING : 
-				onSetGonTimerBasedReservationHSetting(eoj, tid, esv, property, success);
+			case EPC_ON_TIMER_BASED_RESERVATION_SETTING : 
+				onSetOnTimerBasedReservationSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ON_TIMER_SETTING_TIME : 
 				onSetOnTimerSettingTime(eoj, tid, esv, property, success);
@@ -3157,8 +2976,8 @@ char�~2<br>
 			case EPC_ON_TIMER_SETTING_RELATIVE_TIME : 
 				onSetOnTimerSettingRelativeTime(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING : 
-				onSetGoffTimerBasedReservationHSetting(eoj, tid, esv, property, success);
+			case EPC_OFF_TIMER_BASED_RESERVATION_SETTING : 
+				onSetOffTimerBasedReservationSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_OFF_TIMER_SETTING_TIME : 
 				onSetOffTimerSettingTime(eoj, tid, esv, property, success);
@@ -3184,17 +3003,17 @@ char�~2<br>
 			case EPC_TEMPERATURE_SETTING1 : 
 				onGetTemperatureSetting1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1 : 
-				onGetGrelativeHumiditySettingForEdehumidificaTionFModeH1(eoj, tid, esv, property, success);
+			case EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE1 : 
+				onGetRelativeHumiditySettingForDehumidificaTionMode1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H1 : 
-				onGetGtemperatureSettingForEcoolingFModeH1(eoj, tid, esv, property, success);
+			case EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE1 : 
+				onGetTemperatureSettingForCoolingMode1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H1 : 
-				onGetGtemperatureSettingForEheatingFModeH1(eoj, tid, esv, property, success);
+			case EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE1 : 
+				onGetTemperatureSettingForHeatingMode1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1 : 
-				onGetGtemperatureSettingForEdehumidificaTionFModeH1(eoj, tid, esv, property, success);
+			case EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICA_TION_MODE1 : 
+				onGetTemperatureSettingForDehumidificaTionMode1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_RATED_POWER_CONSUMPTION_OF_INDOOR_UNIT : 
 				onGetRatedPowerConsumptionOfIndoorUnit(eoj, tid, esv, property, success);
@@ -3214,20 +3033,20 @@ char�~2<br>
 			case EPC_AIR_FLOW_RATE_SETTING : 
 				onGetAirFlowRateSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GAIR_FLOW_DIRECTION_VERTICAL_H_SETTING : 
-				onGetGairFlowDirectionVerticalHSetting(eoj, tid, esv, property, success);
+			case EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING : 
+				onGetAirFlowDirectionVerticalSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GAIR_FLOW_DIRECTION_HORIZONTAL_H_SETTING : 
-				onGetGairFlowDirectionHorizontalHSetting(eoj, tid, esv, property, success);
+			case EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING : 
+				onGetAirFlowDirectionHorizontalSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GSPECIAL_H_STATE : 
-				onGetGspecialHState(eoj, tid, esv, property, success);
+			case EPC_SPECIAL_STATE : 
+				onGetSpecialState(eoj, tid, esv, property, success);
 				return true;
 			case EPC_THERMOSTAT_STATE : 
 				onGetThermostatState(eoj, tid, esv, property, success);
 				return true;
-			case EPC_CURRENT_FUNCTION_GAUTOMATIC_H_OPERATION_MODE : 
-				onGetCurrentFunctionGautomaticHOperationMode(eoj, tid, esv, property, success);
+			case EPC_CURRENT_FUNCTION_AUTOMATIC_OPERATION_MODE : 
+				onGetCurrentFunctionAutomaticOperationMode(eoj, tid, esv, property, success);
 				return true;
 			case EPC_VENTILATION_MODE_SETTING : 
 				onGetVentilationModeSetting(eoj, tid, esv, property, success);
@@ -3238,8 +3057,8 @@ char�~2<br>
 			case EPC_VENTILATION_AIR_FLOW_RATE_SETTING : 
 				onGetVentilationAirFlowRateSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GDISABLING_OF_AIR_CONDITIONER_H_SETTING : 
-				onGetGdisablingOfAirConditionerHSetting(eoj, tid, esv, property, success);
+			case EPC_DISABLING_OF_AIR_CONDITIONER_SETTING : 
+				onGetDisablingOfAirConditionerSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_THERMOSTAT_SETTING_OVERRIDE_FUNCTION : 
 				onGetThermostatSettingOverrideFunction(eoj, tid, esv, property, success);
@@ -3256,17 +3075,17 @@ char�~2<br>
 			case EPC_TEMPERATURE_SETTING2 : 
 				onGetTemperatureSetting2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2 : 
-				onGetGrelativeHumiditySettingForEdehumidificatioNFModeH2(eoj, tid, esv, property, success);
+			case EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE2 : 
+				onGetRelativeHumiditySettingForDehumidificatioNMode2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H2 : 
-				onGetGtemperatureSettingForEcoolingFModeH2(eoj, tid, esv, property, success);
+			case EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE2 : 
+				onGetTemperatureSettingForCoolingMode2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H2 : 
-				onGetGtemperatureSettingForEheatingFModeH2(eoj, tid, esv, property, success);
+			case EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE2 : 
+				onGetTemperatureSettingForHeatingMode2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2 : 
-				onGetGtemperatureSettingForEdehumidificatioNFModeH2(eoj, tid, esv, property, success);
+			case EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE2 : 
+				onGetTemperatureSettingForDehumidificatioNMode2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MEASURED_INDOOR_RELATIVE_HUMIDITY2 : 
 				onGetMeasuredIndoorRelativeHumidity2(eoj, tid, esv, property, success);
@@ -3274,8 +3093,8 @@ char�~2<br>
 			case EPC_MEASURED_INDOOR_TEMPERATURE2 : 
 				onGetMeasuredIndoorTemperature2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GON_TIMER_BASED_RESERVATION_H_SETTING : 
-				onGetGonTimerBasedReservationHSetting(eoj, tid, esv, property, success);
+			case EPC_ON_TIMER_BASED_RESERVATION_SETTING : 
+				onGetOnTimerBasedReservationSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ON_TIMER_SETTING_TIME : 
 				onGetOnTimerSettingTime(eoj, tid, esv, property, success);
@@ -3283,8 +3102,8 @@ char�~2<br>
 			case EPC_ON_TIMER_SETTING_RELATIVE_TIME : 
 				onGetOnTimerSettingRelativeTime(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING : 
-				onGetGoffTimerBasedReservationHSetting(eoj, tid, esv, property, success);
+			case EPC_OFF_TIMER_BASED_RESERVATION_SETTING : 
+				onGetOffTimerBasedReservationSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_OFF_TIMER_SETTING_TIME : 
 				onGetOffTimerSettingTime(eoj, tid, esv, property, success);
@@ -3303,16 +3122,12 @@ char�~2<br>
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the operation mode (�gautomatic,�h .�gcooling,�h .�gheating,�h . �gdehumidification�h .or .�gair .<br>
-		 * circulator�h) .and .to .acquire .the .current .<br>
-		 * setting.<br>
+		 * Used to specify the operation mode (“automatic,” “cooling,” “heating,” “dehumidification” or “air circulator”) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The following values shall be used: Automatic: 0x41<br>
 		 * Cooling: 0x42<br>
-		 * Heating: 0x43<br>
-		 * Dehumidification: 0x44<br>
-		 * Air circulator: 0x45<br>
+		 * Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -3334,16 +3149,12 @@ char�~2<br>
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the operation mode (�gautomatic,�h .�gcooling,�h .�gheating,�h . �gdehumidification�h .or .�gair .<br>
-		 * circulator�h) .and .to .acquire .the .current .<br>
-		 * setting.<br>
+		 * Used to specify the operation mode (“automatic,” “cooling,” “heating,” “dehumidification” or “air circulator”) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The following values shall be used: Automatic: 0x41<br>
 		 * Cooling: 0x42<br>
-		 * Heating: 0x43<br>
-		 * Dehumidification: 0x44<br>
-		 * Air circulator: 0x45<br>
+		 * Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -3368,13 +3179,13 @@ char�~2<br>
 		 * Used to set the temperature and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3393,13 +3204,13 @@ char�~2<br>
 		 * Used to set the temperature and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3410,18 +3221,16 @@ char�~2<br>
 		 */
 		protected void onGetTemperatureSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gRelative .
-humidity setting for
-�edehumidifica-
-tion�f .mode�h .1<br>
+		 * Property name : “Relative
+humidity setting for ‘dehumidifica- tion’ mode” 1<br>
 		 * <br>
 		 * EPC : 0xB4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the relative humidity for the .�gdehumidification�h .mode .and .to . acquire the current setting.<br>
+		 * Used to set the relative humidity for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -3436,20 +3245,18 @@ tion�f .mode�h .1<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onSetGrelativeHumiditySettingForEdehumidificaTionFModeH1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetRelativeHumiditySettingForDehumidificaTionMode1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gRelative .
-humidity setting for
-�edehumidifica-
-tion�f .mode�h .1<br>
+		 * Property name : “Relative
+humidity setting for ‘dehumidifica- tion’ mode” 1<br>
 		 * <br>
 		 * EPC : 0xB4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the relative humidity for the .�gdehumidification�h .mode .and .to . acquire the current setting.<br>
+		 * Used to set the relative humidity for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -3464,163 +3271,147 @@ tion�f .mode�h .1<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetGrelativeHumiditySettingForEdehumidificaTionFModeH1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetRelativeHumiditySettingForDehumidificaTionMode1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gTemperature .
-setting for
-�ecooling�f .mode�h .
-1<br>
+		 * Property name : “Temperature setting for ‘cooling’ mode” 1<br>
 		 * <br>
 		 * EPC : 0xB5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gcooling�h .mode .and .to .acquire .the . current setting.<br>
+		 * Used to set the temperature for the “cooling” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetGtemperatureSettingForEcoolingFModeH1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetTemperatureSettingForCoolingMode1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gTemperature .
-setting for
-�ecooling�f .mode�h .
-1<br>
+		 * Property name : “Temperature setting for ‘cooling’ mode” 1<br>
 		 * <br>
 		 * EPC : 0xB5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gcooling�h .mode .and .to .acquire .the . current setting.<br>
+		 * Used to set the temperature for the “cooling” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetGtemperatureSettingForEcoolingFModeH1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetTemperatureSettingForCoolingMode1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gTemperature .
-setting for
-�eheating�f .mode�h .
-1<br>
+		 * Property name : “Temperature setting for ‘heating’ mode” 1<br>
 		 * <br>
 		 * EPC : 0xB6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gheating�h .mode .and .to .acquire .the . current setting.<br>
+		 * Used to set the temperature for the “heating” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetGtemperatureSettingForEheatingFModeH1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetTemperatureSettingForHeatingMode1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gTemperature .
-setting for
-�eheating�f .mode�h .
-1<br>
+		 * Property name : “Temperature setting for ‘heating’ mode” 1<br>
 		 * <br>
 		 * EPC : 0xB6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gheating�h .mode .and .to .acquire .the . current setting.<br>
+		 * Used to set the temperature for the “heating” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetGtemperatureSettingForEheatingFModeH1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetTemperatureSettingForHeatingMode1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gTemperature .
-setting for
-�edehumidifica-
-tion�f .mode�h .1<br>
+		 * Property name : “Temperature
+setting for ‘dehumidifica- tion’ mode” 1<br>
 		 * <br>
 		 * EPC : 0xB7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gdehumidification�h .mode .and .to . acquire the current setting.<br>
+		 * Used to set the temperature for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetGtemperatureSettingForEdehumidificaTionFModeH1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetTemperatureSettingForDehumidificaTionMode1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gTemperature .
-setting for
-�edehumidifica-
-tion�f .mode�h .1<br>
+		 * Property name : “Temperature
+setting for ‘dehumidifica- tion’ mode” 1<br>
 		 * <br>
 		 * EPC : 0xB7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gdehumidification�h .mode .and .to . acquire the current setting.<br>
+		 * Used to set the temperature for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetGtemperatureSettingForEdehumidificaTionFModeH1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetTemperatureSettingForDehumidificaTionMode1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Rated power consumption of indoor unit<br>
 		 * <br>
@@ -3630,11 +3421,10 @@ tion�f .mode�h .1<br>
 		 * This property indicates the rated power consumption for the cooling, heating, dehumidification and air circulator modes.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
-		 * Cooling: heating: dehumidification:<br>
-		 * air circulator<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
+		 * Cooling: heating: dehumidification: air circulator<br>
 		 * <br>
-		 * Data type : unsigned short x 4<br>
+		 * Data type : unsigned short × 4<br>
 		 * <br>
 		 * Data size : 8 bytes<br>
 		 * <br>
@@ -3655,7 +3445,7 @@ tion�f .mode�h .1<br>
 		 * This property indicates the measured electric current consumption.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 6553.3A)<br>
+		 * 0x0000.0xFFFD (0.6553.3A)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
@@ -3678,7 +3468,7 @@ tion�f .mode�h .1<br>
 		 * Used to acquire the measured indoor relative humidity.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -3701,13 +3491,13 @@ tion�f .mode�h .1<br>
 		 * Used to acquire the measured indoor temperature.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (-127 to 125��C)<br>
+		 * 0x81.0x7D (-127.125°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3721,17 +3511,16 @@ tion�f .mode�h .1<br>
 		 * EPC : 0xBF<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the relative temperature relative to the target temperature for<br>
-		 * an air conditioner operation mode and to acquire the current setting.<br>
+		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (-12.7��C to 12.5��C)<br>
+		 * 0x81.0x7D (-12.7°C.12.5°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3745,17 +3534,16 @@ tion�f .mode�h .1<br>
 		 * EPC : 0xBF<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the relative temperature relative to the target temperature for<br>
-		 * an air conditioner operation mode and to acquire the current setting.<br>
+		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (-12.7��C to 12.5��C)<br>
+		 * 0x81.0x7D (-12.7°C.12.5°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3773,10 +3561,9 @@ tion�f .mode�h .1<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic air flow rate control function used = 0x41<br>
-		 * Air flow rate = 0x31 to 0x38<br>
+		 * Air flow rate = 0x31.0x38<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -3798,10 +3585,9 @@ char<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic air flow rate control function used = 0x41<br>
-		 * Air flow rate = 0x31 to 0x38<br>
+		 * Air flow rate = 0x31.0x38<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -3814,7 +3600,7 @@ char<br>
 		 */
 		protected void onGetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gAir flow direction (vertical)�h setting<br>
+		 * Property name : “Air flow direction (vertical)” setting<br>
 		 * <br>
 		 * EPC : 0xA4<br>
 		 * <br>
@@ -3822,13 +3608,11 @@ char<br>
 		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 9 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x31, swing = 0x32<br>
-		 * Air flow direction: 0x41 to 0x49 (0x41 and 0x49 shall be used for the<br>
+		 * Automatic = 0x31, swing = 0x32 Air flow direction: 0x41.0x49 (0x41 and 0x49 shall be used for the<br>
 		 * uppermost and lowermost directions,<br>
 		 * respectively.)<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -3839,9 +3623,9 @@ char<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetGairFlowDirectionVerticalHSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetAirFlowDirectionVerticalSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gAir flow direction (vertical)�h setting<br>
+		 * Property name : “Air flow direction (vertical)” setting<br>
 		 * <br>
 		 * EPC : 0xA4<br>
 		 * <br>
@@ -3849,13 +3633,11 @@ char<br>
 		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 9 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x31, swing = 0x32<br>
-		 * Air flow direction: 0x41 to 0x49 (0x41 and 0x49 shall be used for the<br>
+		 * Automatic = 0x31, swing = 0x32 Air flow direction: 0x41.0x49 (0x41 and 0x49 shall be used for the<br>
 		 * uppermost and lowermost directions,<br>
 		 * respectively.)<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -3866,9 +3648,9 @@ char<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetGairFlowDirectionVerticalHSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetAirFlowDirectionVerticalSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gAir flow direction (horizontal)�h setting<br>
+		 * Property name : “Air flow direction (horizontal)” setting<br>
 		 * <br>
 		 * EPC : 0xA5<br>
 		 * <br>
@@ -3876,13 +3658,11 @@ char<br>
 		 * Used to specify the air flow direction in the horizontal plane by selecting a pattern from among the 6 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x31, swing = 0x32<br>
-		 * Air flow direction:<br>
+		 * Automatic = 0x31, swing = 0x32 Air flow direction:<br>
 		 * Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward<br>
 		 * = 0x44<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -3893,9 +3673,9 @@ char<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetGairFlowDirectionHorizontalHSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetAirFlowDirectionHorizontalSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gAir flow direction (horizontal)�h setting<br>
+		 * Property name : “Air flow direction (horizontal)” setting<br>
 		 * <br>
 		 * EPC : 0xA5<br>
 		 * <br>
@@ -3903,13 +3683,11 @@ char<br>
 		 * Used to specify the air flow direction in the horizontal plane by selecting a pattern from among the 6 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x31, swing = 0x32<br>
-		 * Air flow direction:<br>
+		 * Automatic = 0x31, swing = 0x32 Air flow direction:<br>
 		 * Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward<br>
 		 * = 0x44<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -3920,20 +3698,19 @@ char<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetGairFlowDirectionHorizontalHSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetAirFlowDirectionHorizontalSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gSpecial�h state<br>
+		 * Property name : “Special” state<br>
 		 * <br>
 		 * EPC : 0xAA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates when the air conditioner is in a �gspecial�h state.<br>
+		 * This property indicates when the air conditioner is in a “special” state.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gNormal operation�h state = 0x40, �gpreheating�h state = 0x42, �gheat removal�h state = 0x43<br>
+		 * “Normal operation” state = 0x40, “preheating” state = 0x42, “heat removal” state = 0x43<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -3944,22 +3721,19 @@ char<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetGspecialHState(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetSpecialState(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Thermostat state<br>
 		 * <br>
 		 * EPC : 0xAC<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the state (ON<br>
-		 * or OFF) of the thermostat.<br>
+		 * This property indicates the state (ON or OFF) of the thermostat.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Thermostat ON = 0x41<br>
-		 * Thermostat OFF = 0x42<br>
+		 * Thermostat ON = 0x41 Thermostat OFF = 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -3972,22 +3746,18 @@ char<br>
 		 */
 		protected void onGetThermostatState(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Current function (�gautomatic�h operation mode)<br>
+		 * Property name : Current function (“automatic” operation mode)<br>
 		 * <br>
 		 * EPC : 0xAE<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates, when the air conditioner is operating in the �gautomatic�h operation mode, the function (�gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h) that is currently being used.<br>
+		 * This property indicates, when the air conditioner is operating in the “automatic” operation mode, the function (“cooling,” “heating,” “dehumidification,” “air circulator” or “other”) that is currently being used.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The following values shall be used: Cooling: 0x42<br>
-		 * Heating: 0x43<br>
-		 * Dehumidification: 0x44<br>
-		 * Air circulator: 0x45<br>
-		 * Other: 0x40<br>
+		 * Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -4000,7 +3770,7 @@ char<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetCurrentFunctionGautomaticHOperationMode(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetCurrentFunctionAutomaticOperationMode(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Ventilation mode setting<br>
 		 * <br>
@@ -4011,10 +3781,10 @@ char<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Ordinary ventilation = 0x41, ventilation plus total heat exchanger-based heat exchange =<br>
-		 * 0x42, automatic control of ventilation (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br>
+		 * 0x42, automatic control of ventilation<br>
+		 * (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -4036,10 +3806,10 @@ char<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Ordinary ventilation = 0x41, ventilation plus total heat exchanger-based heat exchange =<br>
-		 * 0x42, automatic control of ventilation (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br>
+		 * 0x42, automatic control of ventilation<br>
+		 * (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -4057,15 +3827,13 @@ char<br>
 		 * EPC : 0xC1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify whether or not to use the �gcombined operation of indoor unit and total heat exchanger�h function,<br>
-		 * and to acquire the current setting.<br>
+		 * Used to specify whether or not to use the “combined operation of indoor unit and total heat exchanger” function,  and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gCombined operation of indoor unit and total heat exchanger�h function used = 0x41<br>
-		 * �gCombined operation of indoor unit and total heat exchanger�h function not used= 0x42<br>
+		 * “Combined operation of indoor unit and total heat exchanger” function used = 0x41<br>
+		 * “Combined operation of indoor unit and total heat exchanger” function not used= 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -4083,15 +3851,13 @@ char<br>
 		 * EPC : 0xC1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify whether or not to use the �gcombined operation of indoor unit and total heat exchanger�h function,<br>
-		 * and to acquire the current setting.<br>
+		 * Used to specify whether or not to use the “combined operation of indoor unit and total heat exchanger” function,  and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gCombined operation of indoor unit and total heat exchanger�h function used = 0x41<br>
-		 * �gCombined operation of indoor unit and total heat exchanger�h function not used= 0x42<br>
+		 * “Combined operation of indoor unit and total heat exchanger” function used = 0x41<br>
+		 * “Combined operation of indoor unit and total heat exchanger” function not used= 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -4109,16 +3875,13 @@ char<br>
 		 * EPC : 0xC2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire<br>
-		 * the current setting.<br>
+		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire  the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic control of ventilation air flow rate = 0x41<br>
-		 * Ventilation air flow rate = 0x31 to<br>
-		 * 0x38<br>
+		 * Ventilation air flow rate = 0x31 to 0x38<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -4136,16 +3899,13 @@ char<br>
 		 * EPC : 0xC2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire<br>
-		 * the current setting.<br>
+		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire  the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic control of ventilation air flow rate = 0x41<br>
-		 * Ventilation air flow rate = 0x31 to<br>
-		 * 0x38<br>
+		 * Ventilation air flow rate = 0x31 to 0x38<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -4158,7 +3918,7 @@ char<br>
 		 */
 		protected void onGetVentilationAirFlowRateSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gDisabling of air conditioner�h setting<br>
+		 * Property name : “Disabling of air conditioner” setting<br>
 		 * <br>
 		 * EPC : 0xCD<br>
 		 * <br>
@@ -4168,8 +3928,7 @@ char<br>
 		 * Value range (decimal notation) :<br>
 		 * Disabled = 0x41, not disabled = 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -4180,9 +3939,9 @@ char<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetGdisablingOfAirConditionerHSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetDisablingOfAirConditionerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gDisabling of air conditioner�h setting<br>
+		 * Property name : “Disabling of air conditioner” setting<br>
 		 * <br>
 		 * EPC : 0xCD<br>
 		 * <br>
@@ -4192,8 +3951,7 @@ char<br>
 		 * Value range (decimal notation) :<br>
 		 * Disabled = 0x41, not disabled = 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -4204,7 +3962,7 @@ char<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetGdisablingOfAirConditionerHSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetDisablingOfAirConditionerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Thermostat setting override function<br>
 		 * <br>
@@ -4216,8 +3974,7 @@ char<br>
 		 * Value range (decimal notation) :<br>
 		 * Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -4240,8 +3997,7 @@ char<br>
 		 * Value range (decimal notation) :<br>
 		 * Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -4264,8 +4020,7 @@ char<br>
 		 * Value range (decimal notation) :<br>
 		 * Enabled = 0x41, disabled = 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -4290,8 +4045,7 @@ char<br>
 		 * Value range (decimal notation) :<br>
 		 * Enabled = 0x41, disabled = 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -4314,11 +4068,11 @@ char<br>
 		 * This property indicates the measured power consumption of the indoor unit.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
 		 * <br>
-		 * Data type : unsigned<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -4337,10 +4091,9 @@ char<br>
 		 * This property indicates the aperture of the expansion valve in %.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x64 (0 to 100%)<br>
+		 * 0.0x64 (0.100%)<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -4361,14 +4114,13 @@ char<br>
 		 * Used to set the temperature and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+		 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4387,14 +4139,13 @@ short<br>
 		 * Used to set the temperature and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+		 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4405,21 +4156,19 @@ short<br>
 		 */
 		protected void onGetTemperatureSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gRelative humidity setting for
-�edehumidificatio n�f mode�h 2<br>
+		 * Property name : “Relative humidity setting for ‘dehumidificatio n’ mode” 2<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>
+		 * Used to set the relative humidity for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0x3E8 (0.0 to 100.0%)<br>
+		 * 0x0000.0x3E8 (0.0.100.0%)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : 0.1%<br>
 		 * <br>
@@ -4430,23 +4179,21 @@ short<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onSetGrelativeHumiditySettingForEdehumidificatioNFModeH2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetRelativeHumiditySettingForDehumidificatioNMode2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gRelative humidity setting for
-�edehumidificatio n�f mode�h 2<br>
+		 * Property name : “Relative humidity setting for ‘dehumidificatio n’ mode” 2<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>
+		 * Used to set the relative humidity for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0x3E8 (0.0 to 100.0%)<br>
+		 * 0x0000.0x3E8 (0.0.100.0%)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : 0.1%<br>
 		 * <br>
@@ -4457,161 +4204,145 @@ short<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetGrelativeHumiditySettingForEdehumidificatioNFModeH2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetRelativeHumiditySettingForDehumidificatioNMode2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gTemperature setting for
-�ecooling�f mode�h
-2<br>
+		 * Property name : “Temperature setting for ‘cooling’ mode” 2<br>
 		 * <br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “cooling” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+		 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetGtemperatureSettingForEcoolingFModeH2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetTemperatureSettingForCoolingMode2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gTemperature setting for
-�ecooling�f mode�h
-2<br>
+		 * Property name : “Temperature setting for ‘cooling’ mode” 2<br>
 		 * <br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “cooling” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+		 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetGtemperatureSettingForEcoolingFModeH2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetTemperatureSettingForCoolingMode2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gTemperature setting for
-�eheating�f mode�h
-2<br>
+		 * Property name : “Temperature setting for ‘heating’ mode” 2<br>
 		 * <br>
 		 * EPC : 0xE6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “heating” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+		 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetGtemperatureSettingForEheatingFModeH2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetTemperatureSettingForHeatingMode2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gTemperature setting for
-�eheating�f mode�h
-2<br>
+		 * Property name : “Temperature setting for ‘heating’ mode” 2<br>
 		 * <br>
 		 * EPC : 0xE6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “heating” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+		 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetGtemperatureSettingForEheatingFModeH2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetTemperatureSettingForHeatingMode2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gTemperature setting for
-�edehumidificatio n�f mode�h 2<br>
+		 * Property name : “Temperature setting for ‘dehumidificatio n’ mode” 2<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+		 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetGtemperatureSettingForEdehumidificatioNFModeH2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetTemperatureSettingForDehumidificatioNMode2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gTemperature setting for
-�edehumidificatio n�f mode�h 2<br>
+		 * Property name : “Temperature setting for ‘dehumidificatio n’ mode” 2<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+		 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetGtemperatureSettingForEdehumidificatioNFModeH2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetTemperatureSettingForDehumidificatioNMode2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Measured indoor relative humidity 2<br>
 		 * <br>
@@ -4621,12 +4352,11 @@ short<br>
 		 * Used to acquire the measured indoor relative humidity.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0x3E8 (0.0 to 100.0%)<br>
+		 * 0x0000.0x3E8 (0.0.100.0%)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : 0.1%<br>
 		 * <br>
@@ -4645,15 +4375,13 @@ short<br>
 		 * Used to acquire the measured indoor temperature.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xF554 to 0x7FFD (-273,2 to<br>
-		 * 3276,5��C)<br>
+		 * 0xF554.0x7FFD (-273,2.3276,5°C)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4662,8 +4390,8 @@ short<br>
 		 */
 		protected void onGetMeasuredIndoorTemperature2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gON
-timer-based reservation�h setting<br>
+		 * Property name : “ON
+timer-based reservation” setting<br>
 		 * <br>
 		 * EPC : 0x90<br>
 		 * <br>
@@ -4671,12 +4399,9 @@ timer-based reservation�h setting<br>
 		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-		 * 0x42, time-based reservation function is ON = 0x43, relative time-based<br>
-		 * reservation function is ON = 0x44<br>
+		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -4687,10 +4412,10 @@ char<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetGonTimerBasedReservationHSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetOnTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gON
-timer-based reservation�h setting<br>
+		 * Property name : “ON
+timer-based reservation” setting<br>
 		 * <br>
 		 * EPC : 0x90<br>
 		 * <br>
@@ -4698,12 +4423,9 @@ timer-based reservation�h setting<br>
 		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-		 * 0x42, time-based reservation function is ON = 0x43, relative time-based<br>
-		 * reservation function is ON = 0x44<br>
+		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -4714,7 +4436,7 @@ char<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetGonTimerBasedReservationHSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetOnTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : ON timer setting (time)<br>
 		 * <br>
@@ -4725,13 +4447,11 @@ char<br>
 		 * time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned
-char�~2<br>
+		 * Data type : unsigned char×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -4751,13 +4471,11 @@ char�~2<br>
 		 * time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned
-char�~2<br>
+		 * Data type : unsigned char×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -4776,13 +4494,12 @@ char�~2<br>
 		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned
-char�~2<br>
+		 * Data type : unsigned char×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -4801,13 +4518,12 @@ char�~2<br>
 		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned
-char�~2<br>
+		 * Data type : unsigned char×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -4818,8 +4534,8 @@ char�~2<br>
 		 */
 		protected void onGetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gOFF
-timer-based reservation�h setting<br>
+		 * Property name : “OFF
+timer-based reservation” setting<br>
 		 * <br>
 		 * EPC : 0x94<br>
 		 * <br>
@@ -4827,14 +4543,11 @@ timer-based reservation�h setting<br>
 		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-		 * 0x42, time-based reservation function is ON = 0x43, relative time-based<br>
-		 * reservation function is ON = 0x44<br>
+		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Data size : 1 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -4843,10 +4556,10 @@ char<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetGoffTimerBasedReservationHSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetOffTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gOFF
-timer-based reservation�h setting<br>
+		 * Property name : “OFF
+timer-based reservation” setting<br>
 		 * <br>
 		 * EPC : 0x94<br>
 		 * <br>
@@ -4854,14 +4567,11 @@ timer-based reservation�h setting<br>
 		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-		 * 0x42, time-based reservation function is ON = 0x43, relative time-based<br>
-		 * reservation function is ON = 0x44<br>
+		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Data size : 1 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -4870,7 +4580,7 @@ char<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetGoffTimerBasedReservationHSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetOffTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : OFF timer setting (time)<br>
 		 * <br>
@@ -4881,13 +4591,11 @@ char<br>
 		 * time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned
-char�~2<br>
+		 * Data type : unsigned char×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -4907,13 +4615,11 @@ char�~2<br>
 		 * time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned
-char�~2<br>
+		 * Data type : unsigned char×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -4932,13 +4638,12 @@ char�~2<br>
 		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned
-char�~2<br>
+		 * Data type : unsigned char×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -4957,13 +4662,12 @@ char�~2<br>
 		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned
-char�~2<br>
+		 * Data type : unsigned char×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -5004,8 +4708,8 @@ char�~2<br>
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -5026,16 +4730,12 @@ char�~2<br>
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the operation mode (�gautomatic,�h .�gcooling,�h .�gheating,�h . �gdehumidification�h .or .�gair .<br>
-		 * circulator�h) .and .to .acquire .the .current .<br>
-		 * setting.<br>
+		 * Used to specify the operation mode (“automatic,” “cooling,” “heating,” “dehumidification” or “air circulator”) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The following values shall be used: Automatic: 0x41<br>
 		 * Cooling: 0x42<br>
-		 * Heating: 0x43<br>
-		 * Dehumidification: 0x44<br>
-		 * Air circulator: 0x45<br>
+		 * Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -5063,13 +4763,13 @@ char�~2<br>
 		 * Used to set the temperature and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5083,18 +4783,16 @@ char�~2<br>
 			return this;
 		}
 		/**
-		 * Property name : �gRelative .
-humidity setting for
-�edehumidifica-
-tion�f .mode�h .1<br>
+		 * Property name : “Relative
+humidity setting for ‘dehumidifica- tion’ mode” 1<br>
 		 * <br>
 		 * EPC : 0xB4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the relative humidity for the .�gdehumidification�h .mode .and .to . acquire the current setting.<br>
+		 * Used to set the relative humidity for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -5109,95 +4807,87 @@ tion�f .mode�h .1<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		public Setter reqSetGrelativeHumiditySettingForEdehumidificaTionFModeH1(byte[] edt) {
-			reqSetProperty(EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1, edt);
+		public Setter reqSetRelativeHumiditySettingForDehumidificaTionMode1(byte[] edt) {
+			reqSetProperty(EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE1, edt);
 			return this;
 		}
 		/**
-		 * Property name : �gTemperature .
-setting for
-�ecooling�f .mode�h .
-1<br>
+		 * Property name : “Temperature setting for ‘cooling’ mode” 1<br>
 		 * <br>
 		 * EPC : 0xB5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gcooling�h .mode .and .to .acquire .the . current setting.<br>
+		 * Used to set the temperature for the “cooling” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetGtemperatureSettingForEcoolingFModeH1(byte[] edt) {
-			reqSetProperty(EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H1, edt);
+		public Setter reqSetTemperatureSettingForCoolingMode1(byte[] edt) {
+			reqSetProperty(EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE1, edt);
 			return this;
 		}
 		/**
-		 * Property name : �gTemperature .
-setting for
-�eheating�f .mode�h .
-1<br>
+		 * Property name : “Temperature setting for ‘heating’ mode” 1<br>
 		 * <br>
 		 * EPC : 0xB6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gheating�h .mode .and .to .acquire .the . current setting.<br>
+		 * Used to set the temperature for the “heating” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetGtemperatureSettingForEheatingFModeH1(byte[] edt) {
-			reqSetProperty(EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H1, edt);
+		public Setter reqSetTemperatureSettingForHeatingMode1(byte[] edt) {
+			reqSetProperty(EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE1, edt);
 			return this;
 		}
 		/**
-		 * Property name : �gTemperature .
-setting for
-�edehumidifica-
-tion�f .mode�h .1<br>
+		 * Property name : “Temperature
+setting for ‘dehumidifica- tion’ mode” 1<br>
 		 * <br>
 		 * EPC : 0xB7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gdehumidification�h .mode .and .to . acquire the current setting.<br>
+		 * Used to set the temperature for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetGtemperatureSettingForEdehumidificaTionFModeH1(byte[] edt) {
-			reqSetProperty(EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1, edt);
+		public Setter reqSetTemperatureSettingForDehumidificaTionMode1(byte[] edt) {
+			reqSetProperty(EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICA_TION_MODE1, edt);
 			return this;
 		}
 		/**
@@ -5206,17 +4896,16 @@ tion�f .mode�h .1<br>
 		 * EPC : 0xBF<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the relative temperature relative to the target temperature for<br>
-		 * an air conditioner operation mode and to acquire the current setting.<br>
+		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (-12.7��C to 12.5��C)<br>
+		 * 0x81.0x7D (-12.7°C.12.5°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5237,10 +4926,9 @@ tion�f .mode�h .1<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic air flow rate control function used = 0x41<br>
-		 * Air flow rate = 0x31 to 0x38<br>
+		 * Air flow rate = 0x31.0x38<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -5256,7 +4944,7 @@ char<br>
 			return this;
 		}
 		/**
-		 * Property name : �gAir flow direction (vertical)�h setting<br>
+		 * Property name : “Air flow direction (vertical)” setting<br>
 		 * <br>
 		 * EPC : 0xA4<br>
 		 * <br>
@@ -5264,13 +4952,11 @@ char<br>
 		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 9 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x31, swing = 0x32<br>
-		 * Air flow direction: 0x41 to 0x49 (0x41 and 0x49 shall be used for the<br>
+		 * Automatic = 0x31, swing = 0x32 Air flow direction: 0x41.0x49 (0x41 and 0x49 shall be used for the<br>
 		 * uppermost and lowermost directions,<br>
 		 * respectively.)<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -5281,12 +4967,12 @@ char<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetGairFlowDirectionVerticalHSetting(byte[] edt) {
-			reqSetProperty(EPC_GAIR_FLOW_DIRECTION_VERTICAL_H_SETTING, edt);
+		public Setter reqSetAirFlowDirectionVerticalSetting(byte[] edt) {
+			reqSetProperty(EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Property name : �gAir flow direction (horizontal)�h setting<br>
+		 * Property name : “Air flow direction (horizontal)” setting<br>
 		 * <br>
 		 * EPC : 0xA5<br>
 		 * <br>
@@ -5294,13 +4980,11 @@ char<br>
 		 * Used to specify the air flow direction in the horizontal plane by selecting a pattern from among the 6 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x31, swing = 0x32<br>
-		 * Air flow direction:<br>
+		 * Automatic = 0x31, swing = 0x32 Air flow direction:<br>
 		 * Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward<br>
 		 * = 0x44<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -5311,8 +4995,8 @@ char<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetGairFlowDirectionHorizontalHSetting(byte[] edt) {
-			reqSetProperty(EPC_GAIR_FLOW_DIRECTION_HORIZONTAL_H_SETTING, edt);
+		public Setter reqSetAirFlowDirectionHorizontalSetting(byte[] edt) {
+			reqSetProperty(EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5325,10 +5009,10 @@ char<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Ordinary ventilation = 0x41, ventilation plus total heat exchanger-based heat exchange =<br>
-		 * 0x42, automatic control of ventilation (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br>
+		 * 0x42, automatic control of ventilation<br>
+		 * (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -5349,15 +5033,13 @@ char<br>
 		 * EPC : 0xC1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify whether or not to use the �gcombined operation of indoor unit and total heat exchanger�h function,<br>
-		 * and to acquire the current setting.<br>
+		 * Used to specify whether or not to use the “combined operation of indoor unit and total heat exchanger” function,  and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gCombined operation of indoor unit and total heat exchanger�h function used = 0x41<br>
-		 * �gCombined operation of indoor unit and total heat exchanger�h function not used= 0x42<br>
+		 * “Combined operation of indoor unit and total heat exchanger” function used = 0x41<br>
+		 * “Combined operation of indoor unit and total heat exchanger” function not used= 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -5378,16 +5060,13 @@ char<br>
 		 * EPC : 0xC2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire<br>
-		 * the current setting.<br>
+		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire  the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic control of ventilation air flow rate = 0x41<br>
-		 * Ventilation air flow rate = 0x31 to<br>
-		 * 0x38<br>
+		 * Ventilation air flow rate = 0x31 to 0x38<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -5403,7 +5082,7 @@ char<br>
 			return this;
 		}
 		/**
-		 * Property name : �gDisabling of air conditioner�h setting<br>
+		 * Property name : “Disabling of air conditioner” setting<br>
 		 * <br>
 		 * EPC : 0xCD<br>
 		 * <br>
@@ -5413,8 +5092,7 @@ char<br>
 		 * Value range (decimal notation) :<br>
 		 * Disabled = 0x41, not disabled = 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -5425,8 +5103,8 @@ char<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetGdisablingOfAirConditionerHSetting(byte[] edt) {
-			reqSetProperty(EPC_GDISABLING_OF_AIR_CONDITIONER_H_SETTING, edt);
+		public Setter reqSetDisablingOfAirConditionerSetting(byte[] edt) {
+			reqSetProperty(EPC_DISABLING_OF_AIR_CONDITIONER_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5440,8 +5118,7 @@ char<br>
 		 * Value range (decimal notation) :<br>
 		 * Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -5467,8 +5144,7 @@ char<br>
 		 * Value range (decimal notation) :<br>
 		 * Enabled = 0x41, disabled = 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -5494,14 +5170,13 @@ char<br>
 		 * Used to set the temperature and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+		 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5515,21 +5190,19 @@ short<br>
 			return this;
 		}
 		/**
-		 * Property name : �gRelative humidity setting for
-�edehumidificatio n�f mode�h 2<br>
+		 * Property name : “Relative humidity setting for ‘dehumidificatio n’ mode” 2<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>
+		 * Used to set the relative humidity for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0x3E8 (0.0 to 100.0%)<br>
+		 * 0x0000.0x3E8 (0.0.100.0%)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : 0.1%<br>
 		 * <br>
@@ -5540,99 +5213,91 @@ short<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		public Setter reqSetGrelativeHumiditySettingForEdehumidificatioNFModeH2(byte[] edt) {
-			reqSetProperty(EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2, edt);
+		public Setter reqSetRelativeHumiditySettingForDehumidificatioNMode2(byte[] edt) {
+			reqSetProperty(EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE2, edt);
 			return this;
 		}
 		/**
-		 * Property name : �gTemperature setting for
-�ecooling�f mode�h
-2<br>
+		 * Property name : “Temperature setting for ‘cooling’ mode” 2<br>
 		 * <br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “cooling” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+		 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetGtemperatureSettingForEcoolingFModeH2(byte[] edt) {
-			reqSetProperty(EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H2, edt);
+		public Setter reqSetTemperatureSettingForCoolingMode2(byte[] edt) {
+			reqSetProperty(EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE2, edt);
 			return this;
 		}
 		/**
-		 * Property name : �gTemperature setting for
-�eheating�f mode�h
-2<br>
+		 * Property name : “Temperature setting for ‘heating’ mode” 2<br>
 		 * <br>
 		 * EPC : 0xE6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “heating” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+		 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetGtemperatureSettingForEheatingFModeH2(byte[] edt) {
-			reqSetProperty(EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H2, edt);
+		public Setter reqSetTemperatureSettingForHeatingMode2(byte[] edt) {
+			reqSetProperty(EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE2, edt);
 			return this;
 		}
 		/**
-		 * Property name : �gTemperature setting for
-�edehumidificatio n�f mode�h 2<br>
+		 * Property name : “Temperature setting for ‘dehumidificatio n’ mode” 2<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+		 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetGtemperatureSettingForEdehumidificatioNFModeH2(byte[] edt) {
-			reqSetProperty(EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2, edt);
+		public Setter reqSetTemperatureSettingForDehumidificatioNMode2(byte[] edt) {
+			reqSetProperty(EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE2, edt);
 			return this;
 		}
 		/**
-		 * Property name : �gON
-timer-based reservation�h setting<br>
+		 * Property name : “ON
+timer-based reservation” setting<br>
 		 * <br>
 		 * EPC : 0x90<br>
 		 * <br>
@@ -5640,12 +5305,9 @@ timer-based reservation�h setting<br>
 		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-		 * 0x42, time-based reservation function is ON = 0x43, relative time-based<br>
-		 * reservation function is ON = 0x44<br>
+		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -5656,8 +5318,8 @@ char<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetGonTimerBasedReservationHSetting(byte[] edt) {
-			reqSetProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING, edt);
+		public Setter reqSetOnTimerBasedReservationSetting(byte[] edt) {
+			reqSetProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5670,13 +5332,11 @@ char<br>
 		 * time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned
-char�~2<br>
+		 * Data type : unsigned char×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -5698,13 +5358,12 @@ char�~2<br>
 		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned
-char�~2<br>
+		 * Data type : unsigned char×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -5718,8 +5377,8 @@ char�~2<br>
 			return this;
 		}
 		/**
-		 * Property name : �gOFF
-timer-based reservation�h setting<br>
+		 * Property name : “OFF
+timer-based reservation” setting<br>
 		 * <br>
 		 * EPC : 0x94<br>
 		 * <br>
@@ -5727,14 +5386,11 @@ timer-based reservation�h setting<br>
 		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-		 * 0x42, time-based reservation function is ON = 0x43, relative time-based<br>
-		 * reservation function is ON = 0x44<br>
+		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Data size : 1 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -5743,8 +5399,8 @@ char<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetGoffTimerBasedReservationHSetting(byte[] edt) {
-			reqSetProperty(EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING, edt);
+		public Setter reqSetOffTimerBasedReservationSetting(byte[] edt) {
+			reqSetProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5757,13 +5413,11 @@ char<br>
 		 * time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned
-char�~2<br>
+		 * Data type : unsigned char×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -5785,13 +5439,12 @@ char�~2<br>
 		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned
-char�~2<br>
+		 * Data type : unsigned char×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -5883,8 +5536,8 @@ char�~2<br>
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -5921,16 +5574,12 @@ char�~2<br>
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the operation mode (�gautomatic,�h .�gcooling,�h .�gheating,�h . �gdehumidification�h .or .�gair .<br>
-		 * circulator�h) .and .to .acquire .the .current .<br>
-		 * setting.<br>
+		 * Used to specify the operation mode (“automatic,” “cooling,” “heating,” “dehumidification” or “air circulator”) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The following values shall be used: Automatic: 0x41<br>
 		 * Cooling: 0x42<br>
-		 * Heating: 0x43<br>
-		 * Dehumidification: 0x44<br>
-		 * Air circulator: 0x45<br>
+		 * Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -5958,13 +5607,13 @@ char�~2<br>
 		 * Used to set the temperature and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5978,18 +5627,16 @@ char�~2<br>
 			return this;
 		}
 		/**
-		 * Property name : �gRelative .
-humidity setting for
-�edehumidifica-
-tion�f .mode�h .1<br>
+		 * Property name : “Relative
+humidity setting for ‘dehumidifica- tion’ mode” 1<br>
 		 * <br>
 		 * EPC : 0xB4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the relative humidity for the .�gdehumidification�h .mode .and .to . acquire the current setting.<br>
+		 * Used to set the relative humidity for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -6004,95 +5651,87 @@ tion�f .mode�h .1<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetGrelativeHumiditySettingForEdehumidificaTionFModeH1() {
-			reqGetProperty(EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1);
+		public Getter reqGetRelativeHumiditySettingForDehumidificaTionMode1() {
+			reqGetProperty(EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE1);
 			return this;
 		}
 		/**
-		 * Property name : �gTemperature .
-setting for
-�ecooling�f .mode�h .
-1<br>
+		 * Property name : “Temperature setting for ‘cooling’ mode” 1<br>
 		 * <br>
 		 * EPC : 0xB5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gcooling�h .mode .and .to .acquire .the . current setting.<br>
+		 * Used to set the temperature for the “cooling” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetGtemperatureSettingForEcoolingFModeH1() {
-			reqGetProperty(EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H1);
+		public Getter reqGetTemperatureSettingForCoolingMode1() {
+			reqGetProperty(EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE1);
 			return this;
 		}
 		/**
-		 * Property name : �gTemperature .
-setting for
-�eheating�f .mode�h .
-1<br>
+		 * Property name : “Temperature setting for ‘heating’ mode” 1<br>
 		 * <br>
 		 * EPC : 0xB6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gheating�h .mode .and .to .acquire .the . current setting.<br>
+		 * Used to set the temperature for the “heating” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetGtemperatureSettingForEheatingFModeH1() {
-			reqGetProperty(EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H1);
+		public Getter reqGetTemperatureSettingForHeatingMode1() {
+			reqGetProperty(EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE1);
 			return this;
 		}
 		/**
-		 * Property name : �gTemperature .
-setting for
-�edehumidifica-
-tion�f .mode�h .1<br>
+		 * Property name : “Temperature
+setting for ‘dehumidifica- tion’ mode” 1<br>
 		 * <br>
 		 * EPC : 0xB7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gdehumidification�h .mode .and .to . acquire the current setting.<br>
+		 * Used to set the temperature for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetGtemperatureSettingForEdehumidificaTionFModeH1() {
-			reqGetProperty(EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1);
+		public Getter reqGetTemperatureSettingForDehumidificaTionMode1() {
+			reqGetProperty(EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICA_TION_MODE1);
 			return this;
 		}
 		/**
@@ -6104,11 +5743,10 @@ tion�f .mode�h .1<br>
 		 * This property indicates the rated power consumption for the cooling, heating, dehumidification and air circulator modes.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
-		 * Cooling: heating: dehumidification:<br>
-		 * air circulator<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
+		 * Cooling: heating: dehumidification: air circulator<br>
 		 * <br>
-		 * Data type : unsigned short x 4<br>
+		 * Data type : unsigned short × 4<br>
 		 * <br>
 		 * Data size : 8 bytes<br>
 		 * <br>
@@ -6132,7 +5770,7 @@ tion�f .mode�h .1<br>
 		 * This property indicates the measured electric current consumption.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 6553.3A)<br>
+		 * 0x0000.0xFFFD (0.6553.3A)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
@@ -6158,7 +5796,7 @@ tion�f .mode�h .1<br>
 		 * Used to acquire the measured indoor relative humidity.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -6184,13 +5822,13 @@ tion�f .mode�h .1<br>
 		 * Used to acquire the measured indoor temperature.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (-127 to 125��C)<br>
+		 * 0x81.0x7D (-127.125°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6207,17 +5845,16 @@ tion�f .mode�h .1<br>
 		 * EPC : 0xBF<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the relative temperature relative to the target temperature for<br>
-		 * an air conditioner operation mode and to acquire the current setting.<br>
+		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (-12.7��C to 12.5��C)<br>
+		 * 0x81.0x7D (-12.7°C.12.5°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6238,10 +5875,9 @@ tion�f .mode�h .1<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic air flow rate control function used = 0x41<br>
-		 * Air flow rate = 0x31 to 0x38<br>
+		 * Air flow rate = 0x31.0x38<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -6257,7 +5893,7 @@ char<br>
 			return this;
 		}
 		/**
-		 * Property name : �gAir flow direction (vertical)�h setting<br>
+		 * Property name : “Air flow direction (vertical)” setting<br>
 		 * <br>
 		 * EPC : 0xA4<br>
 		 * <br>
@@ -6265,13 +5901,11 @@ char<br>
 		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 9 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x31, swing = 0x32<br>
-		 * Air flow direction: 0x41 to 0x49 (0x41 and 0x49 shall be used for the<br>
+		 * Automatic = 0x31, swing = 0x32 Air flow direction: 0x41.0x49 (0x41 and 0x49 shall be used for the<br>
 		 * uppermost and lowermost directions,<br>
 		 * respectively.)<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -6282,12 +5916,12 @@ char<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetGairFlowDirectionVerticalHSetting() {
-			reqGetProperty(EPC_GAIR_FLOW_DIRECTION_VERTICAL_H_SETTING);
+		public Getter reqGetAirFlowDirectionVerticalSetting() {
+			reqGetProperty(EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING);
 			return this;
 		}
 		/**
-		 * Property name : �gAir flow direction (horizontal)�h setting<br>
+		 * Property name : “Air flow direction (horizontal)” setting<br>
 		 * <br>
 		 * EPC : 0xA5<br>
 		 * <br>
@@ -6295,13 +5929,11 @@ char<br>
 		 * Used to specify the air flow direction in the horizontal plane by selecting a pattern from among the 6 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x31, swing = 0x32<br>
-		 * Air flow direction:<br>
+		 * Automatic = 0x31, swing = 0x32 Air flow direction:<br>
 		 * Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward<br>
 		 * = 0x44<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -6312,23 +5944,22 @@ char<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetGairFlowDirectionHorizontalHSetting() {
-			reqGetProperty(EPC_GAIR_FLOW_DIRECTION_HORIZONTAL_H_SETTING);
+		public Getter reqGetAirFlowDirectionHorizontalSetting() {
+			reqGetProperty(EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING);
 			return this;
 		}
 		/**
-		 * Property name : �gSpecial�h state<br>
+		 * Property name : “Special” state<br>
 		 * <br>
 		 * EPC : 0xAA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates when the air conditioner is in a �gspecial�h state.<br>
+		 * This property indicates when the air conditioner is in a “special” state.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gNormal operation�h state = 0x40, �gpreheating�h state = 0x42, �gheat removal�h state = 0x43<br>
+		 * “Normal operation” state = 0x40, “preheating” state = 0x42, “heat removal” state = 0x43<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -6339,8 +5970,8 @@ char<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetGspecialHState() {
-			reqGetProperty(EPC_GSPECIAL_H_STATE);
+		public Getter reqGetSpecialState() {
+			reqGetProperty(EPC_SPECIAL_STATE);
 			return this;
 		}
 		/**
@@ -6349,15 +5980,12 @@ char<br>
 		 * EPC : 0xAC<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the state (ON<br>
-		 * or OFF) of the thermostat.<br>
+		 * This property indicates the state (ON or OFF) of the thermostat.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Thermostat ON = 0x41<br>
-		 * Thermostat OFF = 0x42<br>
+		 * Thermostat ON = 0x41 Thermostat OFF = 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -6373,22 +6001,18 @@ char<br>
 			return this;
 		}
 		/**
-		 * Property name : Current function (�gautomatic�h operation mode)<br>
+		 * Property name : Current function (“automatic” operation mode)<br>
 		 * <br>
 		 * EPC : 0xAE<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates, when the air conditioner is operating in the �gautomatic�h operation mode, the function (�gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h) that is currently being used.<br>
+		 * This property indicates, when the air conditioner is operating in the “automatic” operation mode, the function (“cooling,” “heating,” “dehumidification,” “air circulator” or “other”) that is currently being used.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The following values shall be used: Cooling: 0x42<br>
-		 * Heating: 0x43<br>
-		 * Dehumidification: 0x44<br>
-		 * Air circulator: 0x45<br>
-		 * Other: 0x40<br>
+		 * Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -6401,8 +6025,8 @@ char<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetCurrentFunctionGautomaticHOperationMode() {
-			reqGetProperty(EPC_CURRENT_FUNCTION_GAUTOMATIC_H_OPERATION_MODE);
+		public Getter reqGetCurrentFunctionAutomaticOperationMode() {
+			reqGetProperty(EPC_CURRENT_FUNCTION_AUTOMATIC_OPERATION_MODE);
 			return this;
 		}
 		/**
@@ -6415,10 +6039,10 @@ char<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Ordinary ventilation = 0x41, ventilation plus total heat exchanger-based heat exchange =<br>
-		 * 0x42, automatic control of ventilation (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br>
+		 * 0x42, automatic control of ventilation<br>
+		 * (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -6439,15 +6063,13 @@ char<br>
 		 * EPC : 0xC1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify whether or not to use the �gcombined operation of indoor unit and total heat exchanger�h function,<br>
-		 * and to acquire the current setting.<br>
+		 * Used to specify whether or not to use the “combined operation of indoor unit and total heat exchanger” function,  and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gCombined operation of indoor unit and total heat exchanger�h function used = 0x41<br>
-		 * �gCombined operation of indoor unit and total heat exchanger�h function not used= 0x42<br>
+		 * “Combined operation of indoor unit and total heat exchanger” function used = 0x41<br>
+		 * “Combined operation of indoor unit and total heat exchanger” function not used= 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -6468,16 +6090,13 @@ char<br>
 		 * EPC : 0xC2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire<br>
-		 * the current setting.<br>
+		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire  the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic control of ventilation air flow rate = 0x41<br>
-		 * Ventilation air flow rate = 0x31 to<br>
-		 * 0x38<br>
+		 * Ventilation air flow rate = 0x31 to 0x38<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -6493,7 +6112,7 @@ char<br>
 			return this;
 		}
 		/**
-		 * Property name : �gDisabling of air conditioner�h setting<br>
+		 * Property name : “Disabling of air conditioner” setting<br>
 		 * <br>
 		 * EPC : 0xCD<br>
 		 * <br>
@@ -6503,8 +6122,7 @@ char<br>
 		 * Value range (decimal notation) :<br>
 		 * Disabled = 0x41, not disabled = 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -6515,8 +6133,8 @@ char<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetGdisablingOfAirConditionerHSetting() {
-			reqGetProperty(EPC_GDISABLING_OF_AIR_CONDITIONER_H_SETTING);
+		public Getter reqGetDisablingOfAirConditionerSetting() {
+			reqGetProperty(EPC_DISABLING_OF_AIR_CONDITIONER_SETTING);
 			return this;
 		}
 		/**
@@ -6530,8 +6148,7 @@ char<br>
 		 * Value range (decimal notation) :<br>
 		 * Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -6557,8 +6174,7 @@ char<br>
 		 * Value range (decimal notation) :<br>
 		 * Enabled = 0x41, disabled = 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -6584,11 +6200,11 @@ char<br>
 		 * This property indicates the measured power consumption of the indoor unit.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
 		 * <br>
-		 * Data type : unsigned<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -6610,10 +6226,9 @@ char<br>
 		 * This property indicates the aperture of the expansion valve in %.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x64 (0 to 100%)<br>
+		 * 0.0x64 (0.100%)<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -6637,14 +6252,13 @@ char<br>
 		 * Used to set the temperature and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+		 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6658,21 +6272,19 @@ short<br>
 			return this;
 		}
 		/**
-		 * Property name : �gRelative humidity setting for
-�edehumidificatio n�f mode�h 2<br>
+		 * Property name : “Relative humidity setting for ‘dehumidificatio n’ mode” 2<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>
+		 * Used to set the relative humidity for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0x3E8 (0.0 to 100.0%)<br>
+		 * 0x0000.0x3E8 (0.0.100.0%)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : 0.1%<br>
 		 * <br>
@@ -6683,94 +6295,86 @@ short<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetGrelativeHumiditySettingForEdehumidificatioNFModeH2() {
-			reqGetProperty(EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2);
+		public Getter reqGetRelativeHumiditySettingForDehumidificatioNMode2() {
+			reqGetProperty(EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE2);
 			return this;
 		}
 		/**
-		 * Property name : �gTemperature setting for
-�ecooling�f mode�h
-2<br>
+		 * Property name : “Temperature setting for ‘cooling’ mode” 2<br>
 		 * <br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “cooling” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+		 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetGtemperatureSettingForEcoolingFModeH2() {
-			reqGetProperty(EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H2);
+		public Getter reqGetTemperatureSettingForCoolingMode2() {
+			reqGetProperty(EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE2);
 			return this;
 		}
 		/**
-		 * Property name : �gTemperature setting for
-�eheating�f mode�h
-2<br>
+		 * Property name : “Temperature setting for ‘heating’ mode” 2<br>
 		 * <br>
 		 * EPC : 0xE6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “heating” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+		 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetGtemperatureSettingForEheatingFModeH2() {
-			reqGetProperty(EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H2);
+		public Getter reqGetTemperatureSettingForHeatingMode2() {
+			reqGetProperty(EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE2);
 			return this;
 		}
 		/**
-		 * Property name : �gTemperature setting for
-�edehumidificatio n�f mode�h 2<br>
+		 * Property name : “Temperature setting for ‘dehumidificatio n’ mode” 2<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+		 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetGtemperatureSettingForEdehumidificatioNFModeH2() {
-			reqGetProperty(EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2);
+		public Getter reqGetTemperatureSettingForDehumidificatioNMode2() {
+			reqGetProperty(EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE2);
 			return this;
 		}
 		/**
@@ -6782,12 +6386,11 @@ short<br>
 		 * Used to acquire the measured indoor relative humidity.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0x3E8 (0.0 to 100.0%)<br>
+		 * 0x0000.0x3E8 (0.0.100.0%)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : 0.1%<br>
 		 * <br>
@@ -6809,15 +6412,13 @@ short<br>
 		 * Used to acquire the measured indoor temperature.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xF554 to 0x7FFD (-273,2 to<br>
-		 * 3276,5��C)<br>
+		 * 0xF554.0x7FFD (-273,2.3276,5°C)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6829,8 +6430,8 @@ short<br>
 			return this;
 		}
 		/**
-		 * Property name : �gON
-timer-based reservation�h setting<br>
+		 * Property name : “ON
+timer-based reservation” setting<br>
 		 * <br>
 		 * EPC : 0x90<br>
 		 * <br>
@@ -6838,12 +6439,9 @@ timer-based reservation�h setting<br>
 		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-		 * 0x42, time-based reservation function is ON = 0x43, relative time-based<br>
-		 * reservation function is ON = 0x44<br>
+		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -6854,8 +6452,8 @@ char<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetGonTimerBasedReservationHSetting() {
-			reqGetProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING);
+		public Getter reqGetOnTimerBasedReservationSetting() {
+			reqGetProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -6868,13 +6466,11 @@ char<br>
 		 * time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned
-char�~2<br>
+		 * Data type : unsigned char×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -6896,13 +6492,12 @@ char�~2<br>
 		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned
-char�~2<br>
+		 * Data type : unsigned char×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -6916,8 +6511,8 @@ char�~2<br>
 			return this;
 		}
 		/**
-		 * Property name : �gOFF
-timer-based reservation�h setting<br>
+		 * Property name : “OFF
+timer-based reservation” setting<br>
 		 * <br>
 		 * EPC : 0x94<br>
 		 * <br>
@@ -6925,14 +6520,11 @@ timer-based reservation�h setting<br>
 		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-		 * 0x42, time-based reservation function is ON = 0x43, relative time-based<br>
-		 * reservation function is ON = 0x44<br>
+		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Data size : 1 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -6941,8 +6533,8 @@ char<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetGoffTimerBasedReservationHSetting() {
-			reqGetProperty(EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING);
+		public Getter reqGetOffTimerBasedReservationSetting() {
+			reqGetProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -6955,13 +6547,11 @@ char<br>
 		 * time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned
-char�~2<br>
+		 * Data type : unsigned char×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -6983,13 +6573,12 @@ char�~2<br>
 		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned
-char�~2<br>
+		 * Data type : unsigned char×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -7080,8 +6669,8 @@ char�~2<br>
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -7118,16 +6707,12 @@ char�~2<br>
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the operation mode (�gautomatic,�h .�gcooling,�h .�gheating,�h . �gdehumidification�h .or .�gair .<br>
-		 * circulator�h) .and .to .acquire .the .current .<br>
-		 * setting.<br>
+		 * Used to specify the operation mode (“automatic,” “cooling,” “heating,” “dehumidification” or “air circulator”) and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The following values shall be used: Automatic: 0x41<br>
 		 * Cooling: 0x42<br>
-		 * Heating: 0x43<br>
-		 * Dehumidification: 0x44<br>
-		 * Air circulator: 0x45<br>
+		 * Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -7155,13 +6740,13 @@ char�~2<br>
 		 * Used to set the temperature and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7175,18 +6760,16 @@ char�~2<br>
 			return this;
 		}
 		/**
-		 * Property name : �gRelative .
-humidity setting for
-�edehumidifica-
-tion�f .mode�h .1<br>
+		 * Property name : “Relative
+humidity setting for ‘dehumidifica- tion’ mode” 1<br>
 		 * <br>
 		 * EPC : 0xB4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the relative humidity for the .�gdehumidification�h .mode .and .to . acquire the current setting.<br>
+		 * Used to set the relative humidity for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -7201,95 +6784,87 @@ tion�f .mode�h .1<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformGrelativeHumiditySettingForEdehumidificaTionFModeH1() {
-			reqInformProperty(EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1);
+		public Informer reqInformRelativeHumiditySettingForDehumidificaTionMode1() {
+			reqInformProperty(EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICA_TION_MODE1);
 			return this;
 		}
 		/**
-		 * Property name : �gTemperature .
-setting for
-�ecooling�f .mode�h .
-1<br>
+		 * Property name : “Temperature setting for ‘cooling’ mode” 1<br>
 		 * <br>
 		 * EPC : 0xB5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gcooling�h .mode .and .to .acquire .the . current setting.<br>
+		 * Used to set the temperature for the “cooling” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformGtemperatureSettingForEcoolingFModeH1() {
-			reqInformProperty(EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H1);
+		public Informer reqInformTemperatureSettingForCoolingMode1() {
+			reqInformProperty(EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE1);
 			return this;
 		}
 		/**
-		 * Property name : �gTemperature .
-setting for
-�eheating�f .mode�h .
-1<br>
+		 * Property name : “Temperature setting for ‘heating’ mode” 1<br>
 		 * <br>
 		 * EPC : 0xB6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gheating�h .mode .and .to .acquire .the . current setting.<br>
+		 * Used to set the temperature for the “heating” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformGtemperatureSettingForEheatingFModeH1() {
-			reqInformProperty(EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H1);
+		public Informer reqInformTemperatureSettingForHeatingMode1() {
+			reqInformProperty(EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE1);
 			return this;
 		}
 		/**
-		 * Property name : �gTemperature .
-setting for
-�edehumidifica-
-tion�f .mode�h .1<br>
+		 * Property name : “Temperature
+setting for ‘dehumidifica- tion’ mode” 1<br>
 		 * <br>
 		 * EPC : 0xB7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gdehumidification�h .mode .and .to . acquire the current setting.<br>
+		 * Used to set the temperature for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50��C)<br>
+		 * 0x00.0x32 (0.50°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformGtemperatureSettingForEdehumidificaTionFModeH1() {
-			reqInformProperty(EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICA_TION_F_MODE_H1);
+		public Informer reqInformTemperatureSettingForDehumidificaTionMode1() {
+			reqInformProperty(EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICA_TION_MODE1);
 			return this;
 		}
 		/**
@@ -7301,11 +6876,10 @@ tion�f .mode�h .1<br>
 		 * This property indicates the rated power consumption for the cooling, heating, dehumidification and air circulator modes.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
-		 * Cooling: heating: dehumidification:<br>
-		 * air circulator<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
+		 * Cooling: heating: dehumidification: air circulator<br>
 		 * <br>
-		 * Data type : unsigned short x 4<br>
+		 * Data type : unsigned short × 4<br>
 		 * <br>
 		 * Data size : 8 bytes<br>
 		 * <br>
@@ -7329,7 +6903,7 @@ tion�f .mode�h .1<br>
 		 * This property indicates the measured electric current consumption.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 6553.3A)<br>
+		 * 0x0000.0xFFFD (0.6553.3A)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
@@ -7355,7 +6929,7 @@ tion�f .mode�h .1<br>
 		 * Used to acquire the measured indoor relative humidity.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -7381,13 +6955,13 @@ tion�f .mode�h .1<br>
 		 * Used to acquire the measured indoor temperature.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (-127 to 125��C)<br>
+		 * 0x81.0x7D (-127.125°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 1��C<br>
+		 * Unit : 1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7404,17 +6978,16 @@ tion�f .mode�h .1<br>
 		 * EPC : 0xBF<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the relative temperature relative to the target temperature for<br>
-		 * an air conditioner operation mode and to acquire the current setting.<br>
+		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (-12.7��C to 12.5��C)<br>
+		 * 0x81.0x7D (-12.7°C.12.5°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7435,10 +7008,9 @@ tion�f .mode�h .1<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic air flow rate control function used = 0x41<br>
-		 * Air flow rate = 0x31 to 0x38<br>
+		 * Air flow rate = 0x31.0x38<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -7454,7 +7026,7 @@ char<br>
 			return this;
 		}
 		/**
-		 * Property name : �gAir flow direction (vertical)�h setting<br>
+		 * Property name : “Air flow direction (vertical)” setting<br>
 		 * <br>
 		 * EPC : 0xA4<br>
 		 * <br>
@@ -7462,13 +7034,11 @@ char<br>
 		 * Used to specify the air flow direction in the vertical plane by selecting a pattern from among the 9 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x31, swing = 0x32<br>
-		 * Air flow direction: 0x41 to 0x49 (0x41 and 0x49 shall be used for the<br>
+		 * Automatic = 0x31, swing = 0x32 Air flow direction: 0x41.0x49 (0x41 and 0x49 shall be used for the<br>
 		 * uppermost and lowermost directions,<br>
 		 * respectively.)<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -7479,12 +7049,12 @@ char<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformGairFlowDirectionVerticalHSetting() {
-			reqInformProperty(EPC_GAIR_FLOW_DIRECTION_VERTICAL_H_SETTING);
+		public Informer reqInformAirFlowDirectionVerticalSetting() {
+			reqInformProperty(EPC_AIR_FLOW_DIRECTION_VERTICAL_SETTING);
 			return this;
 		}
 		/**
-		 * Property name : �gAir flow direction (horizontal)�h setting<br>
+		 * Property name : “Air flow direction (horizontal)” setting<br>
 		 * <br>
 		 * EPC : 0xA5<br>
 		 * <br>
@@ -7492,13 +7062,11 @@ char<br>
 		 * Used to specify the air flow direction in the horizontal plane by selecting a pattern from among the 6 predefined patterns or to specify using the automatic air flow direction control function or automatic air flow swing function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x31, swing = 0x32<br>
-		 * Air flow direction:<br>
+		 * Automatic = 0x31, swing = 0x32 Air flow direction:<br>
 		 * Rightward = 0x41, leftward = 0x42, central = 0x43, rightward and leftward<br>
 		 * = 0x44<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -7509,23 +7077,22 @@ char<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformGairFlowDirectionHorizontalHSetting() {
-			reqInformProperty(EPC_GAIR_FLOW_DIRECTION_HORIZONTAL_H_SETTING);
+		public Informer reqInformAirFlowDirectionHorizontalSetting() {
+			reqInformProperty(EPC_AIR_FLOW_DIRECTION_HORIZONTAL_SETTING);
 			return this;
 		}
 		/**
-		 * Property name : �gSpecial�h state<br>
+		 * Property name : “Special” state<br>
 		 * <br>
 		 * EPC : 0xAA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates when the air conditioner is in a �gspecial�h state.<br>
+		 * This property indicates when the air conditioner is in a “special” state.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gNormal operation�h state = 0x40, �gpreheating�h state = 0x42, �gheat removal�h state = 0x43<br>
+		 * “Normal operation” state = 0x40, “preheating” state = 0x42, “heat removal” state = 0x43<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -7536,8 +7103,8 @@ char<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformGspecialHState() {
-			reqInformProperty(EPC_GSPECIAL_H_STATE);
+		public Informer reqInformSpecialState() {
+			reqInformProperty(EPC_SPECIAL_STATE);
 			return this;
 		}
 		/**
@@ -7546,15 +7113,12 @@ char<br>
 		 * EPC : 0xAC<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the state (ON<br>
-		 * or OFF) of the thermostat.<br>
+		 * This property indicates the state (ON or OFF) of the thermostat.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Thermostat ON = 0x41<br>
-		 * Thermostat OFF = 0x42<br>
+		 * Thermostat ON = 0x41 Thermostat OFF = 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -7570,22 +7134,18 @@ char<br>
 			return this;
 		}
 		/**
-		 * Property name : Current function (�gautomatic�h operation mode)<br>
+		 * Property name : Current function (“automatic” operation mode)<br>
 		 * <br>
 		 * EPC : 0xAE<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates, when the air conditioner is operating in the �gautomatic�h operation mode, the function (�gcooling,�h �gheating,�h �gdehumidification,�h �gair circulator�h or �gother�h) that is currently being used.<br>
+		 * This property indicates, when the air conditioner is operating in the “automatic” operation mode, the function (“cooling,” “heating,” “dehumidification,” “air circulator” or “other”) that is currently being used.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The following values shall be used: Cooling: 0x42<br>
-		 * Heating: 0x43<br>
-		 * Dehumidification: 0x44<br>
-		 * Air circulator: 0x45<br>
-		 * Other: 0x40<br>
+		 * Heating: 0x43 Dehumidification: 0x44 Air circulator: 0x45 Other: 0x40<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -7598,8 +7158,8 @@ char<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformCurrentFunctionGautomaticHOperationMode() {
-			reqInformProperty(EPC_CURRENT_FUNCTION_GAUTOMATIC_H_OPERATION_MODE);
+		public Informer reqInformCurrentFunctionAutomaticOperationMode() {
+			reqInformProperty(EPC_CURRENT_FUNCTION_AUTOMATIC_OPERATION_MODE);
 			return this;
 		}
 		/**
@@ -7612,10 +7172,10 @@ char<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Ordinary ventilation = 0x41, ventilation plus total heat exchanger-based heat exchange =<br>
-		 * 0x42, automatic control of ventilation (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br>
+		 * 0x42, automatic control of ventilation<br>
+		 * (i.e. automatic switching between ordinary ventilation and ventilation plus total heat exchanger-based heat exchange) = 0x43<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -7636,15 +7196,13 @@ char<br>
 		 * EPC : 0xC1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify whether or not to use the �gcombined operation of indoor unit and total heat exchanger�h function,<br>
-		 * and to acquire the current setting.<br>
+		 * Used to specify whether or not to use the “combined operation of indoor unit and total heat exchanger” function,  and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gCombined operation of indoor unit and total heat exchanger�h function used = 0x41<br>
-		 * �gCombined operation of indoor unit and total heat exchanger�h function not used= 0x42<br>
+		 * “Combined operation of indoor unit and total heat exchanger” function used = 0x41<br>
+		 * “Combined operation of indoor unit and total heat exchanger” function not used= 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -7665,16 +7223,13 @@ char<br>
 		 * EPC : 0xC2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire<br>
-		 * the current setting.<br>
+		 * Used to specify the ventilation air flow rate by selecting a level from among the predefined levels and to acquire  the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic control of ventilation air flow rate = 0x41<br>
-		 * Ventilation air flow rate = 0x31 to<br>
-		 * 0x38<br>
+		 * Ventilation air flow rate = 0x31 to 0x38<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -7690,7 +7245,7 @@ char<br>
 			return this;
 		}
 		/**
-		 * Property name : �gDisabling of air conditioner�h setting<br>
+		 * Property name : “Disabling of air conditioner” setting<br>
 		 * <br>
 		 * EPC : 0xCD<br>
 		 * <br>
@@ -7700,8 +7255,7 @@ char<br>
 		 * Value range (decimal notation) :<br>
 		 * Disabled = 0x41, not disabled = 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -7712,8 +7266,8 @@ char<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformGdisablingOfAirConditionerHSetting() {
-			reqInformProperty(EPC_GDISABLING_OF_AIR_CONDITIONER_H_SETTING);
+		public Informer reqInformDisablingOfAirConditionerSetting() {
+			reqInformProperty(EPC_DISABLING_OF_AIR_CONDITIONER_SETTING);
 			return this;
 		}
 		/**
@@ -7727,8 +7281,7 @@ char<br>
 		 * Value range (decimal notation) :<br>
 		 * Normal setting = 0x40, thermostat setting override function ON = 0x41, thermostat setting override function OFF = 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -7754,8 +7307,7 @@ char<br>
 		 * Value range (decimal notation) :<br>
 		 * Enabled = 0x41, disabled = 0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -7781,11 +7333,11 @@ char<br>
 		 * This property indicates the measured power consumption of the indoor unit.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
 		 * <br>
-		 * Data type : unsigned<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -7807,10 +7359,9 @@ char<br>
 		 * This property indicates the aperture of the expansion valve in %.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x64 (0 to 100%)<br>
+		 * 0.0x64 (0.100%)<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -7834,14 +7385,13 @@ char<br>
 		 * Used to set the temperature and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+		 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7855,21 +7405,19 @@ short<br>
 			return this;
 		}
 		/**
-		 * Property name : �gRelative humidity setting for
-�edehumidificatio n�f mode�h 2<br>
+		 * Property name : “Relative humidity setting for ‘dehumidificatio n’ mode” 2<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the relative humidity for the �gdehumidification�h mode and to acquire the current setting.<br>
+		 * Used to set the relative humidity for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0x3E8 (0.0 to 100.0%)<br>
+		 * 0x0000.0x3E8 (0.0.100.0%)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : 0.1%<br>
 		 * <br>
@@ -7880,94 +7428,86 @@ short<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformGrelativeHumiditySettingForEdehumidificatioNFModeH2() {
-			reqInformProperty(EPC_GRELATIVE_HUMIDITY_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2);
+		public Informer reqInformRelativeHumiditySettingForDehumidificatioNMode2() {
+			reqInformProperty(EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE2);
 			return this;
 		}
 		/**
-		 * Property name : �gTemperature setting for
-�ecooling�f mode�h
-2<br>
+		 * Property name : “Temperature setting for ‘cooling’ mode” 2<br>
 		 * <br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gcooling�h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “cooling” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+		 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformGtemperatureSettingForEcoolingFModeH2() {
-			reqInformProperty(EPC_GTEMPERATURE_SETTING_FOR_ECOOLING_F_MODE_H2);
+		public Informer reqInformTemperatureSettingForCoolingMode2() {
+			reqInformProperty(EPC_TEMPERATURE_SETTING_FOR_COOLING_MODE2);
 			return this;
 		}
 		/**
-		 * Property name : �gTemperature setting for
-�eheating�f mode�h
-2<br>
+		 * Property name : “Temperature setting for ‘heating’ mode” 2<br>
 		 * <br>
 		 * EPC : 0xE6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gheating�h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “heating” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+		 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformGtemperatureSettingForEheatingFModeH2() {
-			reqInformProperty(EPC_GTEMPERATURE_SETTING_FOR_EHEATING_F_MODE_H2);
+		public Informer reqInformTemperatureSettingForHeatingMode2() {
+			reqInformProperty(EPC_TEMPERATURE_SETTING_FOR_HEATING_MODE2);
 			return this;
 		}
 		/**
-		 * Property name : �gTemperature setting for
-�edehumidificatio n�f mode�h 2<br>
+		 * Property name : “Temperature setting for ‘dehumidificatio n’ mode” 2<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the �gdehumidification�h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xFE0C to 0x3E8 (-50.0 to 100.0��C)<br>
+		 * 0xFE0C.0x3E8 (-50.0.100.0°C)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformGtemperatureSettingForEdehumidificatioNFModeH2() {
-			reqInformProperty(EPC_GTEMPERATURE_SETTING_FOR_EDEHUMIDIFICATIO_N_F_MODE_H2);
+		public Informer reqInformTemperatureSettingForDehumidificatioNMode2() {
+			reqInformProperty(EPC_TEMPERATURE_SETTING_FOR_DEHUMIDIFICATIO_N_MODE2);
 			return this;
 		}
 		/**
@@ -7979,12 +7519,11 @@ short<br>
 		 * Used to acquire the measured indoor relative humidity.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0x3E8 (0.0 to 100.0%)<br>
+		 * 0x0000.0x3E8 (0.0.100.0%)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : 0.1%<br>
 		 * <br>
@@ -8006,15 +7545,13 @@ short<br>
 		 * Used to acquire the measured indoor temperature.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xF554 to 0x7FFD (-273,2 to<br>
-		 * 3276,5��C)<br>
+		 * 0xF554.0x7FFD (-273,2.3276,5°C)<br>
 		 * <br>
-		 * Data type : unsigned
-short<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.1��C<br>
+		 * Unit : 0.1°C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8026,8 +7563,8 @@ short<br>
 			return this;
 		}
 		/**
-		 * Property name : �gON
-timer-based reservation�h setting<br>
+		 * Property name : “ON
+timer-based reservation” setting<br>
 		 * <br>
 		 * EPC : 0x90<br>
 		 * <br>
@@ -8035,12 +7572,9 @@ timer-based reservation�h setting<br>
 		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-		 * 0x42, time-based reservation function is ON = 0x43, relative time-based<br>
-		 * reservation function is ON = 0x44<br>
+		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
@@ -8051,8 +7585,8 @@ char<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformGonTimerBasedReservationHSetting() {
-			reqInformProperty(EPC_GON_TIMER_BASED_RESERVATION_H_SETTING);
+		public Informer reqInformOnTimerBasedReservationSetting() {
+			reqInformProperty(EPC_ON_TIMER_BASED_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -8065,13 +7599,11 @@ char<br>
 		 * time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned
-char�~2<br>
+		 * Data type : unsigned char×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -8093,13 +7625,12 @@ char�~2<br>
 		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned
-char�~2<br>
+		 * Data type : unsigned char×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -8113,8 +7644,8 @@ char�~2<br>
 			return this;
 		}
 		/**
-		 * Property name : �gOFF
-timer-based reservation�h setting<br>
+		 * Property name : “OFF
+timer-based reservation” setting<br>
 		 * <br>
 		 * EPC : 0x94<br>
 		 * <br>
@@ -8122,14 +7653,11 @@ timer-based reservation�h setting<br>
 		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-		 * 0x42, time-based reservation function is ON = 0x43, relative time-based<br>
-		 * reservation function is ON = 0x44<br>
+		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Data size : 1 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -8138,8 +7666,8 @@ char<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformGoffTimerBasedReservationHSetting() {
-			reqInformProperty(EPC_GOFF_TIMER_BASED_RESERVATION_H_SETTING);
+		public Informer reqInformOffTimerBasedReservationSetting() {
+			reqInformProperty(EPC_OFF_TIMER_BASED_RESERVATION_SETTING);
 			return this;
 		}
 		/**
@@ -8152,13 +7680,11 @@ char<br>
 		 * time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned
-char�~2<br>
+		 * Data type : unsigned char×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -8180,13 +7706,12 @@ char�~2<br>
 		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned
-char�~2<br>
+		 * Data type : unsigned char×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>

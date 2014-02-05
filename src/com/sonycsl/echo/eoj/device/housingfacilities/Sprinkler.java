@@ -56,8 +56,7 @@ public abstract class Sprinkler extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
@@ -65,7 +64,7 @@ public abstract class Sprinkler extends DeviceObject {
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -83,8 +82,7 @@ Byte<br>
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
@@ -92,7 +90,7 @@ Byte<br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -113,13 +111,12 @@ Byte<br>
 	 * Open/close of sprinkle valve<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic ON=0x40    manual ON��<br>
-	 * 0x41�Cmanual OFF��0x42<br>
+	 * Automatic ON=0x40    manual ON=0x41, manual OFF=0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -138,13 +135,12 @@ Byte<br>
 	 * Open/close of sprinkle valve<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic ON=0x40    manual ON��<br>
-	 * 0x41�Cmanual OFF��0x42<br>
+	 * Automatic ON=0x40    manual ON=0x41, manual OFF=0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -163,13 +159,12 @@ Byte<br>
 	 * Open/close of sprinkle valve<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic ON=0x40    manual ON��<br>
-	 * 0x41�Cmanual OFF��0x42<br>
+	 * Automatic ON=0x40    manual ON=0x41, manual OFF=0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -191,12 +186,12 @@ Byte<br>
 	 * OFF / daily / every other day / every 3 days / once a week<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x40�^0x41�^0x42�^0x43�^0x44<br>
+	 * 0x40／0x41／0x42／0x43／0x44<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -215,12 +210,12 @@ Byte<br>
 	 * OFF / daily / every other day / every 3 days / once a week<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x40�^0x41�^0x42�^0x43�^0x44<br>
+	 * 0x40／0x41／0x42／0x43／0x44<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -239,12 +234,12 @@ Byte<br>
 	 * OFF / daily / every other day / every 3 days / once a week<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x40�^0x41�^0x42�^0x43�^0x44<br>
+	 * 0x40／0x41／0x42／0x43／0x44<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -264,15 +259,15 @@ Byte<br>
 	 * <br>
 	 * Contents of property :<br>
 	 * Number of sprinkles in a day(up to 2 times)<br>
-	 * First ON�^second ON�^both ON<br>
+	 * First ON／second ON／both ON<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x41�^0x42�^0x43<br>
+	 * 0x41／0x42／0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -289,15 +284,15 @@ Byte<br>
 	 * <br>
 	 * Contents of property :<br>
 	 * Number of sprinkles in a day(up to 2 times)<br>
-	 * First ON�^second ON�^both ON<br>
+	 * First ON／second ON／both ON<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x41�^0x42�^0x43<br>
+	 * 0x41／0x42／0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -314,15 +309,15 @@ Byte<br>
 	 * <br>
 	 * Contents of property :<br>
 	 * Number of sprinkles in a day(up to 2 times)<br>
-	 * First ON�^second ON�^both ON<br>
+	 * First ON／second ON／both ON<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x41�^0x42�^0x43<br>
+	 * 0x41／0x42／0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -344,13 +339,13 @@ Byte<br>
 	 * Set timer value HH:MM and get updated time<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+	 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -369,13 +364,13 @@ Byte<br>
 	 * Set timer value HH:MM and get updated time<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+	 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -394,13 +389,13 @@ Byte<br>
 	 * Set timer value HH:MM and get updated time<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+	 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -422,13 +417,13 @@ Byte<br>
 	 * Set timer value HH:MM and get updated time<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+	 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -447,13 +442,13 @@ Byte<br>
 	 * Set timer value HH:MM and get updated time<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+	 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -472,13 +467,13 @@ Byte<br>
 	 * Set timer value HH:MM and get updated time<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+	 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -497,16 +492,15 @@ Byte<br>
 	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Set timer value MM<br>
-	 * 0 to 59 minutes<br>
+	 * Set timer value MM 0 to 59 minutes<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x3B (=0~59)<br>
+	 * 0-0x3B (=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -522,16 +516,15 @@ Byte<br>
 	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Set timer value MM<br>
-	 * 0 to 59 minutes<br>
+	 * Set timer value MM 0 to 59 minutes<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x3B (=0~59)<br>
+	 * 0-0x3B (=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -547,16 +540,15 @@ Byte<br>
 	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Set timer value MM<br>
-	 * 0 to 59 minutes<br>
+	 * Set timer value MM 0 to 59 minutes<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x3B (=0~59)<br>
+	 * 0-0x3B (=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -723,13 +715,12 @@ Byte<br>
 		 * Open/close of sprinkle valve<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic ON=0x40    manual ON��<br>
-		 * 0x41�Cmanual OFF��0x42<br>
+		 * Automatic ON=0x40    manual ON=0x41, manual OFF=0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -748,13 +739,12 @@ Byte<br>
 		 * Open/close of sprinkle valve<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic ON=0x40    manual ON��<br>
-		 * 0x41�Cmanual OFF��0x42<br>
+		 * Automatic ON=0x40    manual ON=0x41, manual OFF=0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -773,12 +763,12 @@ Byte<br>
 		 * OFF / daily / every other day / every 3 days / once a week<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x40�^0x41�^0x42�^0x43�^0x44<br>
+		 * 0x40／0x41／0x42／0x43／0x44<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -797,12 +787,12 @@ Byte<br>
 		 * OFF / daily / every other day / every 3 days / once a week<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x40�^0x41�^0x42�^0x43�^0x44<br>
+		 * 0x40／0x41／0x42／0x43／0x44<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -819,15 +809,15 @@ Byte<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Number of sprinkles in a day(up to 2 times)<br>
-		 * First ON�^second ON�^both ON<br>
+		 * First ON／second ON／both ON<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x41�^0x42�^0x43<br>
+		 * 0x41／0x42／0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -844,15 +834,15 @@ Byte<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Number of sprinkles in a day(up to 2 times)<br>
-		 * First ON�^second ON�^both ON<br>
+		 * First ON／second ON／both ON<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x41�^0x42�^0x43<br>
+		 * 0x41／0x42／0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -871,13 +861,13 @@ Byte<br>
 		 * Set timer value HH:MM and get updated time<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+		 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -896,13 +886,13 @@ Byte<br>
 		 * Set timer value HH:MM and get updated time<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+		 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -921,13 +911,13 @@ Byte<br>
 		 * Set timer value HH:MM and get updated time<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+		 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -946,13 +936,13 @@ Byte<br>
 		 * Set timer value HH:MM and get updated time<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+		 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -968,16 +958,15 @@ Byte<br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Set timer value MM<br>
-		 * 0 to 59 minutes<br>
+		 * Set timer value MM 0 to 59 minutes<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x3B (=0~59)<br>
+		 * 0-0x3B (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -993,16 +982,15 @@ Byte<br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Set timer value MM<br>
-		 * 0 to 59 minutes<br>
+		 * Set timer value MM 0 to 59 minutes<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x3B (=0~59)<br>
+		 * 0-0x3B (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1043,8 +1031,8 @@ Byte<br>
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -1068,13 +1056,12 @@ Byte<br>
 		 * Open/close of sprinkle valve<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic ON=0x40    manual ON��<br>
-		 * 0x41�Cmanual OFF��0x42<br>
+		 * Automatic ON=0x40    manual ON=0x41, manual OFF=0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1096,12 +1083,12 @@ Byte<br>
 		 * OFF / daily / every other day / every 3 days / once a week<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x40�^0x41�^0x42�^0x43�^0x44<br>
+		 * 0x40／0x41／0x42／0x43／0x44<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1121,15 +1108,15 @@ Byte<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Number of sprinkles in a day(up to 2 times)<br>
-		 * First ON�^second ON�^both ON<br>
+		 * First ON／second ON／both ON<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x41�^0x42�^0x43<br>
+		 * 0x41／0x42／0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1151,13 +1138,13 @@ Byte<br>
 		 * Set timer value HH:MM and get updated time<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+		 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1179,13 +1166,13 @@ Byte<br>
 		 * Set timer value HH:MM and get updated time<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+		 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1204,16 +1191,15 @@ Byte<br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Set timer value MM<br>
-		 * 0 to 59 minutes<br>
+		 * Set timer value MM 0 to 59 minutes<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x3B (=0~59)<br>
+		 * 0-0x3B (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1305,8 +1291,8 @@ Byte<br>
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -1346,13 +1332,12 @@ Byte<br>
 		 * Open/close of sprinkle valve<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic ON=0x40    manual ON��<br>
-		 * 0x41�Cmanual OFF��0x42<br>
+		 * Automatic ON=0x40    manual ON=0x41, manual OFF=0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1374,12 +1359,12 @@ Byte<br>
 		 * OFF / daily / every other day / every 3 days / once a week<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x40�^0x41�^0x42�^0x43�^0x44<br>
+		 * 0x40／0x41／0x42／0x43／0x44<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1399,15 +1384,15 @@ Byte<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Number of sprinkles in a day(up to 2 times)<br>
-		 * First ON�^second ON�^both ON<br>
+		 * First ON／second ON／both ON<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x41�^0x42�^0x43<br>
+		 * 0x41／0x42／0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1429,13 +1414,13 @@ Byte<br>
 		 * Set timer value HH:MM and get updated time<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+		 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1457,13 +1442,13 @@ Byte<br>
 		 * Set timer value HH:MM and get updated time<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+		 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1482,16 +1467,15 @@ Byte<br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Set timer value MM<br>
-		 * 0 to 59 minutes<br>
+		 * Set timer value MM 0 to 59 minutes<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x3B (=0~59)<br>
+		 * 0-0x3B (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1582,8 +1566,8 @@ Byte<br>
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -1623,13 +1607,12 @@ Byte<br>
 		 * Open/close of sprinkle valve<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic ON=0x40    manual ON��<br>
-		 * 0x41�Cmanual OFF��0x42<br>
+		 * Automatic ON=0x40    manual ON=0x41, manual OFF=0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1651,12 +1634,12 @@ Byte<br>
 		 * OFF / daily / every other day / every 3 days / once a week<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x40�^0x41�^0x42�^0x43�^0x44<br>
+		 * 0x40／0x41／0x42／0x43／0x44<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1676,15 +1659,15 @@ Byte<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Number of sprinkles in a day(up to 2 times)<br>
-		 * First ON�^second ON�^both ON<br>
+		 * First ON／second ON／both ON<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x41�^0x42�^0x43<br>
+		 * 0x41／0x42／0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1706,13 +1689,13 @@ Byte<br>
 		 * Set timer value HH:MM and get updated time<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+		 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1734,13 +1717,13 @@ Byte<br>
 		 * Set timer value HH:MM and get updated time<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0~0x17�F0~0x3B (=0~23)�F(=0~59)<br>
+		 * 0.0x17 : 0.0x3B (=0.23) : (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1759,16 +1742,15 @@ Byte<br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Set timer value MM<br>
-		 * 0 to 59 minutes<br>
+		 * Set timer value MM 0 to 59 minutes<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x3B (=0~59)<br>
+		 * 0-0x3B (=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>

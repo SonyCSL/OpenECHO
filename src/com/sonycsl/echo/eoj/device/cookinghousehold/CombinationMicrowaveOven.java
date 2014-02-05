@@ -43,7 +43,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	public static final byte EPC_REMAINING_HEATING_TIME_SETTING = (byte)0xE6;
 	public static final byte EPC_MICROWAVE_HEATING_POWER_SETTING = (byte)0xE7;
 	public static final byte EPC_PROMPT_MESSAGE_SETTING = (byte)0xE8;
-	public static final byte EPC_GACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_H_SETTING = (byte)0xE9;
+	public static final byte EPC_ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING = (byte)0xE9;
 	public static final byte EPC_DISPLAY_CHARACTER_STRING_SETTING = (byte)0xEA;
 	public static final byte EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION = (byte)0xEB;
 	public static final byte EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER = (byte)0xEC;
@@ -68,17 +68,16 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This  property  indicates  the  ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -94,17 +93,16 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This  property  indicates  the  ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -129,7 +127,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -152,7 +150,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -172,22 +170,19 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * Used to acquire the status of the combination microwave oven.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Initial state = 0x40<br>
-	 * Heating = 0x41<br>
+	 * Initial state = 0x40 Heating = 0x41<br>
 	 * Heating suspended = 0x42<br>
 	 * Reporting completion of heating cycle<br>
 	 * = 0x43<br>
-	 * Setting = 0x44<br>
-	 * Preheating = 0x45<br>
-	 * Preheat temperature maintenance =<br>
-	 * 0x46<br>
+	 * Setting = 0x44 Preheating = 0x45<br>
+	 * Preheat temperature maintenance = 0x46<br>
 	 * Heating temporarily stopped for manual cooking action = 0x47<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -204,22 +199,19 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * Used to acquire the status of the combination microwave oven.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Initial state = 0x40<br>
-	 * Heating = 0x41<br>
+	 * Initial state = 0x40 Heating = 0x41<br>
 	 * Heating suspended = 0x42<br>
 	 * Reporting completion of heating cycle<br>
 	 * = 0x43<br>
-	 * Setting = 0x44<br>
-	 * Preheating = 0x45<br>
-	 * Preheat temperature maintenance =<br>
-	 * 0x46<br>
+	 * Setting = 0x44 Preheating = 0x45<br>
+	 * Preheat temperature maintenance = 0x46<br>
 	 * Heating temporarily stopped for manual cooking action = 0x47<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -240,15 +232,14 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Start/restart heating (heating started/restarted) = 0x41<br>
-	 * Suspend heating (heating suspended) =<br>
-	 * 0x42<br>
+	 * Suspend heating (heating suspended) = 0x42<br>
 	 * Stop heating (heating stopped) = 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -266,15 +257,14 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Start/restart heating (heating started/restarted) = 0x41<br>
-	 * Suspend heating (heating suspended) =<br>
-	 * 0x42<br>
+	 * Suspend heating (heating suspended) = 0x42<br>
 	 * Stop heating (heating stopped) = 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -292,15 +282,14 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Start/restart heating (heating started/restarted) = 0x41<br>
-	 * Suspend heating (heating suspended) =<br>
-	 * 0x42<br>
+	 * Suspend heating (heating suspended) = 0x42<br>
 	 * Stop heating (heating stopped) = 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -320,14 +309,9 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * Used to specify the heating mode of the combination microwave oven, and to acquire the current setting (i.e. current mode).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Microwave heating = 0x41<br>
-	 * Defrosting = 0x42<br>
+	 * Microwave heating = 0x41 Defrosting = 0x42<br>
 	 * Oven = 0x43<br>
-	 * Grill = 0x44<br>
-	 * Toaster = 0x45<br>
-	 * Fermenting = 0x46<br>
-	 * Stewing = 0x47<br>
-	 * Steaming = 0x48<br>
+	 * Grill = 0x44 Toaster = 0x45 Fermenting = 0x46 Stewing = 0x47 Steaming = 0x48<br>
 	 * Two-stage microwave heating = 0x51<br>
 	 * No mode specified = 0xFF<br>
 	 * <br>
@@ -335,7 +319,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -352,14 +336,9 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * Used to specify the heating mode of the combination microwave oven, and to acquire the current setting (i.e. current mode).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Microwave heating = 0x41<br>
-	 * Defrosting = 0x42<br>
+	 * Microwave heating = 0x41 Defrosting = 0x42<br>
 	 * Oven = 0x43<br>
-	 * Grill = 0x44<br>
-	 * Toaster = 0x45<br>
-	 * Fermenting = 0x46<br>
-	 * Stewing = 0x47<br>
-	 * Steaming = 0x48<br>
+	 * Grill = 0x44 Toaster = 0x45 Fermenting = 0x46 Stewing = 0x47 Steaming = 0x48<br>
 	 * Two-stage microwave heating = 0x51<br>
 	 * No mode specified = 0xFF<br>
 	 * <br>
@@ -367,7 +346,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -384,14 +363,9 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * Used to specify the heating mode of the combination microwave oven, and to acquire the current setting (i.e. current mode).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Microwave heating = 0x41<br>
-	 * Defrosting = 0x42<br>
+	 * Microwave heating = 0x41 Defrosting = 0x42<br>
 	 * Oven = 0x43<br>
-	 * Grill = 0x44<br>
-	 * Toaster = 0x45<br>
-	 * Fermenting = 0x46<br>
-	 * Stewing = 0x47<br>
-	 * Steaming = 0x48<br>
+	 * Grill = 0x44 Toaster = 0x45 Fermenting = 0x46 Stewing = 0x47 Steaming = 0x48<br>
 	 * Two-stage microwave heating = 0x51<br>
 	 * No mode specified = 0xFF<br>
 	 * <br>
@@ -399,7 +373,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -416,7 +390,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * EPC : 0xE1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify whether or not to use the combination microwave oven�fs automatic heating mode, and to acquire the current setting.<br>
+	 * Used to specify whether or not to use the combination microwave oven’s automatic heating mode, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic = 0x41<br>
@@ -427,7 +401,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -441,7 +415,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * EPC : 0xE1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify whether or not to use the combination microwave oven�fs automatic heating mode, and to acquire the current setting.<br>
+	 * Used to specify whether or not to use the combination microwave oven’s automatic heating mode, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic = 0x41<br>
@@ -452,7 +426,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -466,7 +440,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * EPC : 0xE1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify whether or not to use the combination microwave oven�fs automatic heating mode, and to acquire the current setting.<br>
+	 * Used to specify whether or not to use the combination microwave oven’s automatic heating mode, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic = 0x41<br>
@@ -477,7 +451,7 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -494,16 +468,16 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * EPC : 0xE2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify, by selecting a level from among the five predefined levels, the level of automatic heating for the option specified by the �gautomatic heating menu setting�h property, and to acquire the current setting.<br>
+	 * Used to specify, by selecting a level from among the five predefined levels, the level of automatic heating for the option specified by the “automatic heating menu setting” property, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x31 to 0x35 (lowest to highest) Not specified = 0xFF<br>
+	 * 0x31.0x35 (lowest to highest) Not specified = 0xFF<br>
 	 * <br>
 	 * Data type : unsigned cha<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -517,16 +491,16 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * EPC : 0xE2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify, by selecting a level from among the five predefined levels, the level of automatic heating for the option specified by the �gautomatic heating menu setting�h property, and to acquire the current setting.<br>
+	 * Used to specify, by selecting a level from among the five predefined levels, the level of automatic heating for the option specified by the “automatic heating menu setting” property, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x31 to 0x35 (lowest to highest) Not specified = 0xFF<br>
+	 * 0x31.0x35 (lowest to highest) Not specified = 0xFF<br>
 	 * <br>
 	 * Data type : unsigned cha<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -540,16 +514,16 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * EPC : 0xE2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify, by selecting a level from among the five predefined levels, the level of automatic heating for the option specified by the �gautomatic heating menu setting�h property, and to acquire the current setting.<br>
+	 * Used to specify, by selecting a level from among the five predefined levels, the level of automatic heating for the option specified by the “automatic heating menu setting” property, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x31 to 0x35 (lowest to highest) Not specified = 0xFF<br>
+	 * 0x31.0x35 (lowest to highest) Not specified = 0xFF<br>
 	 * <br>
 	 * Data type : unsigned cha<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -566,18 +540,17 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * EPC : 0xD0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when the value of the �gautomatic heating setting�h property is 0x41 (= automatic heating), to select an automatic heating cycle, and to acquire the current setting.<br>
+	 * Used, when the value of the “automatic heating setting” property is 0x41 (= automatic heating), to select an automatic heating cycle, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0xFE: Automatic heating cycle code (See the automatic heating cycle code table in the subsection entitled �gAutomatic heating menu setting.�h)<br>
-	 * No automatic heating cycle specified =<br>
-	 * 0xFF<br>
+	 * 0 to 0xFE: Automatic heating cycle code (See the automatic heating cycle code table in the subsection entitled “Automatic heating menu setting.”)<br>
+	 * No automatic heating cycle specified = 0xFF<br>
 	 * <br>
 	 * Data type : unsigned cha<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -591,18 +564,17 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * EPC : 0xD0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when the value of the �gautomatic heating setting�h property is 0x41 (= automatic heating), to select an automatic heating cycle, and to acquire the current setting.<br>
+	 * Used, when the value of the “automatic heating setting” property is 0x41 (= automatic heating), to select an automatic heating cycle, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0xFE: Automatic heating cycle code (See the automatic heating cycle code table in the subsection entitled �gAutomatic heating menu setting.�h)<br>
-	 * No automatic heating cycle specified =<br>
-	 * 0xFF<br>
+	 * 0 to 0xFE: Automatic heating cycle code (See the automatic heating cycle code table in the subsection entitled “Automatic heating menu setting.”)<br>
+	 * No automatic heating cycle specified = 0xFF<br>
 	 * <br>
 	 * Data type : unsigned cha<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -616,18 +588,17 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * EPC : 0xD0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when the value of the �gautomatic heating setting�h property is 0x41 (= automatic heating), to select an automatic heating cycle, and to acquire the current setting.<br>
+	 * Used, when the value of the “automatic heating setting” property is 0x41 (= automatic heating), to select an automatic heating cycle, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0xFE: Automatic heating cycle code (See the automatic heating cycle code table in the subsection entitled �gAutomatic heating menu setting.�h)<br>
-	 * No automatic heating cycle specified =<br>
-	 * 0xFF<br>
+	 * 0 to 0xFE: Automatic heating cycle code (See the automatic heating cycle code table in the subsection entitled “Automatic heating menu setting.”)<br>
+	 * No automatic heating cycle specified = 0xFF<br>
 	 * <br>
 	 * Data type : unsigned cha<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -644,21 +615,18 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * EPC : 0xD1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when the value of the �gheating mode setting�h property (EPC = 0xE0) is 0x43 (= oven), to specify the<br>
+	 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x43 (= oven), to specify the<br>
 	 * sub-mode to use, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic selection mode = 0x40<br>
-	 * Convection oven mode = 0x41<br>
-	 * Circulation oven mode = 0x42<br>
-	 * Hybrid oven mode = 0x43<br>
+	 * Automatic selection mode = 0x40 Convection oven mode = 0x41 Circulation oven mode = 0x42 Hybrid oven mode = 0x43<br>
 	 * No sub-mode specified = 0xFF<br>
 	 * <br>
 	 * Data type : unsigned cha<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -672,21 +640,18 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * EPC : 0xD1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when the value of the �gheating mode setting�h property (EPC = 0xE0) is 0x43 (= oven), to specify the<br>
+	 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x43 (= oven), to specify the<br>
 	 * sub-mode to use, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic selection mode = 0x40<br>
-	 * Convection oven mode = 0x41<br>
-	 * Circulation oven mode = 0x42<br>
-	 * Hybrid oven mode = 0x43<br>
+	 * Automatic selection mode = 0x40 Convection oven mode = 0x41 Circulation oven mode = 0x42 Hybrid oven mode = 0x43<br>
 	 * No sub-mode specified = 0xFF<br>
 	 * <br>
 	 * Data type : unsigned cha<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -700,21 +665,18 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * EPC : 0xD1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when the value of the �gheating mode setting�h property (EPC = 0xE0) is 0x43 (= oven), to specify the<br>
+	 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x43 (= oven), to specify the<br>
 	 * sub-mode to use, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic selection mode = 0x40<br>
-	 * Convection oven mode = 0x41<br>
-	 * Circulation oven mode = 0x42<br>
-	 * Hybrid oven mode = 0x43<br>
+	 * Automatic selection mode = 0x40 Convection oven mode = 0x41 Circulation oven mode = 0x42 Hybrid oven mode = 0x43<br>
 	 * No sub-mode specified = 0xFF<br>
 	 * <br>
 	 * Data type : unsigned cha<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -731,19 +693,16 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * EPC : 0xD5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when the value of the �gheating mode setting�h property (EPC = 0xE0) is 0x43 (oven), to specify whether or not to preheat the chamber for the<br>
-	 * selected oven sub-mode, and to acquire the current setting.<br>
+	 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x43 (oven), to specify whether or not to preheat the chamber for the selected oven sub-mode, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * With preheating = 0x41<br>
-	 * Without preheating = 0x42<br>
-	 * Not specified = 0xFF<br>
+	 * With preheating = 0x41 Without preheating = 0x42 Not specified = 0xFF<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -757,19 +716,16 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * EPC : 0xD5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when the value of the �gheating mode setting�h property (EPC = 0xE0) is 0x43 (oven), to specify whether or not to preheat the chamber for the<br>
-	 * selected oven sub-mode, and to acquire the current setting.<br>
+	 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x43 (oven), to specify whether or not to preheat the chamber for the selected oven sub-mode, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * With preheating = 0x41<br>
-	 * Without preheating = 0x42<br>
-	 * Not specified = 0xFF<br>
+	 * With preheating = 0x41 Without preheating = 0x42 Not specified = 0xFF<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -783,19 +739,16 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * EPC : 0xD5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when the value of the �gheating mode setting�h property (EPC = 0xE0) is 0x43 (oven), to specify whether or not to preheat the chamber for the<br>
-	 * selected oven sub-mode, and to acquire the current setting.<br>
+	 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x43 (oven), to specify whether or not to preheat the chamber for the selected oven sub-mode, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * With preheating = 0x41<br>
-	 * Without preheating = 0x42<br>
-	 * Not specified = 0xFF<br>
+	 * With preheating = 0x41 Without preheating = 0x42 Not specified = 0xFF<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -812,21 +765,16 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * EPC : 0xD6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when the value of the �gheating mode setting�h property (EPC = 0xE0) is 0x46 (= fermenting), to specify the sub-mode to use, and to acquire the current setting.<br>
+	 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x46 (= fermenting), to specify the sub-mode to use, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic selection mode = 0x40<br>
-	 * Convection fermentation mode = 0x41<br>
-	 * Circulation fermentation mode = 0x42<br>
-	 * Hybrid fermentation mode = 0x43<br>
-	 * Microwave fermentation mode = 0x51<br>
-	 * No mode specified = 0xFF<br>
+	 * Automatic selection mode = 0x40 Convection fermentation mode = 0x41 Circulation fermentation mode = 0x42 Hybrid fermentation mode = 0x43 Microwave fermentation mode = 0x51 No mode specified = 0xFF<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -840,21 +788,16 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * EPC : 0xD6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when the value of the �gheating mode setting�h property (EPC = 0xE0) is 0x46 (= fermenting), to specify the sub-mode to use, and to acquire the current setting.<br>
+	 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x46 (= fermenting), to specify the sub-mode to use, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic selection mode = 0x40<br>
-	 * Convection fermentation mode = 0x41<br>
-	 * Circulation fermentation mode = 0x42<br>
-	 * Hybrid fermentation mode = 0x43<br>
-	 * Microwave fermentation mode = 0x51<br>
-	 * No mode specified = 0xFF<br>
+	 * Automatic selection mode = 0x40 Convection fermentation mode = 0x41 Circulation fermentation mode = 0x42 Hybrid fermentation mode = 0x43 Microwave fermentation mode = 0x51 No mode specified = 0xFF<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -868,21 +811,16 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 	 * EPC : 0xD6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when the value of the �gheating mode setting�h property (EPC = 0xE0) is 0x46 (= fermenting), to specify the sub-mode to use, and to acquire the current setting.<br>
+	 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x46 (= fermenting), to specify the sub-mode to use, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic selection mode = 0x40<br>
-	 * Convection fermentation mode = 0x41<br>
-	 * Circulation fermentation mode = 0x42<br>
-	 * Hybrid fermentation mode = 0x43<br>
-	 * Microwave fermentation mode = 0x51<br>
-	 * No mode specified = 0xFF<br>
+	 * Automatic selection mode = 0x40 Convection fermentation mode = 0x41 Circulation fermentation mode = 0x42 Hybrid fermentation mode = 0x43 Microwave fermentation mode = 0x51 No mode specified = 0xFF<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -894,31 +832,23 @@ public abstract class CombinationMicrowaveOven extends DeviceObject {
 		return true;
 	}
 	/**
-	 * Property name : Chamber
-temperature
-setting<br>
+	 * Property name : Chamber temperature setting<br>
 	 * <br>
 	 * EPC : 0xE3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when the value of the �gheating<br>
-	 * mode setting�h property (EPC = 0xE0)<br>
-	 * is 0x43 (= oven) or 0x46 (=<br>
-	 * fermenting), to specify the temperature<br>
-	 * in the chamber in 0.1��C increments,<br>
-	 * and to acquire the current setting.<br>
+	 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x43 (= oven) or 0x46 (= fermenting), to specify the temperature in the chamber in 0.1°C increments, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0xF554 to 0x7FFE (-273.2 to<br>
-	 * 3276.6��C)<br>
-	 * 0x8001: Automatic<br>
-	 * 0x8002: Not specified<br>
+	 * 0xF554.0x7FFE (-273.2. 3276.6°C)<br>
+	 * 0x8001: Automatic 0x8002: Not specified<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : signed short<br>
 	 * <br>
-	 * Data size : 2<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : °C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -927,31 +857,23 @@ setting<br>
 	 */
 	protected boolean setChamberTemperatureSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : Chamber
-temperature
-setting<br>
+	 * Property name : Chamber temperature setting<br>
 	 * <br>
 	 * EPC : 0xE3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when the value of the �gheating<br>
-	 * mode setting�h property (EPC = 0xE0)<br>
-	 * is 0x43 (= oven) or 0x46 (=<br>
-	 * fermenting), to specify the temperature<br>
-	 * in the chamber in 0.1��C increments,<br>
-	 * and to acquire the current setting.<br>
+	 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x43 (= oven) or 0x46 (= fermenting), to specify the temperature in the chamber in 0.1°C increments, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0xF554 to 0x7FFE (-273.2 to<br>
-	 * 3276.6��C)<br>
-	 * 0x8001: Automatic<br>
-	 * 0x8002: Not specified<br>
+	 * 0xF554.0x7FFE (-273.2. 3276.6°C)<br>
+	 * 0x8001: Automatic 0x8002: Not specified<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : signed short<br>
 	 * <br>
-	 * Data size : 2<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : °C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -960,31 +882,23 @@ setting<br>
 	 */
 	protected byte[] getChamberTemperatureSetting() {return null;}
 	/**
-	 * Property name : Chamber
-temperature
-setting<br>
+	 * Property name : Chamber temperature setting<br>
 	 * <br>
 	 * EPC : 0xE3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when the value of the �gheating<br>
-	 * mode setting�h property (EPC = 0xE0)<br>
-	 * is 0x43 (= oven) or 0x46 (=<br>
-	 * fermenting), to specify the temperature<br>
-	 * in the chamber in 0.1��C increments,<br>
-	 * and to acquire the current setting.<br>
+	 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x43 (= oven) or 0x46 (= fermenting), to specify the temperature in the chamber in 0.1°C increments, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0xF554 to 0x7FFE (-273.2 to<br>
-	 * 3276.6��C)<br>
-	 * 0x8001: Automatic<br>
-	 * 0x8002: Not specified<br>
+	 * 0xF554.0x7FFE (-273.2. 3276.6°C)<br>
+	 * 0x8001: Automatic 0x8002: Not specified<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : signed short<br>
 	 * <br>
-	 * Data size : 2<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : °C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -996,26 +910,23 @@ setting<br>
 		return true;
 	}
 	/**
-	 * Property name : Food temperature
-setting<br>
+	 * Property name : Food temperature setting<br>
 	 * <br>
 	 * EPC : 0xE4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the as-heated food<br>
-	 * temperature in 0.1��C increments, and to<br>
-	 * acquire the current setting.<br>
+	 * Used to specify the as-heated food temperature in 0.1°C increments, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0xF554 to 0x7FFE (-273.2 to<br>
-	 * 3276.6��)<br>
+	 * 0xF554.0x7FFE (-273.2.3276.6°C)<br>
 	 * 0x8002: Not specified<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : signed short<br>
 	 * <br>
-	 * Data size : 2<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : °C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1024,26 +935,23 @@ setting<br>
 	 */
 	protected boolean setFoodTemperatureSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : Food temperature
-setting<br>
+	 * Property name : Food temperature setting<br>
 	 * <br>
 	 * EPC : 0xE4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the as-heated food<br>
-	 * temperature in 0.1��C increments, and to<br>
-	 * acquire the current setting.<br>
+	 * Used to specify the as-heated food temperature in 0.1°C increments, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0xF554 to 0x7FFE (-273.2 to<br>
-	 * 3276.6��)<br>
+	 * 0xF554.0x7FFE (-273.2.3276.6°C)<br>
 	 * 0x8002: Not specified<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : signed short<br>
 	 * <br>
-	 * Data size : 2<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : °C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1052,26 +960,23 @@ setting<br>
 	 */
 	protected byte[] getFoodTemperatureSetting() {return null;}
 	/**
-	 * Property name : Food temperature
-setting<br>
+	 * Property name : Food temperature setting<br>
 	 * <br>
 	 * EPC : 0xE4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the as-heated food<br>
-	 * temperature in 0.1��C increments, and to<br>
-	 * acquire the current setting.<br>
+	 * Used to specify the as-heated food temperature in 0.1°C increments, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0xF554 to 0x7FFE (-273.2 to<br>
-	 * 3276.6��)<br>
+	 * 0xF554.0x7FFE (-273.2.3276.6°C)<br>
 	 * 0x8002: Not specified<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : signed short<br>
 	 * <br>
-	 * Data size : 2<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : °C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1083,25 +988,23 @@ setting<br>
 		return true;
 	}
 	/**
-	 * Property name : Heating time
-setting<br>
+	 * Property name : Heating time setting<br>
 	 * <br>
 	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the duration of heating<br>
-	 * in the HH:MM:SS format, and to<br>
-	 * acquire the current setting.<br>
+	 * Used to specify the duration of heating in the HH:MM:SS format, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-	 * (= 0 to 23) (= 0 to 59) (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B: 0.0x3B (= 0.23) (= 0.59) (= 0.59)<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : unsigned char
+×3<br>
 	 * <br>
-	 * Data size : 3<br>
+	 * Data size : 3
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1110,25 +1013,23 @@ setting<br>
 	 */
 	protected boolean setHeatingTimeSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : Heating time
-setting<br>
+	 * Property name : Heating time setting<br>
 	 * <br>
 	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the duration of heating<br>
-	 * in the HH:MM:SS format, and to<br>
-	 * acquire the current setting.<br>
+	 * Used to specify the duration of heating in the HH:MM:SS format, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-	 * (= 0 to 23) (= 0 to 59) (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B: 0.0x3B (= 0.23) (= 0.59) (= 0.59)<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : unsigned char
+×3<br>
 	 * <br>
-	 * Data size : 3<br>
+	 * Data size : 3
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1137,25 +1038,23 @@ setting<br>
 	 */
 	protected byte[] getHeatingTimeSetting() {return null;}
 	/**
-	 * Property name : Heating time
-setting<br>
+	 * Property name : Heating time setting<br>
 	 * <br>
 	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the duration of heating<br>
-	 * in the HH:MM:SS format, and to<br>
-	 * acquire the current setting.<br>
+	 * Used to specify the duration of heating in the HH:MM:SS format, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-	 * (= 0 to 23) (= 0 to 59) (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B: 0.0x3B (= 0.23) (= 0.59) (= 0.59)<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : unsigned char
+×3<br>
 	 * <br>
-	 * Data size : 3<br>
+	 * Data size : 3
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1167,27 +1066,23 @@ setting<br>
 		return true;
 	}
 	/**
-	 * Property name : Remaining
-heating time
-setting<br>
+	 * Property name : Remaining heating time setting<br>
 	 * <br>
 	 * EPC : 0xE6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the time remaining to<br>
-	 * complete the heating cycle in the<br>
-	 * HH:MM:SS format, and to acquire the<br>
-	 * current setting.<br>
+	 * Used to specify the time remaining to complete the heating cycle in the HH:MM:SS format, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-	 * (= 0 to 23) (= 0 to 59) (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B: 0.0x3B (= 0.23) (= 0.59) (= 0.59)<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : unsigned char
+×3<br>
 	 * <br>
-	 * Data size : 3<br>
+	 * Data size : 3
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1196,27 +1091,23 @@ setting<br>
 	 */
 	protected boolean setRemainingHeatingTimeSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : Remaining
-heating time
-setting<br>
+	 * Property name : Remaining heating time setting<br>
 	 * <br>
 	 * EPC : 0xE6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the time remaining to<br>
-	 * complete the heating cycle in the<br>
-	 * HH:MM:SS format, and to acquire the<br>
-	 * current setting.<br>
+	 * Used to specify the time remaining to complete the heating cycle in the HH:MM:SS format, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-	 * (= 0 to 23) (= 0 to 59) (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B: 0.0x3B (= 0.23) (= 0.59) (= 0.59)<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : unsigned char
+×3<br>
 	 * <br>
-	 * Data size : 3<br>
+	 * Data size : 3
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1225,27 +1116,23 @@ setting<br>
 	 */
 	protected byte[] getRemainingHeatingTimeSetting() {return null;}
 	/**
-	 * Property name : Remaining
-heating time
-setting<br>
+	 * Property name : Remaining heating time setting<br>
 	 * <br>
 	 * EPC : 0xE6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the time remaining to<br>
-	 * complete the heating cycle in the<br>
-	 * HH:MM:SS format, and to acquire the<br>
-	 * current setting.<br>
+	 * Used to specify the time remaining to complete the heating cycle in the HH:MM:SS format, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-	 * (= 0 to 23) (= 0 to 59) (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B: 0.0x3B (= 0.23) (= 0.59) (= 0.59)<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : unsigned char
+×3<br>
 	 * <br>
-	 * Data size : 3<br>
+	 * Data size : 3
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1257,35 +1144,26 @@ setting<br>
 		return true;
 	}
 	/**
-	 * Property name : Microwave
-heating power
-setting<br>
+	 * Property name : Microwave heating power setting<br>
 	 * <br>
 	 * EPC : 0xE7<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when the value of the �gheating<br>
-	 * mode setting�h property (EPC = 0xE0)<br>
-	 * is 0x41 (= microwave heating), 0x42 (=<br>
-	 * defrosting), 0x47 (= stewing) or 0x48<br>
-	 * (= steaming) or when the value of the<br>
-	 * �gheating mode setting�h property (EPC<br>
-	 * = 0xE0) is 0x46 (= fermenting) and the<br>
-	 * value of the �gfermenting mode setting�h<br>
-	 * property (EPC = 0xD6) is 0x51 (=<br>
-	 * microwave fermentation mode), to<br>
-	 * specify the microwave heating power<br>
-	 * in 1W increments, and to acquire the<br>
+	 * Used, when the value of the “heating mode setting” property (EPC = 0xE0)  is 0x41 (= microwave heating), 0x42 (= defrosting), 0x47 (= stewing) or 0x48 (= steaming) or when the value of the “heating mode setting” property (EPC<br>
+	 * = 0xE0) is 0x46 (= fermenting) and the value of the “fermenting mode setting”<br>
+	 * property (EPC = 0xD6) is 0x51 (= microwave fermentation mode), to specify the microwave heating power in 1W increments, and to acquire the<br>
 	 * current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+	 * 0x0000.0xFFFD (0.65533W)<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : 1
+W<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1294,35 +1172,26 @@ setting<br>
 	 */
 	protected boolean setMicrowaveHeatingPowerSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : Microwave
-heating power
-setting<br>
+	 * Property name : Microwave heating power setting<br>
 	 * <br>
 	 * EPC : 0xE7<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when the value of the �gheating<br>
-	 * mode setting�h property (EPC = 0xE0)<br>
-	 * is 0x41 (= microwave heating), 0x42 (=<br>
-	 * defrosting), 0x47 (= stewing) or 0x48<br>
-	 * (= steaming) or when the value of the<br>
-	 * �gheating mode setting�h property (EPC<br>
-	 * = 0xE0) is 0x46 (= fermenting) and the<br>
-	 * value of the �gfermenting mode setting�h<br>
-	 * property (EPC = 0xD6) is 0x51 (=<br>
-	 * microwave fermentation mode), to<br>
-	 * specify the microwave heating power<br>
-	 * in 1W increments, and to acquire the<br>
+	 * Used, when the value of the “heating mode setting” property (EPC = 0xE0)  is 0x41 (= microwave heating), 0x42 (= defrosting), 0x47 (= stewing) or 0x48 (= steaming) or when the value of the “heating mode setting” property (EPC<br>
+	 * = 0xE0) is 0x46 (= fermenting) and the value of the “fermenting mode setting”<br>
+	 * property (EPC = 0xD6) is 0x51 (= microwave fermentation mode), to specify the microwave heating power in 1W increments, and to acquire the<br>
 	 * current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+	 * 0x0000.0xFFFD (0.65533W)<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : 1
+W<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1331,35 +1200,26 @@ setting<br>
 	 */
 	protected byte[] getMicrowaveHeatingPowerSetting() {return null;}
 	/**
-	 * Property name : Microwave
-heating power
-setting<br>
+	 * Property name : Microwave heating power setting<br>
 	 * <br>
 	 * EPC : 0xE7<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when the value of the �gheating<br>
-	 * mode setting�h property (EPC = 0xE0)<br>
-	 * is 0x41 (= microwave heating), 0x42 (=<br>
-	 * defrosting), 0x47 (= stewing) or 0x48<br>
-	 * (= steaming) or when the value of the<br>
-	 * �gheating mode setting�h property (EPC<br>
-	 * = 0xE0) is 0x46 (= fermenting) and the<br>
-	 * value of the �gfermenting mode setting�h<br>
-	 * property (EPC = 0xD6) is 0x51 (=<br>
-	 * microwave fermentation mode), to<br>
-	 * specify the microwave heating power<br>
-	 * in 1W increments, and to acquire the<br>
+	 * Used, when the value of the “heating mode setting” property (EPC = 0xE0)  is 0x41 (= microwave heating), 0x42 (= defrosting), 0x47 (= stewing) or 0x48 (= steaming) or when the value of the “heating mode setting” property (EPC<br>
+	 * = 0xE0) is 0x46 (= fermenting) and the value of the “fermenting mode setting”<br>
+	 * property (EPC = 0xD6) is 0x51 (= microwave fermentation mode), to specify the microwave heating power in 1W increments, and to acquire the<br>
 	 * current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+	 * 0x0000.0xFFFD (0.65533W)<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : 1
+W<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1371,42 +1231,25 @@ setting<br>
 		return true;
 	}
 	/**
-	 * Property name : Prompt message
-setting<br>
+	 * Property name : Prompt message setting<br>
 	 * <br>
 	 * EPC : 0xE8<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when it is necessary to instruct<br>
-	 * the combination microwave oven to<br>
-	 * temporarily stop heating at a point<br>
-	 * during a heating cycle to allow the user<br>
-	 * to perform manual reversing, mixing,<br>
-	 * etc. and display a message to instruct<br>
-	 * the user on the manual action to be<br>
-	 * performed, to specify the prompt<br>
-	 * message to be displayed and the timing<br>
-	 * of the message (in terms of a<br>
-	 * percentage of the total duration of the<br>
-	 * heating cycle that is allowed to elapse<br>
-	 * (from the start of the heating cycle)<br>
-	 * before the message is displayed), and to<br>
-	 * acquire the current settings. Up to 4<br>
-	 * messages may be specified.<br>
+	 * Used, when it is necessary to instruct the combination microwave oven to temporarily stop heating at a point during a heating cycle to allow the user to perform manual reversing, mixing, etc. and display a message to instruct the user on the manual action to be performed, to specify the prompt message to be displayed and the timing of the message (in terms of a  percentage of the total duration of the heating cycle that is allowed to elapse (from the start of the heating cycle) before the message is displayed), and to acquire the current settings. Up to 4 messages may be specified.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * First byte: Prompt message code (See<br>
-	 * the prompt message code table in the<br>
-	 * subsection entitled �gPrompt message<br>
-	 * setting.�h)<br>
-	 * Second byte: Timing value (0 to 0x64<br>
-	 * (0 to 100%))<br>
+	 * First byte: Prompt message code (See the prompt message code table in the subsection entitled “Prompt message setting.”)<br>
+	 * Second byte: Timing value (0.0x64) (0.100%))<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : unsigned char
+×2
+×4<br>
 	 * <br>
-	 * Data size : 8<br>
+	 * Data size : 8
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1415,42 +1258,25 @@ setting<br>
 	 */
 	protected boolean setPromptMessageSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : Prompt message
-setting<br>
+	 * Property name : Prompt message setting<br>
 	 * <br>
 	 * EPC : 0xE8<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when it is necessary to instruct<br>
-	 * the combination microwave oven to<br>
-	 * temporarily stop heating at a point<br>
-	 * during a heating cycle to allow the user<br>
-	 * to perform manual reversing, mixing,<br>
-	 * etc. and display a message to instruct<br>
-	 * the user on the manual action to be<br>
-	 * performed, to specify the prompt<br>
-	 * message to be displayed and the timing<br>
-	 * of the message (in terms of a<br>
-	 * percentage of the total duration of the<br>
-	 * heating cycle that is allowed to elapse<br>
-	 * (from the start of the heating cycle)<br>
-	 * before the message is displayed), and to<br>
-	 * acquire the current settings. Up to 4<br>
-	 * messages may be specified.<br>
+	 * Used, when it is necessary to instruct the combination microwave oven to temporarily stop heating at a point during a heating cycle to allow the user to perform manual reversing, mixing, etc. and display a message to instruct the user on the manual action to be performed, to specify the prompt message to be displayed and the timing of the message (in terms of a  percentage of the total duration of the heating cycle that is allowed to elapse (from the start of the heating cycle) before the message is displayed), and to acquire the current settings. Up to 4 messages may be specified.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * First byte: Prompt message code (See<br>
-	 * the prompt message code table in the<br>
-	 * subsection entitled �gPrompt message<br>
-	 * setting.�h)<br>
-	 * Second byte: Timing value (0 to 0x64<br>
-	 * (0 to 100%))<br>
+	 * First byte: Prompt message code (See the prompt message code table in the subsection entitled “Prompt message setting.”)<br>
+	 * Second byte: Timing value (0.0x64) (0.100%))<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : unsigned char
+×2
+×4<br>
 	 * <br>
-	 * Data size : 8<br>
+	 * Data size : 8
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1459,42 +1285,25 @@ setting<br>
 	 */
 	protected byte[] getPromptMessageSetting() {return null;}
 	/**
-	 * Property name : Prompt message
-setting<br>
+	 * Property name : Prompt message setting<br>
 	 * <br>
 	 * EPC : 0xE8<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when it is necessary to instruct<br>
-	 * the combination microwave oven to<br>
-	 * temporarily stop heating at a point<br>
-	 * during a heating cycle to allow the user<br>
-	 * to perform manual reversing, mixing,<br>
-	 * etc. and display a message to instruct<br>
-	 * the user on the manual action to be<br>
-	 * performed, to specify the prompt<br>
-	 * message to be displayed and the timing<br>
-	 * of the message (in terms of a<br>
-	 * percentage of the total duration of the<br>
-	 * heating cycle that is allowed to elapse<br>
-	 * (from the start of the heating cycle)<br>
-	 * before the message is displayed), and to<br>
-	 * acquire the current settings. Up to 4<br>
-	 * messages may be specified.<br>
+	 * Used, when it is necessary to instruct the combination microwave oven to temporarily stop heating at a point during a heating cycle to allow the user to perform manual reversing, mixing, etc. and display a message to instruct the user on the manual action to be performed, to specify the prompt message to be displayed and the timing of the message (in terms of a  percentage of the total duration of the heating cycle that is allowed to elapse (from the start of the heating cycle) before the message is displayed), and to acquire the current settings. Up to 4 messages may be specified.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * First byte: Prompt message code (See<br>
-	 * the prompt message code table in the<br>
-	 * subsection entitled �gPrompt message<br>
-	 * setting.�h)<br>
-	 * Second byte: Timing value (0 to 0x64<br>
-	 * (0 to 100%))<br>
+	 * First byte: Prompt message code (See the prompt message code table in the subsection entitled “Prompt message setting.”)<br>
+	 * Second byte: Timing value (0.0x64) (0.100%))<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : unsigned char
+×2
+×4<br>
 	 * <br>
-	 * Data size : 8<br>
+	 * Data size : 8
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1506,135 +1315,104 @@ setting<br>
 		return true;
 	}
 	/**
-	 * Property name : �gAccessories to
-combination
-microwave oven�h
-setting<br>
+	 * Property name : “Accessories to combination microwave oven” setting<br>
 	 * <br>
 	 * EPC : 0xE9<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify, by means of a 2-byte<br>
-	 * bit map, what accessory or accessories<br>
-	 * to the combination microwave oven to<br>
-	 * use, and to acquire the current setting.<br>
+	 * Used to specify, by means of a 2-byte bit map, what accessory or accessories to the combination microwave oven to use, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * The value contained in a bit in the bit<br>
-	 * map shall be �g1�h if the accessory<br>
-	 * represented by that bit is used and �g0�h<br>
-	 * if the accessory represented by that bit<br>
-	 * is not used (See the bitmap composition<br>
-	 * table in the subsection entitled<br>
-	 * �g�fAccessories to combination<br>
-	 * microwave oven�f setting�h).<br>
+	 * The value contained in a bit in the bit map shall be “1” if the accessory represented by that bit is used and “0” if the accessory represented by that bit<br>
+	 * is not used (See the bitmap composition table in the subsection entitled “’Accessories to combination<br>
+	 * microwave oven’ setting”).<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setGaccessoriesToCombinationMicrowaveOvenHSetting(byte[] edt) {return false;}
+	protected boolean setAccessoriesToCombinationMicrowaveOvenSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : �gAccessories to
-combination
-microwave oven�h
-setting<br>
+	 * Property name : “Accessories to combination microwave oven” setting<br>
 	 * <br>
 	 * EPC : 0xE9<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify, by means of a 2-byte<br>
-	 * bit map, what accessory or accessories<br>
-	 * to the combination microwave oven to<br>
-	 * use, and to acquire the current setting.<br>
+	 * Used to specify, by means of a 2-byte bit map, what accessory or accessories to the combination microwave oven to use, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * The value contained in a bit in the bit<br>
-	 * map shall be �g1�h if the accessory<br>
-	 * represented by that bit is used and �g0�h<br>
-	 * if the accessory represented by that bit<br>
-	 * is not used (See the bitmap composition<br>
-	 * table in the subsection entitled<br>
-	 * �g�fAccessories to combination<br>
-	 * microwave oven�f setting�h).<br>
+	 * The value contained in a bit in the bit map shall be “1” if the accessory represented by that bit is used and “0” if the accessory represented by that bit<br>
+	 * is not used (See the bitmap composition table in the subsection entitled “’Accessories to combination<br>
+	 * microwave oven’ setting”).<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getGaccessoriesToCombinationMicrowaveOvenHSetting() {return null;}
+	protected byte[] getAccessoriesToCombinationMicrowaveOvenSetting() {return null;}
 	/**
-	 * Property name : �gAccessories to
-combination
-microwave oven�h
-setting<br>
+	 * Property name : “Accessories to combination microwave oven” setting<br>
 	 * <br>
 	 * EPC : 0xE9<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify, by means of a 2-byte<br>
-	 * bit map, what accessory or accessories<br>
-	 * to the combination microwave oven to<br>
-	 * use, and to acquire the current setting.<br>
+	 * Used to specify, by means of a 2-byte bit map, what accessory or accessories to the combination microwave oven to use, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * The value contained in a bit in the bit<br>
-	 * map shall be �g1�h if the accessory<br>
-	 * represented by that bit is used and �g0�h<br>
-	 * if the accessory represented by that bit<br>
-	 * is not used (See the bitmap composition<br>
-	 * table in the subsection entitled<br>
-	 * �g�fAccessories to combination<br>
-	 * microwave oven�f setting�h).<br>
+	 * The value contained in a bit in the bit map shall be “1” if the accessory represented by that bit is used and “0” if the accessory represented by that bit<br>
+	 * is not used (See the bitmap composition table in the subsection entitled “’Accessories to combination<br>
+	 * microwave oven’ setting”).<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidGaccessoriesToCombinationMicrowaveOvenHSetting(byte[] edt) {
+	protected boolean isValidAccessoriesToCombinationMicrowaveOvenSetting(byte[] edt) {
 		if(edt == null || !(edt.length == 2)) return false;
 		return true;
 	}
 	/**
-	 * Property name : Display character
-string setting<br>
+	 * Property name : Display character string setting<br>
 	 * <br>
 	 * EPC : 0xEA<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to input character strings (up to<br>
-	 * 20 characters) to use on the display of<br>
-	 * the combination microwave oven.<br>
+	 * Used to input character strings (up to 20 characters) to use on the display of the combination microwave oven.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Shift-JIS code characters x 20<br>
+	 * Shift-JIS code characters × 20<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : unsigned short
+×20<br>
 	 * <br>
-	 * Data size : 40<br>
+	 * Data size : 40
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1643,24 +1421,23 @@ string setting<br>
 	 */
 	protected boolean setDisplayCharacterStringSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : Display character
-string setting<br>
+	 * Property name : Display character string setting<br>
 	 * <br>
 	 * EPC : 0xEA<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to input character strings (up to<br>
-	 * 20 characters) to use on the display of<br>
-	 * the combination microwave oven.<br>
+	 * Used to input character strings (up to 20 characters) to use on the display of the combination microwave oven.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Shift-JIS code characters x 20<br>
+	 * Shift-JIS code characters × 20<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : unsigned short
+×20<br>
 	 * <br>
-	 * Data size : 40<br>
+	 * Data size : 40
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1672,41 +1449,29 @@ string setting<br>
 		return true;
 	}
 	/**
-	 * Property name : Two-stage
-microwave
-heating setting
-(duration)<br>
+	 * Property name : Two-stage microwave heating setting (duration)<br>
 	 * <br>
 	 * EPC : 0xEB<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when the value of the �gheating<br>
-	 * mode setting�h property (EPC = 0xE0)<br>
-	 * is 0x51 (two-stage microwave heating),<br>
-	 * to specify the duration of the first and<br>
-	 * second microwave heating cycles in the<br>
-	 * HH:MM:SS format, and to acquire the<br>
-	 * current setting. Three bytes shall be<br>
-	 * used for each heating cycle, with the<br>
-	 * first and second sets of bytes used for<br>
-	 * the first and second heating cycles,<br>
-	 * respectively.<br>
+	 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x51 (two-stage microwave heating), to specify the duration of the first and second microwave heating cycles in the HH:MM:SS format, and to acquire the current setting. Three bytes shall be used for each heating cycle, with the first and second sets of bytes used for the first and second heating cycles, respectively.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Duration of first microwave heating<br>
-	 * cycle (first through third bytes):<br>
-	 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59): (= 0 to 59)<br>
-	 * Duration of second microwave heating<br>
-	 * cycle (fourth through sixth bytes):<br>
-	 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59): (= 0 to 59)<br>
+	 * Duration of first microwave heating cycle (first through third bytes):<br>
+	 * 0.0x17: 0.0x3B: 0.0x3B<br>
+	 * (= 0.23): (= 0.59): (= 0.59)<br>
+	 * Duration of second microwave heating cycle (fourth through sixth bytes):<br>
+	 * 0.0x17: 0.0x3B: 0.0x3B<br>
+	 * (= 0.23): (= 0.59): (= 0.59)<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : unsigned char
+×3
+×2<br>
 	 * <br>
-	 * Data size : 6<br>
+	 * Data size : 6
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1715,41 +1480,29 @@ heating setting
 	 */
 	protected boolean setTwoStageMicrowaveHeatingSettingDuration(byte[] edt) {return false;}
 	/**
-	 * Property name : Two-stage
-microwave
-heating setting
-(duration)<br>
+	 * Property name : Two-stage microwave heating setting (duration)<br>
 	 * <br>
 	 * EPC : 0xEB<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when the value of the �gheating<br>
-	 * mode setting�h property (EPC = 0xE0)<br>
-	 * is 0x51 (two-stage microwave heating),<br>
-	 * to specify the duration of the first and<br>
-	 * second microwave heating cycles in the<br>
-	 * HH:MM:SS format, and to acquire the<br>
-	 * current setting. Three bytes shall be<br>
-	 * used for each heating cycle, with the<br>
-	 * first and second sets of bytes used for<br>
-	 * the first and second heating cycles,<br>
-	 * respectively.<br>
+	 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x51 (two-stage microwave heating), to specify the duration of the first and second microwave heating cycles in the HH:MM:SS format, and to acquire the current setting. Three bytes shall be used for each heating cycle, with the first and second sets of bytes used for the first and second heating cycles, respectively.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Duration of first microwave heating<br>
-	 * cycle (first through third bytes):<br>
-	 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59): (= 0 to 59)<br>
-	 * Duration of second microwave heating<br>
-	 * cycle (fourth through sixth bytes):<br>
-	 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59): (= 0 to 59)<br>
+	 * Duration of first microwave heating cycle (first through third bytes):<br>
+	 * 0.0x17: 0.0x3B: 0.0x3B<br>
+	 * (= 0.23): (= 0.59): (= 0.59)<br>
+	 * Duration of second microwave heating cycle (fourth through sixth bytes):<br>
+	 * 0.0x17: 0.0x3B: 0.0x3B<br>
+	 * (= 0.23): (= 0.59): (= 0.59)<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : unsigned char
+×3
+×2<br>
 	 * <br>
-	 * Data size : 6<br>
+	 * Data size : 6
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1758,41 +1511,29 @@ heating setting
 	 */
 	protected byte[] getTwoStageMicrowaveHeatingSettingDuration() {return null;}
 	/**
-	 * Property name : Two-stage
-microwave
-heating setting
-(duration)<br>
+	 * Property name : Two-stage microwave heating setting (duration)<br>
 	 * <br>
 	 * EPC : 0xEB<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when the value of the �gheating<br>
-	 * mode setting�h property (EPC = 0xE0)<br>
-	 * is 0x51 (two-stage microwave heating),<br>
-	 * to specify the duration of the first and<br>
-	 * second microwave heating cycles in the<br>
-	 * HH:MM:SS format, and to acquire the<br>
-	 * current setting. Three bytes shall be<br>
-	 * used for each heating cycle, with the<br>
-	 * first and second sets of bytes used for<br>
-	 * the first and second heating cycles,<br>
-	 * respectively.<br>
+	 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x51 (two-stage microwave heating), to specify the duration of the first and second microwave heating cycles in the HH:MM:SS format, and to acquire the current setting. Three bytes shall be used for each heating cycle, with the first and second sets of bytes used for the first and second heating cycles, respectively.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Duration of first microwave heating<br>
-	 * cycle (first through third bytes):<br>
-	 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59): (= 0 to 59)<br>
-	 * Duration of second microwave heating<br>
-	 * cycle (fourth through sixth bytes):<br>
-	 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59): (= 0 to 59)<br>
+	 * Duration of first microwave heating cycle (first through third bytes):<br>
+	 * 0.0x17: 0.0x3B: 0.0x3B<br>
+	 * (= 0.23): (= 0.59): (= 0.59)<br>
+	 * Duration of second microwave heating cycle (fourth through sixth bytes):<br>
+	 * 0.0x17: 0.0x3B: 0.0x3B<br>
+	 * (= 0.23): (= 0.59): (= 0.59)<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : unsigned char
+×3
+×2<br>
 	 * <br>
-	 * Data size : 6<br>
+	 * Data size : 6
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1804,39 +1545,27 @@ heating setting
 		return true;
 	}
 	/**
-	 * Property name : Two-stage
-microwave
-heating setting
-(heating power)<br>
+	 * Property name : Two-stage microwave heating setting (heating power)<br>
 	 * <br>
 	 * EPC : 0xEC<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when the value of the �gheating<br>
-	 * mode setting�h property (EPC = 0xE0)<br>
-	 * is 0x51 (two-stage microwave heating),<br>
-	 * to specify the heating power for the<br>
-	 * first and second microwave heating<br>
-	 * cycles in 1W increments, and to acquire<br>
-	 * the current setting. Two bytes shall be<br>
-	 * used for each heating cycle, with the<br>
-	 * first and second pairs of bytes used for<br>
-	 * the first and second heating cycles,<br>
-	 * respectively.<br>
+	 * Used, when the value of the “heating mode setting” property (EPC = 0xE0)  is 0x51 (two-stage microwave heating), to specify the heating power for the  first and second microwave heating cycles in 1W increments, and to acquire the current setting. Two bytes shall be used for each heating cycle, with the first and second pairs of bytes used for the first and second heating cycles, respectively.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Heating power for first microwave<br>
-	 * heating cycle (first and second bytes):<br>
-	 * 0x0000 to 0xFFFD (0 to 65533W)<br>
-	 * Heating power for second microwave<br>
-	 * heating cycle (third and fourth bytes):<br>
-	 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+	 * Heating power for first microwave heating cycle (first and second bytes):<br>
+	 * 0x0000.0xFFFD (0.65533W)<br>
+	 * Heating power for second microwave heating cycle (third and fourth bytes):<br>
+	 * 0x0000.0xFFFD (0.65533W)<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : unsigned short
+×2<br>
 	 * <br>
-	 * Data size : 4<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : 1
+W<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1845,39 +1574,27 @@ heating setting
 	 */
 	protected boolean setTwoStageMicrowaveHeatingSettingHeatingPower(byte[] edt) {return false;}
 	/**
-	 * Property name : Two-stage
-microwave
-heating setting
-(heating power)<br>
+	 * Property name : Two-stage microwave heating setting (heating power)<br>
 	 * <br>
 	 * EPC : 0xEC<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when the value of the �gheating<br>
-	 * mode setting�h property (EPC = 0xE0)<br>
-	 * is 0x51 (two-stage microwave heating),<br>
-	 * to specify the heating power for the<br>
-	 * first and second microwave heating<br>
-	 * cycles in 1W increments, and to acquire<br>
-	 * the current setting. Two bytes shall be<br>
-	 * used for each heating cycle, with the<br>
-	 * first and second pairs of bytes used for<br>
-	 * the first and second heating cycles,<br>
-	 * respectively.<br>
+	 * Used, when the value of the “heating mode setting” property (EPC = 0xE0)  is 0x51 (two-stage microwave heating), to specify the heating power for the  first and second microwave heating cycles in 1W increments, and to acquire the current setting. Two bytes shall be used for each heating cycle, with the first and second pairs of bytes used for the first and second heating cycles, respectively.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Heating power for first microwave<br>
-	 * heating cycle (first and second bytes):<br>
-	 * 0x0000 to 0xFFFD (0 to 65533W)<br>
-	 * Heating power for second microwave<br>
-	 * heating cycle (third and fourth bytes):<br>
-	 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+	 * Heating power for first microwave heating cycle (first and second bytes):<br>
+	 * 0x0000.0xFFFD (0.65533W)<br>
+	 * Heating power for second microwave heating cycle (third and fourth bytes):<br>
+	 * 0x0000.0xFFFD (0.65533W)<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : unsigned short
+×2<br>
 	 * <br>
-	 * Data size : 4<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : 1
+W<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1886,39 +1603,27 @@ heating setting
 	 */
 	protected byte[] getTwoStageMicrowaveHeatingSettingHeatingPower() {return null;}
 	/**
-	 * Property name : Two-stage
-microwave
-heating setting
-(heating power)<br>
+	 * Property name : Two-stage microwave heating setting (heating power)<br>
 	 * <br>
 	 * EPC : 0xEC<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used, when the value of the �gheating<br>
-	 * mode setting�h property (EPC = 0xE0)<br>
-	 * is 0x51 (two-stage microwave heating),<br>
-	 * to specify the heating power for the<br>
-	 * first and second microwave heating<br>
-	 * cycles in 1W increments, and to acquire<br>
-	 * the current setting. Two bytes shall be<br>
-	 * used for each heating cycle, with the<br>
-	 * first and second pairs of bytes used for<br>
-	 * the first and second heating cycles,<br>
-	 * respectively.<br>
+	 * Used, when the value of the “heating mode setting” property (EPC = 0xE0)  is 0x51 (two-stage microwave heating), to specify the heating power for the  first and second microwave heating cycles in 1W increments, and to acquire the current setting. Two bytes shall be used for each heating cycle, with the first and second pairs of bytes used for the first and second heating cycles, respectively.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Heating power for first microwave<br>
-	 * heating cycle (first and second bytes):<br>
-	 * 0x0000 to 0xFFFD (0 to 65533W)<br>
-	 * Heating power for second microwave<br>
-	 * heating cycle (third and fourth bytes):<br>
-	 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+	 * Heating power for first microwave heating cycle (first and second bytes):<br>
+	 * 0x0000.0xFFFD (0.65533W)<br>
+	 * Heating power for second microwave heating cycle (third and fourth bytes):<br>
+	 * 0x0000.0xFFFD (0.65533W)<br>
 	 * <br>
-	 * Data type : null<br>
+	 * Data type : unsigned short
+×2<br>
 	 * <br>
-	 * Data size : 4<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : 1
+W<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1950,7 +1655,7 @@ heating setting
 		case EPC_REMAINING_HEATING_TIME_SETTING : return setRemainingHeatingTimeSetting(property.edt);
 		case EPC_MICROWAVE_HEATING_POWER_SETTING : return setMicrowaveHeatingPowerSetting(property.edt);
 		case EPC_PROMPT_MESSAGE_SETTING : return setPromptMessageSetting(property.edt);
-		case EPC_GACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_H_SETTING : return setGaccessoriesToCombinationMicrowaveOvenHSetting(property.edt);
+		case EPC_ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING : return setAccessoriesToCombinationMicrowaveOvenSetting(property.edt);
 		case EPC_DISPLAY_CHARACTER_STRING_SETTING : return setDisplayCharacterStringSetting(property.edt);
 		case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION : return setTwoStageMicrowaveHeatingSettingDuration(property.edt);
 		case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER : return setTwoStageMicrowaveHeatingSettingHeatingPower(property.edt);
@@ -1980,7 +1685,7 @@ heating setting
 		case EPC_REMAINING_HEATING_TIME_SETTING : return getRemainingHeatingTimeSetting();
 		case EPC_MICROWAVE_HEATING_POWER_SETTING : return getMicrowaveHeatingPowerSetting();
 		case EPC_PROMPT_MESSAGE_SETTING : return getPromptMessageSetting();
-		case EPC_GACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_H_SETTING : return getGaccessoriesToCombinationMicrowaveOvenHSetting();
+		case EPC_ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING : return getAccessoriesToCombinationMicrowaveOvenSetting();
 		case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION : return getTwoStageMicrowaveHeatingSettingDuration();
 		case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER : return getTwoStageMicrowaveHeatingSettingHeatingPower();
 		default : return null;
@@ -2009,7 +1714,7 @@ heating setting
 		case EPC_REMAINING_HEATING_TIME_SETTING : return isValidRemainingHeatingTimeSetting(property.edt);
 		case EPC_MICROWAVE_HEATING_POWER_SETTING : return isValidMicrowaveHeatingPowerSetting(property.edt);
 		case EPC_PROMPT_MESSAGE_SETTING : return isValidPromptMessageSetting(property.edt);
-		case EPC_GACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_H_SETTING : return isValidGaccessoriesToCombinationMicrowaveOvenHSetting(property.edt);
+		case EPC_ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING : return isValidAccessoriesToCombinationMicrowaveOvenSetting(property.edt);
 		case EPC_DISPLAY_CHARACTER_STRING_SETTING : return isValidDisplayCharacterStringSetting(property.edt);
 		case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION : return isValidTwoStageMicrowaveHeatingSettingDuration(property.edt);
 		case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_HEATING_POWER : return isValidTwoStageMicrowaveHeatingSettingHeatingPower(property.edt);
@@ -2102,8 +1807,8 @@ heating setting
 			case EPC_PROMPT_MESSAGE_SETTING : 
 				onSetPromptMessageSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_H_SETTING : 
-				onSetGaccessoriesToCombinationMicrowaveOvenHSetting(eoj, tid, esv, property, success);
+			case EPC_ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING : 
+				onSetAccessoriesToCombinationMicrowaveOvenSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_DISPLAY_CHARACTER_STRING_SETTING : 
 				onSetDisplayCharacterStringSetting(eoj, tid, esv, property, success);
@@ -2174,8 +1879,8 @@ heating setting
 			case EPC_PROMPT_MESSAGE_SETTING : 
 				onGetPromptMessageSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_H_SETTING : 
-				onGetGaccessoriesToCombinationMicrowaveOvenHSetting(eoj, tid, esv, property, success);
+			case EPC_ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING : 
+				onGetAccessoriesToCombinationMicrowaveOvenSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_TWO_STAGE_MICROWAVE_HEATING_SETTING_DURATION : 
 				onGetTwoStageMicrowaveHeatingSettingDuration(eoj, tid, esv, property, success);
@@ -2203,7 +1908,7 @@ heating setting
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2220,22 +1925,19 @@ heating setting
 		 * Used to acquire the status of the combination microwave oven.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Initial state = 0x40<br>
-		 * Heating = 0x41<br>
+		 * Initial state = 0x40 Heating = 0x41<br>
 		 * Heating suspended = 0x42<br>
 		 * Reporting completion of heating cycle<br>
 		 * = 0x43<br>
-		 * Setting = 0x44<br>
-		 * Preheating = 0x45<br>
-		 * Preheat temperature maintenance =<br>
-		 * 0x46<br>
+		 * Setting = 0x44 Preheating = 0x45<br>
+		 * Preheat temperature maintenance = 0x46<br>
 		 * Heating temporarily stopped for manual cooking action = 0x47<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2253,15 +1955,14 @@ heating setting
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Start/restart heating (heating started/restarted) = 0x41<br>
-		 * Suspend heating (heating suspended) =<br>
-		 * 0x42<br>
+		 * Suspend heating (heating suspended) = 0x42<br>
 		 * Stop heating (heating stopped) = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2279,15 +1980,14 @@ heating setting
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Start/restart heating (heating started/restarted) = 0x41<br>
-		 * Suspend heating (heating suspended) =<br>
-		 * 0x42<br>
+		 * Suspend heating (heating suspended) = 0x42<br>
 		 * Stop heating (heating stopped) = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2304,14 +2004,9 @@ heating setting
 		 * Used to specify the heating mode of the combination microwave oven, and to acquire the current setting (i.e. current mode).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Microwave heating = 0x41<br>
-		 * Defrosting = 0x42<br>
+		 * Microwave heating = 0x41 Defrosting = 0x42<br>
 		 * Oven = 0x43<br>
-		 * Grill = 0x44<br>
-		 * Toaster = 0x45<br>
-		 * Fermenting = 0x46<br>
-		 * Stewing = 0x47<br>
-		 * Steaming = 0x48<br>
+		 * Grill = 0x44 Toaster = 0x45 Fermenting = 0x46 Stewing = 0x47 Steaming = 0x48<br>
 		 * Two-stage microwave heating = 0x51<br>
 		 * No mode specified = 0xFF<br>
 		 * <br>
@@ -2319,7 +2014,7 @@ heating setting
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2336,14 +2031,9 @@ heating setting
 		 * Used to specify the heating mode of the combination microwave oven, and to acquire the current setting (i.e. current mode).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Microwave heating = 0x41<br>
-		 * Defrosting = 0x42<br>
+		 * Microwave heating = 0x41 Defrosting = 0x42<br>
 		 * Oven = 0x43<br>
-		 * Grill = 0x44<br>
-		 * Toaster = 0x45<br>
-		 * Fermenting = 0x46<br>
-		 * Stewing = 0x47<br>
-		 * Steaming = 0x48<br>
+		 * Grill = 0x44 Toaster = 0x45 Fermenting = 0x46 Stewing = 0x47 Steaming = 0x48<br>
 		 * Two-stage microwave heating = 0x51<br>
 		 * No mode specified = 0xFF<br>
 		 * <br>
@@ -2351,7 +2041,7 @@ heating setting
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2365,7 +2055,7 @@ heating setting
 		 * EPC : 0xE1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify whether or not to use the combination microwave oven�fs automatic heating mode, and to acquire the current setting.<br>
+		 * Used to specify whether or not to use the combination microwave oven’s automatic heating mode, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic = 0x41<br>
@@ -2376,7 +2066,7 @@ heating setting
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2390,7 +2080,7 @@ heating setting
 		 * EPC : 0xE1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify whether or not to use the combination microwave oven�fs automatic heating mode, and to acquire the current setting.<br>
+		 * Used to specify whether or not to use the combination microwave oven’s automatic heating mode, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic = 0x41<br>
@@ -2401,7 +2091,7 @@ heating setting
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2415,16 +2105,16 @@ heating setting
 		 * EPC : 0xE2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify, by selecting a level from among the five predefined levels, the level of automatic heating for the option specified by the �gautomatic heating menu setting�h property, and to acquire the current setting.<br>
+		 * Used to specify, by selecting a level from among the five predefined levels, the level of automatic heating for the option specified by the “automatic heating menu setting” property, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x31 to 0x35 (lowest to highest) Not specified = 0xFF<br>
+		 * 0x31.0x35 (lowest to highest) Not specified = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned cha<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2438,16 +2128,16 @@ heating setting
 		 * EPC : 0xE2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify, by selecting a level from among the five predefined levels, the level of automatic heating for the option specified by the �gautomatic heating menu setting�h property, and to acquire the current setting.<br>
+		 * Used to specify, by selecting a level from among the five predefined levels, the level of automatic heating for the option specified by the “automatic heating menu setting” property, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x31 to 0x35 (lowest to highest) Not specified = 0xFF<br>
+		 * 0x31.0x35 (lowest to highest) Not specified = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned cha<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2461,18 +2151,17 @@ heating setting
 		 * EPC : 0xD0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gautomatic heating setting�h property is 0x41 (= automatic heating), to select an automatic heating cycle, and to acquire the current setting.<br>
+		 * Used, when the value of the “automatic heating setting” property is 0x41 (= automatic heating), to select an automatic heating cycle, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFE: Automatic heating cycle code (See the automatic heating cycle code table in the subsection entitled �gAutomatic heating menu setting.�h)<br>
-		 * No automatic heating cycle specified =<br>
-		 * 0xFF<br>
+		 * 0 to 0xFE: Automatic heating cycle code (See the automatic heating cycle code table in the subsection entitled “Automatic heating menu setting.”)<br>
+		 * No automatic heating cycle specified = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned cha<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2486,18 +2175,17 @@ heating setting
 		 * EPC : 0xD0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gautomatic heating setting�h property is 0x41 (= automatic heating), to select an automatic heating cycle, and to acquire the current setting.<br>
+		 * Used, when the value of the “automatic heating setting” property is 0x41 (= automatic heating), to select an automatic heating cycle, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFE: Automatic heating cycle code (See the automatic heating cycle code table in the subsection entitled �gAutomatic heating menu setting.�h)<br>
-		 * No automatic heating cycle specified =<br>
-		 * 0xFF<br>
+		 * 0 to 0xFE: Automatic heating cycle code (See the automatic heating cycle code table in the subsection entitled “Automatic heating menu setting.”)<br>
+		 * No automatic heating cycle specified = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned cha<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2511,21 +2199,18 @@ heating setting
 		 * EPC : 0xD1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating mode setting�h property (EPC = 0xE0) is 0x43 (= oven), to specify the<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x43 (= oven), to specify the<br>
 		 * sub-mode to use, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic selection mode = 0x40<br>
-		 * Convection oven mode = 0x41<br>
-		 * Circulation oven mode = 0x42<br>
-		 * Hybrid oven mode = 0x43<br>
+		 * Automatic selection mode = 0x40 Convection oven mode = 0x41 Circulation oven mode = 0x42 Hybrid oven mode = 0x43<br>
 		 * No sub-mode specified = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned cha<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2539,21 +2224,18 @@ heating setting
 		 * EPC : 0xD1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating mode setting�h property (EPC = 0xE0) is 0x43 (= oven), to specify the<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x43 (= oven), to specify the<br>
 		 * sub-mode to use, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic selection mode = 0x40<br>
-		 * Convection oven mode = 0x41<br>
-		 * Circulation oven mode = 0x42<br>
-		 * Hybrid oven mode = 0x43<br>
+		 * Automatic selection mode = 0x40 Convection oven mode = 0x41 Circulation oven mode = 0x42 Hybrid oven mode = 0x43<br>
 		 * No sub-mode specified = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned cha<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2567,19 +2249,16 @@ heating setting
 		 * EPC : 0xD5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating mode setting�h property (EPC = 0xE0) is 0x43 (oven), to specify whether or not to preheat the chamber for the<br>
-		 * selected oven sub-mode, and to acquire the current setting.<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x43 (oven), to specify whether or not to preheat the chamber for the selected oven sub-mode, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * With preheating = 0x41<br>
-		 * Without preheating = 0x42<br>
-		 * Not specified = 0xFF<br>
+		 * With preheating = 0x41 Without preheating = 0x42 Not specified = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2593,19 +2272,16 @@ heating setting
 		 * EPC : 0xD5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating mode setting�h property (EPC = 0xE0) is 0x43 (oven), to specify whether or not to preheat the chamber for the<br>
-		 * selected oven sub-mode, and to acquire the current setting.<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x43 (oven), to specify whether or not to preheat the chamber for the selected oven sub-mode, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * With preheating = 0x41<br>
-		 * Without preheating = 0x42<br>
-		 * Not specified = 0xFF<br>
+		 * With preheating = 0x41 Without preheating = 0x42 Not specified = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2619,21 +2295,16 @@ heating setting
 		 * EPC : 0xD6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating mode setting�h property (EPC = 0xE0) is 0x46 (= fermenting), to specify the sub-mode to use, and to acquire the current setting.<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x46 (= fermenting), to specify the sub-mode to use, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic selection mode = 0x40<br>
-		 * Convection fermentation mode = 0x41<br>
-		 * Circulation fermentation mode = 0x42<br>
-		 * Hybrid fermentation mode = 0x43<br>
-		 * Microwave fermentation mode = 0x51<br>
-		 * No mode specified = 0xFF<br>
+		 * Automatic selection mode = 0x40 Convection fermentation mode = 0x41 Circulation fermentation mode = 0x42 Hybrid fermentation mode = 0x43 Microwave fermentation mode = 0x51 No mode specified = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2647,21 +2318,16 @@ heating setting
 		 * EPC : 0xD6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating mode setting�h property (EPC = 0xE0) is 0x46 (= fermenting), to specify the sub-mode to use, and to acquire the current setting.<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x46 (= fermenting), to specify the sub-mode to use, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic selection mode = 0x40<br>
-		 * Convection fermentation mode = 0x41<br>
-		 * Circulation fermentation mode = 0x42<br>
-		 * Hybrid fermentation mode = 0x43<br>
-		 * Microwave fermentation mode = 0x51<br>
-		 * No mode specified = 0xFF<br>
+		 * Automatic selection mode = 0x40 Convection fermentation mode = 0x41 Circulation fermentation mode = 0x42 Hybrid fermentation mode = 0x43 Microwave fermentation mode = 0x51 No mode specified = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2670,31 +2336,23 @@ heating setting
 		 */
 		protected void onGetFermentingModeSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Chamber
-temperature
-setting<br>
+		 * Property name : Chamber temperature setting<br>
 		 * <br>
 		 * EPC : 0xE3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating<br>
-		 * mode setting�h property (EPC = 0xE0)<br>
-		 * is 0x43 (= oven) or 0x46 (=<br>
-		 * fermenting), to specify the temperature<br>
-		 * in the chamber in 0.1��C increments,<br>
-		 * and to acquire the current setting.<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x43 (= oven) or 0x46 (= fermenting), to specify the temperature in the chamber in 0.1°C increments, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xF554 to 0x7FFE (-273.2 to<br>
-		 * 3276.6��C)<br>
-		 * 0x8001: Automatic<br>
-		 * 0x8002: Not specified<br>
+		 * 0xF554.0x7FFE (-273.2. 3276.6°C)<br>
+		 * 0x8001: Automatic 0x8002: Not specified<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : signed short<br>
 		 * <br>
-		 * Data size : 2<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : °C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2703,31 +2361,23 @@ setting<br>
 		 */
 		protected void onSetChamberTemperatureSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Chamber
-temperature
-setting<br>
+		 * Property name : Chamber temperature setting<br>
 		 * <br>
 		 * EPC : 0xE3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating<br>
-		 * mode setting�h property (EPC = 0xE0)<br>
-		 * is 0x43 (= oven) or 0x46 (=<br>
-		 * fermenting), to specify the temperature<br>
-		 * in the chamber in 0.1��C increments,<br>
-		 * and to acquire the current setting.<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x43 (= oven) or 0x46 (= fermenting), to specify the temperature in the chamber in 0.1°C increments, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xF554 to 0x7FFE (-273.2 to<br>
-		 * 3276.6��C)<br>
-		 * 0x8001: Automatic<br>
-		 * 0x8002: Not specified<br>
+		 * 0xF554.0x7FFE (-273.2. 3276.6°C)<br>
+		 * 0x8001: Automatic 0x8002: Not specified<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : signed short<br>
 		 * <br>
-		 * Data size : 2<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : °C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2736,26 +2386,23 @@ setting<br>
 		 */
 		protected void onGetChamberTemperatureSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Food temperature
-setting<br>
+		 * Property name : Food temperature setting<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the as-heated food<br>
-		 * temperature in 0.1��C increments, and to<br>
-		 * acquire the current setting.<br>
+		 * Used to specify the as-heated food temperature in 0.1°C increments, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xF554 to 0x7FFE (-273.2 to<br>
-		 * 3276.6��)<br>
+		 * 0xF554.0x7FFE (-273.2.3276.6°C)<br>
 		 * 0x8002: Not specified<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : signed short<br>
 		 * <br>
-		 * Data size : 2<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : °C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2764,26 +2411,23 @@ setting<br>
 		 */
 		protected void onSetFoodTemperatureSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Food temperature
-setting<br>
+		 * Property name : Food temperature setting<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the as-heated food<br>
-		 * temperature in 0.1��C increments, and to<br>
-		 * acquire the current setting.<br>
+		 * Used to specify the as-heated food temperature in 0.1°C increments, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xF554 to 0x7FFE (-273.2 to<br>
-		 * 3276.6��)<br>
+		 * 0xF554.0x7FFE (-273.2.3276.6°C)<br>
 		 * 0x8002: Not specified<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : signed short<br>
 		 * <br>
-		 * Data size : 2<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : °C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2792,25 +2436,23 @@ setting<br>
 		 */
 		protected void onGetFoodTemperatureSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Heating time
-setting<br>
+		 * Property name : Heating time setting<br>
 		 * <br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the duration of heating<br>
-		 * in the HH:MM:SS format, and to<br>
-		 * acquire the current setting.<br>
+		 * Used to specify the duration of heating in the HH:MM:SS format, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-		 * (= 0 to 23) (= 0 to 59) (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B: 0.0x3B (= 0.23) (= 0.59) (= 0.59)<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned char
+×3<br>
 		 * <br>
-		 * Data size : 3<br>
+		 * Data size : 3
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2819,25 +2461,23 @@ setting<br>
 		 */
 		protected void onSetHeatingTimeSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Heating time
-setting<br>
+		 * Property name : Heating time setting<br>
 		 * <br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the duration of heating<br>
-		 * in the HH:MM:SS format, and to<br>
-		 * acquire the current setting.<br>
+		 * Used to specify the duration of heating in the HH:MM:SS format, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-		 * (= 0 to 23) (= 0 to 59) (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B: 0.0x3B (= 0.23) (= 0.59) (= 0.59)<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned char
+×3<br>
 		 * <br>
-		 * Data size : 3<br>
+		 * Data size : 3
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2846,27 +2486,23 @@ setting<br>
 		 */
 		protected void onGetHeatingTimeSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Remaining
-heating time
-setting<br>
+		 * Property name : Remaining heating time setting<br>
 		 * <br>
 		 * EPC : 0xE6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the time remaining to<br>
-		 * complete the heating cycle in the<br>
-		 * HH:MM:SS format, and to acquire the<br>
-		 * current setting.<br>
+		 * Used to specify the time remaining to complete the heating cycle in the HH:MM:SS format, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-		 * (= 0 to 23) (= 0 to 59) (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B: 0.0x3B (= 0.23) (= 0.59) (= 0.59)<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned char
+×3<br>
 		 * <br>
-		 * Data size : 3<br>
+		 * Data size : 3
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2875,27 +2511,23 @@ setting<br>
 		 */
 		protected void onSetRemainingHeatingTimeSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Remaining
-heating time
-setting<br>
+		 * Property name : Remaining heating time setting<br>
 		 * <br>
 		 * EPC : 0xE6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the time remaining to<br>
-		 * complete the heating cycle in the<br>
-		 * HH:MM:SS format, and to acquire the<br>
-		 * current setting.<br>
+		 * Used to specify the time remaining to complete the heating cycle in the HH:MM:SS format, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-		 * (= 0 to 23) (= 0 to 59) (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B: 0.0x3B (= 0.23) (= 0.59) (= 0.59)<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned char
+×3<br>
 		 * <br>
-		 * Data size : 3<br>
+		 * Data size : 3
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2904,35 +2536,26 @@ setting<br>
 		 */
 		protected void onGetRemainingHeatingTimeSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Microwave
-heating power
-setting<br>
+		 * Property name : Microwave heating power setting<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating<br>
-		 * mode setting�h property (EPC = 0xE0)<br>
-		 * is 0x41 (= microwave heating), 0x42 (=<br>
-		 * defrosting), 0x47 (= stewing) or 0x48<br>
-		 * (= steaming) or when the value of the<br>
-		 * �gheating mode setting�h property (EPC<br>
-		 * = 0xE0) is 0x46 (= fermenting) and the<br>
-		 * value of the �gfermenting mode setting�h<br>
-		 * property (EPC = 0xD6) is 0x51 (=<br>
-		 * microwave fermentation mode), to<br>
-		 * specify the microwave heating power<br>
-		 * in 1W increments, and to acquire the<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0)  is 0x41 (= microwave heating), 0x42 (= defrosting), 0x47 (= stewing) or 0x48 (= steaming) or when the value of the “heating mode setting” property (EPC<br>
+		 * = 0xE0) is 0x46 (= fermenting) and the value of the “fermenting mode setting”<br>
+		 * property (EPC = 0xD6) is 0x51 (= microwave fermentation mode), to specify the microwave heating power in 1W increments, and to acquire the<br>
 		 * current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : 1
+W<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2941,35 +2564,26 @@ setting<br>
 		 */
 		protected void onSetMicrowaveHeatingPowerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Microwave
-heating power
-setting<br>
+		 * Property name : Microwave heating power setting<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating<br>
-		 * mode setting�h property (EPC = 0xE0)<br>
-		 * is 0x41 (= microwave heating), 0x42 (=<br>
-		 * defrosting), 0x47 (= stewing) or 0x48<br>
-		 * (= steaming) or when the value of the<br>
-		 * �gheating mode setting�h property (EPC<br>
-		 * = 0xE0) is 0x46 (= fermenting) and the<br>
-		 * value of the �gfermenting mode setting�h<br>
-		 * property (EPC = 0xD6) is 0x51 (=<br>
-		 * microwave fermentation mode), to<br>
-		 * specify the microwave heating power<br>
-		 * in 1W increments, and to acquire the<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0)  is 0x41 (= microwave heating), 0x42 (= defrosting), 0x47 (= stewing) or 0x48 (= steaming) or when the value of the “heating mode setting” property (EPC<br>
+		 * = 0xE0) is 0x46 (= fermenting) and the value of the “fermenting mode setting”<br>
+		 * property (EPC = 0xD6) is 0x51 (= microwave fermentation mode), to specify the microwave heating power in 1W increments, and to acquire the<br>
 		 * current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : 1
+W<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2978,42 +2592,25 @@ setting<br>
 		 */
 		protected void onGetMicrowaveHeatingPowerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Prompt message
-setting<br>
+		 * Property name : Prompt message setting<br>
 		 * <br>
 		 * EPC : 0xE8<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when it is necessary to instruct<br>
-		 * the combination microwave oven to<br>
-		 * temporarily stop heating at a point<br>
-		 * during a heating cycle to allow the user<br>
-		 * to perform manual reversing, mixing,<br>
-		 * etc. and display a message to instruct<br>
-		 * the user on the manual action to be<br>
-		 * performed, to specify the prompt<br>
-		 * message to be displayed and the timing<br>
-		 * of the message (in terms of a<br>
-		 * percentage of the total duration of the<br>
-		 * heating cycle that is allowed to elapse<br>
-		 * (from the start of the heating cycle)<br>
-		 * before the message is displayed), and to<br>
-		 * acquire the current settings. Up to 4<br>
-		 * messages may be specified.<br>
+		 * Used, when it is necessary to instruct the combination microwave oven to temporarily stop heating at a point during a heating cycle to allow the user to perform manual reversing, mixing, etc. and display a message to instruct the user on the manual action to be performed, to specify the prompt message to be displayed and the timing of the message (in terms of a  percentage of the total duration of the heating cycle that is allowed to elapse (from the start of the heating cycle) before the message is displayed), and to acquire the current settings. Up to 4 messages may be specified.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * First byte: Prompt message code (See<br>
-		 * the prompt message code table in the<br>
-		 * subsection entitled �gPrompt message<br>
-		 * setting.�h)<br>
-		 * Second byte: Timing value (0 to 0x64<br>
-		 * (0 to 100%))<br>
+		 * First byte: Prompt message code (See the prompt message code table in the subsection entitled “Prompt message setting.”)<br>
+		 * Second byte: Timing value (0.0x64) (0.100%))<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned char
+×2
+×4<br>
 		 * <br>
-		 * Data size : 8<br>
+		 * Data size : 8
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3022,42 +2619,25 @@ setting<br>
 		 */
 		protected void onSetPromptMessageSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Prompt message
-setting<br>
+		 * Property name : Prompt message setting<br>
 		 * <br>
 		 * EPC : 0xE8<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when it is necessary to instruct<br>
-		 * the combination microwave oven to<br>
-		 * temporarily stop heating at a point<br>
-		 * during a heating cycle to allow the user<br>
-		 * to perform manual reversing, mixing,<br>
-		 * etc. and display a message to instruct<br>
-		 * the user on the manual action to be<br>
-		 * performed, to specify the prompt<br>
-		 * message to be displayed and the timing<br>
-		 * of the message (in terms of a<br>
-		 * percentage of the total duration of the<br>
-		 * heating cycle that is allowed to elapse<br>
-		 * (from the start of the heating cycle)<br>
-		 * before the message is displayed), and to<br>
-		 * acquire the current settings. Up to 4<br>
-		 * messages may be specified.<br>
+		 * Used, when it is necessary to instruct the combination microwave oven to temporarily stop heating at a point during a heating cycle to allow the user to perform manual reversing, mixing, etc. and display a message to instruct the user on the manual action to be performed, to specify the prompt message to be displayed and the timing of the message (in terms of a  percentage of the total duration of the heating cycle that is allowed to elapse (from the start of the heating cycle) before the message is displayed), and to acquire the current settings. Up to 4 messages may be specified.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * First byte: Prompt message code (See<br>
-		 * the prompt message code table in the<br>
-		 * subsection entitled �gPrompt message<br>
-		 * setting.�h)<br>
-		 * Second byte: Timing value (0 to 0x64<br>
-		 * (0 to 100%))<br>
+		 * First byte: Prompt message code (See the prompt message code table in the subsection entitled “Prompt message setting.”)<br>
+		 * Second byte: Timing value (0.0x64) (0.100%))<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned char
+×2
+×4<br>
 		 * <br>
-		 * Data size : 8<br>
+		 * Data size : 8
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3066,96 +2646,75 @@ setting<br>
 		 */
 		protected void onGetPromptMessageSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gAccessories to
-combination
-microwave oven�h
-setting<br>
+		 * Property name : “Accessories to combination microwave oven” setting<br>
 		 * <br>
 		 * EPC : 0xE9<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify, by means of a 2-byte<br>
-		 * bit map, what accessory or accessories<br>
-		 * to the combination microwave oven to<br>
-		 * use, and to acquire the current setting.<br>
+		 * Used to specify, by means of a 2-byte bit map, what accessory or accessories to the combination microwave oven to use, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * The value contained in a bit in the bit<br>
-		 * map shall be �g1�h if the accessory<br>
-		 * represented by that bit is used and �g0�h<br>
-		 * if the accessory represented by that bit<br>
-		 * is not used (See the bitmap composition<br>
-		 * table in the subsection entitled<br>
-		 * �g�fAccessories to combination<br>
-		 * microwave oven�f setting�h).<br>
+		 * The value contained in a bit in the bit map shall be “1” if the accessory represented by that bit is used and “0” if the accessory represented by that bit<br>
+		 * is not used (See the bitmap composition table in the subsection entitled “’Accessories to combination<br>
+		 * microwave oven’ setting”).<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetGaccessoriesToCombinationMicrowaveOvenHSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetAccessoriesToCombinationMicrowaveOvenSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : �gAccessories to
-combination
-microwave oven�h
-setting<br>
+		 * Property name : “Accessories to combination microwave oven” setting<br>
 		 * <br>
 		 * EPC : 0xE9<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify, by means of a 2-byte<br>
-		 * bit map, what accessory or accessories<br>
-		 * to the combination microwave oven to<br>
-		 * use, and to acquire the current setting.<br>
+		 * Used to specify, by means of a 2-byte bit map, what accessory or accessories to the combination microwave oven to use, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * The value contained in a bit in the bit<br>
-		 * map shall be �g1�h if the accessory<br>
-		 * represented by that bit is used and �g0�h<br>
-		 * if the accessory represented by that bit<br>
-		 * is not used (See the bitmap composition<br>
-		 * table in the subsection entitled<br>
-		 * �g�fAccessories to combination<br>
-		 * microwave oven�f setting�h).<br>
+		 * The value contained in a bit in the bit map shall be “1” if the accessory represented by that bit is used and “0” if the accessory represented by that bit<br>
+		 * is not used (See the bitmap composition table in the subsection entitled “’Accessories to combination<br>
+		 * microwave oven’ setting”).<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetGaccessoriesToCombinationMicrowaveOvenHSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetAccessoriesToCombinationMicrowaveOvenSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Display character
-string setting<br>
+		 * Property name : Display character string setting<br>
 		 * <br>
 		 * EPC : 0xEA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to input character strings (up to<br>
-		 * 20 characters) to use on the display of<br>
-		 * the combination microwave oven.<br>
+		 * Used to input character strings (up to 20 characters) to use on the display of the combination microwave oven.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Shift-JIS code characters x 20<br>
+		 * Shift-JIS code characters × 20<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned short
+×20<br>
 		 * <br>
-		 * Data size : 40<br>
+		 * Data size : 40
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3164,41 +2723,29 @@ string setting<br>
 		 */
 		protected void onSetDisplayCharacterStringSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Two-stage
-microwave
-heating setting
-(duration)<br>
+		 * Property name : Two-stage microwave heating setting (duration)<br>
 		 * <br>
 		 * EPC : 0xEB<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating<br>
-		 * mode setting�h property (EPC = 0xE0)<br>
-		 * is 0x51 (two-stage microwave heating),<br>
-		 * to specify the duration of the first and<br>
-		 * second microwave heating cycles in the<br>
-		 * HH:MM:SS format, and to acquire the<br>
-		 * current setting. Three bytes shall be<br>
-		 * used for each heating cycle, with the<br>
-		 * first and second sets of bytes used for<br>
-		 * the first and second heating cycles,<br>
-		 * respectively.<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x51 (two-stage microwave heating), to specify the duration of the first and second microwave heating cycles in the HH:MM:SS format, and to acquire the current setting. Three bytes shall be used for each heating cycle, with the first and second sets of bytes used for the first and second heating cycles, respectively.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Duration of first microwave heating<br>
-		 * cycle (first through third bytes):<br>
-		 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59): (= 0 to 59)<br>
-		 * Duration of second microwave heating<br>
-		 * cycle (fourth through sixth bytes):<br>
-		 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59): (= 0 to 59)<br>
+		 * Duration of first microwave heating cycle (first through third bytes):<br>
+		 * 0.0x17: 0.0x3B: 0.0x3B<br>
+		 * (= 0.23): (= 0.59): (= 0.59)<br>
+		 * Duration of second microwave heating cycle (fourth through sixth bytes):<br>
+		 * 0.0x17: 0.0x3B: 0.0x3B<br>
+		 * (= 0.23): (= 0.59): (= 0.59)<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned char
+×3
+×2<br>
 		 * <br>
-		 * Data size : 6<br>
+		 * Data size : 6
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3207,41 +2754,29 @@ heating setting
 		 */
 		protected void onSetTwoStageMicrowaveHeatingSettingDuration(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Two-stage
-microwave
-heating setting
-(duration)<br>
+		 * Property name : Two-stage microwave heating setting (duration)<br>
 		 * <br>
 		 * EPC : 0xEB<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating<br>
-		 * mode setting�h property (EPC = 0xE0)<br>
-		 * is 0x51 (two-stage microwave heating),<br>
-		 * to specify the duration of the first and<br>
-		 * second microwave heating cycles in the<br>
-		 * HH:MM:SS format, and to acquire the<br>
-		 * current setting. Three bytes shall be<br>
-		 * used for each heating cycle, with the<br>
-		 * first and second sets of bytes used for<br>
-		 * the first and second heating cycles,<br>
-		 * respectively.<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x51 (two-stage microwave heating), to specify the duration of the first and second microwave heating cycles in the HH:MM:SS format, and to acquire the current setting. Three bytes shall be used for each heating cycle, with the first and second sets of bytes used for the first and second heating cycles, respectively.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Duration of first microwave heating<br>
-		 * cycle (first through third bytes):<br>
-		 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59): (= 0 to 59)<br>
-		 * Duration of second microwave heating<br>
-		 * cycle (fourth through sixth bytes):<br>
-		 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59): (= 0 to 59)<br>
+		 * Duration of first microwave heating cycle (first through third bytes):<br>
+		 * 0.0x17: 0.0x3B: 0.0x3B<br>
+		 * (= 0.23): (= 0.59): (= 0.59)<br>
+		 * Duration of second microwave heating cycle (fourth through sixth bytes):<br>
+		 * 0.0x17: 0.0x3B: 0.0x3B<br>
+		 * (= 0.23): (= 0.59): (= 0.59)<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned char
+×3
+×2<br>
 		 * <br>
-		 * Data size : 6<br>
+		 * Data size : 6
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3250,39 +2785,27 @@ heating setting
 		 */
 		protected void onGetTwoStageMicrowaveHeatingSettingDuration(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Two-stage
-microwave
-heating setting
-(heating power)<br>
+		 * Property name : Two-stage microwave heating setting (heating power)<br>
 		 * <br>
 		 * EPC : 0xEC<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating<br>
-		 * mode setting�h property (EPC = 0xE0)<br>
-		 * is 0x51 (two-stage microwave heating),<br>
-		 * to specify the heating power for the<br>
-		 * first and second microwave heating<br>
-		 * cycles in 1W increments, and to acquire<br>
-		 * the current setting. Two bytes shall be<br>
-		 * used for each heating cycle, with the<br>
-		 * first and second pairs of bytes used for<br>
-		 * the first and second heating cycles,<br>
-		 * respectively.<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0)  is 0x51 (two-stage microwave heating), to specify the heating power for the  first and second microwave heating cycles in 1W increments, and to acquire the current setting. Two bytes shall be used for each heating cycle, with the first and second pairs of bytes used for the first and second heating cycles, respectively.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Heating power for first microwave<br>
-		 * heating cycle (first and second bytes):<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
-		 * Heating power for second microwave<br>
-		 * heating cycle (third and fourth bytes):<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+		 * Heating power for first microwave heating cycle (first and second bytes):<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
+		 * Heating power for second microwave heating cycle (third and fourth bytes):<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned short
+×2<br>
 		 * <br>
-		 * Data size : 4<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : 1
+W<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3291,39 +2814,27 @@ heating setting
 		 */
 		protected void onSetTwoStageMicrowaveHeatingSettingHeatingPower(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Two-stage
-microwave
-heating setting
-(heating power)<br>
+		 * Property name : Two-stage microwave heating setting (heating power)<br>
 		 * <br>
 		 * EPC : 0xEC<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating<br>
-		 * mode setting�h property (EPC = 0xE0)<br>
-		 * is 0x51 (two-stage microwave heating),<br>
-		 * to specify the heating power for the<br>
-		 * first and second microwave heating<br>
-		 * cycles in 1W increments, and to acquire<br>
-		 * the current setting. Two bytes shall be<br>
-		 * used for each heating cycle, with the<br>
-		 * first and second pairs of bytes used for<br>
-		 * the first and second heating cycles,<br>
-		 * respectively.<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0)  is 0x51 (two-stage microwave heating), to specify the heating power for the  first and second microwave heating cycles in 1W increments, and to acquire the current setting. Two bytes shall be used for each heating cycle, with the first and second pairs of bytes used for the first and second heating cycles, respectively.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Heating power for first microwave<br>
-		 * heating cycle (first and second bytes):<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
-		 * Heating power for second microwave<br>
-		 * heating cycle (third and fourth bytes):<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+		 * Heating power for first microwave heating cycle (first and second bytes):<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
+		 * Heating power for second microwave heating cycle (third and fourth bytes):<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned short
+×2<br>
 		 * <br>
-		 * Data size : 4<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : 1
+W<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3362,8 +2873,8 @@ heating setting
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -3388,15 +2899,14 @@ heating setting
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Start/restart heating (heating started/restarted) = 0x41<br>
-		 * Suspend heating (heating suspended) =<br>
-		 * 0x42<br>
+		 * Suspend heating (heating suspended) = 0x42<br>
 		 * Stop heating (heating stopped) = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3416,14 +2926,9 @@ heating setting
 		 * Used to specify the heating mode of the combination microwave oven, and to acquire the current setting (i.e. current mode).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Microwave heating = 0x41<br>
-		 * Defrosting = 0x42<br>
+		 * Microwave heating = 0x41 Defrosting = 0x42<br>
 		 * Oven = 0x43<br>
-		 * Grill = 0x44<br>
-		 * Toaster = 0x45<br>
-		 * Fermenting = 0x46<br>
-		 * Stewing = 0x47<br>
-		 * Steaming = 0x48<br>
+		 * Grill = 0x44 Toaster = 0x45 Fermenting = 0x46 Stewing = 0x47 Steaming = 0x48<br>
 		 * Two-stage microwave heating = 0x51<br>
 		 * No mode specified = 0xFF<br>
 		 * <br>
@@ -3431,7 +2936,7 @@ heating setting
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3448,7 +2953,7 @@ heating setting
 		 * EPC : 0xE1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify whether or not to use the combination microwave oven�fs automatic heating mode, and to acquire the current setting.<br>
+		 * Used to specify whether or not to use the combination microwave oven’s automatic heating mode, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic = 0x41<br>
@@ -3459,7 +2964,7 @@ heating setting
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3476,16 +2981,16 @@ heating setting
 		 * EPC : 0xE2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify, by selecting a level from among the five predefined levels, the level of automatic heating for the option specified by the �gautomatic heating menu setting�h property, and to acquire the current setting.<br>
+		 * Used to specify, by selecting a level from among the five predefined levels, the level of automatic heating for the option specified by the “automatic heating menu setting” property, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x31 to 0x35 (lowest to highest) Not specified = 0xFF<br>
+		 * 0x31.0x35 (lowest to highest) Not specified = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned cha<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3502,18 +3007,17 @@ heating setting
 		 * EPC : 0xD0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gautomatic heating setting�h property is 0x41 (= automatic heating), to select an automatic heating cycle, and to acquire the current setting.<br>
+		 * Used, when the value of the “automatic heating setting” property is 0x41 (= automatic heating), to select an automatic heating cycle, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFE: Automatic heating cycle code (See the automatic heating cycle code table in the subsection entitled �gAutomatic heating menu setting.�h)<br>
-		 * No automatic heating cycle specified =<br>
-		 * 0xFF<br>
+		 * 0 to 0xFE: Automatic heating cycle code (See the automatic heating cycle code table in the subsection entitled “Automatic heating menu setting.”)<br>
+		 * No automatic heating cycle specified = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned cha<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3530,21 +3034,18 @@ heating setting
 		 * EPC : 0xD1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating mode setting�h property (EPC = 0xE0) is 0x43 (= oven), to specify the<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x43 (= oven), to specify the<br>
 		 * sub-mode to use, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic selection mode = 0x40<br>
-		 * Convection oven mode = 0x41<br>
-		 * Circulation oven mode = 0x42<br>
-		 * Hybrid oven mode = 0x43<br>
+		 * Automatic selection mode = 0x40 Convection oven mode = 0x41 Circulation oven mode = 0x42 Hybrid oven mode = 0x43<br>
 		 * No sub-mode specified = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned cha<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3561,19 +3062,16 @@ heating setting
 		 * EPC : 0xD5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating mode setting�h property (EPC = 0xE0) is 0x43 (oven), to specify whether or not to preheat the chamber for the<br>
-		 * selected oven sub-mode, and to acquire the current setting.<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x43 (oven), to specify whether or not to preheat the chamber for the selected oven sub-mode, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * With preheating = 0x41<br>
-		 * Without preheating = 0x42<br>
-		 * Not specified = 0xFF<br>
+		 * With preheating = 0x41 Without preheating = 0x42 Not specified = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3590,21 +3088,16 @@ heating setting
 		 * EPC : 0xD6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating mode setting�h property (EPC = 0xE0) is 0x46 (= fermenting), to specify the sub-mode to use, and to acquire the current setting.<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x46 (= fermenting), to specify the sub-mode to use, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic selection mode = 0x40<br>
-		 * Convection fermentation mode = 0x41<br>
-		 * Circulation fermentation mode = 0x42<br>
-		 * Hybrid fermentation mode = 0x43<br>
-		 * Microwave fermentation mode = 0x51<br>
-		 * No mode specified = 0xFF<br>
+		 * Automatic selection mode = 0x40 Convection fermentation mode = 0x41 Circulation fermentation mode = 0x42 Hybrid fermentation mode = 0x43 Microwave fermentation mode = 0x51 No mode specified = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3616,31 +3109,23 @@ heating setting
 			return this;
 		}
 		/**
-		 * Property name : Chamber
-temperature
-setting<br>
+		 * Property name : Chamber temperature setting<br>
 		 * <br>
 		 * EPC : 0xE3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating<br>
-		 * mode setting�h property (EPC = 0xE0)<br>
-		 * is 0x43 (= oven) or 0x46 (=<br>
-		 * fermenting), to specify the temperature<br>
-		 * in the chamber in 0.1��C increments,<br>
-		 * and to acquire the current setting.<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x43 (= oven) or 0x46 (= fermenting), to specify the temperature in the chamber in 0.1°C increments, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xF554 to 0x7FFE (-273.2 to<br>
-		 * 3276.6��C)<br>
-		 * 0x8001: Automatic<br>
-		 * 0x8002: Not specified<br>
+		 * 0xF554.0x7FFE (-273.2. 3276.6°C)<br>
+		 * 0x8001: Automatic 0x8002: Not specified<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : signed short<br>
 		 * <br>
-		 * Data size : 2<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : °C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3652,26 +3137,23 @@ setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Food temperature
-setting<br>
+		 * Property name : Food temperature setting<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the as-heated food<br>
-		 * temperature in 0.1��C increments, and to<br>
-		 * acquire the current setting.<br>
+		 * Used to specify the as-heated food temperature in 0.1°C increments, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xF554 to 0x7FFE (-273.2 to<br>
-		 * 3276.6��)<br>
+		 * 0xF554.0x7FFE (-273.2.3276.6°C)<br>
 		 * 0x8002: Not specified<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : signed short<br>
 		 * <br>
-		 * Data size : 2<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : °C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3683,25 +3165,23 @@ setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Heating time
-setting<br>
+		 * Property name : Heating time setting<br>
 		 * <br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the duration of heating<br>
-		 * in the HH:MM:SS format, and to<br>
-		 * acquire the current setting.<br>
+		 * Used to specify the duration of heating in the HH:MM:SS format, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-		 * (= 0 to 23) (= 0 to 59) (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B: 0.0x3B (= 0.23) (= 0.59) (= 0.59)<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned char
+×3<br>
 		 * <br>
-		 * Data size : 3<br>
+		 * Data size : 3
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3713,27 +3193,23 @@ setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Remaining
-heating time
-setting<br>
+		 * Property name : Remaining heating time setting<br>
 		 * <br>
 		 * EPC : 0xE6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the time remaining to<br>
-		 * complete the heating cycle in the<br>
-		 * HH:MM:SS format, and to acquire the<br>
-		 * current setting.<br>
+		 * Used to specify the time remaining to complete the heating cycle in the HH:MM:SS format, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-		 * (= 0 to 23) (= 0 to 59) (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B: 0.0x3B (= 0.23) (= 0.59) (= 0.59)<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned char
+×3<br>
 		 * <br>
-		 * Data size : 3<br>
+		 * Data size : 3
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3745,35 +3221,26 @@ setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Microwave
-heating power
-setting<br>
+		 * Property name : Microwave heating power setting<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating<br>
-		 * mode setting�h property (EPC = 0xE0)<br>
-		 * is 0x41 (= microwave heating), 0x42 (=<br>
-		 * defrosting), 0x47 (= stewing) or 0x48<br>
-		 * (= steaming) or when the value of the<br>
-		 * �gheating mode setting�h property (EPC<br>
-		 * = 0xE0) is 0x46 (= fermenting) and the<br>
-		 * value of the �gfermenting mode setting�h<br>
-		 * property (EPC = 0xD6) is 0x51 (=<br>
-		 * microwave fermentation mode), to<br>
-		 * specify the microwave heating power<br>
-		 * in 1W increments, and to acquire the<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0)  is 0x41 (= microwave heating), 0x42 (= defrosting), 0x47 (= stewing) or 0x48 (= steaming) or when the value of the “heating mode setting” property (EPC<br>
+		 * = 0xE0) is 0x46 (= fermenting) and the value of the “fermenting mode setting”<br>
+		 * property (EPC = 0xD6) is 0x51 (= microwave fermentation mode), to specify the microwave heating power in 1W increments, and to acquire the<br>
 		 * current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : 1
+W<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3785,42 +3252,25 @@ setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Prompt message
-setting<br>
+		 * Property name : Prompt message setting<br>
 		 * <br>
 		 * EPC : 0xE8<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when it is necessary to instruct<br>
-		 * the combination microwave oven to<br>
-		 * temporarily stop heating at a point<br>
-		 * during a heating cycle to allow the user<br>
-		 * to perform manual reversing, mixing,<br>
-		 * etc. and display a message to instruct<br>
-		 * the user on the manual action to be<br>
-		 * performed, to specify the prompt<br>
-		 * message to be displayed and the timing<br>
-		 * of the message (in terms of a<br>
-		 * percentage of the total duration of the<br>
-		 * heating cycle that is allowed to elapse<br>
-		 * (from the start of the heating cycle)<br>
-		 * before the message is displayed), and to<br>
-		 * acquire the current settings. Up to 4<br>
-		 * messages may be specified.<br>
+		 * Used, when it is necessary to instruct the combination microwave oven to temporarily stop heating at a point during a heating cycle to allow the user to perform manual reversing, mixing, etc. and display a message to instruct the user on the manual action to be performed, to specify the prompt message to be displayed and the timing of the message (in terms of a  percentage of the total duration of the heating cycle that is allowed to elapse (from the start of the heating cycle) before the message is displayed), and to acquire the current settings. Up to 4 messages may be specified.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * First byte: Prompt message code (See<br>
-		 * the prompt message code table in the<br>
-		 * subsection entitled �gPrompt message<br>
-		 * setting.�h)<br>
-		 * Second byte: Timing value (0 to 0x64<br>
-		 * (0 to 100%))<br>
+		 * First byte: Prompt message code (See the prompt message code table in the subsection entitled “Prompt message setting.”)<br>
+		 * Second byte: Timing value (0.0x64) (0.100%))<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned char
+×2
+×4<br>
 		 * <br>
-		 * Data size : 8<br>
+		 * Data size : 8
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3832,63 +3282,52 @@ setting<br>
 			return this;
 		}
 		/**
-		 * Property name : �gAccessories to
-combination
-microwave oven�h
-setting<br>
+		 * Property name : “Accessories to combination microwave oven” setting<br>
 		 * <br>
 		 * EPC : 0xE9<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify, by means of a 2-byte<br>
-		 * bit map, what accessory or accessories<br>
-		 * to the combination microwave oven to<br>
-		 * use, and to acquire the current setting.<br>
+		 * Used to specify, by means of a 2-byte bit map, what accessory or accessories to the combination microwave oven to use, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * The value contained in a bit in the bit<br>
-		 * map shall be �g1�h if the accessory<br>
-		 * represented by that bit is used and �g0�h<br>
-		 * if the accessory represented by that bit<br>
-		 * is not used (See the bitmap composition<br>
-		 * table in the subsection entitled<br>
-		 * �g�fAccessories to combination<br>
-		 * microwave oven�f setting�h).<br>
+		 * The value contained in a bit in the bit map shall be “1” if the accessory represented by that bit is used and “0” if the accessory represented by that bit<br>
+		 * is not used (See the bitmap composition table in the subsection entitled “’Accessories to combination<br>
+		 * microwave oven’ setting”).<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetGaccessoriesToCombinationMicrowaveOvenHSetting(byte[] edt) {
-			reqSetProperty(EPC_GACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_H_SETTING, edt);
+		public Setter reqSetAccessoriesToCombinationMicrowaveOvenSetting(byte[] edt) {
+			reqSetProperty(EPC_ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Property name : Display character
-string setting<br>
+		 * Property name : Display character string setting<br>
 		 * <br>
 		 * EPC : 0xEA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to input character strings (up to<br>
-		 * 20 characters) to use on the display of<br>
-		 * the combination microwave oven.<br>
+		 * Used to input character strings (up to 20 characters) to use on the display of the combination microwave oven.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Shift-JIS code characters x 20<br>
+		 * Shift-JIS code characters × 20<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned short
+×20<br>
 		 * <br>
-		 * Data size : 40<br>
+		 * Data size : 40
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3900,41 +3339,29 @@ string setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Two-stage
-microwave
-heating setting
-(duration)<br>
+		 * Property name : Two-stage microwave heating setting (duration)<br>
 		 * <br>
 		 * EPC : 0xEB<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating<br>
-		 * mode setting�h property (EPC = 0xE0)<br>
-		 * is 0x51 (two-stage microwave heating),<br>
-		 * to specify the duration of the first and<br>
-		 * second microwave heating cycles in the<br>
-		 * HH:MM:SS format, and to acquire the<br>
-		 * current setting. Three bytes shall be<br>
-		 * used for each heating cycle, with the<br>
-		 * first and second sets of bytes used for<br>
-		 * the first and second heating cycles,<br>
-		 * respectively.<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x51 (two-stage microwave heating), to specify the duration of the first and second microwave heating cycles in the HH:MM:SS format, and to acquire the current setting. Three bytes shall be used for each heating cycle, with the first and second sets of bytes used for the first and second heating cycles, respectively.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Duration of first microwave heating<br>
-		 * cycle (first through third bytes):<br>
-		 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59): (= 0 to 59)<br>
-		 * Duration of second microwave heating<br>
-		 * cycle (fourth through sixth bytes):<br>
-		 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59): (= 0 to 59)<br>
+		 * Duration of first microwave heating cycle (first through third bytes):<br>
+		 * 0.0x17: 0.0x3B: 0.0x3B<br>
+		 * (= 0.23): (= 0.59): (= 0.59)<br>
+		 * Duration of second microwave heating cycle (fourth through sixth bytes):<br>
+		 * 0.0x17: 0.0x3B: 0.0x3B<br>
+		 * (= 0.23): (= 0.59): (= 0.59)<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned char
+×3
+×2<br>
 		 * <br>
-		 * Data size : 6<br>
+		 * Data size : 6
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3946,39 +3373,27 @@ heating setting
 			return this;
 		}
 		/**
-		 * Property name : Two-stage
-microwave
-heating setting
-(heating power)<br>
+		 * Property name : Two-stage microwave heating setting (heating power)<br>
 		 * <br>
 		 * EPC : 0xEC<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating<br>
-		 * mode setting�h property (EPC = 0xE0)<br>
-		 * is 0x51 (two-stage microwave heating),<br>
-		 * to specify the heating power for the<br>
-		 * first and second microwave heating<br>
-		 * cycles in 1W increments, and to acquire<br>
-		 * the current setting. Two bytes shall be<br>
-		 * used for each heating cycle, with the<br>
-		 * first and second pairs of bytes used for<br>
-		 * the first and second heating cycles,<br>
-		 * respectively.<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0)  is 0x51 (two-stage microwave heating), to specify the heating power for the  first and second microwave heating cycles in 1W increments, and to acquire the current setting. Two bytes shall be used for each heating cycle, with the first and second pairs of bytes used for the first and second heating cycles, respectively.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Heating power for first microwave<br>
-		 * heating cycle (first and second bytes):<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
-		 * Heating power for second microwave<br>
-		 * heating cycle (third and fourth bytes):<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+		 * Heating power for first microwave heating cycle (first and second bytes):<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
+		 * Heating power for second microwave heating cycle (third and fourth bytes):<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned short
+×2<br>
 		 * <br>
-		 * Data size : 4<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : 1
+W<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4068,8 +3483,8 @@ heating setting
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -4115,7 +3530,7 @@ heating setting
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4135,22 +3550,19 @@ heating setting
 		 * Used to acquire the status of the combination microwave oven.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Initial state = 0x40<br>
-		 * Heating = 0x41<br>
+		 * Initial state = 0x40 Heating = 0x41<br>
 		 * Heating suspended = 0x42<br>
 		 * Reporting completion of heating cycle<br>
 		 * = 0x43<br>
-		 * Setting = 0x44<br>
-		 * Preheating = 0x45<br>
-		 * Preheat temperature maintenance =<br>
-		 * 0x46<br>
+		 * Setting = 0x44 Preheating = 0x45<br>
+		 * Preheat temperature maintenance = 0x46<br>
 		 * Heating temporarily stopped for manual cooking action = 0x47<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4171,15 +3583,14 @@ heating setting
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Start/restart heating (heating started/restarted) = 0x41<br>
-		 * Suspend heating (heating suspended) =<br>
-		 * 0x42<br>
+		 * Suspend heating (heating suspended) = 0x42<br>
 		 * Stop heating (heating stopped) = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4199,14 +3610,9 @@ heating setting
 		 * Used to specify the heating mode of the combination microwave oven, and to acquire the current setting (i.e. current mode).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Microwave heating = 0x41<br>
-		 * Defrosting = 0x42<br>
+		 * Microwave heating = 0x41 Defrosting = 0x42<br>
 		 * Oven = 0x43<br>
-		 * Grill = 0x44<br>
-		 * Toaster = 0x45<br>
-		 * Fermenting = 0x46<br>
-		 * Stewing = 0x47<br>
-		 * Steaming = 0x48<br>
+		 * Grill = 0x44 Toaster = 0x45 Fermenting = 0x46 Stewing = 0x47 Steaming = 0x48<br>
 		 * Two-stage microwave heating = 0x51<br>
 		 * No mode specified = 0xFF<br>
 		 * <br>
@@ -4214,7 +3620,7 @@ heating setting
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4231,7 +3637,7 @@ heating setting
 		 * EPC : 0xE1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify whether or not to use the combination microwave oven�fs automatic heating mode, and to acquire the current setting.<br>
+		 * Used to specify whether or not to use the combination microwave oven’s automatic heating mode, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic = 0x41<br>
@@ -4242,7 +3648,7 @@ heating setting
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4259,16 +3665,16 @@ heating setting
 		 * EPC : 0xE2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify, by selecting a level from among the five predefined levels, the level of automatic heating for the option specified by the �gautomatic heating menu setting�h property, and to acquire the current setting.<br>
+		 * Used to specify, by selecting a level from among the five predefined levels, the level of automatic heating for the option specified by the “automatic heating menu setting” property, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x31 to 0x35 (lowest to highest) Not specified = 0xFF<br>
+		 * 0x31.0x35 (lowest to highest) Not specified = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned cha<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4285,18 +3691,17 @@ heating setting
 		 * EPC : 0xD0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gautomatic heating setting�h property is 0x41 (= automatic heating), to select an automatic heating cycle, and to acquire the current setting.<br>
+		 * Used, when the value of the “automatic heating setting” property is 0x41 (= automatic heating), to select an automatic heating cycle, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFE: Automatic heating cycle code (See the automatic heating cycle code table in the subsection entitled �gAutomatic heating menu setting.�h)<br>
-		 * No automatic heating cycle specified =<br>
-		 * 0xFF<br>
+		 * 0 to 0xFE: Automatic heating cycle code (See the automatic heating cycle code table in the subsection entitled “Automatic heating menu setting.”)<br>
+		 * No automatic heating cycle specified = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned cha<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4313,21 +3718,18 @@ heating setting
 		 * EPC : 0xD1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating mode setting�h property (EPC = 0xE0) is 0x43 (= oven), to specify the<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x43 (= oven), to specify the<br>
 		 * sub-mode to use, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic selection mode = 0x40<br>
-		 * Convection oven mode = 0x41<br>
-		 * Circulation oven mode = 0x42<br>
-		 * Hybrid oven mode = 0x43<br>
+		 * Automatic selection mode = 0x40 Convection oven mode = 0x41 Circulation oven mode = 0x42 Hybrid oven mode = 0x43<br>
 		 * No sub-mode specified = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned cha<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4344,19 +3746,16 @@ heating setting
 		 * EPC : 0xD5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating mode setting�h property (EPC = 0xE0) is 0x43 (oven), to specify whether or not to preheat the chamber for the<br>
-		 * selected oven sub-mode, and to acquire the current setting.<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x43 (oven), to specify whether or not to preheat the chamber for the selected oven sub-mode, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * With preheating = 0x41<br>
-		 * Without preheating = 0x42<br>
-		 * Not specified = 0xFF<br>
+		 * With preheating = 0x41 Without preheating = 0x42 Not specified = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4373,21 +3772,16 @@ heating setting
 		 * EPC : 0xD6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating mode setting�h property (EPC = 0xE0) is 0x46 (= fermenting), to specify the sub-mode to use, and to acquire the current setting.<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x46 (= fermenting), to specify the sub-mode to use, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic selection mode = 0x40<br>
-		 * Convection fermentation mode = 0x41<br>
-		 * Circulation fermentation mode = 0x42<br>
-		 * Hybrid fermentation mode = 0x43<br>
-		 * Microwave fermentation mode = 0x51<br>
-		 * No mode specified = 0xFF<br>
+		 * Automatic selection mode = 0x40 Convection fermentation mode = 0x41 Circulation fermentation mode = 0x42 Hybrid fermentation mode = 0x43 Microwave fermentation mode = 0x51 No mode specified = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4399,31 +3793,23 @@ heating setting
 			return this;
 		}
 		/**
-		 * Property name : Chamber
-temperature
-setting<br>
+		 * Property name : Chamber temperature setting<br>
 		 * <br>
 		 * EPC : 0xE3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating<br>
-		 * mode setting�h property (EPC = 0xE0)<br>
-		 * is 0x43 (= oven) or 0x46 (=<br>
-		 * fermenting), to specify the temperature<br>
-		 * in the chamber in 0.1��C increments,<br>
-		 * and to acquire the current setting.<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x43 (= oven) or 0x46 (= fermenting), to specify the temperature in the chamber in 0.1°C increments, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xF554 to 0x7FFE (-273.2 to<br>
-		 * 3276.6��C)<br>
-		 * 0x8001: Automatic<br>
-		 * 0x8002: Not specified<br>
+		 * 0xF554.0x7FFE (-273.2. 3276.6°C)<br>
+		 * 0x8001: Automatic 0x8002: Not specified<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : signed short<br>
 		 * <br>
-		 * Data size : 2<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : °C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4435,26 +3821,23 @@ setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Food temperature
-setting<br>
+		 * Property name : Food temperature setting<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the as-heated food<br>
-		 * temperature in 0.1��C increments, and to<br>
-		 * acquire the current setting.<br>
+		 * Used to specify the as-heated food temperature in 0.1°C increments, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xF554 to 0x7FFE (-273.2 to<br>
-		 * 3276.6��)<br>
+		 * 0xF554.0x7FFE (-273.2.3276.6°C)<br>
 		 * 0x8002: Not specified<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : signed short<br>
 		 * <br>
-		 * Data size : 2<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : °C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4466,25 +3849,23 @@ setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Heating time
-setting<br>
+		 * Property name : Heating time setting<br>
 		 * <br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the duration of heating<br>
-		 * in the HH:MM:SS format, and to<br>
-		 * acquire the current setting.<br>
+		 * Used to specify the duration of heating in the HH:MM:SS format, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-		 * (= 0 to 23) (= 0 to 59) (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B: 0.0x3B (= 0.23) (= 0.59) (= 0.59)<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned char
+×3<br>
 		 * <br>
-		 * Data size : 3<br>
+		 * Data size : 3
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4496,27 +3877,23 @@ setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Remaining
-heating time
-setting<br>
+		 * Property name : Remaining heating time setting<br>
 		 * <br>
 		 * EPC : 0xE6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the time remaining to<br>
-		 * complete the heating cycle in the<br>
-		 * HH:MM:SS format, and to acquire the<br>
-		 * current setting.<br>
+		 * Used to specify the time remaining to complete the heating cycle in the HH:MM:SS format, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-		 * (= 0 to 23) (= 0 to 59) (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B: 0.0x3B (= 0.23) (= 0.59) (= 0.59)<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned char
+×3<br>
 		 * <br>
-		 * Data size : 3<br>
+		 * Data size : 3
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4528,35 +3905,26 @@ setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Microwave
-heating power
-setting<br>
+		 * Property name : Microwave heating power setting<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating<br>
-		 * mode setting�h property (EPC = 0xE0)<br>
-		 * is 0x41 (= microwave heating), 0x42 (=<br>
-		 * defrosting), 0x47 (= stewing) or 0x48<br>
-		 * (= steaming) or when the value of the<br>
-		 * �gheating mode setting�h property (EPC<br>
-		 * = 0xE0) is 0x46 (= fermenting) and the<br>
-		 * value of the �gfermenting mode setting�h<br>
-		 * property (EPC = 0xD6) is 0x51 (=<br>
-		 * microwave fermentation mode), to<br>
-		 * specify the microwave heating power<br>
-		 * in 1W increments, and to acquire the<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0)  is 0x41 (= microwave heating), 0x42 (= defrosting), 0x47 (= stewing) or 0x48 (= steaming) or when the value of the “heating mode setting” property (EPC<br>
+		 * = 0xE0) is 0x46 (= fermenting) and the value of the “fermenting mode setting”<br>
+		 * property (EPC = 0xD6) is 0x51 (= microwave fermentation mode), to specify the microwave heating power in 1W increments, and to acquire the<br>
 		 * current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : 1
+W<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4568,42 +3936,25 @@ setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Prompt message
-setting<br>
+		 * Property name : Prompt message setting<br>
 		 * <br>
 		 * EPC : 0xE8<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when it is necessary to instruct<br>
-		 * the combination microwave oven to<br>
-		 * temporarily stop heating at a point<br>
-		 * during a heating cycle to allow the user<br>
-		 * to perform manual reversing, mixing,<br>
-		 * etc. and display a message to instruct<br>
-		 * the user on the manual action to be<br>
-		 * performed, to specify the prompt<br>
-		 * message to be displayed and the timing<br>
-		 * of the message (in terms of a<br>
-		 * percentage of the total duration of the<br>
-		 * heating cycle that is allowed to elapse<br>
-		 * (from the start of the heating cycle)<br>
-		 * before the message is displayed), and to<br>
-		 * acquire the current settings. Up to 4<br>
-		 * messages may be specified.<br>
+		 * Used, when it is necessary to instruct the combination microwave oven to temporarily stop heating at a point during a heating cycle to allow the user to perform manual reversing, mixing, etc. and display a message to instruct the user on the manual action to be performed, to specify the prompt message to be displayed and the timing of the message (in terms of a  percentage of the total duration of the heating cycle that is allowed to elapse (from the start of the heating cycle) before the message is displayed), and to acquire the current settings. Up to 4 messages may be specified.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * First byte: Prompt message code (See<br>
-		 * the prompt message code table in the<br>
-		 * subsection entitled �gPrompt message<br>
-		 * setting.�h)<br>
-		 * Second byte: Timing value (0 to 0x64<br>
-		 * (0 to 100%))<br>
+		 * First byte: Prompt message code (See the prompt message code table in the subsection entitled “Prompt message setting.”)<br>
+		 * Second byte: Timing value (0.0x64) (0.100%))<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned char
+×2
+×4<br>
 		 * <br>
-		 * Data size : 8<br>
+		 * Data size : 8
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4615,80 +3966,58 @@ setting<br>
 			return this;
 		}
 		/**
-		 * Property name : �gAccessories to
-combination
-microwave oven�h
-setting<br>
+		 * Property name : “Accessories to combination microwave oven” setting<br>
 		 * <br>
 		 * EPC : 0xE9<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify, by means of a 2-byte<br>
-		 * bit map, what accessory or accessories<br>
-		 * to the combination microwave oven to<br>
-		 * use, and to acquire the current setting.<br>
+		 * Used to specify, by means of a 2-byte bit map, what accessory or accessories to the combination microwave oven to use, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * The value contained in a bit in the bit<br>
-		 * map shall be �g1�h if the accessory<br>
-		 * represented by that bit is used and �g0�h<br>
-		 * if the accessory represented by that bit<br>
-		 * is not used (See the bitmap composition<br>
-		 * table in the subsection entitled<br>
-		 * �g�fAccessories to combination<br>
-		 * microwave oven�f setting�h).<br>
+		 * The value contained in a bit in the bit map shall be “1” if the accessory represented by that bit is used and “0” if the accessory represented by that bit<br>
+		 * is not used (See the bitmap composition table in the subsection entitled “’Accessories to combination<br>
+		 * microwave oven’ setting”).<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetGaccessoriesToCombinationMicrowaveOvenHSetting() {
-			reqGetProperty(EPC_GACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_H_SETTING);
+		public Getter reqGetAccessoriesToCombinationMicrowaveOvenSetting() {
+			reqGetProperty(EPC_ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING);
 			return this;
 		}
 		/**
-		 * Property name : Two-stage
-microwave
-heating setting
-(duration)<br>
+		 * Property name : Two-stage microwave heating setting (duration)<br>
 		 * <br>
 		 * EPC : 0xEB<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating<br>
-		 * mode setting�h property (EPC = 0xE0)<br>
-		 * is 0x51 (two-stage microwave heating),<br>
-		 * to specify the duration of the first and<br>
-		 * second microwave heating cycles in the<br>
-		 * HH:MM:SS format, and to acquire the<br>
-		 * current setting. Three bytes shall be<br>
-		 * used for each heating cycle, with the<br>
-		 * first and second sets of bytes used for<br>
-		 * the first and second heating cycles,<br>
-		 * respectively.<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x51 (two-stage microwave heating), to specify the duration of the first and second microwave heating cycles in the HH:MM:SS format, and to acquire the current setting. Three bytes shall be used for each heating cycle, with the first and second sets of bytes used for the first and second heating cycles, respectively.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Duration of first microwave heating<br>
-		 * cycle (first through third bytes):<br>
-		 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59): (= 0 to 59)<br>
-		 * Duration of second microwave heating<br>
-		 * cycle (fourth through sixth bytes):<br>
-		 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59): (= 0 to 59)<br>
+		 * Duration of first microwave heating cycle (first through third bytes):<br>
+		 * 0.0x17: 0.0x3B: 0.0x3B<br>
+		 * (= 0.23): (= 0.59): (= 0.59)<br>
+		 * Duration of second microwave heating cycle (fourth through sixth bytes):<br>
+		 * 0.0x17: 0.0x3B: 0.0x3B<br>
+		 * (= 0.23): (= 0.59): (= 0.59)<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned char
+×3
+×2<br>
 		 * <br>
-		 * Data size : 6<br>
+		 * Data size : 6
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4700,39 +4029,27 @@ heating setting
 			return this;
 		}
 		/**
-		 * Property name : Two-stage
-microwave
-heating setting
-(heating power)<br>
+		 * Property name : Two-stage microwave heating setting (heating power)<br>
 		 * <br>
 		 * EPC : 0xEC<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating<br>
-		 * mode setting�h property (EPC = 0xE0)<br>
-		 * is 0x51 (two-stage microwave heating),<br>
-		 * to specify the heating power for the<br>
-		 * first and second microwave heating<br>
-		 * cycles in 1W increments, and to acquire<br>
-		 * the current setting. Two bytes shall be<br>
-		 * used for each heating cycle, with the<br>
-		 * first and second pairs of bytes used for<br>
-		 * the first and second heating cycles,<br>
-		 * respectively.<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0)  is 0x51 (two-stage microwave heating), to specify the heating power for the  first and second microwave heating cycles in 1W increments, and to acquire the current setting. Two bytes shall be used for each heating cycle, with the first and second pairs of bytes used for the first and second heating cycles, respectively.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Heating power for first microwave<br>
-		 * heating cycle (first and second bytes):<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
-		 * Heating power for second microwave<br>
-		 * heating cycle (third and fourth bytes):<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+		 * Heating power for first microwave heating cycle (first and second bytes):<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
+		 * Heating power for second microwave heating cycle (third and fourth bytes):<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned short
+×2<br>
 		 * <br>
-		 * Data size : 4<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : 1
+W<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4821,8 +4138,8 @@ heating setting
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -4868,7 +4185,7 @@ heating setting
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4888,22 +4205,19 @@ heating setting
 		 * Used to acquire the status of the combination microwave oven.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Initial state = 0x40<br>
-		 * Heating = 0x41<br>
+		 * Initial state = 0x40 Heating = 0x41<br>
 		 * Heating suspended = 0x42<br>
 		 * Reporting completion of heating cycle<br>
 		 * = 0x43<br>
-		 * Setting = 0x44<br>
-		 * Preheating = 0x45<br>
-		 * Preheat temperature maintenance =<br>
-		 * 0x46<br>
+		 * Setting = 0x44 Preheating = 0x45<br>
+		 * Preheat temperature maintenance = 0x46<br>
 		 * Heating temporarily stopped for manual cooking action = 0x47<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4924,15 +4238,14 @@ heating setting
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Start/restart heating (heating started/restarted) = 0x41<br>
-		 * Suspend heating (heating suspended) =<br>
-		 * 0x42<br>
+		 * Suspend heating (heating suspended) = 0x42<br>
 		 * Stop heating (heating stopped) = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4952,14 +4265,9 @@ heating setting
 		 * Used to specify the heating mode of the combination microwave oven, and to acquire the current setting (i.e. current mode).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Microwave heating = 0x41<br>
-		 * Defrosting = 0x42<br>
+		 * Microwave heating = 0x41 Defrosting = 0x42<br>
 		 * Oven = 0x43<br>
-		 * Grill = 0x44<br>
-		 * Toaster = 0x45<br>
-		 * Fermenting = 0x46<br>
-		 * Stewing = 0x47<br>
-		 * Steaming = 0x48<br>
+		 * Grill = 0x44 Toaster = 0x45 Fermenting = 0x46 Stewing = 0x47 Steaming = 0x48<br>
 		 * Two-stage microwave heating = 0x51<br>
 		 * No mode specified = 0xFF<br>
 		 * <br>
@@ -4967,7 +4275,7 @@ heating setting
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4984,7 +4292,7 @@ heating setting
 		 * EPC : 0xE1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify whether or not to use the combination microwave oven�fs automatic heating mode, and to acquire the current setting.<br>
+		 * Used to specify whether or not to use the combination microwave oven’s automatic heating mode, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic = 0x41<br>
@@ -4995,7 +4303,7 @@ heating setting
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5012,16 +4320,16 @@ heating setting
 		 * EPC : 0xE2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify, by selecting a level from among the five predefined levels, the level of automatic heating for the option specified by the �gautomatic heating menu setting�h property, and to acquire the current setting.<br>
+		 * Used to specify, by selecting a level from among the five predefined levels, the level of automatic heating for the option specified by the “automatic heating menu setting” property, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x31 to 0x35 (lowest to highest) Not specified = 0xFF<br>
+		 * 0x31.0x35 (lowest to highest) Not specified = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned cha<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5038,18 +4346,17 @@ heating setting
 		 * EPC : 0xD0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gautomatic heating setting�h property is 0x41 (= automatic heating), to select an automatic heating cycle, and to acquire the current setting.<br>
+		 * Used, when the value of the “automatic heating setting” property is 0x41 (= automatic heating), to select an automatic heating cycle, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFE: Automatic heating cycle code (See the automatic heating cycle code table in the subsection entitled �gAutomatic heating menu setting.�h)<br>
-		 * No automatic heating cycle specified =<br>
-		 * 0xFF<br>
+		 * 0 to 0xFE: Automatic heating cycle code (See the automatic heating cycle code table in the subsection entitled “Automatic heating menu setting.”)<br>
+		 * No automatic heating cycle specified = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned cha<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5066,21 +4373,18 @@ heating setting
 		 * EPC : 0xD1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating mode setting�h property (EPC = 0xE0) is 0x43 (= oven), to specify the<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x43 (= oven), to specify the<br>
 		 * sub-mode to use, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic selection mode = 0x40<br>
-		 * Convection oven mode = 0x41<br>
-		 * Circulation oven mode = 0x42<br>
-		 * Hybrid oven mode = 0x43<br>
+		 * Automatic selection mode = 0x40 Convection oven mode = 0x41 Circulation oven mode = 0x42 Hybrid oven mode = 0x43<br>
 		 * No sub-mode specified = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned cha<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5097,19 +4401,16 @@ heating setting
 		 * EPC : 0xD5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating mode setting�h property (EPC = 0xE0) is 0x43 (oven), to specify whether or not to preheat the chamber for the<br>
-		 * selected oven sub-mode, and to acquire the current setting.<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x43 (oven), to specify whether or not to preheat the chamber for the selected oven sub-mode, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * With preheating = 0x41<br>
-		 * Without preheating = 0x42<br>
-		 * Not specified = 0xFF<br>
+		 * With preheating = 0x41 Without preheating = 0x42 Not specified = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5126,21 +4427,16 @@ heating setting
 		 * EPC : 0xD6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating mode setting�h property (EPC = 0xE0) is 0x46 (= fermenting), to specify the sub-mode to use, and to acquire the current setting.<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x46 (= fermenting), to specify the sub-mode to use, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic selection mode = 0x40<br>
-		 * Convection fermentation mode = 0x41<br>
-		 * Circulation fermentation mode = 0x42<br>
-		 * Hybrid fermentation mode = 0x43<br>
-		 * Microwave fermentation mode = 0x51<br>
-		 * No mode specified = 0xFF<br>
+		 * Automatic selection mode = 0x40 Convection fermentation mode = 0x41 Circulation fermentation mode = 0x42 Hybrid fermentation mode = 0x43 Microwave fermentation mode = 0x51 No mode specified = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5152,31 +4448,23 @@ heating setting
 			return this;
 		}
 		/**
-		 * Property name : Chamber
-temperature
-setting<br>
+		 * Property name : Chamber temperature setting<br>
 		 * <br>
 		 * EPC : 0xE3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating<br>
-		 * mode setting�h property (EPC = 0xE0)<br>
-		 * is 0x43 (= oven) or 0x46 (=<br>
-		 * fermenting), to specify the temperature<br>
-		 * in the chamber in 0.1��C increments,<br>
-		 * and to acquire the current setting.<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x43 (= oven) or 0x46 (= fermenting), to specify the temperature in the chamber in 0.1°C increments, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xF554 to 0x7FFE (-273.2 to<br>
-		 * 3276.6��C)<br>
-		 * 0x8001: Automatic<br>
-		 * 0x8002: Not specified<br>
+		 * 0xF554.0x7FFE (-273.2. 3276.6°C)<br>
+		 * 0x8001: Automatic 0x8002: Not specified<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : signed short<br>
 		 * <br>
-		 * Data size : 2<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : °C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5188,26 +4476,23 @@ setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Food temperature
-setting<br>
+		 * Property name : Food temperature setting<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the as-heated food<br>
-		 * temperature in 0.1��C increments, and to<br>
-		 * acquire the current setting.<br>
+		 * Used to specify the as-heated food temperature in 0.1°C increments, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xF554 to 0x7FFE (-273.2 to<br>
-		 * 3276.6��)<br>
+		 * 0xF554.0x7FFE (-273.2.3276.6°C)<br>
 		 * 0x8002: Not specified<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : signed short<br>
 		 * <br>
-		 * Data size : 2<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : °C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5219,25 +4504,23 @@ setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Heating time
-setting<br>
+		 * Property name : Heating time setting<br>
 		 * <br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the duration of heating<br>
-		 * in the HH:MM:SS format, and to<br>
-		 * acquire the current setting.<br>
+		 * Used to specify the duration of heating in the HH:MM:SS format, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-		 * (= 0 to 23) (= 0 to 59) (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B: 0.0x3B (= 0.23) (= 0.59) (= 0.59)<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned char
+×3<br>
 		 * <br>
-		 * Data size : 3<br>
+		 * Data size : 3
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5249,27 +4532,23 @@ setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Remaining
-heating time
-setting<br>
+		 * Property name : Remaining heating time setting<br>
 		 * <br>
 		 * EPC : 0xE6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the time remaining to<br>
-		 * complete the heating cycle in the<br>
-		 * HH:MM:SS format, and to acquire the<br>
-		 * current setting.<br>
+		 * Used to specify the time remaining to complete the heating cycle in the HH:MM:SS format, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-		 * (= 0 to 23) (= 0 to 59) (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B: 0.0x3B (= 0.23) (= 0.59) (= 0.59)<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned char
+×3<br>
 		 * <br>
-		 * Data size : 3<br>
+		 * Data size : 3
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5281,35 +4560,26 @@ setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Microwave
-heating power
-setting<br>
+		 * Property name : Microwave heating power setting<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating<br>
-		 * mode setting�h property (EPC = 0xE0)<br>
-		 * is 0x41 (= microwave heating), 0x42 (=<br>
-		 * defrosting), 0x47 (= stewing) or 0x48<br>
-		 * (= steaming) or when the value of the<br>
-		 * �gheating mode setting�h property (EPC<br>
-		 * = 0xE0) is 0x46 (= fermenting) and the<br>
-		 * value of the �gfermenting mode setting�h<br>
-		 * property (EPC = 0xD6) is 0x51 (=<br>
-		 * microwave fermentation mode), to<br>
-		 * specify the microwave heating power<br>
-		 * in 1W increments, and to acquire the<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0)  is 0x41 (= microwave heating), 0x42 (= defrosting), 0x47 (= stewing) or 0x48 (= steaming) or when the value of the “heating mode setting” property (EPC<br>
+		 * = 0xE0) is 0x46 (= fermenting) and the value of the “fermenting mode setting”<br>
+		 * property (EPC = 0xD6) is 0x51 (= microwave fermentation mode), to specify the microwave heating power in 1W increments, and to acquire the<br>
 		 * current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : 1
+W<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5321,42 +4591,25 @@ setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Prompt message
-setting<br>
+		 * Property name : Prompt message setting<br>
 		 * <br>
 		 * EPC : 0xE8<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when it is necessary to instruct<br>
-		 * the combination microwave oven to<br>
-		 * temporarily stop heating at a point<br>
-		 * during a heating cycle to allow the user<br>
-		 * to perform manual reversing, mixing,<br>
-		 * etc. and display a message to instruct<br>
-		 * the user on the manual action to be<br>
-		 * performed, to specify the prompt<br>
-		 * message to be displayed and the timing<br>
-		 * of the message (in terms of a<br>
-		 * percentage of the total duration of the<br>
-		 * heating cycle that is allowed to elapse<br>
-		 * (from the start of the heating cycle)<br>
-		 * before the message is displayed), and to<br>
-		 * acquire the current settings. Up to 4<br>
-		 * messages may be specified.<br>
+		 * Used, when it is necessary to instruct the combination microwave oven to temporarily stop heating at a point during a heating cycle to allow the user to perform manual reversing, mixing, etc. and display a message to instruct the user on the manual action to be performed, to specify the prompt message to be displayed and the timing of the message (in terms of a  percentage of the total duration of the heating cycle that is allowed to elapse (from the start of the heating cycle) before the message is displayed), and to acquire the current settings. Up to 4 messages may be specified.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * First byte: Prompt message code (See<br>
-		 * the prompt message code table in the<br>
-		 * subsection entitled �gPrompt message<br>
-		 * setting.�h)<br>
-		 * Second byte: Timing value (0 to 0x64<br>
-		 * (0 to 100%))<br>
+		 * First byte: Prompt message code (See the prompt message code table in the subsection entitled “Prompt message setting.”)<br>
+		 * Second byte: Timing value (0.0x64) (0.100%))<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned char
+×2
+×4<br>
 		 * <br>
-		 * Data size : 8<br>
+		 * Data size : 8
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5368,80 +4621,58 @@ setting<br>
 			return this;
 		}
 		/**
-		 * Property name : �gAccessories to
-combination
-microwave oven�h
-setting<br>
+		 * Property name : “Accessories to combination microwave oven” setting<br>
 		 * <br>
 		 * EPC : 0xE9<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify, by means of a 2-byte<br>
-		 * bit map, what accessory or accessories<br>
-		 * to the combination microwave oven to<br>
-		 * use, and to acquire the current setting.<br>
+		 * Used to specify, by means of a 2-byte bit map, what accessory or accessories to the combination microwave oven to use, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * The value contained in a bit in the bit<br>
-		 * map shall be �g1�h if the accessory<br>
-		 * represented by that bit is used and �g0�h<br>
-		 * if the accessory represented by that bit<br>
-		 * is not used (See the bitmap composition<br>
-		 * table in the subsection entitled<br>
-		 * �g�fAccessories to combination<br>
-		 * microwave oven�f setting�h).<br>
+		 * The value contained in a bit in the bit map shall be “1” if the accessory represented by that bit is used and “0” if the accessory represented by that bit<br>
+		 * is not used (See the bitmap composition table in the subsection entitled “’Accessories to combination<br>
+		 * microwave oven’ setting”).<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformGaccessoriesToCombinationMicrowaveOvenHSetting() {
-			reqInformProperty(EPC_GACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_H_SETTING);
+		public Informer reqInformAccessoriesToCombinationMicrowaveOvenSetting() {
+			reqInformProperty(EPC_ACCESSORIES_TO_COMBINATION_MICROWAVE_OVEN_SETTING);
 			return this;
 		}
 		/**
-		 * Property name : Two-stage
-microwave
-heating setting
-(duration)<br>
+		 * Property name : Two-stage microwave heating setting (duration)<br>
 		 * <br>
 		 * EPC : 0xEB<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating<br>
-		 * mode setting�h property (EPC = 0xE0)<br>
-		 * is 0x51 (two-stage microwave heating),<br>
-		 * to specify the duration of the first and<br>
-		 * second microwave heating cycles in the<br>
-		 * HH:MM:SS format, and to acquire the<br>
-		 * current setting. Three bytes shall be<br>
-		 * used for each heating cycle, with the<br>
-		 * first and second sets of bytes used for<br>
-		 * the first and second heating cycles,<br>
-		 * respectively.<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0) is 0x51 (two-stage microwave heating), to specify the duration of the first and second microwave heating cycles in the HH:MM:SS format, and to acquire the current setting. Three bytes shall be used for each heating cycle, with the first and second sets of bytes used for the first and second heating cycles, respectively.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Duration of first microwave heating<br>
-		 * cycle (first through third bytes):<br>
-		 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59): (= 0 to 59)<br>
-		 * Duration of second microwave heating<br>
-		 * cycle (fourth through sixth bytes):<br>
-		 * 0 to 0x17: 0 to 0x3B: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59): (= 0 to 59)<br>
+		 * Duration of first microwave heating cycle (first through third bytes):<br>
+		 * 0.0x17: 0.0x3B: 0.0x3B<br>
+		 * (= 0.23): (= 0.59): (= 0.59)<br>
+		 * Duration of second microwave heating cycle (fourth through sixth bytes):<br>
+		 * 0.0x17: 0.0x3B: 0.0x3B<br>
+		 * (= 0.23): (= 0.59): (= 0.59)<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned char
+×3
+×2<br>
 		 * <br>
-		 * Data size : 6<br>
+		 * Data size : 6
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5453,39 +4684,27 @@ heating setting
 			return this;
 		}
 		/**
-		 * Property name : Two-stage
-microwave
-heating setting
-(heating power)<br>
+		 * Property name : Two-stage microwave heating setting (heating power)<br>
 		 * <br>
 		 * EPC : 0xEC<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used, when the value of the �gheating<br>
-		 * mode setting�h property (EPC = 0xE0)<br>
-		 * is 0x51 (two-stage microwave heating),<br>
-		 * to specify the heating power for the<br>
-		 * first and second microwave heating<br>
-		 * cycles in 1W increments, and to acquire<br>
-		 * the current setting. Two bytes shall be<br>
-		 * used for each heating cycle, with the<br>
-		 * first and second pairs of bytes used for<br>
-		 * the first and second heating cycles,<br>
-		 * respectively.<br>
+		 * Used, when the value of the “heating mode setting” property (EPC = 0xE0)  is 0x51 (two-stage microwave heating), to specify the heating power for the  first and second microwave heating cycles in 1W increments, and to acquire the current setting. Two bytes shall be used for each heating cycle, with the first and second pairs of bytes used for the first and second heating cycles, respectively.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Heating power for first microwave<br>
-		 * heating cycle (first and second bytes):<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
-		 * Heating power for second microwave<br>
-		 * heating cycle (third and fourth bytes):<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+		 * Heating power for first microwave heating cycle (first and second bytes):<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
+		 * Heating power for second microwave heating cycle (third and fourth bytes):<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
 		 * <br>
-		 * Data type : null<br>
+		 * Data type : unsigned short
+×2<br>
 		 * <br>
-		 * Data size : 4<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : 1
+W<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>

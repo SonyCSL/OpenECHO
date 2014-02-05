@@ -23,9 +23,9 @@ import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
 
-public abstract class FuelCell extends DeviceObject {
+public abstract class EngineCogeneration extends DeviceObject {
 	
-	public static final short ECHO_CLASS_CODE = (short)0x027C;
+	public static final short ECHO_CLASS_CODE = (short)0x027F;
 
 	public static final byte EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER = (byte)0xC1;
 	public static final byte EPC_RATED_POWER_GENERATION_OUTPUT = (byte)0xC2;
@@ -76,7 +76,7 @@ public abstract class FuelCell extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : null<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -101,7 +101,7 @@ public abstract class FuelCell extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : null<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -117,16 +117,16 @@ public abstract class FuelCell extends DeviceObject {
 	 * EPC : 0xC1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the current temperature of the water in the water heater in .C.<br>
+	 * This property indicates the current temperature of the water in the water heater in ℃.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64 (0.100.C)<br>
+	 * 0x00–0x64 (0–100℃)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .C<br>
+	 * Unit : ℃<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -140,16 +140,16 @@ public abstract class FuelCell extends DeviceObject {
 	 * EPC : 0xC1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the current temperature of the water in the water heater in .C.<br>
+	 * This property indicates the current temperature of the water in the water heater in ℃.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64 (0.100.C)<br>
+	 * 0x00–0x64 (0–100℃)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .C<br>
+	 * Unit : ℃<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -169,12 +169,11 @@ public abstract class FuelCell extends DeviceObject {
 	 * This property indicates the rated power generation output in watts.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533W)<br>
+	 * 0x0000–0xFFFD (0–65,533W)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2
-bytes<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -193,12 +192,11 @@ bytes<br>
 	 * This property indicates the rated power generation output in watts.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533W)<br>
+	 * 0x0000–0xFFFD (0–65,533W)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2
-bytes<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -220,12 +218,11 @@ bytes<br>
 	 * This property indicates the heating value of the hot water storage tank in MJ.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533MJ)<br>
+	 * 0x0000–0xFFFD (0–65,533MJ)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2
-bytes<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : MJ<br>
 	 * <br>
@@ -244,12 +241,11 @@ bytes<br>
 	 * This property indicates the heating value of the hot water storage tank in MJ.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533MJ)<br>
+	 * 0x0000–0xFFFD (0–65,533MJ)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2
-bytes<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : MJ<br>
 	 * <br>
@@ -271,12 +267,11 @@ bytes<br>
 	 * This property indicates the instantaneous power generation output in watts.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533W)<br>
+	 * 0x0000–0xFFFD (0–65,533W)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2
-bytes<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -295,12 +290,11 @@ bytes<br>
 	 * This property indicates the instantaneous power generation output in watts.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533W)<br>
+	 * 0x0000–0xFFFD (0–65,533W)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2
-bytes<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -319,18 +313,16 @@ bytes<br>
 	 * EPC : 0xC5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the cumulative power generation output in units of 0.001kWh.<br>
+	 * This property indicates the cumulative power generation output in increments of 0.001kWh.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0.0x3B9AC9FF (0.999,999.999kWh)<br>
+	 * 0x00000000–0x3B9AC9FF (0–999,999.999kWh)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 4
-bytes<br>
+	 * Data size : 4 bytes<br>
 	 * <br>
-	 * Unit : 0.001
-kWh<br>
+	 * Unit : 0.001 kWh<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -344,18 +336,16 @@ kWh<br>
 	 * EPC : 0xC5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the cumulative power generation output in units of 0.001kWh.<br>
+	 * This property indicates the cumulative power generation output in increments of 0.001kWh.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0.0x3B9AC9FF (0.999,999.999kWh)<br>
+	 * 0x00000000–0x3B9AC9FF (0–999,999.999kWh)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 4
-bytes<br>
+	 * Data size : 4 bytes<br>
 	 * <br>
-	 * Unit : 0.001
-kWh<br>
+	 * Unit : 0.001 kWh<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -381,7 +371,7 @@ kWh<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : null<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -404,7 +394,7 @@ kWh<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : null<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -421,18 +411,16 @@ kWh<br>
 	 * EPC : 0xC7<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the instantaneous gas consumption in units of 0.001m3/h.<br>
+	 * This property indicates the instantaneous gas consumption in increments of 0.001m3/h.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0.0xFFFD (0.65.533m3)<br>
+	 * 0x0000–0xFFFD (0–65.533m3/h)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2
-bytes<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.001
-m3/h<br>
+	 * Unit : 0.001 m3/h<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -446,18 +434,16 @@ m3/h<br>
 	 * EPC : 0xC7<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the instantaneous gas consumption in units of 0.001m3/h.<br>
+	 * This property indicates the instantaneous gas consumption in increments of 0.001m3/h.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0.0xFFFD (0.65.533m3)<br>
+	 * 0x0000–0xFFFD (0–65.533m3/h)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2
-bytes<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : 0.001
-m3/h<br>
+	 * Unit : 0.001 m3/h<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -474,18 +460,16 @@ m3/h<br>
 	 * EPC : 0xC8<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the cumulative gas consumption in units of 0.001m3.<br>
+	 * This property indicates the cumulative gas consumption in increments of 0.001m3.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0.0x3B9AC9FF (0.999,999.999m3)<br>
+	 * 0x00000000–0x3B9AC9FF (0–999,999.999m3)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 4
-bytes<br>
+	 * Data size : 4 bytes<br>
 	 * <br>
-	 * Unit : 0.001
-m3<br>
+	 * Unit : 0.001 m3<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -499,18 +483,16 @@ m3<br>
 	 * EPC : 0xC8<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the cumulative gas consumption in units of 0.001m3.<br>
+	 * This property indicates the cumulative gas consumption in increments of 0.001m3.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0.0x3B9AC9FF (0.999,999.999m3)<br>
+	 * 0x00000000–0x3B9AC9FF (0–999,999.999m3)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 4
-bytes<br>
+	 * Data size : 4 bytes<br>
 	 * <br>
-	 * Unit : 0.001
-m3<br>
+	 * Unit : 0.001 m3<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -536,7 +518,7 @@ m3<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : null<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -559,7 +541,7 @@ m3<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : null<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -571,7 +553,8 @@ m3<br>
 		return true;
 	}
 	/**
-	 * Property name : Power generation setting<br>
+	 * Property name : Power generation setting
+<br>
 	 * <br>
 	 * EPC : 0xCA<br>
 	 * <br>
@@ -585,7 +568,7 @@ m3<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : null<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -594,7 +577,8 @@ m3<br>
 	 */
 	protected boolean setPowerGenerationSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : Power generation setting<br>
+	 * Property name : Power generation setting
+<br>
 	 * <br>
 	 * EPC : 0xCA<br>
 	 * <br>
@@ -608,7 +592,7 @@ m3<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : null<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -625,10 +609,10 @@ m3<br>
 	 * EPC : 0xCB<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the power generation status.<br>
+	 * This property indicates power generation status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * generating =0x41, stopped=0x42, starting=0x43, stopping=0x44, idling=0x45<br>
+	 * generating =0x41, stopped=0x42, idling=0x45<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -648,10 +632,10 @@ m3<br>
 	 * EPC : 0xCB<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the power generation status.<br>
+	 * This property indicates power generation status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * generating =0x41, stopped=0x42, starting=0x43, stopping=0x44, idling=0x45<br>
+	 * generating =0x41, stopped=0x42, idling=0x45<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -677,7 +661,7 @@ m3<br>
 	 * This property indicates the measured in-house instantaneous power consumption in watts.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000-0xFFFD (0-65,533W)<br>
+	 * 0x0000-0xFFFD (0-65.533W)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
@@ -700,7 +684,7 @@ m3<br>
 	 * This property indicates the measured in-house instantaneous power consumption in watts.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000-0xFFFD (0-65,533W)<br>
+	 * 0x0000-0xFFFD (0-65.533W)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
@@ -723,7 +707,7 @@ m3<br>
 	 * EPC : 0xCD<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured in-house cumulative power consumption in units of 0.001kWh.<br>
+	 * This property indicates the measured in-house cumulative power consumption in0.001kWh.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x00000000-0x3B9AC9FF (0-999,999.999kWh)<br>
@@ -746,7 +730,7 @@ m3<br>
 	 * EPC : 0xCD<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured in-house cumulative power consumption in units of 0.001kWh.<br>
+	 * This property indicates the measured in-house cumulative power consumption in0.001kWh.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x00000000-0x3B9AC9FF (0-999,999.999kWh)<br>
@@ -821,17 +805,16 @@ m3<br>
 	 * EPC : 0xD0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the system interconnection status<br>
+	 * This property indicates the system interconnected type.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01<br>
-	 * System-linked type    (reverse power flow not acceptable) =0x02<br>
+	 * System-interconnected type (reverse power flow acceptable)=0x00, Independent type=0x01, System-interconnected type(reverse power flow not acceptable)=0x02<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : null<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -845,17 +828,16 @@ m3<br>
 	 * EPC : 0xD0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the system interconnection status<br>
+	 * This property indicates the system interconnected type.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01<br>
-	 * System-linked type    (reverse power flow not acceptable) =0x02<br>
+	 * System-interconnected type (reverse power flow acceptable)=0x00, Independent type=0x01, System-interconnected type(reverse power flow not acceptable)=0x02<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : null<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -875,12 +857,11 @@ m3<br>
 	 * This property indicates the measured amount of the remaining hot water in liters.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533 liters)<br>
+	 * 0x0000–0xFFFD (0–65,533 liters)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2
-bytes<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : liter<br>
 	 * <br>
@@ -899,12 +880,11 @@ bytes<br>
 	 * This property indicates the measured amount of the remaining hot water in liters.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533 liters)<br>
+	 * 0x0000–0xFFFD (0–65,533 liters)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2
-bytes<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : liter<br>
 	 * <br>
@@ -926,12 +906,11 @@ bytes<br>
 	 * This property indicates the tank capacity in liters.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533 liters)<br>
+	 * 0x0000–0xFFFD (0–65,533 liters)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2
-bytes<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : liter<br>
 	 * <br>
@@ -950,12 +929,11 @@ bytes<br>
 	 * This property indicates the tank capacity in liters.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533 liters)<br>
+	 * 0x0000–0xFFFD (0–65,533 liters)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2
-bytes<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
 	 * Unit : liter<br>
 	 * <br>
@@ -1150,16 +1128,16 @@ bytes<br>
 		 * EPC : 0xC1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the current temperature of the water in the water heater in .C.<br>
+		 * This property indicates the current temperature of the water in the water heater in ℃.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100.C)<br>
+		 * 0x00–0x64 (0–100℃)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .C<br>
+		 * Unit : ℃<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1176,12 +1154,11 @@ bytes<br>
 		 * This property indicates the rated power generation output in watts.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533W)<br>
+		 * 0x0000–0xFFFD (0–65,533W)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2
-bytes<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -1200,12 +1177,11 @@ bytes<br>
 		 * This property indicates the heating value of the hot water storage tank in MJ.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533MJ)<br>
+		 * 0x0000–0xFFFD (0–65,533MJ)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2
-bytes<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : MJ<br>
 		 * <br>
@@ -1224,12 +1200,11 @@ bytes<br>
 		 * This property indicates the instantaneous power generation output in watts.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533W)<br>
+		 * 0x0000–0xFFFD (0–65,533W)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2
-bytes<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -1245,18 +1220,16 @@ bytes<br>
 		 * EPC : 0xC5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the cumulative power generation output in units of 0.001kWh.<br>
+		 * This property indicates the cumulative power generation output in increments of 0.001kWh.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0.0x3B9AC9FF (0.999,999.999kWh)<br>
+		 * 0x00000000–0x3B9AC9FF (0–999,999.999kWh)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4
-bytes<br>
+		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : 0.001
-kWh<br>
+		 * Unit : 0.001 kWh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1279,7 +1252,7 @@ kWh<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : null<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1293,18 +1266,16 @@ kWh<br>
 		 * EPC : 0xC7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the instantaneous gas consumption in units of 0.001m3/h.<br>
+		 * This property indicates the instantaneous gas consumption in increments of 0.001m3/h.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0.0xFFFD (0.65.533m3)<br>
+		 * 0x0000–0xFFFD (0–65.533m3/h)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2
-bytes<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.001
-m3/h<br>
+		 * Unit : 0.001 m3/h<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1318,18 +1289,16 @@ m3/h<br>
 		 * EPC : 0xC8<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the cumulative gas consumption in units of 0.001m3.<br>
+		 * This property indicates the cumulative gas consumption in increments of 0.001m3.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0.0x3B9AC9FF (0.999,999.999m3)<br>
+		 * 0x00000000–0x3B9AC9FF (0–999,999.999m3)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4
-bytes<br>
+		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : 0.001
-m3<br>
+		 * Unit : 0.001 m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1352,7 +1321,7 @@ m3<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : null<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1361,7 +1330,8 @@ m3<br>
 		 */
 		protected void onSetCumulativeGasConsumptionResetSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Power generation setting<br>
+		 * Property name : Power generation setting
+<br>
 		 * <br>
 		 * EPC : 0xCA<br>
 		 * <br>
@@ -1375,7 +1345,7 @@ m3<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : null<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1389,10 +1359,10 @@ m3<br>
 		 * EPC : 0xCB<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the power generation status.<br>
+		 * This property indicates power generation status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * generating =0x41, stopped=0x42, starting=0x43, stopping=0x44, idling=0x45<br>
+		 * generating =0x41, stopped=0x42, idling=0x45<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -1415,7 +1385,7 @@ m3<br>
 		 * This property indicates the measured in-house instantaneous power consumption in watts.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0xFFFD (0-65,533W)<br>
+		 * 0x0000-0xFFFD (0-65.533W)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
@@ -1435,7 +1405,7 @@ m3<br>
 		 * EPC : 0xCD<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured in-house cumulative power consumption in units of 0.001kWh.<br>
+		 * This property indicates the measured in-house cumulative power consumption in0.001kWh.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000-0x3B9AC9FF (0-999,999.999kWh)<br>
@@ -1481,17 +1451,16 @@ m3<br>
 		 * EPC : 0xD0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the system interconnection status<br>
+		 * This property indicates the system interconnected type.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01<br>
-		 * System-linked type    (reverse power flow not acceptable) =0x02<br>
+		 * System-interconnected type (reverse power flow acceptable)=0x00, Independent type=0x01, System-interconnected type(reverse power flow not acceptable)=0x02<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : null<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1508,12 +1477,11 @@ m3<br>
 		 * This property indicates the measured amount of the remaining hot water in liters.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533 liters)<br>
+		 * 0x0000–0xFFFD (0–65,533 liters)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2
-bytes<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : liter<br>
 		 * <br>
@@ -1532,12 +1500,11 @@ bytes<br>
 		 * This property indicates the tank capacity in liters.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533 liters)<br>
+		 * 0x0000–0xFFFD (0–65,533 liters)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2
-bytes<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : liter<br>
 		 * <br>
@@ -1609,7 +1576,7 @@ bytes<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : null<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1635,7 +1602,7 @@ bytes<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : null<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1647,7 +1614,8 @@ bytes<br>
 			return this;
 		}
 		/**
-		 * Property name : Power generation setting<br>
+		 * Property name : Power generation setting
+<br>
 		 * <br>
 		 * EPC : 0xCA<br>
 		 * <br>
@@ -1661,7 +1629,7 @@ bytes<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : null<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1815,16 +1783,16 @@ bytes<br>
 		 * EPC : 0xC1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the current temperature of the water in the water heater in .C.<br>
+		 * This property indicates the current temperature of the water in the water heater in ℃.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100.C)<br>
+		 * 0x00–0x64 (0–100℃)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .C<br>
+		 * Unit : ℃<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1844,12 +1812,11 @@ bytes<br>
 		 * This property indicates the rated power generation output in watts.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533W)<br>
+		 * 0x0000–0xFFFD (0–65,533W)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2
-bytes<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -1871,12 +1838,11 @@ bytes<br>
 		 * This property indicates the heating value of the hot water storage tank in MJ.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533MJ)<br>
+		 * 0x0000–0xFFFD (0–65,533MJ)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2
-bytes<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : MJ<br>
 		 * <br>
@@ -1898,12 +1864,11 @@ bytes<br>
 		 * This property indicates the instantaneous power generation output in watts.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533W)<br>
+		 * 0x0000–0xFFFD (0–65,533W)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2
-bytes<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -1922,18 +1887,16 @@ bytes<br>
 		 * EPC : 0xC5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the cumulative power generation output in units of 0.001kWh.<br>
+		 * This property indicates the cumulative power generation output in increments of 0.001kWh.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0.0x3B9AC9FF (0.999,999.999kWh)<br>
+		 * 0x00000000–0x3B9AC9FF (0–999,999.999kWh)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4
-bytes<br>
+		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : 0.001
-kWh<br>
+		 * Unit : 0.001 kWh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1950,18 +1913,16 @@ kWh<br>
 		 * EPC : 0xC7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the instantaneous gas consumption in units of 0.001m3/h.<br>
+		 * This property indicates the instantaneous gas consumption in increments of 0.001m3/h.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0.0xFFFD (0.65.533m3)<br>
+		 * 0x0000–0xFFFD (0–65.533m3/h)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2
-bytes<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.001
-m3/h<br>
+		 * Unit : 0.001 m3/h<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1978,18 +1939,16 @@ m3/h<br>
 		 * EPC : 0xC8<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the cumulative gas consumption in units of 0.001m3.<br>
+		 * This property indicates the cumulative gas consumption in increments of 0.001m3.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0.0x3B9AC9FF (0.999,999.999m3)<br>
+		 * 0x00000000–0x3B9AC9FF (0–999,999.999m3)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4
-bytes<br>
+		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : 0.001
-m3<br>
+		 * Unit : 0.001 m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2006,10 +1965,10 @@ m3<br>
 		 * EPC : 0xCB<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the power generation status.<br>
+		 * This property indicates power generation status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * generating =0x41, stopped=0x42, starting=0x43, stopping=0x44, idling=0x45<br>
+		 * generating =0x41, stopped=0x42, idling=0x45<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -2035,7 +1994,7 @@ m3<br>
 		 * This property indicates the measured in-house instantaneous power consumption in watts.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0xFFFD (0-65,533W)<br>
+		 * 0x0000-0xFFFD (0-65.533W)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
@@ -2058,7 +2017,7 @@ m3<br>
 		 * EPC : 0xCD<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured in-house cumulative power consumption in units of 0.001kWh.<br>
+		 * This property indicates the measured in-house cumulative power consumption in0.001kWh.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000-0x3B9AC9FF (0-999,999.999kWh)<br>
@@ -2084,17 +2043,16 @@ m3<br>
 		 * EPC : 0xD0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the system interconnection status<br>
+		 * This property indicates the system interconnected type.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01<br>
-		 * System-linked type    (reverse power flow not acceptable) =0x02<br>
+		 * System-interconnected type (reverse power flow acceptable)=0x00, Independent type=0x01, System-interconnected type(reverse power flow not acceptable)=0x02<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : null<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2114,12 +2072,11 @@ m3<br>
 		 * This property indicates the measured amount of the remaining hot water in liters.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533 liters)<br>
+		 * 0x0000–0xFFFD (0–65,533 liters)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2
-bytes<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : liter<br>
 		 * <br>
@@ -2141,12 +2098,11 @@ bytes<br>
 		 * This property indicates the tank capacity in liters.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533 liters)<br>
+		 * 0x0000–0xFFFD (0–65,533 liters)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2
-bytes<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : liter<br>
 		 * <br>
@@ -2275,16 +2231,16 @@ bytes<br>
 		 * EPC : 0xC1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the current temperature of the water in the water heater in .C.<br>
+		 * This property indicates the current temperature of the water in the water heater in ℃.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100.C)<br>
+		 * 0x00–0x64 (0–100℃)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .C<br>
+		 * Unit : ℃<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2304,12 +2260,11 @@ bytes<br>
 		 * This property indicates the rated power generation output in watts.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533W)<br>
+		 * 0x0000–0xFFFD (0–65,533W)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2
-bytes<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -2331,12 +2286,11 @@ bytes<br>
 		 * This property indicates the heating value of the hot water storage tank in MJ.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533MJ)<br>
+		 * 0x0000–0xFFFD (0–65,533MJ)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2
-bytes<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : MJ<br>
 		 * <br>
@@ -2358,12 +2312,11 @@ bytes<br>
 		 * This property indicates the instantaneous power generation output in watts.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533W)<br>
+		 * 0x0000–0xFFFD (0–65,533W)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2
-bytes<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -2382,18 +2335,16 @@ bytes<br>
 		 * EPC : 0xC5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the cumulative power generation output in units of 0.001kWh.<br>
+		 * This property indicates the cumulative power generation output in increments of 0.001kWh.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0.0x3B9AC9FF (0.999,999.999kWh)<br>
+		 * 0x00000000–0x3B9AC9FF (0–999,999.999kWh)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4
-bytes<br>
+		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : 0.001
-kWh<br>
+		 * Unit : 0.001 kWh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2410,18 +2361,16 @@ kWh<br>
 		 * EPC : 0xC7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the instantaneous gas consumption in units of 0.001m3/h.<br>
+		 * This property indicates the instantaneous gas consumption in increments of 0.001m3/h.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0.0xFFFD (0.65.533m3)<br>
+		 * 0x0000–0xFFFD (0–65.533m3/h)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2
-bytes<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : 0.001
-m3/h<br>
+		 * Unit : 0.001 m3/h<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2438,18 +2387,16 @@ m3/h<br>
 		 * EPC : 0xC8<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the cumulative gas consumption in units of 0.001m3.<br>
+		 * This property indicates the cumulative gas consumption in increments of 0.001m3.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0.0x3B9AC9FF (0.999,999.999m3)<br>
+		 * 0x00000000–0x3B9AC9FF (0–999,999.999m3)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4
-bytes<br>
+		 * Data size : 4 bytes<br>
 		 * <br>
-		 * Unit : 0.001
-m3<br>
+		 * Unit : 0.001 m3<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2466,10 +2413,10 @@ m3<br>
 		 * EPC : 0xCB<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the power generation status.<br>
+		 * This property indicates power generation status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * generating =0x41, stopped=0x42, starting=0x43, stopping=0x44, idling=0x45<br>
+		 * generating =0x41, stopped=0x42, idling=0x45<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -2495,7 +2442,7 @@ m3<br>
 		 * This property indicates the measured in-house instantaneous power consumption in watts.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0xFFFD (0-65,533W)<br>
+		 * 0x0000-0xFFFD (0-65.533W)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
@@ -2518,7 +2465,7 @@ m3<br>
 		 * EPC : 0xCD<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured in-house cumulative power consumption in units of 0.001kWh.<br>
+		 * This property indicates the measured in-house cumulative power consumption in0.001kWh.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000-0x3B9AC9FF (0-999,999.999kWh)<br>
@@ -2544,17 +2491,16 @@ m3<br>
 		 * EPC : 0xD0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the system interconnection status<br>
+		 * This property indicates the system interconnected type.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01<br>
-		 * System-linked type    (reverse power flow not acceptable) =0x02<br>
+		 * System-interconnected type (reverse power flow acceptable)=0x00, Independent type=0x01, System-interconnected type(reverse power flow not acceptable)=0x02<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : null<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2574,12 +2520,11 @@ m3<br>
 		 * This property indicates the measured amount of the remaining hot water in liters.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533 liters)<br>
+		 * 0x0000–0xFFFD (0–65,533 liters)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2
-bytes<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : liter<br>
 		 * <br>
@@ -2601,12 +2546,11 @@ bytes<br>
 		 * This property indicates the tank capacity in liters.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533 liters)<br>
+		 * 0x0000–0xFFFD (0–65,533 liters)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2
-bytes<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
 		 * Unit : liter<br>
 		 * <br>
@@ -2621,7 +2565,7 @@ bytes<br>
 		}
 	}
 
-	public static class Proxy extends FuelCell {
+	public static class Proxy extends EngineCogeneration {
 		public Proxy(byte instanceCode) {
 			super();
 			mEchoInstanceCode = instanceCode;

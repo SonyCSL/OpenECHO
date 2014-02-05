@@ -36,8 +36,8 @@ public abstract class WasherAndDryer extends DeviceObject {
 	public static final byte EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST2 = (byte)0xD4;
 	public static final byte EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST3 = (byte)0xD5;
 	public static final byte EPC_WATER_FLOW_RATE_SETTING = (byte)0xD6;
-	public static final byte EPC_GROTATION_SPEED_FOR_SPIN_DRYING_H_SETTING = (byte)0xD7;
-	public static final byte EPC_GDEGREE_OF_DRYING_H_SETTING = (byte)0xD8;
+	public static final byte EPC_ROTATION_SPEED_FOR_SPIN_DRYING_SETTING = (byte)0xD7;
+	public static final byte EPC_DEGREE_OF_DRYING_SETTING = (byte)0xD8;
 	public static final byte EPC_REMAINING_WASHING_TIME = (byte)0xDB;
 	public static final byte EPC_REMAINING_DRYING_TIME = (byte)0xDC;
 	public static final byte EPC_ELAPSED_TIME_ON_THE_ON_TIMER = (byte)0xDF;
@@ -46,7 +46,7 @@ public abstract class WasherAndDryer extends DeviceObject {
 	public static final byte EPC_WATER_VOLUME_SETTING1 = (byte)0xE3;
 	public static final byte EPC_WATER_VOLUME_SETTING2 = (byte)0xE4;
 	public static final byte EPC_WASHING_TIME_SETTING = (byte)0xE5;
-	public static final byte EPC_GNUMBER_OF_TIMES_OF_RINSING_H_SETTING = (byte)0xE6;
+	public static final byte EPC_NUMBER_OF_TIMES_OF_RINSING_SETTING = (byte)0xE6;
 	public static final byte EPC_RINSING_PROCESS_SETTING = (byte)0xE7;
 	public static final byte EPC_SPIN_DRYING_TIME_SETTING = (byte)0xE8;
 	public static final byte EPC_DRYING_TIME_SETTING = (byte)0xE9;
@@ -80,17 +80,16 @@ public abstract class WasherAndDryer extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit :  �<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -106,17 +105,16 @@ public abstract class WasherAndDryer extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit :  �<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -135,14 +133,13 @@ public abstract class WasherAndDryer extends DeviceObject {
 	 * Used to acquire the status of the door/cover (i.e. open or closed).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Door/cover open = 0x41<br>
-	 * Door/cover closed = 0x42<br>
+	 * Door/cover open = 0x41 Door/cover closed = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -159,14 +156,13 @@ public abstract class WasherAndDryer extends DeviceObject {
 	 * Used to acquire the status of the door/cover (i.e. open or closed).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Door/cover open = 0x41<br>
-	 * Door/cover closed = 0x42<br>
+	 * Door/cover open = 0x41 Door/cover closed = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -186,15 +182,14 @@ public abstract class WasherAndDryer extends DeviceObject {
 	 * Used to specify whether to start or stop the washing, drying or washing and drying cycle, and to acquire the current status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Start/restart(ed) or in progress = 0x41<br>
-	 * Suspend(ed) = 0x42<br>
+	 * Start/restart(ed) or in progress = 0x41 Suspend(ed) = 0x42<br>
 	 * Stop(ped) = 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -211,15 +206,14 @@ public abstract class WasherAndDryer extends DeviceObject {
 	 * Used to specify whether to start or stop the washing, drying or washing and drying cycle, and to acquire the current status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Start/restart(ed) or in progress = 0x41<br>
-	 * Suspend(ed) = 0x42<br>
+	 * Start/restart(ed) or in progress = 0x41 Suspend(ed) = 0x42<br>
 	 * Stop(ped) = 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -236,15 +230,14 @@ public abstract class WasherAndDryer extends DeviceObject {
 	 * Used to specify whether to start or stop the washing, drying or washing and drying cycle, and to acquire the current status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Start/restart(ed) or in progress = 0x41<br>
-	 * Suspend(ed) = 0x42<br>
+	 * Start/restart(ed) or in progress = 0x41 Suspend(ed) = 0x42<br>
 	 * Stop(ped) = 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -262,44 +255,37 @@ public abstract class WasherAndDryer extends DeviceObject {
 	 * EPC : 0xD0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the washer and dryer cycle option(s) to use in the  gwashing and drying, h  gwashing h or  gdrying h mode and to acquire the current setting(s). The value ranges shall be as follows:<br>
-	 * Washing and drying couse: 0x21 to<br>
-	 * 0x3F<br>
-	 * Washing and drying cource maker original code: 0x40 to 0x4F<br>
-	 * Washing cource: 0x61 to 0x7F Washing cource maker original code:<br>
-	 * 0x80 to 0x8F<br>
-	 * Drying cource: 0xA1 to 0xBF Drying cource maker original code:<br>
-	 * 0xC0 to 0xDF<br>
+	 * Used to specify the washer and dryer cycle option(s) to use in the “washing and drying,” “washing” or “drying” mode and to acquire the current setting(s). The value ranges shall be as follows:<br>
+	 * Washing and drying course: 0x21.0x3F Washing and drying course maker<br>
+	 * original code: 0x40.0x4F<br>
+	 * Washing course: 0x61.0x7F Washing course maker original code:<br>
+	 * 0x80.0x8F<br>
+	 * Drying course: 0xA1.0xBF  Drying course maker original code:<br>
+	 * 0xC0.0xDF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * <Washing and drying cource><br>
-	 * Standard = 0x21, silent = 0x22, heavily soiled clothes = 0x23, hard-to-remove stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry =<br>
-	 * 0x28, clean rinsing = 0x29, ironing/business shirts = 0x2A, hang drying = 0x2B, thick clothes = 0x2C, disinfection = 0x2D, oil stains = 0x2E, memory = 0x2F, detergent saving =<br>
-	 * 0x30, lightly soiled clothes = 0x31, quick wash of small amount of laundry<br>
+	 * <Washing and drying course>  Standard = 0x21, silent = 0x22, heavily<br>
+	 * soiled clothes = 0x23, hard-to-remove<br>
+	 * stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry = 0x28, clean rinsing = 0x29, ironing/business shirts = 0x2A, hang drying = 0x2B, thick clothes = 0x2C, disinfection = 0x2D, oil stains = 0x2E, memory = 0x2F, detergent saving = 0x30, lightly soiled clothes = 0x31, quick wash of small amount of laundry<br>
 	 * = 0x32<br>
-	 * Washing cource / maker original cource<br>
-	 * = 0x40 to 0x4F<br>
-	 * <Washing cource><br>
-	 * Standard = 0x61, silent = 0x62, heavily soiled clothes = 0x63, hard-to-remove stains = 0x64, presoaking = 0x65, blankets = 0x66, soft = 0x67, dry =<br>
-	 * 0x68, clean rinsing = 0x69, disinfection<br>
-	 * = 0x6A, oil stains = 0x6B, memory =<br>
-	 * 0x6C, detergent saving = 0x6D, lightly soiled clothes = 0x6E, quick wash of small amount of laundry = 0x6F, tank cleaning = 0x7F<br>
-	 * Washing cource / maker original cource<br>
-	 * = 0x80 to 0x8F<br>
-	 * <Drying cource><br>
+	 * Washing course / maker original course<br>
+	 * = 0x40.0x4F<br>
+	 * <Washing course><br>
+	 * Standard = 0x61, silent = 0x62, heavily soiled clothes = 0x63, hard-to-remove stains = 0x64, presoaking = 0x65, blankets = 0x66, soft = 0x67, dry = 0x68, clean rinsing = 0x69, disinfection<br>
+	 * = 0x6A, oil stains = 0x6B, memory = 0x6C, detergent saving = 0x6D, lightly soiled clothes = 0x6E, quick wash of small amount of laundry = 0x6F, tank cleaning = 0x7F<br>
+	 * Washing course / maker original course<br>
+	 * = 0x80.0x8F<br>
+	 * <Drying course><br>
 	 * Standard = 0xA1, blankets = 0xA2, soft<br>
-	 * = 0xA3, dry = 0xA4, ironing/business shirts = 0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection =<br>
-	 * 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying =<br>
-	 * 0xAB, user definition of drying time =<br>
-	 * 0xAC, garment warming = 0xAD, tank drying = 0xBF<br>
-	 * Drying cource / maker original cource<br>
-	 * = 0xC0 to 0xCF<br>
+	 * = 0xA3, dry = 0xA4, ironing/business shirts = 0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection = 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying = 0xAB, user definition of drying time = 0xAC, garment warming = 0xAD, tank<br>
+	 * drying = 0xBF<br>
+	 * Drying course / maker original course = 0xC0.0xCF<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -314,44 +300,37 @@ public abstract class WasherAndDryer extends DeviceObject {
 	 * EPC : 0xD0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the washer and dryer cycle option(s) to use in the  gwashing and drying, h  gwashing h or  gdrying h mode and to acquire the current setting(s). The value ranges shall be as follows:<br>
-	 * Washing and drying couse: 0x21 to<br>
-	 * 0x3F<br>
-	 * Washing and drying cource maker original code: 0x40 to 0x4F<br>
-	 * Washing cource: 0x61 to 0x7F Washing cource maker original code:<br>
-	 * 0x80 to 0x8F<br>
-	 * Drying cource: 0xA1 to 0xBF Drying cource maker original code:<br>
-	 * 0xC0 to 0xDF<br>
+	 * Used to specify the washer and dryer cycle option(s) to use in the “washing and drying,” “washing” or “drying” mode and to acquire the current setting(s). The value ranges shall be as follows:<br>
+	 * Washing and drying course: 0x21.0x3F Washing and drying course maker<br>
+	 * original code: 0x40.0x4F<br>
+	 * Washing course: 0x61.0x7F Washing course maker original code:<br>
+	 * 0x80.0x8F<br>
+	 * Drying course: 0xA1.0xBF  Drying course maker original code:<br>
+	 * 0xC0.0xDF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * <Washing and drying cource><br>
-	 * Standard = 0x21, silent = 0x22, heavily soiled clothes = 0x23, hard-to-remove stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry =<br>
-	 * 0x28, clean rinsing = 0x29, ironing/business shirts = 0x2A, hang drying = 0x2B, thick clothes = 0x2C, disinfection = 0x2D, oil stains = 0x2E, memory = 0x2F, detergent saving =<br>
-	 * 0x30, lightly soiled clothes = 0x31, quick wash of small amount of laundry<br>
+	 * <Washing and drying course>  Standard = 0x21, silent = 0x22, heavily<br>
+	 * soiled clothes = 0x23, hard-to-remove<br>
+	 * stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry = 0x28, clean rinsing = 0x29, ironing/business shirts = 0x2A, hang drying = 0x2B, thick clothes = 0x2C, disinfection = 0x2D, oil stains = 0x2E, memory = 0x2F, detergent saving = 0x30, lightly soiled clothes = 0x31, quick wash of small amount of laundry<br>
 	 * = 0x32<br>
-	 * Washing cource / maker original cource<br>
-	 * = 0x40 to 0x4F<br>
-	 * <Washing cource><br>
-	 * Standard = 0x61, silent = 0x62, heavily soiled clothes = 0x63, hard-to-remove stains = 0x64, presoaking = 0x65, blankets = 0x66, soft = 0x67, dry =<br>
-	 * 0x68, clean rinsing = 0x69, disinfection<br>
-	 * = 0x6A, oil stains = 0x6B, memory =<br>
-	 * 0x6C, detergent saving = 0x6D, lightly soiled clothes = 0x6E, quick wash of small amount of laundry = 0x6F, tank cleaning = 0x7F<br>
-	 * Washing cource / maker original cource<br>
-	 * = 0x80 to 0x8F<br>
-	 * <Drying cource><br>
+	 * Washing course / maker original course<br>
+	 * = 0x40.0x4F<br>
+	 * <Washing course><br>
+	 * Standard = 0x61, silent = 0x62, heavily soiled clothes = 0x63, hard-to-remove stains = 0x64, presoaking = 0x65, blankets = 0x66, soft = 0x67, dry = 0x68, clean rinsing = 0x69, disinfection<br>
+	 * = 0x6A, oil stains = 0x6B, memory = 0x6C, detergent saving = 0x6D, lightly soiled clothes = 0x6E, quick wash of small amount of laundry = 0x6F, tank cleaning = 0x7F<br>
+	 * Washing course / maker original course<br>
+	 * = 0x80.0x8F<br>
+	 * <Drying course><br>
 	 * Standard = 0xA1, blankets = 0xA2, soft<br>
-	 * = 0xA3, dry = 0xA4, ironing/business shirts = 0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection =<br>
-	 * 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying =<br>
-	 * 0xAB, user definition of drying time =<br>
-	 * 0xAC, garment warming = 0xAD, tank drying = 0xBF<br>
-	 * Drying cource / maker original cource<br>
-	 * = 0xC0 to 0xCF<br>
+	 * = 0xA3, dry = 0xA4, ironing/business shirts = 0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection = 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying = 0xAB, user definition of drying time = 0xAC, garment warming = 0xAD, tank<br>
+	 * drying = 0xBF<br>
+	 * Drying course / maker original course = 0xC0.0xCF<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -366,44 +345,37 @@ public abstract class WasherAndDryer extends DeviceObject {
 	 * EPC : 0xD0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the washer and dryer cycle option(s) to use in the  gwashing and drying, h  gwashing h or  gdrying h mode and to acquire the current setting(s). The value ranges shall be as follows:<br>
-	 * Washing and drying couse: 0x21 to<br>
-	 * 0x3F<br>
-	 * Washing and drying cource maker original code: 0x40 to 0x4F<br>
-	 * Washing cource: 0x61 to 0x7F Washing cource maker original code:<br>
-	 * 0x80 to 0x8F<br>
-	 * Drying cource: 0xA1 to 0xBF Drying cource maker original code:<br>
-	 * 0xC0 to 0xDF<br>
+	 * Used to specify the washer and dryer cycle option(s) to use in the “washing and drying,” “washing” or “drying” mode and to acquire the current setting(s). The value ranges shall be as follows:<br>
+	 * Washing and drying course: 0x21.0x3F Washing and drying course maker<br>
+	 * original code: 0x40.0x4F<br>
+	 * Washing course: 0x61.0x7F Washing course maker original code:<br>
+	 * 0x80.0x8F<br>
+	 * Drying course: 0xA1.0xBF  Drying course maker original code:<br>
+	 * 0xC0.0xDF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * <Washing and drying cource><br>
-	 * Standard = 0x21, silent = 0x22, heavily soiled clothes = 0x23, hard-to-remove stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry =<br>
-	 * 0x28, clean rinsing = 0x29, ironing/business shirts = 0x2A, hang drying = 0x2B, thick clothes = 0x2C, disinfection = 0x2D, oil stains = 0x2E, memory = 0x2F, detergent saving =<br>
-	 * 0x30, lightly soiled clothes = 0x31, quick wash of small amount of laundry<br>
+	 * <Washing and drying course>  Standard = 0x21, silent = 0x22, heavily<br>
+	 * soiled clothes = 0x23, hard-to-remove<br>
+	 * stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry = 0x28, clean rinsing = 0x29, ironing/business shirts = 0x2A, hang drying = 0x2B, thick clothes = 0x2C, disinfection = 0x2D, oil stains = 0x2E, memory = 0x2F, detergent saving = 0x30, lightly soiled clothes = 0x31, quick wash of small amount of laundry<br>
 	 * = 0x32<br>
-	 * Washing cource / maker original cource<br>
-	 * = 0x40 to 0x4F<br>
-	 * <Washing cource><br>
-	 * Standard = 0x61, silent = 0x62, heavily soiled clothes = 0x63, hard-to-remove stains = 0x64, presoaking = 0x65, blankets = 0x66, soft = 0x67, dry =<br>
-	 * 0x68, clean rinsing = 0x69, disinfection<br>
-	 * = 0x6A, oil stains = 0x6B, memory =<br>
-	 * 0x6C, detergent saving = 0x6D, lightly soiled clothes = 0x6E, quick wash of small amount of laundry = 0x6F, tank cleaning = 0x7F<br>
-	 * Washing cource / maker original cource<br>
-	 * = 0x80 to 0x8F<br>
-	 * <Drying cource><br>
+	 * Washing course / maker original course<br>
+	 * = 0x40.0x4F<br>
+	 * <Washing course><br>
+	 * Standard = 0x61, silent = 0x62, heavily soiled clothes = 0x63, hard-to-remove stains = 0x64, presoaking = 0x65, blankets = 0x66, soft = 0x67, dry = 0x68, clean rinsing = 0x69, disinfection<br>
+	 * = 0x6A, oil stains = 0x6B, memory = 0x6C, detergent saving = 0x6D, lightly soiled clothes = 0x6E, quick wash of small amount of laundry = 0x6F, tank cleaning = 0x7F<br>
+	 * Washing course / maker original course<br>
+	 * = 0x80.0x8F<br>
+	 * <Drying course><br>
 	 * Standard = 0xA1, blankets = 0xA2, soft<br>
-	 * = 0xA3, dry = 0xA4, ironing/business shirts = 0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection =<br>
-	 * 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying =<br>
-	 * 0xAB, user definition of drying time =<br>
-	 * 0xAC, garment warming = 0xAD, tank drying = 0xBF<br>
-	 * Drying cource / maker original cource<br>
-	 * = 0xC0 to 0xCF<br>
+	 * = 0xA3, dry = 0xA4, ironing/business shirts = 0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection = 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying = 0xAB, user definition of drying time = 0xAC, garment warming = 0xAD, tank<br>
+	 * drying = 0xBF<br>
+	 * Drying course / maker original course = 0xC0.0xCF<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -421,27 +393,21 @@ public abstract class WasherAndDryer extends DeviceObject {
 	 * EPC : 0xD1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the washer and dryer cycle option(s) to use in the<br>
-	 *  gwashing and drying h mode, and to acquire the current setting(s). The drying option(s) to use shall be specified with the  gdrying cycle<br>
-	 * setting h property (EPC = 0xD2).<br>
-	 * Maker original code = 0xE0 to 0xEF<br>
+	 * Used to specify the washer and dryer cycle option(s) to use in the “washing and drying” mode, and to acquire the current setting(s). The drying option(s) to use shall be specified with the “drying cycle setting” property (EPC = 0xD2).<br>
+	 * Maker original code = 0xE0.0xEF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * No washing = 0x20, standard =<br>
-	 * 0x21, silent = 0x22, heavily soiled clothes = 0x23, hard-to-remove stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry =<br>
-	 * 0x28, clean rinsing = 0x29,<br>
-	 * disinfection = 0x2D, oil stains =<br>
-	 * 0x2E, memory = 0x2F, detergent saving = 0x30, lightly soiled clothes<br>
-	 * = 0x31, quick wash of small amount of laundry = 0x32, tank cleaning =<br>
-	 * 0x3F<br>
-	 * Maker original cource = 0xE0 to<br>
-	 * 0xEF<br>
+	 * No washing = 0x20, standard = 0x21, silent = 0x22, heavily soiled clothes = 0x23, hard-to-remove stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry = 0x28, clean rinsing<br>
+	 * = 0x29, disinfection = 0x2D, oil stains = 0x2E, memory = 0x2F, detergent saving = 0x30, lightly<br>
+	 * soiled clothes = 0x31, quick wash of small amount of laundry = 0x32, tank<br>
+	 * cleaning = 0x3F<br>
+	 * Maker original course = 0xE0.0xEF<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsig ned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -456,27 +422,21 @@ public abstract class WasherAndDryer extends DeviceObject {
 	 * EPC : 0xD1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the washer and dryer cycle option(s) to use in the<br>
-	 *  gwashing and drying h mode, and to acquire the current setting(s). The drying option(s) to use shall be specified with the  gdrying cycle<br>
-	 * setting h property (EPC = 0xD2).<br>
-	 * Maker original code = 0xE0 to 0xEF<br>
+	 * Used to specify the washer and dryer cycle option(s) to use in the “washing and drying” mode, and to acquire the current setting(s). The drying option(s) to use shall be specified with the “drying cycle setting” property (EPC = 0xD2).<br>
+	 * Maker original code = 0xE0.0xEF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * No washing = 0x20, standard =<br>
-	 * 0x21, silent = 0x22, heavily soiled clothes = 0x23, hard-to-remove stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry =<br>
-	 * 0x28, clean rinsing = 0x29,<br>
-	 * disinfection = 0x2D, oil stains =<br>
-	 * 0x2E, memory = 0x2F, detergent saving = 0x30, lightly soiled clothes<br>
-	 * = 0x31, quick wash of small amount of laundry = 0x32, tank cleaning =<br>
-	 * 0x3F<br>
-	 * Maker original cource = 0xE0 to<br>
-	 * 0xEF<br>
+	 * No washing = 0x20, standard = 0x21, silent = 0x22, heavily soiled clothes = 0x23, hard-to-remove stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry = 0x28, clean rinsing<br>
+	 * = 0x29, disinfection = 0x2D, oil stains = 0x2E, memory = 0x2F, detergent saving = 0x30, lightly<br>
+	 * soiled clothes = 0x31, quick wash of small amount of laundry = 0x32, tank<br>
+	 * cleaning = 0x3F<br>
+	 * Maker original course = 0xE0.0xEF<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsig ned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -491,27 +451,21 @@ public abstract class WasherAndDryer extends DeviceObject {
 	 * EPC : 0xD1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the washer and dryer cycle option(s) to use in the<br>
-	 *  gwashing and drying h mode, and to acquire the current setting(s). The drying option(s) to use shall be specified with the  gdrying cycle<br>
-	 * setting h property (EPC = 0xD2).<br>
-	 * Maker original code = 0xE0 to 0xEF<br>
+	 * Used to specify the washer and dryer cycle option(s) to use in the “washing and drying” mode, and to acquire the current setting(s). The drying option(s) to use shall be specified with the “drying cycle setting” property (EPC = 0xD2).<br>
+	 * Maker original code = 0xE0.0xEF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * No washing = 0x20, standard =<br>
-	 * 0x21, silent = 0x22, heavily soiled clothes = 0x23, hard-to-remove stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry =<br>
-	 * 0x28, clean rinsing = 0x29,<br>
-	 * disinfection = 0x2D, oil stains =<br>
-	 * 0x2E, memory = 0x2F, detergent saving = 0x30, lightly soiled clothes<br>
-	 * = 0x31, quick wash of small amount of laundry = 0x32, tank cleaning =<br>
-	 * 0x3F<br>
-	 * Maker original cource = 0xE0 to<br>
-	 * 0xEF<br>
+	 * No washing = 0x20, standard = 0x21, silent = 0x22, heavily soiled clothes = 0x23, hard-to-remove stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry = 0x28, clean rinsing<br>
+	 * = 0x29, disinfection = 0x2D, oil stains = 0x2E, memory = 0x2F, detergent saving = 0x30, lightly<br>
+	 * soiled clothes = 0x31, quick wash of small amount of laundry = 0x32, tank<br>
+	 * cleaning = 0x3F<br>
+	 * Maker original course = 0xE0.0xEF<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsig ned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -528,24 +482,20 @@ public abstract class WasherAndDryer extends DeviceObject {
 	 * EPC : 0xD2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the drying cycle option(s) to use, and to acquire the current setting. For the  gwashing and drying h mode, the  gwasher and dryer cycle setting 2 h property (EPC =<br>
-	 * 0xD1) shall be used.<br>
+	 * Used to specify the drying cycle option(s) to use, and to acquire the current setting. For the “washing and drying” mode, the “washer and dryer cycle setting 2” property (EPC = 0xD1) shall be used.<br>
 	 * Maker original code = 0xE0 to 0xEF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * No drying = 0xA0, standard = 0xA1, blankets = 0xA2, soft = 0xA3, dry =<br>
-	 * 0xA4, ironing/business shirts =<br>
-	 * 0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection = 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying<br>
-	 * = 0xAB, user definition of drying time = 0xAC, garment warming =<br>
-	 * 0xAD, heater current limit = 0xAE, tank drying = 0xBF<br>
-	 * Maker original cource = 0xE0 to<br>
-	 * 0xEF<br>
+	 * No drying = 0xA0, standard = 0xA1, blankets = 0xA2, soft = 0xA3, dry = 0xA4, ironing/business shirts =  0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection = 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying = 0xAB, user definition of drying time<br>
+	 * = 0xAC, garment warming = 0xAD, heater current limit = 0xAE, tank<br>
+	 * drying = 0xBF<br>
+	 * Maker original course = 0xE0 0xEF<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsig ned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -559,24 +509,20 @@ public abstract class WasherAndDryer extends DeviceObject {
 	 * EPC : 0xD2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the drying cycle option(s) to use, and to acquire the current setting. For the  gwashing and drying h mode, the  gwasher and dryer cycle setting 2 h property (EPC =<br>
-	 * 0xD1) shall be used.<br>
+	 * Used to specify the drying cycle option(s) to use, and to acquire the current setting. For the “washing and drying” mode, the “washer and dryer cycle setting 2” property (EPC = 0xD1) shall be used.<br>
 	 * Maker original code = 0xE0 to 0xEF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * No drying = 0xA0, standard = 0xA1, blankets = 0xA2, soft = 0xA3, dry =<br>
-	 * 0xA4, ironing/business shirts =<br>
-	 * 0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection = 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying<br>
-	 * = 0xAB, user definition of drying time = 0xAC, garment warming =<br>
-	 * 0xAD, heater current limit = 0xAE, tank drying = 0xBF<br>
-	 * Maker original cource = 0xE0 to<br>
-	 * 0xEF<br>
+	 * No drying = 0xA0, standard = 0xA1, blankets = 0xA2, soft = 0xA3, dry = 0xA4, ironing/business shirts =  0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection = 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying = 0xAB, user definition of drying time<br>
+	 * = 0xAC, garment warming = 0xAD, heater current limit = 0xAE, tank<br>
+	 * drying = 0xBF<br>
+	 * Maker original course = 0xE0 0xEF<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsig ned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -590,24 +536,20 @@ public abstract class WasherAndDryer extends DeviceObject {
 	 * EPC : 0xD2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the drying cycle option(s) to use, and to acquire the current setting. For the  gwashing and drying h mode, the  gwasher and dryer cycle setting 2 h property (EPC =<br>
-	 * 0xD1) shall be used.<br>
+	 * Used to specify the drying cycle option(s) to use, and to acquire the current setting. For the “washing and drying” mode, the “washer and dryer cycle setting 2” property (EPC = 0xD1) shall be used.<br>
 	 * Maker original code = 0xE0 to 0xEF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * No drying = 0xA0, standard = 0xA1, blankets = 0xA2, soft = 0xA3, dry =<br>
-	 * 0xA4, ironing/business shirts =<br>
-	 * 0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection = 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying<br>
-	 * = 0xAB, user definition of drying time = 0xAC, garment warming =<br>
-	 * 0xAD, heater current limit = 0xAE, tank drying = 0xBF<br>
-	 * Maker original cource = 0xE0 to<br>
-	 * 0xEF<br>
+	 * No drying = 0xA0, standard = 0xA1, blankets = 0xA2, soft = 0xA3, dry = 0xA4, ironing/business shirts =  0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection = 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying = 0xAB, user definition of drying time<br>
+	 * = 0xAC, garment warming = 0xAD, heater current limit = 0xAE, tank<br>
+	 * drying = 0xBF<br>
+	 * Maker original course = 0xE0 0xEF<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsig ned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -624,20 +566,19 @@ public abstract class WasherAndDryer extends DeviceObject {
 	 * EPC : 0xD3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire a bitmap list of the washer and dryer cycle options that can be specified with the  gwasher and dryer cycle setting 1 h property.<br>
+	 * Used to acquire a bitmap list of the washer and dryer cycle options that can be specified with the “washer and dryer cycle setting 1” property.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * When the value contained in the bit for the desired washer and dryer<br>
-	 * cycle option is  g1 h, the option can be specified. When the value contained in the bit for the desired washer and dryer cycle option is  g0 h, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the<br>
-	 * detailed explanation.<br>
+	 * When the value contained in the bit for the desired washer and dryer cycle option is “1”, the option can be specified. When the value contained in the bit for the desired washer and dryer cycle option is “0”, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the detailed explanation.<br>
 	 * <br>
-	 * Data type : unsign ed
+	 * Data type : unsig ned
 char
- ~12,<br>
+×12,<br>
 	 * <br>
-	 * Data size : 12 byte<br>
+	 * Data size : 12
+bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -651,20 +592,19 @@ char
 	 * EPC : 0xD3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire a bitmap list of the washer and dryer cycle options that can be specified with the  gwasher and dryer cycle setting 1 h property.<br>
+	 * Used to acquire a bitmap list of the washer and dryer cycle options that can be specified with the “washer and dryer cycle setting 1” property.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * When the value contained in the bit for the desired washer and dryer<br>
-	 * cycle option is  g1 h, the option can be specified. When the value contained in the bit for the desired washer and dryer cycle option is  g0 h, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the<br>
-	 * detailed explanation.<br>
+	 * When the value contained in the bit for the desired washer and dryer cycle option is “1”, the option can be specified. When the value contained in the bit for the desired washer and dryer cycle option is “0”, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the detailed explanation.<br>
 	 * <br>
-	 * Data type : unsign ed
+	 * Data type : unsig ned
 char
- ~12,<br>
+×12,<br>
 	 * <br>
-	 * Data size : 12 byte<br>
+	 * Data size : 12
+bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -681,20 +621,19 @@ char
 	 * EPC : 0xD4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire a bitmap list of the washer and dryer cycle options that can be specified with the  gwasher and dryer cycle setting 2 h property.<br>
+	 * Used to acquire a bitmap list of the washer and dryer cycle options that can be specified with the “washer and dryer cycle setting 2” property.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * When the value contained in the bit for the desired washer and dryer<br>
-	 * cycle option is  g1 h, the option can be specified. When the value contained in the bit for the desired washer and dryer cycle option is  g0 h, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the<br>
-	 * detailed explanation.<br>
+	 * When the value contained in the bit for the desired washer and dryer cycle option is “1”, the option can be specified. When the value contained in the bit for the desired washer and dryer cycle option is “0”, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the detailed explanation.<br>
 	 * <br>
-	 * Data type : unsign ed
+	 * Data type : unsig ned
 char
- ~4,<br>
+×4,<br>
 	 * <br>
-	 * Data size : 4 byte<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -708,20 +647,19 @@ char
 	 * EPC : 0xD4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire a bitmap list of the washer and dryer cycle options that can be specified with the  gwasher and dryer cycle setting 2 h property.<br>
+	 * Used to acquire a bitmap list of the washer and dryer cycle options that can be specified with the “washer and dryer cycle setting 2” property.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * When the value contained in the bit for the desired washer and dryer<br>
-	 * cycle option is  g1 h, the option can be specified. When the value contained in the bit for the desired washer and dryer cycle option is  g0 h, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the<br>
-	 * detailed explanation.<br>
+	 * When the value contained in the bit for the desired washer and dryer cycle option is “1”, the option can be specified. When the value contained in the bit for the desired washer and dryer cycle option is “0”, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the detailed explanation.<br>
 	 * <br>
-	 * Data type : unsign ed
+	 * Data type : unsig ned
 char
- ~4,<br>
+×4,<br>
 	 * <br>
-	 * Data size : 4 byte<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -738,18 +676,19 @@ char
 	 * EPC : 0xD5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire a bitmap list of the drying cycle options that can be specified with the  gdrying cycle setting h property.<br>
+	 * Used to acquire a bitmap list of the drying cycle options that can be specified with the “drying cycle setting” property.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * When the value contained in the bit for the desired drying cycle option is  g1 h, the option can be specified. When the value contained in the bit for the desired drying cycle option is  g0 h, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the detailed explanation.<br>
+	 * When the value contained in the bit for the desired drying cycle option is “1”, the option can be specified. When the value contained in the bit for the desired drying cycle option is “0”, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the detailed explanation.<br>
 	 * <br>
-	 * Data type : unsign ed
+	 * Data type : unsig ned
 char
- ~4,<br>
+×4,<br>
 	 * <br>
-	 * Data size : 4 byte<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -763,18 +702,19 @@ char
 	 * EPC : 0xD5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire a bitmap list of the drying cycle options that can be specified with the  gdrying cycle setting h property.<br>
+	 * Used to acquire a bitmap list of the drying cycle options that can be specified with the “drying cycle setting” property.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * When the value contained in the bit for the desired drying cycle option is  g1 h, the option can be specified. When the value contained in the bit for the desired drying cycle option is  g0 h, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the detailed explanation.<br>
+	 * When the value contained in the bit for the desired drying cycle option is “1”, the option can be specified. When the value contained in the bit for the desired drying cycle option is “0”, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the detailed explanation.<br>
 	 * <br>
-	 * Data type : unsign ed
+	 * Data type : unsig ned
 char
- ~4,<br>
+×4,<br>
 	 * <br>
-	 * Data size : 4 byte<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -794,22 +734,20 @@ char
 	 * Used to specify the water flow rate by selecting a level from among the predefined levels and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * <Absolute setting><br>
-	 * 0x31 to 0x40 (16 levels)<br>
+	 * <Absolute setting> 0x31.0x40 (16 levels)<br>
 	 * * 0x31 and 0x40 shall be used for the lowest and highest flow rates, respectively.<br>
 	 * <Relative setting relative to the automatic setting><br>
-	 * - Automatic setting<br>
-	 * 0xFF<br>
+	 * - Automatic setting 0xFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA0 to 0xA7: Levels 1 to 8<br>
+	 * 0xA0.0xA7: Levels 1.8<br>
 	 * - Relative setting in the negative direction<br>
-	 * 0xC0 to 0xC7: Levels 1 to 8<br>
+	 * 0xC0.0xC7: Levels 1.8<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsig ned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -826,22 +764,20 @@ char
 	 * Used to specify the water flow rate by selecting a level from among the predefined levels and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * <Absolute setting><br>
-	 * 0x31 to 0x40 (16 levels)<br>
+	 * <Absolute setting> 0x31.0x40 (16 levels)<br>
 	 * * 0x31 and 0x40 shall be used for the lowest and highest flow rates, respectively.<br>
 	 * <Relative setting relative to the automatic setting><br>
-	 * - Automatic setting<br>
-	 * 0xFF<br>
+	 * - Automatic setting 0xFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA0 to 0xA7: Levels 1 to 8<br>
+	 * 0xA0.0xA7: Levels 1.8<br>
 	 * - Relative setting in the negative direction<br>
-	 * 0xC0 to 0xC7: Levels 1 to 8<br>
+	 * 0xC0.0xC7: Levels 1.8<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsig ned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -858,22 +794,20 @@ char
 	 * Used to specify the water flow rate by selecting a level from among the predefined levels and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * <Absolute setting><br>
-	 * 0x31 to 0x40 (16 levels)<br>
+	 * <Absolute setting> 0x31.0x40 (16 levels)<br>
 	 * * 0x31 and 0x40 shall be used for the lowest and highest flow rates, respectively.<br>
 	 * <Relative setting relative to the automatic setting><br>
-	 * - Automatic setting<br>
-	 * 0xFF<br>
+	 * - Automatic setting 0xFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA0 to 0xA7: Levels 1 to 8<br>
+	 * 0xA0.0xA7: Levels 1.8<br>
 	 * - Relative setting in the negative direction<br>
-	 * 0xC0 to 0xC7: Levels 1 to 8<br>
+	 * 0xC0.0xC7: Levels 1.8<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsig ned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -885,8 +819,7 @@ char
 		return true;
 	}
 	/**
-	 * Property name :  gRotation speed for spin drying h
-setting<br>
+	 * Property name : “Rotation speed for spin drying” setting<br>
 	 * <br>
 	 * EPC : 0xD7<br>
 	 * <br>
@@ -895,30 +828,29 @@ setting<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <Absolute setting><br>
-	 * - 0x0000 to 0x0FFF (0 to 4095 r/min.)<br>
+	 * - 0x0000. 0x0FFF (0.4095 r/min.)<br>
 	 * <Relative setting relative to the automatic setting><br>
-	 * - Automatic setting<br>
-	 * 0xFFFF<br>
+	 * - Automatic setting 0xFFFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA000 to 0xA7FF (1 to 2048 r/min.)<br>
+	 * 0xA000.0xA7FF (1.2048 r/min.)<br>
 	 * - Relative setting in the negative direction<br>
-	 * 0xC000 to 0xC7FF (1 to 2048r/min.)<br>
+	 * 0xC000.0xC7FF (1.2048r/min.)<br>
 	 * <br>
-	 * Data type : unsign ed short<br>
+	 * Data type : unsig ned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setGrotationSpeedForSpinDryingHSetting(byte[] edt) {return false;}
+	protected boolean setRotationSpeedForSpinDryingSetting(byte[] edt) {return false;}
 	/**
-	 * Property name :  gRotation speed for spin drying h
-setting<br>
+	 * Property name : “Rotation speed for spin drying” setting<br>
 	 * <br>
 	 * EPC : 0xD7<br>
 	 * <br>
@@ -927,30 +859,29 @@ setting<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <Absolute setting><br>
-	 * - 0x0000 to 0x0FFF (0 to 4095 r/min.)<br>
+	 * - 0x0000. 0x0FFF (0.4095 r/min.)<br>
 	 * <Relative setting relative to the automatic setting><br>
-	 * - Automatic setting<br>
-	 * 0xFFFF<br>
+	 * - Automatic setting 0xFFFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA000 to 0xA7FF (1 to 2048 r/min.)<br>
+	 * 0xA000.0xA7FF (1.2048 r/min.)<br>
 	 * - Relative setting in the negative direction<br>
-	 * 0xC000 to 0xC7FF (1 to 2048r/min.)<br>
+	 * 0xC000.0xC7FF (1.2048r/min.)<br>
 	 * <br>
-	 * Data type : unsign ed short<br>
+	 * Data type : unsig ned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getGrotationSpeedForSpinDryingHSetting() {return null;}
+	protected byte[] getRotationSpeedForSpinDryingSetting() {return null;}
 	/**
-	 * Property name :  gRotation speed for spin drying h
-setting<br>
+	 * Property name : “Rotation speed for spin drying” setting<br>
 	 * <br>
 	 * EPC : 0xD7<br>
 	 * <br>
@@ -959,32 +890,32 @@ setting<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <Absolute setting><br>
-	 * - 0x0000 to 0x0FFF (0 to 4095 r/min.)<br>
+	 * - 0x0000. 0x0FFF (0.4095 r/min.)<br>
 	 * <Relative setting relative to the automatic setting><br>
-	 * - Automatic setting<br>
-	 * 0xFFFF<br>
+	 * - Automatic setting 0xFFFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA000 to 0xA7FF (1 to 2048 r/min.)<br>
+	 * 0xA000.0xA7FF (1.2048 r/min.)<br>
 	 * - Relative setting in the negative direction<br>
-	 * 0xC000 to 0xC7FF (1 to 2048r/min.)<br>
+	 * 0xC000.0xC7FF (1.2048r/min.)<br>
 	 * <br>
-	 * Data type : unsign ed short<br>
+	 * Data type : unsig ned short<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidGrotationSpeedForSpinDryingHSetting(byte[] edt) {
+	protected boolean isValidRotationSpeedForSpinDryingSetting(byte[] edt) {
 		if(edt == null || !(edt.length == 2)) return false;
 		return true;
 	}
 	/**
-	 * Property name :  gDegree of drying h setting<br>
+	 * Property name : “Degree of drying” setting<br>
 	 * <br>
 	 * EPC : 0xD8<br>
 	 * <br>
@@ -993,30 +924,29 @@ setting<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <Absolute setting><br>
-	 * - 0x31 to 0x40 (16 levels)<br>
+	 * - 0x31.0x40 (16 levels)<br>
 	 * * 0x31 and 0x40 shall be used for the lowest and highest levels, respectively.<br>
 	 * <Relative setting relative to the automatic setting><br>
-	 * - Automatic setting<br>
-	 * 0xFF<br>
+	 * - Automatic setting 0xFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA0 to 0xA7: Levels 1 to 8<br>
+	 * 0xA0.0xA7: Levels 1.8<br>
 	 * - Relative setting in the negative direction<br>
-	 * 0xC0 to 0xC7: Levels 1 to 8<br>
+	 * 0xC0.0xC7: Levels 1.8<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsig ned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setGdegreeOfDryingHSetting(byte[] edt) {return false;}
+	protected boolean setDegreeOfDryingSetting(byte[] edt) {return false;}
 	/**
-	 * Property name :  gDegree of drying h setting<br>
+	 * Property name : “Degree of drying” setting<br>
 	 * <br>
 	 * EPC : 0xD8<br>
 	 * <br>
@@ -1025,30 +955,29 @@ setting<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <Absolute setting><br>
-	 * - 0x31 to 0x40 (16 levels)<br>
+	 * - 0x31.0x40 (16 levels)<br>
 	 * * 0x31 and 0x40 shall be used for the lowest and highest levels, respectively.<br>
 	 * <Relative setting relative to the automatic setting><br>
-	 * - Automatic setting<br>
-	 * 0xFF<br>
+	 * - Automatic setting 0xFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA0 to 0xA7: Levels 1 to 8<br>
+	 * 0xA0.0xA7: Levels 1.8<br>
 	 * - Relative setting in the negative direction<br>
-	 * 0xC0 to 0xC7: Levels 1 to 8<br>
+	 * 0xC0.0xC7: Levels 1.8<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsig ned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getGdegreeOfDryingHSetting() {return null;}
+	protected byte[] getDegreeOfDryingSetting() {return null;}
 	/**
-	 * Property name :  gDegree of drying h setting<br>
+	 * Property name : “Degree of drying” setting<br>
 	 * <br>
 	 * EPC : 0xD8<br>
 	 * <br>
@@ -1057,28 +986,27 @@ setting<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <Absolute setting><br>
-	 * - 0x31 to 0x40 (16 levels)<br>
+	 * - 0x31.0x40 (16 levels)<br>
 	 * * 0x31 and 0x40 shall be used for the lowest and highest levels, respectively.<br>
 	 * <Relative setting relative to the automatic setting><br>
-	 * - Automatic setting<br>
-	 * 0xFF<br>
+	 * - Automatic setting 0xFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA0 to 0xA7: Levels 1 to 8<br>
+	 * 0xA0.0xA7: Levels 1.8<br>
 	 * - Relative setting in the negative direction<br>
-	 * 0xC0 to 0xC7: Levels 1 to 8<br>
+	 * 0xC0.0xC7: Levels 1.8<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsig ned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidGdegreeOfDryingHSetting(byte[] edt) {
+	protected boolean isValidDegreeOfDryingSetting(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
@@ -1089,21 +1017,20 @@ setting<br>
 	 * <br>
 	 * Contents of property :<br>
 	 * Acquires the remaining washing time<br>
-	 * in .the . gHH:MM h .format.<br>
+	 * in the “HH:MM” format.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0xFE F0-0x3B<br>
-	 * (=0-254) hours F(=0-59) minutes<br>
-	 * Remaining time unknown=0xFF F<br>
+	 * 0.0xFE : 0.0x3B<br>
+	 * (=0-254) hours : (=0-59) minutes Remaining time unknown=0xFF :<br>
 	 * 0xFF<br>
 	 * <br>
-	 * Data type : unsigne d
+	 * Data type : unsign ed
 char
- ~2<br>
+×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1118,21 +1045,20 @@ char
 	 * <br>
 	 * Contents of property :<br>
 	 * Acquires the remaining washing time<br>
-	 * in .the . gHH:MM h .format.<br>
+	 * in the “HH:MM” format.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0xFE F0-0x3B<br>
-	 * (=0-254) hours F(=0-59) minutes<br>
-	 * Remaining time unknown=0xFF F<br>
+	 * 0.0xFE : 0.0x3B<br>
+	 * (=0-254) hours : (=0-59) minutes Remaining time unknown=0xFF :<br>
 	 * 0xFF<br>
 	 * <br>
-	 * Data type : unsigne d
+	 * Data type : unsign ed
 char
- ~2<br>
+×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1150,19 +1076,20 @@ char
 	 * <br>
 	 * Contents of property :<br>
 	 * Acquires the remaining drying<br>
-	 * time .in .the . gHH:MM h .format.<br>
+	 * time in the “HH:MM” format.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0xFE F0-0x3B<br>
-	 * (=0-254) hours F(=0-59) minutes<br>
-	 * Remaining time<br>
-	 * unknown=0xFF F0xFF<br>
+	 * 0.0xFE : 0.0x3B<br>
+	 * (=0.254) hours : (=0.59) minutes Remaining time unknown=0xFF :<br>
+	 * 0xFF<br>
 	 * <br>
-	 * Data type : unsign ed<br>
+	 * Data type : unsign ed
+char
+×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1177,19 +1104,20 @@ char
 	 * <br>
 	 * Contents of property :<br>
 	 * Acquires the remaining drying<br>
-	 * time .in .the . gHH:MM h .format.<br>
+	 * time in the “HH:MM” format.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0xFE F0-0x3B<br>
-	 * (=0-254) hours F(=0-59) minutes<br>
-	 * Remaining time<br>
-	 * unknown=0xFF F0xFF<br>
+	 * 0.0xFE : 0.0x3B<br>
+	 * (=0.254) hours : (=0.59) minutes Remaining time unknown=0xFF :<br>
+	 * 0xFF<br>
 	 * <br>
-	 * Data type : unsign ed<br>
+	 * Data type : unsign ed
+char
+×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1209,17 +1137,17 @@ char
 	 * Used to acquire the time elapsed on the ON timer after the ON timer was activated.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0xFF: 0 to 0x3B<br>
-	 * (= 0 to 255): (= 0 to 59)<br>
+	 * 0.0xFF: 0.0x3B<br>
+	 * (= 0.255): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigne d
+	 * Data type : unsign ed
 char
- ~2<br>
+×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : Hour
-minut es<br>
+	 * Unit : Hour minu
+tes<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1236,17 +1164,17 @@ minut es<br>
 	 * Used to acquire the time elapsed on the ON timer after the ON timer was activated.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0xFF: 0 to 0x3B<br>
-	 * (= 0 to 255): (= 0 to 59)<br>
+	 * 0.0xFF: 0.0x3B<br>
+	 * (= 0.255): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigne d
+	 * Data type : unsign ed
 char
- ~2<br>
+×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : Hour
-minut es<br>
+	 * Unit : Hour minu
+tes<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1267,22 +1195,21 @@ minut es<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <Absolute setting><br>
-	 * - 0x00 to 0x17: 0x00 to 0x3B<br>
-	 * (= 0 to 23 hours): (= 0 to 59 minutes)<br>
+	 * - 0x00.0x17: 0x00.0x3B<br>
+	 * (= 0.23 hours): (= 0.59 minutes)<br>
 	 * <Relative setting relative to the automatic setting><br>
-	 * - Automatic setting<br>
-	 * 0xFF: 0xFF<br>
+	 * - Automatic setting 0xFF: 0xFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA000 to 0xA03B: 1 to 60 minutes<br>
+	 * 0xA000.0xA03B: 1.60 minutes<br>
 	 * - Relative setting in the negative direction<br>
-	 * 0xC000 to 0xC03B: 1 to 60 minutes<br>
+	 * 0xC000.0xC03B: 1.60 minutes<br>
 	 * <br>
-	 * Data type : unsigne d char
- ~2<br>
+	 * Data type : unsign ed char
+×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : h,min<br>
+	 * Unit : h,mi n<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1300,22 +1227,21 @@ minut es<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <Absolute setting><br>
-	 * - 0x00 to 0x17: 0x00 to 0x3B<br>
-	 * (= 0 to 23 hours): (= 0 to 59 minutes)<br>
+	 * - 0x00.0x17: 0x00.0x3B<br>
+	 * (= 0.23 hours): (= 0.59 minutes)<br>
 	 * <Relative setting relative to the automatic setting><br>
-	 * - Automatic setting<br>
-	 * 0xFF: 0xFF<br>
+	 * - Automatic setting 0xFF: 0xFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA000 to 0xA03B: 1 to 60 minutes<br>
+	 * 0xA000.0xA03B: 1.60 minutes<br>
 	 * - Relative setting in the negative direction<br>
-	 * 0xC000 to 0xC03B: 1 to 60 minutes<br>
+	 * 0xC000.0xC03B: 1.60 minutes<br>
 	 * <br>
-	 * Data type : unsigne d char
- ~2<br>
+	 * Data type : unsign ed char
+×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : h,min<br>
+	 * Unit : h,mi n<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1333,22 +1259,21 @@ minut es<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <Absolute setting><br>
-	 * - 0x00 to 0x17: 0x00 to 0x3B<br>
-	 * (= 0 to 23 hours): (= 0 to 59 minutes)<br>
+	 * - 0x00.0x17: 0x00.0x3B<br>
+	 * (= 0.23 hours): (= 0.59 minutes)<br>
 	 * <Relative setting relative to the automatic setting><br>
-	 * - Automatic setting<br>
-	 * 0xFF: 0xFF<br>
+	 * - Automatic setting 0xFF: 0xFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA000 to 0xA03B: 1 to 60 minutes<br>
+	 * 0xA000.0xA03B: 1.60 minutes<br>
 	 * - Relative setting in the negative direction<br>
-	 * 0xC000 to 0xC03B: 1 to 60 minutes<br>
+	 * 0xC000.0xC03B: 1.60 minutes<br>
 	 * <br>
-	 * Data type : unsigne d char
- ~2<br>
+	 * Data type : unsign ed char
+×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : h,min<br>
+	 * Unit : h,mi n<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1368,34 +1293,17 @@ minut es<br>
 	 * Used to acquire the current stage of the washer and dryer cycle.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Washing = 0x41<br>
-	 * Rinsing = 0x42<br>
-	 * Spin drying = 0x43<br>
-	 * Suspended = 0x44<br>
+	 * Washing = 0x41 Rinsing = 0x42 Spin drying = 0x43 Suspended = 0x44<br>
 	 * Washing completed = 0x45<br>
 	 * Washing/drying (without wrinkling minimization) completed = 0x51<br>
 	 * Drying = 0x52<br>
-	 * Wrinkling minimization = 0x53<br>
-	 * Drying (with wrinkling minimization) completed = 0x54<br>
-	 * Standing by to start = 0x61<br>
-	 * 1st rinsing = 0x71<br>
-	 * 2nd rinsing = 0x72<br>
-	 * 3rd rinsing = 0x73<br>
-	 * 4th rinsing = 0x74<br>
-	 * 5th rinsing = 0x75<br>
-	 * 6th rinsing = 0x76<br>
-	 * 7th rinsing = 0x77<br>
-	 * 8th rinsing = 0x78<br>
-	 * 1st spin drying = 0x81<br>
-	 * 2nd spin drying = 0x82<br>
-	 * 3rd spin drying = 0x83<br>
-	 * 4th spin drying = 0x84<br>
-	 * 5th spin drying = 0x85<br>
-	 * 6th spin drying = 0x86<br>
-	 * 7th spin drying = 0x87<br>
-	 * 8th spin drying = 0x88<br>
+	 * Wrinkling minimization = 0x53 Drying (with wrinkling<br>
+	 * minimization) completed = 0x54<br>
+	 * Standing by to start = 0x61 1st rinsing = 0x71<br>
+	 * 2nd rinsing = 0x72 3rd rinsing = 0x73 4th rinsing = 0x74 5th rinsing = 0x75 6th rinsing = 0x76 7th rinsing = 0x77 8th rinsing = 0x78<br>
+	 * 1st spin drying = 0x81 2nd spin drying = 0x82 3rd spin drying = 0x83 4th spin drying = 0x84 5th spin drying = 0x85 6th spin drying = 0x86 7th spin drying = 0x87 8th spin drying = 0x88<br>
 	 * Preheat spin drying = 0x91<br>
-	 * Unique code defined by the manufature = 0xE0 to 0xEF<br>
+	 * Unique code defined by the manufacture = 0xE0.0xEF<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -1418,34 +1326,17 @@ minut es<br>
 	 * Used to acquire the current stage of the washer and dryer cycle.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Washing = 0x41<br>
-	 * Rinsing = 0x42<br>
-	 * Spin drying = 0x43<br>
-	 * Suspended = 0x44<br>
+	 * Washing = 0x41 Rinsing = 0x42 Spin drying = 0x43 Suspended = 0x44<br>
 	 * Washing completed = 0x45<br>
 	 * Washing/drying (without wrinkling minimization) completed = 0x51<br>
 	 * Drying = 0x52<br>
-	 * Wrinkling minimization = 0x53<br>
-	 * Drying (with wrinkling minimization) completed = 0x54<br>
-	 * Standing by to start = 0x61<br>
-	 * 1st rinsing = 0x71<br>
-	 * 2nd rinsing = 0x72<br>
-	 * 3rd rinsing = 0x73<br>
-	 * 4th rinsing = 0x74<br>
-	 * 5th rinsing = 0x75<br>
-	 * 6th rinsing = 0x76<br>
-	 * 7th rinsing = 0x77<br>
-	 * 8th rinsing = 0x78<br>
-	 * 1st spin drying = 0x81<br>
-	 * 2nd spin drying = 0x82<br>
-	 * 3rd spin drying = 0x83<br>
-	 * 4th spin drying = 0x84<br>
-	 * 5th spin drying = 0x85<br>
-	 * 6th spin drying = 0x86<br>
-	 * 7th spin drying = 0x87<br>
-	 * 8th spin drying = 0x88<br>
+	 * Wrinkling minimization = 0x53 Drying (with wrinkling<br>
+	 * minimization) completed = 0x54<br>
+	 * Standing by to start = 0x61 1st rinsing = 0x71<br>
+	 * 2nd rinsing = 0x72 3rd rinsing = 0x73 4th rinsing = 0x74 5th rinsing = 0x75 6th rinsing = 0x76 7th rinsing = 0x77 8th rinsing = 0x78<br>
+	 * 1st spin drying = 0x81 2nd spin drying = 0x82 3rd spin drying = 0x83 4th spin drying = 0x84 5th spin drying = 0x85 6th spin drying = 0x86 7th spin drying = 0x87 8th spin drying = 0x88<br>
 	 * Preheat spin drying = 0x91<br>
-	 * Unique code defined by the manufature = 0xE0 to 0xEF<br>
+	 * Unique code defined by the manufacture = 0xE0.0xEF<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -1472,14 +1363,13 @@ minut es<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <Absolute setting><br>
-	 * - 0x00 to 0x7F (0 to 127 liters)<br>
+	 * - 0x00.0x7F (0.127 liters)<br>
 	 * < Relative setting relative to the automatic setting ><br>
-	 * - Automatic setting<br>
-	 * 0xFF<br>
+	 * - Automatic setting 0xFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA0 to 0xBF: 1 to 32 liters<br>
+	 * 0xA0.0xBF: 1.32 liters<br>
 	 * - Relative setting in the negative direction<br>
-	 * 0xC0 to 0xDF (1 to 32 liters)<br>
+	 * 0xC0.0xDF (1.32 liters)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -1503,14 +1393,13 @@ minut es<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <Absolute setting><br>
-	 * - 0x00 to 0x7F (0 to 127 liters)<br>
+	 * - 0x00.0x7F (0.127 liters)<br>
 	 * < Relative setting relative to the automatic setting ><br>
-	 * - Automatic setting<br>
-	 * 0xFF<br>
+	 * - Automatic setting 0xFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA0 to 0xBF: 1 to 32 liters<br>
+	 * 0xA0.0xBF: 1.32 liters<br>
 	 * - Relative setting in the negative direction<br>
-	 * 0xC0 to 0xDF (1 to 32 liters)<br>
+	 * 0xC0.0xDF (1.32 liters)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -1534,14 +1423,13 @@ minut es<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <Absolute setting><br>
-	 * - 0x00 to 0x7F (0 to 127 liters)<br>
+	 * - 0x00.0x7F (0.127 liters)<br>
 	 * < Relative setting relative to the automatic setting ><br>
-	 * - Automatic setting<br>
-	 * 0xFF<br>
+	 * - Automatic setting 0xFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA0 to 0xBF: 1 to 32 liters<br>
+	 * 0xA0.0xBF: 1.32 liters<br>
 	 * - Relative setting in the negative direction<br>
-	 * 0xC0 to 0xDF (1 to 32 liters)<br>
+	 * 0xC0.0xDF (1.32 liters)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -1568,21 +1456,20 @@ minut es<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <Absolute setting><br>
-	 * - 0x31 to 0x40 (16 levels)<br>
+	 * - 0x31.0x40 (16 levels)<br>
 	 * - 0x31 and 0x40 shall be used for the lowest and highest water levels, respectively.<br>
 	 * < Relative setting relative to the automatic setting ><br>
-	 * - Automatic setting<br>
-	 * 0xFF<br>
+	 * - Automatic setting 0xFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA0 to 0xA7: Levels 1 to 8<br>
+	 * 0xA0.0xA7: Levels 1.8<br>
 	 * - Relative setting in the negative direction<br>
-	 * 0xC0 to 0xC7: Levels 1 to 8<br>
+	 * 0xC0.0xC7: Levels 1. 8<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1600,21 +1487,20 @@ minut es<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <Absolute setting><br>
-	 * - 0x31 to 0x40 (16 levels)<br>
+	 * - 0x31.0x40 (16 levels)<br>
 	 * - 0x31 and 0x40 shall be used for the lowest and highest water levels, respectively.<br>
 	 * < Relative setting relative to the automatic setting ><br>
-	 * - Automatic setting<br>
-	 * 0xFF<br>
+	 * - Automatic setting 0xFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA0 to 0xA7: Levels 1 to 8<br>
+	 * 0xA0.0xA7: Levels 1.8<br>
 	 * - Relative setting in the negative direction<br>
-	 * 0xC0 to 0xC7: Levels 1 to 8<br>
+	 * 0xC0.0xC7: Levels 1. 8<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1632,21 +1518,20 @@ minut es<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <Absolute setting><br>
-	 * - 0x31 to 0x40 (16 levels)<br>
+	 * - 0x31.0x40 (16 levels)<br>
 	 * - 0x31 and 0x40 shall be used for the lowest and highest water levels, respectively.<br>
 	 * < Relative setting relative to the automatic setting ><br>
-	 * - Automatic setting<br>
-	 * 0xFF<br>
+	 * - Automatic setting 0xFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA0 to 0xA7: Levels 1 to 8<br>
+	 * 0xA0.0xA7: Levels 1.8<br>
 	 * - Relative setting in the negative direction<br>
-	 * 0xC0 to 0xC7: Levels 1 to 8<br>
+	 * 0xC0.0xC7: Levels 1. 8<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1667,20 +1552,20 @@ minut es<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <Absolute setting><br>
-	 * - 0x00 to 0x17: 0x00 to 0x3B<br>
-	 * (= 0 to 23 hours): (= 0 to 59 minutes)<br>
+	 * - 0x00.0x17: 0x00.0x3B<br>
+	 * (= 0.23 hours): (= 0.59 minutes)<br>
 	 * < Relative setting relative to the automatic setting ><br>
-	 * - Automatic setting<br>
-	 * 0xFF<br>
+	 * - Automatic setting 0xFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA000 to 0xA03B: 1 to 60 minutes<br>
+	 * 0xA000.0xA03B: 1.60 minutes<br>
 	 * Relative setting in the negative direction<br>
-	 * - 0xC000 to 0xC03B: 1 to 60 minutes<br>
+	 * - 0xC000.0xC03B: 1.60 minutes<br>
 	 * <br>
 	 * Data type : unsigned char
- ~2<br>
+×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : h,min<br>
 	 * <br>
@@ -1700,20 +1585,20 @@ minut es<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <Absolute setting><br>
-	 * - 0x00 to 0x17: 0x00 to 0x3B<br>
-	 * (= 0 to 23 hours): (= 0 to 59 minutes)<br>
+	 * - 0x00.0x17: 0x00.0x3B<br>
+	 * (= 0.23 hours): (= 0.59 minutes)<br>
 	 * < Relative setting relative to the automatic setting ><br>
-	 * - Automatic setting<br>
-	 * 0xFF<br>
+	 * - Automatic setting 0xFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA000 to 0xA03B: 1 to 60 minutes<br>
+	 * 0xA000.0xA03B: 1.60 minutes<br>
 	 * Relative setting in the negative direction<br>
-	 * - 0xC000 to 0xC03B: 1 to 60 minutes<br>
+	 * - 0xC000.0xC03B: 1.60 minutes<br>
 	 * <br>
 	 * Data type : unsigned char
- ~2<br>
+×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : h,min<br>
 	 * <br>
@@ -1733,20 +1618,20 @@ minut es<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <Absolute setting><br>
-	 * - 0x00 to 0x17: 0x00 to 0x3B<br>
-	 * (= 0 to 23 hours): (= 0 to 59 minutes)<br>
+	 * - 0x00.0x17: 0x00.0x3B<br>
+	 * (= 0.23 hours): (= 0.59 minutes)<br>
 	 * < Relative setting relative to the automatic setting ><br>
-	 * - Automatic setting<br>
-	 * 0xFF<br>
+	 * - Automatic setting 0xFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA000 to 0xA03B: 1 to 60 minutes<br>
+	 * 0xA000.0xA03B: 1.60 minutes<br>
 	 * Relative setting in the negative direction<br>
-	 * - 0xC000 to 0xC03B: 1 to 60 minutes<br>
+	 * - 0xC000.0xC03B: 1.60 minutes<br>
 	 * <br>
 	 * Data type : unsigned char
- ~2<br>
+×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : h,min<br>
 	 * <br>
@@ -1760,7 +1645,7 @@ minut es<br>
 		return true;
 	}
 	/**
-	 * Property name :  gNumber of times of rinsing h setting<br>
+	 * Property name : “Number of times of rinsing” setting<br>
 	 * <br>
 	 * EPC : 0xE6<br>
 	 * <br>
@@ -1768,23 +1653,23 @@ minut es<br>
 	 * Used to specify the number of times of rinsing and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 8 times (0x00 to 0x08)<br>
+	 * 0.8 times (0x00.0x08)<br>
 	 * Automatic = 0xFF<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setGnumberOfTimesOfRinsingHSetting(byte[] edt) {return false;}
+	protected boolean setNumberOfTimesOfRinsingSetting(byte[] edt) {return false;}
 	/**
-	 * Property name :  gNumber of times of rinsing h setting<br>
+	 * Property name : “Number of times of rinsing” setting<br>
 	 * <br>
 	 * EPC : 0xE6<br>
 	 * <br>
@@ -1792,23 +1677,23 @@ minut es<br>
 	 * Used to specify the number of times of rinsing and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 8 times (0x00 to 0x08)<br>
+	 * 0.8 times (0x00.0x08)<br>
 	 * Automatic = 0xFF<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getGnumberOfTimesOfRinsingHSetting() {return null;}
+	protected byte[] getNumberOfTimesOfRinsingSetting() {return null;}
 	/**
-	 * Property name :  gNumber of times of rinsing h setting<br>
+	 * Property name : “Number of times of rinsing” setting<br>
 	 * <br>
 	 * EPC : 0xE6<br>
 	 * <br>
@@ -1816,21 +1701,21 @@ minut es<br>
 	 * Used to specify the number of times of rinsing and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 8 times (0x00 to 0x08)<br>
+	 * 0.8 times (0x00.0x08)<br>
 	 * Automatic = 0xFF<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidGnumberOfTimesOfRinsingHSetting(byte[] edt) {
+	protected boolean isValidNumberOfTimesOfRinsingSetting(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
@@ -1850,11 +1735,12 @@ minut es<br>
 	 * 0011: Shower rinsing<br>
 	 * <br>
 	 * Data type : unsigned char
- ~4<br>
+×4<br>
 	 * <br>
-	 * Data size : 4 byte<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1878,11 +1764,12 @@ minut es<br>
 	 * 0011: Shower rinsing<br>
 	 * <br>
 	 * Data type : unsigned char
- ~4<br>
+×4<br>
 	 * <br>
-	 * Data size : 4 byte<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1906,11 +1793,12 @@ minut es<br>
 	 * 0011: Shower rinsing<br>
 	 * <br>
 	 * Data type : unsigned char
- ~4<br>
+×4<br>
 	 * <br>
-	 * Data size : 4 byte<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1931,14 +1819,13 @@ minut es<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <Absolute setting><br>
-	 * - 0x00 to 0x3B (0 to 59 minutes)<br>
+	 * - 0x00.0x3B (0.59 minutes)<br>
 	 * < Relative setting relative to the automatic setting ><br>
-	 * - Automatic setting<br>
-	 * 0xFF<br>
+	 * - Automatic setting 0xFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA0 to 0xBF: 1 to 32 minutes<br>
+	 * 0xA0.0xBF: 1.32 minutes<br>
 	 * - Relative setting in the negative direction<br>
-	 * 0xC0 to 0xDF: 1 to 32 minute<br>
+	 * 0xC0.0xDF: 1.32 minute<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -1962,14 +1849,13 @@ minut es<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <Absolute setting><br>
-	 * - 0x00 to 0x3B (0 to 59 minutes)<br>
+	 * - 0x00.0x3B (0.59 minutes)<br>
 	 * < Relative setting relative to the automatic setting ><br>
-	 * - Automatic setting<br>
-	 * 0xFF<br>
+	 * - Automatic setting 0xFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA0 to 0xBF: 1 to 32 minutes<br>
+	 * 0xA0.0xBF: 1.32 minutes<br>
 	 * - Relative setting in the negative direction<br>
-	 * 0xC0 to 0xDF: 1 to 32 minute<br>
+	 * 0xC0.0xDF: 1.32 minute<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -1993,14 +1879,13 @@ minut es<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <Absolute setting><br>
-	 * - 0x00 to 0x3B (0 to 59 minutes)<br>
+	 * - 0x00.0x3B (0.59 minutes)<br>
 	 * < Relative setting relative to the automatic setting ><br>
-	 * - Automatic setting<br>
-	 * 0xFF<br>
+	 * - Automatic setting 0xFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA0 to 0xBF: 1 to 32 minutes<br>
+	 * 0xA0.0xBF: 1.32 minutes<br>
 	 * - Relative setting in the negative direction<br>
-	 * 0xC0 to 0xDF: 1 to 32 minute<br>
+	 * 0xC0.0xDF: 1.32 minute<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -2027,20 +1912,20 @@ minut es<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <Absolute setting><br>
-	 * - 0x00 to 0x17: 0x00 to 0x3B<br>
-	 * (= 0 to 23 hours): (= 0 to 59 minutes)<br>
+	 * - 0x00.0x17: 0x00.0x3B<br>
+	 * (= 0.23 hours): (= 0.59 minutes)<br>
 	 * < Relative setting relative to the automatic setting ><br>
-	 * - Automatic setting<br>
-	 * 0xFF: 0xFF<br>
+	 * - Automatic setting 0xFF: 0xFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA000 to 0xA03B: 1 to 60 minutes<br>
+	 * 0xA000.0xA03B: 1.60 minutes<br>
 	 * - Relative setting in the negative direction<br>
-	 * 0xC000 to 0xC03B: 1 to 60 minutes<br>
+	 * 0xC000.0xC03B: 1.60 minutes<br>
 	 * <br>
 	 * Data type : unsigned char
- ~2<br>
+×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : h,min<br>
 	 * <br>
@@ -2060,20 +1945,20 @@ minut es<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <Absolute setting><br>
-	 * - 0x00 to 0x17: 0x00 to 0x3B<br>
-	 * (= 0 to 23 hours): (= 0 to 59 minutes)<br>
+	 * - 0x00.0x17: 0x00.0x3B<br>
+	 * (= 0.23 hours): (= 0.59 minutes)<br>
 	 * < Relative setting relative to the automatic setting ><br>
-	 * - Automatic setting<br>
-	 * 0xFF: 0xFF<br>
+	 * - Automatic setting 0xFF: 0xFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA000 to 0xA03B: 1 to 60 minutes<br>
+	 * 0xA000.0xA03B: 1.60 minutes<br>
 	 * - Relative setting in the negative direction<br>
-	 * 0xC000 to 0xC03B: 1 to 60 minutes<br>
+	 * 0xC000.0xC03B: 1.60 minutes<br>
 	 * <br>
 	 * Data type : unsigned char
- ~2<br>
+×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : h,min<br>
 	 * <br>
@@ -2093,20 +1978,20 @@ minut es<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <Absolute setting><br>
-	 * - 0x00 to 0x17: 0x00 to 0x3B<br>
-	 * (= 0 to 23 hours): (= 0 to 59 minutes)<br>
+	 * - 0x00.0x17: 0x00.0x3B<br>
+	 * (= 0.23 hours): (= 0.59 minutes)<br>
 	 * < Relative setting relative to the automatic setting ><br>
-	 * - Automatic setting<br>
-	 * 0xFF: 0xFF<br>
+	 * - Automatic setting 0xFF: 0xFF<br>
 	 * - Relative setting in the positive direction<br>
-	 * 0xA000 to 0xA03B: 1 to 60 minutes<br>
+	 * 0xA000.0xA03B: 1.60 minutes<br>
 	 * - Relative setting in the negative direction<br>
-	 * 0xC000 to 0xC03B: 1 to 60 minutes<br>
+	 * 0xC000.0xC03B: 1.60 minutes<br>
 	 * <br>
 	 * Data type : unsigned char
- ~2<br>
+×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : h,min<br>
 	 * <br>
@@ -2125,10 +2010,10 @@ minut es<br>
 	 * EPC : 0xEA<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the temperature of laundry water in   and to acquire the current setting.<br>
+	 * Used to specify the temperature of laundry water in .C and to acquire the current  setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 100  C (0x00 to 0x64)<br>
+	 * 0.100°C (0x00.0x64)<br>
 	 * Not to use warm water = 0xFE Automatic water temperature setting<br>
 	 * = 0xFF<br>
 	 * <br>
@@ -2136,7 +2021,7 @@ minut es<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit :   <br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2150,10 +2035,10 @@ minut es<br>
 	 * EPC : 0xEA<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the temperature of laundry water in   and to acquire the current setting.<br>
+	 * Used to specify the temperature of laundry water in .C and to acquire the current  setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 100  C (0x00 to 0x64)<br>
+	 * 0.100°C (0x00.0x64)<br>
 	 * Not to use warm water = 0xFE Automatic water temperature setting<br>
 	 * = 0xFF<br>
 	 * <br>
@@ -2161,7 +2046,7 @@ minut es<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit :   <br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2175,10 +2060,10 @@ minut es<br>
 	 * EPC : 0xEA<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the temperature of laundry water in   and to acquire the current setting.<br>
+	 * Used to specify the temperature of laundry water in .C and to acquire the current  setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 100  C (0x00 to 0x64)<br>
+	 * 0.100°C (0x00.0x64)<br>
 	 * Not to use warm water = 0xFE Automatic water temperature setting<br>
 	 * = 0xFF<br>
 	 * <br>
@@ -2186,7 +2071,7 @@ minut es<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit :   <br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2206,11 +2091,10 @@ minut es<br>
 	 * Used to specify whether or not, and when, to recycle used bathtub water, and acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Bathtub water not used   : 0x40<br>
-	 * Washing only                      : 0x41<br>
-	 * Rinsing only (excluding the final rinsing)                               : 0x42<br>
-	 * All rinsing processes        : 0x43<br>
-	 * Washing + rinsing (excluding the final rinsing)                       : 0x44<br>
+	 * Bathtub water not used   : 0x40 Washing only                     : 0x41 Rinsing only (excluding the final<br>
+	 * rinsing)                               : 0x42<br>
+	 * All rinsing processes        : 0x43 Washing + rinsing (excluding the<br>
+	 * final rinsing)                       : 0x44<br>
 	 * Washing + all rinsing<br>
 	 * processes                            : 0x45<br>
 	 * <br>
@@ -2218,7 +2102,7 @@ minut es<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2235,11 +2119,10 @@ minut es<br>
 	 * Used to specify whether or not, and when, to recycle used bathtub water, and acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Bathtub water not used   : 0x40<br>
-	 * Washing only                      : 0x41<br>
-	 * Rinsing only (excluding the final rinsing)                               : 0x42<br>
-	 * All rinsing processes        : 0x43<br>
-	 * Washing + rinsing (excluding the final rinsing)                       : 0x44<br>
+	 * Bathtub water not used   : 0x40 Washing only                     : 0x41 Rinsing only (excluding the final<br>
+	 * rinsing)                               : 0x42<br>
+	 * All rinsing processes        : 0x43 Washing + rinsing (excluding the<br>
+	 * final rinsing)                       : 0x44<br>
 	 * Washing + all rinsing<br>
 	 * processes                            : 0x45<br>
 	 * <br>
@@ -2247,7 +2130,7 @@ minut es<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2264,11 +2147,10 @@ minut es<br>
 	 * Used to specify whether or not, and when, to recycle used bathtub water, and acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Bathtub water not used   : 0x40<br>
-	 * Washing only                      : 0x41<br>
-	 * Rinsing only (excluding the final rinsing)                               : 0x42<br>
-	 * All rinsing processes        : 0x43<br>
-	 * Washing + rinsing (excluding the final rinsing)                       : 0x44<br>
+	 * Bathtub water not used   : 0x40 Washing only                     : 0x41 Rinsing only (excluding the final<br>
+	 * rinsing)                               : 0x42<br>
+	 * All rinsing processes        : 0x43 Washing + rinsing (excluding the<br>
+	 * final rinsing)                       : 0x44<br>
 	 * Washing + all rinsing<br>
 	 * processes                            : 0x45<br>
 	 * <br>
@@ -2276,7 +2158,7 @@ minut es<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2296,16 +2178,14 @@ minut es<br>
 	 * Used to specify whether or not to use the wrinkling minimization function, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Wrinkling minimization function<br>
-	 * ON                  : 0x41<br>
-	 * Wrinkling minimization function<br>
-	 * OFF                : 0x42<br>
+	 * Wrinkling minimization function ON                  : 0x41<br>
+	 * Wrinkling minimization function OFF                : 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2322,16 +2202,14 @@ minut es<br>
 	 * Used to specify whether or not to use the wrinkling minimization function, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Wrinkling minimization function<br>
-	 * ON                  : 0x41<br>
-	 * Wrinkling minimization function<br>
-	 * OFF                : 0x42<br>
+	 * Wrinkling minimization function ON                  : 0x41<br>
+	 * Wrinkling minimization function OFF                : 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2348,16 +2226,14 @@ minut es<br>
 	 * Used to specify whether or not to use the wrinkling minimization function, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Wrinkling minimization function<br>
-	 * ON                  : 0x41<br>
-	 * Wrinkling minimization function<br>
-	 * OFF                : 0x42<br>
+	 * Wrinkling minimization function ON                  : 0x41<br>
+	 * Wrinkling minimization function OFF                : 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2374,21 +2250,19 @@ minut es<br>
 	 * EPC : 0xED<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire the time remaining to complete the current washer and<br>
-	 * dryer .cycle .in .the . gHH: .MM h .format.<br>
+	 * Used to acquire the time remaining to complete the current washer and dryer cycle in the “HH: MM” format.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0xFE: 0 to 0x3B<br>
-	 * (= 0 to 254 hours): (= 0 to 59 minutes)<br>
-	 * Remaining time unknown = 0xFF:<br>
+	 * 0.0xFE: 0.0x3B<br>
+	 * (= 0.254 hours): (= 0.59 minutes) Remaining time unknown = 0xFF:<br>
 	 * 0xFF<br>
 	 * <br>
 	 * Data type : unsigned char
- ~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2402,21 +2276,19 @@ minut es<br>
 	 * EPC : 0xED<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire the time remaining to complete the current washer and<br>
-	 * dryer .cycle .in .the . gHH: .MM h .format.<br>
+	 * Used to acquire the time remaining to complete the current washer and dryer cycle in the “HH: MM” format.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0xFE: 0 to 0x3B<br>
-	 * (= 0 to 254 hours): (= 0 to 59 minutes)<br>
-	 * Remaining time unknown = 0xFF:<br>
+	 * 0.0xFE: 0.0x3B<br>
+	 * (= 0.254 hours): (= 0.59 minutes) Remaining time unknown = 0xFF:<br>
 	 * 0xFF<br>
 	 * <br>
 	 * Data type : unsigned char
- ~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2443,7 +2315,7 @@ minut es<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2467,7 +2339,7 @@ minut es<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2491,7 +2363,7 @@ minut es<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2513,43 +2385,39 @@ minut es<br>
 	 * Value range (decimal notation) :<br>
 	 * Bytes 1 and 2: This property indicates the available<br>
 	 * items in a bitmap format.<br>
-	 * Byte 3: Presoaking<br>
-	 * With presoaking: 0x41<br>
+	 * Byte 3: Presoaking With presoaking: 0x41<br>
 	 * Without presoaking: 0x42<br>
-	 * Bytes 4 and 5: Washing time The value of the  gwashing time setting h property shall be referenced.<br>
-	 * Byte 6: Number of times of rinsing<br>
-	 * The value of the  g fnumber of times of rinsing f setting h property shall be referenced.<br>
-	 * Bytes 7 through 10: Rinsing process The value of the  grinsing process setting h property shall be referenced.<br>
+	 * Bytes 4 and 5: Washing time The value of the “washing time<br>
+	 * setting” property shall be referenced.<br>
+	 * Byte 6: Number of times of rinsing The value of the “’number of times of<br>
+	 * rinsing’ setting” property shall be referenced.<br>
+	 * Bytes 7 through 10: Rinsing process The value of the “rinsing process setting” property shall be referenced.<br>
 	 * Byte 11: Spin drying time<br>
-	 * The value of the  gspin drying time setting h property shall be referenced.<br>
+	 * The value of the “spin drying time setting” property shall be referenced.<br>
 	 * Bytes 12 and 13: Drying time<br>
-	 * The value of the  hdrying time setting h<br>
-	 * property shall be referenced.<br>
-	 * Byte 14: Warm water setting The value of the  gwarm water setting h property shall be referenced.<br>
-	 * Byte 15: Water volume setting 1<br>
-	 * The value of the  gwater volume setting 1 h property shall be referenced.<br>
-	 * Byte 16: Water volume setting 2<br>
-	 * The value of the  gwater volume setting 2 h property shall be referenced.<br>
+	 * The value of the 'drying time setting” property shall be referenced.<br>
+	 * Byte 14: Warm water setting The value of the “warm water<br>
+	 * setting” property shall be referenced.<br>
+	 * Byte 15: Water volume setting 1 The value of the “water volume setting 1” property shall be referenced.<br>
+	 * Byte 16: Water volume setting 2 The value of the “water volume setting 2” property shall be referenced.<br>
 	 * Byte 17: Bathtub water recycle setting<br>
-	 * The value of the  gbathtub water recycle setting h property<br>
-	 * shall be referenced.<br>
-	 * Byte 18: Water flow rate setting The value of the  gwater flow rate setting h property shall be referenced.<br>
-	 * Bytes 19 and 20:  gRotation speed for spin drying h setting<br>
-	 * The value of the  g frotation speed for spin drying f setting h property<br>
-	 * shall be referenced.<br>
-	 * Byte 21:  gDegree of drying h setting The value of the  g fdegree of drying f setting h property shall be referenced. Bytes 22 and 23: Presoaking time setting<br>
-	 * The value of the  gpresoaking time setting h property shall be referenced.<br>
-	 * Byte 24: Wrinkling minimization setting<br>
-	 * The value of the  gwrinkling<br>
-	 * minimization setting h property shall be referenced.<br>
+	 * The value of the “bathtub water recycle setting” property shall be referenced.<br>
+	 * Byte 18: Water flow rate setting The value of the “water flow rate<br>
+	 * setting” property shall be referenced.<br>
+	 * Bytes 19 and 20: “Rotation speed for spin drying” setting<br>
+	 * The value of the “’rotation speed for spin drying’ setting” property shall be referenced.<br>
+	 * Byte 21: “Degree of drying” setting The value of the “’degree of drying’ setting” property shall be referenced. Bytes 22 and 23: Presoaking time setting<br>
+	 * The value of the “presoaking time setting” property shall be referenced. Byte 24: Wrinkling minimization setting<br>
+	 * The value of the “wrinkling minimization setting” property shall<br>
+	 * be referenced.<br>
 	 * <br>
-	 * Data type : unsigned
-Char
- ~24<br>
+	 * Data type : unsigned Char
+×24<br>
 	 * <br>
-	 * Data size : 24 byte<br>
+	 * Data size : 24
+bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2568,43 +2436,39 @@ Char
 	 * Value range (decimal notation) :<br>
 	 * Bytes 1 and 2: This property indicates the available<br>
 	 * items in a bitmap format.<br>
-	 * Byte 3: Presoaking<br>
-	 * With presoaking: 0x41<br>
+	 * Byte 3: Presoaking With presoaking: 0x41<br>
 	 * Without presoaking: 0x42<br>
-	 * Bytes 4 and 5: Washing time The value of the  gwashing time setting h property shall be referenced.<br>
-	 * Byte 6: Number of times of rinsing<br>
-	 * The value of the  g fnumber of times of rinsing f setting h property shall be referenced.<br>
-	 * Bytes 7 through 10: Rinsing process The value of the  grinsing process setting h property shall be referenced.<br>
+	 * Bytes 4 and 5: Washing time The value of the “washing time<br>
+	 * setting” property shall be referenced.<br>
+	 * Byte 6: Number of times of rinsing The value of the “’number of times of<br>
+	 * rinsing’ setting” property shall be referenced.<br>
+	 * Bytes 7 through 10: Rinsing process The value of the “rinsing process setting” property shall be referenced.<br>
 	 * Byte 11: Spin drying time<br>
-	 * The value of the  gspin drying time setting h property shall be referenced.<br>
+	 * The value of the “spin drying time setting” property shall be referenced.<br>
 	 * Bytes 12 and 13: Drying time<br>
-	 * The value of the  hdrying time setting h<br>
-	 * property shall be referenced.<br>
-	 * Byte 14: Warm water setting The value of the  gwarm water setting h property shall be referenced.<br>
-	 * Byte 15: Water volume setting 1<br>
-	 * The value of the  gwater volume setting 1 h property shall be referenced.<br>
-	 * Byte 16: Water volume setting 2<br>
-	 * The value of the  gwater volume setting 2 h property shall be referenced.<br>
+	 * The value of the 'drying time setting” property shall be referenced.<br>
+	 * Byte 14: Warm water setting The value of the “warm water<br>
+	 * setting” property shall be referenced.<br>
+	 * Byte 15: Water volume setting 1 The value of the “water volume setting 1” property shall be referenced.<br>
+	 * Byte 16: Water volume setting 2 The value of the “water volume setting 2” property shall be referenced.<br>
 	 * Byte 17: Bathtub water recycle setting<br>
-	 * The value of the  gbathtub water recycle setting h property<br>
-	 * shall be referenced.<br>
-	 * Byte 18: Water flow rate setting The value of the  gwater flow rate setting h property shall be referenced.<br>
-	 * Bytes 19 and 20:  gRotation speed for spin drying h setting<br>
-	 * The value of the  g frotation speed for spin drying f setting h property<br>
-	 * shall be referenced.<br>
-	 * Byte 21:  gDegree of drying h setting The value of the  g fdegree of drying f setting h property shall be referenced. Bytes 22 and 23: Presoaking time setting<br>
-	 * The value of the  gpresoaking time setting h property shall be referenced.<br>
-	 * Byte 24: Wrinkling minimization setting<br>
-	 * The value of the  gwrinkling<br>
-	 * minimization setting h property shall be referenced.<br>
+	 * The value of the “bathtub water recycle setting” property shall be referenced.<br>
+	 * Byte 18: Water flow rate setting The value of the “water flow rate<br>
+	 * setting” property shall be referenced.<br>
+	 * Bytes 19 and 20: “Rotation speed for spin drying” setting<br>
+	 * The value of the “’rotation speed for spin drying’ setting” property shall be referenced.<br>
+	 * Byte 21: “Degree of drying” setting The value of the “’degree of drying’ setting” property shall be referenced. Bytes 22 and 23: Presoaking time setting<br>
+	 * The value of the “presoaking time setting” property shall be referenced. Byte 24: Wrinkling minimization setting<br>
+	 * The value of the “wrinkling minimization setting” property shall<br>
+	 * be referenced.<br>
 	 * <br>
-	 * Data type : unsigned
-Char
- ~24<br>
+	 * Data type : unsigned Char
+×24<br>
 	 * <br>
-	 * Data size : 24 byte<br>
+	 * Data size : 24
+bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2624,14 +2488,14 @@ Char
 	 * Used to specify whether or not to use the ON timer-based reservation function, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation ON = 0x41, reservation<br>
-	 * OFF = 0x42<br>
+	 * Reservation ON = 0x41, reservation OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 byte<br>
+	 * Data size : 1
+byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2648,14 +2512,14 @@ Char
 	 * Used to specify whether or not to use the ON timer-based reservation function, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation ON = 0x41, reservation<br>
-	 * OFF = 0x42<br>
+	 * Reservation ON = 0x41, reservation OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 byte<br>
+	 * Data size : 1
+byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2672,14 +2536,14 @@ Char
 	 * Used to specify whether or not to use the ON timer-based reservation function, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation ON = 0x41, reservation<br>
-	 * OFF = 0x42<br>
+	 * Reservation ON = 0x41, reservation OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 byte<br>
+	 * Data size : 1
+byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2699,15 +2563,15 @@ Char
 	 * Used to specify the time for the time-based reservation function of the ON timer and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
- ~2<br>
+×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2724,15 +2588,15 @@ Char
 	 * Used to specify the time for the time-based reservation function of the ON timer and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
- ~2<br>
+×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2749,15 +2613,15 @@ Char
 	 * Used to specify the time for the time-based reservation function of the ON timer and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
- ~2<br>
+×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2777,15 +2641,16 @@ Char
 	 * Used to specify the relative time for the relative time-based reservation function of the ON timer and to acquire the time remaining for the current reservation.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0xFF: 0 to 0x3B<br>
-	 * (= 0 to 255): (= 0 to 59)<br>
+	 * 0.0xFF: 0.0x3B<br>
+	 * (= 0.255): (= 0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
- ~2<br>
+×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2802,15 +2667,16 @@ Char
 	 * Used to specify the relative time for the relative time-based reservation function of the ON timer and to acquire the time remaining for the current reservation.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0xFF: 0 to 0x3B<br>
-	 * (= 0 to 255): (= 0 to 59)<br>
+	 * 0.0xFF: 0.0x3B<br>
+	 * (= 0.255): (= 0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
- ~2<br>
+×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2827,15 +2693,16 @@ Char
 	 * Used to specify the relative time for the relative time-based reservation function of the ON timer and to acquire the time remaining for the current reservation.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0xFF: 0 to 0x3B<br>
-	 * (= 0 to 255): (= 0 to 59)<br>
+	 * 0.0xFF: 0.0x3B<br>
+	 * (= 0.255): (= 0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
- ~2<br>
+×2<br>
 	 * <br>
-	 * Data size : 2 byte<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2858,13 +2725,13 @@ Char
 		case EPC_WASHER_AND_DRYER_CYCLE_SETTING2_NOTE1 : return setWasherAndDryerCycleSetting2Note1(property.edt);
 		case EPC_DRYING_CYCLE_SETTING_NOTE1 : return setDryingCycleSettingNote1(property.edt);
 		case EPC_WATER_FLOW_RATE_SETTING : return setWaterFlowRateSetting(property.edt);
-		case EPC_GROTATION_SPEED_FOR_SPIN_DRYING_H_SETTING : return setGrotationSpeedForSpinDryingHSetting(property.edt);
-		case EPC_GDEGREE_OF_DRYING_H_SETTING : return setGdegreeOfDryingHSetting(property.edt);
+		case EPC_ROTATION_SPEED_FOR_SPIN_DRYING_SETTING : return setRotationSpeedForSpinDryingSetting(property.edt);
+		case EPC_DEGREE_OF_DRYING_SETTING : return setDegreeOfDryingSetting(property.edt);
 		case EPC_PRESOAKING_TIME_SETTING : return setPresoakingTimeSetting(property.edt);
 		case EPC_WATER_VOLUME_SETTING1 : return setWaterVolumeSetting1(property.edt);
 		case EPC_WATER_VOLUME_SETTING2 : return setWaterVolumeSetting2(property.edt);
 		case EPC_WASHING_TIME_SETTING : return setWashingTimeSetting(property.edt);
-		case EPC_GNUMBER_OF_TIMES_OF_RINSING_H_SETTING : return setGnumberOfTimesOfRinsingHSetting(property.edt);
+		case EPC_NUMBER_OF_TIMES_OF_RINSING_SETTING : return setNumberOfTimesOfRinsingSetting(property.edt);
 		case EPC_RINSING_PROCESS_SETTING : return setRinsingProcessSetting(property.edt);
 		case EPC_SPIN_DRYING_TIME_SETTING : return setSpinDryingTimeSetting(property.edt);
 		case EPC_DRYING_TIME_SETTING : return setDryingTimeSetting(property.edt);
@@ -2894,8 +2761,8 @@ Char
 		case EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST2 : return getWasherAndDryerCycleOptionList2();
 		case EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST3 : return getWasherAndDryerCycleOptionList3();
 		case EPC_WATER_FLOW_RATE_SETTING : return getWaterFlowRateSetting();
-		case EPC_GROTATION_SPEED_FOR_SPIN_DRYING_H_SETTING : return getGrotationSpeedForSpinDryingHSetting();
-		case EPC_GDEGREE_OF_DRYING_H_SETTING : return getGdegreeOfDryingHSetting();
+		case EPC_ROTATION_SPEED_FOR_SPIN_DRYING_SETTING : return getRotationSpeedForSpinDryingSetting();
+		case EPC_DEGREE_OF_DRYING_SETTING : return getDegreeOfDryingSetting();
 		case EPC_REMAINING_WASHING_TIME : return getRemainingWashingTime();
 		case EPC_REMAINING_DRYING_TIME : return getRemainingDryingTime();
 		case EPC_ELAPSED_TIME_ON_THE_ON_TIMER : return getElapsedTimeOnTheOnTimer();
@@ -2904,7 +2771,7 @@ Char
 		case EPC_WATER_VOLUME_SETTING1 : return getWaterVolumeSetting1();
 		case EPC_WATER_VOLUME_SETTING2 : return getWaterVolumeSetting2();
 		case EPC_WASHING_TIME_SETTING : return getWashingTimeSetting();
-		case EPC_GNUMBER_OF_TIMES_OF_RINSING_H_SETTING : return getGnumberOfTimesOfRinsingHSetting();
+		case EPC_NUMBER_OF_TIMES_OF_RINSING_SETTING : return getNumberOfTimesOfRinsingSetting();
 		case EPC_RINSING_PROCESS_SETTING : return getRinsingProcessSetting();
 		case EPC_SPIN_DRYING_TIME_SETTING : return getSpinDryingTimeSetting();
 		case EPC_DRYING_TIME_SETTING : return getDryingTimeSetting();
@@ -2936,8 +2803,8 @@ Char
 		case EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST2 : return isValidWasherAndDryerCycleOptionList2(property.edt);
 		case EPC_WASHER_AND_DRYER_CYCLE_OPTION_LIST3 : return isValidWasherAndDryerCycleOptionList3(property.edt);
 		case EPC_WATER_FLOW_RATE_SETTING : return isValidWaterFlowRateSetting(property.edt);
-		case EPC_GROTATION_SPEED_FOR_SPIN_DRYING_H_SETTING : return isValidGrotationSpeedForSpinDryingHSetting(property.edt);
-		case EPC_GDEGREE_OF_DRYING_H_SETTING : return isValidGdegreeOfDryingHSetting(property.edt);
+		case EPC_ROTATION_SPEED_FOR_SPIN_DRYING_SETTING : return isValidRotationSpeedForSpinDryingSetting(property.edt);
+		case EPC_DEGREE_OF_DRYING_SETTING : return isValidDegreeOfDryingSetting(property.edt);
 		case EPC_REMAINING_WASHING_TIME : return isValidRemainingWashingTime(property.edt);
 		case EPC_REMAINING_DRYING_TIME : return isValidRemainingDryingTime(property.edt);
 		case EPC_ELAPSED_TIME_ON_THE_ON_TIMER : return isValidElapsedTimeOnTheOnTimer(property.edt);
@@ -2946,7 +2813,7 @@ Char
 		case EPC_WATER_VOLUME_SETTING1 : return isValidWaterVolumeSetting1(property.edt);
 		case EPC_WATER_VOLUME_SETTING2 : return isValidWaterVolumeSetting2(property.edt);
 		case EPC_WASHING_TIME_SETTING : return isValidWashingTimeSetting(property.edt);
-		case EPC_GNUMBER_OF_TIMES_OF_RINSING_H_SETTING : return isValidGnumberOfTimesOfRinsingHSetting(property.edt);
+		case EPC_NUMBER_OF_TIMES_OF_RINSING_SETTING : return isValidNumberOfTimesOfRinsingSetting(property.edt);
 		case EPC_RINSING_PROCESS_SETTING : return isValidRinsingProcessSetting(property.edt);
 		case EPC_SPIN_DRYING_TIME_SETTING : return isValidSpinDryingTimeSetting(property.edt);
 		case EPC_DRYING_TIME_SETTING : return isValidDryingTimeSetting(property.edt);
@@ -3021,11 +2888,11 @@ Char
 			case EPC_WATER_FLOW_RATE_SETTING : 
 				onSetWaterFlowRateSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GROTATION_SPEED_FOR_SPIN_DRYING_H_SETTING : 
-				onSetGrotationSpeedForSpinDryingHSetting(eoj, tid, esv, property, success);
+			case EPC_ROTATION_SPEED_FOR_SPIN_DRYING_SETTING : 
+				onSetRotationSpeedForSpinDryingSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GDEGREE_OF_DRYING_H_SETTING : 
-				onSetGdegreeOfDryingHSetting(eoj, tid, esv, property, success);
+			case EPC_DEGREE_OF_DRYING_SETTING : 
+				onSetDegreeOfDryingSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_PRESOAKING_TIME_SETTING : 
 				onSetPresoakingTimeSetting(eoj, tid, esv, property, success);
@@ -3039,8 +2906,8 @@ Char
 			case EPC_WASHING_TIME_SETTING : 
 				onSetWashingTimeSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GNUMBER_OF_TIMES_OF_RINSING_H_SETTING : 
-				onSetGnumberOfTimesOfRinsingHSetting(eoj, tid, esv, property, success);
+			case EPC_NUMBER_OF_TIMES_OF_RINSING_SETTING : 
+				onSetNumberOfTimesOfRinsingSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_RINSING_PROCESS_SETTING : 
 				onSetRinsingProcessSetting(eoj, tid, esv, property, success);
@@ -3111,11 +2978,11 @@ Char
 			case EPC_WATER_FLOW_RATE_SETTING : 
 				onGetWaterFlowRateSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GROTATION_SPEED_FOR_SPIN_DRYING_H_SETTING : 
-				onGetGrotationSpeedForSpinDryingHSetting(eoj, tid, esv, property, success);
+			case EPC_ROTATION_SPEED_FOR_SPIN_DRYING_SETTING : 
+				onGetRotationSpeedForSpinDryingSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GDEGREE_OF_DRYING_H_SETTING : 
-				onGetGdegreeOfDryingHSetting(eoj, tid, esv, property, success);
+			case EPC_DEGREE_OF_DRYING_SETTING : 
+				onGetDegreeOfDryingSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_REMAINING_WASHING_TIME : 
 				onGetRemainingWashingTime(eoj, tid, esv, property, success);
@@ -3141,8 +3008,8 @@ Char
 			case EPC_WASHING_TIME_SETTING : 
 				onGetWashingTimeSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GNUMBER_OF_TIMES_OF_RINSING_H_SETTING : 
-				onGetGnumberOfTimesOfRinsingHSetting(eoj, tid, esv, property, success);
+			case EPC_NUMBER_OF_TIMES_OF_RINSING_SETTING : 
+				onGetNumberOfTimesOfRinsingSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_RINSING_PROCESS_SETTING : 
 				onGetRinsingProcessSetting(eoj, tid, esv, property, success);
@@ -3194,14 +3061,13 @@ Char
 		 * Used to acquire the status of the door/cover (i.e. open or closed).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Door/cover open = 0x41<br>
-		 * Door/cover closed = 0x42<br>
+		 * Door/cover open = 0x41 Door/cover closed = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3218,15 +3084,14 @@ Char
 		 * Used to specify whether to start or stop the washing, drying or washing and drying cycle, and to acquire the current status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Start/restart(ed) or in progress = 0x41<br>
-		 * Suspend(ed) = 0x42<br>
+		 * Start/restart(ed) or in progress = 0x41 Suspend(ed) = 0x42<br>
 		 * Stop(ped) = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3243,15 +3108,14 @@ Char
 		 * Used to specify whether to start or stop the washing, drying or washing and drying cycle, and to acquire the current status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Start/restart(ed) or in progress = 0x41<br>
-		 * Suspend(ed) = 0x42<br>
+		 * Start/restart(ed) or in progress = 0x41 Suspend(ed) = 0x42<br>
 		 * Stop(ped) = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3266,44 +3130,37 @@ Char
 		 * EPC : 0xD0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the washer and dryer cycle option(s) to use in the  gwashing and drying, h  gwashing h or  gdrying h mode and to acquire the current setting(s). The value ranges shall be as follows:<br>
-		 * Washing and drying couse: 0x21 to<br>
-		 * 0x3F<br>
-		 * Washing and drying cource maker original code: 0x40 to 0x4F<br>
-		 * Washing cource: 0x61 to 0x7F Washing cource maker original code:<br>
-		 * 0x80 to 0x8F<br>
-		 * Drying cource: 0xA1 to 0xBF Drying cource maker original code:<br>
-		 * 0xC0 to 0xDF<br>
+		 * Used to specify the washer and dryer cycle option(s) to use in the “washing and drying,” “washing” or “drying” mode and to acquire the current setting(s). The value ranges shall be as follows:<br>
+		 * Washing and drying course: 0x21.0x3F Washing and drying course maker<br>
+		 * original code: 0x40.0x4F<br>
+		 * Washing course: 0x61.0x7F Washing course maker original code:<br>
+		 * 0x80.0x8F<br>
+		 * Drying course: 0xA1.0xBF  Drying course maker original code:<br>
+		 * 0xC0.0xDF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * <Washing and drying cource><br>
-		 * Standard = 0x21, silent = 0x22, heavily soiled clothes = 0x23, hard-to-remove stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry =<br>
-		 * 0x28, clean rinsing = 0x29, ironing/business shirts = 0x2A, hang drying = 0x2B, thick clothes = 0x2C, disinfection = 0x2D, oil stains = 0x2E, memory = 0x2F, detergent saving =<br>
-		 * 0x30, lightly soiled clothes = 0x31, quick wash of small amount of laundry<br>
+		 * <Washing and drying course>  Standard = 0x21, silent = 0x22, heavily<br>
+		 * soiled clothes = 0x23, hard-to-remove<br>
+		 * stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry = 0x28, clean rinsing = 0x29, ironing/business shirts = 0x2A, hang drying = 0x2B, thick clothes = 0x2C, disinfection = 0x2D, oil stains = 0x2E, memory = 0x2F, detergent saving = 0x30, lightly soiled clothes = 0x31, quick wash of small amount of laundry<br>
 		 * = 0x32<br>
-		 * Washing cource / maker original cource<br>
-		 * = 0x40 to 0x4F<br>
-		 * <Washing cource><br>
-		 * Standard = 0x61, silent = 0x62, heavily soiled clothes = 0x63, hard-to-remove stains = 0x64, presoaking = 0x65, blankets = 0x66, soft = 0x67, dry =<br>
-		 * 0x68, clean rinsing = 0x69, disinfection<br>
-		 * = 0x6A, oil stains = 0x6B, memory =<br>
-		 * 0x6C, detergent saving = 0x6D, lightly soiled clothes = 0x6E, quick wash of small amount of laundry = 0x6F, tank cleaning = 0x7F<br>
-		 * Washing cource / maker original cource<br>
-		 * = 0x80 to 0x8F<br>
-		 * <Drying cource><br>
+		 * Washing course / maker original course<br>
+		 * = 0x40.0x4F<br>
+		 * <Washing course><br>
+		 * Standard = 0x61, silent = 0x62, heavily soiled clothes = 0x63, hard-to-remove stains = 0x64, presoaking = 0x65, blankets = 0x66, soft = 0x67, dry = 0x68, clean rinsing = 0x69, disinfection<br>
+		 * = 0x6A, oil stains = 0x6B, memory = 0x6C, detergent saving = 0x6D, lightly soiled clothes = 0x6E, quick wash of small amount of laundry = 0x6F, tank cleaning = 0x7F<br>
+		 * Washing course / maker original course<br>
+		 * = 0x80.0x8F<br>
+		 * <Drying course><br>
 		 * Standard = 0xA1, blankets = 0xA2, soft<br>
-		 * = 0xA3, dry = 0xA4, ironing/business shirts = 0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection =<br>
-		 * 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying =<br>
-		 * 0xAB, user definition of drying time =<br>
-		 * 0xAC, garment warming = 0xAD, tank drying = 0xBF<br>
-		 * Drying cource / maker original cource<br>
-		 * = 0xC0 to 0xCF<br>
+		 * = 0xA3, dry = 0xA4, ironing/business shirts = 0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection = 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying = 0xAB, user definition of drying time = 0xAC, garment warming = 0xAD, tank<br>
+		 * drying = 0xBF<br>
+		 * Drying course / maker original course = 0xC0.0xCF<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3318,44 +3175,37 @@ Char
 		 * EPC : 0xD0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the washer and dryer cycle option(s) to use in the  gwashing and drying, h  gwashing h or  gdrying h mode and to acquire the current setting(s). The value ranges shall be as follows:<br>
-		 * Washing and drying couse: 0x21 to<br>
-		 * 0x3F<br>
-		 * Washing and drying cource maker original code: 0x40 to 0x4F<br>
-		 * Washing cource: 0x61 to 0x7F Washing cource maker original code:<br>
-		 * 0x80 to 0x8F<br>
-		 * Drying cource: 0xA1 to 0xBF Drying cource maker original code:<br>
-		 * 0xC0 to 0xDF<br>
+		 * Used to specify the washer and dryer cycle option(s) to use in the “washing and drying,” “washing” or “drying” mode and to acquire the current setting(s). The value ranges shall be as follows:<br>
+		 * Washing and drying course: 0x21.0x3F Washing and drying course maker<br>
+		 * original code: 0x40.0x4F<br>
+		 * Washing course: 0x61.0x7F Washing course maker original code:<br>
+		 * 0x80.0x8F<br>
+		 * Drying course: 0xA1.0xBF  Drying course maker original code:<br>
+		 * 0xC0.0xDF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * <Washing and drying cource><br>
-		 * Standard = 0x21, silent = 0x22, heavily soiled clothes = 0x23, hard-to-remove stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry =<br>
-		 * 0x28, clean rinsing = 0x29, ironing/business shirts = 0x2A, hang drying = 0x2B, thick clothes = 0x2C, disinfection = 0x2D, oil stains = 0x2E, memory = 0x2F, detergent saving =<br>
-		 * 0x30, lightly soiled clothes = 0x31, quick wash of small amount of laundry<br>
+		 * <Washing and drying course>  Standard = 0x21, silent = 0x22, heavily<br>
+		 * soiled clothes = 0x23, hard-to-remove<br>
+		 * stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry = 0x28, clean rinsing = 0x29, ironing/business shirts = 0x2A, hang drying = 0x2B, thick clothes = 0x2C, disinfection = 0x2D, oil stains = 0x2E, memory = 0x2F, detergent saving = 0x30, lightly soiled clothes = 0x31, quick wash of small amount of laundry<br>
 		 * = 0x32<br>
-		 * Washing cource / maker original cource<br>
-		 * = 0x40 to 0x4F<br>
-		 * <Washing cource><br>
-		 * Standard = 0x61, silent = 0x62, heavily soiled clothes = 0x63, hard-to-remove stains = 0x64, presoaking = 0x65, blankets = 0x66, soft = 0x67, dry =<br>
-		 * 0x68, clean rinsing = 0x69, disinfection<br>
-		 * = 0x6A, oil stains = 0x6B, memory =<br>
-		 * 0x6C, detergent saving = 0x6D, lightly soiled clothes = 0x6E, quick wash of small amount of laundry = 0x6F, tank cleaning = 0x7F<br>
-		 * Washing cource / maker original cource<br>
-		 * = 0x80 to 0x8F<br>
-		 * <Drying cource><br>
+		 * Washing course / maker original course<br>
+		 * = 0x40.0x4F<br>
+		 * <Washing course><br>
+		 * Standard = 0x61, silent = 0x62, heavily soiled clothes = 0x63, hard-to-remove stains = 0x64, presoaking = 0x65, blankets = 0x66, soft = 0x67, dry = 0x68, clean rinsing = 0x69, disinfection<br>
+		 * = 0x6A, oil stains = 0x6B, memory = 0x6C, detergent saving = 0x6D, lightly soiled clothes = 0x6E, quick wash of small amount of laundry = 0x6F, tank cleaning = 0x7F<br>
+		 * Washing course / maker original course<br>
+		 * = 0x80.0x8F<br>
+		 * <Drying course><br>
 		 * Standard = 0xA1, blankets = 0xA2, soft<br>
-		 * = 0xA3, dry = 0xA4, ironing/business shirts = 0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection =<br>
-		 * 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying =<br>
-		 * 0xAB, user definition of drying time =<br>
-		 * 0xAC, garment warming = 0xAD, tank drying = 0xBF<br>
-		 * Drying cource / maker original cource<br>
-		 * = 0xC0 to 0xCF<br>
+		 * = 0xA3, dry = 0xA4, ironing/business shirts = 0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection = 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying = 0xAB, user definition of drying time = 0xAC, garment warming = 0xAD, tank<br>
+		 * drying = 0xBF<br>
+		 * Drying course / maker original course = 0xC0.0xCF<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3370,27 +3220,21 @@ Char
 		 * EPC : 0xD1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the washer and dryer cycle option(s) to use in the<br>
-		 *  gwashing and drying h mode, and to acquire the current setting(s). The drying option(s) to use shall be specified with the  gdrying cycle<br>
-		 * setting h property (EPC = 0xD2).<br>
-		 * Maker original code = 0xE0 to 0xEF<br>
+		 * Used to specify the washer and dryer cycle option(s) to use in the “washing and drying” mode, and to acquire the current setting(s). The drying option(s) to use shall be specified with the “drying cycle setting” property (EPC = 0xD2).<br>
+		 * Maker original code = 0xE0.0xEF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * No washing = 0x20, standard =<br>
-		 * 0x21, silent = 0x22, heavily soiled clothes = 0x23, hard-to-remove stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry =<br>
-		 * 0x28, clean rinsing = 0x29,<br>
-		 * disinfection = 0x2D, oil stains =<br>
-		 * 0x2E, memory = 0x2F, detergent saving = 0x30, lightly soiled clothes<br>
-		 * = 0x31, quick wash of small amount of laundry = 0x32, tank cleaning =<br>
-		 * 0x3F<br>
-		 * Maker original cource = 0xE0 to<br>
-		 * 0xEF<br>
+		 * No washing = 0x20, standard = 0x21, silent = 0x22, heavily soiled clothes = 0x23, hard-to-remove stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry = 0x28, clean rinsing<br>
+		 * = 0x29, disinfection = 0x2D, oil stains = 0x2E, memory = 0x2F, detergent saving = 0x30, lightly<br>
+		 * soiled clothes = 0x31, quick wash of small amount of laundry = 0x32, tank<br>
+		 * cleaning = 0x3F<br>
+		 * Maker original course = 0xE0.0xEF<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsig ned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3405,27 +3249,21 @@ Char
 		 * EPC : 0xD1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the washer and dryer cycle option(s) to use in the<br>
-		 *  gwashing and drying h mode, and to acquire the current setting(s). The drying option(s) to use shall be specified with the  gdrying cycle<br>
-		 * setting h property (EPC = 0xD2).<br>
-		 * Maker original code = 0xE0 to 0xEF<br>
+		 * Used to specify the washer and dryer cycle option(s) to use in the “washing and drying” mode, and to acquire the current setting(s). The drying option(s) to use shall be specified with the “drying cycle setting” property (EPC = 0xD2).<br>
+		 * Maker original code = 0xE0.0xEF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * No washing = 0x20, standard =<br>
-		 * 0x21, silent = 0x22, heavily soiled clothes = 0x23, hard-to-remove stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry =<br>
-		 * 0x28, clean rinsing = 0x29,<br>
-		 * disinfection = 0x2D, oil stains =<br>
-		 * 0x2E, memory = 0x2F, detergent saving = 0x30, lightly soiled clothes<br>
-		 * = 0x31, quick wash of small amount of laundry = 0x32, tank cleaning =<br>
-		 * 0x3F<br>
-		 * Maker original cource = 0xE0 to<br>
-		 * 0xEF<br>
+		 * No washing = 0x20, standard = 0x21, silent = 0x22, heavily soiled clothes = 0x23, hard-to-remove stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry = 0x28, clean rinsing<br>
+		 * = 0x29, disinfection = 0x2D, oil stains = 0x2E, memory = 0x2F, detergent saving = 0x30, lightly<br>
+		 * soiled clothes = 0x31, quick wash of small amount of laundry = 0x32, tank<br>
+		 * cleaning = 0x3F<br>
+		 * Maker original course = 0xE0.0xEF<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsig ned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3439,24 +3277,20 @@ Char
 		 * EPC : 0xD2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the drying cycle option(s) to use, and to acquire the current setting. For the  gwashing and drying h mode, the  gwasher and dryer cycle setting 2 h property (EPC =<br>
-		 * 0xD1) shall be used.<br>
+		 * Used to specify the drying cycle option(s) to use, and to acquire the current setting. For the “washing and drying” mode, the “washer and dryer cycle setting 2” property (EPC = 0xD1) shall be used.<br>
 		 * Maker original code = 0xE0 to 0xEF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * No drying = 0xA0, standard = 0xA1, blankets = 0xA2, soft = 0xA3, dry =<br>
-		 * 0xA4, ironing/business shirts =<br>
-		 * 0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection = 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying<br>
-		 * = 0xAB, user definition of drying time = 0xAC, garment warming =<br>
-		 * 0xAD, heater current limit = 0xAE, tank drying = 0xBF<br>
-		 * Maker original cource = 0xE0 to<br>
-		 * 0xEF<br>
+		 * No drying = 0xA0, standard = 0xA1, blankets = 0xA2, soft = 0xA3, dry = 0xA4, ironing/business shirts =  0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection = 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying = 0xAB, user definition of drying time<br>
+		 * = 0xAC, garment warming = 0xAD, heater current limit = 0xAE, tank<br>
+		 * drying = 0xBF<br>
+		 * Maker original course = 0xE0 0xEF<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsig ned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3470,24 +3304,20 @@ Char
 		 * EPC : 0xD2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the drying cycle option(s) to use, and to acquire the current setting. For the  gwashing and drying h mode, the  gwasher and dryer cycle setting 2 h property (EPC =<br>
-		 * 0xD1) shall be used.<br>
+		 * Used to specify the drying cycle option(s) to use, and to acquire the current setting. For the “washing and drying” mode, the “washer and dryer cycle setting 2” property (EPC = 0xD1) shall be used.<br>
 		 * Maker original code = 0xE0 to 0xEF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * No drying = 0xA0, standard = 0xA1, blankets = 0xA2, soft = 0xA3, dry =<br>
-		 * 0xA4, ironing/business shirts =<br>
-		 * 0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection = 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying<br>
-		 * = 0xAB, user definition of drying time = 0xAC, garment warming =<br>
-		 * 0xAD, heater current limit = 0xAE, tank drying = 0xBF<br>
-		 * Maker original cource = 0xE0 to<br>
-		 * 0xEF<br>
+		 * No drying = 0xA0, standard = 0xA1, blankets = 0xA2, soft = 0xA3, dry = 0xA4, ironing/business shirts =  0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection = 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying = 0xAB, user definition of drying time<br>
+		 * = 0xAC, garment warming = 0xAD, heater current limit = 0xAE, tank<br>
+		 * drying = 0xBF<br>
+		 * Maker original course = 0xE0 0xEF<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsig ned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3501,20 +3331,19 @@ Char
 		 * EPC : 0xD3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire a bitmap list of the washer and dryer cycle options that can be specified with the  gwasher and dryer cycle setting 1 h property.<br>
+		 * Used to acquire a bitmap list of the washer and dryer cycle options that can be specified with the “washer and dryer cycle setting 1” property.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * When the value contained in the bit for the desired washer and dryer<br>
-		 * cycle option is  g1 h, the option can be specified. When the value contained in the bit for the desired washer and dryer cycle option is  g0 h, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the<br>
-		 * detailed explanation.<br>
+		 * When the value contained in the bit for the desired washer and dryer cycle option is “1”, the option can be specified. When the value contained in the bit for the desired washer and dryer cycle option is “0”, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the detailed explanation.<br>
 		 * <br>
-		 * Data type : unsign ed
+		 * Data type : unsig ned
 char
- ~12,<br>
+×12,<br>
 		 * <br>
-		 * Data size : 12 byte<br>
+		 * Data size : 12
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3528,20 +3357,19 @@ char
 		 * EPC : 0xD4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire a bitmap list of the washer and dryer cycle options that can be specified with the  gwasher and dryer cycle setting 2 h property.<br>
+		 * Used to acquire a bitmap list of the washer and dryer cycle options that can be specified with the “washer and dryer cycle setting 2” property.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * When the value contained in the bit for the desired washer and dryer<br>
-		 * cycle option is  g1 h, the option can be specified. When the value contained in the bit for the desired washer and dryer cycle option is  g0 h, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the<br>
-		 * detailed explanation.<br>
+		 * When the value contained in the bit for the desired washer and dryer cycle option is “1”, the option can be specified. When the value contained in the bit for the desired washer and dryer cycle option is “0”, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the detailed explanation.<br>
 		 * <br>
-		 * Data type : unsign ed
+		 * Data type : unsig ned
 char
- ~4,<br>
+×4,<br>
 		 * <br>
-		 * Data size : 4 byte<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3555,18 +3383,19 @@ char
 		 * EPC : 0xD5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire a bitmap list of the drying cycle options that can be specified with the  gdrying cycle setting h property.<br>
+		 * Used to acquire a bitmap list of the drying cycle options that can be specified with the “drying cycle setting” property.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * When the value contained in the bit for the desired drying cycle option is  g1 h, the option can be specified. When the value contained in the bit for the desired drying cycle option is  g0 h, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the detailed explanation.<br>
+		 * When the value contained in the bit for the desired drying cycle option is “1”, the option can be specified. When the value contained in the bit for the desired drying cycle option is “0”, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the detailed explanation.<br>
 		 * <br>
-		 * Data type : unsign ed
+		 * Data type : unsig ned
 char
- ~4,<br>
+×4,<br>
 		 * <br>
-		 * Data size : 4 byte<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3583,22 +3412,20 @@ char
 		 * Used to specify the water flow rate by selecting a level from among the predefined levels and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * <Absolute setting><br>
-		 * 0x31 to 0x40 (16 levels)<br>
+		 * <Absolute setting> 0x31.0x40 (16 levels)<br>
 		 * * 0x31 and 0x40 shall be used for the lowest and highest flow rates, respectively.<br>
 		 * <Relative setting relative to the automatic setting><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA0 to 0xA7: Levels 1 to 8<br>
+		 * 0xA0.0xA7: Levels 1.8<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC0 to 0xC7: Levels 1 to 8<br>
+		 * 0xC0.0xC7: Levels 1.8<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsig ned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3615,22 +3442,20 @@ char
 		 * Used to specify the water flow rate by selecting a level from among the predefined levels and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * <Absolute setting><br>
-		 * 0x31 to 0x40 (16 levels)<br>
+		 * <Absolute setting> 0x31.0x40 (16 levels)<br>
 		 * * 0x31 and 0x40 shall be used for the lowest and highest flow rates, respectively.<br>
 		 * <Relative setting relative to the automatic setting><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA0 to 0xA7: Levels 1 to 8<br>
+		 * 0xA0.0xA7: Levels 1.8<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC0 to 0xC7: Levels 1 to 8<br>
+		 * 0xC0.0xC7: Levels 1.8<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsig ned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3639,8 +3464,7 @@ char
 		 */
 		protected void onGetWaterFlowRateSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name :  gRotation speed for spin drying h
-setting<br>
+		 * Property name : “Rotation speed for spin drying” setting<br>
 		 * <br>
 		 * EPC : 0xD7<br>
 		 * <br>
@@ -3649,30 +3473,29 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x0000 to 0x0FFF (0 to 4095 r/min.)<br>
+		 * - 0x0000. 0x0FFF (0.4095 r/min.)<br>
 		 * <Relative setting relative to the automatic setting><br>
-		 * - Automatic setting<br>
-		 * 0xFFFF<br>
+		 * - Automatic setting 0xFFFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA000 to 0xA7FF (1 to 2048 r/min.)<br>
+		 * 0xA000.0xA7FF (1.2048 r/min.)<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC000 to 0xC7FF (1 to 2048r/min.)<br>
+		 * 0xC000.0xC7FF (1.2048r/min.)<br>
 		 * <br>
-		 * Data type : unsign ed short<br>
+		 * Data type : unsig ned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetGrotationSpeedForSpinDryingHSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetRotationSpeedForSpinDryingSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name :  gRotation speed for spin drying h
-setting<br>
+		 * Property name : “Rotation speed for spin drying” setting<br>
 		 * <br>
 		 * EPC : 0xD7<br>
 		 * <br>
@@ -3681,29 +3504,29 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x0000 to 0x0FFF (0 to 4095 r/min.)<br>
+		 * - 0x0000. 0x0FFF (0.4095 r/min.)<br>
 		 * <Relative setting relative to the automatic setting><br>
-		 * - Automatic setting<br>
-		 * 0xFFFF<br>
+		 * - Automatic setting 0xFFFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA000 to 0xA7FF (1 to 2048 r/min.)<br>
+		 * 0xA000.0xA7FF (1.2048 r/min.)<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC000 to 0xC7FF (1 to 2048r/min.)<br>
+		 * 0xC000.0xC7FF (1.2048r/min.)<br>
 		 * <br>
-		 * Data type : unsign ed short<br>
+		 * Data type : unsig ned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetGrotationSpeedForSpinDryingHSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetRotationSpeedForSpinDryingSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name :  gDegree of drying h setting<br>
+		 * Property name : “Degree of drying” setting<br>
 		 * <br>
 		 * EPC : 0xD8<br>
 		 * <br>
@@ -3712,30 +3535,29 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x31 to 0x40 (16 levels)<br>
+		 * - 0x31.0x40 (16 levels)<br>
 		 * * 0x31 and 0x40 shall be used for the lowest and highest levels, respectively.<br>
 		 * <Relative setting relative to the automatic setting><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA0 to 0xA7: Levels 1 to 8<br>
+		 * 0xA0.0xA7: Levels 1.8<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC0 to 0xC7: Levels 1 to 8<br>
+		 * 0xC0.0xC7: Levels 1.8<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsig ned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetGdegreeOfDryingHSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetDegreeOfDryingSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name :  gDegree of drying h setting<br>
+		 * Property name : “Degree of drying” setting<br>
 		 * <br>
 		 * EPC : 0xD8<br>
 		 * <br>
@@ -3744,28 +3566,27 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x31 to 0x40 (16 levels)<br>
+		 * - 0x31.0x40 (16 levels)<br>
 		 * * 0x31 and 0x40 shall be used for the lowest and highest levels, respectively.<br>
 		 * <Relative setting relative to the automatic setting><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA0 to 0xA7: Levels 1 to 8<br>
+		 * 0xA0.0xA7: Levels 1.8<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC0 to 0xC7: Levels 1 to 8<br>
+		 * 0xC0.0xC7: Levels 1.8<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsig ned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetGdegreeOfDryingHSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetDegreeOfDryingSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Remaining washing time<br>
 		 * <br>
@@ -3773,21 +3594,20 @@ setting<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Acquires the remaining washing time<br>
-		 * in .the . gHH:MM h .format.<br>
+		 * in the “HH:MM” format.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0xFE F0-0x3B<br>
-		 * (=0-254) hours F(=0-59) minutes<br>
-		 * Remaining time unknown=0xFF F<br>
+		 * 0.0xFE : 0.0x3B<br>
+		 * (=0-254) hours : (=0-59) minutes Remaining time unknown=0xFF :<br>
 		 * 0xFF<br>
 		 * <br>
-		 * Data type : unsigne d
+		 * Data type : unsign ed
 char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3802,19 +3622,20 @@ char
 		 * <br>
 		 * Contents of property :<br>
 		 * Acquires the remaining drying<br>
-		 * time .in .the . gHH:MM h .format.<br>
+		 * time in the “HH:MM” format.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0xFE F0-0x3B<br>
-		 * (=0-254) hours F(=0-59) minutes<br>
-		 * Remaining time<br>
-		 * unknown=0xFF F0xFF<br>
+		 * 0.0xFE : 0.0x3B<br>
+		 * (=0.254) hours : (=0.59) minutes Remaining time unknown=0xFF :<br>
+		 * 0xFF<br>
 		 * <br>
-		 * Data type : unsign ed<br>
+		 * Data type : unsign ed
+char
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3831,17 +3652,17 @@ char
 		 * Used to acquire the time elapsed on the ON timer after the ON timer was activated.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigne d
+		 * Data type : unsign ed
 char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : Hour
-minut es<br>
+		 * Unit : Hour minu
+tes<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3859,22 +3680,21 @@ minut es<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x00 to 0x17: 0x00 to 0x3B<br>
-		 * (= 0 to 23 hours): (= 0 to 59 minutes)<br>
+		 * - 0x00.0x17: 0x00.0x3B<br>
+		 * (= 0.23 hours): (= 0.59 minutes)<br>
 		 * <Relative setting relative to the automatic setting><br>
-		 * - Automatic setting<br>
-		 * 0xFF: 0xFF<br>
+		 * - Automatic setting 0xFF: 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA000 to 0xA03B: 1 to 60 minutes<br>
+		 * 0xA000.0xA03B: 1.60 minutes<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC000 to 0xC03B: 1 to 60 minutes<br>
+		 * 0xC000.0xC03B: 1.60 minutes<br>
 		 * <br>
-		 * Data type : unsigne d char
- ~2<br>
+		 * Data type : unsign ed char
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : h,min<br>
+		 * Unit : h,mi n<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3892,22 +3712,21 @@ minut es<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x00 to 0x17: 0x00 to 0x3B<br>
-		 * (= 0 to 23 hours): (= 0 to 59 minutes)<br>
+		 * - 0x00.0x17: 0x00.0x3B<br>
+		 * (= 0.23 hours): (= 0.59 minutes)<br>
 		 * <Relative setting relative to the automatic setting><br>
-		 * - Automatic setting<br>
-		 * 0xFF: 0xFF<br>
+		 * - Automatic setting 0xFF: 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA000 to 0xA03B: 1 to 60 minutes<br>
+		 * 0xA000.0xA03B: 1.60 minutes<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC000 to 0xC03B: 1 to 60 minutes<br>
+		 * 0xC000.0xC03B: 1.60 minutes<br>
 		 * <br>
-		 * Data type : unsigne d char
- ~2<br>
+		 * Data type : unsign ed char
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : h,min<br>
+		 * Unit : h,mi n<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3924,34 +3743,17 @@ minut es<br>
 		 * Used to acquire the current stage of the washer and dryer cycle.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Washing = 0x41<br>
-		 * Rinsing = 0x42<br>
-		 * Spin drying = 0x43<br>
-		 * Suspended = 0x44<br>
+		 * Washing = 0x41 Rinsing = 0x42 Spin drying = 0x43 Suspended = 0x44<br>
 		 * Washing completed = 0x45<br>
 		 * Washing/drying (without wrinkling minimization) completed = 0x51<br>
 		 * Drying = 0x52<br>
-		 * Wrinkling minimization = 0x53<br>
-		 * Drying (with wrinkling minimization) completed = 0x54<br>
-		 * Standing by to start = 0x61<br>
-		 * 1st rinsing = 0x71<br>
-		 * 2nd rinsing = 0x72<br>
-		 * 3rd rinsing = 0x73<br>
-		 * 4th rinsing = 0x74<br>
-		 * 5th rinsing = 0x75<br>
-		 * 6th rinsing = 0x76<br>
-		 * 7th rinsing = 0x77<br>
-		 * 8th rinsing = 0x78<br>
-		 * 1st spin drying = 0x81<br>
-		 * 2nd spin drying = 0x82<br>
-		 * 3rd spin drying = 0x83<br>
-		 * 4th spin drying = 0x84<br>
-		 * 5th spin drying = 0x85<br>
-		 * 6th spin drying = 0x86<br>
-		 * 7th spin drying = 0x87<br>
-		 * 8th spin drying = 0x88<br>
+		 * Wrinkling minimization = 0x53 Drying (with wrinkling<br>
+		 * minimization) completed = 0x54<br>
+		 * Standing by to start = 0x61 1st rinsing = 0x71<br>
+		 * 2nd rinsing = 0x72 3rd rinsing = 0x73 4th rinsing = 0x74 5th rinsing = 0x75 6th rinsing = 0x76 7th rinsing = 0x77 8th rinsing = 0x78<br>
+		 * 1st spin drying = 0x81 2nd spin drying = 0x82 3rd spin drying = 0x83 4th spin drying = 0x84 5th spin drying = 0x85 6th spin drying = 0x86 7th spin drying = 0x87 8th spin drying = 0x88<br>
 		 * Preheat spin drying = 0x91<br>
-		 * Unique code defined by the manufature = 0xE0 to 0xEF<br>
+		 * Unique code defined by the manufacture = 0xE0.0xEF<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -3975,14 +3777,13 @@ minut es<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x00 to 0x7F (0 to 127 liters)<br>
+		 * - 0x00.0x7F (0.127 liters)<br>
 		 * < Relative setting relative to the automatic setting ><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA0 to 0xBF: 1 to 32 liters<br>
+		 * 0xA0.0xBF: 1.32 liters<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC0 to 0xDF (1 to 32 liters)<br>
+		 * 0xC0.0xDF (1.32 liters)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -4006,14 +3807,13 @@ minut es<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x00 to 0x7F (0 to 127 liters)<br>
+		 * - 0x00.0x7F (0.127 liters)<br>
 		 * < Relative setting relative to the automatic setting ><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA0 to 0xBF: 1 to 32 liters<br>
+		 * 0xA0.0xBF: 1.32 liters<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC0 to 0xDF (1 to 32 liters)<br>
+		 * 0xC0.0xDF (1.32 liters)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -4037,21 +3837,20 @@ minut es<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x31 to 0x40 (16 levels)<br>
+		 * - 0x31.0x40 (16 levels)<br>
 		 * - 0x31 and 0x40 shall be used for the lowest and highest water levels, respectively.<br>
 		 * < Relative setting relative to the automatic setting ><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA0 to 0xA7: Levels 1 to 8<br>
+		 * 0xA0.0xA7: Levels 1.8<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC0 to 0xC7: Levels 1 to 8<br>
+		 * 0xC0.0xC7: Levels 1. 8<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4069,21 +3868,20 @@ minut es<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x31 to 0x40 (16 levels)<br>
+		 * - 0x31.0x40 (16 levels)<br>
 		 * - 0x31 and 0x40 shall be used for the lowest and highest water levels, respectively.<br>
 		 * < Relative setting relative to the automatic setting ><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA0 to 0xA7: Levels 1 to 8<br>
+		 * 0xA0.0xA7: Levels 1.8<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC0 to 0xC7: Levels 1 to 8<br>
+		 * 0xC0.0xC7: Levels 1. 8<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4101,20 +3899,20 @@ minut es<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x00 to 0x17: 0x00 to 0x3B<br>
-		 * (= 0 to 23 hours): (= 0 to 59 minutes)<br>
+		 * - 0x00.0x17: 0x00.0x3B<br>
+		 * (= 0.23 hours): (= 0.59 minutes)<br>
 		 * < Relative setting relative to the automatic setting ><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA000 to 0xA03B: 1 to 60 minutes<br>
+		 * 0xA000.0xA03B: 1.60 minutes<br>
 		 * Relative setting in the negative direction<br>
-		 * - 0xC000 to 0xC03B: 1 to 60 minutes<br>
+		 * - 0xC000.0xC03B: 1.60 minutes<br>
 		 * <br>
 		 * Data type : unsigned char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : h,min<br>
 		 * <br>
@@ -4134,20 +3932,20 @@ minut es<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x00 to 0x17: 0x00 to 0x3B<br>
-		 * (= 0 to 23 hours): (= 0 to 59 minutes)<br>
+		 * - 0x00.0x17: 0x00.0x3B<br>
+		 * (= 0.23 hours): (= 0.59 minutes)<br>
 		 * < Relative setting relative to the automatic setting ><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA000 to 0xA03B: 1 to 60 minutes<br>
+		 * 0xA000.0xA03B: 1.60 minutes<br>
 		 * Relative setting in the negative direction<br>
-		 * - 0xC000 to 0xC03B: 1 to 60 minutes<br>
+		 * - 0xC000.0xC03B: 1.60 minutes<br>
 		 * <br>
 		 * Data type : unsigned char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : h,min<br>
 		 * <br>
@@ -4158,7 +3956,7 @@ minut es<br>
 		 */
 		protected void onGetWashingTimeSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name :  gNumber of times of rinsing h setting<br>
+		 * Property name : “Number of times of rinsing” setting<br>
 		 * <br>
 		 * EPC : 0xE6<br>
 		 * <br>
@@ -4166,23 +3964,23 @@ minut es<br>
 		 * Used to specify the number of times of rinsing and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 8 times (0x00 to 0x08)<br>
+		 * 0.8 times (0x00.0x08)<br>
 		 * Automatic = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetGnumberOfTimesOfRinsingHSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetNumberOfTimesOfRinsingSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name :  gNumber of times of rinsing h setting<br>
+		 * Property name : “Number of times of rinsing” setting<br>
 		 * <br>
 		 * EPC : 0xE6<br>
 		 * <br>
@@ -4190,21 +3988,21 @@ minut es<br>
 		 * Used to specify the number of times of rinsing and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 8 times (0x00 to 0x08)<br>
+		 * 0.8 times (0x00.0x08)<br>
 		 * Automatic = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetGnumberOfTimesOfRinsingHSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetNumberOfTimesOfRinsingSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Rinsing process setting<br>
 		 * <br>
@@ -4221,11 +4019,12 @@ minut es<br>
 		 * 0011: Shower rinsing<br>
 		 * <br>
 		 * Data type : unsigned char
- ~4<br>
+×4<br>
 		 * <br>
-		 * Data size : 4 byte<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4249,11 +4048,12 @@ minut es<br>
 		 * 0011: Shower rinsing<br>
 		 * <br>
 		 * Data type : unsigned char
- ~4<br>
+×4<br>
 		 * <br>
-		 * Data size : 4 byte<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4271,14 +4071,13 @@ minut es<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x00 to 0x3B (0 to 59 minutes)<br>
+		 * - 0x00.0x3B (0.59 minutes)<br>
 		 * < Relative setting relative to the automatic setting ><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA0 to 0xBF: 1 to 32 minutes<br>
+		 * 0xA0.0xBF: 1.32 minutes<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC0 to 0xDF: 1 to 32 minute<br>
+		 * 0xC0.0xDF: 1.32 minute<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -4302,14 +4101,13 @@ minut es<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x00 to 0x3B (0 to 59 minutes)<br>
+		 * - 0x00.0x3B (0.59 minutes)<br>
 		 * < Relative setting relative to the automatic setting ><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA0 to 0xBF: 1 to 32 minutes<br>
+		 * 0xA0.0xBF: 1.32 minutes<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC0 to 0xDF: 1 to 32 minute<br>
+		 * 0xC0.0xDF: 1.32 minute<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -4333,20 +4131,20 @@ minut es<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x00 to 0x17: 0x00 to 0x3B<br>
-		 * (= 0 to 23 hours): (= 0 to 59 minutes)<br>
+		 * - 0x00.0x17: 0x00.0x3B<br>
+		 * (= 0.23 hours): (= 0.59 minutes)<br>
 		 * < Relative setting relative to the automatic setting ><br>
-		 * - Automatic setting<br>
-		 * 0xFF: 0xFF<br>
+		 * - Automatic setting 0xFF: 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA000 to 0xA03B: 1 to 60 minutes<br>
+		 * 0xA000.0xA03B: 1.60 minutes<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC000 to 0xC03B: 1 to 60 minutes<br>
+		 * 0xC000.0xC03B: 1.60 minutes<br>
 		 * <br>
 		 * Data type : unsigned char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : h,min<br>
 		 * <br>
@@ -4366,20 +4164,20 @@ minut es<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x00 to 0x17: 0x00 to 0x3B<br>
-		 * (= 0 to 23 hours): (= 0 to 59 minutes)<br>
+		 * - 0x00.0x17: 0x00.0x3B<br>
+		 * (= 0.23 hours): (= 0.59 minutes)<br>
 		 * < Relative setting relative to the automatic setting ><br>
-		 * - Automatic setting<br>
-		 * 0xFF: 0xFF<br>
+		 * - Automatic setting 0xFF: 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA000 to 0xA03B: 1 to 60 minutes<br>
+		 * 0xA000.0xA03B: 1.60 minutes<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC000 to 0xC03B: 1 to 60 minutes<br>
+		 * 0xC000.0xC03B: 1.60 minutes<br>
 		 * <br>
 		 * Data type : unsigned char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : h,min<br>
 		 * <br>
@@ -4395,10 +4193,10 @@ minut es<br>
 		 * EPC : 0xEA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the temperature of laundry water in   and to acquire the current setting.<br>
+		 * Used to specify the temperature of laundry water in .C and to acquire the current  setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 100  C (0x00 to 0x64)<br>
+		 * 0.100°C (0x00.0x64)<br>
 		 * Not to use warm water = 0xFE Automatic water temperature setting<br>
 		 * = 0xFF<br>
 		 * <br>
@@ -4406,7 +4204,7 @@ minut es<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit :   <br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4420,10 +4218,10 @@ minut es<br>
 		 * EPC : 0xEA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the temperature of laundry water in   and to acquire the current setting.<br>
+		 * Used to specify the temperature of laundry water in .C and to acquire the current  setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 100  C (0x00 to 0x64)<br>
+		 * 0.100°C (0x00.0x64)<br>
 		 * Not to use warm water = 0xFE Automatic water temperature setting<br>
 		 * = 0xFF<br>
 		 * <br>
@@ -4431,7 +4229,7 @@ minut es<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit :   <br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4448,11 +4246,10 @@ minut es<br>
 		 * Used to specify whether or not, and when, to recycle used bathtub water, and acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Bathtub water not used   : 0x40<br>
-		 * Washing only                      : 0x41<br>
-		 * Rinsing only (excluding the final rinsing)                               : 0x42<br>
-		 * All rinsing processes        : 0x43<br>
-		 * Washing + rinsing (excluding the final rinsing)                       : 0x44<br>
+		 * Bathtub water not used   : 0x40 Washing only                     : 0x41 Rinsing only (excluding the final<br>
+		 * rinsing)                               : 0x42<br>
+		 * All rinsing processes        : 0x43 Washing + rinsing (excluding the<br>
+		 * final rinsing)                       : 0x44<br>
 		 * Washing + all rinsing<br>
 		 * processes                            : 0x45<br>
 		 * <br>
@@ -4460,7 +4257,7 @@ minut es<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4477,11 +4274,10 @@ minut es<br>
 		 * Used to specify whether or not, and when, to recycle used bathtub water, and acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Bathtub water not used   : 0x40<br>
-		 * Washing only                      : 0x41<br>
-		 * Rinsing only (excluding the final rinsing)                               : 0x42<br>
-		 * All rinsing processes        : 0x43<br>
-		 * Washing + rinsing (excluding the final rinsing)                       : 0x44<br>
+		 * Bathtub water not used   : 0x40 Washing only                     : 0x41 Rinsing only (excluding the final<br>
+		 * rinsing)                               : 0x42<br>
+		 * All rinsing processes        : 0x43 Washing + rinsing (excluding the<br>
+		 * final rinsing)                       : 0x44<br>
 		 * Washing + all rinsing<br>
 		 * processes                            : 0x45<br>
 		 * <br>
@@ -4489,7 +4285,7 @@ minut es<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4506,16 +4302,14 @@ minut es<br>
 		 * Used to specify whether or not to use the wrinkling minimization function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Wrinkling minimization function<br>
-		 * ON                  : 0x41<br>
-		 * Wrinkling minimization function<br>
-		 * OFF                : 0x42<br>
+		 * Wrinkling minimization function ON                  : 0x41<br>
+		 * Wrinkling minimization function OFF                : 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4532,16 +4326,14 @@ minut es<br>
 		 * Used to specify whether or not to use the wrinkling minimization function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Wrinkling minimization function<br>
-		 * ON                  : 0x41<br>
-		 * Wrinkling minimization function<br>
-		 * OFF                : 0x42<br>
+		 * Wrinkling minimization function ON                  : 0x41<br>
+		 * Wrinkling minimization function OFF                : 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4555,21 +4347,19 @@ minut es<br>
 		 * EPC : 0xED<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the time remaining to complete the current washer and<br>
-		 * dryer .cycle .in .the . gHH: .MM h .format.<br>
+		 * Used to acquire the time remaining to complete the current washer and dryer cycle in the “HH: MM” format.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFE: 0 to 0x3B<br>
-		 * (= 0 to 254 hours): (= 0 to 59 minutes)<br>
-		 * Remaining time unknown = 0xFF:<br>
+		 * 0.0xFE: 0.0x3B<br>
+		 * (= 0.254 hours): (= 0.59 minutes) Remaining time unknown = 0xFF:<br>
 		 * 0xFF<br>
 		 * <br>
 		 * Data type : unsigned char
- ~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4593,7 +4383,7 @@ minut es<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4617,7 +4407,7 @@ minut es<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4636,43 +4426,39 @@ minut es<br>
 		 * Value range (decimal notation) :<br>
 		 * Bytes 1 and 2: This property indicates the available<br>
 		 * items in a bitmap format.<br>
-		 * Byte 3: Presoaking<br>
-		 * With presoaking: 0x41<br>
+		 * Byte 3: Presoaking With presoaking: 0x41<br>
 		 * Without presoaking: 0x42<br>
-		 * Bytes 4 and 5: Washing time The value of the  gwashing time setting h property shall be referenced.<br>
-		 * Byte 6: Number of times of rinsing<br>
-		 * The value of the  g fnumber of times of rinsing f setting h property shall be referenced.<br>
-		 * Bytes 7 through 10: Rinsing process The value of the  grinsing process setting h property shall be referenced.<br>
+		 * Bytes 4 and 5: Washing time The value of the “washing time<br>
+		 * setting” property shall be referenced.<br>
+		 * Byte 6: Number of times of rinsing The value of the “’number of times of<br>
+		 * rinsing’ setting” property shall be referenced.<br>
+		 * Bytes 7 through 10: Rinsing process The value of the “rinsing process setting” property shall be referenced.<br>
 		 * Byte 11: Spin drying time<br>
-		 * The value of the  gspin drying time setting h property shall be referenced.<br>
+		 * The value of the “spin drying time setting” property shall be referenced.<br>
 		 * Bytes 12 and 13: Drying time<br>
-		 * The value of the  hdrying time setting h<br>
-		 * property shall be referenced.<br>
-		 * Byte 14: Warm water setting The value of the  gwarm water setting h property shall be referenced.<br>
-		 * Byte 15: Water volume setting 1<br>
-		 * The value of the  gwater volume setting 1 h property shall be referenced.<br>
-		 * Byte 16: Water volume setting 2<br>
-		 * The value of the  gwater volume setting 2 h property shall be referenced.<br>
+		 * The value of the 'drying time setting” property shall be referenced.<br>
+		 * Byte 14: Warm water setting The value of the “warm water<br>
+		 * setting” property shall be referenced.<br>
+		 * Byte 15: Water volume setting 1 The value of the “water volume setting 1” property shall be referenced.<br>
+		 * Byte 16: Water volume setting 2 The value of the “water volume setting 2” property shall be referenced.<br>
 		 * Byte 17: Bathtub water recycle setting<br>
-		 * The value of the  gbathtub water recycle setting h property<br>
-		 * shall be referenced.<br>
-		 * Byte 18: Water flow rate setting The value of the  gwater flow rate setting h property shall be referenced.<br>
-		 * Bytes 19 and 20:  gRotation speed for spin drying h setting<br>
-		 * The value of the  g frotation speed for spin drying f setting h property<br>
-		 * shall be referenced.<br>
-		 * Byte 21:  gDegree of drying h setting The value of the  g fdegree of drying f setting h property shall be referenced. Bytes 22 and 23: Presoaking time setting<br>
-		 * The value of the  gpresoaking time setting h property shall be referenced.<br>
-		 * Byte 24: Wrinkling minimization setting<br>
-		 * The value of the  gwrinkling<br>
-		 * minimization setting h property shall be referenced.<br>
+		 * The value of the “bathtub water recycle setting” property shall be referenced.<br>
+		 * Byte 18: Water flow rate setting The value of the “water flow rate<br>
+		 * setting” property shall be referenced.<br>
+		 * Bytes 19 and 20: “Rotation speed for spin drying” setting<br>
+		 * The value of the “’rotation speed for spin drying’ setting” property shall be referenced.<br>
+		 * Byte 21: “Degree of drying” setting The value of the “’degree of drying’ setting” property shall be referenced. Bytes 22 and 23: Presoaking time setting<br>
+		 * The value of the “presoaking time setting” property shall be referenced. Byte 24: Wrinkling minimization setting<br>
+		 * The value of the “wrinkling minimization setting” property shall<br>
+		 * be referenced.<br>
 		 * <br>
-		 * Data type : unsigned
-Char
- ~24<br>
+		 * Data type : unsigned Char
+×24<br>
 		 * <br>
-		 * Data size : 24 byte<br>
+		 * Data size : 24
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4689,14 +4475,14 @@ Char
 		 * Used to specify whether or not to use the ON timer-based reservation function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON = 0x41, reservation<br>
-		 * OFF = 0x42<br>
+		 * Reservation ON = 0x41, reservation OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Data size : 1
+byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4713,14 +4499,14 @@ Char
 		 * Used to specify whether or not to use the ON timer-based reservation function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON = 0x41, reservation<br>
-		 * OFF = 0x42<br>
+		 * Reservation ON = 0x41, reservation OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Data size : 1
+byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4737,15 +4523,15 @@ Char
 		 * Used to specify the time for the time-based reservation function of the ON timer and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4762,15 +4548,15 @@ Char
 		 * Used to specify the time for the time-based reservation function of the ON timer and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4787,15 +4573,16 @@ Char
 		 * Used to specify the relative time for the relative time-based reservation function of the ON timer and to acquire the time remaining for the current reservation.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4812,15 +4599,16 @@ Char
 		 * Used to specify the relative time for the relative time-based reservation function of the ON timer and to acquire the time remaining for the current reservation.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4859,8 +4647,8 @@ Char
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -4884,15 +4672,14 @@ Char
 		 * Used to specify whether to start or stop the washing, drying or washing and drying cycle, and to acquire the current status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Start/restart(ed) or in progress = 0x41<br>
-		 * Suspend(ed) = 0x42<br>
+		 * Start/restart(ed) or in progress = 0x41 Suspend(ed) = 0x42<br>
 		 * Stop(ped) = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4910,44 +4697,37 @@ Char
 		 * EPC : 0xD0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the washer and dryer cycle option(s) to use in the  gwashing and drying, h  gwashing h or  gdrying h mode and to acquire the current setting(s). The value ranges shall be as follows:<br>
-		 * Washing and drying couse: 0x21 to<br>
-		 * 0x3F<br>
-		 * Washing and drying cource maker original code: 0x40 to 0x4F<br>
-		 * Washing cource: 0x61 to 0x7F Washing cource maker original code:<br>
-		 * 0x80 to 0x8F<br>
-		 * Drying cource: 0xA1 to 0xBF Drying cource maker original code:<br>
-		 * 0xC0 to 0xDF<br>
+		 * Used to specify the washer and dryer cycle option(s) to use in the “washing and drying,” “washing” or “drying” mode and to acquire the current setting(s). The value ranges shall be as follows:<br>
+		 * Washing and drying course: 0x21.0x3F Washing and drying course maker<br>
+		 * original code: 0x40.0x4F<br>
+		 * Washing course: 0x61.0x7F Washing course maker original code:<br>
+		 * 0x80.0x8F<br>
+		 * Drying course: 0xA1.0xBF  Drying course maker original code:<br>
+		 * 0xC0.0xDF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * <Washing and drying cource><br>
-		 * Standard = 0x21, silent = 0x22, heavily soiled clothes = 0x23, hard-to-remove stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry =<br>
-		 * 0x28, clean rinsing = 0x29, ironing/business shirts = 0x2A, hang drying = 0x2B, thick clothes = 0x2C, disinfection = 0x2D, oil stains = 0x2E, memory = 0x2F, detergent saving =<br>
-		 * 0x30, lightly soiled clothes = 0x31, quick wash of small amount of laundry<br>
+		 * <Washing and drying course>  Standard = 0x21, silent = 0x22, heavily<br>
+		 * soiled clothes = 0x23, hard-to-remove<br>
+		 * stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry = 0x28, clean rinsing = 0x29, ironing/business shirts = 0x2A, hang drying = 0x2B, thick clothes = 0x2C, disinfection = 0x2D, oil stains = 0x2E, memory = 0x2F, detergent saving = 0x30, lightly soiled clothes = 0x31, quick wash of small amount of laundry<br>
 		 * = 0x32<br>
-		 * Washing cource / maker original cource<br>
-		 * = 0x40 to 0x4F<br>
-		 * <Washing cource><br>
-		 * Standard = 0x61, silent = 0x62, heavily soiled clothes = 0x63, hard-to-remove stains = 0x64, presoaking = 0x65, blankets = 0x66, soft = 0x67, dry =<br>
-		 * 0x68, clean rinsing = 0x69, disinfection<br>
-		 * = 0x6A, oil stains = 0x6B, memory =<br>
-		 * 0x6C, detergent saving = 0x6D, lightly soiled clothes = 0x6E, quick wash of small amount of laundry = 0x6F, tank cleaning = 0x7F<br>
-		 * Washing cource / maker original cource<br>
-		 * = 0x80 to 0x8F<br>
-		 * <Drying cource><br>
+		 * Washing course / maker original course<br>
+		 * = 0x40.0x4F<br>
+		 * <Washing course><br>
+		 * Standard = 0x61, silent = 0x62, heavily soiled clothes = 0x63, hard-to-remove stains = 0x64, presoaking = 0x65, blankets = 0x66, soft = 0x67, dry = 0x68, clean rinsing = 0x69, disinfection<br>
+		 * = 0x6A, oil stains = 0x6B, memory = 0x6C, detergent saving = 0x6D, lightly soiled clothes = 0x6E, quick wash of small amount of laundry = 0x6F, tank cleaning = 0x7F<br>
+		 * Washing course / maker original course<br>
+		 * = 0x80.0x8F<br>
+		 * <Drying course><br>
 		 * Standard = 0xA1, blankets = 0xA2, soft<br>
-		 * = 0xA3, dry = 0xA4, ironing/business shirts = 0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection =<br>
-		 * 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying =<br>
-		 * 0xAB, user definition of drying time =<br>
-		 * 0xAC, garment warming = 0xAD, tank drying = 0xBF<br>
-		 * Drying cource / maker original cource<br>
-		 * = 0xC0 to 0xCF<br>
+		 * = 0xA3, dry = 0xA4, ironing/business shirts = 0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection = 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying = 0xAB, user definition of drying time = 0xAC, garment warming = 0xAD, tank<br>
+		 * drying = 0xBF<br>
+		 * Drying course / maker original course = 0xC0.0xCF<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4965,27 +4745,21 @@ Char
 		 * EPC : 0xD1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the washer and dryer cycle option(s) to use in the<br>
-		 *  gwashing and drying h mode, and to acquire the current setting(s). The drying option(s) to use shall be specified with the  gdrying cycle<br>
-		 * setting h property (EPC = 0xD2).<br>
-		 * Maker original code = 0xE0 to 0xEF<br>
+		 * Used to specify the washer and dryer cycle option(s) to use in the “washing and drying” mode, and to acquire the current setting(s). The drying option(s) to use shall be specified with the “drying cycle setting” property (EPC = 0xD2).<br>
+		 * Maker original code = 0xE0.0xEF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * No washing = 0x20, standard =<br>
-		 * 0x21, silent = 0x22, heavily soiled clothes = 0x23, hard-to-remove stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry =<br>
-		 * 0x28, clean rinsing = 0x29,<br>
-		 * disinfection = 0x2D, oil stains =<br>
-		 * 0x2E, memory = 0x2F, detergent saving = 0x30, lightly soiled clothes<br>
-		 * = 0x31, quick wash of small amount of laundry = 0x32, tank cleaning =<br>
-		 * 0x3F<br>
-		 * Maker original cource = 0xE0 to<br>
-		 * 0xEF<br>
+		 * No washing = 0x20, standard = 0x21, silent = 0x22, heavily soiled clothes = 0x23, hard-to-remove stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry = 0x28, clean rinsing<br>
+		 * = 0x29, disinfection = 0x2D, oil stains = 0x2E, memory = 0x2F, detergent saving = 0x30, lightly<br>
+		 * soiled clothes = 0x31, quick wash of small amount of laundry = 0x32, tank<br>
+		 * cleaning = 0x3F<br>
+		 * Maker original course = 0xE0.0xEF<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsig ned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5002,24 +4776,20 @@ Char
 		 * EPC : 0xD2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the drying cycle option(s) to use, and to acquire the current setting. For the  gwashing and drying h mode, the  gwasher and dryer cycle setting 2 h property (EPC =<br>
-		 * 0xD1) shall be used.<br>
+		 * Used to specify the drying cycle option(s) to use, and to acquire the current setting. For the “washing and drying” mode, the “washer and dryer cycle setting 2” property (EPC = 0xD1) shall be used.<br>
 		 * Maker original code = 0xE0 to 0xEF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * No drying = 0xA0, standard = 0xA1, blankets = 0xA2, soft = 0xA3, dry =<br>
-		 * 0xA4, ironing/business shirts =<br>
-		 * 0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection = 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying<br>
-		 * = 0xAB, user definition of drying time = 0xAC, garment warming =<br>
-		 * 0xAD, heater current limit = 0xAE, tank drying = 0xBF<br>
-		 * Maker original cource = 0xE0 to<br>
-		 * 0xEF<br>
+		 * No drying = 0xA0, standard = 0xA1, blankets = 0xA2, soft = 0xA3, dry = 0xA4, ironing/business shirts =  0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection = 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying = 0xAB, user definition of drying time<br>
+		 * = 0xAC, garment warming = 0xAD, heater current limit = 0xAE, tank<br>
+		 * drying = 0xBF<br>
+		 * Maker original course = 0xE0 0xEF<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsig ned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5039,22 +4809,20 @@ Char
 		 * Used to specify the water flow rate by selecting a level from among the predefined levels and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * <Absolute setting><br>
-		 * 0x31 to 0x40 (16 levels)<br>
+		 * <Absolute setting> 0x31.0x40 (16 levels)<br>
 		 * * 0x31 and 0x40 shall be used for the lowest and highest flow rates, respectively.<br>
 		 * <Relative setting relative to the automatic setting><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA0 to 0xA7: Levels 1 to 8<br>
+		 * 0xA0.0xA7: Levels 1.8<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC0 to 0xC7: Levels 1 to 8<br>
+		 * 0xC0.0xC7: Levels 1.8<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsig ned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5066,8 +4834,7 @@ Char
 			return this;
 		}
 		/**
-		 * Property name :  gRotation speed for spin drying h
-setting<br>
+		 * Property name : “Rotation speed for spin drying” setting<br>
 		 * <br>
 		 * EPC : 0xD7<br>
 		 * <br>
@@ -5076,32 +4843,32 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x0000 to 0x0FFF (0 to 4095 r/min.)<br>
+		 * - 0x0000. 0x0FFF (0.4095 r/min.)<br>
 		 * <Relative setting relative to the automatic setting><br>
-		 * - Automatic setting<br>
-		 * 0xFFFF<br>
+		 * - Automatic setting 0xFFFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA000 to 0xA7FF (1 to 2048 r/min.)<br>
+		 * 0xA000.0xA7FF (1.2048 r/min.)<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC000 to 0xC7FF (1 to 2048r/min.)<br>
+		 * 0xC000.0xC7FF (1.2048r/min.)<br>
 		 * <br>
-		 * Data type : unsign ed short<br>
+		 * Data type : unsig ned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetGrotationSpeedForSpinDryingHSetting(byte[] edt) {
-			reqSetProperty(EPC_GROTATION_SPEED_FOR_SPIN_DRYING_H_SETTING, edt);
+		public Setter reqSetRotationSpeedForSpinDryingSetting(byte[] edt) {
+			reqSetProperty(EPC_ROTATION_SPEED_FOR_SPIN_DRYING_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Property name :  gDegree of drying h setting<br>
+		 * Property name : “Degree of drying” setting<br>
 		 * <br>
 		 * EPC : 0xD8<br>
 		 * <br>
@@ -5110,29 +4877,28 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x31 to 0x40 (16 levels)<br>
+		 * - 0x31.0x40 (16 levels)<br>
 		 * * 0x31 and 0x40 shall be used for the lowest and highest levels, respectively.<br>
 		 * <Relative setting relative to the automatic setting><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA0 to 0xA7: Levels 1 to 8<br>
+		 * 0xA0.0xA7: Levels 1.8<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC0 to 0xC7: Levels 1 to 8<br>
+		 * 0xC0.0xC7: Levels 1.8<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsig ned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetGdegreeOfDryingHSetting(byte[] edt) {
-			reqSetProperty(EPC_GDEGREE_OF_DRYING_H_SETTING, edt);
+		public Setter reqSetDegreeOfDryingSetting(byte[] edt) {
+			reqSetProperty(EPC_DEGREE_OF_DRYING_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5145,22 +4911,21 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x00 to 0x17: 0x00 to 0x3B<br>
-		 * (= 0 to 23 hours): (= 0 to 59 minutes)<br>
+		 * - 0x00.0x17: 0x00.0x3B<br>
+		 * (= 0.23 hours): (= 0.59 minutes)<br>
 		 * <Relative setting relative to the automatic setting><br>
-		 * - Automatic setting<br>
-		 * 0xFF: 0xFF<br>
+		 * - Automatic setting 0xFF: 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA000 to 0xA03B: 1 to 60 minutes<br>
+		 * 0xA000.0xA03B: 1.60 minutes<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC000 to 0xC03B: 1 to 60 minutes<br>
+		 * 0xC000.0xC03B: 1.60 minutes<br>
 		 * <br>
-		 * Data type : unsigne d char
- ~2<br>
+		 * Data type : unsign ed char
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : h,min<br>
+		 * Unit : h,mi n<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5181,14 +4946,13 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x00 to 0x7F (0 to 127 liters)<br>
+		 * - 0x00.0x7F (0.127 liters)<br>
 		 * < Relative setting relative to the automatic setting ><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA0 to 0xBF: 1 to 32 liters<br>
+		 * 0xA0.0xBF: 1.32 liters<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC0 to 0xDF (1 to 32 liters)<br>
+		 * 0xC0.0xDF (1.32 liters)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -5215,21 +4979,20 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x31 to 0x40 (16 levels)<br>
+		 * - 0x31.0x40 (16 levels)<br>
 		 * - 0x31 and 0x40 shall be used for the lowest and highest water levels, respectively.<br>
 		 * < Relative setting relative to the automatic setting ><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA0 to 0xA7: Levels 1 to 8<br>
+		 * 0xA0.0xA7: Levels 1.8<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC0 to 0xC7: Levels 1 to 8<br>
+		 * 0xC0.0xC7: Levels 1. 8<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5250,20 +5013,20 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x00 to 0x17: 0x00 to 0x3B<br>
-		 * (= 0 to 23 hours): (= 0 to 59 minutes)<br>
+		 * - 0x00.0x17: 0x00.0x3B<br>
+		 * (= 0.23 hours): (= 0.59 minutes)<br>
 		 * < Relative setting relative to the automatic setting ><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA000 to 0xA03B: 1 to 60 minutes<br>
+		 * 0xA000.0xA03B: 1.60 minutes<br>
 		 * Relative setting in the negative direction<br>
-		 * - 0xC000 to 0xC03B: 1 to 60 minutes<br>
+		 * - 0xC000.0xC03B: 1.60 minutes<br>
 		 * <br>
 		 * Data type : unsigned char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : h,min<br>
 		 * <br>
@@ -5277,7 +5040,7 @@ setting<br>
 			return this;
 		}
 		/**
-		 * Property name :  gNumber of times of rinsing h setting<br>
+		 * Property name : “Number of times of rinsing” setting<br>
 		 * <br>
 		 * EPC : 0xE6<br>
 		 * <br>
@@ -5285,22 +5048,22 @@ setting<br>
 		 * Used to specify the number of times of rinsing and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 8 times (0x00 to 0x08)<br>
+		 * 0.8 times (0x00.0x08)<br>
 		 * Automatic = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetGnumberOfTimesOfRinsingHSetting(byte[] edt) {
-			reqSetProperty(EPC_GNUMBER_OF_TIMES_OF_RINSING_H_SETTING, edt);
+		public Setter reqSetNumberOfTimesOfRinsingSetting(byte[] edt) {
+			reqSetProperty(EPC_NUMBER_OF_TIMES_OF_RINSING_SETTING, edt);
 			return this;
 		}
 		/**
@@ -5319,11 +5082,12 @@ setting<br>
 		 * 0011: Shower rinsing<br>
 		 * <br>
 		 * Data type : unsigned char
- ~4<br>
+×4<br>
 		 * <br>
-		 * Data size : 4 byte<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5344,14 +5108,13 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x00 to 0x3B (0 to 59 minutes)<br>
+		 * - 0x00.0x3B (0.59 minutes)<br>
 		 * < Relative setting relative to the automatic setting ><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA0 to 0xBF: 1 to 32 minutes<br>
+		 * 0xA0.0xBF: 1.32 minutes<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC0 to 0xDF: 1 to 32 minute<br>
+		 * 0xC0.0xDF: 1.32 minute<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -5378,20 +5141,20 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x00 to 0x17: 0x00 to 0x3B<br>
-		 * (= 0 to 23 hours): (= 0 to 59 minutes)<br>
+		 * - 0x00.0x17: 0x00.0x3B<br>
+		 * (= 0.23 hours): (= 0.59 minutes)<br>
 		 * < Relative setting relative to the automatic setting ><br>
-		 * - Automatic setting<br>
-		 * 0xFF: 0xFF<br>
+		 * - Automatic setting 0xFF: 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA000 to 0xA03B: 1 to 60 minutes<br>
+		 * 0xA000.0xA03B: 1.60 minutes<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC000 to 0xC03B: 1 to 60 minutes<br>
+		 * 0xC000.0xC03B: 1.60 minutes<br>
 		 * <br>
 		 * Data type : unsigned char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : h,min<br>
 		 * <br>
@@ -5410,10 +5173,10 @@ setting<br>
 		 * EPC : 0xEA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the temperature of laundry water in   and to acquire the current setting.<br>
+		 * Used to specify the temperature of laundry water in .C and to acquire the current  setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 100  C (0x00 to 0x64)<br>
+		 * 0.100°C (0x00.0x64)<br>
 		 * Not to use warm water = 0xFE Automatic water temperature setting<br>
 		 * = 0xFF<br>
 		 * <br>
@@ -5421,7 +5184,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit :   <br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5441,11 +5204,10 @@ setting<br>
 		 * Used to specify whether or not, and when, to recycle used bathtub water, and acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Bathtub water not used   : 0x40<br>
-		 * Washing only                      : 0x41<br>
-		 * Rinsing only (excluding the final rinsing)                               : 0x42<br>
-		 * All rinsing processes        : 0x43<br>
-		 * Washing + rinsing (excluding the final rinsing)                       : 0x44<br>
+		 * Bathtub water not used   : 0x40 Washing only                     : 0x41 Rinsing only (excluding the final<br>
+		 * rinsing)                               : 0x42<br>
+		 * All rinsing processes        : 0x43 Washing + rinsing (excluding the<br>
+		 * final rinsing)                       : 0x44<br>
 		 * Washing + all rinsing<br>
 		 * processes                            : 0x45<br>
 		 * <br>
@@ -5453,7 +5215,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5473,16 +5235,14 @@ setting<br>
 		 * Used to specify whether or not to use the wrinkling minimization function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Wrinkling minimization function<br>
-		 * ON                  : 0x41<br>
-		 * Wrinkling minimization function<br>
-		 * OFF                : 0x42<br>
+		 * Wrinkling minimization function ON                  : 0x41<br>
+		 * Wrinkling minimization function OFF                : 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5509,7 +5269,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5529,14 +5289,14 @@ setting<br>
 		 * Used to specify whether or not to use the ON timer-based reservation function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON = 0x41, reservation<br>
-		 * OFF = 0x42<br>
+		 * Reservation ON = 0x41, reservation OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Data size : 1
+byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5556,15 +5316,15 @@ setting<br>
 		 * Used to specify the time for the time-based reservation function of the ON timer and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5584,15 +5344,16 @@ setting<br>
 		 * Used to specify the relative time for the relative time-based reservation function of the ON timer and to acquire the time remaining for the current reservation.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5682,8 +5443,8 @@ setting<br>
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -5723,14 +5484,13 @@ setting<br>
 		 * Used to acquire the status of the door/cover (i.e. open or closed).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Door/cover open = 0x41<br>
-		 * Door/cover closed = 0x42<br>
+		 * Door/cover open = 0x41 Door/cover closed = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5750,15 +5510,14 @@ setting<br>
 		 * Used to specify whether to start or stop the washing, drying or washing and drying cycle, and to acquire the current status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Start/restart(ed) or in progress = 0x41<br>
-		 * Suspend(ed) = 0x42<br>
+		 * Start/restart(ed) or in progress = 0x41 Suspend(ed) = 0x42<br>
 		 * Stop(ped) = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5776,44 +5535,37 @@ setting<br>
 		 * EPC : 0xD0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the washer and dryer cycle option(s) to use in the  gwashing and drying, h  gwashing h or  gdrying h mode and to acquire the current setting(s). The value ranges shall be as follows:<br>
-		 * Washing and drying couse: 0x21 to<br>
-		 * 0x3F<br>
-		 * Washing and drying cource maker original code: 0x40 to 0x4F<br>
-		 * Washing cource: 0x61 to 0x7F Washing cource maker original code:<br>
-		 * 0x80 to 0x8F<br>
-		 * Drying cource: 0xA1 to 0xBF Drying cource maker original code:<br>
-		 * 0xC0 to 0xDF<br>
+		 * Used to specify the washer and dryer cycle option(s) to use in the “washing and drying,” “washing” or “drying” mode and to acquire the current setting(s). The value ranges shall be as follows:<br>
+		 * Washing and drying course: 0x21.0x3F Washing and drying course maker<br>
+		 * original code: 0x40.0x4F<br>
+		 * Washing course: 0x61.0x7F Washing course maker original code:<br>
+		 * 0x80.0x8F<br>
+		 * Drying course: 0xA1.0xBF  Drying course maker original code:<br>
+		 * 0xC0.0xDF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * <Washing and drying cource><br>
-		 * Standard = 0x21, silent = 0x22, heavily soiled clothes = 0x23, hard-to-remove stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry =<br>
-		 * 0x28, clean rinsing = 0x29, ironing/business shirts = 0x2A, hang drying = 0x2B, thick clothes = 0x2C, disinfection = 0x2D, oil stains = 0x2E, memory = 0x2F, detergent saving =<br>
-		 * 0x30, lightly soiled clothes = 0x31, quick wash of small amount of laundry<br>
+		 * <Washing and drying course>  Standard = 0x21, silent = 0x22, heavily<br>
+		 * soiled clothes = 0x23, hard-to-remove<br>
+		 * stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry = 0x28, clean rinsing = 0x29, ironing/business shirts = 0x2A, hang drying = 0x2B, thick clothes = 0x2C, disinfection = 0x2D, oil stains = 0x2E, memory = 0x2F, detergent saving = 0x30, lightly soiled clothes = 0x31, quick wash of small amount of laundry<br>
 		 * = 0x32<br>
-		 * Washing cource / maker original cource<br>
-		 * = 0x40 to 0x4F<br>
-		 * <Washing cource><br>
-		 * Standard = 0x61, silent = 0x62, heavily soiled clothes = 0x63, hard-to-remove stains = 0x64, presoaking = 0x65, blankets = 0x66, soft = 0x67, dry =<br>
-		 * 0x68, clean rinsing = 0x69, disinfection<br>
-		 * = 0x6A, oil stains = 0x6B, memory =<br>
-		 * 0x6C, detergent saving = 0x6D, lightly soiled clothes = 0x6E, quick wash of small amount of laundry = 0x6F, tank cleaning = 0x7F<br>
-		 * Washing cource / maker original cource<br>
-		 * = 0x80 to 0x8F<br>
-		 * <Drying cource><br>
+		 * Washing course / maker original course<br>
+		 * = 0x40.0x4F<br>
+		 * <Washing course><br>
+		 * Standard = 0x61, silent = 0x62, heavily soiled clothes = 0x63, hard-to-remove stains = 0x64, presoaking = 0x65, blankets = 0x66, soft = 0x67, dry = 0x68, clean rinsing = 0x69, disinfection<br>
+		 * = 0x6A, oil stains = 0x6B, memory = 0x6C, detergent saving = 0x6D, lightly soiled clothes = 0x6E, quick wash of small amount of laundry = 0x6F, tank cleaning = 0x7F<br>
+		 * Washing course / maker original course<br>
+		 * = 0x80.0x8F<br>
+		 * <Drying course><br>
 		 * Standard = 0xA1, blankets = 0xA2, soft<br>
-		 * = 0xA3, dry = 0xA4, ironing/business shirts = 0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection =<br>
-		 * 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying =<br>
-		 * 0xAB, user definition of drying time =<br>
-		 * 0xAC, garment warming = 0xAD, tank drying = 0xBF<br>
-		 * Drying cource / maker original cource<br>
-		 * = 0xC0 to 0xCF<br>
+		 * = 0xA3, dry = 0xA4, ironing/business shirts = 0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection = 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying = 0xAB, user definition of drying time = 0xAC, garment warming = 0xAD, tank<br>
+		 * drying = 0xBF<br>
+		 * Drying course / maker original course = 0xC0.0xCF<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5831,27 +5583,21 @@ setting<br>
 		 * EPC : 0xD1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the washer and dryer cycle option(s) to use in the<br>
-		 *  gwashing and drying h mode, and to acquire the current setting(s). The drying option(s) to use shall be specified with the  gdrying cycle<br>
-		 * setting h property (EPC = 0xD2).<br>
-		 * Maker original code = 0xE0 to 0xEF<br>
+		 * Used to specify the washer and dryer cycle option(s) to use in the “washing and drying” mode, and to acquire the current setting(s). The drying option(s) to use shall be specified with the “drying cycle setting” property (EPC = 0xD2).<br>
+		 * Maker original code = 0xE0.0xEF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * No washing = 0x20, standard =<br>
-		 * 0x21, silent = 0x22, heavily soiled clothes = 0x23, hard-to-remove stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry =<br>
-		 * 0x28, clean rinsing = 0x29,<br>
-		 * disinfection = 0x2D, oil stains =<br>
-		 * 0x2E, memory = 0x2F, detergent saving = 0x30, lightly soiled clothes<br>
-		 * = 0x31, quick wash of small amount of laundry = 0x32, tank cleaning =<br>
-		 * 0x3F<br>
-		 * Maker original cource = 0xE0 to<br>
-		 * 0xEF<br>
+		 * No washing = 0x20, standard = 0x21, silent = 0x22, heavily soiled clothes = 0x23, hard-to-remove stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry = 0x28, clean rinsing<br>
+		 * = 0x29, disinfection = 0x2D, oil stains = 0x2E, memory = 0x2F, detergent saving = 0x30, lightly<br>
+		 * soiled clothes = 0x31, quick wash of small amount of laundry = 0x32, tank<br>
+		 * cleaning = 0x3F<br>
+		 * Maker original course = 0xE0.0xEF<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsig ned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5868,24 +5614,20 @@ setting<br>
 		 * EPC : 0xD2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the drying cycle option(s) to use, and to acquire the current setting. For the  gwashing and drying h mode, the  gwasher and dryer cycle setting 2 h property (EPC =<br>
-		 * 0xD1) shall be used.<br>
+		 * Used to specify the drying cycle option(s) to use, and to acquire the current setting. For the “washing and drying” mode, the “washer and dryer cycle setting 2” property (EPC = 0xD1) shall be used.<br>
 		 * Maker original code = 0xE0 to 0xEF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * No drying = 0xA0, standard = 0xA1, blankets = 0xA2, soft = 0xA3, dry =<br>
-		 * 0xA4, ironing/business shirts =<br>
-		 * 0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection = 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying<br>
-		 * = 0xAB, user definition of drying time = 0xAC, garment warming =<br>
-		 * 0xAD, heater current limit = 0xAE, tank drying = 0xBF<br>
-		 * Maker original cource = 0xE0 to<br>
-		 * 0xEF<br>
+		 * No drying = 0xA0, standard = 0xA1, blankets = 0xA2, soft = 0xA3, dry = 0xA4, ironing/business shirts =  0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection = 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying = 0xAB, user definition of drying time<br>
+		 * = 0xAC, garment warming = 0xAD, heater current limit = 0xAE, tank<br>
+		 * drying = 0xBF<br>
+		 * Maker original course = 0xE0 0xEF<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsig ned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5902,20 +5644,19 @@ setting<br>
 		 * EPC : 0xD3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire a bitmap list of the washer and dryer cycle options that can be specified with the  gwasher and dryer cycle setting 1 h property.<br>
+		 * Used to acquire a bitmap list of the washer and dryer cycle options that can be specified with the “washer and dryer cycle setting 1” property.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * When the value contained in the bit for the desired washer and dryer<br>
-		 * cycle option is  g1 h, the option can be specified. When the value contained in the bit for the desired washer and dryer cycle option is  g0 h, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the<br>
-		 * detailed explanation.<br>
+		 * When the value contained in the bit for the desired washer and dryer cycle option is “1”, the option can be specified. When the value contained in the bit for the desired washer and dryer cycle option is “0”, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the detailed explanation.<br>
 		 * <br>
-		 * Data type : unsign ed
+		 * Data type : unsig ned
 char
- ~12,<br>
+×12,<br>
 		 * <br>
-		 * Data size : 12 byte<br>
+		 * Data size : 12
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5932,20 +5673,19 @@ char
 		 * EPC : 0xD4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire a bitmap list of the washer and dryer cycle options that can be specified with the  gwasher and dryer cycle setting 2 h property.<br>
+		 * Used to acquire a bitmap list of the washer and dryer cycle options that can be specified with the “washer and dryer cycle setting 2” property.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * When the value contained in the bit for the desired washer and dryer<br>
-		 * cycle option is  g1 h, the option can be specified. When the value contained in the bit for the desired washer and dryer cycle option is  g0 h, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the<br>
-		 * detailed explanation.<br>
+		 * When the value contained in the bit for the desired washer and dryer cycle option is “1”, the option can be specified. When the value contained in the bit for the desired washer and dryer cycle option is “0”, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the detailed explanation.<br>
 		 * <br>
-		 * Data type : unsign ed
+		 * Data type : unsig ned
 char
- ~4,<br>
+×4,<br>
 		 * <br>
-		 * Data size : 4 byte<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5962,18 +5702,19 @@ char
 		 * EPC : 0xD5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire a bitmap list of the drying cycle options that can be specified with the  gdrying cycle setting h property.<br>
+		 * Used to acquire a bitmap list of the drying cycle options that can be specified with the “drying cycle setting” property.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * When the value contained in the bit for the desired drying cycle option is  g1 h, the option can be specified. When the value contained in the bit for the desired drying cycle option is  g0 h, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the detailed explanation.<br>
+		 * When the value contained in the bit for the desired drying cycle option is “1”, the option can be specified. When the value contained in the bit for the desired drying cycle option is “0”, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the detailed explanation.<br>
 		 * <br>
-		 * Data type : unsign ed
+		 * Data type : unsig ned
 char
- ~4,<br>
+×4,<br>
 		 * <br>
-		 * Data size : 4 byte<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5993,22 +5734,20 @@ char
 		 * Used to specify the water flow rate by selecting a level from among the predefined levels and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * <Absolute setting><br>
-		 * 0x31 to 0x40 (16 levels)<br>
+		 * <Absolute setting> 0x31.0x40 (16 levels)<br>
 		 * * 0x31 and 0x40 shall be used for the lowest and highest flow rates, respectively.<br>
 		 * <Relative setting relative to the automatic setting><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA0 to 0xA7: Levels 1 to 8<br>
+		 * 0xA0.0xA7: Levels 1.8<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC0 to 0xC7: Levels 1 to 8<br>
+		 * 0xC0.0xC7: Levels 1.8<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsig ned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6020,8 +5759,7 @@ char
 			return this;
 		}
 		/**
-		 * Property name :  gRotation speed for spin drying h
-setting<br>
+		 * Property name : “Rotation speed for spin drying” setting<br>
 		 * <br>
 		 * EPC : 0xD7<br>
 		 * <br>
@@ -6030,32 +5768,32 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x0000 to 0x0FFF (0 to 4095 r/min.)<br>
+		 * - 0x0000. 0x0FFF (0.4095 r/min.)<br>
 		 * <Relative setting relative to the automatic setting><br>
-		 * - Automatic setting<br>
-		 * 0xFFFF<br>
+		 * - Automatic setting 0xFFFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA000 to 0xA7FF (1 to 2048 r/min.)<br>
+		 * 0xA000.0xA7FF (1.2048 r/min.)<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC000 to 0xC7FF (1 to 2048r/min.)<br>
+		 * 0xC000.0xC7FF (1.2048r/min.)<br>
 		 * <br>
-		 * Data type : unsign ed short<br>
+		 * Data type : unsig ned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetGrotationSpeedForSpinDryingHSetting() {
-			reqGetProperty(EPC_GROTATION_SPEED_FOR_SPIN_DRYING_H_SETTING);
+		public Getter reqGetRotationSpeedForSpinDryingSetting() {
+			reqGetProperty(EPC_ROTATION_SPEED_FOR_SPIN_DRYING_SETTING);
 			return this;
 		}
 		/**
-		 * Property name :  gDegree of drying h setting<br>
+		 * Property name : “Degree of drying” setting<br>
 		 * <br>
 		 * EPC : 0xD8<br>
 		 * <br>
@@ -6064,29 +5802,28 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x31 to 0x40 (16 levels)<br>
+		 * - 0x31.0x40 (16 levels)<br>
 		 * * 0x31 and 0x40 shall be used for the lowest and highest levels, respectively.<br>
 		 * <Relative setting relative to the automatic setting><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA0 to 0xA7: Levels 1 to 8<br>
+		 * 0xA0.0xA7: Levels 1.8<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC0 to 0xC7: Levels 1 to 8<br>
+		 * 0xC0.0xC7: Levels 1.8<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsig ned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetGdegreeOfDryingHSetting() {
-			reqGetProperty(EPC_GDEGREE_OF_DRYING_H_SETTING);
+		public Getter reqGetDegreeOfDryingSetting() {
+			reqGetProperty(EPC_DEGREE_OF_DRYING_SETTING);
 			return this;
 		}
 		/**
@@ -6096,21 +5833,20 @@ setting<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Acquires the remaining washing time<br>
-		 * in .the . gHH:MM h .format.<br>
+		 * in the “HH:MM” format.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0xFE F0-0x3B<br>
-		 * (=0-254) hours F(=0-59) minutes<br>
-		 * Remaining time unknown=0xFF F<br>
+		 * 0.0xFE : 0.0x3B<br>
+		 * (=0-254) hours : (=0-59) minutes Remaining time unknown=0xFF :<br>
 		 * 0xFF<br>
 		 * <br>
-		 * Data type : unsigne d
+		 * Data type : unsign ed
 char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6128,19 +5864,20 @@ char
 		 * <br>
 		 * Contents of property :<br>
 		 * Acquires the remaining drying<br>
-		 * time .in .the . gHH:MM h .format.<br>
+		 * time in the “HH:MM” format.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0xFE F0-0x3B<br>
-		 * (=0-254) hours F(=0-59) minutes<br>
-		 * Remaining time<br>
-		 * unknown=0xFF F0xFF<br>
+		 * 0.0xFE : 0.0x3B<br>
+		 * (=0.254) hours : (=0.59) minutes Remaining time unknown=0xFF :<br>
+		 * 0xFF<br>
 		 * <br>
-		 * Data type : unsign ed<br>
+		 * Data type : unsign ed
+char
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6160,17 +5897,17 @@ char
 		 * Used to acquire the time elapsed on the ON timer after the ON timer was activated.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigne d
+		 * Data type : unsign ed
 char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : Hour
-minut es<br>
+		 * Unit : Hour minu
+tes<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6191,22 +5928,21 @@ minut es<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x00 to 0x17: 0x00 to 0x3B<br>
-		 * (= 0 to 23 hours): (= 0 to 59 minutes)<br>
+		 * - 0x00.0x17: 0x00.0x3B<br>
+		 * (= 0.23 hours): (= 0.59 minutes)<br>
 		 * <Relative setting relative to the automatic setting><br>
-		 * - Automatic setting<br>
-		 * 0xFF: 0xFF<br>
+		 * - Automatic setting 0xFF: 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA000 to 0xA03B: 1 to 60 minutes<br>
+		 * 0xA000.0xA03B: 1.60 minutes<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC000 to 0xC03B: 1 to 60 minutes<br>
+		 * 0xC000.0xC03B: 1.60 minutes<br>
 		 * <br>
-		 * Data type : unsigne d char
- ~2<br>
+		 * Data type : unsign ed char
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : h,min<br>
+		 * Unit : h,mi n<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6226,34 +5962,17 @@ minut es<br>
 		 * Used to acquire the current stage of the washer and dryer cycle.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Washing = 0x41<br>
-		 * Rinsing = 0x42<br>
-		 * Spin drying = 0x43<br>
-		 * Suspended = 0x44<br>
+		 * Washing = 0x41 Rinsing = 0x42 Spin drying = 0x43 Suspended = 0x44<br>
 		 * Washing completed = 0x45<br>
 		 * Washing/drying (without wrinkling minimization) completed = 0x51<br>
 		 * Drying = 0x52<br>
-		 * Wrinkling minimization = 0x53<br>
-		 * Drying (with wrinkling minimization) completed = 0x54<br>
-		 * Standing by to start = 0x61<br>
-		 * 1st rinsing = 0x71<br>
-		 * 2nd rinsing = 0x72<br>
-		 * 3rd rinsing = 0x73<br>
-		 * 4th rinsing = 0x74<br>
-		 * 5th rinsing = 0x75<br>
-		 * 6th rinsing = 0x76<br>
-		 * 7th rinsing = 0x77<br>
-		 * 8th rinsing = 0x78<br>
-		 * 1st spin drying = 0x81<br>
-		 * 2nd spin drying = 0x82<br>
-		 * 3rd spin drying = 0x83<br>
-		 * 4th spin drying = 0x84<br>
-		 * 5th spin drying = 0x85<br>
-		 * 6th spin drying = 0x86<br>
-		 * 7th spin drying = 0x87<br>
-		 * 8th spin drying = 0x88<br>
+		 * Wrinkling minimization = 0x53 Drying (with wrinkling<br>
+		 * minimization) completed = 0x54<br>
+		 * Standing by to start = 0x61 1st rinsing = 0x71<br>
+		 * 2nd rinsing = 0x72 3rd rinsing = 0x73 4th rinsing = 0x74 5th rinsing = 0x75 6th rinsing = 0x76 7th rinsing = 0x77 8th rinsing = 0x78<br>
+		 * 1st spin drying = 0x81 2nd spin drying = 0x82 3rd spin drying = 0x83 4th spin drying = 0x84 5th spin drying = 0x85 6th spin drying = 0x86 7th spin drying = 0x87 8th spin drying = 0x88<br>
 		 * Preheat spin drying = 0x91<br>
-		 * Unique code defined by the manufature = 0xE0 to 0xEF<br>
+		 * Unique code defined by the manufacture = 0xE0.0xEF<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -6280,14 +5999,13 @@ minut es<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x00 to 0x7F (0 to 127 liters)<br>
+		 * - 0x00.0x7F (0.127 liters)<br>
 		 * < Relative setting relative to the automatic setting ><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA0 to 0xBF: 1 to 32 liters<br>
+		 * 0xA0.0xBF: 1.32 liters<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC0 to 0xDF (1 to 32 liters)<br>
+		 * 0xC0.0xDF (1.32 liters)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -6314,21 +6032,20 @@ minut es<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x31 to 0x40 (16 levels)<br>
+		 * - 0x31.0x40 (16 levels)<br>
 		 * - 0x31 and 0x40 shall be used for the lowest and highest water levels, respectively.<br>
 		 * < Relative setting relative to the automatic setting ><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA0 to 0xA7: Levels 1 to 8<br>
+		 * 0xA0.0xA7: Levels 1.8<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC0 to 0xC7: Levels 1 to 8<br>
+		 * 0xC0.0xC7: Levels 1. 8<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6349,20 +6066,20 @@ minut es<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x00 to 0x17: 0x00 to 0x3B<br>
-		 * (= 0 to 23 hours): (= 0 to 59 minutes)<br>
+		 * - 0x00.0x17: 0x00.0x3B<br>
+		 * (= 0.23 hours): (= 0.59 minutes)<br>
 		 * < Relative setting relative to the automatic setting ><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA000 to 0xA03B: 1 to 60 minutes<br>
+		 * 0xA000.0xA03B: 1.60 minutes<br>
 		 * Relative setting in the negative direction<br>
-		 * - 0xC000 to 0xC03B: 1 to 60 minutes<br>
+		 * - 0xC000.0xC03B: 1.60 minutes<br>
 		 * <br>
 		 * Data type : unsigned char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : h,min<br>
 		 * <br>
@@ -6376,7 +6093,7 @@ minut es<br>
 			return this;
 		}
 		/**
-		 * Property name :  gNumber of times of rinsing h setting<br>
+		 * Property name : “Number of times of rinsing” setting<br>
 		 * <br>
 		 * EPC : 0xE6<br>
 		 * <br>
@@ -6384,22 +6101,22 @@ minut es<br>
 		 * Used to specify the number of times of rinsing and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 8 times (0x00 to 0x08)<br>
+		 * 0.8 times (0x00.0x08)<br>
 		 * Automatic = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetGnumberOfTimesOfRinsingHSetting() {
-			reqGetProperty(EPC_GNUMBER_OF_TIMES_OF_RINSING_H_SETTING);
+		public Getter reqGetNumberOfTimesOfRinsingSetting() {
+			reqGetProperty(EPC_NUMBER_OF_TIMES_OF_RINSING_SETTING);
 			return this;
 		}
 		/**
@@ -6418,11 +6135,12 @@ minut es<br>
 		 * 0011: Shower rinsing<br>
 		 * <br>
 		 * Data type : unsigned char
- ~4<br>
+×4<br>
 		 * <br>
-		 * Data size : 4 byte<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6443,14 +6161,13 @@ minut es<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x00 to 0x3B (0 to 59 minutes)<br>
+		 * - 0x00.0x3B (0.59 minutes)<br>
 		 * < Relative setting relative to the automatic setting ><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA0 to 0xBF: 1 to 32 minutes<br>
+		 * 0xA0.0xBF: 1.32 minutes<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC0 to 0xDF: 1 to 32 minute<br>
+		 * 0xC0.0xDF: 1.32 minute<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -6477,20 +6194,20 @@ minut es<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x00 to 0x17: 0x00 to 0x3B<br>
-		 * (= 0 to 23 hours): (= 0 to 59 minutes)<br>
+		 * - 0x00.0x17: 0x00.0x3B<br>
+		 * (= 0.23 hours): (= 0.59 minutes)<br>
 		 * < Relative setting relative to the automatic setting ><br>
-		 * - Automatic setting<br>
-		 * 0xFF: 0xFF<br>
+		 * - Automatic setting 0xFF: 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA000 to 0xA03B: 1 to 60 minutes<br>
+		 * 0xA000.0xA03B: 1.60 minutes<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC000 to 0xC03B: 1 to 60 minutes<br>
+		 * 0xC000.0xC03B: 1.60 minutes<br>
 		 * <br>
 		 * Data type : unsigned char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : h,min<br>
 		 * <br>
@@ -6509,10 +6226,10 @@ minut es<br>
 		 * EPC : 0xEA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the temperature of laundry water in   and to acquire the current setting.<br>
+		 * Used to specify the temperature of laundry water in .C and to acquire the current  setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 100  C (0x00 to 0x64)<br>
+		 * 0.100°C (0x00.0x64)<br>
 		 * Not to use warm water = 0xFE Automatic water temperature setting<br>
 		 * = 0xFF<br>
 		 * <br>
@@ -6520,7 +6237,7 @@ minut es<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit :   <br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6540,11 +6257,10 @@ minut es<br>
 		 * Used to specify whether or not, and when, to recycle used bathtub water, and acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Bathtub water not used   : 0x40<br>
-		 * Washing only                      : 0x41<br>
-		 * Rinsing only (excluding the final rinsing)                               : 0x42<br>
-		 * All rinsing processes        : 0x43<br>
-		 * Washing + rinsing (excluding the final rinsing)                       : 0x44<br>
+		 * Bathtub water not used   : 0x40 Washing only                     : 0x41 Rinsing only (excluding the final<br>
+		 * rinsing)                               : 0x42<br>
+		 * All rinsing processes        : 0x43 Washing + rinsing (excluding the<br>
+		 * final rinsing)                       : 0x44<br>
 		 * Washing + all rinsing<br>
 		 * processes                            : 0x45<br>
 		 * <br>
@@ -6552,7 +6268,7 @@ minut es<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6572,16 +6288,14 @@ minut es<br>
 		 * Used to specify whether or not to use the wrinkling minimization function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Wrinkling minimization function<br>
-		 * ON                  : 0x41<br>
-		 * Wrinkling minimization function<br>
-		 * OFF                : 0x42<br>
+		 * Wrinkling minimization function ON                  : 0x41<br>
+		 * Wrinkling minimization function OFF                : 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6598,21 +6312,19 @@ minut es<br>
 		 * EPC : 0xED<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the time remaining to complete the current washer and<br>
-		 * dryer .cycle .in .the . gHH: .MM h .format.<br>
+		 * Used to acquire the time remaining to complete the current washer and dryer cycle in the “HH: MM” format.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFE: 0 to 0x3B<br>
-		 * (= 0 to 254 hours): (= 0 to 59 minutes)<br>
-		 * Remaining time unknown = 0xFF:<br>
+		 * 0.0xFE: 0.0x3B<br>
+		 * (= 0.254 hours): (= 0.59 minutes) Remaining time unknown = 0xFF:<br>
 		 * 0xFF<br>
 		 * <br>
 		 * Data type : unsigned char
- ~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6639,7 +6351,7 @@ minut es<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6661,43 +6373,39 @@ minut es<br>
 		 * Value range (decimal notation) :<br>
 		 * Bytes 1 and 2: This property indicates the available<br>
 		 * items in a bitmap format.<br>
-		 * Byte 3: Presoaking<br>
-		 * With presoaking: 0x41<br>
+		 * Byte 3: Presoaking With presoaking: 0x41<br>
 		 * Without presoaking: 0x42<br>
-		 * Bytes 4 and 5: Washing time The value of the  gwashing time setting h property shall be referenced.<br>
-		 * Byte 6: Number of times of rinsing<br>
-		 * The value of the  g fnumber of times of rinsing f setting h property shall be referenced.<br>
-		 * Bytes 7 through 10: Rinsing process The value of the  grinsing process setting h property shall be referenced.<br>
+		 * Bytes 4 and 5: Washing time The value of the “washing time<br>
+		 * setting” property shall be referenced.<br>
+		 * Byte 6: Number of times of rinsing The value of the “’number of times of<br>
+		 * rinsing’ setting” property shall be referenced.<br>
+		 * Bytes 7 through 10: Rinsing process The value of the “rinsing process setting” property shall be referenced.<br>
 		 * Byte 11: Spin drying time<br>
-		 * The value of the  gspin drying time setting h property shall be referenced.<br>
+		 * The value of the “spin drying time setting” property shall be referenced.<br>
 		 * Bytes 12 and 13: Drying time<br>
-		 * The value of the  hdrying time setting h<br>
-		 * property shall be referenced.<br>
-		 * Byte 14: Warm water setting The value of the  gwarm water setting h property shall be referenced.<br>
-		 * Byte 15: Water volume setting 1<br>
-		 * The value of the  gwater volume setting 1 h property shall be referenced.<br>
-		 * Byte 16: Water volume setting 2<br>
-		 * The value of the  gwater volume setting 2 h property shall be referenced.<br>
+		 * The value of the 'drying time setting” property shall be referenced.<br>
+		 * Byte 14: Warm water setting The value of the “warm water<br>
+		 * setting” property shall be referenced.<br>
+		 * Byte 15: Water volume setting 1 The value of the “water volume setting 1” property shall be referenced.<br>
+		 * Byte 16: Water volume setting 2 The value of the “water volume setting 2” property shall be referenced.<br>
 		 * Byte 17: Bathtub water recycle setting<br>
-		 * The value of the  gbathtub water recycle setting h property<br>
-		 * shall be referenced.<br>
-		 * Byte 18: Water flow rate setting The value of the  gwater flow rate setting h property shall be referenced.<br>
-		 * Bytes 19 and 20:  gRotation speed for spin drying h setting<br>
-		 * The value of the  g frotation speed for spin drying f setting h property<br>
-		 * shall be referenced.<br>
-		 * Byte 21:  gDegree of drying h setting The value of the  g fdegree of drying f setting h property shall be referenced. Bytes 22 and 23: Presoaking time setting<br>
-		 * The value of the  gpresoaking time setting h property shall be referenced.<br>
-		 * Byte 24: Wrinkling minimization setting<br>
-		 * The value of the  gwrinkling<br>
-		 * minimization setting h property shall be referenced.<br>
+		 * The value of the “bathtub water recycle setting” property shall be referenced.<br>
+		 * Byte 18: Water flow rate setting The value of the “water flow rate<br>
+		 * setting” property shall be referenced.<br>
+		 * Bytes 19 and 20: “Rotation speed for spin drying” setting<br>
+		 * The value of the “’rotation speed for spin drying’ setting” property shall be referenced.<br>
+		 * Byte 21: “Degree of drying” setting The value of the “’degree of drying’ setting” property shall be referenced. Bytes 22 and 23: Presoaking time setting<br>
+		 * The value of the “presoaking time setting” property shall be referenced. Byte 24: Wrinkling minimization setting<br>
+		 * The value of the “wrinkling minimization setting” property shall<br>
+		 * be referenced.<br>
 		 * <br>
-		 * Data type : unsigned
-Char
- ~24<br>
+		 * Data type : unsigned Char
+×24<br>
 		 * <br>
-		 * Data size : 24 byte<br>
+		 * Data size : 24
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6717,14 +6425,14 @@ Char
 		 * Used to specify whether or not to use the ON timer-based reservation function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON = 0x41, reservation<br>
-		 * OFF = 0x42<br>
+		 * Reservation ON = 0x41, reservation OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Data size : 1
+byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6744,15 +6452,15 @@ Char
 		 * Used to specify the time for the time-based reservation function of the ON timer and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6772,15 +6480,16 @@ Char
 		 * Used to specify the relative time for the relative time-based reservation function of the ON timer and to acquire the time remaining for the current reservation.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6869,8 +6578,8 @@ Char
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -6910,14 +6619,13 @@ Char
 		 * Used to acquire the status of the door/cover (i.e. open or closed).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Door/cover open = 0x41<br>
-		 * Door/cover closed = 0x42<br>
+		 * Door/cover open = 0x41 Door/cover closed = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6937,15 +6645,14 @@ Char
 		 * Used to specify whether to start or stop the washing, drying or washing and drying cycle, and to acquire the current status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Start/restart(ed) or in progress = 0x41<br>
-		 * Suspend(ed) = 0x42<br>
+		 * Start/restart(ed) or in progress = 0x41 Suspend(ed) = 0x42<br>
 		 * Stop(ped) = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6963,44 +6670,37 @@ Char
 		 * EPC : 0xD0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the washer and dryer cycle option(s) to use in the  gwashing and drying, h  gwashing h or  gdrying h mode and to acquire the current setting(s). The value ranges shall be as follows:<br>
-		 * Washing and drying couse: 0x21 to<br>
-		 * 0x3F<br>
-		 * Washing and drying cource maker original code: 0x40 to 0x4F<br>
-		 * Washing cource: 0x61 to 0x7F Washing cource maker original code:<br>
-		 * 0x80 to 0x8F<br>
-		 * Drying cource: 0xA1 to 0xBF Drying cource maker original code:<br>
-		 * 0xC0 to 0xDF<br>
+		 * Used to specify the washer and dryer cycle option(s) to use in the “washing and drying,” “washing” or “drying” mode and to acquire the current setting(s). The value ranges shall be as follows:<br>
+		 * Washing and drying course: 0x21.0x3F Washing and drying course maker<br>
+		 * original code: 0x40.0x4F<br>
+		 * Washing course: 0x61.0x7F Washing course maker original code:<br>
+		 * 0x80.0x8F<br>
+		 * Drying course: 0xA1.0xBF  Drying course maker original code:<br>
+		 * 0xC0.0xDF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * <Washing and drying cource><br>
-		 * Standard = 0x21, silent = 0x22, heavily soiled clothes = 0x23, hard-to-remove stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry =<br>
-		 * 0x28, clean rinsing = 0x29, ironing/business shirts = 0x2A, hang drying = 0x2B, thick clothes = 0x2C, disinfection = 0x2D, oil stains = 0x2E, memory = 0x2F, detergent saving =<br>
-		 * 0x30, lightly soiled clothes = 0x31, quick wash of small amount of laundry<br>
+		 * <Washing and drying course>  Standard = 0x21, silent = 0x22, heavily<br>
+		 * soiled clothes = 0x23, hard-to-remove<br>
+		 * stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry = 0x28, clean rinsing = 0x29, ironing/business shirts = 0x2A, hang drying = 0x2B, thick clothes = 0x2C, disinfection = 0x2D, oil stains = 0x2E, memory = 0x2F, detergent saving = 0x30, lightly soiled clothes = 0x31, quick wash of small amount of laundry<br>
 		 * = 0x32<br>
-		 * Washing cource / maker original cource<br>
-		 * = 0x40 to 0x4F<br>
-		 * <Washing cource><br>
-		 * Standard = 0x61, silent = 0x62, heavily soiled clothes = 0x63, hard-to-remove stains = 0x64, presoaking = 0x65, blankets = 0x66, soft = 0x67, dry =<br>
-		 * 0x68, clean rinsing = 0x69, disinfection<br>
-		 * = 0x6A, oil stains = 0x6B, memory =<br>
-		 * 0x6C, detergent saving = 0x6D, lightly soiled clothes = 0x6E, quick wash of small amount of laundry = 0x6F, tank cleaning = 0x7F<br>
-		 * Washing cource / maker original cource<br>
-		 * = 0x80 to 0x8F<br>
-		 * <Drying cource><br>
+		 * Washing course / maker original course<br>
+		 * = 0x40.0x4F<br>
+		 * <Washing course><br>
+		 * Standard = 0x61, silent = 0x62, heavily soiled clothes = 0x63, hard-to-remove stains = 0x64, presoaking = 0x65, blankets = 0x66, soft = 0x67, dry = 0x68, clean rinsing = 0x69, disinfection<br>
+		 * = 0x6A, oil stains = 0x6B, memory = 0x6C, detergent saving = 0x6D, lightly soiled clothes = 0x6E, quick wash of small amount of laundry = 0x6F, tank cleaning = 0x7F<br>
+		 * Washing course / maker original course<br>
+		 * = 0x80.0x8F<br>
+		 * <Drying course><br>
 		 * Standard = 0xA1, blankets = 0xA2, soft<br>
-		 * = 0xA3, dry = 0xA4, ironing/business shirts = 0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection =<br>
-		 * 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying =<br>
-		 * 0xAB, user definition of drying time =<br>
-		 * 0xAC, garment warming = 0xAD, tank drying = 0xBF<br>
-		 * Drying cource / maker original cource<br>
-		 * = 0xC0 to 0xCF<br>
+		 * = 0xA3, dry = 0xA4, ironing/business shirts = 0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection = 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying = 0xAB, user definition of drying time = 0xAC, garment warming = 0xAD, tank<br>
+		 * drying = 0xBF<br>
+		 * Drying course / maker original course = 0xC0.0xCF<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7018,27 +6718,21 @@ Char
 		 * EPC : 0xD1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the washer and dryer cycle option(s) to use in the<br>
-		 *  gwashing and drying h mode, and to acquire the current setting(s). The drying option(s) to use shall be specified with the  gdrying cycle<br>
-		 * setting h property (EPC = 0xD2).<br>
-		 * Maker original code = 0xE0 to 0xEF<br>
+		 * Used to specify the washer and dryer cycle option(s) to use in the “washing and drying” mode, and to acquire the current setting(s). The drying option(s) to use shall be specified with the “drying cycle setting” property (EPC = 0xD2).<br>
+		 * Maker original code = 0xE0.0xEF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * No washing = 0x20, standard =<br>
-		 * 0x21, silent = 0x22, heavily soiled clothes = 0x23, hard-to-remove stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry =<br>
-		 * 0x28, clean rinsing = 0x29,<br>
-		 * disinfection = 0x2D, oil stains =<br>
-		 * 0x2E, memory = 0x2F, detergent saving = 0x30, lightly soiled clothes<br>
-		 * = 0x31, quick wash of small amount of laundry = 0x32, tank cleaning =<br>
-		 * 0x3F<br>
-		 * Maker original cource = 0xE0 to<br>
-		 * 0xEF<br>
+		 * No washing = 0x20, standard = 0x21, silent = 0x22, heavily soiled clothes = 0x23, hard-to-remove stains = 0x24, presoaking = 0x25, blankets = 0x26, soft = 0x27, dry = 0x28, clean rinsing<br>
+		 * = 0x29, disinfection = 0x2D, oil stains = 0x2E, memory = 0x2F, detergent saving = 0x30, lightly<br>
+		 * soiled clothes = 0x31, quick wash of small amount of laundry = 0x32, tank<br>
+		 * cleaning = 0x3F<br>
+		 * Maker original course = 0xE0.0xEF<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsig ned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7055,24 +6749,20 @@ Char
 		 * EPC : 0xD2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the drying cycle option(s) to use, and to acquire the current setting. For the  gwashing and drying h mode, the  gwasher and dryer cycle setting 2 h property (EPC =<br>
-		 * 0xD1) shall be used.<br>
+		 * Used to specify the drying cycle option(s) to use, and to acquire the current setting. For the “washing and drying” mode, the “washer and dryer cycle setting 2” property (EPC = 0xD1) shall be used.<br>
 		 * Maker original code = 0xE0 to 0xEF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * No drying = 0xA0, standard = 0xA1, blankets = 0xA2, soft = 0xA3, dry =<br>
-		 * 0xA4, ironing/business shirts =<br>
-		 * 0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection = 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying<br>
-		 * = 0xAB, user definition of drying time = 0xAC, garment warming =<br>
-		 * 0xAD, heater current limit = 0xAE, tank drying = 0xBF<br>
-		 * Maker original cource = 0xE0 to<br>
-		 * 0xEF<br>
+		 * No drying = 0xA0, standard = 0xA1, blankets = 0xA2, soft = 0xA3, dry = 0xA4, ironing/business shirts =  0xA5, hang drying = 0xA6, thick clothes = 0xA7, disinfection = 0xA8, shrinkage minimization = 0xA9, finishing = 0xAA, stationary drying = 0xAB, user definition of drying time<br>
+		 * = 0xAC, garment warming = 0xAD, heater current limit = 0xAE, tank<br>
+		 * drying = 0xBF<br>
+		 * Maker original course = 0xE0 0xEF<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsig ned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7089,20 +6779,19 @@ Char
 		 * EPC : 0xD3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire a bitmap list of the washer and dryer cycle options that can be specified with the  gwasher and dryer cycle setting 1 h property.<br>
+		 * Used to acquire a bitmap list of the washer and dryer cycle options that can be specified with the “washer and dryer cycle setting 1” property.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * When the value contained in the bit for the desired washer and dryer<br>
-		 * cycle option is  g1 h, the option can be specified. When the value contained in the bit for the desired washer and dryer cycle option is  g0 h, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the<br>
-		 * detailed explanation.<br>
+		 * When the value contained in the bit for the desired washer and dryer cycle option is “1”, the option can be specified. When the value contained in the bit for the desired washer and dryer cycle option is “0”, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the detailed explanation.<br>
 		 * <br>
-		 * Data type : unsign ed
+		 * Data type : unsig ned
 char
- ~12,<br>
+×12,<br>
 		 * <br>
-		 * Data size : 12 byte<br>
+		 * Data size : 12
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7119,20 +6808,19 @@ char
 		 * EPC : 0xD4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire a bitmap list of the washer and dryer cycle options that can be specified with the  gwasher and dryer cycle setting 2 h property.<br>
+		 * Used to acquire a bitmap list of the washer and dryer cycle options that can be specified with the “washer and dryer cycle setting 2” property.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * When the value contained in the bit for the desired washer and dryer<br>
-		 * cycle option is  g1 h, the option can be specified. When the value contained in the bit for the desired washer and dryer cycle option is  g0 h, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the<br>
-		 * detailed explanation.<br>
+		 * When the value contained in the bit for the desired washer and dryer cycle option is “1”, the option can be specified. When the value contained in the bit for the desired washer and dryer cycle option is “0”, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the detailed explanation.<br>
 		 * <br>
-		 * Data type : unsign ed
+		 * Data type : unsig ned
 char
- ~4,<br>
+×4,<br>
 		 * <br>
-		 * Data size : 4 byte<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7149,18 +6837,19 @@ char
 		 * EPC : 0xD5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire a bitmap list of the drying cycle options that can be specified with the  gdrying cycle setting h property.<br>
+		 * Used to acquire a bitmap list of the drying cycle options that can be specified with the “drying cycle setting” property.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * When the value contained in the bit for the desired drying cycle option is  g1 h, the option can be specified. When the value contained in the bit for the desired drying cycle option is  g0 h, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the detailed explanation.<br>
+		 * When the value contained in the bit for the desired drying cycle option is “1”, the option can be specified. When the value contained in the bit for the desired drying cycle option is “0”, the option cannot be specified. For the requirement as to which bit must be used for which option, refer to the detailed explanation.<br>
 		 * <br>
-		 * Data type : unsign ed
+		 * Data type : unsig ned
 char
- ~4,<br>
+×4,<br>
 		 * <br>
-		 * Data size : 4 byte<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7180,22 +6869,20 @@ char
 		 * Used to specify the water flow rate by selecting a level from among the predefined levels and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * <Absolute setting><br>
-		 * 0x31 to 0x40 (16 levels)<br>
+		 * <Absolute setting> 0x31.0x40 (16 levels)<br>
 		 * * 0x31 and 0x40 shall be used for the lowest and highest flow rates, respectively.<br>
 		 * <Relative setting relative to the automatic setting><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA0 to 0xA7: Levels 1 to 8<br>
+		 * 0xA0.0xA7: Levels 1.8<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC0 to 0xC7: Levels 1 to 8<br>
+		 * 0xC0.0xC7: Levels 1.8<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsig ned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7207,8 +6894,7 @@ char
 			return this;
 		}
 		/**
-		 * Property name :  gRotation speed for spin drying h
-setting<br>
+		 * Property name : “Rotation speed for spin drying” setting<br>
 		 * <br>
 		 * EPC : 0xD7<br>
 		 * <br>
@@ -7217,32 +6903,32 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x0000 to 0x0FFF (0 to 4095 r/min.)<br>
+		 * - 0x0000. 0x0FFF (0.4095 r/min.)<br>
 		 * <Relative setting relative to the automatic setting><br>
-		 * - Automatic setting<br>
-		 * 0xFFFF<br>
+		 * - Automatic setting 0xFFFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA000 to 0xA7FF (1 to 2048 r/min.)<br>
+		 * 0xA000.0xA7FF (1.2048 r/min.)<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC000 to 0xC7FF (1 to 2048r/min.)<br>
+		 * 0xC000.0xC7FF (1.2048r/min.)<br>
 		 * <br>
-		 * Data type : unsign ed short<br>
+		 * Data type : unsig ned short<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformGrotationSpeedForSpinDryingHSetting() {
-			reqInformProperty(EPC_GROTATION_SPEED_FOR_SPIN_DRYING_H_SETTING);
+		public Informer reqInformRotationSpeedForSpinDryingSetting() {
+			reqInformProperty(EPC_ROTATION_SPEED_FOR_SPIN_DRYING_SETTING);
 			return this;
 		}
 		/**
-		 * Property name :  gDegree of drying h setting<br>
+		 * Property name : “Degree of drying” setting<br>
 		 * <br>
 		 * EPC : 0xD8<br>
 		 * <br>
@@ -7251,29 +6937,28 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x31 to 0x40 (16 levels)<br>
+		 * - 0x31.0x40 (16 levels)<br>
 		 * * 0x31 and 0x40 shall be used for the lowest and highest levels, respectively.<br>
 		 * <Relative setting relative to the automatic setting><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA0 to 0xA7: Levels 1 to 8<br>
+		 * 0xA0.0xA7: Levels 1.8<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC0 to 0xC7: Levels 1 to 8<br>
+		 * 0xC0.0xC7: Levels 1.8<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsig ned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformGdegreeOfDryingHSetting() {
-			reqInformProperty(EPC_GDEGREE_OF_DRYING_H_SETTING);
+		public Informer reqInformDegreeOfDryingSetting() {
+			reqInformProperty(EPC_DEGREE_OF_DRYING_SETTING);
 			return this;
 		}
 		/**
@@ -7283,21 +6968,20 @@ setting<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Acquires the remaining washing time<br>
-		 * in .the . gHH:MM h .format.<br>
+		 * in the “HH:MM” format.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0xFE F0-0x3B<br>
-		 * (=0-254) hours F(=0-59) minutes<br>
-		 * Remaining time unknown=0xFF F<br>
+		 * 0.0xFE : 0.0x3B<br>
+		 * (=0-254) hours : (=0-59) minutes Remaining time unknown=0xFF :<br>
 		 * 0xFF<br>
 		 * <br>
-		 * Data type : unsigne d
+		 * Data type : unsign ed
 char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7315,19 +6999,20 @@ char
 		 * <br>
 		 * Contents of property :<br>
 		 * Acquires the remaining drying<br>
-		 * time .in .the . gHH:MM h .format.<br>
+		 * time in the “HH:MM” format.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0xFE F0-0x3B<br>
-		 * (=0-254) hours F(=0-59) minutes<br>
-		 * Remaining time<br>
-		 * unknown=0xFF F0xFF<br>
+		 * 0.0xFE : 0.0x3B<br>
+		 * (=0.254) hours : (=0.59) minutes Remaining time unknown=0xFF :<br>
+		 * 0xFF<br>
 		 * <br>
-		 * Data type : unsign ed<br>
+		 * Data type : unsign ed
+char
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7347,17 +7032,17 @@ char
 		 * Used to acquire the time elapsed on the ON timer after the ON timer was activated.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigne d
+		 * Data type : unsign ed
 char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : Hour
-minut es<br>
+		 * Unit : Hour minu
+tes<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7378,22 +7063,21 @@ minut es<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x00 to 0x17: 0x00 to 0x3B<br>
-		 * (= 0 to 23 hours): (= 0 to 59 minutes)<br>
+		 * - 0x00.0x17: 0x00.0x3B<br>
+		 * (= 0.23 hours): (= 0.59 minutes)<br>
 		 * <Relative setting relative to the automatic setting><br>
-		 * - Automatic setting<br>
-		 * 0xFF: 0xFF<br>
+		 * - Automatic setting 0xFF: 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA000 to 0xA03B: 1 to 60 minutes<br>
+		 * 0xA000.0xA03B: 1.60 minutes<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC000 to 0xC03B: 1 to 60 minutes<br>
+		 * 0xC000.0xC03B: 1.60 minutes<br>
 		 * <br>
-		 * Data type : unsigne d char
- ~2<br>
+		 * Data type : unsign ed char
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : h,min<br>
+		 * Unit : h,mi n<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7413,34 +7097,17 @@ minut es<br>
 		 * Used to acquire the current stage of the washer and dryer cycle.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Washing = 0x41<br>
-		 * Rinsing = 0x42<br>
-		 * Spin drying = 0x43<br>
-		 * Suspended = 0x44<br>
+		 * Washing = 0x41 Rinsing = 0x42 Spin drying = 0x43 Suspended = 0x44<br>
 		 * Washing completed = 0x45<br>
 		 * Washing/drying (without wrinkling minimization) completed = 0x51<br>
 		 * Drying = 0x52<br>
-		 * Wrinkling minimization = 0x53<br>
-		 * Drying (with wrinkling minimization) completed = 0x54<br>
-		 * Standing by to start = 0x61<br>
-		 * 1st rinsing = 0x71<br>
-		 * 2nd rinsing = 0x72<br>
-		 * 3rd rinsing = 0x73<br>
-		 * 4th rinsing = 0x74<br>
-		 * 5th rinsing = 0x75<br>
-		 * 6th rinsing = 0x76<br>
-		 * 7th rinsing = 0x77<br>
-		 * 8th rinsing = 0x78<br>
-		 * 1st spin drying = 0x81<br>
-		 * 2nd spin drying = 0x82<br>
-		 * 3rd spin drying = 0x83<br>
-		 * 4th spin drying = 0x84<br>
-		 * 5th spin drying = 0x85<br>
-		 * 6th spin drying = 0x86<br>
-		 * 7th spin drying = 0x87<br>
-		 * 8th spin drying = 0x88<br>
+		 * Wrinkling minimization = 0x53 Drying (with wrinkling<br>
+		 * minimization) completed = 0x54<br>
+		 * Standing by to start = 0x61 1st rinsing = 0x71<br>
+		 * 2nd rinsing = 0x72 3rd rinsing = 0x73 4th rinsing = 0x74 5th rinsing = 0x75 6th rinsing = 0x76 7th rinsing = 0x77 8th rinsing = 0x78<br>
+		 * 1st spin drying = 0x81 2nd spin drying = 0x82 3rd spin drying = 0x83 4th spin drying = 0x84 5th spin drying = 0x85 6th spin drying = 0x86 7th spin drying = 0x87 8th spin drying = 0x88<br>
 		 * Preheat spin drying = 0x91<br>
-		 * Unique code defined by the manufature = 0xE0 to 0xEF<br>
+		 * Unique code defined by the manufacture = 0xE0.0xEF<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -7467,14 +7134,13 @@ minut es<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x00 to 0x7F (0 to 127 liters)<br>
+		 * - 0x00.0x7F (0.127 liters)<br>
 		 * < Relative setting relative to the automatic setting ><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA0 to 0xBF: 1 to 32 liters<br>
+		 * 0xA0.0xBF: 1.32 liters<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC0 to 0xDF (1 to 32 liters)<br>
+		 * 0xC0.0xDF (1.32 liters)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -7501,21 +7167,20 @@ minut es<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x31 to 0x40 (16 levels)<br>
+		 * - 0x31.0x40 (16 levels)<br>
 		 * - 0x31 and 0x40 shall be used for the lowest and highest water levels, respectively.<br>
 		 * < Relative setting relative to the automatic setting ><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA0 to 0xA7: Levels 1 to 8<br>
+		 * 0xA0.0xA7: Levels 1.8<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC0 to 0xC7: Levels 1 to 8<br>
+		 * 0xC0.0xC7: Levels 1. 8<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7536,20 +7201,20 @@ minut es<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x00 to 0x17: 0x00 to 0x3B<br>
-		 * (= 0 to 23 hours): (= 0 to 59 minutes)<br>
+		 * - 0x00.0x17: 0x00.0x3B<br>
+		 * (= 0.23 hours): (= 0.59 minutes)<br>
 		 * < Relative setting relative to the automatic setting ><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA000 to 0xA03B: 1 to 60 minutes<br>
+		 * 0xA000.0xA03B: 1.60 minutes<br>
 		 * Relative setting in the negative direction<br>
-		 * - 0xC000 to 0xC03B: 1 to 60 minutes<br>
+		 * - 0xC000.0xC03B: 1.60 minutes<br>
 		 * <br>
 		 * Data type : unsigned char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : h,min<br>
 		 * <br>
@@ -7563,7 +7228,7 @@ minut es<br>
 			return this;
 		}
 		/**
-		 * Property name :  gNumber of times of rinsing h setting<br>
+		 * Property name : “Number of times of rinsing” setting<br>
 		 * <br>
 		 * EPC : 0xE6<br>
 		 * <br>
@@ -7571,22 +7236,22 @@ minut es<br>
 		 * Used to specify the number of times of rinsing and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 8 times (0x00 to 0x08)<br>
+		 * 0.8 times (0x00.0x08)<br>
 		 * Automatic = 0xFF<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformGnumberOfTimesOfRinsingHSetting() {
-			reqInformProperty(EPC_GNUMBER_OF_TIMES_OF_RINSING_H_SETTING);
+		public Informer reqInformNumberOfTimesOfRinsingSetting() {
+			reqInformProperty(EPC_NUMBER_OF_TIMES_OF_RINSING_SETTING);
 			return this;
 		}
 		/**
@@ -7605,11 +7270,12 @@ minut es<br>
 		 * 0011: Shower rinsing<br>
 		 * <br>
 		 * Data type : unsigned char
- ~4<br>
+×4<br>
 		 * <br>
-		 * Data size : 4 byte<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7630,14 +7296,13 @@ minut es<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x00 to 0x3B (0 to 59 minutes)<br>
+		 * - 0x00.0x3B (0.59 minutes)<br>
 		 * < Relative setting relative to the automatic setting ><br>
-		 * - Automatic setting<br>
-		 * 0xFF<br>
+		 * - Automatic setting 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA0 to 0xBF: 1 to 32 minutes<br>
+		 * 0xA0.0xBF: 1.32 minutes<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC0 to 0xDF: 1 to 32 minute<br>
+		 * 0xC0.0xDF: 1.32 minute<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -7664,20 +7329,20 @@ minut es<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <Absolute setting><br>
-		 * - 0x00 to 0x17: 0x00 to 0x3B<br>
-		 * (= 0 to 23 hours): (= 0 to 59 minutes)<br>
+		 * - 0x00.0x17: 0x00.0x3B<br>
+		 * (= 0.23 hours): (= 0.59 minutes)<br>
 		 * < Relative setting relative to the automatic setting ><br>
-		 * - Automatic setting<br>
-		 * 0xFF: 0xFF<br>
+		 * - Automatic setting 0xFF: 0xFF<br>
 		 * - Relative setting in the positive direction<br>
-		 * 0xA000 to 0xA03B: 1 to 60 minutes<br>
+		 * 0xA000.0xA03B: 1.60 minutes<br>
 		 * - Relative setting in the negative direction<br>
-		 * 0xC000 to 0xC03B: 1 to 60 minutes<br>
+		 * 0xC000.0xC03B: 1.60 minutes<br>
 		 * <br>
 		 * Data type : unsigned char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : h,min<br>
 		 * <br>
@@ -7696,10 +7361,10 @@ minut es<br>
 		 * EPC : 0xEA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the temperature of laundry water in   and to acquire the current setting.<br>
+		 * Used to specify the temperature of laundry water in .C and to acquire the current  setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 100  C (0x00 to 0x64)<br>
+		 * 0.100°C (0x00.0x64)<br>
 		 * Not to use warm water = 0xFE Automatic water temperature setting<br>
 		 * = 0xFF<br>
 		 * <br>
@@ -7707,7 +7372,7 @@ minut es<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit :   <br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7727,11 +7392,10 @@ minut es<br>
 		 * Used to specify whether or not, and when, to recycle used bathtub water, and acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Bathtub water not used   : 0x40<br>
-		 * Washing only                      : 0x41<br>
-		 * Rinsing only (excluding the final rinsing)                               : 0x42<br>
-		 * All rinsing processes        : 0x43<br>
-		 * Washing + rinsing (excluding the final rinsing)                       : 0x44<br>
+		 * Bathtub water not used   : 0x40 Washing only                     : 0x41 Rinsing only (excluding the final<br>
+		 * rinsing)                               : 0x42<br>
+		 * All rinsing processes        : 0x43 Washing + rinsing (excluding the<br>
+		 * final rinsing)                       : 0x44<br>
 		 * Washing + all rinsing<br>
 		 * processes                            : 0x45<br>
 		 * <br>
@@ -7739,7 +7403,7 @@ minut es<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7759,16 +7423,14 @@ minut es<br>
 		 * Used to specify whether or not to use the wrinkling minimization function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Wrinkling minimization function<br>
-		 * ON                  : 0x41<br>
-		 * Wrinkling minimization function<br>
-		 * OFF                : 0x42<br>
+		 * Wrinkling minimization function ON                  : 0x41<br>
+		 * Wrinkling minimization function OFF                : 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7785,21 +7447,19 @@ minut es<br>
 		 * EPC : 0xED<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the time remaining to complete the current washer and<br>
-		 * dryer .cycle .in .the . gHH: .MM h .format.<br>
+		 * Used to acquire the time remaining to complete the current washer and dryer cycle in the “HH: MM” format.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFE: 0 to 0x3B<br>
-		 * (= 0 to 254 hours): (= 0 to 59 minutes)<br>
-		 * Remaining time unknown = 0xFF:<br>
+		 * 0.0xFE: 0.0x3B<br>
+		 * (= 0.254 hours): (= 0.59 minutes) Remaining time unknown = 0xFF:<br>
 		 * 0xFF<br>
 		 * <br>
 		 * Data type : unsigned char
- ~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7826,7 +7486,7 @@ minut es<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7848,43 +7508,39 @@ minut es<br>
 		 * Value range (decimal notation) :<br>
 		 * Bytes 1 and 2: This property indicates the available<br>
 		 * items in a bitmap format.<br>
-		 * Byte 3: Presoaking<br>
-		 * With presoaking: 0x41<br>
+		 * Byte 3: Presoaking With presoaking: 0x41<br>
 		 * Without presoaking: 0x42<br>
-		 * Bytes 4 and 5: Washing time The value of the  gwashing time setting h property shall be referenced.<br>
-		 * Byte 6: Number of times of rinsing<br>
-		 * The value of the  g fnumber of times of rinsing f setting h property shall be referenced.<br>
-		 * Bytes 7 through 10: Rinsing process The value of the  grinsing process setting h property shall be referenced.<br>
+		 * Bytes 4 and 5: Washing time The value of the “washing time<br>
+		 * setting” property shall be referenced.<br>
+		 * Byte 6: Number of times of rinsing The value of the “’number of times of<br>
+		 * rinsing’ setting” property shall be referenced.<br>
+		 * Bytes 7 through 10: Rinsing process The value of the “rinsing process setting” property shall be referenced.<br>
 		 * Byte 11: Spin drying time<br>
-		 * The value of the  gspin drying time setting h property shall be referenced.<br>
+		 * The value of the “spin drying time setting” property shall be referenced.<br>
 		 * Bytes 12 and 13: Drying time<br>
-		 * The value of the  hdrying time setting h<br>
-		 * property shall be referenced.<br>
-		 * Byte 14: Warm water setting The value of the  gwarm water setting h property shall be referenced.<br>
-		 * Byte 15: Water volume setting 1<br>
-		 * The value of the  gwater volume setting 1 h property shall be referenced.<br>
-		 * Byte 16: Water volume setting 2<br>
-		 * The value of the  gwater volume setting 2 h property shall be referenced.<br>
+		 * The value of the 'drying time setting” property shall be referenced.<br>
+		 * Byte 14: Warm water setting The value of the “warm water<br>
+		 * setting” property shall be referenced.<br>
+		 * Byte 15: Water volume setting 1 The value of the “water volume setting 1” property shall be referenced.<br>
+		 * Byte 16: Water volume setting 2 The value of the “water volume setting 2” property shall be referenced.<br>
 		 * Byte 17: Bathtub water recycle setting<br>
-		 * The value of the  gbathtub water recycle setting h property<br>
-		 * shall be referenced.<br>
-		 * Byte 18: Water flow rate setting The value of the  gwater flow rate setting h property shall be referenced.<br>
-		 * Bytes 19 and 20:  gRotation speed for spin drying h setting<br>
-		 * The value of the  g frotation speed for spin drying f setting h property<br>
-		 * shall be referenced.<br>
-		 * Byte 21:  gDegree of drying h setting The value of the  g fdegree of drying f setting h property shall be referenced. Bytes 22 and 23: Presoaking time setting<br>
-		 * The value of the  gpresoaking time setting h property shall be referenced.<br>
-		 * Byte 24: Wrinkling minimization setting<br>
-		 * The value of the  gwrinkling<br>
-		 * minimization setting h property shall be referenced.<br>
+		 * The value of the “bathtub water recycle setting” property shall be referenced.<br>
+		 * Byte 18: Water flow rate setting The value of the “water flow rate<br>
+		 * setting” property shall be referenced.<br>
+		 * Bytes 19 and 20: “Rotation speed for spin drying” setting<br>
+		 * The value of the “’rotation speed for spin drying’ setting” property shall be referenced.<br>
+		 * Byte 21: “Degree of drying” setting The value of the “’degree of drying’ setting” property shall be referenced. Bytes 22 and 23: Presoaking time setting<br>
+		 * The value of the “presoaking time setting” property shall be referenced. Byte 24: Wrinkling minimization setting<br>
+		 * The value of the “wrinkling minimization setting” property shall<br>
+		 * be referenced.<br>
 		 * <br>
-		 * Data type : unsigned
-Char
- ~24<br>
+		 * Data type : unsigned Char
+×24<br>
 		 * <br>
-		 * Data size : 24 byte<br>
+		 * Data size : 24
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7904,14 +7560,14 @@ Char
 		 * Used to specify whether or not to use the ON timer-based reservation function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON = 0x41, reservation<br>
-		 * OFF = 0x42<br>
+		 * Reservation ON = 0x41, reservation OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Data size : 1
+byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7931,15 +7587,15 @@ Char
 		 * Used to specify the time for the time-based reservation function of the ON timer and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7959,15 +7615,16 @@ Char
 		 * Used to specify the relative time for the relative time-based reservation function of the ON timer and to acquire the time remaining for the current reservation.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
- ~2<br>
+×2<br>
 		 * <br>
-		 * Data size : 2 byte<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>

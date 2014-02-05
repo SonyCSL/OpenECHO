@@ -96,17 +96,16 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit :  �<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -122,17 +121,16 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit :  �<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -148,21 +146,19 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * EPC : 0xB0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the operation mode ( gautomatic, h  gcooling, h  gheating, h  gdehumidification, h  gair circulator h or  gother h), and to acquire the current setting.<br>
+	 * Used to specify the operation mode (“automatic,” “cooling,” “heating,” “dehumidification,” “air circulator” or “other”), and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * The following values shall be used: Automatic: 0x41<br>
-	 * Cooling: 0x42<br>
-	 * Heating: 0x43<br>
-	 * Dehumidification: 0x44<br>
-	 * Air circulator: 0x45<br>
+	 * Cooling: 0x42 Heating: 0x43<br>
+	 * Dehumidification: 0x44 Air circulator: 0x45<br>
 	 * Other: 0x40<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -178,21 +174,19 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * EPC : 0xB0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the operation mode ( gautomatic, h  gcooling, h  gheating, h  gdehumidification, h  gair circulator h or  gother h), and to acquire the current setting.<br>
+	 * Used to specify the operation mode (“automatic,” “cooling,” “heating,” “dehumidification,” “air circulator” or “other”), and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * The following values shall be used: Automatic: 0x41<br>
-	 * Cooling: 0x42<br>
-	 * Heating: 0x43<br>
-	 * Dehumidification: 0x44<br>
-	 * Air circulator: 0x45<br>
+	 * Cooling: 0x42 Heating: 0x43<br>
+	 * Dehumidification: 0x44 Air circulator: 0x45<br>
 	 * Other: 0x40<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -208,21 +202,19 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * EPC : 0xB0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the operation mode ( gautomatic, h  gcooling, h  gheating, h  gdehumidification, h  gair circulator h or  gother h), and to acquire the current setting.<br>
+	 * Used to specify the operation mode (“automatic,” “cooling,” “heating,” “dehumidification,” “air circulator” or “other”), and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * The following values shall be used: Automatic: 0x41<br>
-	 * Cooling: 0x42<br>
-	 * Heating: 0x43<br>
-	 * Dehumidification: 0x44<br>
-	 * Air circulator: 0x45<br>
+	 * Cooling: 0x42 Heating: 0x43<br>
+	 * Dehumidification: 0x44 Air circulator: 0x45<br>
 	 * Other: 0x40<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -244,14 +236,13 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic = 0x41<br>
-	 * Non-automatic = 0x42<br>
+	 * Automatic = 0x41 Non-automatic = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -268,14 +259,13 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic = 0x41<br>
-	 * Non-automatic = 0x42<br>
+	 * Automatic = 0x41 Non-automatic = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -292,14 +282,13 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic = 0x41<br>
-	 * Non-automatic = 0x42<br>
+	 * Automatic = 0x41 Non-automatic = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -317,19 +306,18 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * <br>
 	 * Contents of property :<br>
 	 * Used to specify the type of operation<br>
-	 * ( gnormal, h  ghigh-speed h or  gsilent h),<br>
+	 * (“normal,” “high-speed” or “silent”),<br>
 	 * and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Normal operation: 0x41<br>
-	 * High-speed operation: 0x42<br>
+	 * Normal operation: 0x41 High-speed operation: 0x42<br>
 	 * Silent operation: 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -344,19 +332,18 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * <br>
 	 * Contents of property :<br>
 	 * Used to specify the type of operation<br>
-	 * ( gnormal, h  ghigh-speed h or  gsilent h),<br>
+	 * (“normal,” “high-speed” or “silent”),<br>
 	 * and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Normal operation: 0x41<br>
-	 * High-speed operation: 0x42<br>
+	 * Normal operation: 0x41 High-speed operation: 0x42<br>
 	 * Silent operation: 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -371,19 +358,18 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * <br>
 	 * Contents of property :<br>
 	 * Used to specify the type of operation<br>
-	 * ( gnormal, h  ghigh-speed h or  gsilent h),<br>
+	 * (“normal,” “high-speed” or “silent”),<br>
 	 * and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Normal operation: 0x41<br>
-	 * High-speed operation: 0x42<br>
+	 * Normal operation: 0x41 High-speed operation: 0x42<br>
 	 * Silent operation: 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -404,13 +390,13 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50  )<br>
+	 * 0x00.0x32 (0.50.C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -428,13 +414,13 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50  )<br>
+	 * 0x00.0x32 (0.50.C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -452,13 +438,13 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50  )<br>
+	 * 0x00.0x32 (0.50.C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -475,10 +461,10 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * EPC : 0xB4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the relative humidity for the  gdehumidification h mode and to acquire the current setting.<br>
+	 * Used to set the relative humidity for the “dehumidification” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x64 (0 to 100%)<br>
+	 * 0x00.0x64 (0.100%)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -498,10 +484,10 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * EPC : 0xB4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the relative humidity for the  gdehumidification h mode and to acquire the current setting.<br>
+	 * Used to set the relative humidity for the “dehumidification” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x64 (0 to 100%)<br>
+	 * 0x00.0x64 (0.100%)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -521,10 +507,10 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * EPC : 0xB4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the relative humidity for the  gdehumidification h mode and to acquire the current setting.<br>
+	 * Used to set the relative humidity for the “dehumidification” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x64 (0 to 100%)<br>
+	 * 0x00.0x64 (0.100%)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -547,16 +533,16 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * EPC : 0xB5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the  gcooling h mode and to acquire the current setting.<br>
+	 * Used to set the temperature for the “cooling” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50  )<br>
+	 * 0x00.0x32 (0.50.C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -570,16 +556,16 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * EPC : 0xB5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the  gcooling h mode and to acquire the current setting.<br>
+	 * Used to set the temperature for the “cooling” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50  )<br>
+	 * 0x00.0x32 (0.50.C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -593,16 +579,16 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * EPC : 0xB5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the  gcooling h mode and to acquire the current setting.<br>
+	 * Used to set the temperature for the “cooling” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50  )<br>
+	 * 0x00.0x32 (0.50.C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -619,16 +605,16 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * EPC : 0xB6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the  gheating h mode and to acquire the current setting.<br>
+	 * Used to set the temperature for the “heating” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50  )<br>
+	 * 0x00.0x32 (0.50.C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -642,16 +628,16 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * EPC : 0xB6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the  gheating h mode and to acquire the current setting.<br>
+	 * Used to set the temperature for the “heating” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50  )<br>
+	 * 0x00.0x32 (0.50.C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -665,16 +651,16 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * EPC : 0xB6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the  gheating h mode and to acquire the current setting.<br>
+	 * Used to set the temperature for the “heating” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50  )<br>
+	 * 0x00.0x32 (0.50.C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -691,16 +677,16 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * EPC : 0xB7<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the  gdehumidification h mode and to acquire the current setting.<br>
+	 * Used to set the temperature for the “dehumidification” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50  )<br>
+	 * 0x00.0x32 (0.50.C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -714,16 +700,16 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * EPC : 0xB7<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the  gdehumidification h mode and to acquire the current setting.<br>
+	 * Used to set the temperature for the “dehumidification” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50  )<br>
+	 * 0x00.0x32 (0.50.C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -737,16 +723,16 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * EPC : 0xB7<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the temperature for the  gdehumidification h mode and to acquire the current setting.<br>
+	 * Used to set the temperature for the “dehumidification” mode and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0x32 (0 to 50  )<br>
+	 * 0x00.0x32 (0.50.C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -766,9 +752,10 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * Rated power consumption in each operation mode of cooling/heating/dehumidifying/blast<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533W) Cooling: heating: dehumidifying: blast<br>
+	 * 0x0000.0xFFFD (0.65533W)<br>
+	 * Cooling: heating: dehumidifying: blast<br>
 	 * <br>
-	 * Data type : unsigned short x 4<br>
+	 * Data type : unsigned short × 4<br>
 	 * <br>
 	 * Data size : 8 bytes<br>
 	 * <br>
@@ -789,9 +776,10 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * Rated power consumption in each operation mode of cooling/heating/dehumidifying/blast<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533W) Cooling: heating: dehumidifying: blast<br>
+	 * 0x0000.0xFFFD (0.65533W)<br>
+	 * Cooling: heating: dehumidifying: blast<br>
 	 * <br>
-	 * Data type : unsigned short x 4<br>
+	 * Data type : unsigned short × 4<br>
 	 * <br>
 	 * Data size : 8 bytes<br>
 	 * <br>
@@ -864,7 +852,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * Measured value of room relative humidity<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64 (0.100. C)<br>
+	 * 0x00.0x64 (0.100.C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -887,7 +875,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * Measured value of room relative humidity<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64 (0.100. C)<br>
+	 * 0x00.0x64 (0.100.C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -919,7 +907,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -942,7 +930,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -968,7 +956,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -991,7 +979,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1011,13 +999,13 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * This property indicates the measured cooled air temperature at the outlet.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7D (-127 to 125  C)<br>
+	 * 0x81.0x7D (-127.125°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1034,13 +1022,13 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * This property indicates the measured cooled air temperature at the outlet.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7D (-127 to 125  C)<br>
+	 * 0x81.0x7D (-127.125°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1060,13 +1048,13 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * This property indicates the measured outdoor air temperature.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7D (-127 to 125  C)<br>
+	 * 0x81.0x7D (-127.125°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1083,13 +1071,13 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * This property indicates the measured outdoor air temperature.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7D (-127 to 125  C)<br>
+	 * 0x81.0x7D (-127.125°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1109,14 +1097,14 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7D (-12.7  C to 12.5  C)<br>
+	 * 0x81.0x7D (-12.7°C.12.5°C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
 	 * Unit : 0.1
-. C<br>
+.C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1133,14 +1121,14 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7D (-12.7  C to 12.5  C)<br>
+	 * 0x81.0x7D (-12.7°C.12.5°C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
 	 * Unit : 0.1
-. C<br>
+.C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1157,14 +1145,14 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7D (-12.7  C to 12.5  C)<br>
+	 * 0x81.0x7D (-12.7°C.12.5°C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
 	 * Unit : 0.1
-. C<br>
+.C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1185,13 +1173,13 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic air flow rate control function used = 0x41<br>
-	 * Air flow rate = 0x31 to 0x38<br>
+	 * Air flow rate = 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1209,13 +1197,13 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic air flow rate control function used = 0x41<br>
-	 * Air flow rate = 0x31 to 0x38<br>
+	 * Air flow rate = 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1233,13 +1221,13 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic air flow rate control function used = 0x41<br>
-	 * Air flow rate = 0x31 to 0x38<br>
+	 * Air flow rate = 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1256,20 +1244,16 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * EPC : 0xA1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which<br>
-	 * the automatic air flow direction control function is to be used, and to acquire<br>
-	 * the current setting.<br>
+	 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic = 0x41, non-automatic =<br>
-	 * 0x42, automatic (vertical) = 0x43,<br>
-	 * automatic (horizontal) = 0x44<br>
+	 * Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1283,20 +1267,16 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * EPC : 0xA1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which<br>
-	 * the automatic air flow direction control function is to be used, and to acquire<br>
-	 * the current setting.<br>
+	 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic = 0x41, non-automatic =<br>
-	 * 0x42, automatic (vertical) = 0x43,<br>
-	 * automatic (horizontal) = 0x44<br>
+	 * Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1310,20 +1290,16 @@ public abstract class HomeAirConditioner extends DeviceObject {
 	 * EPC : 0xA1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which<br>
-	 * the automatic air flow direction control function is to be used, and to acquire<br>
-	 * the current setting.<br>
+	 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic = 0x41, non-automatic =<br>
-	 * 0x42, automatic (vertical) = 0x43,<br>
-	 * automatic (horizontal) = 0x44<br>
+	 * Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1335,8 +1311,7 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		return true;
 	}
 	/**
-	 * Property name : Automatic swing of air flow
-setting<br>
+	 * Property name : Automatic swing of air flow setting<br>
 	 * <br>
 	 * EPC : 0xA3<br>
 	 * <br>
@@ -1344,14 +1319,13 @@ setting<br>
 	 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used<br>
-	 * (vertical and horizontal) = 0x43<br>
+	 * Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1360,8 +1334,7 @@ setting<br>
 	 */
 	protected boolean setAutomaticSwingOfAirFlowSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : Automatic swing of air flow
-setting<br>
+	 * Property name : Automatic swing of air flow setting<br>
 	 * <br>
 	 * EPC : 0xA3<br>
 	 * <br>
@@ -1369,14 +1342,13 @@ setting<br>
 	 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used<br>
-	 * (vertical and horizontal) = 0x43<br>
+	 * Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1385,8 +1357,7 @@ setting<br>
 	 */
 	protected byte[] getAutomaticSwingOfAirFlowSetting() {return null;}
 	/**
-	 * Property name : Automatic swing of air flow
-setting<br>
+	 * Property name : Automatic swing of air flow setting<br>
 	 * <br>
 	 * EPC : 0xA3<br>
 	 * <br>
@@ -1394,14 +1365,13 @@ setting<br>
 	 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used<br>
-	 * (vertical and horizontal) = 0x43<br>
+	 * Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1427,7 +1397,7 @@ setting<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1450,7 +1420,7 @@ setting<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1473,7 +1443,7 @@ setting<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1501,7 +1471,7 @@ setting<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1526,7 +1496,7 @@ setting<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1551,7 +1521,7 @@ setting<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1568,17 +1538,17 @@ setting<br>
 	 * EPC : 0xAA<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates if the air conditioner is in a  gspecial h state (i.e. the  gdefrosting, h  gpreheating, h or  gheat removal h state).<br>
+	 * This property indicates if the air conditioner is in a “special” state (i.e. the “defrosting,” “preheating,” or “heat removal” state).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 *  gNormal operation h state = 0x40,  gDefrosting h state = 0x41,  gPreheating h state = 0x42,<br>
-	 *  gHeat removal h state = 0x43<br>
+	 * “Normal operation” state = 0x40, “Defrosting” state = 0x41, “Preheating” state = 0x42,<br>
+	 * “Heat removal” state = 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1592,17 +1562,17 @@ setting<br>
 	 * EPC : 0xAA<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates if the air conditioner is in a  gspecial h state (i.e. the  gdefrosting, h  gpreheating, h or  gheat removal h state).<br>
+	 * This property indicates if the air conditioner is in a “special” state (i.e. the “defrosting,” “preheating,” or “heat removal” state).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 *  gNormal operation h state = 0x40,  gDefrosting h state = 0x41,  gPreheating h state = 0x42,<br>
-	 *  gHeat removal h state = 0x43<br>
+	 * “Normal operation” state = 0x40, “Defrosting” state = 0x41, “Preheating” state = 0x42,<br>
+	 * “Heat removal” state = 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1619,17 +1589,17 @@ setting<br>
 	 * EPC : 0xAB<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to indicate when the air conditioner is in a  gnon-priority h state.<br>
+	 * Used to indicate when the air conditioner is in a “non-priority” state.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 *  gNormal operation h state = 0x40,<br>
-	 *  gNon-priority h state = 0x41<br>
+	 * “Normal operation” state = 0x40,<br>
+	 * “Non-priority” state = 0x41<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1643,17 +1613,17 @@ setting<br>
 	 * EPC : 0xAB<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to indicate when the air conditioner is in a  gnon-priority h state.<br>
+	 * Used to indicate when the air conditioner is in a “non-priority” state.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 *  gNormal operation h state = 0x40,<br>
-	 *  gNon-priority h state = 0x41<br>
+	 * “Normal operation” state = 0x40,<br>
+	 * “Non-priority” state = 0x41<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1679,7 +1649,7 @@ setting<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1702,7 +1672,7 @@ setting<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1725,7 +1695,7 @@ setting<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1751,7 +1721,7 @@ setting<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1774,7 +1744,7 @@ setting<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1797,7 +1767,7 @@ setting<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1818,13 +1788,13 @@ setting<br>
 	 * acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38<br>
+	 * Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1842,13 +1812,13 @@ setting<br>
 	 * acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38<br>
+	 * Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1866,13 +1836,13 @@ setting<br>
 	 * acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38<br>
+	 * Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1893,14 +1863,13 @@ setting<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic control of the degree of humidification = 0x41<br>
-	 * Degree of humidification = 0x31 to<br>
-	 * 0x38<br>
+	 * Degree of humidification = 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1918,14 +1887,13 @@ setting<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic control of the degree of humidification = 0x41<br>
-	 * Degree of humidification = 0x31 to<br>
-	 * 0x38<br>
+	 * Degree of humidification = 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1943,14 +1911,13 @@ setting<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Automatic control of the degree of humidification = 0x41<br>
-	 * Degree of humidification = 0x31 to<br>
-	 * 0x38<br>
+	 * Degree of humidification = 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1971,17 +1938,15 @@ setting<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Bit 0: Information about electrical dust collection method mounting<br>
-	 * 0 - Not mounted<br>
-	 * 1 - Mounted<br>
+	 * 0 - Not mounted 1 - Mounted<br>
 	 * Bit 1: Information about cluster ion method mounting<br>
-	 * 0 - Not mounted<br>
-	 * 1 . Mounted<br>
+	 * 0 - Not mounted 1 - Mounted<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1999,17 +1964,15 @@ setting<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Bit 0: Information about electrical dust collection method mounting<br>
-	 * 0 - Not mounted<br>
-	 * 1 - Mounted<br>
+	 * 0 - Not mounted 1 - Mounted<br>
 	 * Bit 1: Information about cluster ion method mounting<br>
-	 * 0 - Not mounted<br>
-	 * 1 . Mounted<br>
+	 * 0 - Not mounted 1 - Mounted<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2033,11 +1996,12 @@ setting<br>
 	 * Element 1: Indicates whether or not to use the cluster ion-based air purifier function.<br>
 	 * Elements 2 to 7: Reserved for future use.<br>
 	 * <br>
-	 * Data type : unsigned char x 8<br>
+	 * Data type : unsigned char ×8<br>
 	 * <br>
-	 * Data size : 8 byte<br>
+	 * Data size : 1 byte
+× 8<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2058,11 +2022,12 @@ setting<br>
 	 * Element 1: Indicates whether or not to use the cluster ion-based air purifier function.<br>
 	 * Elements 2 to 7: Reserved for future use.<br>
 	 * <br>
-	 * Data type : unsigned char x 8<br>
+	 * Data type : unsigned char ×8<br>
 	 * <br>
-	 * Data size : 8 byte<br>
+	 * Data size : 1 byte
+× 8<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2083,11 +2048,12 @@ setting<br>
 	 * Element 1: Indicates whether or not to use the cluster ion-based air purifier function.<br>
 	 * Elements 2 to 7: Reserved for future use.<br>
 	 * <br>
-	 * Data type : unsigned char x 8<br>
+	 * Data type : unsigned char ×8<br>
 	 * <br>
-	 * Data size : 8 byte<br>
+	 * Data size : 1 byte
+× 8<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2095,7 +2061,7 @@ setting<br>
 	 * Get - optional<br>
 	 */
 	protected boolean isValidAirPurifierFunctionSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
+		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
 	/**
@@ -2108,17 +2074,15 @@ setting<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Bit 0: Information about minus ion method mounting<br>
-	 * 0 - Not mounted<br>
-	 * 1 - Mounted<br>
+	 * 0 - Not mounted 1 - Mounted<br>
 	 * Bit 1: Information about cluster ion method mounting<br>
-	 * 0 - Not mounted<br>
-	 * 1 . Mounted<br>
+	 * 0 - Not mounted 1 - Mounted<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2136,17 +2100,15 @@ setting<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Bit 0: Information about minus ion method mounting<br>
-	 * 0 - Not mounted<br>
-	 * 1 - Mounted<br>
+	 * 0 - Not mounted 1 - Mounted<br>
 	 * Bit 1: Information about cluster ion method mounting<br>
-	 * 0 - Not mounted<br>
-	 * 1 . Mounted<br>
+	 * 0 - Not mounted 1 - Mounted<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2168,13 +2130,14 @@ setting<br>
 	 * Value range (decimal notation) :<br>
 	 * Element 0: Indicates whether or not to use the minus ion-based air refresher function.<br>
 	 * Element 1: Indicates whether or not to use the cluster ion-based air refresher function.<br>
-	 * Elements 2 to 7: Reserved for future use.<br>
+	 * Elements 2.7: Reserved for future use.<br>
 	 * <br>
-	 * Data type : unsigned char x 8<br>
+	 * Data type : unsigned char × 8<br>
 	 * <br>
-	 * Data size : 8 byte<br>
+	 * Data size : 1 byte ×
+8<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2193,13 +2156,14 @@ setting<br>
 	 * Value range (decimal notation) :<br>
 	 * Element 0: Indicates whether or not to use the minus ion-based air refresher function.<br>
 	 * Element 1: Indicates whether or not to use the cluster ion-based air refresher function.<br>
-	 * Elements 2 to 7: Reserved for future use.<br>
+	 * Elements 2.7: Reserved for future use.<br>
 	 * <br>
-	 * Data type : unsigned char x 8<br>
+	 * Data type : unsigned char × 8<br>
 	 * <br>
-	 * Data size : 8 byte<br>
+	 * Data size : 1 byte ×
+8<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2218,13 +2182,14 @@ setting<br>
 	 * Value range (decimal notation) :<br>
 	 * Element 0: Indicates whether or not to use the minus ion-based air refresher function.<br>
 	 * Element 1: Indicates whether or not to use the cluster ion-based air refresher function.<br>
-	 * Elements 2 to 7: Reserved for future use.<br>
+	 * Elements 2.7: Reserved for future use.<br>
 	 * <br>
-	 * Data type : unsigned char x 8<br>
+	 * Data type : unsigned char × 8<br>
 	 * <br>
-	 * Data size : 8 byte<br>
+	 * Data size : 1 byte ×
+8<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2232,13 +2197,11 @@ setting<br>
 	 * Get - optional<br>
 	 */
 	protected boolean isValidAirRefresherFunctionSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
+		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
 	/**
-	 * Property name : Mounted
-self-cleaning
-method<br>
+	 * Property name : Mounted self-cleaning method<br>
 	 * <br>
 	 * EPC : 0xCA<br>
 	 * <br>
@@ -2247,17 +2210,15 @@ method<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Bit 0: Information about ozone cleaning method mounting<br>
-	 * 0 - Not mounted<br>
-	 * 1 - Mounted<br>
+	 * 0 - Not mounted 1 - Mounted<br>
 	 * Bit 1: Information about drying method mounting<br>
-	 * 0 - Not mounted<br>
-	 * 1 . Mounted<br>
+	 * 0 - Not mounted 1 - Mounted<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2266,9 +2227,7 @@ method<br>
 	 */
 	protected byte[] getMountedSelfCleaningMethod() {return null;}
 	/**
-	 * Property name : Mounted
-self-cleaning
-method<br>
+	 * Property name : Mounted self-cleaning method<br>
 	 * <br>
 	 * EPC : 0xCA<br>
 	 * <br>
@@ -2277,17 +2236,15 @@ method<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Bit 0: Information about ozone cleaning method mounting<br>
-	 * 0 - Not mounted<br>
-	 * 1 - Mounted<br>
+	 * 0 - Not mounted 1 - Mounted<br>
 	 * Bit 1: Information about drying method mounting<br>
-	 * 0 - Not mounted<br>
-	 * 1 . Mounted<br>
+	 * 0 - Not mounted 1 - Mounted<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2312,13 +2269,14 @@ method<br>
 	 * Value range (decimal notation) :<br>
 	 * Element 0: Indicates whether or not to use the ozone-based self-cleaning function.<br>
 	 * Element 1: Indicates whether or not to use the drying-based self-cleaning function.<br>
-	 * Elements 2 to 7: Reserved for future use.<br>
+	 * Elements 2.7: Reserved for future use.<br>
 	 * <br>
-	 * Data type : unsigned char x 8<br>
+	 * Data type : unsigned char × 8<br>
 	 * <br>
-	 * Data size : 8 byte<br>
+	 * Data size : 1 byte ×
+8<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2340,13 +2298,14 @@ method<br>
 	 * Value range (decimal notation) :<br>
 	 * Element 0: Indicates whether or not to use the ozone-based self-cleaning function.<br>
 	 * Element 1: Indicates whether or not to use the drying-based self-cleaning function.<br>
-	 * Elements 2 to 7: Reserved for future use.<br>
+	 * Elements 2.7: Reserved for future use.<br>
 	 * <br>
-	 * Data type : unsigned char x 8<br>
+	 * Data type : unsigned char × 8<br>
 	 * <br>
-	 * Data size : 8 byte<br>
+	 * Data size : 1 byte ×
+8<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2368,13 +2327,14 @@ method<br>
 	 * Value range (decimal notation) :<br>
 	 * Element 0: Indicates whether or not to use the ozone-based self-cleaning function.<br>
 	 * Element 1: Indicates whether or not to use the drying-based self-cleaning function.<br>
-	 * Elements 2 to 7: Reserved for future use.<br>
+	 * Elements 2.7: Reserved for future use.<br>
 	 * <br>
-	 * Data type : unsigned char x 8<br>
+	 * Data type : unsigned char × 8<br>
 	 * <br>
-	 * Data size : 8 byte<br>
+	 * Data size : 1 byte ×
+8<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2382,7 +2342,7 @@ method<br>
 	 * Get - optional<br>
 	 */
 	protected boolean isValidSelfCleaningFunctionSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
+		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
 	/**
@@ -2391,17 +2351,17 @@ method<br>
 	 * EPC : 0xCC<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the  gspecial function h to use, and to acquire the current setting.<br>
+	 * Used to specify the “special function” to use, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44<br>
-	 * 0x45 . : Reserved for future use.<br>
+	 * 0x45. : Reserved for future use.<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2415,17 +2375,17 @@ method<br>
 	 * EPC : 0xCC<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the  gspecial function h to use, and to acquire the current setting.<br>
+	 * Used to specify the “special function” to use, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44<br>
-	 * 0x45 . : Reserved for future use.<br>
+	 * 0x45. : Reserved for future use.<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2439,17 +2399,17 @@ method<br>
 	 * EPC : 0xCC<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the  gspecial function h to use, and to acquire the current setting.<br>
+	 * Used to specify the “special function” to use, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44<br>
-	 * 0x45 . : Reserved for future use.<br>
+	 * 0x45. : Reserved for future use.<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2474,14 +2434,13 @@ method<br>
 	 * 1: In operation<br>
 	 * Bit 1: Operation status of the thermostat:<br>
 	 * 0: Thermostat OFF<br>
-	 * 1: Thermostat ON<br>
-	 * Bits 2 to 7: Reserved for future use.<br>
+	 * 1: Thermostat ON Bits 2.7: Reserved for future use.<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2503,14 +2462,13 @@ method<br>
 	 * 1: In operation<br>
 	 * Bit 1: Operation status of the thermostat:<br>
 	 * 0: Thermostat OFF<br>
-	 * 1: Thermostat ON<br>
-	 * Bits 2 to 7: Reserved for future use.<br>
+	 * 1: Thermostat ON Bits 2.7: Reserved for future use.<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2536,7 +2494,7 @@ method<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2559,7 +2517,7 @@ method<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2576,17 +2534,16 @@ method<br>
 	 * EPC : 0xCF<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the air purification mode seting ON/OFF and to acquire the current setting. B<br>
+	 * Used to set the air purification mode setting ON/OFF and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Air purification ON  0x41,OFF  <br>
-	 * 0x42<br>
+	 * Air purification ON=0x41,OFF=0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2600,17 +2557,16 @@ method<br>
 	 * EPC : 0xCF<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the air purification mode seting ON/OFF and to acquire the current setting. B<br>
+	 * Used to set the air purification mode setting ON/OFF and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Air purification ON  0x41,OFF  <br>
-	 * 0x42<br>
+	 * Air purification ON=0x41,OFF=0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2624,17 +2580,16 @@ method<br>
 	 * EPC : 0xCF<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to set the air purification mode seting ON/OFF and to acquire the current setting. B<br>
+	 * Used to set the air purification mode setting ON/OFF and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Air purification ON  0x41,OFF  <br>
-	 * 0x42<br>
+	 * Air purification ON=0x41,OFF=0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2654,16 +2609,13 @@ method<br>
 	 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-	 * 0x42, time-based reservation function<br>
-	 * is ON = 0x43, relative time-based<br>
-	 * reservation function is ON = 0x44<br>
+	 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2680,16 +2632,13 @@ method<br>
 	 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-	 * 0x42, time-based reservation function<br>
-	 * is ON = 0x43, relative time-based<br>
-	 * reservation function is ON = 0x44<br>
+	 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2706,16 +2655,13 @@ method<br>
 	 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-	 * 0x42, time-based reservation function<br>
-	 * is ON = 0x43, relative time-based<br>
-	 * reservation function is ON = 0x44<br>
+	 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2727,25 +2673,23 @@ method<br>
 		return true;
 	}
 	/**
-	 * Property name : ON timer setting
-(time)<br>
+	 * Property name : ON timer setting (time)<br>
 	 * <br>
 	 * EPC : 0x91<br>
 	 * <br>
 	 * Contents of property :<br>
 	 * Used to specify the time for the<br>
-	 * time-based reservation function in the<br>
-	 * HH:MM format and to acquire the current setting.<br>
+	 * time-based reservation function in the HH:MM format and to acquire the<br>
+	 * current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2754,25 +2698,23 @@ method<br>
 	 */
 	protected boolean setOnTimerSettingTime(byte[] edt) {return false;}
 	/**
-	 * Property name : ON timer setting
-(time)<br>
+	 * Property name : ON timer setting (time)<br>
 	 * <br>
 	 * EPC : 0x91<br>
 	 * <br>
 	 * Contents of property :<br>
 	 * Used to specify the time for the<br>
-	 * time-based reservation function in the<br>
-	 * HH:MM format and to acquire the current setting.<br>
+	 * time-based reservation function in the HH:MM format and to acquire the<br>
+	 * current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2781,25 +2723,23 @@ method<br>
 	 */
 	protected byte[] getOnTimerSettingTime() {return null;}
 	/**
-	 * Property name : ON timer setting
-(time)<br>
+	 * Property name : ON timer setting (time)<br>
 	 * <br>
 	 * EPC : 0x91<br>
 	 * <br>
 	 * Contents of property :<br>
 	 * Used to specify the time for the<br>
-	 * time-based reservation function in the<br>
-	 * HH:MM format and to acquire the current setting.<br>
+	 * time-based reservation function in the HH:MM format and to acquire the<br>
+	 * current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2811,8 +2751,7 @@ method<br>
 		return true;
 	}
 	/**
-	 * Property name : ON timer setting
-(relative time)<br>
+	 * Property name : ON timer setting (relative time)<br>
 	 * <br>
 	 * EPC : 0x92<br>
 	 * <br>
@@ -2820,14 +2759,14 @@ method<br>
 	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0xFF: 0 to 0x3B<br>
-	 * (= 0 to 255): (= 0 to 59)<br>
+	 * 0.0xFF: 0.0x3B<br>
+	 * (= 0.255): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2836,8 +2775,7 @@ method<br>
 	 */
 	protected boolean setOnTimerSettingRelativeTime(byte[] edt) {return false;}
 	/**
-	 * Property name : ON timer setting
-(relative time)<br>
+	 * Property name : ON timer setting (relative time)<br>
 	 * <br>
 	 * EPC : 0x92<br>
 	 * <br>
@@ -2845,14 +2783,14 @@ method<br>
 	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0xFF: 0 to 0x3B<br>
-	 * (= 0 to 255): (= 0 to 59)<br>
+	 * 0.0xFF: 0.0x3B<br>
+	 * (= 0.255): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2861,8 +2799,7 @@ method<br>
 	 */
 	protected byte[] getOnTimerSettingRelativeTime() {return null;}
 	/**
-	 * Property name : ON timer setting
-(relative time)<br>
+	 * Property name : ON timer setting (relative time)<br>
 	 * <br>
 	 * EPC : 0x92<br>
 	 * <br>
@@ -2870,14 +2807,14 @@ method<br>
 	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0xFF: 0 to 0x3B<br>
-	 * (= 0 to 255): (= 0 to 59)<br>
+	 * 0.0xFF: 0.0x3B<br>
+	 * (= 0.255): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2897,14 +2834,13 @@ method<br>
 	 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-	 * 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
+	 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2921,14 +2857,13 @@ method<br>
 	 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-	 * 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
+	 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2945,14 +2880,13 @@ method<br>
 	 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-	 * 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
+	 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2975,14 +2909,13 @@ method<br>
 	 * current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -3002,14 +2935,13 @@ method<br>
 	 * current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -3029,14 +2961,13 @@ method<br>
 	 * current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59)<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -3056,14 +2987,14 @@ method<br>
 	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0xFF: 0 to 0x3B<br>
-	 * (= 0 to 255): (= 0 to 59)<br>
+	 * 0.0xFF: 0.0x3B<br>
+	 * (= 0.255): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -3080,14 +3011,14 @@ method<br>
 	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0xFF: 0 to 0x3B<br>
-	 * (= 0 to 255): (= 0 to 59)<br>
+	 * 0.0xFF: 0.0x3B<br>
+	 * (= 0.255): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -3104,14 +3035,14 @@ method<br>
 	 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0xFF: 0 to 0x3B<br>
-	 * (= 0 to 255): (= 0 to 59)<br>
+	 * 0.0xFF: 0.0x3B<br>
+	 * (= 0.255): (= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -3550,21 +3481,19 @@ method<br>
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the operation mode ( gautomatic, h  gcooling, h  gheating, h  gdehumidification, h  gair circulator h or  gother h), and to acquire the current setting.<br>
+		 * Used to specify the operation mode (“automatic,” “cooling,” “heating,” “dehumidification,” “air circulator” or “other”), and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The following values shall be used: Automatic: 0x41<br>
-		 * Cooling: 0x42<br>
-		 * Heating: 0x43<br>
-		 * Dehumidification: 0x44<br>
-		 * Air circulator: 0x45<br>
+		 * Cooling: 0x42 Heating: 0x43<br>
+		 * Dehumidification: 0x44 Air circulator: 0x45<br>
 		 * Other: 0x40<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3580,21 +3509,19 @@ method<br>
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the operation mode ( gautomatic, h  gcooling, h  gheating, h  gdehumidification, h  gair circulator h or  gother h), and to acquire the current setting.<br>
+		 * Used to specify the operation mode (“automatic,” “cooling,” “heating,” “dehumidification,” “air circulator” or “other”), and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The following values shall be used: Automatic: 0x41<br>
-		 * Cooling: 0x42<br>
-		 * Heating: 0x43<br>
-		 * Dehumidification: 0x44<br>
-		 * Air circulator: 0x45<br>
+		 * Cooling: 0x42 Heating: 0x43<br>
+		 * Dehumidification: 0x44 Air circulator: 0x45<br>
 		 * Other: 0x40<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3613,14 +3540,13 @@ method<br>
 		 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x41<br>
-		 * Non-automatic = 0x42<br>
+		 * Automatic = 0x41 Non-automatic = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3637,14 +3563,13 @@ method<br>
 		 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x41<br>
-		 * Non-automatic = 0x42<br>
+		 * Automatic = 0x41 Non-automatic = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3659,19 +3584,18 @@ method<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Used to specify the type of operation<br>
-		 * ( gnormal, h  ghigh-speed h or  gsilent h),<br>
+		 * (“normal,” “high-speed” or “silent”),<br>
 		 * and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Normal operation: 0x41<br>
-		 * High-speed operation: 0x42<br>
+		 * Normal operation: 0x41 High-speed operation: 0x42<br>
 		 * Silent operation: 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3686,19 +3610,18 @@ method<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Used to specify the type of operation<br>
-		 * ( gnormal, h  ghigh-speed h or  gsilent h),<br>
+		 * (“normal,” “high-speed” or “silent”),<br>
 		 * and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Normal operation: 0x41<br>
-		 * High-speed operation: 0x42<br>
+		 * Normal operation: 0x41 High-speed operation: 0x42<br>
 		 * Silent operation: 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3716,13 +3639,13 @@ method<br>
 		 * acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50  )<br>
+		 * 0x00.0x32 (0.50.C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3740,13 +3663,13 @@ method<br>
 		 * acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50  )<br>
+		 * 0x00.0x32 (0.50.C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3760,10 +3683,10 @@ method<br>
 		 * EPC : 0xB4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the relative humidity for the  gdehumidification h mode and to acquire the current setting.<br>
+		 * Used to set the relative humidity for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -3783,10 +3706,10 @@ method<br>
 		 * EPC : 0xB4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the relative humidity for the  gdehumidification h mode and to acquire the current setting.<br>
+		 * Used to set the relative humidity for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -3806,16 +3729,16 @@ method<br>
 		 * EPC : 0xB5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the  gcooling h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “cooling” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50  )<br>
+		 * 0x00.0x32 (0.50.C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3829,16 +3752,16 @@ method<br>
 		 * EPC : 0xB5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the  gcooling h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “cooling” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50  )<br>
+		 * 0x00.0x32 (0.50.C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3852,16 +3775,16 @@ method<br>
 		 * EPC : 0xB6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the  gheating h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “heating” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50  )<br>
+		 * 0x00.0x32 (0.50.C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3875,16 +3798,16 @@ method<br>
 		 * EPC : 0xB6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the  gheating h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “heating” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50  )<br>
+		 * 0x00.0x32 (0.50.C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3898,16 +3821,16 @@ method<br>
 		 * EPC : 0xB7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the  gdehumidification h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50  )<br>
+		 * 0x00.0x32 (0.50.C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3921,16 +3844,16 @@ method<br>
 		 * EPC : 0xB7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the  gdehumidification h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50  )<br>
+		 * 0x00.0x32 (0.50.C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3947,9 +3870,10 @@ method<br>
 		 * Rated power consumption in each operation mode of cooling/heating/dehumidifying/blast<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533W) Cooling: heating: dehumidifying: blast<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
+		 * Cooling: heating: dehumidifying: blast<br>
 		 * <br>
-		 * Data type : unsigned short x 4<br>
+		 * Data type : unsigned short × 4<br>
 		 * <br>
 		 * Data size : 8 bytes<br>
 		 * <br>
@@ -3993,7 +3917,7 @@ method<br>
 		 * Measured value of room relative humidity<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100. C)<br>
+		 * 0x00.0x64 (0.100.C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -4022,7 +3946,7 @@ method<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4045,7 +3969,7 @@ method<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4062,13 +3986,13 @@ method<br>
 		 * This property indicates the measured cooled air temperature at the outlet.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (-127 to 125  C)<br>
+		 * 0x81.0x7D (-127.125°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4085,13 +4009,13 @@ method<br>
 		 * This property indicates the measured outdoor air temperature.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (-127 to 125  C)<br>
+		 * 0x81.0x7D (-127.125°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4108,14 +4032,14 @@ method<br>
 		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (-12.7  C to 12.5  C)<br>
+		 * 0x81.0x7D (-12.7°C.12.5°C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
 		 * Unit : 0.1
-. C<br>
+.C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4132,14 +4056,14 @@ method<br>
 		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (-12.7  C to 12.5  C)<br>
+		 * 0x81.0x7D (-12.7°C.12.5°C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
 		 * Unit : 0.1
-. C<br>
+.C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4157,13 +4081,13 @@ method<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic air flow rate control function used = 0x41<br>
-		 * Air flow rate = 0x31 to 0x38<br>
+		 * Air flow rate = 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4181,13 +4105,13 @@ method<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic air flow rate control function used = 0x41<br>
-		 * Air flow rate = 0x31 to 0x38<br>
+		 * Air flow rate = 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4201,20 +4125,16 @@ method<br>
 		 * EPC : 0xA1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which<br>
-		 * the automatic air flow direction control function is to be used, and to acquire<br>
-		 * the current setting.<br>
+		 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x41, non-automatic =<br>
-		 * 0x42, automatic (vertical) = 0x43,<br>
-		 * automatic (horizontal) = 0x44<br>
+		 * Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4228,20 +4148,16 @@ method<br>
 		 * EPC : 0xA1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which<br>
-		 * the automatic air flow direction control function is to be used, and to acquire<br>
-		 * the current setting.<br>
+		 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x41, non-automatic =<br>
-		 * 0x42, automatic (vertical) = 0x43,<br>
-		 * automatic (horizontal) = 0x44<br>
+		 * Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4250,8 +4166,7 @@ method<br>
 		 */
 		protected void onGetAutomaticControlOfAirFlowDirectionSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Automatic swing of air flow
-setting<br>
+		 * Property name : Automatic swing of air flow setting<br>
 		 * <br>
 		 * EPC : 0xA3<br>
 		 * <br>
@@ -4259,14 +4174,13 @@ setting<br>
 		 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used<br>
-		 * (vertical and horizontal) = 0x43<br>
+		 * Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4275,8 +4189,7 @@ setting<br>
 		 */
 		protected void onSetAutomaticSwingOfAirFlowSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Automatic swing of air flow
-setting<br>
+		 * Property name : Automatic swing of air flow setting<br>
 		 * <br>
 		 * EPC : 0xA3<br>
 		 * <br>
@@ -4284,14 +4197,13 @@ setting<br>
 		 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used<br>
-		 * (vertical and horizontal) = 0x43<br>
+		 * Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4314,7 +4226,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4337,7 +4249,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4362,7 +4274,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4387,7 +4299,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4401,17 +4313,17 @@ setting<br>
 		 * EPC : 0xAA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates if the air conditioner is in a  gspecial h state (i.e. the  gdefrosting, h  gpreheating, h or  gheat removal h state).<br>
+		 * This property indicates if the air conditioner is in a “special” state (i.e. the “defrosting,” “preheating,” or “heat removal” state).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 *  gNormal operation h state = 0x40,  gDefrosting h state = 0x41,  gPreheating h state = 0x42,<br>
-		 *  gHeat removal h state = 0x43<br>
+		 * “Normal operation” state = 0x40, “Defrosting” state = 0x41, “Preheating” state = 0x42,<br>
+		 * “Heat removal” state = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4425,17 +4337,17 @@ setting<br>
 		 * EPC : 0xAB<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to indicate when the air conditioner is in a  gnon-priority h state.<br>
+		 * Used to indicate when the air conditioner is in a “non-priority” state.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 *  gNormal operation h state = 0x40,<br>
-		 *  gNon-priority h state = 0x41<br>
+		 * “Normal operation” state = 0x40,<br>
+		 * “Non-priority” state = 0x41<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4458,7 +4370,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4481,7 +4393,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4504,7 +4416,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4527,7 +4439,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4545,13 +4457,13 @@ setting<br>
 		 * acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38<br>
+		 * Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4569,13 +4481,13 @@ setting<br>
 		 * acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38<br>
+		 * Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4593,14 +4505,13 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic control of the degree of humidification = 0x41<br>
-		 * Degree of humidification = 0x31 to<br>
-		 * 0x38<br>
+		 * Degree of humidification = 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4618,14 +4529,13 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic control of the degree of humidification = 0x41<br>
-		 * Degree of humidification = 0x31 to<br>
-		 * 0x38<br>
+		 * Degree of humidification = 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4643,17 +4553,15 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Bit 0: Information about electrical dust collection method mounting<br>
-		 * 0 - Not mounted<br>
-		 * 1 - Mounted<br>
+		 * 0 - Not mounted 1 - Mounted<br>
 		 * Bit 1: Information about cluster ion method mounting<br>
-		 * 0 - Not mounted<br>
-		 * 1 . Mounted<br>
+		 * 0 - Not mounted 1 - Mounted<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4674,11 +4582,12 @@ setting<br>
 		 * Element 1: Indicates whether or not to use the cluster ion-based air purifier function.<br>
 		 * Elements 2 to 7: Reserved for future use.<br>
 		 * <br>
-		 * Data type : unsigned char x 8<br>
+		 * Data type : unsigned char ×8<br>
 		 * <br>
-		 * Data size : 8 byte<br>
+		 * Data size : 1 byte
+× 8<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4699,11 +4608,12 @@ setting<br>
 		 * Element 1: Indicates whether or not to use the cluster ion-based air purifier function.<br>
 		 * Elements 2 to 7: Reserved for future use.<br>
 		 * <br>
-		 * Data type : unsigned char x 8<br>
+		 * Data type : unsigned char ×8<br>
 		 * <br>
-		 * Data size : 8 byte<br>
+		 * Data size : 1 byte
+× 8<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4721,17 +4631,15 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Bit 0: Information about minus ion method mounting<br>
-		 * 0 - Not mounted<br>
-		 * 1 - Mounted<br>
+		 * 0 - Not mounted 1 - Mounted<br>
 		 * Bit 1: Information about cluster ion method mounting<br>
-		 * 0 - Not mounted<br>
-		 * 1 . Mounted<br>
+		 * 0 - Not mounted 1 - Mounted<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4750,13 +4658,14 @@ setting<br>
 		 * Value range (decimal notation) :<br>
 		 * Element 0: Indicates whether or not to use the minus ion-based air refresher function.<br>
 		 * Element 1: Indicates whether or not to use the cluster ion-based air refresher function.<br>
-		 * Elements 2 to 7: Reserved for future use.<br>
+		 * Elements 2.7: Reserved for future use.<br>
 		 * <br>
-		 * Data type : unsigned char x 8<br>
+		 * Data type : unsigned char × 8<br>
 		 * <br>
-		 * Data size : 8 byte<br>
+		 * Data size : 1 byte ×
+8<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4775,13 +4684,14 @@ setting<br>
 		 * Value range (decimal notation) :<br>
 		 * Element 0: Indicates whether or not to use the minus ion-based air refresher function.<br>
 		 * Element 1: Indicates whether or not to use the cluster ion-based air refresher function.<br>
-		 * Elements 2 to 7: Reserved for future use.<br>
+		 * Elements 2.7: Reserved for future use.<br>
 		 * <br>
-		 * Data type : unsigned char x 8<br>
+		 * Data type : unsigned char × 8<br>
 		 * <br>
-		 * Data size : 8 byte<br>
+		 * Data size : 1 byte ×
+8<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4790,9 +4700,7 @@ setting<br>
 		 */
 		protected void onGetAirRefresherFunctionSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Mounted
-self-cleaning
-method<br>
+		 * Property name : Mounted self-cleaning method<br>
 		 * <br>
 		 * EPC : 0xCA<br>
 		 * <br>
@@ -4801,17 +4709,15 @@ method<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Bit 0: Information about ozone cleaning method mounting<br>
-		 * 0 - Not mounted<br>
-		 * 1 - Mounted<br>
+		 * 0 - Not mounted 1 - Mounted<br>
 		 * Bit 1: Information about drying method mounting<br>
-		 * 0 - Not mounted<br>
-		 * 1 . Mounted<br>
+		 * 0 - Not mounted 1 - Mounted<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4833,13 +4739,14 @@ method<br>
 		 * Value range (decimal notation) :<br>
 		 * Element 0: Indicates whether or not to use the ozone-based self-cleaning function.<br>
 		 * Element 1: Indicates whether or not to use the drying-based self-cleaning function.<br>
-		 * Elements 2 to 7: Reserved for future use.<br>
+		 * Elements 2.7: Reserved for future use.<br>
 		 * <br>
-		 * Data type : unsigned char x 8<br>
+		 * Data type : unsigned char × 8<br>
 		 * <br>
-		 * Data size : 8 byte<br>
+		 * Data size : 1 byte ×
+8<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4861,13 +4768,14 @@ method<br>
 		 * Value range (decimal notation) :<br>
 		 * Element 0: Indicates whether or not to use the ozone-based self-cleaning function.<br>
 		 * Element 1: Indicates whether or not to use the drying-based self-cleaning function.<br>
-		 * Elements 2 to 7: Reserved for future use.<br>
+		 * Elements 2.7: Reserved for future use.<br>
 		 * <br>
-		 * Data type : unsigned char x 8<br>
+		 * Data type : unsigned char × 8<br>
 		 * <br>
-		 * Data size : 8 byte<br>
+		 * Data size : 1 byte ×
+8<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4881,17 +4789,17 @@ method<br>
 		 * EPC : 0xCC<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the  gspecial function h to use, and to acquire the current setting.<br>
+		 * Used to specify the “special function” to use, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44<br>
-		 * 0x45 . : Reserved for future use.<br>
+		 * 0x45. : Reserved for future use.<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4905,17 +4813,17 @@ method<br>
 		 * EPC : 0xCC<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the  gspecial function h to use, and to acquire the current setting.<br>
+		 * Used to specify the “special function” to use, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44<br>
-		 * 0x45 . : Reserved for future use.<br>
+		 * 0x45. : Reserved for future use.<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4937,14 +4845,13 @@ method<br>
 		 * 1: In operation<br>
 		 * Bit 1: Operation status of the thermostat:<br>
 		 * 0: Thermostat OFF<br>
-		 * 1: Thermostat ON<br>
-		 * Bits 2 to 7: Reserved for future use.<br>
+		 * 1: Thermostat ON Bits 2.7: Reserved for future use.<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4967,7 +4874,7 @@ method<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4981,17 +4888,16 @@ method<br>
 		 * EPC : 0xCF<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting. B<br>
+		 * Used to set the air purification mode setting ON/OFF and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Air purification ON  0x41,OFF  <br>
-		 * 0x42<br>
+		 * Air purification ON=0x41,OFF=0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5005,17 +4911,16 @@ method<br>
 		 * EPC : 0xCF<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting. B<br>
+		 * Used to set the air purification mode setting ON/OFF and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Air purification ON  0x41,OFF  <br>
-		 * 0x42<br>
+		 * Air purification ON=0x41,OFF=0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5032,16 +4937,13 @@ method<br>
 		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-		 * 0x42, time-based reservation function<br>
-		 * is ON = 0x43, relative time-based<br>
-		 * reservation function is ON = 0x44<br>
+		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5058,16 +4960,13 @@ method<br>
 		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-		 * 0x42, time-based reservation function<br>
-		 * is ON = 0x43, relative time-based<br>
-		 * reservation function is ON = 0x44<br>
+		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5076,25 +4975,23 @@ method<br>
 		 */
 		protected void onGetOnTimerBasedReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : ON timer setting
-(time)<br>
+		 * Property name : ON timer setting (time)<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Used to specify the time for the<br>
-		 * time-based reservation function in the<br>
-		 * HH:MM format and to acquire the current setting.<br>
+		 * time-based reservation function in the HH:MM format and to acquire the<br>
+		 * current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5103,25 +5000,23 @@ method<br>
 		 */
 		protected void onSetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : ON timer setting
-(time)<br>
+		 * Property name : ON timer setting (time)<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Used to specify the time for the<br>
-		 * time-based reservation function in the<br>
-		 * HH:MM format and to acquire the current setting.<br>
+		 * time-based reservation function in the HH:MM format and to acquire the<br>
+		 * current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5130,8 +5025,7 @@ method<br>
 		 */
 		protected void onGetOnTimerSettingTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : ON timer setting
-(relative time)<br>
+		 * Property name : ON timer setting (relative time)<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -5139,14 +5033,14 @@ method<br>
 		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5155,8 +5049,7 @@ method<br>
 		 */
 		protected void onSetOnTimerSettingRelativeTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : ON timer setting
-(relative time)<br>
+		 * Property name : ON timer setting (relative time)<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -5164,14 +5057,14 @@ method<br>
 		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5188,14 +5081,13 @@ method<br>
 		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-		 * 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
+		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5212,14 +5104,13 @@ method<br>
 		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-		 * 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
+		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5239,14 +5130,13 @@ method<br>
 		 * current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5266,14 +5156,13 @@ method<br>
 		 * current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5290,14 +5179,14 @@ method<br>
 		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5314,14 +5203,14 @@ method<br>
 		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5360,8 +5249,8 @@ method<br>
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -5382,21 +5271,19 @@ method<br>
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the operation mode ( gautomatic, h  gcooling, h  gheating, h  gdehumidification, h  gair circulator h or  gother h), and to acquire the current setting.<br>
+		 * Used to specify the operation mode (“automatic,” “cooling,” “heating,” “dehumidification,” “air circulator” or “other”), and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The following values shall be used: Automatic: 0x41<br>
-		 * Cooling: 0x42<br>
-		 * Heating: 0x43<br>
-		 * Dehumidification: 0x44<br>
-		 * Air circulator: 0x45<br>
+		 * Cooling: 0x42 Heating: 0x43<br>
+		 * Dehumidification: 0x44 Air circulator: 0x45<br>
 		 * Other: 0x40<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5418,14 +5305,13 @@ method<br>
 		 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x41<br>
-		 * Non-automatic = 0x42<br>
+		 * Automatic = 0x41 Non-automatic = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5443,19 +5329,18 @@ method<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Used to specify the type of operation<br>
-		 * ( gnormal, h  ghigh-speed h or  gsilent h),<br>
+		 * (“normal,” “high-speed” or “silent”),<br>
 		 * and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Normal operation: 0x41<br>
-		 * High-speed operation: 0x42<br>
+		 * Normal operation: 0x41 High-speed operation: 0x42<br>
 		 * Silent operation: 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5476,13 +5361,13 @@ method<br>
 		 * acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50  )<br>
+		 * 0x00.0x32 (0.50.C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5499,10 +5384,10 @@ method<br>
 		 * EPC : 0xB4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the relative humidity for the  gdehumidification h mode and to acquire the current setting.<br>
+		 * Used to set the relative humidity for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -5525,16 +5410,16 @@ method<br>
 		 * EPC : 0xB5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the  gcooling h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “cooling” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50  )<br>
+		 * 0x00.0x32 (0.50.C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5551,16 +5436,16 @@ method<br>
 		 * EPC : 0xB6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the  gheating h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “heating” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50  )<br>
+		 * 0x00.0x32 (0.50.C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5577,16 +5462,16 @@ method<br>
 		 * EPC : 0xB7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the  gdehumidification h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50  )<br>
+		 * 0x00.0x32 (0.50.C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5606,14 +5491,14 @@ method<br>
 		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (-12.7  C to 12.5  C)<br>
+		 * 0x81.0x7D (-12.7°C.12.5°C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
 		 * Unit : 0.1
-. C<br>
+.C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5634,13 +5519,13 @@ method<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic air flow rate control function used = 0x41<br>
-		 * Air flow rate = 0x31 to 0x38<br>
+		 * Air flow rate = 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5657,20 +5542,16 @@ method<br>
 		 * EPC : 0xA1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which<br>
-		 * the automatic air flow direction control function is to be used, and to acquire<br>
-		 * the current setting.<br>
+		 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x41, non-automatic =<br>
-		 * 0x42, automatic (vertical) = 0x43,<br>
-		 * automatic (horizontal) = 0x44<br>
+		 * Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5682,8 +5563,7 @@ method<br>
 			return this;
 		}
 		/**
-		 * Property name : Automatic swing of air flow
-setting<br>
+		 * Property name : Automatic swing of air flow setting<br>
 		 * <br>
 		 * EPC : 0xA3<br>
 		 * <br>
@@ -5691,14 +5571,13 @@ setting<br>
 		 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used<br>
-		 * (vertical and horizontal) = 0x43<br>
+		 * Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5724,7 +5603,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5752,7 +5631,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5778,7 +5657,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5804,7 +5683,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5825,13 +5704,13 @@ setting<br>
 		 * acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38<br>
+		 * Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5852,14 +5731,13 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic control of the degree of humidification = 0x41<br>
-		 * Degree of humidification = 0x31 to<br>
-		 * 0x38<br>
+		 * Degree of humidification = 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5883,11 +5761,12 @@ setting<br>
 		 * Element 1: Indicates whether or not to use the cluster ion-based air purifier function.<br>
 		 * Elements 2 to 7: Reserved for future use.<br>
 		 * <br>
-		 * Data type : unsigned char x 8<br>
+		 * Data type : unsigned char ×8<br>
 		 * <br>
-		 * Data size : 8 byte<br>
+		 * Data size : 1 byte
+× 8<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5909,13 +5788,14 @@ setting<br>
 		 * Value range (decimal notation) :<br>
 		 * Element 0: Indicates whether or not to use the minus ion-based air refresher function.<br>
 		 * Element 1: Indicates whether or not to use the cluster ion-based air refresher function.<br>
-		 * Elements 2 to 7: Reserved for future use.<br>
+		 * Elements 2.7: Reserved for future use.<br>
 		 * <br>
-		 * Data type : unsigned char x 8<br>
+		 * Data type : unsigned char × 8<br>
 		 * <br>
-		 * Data size : 8 byte<br>
+		 * Data size : 1 byte ×
+8<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5940,13 +5820,14 @@ setting<br>
 		 * Value range (decimal notation) :<br>
 		 * Element 0: Indicates whether or not to use the ozone-based self-cleaning function.<br>
 		 * Element 1: Indicates whether or not to use the drying-based self-cleaning function.<br>
-		 * Elements 2 to 7: Reserved for future use.<br>
+		 * Elements 2.7: Reserved for future use.<br>
 		 * <br>
-		 * Data type : unsigned char x 8<br>
+		 * Data type : unsigned char × 8<br>
 		 * <br>
-		 * Data size : 8 byte<br>
+		 * Data size : 1 byte ×
+8<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5963,17 +5844,17 @@ setting<br>
 		 * EPC : 0xCC<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the  gspecial function h to use, and to acquire the current setting.<br>
+		 * Used to specify the “special function” to use, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44<br>
-		 * 0x45 . : Reserved for future use.<br>
+		 * 0x45. : Reserved for future use.<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5999,7 +5880,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6016,17 +5897,16 @@ setting<br>
 		 * EPC : 0xCF<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting. B<br>
+		 * Used to set the air purification mode setting ON/OFF and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Air purification ON  0x41,OFF  <br>
-		 * 0x42<br>
+		 * Air purification ON=0x41,OFF=0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6046,16 +5926,13 @@ setting<br>
 		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-		 * 0x42, time-based reservation function<br>
-		 * is ON = 0x43, relative time-based<br>
-		 * reservation function is ON = 0x44<br>
+		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6067,25 +5944,23 @@ setting<br>
 			return this;
 		}
 		/**
-		 * Property name : ON timer setting
-(time)<br>
+		 * Property name : ON timer setting (time)<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Used to specify the time for the<br>
-		 * time-based reservation function in the<br>
-		 * HH:MM format and to acquire the current setting.<br>
+		 * time-based reservation function in the HH:MM format and to acquire the<br>
+		 * current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6097,8 +5972,7 @@ setting<br>
 			return this;
 		}
 		/**
-		 * Property name : ON timer setting
-(relative time)<br>
+		 * Property name : ON timer setting (relative time)<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -6106,14 +5980,14 @@ setting<br>
 		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6133,14 +6007,13 @@ setting<br>
 		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-		 * 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
+		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6163,14 +6036,13 @@ setting<br>
 		 * current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6190,14 +6062,14 @@ setting<br>
 		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6287,8 +6159,8 @@ setting<br>
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -6325,21 +6197,19 @@ setting<br>
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the operation mode ( gautomatic, h  gcooling, h  gheating, h  gdehumidification, h  gair circulator h or  gother h), and to acquire the current setting.<br>
+		 * Used to specify the operation mode (“automatic,” “cooling,” “heating,” “dehumidification,” “air circulator” or “other”), and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The following values shall be used: Automatic: 0x41<br>
-		 * Cooling: 0x42<br>
-		 * Heating: 0x43<br>
-		 * Dehumidification: 0x44<br>
-		 * Air circulator: 0x45<br>
+		 * Cooling: 0x42 Heating: 0x43<br>
+		 * Dehumidification: 0x44 Air circulator: 0x45<br>
 		 * Other: 0x40<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6361,14 +6231,13 @@ setting<br>
 		 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x41<br>
-		 * Non-automatic = 0x42<br>
+		 * Automatic = 0x41 Non-automatic = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6386,19 +6255,18 @@ setting<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Used to specify the type of operation<br>
-		 * ( gnormal, h  ghigh-speed h or  gsilent h),<br>
+		 * (“normal,” “high-speed” or “silent”),<br>
 		 * and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Normal operation: 0x41<br>
-		 * High-speed operation: 0x42<br>
+		 * Normal operation: 0x41 High-speed operation: 0x42<br>
 		 * Silent operation: 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6419,13 +6287,13 @@ setting<br>
 		 * acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50  )<br>
+		 * 0x00.0x32 (0.50.C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6442,10 +6310,10 @@ setting<br>
 		 * EPC : 0xB4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the relative humidity for the  gdehumidification h mode and to acquire the current setting.<br>
+		 * Used to set the relative humidity for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -6468,16 +6336,16 @@ setting<br>
 		 * EPC : 0xB5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the  gcooling h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “cooling” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50  )<br>
+		 * 0x00.0x32 (0.50.C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6494,16 +6362,16 @@ setting<br>
 		 * EPC : 0xB6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the  gheating h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “heating” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50  )<br>
+		 * 0x00.0x32 (0.50.C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6520,16 +6388,16 @@ setting<br>
 		 * EPC : 0xB7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the  gdehumidification h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50  )<br>
+		 * 0x00.0x32 (0.50.C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6549,9 +6417,10 @@ setting<br>
 		 * Rated power consumption in each operation mode of cooling/heating/dehumidifying/blast<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533W) Cooling: heating: dehumidifying: blast<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
+		 * Cooling: heating: dehumidifying: blast<br>
 		 * <br>
-		 * Data type : unsigned short x 4<br>
+		 * Data type : unsigned short × 4<br>
 		 * <br>
 		 * Data size : 8 bytes<br>
 		 * <br>
@@ -6601,7 +6470,7 @@ setting<br>
 		 * Measured value of room relative humidity<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100. C)<br>
+		 * 0x00.0x64 (0.100.C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -6633,7 +6502,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6659,7 +6528,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6679,13 +6548,13 @@ setting<br>
 		 * This property indicates the measured cooled air temperature at the outlet.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (-127 to 125  C)<br>
+		 * 0x81.0x7D (-127.125°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6705,13 +6574,13 @@ setting<br>
 		 * This property indicates the measured outdoor air temperature.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (-127 to 125  C)<br>
+		 * 0x81.0x7D (-127.125°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6731,14 +6600,14 @@ setting<br>
 		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (-12.7  C to 12.5  C)<br>
+		 * 0x81.0x7D (-12.7°C.12.5°C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
 		 * Unit : 0.1
-. C<br>
+.C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6759,13 +6628,13 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic air flow rate control function used = 0x41<br>
-		 * Air flow rate = 0x31 to 0x38<br>
+		 * Air flow rate = 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6782,20 +6651,16 @@ setting<br>
 		 * EPC : 0xA1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which<br>
-		 * the automatic air flow direction control function is to be used, and to acquire<br>
-		 * the current setting.<br>
+		 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x41, non-automatic =<br>
-		 * 0x42, automatic (vertical) = 0x43,<br>
-		 * automatic (horizontal) = 0x44<br>
+		 * Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6807,8 +6672,7 @@ setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Automatic swing of air flow
-setting<br>
+		 * Property name : Automatic swing of air flow setting<br>
 		 * <br>
 		 * EPC : 0xA3<br>
 		 * <br>
@@ -6816,14 +6680,13 @@ setting<br>
 		 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used<br>
-		 * (vertical and horizontal) = 0x43<br>
+		 * Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6849,7 +6712,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6877,7 +6740,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6894,17 +6757,17 @@ setting<br>
 		 * EPC : 0xAA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates if the air conditioner is in a  gspecial h state (i.e. the  gdefrosting, h  gpreheating, h or  gheat removal h state).<br>
+		 * This property indicates if the air conditioner is in a “special” state (i.e. the “defrosting,” “preheating,” or “heat removal” state).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 *  gNormal operation h state = 0x40,  gDefrosting h state = 0x41,  gPreheating h state = 0x42,<br>
-		 *  gHeat removal h state = 0x43<br>
+		 * “Normal operation” state = 0x40, “Defrosting” state = 0x41, “Preheating” state = 0x42,<br>
+		 * “Heat removal” state = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6921,17 +6784,17 @@ setting<br>
 		 * EPC : 0xAB<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to indicate when the air conditioner is in a  gnon-priority h state.<br>
+		 * Used to indicate when the air conditioner is in a “non-priority” state.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 *  gNormal operation h state = 0x40,<br>
-		 *  gNon-priority h state = 0x41<br>
+		 * “Normal operation” state = 0x40,<br>
+		 * “Non-priority” state = 0x41<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6957,7 +6820,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6983,7 +6846,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7004,13 +6867,13 @@ setting<br>
 		 * acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38<br>
+		 * Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7031,14 +6894,13 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic control of the degree of humidification = 0x41<br>
-		 * Degree of humidification = 0x31 to<br>
-		 * 0x38<br>
+		 * Degree of humidification = 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7059,17 +6921,15 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Bit 0: Information about electrical dust collection method mounting<br>
-		 * 0 - Not mounted<br>
-		 * 1 - Mounted<br>
+		 * 0 - Not mounted 1 - Mounted<br>
 		 * Bit 1: Information about cluster ion method mounting<br>
-		 * 0 - Not mounted<br>
-		 * 1 . Mounted<br>
+		 * 0 - Not mounted 1 - Mounted<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7093,11 +6953,12 @@ setting<br>
 		 * Element 1: Indicates whether or not to use the cluster ion-based air purifier function.<br>
 		 * Elements 2 to 7: Reserved for future use.<br>
 		 * <br>
-		 * Data type : unsigned char x 8<br>
+		 * Data type : unsigned char ×8<br>
 		 * <br>
-		 * Data size : 8 byte<br>
+		 * Data size : 1 byte
+× 8<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7118,17 +6979,15 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Bit 0: Information about minus ion method mounting<br>
-		 * 0 - Not mounted<br>
-		 * 1 - Mounted<br>
+		 * 0 - Not mounted 1 - Mounted<br>
 		 * Bit 1: Information about cluster ion method mounting<br>
-		 * 0 - Not mounted<br>
-		 * 1 . Mounted<br>
+		 * 0 - Not mounted 1 - Mounted<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7150,13 +7009,14 @@ setting<br>
 		 * Value range (decimal notation) :<br>
 		 * Element 0: Indicates whether or not to use the minus ion-based air refresher function.<br>
 		 * Element 1: Indicates whether or not to use the cluster ion-based air refresher function.<br>
-		 * Elements 2 to 7: Reserved for future use.<br>
+		 * Elements 2.7: Reserved for future use.<br>
 		 * <br>
-		 * Data type : unsigned char x 8<br>
+		 * Data type : unsigned char × 8<br>
 		 * <br>
-		 * Data size : 8 byte<br>
+		 * Data size : 1 byte ×
+8<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7168,9 +7028,7 @@ setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Mounted
-self-cleaning
-method<br>
+		 * Property name : Mounted self-cleaning method<br>
 		 * <br>
 		 * EPC : 0xCA<br>
 		 * <br>
@@ -7179,17 +7037,15 @@ method<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Bit 0: Information about ozone cleaning method mounting<br>
-		 * 0 - Not mounted<br>
-		 * 1 - Mounted<br>
+		 * 0 - Not mounted 1 - Mounted<br>
 		 * Bit 1: Information about drying method mounting<br>
-		 * 0 - Not mounted<br>
-		 * 1 . Mounted<br>
+		 * 0 - Not mounted 1 - Mounted<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7214,13 +7070,14 @@ method<br>
 		 * Value range (decimal notation) :<br>
 		 * Element 0: Indicates whether or not to use the ozone-based self-cleaning function.<br>
 		 * Element 1: Indicates whether or not to use the drying-based self-cleaning function.<br>
-		 * Elements 2 to 7: Reserved for future use.<br>
+		 * Elements 2.7: Reserved for future use.<br>
 		 * <br>
-		 * Data type : unsigned char x 8<br>
+		 * Data type : unsigned char × 8<br>
 		 * <br>
-		 * Data size : 8 byte<br>
+		 * Data size : 1 byte ×
+8<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7237,17 +7094,17 @@ method<br>
 		 * EPC : 0xCC<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the  gspecial function h to use, and to acquire the current setting.<br>
+		 * Used to specify the “special function” to use, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44<br>
-		 * 0x45 . : Reserved for future use.<br>
+		 * 0x45. : Reserved for future use.<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7272,14 +7129,13 @@ method<br>
 		 * 1: In operation<br>
 		 * Bit 1: Operation status of the thermostat:<br>
 		 * 0: Thermostat OFF<br>
-		 * 1: Thermostat ON<br>
-		 * Bits 2 to 7: Reserved for future use.<br>
+		 * 1: Thermostat ON Bits 2.7: Reserved for future use.<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7296,17 +7152,16 @@ method<br>
 		 * EPC : 0xCF<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting. B<br>
+		 * Used to set the air purification mode setting ON/OFF and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Air purification ON  0x41,OFF  <br>
-		 * 0x42<br>
+		 * Air purification ON=0x41,OFF=0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7326,16 +7181,13 @@ method<br>
 		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-		 * 0x42, time-based reservation function<br>
-		 * is ON = 0x43, relative time-based<br>
-		 * reservation function is ON = 0x44<br>
+		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7347,25 +7199,23 @@ method<br>
 			return this;
 		}
 		/**
-		 * Property name : ON timer setting
-(time)<br>
+		 * Property name : ON timer setting (time)<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Used to specify the time for the<br>
-		 * time-based reservation function in the<br>
-		 * HH:MM format and to acquire the current setting.<br>
+		 * time-based reservation function in the HH:MM format and to acquire the<br>
+		 * current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7377,8 +7227,7 @@ method<br>
 			return this;
 		}
 		/**
-		 * Property name : ON timer setting
-(relative time)<br>
+		 * Property name : ON timer setting (relative time)<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -7386,14 +7235,14 @@ method<br>
 		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7413,14 +7262,13 @@ method<br>
 		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-		 * 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
+		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7443,14 +7291,13 @@ method<br>
 		 * current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7470,14 +7317,14 @@ method<br>
 		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7566,8 +7413,8 @@ method<br>
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -7604,21 +7451,19 @@ method<br>
 		 * EPC : 0xB0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the operation mode ( gautomatic, h  gcooling, h  gheating, h  gdehumidification, h  gair circulator h or  gother h), and to acquire the current setting.<br>
+		 * Used to specify the operation mode (“automatic,” “cooling,” “heating,” “dehumidification,” “air circulator” or “other”), and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * The following values shall be used: Automatic: 0x41<br>
-		 * Cooling: 0x42<br>
-		 * Heating: 0x43<br>
-		 * Dehumidification: 0x44<br>
-		 * Air circulator: 0x45<br>
+		 * Cooling: 0x42 Heating: 0x43<br>
+		 * Dehumidification: 0x44 Air circulator: 0x45<br>
 		 * Other: 0x40<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7640,14 +7485,13 @@ method<br>
 		 * Used to specify whether or not to use the automatic temperature control function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x41<br>
-		 * Non-automatic = 0x42<br>
+		 * Automatic = 0x41 Non-automatic = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7665,19 +7509,18 @@ method<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Used to specify the type of operation<br>
-		 * ( gnormal, h  ghigh-speed h or  gsilent h),<br>
+		 * (“normal,” “high-speed” or “silent”),<br>
 		 * and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Normal operation: 0x41<br>
-		 * High-speed operation: 0x42<br>
+		 * Normal operation: 0x41 High-speed operation: 0x42<br>
 		 * Silent operation: 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7698,13 +7541,13 @@ method<br>
 		 * acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50  )<br>
+		 * 0x00.0x32 (0.50.C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7721,10 +7564,10 @@ method<br>
 		 * EPC : 0xB4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the relative humidity for the  gdehumidification h mode and to acquire the current setting.<br>
+		 * Used to set the relative humidity for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x64 (0 to 100%)<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -7747,16 +7590,16 @@ method<br>
 		 * EPC : 0xB5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the  gcooling h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “cooling” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50  )<br>
+		 * 0x00.0x32 (0.50.C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7773,16 +7616,16 @@ method<br>
 		 * EPC : 0xB6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the  gheating h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “heating” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50  )<br>
+		 * 0x00.0x32 (0.50.C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7799,16 +7642,16 @@ method<br>
 		 * EPC : 0xB7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the temperature for the  gdehumidification h mode and to acquire the current setting.<br>
+		 * Used to set the temperature for the “dehumidification” mode and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0x32 (0 to 50  )<br>
+		 * 0x00.0x32 (0.50.C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7828,9 +7671,10 @@ method<br>
 		 * Rated power consumption in each operation mode of cooling/heating/dehumidifying/blast<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533W) Cooling: heating: dehumidifying: blast<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
+		 * Cooling: heating: dehumidifying: blast<br>
 		 * <br>
-		 * Data type : unsigned short x 4<br>
+		 * Data type : unsigned short × 4<br>
 		 * <br>
 		 * Data size : 8 bytes<br>
 		 * <br>
@@ -7880,7 +7724,7 @@ method<br>
 		 * Measured value of room relative humidity<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100. C)<br>
+		 * 0x00.0x64 (0.100.C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -7912,7 +7756,7 @@ method<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7938,7 +7782,7 @@ method<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7958,13 +7802,13 @@ method<br>
 		 * This property indicates the measured cooled air temperature at the outlet.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (-127 to 125  C)<br>
+		 * 0x81.0x7D (-127.125°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -7984,13 +7828,13 @@ method<br>
 		 * This property indicates the measured outdoor air temperature.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (-127 to 125  C)<br>
+		 * 0x81.0x7D (-127.125°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8010,14 +7854,14 @@ method<br>
 		 * Used to set the relative temperature relative to the target temperature for an air conditioner operation mode, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7D (-12.7  C to 12.5  C)<br>
+		 * 0x81.0x7D (-12.7°C.12.5°C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
 		 * Unit : 0.1
-. C<br>
+.C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8038,13 +7882,13 @@ method<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic air flow rate control function used = 0x41<br>
-		 * Air flow rate = 0x31 to 0x38<br>
+		 * Air flow rate = 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8061,20 +7905,16 @@ method<br>
 		 * EPC : 0xA1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which<br>
-		 * the automatic air flow direction control function is to be used, and to acquire<br>
-		 * the current setting.<br>
+		 * Used to specify whether or not to use the automatic air flow direction control function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow direction control function is to be used, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic = 0x41, non-automatic =<br>
-		 * 0x42, automatic (vertical) = 0x43,<br>
-		 * automatic (horizontal) = 0x44<br>
+		 * Automatic = 0x41, non-automatic = 0x42, automatic (vertical) = 0x43, automatic (horizontal) = 0x44<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8086,8 +7926,7 @@ method<br>
 			return this;
 		}
 		/**
-		 * Property name : Automatic swing of air flow
-setting<br>
+		 * Property name : Automatic swing of air flow setting<br>
 		 * <br>
 		 * EPC : 0xA3<br>
 		 * <br>
@@ -8095,14 +7934,13 @@ setting<br>
 		 * Used to specify whether or not to use the automatic air flow swing function, to specify the plane(s) (vertical and/or horizontal) in which the automatic air flow swing function is to be used, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used<br>
-		 * (vertical and horizontal) = 0x43<br>
+		 * Automatic air flow swing function not used = 0x31, used (vertical) = 0x41, used (horizontal) = 0x42, used (vertical and horizontal) = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8128,7 +7966,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8156,7 +7994,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8173,17 +8011,17 @@ setting<br>
 		 * EPC : 0xAA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates if the air conditioner is in a  gspecial h state (i.e. the  gdefrosting, h  gpreheating, h or  gheat removal h state).<br>
+		 * This property indicates if the air conditioner is in a “special” state (i.e. the “defrosting,” “preheating,” or “heat removal” state).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 *  gNormal operation h state = 0x40,  gDefrosting h state = 0x41,  gPreheating h state = 0x42,<br>
-		 *  gHeat removal h state = 0x43<br>
+		 * “Normal operation” state = 0x40, “Defrosting” state = 0x41, “Preheating” state = 0x42,<br>
+		 * “Heat removal” state = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8200,17 +8038,17 @@ setting<br>
 		 * EPC : 0xAB<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to indicate when the air conditioner is in a  gnon-priority h state.<br>
+		 * Used to indicate when the air conditioner is in a “non-priority” state.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 *  gNormal operation h state = 0x40,<br>
-		 *  gNon-priority h state = 0x41<br>
+		 * “Normal operation” state = 0x40,<br>
+		 * “Non-priority” state = 0x41<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8236,7 +8074,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8262,7 +8100,7 @@ setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8283,13 +8121,13 @@ setting<br>
 		 * acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31 to 0x38<br>
+		 * Automatic control of ventilation air flow rate = 0x41, ventilation air flow rate = 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8310,14 +8148,13 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Automatic control of the degree of humidification = 0x41<br>
-		 * Degree of humidification = 0x31 to<br>
-		 * 0x38<br>
+		 * Degree of humidification = 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8338,17 +8175,15 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Bit 0: Information about electrical dust collection method mounting<br>
-		 * 0 - Not mounted<br>
-		 * 1 - Mounted<br>
+		 * 0 - Not mounted 1 - Mounted<br>
 		 * Bit 1: Information about cluster ion method mounting<br>
-		 * 0 - Not mounted<br>
-		 * 1 . Mounted<br>
+		 * 0 - Not mounted 1 - Mounted<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8372,11 +8207,12 @@ setting<br>
 		 * Element 1: Indicates whether or not to use the cluster ion-based air purifier function.<br>
 		 * Elements 2 to 7: Reserved for future use.<br>
 		 * <br>
-		 * Data type : unsigned char x 8<br>
+		 * Data type : unsigned char ×8<br>
 		 * <br>
-		 * Data size : 8 byte<br>
+		 * Data size : 1 byte
+× 8<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8397,17 +8233,15 @@ setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Bit 0: Information about minus ion method mounting<br>
-		 * 0 - Not mounted<br>
-		 * 1 - Mounted<br>
+		 * 0 - Not mounted 1 - Mounted<br>
 		 * Bit 1: Information about cluster ion method mounting<br>
-		 * 0 - Not mounted<br>
-		 * 1 . Mounted<br>
+		 * 0 - Not mounted 1 - Mounted<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8429,13 +8263,14 @@ setting<br>
 		 * Value range (decimal notation) :<br>
 		 * Element 0: Indicates whether or not to use the minus ion-based air refresher function.<br>
 		 * Element 1: Indicates whether or not to use the cluster ion-based air refresher function.<br>
-		 * Elements 2 to 7: Reserved for future use.<br>
+		 * Elements 2.7: Reserved for future use.<br>
 		 * <br>
-		 * Data type : unsigned char x 8<br>
+		 * Data type : unsigned char × 8<br>
 		 * <br>
-		 * Data size : 8 byte<br>
+		 * Data size : 1 byte ×
+8<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8447,9 +8282,7 @@ setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Mounted
-self-cleaning
-method<br>
+		 * Property name : Mounted self-cleaning method<br>
 		 * <br>
 		 * EPC : 0xCA<br>
 		 * <br>
@@ -8458,17 +8291,15 @@ method<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Bit 0: Information about ozone cleaning method mounting<br>
-		 * 0 - Not mounted<br>
-		 * 1 - Mounted<br>
+		 * 0 - Not mounted 1 - Mounted<br>
 		 * Bit 1: Information about drying method mounting<br>
-		 * 0 - Not mounted<br>
-		 * 1 . Mounted<br>
+		 * 0 - Not mounted 1 - Mounted<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8493,13 +8324,14 @@ method<br>
 		 * Value range (decimal notation) :<br>
 		 * Element 0: Indicates whether or not to use the ozone-based self-cleaning function.<br>
 		 * Element 1: Indicates whether or not to use the drying-based self-cleaning function.<br>
-		 * Elements 2 to 7: Reserved for future use.<br>
+		 * Elements 2.7: Reserved for future use.<br>
 		 * <br>
-		 * Data type : unsigned char x 8<br>
+		 * Data type : unsigned char × 8<br>
 		 * <br>
-		 * Data size : 8 byte<br>
+		 * Data size : 1 byte ×
+8<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8516,17 +8348,17 @@ method<br>
 		 * EPC : 0xCC<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the  gspecial function h to use, and to acquire the current setting.<br>
+		 * Used to specify the “special function” to use, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * No setting: 0x40, clothes dryer function: 0x41, condensation suppressor function: 0x42, mite and mold control function: 0x43, active defrosting function: 0x44<br>
-		 * 0x45 . : Reserved for future use.<br>
+		 * 0x45. : Reserved for future use.<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8551,14 +8383,13 @@ method<br>
 		 * 1: In operation<br>
 		 * Bit 1: Operation status of the thermostat:<br>
 		 * 0: Thermostat OFF<br>
-		 * 1: Thermostat ON<br>
-		 * Bits 2 to 7: Reserved for future use.<br>
+		 * 1: Thermostat ON Bits 2.7: Reserved for future use.<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8575,17 +8406,16 @@ method<br>
 		 * EPC : 0xCF<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to set the air purification mode seting ON/OFF and to acquire the current setting. B<br>
+		 * Used to set the air purification mode setting ON/OFF and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Air purification ON  0x41,OFF  <br>
-		 * 0x42<br>
+		 * Air purification ON=0x41,OFF=0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8605,16 +8435,13 @@ method<br>
 		 * Used to specify whether or not to use the ON timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-		 * 0x42, time-based reservation function<br>
-		 * is ON = 0x43, relative time-based<br>
-		 * reservation function is ON = 0x44<br>
+		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8626,25 +8453,23 @@ method<br>
 			return this;
 		}
 		/**
-		 * Property name : ON timer setting
-(time)<br>
+		 * Property name : ON timer setting (time)<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Used to specify the time for the<br>
-		 * time-based reservation function in the<br>
-		 * HH:MM format and to acquire the current setting.<br>
+		 * time-based reservation function in the HH:MM format and to acquire the<br>
+		 * current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8656,8 +8481,7 @@ method<br>
 			return this;
 		}
 		/**
-		 * Property name : ON timer setting
-(relative time)<br>
+		 * Property name : ON timer setting (relative time)<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -8665,14 +8489,14 @@ method<br>
 		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8692,14 +8516,13 @@ method<br>
 		 * Used to specify whether or not to use the OFF timer (time-based reservation function, relative time-based reservation function or both), and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF =<br>
-		 * 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
+		 * Both the time- and relative time-based reservation functions are ON = 0x41, both reservation functions are OFF = 0x42, time-based reservation function is ON = 0x43, relative time-based reservation function is ON = 0x44<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8722,14 +8545,13 @@ method<br>
 		 * current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59)<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -8749,14 +8571,14 @@ method<br>
 		 * Used to specify the relative time for the relative time-based reservation function in the HH:MM format and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0xFF: 0 to 0x3B<br>
-		 * (= 0 to 255): (= 0 to 59)<br>
+		 * 0.0xFF: 0.0x3B<br>
+		 * (= 0.255): (= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>

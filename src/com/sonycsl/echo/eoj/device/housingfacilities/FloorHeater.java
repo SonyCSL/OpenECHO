@@ -29,7 +29,7 @@ public abstract class FloorHeater extends DeviceObject {
 
 	public static final byte EPC_TEMPERATURE_SETTING1 = (byte)0xE0;
 	public static final byte EPC_TEMPERATURE_SETTING2 = (byte)0xE1;
-	public static final byte EPC_MEASURED_ROOM_TEEMPERATURE = (byte)0xE2;
+	public static final byte EPC_MEASURED_ROOM_TEMPERATURE = (byte)0xE2;
 	public static final byte EPC_MEASURED_FLOOR_TEMPERATURE = (byte)0xE3;
 	public static final byte EPC_ZONE_CHANGE_SETTING = (byte)0xE4;
 	public static final byte EPC_SPECIAL_OPERATION_SETTING = (byte)0xE5;
@@ -67,17 +67,16 @@ public abstract class FloorHeater extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -93,17 +92,16 @@ public abstract class FloorHeater extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -122,15 +120,14 @@ public abstract class FloorHeater extends DeviceObject {
 	 * This property indicates set temperature<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00-0x32�i0-50���j<br>
-	 * AUTO��0x71<br>
+	 * 0x00-0x32 (0-50.C) AUTO=0x41<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
-	 * Unit : ��<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -147,15 +144,14 @@ Byte<br>
 	 * This property indicates set temperature<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00-0x32�i0-50���j<br>
-	 * AUTO��0x71<br>
+	 * 0x00-0x32 (0-50.C) AUTO=0x41<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
-	 * Unit : ��<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -172,15 +168,14 @@ Byte<br>
 	 * This property indicates set temperature<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00-0x32�i0-50���j<br>
-	 * AUTO��0x71<br>
+	 * 0x00-0x32 (0-50.C) AUTO=0x41<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
-	 * Unit : ��<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -201,14 +196,12 @@ Byte<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x31-0x3F<br>
-	 * 0x31 indicates the minimum level,<br>
-	 * 0x3F indicates the maximumlevel<br>
-	 * AUTO=0x41<br>
+	 * 0x31 indicates the minimum level, 0x3F indicates the maximum level AUTO=0x41<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -228,14 +221,12 @@ Byte<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x31-0x3F<br>
-	 * 0x31 indicates the minimum level,<br>
-	 * 0x3F indicates the maximumlevel<br>
-	 * AUTO=0x41<br>
+	 * 0x31 indicates the minimum level, 0x3F indicates the maximum level AUTO=0x41<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -255,14 +246,12 @@ Byte<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x31-0x3F<br>
-	 * 0x31 indicates the minimum level,<br>
-	 * 0x3F indicates the maximumlevel<br>
-	 * AUTO=0x41<br>
+	 * 0x31 indicates the minimum level, 0x3F indicates the maximum level AUTO=0x41<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -276,7 +265,7 @@ Byte<br>
 		return true;
 	}
 	/**
-	 * Property name : Measured room teemperature<br>
+	 * Property name : Measured room temperature<br>
 	 * <br>
 	 * EPC : 0xE2<br>
 	 * <br>
@@ -284,24 +273,23 @@ Byte<br>
 	 * Measured room temperature<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81-0x7D�i-127-125���j<br>
+	 * 0x81.0x7D (-127.125.C)<br>
 	 * <br>
-	 * Data type : signed
-char<br>
+	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
-	 * Unit : ��<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getMeasuredRoomTeemperature() {return null;}
+	protected byte[] getMeasuredRoomTemperature() {return null;}
 	/**
-	 * Property name : Measured room teemperature<br>
+	 * Property name : Measured room temperature<br>
 	 * <br>
 	 * EPC : 0xE2<br>
 	 * <br>
@@ -309,22 +297,21 @@ Byte<br>
 	 * Measured room temperature<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81-0x7D�i-127-125���j<br>
+	 * 0x81.0x7D (-127.125.C)<br>
 	 * <br>
-	 * Data type : signed
-char<br>
+	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
-	 * Unit : ��<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidMeasuredRoomTeemperature(byte[] edt) {
+	protected boolean isValidMeasuredRoomTemperature(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
@@ -337,15 +324,14 @@ Byte<br>
 	 * Measured floor temperature<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00-0x32�i0-50���j<br>
+	 * 0x00.0x32 (0.50.C)<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
-	 * Unit : ��<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -362,15 +348,14 @@ Byte<br>
 	 * Measured floor temperature<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00-0x32�i0-50���j<br>
+	 * 0x00.0x32 (0.50.C)<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
-	 * Unit : ��<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -390,13 +375,13 @@ Byte<br>
 	 * Sets the target zone for control and gets the number of controllable zones<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * b0-b7 is allocated to 0 to 7<br>
+	 * b0.b7 is allocated to 0 to 7<br>
 	 * Each bit 1: with control, 0: without control<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -415,13 +400,13 @@ Byte<br>
 	 * Sets the target zone for control and gets the number of controllable zones<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * b0-b7 is allocated to 0 to 7<br>
+	 * b0.b7 is allocated to 0 to 7<br>
 	 * Each bit 1: with control, 0: without control<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -440,13 +425,13 @@ Byte<br>
 	 * Sets the target zone for control and gets the number of controllable zones<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * b0-b7 is allocated to 0 to 7<br>
+	 * b0.b7 is allocated to 0 to 7<br>
 	 * Each bit 1: with control, 0: without control<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -469,13 +454,13 @@ Byte<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Nornal Operation=0x41, modest<br>
-	 * operation=0x42�high power<br>
+	 * operation=0x42、high power<br>
 	 * operation=0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -495,13 +480,13 @@ Byte<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Nornal Operation=0x41, modest<br>
-	 * operation=0x42�high power<br>
+	 * operation=0x42、high power<br>
 	 * operation=0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -521,13 +506,13 @@ Byte<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Nornal Operation=0x41, modest<br>
-	 * operation=0x42�high power<br>
+	 * operation=0x42、high power<br>
 	 * operation=0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -555,7 +540,7 @@ Byte<br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -580,7 +565,7 @@ Byte<br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -605,7 +590,7 @@ Byte<br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -631,10 +616,10 @@ Byte<br>
 	 * Each bit 1: worked 0: stopped<br>
 	 * <br>
 	 * Data type : unsigned char
-x 6<br>
+× 6<br>
 	 * <br>
 	 * Data size : 6
-Bytes<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -657,10 +642,10 @@ Bytes<br>
 	 * Each bit 1: worked 0: stopped<br>
 	 * <br>
 	 * Data type : unsigned char
-x 6<br>
+× 6<br>
 	 * <br>
 	 * Data size : 6
-Bytes<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -683,10 +668,10 @@ Bytes<br>
 	 * Each bit 1: worked 0: stopped<br>
 	 * <br>
 	 * Data type : unsigned char
-x 6<br>
+× 6<br>
 	 * <br>
 	 * Data size : 6
-Bytes<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -712,10 +697,10 @@ Bytes<br>
 	 * Each bit 1: worked 0: stopped<br>
 	 * <br>
 	 * Data type : unsigned char
-x 6<br>
+× 6<br>
 	 * <br>
 	 * Data size : 6
-Bytes<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -738,10 +723,10 @@ Bytes<br>
 	 * Each bit 1: worked 0: stopped<br>
 	 * <br>
 	 * Data type : unsigned char
-x 6<br>
+× 6<br>
 	 * <br>
 	 * Data size : 6
-Bytes<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -764,10 +749,10 @@ Bytes<br>
 	 * Each bit 1: worked 0: stopped<br>
 	 * <br>
 	 * Data type : unsigned char
-x 6<br>
+× 6<br>
 	 * <br>
 	 * Data size : 6
-Bytes<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -794,7 +779,7 @@ Bytes<br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -818,7 +803,7 @@ Byte<br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -842,7 +827,7 @@ Byte<br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -856,8 +841,7 @@ Byte<br>
 		return true;
 	}
 	/**
-	 * Property name : Time set by ON
-timer<br>
+	 * Property name : Time set by ON timer<br>
 	 * <br>
 	 * EPC : 0x91<br>
 	 * <br>
@@ -865,14 +849,13 @@ timer<br>
 	 * Timer value HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17: 0-0x3B<br>
-	 * (=0-23):(=0-59)<br>
+	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-x 2<br>
+× 2<br>
 	 * <br>
 	 * Data size : 2
-Bytes<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -883,8 +866,7 @@ Bytes<br>
 	 */
 	protected boolean setTimeSetByOnTimer(byte[] edt) {return false;}
 	/**
-	 * Property name : Time set by ON
-timer<br>
+	 * Property name : Time set by ON timer<br>
 	 * <br>
 	 * EPC : 0x91<br>
 	 * <br>
@@ -892,14 +874,13 @@ timer<br>
 	 * Timer value HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17: 0-0x3B<br>
-	 * (=0-23):(=0-59)<br>
+	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-x 2<br>
+× 2<br>
 	 * <br>
 	 * Data size : 2
-Bytes<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -910,8 +891,7 @@ Bytes<br>
 	 */
 	protected byte[] getTimeSetByOnTimer() {return null;}
 	/**
-	 * Property name : Time set by ON
-timer<br>
+	 * Property name : Time set by ON timer<br>
 	 * <br>
 	 * EPC : 0x91<br>
 	 * <br>
@@ -919,14 +899,13 @@ timer<br>
 	 * Timer value HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17: 0-0x3B<br>
-	 * (=0-23):(=0-59)<br>
+	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-x 2<br>
+× 2<br>
 	 * <br>
 	 * Data size : 2
-Bytes<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -940,8 +919,7 @@ Bytes<br>
 		return true;
 	}
 	/**
-	 * Property name : Relative ON
-timer setting<br>
+	 * Property name : Relative ON timer setting<br>
 	 * <br>
 	 * EPC : 0x92<br>
 	 * <br>
@@ -949,14 +927,13 @@ timer setting<br>
 	 * Timer value HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17: 0-0x3B<br>
-	 * (=0-23):(=0-59)<br>
+	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-x 2<br>
+× 2<br>
 	 * <br>
 	 * Data size : 2
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -967,8 +944,7 @@ Byte<br>
 	 */
 	protected boolean setRelativeOnTimerSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : Relative ON
-timer setting<br>
+	 * Property name : Relative ON timer setting<br>
 	 * <br>
 	 * EPC : 0x92<br>
 	 * <br>
@@ -976,14 +952,13 @@ timer setting<br>
 	 * Timer value HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17: 0-0x3B<br>
-	 * (=0-23):(=0-59)<br>
+	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-x 2<br>
+× 2<br>
 	 * <br>
 	 * Data size : 2
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -994,8 +969,7 @@ Byte<br>
 	 */
 	protected byte[] getRelativeOnTimerSetting() {return null;}
 	/**
-	 * Property name : Relative ON
-timer setting<br>
+	 * Property name : Relative ON timer setting<br>
 	 * <br>
 	 * EPC : 0x92<br>
 	 * <br>
@@ -1003,14 +977,13 @@ timer setting<br>
 	 * Timer value HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17: 0-0x3B<br>
-	 * (=0-23):(=0-59)<br>
+	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-x 2<br>
+× 2<br>
 	 * <br>
 	 * Data size : 2
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -1032,13 +1005,12 @@ Byte<br>
 	 * Reservation ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON��0x41, OFF��0x42<br>
+	 * ON=0x41, OFF=0x42<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -1057,13 +1029,12 @@ Byte<br>
 	 * Reservation ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON��0x41, OFF��0x42<br>
+	 * ON=0x41, OFF=0x42<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -1082,13 +1053,12 @@ Byte<br>
 	 * Reservation ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON��0x41, OFF��0x42<br>
+	 * ON=0x41, OFF=0x42<br>
 	 * <br>
-	 * Data type : unsigned
-char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -1102,8 +1072,7 @@ Byte<br>
 		return true;
 	}
 	/**
-	 * Property name : Time set by OFF
-timer<br>
+	 * Property name : Time set by OFF timer<br>
 	 * <br>
 	 * EPC : 0x95<br>
 	 * <br>
@@ -1111,14 +1080,14 @@ timer<br>
 	 * Timer value HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17:  0-0x3B<br>
-	 * (=0-23):(=0-59)<br>
+	 * 0.0x17: 0.0x3B<br>
+	 * (=0.23):(=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2
-Bytes<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -1129,8 +1098,7 @@ Bytes<br>
 	 */
 	protected boolean setTimeSetByOffTimer(byte[] edt) {return false;}
 	/**
-	 * Property name : Time set by OFF
-timer<br>
+	 * Property name : Time set by OFF timer<br>
 	 * <br>
 	 * EPC : 0x95<br>
 	 * <br>
@@ -1138,14 +1106,14 @@ timer<br>
 	 * Timer value HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17:  0-0x3B<br>
-	 * (=0-23):(=0-59)<br>
+	 * 0.0x17: 0.0x3B<br>
+	 * (=0.23):(=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2
-Bytes<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -1156,8 +1124,7 @@ Bytes<br>
 	 */
 	protected byte[] getTimeSetByOffTimer() {return null;}
 	/**
-	 * Property name : Time set by OFF
-timer<br>
+	 * Property name : Time set by OFF timer<br>
 	 * <br>
 	 * EPC : 0x95<br>
 	 * <br>
@@ -1165,14 +1132,14 @@ timer<br>
 	 * Timer value HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17:  0-0x3B<br>
-	 * (=0-23):(=0-59)<br>
+	 * 0.0x17: 0.0x3B<br>
+	 * (=0.23):(=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2
-Bytes<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -1186,8 +1153,7 @@ Bytes<br>
 		return true;
 	}
 	/**
-	 * Property name : Relative OFF
-timer setting<br>
+	 * Property name : Relative OFF timer setting<br>
 	 * <br>
 	 * EPC : 0x96<br>
 	 * <br>
@@ -1195,14 +1161,14 @@ timer setting<br>
 	 * Timer value HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17:  0-0x3B<br>
-	 * (=0-23):(=0-59)<br>
+	 * 0.0x17: 0.0x3B<br>
+	 * (=0.23):(=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2
-Bytes<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -1213,8 +1179,7 @@ Bytes<br>
 	 */
 	protected boolean setRelativeOffTimerSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : Relative OFF
-timer setting<br>
+	 * Property name : Relative OFF timer setting<br>
 	 * <br>
 	 * EPC : 0x96<br>
 	 * <br>
@@ -1222,14 +1187,14 @@ timer setting<br>
 	 * Timer value HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17:  0-0x3B<br>
-	 * (=0-23):(=0-59)<br>
+	 * 0.0x17: 0.0x3B<br>
+	 * (=0.23):(=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2
-Bytes<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -1240,8 +1205,7 @@ Bytes<br>
 	 */
 	protected byte[] getRelativeOffTimerSetting() {return null;}
 	/**
-	 * Property name : Relative OFF
-timer setting<br>
+	 * Property name : Relative OFF timer setting<br>
 	 * <br>
 	 * EPC : 0x96<br>
 	 * <br>
@@ -1249,14 +1213,14 @@ timer setting<br>
 	 * Timer value HH:MM<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0-0x17:  0-0x3B<br>
-	 * (=0-23):(=0-59)<br>
+	 * 0.0x17: 0.0x3B<br>
+	 * (=0.23):(=0.59)<br>
 	 * <br>
 	 * Data type : unsigned char
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 2
-Bytes<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -1301,7 +1265,7 @@ Bytes<br>
 		switch(epc) {
 		case EPC_TEMPERATURE_SETTING1 : return getTemperatureSetting1();
 		case EPC_TEMPERATURE_SETTING2 : return getTemperatureSetting2();
-		case EPC_MEASURED_ROOM_TEEMPERATURE : return getMeasuredRoomTeemperature();
+		case EPC_MEASURED_ROOM_TEMPERATURE : return getMeasuredRoomTemperature();
 		case EPC_MEASURED_FLOOR_TEMPERATURE : return getMeasuredFloorTemperature();
 		case EPC_ZONE_CHANGE_SETTING : return getZoneChangeSetting();
 		case EPC_SPECIAL_OPERATION_SETTING : return getSpecialOperationSetting();
@@ -1326,7 +1290,7 @@ Bytes<br>
 		switch(property.epc) {
 		case EPC_TEMPERATURE_SETTING1 : return isValidTemperatureSetting1(property.edt);
 		case EPC_TEMPERATURE_SETTING2 : return isValidTemperatureSetting2(property.edt);
-		case EPC_MEASURED_ROOM_TEEMPERATURE : return isValidMeasuredRoomTeemperature(property.edt);
+		case EPC_MEASURED_ROOM_TEMPERATURE : return isValidMeasuredRoomTemperature(property.edt);
 		case EPC_MEASURED_FLOOR_TEMPERATURE : return isValidMeasuredFloorTemperature(property.edt);
 		case EPC_ZONE_CHANGE_SETTING : return isValidZoneChangeSetting(property.edt);
 		case EPC_SPECIAL_OPERATION_SETTING : return isValidSpecialOperationSetting(property.edt);
@@ -1443,8 +1407,8 @@ Bytes<br>
 			case EPC_TEMPERATURE_SETTING2 : 
 				onGetTemperatureSetting2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASURED_ROOM_TEEMPERATURE : 
-				onGetMeasuredRoomTeemperature(eoj, tid, esv, property, success);
+			case EPC_MEASURED_ROOM_TEMPERATURE : 
+				onGetMeasuredRoomTemperature(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MEASURED_FLOOR_TEMPERATURE : 
 				onGetMeasuredFloorTemperature(eoj, tid, esv, property, success);
@@ -1496,15 +1460,14 @@ Bytes<br>
 		 * This property indicates set temperature<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00-0x32�i0-50���j<br>
-		 * AUTO��0x71<br>
+		 * 0x00-0x32 (0-50.C) AUTO=0x41<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
-		 * Unit : ��<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1521,15 +1484,14 @@ Byte<br>
 		 * This property indicates set temperature<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00-0x32�i0-50���j<br>
-		 * AUTO��0x71<br>
+		 * 0x00-0x32 (0-50.C) AUTO=0x41<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
-		 * Unit : ��<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1547,14 +1509,12 @@ Byte<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31-0x3F<br>
-		 * 0x31 indicates the minimum level,<br>
-		 * 0x3F indicates the maximumlevel<br>
-		 * AUTO=0x41<br>
+		 * 0x31 indicates the minimum level, 0x3F indicates the maximum level AUTO=0x41<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1574,14 +1534,12 @@ Byte<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31-0x3F<br>
-		 * 0x31 indicates the minimum level,<br>
-		 * 0x3F indicates the maximumlevel<br>
-		 * AUTO=0x41<br>
+		 * 0x31 indicates the minimum level, 0x3F indicates the maximum level AUTO=0x41<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1592,7 +1550,7 @@ Byte<br>
 		 */
 		protected void onGetTemperatureSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Measured room teemperature<br>
+		 * Property name : Measured room temperature<br>
 		 * <br>
 		 * EPC : 0xE2<br>
 		 * <br>
@@ -1600,22 +1558,21 @@ Byte<br>
 		 * Measured room temperature<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81-0x7D�i-127-125���j<br>
+		 * 0x81.0x7D (-127.125.C)<br>
 		 * <br>
-		 * Data type : signed
-char<br>
+		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
-		 * Unit : ��<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetMeasuredRoomTeemperature(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetMeasuredRoomTemperature(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Measured floor temperature<br>
 		 * <br>
@@ -1625,15 +1582,14 @@ Byte<br>
 		 * Measured floor temperature<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00-0x32�i0-50���j<br>
+		 * 0x00.0x32 (0.50.C)<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
-		 * Unit : ��<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1650,13 +1606,13 @@ Byte<br>
 		 * Sets the target zone for control and gets the number of controllable zones<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * b0-b7 is allocated to 0 to 7<br>
+		 * b0.b7 is allocated to 0 to 7<br>
 		 * Each bit 1: with control, 0: without control<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1675,13 +1631,13 @@ Byte<br>
 		 * Sets the target zone for control and gets the number of controllable zones<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * b0-b7 is allocated to 0 to 7<br>
+		 * b0.b7 is allocated to 0 to 7<br>
 		 * Each bit 1: with control, 0: without control<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1701,13 +1657,13 @@ Byte<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Nornal Operation=0x41, modest<br>
-		 * operation=0x42�high power<br>
+		 * operation=0x42、high power<br>
 		 * operation=0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1727,13 +1683,13 @@ Byte<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Nornal Operation=0x41, modest<br>
-		 * operation=0x42�high power<br>
+		 * operation=0x42、high power<br>
 		 * operation=0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1758,7 +1714,7 @@ Byte<br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1783,7 +1739,7 @@ Byte<br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1806,10 +1762,10 @@ Byte<br>
 		 * Each bit 1: worked 0: stopped<br>
 		 * <br>
 		 * Data type : unsigned char
-x 6<br>
+× 6<br>
 		 * <br>
 		 * Data size : 6
-Bytes<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1832,10 +1788,10 @@ Bytes<br>
 		 * Each bit 1: worked 0: stopped<br>
 		 * <br>
 		 * Data type : unsigned char
-x 6<br>
+× 6<br>
 		 * <br>
 		 * Data size : 6
-Bytes<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1858,10 +1814,10 @@ Bytes<br>
 		 * Each bit 1: worked 0: stopped<br>
 		 * <br>
 		 * Data type : unsigned char
-x 6<br>
+× 6<br>
 		 * <br>
 		 * Data size : 6
-Bytes<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1884,10 +1840,10 @@ Bytes<br>
 		 * Each bit 1: worked 0: stopped<br>
 		 * <br>
 		 * Data type : unsigned char
-x 6<br>
+× 6<br>
 		 * <br>
 		 * Data size : 6
-Bytes<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1911,7 +1867,7 @@ Bytes<br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1935,7 +1891,7 @@ Byte<br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1946,8 +1902,7 @@ Byte<br>
 		 */
 		protected void onGetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Time set by ON
-timer<br>
+		 * Property name : Time set by ON timer<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
@@ -1955,14 +1910,13 @@ timer<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x 2<br>
+× 2<br>
 		 * <br>
 		 * Data size : 2
-Bytes<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1973,8 +1927,7 @@ Bytes<br>
 		 */
 		protected void onSetTimeSetByOnTimer(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Time set by ON
-timer<br>
+		 * Property name : Time set by ON timer<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
@@ -1982,14 +1935,13 @@ timer<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x 2<br>
+× 2<br>
 		 * <br>
 		 * Data size : 2
-Bytes<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2000,8 +1952,7 @@ Bytes<br>
 		 */
 		protected void onGetTimeSetByOnTimer(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Relative ON
-timer setting<br>
+		 * Property name : Relative ON timer setting<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -2009,14 +1960,13 @@ timer setting<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x 2<br>
+× 2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2027,8 +1977,7 @@ Byte<br>
 		 */
 		protected void onSetRelativeOnTimerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Relative ON
-timer setting<br>
+		 * Property name : Relative ON timer setting<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -2036,14 +1985,13 @@ timer setting<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x 2<br>
+× 2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2062,13 +2010,12 @@ Byte<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * ON��0x41, OFF��0x42<br>
+		 * ON=0x41, OFF=0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2087,13 +2034,12 @@ Byte<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * ON��0x41, OFF��0x42<br>
+		 * ON=0x41, OFF=0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2104,8 +2050,7 @@ Byte<br>
 		 */
 		protected void onGetOffTimerReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Time set by OFF
-timer<br>
+		 * Property name : Time set by OFF timer<br>
 		 * <br>
 		 * EPC : 0x95<br>
 		 * <br>
@@ -2113,14 +2058,14 @@ timer<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17:  0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B<br>
+		 * (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Bytes<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2131,8 +2076,7 @@ Bytes<br>
 		 */
 		protected void onSetTimeSetByOffTimer(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Time set by OFF
-timer<br>
+		 * Property name : Time set by OFF timer<br>
 		 * <br>
 		 * EPC : 0x95<br>
 		 * <br>
@@ -2140,14 +2084,14 @@ timer<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17:  0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B<br>
+		 * (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Bytes<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2158,8 +2102,7 @@ Bytes<br>
 		 */
 		protected void onGetTimeSetByOffTimer(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Relative OFF
-timer setting<br>
+		 * Property name : Relative OFF timer setting<br>
 		 * <br>
 		 * EPC : 0x96<br>
 		 * <br>
@@ -2167,14 +2110,14 @@ timer setting<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17:  0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B<br>
+		 * (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Bytes<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2185,8 +2128,7 @@ Bytes<br>
 		 */
 		protected void onSetRelativeOffTimerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Relative OFF
-timer setting<br>
+		 * Property name : Relative OFF timer setting<br>
 		 * <br>
 		 * EPC : 0x96<br>
 		 * <br>
@@ -2194,14 +2136,14 @@ timer setting<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17:  0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B<br>
+		 * (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Bytes<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2242,8 +2184,8 @@ Bytes<br>
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -2267,15 +2209,14 @@ Bytes<br>
 		 * This property indicates set temperature<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00-0x32�i0-50���j<br>
-		 * AUTO��0x71<br>
+		 * 0x00-0x32 (0-50.C) AUTO=0x41<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
-		 * Unit : ��<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2296,14 +2237,12 @@ Byte<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31-0x3F<br>
-		 * 0x31 indicates the minimum level,<br>
-		 * 0x3F indicates the maximumlevel<br>
-		 * AUTO=0x41<br>
+		 * 0x31 indicates the minimum level, 0x3F indicates the maximum level AUTO=0x41<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2325,13 +2264,13 @@ Byte<br>
 		 * Sets the target zone for control and gets the number of controllable zones<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * b0-b7 is allocated to 0 to 7<br>
+		 * b0.b7 is allocated to 0 to 7<br>
 		 * Each bit 1: with control, 0: without control<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -2354,13 +2293,13 @@ Byte<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Nornal Operation=0x41, modest<br>
-		 * operation=0x42�high power<br>
+		 * operation=0x42、high power<br>
 		 * operation=0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2388,7 +2327,7 @@ Byte<br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2414,10 +2353,10 @@ Byte<br>
 		 * Each bit 1: worked 0: stopped<br>
 		 * <br>
 		 * Data type : unsigned char
-x 6<br>
+× 6<br>
 		 * <br>
 		 * Data size : 6
-Bytes<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2443,10 +2382,10 @@ Bytes<br>
 		 * Each bit 1: worked 0: stopped<br>
 		 * <br>
 		 * Data type : unsigned char
-x 6<br>
+× 6<br>
 		 * <br>
 		 * Data size : 6
-Bytes<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2473,7 +2412,7 @@ Bytes<br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2487,8 +2426,7 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Time set by ON
-timer<br>
+		 * Property name : Time set by ON timer<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
@@ -2496,14 +2434,13 @@ timer<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x 2<br>
+× 2<br>
 		 * <br>
 		 * Data size : 2
-Bytes<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2517,8 +2454,7 @@ Bytes<br>
 			return this;
 		}
 		/**
-		 * Property name : Relative ON
-timer setting<br>
+		 * Property name : Relative ON timer setting<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -2526,14 +2462,13 @@ timer setting<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x 2<br>
+× 2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2555,13 +2490,12 @@ Byte<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * ON��0x41, OFF��0x42<br>
+		 * ON=0x41, OFF=0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2575,8 +2509,7 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Time set by OFF
-timer<br>
+		 * Property name : Time set by OFF timer<br>
 		 * <br>
 		 * EPC : 0x95<br>
 		 * <br>
@@ -2584,14 +2517,14 @@ timer<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17:  0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B<br>
+		 * (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Bytes<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2605,8 +2538,7 @@ Bytes<br>
 			return this;
 		}
 		/**
-		 * Property name : Relative OFF
-timer setting<br>
+		 * Property name : Relative OFF timer setting<br>
 		 * <br>
 		 * EPC : 0x96<br>
 		 * <br>
@@ -2614,14 +2546,14 @@ timer setting<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17:  0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B<br>
+		 * (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Bytes<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2713,8 +2645,8 @@ Bytes<br>
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -2754,15 +2686,14 @@ Bytes<br>
 		 * This property indicates set temperature<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00-0x32�i0-50���j<br>
-		 * AUTO��0x71<br>
+		 * 0x00-0x32 (0-50.C) AUTO=0x41<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
-		 * Unit : ��<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2783,14 +2714,12 @@ Byte<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31-0x3F<br>
-		 * 0x31 indicates the minimum level,<br>
-		 * 0x3F indicates the maximumlevel<br>
-		 * AUTO=0x41<br>
+		 * 0x31 indicates the minimum level, 0x3F indicates the maximum level AUTO=0x41<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2804,7 +2733,7 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Measured room teemperature<br>
+		 * Property name : Measured room temperature<br>
 		 * <br>
 		 * EPC : 0xE2<br>
 		 * <br>
@@ -2812,23 +2741,22 @@ Byte<br>
 		 * Measured room temperature<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81-0x7D�i-127-125���j<br>
+		 * 0x81.0x7D (-127.125.C)<br>
 		 * <br>
-		 * Data type : signed
-char<br>
+		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
-		 * Unit : ��<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetMeasuredRoomTeemperature() {
-			reqGetProperty(EPC_MEASURED_ROOM_TEEMPERATURE);
+		public Getter reqGetMeasuredRoomTemperature() {
+			reqGetProperty(EPC_MEASURED_ROOM_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -2840,15 +2768,14 @@ Byte<br>
 		 * Measured floor temperature<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00-0x32�i0-50���j<br>
+		 * 0x00.0x32 (0.50.C)<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
-		 * Unit : ��<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2868,13 +2795,13 @@ Byte<br>
 		 * Sets the target zone for control and gets the number of controllable zones<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * b0-b7 is allocated to 0 to 7<br>
+		 * b0.b7 is allocated to 0 to 7<br>
 		 * Each bit 1: with control, 0: without control<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -2897,13 +2824,13 @@ Byte<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Nornal Operation=0x41, modest<br>
-		 * operation=0x42�high power<br>
+		 * operation=0x42、high power<br>
 		 * operation=0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2931,7 +2858,7 @@ Byte<br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2957,10 +2884,10 @@ Byte<br>
 		 * Each bit 1: worked 0: stopped<br>
 		 * <br>
 		 * Data type : unsigned char
-x 6<br>
+× 6<br>
 		 * <br>
 		 * Data size : 6
-Bytes<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2986,10 +2913,10 @@ Bytes<br>
 		 * Each bit 1: worked 0: stopped<br>
 		 * <br>
 		 * Data type : unsigned char
-x 6<br>
+× 6<br>
 		 * <br>
 		 * Data size : 6
-Bytes<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -3016,7 +2943,7 @@ Bytes<br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -3030,8 +2957,7 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Time set by ON
-timer<br>
+		 * Property name : Time set by ON timer<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
@@ -3039,14 +2965,13 @@ timer<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x 2<br>
+× 2<br>
 		 * <br>
 		 * Data size : 2
-Bytes<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -3060,8 +2985,7 @@ Bytes<br>
 			return this;
 		}
 		/**
-		 * Property name : Relative ON
-timer setting<br>
+		 * Property name : Relative ON timer setting<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -3069,14 +2993,13 @@ timer setting<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x 2<br>
+× 2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -3098,13 +3021,12 @@ Byte<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * ON��0x41, OFF��0x42<br>
+		 * ON=0x41, OFF=0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -3118,8 +3040,7 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Time set by OFF
-timer<br>
+		 * Property name : Time set by OFF timer<br>
 		 * <br>
 		 * EPC : 0x95<br>
 		 * <br>
@@ -3127,14 +3048,14 @@ timer<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17:  0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B<br>
+		 * (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Bytes<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -3148,8 +3069,7 @@ Bytes<br>
 			return this;
 		}
 		/**
-		 * Property name : Relative OFF
-timer setting<br>
+		 * Property name : Relative OFF timer setting<br>
 		 * <br>
 		 * EPC : 0x96<br>
 		 * <br>
@@ -3157,14 +3077,14 @@ timer setting<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17:  0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B<br>
+		 * (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Bytes<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -3255,8 +3175,8 @@ Bytes<br>
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -3296,15 +3216,14 @@ Bytes<br>
 		 * This property indicates set temperature<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00-0x32�i0-50���j<br>
-		 * AUTO��0x71<br>
+		 * 0x00-0x32 (0-50.C) AUTO=0x41<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
-		 * Unit : ��<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3325,14 +3244,12 @@ Byte<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31-0x3F<br>
-		 * 0x31 indicates the minimum level,<br>
-		 * 0x3F indicates the maximumlevel<br>
-		 * AUTO=0x41<br>
+		 * 0x31 indicates the minimum level, 0x3F indicates the maximum level AUTO=0x41<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -3346,7 +3263,7 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Measured room teemperature<br>
+		 * Property name : Measured room temperature<br>
 		 * <br>
 		 * EPC : 0xE2<br>
 		 * <br>
@@ -3354,23 +3271,22 @@ Byte<br>
 		 * Measured room temperature<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81-0x7D�i-127-125���j<br>
+		 * 0x81.0x7D (-127.125.C)<br>
 		 * <br>
-		 * Data type : signed
-char<br>
+		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
-		 * Unit : ��<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformMeasuredRoomTeemperature() {
-			reqInformProperty(EPC_MEASURED_ROOM_TEEMPERATURE);
+		public Informer reqInformMeasuredRoomTemperature() {
+			reqInformProperty(EPC_MEASURED_ROOM_TEMPERATURE);
 			return this;
 		}
 		/**
@@ -3382,15 +3298,14 @@ Byte<br>
 		 * Measured floor temperature<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00-0x32�i0-50���j<br>
+		 * 0x00.0x32 (0.50.C)<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
-		 * Unit : ��<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3410,13 +3325,13 @@ Byte<br>
 		 * Sets the target zone for control and gets the number of controllable zones<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * b0-b7 is allocated to 0 to 7<br>
+		 * b0.b7 is allocated to 0 to 7<br>
 		 * Each bit 1: with control, 0: without control<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -3439,13 +3354,13 @@ Byte<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Nornal Operation=0x41, modest<br>
-		 * operation=0x42�high power<br>
+		 * operation=0x42、high power<br>
 		 * operation=0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -3473,7 +3388,7 @@ Byte<br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -3499,10 +3414,10 @@ Byte<br>
 		 * Each bit 1: worked 0: stopped<br>
 		 * <br>
 		 * Data type : unsigned char
-x 6<br>
+× 6<br>
 		 * <br>
 		 * Data size : 6
-Bytes<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -3528,10 +3443,10 @@ Bytes<br>
 		 * Each bit 1: worked 0: stopped<br>
 		 * <br>
 		 * Data type : unsigned char
-x 6<br>
+× 6<br>
 		 * <br>
 		 * Data size : 6
-Bytes<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -3558,7 +3473,7 @@ Bytes<br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -3572,8 +3487,7 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Time set by ON
-timer<br>
+		 * Property name : Time set by ON timer<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
@@ -3581,14 +3495,13 @@ timer<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x 2<br>
+× 2<br>
 		 * <br>
 		 * Data size : 2
-Bytes<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -3602,8 +3515,7 @@ Bytes<br>
 			return this;
 		}
 		/**
-		 * Property name : Relative ON
-timer setting<br>
+		 * Property name : Relative ON timer setting<br>
 		 * <br>
 		 * EPC : 0x92<br>
 		 * <br>
@@ -3611,14 +3523,13 @@ timer setting<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17: 0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-x 2<br>
+× 2<br>
 		 * <br>
 		 * Data size : 2
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -3640,13 +3551,12 @@ Byte<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * ON��0x41, OFF��0x42<br>
+		 * ON=0x41, OFF=0x42<br>
 		 * <br>
-		 * Data type : unsigned
-char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -3660,8 +3570,7 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Time set by OFF
-timer<br>
+		 * Property name : Time set by OFF timer<br>
 		 * <br>
 		 * EPC : 0x95<br>
 		 * <br>
@@ -3669,14 +3578,14 @@ timer<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17:  0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B<br>
+		 * (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Bytes<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -3690,8 +3599,7 @@ Bytes<br>
 			return this;
 		}
 		/**
-		 * Property name : Relative OFF
-timer setting<br>
+		 * Property name : Relative OFF timer setting<br>
 		 * <br>
 		 * EPC : 0x96<br>
 		 * <br>
@@ -3699,14 +3607,14 @@ timer setting<br>
 		 * Timer value HH:MM<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0-0x17:  0-0x3B<br>
-		 * (=0-23):(=0-59)<br>
+		 * 0.0x17: 0.0x3B<br>
+		 * (=0.23):(=0.59)<br>
 		 * <br>
 		 * Data type : unsigned char
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 2
-Bytes<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>

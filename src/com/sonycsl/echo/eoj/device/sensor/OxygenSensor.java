@@ -50,17 +50,16 @@ public abstract class OxygenSensor extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 1bytes<br>
+	 * Data size : 1byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -76,17 +75,16 @@ public abstract class OxygenSensor extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 1bytes<br>
+	 * Data size : 1byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -102,8 +100,7 @@ public abstract class OxygenSensor extends DeviceObject {
 	 * EPC : 0xE0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates measured<br>
-	 * value of oxygen concentration in units of 0.01%.<br>
+	 * This property indicates measured value of oxygen concentration in units of 0.01%.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x0000.0x2710 (0.00.100.00%)<br>
@@ -126,8 +123,7 @@ public abstract class OxygenSensor extends DeviceObject {
 	 * EPC : 0xE0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates measured<br>
-	 * value of oxygen concentration in units of 0.01%.<br>
+	 * This property indicates measured value of oxygen concentration in units of 0.01%.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x0000.0x2710 (0.00.100.00%)<br>
@@ -249,8 +245,7 @@ public abstract class OxygenSensor extends DeviceObject {
 		 * EPC : 0xE0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates measured<br>
-		 * value of oxygen concentration in units of 0.01%.<br>
+		 * This property indicates measured value of oxygen concentration in units of 0.01%.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0x2710 (0.00.100.00%)<br>
@@ -298,8 +293,8 @@ public abstract class OxygenSensor extends DeviceObject {
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -393,8 +388,8 @@ public abstract class OxygenSensor extends DeviceObject {
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -431,8 +426,7 @@ public abstract class OxygenSensor extends DeviceObject {
 		 * EPC : 0xE0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates measured<br>
-		 * value of oxygen concentration in units of 0.01%.<br>
+		 * This property indicates measured value of oxygen concentration in units of 0.01%.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0x2710 (0.00.100.00%)<br>
@@ -530,8 +524,8 @@ public abstract class OxygenSensor extends DeviceObject {
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -568,8 +562,7 @@ public abstract class OxygenSensor extends DeviceObject {
 		 * EPC : 0xE0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates measured<br>
-		 * value of oxygen concentration in units of 0.01%.<br>
+		 * This property indicates measured value of oxygen concentration in units of 0.01%.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0x2710 (0.00.100.00%)<br>

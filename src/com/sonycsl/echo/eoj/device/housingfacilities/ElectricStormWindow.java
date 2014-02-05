@@ -62,17 +62,16 @@ public abstract class ElectricStormWindow extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the<br>
-	 * ON/OFF status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit :  �<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -88,17 +87,16 @@ public abstract class ElectricStormWindow extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the<br>
-	 * ON/OFF status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit :  �<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -119,11 +117,11 @@ public abstract class ElectricStormWindow extends DeviceObject {
 	 * Value range (decimal notation) :<br>
 	 * Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -144,11 +142,11 @@ public abstract class ElectricStormWindow extends DeviceObject {
 	 * Value range (decimal notation) :<br>
 	 * Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -169,11 +167,11 @@ public abstract class ElectricStormWindow extends DeviceObject {
 	 * Value range (decimal notation) :<br>
 	 * Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -195,13 +193,13 @@ public abstract class ElectricStormWindow extends DeviceObject {
 	 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x31 to 0x38<br>
+	 * 0x31.0x38<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -218,13 +216,13 @@ public abstract class ElectricStormWindow extends DeviceObject {
 	 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x31 to 0x38<br>
+	 * 0x31.0x38<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -241,13 +239,13 @@ public abstract class ElectricStormWindow extends DeviceObject {
 	 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x31 to 0x38<br>
+	 * 0x31.0x38<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -267,13 +265,13 @@ public abstract class ElectricStormWindow extends DeviceObject {
 	 * Blind angle<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0xB4 (0 to 180  )<br>
+	 * 0x00.0xB4 (0.180°)<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : deg<br>
+	 * Unit : de g<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -290,13 +288,13 @@ public abstract class ElectricStormWindow extends DeviceObject {
 	 * Blind angle<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0xB4 (0 to 180  )<br>
+	 * 0x00.0xB4 (0.180°)<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : deg<br>
+	 * Unit : de g<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -313,13 +311,13 @@ public abstract class ElectricStormWindow extends DeviceObject {
 	 * Blind angle<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0xB4 (0 to 180  )<br>
+	 * 0x00.0xB4 (0.180°)<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : deg<br>
+	 * Unit : de g<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -339,14 +337,13 @@ public abstract class ElectricStormWindow extends DeviceObject {
 	 * Low/medium/high<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Low = 0x41, medium = 0x42, high<br>
-	 * = 0x43<br>
+	 * Low = 0x41, medium = 0x42, high = 0x43<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -363,14 +360,13 @@ public abstract class ElectricStormWindow extends DeviceObject {
 	 * Low/medium/high<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Low = 0x41, medium = 0x42, high<br>
-	 * = 0x43<br>
+	 * Low = 0x41, medium = 0x42, high = 0x43<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -387,14 +383,13 @@ public abstract class ElectricStormWindow extends DeviceObject {
 	 * Low/medium/high<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Low = 0x41, medium = 0x42, high<br>
-	 * = 0x43<br>
+	 * Low = 0x41, medium = 0x42, high = 0x43<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -414,13 +409,13 @@ public abstract class ElectricStormWindow extends DeviceObject {
 	 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0xFF (0 to 255)<br>
+	 * 0x00.0xFF (0.255)<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -437,13 +432,13 @@ public abstract class ElectricStormWindow extends DeviceObject {
 	 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0xFF (0 to 255)<br>
+	 * 0x00.0xFF (0.255)<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -460,13 +455,13 @@ public abstract class ElectricStormWindow extends DeviceObject {
 	 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00 to 0xFF (0 to 255)<br>
+	 * 0x00.0xFF (0.255)<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -486,17 +481,15 @@ public abstract class ElectricStormWindow extends DeviceObject {
 	 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Activated = 0x41, deactivated =<br>
-	 * 0x42<br>
+	 * Activated = 0x41, deactivated = 0x42<br>
 	 * <br>
-	 * Data type : unsign ed char
-unsign ed char<br>
+	 * Data type : unsigned char
+unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte
 1 byte<br>
 	 * <br>
-	 * Unit : -
--<br>
+	 * Unit : ——<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -515,17 +508,15 @@ unsign ed char<br>
 	 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Activated = 0x41, deactivated =<br>
-	 * 0x42<br>
+	 * Activated = 0x41, deactivated = 0x42<br>
 	 * <br>
-	 * Data type : unsign ed char
-unsign ed char<br>
+	 * Data type : unsigned char
+unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte
 1 byte<br>
 	 * <br>
-	 * Unit : -
--<br>
+	 * Unit : ——<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -544,17 +535,15 @@ unsign ed char<br>
 	 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Activated = 0x41, deactivated =<br>
-	 * 0x42<br>
+	 * Activated = 0x41, deactivated = 0x42<br>
 	 * <br>
-	 * Data type : unsign ed char
-unsign ed char<br>
+	 * Data type : unsigned char
+unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte
 1 byte<br>
 	 * <br>
-	 * Unit : -
--<br>
+	 * Unit : ——<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -578,11 +567,11 @@ unsign ed char<br>
 	 * Value range (decimal notation) :<br>
 	 * Open = 0x41, close = 0x42<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit :  �<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -603,11 +592,11 @@ unsign ed char<br>
 	 * Value range (decimal notation) :<br>
 	 * Open = 0x41, close = 0x42<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit :  �<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -628,11 +617,11 @@ unsign ed char<br>
 	 * Value range (decimal notation) :<br>
 	 * Open = 0x41, close = 0x42<br>
 	 * <br>
-	 * Data type : unsign ed char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit :  �<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -810,11 +799,11 @@ unsign ed char<br>
 		 * Value range (decimal notation) :<br>
 		 * Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -835,11 +824,11 @@ unsign ed char<br>
 		 * Value range (decimal notation) :<br>
 		 * Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -858,13 +847,13 @@ unsign ed char<br>
 		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x31 to 0x38<br>
+		 * 0x31.0x38<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -881,13 +870,13 @@ unsign ed char<br>
 		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x31 to 0x38<br>
+		 * 0x31.0x38<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -904,13 +893,13 @@ unsign ed char<br>
 		 * Blind angle<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0xB4 (0 to 180  )<br>
+		 * 0x00.0xB4 (0.180°)<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : deg<br>
+		 * Unit : de g<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -927,13 +916,13 @@ unsign ed char<br>
 		 * Blind angle<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0xB4 (0 to 180  )<br>
+		 * 0x00.0xB4 (0.180°)<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : deg<br>
+		 * Unit : de g<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -950,14 +939,13 @@ unsign ed char<br>
 		 * Low/medium/high<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Low = 0x41, medium = 0x42, high<br>
-		 * = 0x43<br>
+		 * Low = 0x41, medium = 0x42, high = 0x43<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -974,14 +962,13 @@ unsign ed char<br>
 		 * Low/medium/high<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Low = 0x41, medium = 0x42, high<br>
-		 * = 0x43<br>
+		 * Low = 0x41, medium = 0x42, high = 0x43<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -998,13 +985,13 @@ unsign ed char<br>
 		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0xFF (0 to 255)<br>
+		 * 0x00.0xFF (0.255)<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1021,13 +1008,13 @@ unsign ed char<br>
 		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0xFF (0 to 255)<br>
+		 * 0x00.0xFF (0.255)<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1044,17 +1031,15 @@ unsign ed char<br>
 		 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Activated = 0x41, deactivated =<br>
-		 * 0x42<br>
+		 * Activated = 0x41, deactivated = 0x42<br>
 		 * <br>
-		 * Data type : unsign ed char
-unsign ed char<br>
+		 * Data type : unsigned char
+unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte
 1 byte<br>
 		 * <br>
-		 * Unit : -
--<br>
+		 * Unit : ——<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1073,17 +1058,15 @@ unsign ed char<br>
 		 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Activated = 0x41, deactivated =<br>
-		 * 0x42<br>
+		 * Activated = 0x41, deactivated = 0x42<br>
 		 * <br>
-		 * Data type : unsign ed char
-unsign ed char<br>
+		 * Data type : unsigned char
+unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte
 1 byte<br>
 		 * <br>
-		 * Unit : -
--<br>
+		 * Unit : ——<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1104,11 +1087,11 @@ unsign ed char<br>
 		 * Value range (decimal notation) :<br>
 		 * Open = 0x41, close = 0x42<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit :  �<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1129,11 +1112,11 @@ unsign ed char<br>
 		 * Value range (decimal notation) :<br>
 		 * Open = 0x41, close = 0x42<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit :  �<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1174,8 +1157,8 @@ unsign ed char<br>
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -1201,11 +1184,11 @@ unsign ed char<br>
 		 * Value range (decimal notation) :<br>
 		 * Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1227,13 +1210,13 @@ unsign ed char<br>
 		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x31 to 0x38<br>
+		 * 0x31.0x38<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1253,13 +1236,13 @@ unsign ed char<br>
 		 * Blind angle<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0xB4 (0 to 180  )<br>
+		 * 0x00.0xB4 (0.180°)<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : deg<br>
+		 * Unit : de g<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1279,14 +1262,13 @@ unsign ed char<br>
 		 * Low/medium/high<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Low = 0x41, medium = 0x42, high<br>
-		 * = 0x43<br>
+		 * Low = 0x41, medium = 0x42, high = 0x43<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1306,13 +1288,13 @@ unsign ed char<br>
 		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0xFF (0 to 255)<br>
+		 * 0x00.0xFF (0.255)<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1332,17 +1314,15 @@ unsign ed char<br>
 		 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Activated = 0x41, deactivated =<br>
-		 * 0x42<br>
+		 * Activated = 0x41, deactivated = 0x42<br>
 		 * <br>
-		 * Data type : unsign ed char
-unsign ed char<br>
+		 * Data type : unsigned char
+unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte
 1 byte<br>
 		 * <br>
-		 * Unit : -
--<br>
+		 * Unit : ——<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1366,11 +1346,11 @@ unsign ed char<br>
 		 * Value range (decimal notation) :<br>
 		 * Open = 0x41, close = 0x42<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit :  �<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1462,8 +1442,8 @@ unsign ed char<br>
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -1505,11 +1485,11 @@ unsign ed char<br>
 		 * Value range (decimal notation) :<br>
 		 * Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1531,13 +1511,13 @@ unsign ed char<br>
 		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x31 to 0x38<br>
+		 * 0x31.0x38<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1557,13 +1537,13 @@ unsign ed char<br>
 		 * Blind angle<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0xB4 (0 to 180  )<br>
+		 * 0x00.0xB4 (0.180°)<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : deg<br>
+		 * Unit : de g<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1583,14 +1563,13 @@ unsign ed char<br>
 		 * Low/medium/high<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Low = 0x41, medium = 0x42, high<br>
-		 * = 0x43<br>
+		 * Low = 0x41, medium = 0x42, high = 0x43<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1610,13 +1589,13 @@ unsign ed char<br>
 		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0xFF (0 to 255)<br>
+		 * 0x00.0xFF (0.255)<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1636,17 +1615,15 @@ unsign ed char<br>
 		 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Activated = 0x41, deactivated =<br>
-		 * 0x42<br>
+		 * Activated = 0x41, deactivated = 0x42<br>
 		 * <br>
-		 * Data type : unsign ed char
-unsign ed char<br>
+		 * Data type : unsigned char
+unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte
 1 byte<br>
 		 * <br>
-		 * Unit : -
--<br>
+		 * Unit : ——<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1670,11 +1647,11 @@ unsign ed char<br>
 		 * Value range (decimal notation) :<br>
 		 * Open = 0x41, close = 0x42<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit :  �<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1765,8 +1742,8 @@ unsign ed char<br>
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -1808,11 +1785,11 @@ unsign ed char<br>
 		 * Value range (decimal notation) :<br>
 		 * Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1834,13 +1811,13 @@ unsign ed char<br>
 		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x31 to 0x38<br>
+		 * 0x31.0x38<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1860,13 +1837,13 @@ unsign ed char<br>
 		 * Blind angle<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0xB4 (0 to 180  )<br>
+		 * 0x00.0xB4 (0.180°)<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : deg<br>
+		 * Unit : de g<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1886,14 +1863,13 @@ unsign ed char<br>
 		 * Low/medium/high<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Low = 0x41, medium = 0x42, high<br>
-		 * = 0x43<br>
+		 * Low = 0x41, medium = 0x42, high = 0x43<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1913,13 +1889,13 @@ unsign ed char<br>
 		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00 to 0xFF (0 to 255)<br>
+		 * 0x00.0xFF (0.255)<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1939,17 +1915,15 @@ unsign ed char<br>
 		 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Activated = 0x41, deactivated =<br>
-		 * 0x42<br>
+		 * Activated = 0x41, deactivated = 0x42<br>
 		 * <br>
-		 * Data type : unsign ed char
-unsign ed char<br>
+		 * Data type : unsigned char
+unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte
 1 byte<br>
 		 * <br>
-		 * Unit : -
--<br>
+		 * Unit : ——<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1973,11 +1947,11 @@ unsign ed char<br>
 		 * Value range (decimal notation) :<br>
 		 * Open = 0x41, close = 0x42<br>
 		 * <br>
-		 * Data type : unsign ed char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit :  �<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>

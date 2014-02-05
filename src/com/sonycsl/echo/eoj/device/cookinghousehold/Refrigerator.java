@@ -84,17 +84,16 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This  property  indicates  the  ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -110,17 +109,16 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This  property  indicates  the  ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : �\<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -145,7 +143,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -168,7 +166,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -188,14 +186,13 @@ public abstract class Refrigerator extends DeviceObject {
 	 * Door open warning status<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Door open warning found = 0x41<br>
-	 * Door open warning not found = 0x42<br>
+	 * Door open warning found = 0x41 Door open warning not found = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -214,14 +211,13 @@ public abstract class Refrigerator extends DeviceObject {
 	 * Door open warning status<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Door open warning found = 0x41<br>
-	 * Door open warning not found = 0x42<br>
+	 * Door open warning found = 0x41 Door open warning not found = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -240,8 +236,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xB2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire the status (i.e. open or closed) of the refrigerator<br>
-	 * compartment door.<br>
+	 * Used to acquire the status (i.e. open or closed) of the refrigerator compartment door.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Open = 0x41, closed = 0x42<br>
@@ -250,7 +245,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -264,8 +259,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xB2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire the status (i.e. open or closed) of the refrigerator<br>
-	 * compartment door.<br>
+	 * Used to acquire the status (i.e. open or closed) of the refrigerator compartment door.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Open = 0x41, closed = 0x42<br>
@@ -274,7 +268,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -300,7 +294,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -323,7 +317,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -349,7 +343,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -372,7 +366,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -398,7 +392,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -421,7 +415,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -447,7 +441,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -470,7 +464,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -487,20 +481,18 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xE0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire the maximum allowable temperature setting levels<br>
-	 * for the individual compartments of the refrigerator.<br>
+	 * Used to acquire the maximum allowable temperature setting levels for the individual compartments of the refrigerator.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * First byte: Refrigerator compartment<br>
-	 * Second byte: Freezer compartment<br>
-	 * Third byte:subzero-fresh compartment<br>
-	 * Fourth byte: Vegetable compartment<br>
-	 * Fifth byte: Multi-refrigerating mode compartment<br>
+	 * First byte: Refrigerator compartment Second byte: Freezer compartment Third byte: subzero-fresh<br>
+	 * compartment<br>
+	 * Fourth byte: Vegetable compartment Fifth byte: Multi-refrigerating mode<br>
+	 * compartment<br>
 	 * Sixth to eighth bytes: Reserved for future use.<br>
-	 * 0x01 to 0xFF (Level 1 to 255)<br>
+	 * 0x01.0xFF (Level 1.255)<br>
 	 * 0x00 = no compartment<br>
 	 * <br>
-	 * Data type : unsigned char x 8<br>
+	 * Data type : unsigned char × 8<br>
 	 * <br>
 	 * Data size : 8 bytes<br>
 	 * <br>
@@ -518,20 +510,18 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xE0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire the maximum allowable temperature setting levels<br>
-	 * for the individual compartments of the refrigerator.<br>
+	 * Used to acquire the maximum allowable temperature setting levels for the individual compartments of the refrigerator.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * First byte: Refrigerator compartment<br>
-	 * Second byte: Freezer compartment<br>
-	 * Third byte:subzero-fresh compartment<br>
-	 * Fourth byte: Vegetable compartment<br>
-	 * Fifth byte: Multi-refrigerating mode compartment<br>
+	 * First byte: Refrigerator compartment Second byte: Freezer compartment Third byte: subzero-fresh<br>
+	 * compartment<br>
+	 * Fourth byte: Vegetable compartment Fifth byte: Multi-refrigerating mode<br>
+	 * compartment<br>
 	 * Sixth to eighth bytes: Reserved for future use.<br>
-	 * 0x01 to 0xFF (Level 1 to 255)<br>
+	 * 0x01.0xFF (Level 1.255)<br>
 	 * 0x00 = no compartment<br>
 	 * <br>
-	 * Data type : unsigned char x 8<br>
+	 * Data type : unsigned char × 8<br>
 	 * <br>
 	 * Data size : 8 bytes<br>
 	 * <br>
@@ -552,16 +542,16 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xE2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the refrigerator compartment temperature in ��C, and to acquire the current setting.<br>
+	 * Used to specify the refrigerator compartment temperature in °C, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-127 to 126��C)<br>
+	 * 0x81.0x7E (-127.126°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -575,16 +565,16 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xE2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the refrigerator compartment temperature in ��C, and to acquire the current setting.<br>
+	 * Used to specify the refrigerator compartment temperature in °C, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-127 to 126��C)<br>
+	 * 0x81.0x7E (-127.126°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -598,16 +588,16 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xE2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the refrigerator compartment temperature in ��C, and to acquire the current setting.<br>
+	 * Used to specify the refrigerator compartment temperature in °C, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-127 to 126��C)<br>
+	 * 0x81.0x7E (-127.126°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -624,16 +614,16 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xE3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the freezer compartment temperature in ��C, and to acquire the current setting.<br>
+	 * Used to specify the freezer compartment temperature in °C, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-127 to 126��C)<br>
+	 * 0x81.0x7E (-127.126°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -647,16 +637,16 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xE3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the freezer compartment temperature in ��C, and to acquire the current setting.<br>
+	 * Used to specify the freezer compartment temperature in °C, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-127 to 126��C)<br>
+	 * 0x81.0x7E (-127.126°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -670,16 +660,16 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xE3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the freezer compartment temperature in ��C, and to acquire the current setting.<br>
+	 * Used to specify the freezer compartment temperature in °C, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-127 to 126��C)<br>
+	 * 0x81.0x7E (-127.126°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -696,16 +686,16 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xE4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the ice compartment temperature in ��C, and to acquire the current setting.<br>
+	 * Used to specify the ice compartment temperature in °C, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-127 to 126��C)<br>
+	 * 0x81.0x7E (-127.126°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -719,16 +709,16 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xE4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the ice compartment temperature in ��C, and to acquire the current setting.<br>
+	 * Used to specify the ice compartment temperature in °C, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-127 to 126��C)<br>
+	 * 0x81.0x7E (-127.126°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -742,16 +732,16 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xE4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the ice compartment temperature in ��C, and to acquire the current setting.<br>
+	 * Used to specify the ice compartment temperature in °C, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-127 to 126��C)<br>
+	 * 0x81.0x7E (-127.126°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -768,16 +758,16 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the vegetable compartment temperature in ��C, and to acquire the current setting.<br>
+	 * Used to specify the vegetable compartment temperature in °C, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-127 to 126��C)<br>
+	 * 0x81.0x7E (-127.126°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -791,16 +781,16 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the vegetable compartment temperature in ��C, and to acquire the current setting.<br>
+	 * Used to specify the vegetable compartment temperature in °C, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-127 to 126��C)<br>
+	 * 0x81.0x7E (-127.126°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -814,16 +804,16 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the vegetable compartment temperature in ��C, and to acquire the current setting.<br>
+	 * Used to specify the vegetable compartment temperature in °C, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-127 to 126��C)<br>
+	 * 0x81.0x7E (-127.126°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -840,16 +830,16 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xE6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the multi-refrigerating mode compartment temperature in ��C, and to acquire the current setting.<br>
+	 * Used to specify the multi-refrigerating mode compartment temperature in °C, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-127 to 126��C)<br>
+	 * 0x81.0x7E (-127.126°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -863,16 +853,16 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xE6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the multi-refrigerating mode compartment temperature in ��C, and to acquire the current setting.<br>
+	 * Used to specify the multi-refrigerating mode compartment temperature in °C, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-127 to 126��C)<br>
+	 * 0x81.0x7E (-127.126°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -886,16 +876,16 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xE6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify the multi-refrigerating mode compartment temperature in ��C, and to acquire the current setting.<br>
+	 * Used to specify the multi-refrigerating mode compartment temperature in °C, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-127 to 126��C)<br>
+	 * 0x81.0x7E (-127.126°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -921,7 +911,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -944,7 +934,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -967,7 +957,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -993,7 +983,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1016,7 +1006,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1039,7 +1029,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1065,7 +1055,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1088,7 +1078,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1111,7 +1101,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1137,7 +1127,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1160,7 +1150,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1183,7 +1173,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1209,7 +1199,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1232,7 +1222,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1255,7 +1245,7 @@ public abstract class Refrigerator extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1272,16 +1262,16 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xD1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire the measured refrigerator compartment temperature (��C).<br>
+	 * Used to acquire the measured refrigerator compartment temperature (°C).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-127 to 126��C)<br>
+	 * 0x81.0x7E (-127.126°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1295,16 +1285,16 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xD1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire the measured refrigerator compartment temperature (��C).<br>
+	 * Used to acquire the measured refrigerator compartment temperature (°C).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-127 to 126��C)<br>
+	 * 0x81.0x7E (-127.126°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1321,16 +1311,16 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xD2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire the measured freezer compartment temperature (��C).<br>
+	 * Used to acquire the measured freezer compartment temperature (°C).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-127 to 126��C)<br>
+	 * 0x81.0x7E (-127.126°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1344,16 +1334,16 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xD2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire the measured freezer compartment temperature (��C).<br>
+	 * Used to acquire the measured freezer compartment temperature (°C).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-127 to 126��C)<br>
+	 * 0x81.0x7E (-127.126°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1370,16 +1360,16 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xD3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire the measured meat and fish compartment temperature (��C).<br>
+	 * Used to acquire the measured meat and fish compartment temperature (°C).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-127 to 126��C)<br>
+	 * 0x81.0x7E (-127.126°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1393,16 +1383,16 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xD3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire the measured meat and fish compartment temperature (��C).<br>
+	 * Used to acquire the measured meat and fish compartment temperature (°C).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-127 to 126��C)<br>
+	 * 0x81.0x7E (-127.126°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1419,16 +1409,16 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xD4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire the measured vegetable compartment temperature (��C).<br>
+	 * Used to acquire the measured vegetable compartment temperature (°C).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-127 to 126��C)<br>
+	 * 0x81.0x7E (-127.126°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1442,16 +1432,16 @@ public abstract class Refrigerator extends DeviceObject {
 	 * EPC : 0xD4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to acquire the measured vegetable compartment temperature (��C).<br>
+	 * Used to acquire the measured vegetable compartment temperature (°C).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-127 to 126��C)<br>
+	 * 0x81.0x7E (-127.126°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1470,16 +1460,16 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * <br>
 	 * Contents of property :<br>
 	 * Used to acquire the measured<br>
-	 * multi-refrigerating mode compartment temperature (��C).<br>
+	 * multi-refrigerating mode compartment temperature (°C).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-127 to 126��C)<br>
+	 * 0x81.0x7E (-127.126°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1495,16 +1485,16 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * <br>
 	 * Contents of property :<br>
 	 * Used to acquire the measured<br>
-	 * multi-refrigerating mode compartment temperature (��C).<br>
+	 * multi-refrigerating mode compartment temperature (°C).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x81 to 0x7E (-127 to 126��C)<br>
+	 * 0x81.0x7E (-127.126°C)<br>
 	 * <br>
 	 * Data type : signed char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1524,7 +1514,7 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * Used to acquire the rotation speed of the compressor. The rotation speed is expressed in terms of a level.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * First byte: Maximum rotation speed L (0x01 to 0xFF (1 to 255))<br>
+	 * First byte: Maximum rotation speed L (0x01.0xFF (1.255))<br>
 	 * Second byte: Rotation speed of the actual compressor:<br>
 	 * 0x00 to L (zero speed to highest speed)<br>
 	 * <br>
@@ -1532,7 +1522,7 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1549,7 +1539,7 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * Used to acquire the rotation speed of the compressor. The rotation speed is expressed in terms of a level.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * First byte: Maximum rotation speed L (0x01 to 0xFF (1 to 255))<br>
+	 * First byte: Maximum rotation speed L (0x01.0xFF (1.255))<br>
 	 * Second byte: Rotation speed of the actual compressor:<br>
 	 * 0x00 to L (zero speed to highest speed)<br>
 	 * <br>
@@ -1557,7 +1547,7 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1577,7 +1567,7 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * Used to acquire the measured electric current consumption.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 0xFFFD (0 to 6553.3A)<br>
+	 * 0x0000.0xFFFD (0.6553.3A)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -1600,7 +1590,7 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * Used to acquire the measured electric current consumption.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 0xFFFD (0 to 6553.3A)<br>
+	 * 0x0000.0xFFFD (0.6553.3A)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -1626,7 +1616,7 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * Used to acquire the rated power consumption.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+	 * 0x0000.0xFFFD (0.65533W)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -1649,7 +1639,7 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * Used to acquire the rated power consumption.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+	 * 0x0000.0xFFFD (0.65533W)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -1672,17 +1662,17 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * EPC : 0xA0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify whether or not to use the �gQuick freeze�h function of the refrigerator, and to acquire the current setting.<br>
+	 * Used to specify whether or not to use the “Quick freeze” function of the refrigerator, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * �gNormal operation�h mode: 0x41 �gQuick freeze�h mode: 0x42 �gStandby for fast freezing�h mode:<br>
+	 * “Normal operation” mode: 0x41 “Quick freeze” mode: 0x42 “Standby for fast freezing” mode:<br>
 	 * 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1696,17 +1686,17 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * EPC : 0xA0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify whether or not to use the �gQuick freeze�h function of the refrigerator, and to acquire the current setting.<br>
+	 * Used to specify whether or not to use the “Quick freeze” function of the refrigerator, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * �gNormal operation�h mode: 0x41 �gQuick freeze�h mode: 0x42 �gStandby for fast freezing�h mode:<br>
+	 * “Normal operation” mode: 0x41 “Quick freeze” mode: 0x42 “Standby for fast freezing” mode:<br>
 	 * 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1720,17 +1710,17 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * EPC : 0xA0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify whether or not to use the �gQuick freeze�h function of the refrigerator, and to acquire the current setting.<br>
+	 * Used to specify whether or not to use the “Quick freeze” function of the refrigerator, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * �gNormal operation�h mode: 0x41 �gQuick freeze�h mode: 0x42 �gStandby for fast freezing�h mode:<br>
+	 * “Normal operation” mode: 0x41 “Quick freeze” mode: 0x42 “Standby for fast freezing” mode:<br>
 	 * 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1747,17 +1737,17 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * EPC : 0xA1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify whether or not to use the �gquick refrigeration�h function of the refrigerator, and to acquire the current setting.<br>
+	 * Used to specify whether or not to use the “quick refrigeration” function of the refrigerator, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * �gNormal operation�h mode: 0x41 �gQuick refrigeration�h mode: 0x42 �gStandby for quick refrigeration�h<br>
+	 * “Normal operation” mode: 0x41 “Quick refrigeration” mode: 0x42 “Standby for quick refrigeration”<br>
 	 * mode: 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1771,17 +1761,17 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * EPC : 0xA1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify whether or not to use the �gquick refrigeration�h function of the refrigerator, and to acquire the current setting.<br>
+	 * Used to specify whether or not to use the “quick refrigeration” function of the refrigerator, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * �gNormal operation�h mode: 0x41 �gQuick refrigeration�h mode: 0x42 �gStandby for quick refrigeration�h<br>
+	 * “Normal operation” mode: 0x41 “Quick refrigeration” mode: 0x42 “Standby for quick refrigeration”<br>
 	 * mode: 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1795,17 +1785,17 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * EPC : 0xA1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Used to specify whether or not to use the �gquick refrigeration�h function of the refrigerator, and to acquire the current setting.<br>
+	 * Used to specify whether or not to use the “quick refrigeration” function of the refrigerator, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * �gNormal operation�h mode: 0x41 �gQuick refrigeration�h mode: 0x42 �gStandby for quick refrigeration�h<br>
+	 * “Normal operation” mode: 0x41 “Quick refrigeration” mode: 0x42 “Standby for quick refrigeration”<br>
 	 * mode: 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1825,14 +1815,14 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * Used to specify whether or not to enable the automatic icemaker of the refrigerator, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * �gEnable icemaker�h option: 0x41 �gDisable icemaker�h option: 0x42 �gTemporarily disable icemaker�h<br>
+	 * “Enable icemaker” option: 0x41 “Disable icemaker” option: 0x42 “Temporarily disable icemaker”<br>
 	 * option: 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1849,14 +1839,14 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * Used to specify whether or not to enable the automatic icemaker of the refrigerator, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * �gEnable icemaker�h option: 0x41 �gDisable icemaker�h option: 0x42 �gTemporarily disable icemaker�h<br>
+	 * “Enable icemaker” option: 0x41 “Disable icemaker” option: 0x42 “Temporarily disable icemaker”<br>
 	 * option: 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1873,14 +1863,14 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * Used to specify whether or not to enable the automatic icemaker of the refrigerator, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * �gEnable icemaker�h option: 0x41 �gDisable icemaker�h option: 0x42 �gTemporarily disable icemaker�h<br>
+	 * “Enable icemaker” option: 0x41 “Disable icemaker” option: 0x42 “Temporarily disable icemaker”<br>
 	 * option: 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1900,14 +1890,14 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * Used to acquire the status of the automatic icemaker of the refrigerator.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * �gIce-making in progress�h state: 0x41<br>
-	 * �gIce-making stopped�h state: 0x42<br>
+	 * “Ice-making in progress” state: 0x41<br>
+	 * “Ice-making stopped” state: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1924,14 +1914,14 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * Used to acquire the status of the automatic icemaker of the refrigerator.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * �gIce-making in progress�h state: 0x41<br>
-	 * �gIce-making stopped�h state: 0x42<br>
+	 * “Ice-making in progress” state: 0x41<br>
+	 * “Ice-making stopped” state: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1951,15 +1941,15 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * Used to acquire the status of the tank of the automatic icemaker of the refrigerator in terms of whether it contains water or not.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Icemaker tank contains water: 0x41<br>
-	 * There is no water left in the icemaker tank or the icemaker tank has not been positioned correctly in the refrigerator:<br>
-	 * 0x42<br>
+	 * Icemaker tank contains water: 0x41 There is no water left in the icemaker<br>
+	 * tank or the icemaker tank has not been<br>
+	 * positioned correctly in the refrigerator: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1976,15 +1966,15 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * Used to acquire the status of the tank of the automatic icemaker of the refrigerator in terms of whether it contains water or not.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Icemaker tank contains water: 0x41<br>
-	 * There is no water left in the icemaker tank or the icemaker tank has not been positioned correctly in the refrigerator:<br>
-	 * 0x42<br>
+	 * Icemaker tank contains water: 0x41 There is no water left in the icemaker<br>
+	 * tank or the icemaker tank has not been<br>
+	 * positioned correctly in the refrigerator: 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2004,14 +1994,13 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * Used to specify whether or not to use the refrigerator compartment humidification function, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON = 0x41<br>
-	 * OFF = 0x42<br>
+	 * ON = 0x41 OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2028,14 +2017,13 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * Used to specify whether or not to use the refrigerator compartment humidification function, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON = 0x41<br>
-	 * OFF = 0x42<br>
+	 * ON = 0x41 OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2052,14 +2040,13 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * Used to specify whether or not to use the refrigerator compartment humidification function, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON = 0x41<br>
-	 * OFF = 0x42<br>
+	 * ON = 0x41 OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2079,14 +2066,13 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * Used to specify whether or not to use the vegetable compartment humidification function, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON = 0x41<br>
-	 * OFF = 0x42<br>
+	 * ON = 0x41 OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2103,14 +2089,13 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * Used to specify whether or not to use the vegetable compartment humidification function, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON = 0x41<br>
-	 * OFF = 0x42<br>
+	 * ON = 0x41 OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2127,14 +2112,13 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * Used to specify whether or not to use the vegetable compartment humidification function, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON = 0x41<br>
-	 * OFF = 0x42<br>
+	 * ON = 0x41 OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2154,14 +2138,13 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * Used to specify whether or not to use the deodorization function of the refrigerator, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON = 0x41<br>
-	 * OFF = 0x42<br>
+	 * ON = 0x41 OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2178,14 +2161,13 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * Used to specify whether or not to use the deodorization function of the refrigerator, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON = 0x41<br>
-	 * OFF = 0x42<br>
+	 * ON = 0x41 OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2202,14 +2184,13 @@ multi-refrigeratin g mode compartment temperature<br>
 	 * Used to specify whether or not to use the deodorization function of the refrigerator, and to acquire the current setting.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON = 0x41<br>
-	 * OFF = 0x42<br>
+	 * ON = 0x41 OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : -<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -2560,7 +2541,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2577,14 +2558,13 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Door open warning status<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Door open warning found = 0x41<br>
-		 * Door open warning not found = 0x42<br>
+		 * Door open warning found = 0x41 Door open warning not found = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2600,8 +2580,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xB2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the status (i.e. open or closed) of the refrigerator<br>
-		 * compartment door.<br>
+		 * Used to acquire the status (i.e. open or closed) of the refrigerator compartment door.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Open = 0x41, closed = 0x42<br>
@@ -2610,7 +2589,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2633,7 +2612,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2656,7 +2635,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2679,7 +2658,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2702,7 +2681,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2716,20 +2695,18 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the maximum allowable temperature setting levels<br>
-		 * for the individual compartments of the refrigerator.<br>
+		 * Used to acquire the maximum allowable temperature setting levels for the individual compartments of the refrigerator.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * First byte: Refrigerator compartment<br>
-		 * Second byte: Freezer compartment<br>
-		 * Third byte:subzero-fresh compartment<br>
-		 * Fourth byte: Vegetable compartment<br>
-		 * Fifth byte: Multi-refrigerating mode compartment<br>
+		 * First byte: Refrigerator compartment Second byte: Freezer compartment Third byte: subzero-fresh<br>
+		 * compartment<br>
+		 * Fourth byte: Vegetable compartment Fifth byte: Multi-refrigerating mode<br>
+		 * compartment<br>
 		 * Sixth to eighth bytes: Reserved for future use.<br>
-		 * 0x01 to 0xFF (Level 1 to 255)<br>
+		 * 0x01.0xFF (Level 1.255)<br>
 		 * 0x00 = no compartment<br>
 		 * <br>
-		 * Data type : unsigned char x 8<br>
+		 * Data type : unsigned char × 8<br>
 		 * <br>
 		 * Data size : 8 bytes<br>
 		 * <br>
@@ -2747,16 +2724,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the refrigerator compartment temperature in ��C, and to acquire the current setting.<br>
+		 * Used to specify the refrigerator compartment temperature in °C, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2770,16 +2747,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the refrigerator compartment temperature in ��C, and to acquire the current setting.<br>
+		 * Used to specify the refrigerator compartment temperature in °C, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2793,16 +2770,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the freezer compartment temperature in ��C, and to acquire the current setting.<br>
+		 * Used to specify the freezer compartment temperature in °C, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2816,16 +2793,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the freezer compartment temperature in ��C, and to acquire the current setting.<br>
+		 * Used to specify the freezer compartment temperature in °C, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2839,16 +2816,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the ice compartment temperature in ��C, and to acquire the current setting.<br>
+		 * Used to specify the ice compartment temperature in °C, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2862,16 +2839,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the ice compartment temperature in ��C, and to acquire the current setting.<br>
+		 * Used to specify the ice compartment temperature in °C, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2885,16 +2862,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the vegetable compartment temperature in ��C, and to acquire the current setting.<br>
+		 * Used to specify the vegetable compartment temperature in °C, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2908,16 +2885,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the vegetable compartment temperature in ��C, and to acquire the current setting.<br>
+		 * Used to specify the vegetable compartment temperature in °C, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2931,16 +2908,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the multi-refrigerating mode compartment temperature in ��C, and to acquire the current setting.<br>
+		 * Used to specify the multi-refrigerating mode compartment temperature in °C, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2954,16 +2931,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the multi-refrigerating mode compartment temperature in ��C, and to acquire the current setting.<br>
+		 * Used to specify the multi-refrigerating mode compartment temperature in °C, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2986,7 +2963,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3009,7 +2986,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3032,7 +3009,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3055,7 +3032,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3078,7 +3055,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3101,7 +3078,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3124,7 +3101,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3147,7 +3124,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3170,7 +3147,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3193,7 +3170,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3207,16 +3184,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xD1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the measured refrigerator compartment temperature (��C).<br>
+		 * Used to acquire the measured refrigerator compartment temperature (°C).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3230,16 +3207,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xD2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the measured freezer compartment temperature (��C).<br>
+		 * Used to acquire the measured freezer compartment temperature (°C).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3253,16 +3230,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xD3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the measured meat and fish compartment temperature (��C).<br>
+		 * Used to acquire the measured meat and fish compartment temperature (°C).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3276,16 +3253,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xD4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the measured vegetable compartment temperature (��C).<br>
+		 * Used to acquire the measured vegetable compartment temperature (°C).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3301,16 +3278,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Used to acquire the measured<br>
-		 * multi-refrigerating mode compartment temperature (��C).<br>
+		 * multi-refrigerating mode compartment temperature (°C).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3327,7 +3304,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to acquire the rotation speed of the compressor. The rotation speed is expressed in terms of a level.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * First byte: Maximum rotation speed L (0x01 to 0xFF (1 to 255))<br>
+		 * First byte: Maximum rotation speed L (0x01.0xFF (1.255))<br>
 		 * Second byte: Rotation speed of the actual compressor:<br>
 		 * 0x00 to L (zero speed to highest speed)<br>
 		 * <br>
@@ -3335,7 +3312,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3352,7 +3329,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to acquire the measured electric current consumption.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 6553.3A)<br>
+		 * 0x0000.0xFFFD (0.6553.3A)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -3375,7 +3352,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to acquire the rated power consumption.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -3395,17 +3372,17 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xA0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify whether or not to use the �gQuick freeze�h function of the refrigerator, and to acquire the current setting.<br>
+		 * Used to specify whether or not to use the “Quick freeze” function of the refrigerator, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gNormal operation�h mode: 0x41 �gQuick freeze�h mode: 0x42 �gStandby for fast freezing�h mode:<br>
+		 * “Normal operation” mode: 0x41 “Quick freeze” mode: 0x42 “Standby for fast freezing” mode:<br>
 		 * 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3419,17 +3396,17 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xA0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify whether or not to use the �gQuick freeze�h function of the refrigerator, and to acquire the current setting.<br>
+		 * Used to specify whether or not to use the “Quick freeze” function of the refrigerator, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gNormal operation�h mode: 0x41 �gQuick freeze�h mode: 0x42 �gStandby for fast freezing�h mode:<br>
+		 * “Normal operation” mode: 0x41 “Quick freeze” mode: 0x42 “Standby for fast freezing” mode:<br>
 		 * 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3443,17 +3420,17 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xA1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify whether or not to use the �gquick refrigeration�h function of the refrigerator, and to acquire the current setting.<br>
+		 * Used to specify whether or not to use the “quick refrigeration” function of the refrigerator, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gNormal operation�h mode: 0x41 �gQuick refrigeration�h mode: 0x42 �gStandby for quick refrigeration�h<br>
+		 * “Normal operation” mode: 0x41 “Quick refrigeration” mode: 0x42 “Standby for quick refrigeration”<br>
 		 * mode: 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3467,17 +3444,17 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xA1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify whether or not to use the �gquick refrigeration�h function of the refrigerator, and to acquire the current setting.<br>
+		 * Used to specify whether or not to use the “quick refrigeration” function of the refrigerator, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gNormal operation�h mode: 0x41 �gQuick refrigeration�h mode: 0x42 �gStandby for quick refrigeration�h<br>
+		 * “Normal operation” mode: 0x41 “Quick refrigeration” mode: 0x42 “Standby for quick refrigeration”<br>
 		 * mode: 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3494,14 +3471,14 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to specify whether or not to enable the automatic icemaker of the refrigerator, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gEnable icemaker�h option: 0x41 �gDisable icemaker�h option: 0x42 �gTemporarily disable icemaker�h<br>
+		 * “Enable icemaker” option: 0x41 “Disable icemaker” option: 0x42 “Temporarily disable icemaker”<br>
 		 * option: 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3518,14 +3495,14 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to specify whether or not to enable the automatic icemaker of the refrigerator, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gEnable icemaker�h option: 0x41 �gDisable icemaker�h option: 0x42 �gTemporarily disable icemaker�h<br>
+		 * “Enable icemaker” option: 0x41 “Disable icemaker” option: 0x42 “Temporarily disable icemaker”<br>
 		 * option: 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3542,14 +3519,14 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to acquire the status of the automatic icemaker of the refrigerator.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gIce-making in progress�h state: 0x41<br>
-		 * �gIce-making stopped�h state: 0x42<br>
+		 * “Ice-making in progress” state: 0x41<br>
+		 * “Ice-making stopped” state: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3566,15 +3543,15 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to acquire the status of the tank of the automatic icemaker of the refrigerator in terms of whether it contains water or not.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Icemaker tank contains water: 0x41<br>
-		 * There is no water left in the icemaker tank or the icemaker tank has not been positioned correctly in the refrigerator:<br>
-		 * 0x42<br>
+		 * Icemaker tank contains water: 0x41 There is no water left in the icemaker<br>
+		 * tank or the icemaker tank has not been<br>
+		 * positioned correctly in the refrigerator: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3591,14 +3568,13 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to specify whether or not to use the refrigerator compartment humidification function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * ON = 0x41<br>
-		 * OFF = 0x42<br>
+		 * ON = 0x41 OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3615,14 +3591,13 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to specify whether or not to use the refrigerator compartment humidification function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * ON = 0x41<br>
-		 * OFF = 0x42<br>
+		 * ON = 0x41 OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3639,14 +3614,13 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to specify whether or not to use the vegetable compartment humidification function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * ON = 0x41<br>
-		 * OFF = 0x42<br>
+		 * ON = 0x41 OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3663,14 +3637,13 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to specify whether or not to use the vegetable compartment humidification function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * ON = 0x41<br>
-		 * OFF = 0x42<br>
+		 * ON = 0x41 OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3687,14 +3660,13 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to specify whether or not to use the deodorization function of the refrigerator, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * ON = 0x41<br>
-		 * OFF = 0x42<br>
+		 * ON = 0x41 OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3711,14 +3683,13 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to specify whether or not to use the deodorization function of the refrigerator, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * ON = 0x41<br>
-		 * OFF = 0x42<br>
+		 * ON = 0x41 OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3757,8 +3728,8 @@ multi-refrigeratin g mode compartment temperature<br>
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -3779,16 +3750,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the refrigerator compartment temperature in ��C, and to acquire the current setting.<br>
+		 * Used to specify the refrigerator compartment temperature in °C, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3805,16 +3776,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the freezer compartment temperature in ��C, and to acquire the current setting.<br>
+		 * Used to specify the freezer compartment temperature in °C, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3831,16 +3802,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the ice compartment temperature in ��C, and to acquire the current setting.<br>
+		 * Used to specify the ice compartment temperature in °C, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3857,16 +3828,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the vegetable compartment temperature in ��C, and to acquire the current setting.<br>
+		 * Used to specify the vegetable compartment temperature in °C, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3883,16 +3854,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the multi-refrigerating mode compartment temperature in ��C, and to acquire the current setting.<br>
+		 * Used to specify the multi-refrigerating mode compartment temperature in °C, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3918,7 +3889,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3944,7 +3915,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3970,7 +3941,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3996,7 +3967,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4022,7 +3993,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4039,17 +4010,17 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xA0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify whether or not to use the �gQuick freeze�h function of the refrigerator, and to acquire the current setting.<br>
+		 * Used to specify whether or not to use the “Quick freeze” function of the refrigerator, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gNormal operation�h mode: 0x41 �gQuick freeze�h mode: 0x42 �gStandby for fast freezing�h mode:<br>
+		 * “Normal operation” mode: 0x41 “Quick freeze” mode: 0x42 “Standby for fast freezing” mode:<br>
 		 * 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4066,17 +4037,17 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xA1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify whether or not to use the �gquick refrigeration�h function of the refrigerator, and to acquire the current setting.<br>
+		 * Used to specify whether or not to use the “quick refrigeration” function of the refrigerator, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gNormal operation�h mode: 0x41 �gQuick refrigeration�h mode: 0x42 �gStandby for quick refrigeration�h<br>
+		 * “Normal operation” mode: 0x41 “Quick refrigeration” mode: 0x42 “Standby for quick refrigeration”<br>
 		 * mode: 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4096,14 +4067,14 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to specify whether or not to enable the automatic icemaker of the refrigerator, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gEnable icemaker�h option: 0x41 �gDisable icemaker�h option: 0x42 �gTemporarily disable icemaker�h<br>
+		 * “Enable icemaker” option: 0x41 “Disable icemaker” option: 0x42 “Temporarily disable icemaker”<br>
 		 * option: 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4123,14 +4094,13 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to specify whether or not to use the refrigerator compartment humidification function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * ON = 0x41<br>
-		 * OFF = 0x42<br>
+		 * ON = 0x41 OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4150,14 +4120,13 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to specify whether or not to use the vegetable compartment humidification function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * ON = 0x41<br>
-		 * OFF = 0x42<br>
+		 * ON = 0x41 OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4177,14 +4146,13 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to specify whether or not to use the deodorization function of the refrigerator, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * ON = 0x41<br>
-		 * OFF = 0x42<br>
+		 * ON = 0x41 OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4274,8 +4242,8 @@ multi-refrigeratin g mode compartment temperature<br>
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -4321,7 +4289,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4341,14 +4309,13 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Door open warning status<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Door open warning found = 0x41<br>
-		 * Door open warning not found = 0x42<br>
+		 * Door open warning found = 0x41 Door open warning not found = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4367,8 +4334,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xB2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the status (i.e. open or closed) of the refrigerator<br>
-		 * compartment door.<br>
+		 * Used to acquire the status (i.e. open or closed) of the refrigerator compartment door.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Open = 0x41, closed = 0x42<br>
@@ -4377,7 +4343,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4403,7 +4369,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4429,7 +4395,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4455,7 +4421,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4481,7 +4447,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4498,20 +4464,18 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the maximum allowable temperature setting levels<br>
-		 * for the individual compartments of the refrigerator.<br>
+		 * Used to acquire the maximum allowable temperature setting levels for the individual compartments of the refrigerator.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * First byte: Refrigerator compartment<br>
-		 * Second byte: Freezer compartment<br>
-		 * Third byte:subzero-fresh compartment<br>
-		 * Fourth byte: Vegetable compartment<br>
-		 * Fifth byte: Multi-refrigerating mode compartment<br>
+		 * First byte: Refrigerator compartment Second byte: Freezer compartment Third byte: subzero-fresh<br>
+		 * compartment<br>
+		 * Fourth byte: Vegetable compartment Fifth byte: Multi-refrigerating mode<br>
+		 * compartment<br>
 		 * Sixth to eighth bytes: Reserved for future use.<br>
-		 * 0x01 to 0xFF (Level 1 to 255)<br>
+		 * 0x01.0xFF (Level 1.255)<br>
 		 * 0x00 = no compartment<br>
 		 * <br>
-		 * Data type : unsigned char x 8<br>
+		 * Data type : unsigned char × 8<br>
 		 * <br>
 		 * Data size : 8 bytes<br>
 		 * <br>
@@ -4532,16 +4496,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the refrigerator compartment temperature in ��C, and to acquire the current setting.<br>
+		 * Used to specify the refrigerator compartment temperature in °C, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4558,16 +4522,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the freezer compartment temperature in ��C, and to acquire the current setting.<br>
+		 * Used to specify the freezer compartment temperature in °C, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4584,16 +4548,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the ice compartment temperature in ��C, and to acquire the current setting.<br>
+		 * Used to specify the ice compartment temperature in °C, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4610,16 +4574,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the vegetable compartment temperature in ��C, and to acquire the current setting.<br>
+		 * Used to specify the vegetable compartment temperature in °C, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4636,16 +4600,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the multi-refrigerating mode compartment temperature in ��C, and to acquire the current setting.<br>
+		 * Used to specify the multi-refrigerating mode compartment temperature in °C, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4671,7 +4635,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4697,7 +4661,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4723,7 +4687,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4749,7 +4713,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4775,7 +4739,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4792,16 +4756,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xD1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the measured refrigerator compartment temperature (��C).<br>
+		 * Used to acquire the measured refrigerator compartment temperature (°C).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4818,16 +4782,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xD2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the measured freezer compartment temperature (��C).<br>
+		 * Used to acquire the measured freezer compartment temperature (°C).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4844,16 +4808,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xD3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the measured meat and fish compartment temperature (��C).<br>
+		 * Used to acquire the measured meat and fish compartment temperature (°C).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4870,16 +4834,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xD4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the measured vegetable compartment temperature (��C).<br>
+		 * Used to acquire the measured vegetable compartment temperature (°C).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4898,16 +4862,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Used to acquire the measured<br>
-		 * multi-refrigerating mode compartment temperature (��C).<br>
+		 * multi-refrigerating mode compartment temperature (°C).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4927,7 +4891,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to acquire the rotation speed of the compressor. The rotation speed is expressed in terms of a level.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * First byte: Maximum rotation speed L (0x01 to 0xFF (1 to 255))<br>
+		 * First byte: Maximum rotation speed L (0x01.0xFF (1.255))<br>
 		 * Second byte: Rotation speed of the actual compressor:<br>
 		 * 0x00 to L (zero speed to highest speed)<br>
 		 * <br>
@@ -4935,7 +4899,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4955,7 +4919,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to acquire the measured electric current consumption.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 6553.3A)<br>
+		 * 0x0000.0xFFFD (0.6553.3A)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -4981,7 +4945,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to acquire the rated power consumption.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -5004,17 +4968,17 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xA0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify whether or not to use the �gQuick freeze�h function of the refrigerator, and to acquire the current setting.<br>
+		 * Used to specify whether or not to use the “Quick freeze” function of the refrigerator, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gNormal operation�h mode: 0x41 �gQuick freeze�h mode: 0x42 �gStandby for fast freezing�h mode:<br>
+		 * “Normal operation” mode: 0x41 “Quick freeze” mode: 0x42 “Standby for fast freezing” mode:<br>
 		 * 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5031,17 +4995,17 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xA1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify whether or not to use the �gquick refrigeration�h function of the refrigerator, and to acquire the current setting.<br>
+		 * Used to specify whether or not to use the “quick refrigeration” function of the refrigerator, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gNormal operation�h mode: 0x41 �gQuick refrigeration�h mode: 0x42 �gStandby for quick refrigeration�h<br>
+		 * “Normal operation” mode: 0x41 “Quick refrigeration” mode: 0x42 “Standby for quick refrigeration”<br>
 		 * mode: 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5061,14 +5025,14 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to specify whether or not to enable the automatic icemaker of the refrigerator, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gEnable icemaker�h option: 0x41 �gDisable icemaker�h option: 0x42 �gTemporarily disable icemaker�h<br>
+		 * “Enable icemaker” option: 0x41 “Disable icemaker” option: 0x42 “Temporarily disable icemaker”<br>
 		 * option: 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5088,14 +5052,14 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to acquire the status of the automatic icemaker of the refrigerator.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gIce-making in progress�h state: 0x41<br>
-		 * �gIce-making stopped�h state: 0x42<br>
+		 * “Ice-making in progress” state: 0x41<br>
+		 * “Ice-making stopped” state: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5115,15 +5079,15 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to acquire the status of the tank of the automatic icemaker of the refrigerator in terms of whether it contains water or not.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Icemaker tank contains water: 0x41<br>
-		 * There is no water left in the icemaker tank or the icemaker tank has not been positioned correctly in the refrigerator:<br>
-		 * 0x42<br>
+		 * Icemaker tank contains water: 0x41 There is no water left in the icemaker<br>
+		 * tank or the icemaker tank has not been<br>
+		 * positioned correctly in the refrigerator: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5143,14 +5107,13 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to specify whether or not to use the refrigerator compartment humidification function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * ON = 0x41<br>
-		 * OFF = 0x42<br>
+		 * ON = 0x41 OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5170,14 +5133,13 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to specify whether or not to use the vegetable compartment humidification function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * ON = 0x41<br>
-		 * OFF = 0x42<br>
+		 * ON = 0x41 OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5197,14 +5159,13 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to specify whether or not to use the deodorization function of the refrigerator, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * ON = 0x41<br>
-		 * OFF = 0x42<br>
+		 * ON = 0x41 OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5293,8 +5254,8 @@ multi-refrigeratin g mode compartment temperature<br>
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -5340,7 +5301,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5360,14 +5321,13 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Door open warning status<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Door open warning found = 0x41<br>
-		 * Door open warning not found = 0x42<br>
+		 * Door open warning found = 0x41 Door open warning not found = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5386,8 +5346,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xB2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the status (i.e. open or closed) of the refrigerator<br>
-		 * compartment door.<br>
+		 * Used to acquire the status (i.e. open or closed) of the refrigerator compartment door.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Open = 0x41, closed = 0x42<br>
@@ -5396,7 +5355,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5422,7 +5381,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5448,7 +5407,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5474,7 +5433,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5500,7 +5459,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5517,20 +5476,18 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the maximum allowable temperature setting levels<br>
-		 * for the individual compartments of the refrigerator.<br>
+		 * Used to acquire the maximum allowable temperature setting levels for the individual compartments of the refrigerator.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * First byte: Refrigerator compartment<br>
-		 * Second byte: Freezer compartment<br>
-		 * Third byte:subzero-fresh compartment<br>
-		 * Fourth byte: Vegetable compartment<br>
-		 * Fifth byte: Multi-refrigerating mode compartment<br>
+		 * First byte: Refrigerator compartment Second byte: Freezer compartment Third byte: subzero-fresh<br>
+		 * compartment<br>
+		 * Fourth byte: Vegetable compartment Fifth byte: Multi-refrigerating mode<br>
+		 * compartment<br>
 		 * Sixth to eighth bytes: Reserved for future use.<br>
-		 * 0x01 to 0xFF (Level 1 to 255)<br>
+		 * 0x01.0xFF (Level 1.255)<br>
 		 * 0x00 = no compartment<br>
 		 * <br>
-		 * Data type : unsigned char x 8<br>
+		 * Data type : unsigned char × 8<br>
 		 * <br>
 		 * Data size : 8 bytes<br>
 		 * <br>
@@ -5551,16 +5508,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the refrigerator compartment temperature in ��C, and to acquire the current setting.<br>
+		 * Used to specify the refrigerator compartment temperature in °C, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5577,16 +5534,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the freezer compartment temperature in ��C, and to acquire the current setting.<br>
+		 * Used to specify the freezer compartment temperature in °C, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5603,16 +5560,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the ice compartment temperature in ��C, and to acquire the current setting.<br>
+		 * Used to specify the ice compartment temperature in °C, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
-		 * Data size : 1 bytes<br>
+		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5629,16 +5586,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the vegetable compartment temperature in ��C, and to acquire the current setting.<br>
+		 * Used to specify the vegetable compartment temperature in °C, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5655,16 +5612,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xE6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify the multi-refrigerating mode compartment temperature in ��C, and to acquire the current setting.<br>
+		 * Used to specify the multi-refrigerating mode compartment temperature in °C, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5690,7 +5647,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5716,7 +5673,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5742,7 +5699,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5768,7 +5725,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5794,7 +5751,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5811,16 +5768,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xD1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the measured refrigerator compartment temperature (��C).<br>
+		 * Used to acquire the measured refrigerator compartment temperature (°C).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5837,16 +5794,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xD2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the measured freezer compartment temperature (��C).<br>
+		 * Used to acquire the measured freezer compartment temperature (°C).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5863,16 +5820,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xD3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the measured meat and fish compartment temperature (��C).<br>
+		 * Used to acquire the measured meat and fish compartment temperature (°C).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5889,16 +5846,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xD4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to acquire the measured vegetable compartment temperature (��C).<br>
+		 * Used to acquire the measured vegetable compartment temperature (°C).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5917,16 +5874,16 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * Used to acquire the measured<br>
-		 * multi-refrigerating mode compartment temperature (��C).<br>
+		 * multi-refrigerating mode compartment temperature (°C).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x81 to 0x7E (-127 to 126��C)<br>
+		 * 0x81.0x7E (-127.126°C)<br>
 		 * <br>
 		 * Data type : signed char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5946,7 +5903,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to acquire the rotation speed of the compressor. The rotation speed is expressed in terms of a level.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * First byte: Maximum rotation speed L (0x01 to 0xFF (1 to 255))<br>
+		 * First byte: Maximum rotation speed L (0x01.0xFF (1.255))<br>
 		 * Second byte: Rotation speed of the actual compressor:<br>
 		 * 0x00 to L (zero speed to highest speed)<br>
 		 * <br>
@@ -5954,7 +5911,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5974,7 +5931,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to acquire the measured electric current consumption.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 6553.3A)<br>
+		 * 0x0000.0xFFFD (0.6553.3A)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -6000,7 +5957,7 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to acquire the rated power consumption.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000 to 0xFFFD (0 to 65533W)<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -6023,17 +5980,17 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xA0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify whether or not to use the �gQuick freeze�h function of the refrigerator, and to acquire the current setting.<br>
+		 * Used to specify whether or not to use the “Quick freeze” function of the refrigerator, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gNormal operation�h mode: 0x41 �gQuick freeze�h mode: 0x42 �gStandby for fast freezing�h mode:<br>
+		 * “Normal operation” mode: 0x41 “Quick freeze” mode: 0x42 “Standby for fast freezing” mode:<br>
 		 * 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6050,17 +6007,17 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * EPC : 0xA1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Used to specify whether or not to use the �gquick refrigeration�h function of the refrigerator, and to acquire the current setting.<br>
+		 * Used to specify whether or not to use the “quick refrigeration” function of the refrigerator, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gNormal operation�h mode: 0x41 �gQuick refrigeration�h mode: 0x42 �gStandby for quick refrigeration�h<br>
+		 * “Normal operation” mode: 0x41 “Quick refrigeration” mode: 0x42 “Standby for quick refrigeration”<br>
 		 * mode: 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6080,14 +6037,14 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to specify whether or not to enable the automatic icemaker of the refrigerator, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gEnable icemaker�h option: 0x41 �gDisable icemaker�h option: 0x42 �gTemporarily disable icemaker�h<br>
+		 * “Enable icemaker” option: 0x41 “Disable icemaker” option: 0x42 “Temporarily disable icemaker”<br>
 		 * option: 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6107,14 +6064,14 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to acquire the status of the automatic icemaker of the refrigerator.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * �gIce-making in progress�h state: 0x41<br>
-		 * �gIce-making stopped�h state: 0x42<br>
+		 * “Ice-making in progress” state: 0x41<br>
+		 * “Ice-making stopped” state: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6134,15 +6091,15 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to acquire the status of the tank of the automatic icemaker of the refrigerator in terms of whether it contains water or not.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Icemaker tank contains water: 0x41<br>
-		 * There is no water left in the icemaker tank or the icemaker tank has not been positioned correctly in the refrigerator:<br>
-		 * 0x42<br>
+		 * Icemaker tank contains water: 0x41 There is no water left in the icemaker<br>
+		 * tank or the icemaker tank has not been<br>
+		 * positioned correctly in the refrigerator: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6162,14 +6119,13 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to specify whether or not to use the refrigerator compartment humidification function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * ON = 0x41<br>
-		 * OFF = 0x42<br>
+		 * ON = 0x41 OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6189,14 +6145,13 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to specify whether or not to use the vegetable compartment humidification function, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * ON = 0x41<br>
-		 * OFF = 0x42<br>
+		 * ON = 0x41 OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -6216,14 +6171,13 @@ multi-refrigeratin g mode compartment temperature<br>
 		 * Used to specify whether or not to use the deodorization function of the refrigerator, and to acquire the current setting.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * ON = 0x41<br>
-		 * OFF = 0x42<br>
+		 * ON = 0x41 OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : -<br>
+		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>

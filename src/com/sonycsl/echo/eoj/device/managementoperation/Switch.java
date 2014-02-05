@@ -44,8 +44,7 @@ public abstract class Switch extends DeviceObject {
 	}
 
 	/**
-	 * Property name : Operation
-status<br>
+	 * Property name : Operation status<br>
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
@@ -53,13 +52,12 @@ status<br>
 	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON=0x30�COFF=0x31<br>
+	 * ON=0x30, OFF=0x31<br>
 	 * <br>
-	 * Data type : unsigne
-d char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -72,8 +70,7 @@ Byte<br>
 	 */
 	protected abstract boolean setOperationStatus(byte[] edt);
 	/**
-	 * Property name : Operation
-status<br>
+	 * Property name : Operation status<br>
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
@@ -81,13 +78,12 @@ status<br>
 	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON=0x30�COFF=0x31<br>
+	 * ON=0x30, OFF=0x31<br>
 	 * <br>
-	 * Data type : unsigne
-d char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -100,8 +96,7 @@ Byte<br>
 	 */
 	protected abstract byte[] getOperationStatus();
 	/**
-	 * Property name : Connected
-device<br>
+	 * Property name : Connected device<br>
 	 * <br>
 	 * EPC : 0xE0<br>
 	 * <br>
@@ -111,11 +106,10 @@ device<br>
 	 * Value range (decimal notation) :<br>
 	 * Stores the name of the type of the device.<br>
 	 * <br>
-	 * Data type : unsigne
-d char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 12
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -126,8 +120,7 @@ Byte<br>
 	 */
 	protected boolean setConnectedDevice(byte[] edt) {return false;}
 	/**
-	 * Property name : Connected
-device<br>
+	 * Property name : Connected device<br>
 	 * <br>
 	 * EPC : 0xE0<br>
 	 * <br>
@@ -137,11 +130,10 @@ device<br>
 	 * Value range (decimal notation) :<br>
 	 * Stores the name of the type of the device.<br>
 	 * <br>
-	 * Data type : unsigne
-d char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 12
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -152,8 +144,7 @@ Byte<br>
 	 */
 	protected byte[] getConnectedDevice() {return null;}
 	/**
-	 * Property name : Connected
-device<br>
+	 * Property name : Connected device<br>
 	 * <br>
 	 * EPC : 0xE0<br>
 	 * <br>
@@ -163,11 +154,10 @@ device<br>
 	 * Value range (decimal notation) :<br>
 	 * Stores the name of the type of the device.<br>
 	 * <br>
-	 * Data type : unsigne
-d char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 12
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -281,8 +271,7 @@ Byte<br>
 		}
 		
 		/**
-		 * Property name : Connected
-device<br>
+		 * Property name : Connected device<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
@@ -292,11 +281,10 @@ device<br>
 		 * Value range (decimal notation) :<br>
 		 * Stores the name of the type of the device.<br>
 		 * <br>
-		 * Data type : unsigne
-d char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 12
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -307,8 +295,7 @@ Byte<br>
 		 */
 		protected void onSetConnectedDevice(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Connected
-device<br>
+		 * Property name : Connected device<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
@@ -318,11 +305,10 @@ device<br>
 		 * Value range (decimal notation) :<br>
 		 * Stores the name of the type of the device.<br>
 		 * <br>
-		 * Data type : unsigne
-d char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 12
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -363,8 +349,8 @@ Byte<br>
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -380,8 +366,7 @@ Byte<br>
 		}
 		
 		/**
-		 * Property name : Connected
-device<br>
+		 * Property name : Connected device<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
@@ -391,11 +376,10 @@ device<br>
 		 * Value range (decimal notation) :<br>
 		 * Stores the name of the type of the device.<br>
 		 * <br>
-		 * Data type : unsigne
-d char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 12
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -487,8 +471,8 @@ Byte<br>
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -520,8 +504,7 @@ Byte<br>
 		}
 		
 		/**
-		 * Property name : Connected
-device<br>
+		 * Property name : Connected device<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
@@ -531,11 +514,10 @@ device<br>
 		 * Value range (decimal notation) :<br>
 		 * Stores the name of the type of the device.<br>
 		 * <br>
-		 * Data type : unsigne
-d char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 12
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -626,8 +608,8 @@ Byte<br>
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -659,8 +641,7 @@ Byte<br>
 		}
 		
 		/**
-		 * Property name : Connected
-device<br>
+		 * Property name : Connected device<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
@@ -670,11 +651,10 @@ device<br>
 		 * Value range (decimal notation) :<br>
 		 * Stores the name of the type of the device.<br>
 		 * <br>
-		 * Data type : unsigne
-d char<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 12
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>

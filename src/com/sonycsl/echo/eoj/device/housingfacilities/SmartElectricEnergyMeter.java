@@ -29,20 +29,23 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 
 	public static final byte EPC_ELECTRIC_ENERGY_METER_CLASSIFICATION = (byte)0xD0;
 	public static final byte EPC_OWNER_CLASSIFICATION = (byte)0xD1;
-	public static final byte EPC_CONFIGURATION_INFORMATION_OF_PHASES_AND_WIRES_OF_THE_SYSTEMS = (byte)0xD2;
+	public static final byte EPC_PHASES_AND_WIRES_SETTING_STATUS = (byte)0xD2;
 	public static final byte EPC_COMPOSITE_TRANSFORMATION_RATIO = (byte)0xD3;
 	public static final byte EPC_MULTIPLYING_FACTOR_FOR_COMPOSITE_TRANSFORMATION_RATIO = (byte)0xD4;
-	public static final byte EPC_METER_TYPE_CERTIFICATION_NUMBER_TYPE_APPROVAL_NUMBER_IN_JAPAN = (byte)0xD5;
-	public static final byte EPC_VERIFICATION_EXPIRATION_DATE = (byte)0xD6;
+	public static final byte EPC_METER_TYPE_CERTIFICATION_NUMBER = (byte)0xD5;
+	public static final byte EPC_YEAR_AND_MONTH_OF_INSPECTION_EXPIRY = (byte)0xD6;
+	public static final byte EPC_NUMBER_OF_EFFECTIVE_DIGITS_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY = (byte)0xD7;
 	public static final byte EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION = (byte)0xE0;
 	public static final byte EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS = (byte)0xE1;
 	public static final byte EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION = (byte)0xE2;
-	public static final byte EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION = (byte)0xE3;
+	public static final byte EPC_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION = (byte)0xE3;
 	public static final byte EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION = (byte)0xE4;
 	public static final byte EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED = (byte)0xE5;
-	public static final byte EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRIC_ENERGY = (byte)0xE7;
+	public static final byte EPC_MEASURED_INSTANTANEOUS_ELECTRIC_ENERGY = (byte)0xE7;
 	public static final byte EPC_MEASURED_INSTANTANEOUS_CURRENTS = (byte)0xE8;
 	public static final byte EPC_MEASURED_INSTANTANEOUS_VOLTAGES = (byte)0xE9;
+	public static final byte EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_NORMAL_DIRECTION = (byte)0xEA;
+	public static final byte EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_REVERSE_DIRECTION = (byte)0xEB;
 
 	@Override
 	protected void setupPropertyMaps() {
@@ -51,9 +54,10 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
-		addGetProperty(EPC_METER_TYPE_CERTIFICATION_NUMBER_TYPE_APPROVAL_NUMBER_IN_JAPAN);
+		addGetProperty(EPC_NUMBER_OF_EFFECTIVE_DIGITS_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY);
 		addGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
 		addGetProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS);
+		addGetProperty(EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_NORMAL_DIRECTION);
 	}
 	
 	@Override
@@ -67,16 +71,15 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON=0x30�COFF=0x31<br>
+	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -94,16 +97,15 @@ Byte<br>
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the ON/OFF<br>
-	 * status.<br>
+	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON=0x30�COFF=0x31<br>
+	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -124,17 +126,14 @@ Byte<br>
 	 * This property indicates the electric energy meter type.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x30�FElectric utility company<br>
-	 * 0x31�FSolar power<br>
-	 * 0x32�FFuel cell<br>
-	 * 0x33�FBattery<br>
-	 * 0x34�FEV<br>
-	 * 0x35�FOthers<br>
+	 * 0x30: Electric utility company 0x31: Solar power<br>
+	 * 0x32: Fuel cell 0x33: Battery 0x34: EV<br>
+	 * 0x35: Others<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -153,17 +152,14 @@ Byte<br>
 	 * This property indicates the electric energy meter type.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x30�FElectric utility company<br>
-	 * 0x31�FSolar power<br>
-	 * 0x32�FFuel cell<br>
-	 * 0x33�FBattery<br>
-	 * 0x34�FEV<br>
-	 * 0x35�FOthers<br>
+	 * 0x30: Electric utility company 0x31: Solar power<br>
+	 * 0x32: Fuel cell 0x33: Battery 0x34: EV<br>
+	 * 0x35: Others<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -182,17 +178,14 @@ Byte<br>
 	 * This property indicates the electric energy meter type.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x30�FElectric utility company<br>
-	 * 0x31�FSolar power<br>
-	 * 0x32�FFuel cell<br>
-	 * 0x33�FBattery<br>
-	 * 0x34�FEV<br>
-	 * 0x35�FOthers<br>
+	 * 0x30: Electric utility company 0x31: Solar power<br>
+	 * 0x32: Fuel cell 0x33: Battery 0x34: EV<br>
+	 * 0x35: Others<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -211,18 +204,17 @@ Byte<br>
 	 * EPC : 0xD1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the type of the owner of the meter.<br>
+	 * This property indicates the type of owner of the meter.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x30�FNot specified<br>
-	 * 0x31�FElectric utility company<br>
-	 * 0x32�FPrivate sector company<br>
-	 * 0x33�FIndividual<br>
+	 * 0x30: Not specified<br>
+	 * 0x31: Electric utility company 0x32: Other than<br>
+	 * electric utility companies 0x33: Individual<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -238,18 +230,17 @@ Byte<br>
 	 * EPC : 0xD1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the type of the owner of the meter.<br>
+	 * This property indicates the type of owner of the meter.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x30�FNot specified<br>
-	 * 0x31�FElectric utility company<br>
-	 * 0x32�FPrivate sector company<br>
-	 * 0x33�FIndividual<br>
+	 * 0x30: Not specified<br>
+	 * 0x31: Electric utility company 0x32: Other than<br>
+	 * electric utility companies 0x33: Individual<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -265,18 +256,17 @@ Byte<br>
 	 * EPC : 0xD1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the type of the owner of the meter.<br>
+	 * This property indicates the type of owner of the meter.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x30�FNot specified<br>
-	 * 0x31�FElectric utility company<br>
-	 * 0x32�FPrivate sector company<br>
-	 * 0x33�FIndividual<br>
+	 * 0x30: Not specified<br>
+	 * 0x31: Electric utility company 0x32: Other than<br>
+	 * electric utility companies 0x33: Individual<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -290,27 +280,23 @@ Byte<br>
 		return true;
 	}
 	/**
-	 * Property name : Configuration information of phases and wires of the systems<br>
+	 * Property name : Phases and wires setting status<br>
 	 * <br>
 	 * EPC : 0xD2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the configuration regarding the phases and wires of the system.<br>
+	 * This property indicates the phases and wires setting status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Single-phase, two-wire system�F<br>
-	 * 0x30<br>
-	 * Single-phase, three-wire system�F<br>
-	 * 0x31<br>
-	 * Three-phase, three-wire system�F<br>
-	 * 0x32<br>
-	 * Three-phase, four-wire system�F<br>
-	 * 0x33<br>
+	 * Single-phase, two-wire system: 0x30<br>
+	 * Single-phase, three-wire system: 0x31<br>
+	 * Three-phase, three-wire system: 0x32<br>
+	 * Three-phase, four-wire system: 0x33<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -319,29 +305,25 @@ Byte<br>
 	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getConfigurationInformationOfPhasesAndWiresOfTheSystems() {return null;}
+	protected byte[] getPhasesAndWiresSettingStatus() {return null;}
 	/**
-	 * Property name : Configuration information of phases and wires of the systems<br>
+	 * Property name : Phases and wires setting status<br>
 	 * <br>
 	 * EPC : 0xD2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the configuration regarding the phases and wires of the system.<br>
+	 * This property indicates the phases and wires setting status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Single-phase, two-wire system�F<br>
-	 * 0x30<br>
-	 * Single-phase, three-wire system�F<br>
-	 * 0x31<br>
-	 * Three-phase, three-wire system�F<br>
-	 * 0x32<br>
-	 * Three-phase, four-wire system�F<br>
-	 * 0x33<br>
+	 * Single-phase, two-wire system: 0x30<br>
+	 * Single-phase, three-wire system: 0x31<br>
+	 * Three-phase, three-wire system: 0x32<br>
+	 * Three-phase, four-wire system: 0x33<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -350,7 +332,7 @@ Byte<br>
 	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidConfigurationInformationOfPhasesAndWiresOfTheSystems(byte[] edt) {
+	protected boolean isValidPhasesAndWiresSettingStatus(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
@@ -360,16 +342,15 @@ Byte<br>
 	 * EPC : 0xD3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the composite transformation ratio using a 6-digit decimal notation number (initial value = 1).<br>
+	 * This property indicates the composite transformation ratio using a 6-digit decimal notation number.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00000000-0x000F423F<br>
-	 * (000000-999999)<br>
+	 * 0x00000000.0x000F423F (000000.999999)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -385,16 +366,15 @@ Byte<br>
 	 * EPC : 0xD3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the composite transformation ratio using a 6-digit decimal notation number (initial value = 1).<br>
+	 * This property indicates the composite transformation ratio using a 6-digit decimal notation number.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00000000-0x000F423F<br>
-	 * (000000-999999)<br>
+	 * 0x00000000.0x000F423F (000000.999999)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -416,15 +396,15 @@ Byte<br>
 	 * This property indicates the multiplying factor for the composite transformation ratio.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00�F�~1(initial value)<br>
-	 * 0x01�F�~0.1<br>
-	 * 0x02�F�~0.01<br>
-	 * 0x03�F�~0.001<br>
+	 * 0x00 : ×1<br>
+	 * 0x01 : ×0.1<br>
+	 * 0x02 : ×0.01<br>
+	 * 0x03 : ×0.001<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -443,15 +423,15 @@ Byte<br>
 	 * This property indicates the multiplying factor for the composite transformation ratio.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00�F�~1(initial value)<br>
-	 * 0x01�F�~0.1<br>
-	 * 0x02�F�~0.01<br>
-	 * 0x03�F�~0.001<br>
+	 * 0x00 : ×1<br>
+	 * 0x01 : ×0.1<br>
+	 * 0x02 : ×0.01<br>
+	 * 0x03 : ×0.001<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -465,83 +445,74 @@ Byte<br>
 		return true;
 	}
 	/**
-	 * Property name : Meter type certification number (type approval number in Japan)<br>
+	 * Property name : Meter type certification number<br>
 	 * <br>
 	 * EPC : 0xD5<br>
 	 * <br>
 	 * Contents of property :<br>
 	 * This property indicates the<br>
-	 * type-certified meter number using alphanumeric characters<br>
-	 * (0x20-0x70).<br>
+	 * type-certified meter number using a string of 10 alphanumeric characters<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Type-certified meter (type number):<br>
-	 * 0000-0��������-<br>
-	 * 9999-9��������<br>
-	 * Non-type certified meter: FFFFFFFFFF (initial value)<br>
 	 * <br>
-	 * Data type : unsigned char x 10<br>
+	 * Data type : unsigned char × 10<br>
 	 * <br>
 	 * Data size : 10
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
-	 * Get - mandatory<br>
+	 * Get - optional<br>
 	 */
-	protected abstract byte[] getMeterTypeCertificationNumberTypeApprovalNumberInJapan();
+	protected byte[] getMeterTypeCertificationNumber() {return null;}
 	/**
-	 * Property name : Meter type certification number (type approval number in Japan)<br>
+	 * Property name : Meter type certification number<br>
 	 * <br>
 	 * EPC : 0xD5<br>
 	 * <br>
 	 * Contents of property :<br>
 	 * This property indicates the<br>
-	 * type-certified meter number using alphanumeric characters<br>
-	 * (0x20-0x70).<br>
+	 * type-certified meter number using a string of 10 alphanumeric characters<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Type-certified meter (type number):<br>
-	 * 0000-0��������-<br>
-	 * 9999-9��������<br>
-	 * Non-type certified meter: FFFFFFFFFF (initial value)<br>
 	 * <br>
-	 * Data type : unsigned char x 10<br>
+	 * Data type : unsigned char × 10<br>
 	 * <br>
 	 * Data size : 10
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
-	 * Get - mandatory<br>
+	 * Get - optional<br>
 	 */
-	protected boolean isValidMeterTypeCertificationNumberTypeApprovalNumberInJapan(byte[] edt) {
+	protected boolean isValidMeterTypeCertificationNumber(byte[] edt) {
 		if(edt == null || !(edt.length == 10)) return false;
 		return true;
 	}
 	/**
-	 * Property name : Verification expiration date<br>
+	 * Property name : Year and month of inspection expiry<br>
 	 * <br>
 	 * EPC : 0xD6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates, in the form of an ASCII code, the month and year in which the verification of<br>
-	 * the meter will expire.<br>
+	 * This property indicates the year and month of inspection expiry of the meter by a six-byte ASCII code.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * YYYYMM<br>
 	 * YYYY (Year), MM (Month)<br>
 	 * <br>
-	 * Data type : unsigned char x 6<br>
+	 * Data type : unsigned char × 6<br>
 	 * <br>
 	 * Data size : 6
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -550,24 +521,23 @@ Byte<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setVerificationExpirationDate(byte[] edt) {return false;}
+	protected boolean setYearAndMonthOfInspectionExpiry(byte[] edt) {return false;}
 	/**
-	 * Property name : Verification expiration date<br>
+	 * Property name : Year and month of inspection expiry<br>
 	 * <br>
 	 * EPC : 0xD6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates, in the form of an ASCII code, the month and year in which the verification of<br>
-	 * the meter will expire.<br>
+	 * This property indicates the year and month of inspection expiry of the meter by a six-byte ASCII code.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * YYYYMM<br>
 	 * YYYY (Year), MM (Month)<br>
 	 * <br>
-	 * Data type : unsigned char x 6<br>
+	 * Data type : unsigned char × 6<br>
 	 * <br>
 	 * Data size : 6
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -576,24 +546,23 @@ Byte<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getVerificationExpirationDate() {return null;}
+	protected byte[] getYearAndMonthOfInspectionExpiry() {return null;}
 	/**
-	 * Property name : Verification expiration date<br>
+	 * Property name : Year and month of inspection expiry<br>
 	 * <br>
 	 * EPC : 0xD6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates, in the form of an ASCII code, the month and year in which the verification of<br>
-	 * the meter will expire.<br>
+	 * This property indicates the year and month of inspection expiry of the meter by a six-byte ASCII code.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * YYYYMM<br>
 	 * YYYY (Year), MM (Month)<br>
 	 * <br>
-	 * Data type : unsigned char x 6<br>
+	 * Data type : unsigned char × 6<br>
 	 * <br>
 	 * Data size : 6
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -602,8 +571,59 @@ Byte<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidVerificationExpirationDate(byte[] edt) {
+	protected boolean isValidYearAndMonthOfInspectionExpiry(byte[] edt) {
 		if(edt == null || !(edt.length == 6)) return false;
+		return true;
+	}
+	/**
+	 * Property name : Number of effective digits for cumulative amounts of electric energy<br>
+	 * <br>
+	 * EPC : 0xD7<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the number of effective digits for measured cumulative amounts of electric energy.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x01.0x08 (1.8)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+byte<br>
+	 * <br>
+	 * Unit : digit<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected abstract byte[] getNumberOfEffectiveDigitsForCumulativeAmountsOfElectricEnergy();
+	/**
+	 * Property name : Number of effective digits for cumulative amounts of electric energy<br>
+	 * <br>
+	 * EPC : 0xD7<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the number of effective digits for measured cumulative amounts of electric energy.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x01.0x08 (1.8)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+byte<br>
+	 * <br>
+	 * Unit : digit<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidNumberOfEffectiveDigitsForCumulativeAmountsOfElectricEnergy(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
 	/**
@@ -615,13 +635,12 @@ Byte<br>
 	 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00000000-0x05F5E0FF<br>
-	 * (0-99,999,999)<br>
+	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh<br>
 	 * <br>
@@ -640,13 +659,12 @@ Byte<br>
 	 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00000000-0x05F5E0FF<br>
-	 * (0-99,999,999)<br>
+	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh<br>
 	 * <br>
@@ -668,20 +686,17 @@ Byte<br>
 	 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00: 1kWh<br>
-	 * 0x01: 0.1kWh<br>
+	 * 0x00: 1kWh 0x01: 0.1kWh<br>
 	 * 0x02: 0.01kWh<br>
-	 * 0x03: 0.001kWh (Initial value)<br>
-	 * 0x04: 0.0001kWh<br>
-	 * 0x0A: 10kWh<br>
-	 * 0x0B: 100kWh<br>
+	 * 0x03: 0.001kWh<br>
+	 * 0x04: 0.0001kWh 0x0A: 10kWh 0x0B: 100kWh<br>
 	 * 0x0C: 1000kWh<br>
 	 * 0x0D: 10000kWh<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -700,20 +715,17 @@ Byte<br>
 	 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00: 1kWh<br>
-	 * 0x01: 0.1kWh<br>
+	 * 0x00: 1kWh 0x01: 0.1kWh<br>
 	 * 0x02: 0.01kWh<br>
-	 * 0x03: 0.001kWh (Initial value)<br>
-	 * 0x04: 0.0001kWh<br>
-	 * 0x0A: 10kWh<br>
-	 * 0x0B: 100kWh<br>
+	 * 0x03: 0.001kWh<br>
+	 * 0x04: 0.0001kWh 0x0A: 10kWh 0x0B: 100kWh<br>
 	 * 0x0C: 1000kWh<br>
 	 * 0x0D: 10000kWh<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : .<br>
 	 * <br>
@@ -733,21 +745,19 @@ Byte<br>
 	 * EPC : 0xE2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of<br>
-	 * measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of<br>
-	 * half-hourly data for the preceding<br>
-	 * 24 hours.<br>
+	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (up to 8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000-0x0063:<br>
-	 * 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br>
+	 * 0x0000.0x0063:<br>
+	 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
 	 * <br>
 	 * Data type : unsigned short
-+ unsigned long
-x48<br>
++
+unsigned long
+×48<br>
 	 * <br>
 	 * Data size : 194
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh<br>
 	 * <br>
@@ -764,21 +774,19 @@ Byte<br>
 	 * EPC : 0xE2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of<br>
-	 * measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of<br>
-	 * half-hourly data for the preceding<br>
-	 * 24 hours.<br>
+	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (up to 8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000-0x0063:<br>
-	 * 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br>
+	 * 0x0000.0x0063:<br>
+	 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
 	 * <br>
 	 * Data type : unsigned short
-+ unsigned long
-x48<br>
++
+unsigned long
+×48<br>
 	 * <br>
 	 * Data size : 194
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh<br>
 	 * <br>
@@ -792,21 +800,20 @@ Byte<br>
 		return true;
 	}
 	/**
-	 * Property name : Measured cumulative amount of electric energy (reverse direction)<br>
+	 * Property name : Measured cumulative amounts of electric energy (reverse direction)<br>
 	 * <br>
 	 * EPC : 0xE3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br>
+	 * This property indicates the measured cumulative amounts of electric energy using an 8-digit decimal notation number.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00000000-0x05F5E0FF<br>
-	 * (0-99,999,999)<br>
+	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh<br>
 	 * <br>
@@ -815,23 +822,22 @@ Byte<br>
 	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getMeasuredCumulativeAmountOfElectricEnergyReverseDirection() {return null;}
+	protected byte[] getMeasuredCumulativeAmountsOfElectricEnergyReverseDirection() {return null;}
 	/**
-	 * Property name : Measured cumulative amount of electric energy (reverse direction)<br>
+	 * Property name : Measured cumulative amounts of electric energy (reverse direction)<br>
 	 * <br>
 	 * EPC : 0xE3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br>
+	 * This property indicates the measured cumulative amounts of electric energy using an 8-digit decimal notation number.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00000000-0x05F5E0FF<br>
-	 * (0-99,999,999)<br>
+	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh<br>
 	 * <br>
@@ -840,7 +846,7 @@ Byte<br>
 	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidMeasuredCumulativeAmountOfElectricEnergyReverseDirection(byte[] edt) {
+	protected boolean isValidMeasuredCumulativeAmountsOfElectricEnergyReverseDirection(byte[] edt) {
 		if(edt == null || !(edt.length == 4)) return false;
 		return true;
 	}
@@ -851,24 +857,19 @@ Byte<br>
 	 * EPC : 0xE4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of<br>
-	 * measured cumulative amounts of<br>
-	 * electric energy (8 digits), which consists of 48 pieces of<br>
-	 * half-hourly data for the preceding<br>
-	 * 24 hours.<br>
+	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (up to 8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000-0x0063:<br>
-	 * 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br>
+	 * 0x0000.0x0063:<br>
+	 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
 	 * <br>
 	 * Data type : unsigned short
-�{
-unsigned
++unsigned
 long
-�~48<br>
+×48<br>
 	 * <br>
 	 * Data size : 194
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh<br>
 	 * <br>
@@ -885,24 +886,19 @@ Byte<br>
 	 * EPC : 0xE4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of<br>
-	 * measured cumulative amounts of<br>
-	 * electric energy (8 digits), which consists of 48 pieces of<br>
-	 * half-hourly data for the preceding<br>
-	 * 24 hours.<br>
+	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (up to 8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000-0x0063:<br>
-	 * 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br>
+	 * 0x0000.0x0063:<br>
+	 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
 	 * <br>
 	 * Data type : unsigned short
-�{
-unsigned
++unsigned
 long
-�~48<br>
+×48<br>
 	 * <br>
 	 * Data size : 194
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : kWh<br>
 	 * <br>
@@ -921,20 +917,17 @@ Byte<br>
 	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of<br>
-	 * 48 pieces of half-hourly data for the preceding 24 hours) is to be<br>
-	 * retrieved.<br>
+	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00-0x63 ( 0-99)<br>
+	 * 0x00.0x63 (0.99)<br>
 	 * 0: current day<br>
-	 * 1  . 99: previous day . day that precedes the current day by<br>
-	 * 99 days<br>
+	 * 1. 99: previous day. day that precedes the current day by 99 days<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -950,20 +943,17 @@ Byte<br>
 	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of<br>
-	 * 48 pieces of half-hourly data for the preceding 24 hours) is to be<br>
-	 * retrieved.<br>
+	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00-0x63 ( 0-99)<br>
+	 * 0x00.0x63 (0.99)<br>
 	 * 0: current day<br>
-	 * 1  . 99: previous day . day that precedes the current day by<br>
-	 * 99 days<br>
+	 * 1. 99: previous day. day that precedes the current day by 99 days<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -979,20 +969,17 @@ Byte<br>
 	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of<br>
-	 * 48 pieces of half-hourly data for the preceding 24 hours) is to be<br>
-	 * retrieved.<br>
+	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00-0x63 ( 0-99)<br>
+	 * 0x00.0x63 (0.99)<br>
 	 * 0: current day<br>
-	 * 1  . 99: previous day . day that precedes the current day by<br>
-	 * 99 days<br>
+	 * 1. 99: previous day. day that precedes the current day by 99 days<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1
-Byte<br>
+byte<br>
 	 * <br>
 	 * Unit : null<br>
 	 * <br>
@@ -1006,21 +993,21 @@ Byte<br>
 		return true;
 	}
 	/**
-	 * Property name : Measured instantaneous amount of electric energy<br>
+	 * Property name : Measured instantaneous electric energy<br>
 	 * <br>
 	 * EPC : 0xE7<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured effective instantaneous amount of electric energy in watts.<br>
+	 * This property indicates the measured effective instantaneous electric energy in watts.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x80000001-0x7FFFFFFD (-2,147,483,647-<br>
+	 * 0x80000001.0x7FFFFFFD (-2,147,483,647.<br>
 	 * 2,147,483,645)<br>
 	 * <br>
 	 * Data type : signed long<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -1029,23 +1016,23 @@ Byte<br>
 	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getMeasuredInstantaneousAmountOfElectricEnergy() {return null;}
+	protected byte[] getMeasuredInstantaneousElectricEnergy() {return null;}
 	/**
-	 * Property name : Measured instantaneous amount of electric energy<br>
+	 * Property name : Measured instantaneous electric energy<br>
 	 * <br>
 	 * EPC : 0xE7<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured effective instantaneous amount of electric energy in watts.<br>
+	 * This property indicates the measured effective instantaneous electric energy in watts.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x80000001-0x7FFFFFFD (-2,147,483,647-<br>
+	 * 0x80000001.0x7FFFFFFD (-2,147,483,647.<br>
 	 * 2,147,483,645)<br>
 	 * <br>
 	 * Data type : signed long<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -1054,7 +1041,7 @@ Byte<br>
 	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidMeasuredInstantaneousAmountOfElectricEnergy(byte[] edt) {
+	protected boolean isValidMeasuredInstantaneousElectricEnergy(byte[] edt) {
 		if(edt == null || !(edt.length == 4)) return false;
 		return true;
 	}
@@ -1069,15 +1056,15 @@ Byte<br>
 	 * two-wire system, 0x7FFE shall be used for the T phase.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x8001-0x7FFD�iR phase�j<br>
-	 * : 0x8001-0x7FFD�iT phase�j<br>
-	 * (-3,276.7-3,276.5): (-3,276.7-3,276.5)<br>
+	 * 0x8001.0x7FFD (R phase)<br>
+	 * : 0x8001.0x7FFD (T phase) (-3,276.7.3,276.5):<br>
+	 * (-3,276.7.3,276.5)<br>
 	 * <br>
 	 * Data type : signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : 0.1
 A<br>
@@ -1099,15 +1086,15 @@ A<br>
 	 * two-wire system, 0x7FFE shall be used for the T phase.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x8001-0x7FFD�iR phase�j<br>
-	 * : 0x8001-0x7FFD�iT phase�j<br>
-	 * (-3,276.7-3,276.5): (-3,276.7-3,276.5)<br>
+	 * 0x8001.0x7FFD (R phase)<br>
+	 * : 0x8001.0x7FFD (T phase) (-3,276.7.3,276.5):<br>
+	 * (-3,276.7.3,276.5)<br>
 	 * <br>
 	 * Data type : signed short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : 0.1
 A<br>
@@ -1129,21 +1116,18 @@ A<br>
 	 * Contents of property :<br>
 	 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a<br>
 	 * single-phase, two-wire system,<br>
-	 * 0xFFFE shall be used for the<br>
-	 * S(N)-T voltage.<br>
+	 * 0xFFFE shall be used for the S(N)-T voltage.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000-0xFFFD (between R and<br>
-	 * S(N))�F<br>
-	 * 0x0000-0xFFFD (between S(N)<br>
-	 * and T)<br>
-	 * (0-6,553.3) : (0-6,553.3)<br>
+	 * 0x0000.0xFFFD (between R and S(N)):<br>
+	 * 0x0000.0xFFFD (between S(N) and T)<br>
+	 * (0.6,553.3) : (0.6,553.3)<br>
 	 * <br>
 	 * Data type : unsigned short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : 0.1
 V<br>
@@ -1162,21 +1146,18 @@ V<br>
 	 * Contents of property :<br>
 	 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a<br>
 	 * single-phase, two-wire system,<br>
-	 * 0xFFFE shall be used for the<br>
-	 * S(N)-T voltage.<br>
+	 * 0xFFFE shall be used for the S(N)-T voltage.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000-0xFFFD (between R and<br>
-	 * S(N))�F<br>
-	 * 0x0000-0xFFFD (between S(N)<br>
-	 * and T)<br>
-	 * (0-6,553.3) : (0-6,553.3)<br>
+	 * 0x0000.0xFFFD (between R and S(N)):<br>
+	 * 0x0000.0xFFFD (between S(N) and T)<br>
+	 * (0.6,553.3) : (0.6,553.3)<br>
 	 * <br>
 	 * Data type : unsigned short
-�~2<br>
+×2<br>
 	 * <br>
 	 * Data size : 4
-Byte<br>
+bytes<br>
 	 * <br>
 	 * Unit : 0.1
 V<br>
@@ -1190,6 +1171,158 @@ V<br>
 		if(edt == null || !(edt.length == 4)) return false;
 		return true;
 	}
+	/**
+	 * Property name : Cumulative amounts of electric energy measured at fixed time (normal direction)<br>
+	 * <br>
+	 * EPC : 0xEA<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the most recent cumulative amount of electric energy (normal direction)<br>
+	 * measured at 30-minute intervals<br>
+	 * held by the meter in the format of<br>
+	 * 4 bytes for date of measurement, 3 bytes for time of measurement, and 4 bytes for cumulative electric energy (normal direction).<br>
+	 * date of measurement<br>
+	 * YYYY:MM:DD<br>
+	 * time of measurement hh:mm:ss<br>
+	 * cumulative electric energy: an<br>
+	 * 8-digit decimal notation number<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 1.4 bytes: date of measurement YYYY:0x0001.0x270F (1.9999) MM:0x01.0x0C(1.12) DD:0x01.0x1F(1.31)<br>
+	 * 5.7 bytes: time of measurement hh:0x00.0x17(0.23) mm:0x00.0x3B(0.59) ss:0x00.0x3B(0.59)<br>
+	 * 8.11 bytes: 0x00000000.0x05F5E0FF (0.99,999,999)<br>
+	 * <br>
+	 * Data type : unsigned char ×4
++
+unsigned char×3
++
+unsigned long
+<br>
+	 * <br>
+	 * Data size : 11 bytes<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected abstract byte[] getCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeNormalDirection();
+	/**
+	 * Property name : Cumulative amounts of electric energy measured at fixed time (normal direction)<br>
+	 * <br>
+	 * EPC : 0xEA<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the most recent cumulative amount of electric energy (normal direction)<br>
+	 * measured at 30-minute intervals<br>
+	 * held by the meter in the format of<br>
+	 * 4 bytes for date of measurement, 3 bytes for time of measurement, and 4 bytes for cumulative electric energy (normal direction).<br>
+	 * date of measurement<br>
+	 * YYYY:MM:DD<br>
+	 * time of measurement hh:mm:ss<br>
+	 * cumulative electric energy: an<br>
+	 * 8-digit decimal notation number<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 1.4 bytes: date of measurement YYYY:0x0001.0x270F (1.9999) MM:0x01.0x0C(1.12) DD:0x01.0x1F(1.31)<br>
+	 * 5.7 bytes: time of measurement hh:0x00.0x17(0.23) mm:0x00.0x3B(0.59) ss:0x00.0x3B(0.59)<br>
+	 * 8.11 bytes: 0x00000000.0x05F5E0FF (0.99,999,999)<br>
+	 * <br>
+	 * Data type : unsigned char ×4
++
+unsigned char×3
++
+unsigned long
+<br>
+	 * <br>
+	 * Data size : 11 bytes<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeNormalDirection(byte[] edt) {
+		if(edt == null || !(edt.length == 11)) return false;
+		return true;
+	}
+	/**
+	 * Property name : Cumulative amounts of electric energy measured at fixed time (reverse direction)<br>
+	 * <br>
+	 * EPC : 0xEB<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the most recent cumulative amount of electric energy (reverse direction) measured at 30-minute intervals held by the meter in the format of 4 bytes for date of measurement, 3<br>
+	 * bytes for time of measurement, and 4 bytes for cumulative electric energy (reverse direction).<br>
+	 * date of measurement<br>
+	 * YYYY:MM:DD<br>
+	 * time of measurement hh:mm:ss<br>
+	 * cumulative electric energy: an<br>
+	 * 8-digit decimal notation number<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 1.4 bytes: date of measurement YYYY:0x0001.0x270F (1.9999) MM:0x01.0x0C(1.12) DD:0x01.0x1F(1.31)<br>
+	 * 5.7 bytes: time of measurement hh:0x00.0x17(0.23) mm:0x00.0x3B(0.59) ss:0x00.0x3B(0.59)<br>
+	 * 8.11 bytes: 0x00000000.0x05F5E0FF (0.99,999,999)<br>
+	 * <br>
+	 * Data type : unsigned char ×4
++
+unsigned char ×3
++
+unsigned long<br>
+	 * <br>
+	 * Data size : 11 bytes<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected byte[] getCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeReverseDirection() {return null;}
+	/**
+	 * Property name : Cumulative amounts of electric energy measured at fixed time (reverse direction)<br>
+	 * <br>
+	 * EPC : 0xEB<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the most recent cumulative amount of electric energy (reverse direction) measured at 30-minute intervals held by the meter in the format of 4 bytes for date of measurement, 3<br>
+	 * bytes for time of measurement, and 4 bytes for cumulative electric energy (reverse direction).<br>
+	 * date of measurement<br>
+	 * YYYY:MM:DD<br>
+	 * time of measurement hh:mm:ss<br>
+	 * cumulative electric energy: an<br>
+	 * 8-digit decimal notation number<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 1.4 bytes: date of measurement YYYY:0x0001.0x270F (1.9999) MM:0x01.0x0C(1.12) DD:0x01.0x1F(1.31)<br>
+	 * 5.7 bytes: time of measurement hh:0x00.0x17(0.23) mm:0x00.0x3B(0.59) ss:0x00.0x3B(0.59)<br>
+	 * 8.11 bytes: 0x00000000.0x05F5E0FF (0.99,999,999)<br>
+	 * <br>
+	 * Data type : unsigned char ×4
++
+unsigned char ×3
++
+unsigned long<br>
+	 * <br>
+	 * Data size : 11 bytes<br>
+	 * <br>
+	 * Unit : null<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeReverseDirection(byte[] edt) {
+		if(edt == null || !(edt.length == 11)) return false;
+		return true;
+	}
 
 	@Override
 	protected synchronized boolean setProperty(EchoProperty property) {
@@ -1199,7 +1332,7 @@ V<br>
 		switch(property.epc) {
 		case EPC_ELECTRIC_ENERGY_METER_CLASSIFICATION : return setElectricEnergyMeterClassification(property.edt);
 		case EPC_OWNER_CLASSIFICATION : return setOwnerClassification(property.edt);
-		case EPC_VERIFICATION_EXPIRATION_DATE : return setVerificationExpirationDate(property.edt);
+		case EPC_YEAR_AND_MONTH_OF_INSPECTION_EXPIRY : return setYearAndMonthOfInspectionExpiry(property.edt);
 		case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED : return setDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(property.edt);
 		default : return false;
 		}
@@ -1213,20 +1346,23 @@ V<br>
 		switch(epc) {
 		case EPC_ELECTRIC_ENERGY_METER_CLASSIFICATION : return getElectricEnergyMeterClassification();
 		case EPC_OWNER_CLASSIFICATION : return getOwnerClassification();
-		case EPC_CONFIGURATION_INFORMATION_OF_PHASES_AND_WIRES_OF_THE_SYSTEMS : return getConfigurationInformationOfPhasesAndWiresOfTheSystems();
+		case EPC_PHASES_AND_WIRES_SETTING_STATUS : return getPhasesAndWiresSettingStatus();
 		case EPC_COMPOSITE_TRANSFORMATION_RATIO : return getCompositeTransformationRatio();
 		case EPC_MULTIPLYING_FACTOR_FOR_COMPOSITE_TRANSFORMATION_RATIO : return getMultiplyingFactorForCompositeTransformationRatio();
-		case EPC_METER_TYPE_CERTIFICATION_NUMBER_TYPE_APPROVAL_NUMBER_IN_JAPAN : return getMeterTypeCertificationNumberTypeApprovalNumberInJapan();
-		case EPC_VERIFICATION_EXPIRATION_DATE : return getVerificationExpirationDate();
+		case EPC_METER_TYPE_CERTIFICATION_NUMBER : return getMeterTypeCertificationNumber();
+		case EPC_YEAR_AND_MONTH_OF_INSPECTION_EXPIRY : return getYearAndMonthOfInspectionExpiry();
+		case EPC_NUMBER_OF_EFFECTIVE_DIGITS_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY : return getNumberOfEffectiveDigitsForCumulativeAmountsOfElectricEnergy();
 		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION : return getMeasuredCumulativeAmountOfElectricEnergyNormalDirection();
 		case EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS : return getUnitForCumulativeAmountsOfElectricEnergyNormalAndReverseDirections();
 		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION : return getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection();
-		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION : return getMeasuredCumulativeAmountOfElectricEnergyReverseDirection();
+		case EPC_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION : return getMeasuredCumulativeAmountsOfElectricEnergyReverseDirection();
 		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION : return getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection();
 		case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED : return getDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved();
-		case EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRIC_ENERGY : return getMeasuredInstantaneousAmountOfElectricEnergy();
+		case EPC_MEASURED_INSTANTANEOUS_ELECTRIC_ENERGY : return getMeasuredInstantaneousElectricEnergy();
 		case EPC_MEASURED_INSTANTANEOUS_CURRENTS : return getMeasuredInstantaneousCurrents();
 		case EPC_MEASURED_INSTANTANEOUS_VOLTAGES : return getMeasuredInstantaneousVoltages();
+		case EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_NORMAL_DIRECTION : return getCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeNormalDirection();
+		case EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_REVERSE_DIRECTION : return getCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeReverseDirection();
 		default : return null;
 		}
 	}
@@ -1239,20 +1375,23 @@ V<br>
 		switch(property.epc) {
 		case EPC_ELECTRIC_ENERGY_METER_CLASSIFICATION : return isValidElectricEnergyMeterClassification(property.edt);
 		case EPC_OWNER_CLASSIFICATION : return isValidOwnerClassification(property.edt);
-		case EPC_CONFIGURATION_INFORMATION_OF_PHASES_AND_WIRES_OF_THE_SYSTEMS : return isValidConfigurationInformationOfPhasesAndWiresOfTheSystems(property.edt);
+		case EPC_PHASES_AND_WIRES_SETTING_STATUS : return isValidPhasesAndWiresSettingStatus(property.edt);
 		case EPC_COMPOSITE_TRANSFORMATION_RATIO : return isValidCompositeTransformationRatio(property.edt);
 		case EPC_MULTIPLYING_FACTOR_FOR_COMPOSITE_TRANSFORMATION_RATIO : return isValidMultiplyingFactorForCompositeTransformationRatio(property.edt);
-		case EPC_METER_TYPE_CERTIFICATION_NUMBER_TYPE_APPROVAL_NUMBER_IN_JAPAN : return isValidMeterTypeCertificationNumberTypeApprovalNumberInJapan(property.edt);
-		case EPC_VERIFICATION_EXPIRATION_DATE : return isValidVerificationExpirationDate(property.edt);
+		case EPC_METER_TYPE_CERTIFICATION_NUMBER : return isValidMeterTypeCertificationNumber(property.edt);
+		case EPC_YEAR_AND_MONTH_OF_INSPECTION_EXPIRY : return isValidYearAndMonthOfInspectionExpiry(property.edt);
+		case EPC_NUMBER_OF_EFFECTIVE_DIGITS_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY : return isValidNumberOfEffectiveDigitsForCumulativeAmountsOfElectricEnergy(property.edt);
 		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION : return isValidMeasuredCumulativeAmountOfElectricEnergyNormalDirection(property.edt);
 		case EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS : return isValidUnitForCumulativeAmountsOfElectricEnergyNormalAndReverseDirections(property.edt);
 		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION : return isValidHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection(property.edt);
-		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION : return isValidMeasuredCumulativeAmountOfElectricEnergyReverseDirection(property.edt);
+		case EPC_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION : return isValidMeasuredCumulativeAmountsOfElectricEnergyReverseDirection(property.edt);
 		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION : return isValidHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection(property.edt);
 		case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED : return isValidDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(property.edt);
-		case EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRIC_ENERGY : return isValidMeasuredInstantaneousAmountOfElectricEnergy(property.edt);
+		case EPC_MEASURED_INSTANTANEOUS_ELECTRIC_ENERGY : return isValidMeasuredInstantaneousElectricEnergy(property.edt);
 		case EPC_MEASURED_INSTANTANEOUS_CURRENTS : return isValidMeasuredInstantaneousCurrents(property.edt);
 		case EPC_MEASURED_INSTANTANEOUS_VOLTAGES : return isValidMeasuredInstantaneousVoltages(property.edt);
+		case EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_NORMAL_DIRECTION : return isValidCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeNormalDirection(property.edt);
+		case EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_REVERSE_DIRECTION : return isValidCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeReverseDirection(property.edt);
 		default : return false;
 		}
 	}
@@ -1306,8 +1445,8 @@ V<br>
 			case EPC_OWNER_CLASSIFICATION : 
 				onSetOwnerClassification(eoj, tid, esv, property, success);
 				return true;
-			case EPC_VERIFICATION_EXPIRATION_DATE : 
-				onSetVerificationExpirationDate(eoj, tid, esv, property, success);
+			case EPC_YEAR_AND_MONTH_OF_INSPECTION_EXPIRY : 
+				onSetYearAndMonthOfInspectionExpiry(eoj, tid, esv, property, success);
 				return true;
 			case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED : 
 				onSetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(eoj, tid, esv, property, success);
@@ -1330,8 +1469,8 @@ V<br>
 			case EPC_OWNER_CLASSIFICATION : 
 				onGetOwnerClassification(eoj, tid, esv, property, success);
 				return true;
-			case EPC_CONFIGURATION_INFORMATION_OF_PHASES_AND_WIRES_OF_THE_SYSTEMS : 
-				onGetConfigurationInformationOfPhasesAndWiresOfTheSystems(eoj, tid, esv, property, success);
+			case EPC_PHASES_AND_WIRES_SETTING_STATUS : 
+				onGetPhasesAndWiresSettingStatus(eoj, tid, esv, property, success);
 				return true;
 			case EPC_COMPOSITE_TRANSFORMATION_RATIO : 
 				onGetCompositeTransformationRatio(eoj, tid, esv, property, success);
@@ -1339,11 +1478,14 @@ V<br>
 			case EPC_MULTIPLYING_FACTOR_FOR_COMPOSITE_TRANSFORMATION_RATIO : 
 				onGetMultiplyingFactorForCompositeTransformationRatio(eoj, tid, esv, property, success);
 				return true;
-			case EPC_METER_TYPE_CERTIFICATION_NUMBER_TYPE_APPROVAL_NUMBER_IN_JAPAN : 
-				onGetMeterTypeCertificationNumberTypeApprovalNumberInJapan(eoj, tid, esv, property, success);
+			case EPC_METER_TYPE_CERTIFICATION_NUMBER : 
+				onGetMeterTypeCertificationNumber(eoj, tid, esv, property, success);
 				return true;
-			case EPC_VERIFICATION_EXPIRATION_DATE : 
-				onGetVerificationExpirationDate(eoj, tid, esv, property, success);
+			case EPC_YEAR_AND_MONTH_OF_INSPECTION_EXPIRY : 
+				onGetYearAndMonthOfInspectionExpiry(eoj, tid, esv, property, success);
+				return true;
+			case EPC_NUMBER_OF_EFFECTIVE_DIGITS_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY : 
+				onGetNumberOfEffectiveDigitsForCumulativeAmountsOfElectricEnergy(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION : 
 				onGetMeasuredCumulativeAmountOfElectricEnergyNormalDirection(eoj, tid, esv, property, success);
@@ -1354,8 +1496,8 @@ V<br>
 			case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION : 
 				onGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION : 
-				onGetMeasuredCumulativeAmountOfElectricEnergyReverseDirection(eoj, tid, esv, property, success);
+			case EPC_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION : 
+				onGetMeasuredCumulativeAmountsOfElectricEnergyReverseDirection(eoj, tid, esv, property, success);
 				return true;
 			case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION : 
 				onGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection(eoj, tid, esv, property, success);
@@ -1363,14 +1505,20 @@ V<br>
 			case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED : 
 				onGetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRIC_ENERGY : 
-				onGetMeasuredInstantaneousAmountOfElectricEnergy(eoj, tid, esv, property, success);
+			case EPC_MEASURED_INSTANTANEOUS_ELECTRIC_ENERGY : 
+				onGetMeasuredInstantaneousElectricEnergy(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MEASURED_INSTANTANEOUS_CURRENTS : 
 				onGetMeasuredInstantaneousCurrents(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MEASURED_INSTANTANEOUS_VOLTAGES : 
 				onGetMeasuredInstantaneousVoltages(eoj, tid, esv, property, success);
+				return true;
+			case EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_NORMAL_DIRECTION : 
+				onGetCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeNormalDirection(eoj, tid, esv, property, success);
+				return true;
+			case EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_REVERSE_DIRECTION : 
+				onGetCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeReverseDirection(eoj, tid, esv, property, success);
 				return true;
 			default :
 				return false;
@@ -1386,17 +1534,14 @@ V<br>
 		 * This property indicates the electric energy meter type.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�FElectric utility company<br>
-		 * 0x31�FSolar power<br>
-		 * 0x32�FFuel cell<br>
-		 * 0x33�FBattery<br>
-		 * 0x34�FEV<br>
-		 * 0x35�FOthers<br>
+		 * 0x30: Electric utility company 0x31: Solar power<br>
+		 * 0x32: Fuel cell 0x33: Battery 0x34: EV<br>
+		 * 0x35: Others<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1415,17 +1560,14 @@ Byte<br>
 		 * This property indicates the electric energy meter type.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�FElectric utility company<br>
-		 * 0x31�FSolar power<br>
-		 * 0x32�FFuel cell<br>
-		 * 0x33�FBattery<br>
-		 * 0x34�FEV<br>
-		 * 0x35�FOthers<br>
+		 * 0x30: Electric utility company 0x31: Solar power<br>
+		 * 0x32: Fuel cell 0x33: Battery 0x34: EV<br>
+		 * 0x35: Others<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1441,18 +1583,17 @@ Byte<br>
 		 * EPC : 0xD1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the type of the owner of the meter.<br>
+		 * This property indicates the type of owner of the meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�FNot specified<br>
-		 * 0x31�FElectric utility company<br>
-		 * 0x32�FPrivate sector company<br>
-		 * 0x33�FIndividual<br>
+		 * 0x30: Not specified<br>
+		 * 0x31: Electric utility company 0x32: Other than<br>
+		 * electric utility companies 0x33: Individual<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1468,18 +1609,17 @@ Byte<br>
 		 * EPC : 0xD1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the type of the owner of the meter.<br>
+		 * This property indicates the type of owner of the meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�FNot specified<br>
-		 * 0x31�FElectric utility company<br>
-		 * 0x32�FPrivate sector company<br>
-		 * 0x33�FIndividual<br>
+		 * 0x30: Not specified<br>
+		 * 0x31: Electric utility company 0x32: Other than<br>
+		 * electric utility companies 0x33: Individual<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1490,27 +1630,23 @@ Byte<br>
 		 */
 		protected void onGetOwnerClassification(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Configuration information of phases and wires of the systems<br>
+		 * Property name : Phases and wires setting status<br>
 		 * <br>
 		 * EPC : 0xD2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the configuration regarding the phases and wires of the system.<br>
+		 * This property indicates the phases and wires setting status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Single-phase, two-wire system�F<br>
-		 * 0x30<br>
-		 * Single-phase, three-wire system�F<br>
-		 * 0x31<br>
-		 * Three-phase, three-wire system�F<br>
-		 * 0x32<br>
-		 * Three-phase, four-wire system�F<br>
-		 * 0x33<br>
+		 * Single-phase, two-wire system: 0x30<br>
+		 * Single-phase, three-wire system: 0x31<br>
+		 * Three-phase, three-wire system: 0x32<br>
+		 * Three-phase, four-wire system: 0x33<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1519,23 +1655,22 @@ Byte<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetConfigurationInformationOfPhasesAndWiresOfTheSystems(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetPhasesAndWiresSettingStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Composite transformation ratio<br>
 		 * <br>
 		 * EPC : 0xD3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the composite transformation ratio using a 6-digit decimal notation number (initial value = 1).<br>
+		 * This property indicates the composite transformation ratio using a 6-digit decimal notation number.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000-0x000F423F<br>
-		 * (000000-999999)<br>
+		 * 0x00000000.0x000F423F (000000.999999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1554,15 +1689,15 @@ Byte<br>
 		 * This property indicates the multiplying factor for the composite transformation ratio.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00�F�~1(initial value)<br>
-		 * 0x01�F�~0.1<br>
-		 * 0x02�F�~0.01<br>
-		 * 0x03�F�~0.001<br>
+		 * 0x00 : ×1<br>
+		 * 0x01 : ×0.1<br>
+		 * 0x02 : ×0.01<br>
+		 * 0x03 : ×0.001<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1573,86 +1708,104 @@ Byte<br>
 		 */
 		protected void onGetMultiplyingFactorForCompositeTransformationRatio(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Meter type certification number (type approval number in Japan)<br>
+		 * Property name : Meter type certification number<br>
 		 * <br>
 		 * EPC : 0xD5<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * This property indicates the<br>
-		 * type-certified meter number using alphanumeric characters<br>
-		 * (0x20-0x70).<br>
+		 * type-certified meter number using a string of 10 alphanumeric characters<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Type-certified meter (type number):<br>
-		 * 0000-0��������-<br>
-		 * 9999-9��������<br>
-		 * Non-type certified meter: FFFFFFFFFF (initial value)<br>
 		 * <br>
-		 * Data type : unsigned char x 10<br>
+		 * Data type : unsigned char × 10<br>
 		 * <br>
 		 * Data size : 10
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
+		protected void onGetMeterTypeCertificationNumber(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Year and month of inspection expiry<br>
+		 * <br>
+		 * EPC : 0xD6<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the year and month of inspection expiry of the meter by a six-byte ASCII code.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * YYYYMM<br>
+		 * YYYY (Year), MM (Month)<br>
+		 * <br>
+		 * Data type : unsigned char × 6<br>
+		 * <br>
+		 * Data size : 6
+bytes<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onSetYearAndMonthOfInspectionExpiry(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Year and month of inspection expiry<br>
+		 * <br>
+		 * EPC : 0xD6<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the year and month of inspection expiry of the meter by a six-byte ASCII code.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * YYYYMM<br>
+		 * YYYY (Year), MM (Month)<br>
+		 * <br>
+		 * Data type : unsigned char × 6<br>
+		 * <br>
+		 * Data size : 6
+bytes<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onGetYearAndMonthOfInspectionExpiry(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Number of effective digits for cumulative amounts of electric energy<br>
+		 * <br>
+		 * EPC : 0xD7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the number of effective digits for measured cumulative amounts of electric energy.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01.0x08 (1.8)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+byte<br>
+		 * <br>
+		 * Unit : digit<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
 		 * Get - mandatory<br>
 		 */
-		protected void onGetMeterTypeCertificationNumberTypeApprovalNumberInJapan(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Verification expiration date<br>
-		 * <br>
-		 * EPC : 0xD6<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates, in the form of an ASCII code, the month and year in which the verification of<br>
-		 * the meter will expire.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * YYYYMM<br>
-		 * YYYY (Year), MM (Month)<br>
-		 * <br>
-		 * Data type : unsigned char x 6<br>
-		 * <br>
-		 * Data size : 6
-Byte<br>
-		 * <br>
-		 * Unit : null<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetVerificationExpirationDate(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Verification expiration date<br>
-		 * <br>
-		 * EPC : 0xD6<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates, in the form of an ASCII code, the month and year in which the verification of<br>
-		 * the meter will expire.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * YYYYMM<br>
-		 * YYYY (Year), MM (Month)<br>
-		 * <br>
-		 * Data type : unsigned char x 6<br>
-		 * <br>
-		 * Data size : 6
-Byte<br>
-		 * <br>
-		 * Unit : null<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetVerificationExpirationDate(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetNumberOfEffectiveDigitsForCumulativeAmountsOfElectricEnergy(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Measured cumulative amount of electric energy (normal direction)<br>
 		 * <br>
@@ -1662,13 +1815,12 @@ Byte<br>
 		 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000-0x05F5E0FF<br>
-		 * (0-99,999,999)<br>
+		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh<br>
 		 * <br>
@@ -1687,20 +1839,17 @@ Byte<br>
 		 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00: 1kWh<br>
-		 * 0x01: 0.1kWh<br>
+		 * 0x00: 1kWh 0x01: 0.1kWh<br>
 		 * 0x02: 0.01kWh<br>
-		 * 0x03: 0.001kWh (Initial value)<br>
-		 * 0x04: 0.0001kWh<br>
-		 * 0x0A: 10kWh<br>
-		 * 0x0B: 100kWh<br>
+		 * 0x03: 0.001kWh<br>
+		 * 0x04: 0.0001kWh 0x0A: 10kWh 0x0B: 100kWh<br>
 		 * 0x0C: 1000kWh<br>
 		 * 0x0D: 10000kWh<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -1717,21 +1866,19 @@ Byte<br>
 		 * EPC : 0xE2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of<br>
-		 * measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of<br>
-		 * half-hourly data for the preceding<br>
-		 * 24 hours.<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (up to 8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0x0063:<br>
-		 * 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br>
+		 * 0x0000.0x0063:<br>
+		 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
 		 * <br>
 		 * Data type : unsigned short
-+ unsigned long
-x48<br>
++
+unsigned long
+×48<br>
 		 * <br>
 		 * Data size : 194
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh<br>
 		 * <br>
@@ -1742,21 +1889,20 @@ Byte<br>
 		 */
 		protected void onGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Measured cumulative amount of electric energy (reverse direction)<br>
+		 * Property name : Measured cumulative amounts of electric energy (reverse direction)<br>
 		 * <br>
 		 * EPC : 0xE3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br>
+		 * This property indicates the measured cumulative amounts of electric energy using an 8-digit decimal notation number.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000-0x05F5E0FF<br>
-		 * (0-99,999,999)<br>
+		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh<br>
 		 * <br>
@@ -1765,7 +1911,7 @@ Byte<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetMeasuredCumulativeAmountOfElectricEnergyReverseDirection(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetMeasuredCumulativeAmountsOfElectricEnergyReverseDirection(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Historical data of measured cumulative amounts of electric energy
 (reverse direction)<br>
@@ -1773,24 +1919,19 @@ Byte<br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of<br>
-		 * measured cumulative amounts of<br>
-		 * electric energy (8 digits), which consists of 48 pieces of<br>
-		 * half-hourly data for the preceding<br>
-		 * 24 hours.<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (up to 8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0x0063:<br>
-		 * 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br>
+		 * 0x0000.0x0063:<br>
+		 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
 		 * <br>
 		 * Data type : unsigned short
-�{
-unsigned
++unsigned
 long
-�~48<br>
+×48<br>
 		 * <br>
 		 * Data size : 194
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh<br>
 		 * <br>
@@ -1806,20 +1947,17 @@ Byte<br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of<br>
-		 * 48 pieces of half-hourly data for the preceding 24 hours) is to be<br>
-		 * retrieved.<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00-0x63 ( 0-99)<br>
+		 * 0x00.0x63 (0.99)<br>
 		 * 0: current day<br>
-		 * 1  . 99: previous day . day that precedes the current day by<br>
-		 * 99 days<br>
+		 * 1. 99: previous day. day that precedes the current day by 99 days<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1835,20 +1973,17 @@ Byte<br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of<br>
-		 * 48 pieces of half-hourly data for the preceding 24 hours) is to be<br>
-		 * retrieved.<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00-0x63 ( 0-99)<br>
+		 * 0x00.0x63 (0.99)<br>
 		 * 0: current day<br>
-		 * 1  . 99: previous day . day that precedes the current day by<br>
-		 * 99 days<br>
+		 * 1. 99: previous day. day that precedes the current day by 99 days<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -1859,21 +1994,21 @@ Byte<br>
 		 */
 		protected void onGetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Measured instantaneous amount of electric energy<br>
+		 * Property name : Measured instantaneous electric energy<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured effective instantaneous amount of electric energy in watts.<br>
+		 * This property indicates the measured effective instantaneous electric energy in watts.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x80000001-0x7FFFFFFD (-2,147,483,647-<br>
+		 * 0x80000001.0x7FFFFFFD (-2,147,483,647.<br>
 		 * 2,147,483,645)<br>
 		 * <br>
 		 * Data type : signed long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -1882,7 +2017,7 @@ Byte<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetMeasuredInstantaneousAmountOfElectricEnergy(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetMeasuredInstantaneousElectricEnergy(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Measured instantaneous currents<br>
 		 * <br>
@@ -1894,15 +2029,15 @@ Byte<br>
 		 * two-wire system, 0x7FFE shall be used for the T phase.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x8001-0x7FFD�iR phase�j<br>
-		 * : 0x8001-0x7FFD�iT phase�j<br>
-		 * (-3,276.7-3,276.5): (-3,276.7-3,276.5)<br>
+		 * 0x8001.0x7FFD (R phase)<br>
+		 * : 0x8001.0x7FFD (T phase) (-3,276.7.3,276.5):<br>
+		 * (-3,276.7.3,276.5)<br>
 		 * <br>
 		 * Data type : signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : 0.1
 A<br>
@@ -1921,21 +2056,18 @@ A<br>
 		 * Contents of property :<br>
 		 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a<br>
 		 * single-phase, two-wire system,<br>
-		 * 0xFFFE shall be used for the<br>
-		 * S(N)-T voltage.<br>
+		 * 0xFFFE shall be used for the S(N)-T voltage.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0xFFFD (between R and<br>
-		 * S(N))�F<br>
-		 * 0x0000-0xFFFD (between S(N)<br>
-		 * and T)<br>
-		 * (0-6,553.3) : (0-6,553.3)<br>
+		 * 0x0000.0xFFFD (between R and S(N)):<br>
+		 * 0x0000.0xFFFD (between S(N) and T)<br>
+		 * (0.6,553.3) : (0.6,553.3)<br>
 		 * <br>
 		 * Data type : unsigned short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : 0.1
 V<br>
@@ -1946,6 +2078,79 @@ V<br>
 		 * Get - optional<br>
 		 */
 		protected void onGetMeasuredInstantaneousVoltages(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Cumulative amounts of electric energy measured at fixed time (normal direction)<br>
+		 * <br>
+		 * EPC : 0xEA<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the most recent cumulative amount of electric energy (normal direction)<br>
+		 * measured at 30-minute intervals<br>
+		 * held by the meter in the format of<br>
+		 * 4 bytes for date of measurement, 3 bytes for time of measurement, and 4 bytes for cumulative electric energy (normal direction).<br>
+		 * date of measurement<br>
+		 * YYYY:MM:DD<br>
+		 * time of measurement hh:mm:ss<br>
+		 * cumulative electric energy: an<br>
+		 * 8-digit decimal notation number<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 1.4 bytes: date of measurement YYYY:0x0001.0x270F (1.9999) MM:0x01.0x0C(1.12) DD:0x01.0x1F(1.31)<br>
+		 * 5.7 bytes: time of measurement hh:0x00.0x17(0.23) mm:0x00.0x3B(0.59) ss:0x00.0x3B(0.59)<br>
+		 * 8.11 bytes: 0x00000000.0x05F5E0FF (0.99,999,999)<br>
+		 * <br>
+		 * Data type : unsigned char ×4
++
+unsigned char×3
++
+unsigned long
+<br>
+		 * <br>
+		 * Data size : 11 bytes<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		protected void onGetCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeNormalDirection(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Cumulative amounts of electric energy measured at fixed time (reverse direction)<br>
+		 * <br>
+		 * EPC : 0xEB<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the most recent cumulative amount of electric energy (reverse direction) measured at 30-minute intervals held by the meter in the format of 4 bytes for date of measurement, 3<br>
+		 * bytes for time of measurement, and 4 bytes for cumulative electric energy (reverse direction).<br>
+		 * date of measurement<br>
+		 * YYYY:MM:DD<br>
+		 * time of measurement hh:mm:ss<br>
+		 * cumulative electric energy: an<br>
+		 * 8-digit decimal notation number<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 1.4 bytes: date of measurement YYYY:0x0001.0x270F (1.9999) MM:0x01.0x0C(1.12) DD:0x01.0x1F(1.31)<br>
+		 * 5.7 bytes: time of measurement hh:0x00.0x17(0.23) mm:0x00.0x3B(0.59) ss:0x00.0x3B(0.59)<br>
+		 * 8.11 bytes: 0x00000000.0x05F5E0FF (0.99,999,999)<br>
+		 * <br>
+		 * Data type : unsigned char ×4
++
+unsigned char ×3
++
+unsigned long<br>
+		 * <br>
+		 * Data size : 11 bytes<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
+		protected void onGetCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeReverseDirection(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 	}
 
 	public static class Setter extends DeviceObject.Setter {
@@ -1977,8 +2182,8 @@ V<br>
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -2002,17 +2207,14 @@ V<br>
 		 * This property indicates the electric energy meter type.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�FElectric utility company<br>
-		 * 0x31�FSolar power<br>
-		 * 0x32�FFuel cell<br>
-		 * 0x33�FBattery<br>
-		 * 0x34�FEV<br>
-		 * 0x35�FOthers<br>
+		 * 0x30: Electric utility company 0x31: Solar power<br>
+		 * 0x32: Fuel cell 0x33: Battery 0x34: EV<br>
+		 * 0x35: Others<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2031,18 +2233,17 @@ Byte<br>
 		 * EPC : 0xD1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the type of the owner of the meter.<br>
+		 * This property indicates the type of owner of the meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�FNot specified<br>
-		 * 0x31�FElectric utility company<br>
-		 * 0x32�FPrivate sector company<br>
-		 * 0x33�FIndividual<br>
+		 * 0x30: Not specified<br>
+		 * 0x31: Electric utility company 0x32: Other than<br>
+		 * electric utility companies 0x33: Individual<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2056,22 +2257,21 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Verification expiration date<br>
+		 * Property name : Year and month of inspection expiry<br>
 		 * <br>
 		 * EPC : 0xD6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates, in the form of an ASCII code, the month and year in which the verification of<br>
-		 * the meter will expire.<br>
+		 * This property indicates the year and month of inspection expiry of the meter by a six-byte ASCII code.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * YYYYMM<br>
 		 * YYYY (Year), MM (Month)<br>
 		 * <br>
-		 * Data type : unsigned char x 6<br>
+		 * Data type : unsigned char × 6<br>
 		 * <br>
 		 * Data size : 6
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -2080,8 +2280,8 @@ Byte<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetVerificationExpirationDate(byte[] edt) {
-			reqSetProperty(EPC_VERIFICATION_EXPIRATION_DATE, edt);
+		public Setter reqSetYearAndMonthOfInspectionExpiry(byte[] edt) {
+			reqSetProperty(EPC_YEAR_AND_MONTH_OF_INSPECTION_EXPIRY, edt);
 			return this;
 		}
 		/**
@@ -2090,20 +2290,17 @@ Byte<br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of<br>
-		 * 48 pieces of half-hourly data for the preceding 24 hours) is to be<br>
-		 * retrieved.<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00-0x63 ( 0-99)<br>
+		 * 0x00.0x63 (0.99)<br>
 		 * 0: current day<br>
-		 * 1  . 99: previous day . day that precedes the current day by<br>
-		 * 99 days<br>
+		 * 1. 99: previous day. day that precedes the current day by 99 days<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -2195,8 +2392,8 @@ Byte<br>
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -2236,17 +2433,14 @@ Byte<br>
 		 * This property indicates the electric energy meter type.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�FElectric utility company<br>
-		 * 0x31�FSolar power<br>
-		 * 0x32�FFuel cell<br>
-		 * 0x33�FBattery<br>
-		 * 0x34�FEV<br>
-		 * 0x35�FOthers<br>
+		 * 0x30: Electric utility company 0x31: Solar power<br>
+		 * 0x32: Fuel cell 0x33: Battery 0x34: EV<br>
+		 * 0x35: Others<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2265,18 +2459,17 @@ Byte<br>
 		 * EPC : 0xD1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the type of the owner of the meter.<br>
+		 * This property indicates the type of owner of the meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�FNot specified<br>
-		 * 0x31�FElectric utility company<br>
-		 * 0x32�FPrivate sector company<br>
-		 * 0x33�FIndividual<br>
+		 * 0x30: Not specified<br>
+		 * 0x31: Electric utility company 0x32: Other than<br>
+		 * electric utility companies 0x33: Individual<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2290,27 +2483,23 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Configuration information of phases and wires of the systems<br>
+		 * Property name : Phases and wires setting status<br>
 		 * <br>
 		 * EPC : 0xD2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the configuration regarding the phases and wires of the system.<br>
+		 * This property indicates the phases and wires setting status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Single-phase, two-wire system�F<br>
-		 * 0x30<br>
-		 * Single-phase, three-wire system�F<br>
-		 * 0x31<br>
-		 * Three-phase, three-wire system�F<br>
-		 * 0x32<br>
-		 * Three-phase, four-wire system�F<br>
-		 * 0x33<br>
+		 * Single-phase, two-wire system: 0x30<br>
+		 * Single-phase, three-wire system: 0x31<br>
+		 * Three-phase, three-wire system: 0x32<br>
+		 * Three-phase, four-wire system: 0x33<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -2319,8 +2508,8 @@ Byte<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetConfigurationInformationOfPhasesAndWiresOfTheSystems() {
-			reqGetProperty(EPC_CONFIGURATION_INFORMATION_OF_PHASES_AND_WIRES_OF_THE_SYSTEMS);
+		public Getter reqGetPhasesAndWiresSettingStatus() {
+			reqGetProperty(EPC_PHASES_AND_WIRES_SETTING_STATUS);
 			return this;
 		}
 		/**
@@ -2329,16 +2518,15 @@ Byte<br>
 		 * EPC : 0xD3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the composite transformation ratio using a 6-digit decimal notation number (initial value = 1).<br>
+		 * This property indicates the composite transformation ratio using a 6-digit decimal notation number.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000-0x000F423F<br>
-		 * (000000-999999)<br>
+		 * 0x00000000.0x000F423F (000000.999999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -2360,15 +2548,15 @@ Byte<br>
 		 * This property indicates the multiplying factor for the composite transformation ratio.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00�F�~1(initial value)<br>
-		 * 0x01�F�~0.1<br>
-		 * 0x02�F�~0.01<br>
-		 * 0x03�F�~0.001<br>
+		 * 0x00 : ×1<br>
+		 * 0x01 : ×0.1<br>
+		 * 0x02 : ×0.01<br>
+		 * 0x03 : ×0.001<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -2382,54 +2570,49 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Meter type certification number (type approval number in Japan)<br>
+		 * Property name : Meter type certification number<br>
 		 * <br>
 		 * EPC : 0xD5<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * This property indicates the<br>
-		 * type-certified meter number using alphanumeric characters<br>
-		 * (0x20-0x70).<br>
+		 * type-certified meter number using a string of 10 alphanumeric characters<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Type-certified meter (type number):<br>
-		 * 0000-0��������-<br>
-		 * 9999-9��������<br>
-		 * Non-type certified meter: FFFFFFFFFF (initial value)<br>
 		 * <br>
-		 * Data type : unsigned char x 10<br>
+		 * Data type : unsigned char × 10<br>
 		 * <br>
 		 * Data size : 10
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Get - optional<br>
 		 */
-		public Getter reqGetMeterTypeCertificationNumberTypeApprovalNumberInJapan() {
-			reqGetProperty(EPC_METER_TYPE_CERTIFICATION_NUMBER_TYPE_APPROVAL_NUMBER_IN_JAPAN);
+		public Getter reqGetMeterTypeCertificationNumber() {
+			reqGetProperty(EPC_METER_TYPE_CERTIFICATION_NUMBER);
 			return this;
 		}
 		/**
-		 * Property name : Verification expiration date<br>
+		 * Property name : Year and month of inspection expiry<br>
 		 * <br>
 		 * EPC : 0xD6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates, in the form of an ASCII code, the month and year in which the verification of<br>
-		 * the meter will expire.<br>
+		 * This property indicates the year and month of inspection expiry of the meter by a six-byte ASCII code.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * YYYYMM<br>
 		 * YYYY (Year), MM (Month)<br>
 		 * <br>
-		 * Data type : unsigned char x 6<br>
+		 * Data type : unsigned char × 6<br>
 		 * <br>
 		 * Data size : 6
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -2438,8 +2621,35 @@ Byte<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetVerificationExpirationDate() {
-			reqGetProperty(EPC_VERIFICATION_EXPIRATION_DATE);
+		public Getter reqGetYearAndMonthOfInspectionExpiry() {
+			reqGetProperty(EPC_YEAR_AND_MONTH_OF_INSPECTION_EXPIRY);
+			return this;
+		}
+		/**
+		 * Property name : Number of effective digits for cumulative amounts of electric energy<br>
+		 * <br>
+		 * EPC : 0xD7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the number of effective digits for measured cumulative amounts of electric energy.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01.0x08 (1.8)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+byte<br>
+		 * <br>
+		 * Unit : digit<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Getter reqGetNumberOfEffectiveDigitsForCumulativeAmountsOfElectricEnergy() {
+			reqGetProperty(EPC_NUMBER_OF_EFFECTIVE_DIGITS_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -2451,13 +2661,12 @@ Byte<br>
 		 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000-0x05F5E0FF<br>
-		 * (0-99,999,999)<br>
+		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh<br>
 		 * <br>
@@ -2479,20 +2688,17 @@ Byte<br>
 		 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00: 1kWh<br>
-		 * 0x01: 0.1kWh<br>
+		 * 0x00: 1kWh 0x01: 0.1kWh<br>
 		 * 0x02: 0.01kWh<br>
-		 * 0x03: 0.001kWh (Initial value)<br>
-		 * 0x04: 0.0001kWh<br>
-		 * 0x0A: 10kWh<br>
-		 * 0x0B: 100kWh<br>
+		 * 0x03: 0.001kWh<br>
+		 * 0x04: 0.0001kWh 0x0A: 10kWh 0x0B: 100kWh<br>
 		 * 0x0C: 1000kWh<br>
 		 * 0x0D: 10000kWh<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2512,21 +2718,19 @@ Byte<br>
 		 * EPC : 0xE2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of<br>
-		 * measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of<br>
-		 * half-hourly data for the preceding<br>
-		 * 24 hours.<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (up to 8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0x0063:<br>
-		 * 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br>
+		 * 0x0000.0x0063:<br>
+		 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
 		 * <br>
 		 * Data type : unsigned short
-+ unsigned long
-x48<br>
++
+unsigned long
+×48<br>
 		 * <br>
 		 * Data size : 194
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh<br>
 		 * <br>
@@ -2540,21 +2744,20 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Measured cumulative amount of electric energy (reverse direction)<br>
+		 * Property name : Measured cumulative amounts of electric energy (reverse direction)<br>
 		 * <br>
 		 * EPC : 0xE3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br>
+		 * This property indicates the measured cumulative amounts of electric energy using an 8-digit decimal notation number.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000-0x05F5E0FF<br>
-		 * (0-99,999,999)<br>
+		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh<br>
 		 * <br>
@@ -2563,8 +2766,8 @@ Byte<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetMeasuredCumulativeAmountOfElectricEnergyReverseDirection() {
-			reqGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
+		public Getter reqGetMeasuredCumulativeAmountsOfElectricEnergyReverseDirection() {
+			reqGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
 			return this;
 		}
 		/**
@@ -2574,24 +2777,19 @@ Byte<br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of<br>
-		 * measured cumulative amounts of<br>
-		 * electric energy (8 digits), which consists of 48 pieces of<br>
-		 * half-hourly data for the preceding<br>
-		 * 24 hours.<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (up to 8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0x0063:<br>
-		 * 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br>
+		 * 0x0000.0x0063:<br>
+		 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
 		 * <br>
 		 * Data type : unsigned short
-�{
-unsigned
++unsigned
 long
-�~48<br>
+×48<br>
 		 * <br>
 		 * Data size : 194
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh<br>
 		 * <br>
@@ -2610,20 +2808,17 @@ Byte<br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of<br>
-		 * 48 pieces of half-hourly data for the preceding 24 hours) is to be<br>
-		 * retrieved.<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00-0x63 ( 0-99)<br>
+		 * 0x00.0x63 (0.99)<br>
 		 * 0: current day<br>
-		 * 1  . 99: previous day . day that precedes the current day by<br>
-		 * 99 days<br>
+		 * 1. 99: previous day. day that precedes the current day by 99 days<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -2637,21 +2832,21 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Measured instantaneous amount of electric energy<br>
+		 * Property name : Measured instantaneous electric energy<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured effective instantaneous amount of electric energy in watts.<br>
+		 * This property indicates the measured effective instantaneous electric energy in watts.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x80000001-0x7FFFFFFD (-2,147,483,647-<br>
+		 * 0x80000001.0x7FFFFFFD (-2,147,483,647.<br>
 		 * 2,147,483,645)<br>
 		 * <br>
 		 * Data type : signed long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -2660,8 +2855,8 @@ Byte<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetMeasuredInstantaneousAmountOfElectricEnergy() {
-			reqGetProperty(EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRIC_ENERGY);
+		public Getter reqGetMeasuredInstantaneousElectricEnergy() {
+			reqGetProperty(EPC_MEASURED_INSTANTANEOUS_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -2675,15 +2870,15 @@ Byte<br>
 		 * two-wire system, 0x7FFE shall be used for the T phase.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x8001-0x7FFD�iR phase�j<br>
-		 * : 0x8001-0x7FFD�iT phase�j<br>
-		 * (-3,276.7-3,276.5): (-3,276.7-3,276.5)<br>
+		 * 0x8001.0x7FFD (R phase)<br>
+		 * : 0x8001.0x7FFD (T phase) (-3,276.7.3,276.5):<br>
+		 * (-3,276.7.3,276.5)<br>
 		 * <br>
 		 * Data type : signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : 0.1
 A<br>
@@ -2705,21 +2900,18 @@ A<br>
 		 * Contents of property :<br>
 		 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a<br>
 		 * single-phase, two-wire system,<br>
-		 * 0xFFFE shall be used for the<br>
-		 * S(N)-T voltage.<br>
+		 * 0xFFFE shall be used for the S(N)-T voltage.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0xFFFD (between R and<br>
-		 * S(N))�F<br>
-		 * 0x0000-0xFFFD (between S(N)<br>
-		 * and T)<br>
-		 * (0-6,553.3) : (0-6,553.3)<br>
+		 * 0x0000.0xFFFD (between R and S(N)):<br>
+		 * 0x0000.0xFFFD (between S(N) and T)<br>
+		 * (0.6,553.3) : (0.6,553.3)<br>
 		 * <br>
 		 * Data type : unsigned short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : 0.1
 V<br>
@@ -2731,6 +2923,85 @@ V<br>
 		 */
 		public Getter reqGetMeasuredInstantaneousVoltages() {
 			reqGetProperty(EPC_MEASURED_INSTANTANEOUS_VOLTAGES);
+			return this;
+		}
+		/**
+		 * Property name : Cumulative amounts of electric energy measured at fixed time (normal direction)<br>
+		 * <br>
+		 * EPC : 0xEA<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the most recent cumulative amount of electric energy (normal direction)<br>
+		 * measured at 30-minute intervals<br>
+		 * held by the meter in the format of<br>
+		 * 4 bytes for date of measurement, 3 bytes for time of measurement, and 4 bytes for cumulative electric energy (normal direction).<br>
+		 * date of measurement<br>
+		 * YYYY:MM:DD<br>
+		 * time of measurement hh:mm:ss<br>
+		 * cumulative electric energy: an<br>
+		 * 8-digit decimal notation number<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 1.4 bytes: date of measurement YYYY:0x0001.0x270F (1.9999) MM:0x01.0x0C(1.12) DD:0x01.0x1F(1.31)<br>
+		 * 5.7 bytes: time of measurement hh:0x00.0x17(0.23) mm:0x00.0x3B(0.59) ss:0x00.0x3B(0.59)<br>
+		 * 8.11 bytes: 0x00000000.0x05F5E0FF (0.99,999,999)<br>
+		 * <br>
+		 * Data type : unsigned char ×4
++
+unsigned char×3
++
+unsigned long
+<br>
+		 * <br>
+		 * Data size : 11 bytes<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Getter reqGetCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeNormalDirection() {
+			reqGetProperty(EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_NORMAL_DIRECTION);
+			return this;
+		}
+		/**
+		 * Property name : Cumulative amounts of electric energy measured at fixed time (reverse direction)<br>
+		 * <br>
+		 * EPC : 0xEB<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the most recent cumulative amount of electric energy (reverse direction) measured at 30-minute intervals held by the meter in the format of 4 bytes for date of measurement, 3<br>
+		 * bytes for time of measurement, and 4 bytes for cumulative electric energy (reverse direction).<br>
+		 * date of measurement<br>
+		 * YYYY:MM:DD<br>
+		 * time of measurement hh:mm:ss<br>
+		 * cumulative electric energy: an<br>
+		 * 8-digit decimal notation number<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 1.4 bytes: date of measurement YYYY:0x0001.0x270F (1.9999) MM:0x01.0x0C(1.12) DD:0x01.0x1F(1.31)<br>
+		 * 5.7 bytes: time of measurement hh:0x00.0x17(0.23) mm:0x00.0x3B(0.59) ss:0x00.0x3B(0.59)<br>
+		 * 8.11 bytes: 0x00000000.0x05F5E0FF (0.99,999,999)<br>
+		 * <br>
+		 * Data type : unsigned char ×4
++
+unsigned char ×3
++
+unsigned long<br>
+		 * <br>
+		 * Data size : 11 bytes<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
+		public Getter reqGetCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeReverseDirection() {
+			reqGetProperty(EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_REVERSE_DIRECTION);
 			return this;
 		}
 	}
@@ -2811,8 +3082,8 @@ V<br>
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -2852,17 +3123,14 @@ V<br>
 		 * This property indicates the electric energy meter type.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�FElectric utility company<br>
-		 * 0x31�FSolar power<br>
-		 * 0x32�FFuel cell<br>
-		 * 0x33�FBattery<br>
-		 * 0x34�FEV<br>
-		 * 0x35�FOthers<br>
+		 * 0x30: Electric utility company 0x31: Solar power<br>
+		 * 0x32: Fuel cell 0x33: Battery 0x34: EV<br>
+		 * 0x35: Others<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2881,18 +3149,17 @@ Byte<br>
 		 * EPC : 0xD1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the type of the owner of the meter.<br>
+		 * This property indicates the type of owner of the meter.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x30�FNot specified<br>
-		 * 0x31�FElectric utility company<br>
-		 * 0x32�FPrivate sector company<br>
-		 * 0x33�FIndividual<br>
+		 * 0x30: Not specified<br>
+		 * 0x31: Electric utility company 0x32: Other than<br>
+		 * electric utility companies 0x33: Individual<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -2906,27 +3173,23 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Configuration information of phases and wires of the systems<br>
+		 * Property name : Phases and wires setting status<br>
 		 * <br>
 		 * EPC : 0xD2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the configuration regarding the phases and wires of the system.<br>
+		 * This property indicates the phases and wires setting status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Single-phase, two-wire system�F<br>
-		 * 0x30<br>
-		 * Single-phase, three-wire system�F<br>
-		 * 0x31<br>
-		 * Three-phase, three-wire system�F<br>
-		 * 0x32<br>
-		 * Three-phase, four-wire system�F<br>
-		 * 0x33<br>
+		 * Single-phase, two-wire system: 0x30<br>
+		 * Single-phase, three-wire system: 0x31<br>
+		 * Three-phase, three-wire system: 0x32<br>
+		 * Three-phase, four-wire system: 0x33<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -2935,8 +3198,8 @@ Byte<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformConfigurationInformationOfPhasesAndWiresOfTheSystems() {
-			reqInformProperty(EPC_CONFIGURATION_INFORMATION_OF_PHASES_AND_WIRES_OF_THE_SYSTEMS);
+		public Informer reqInformPhasesAndWiresSettingStatus() {
+			reqInformProperty(EPC_PHASES_AND_WIRES_SETTING_STATUS);
 			return this;
 		}
 		/**
@@ -2945,16 +3208,15 @@ Byte<br>
 		 * EPC : 0xD3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the composite transformation ratio using a 6-digit decimal notation number (initial value = 1).<br>
+		 * This property indicates the composite transformation ratio using a 6-digit decimal notation number.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000-0x000F423F<br>
-		 * (000000-999999)<br>
+		 * 0x00000000.0x000F423F (000000.999999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -2976,15 +3238,15 @@ Byte<br>
 		 * This property indicates the multiplying factor for the composite transformation ratio.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00�F�~1(initial value)<br>
-		 * 0x01�F�~0.1<br>
-		 * 0x02�F�~0.01<br>
-		 * 0x03�F�~0.001<br>
+		 * 0x00 : ×1<br>
+		 * 0x01 : ×0.1<br>
+		 * 0x02 : ×0.01<br>
+		 * 0x03 : ×0.001<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -2998,54 +3260,49 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Meter type certification number (type approval number in Japan)<br>
+		 * Property name : Meter type certification number<br>
 		 * <br>
 		 * EPC : 0xD5<br>
 		 * <br>
 		 * Contents of property :<br>
 		 * This property indicates the<br>
-		 * type-certified meter number using alphanumeric characters<br>
-		 * (0x20-0x70).<br>
+		 * type-certified meter number using a string of 10 alphanumeric characters<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Type-certified meter (type number):<br>
-		 * 0000-0��������-<br>
-		 * 9999-9��������<br>
-		 * Non-type certified meter: FFFFFFFFFF (initial value)<br>
 		 * <br>
-		 * Data type : unsigned char x 10<br>
+		 * Data type : unsigned char × 10<br>
 		 * <br>
 		 * Data size : 10
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Get - optional<br>
 		 */
-		public Informer reqInformMeterTypeCertificationNumberTypeApprovalNumberInJapan() {
-			reqInformProperty(EPC_METER_TYPE_CERTIFICATION_NUMBER_TYPE_APPROVAL_NUMBER_IN_JAPAN);
+		public Informer reqInformMeterTypeCertificationNumber() {
+			reqInformProperty(EPC_METER_TYPE_CERTIFICATION_NUMBER);
 			return this;
 		}
 		/**
-		 * Property name : Verification expiration date<br>
+		 * Property name : Year and month of inspection expiry<br>
 		 * <br>
 		 * EPC : 0xD6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates, in the form of an ASCII code, the month and year in which the verification of<br>
-		 * the meter will expire.<br>
+		 * This property indicates the year and month of inspection expiry of the meter by a six-byte ASCII code.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * YYYYMM<br>
 		 * YYYY (Year), MM (Month)<br>
 		 * <br>
-		 * Data type : unsigned char x 6<br>
+		 * Data type : unsigned char × 6<br>
 		 * <br>
 		 * Data size : 6
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -3054,8 +3311,35 @@ Byte<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformVerificationExpirationDate() {
-			reqInformProperty(EPC_VERIFICATION_EXPIRATION_DATE);
+		public Informer reqInformYearAndMonthOfInspectionExpiry() {
+			reqInformProperty(EPC_YEAR_AND_MONTH_OF_INSPECTION_EXPIRY);
+			return this;
+		}
+		/**
+		 * Property name : Number of effective digits for cumulative amounts of electric energy<br>
+		 * <br>
+		 * EPC : 0xD7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the number of effective digits for measured cumulative amounts of electric energy.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01.0x08 (1.8)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+byte<br>
+		 * <br>
+		 * Unit : digit<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Informer reqInformNumberOfEffectiveDigitsForCumulativeAmountsOfElectricEnergy() {
+			reqInformProperty(EPC_NUMBER_OF_EFFECTIVE_DIGITS_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -3067,13 +3351,12 @@ Byte<br>
 		 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000-0x05F5E0FF<br>
-		 * (0-99,999,999)<br>
+		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh<br>
 		 * <br>
@@ -3095,20 +3378,17 @@ Byte<br>
 		 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00: 1kWh<br>
-		 * 0x01: 0.1kWh<br>
+		 * 0x00: 1kWh 0x01: 0.1kWh<br>
 		 * 0x02: 0.01kWh<br>
-		 * 0x03: 0.001kWh (Initial value)<br>
-		 * 0x04: 0.0001kWh<br>
-		 * 0x0A: 10kWh<br>
-		 * 0x0B: 100kWh<br>
+		 * 0x03: 0.001kWh<br>
+		 * 0x04: 0.0001kWh 0x0A: 10kWh 0x0B: 100kWh<br>
 		 * 0x0C: 1000kWh<br>
 		 * 0x0D: 10000kWh<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : .<br>
 		 * <br>
@@ -3128,21 +3408,19 @@ Byte<br>
 		 * EPC : 0xE2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of<br>
-		 * measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of<br>
-		 * half-hourly data for the preceding<br>
-		 * 24 hours.<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (up to 8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0x0063:<br>
-		 * 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br>
+		 * 0x0000.0x0063:<br>
+		 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
 		 * <br>
 		 * Data type : unsigned short
-+ unsigned long
-x48<br>
++
+unsigned long
+×48<br>
 		 * <br>
 		 * Data size : 194
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh<br>
 		 * <br>
@@ -3156,21 +3434,20 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Measured cumulative amount of electric energy (reverse direction)<br>
+		 * Property name : Measured cumulative amounts of electric energy (reverse direction)<br>
 		 * <br>
 		 * EPC : 0xE3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured cumulative amount of electric energy using an 8-digit decimal notation number.<br>
+		 * This property indicates the measured cumulative amounts of electric energy using an 8-digit decimal notation number.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000-0x05F5E0FF<br>
-		 * (0-99,999,999)<br>
+		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh<br>
 		 * <br>
@@ -3179,8 +3456,8 @@ Byte<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformMeasuredCumulativeAmountOfElectricEnergyReverseDirection() {
-			reqInformProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
+		public Informer reqInformMeasuredCumulativeAmountsOfElectricEnergyReverseDirection() {
+			reqInformProperty(EPC_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
 			return this;
 		}
 		/**
@@ -3190,24 +3467,19 @@ Byte<br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of<br>
-		 * measured cumulative amounts of<br>
-		 * electric energy (8 digits), which consists of 48 pieces of<br>
-		 * half-hourly data for the preceding<br>
-		 * 24 hours.<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (up to 8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0x0063:<br>
-		 * 0x00000000-0x05F5E0FF (0-99) : (0-99,999,999)<br>
+		 * 0x0000.0x0063:<br>
+		 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
 		 * <br>
 		 * Data type : unsigned short
-�{
-unsigned
++unsigned
 long
-�~48<br>
+×48<br>
 		 * <br>
 		 * Data size : 194
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : kWh<br>
 		 * <br>
@@ -3226,20 +3498,17 @@ Byte<br>
 		 * EPC : 0xE5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of<br>
-		 * 48 pieces of half-hourly data for the preceding 24 hours) is to be<br>
-		 * retrieved.<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00-0x63 ( 0-99)<br>
+		 * 0x00.0x63 (0.99)<br>
 		 * 0: current day<br>
-		 * 1  . 99: previous day . day that precedes the current day by<br>
-		 * 99 days<br>
+		 * 1. 99: previous day. day that precedes the current day by 99 days<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1
-Byte<br>
+byte<br>
 		 * <br>
 		 * Unit : null<br>
 		 * <br>
@@ -3253,21 +3522,21 @@ Byte<br>
 			return this;
 		}
 		/**
-		 * Property name : Measured instantaneous amount of electric energy<br>
+		 * Property name : Measured instantaneous electric energy<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured effective instantaneous amount of electric energy in watts.<br>
+		 * This property indicates the measured effective instantaneous electric energy in watts.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x80000001-0x7FFFFFFD (-2,147,483,647-<br>
+		 * 0x80000001.0x7FFFFFFD (-2,147,483,647.<br>
 		 * 2,147,483,645)<br>
 		 * <br>
 		 * Data type : signed long<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -3276,8 +3545,8 @@ Byte<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformMeasuredInstantaneousAmountOfElectricEnergy() {
-			reqInformProperty(EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRIC_ENERGY);
+		public Informer reqInformMeasuredInstantaneousElectricEnergy() {
+			reqInformProperty(EPC_MEASURED_INSTANTANEOUS_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -3291,15 +3560,15 @@ Byte<br>
 		 * two-wire system, 0x7FFE shall be used for the T phase.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x8001-0x7FFD�iR phase�j<br>
-		 * : 0x8001-0x7FFD�iT phase�j<br>
-		 * (-3,276.7-3,276.5): (-3,276.7-3,276.5)<br>
+		 * 0x8001.0x7FFD (R phase)<br>
+		 * : 0x8001.0x7FFD (T phase) (-3,276.7.3,276.5):<br>
+		 * (-3,276.7.3,276.5)<br>
 		 * <br>
 		 * Data type : signed short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : 0.1
 A<br>
@@ -3321,21 +3590,18 @@ A<br>
 		 * Contents of property :<br>
 		 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a<br>
 		 * single-phase, two-wire system,<br>
-		 * 0xFFFE shall be used for the<br>
-		 * S(N)-T voltage.<br>
+		 * 0xFFFE shall be used for the S(N)-T voltage.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0xFFFD (between R and<br>
-		 * S(N))�F<br>
-		 * 0x0000-0xFFFD (between S(N)<br>
-		 * and T)<br>
-		 * (0-6,553.3) : (0-6,553.3)<br>
+		 * 0x0000.0xFFFD (between R and S(N)):<br>
+		 * 0x0000.0xFFFD (between S(N) and T)<br>
+		 * (0.6,553.3) : (0.6,553.3)<br>
 		 * <br>
 		 * Data type : unsigned short
-�~2<br>
+×2<br>
 		 * <br>
 		 * Data size : 4
-Byte<br>
+bytes<br>
 		 * <br>
 		 * Unit : 0.1
 V<br>
@@ -3347,6 +3613,85 @@ V<br>
 		 */
 		public Informer reqInformMeasuredInstantaneousVoltages() {
 			reqInformProperty(EPC_MEASURED_INSTANTANEOUS_VOLTAGES);
+			return this;
+		}
+		/**
+		 * Property name : Cumulative amounts of electric energy measured at fixed time (normal direction)<br>
+		 * <br>
+		 * EPC : 0xEA<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the most recent cumulative amount of electric energy (normal direction)<br>
+		 * measured at 30-minute intervals<br>
+		 * held by the meter in the format of<br>
+		 * 4 bytes for date of measurement, 3 bytes for time of measurement, and 4 bytes for cumulative electric energy (normal direction).<br>
+		 * date of measurement<br>
+		 * YYYY:MM:DD<br>
+		 * time of measurement hh:mm:ss<br>
+		 * cumulative electric energy: an<br>
+		 * 8-digit decimal notation number<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 1.4 bytes: date of measurement YYYY:0x0001.0x270F (1.9999) MM:0x01.0x0C(1.12) DD:0x01.0x1F(1.31)<br>
+		 * 5.7 bytes: time of measurement hh:0x00.0x17(0.23) mm:0x00.0x3B(0.59) ss:0x00.0x3B(0.59)<br>
+		 * 8.11 bytes: 0x00000000.0x05F5E0FF (0.99,999,999)<br>
+		 * <br>
+		 * Data type : unsigned char ×4
++
+unsigned char×3
++
+unsigned long
+<br>
+		 * <br>
+		 * Data size : 11 bytes<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Informer reqInformCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeNormalDirection() {
+			reqInformProperty(EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_NORMAL_DIRECTION);
+			return this;
+		}
+		/**
+		 * Property name : Cumulative amounts of electric energy measured at fixed time (reverse direction)<br>
+		 * <br>
+		 * EPC : 0xEB<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the most recent cumulative amount of electric energy (reverse direction) measured at 30-minute intervals held by the meter in the format of 4 bytes for date of measurement, 3<br>
+		 * bytes for time of measurement, and 4 bytes for cumulative electric energy (reverse direction).<br>
+		 * date of measurement<br>
+		 * YYYY:MM:DD<br>
+		 * time of measurement hh:mm:ss<br>
+		 * cumulative electric energy: an<br>
+		 * 8-digit decimal notation number<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 1.4 bytes: date of measurement YYYY:0x0001.0x270F (1.9999) MM:0x01.0x0C(1.12) DD:0x01.0x1F(1.31)<br>
+		 * 5.7 bytes: time of measurement hh:0x00.0x17(0.23) mm:0x00.0x3B(0.59) ss:0x00.0x3B(0.59)<br>
+		 * 8.11 bytes: 0x00000000.0x05F5E0FF (0.99,999,999)<br>
+		 * <br>
+		 * Data type : unsigned char ×4
++
+unsigned char ×3
++
+unsigned long<br>
+		 * <br>
+		 * Data size : 11 bytes<br>
+		 * <br>
+		 * Unit : null<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
+		public Informer reqInformCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeReverseDirection() {
+			reqInformProperty(EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_REVERSE_DIRECTION);
 			return this;
 		}
 	}
@@ -3373,11 +3718,13 @@ V<br>
 		@Override
 		protected byte[] getManufacturerCode() {return null;}
 		@Override
-		protected byte[] getMeterTypeCertificationNumberTypeApprovalNumberInJapan() {return null;}
+		protected byte[] getNumberOfEffectiveDigitsForCumulativeAmountsOfElectricEnergy() {return null;}
 		@Override
 		protected byte[] getMeasuredCumulativeAmountOfElectricEnergyNormalDirection() {return null;}
 		@Override
 		protected byte[] getUnitForCumulativeAmountsOfElectricEnergyNormalAndReverseDirections() {return null;}
+		@Override
+		protected byte[] getCumulativeAmountsOfElectricEnergyMeasuredAtFixedTimeNormalDirection() {return null;}
 	}
 	
 	public static Setter setG() {

@@ -23,36 +23,38 @@ import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
 import com.sonycsl.echo.node.EchoNode;
 
-public abstract class Battery extends DeviceObject {
+public abstract class ElectricVehicle extends DeviceObject {
 	
-	public static final short ECHO_CLASS_CODE = (short)0x027D;
+	public static final short ECHO_CLASS_CODE = (short)0x027E;
 
-	public static final byte EPC_MINIMUM_MAXIM_UM_CHARGE_ELECTRIC_ENERGY = (byte)0xC8;
-	public static final byte EPC_MINIMUM_MAXIM_UM_DISCHARGE_ELECTRIC_ENERGY = (byte)0xC9;
-	public static final byte EPC_MINIMUM_MAXIM_UM_CHARGE_CURRENT = (byte)0xCA;
-	public static final byte EPC_MINIMUM_MAXIM_UM_DISCHARGE_CURRENT = (byte)0xCB;
-	public static final byte EPC_RATED_ELECTRIC_ENERGY = (byte)0xD0;
-	public static final byte EPC_RATED_CAPACITY = (byte)0xD1;
+	public static final byte EPC_V2H_STORED_ELECTRICITY1 = (byte)0xC0;
+	public static final byte EPC_V2H_STORED_ELECTRICITY2 = (byte)0xC1;
+	public static final byte EPC_V2H_REMAINING_AVAILABLE_CAPACITY1 = (byte)0xC2;
+	public static final byte EPC_V2H_REMAINING_AVAILABLE_CAPACITY2 = (byte)0xC3;
+	public static final byte EPC_V2H_REMAINING_AVAILABLE_CAPACITY3 = (byte)0xC4;
+	public static final byte EPC_RATED_CHARGE_CAPACITY = (byte)0xC5;
+	public static final byte EPC_RATED_DISCHARGE_CAPACITY = (byte)0xC6;
+	public static final byte EPC_CHARGEABLE_DISCHARGE_ABLE_STATUS = (byte)0xC7;
+	public static final byte EPC_MINIMUM_MAXIMUM_CHARGE_ELECTRIC_ENERGY = (byte)0xC8;
+	public static final byte EPC_MINIMUM_MAXIMUM_DISCHARGE_ELECTRIC_ENERGY = (byte)0xC9;
+	public static final byte EPC_MINIMUM_MAXIMUM_CHARGE_CURRENT = (byte)0xCA;
+	public static final byte EPC_MINIMUM_MAXIMUM_DISCHARGE_CURRENT = (byte)0xCB;
+	public static final byte EPC_USED_CAPACITY1 = (byte)0xD0;
+	public static final byte EPC_USED_CAPACITY2 = (byte)0xD1;
 	public static final byte EPC_RATED_VOLTAGE = (byte)0xD2;
 	public static final byte EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARGE_ELECTRIC_ENERGY = (byte)0xD3;
 	public static final byte EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARGE_CURRENT = (byte)0xD4;
 	public static final byte EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARGE_VOLTAGE = (byte)0xD5;
 	public static final byte EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY = (byte)0xD6;
-	public static final byte EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING = (byte)0xD7;
+	public static final byte EPC_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING = (byte)0xD7;
 	public static final byte EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY = (byte)0xD8;
-	public static final byte EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING = (byte)0xD9;
+	public static final byte EPC_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING = (byte)0xD9;
 	public static final byte EPC_OPERATION_MODE_SETTING = (byte)0xDA;
-	public static final byte EPC_SYSTEM_INTERCONN_ECTED_TYPE = (byte)0xDB;
-	public static final byte EPC_MINIMUM_MAXIMUM_CHARGING_POWER_INDEPENDENT = (byte)0xDC;
-	public static final byte EPC_MINIMUM_MAXIM_UM_DISCHARGING_POWER_INDEPENDENT = (byte)0xDD;
-	public static final byte EPC_MINIMUM_MAXIM_UM_CHARGING_CURRENT_INDEPENDENT = (byte)0xDE;
-	public static final byte EPC_MINIMUM_MAXIM_UM_DISCHARGING_CURRENT_INDEPENDENT = (byte)0xDF;
-	public static final byte EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING1 = (byte)0xE0;
-	public static final byte EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING2 = (byte)0xE1;
-	public static final byte EPC_REMAINING_STORED_ELECTRICITY1 = (byte)0xE2;
-	public static final byte EPC_REMAINING_STORED_ELECTRICITY2 = (byte)0xE3;
-	public static final byte EPC_REMAINING_STORED_ELECTRICITY3_BATTERY_STATE_OF_HEALTH = (byte)0xE4;
-	public static final byte EPC_BATTERY_TYPE = (byte)0xE6;
+	public static final byte EPC_SYSTEM_INTERCONNECTE_D_TYPE = (byte)0xDB;
+	public static final byte EPC_REMAINING_BATTERY_CAPACITY1 = (byte)0xE2;
+	public static final byte EPC_REMAINING_BATTERY_CAPACITY2 = (byte)0xE3;
+	public static final byte EPC_REMAINING_BATTERY_CAPACITY3 = (byte)0xE4;
+	public static final byte EPC_DETERIORATION_STATUS = (byte)0xE5;
 	public static final byte EPC_CHARGING_AMOUNT_SETTING1 = (byte)0xE7;
 	public static final byte EPC_DISCHARGING_AMOUNT_SETTING1 = (byte)0xE8;
 	public static final byte EPC_CHARGING_AMOUNT_SETTING2 = (byte)0xE9;
@@ -61,7 +63,6 @@ public abstract class Battery extends DeviceObject {
 	public static final byte EPC_DISCHARGE_ELECTRIC_ENERGY_SETTING = (byte)0xEC;
 	public static final byte EPC_CHARGE_CURRENT_SETTING = (byte)0xED;
 	public static final byte EPC_DISCHARGE_CURRENT_SETTING = (byte)0xEE;
-	public static final byte EPC_RATED_VOLTAGE_INDEPENDENT = (byte)0xEF;
 
 	@Override
 	protected void setupPropertyMaps() {
@@ -70,13 +71,23 @@ public abstract class Battery extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
+		addGetProperty(EPC_V2H_STORED_ELECTRICITY1);
+		addGetProperty(EPC_V2H_STORED_ELECTRICITY2);
+		addGetProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY1);
+		addGetProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY2);
+		addGetProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY3);
+		addGetProperty(EPC_RATED_CHARGE_CAPACITY);
+		addGetProperty(EPC_RATED_DISCHARGE_CAPACITY);
+		addStatusChangeAnnouncementProperty(EPC_CHARGEABLE_DISCHARGE_ABLE_STATUS);
+		addGetProperty(EPC_CHARGEABLE_DISCHARGE_ABLE_STATUS);
+		addGetProperty(EPC_USED_CAPACITY1);
+		addGetProperty(EPC_USED_CAPACITY2);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_MODE_SETTING);
 		addSetProperty(EPC_OPERATION_MODE_SETTING);
 		addGetProperty(EPC_OPERATION_MODE_SETTING);
-		addGetProperty(EPC_REMAINING_STORED_ELECTRICITY1);
-		addGetProperty(EPC_REMAINING_STORED_ELECTRICITY2);
-		addGetProperty(EPC_REMAINING_STORED_ELECTRICITY3_BATTERY_STATE_OF_HEALTH);
-		addGetProperty(EPC_BATTERY_TYPE);
+		addGetProperty(EPC_REMAINING_BATTERY_CAPACITY1);
+		addGetProperty(EPC_REMAINING_BATTERY_CAPACITY2);
+		addGetProperty(EPC_REMAINING_BATTERY_CAPACITY3);
 	}
 	
 	@Override
@@ -93,13 +104,14 @@ public abstract class Battery extends DeviceObject {
 	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON=0x30, OFF=0x31<br>
+	 * ON = 0x30, OFF = 0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 byte<br>
+	 * Data size : 1
+byte<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -118,13 +130,14 @@ public abstract class Battery extends DeviceObject {
 	 * This property indicates the ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON=0x30, OFF=0x31<br>
+	 * ON = 0x30, OFF = 0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 byte<br>
+	 * Data size : 1
+byte<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -135,224 +148,12 @@ public abstract class Battery extends DeviceObject {
 	 */
 	protected abstract byte[] getOperationStatus();
 	/**
-	 * Property name : Minimum/maxim um charge electric energy<br>
+	 * Property name : V2H stored electricity 1<br>
 	 * <br>
-	 * EPC : 0xC8<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the minimum/maximum electric energy for charging in W.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
-	 * Minimum : maximum<br>
-	 * <br>
-	 * Data type : unsigned long
-×2<br>
-	 * <br>
-	 * Data size : 8 bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMinimumMaximUmChargeElectricEnergy() {return null;}
-	/**
-	 * Property name : Minimum/maxim um charge electric energy<br>
-	 * <br>
-	 * EPC : 0xC8<br>
+	 * EPC : 0xC0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the minimum/maximum electric energy for charging in W.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
-	 * Minimum : maximum<br>
-	 * <br>
-	 * Data type : unsigned long
-×2<br>
-	 * <br>
-	 * Data size : 8 bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMinimumMaximUmChargeElectricEnergy(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Minimum/maxim um discharge electric energy<br>
-	 * <br>
-	 * EPC : 0xC9<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the minimum/maximum electric energy for discharging in W.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
-	 * Minimum : maximum<br>
-	 * <br>
-	 * Data type : unsigned long
-×2<br>
-	 * <br>
-	 * Data size : 8 bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMinimumMaximUmDischargeElectricEnergy() {return null;}
-	/**
-	 * Property name : Minimum/maxim um discharge electric energy<br>
-	 * <br>
-	 * EPC : 0xC9<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the minimum/maximum electric energy for discharging in W.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
-	 * Minimum : maximum<br>
-	 * <br>
-	 * Data type : unsigned long
-×2<br>
-	 * <br>
-	 * Data size : 8 bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMinimumMaximUmDischargeElectricEnergy(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Minimum/maxim um charge current<br>
-	 * <br>
-	 * EPC : 0xCA<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the minimum/maximum current for charging in increments of 0.1A.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0x7FFE(0.3,276.6A)<br>
-	 * Minimum : maximum<br>
-	 * <br>
-	 * Data type : unsigned short
-×2<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
-	 * Unit : 0.1A<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMinimumMaximUmChargeCurrent() {return null;}
-	/**
-	 * Property name : Minimum/maxim um charge current<br>
-	 * <br>
-	 * EPC : 0xCA<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the minimum/maximum current for charging in increments of 0.1A.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0x7FFE(0.3,276.6A)<br>
-	 * Minimum : maximum<br>
-	 * <br>
-	 * Data type : unsigned short
-×2<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
-	 * Unit : 0.1A<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMinimumMaximUmChargeCurrent(byte[] edt) {
-		if(edt == null || !(edt.length == 4)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Minimum/maxim um discharge current<br>
-	 * <br>
-	 * EPC : 0xCB<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the minimum/maximum current for discharging in increments of 0.1A.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0x7FFE(0.3,276.6A)<br>
-	 * Minimum : maximum<br>
-	 * <br>
-	 * Data type : unsigned short
-×2<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
-	 * Unit : 0.1A<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMinimumMaximUmDischargeCurrent() {return null;}
-	/**
-	 * Property name : Minimum/maxim um discharge current<br>
-	 * <br>
-	 * EPC : 0xCB<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the minimum/maximum current for discharging in increments of 0.1A.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0x7FFE(0.3,276.6A)<br>
-	 * Minimum : maximum<br>
-	 * <br>
-	 * Data type : unsigned short
-×2<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
-	 * Unit : 0.1A<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMinimumMaximUmDischargeCurrent(byte[] edt) {
-		if(edt == null || !(edt.length == 4)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Rated electric energy<br>
-	 * <br>
-	 * EPC : 0xD0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the rated electric energy of the battery in Wh.<br>
+	 * This property indicates the V2H stored electricity of the vehicle battery in Wh.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x00000000.0x3B9AC9FF (0.<br>
@@ -360,23 +161,24 @@ public abstract class Battery extends DeviceObject {
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 4 bytes<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
 	 * Unit : Wh<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Get - mandatory<br>
 	 */
-	protected byte[] getRatedElectricEnergy() {return null;}
+	protected abstract byte[] getV2hStoredElectricity1();
 	/**
-	 * Property name : Rated electric energy<br>
+	 * Property name : V2H stored electricity 1<br>
 	 * <br>
-	 * EPC : 0xD0<br>
+	 * EPC : 0xC0<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the rated electric energy of the battery in Wh.<br>
+	 * This property indicates the V2H stored electricity of the vehicle battery in Wh.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x00000000.0x3B9AC9FF (0.<br>
@@ -384,65 +186,704 @@ public abstract class Battery extends DeviceObject {
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 4 bytes<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
 	 * Unit : Wh<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Get - mandatory<br>
 	 */
-	protected boolean isValidRatedElectricEnergy(byte[] edt) {
+	protected boolean isValidV2hStoredElectricity1(byte[] edt) {
 		if(edt == null || !(edt.length == 4)) return false;
 		return true;
 	}
 	/**
-	 * Property name : Rated capacity<br>
+	 * Property name : V2H stored electricity 2<br>
 	 * <br>
-	 * EPC : 0xD1<br>
+	 * EPC : 0xC1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the rated charging capacity of the battery in increments of 0.1Ah.<br>
+	 * This property indicates the V2H stored electricity of the vehicle battery in increments of 0.1Ah.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 bytes<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : 0.1Ah<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Get - mandatory<br>
 	 */
-	protected byte[] getRatedCapacity() {return null;}
+	protected abstract byte[] getV2hStoredElectricity2();
 	/**
-	 * Property name : Rated capacity<br>
+	 * Property name : V2H stored electricity 2<br>
 	 * <br>
-	 * EPC : 0xD1<br>
+	 * EPC : 0xC1<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the rated charging capacity of the battery in increments of 0.1Ah.<br>
+	 * This property indicates the V2H stored electricity of the vehicle battery in increments of 0.1Ah.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 bytes<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : 0.1Ah<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidV2hStoredElectricity2(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
+		return true;
+	}
+	/**
+	 * Property name : V2H remaining available capacity 1<br>
+	 * <br>
+	 * EPC : 0xC2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the V2H remaining available capacity of the vehicle battery in Wh.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x3B9AC9FF (0.<br>
+	 * 999,999,999Wh)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * <br>
+	 * Data size : 4
+bytes<br>
+	 * <br>
+	 * Unit : Wh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected abstract byte[] getV2hRemainingAvailableCapacity1();
+	/**
+	 * Property name : V2H remaining available capacity 1<br>
+	 * <br>
+	 * EPC : 0xC2<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the V2H remaining available capacity of the vehicle battery in Wh.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x3B9AC9FF (0.<br>
+	 * 999,999,999Wh)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * <br>
+	 * Data size : 4
+bytes<br>
+	 * <br>
+	 * Unit : Wh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidV2hRemainingAvailableCapacity1(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) return false;
+		return true;
+	}
+	/**
+	 * Property name : V2H remaining available capacity 2<br>
+	 * <br>
+	 * EPC : 0xC3<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the V2H remaining available capacity of the vehicle battery in increments of 0.1Ah.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * <br>
+	 * Data size : 2
+bytes<br>
+	 * <br>
+	 * Unit : 0.1Ah<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected abstract byte[] getV2hRemainingAvailableCapacity2();
+	/**
+	 * Property name : V2H remaining available capacity 2<br>
+	 * <br>
+	 * EPC : 0xC3<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the V2H remaining available capacity of the vehicle battery in increments of 0.1Ah.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * <br>
+	 * Data size : 2
+bytes<br>
+	 * <br>
+	 * Unit : 0.1Ah<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidV2hRemainingAvailableCapacity2(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) return false;
+		return true;
+	}
+	/**
+	 * Property name : V2H remaining available capacity 3<br>
+	 * <br>
+	 * EPC : 0xC4<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the V2H remaining available capacity (%) of the vehicle battery.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64 (0.100%)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+byte<br>
+	 * <br>
+	 * Unit : %<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected abstract byte[] getV2hRemainingAvailableCapacity3();
+	/**
+	 * Property name : V2H remaining available capacity 3<br>
+	 * <br>
+	 * EPC : 0xC4<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the V2H remaining available capacity (%) of the vehicle battery.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64 (0.100%)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+byte<br>
+	 * <br>
+	 * Unit : %<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidV2hRemainingAvailableCapacity3(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
+	}
+	/**
+	 * Property name : Rated charge capacity<br>
+	 * <br>
+	 * EPC : 0xC5<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the rated charge capacity in W.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * <br>
+	 * Data size : 4
+bytes<br>
+	 * <br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected abstract byte[] getRatedChargeCapacity();
+	/**
+	 * Property name : Rated charge capacity<br>
+	 * <br>
+	 * EPC : 0xC5<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the rated charge capacity in W.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * <br>
+	 * Data size : 4
+bytes<br>
+	 * <br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidRatedChargeCapacity(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) return false;
+		return true;
+	}
+	/**
+	 * Property name : Rated discharge capacity<br>
+	 * <br>
+	 * EPC : 0xC6<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the rated discharge capacity in W.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * <br>
+	 * Data size : 4
+bytes<br>
+	 * <br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected abstract byte[] getRatedDischargeCapacity();
+	/**
+	 * Property name : Rated discharge capacity<br>
+	 * <br>
+	 * EPC : 0xC6<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the rated discharge capacity in W.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * <br>
+	 * Data size : 4
+bytes<br>
+	 * <br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidRatedDischargeCapacity(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) return false;
+		return true;
+	}
+	/**
+	 * Property name : Chargeable/discharge able status<br>
+	 * <br>
+	 * EPC : 0xC7<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates whether the electric vehicle charge/discharge system is chargeable or not.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Not chargeable nor dischargeable   = 0x40 Chargeable but not dischargeable = 0x41 Not chargeable but dischargeable = 0x42 Chargeable and dischargeable = 0x43<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+byte<br>
+	 * <br>
+	 * Unit : —<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getChargeableDischargeAbleStatus();
+	/**
+	 * Property name : Chargeable/discharge able status<br>
+	 * <br>
+	 * EPC : 0xC7<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates whether the electric vehicle charge/discharge system is chargeable or not.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Not chargeable nor dischargeable   = 0x40 Chargeable but not dischargeable = 0x41 Not chargeable but dischargeable = 0x42 Chargeable and dischargeable = 0x43<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+byte<br>
+	 * <br>
+	 * Unit : —<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidChargeableDischargeAbleStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) return false;
+		return true;
+	}
+	/**
+	 * Property name : Minimum/maximum charge electric energy<br>
+	 * <br>
+	 * EPC : 0xC8<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the minimum/maximum charge electric energy to the charge-discharge system of the electric vehicle in W.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
+	 * Minimum charge electric energy: Maximum charge electric energy<br>
+	 * <br>
+	 * Data type : unsigned long
+×2<br>
+	 * <br>
+	 * Data size : 8
+bytes<br>
+	 * <br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidRatedCapacity(byte[] edt) {
+	protected byte[] getMinimumMaximumChargeElectricEnergy() {return null;}
+	/**
+	 * Property name : Minimum/maximum charge electric energy<br>
+	 * <br>
+	 * EPC : 0xC8<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the minimum/maximum charge electric energy to the charge-discharge system of the electric vehicle in W.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
+	 * Minimum charge electric energy: Maximum charge electric energy<br>
+	 * <br>
+	 * Data type : unsigned long
+×2<br>
+	 * <br>
+	 * Data size : 8
+bytes<br>
+	 * <br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidMinimumMaximumChargeElectricEnergy(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) return false;
+		return true;
+	}
+	/**
+	 * Property name : Minimum/maximum discharge electric energy<br>
+	 * <br>
+	 * EPC : 0xC9<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the minimum/maximum discharge electric energy from the electric vehicle charge/discharge system in W.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
+	 * Minimum discharge electric energy: Maximum discharge electric energy<br>
+	 * <br>
+	 * Data type : unsigned long
+×2<br>
+	 * <br>
+	 * Data size : 8
+bytes<br>
+	 * <br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected byte[] getMinimumMaximumDischargeElectricEnergy() {return null;}
+	/**
+	 * Property name : Minimum/maximum discharge electric energy<br>
+	 * <br>
+	 * EPC : 0xC9<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the minimum/maximum discharge electric energy from the electric vehicle charge/discharge system in W.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
+	 * Minimum discharge electric energy: Maximum discharge electric energy<br>
+	 * <br>
+	 * Data type : unsigned long
+×2<br>
+	 * <br>
+	 * Data size : 8
+bytes<br>
+	 * <br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidMinimumMaximumDischargeElectricEnergy(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) return false;
+		return true;
+	}
+	/**
+	 * Property name : Minimum/maximum charge current<br>
+	 * <br>
+	 * EPC : 0xCA<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the minimum/maximum charge current from the electric vehicle charge/discharge system in increments of 0.1A.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0x7FFE (0.3,276.6A)<br>
+	 * Minimum charge current: Maximum charge current<br>
+	 * <br>
+	 * Data type : unsigned short
+×2<br>
+	 * <br>
+	 * Data size : 4
+bytes<br>
+	 * <br>
+	 * Unit : 0.1A<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected byte[] getMinimumMaximumChargeCurrent() {return null;}
+	/**
+	 * Property name : Minimum/maximum charge current<br>
+	 * <br>
+	 * EPC : 0xCA<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the minimum/maximum charge current from the electric vehicle charge/discharge system in increments of 0.1A.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0x7FFE (0.3,276.6A)<br>
+	 * Minimum charge current: Maximum charge current<br>
+	 * <br>
+	 * Data type : unsigned short
+×2<br>
+	 * <br>
+	 * Data size : 4
+bytes<br>
+	 * <br>
+	 * Unit : 0.1A<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidMinimumMaximumChargeCurrent(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) return false;
+		return true;
+	}
+	/**
+	 * Property name : Minimum/maximum discharge current<br>
+	 * <br>
+	 * EPC : 0xCB<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the  minimum/maximum discharge current from the electric vehicle charge/discharge system in increments of 0.1A.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0x7FFE (0.3,276.6A)<br>
+	 * Minimum discharge current: Maximum discharge current<br>
+	 * <br>
+	 * Data type : unsigned short
+×2<br>
+	 * <br>
+	 * Data size : 4
+bytes<br>
+	 * <br>
+	 * Unit : 0.1A<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected byte[] getMinimumMaximumDischargeCurrent() {return null;}
+	/**
+	 * Property name : Minimum/maximum discharge current<br>
+	 * <br>
+	 * EPC : 0xCB<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the  minimum/maximum discharge current from the electric vehicle charge/discharge system in increments of 0.1A.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0x7FFE (0.3,276.6A)<br>
+	 * Minimum discharge current: Maximum discharge current<br>
+	 * <br>
+	 * Data type : unsigned short
+×2<br>
+	 * <br>
+	 * Data size : 4
+bytes<br>
+	 * <br>
+	 * Unit : 0.1A<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidMinimumMaximumDischargeCurrent(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) return false;
+		return true;
+	}
+	/**
+	 * Property name : Used capacity 1<br>
+	 * <br>
+	 * EPC : 0xD0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the capacity of the vehicle battery in Wh.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x3B9AC9FF (0.<br>
+	 * 999,999,999Wh)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * <br>
+	 * Data size : 4
+bytes<br>
+	 * <br>
+	 * Unit : Wh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected abstract byte[] getUsedCapacity1();
+	/**
+	 * Property name : Used capacity 1<br>
+	 * <br>
+	 * EPC : 0xD0<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the capacity of the vehicle battery in Wh.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x3B9AC9FF (0.<br>
+	 * 999,999,999Wh)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * <br>
+	 * Data size : 4
+bytes<br>
+	 * <br>
+	 * Unit : Wh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidUsedCapacity1(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) return false;
+		return true;
+	}
+	/**
+	 * Property name : Used capacity 2<br>
+	 * <br>
+	 * EPC : 0xD1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the capacity of the vehicle battery in increments of 0.1Ah.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * <br>
+	 * Data size : 2
+bytes<br>
+	 * <br>
+	 * Unit : 0.1Ah<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected abstract byte[] getUsedCapacity2();
+	/**
+	 * Property name : Used capacity 2<br>
+	 * <br>
+	 * EPC : 0xD1<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property indicates the capacity of the vehicle battery in increments of 0.1Ah.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * <br>
+	 * Data size : 2
+bytes<br>
+	 * <br>
+	 * Unit : 0.1Ah<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - undefined<br>
+	 * Get - mandatory<br>
+	 */
+	protected boolean isValidUsedCapacity2(byte[] edt) {
 		if(edt == null || !(edt.length == 2)) return false;
 		return true;
 	}
@@ -452,14 +893,15 @@ public abstract class Battery extends DeviceObject {
 	 * EPC : 0xD2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the rated voltage of the battery in volts.<br>
+	 * This property indicates the rated voltage of the vehicle battery in V.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x0000.0x7FFE (0.32,766V)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 bytes<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : V<br>
 	 * <br>
@@ -475,14 +917,15 @@ public abstract class Battery extends DeviceObject {
 	 * EPC : 0xD2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the rated voltage of the battery in volts.<br>
+	 * This property indicates the rated voltage of the vehicle battery in V.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x0000.0x7FFE (0.32,766V)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 bytes<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : V<br>
 	 * <br>
@@ -501,16 +944,17 @@ public abstract class Battery extends DeviceObject {
 	 * EPC : 0xD3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured instantaneous charge/discharge electric energy in watts (positive/negative).<br>
+	 * This property indicates the instantaneous charge/discharge electric energy in ±W.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00000001.0x3B9AC9FF (1.<br>
-	 * 999,999,999W) : during charging (positive value), 0xFFFFFFFF. 0xC4653601 (-1. -999,999,999W) :<br>
-	 * during discharging (negative value)<br>
+	 * 0x00000001. 0x3B9AC9FF (1.<br>
+	 * 999,999,999W): charge (positive), 0xFFFFFFFF.0xC4653601 (-1.<br>
+	 * -999,999,999W): discharge (negative)<br>
 	 * <br>
 	 * Data type : signed long<br>
 	 * <br>
-	 * Data size : 4 bytes<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -526,16 +970,17 @@ public abstract class Battery extends DeviceObject {
 	 * EPC : 0xD3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured instantaneous charge/discharge electric energy in watts (positive/negative).<br>
+	 * This property indicates the instantaneous charge/discharge electric energy in ±W.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00000001.0x3B9AC9FF (1.<br>
-	 * 999,999,999W) : during charging (positive value), 0xFFFFFFFF. 0xC4653601 (-1. -999,999,999W) :<br>
-	 * during discharging (negative value)<br>
+	 * 0x00000001. 0x3B9AC9FF (1.<br>
+	 * 999,999,999W): charge (positive), 0xFFFFFFFF.0xC4653601 (-1.<br>
+	 * -999,999,999W): discharge (negative)<br>
 	 * <br>
 	 * Data type : signed long<br>
 	 * <br>
-	 * Data size : 4 bytes<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -554,16 +999,18 @@ public abstract class Battery extends DeviceObject {
 	 * EPC : 0xD4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured instantaneous charge/discharge current in increments of 0.1A (positive/negative).<br>
+	 * This property indicates the instantaneous charge/discharge current in increments of<br>
+	 * ±0.1A.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0001.0x7FFE (0.1.3,276.6A) :<br>
-	 * during charging (positive value), 0xFFFF-0x8001 (-0.1. -3,276.7A) :<br>
-	 * during discharging (negative value)<br>
+	 * 0x0001.0x7FFE (0.1.3,276.6A): charge<br>
+	 * (positive), 0xFFFF .0x8001 (-0.1.-<br>
+	 * -3,276.7A): discharge (negative)<br>
 	 * <br>
 	 * Data type : signed short<br>
 	 * <br>
-	 * Data size : 2 bytes<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : 0.1A<br>
 	 * <br>
@@ -579,16 +1026,18 @@ public abstract class Battery extends DeviceObject {
 	 * EPC : 0xD4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured instantaneous charge/discharge current in increments of 0.1A (positive/negative).<br>
+	 * This property indicates the instantaneous charge/discharge current in increments of<br>
+	 * ±0.1A.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0001.0x7FFE (0.1.3,276.6A) :<br>
-	 * during charging (positive value), 0xFFFF-0x8001 (-0.1. -3,276.7A) :<br>
-	 * during discharging (negative value)<br>
+	 * 0x0001.0x7FFE (0.1.3,276.6A): charge<br>
+	 * (positive), 0xFFFF .0x8001 (-0.1.-<br>
+	 * -3,276.7A): discharge (negative)<br>
 	 * <br>
 	 * Data type : signed short<br>
 	 * <br>
-	 * Data size : 2 bytes<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : 0.1A<br>
 	 * <br>
@@ -607,16 +1056,16 @@ public abstract class Battery extends DeviceObject {
 	 * EPC : 0xD5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured instantaneous charge/discharge voltage in volts (positive/negative).<br>
+	 * This property indicates the instantaneous charge/discharge voltage in ±V.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0001.0x7FFE (1.32,766V) : during<br>
-	 * charging (positive value), 0xFFFF. 0x8001 (-1. -32,767V) : during<br>
-	 * discharging (negative value)<br>
+	 * 0x0001.0x7FFE (1.32,766V): charge (positive), 0xFFFF.0x8001 (-1.- -32,767V):<br>
+	 * discharge (negative)<br>
 	 * <br>
 	 * Data type : signed short<br>
 	 * <br>
-	 * Data size : 2 bytes<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : V<br>
 	 * <br>
@@ -632,16 +1081,16 @@ public abstract class Battery extends DeviceObject {
 	 * EPC : 0xD5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured instantaneous charge/discharge voltage in volts (positive/negative).<br>
+	 * This property indicates the instantaneous charge/discharge voltage in ±V.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0001.0x7FFE (1.32,766V) : during<br>
-	 * charging (positive value), 0xFFFF. 0x8001 (-1. -32,767V) : during<br>
-	 * discharging (negative value)<br>
+	 * 0x0001.0x7FFE (1.32,766V): charge (positive), 0xFFFF.0x8001 (-1.- -32,767V):<br>
+	 * discharge (negative)<br>
 	 * <br>
 	 * Data type : signed short<br>
 	 * <br>
-	 * Data size : 2 bytes<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : V<br>
 	 * <br>
@@ -660,18 +1109,19 @@ public abstract class Battery extends DeviceObject {
 	 * EPC : 0xD6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured cumulative discharge electric energy in increments of 0.001kWh.<br>
+	 * This property indicates the cumulative discharge electric energy in increments of 0.001kWh.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x00000000.0x3B9AC9FF (0.<br>
-	 * 999,999.999kWh)<br>
+	 * 999,999.999kWh<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 4 bytes<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
-	 * Unit : 0.001k
-Wh<br>
+	 * Unit : 0.001
+kWh<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -685,18 +1135,19 @@ Wh<br>
 	 * EPC : 0xD6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured cumulative discharge electric energy in increments of 0.001kWh.<br>
+	 * This property indicates the cumulative discharge electric energy in increments of 0.001kWh.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x00000000.0x3B9AC9FF (0.<br>
-	 * 999,999.999kWh)<br>
+	 * 999,999.999kWh<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 4 bytes<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
-	 * Unit : 0.001k
-Wh<br>
+	 * Unit : 0.001
+kWh<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -708,51 +1159,77 @@ Wh<br>
 		return true;
 	}
 	/**
-	 * Property name : “Measured cumulative discharge electric energy” reset setting<br>
+	 * Property name : Cumulative discharge electric energy reset setting<br>
 	 * <br>
 	 * EPC : 0xD7<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Resets “Measured cumulative discharge electric energy” to zero.<br>
+	 * This property resets the cumulative discharge electric energy.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reset=0x00<br>
+	 * Reset = 0x00<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 byte<br>
+	 * Data size : 1
+byte<br>
 	 * <br>
 	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
-	 * Get - undefined<br>
+	 * Get - optional<br>
 	 */
-	protected boolean setMeasuredCumulativeDischargeElectricEnergyResetSetting(byte[] edt) {return false;}
+	protected boolean setCumulativeDischargeElectricEnergyResetSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : “Measured cumulative discharge electric energy” reset setting<br>
+	 * Property name : Cumulative discharge electric energy reset setting<br>
 	 * <br>
 	 * EPC : 0xD7<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Resets “Measured cumulative discharge electric energy” to zero.<br>
+	 * This property resets the cumulative discharge electric energy.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reset=0x00<br>
+	 * Reset = 0x00<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 byte<br>
+	 * Data size : 1
+byte<br>
 	 * <br>
 	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
-	 * Get - undefined<br>
+	 * Get - optional<br>
 	 */
-	protected boolean isValidMeasuredCumulativeDischargeElectricEnergyResetSetting(byte[] edt) {
+	protected byte[] getCumulativeDischargeElectricEnergyResetSetting() {return null;}
+	/**
+	 * Property name : Cumulative discharge electric energy reset setting<br>
+	 * <br>
+	 * EPC : 0xD7<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property resets the cumulative discharge electric energy.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reset = 0x00<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+byte<br>
+	 * <br>
+	 * Unit : —<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidCumulativeDischargeElectricEnergyResetSetting(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
@@ -762,18 +1239,19 @@ Wh<br>
 	 * EPC : 0xD8<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured cumulative charge electric energy in increments of 0.001kWh.<br>
+	 * This property indicates the cumulative charge electric energy in increments of 0.001kWh.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x3B9AC9FF (0.<br>
-	 * 999,999.999kWh)<br>
+	 * 0x00000000 . 0x3B9AC9FF (0.<br>
+	 * 999,999.999kWh<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 4 bytes<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
-	 * Unit : 0.001k
-Wh<br>
+	 * Unit : 0.001
+kWh<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -787,18 +1265,19 @@ Wh<br>
 	 * EPC : 0xD8<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the measured cumulative charge electric energy in increments of 0.001kWh.<br>
+	 * This property indicates the cumulative charge electric energy in increments of 0.001kWh.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x3B9AC9FF (0.<br>
-	 * 999,999.999kWh)<br>
+	 * 0x00000000 . 0x3B9AC9FF (0.<br>
+	 * 999,999.999kWh<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 4 bytes<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
-	 * Unit : 0.001k
-Wh<br>
+	 * Unit : 0.001
+kWh<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -810,51 +1289,77 @@ Wh<br>
 		return true;
 	}
 	/**
-	 * Property name : “Measured cumulative charge electric energy” reset setting<br>
+	 * Property name : Cumulative charge electric energy reset setting<br>
 	 * <br>
 	 * EPC : 0xD9<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Resets “Measured cumulative charge electric energy” to zero.<br>
+	 * This property resets the cumulative charge electricity energy.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reset=0x00<br>
+	 * Reset = 0x00<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 byte<br>
+	 * Data size : 1
+byte<br>
 	 * <br>
 	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
-	 * Get - undefined<br>
+	 * Get - optional<br>
 	 */
-	protected boolean setMeasuredCumulativeChargeElectricEnergyResetSetting(byte[] edt) {return false;}
+	protected boolean setCumulativeChargeElectricEnergyResetSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : “Measured cumulative charge electric energy” reset setting<br>
+	 * Property name : Cumulative charge electric energy reset setting<br>
 	 * <br>
 	 * EPC : 0xD9<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Resets “Measured cumulative charge electric energy” to zero.<br>
+	 * This property resets the cumulative charge electricity energy.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reset=0x00<br>
+	 * Reset = 0x00<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 byte<br>
+	 * Data size : 1
+byte<br>
 	 * <br>
 	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
-	 * Get - undefined<br>
+	 * Get - optional<br>
 	 */
-	protected boolean isValidMeasuredCumulativeChargeElectricEnergyResetSetting(byte[] edt) {
+	protected byte[] getCumulativeChargeElectricEnergyResetSetting() {return null;}
+	/**
+	 * Property name : Cumulative charge electric energy reset setting<br>
+	 * <br>
+	 * EPC : 0xD9<br>
+	 * <br>
+	 * Contents of property :<br>
+	 * This property resets the cumulative charge electricity energy.<br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reset = 0x00<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * <br>
+	 * Data size : 1
+byte<br>
+	 * <br>
+	 * Unit : —<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - undefined<br>
+	 * Set - optional<br>
+	 * Get - optional<br>
+	 */
+	protected boolean isValidCumulativeChargeElectricEnergyResetSetting(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
@@ -864,14 +1369,15 @@ Wh<br>
 	 * EPC : 0xDA<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Sets the battery to one of the following operation modes: “Rapid charging,” “Charging,” “Discharging,” “Standby,” “Test” or “Others.”<br>
+	 * This property sets the operation mode to Rapid charging, Charging, Discharging, Standby, Test, or Other.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Rapid charging=0x41, Charging=0x42, Discharging=0x43, Standby=0x44, Test=0x45, Others=0x40<br>
+	 * Rapid charging = 0x41, Charging = 0x42, Discharging = 0x43, Standby = 0x44, Test=0x45, Other = 0x40<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 byte<br>
+	 * Data size : 1
+byte<br>
 	 * <br>
 	 * Unit : —<br>
 	 * <br>
@@ -889,14 +1395,15 @@ Wh<br>
 	 * EPC : 0xDA<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Sets the battery to one of the following operation modes: “Rapid charging,” “Charging,” “Discharging,” “Standby,” “Test” or “Others.”<br>
+	 * This property sets the operation mode to Rapid charging, Charging, Discharging, Standby, Test, or Other.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Rapid charging=0x41, Charging=0x42, Discharging=0x43, Standby=0x44, Test=0x45, Others=0x40<br>
+	 * Rapid charging = 0x41, Charging = 0x42, Discharging = 0x43, Standby = 0x44, Test=0x45, Other = 0x40<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 byte<br>
+	 * Data size : 1
+byte<br>
 	 * <br>
 	 * Unit : —<br>
 	 * <br>
@@ -914,14 +1421,15 @@ Wh<br>
 	 * EPC : 0xDA<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Sets the battery to one of the following operation modes: “Rapid charging,” “Charging,” “Discharging,” “Standby,” “Test” or “Others.”<br>
+	 * This property sets the operation mode to Rapid charging, Charging, Discharging, Standby, Test, or Other.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Rapid charging=0x41, Charging=0x42, Discharging=0x43, Standby=0x44, Test=0x45, Others=0x40<br>
+	 * Rapid charging = 0x41, Charging = 0x42, Discharging = 0x43, Standby = 0x44, Test=0x45, Other = 0x40<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 byte<br>
+	 * Data size : 1
+byte<br>
 	 * <br>
 	 * Unit : —<br>
 	 * <br>
@@ -937,19 +1445,22 @@ Wh<br>
 		return true;
 	}
 	/**
-	 * Property name : System-interconn ected type<br>
+	 * Property name : System-interconnecte d type<br>
 	 * <br>
 	 * EPC : 0xDB<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the status of connection with the current system (system interconnection status).<br>
+	 * This property indicates the system interconnection status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * System interconnection (reverse power flow acceptable) = 0x00, Independent type = 0x01, System-interconnected type (reverse power flow not acceptable) =0x02<br>
+	 * System interconnection(reverse power flow acceptable) = 0x00<br>
+	 * Independent type = 0x01<br>
+	 * System interconnection(reverse power flow not acceptable) = 0x02<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 byte<br>
+	 * Data size : 1
+byte<br>
 	 * <br>
 	 * Unit : —<br>
 	 * <br>
@@ -958,21 +1469,24 @@ Wh<br>
 	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getSystemInterconnEctedType() {return null;}
+	protected byte[] getSystemInterconnecteDType() {return null;}
 	/**
-	 * Property name : System-interconn ected type<br>
+	 * Property name : System-interconnecte d type<br>
 	 * <br>
 	 * EPC : 0xDB<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the status of connection with the current system (system interconnection status).<br>
+	 * This property indicates the system interconnection status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * System interconnection (reverse power flow acceptable) = 0x00, Independent type = 0x01, System-interconnected type (reverse power flow not acceptable) =0x02<br>
+	 * System interconnection(reverse power flow acceptable) = 0x00<br>
+	 * Independent type = 0x01<br>
+	 * System interconnection(reverse power flow not acceptable) = 0x02<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 byte<br>
+	 * Data size : 1
+byte<br>
 	 * <br>
 	 * Unit : —<br>
 	 * <br>
@@ -981,387 +1495,17 @@ Wh<br>
 	 * Set - undefined<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidSystemInterconnEctedType(byte[] edt) {
+	protected boolean isValidSystemInterconnecteDType(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
 	/**
-	 * Property name : Minimum/maximum charging power (Independent)<br>
-	 * <br>
-	 * EPC : 0xDC<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the minimum and maximum values of charging power battery in watts in the dependent status.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000000–0x3B9AC9FF (0–999,999,999W)<br>
-	 * Minimum charging power:Maximum charging power<br>
-	 * <br>
-	 * Data type : unsigned long
-×2<br>
-	 * <br>
-	 * Data size : 8 bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMinimumMaximumChargingPowerIndependent() {return null;}
-	/**
-	 * Property name : Minimum/maximum charging power (Independent)<br>
-	 * <br>
-	 * EPC : 0xDC<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the minimum and maximum values of charging power battery in watts in the dependent status.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000000–0x3B9AC9FF (0–999,999,999W)<br>
-	 * Minimum charging power:Maximum charging power<br>
-	 * <br>
-	 * Data type : unsigned long
-×2<br>
-	 * <br>
-	 * Data size : 8 bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMinimumMaximumChargingPowerIndependent(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : ￼
-Minimum/maxim um discharging power (Independent)<br>
-	 * <br>
-	 * EPC : 0xDD<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the minimum and maximum values of discharging power from the battery in the independent status in watts.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000000–0x3B9AC9FF (0–999,999,999W)<br>
-	 * Minimum discharging power: Maximum discharging power<br>
-	 * <br>
-	 * Data type : unsigned long
-×2<br>
-	 * <br>
-	 * Data size : 8 bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMinimumMaximUmDischargingPowerIndependent() {return null;}
-	/**
-	 * Property name : ￼
-Minimum/maxim um discharging power (Independent)<br>
-	 * <br>
-	 * EPC : 0xDD<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the minimum and maximum values of discharging power from the battery in the independent status in watts.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000000–0x3B9AC9FF (0–999,999,999W)<br>
-	 * Minimum discharging power: Maximum discharging power<br>
-	 * <br>
-	 * Data type : unsigned long
-×2<br>
-	 * <br>
-	 * Data size : 8 bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMinimumMaximUmDischargingPowerIndependent(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Minimum/maxim um charging current (Independent)<br>
-	 * <br>
-	 * EPC : 0xDE<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the minimum and maximum values of a charging current to the battery in the independent status in units of 0.1A.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000–0x7FFE(0–3,276.6A)<br>
-	 * Minimum charging current:Maximum charging current<br>
-	 * <br>
-	 * Data type : unsigned short
-×2<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
-	 * Unit : 0.1A<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMinimumMaximUmChargingCurrentIndependent() {return null;}
-	/**
-	 * Property name : Minimum/maxim um charging current (Independent)<br>
-	 * <br>
-	 * EPC : 0xDE<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the minimum and maximum values of a charging current to the battery in the independent status in units of 0.1A.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000–0x7FFE(0–3,276.6A)<br>
-	 * Minimum charging current:Maximum charging current<br>
-	 * <br>
-	 * Data type : unsigned short
-×2<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
-	 * Unit : 0.1A<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMinimumMaximUmChargingCurrentIndependent(byte[] edt) {
-		if(edt == null || !(edt.length == 4)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Minimum/maxim um discharging current (Independent)<br>
-	 * <br>
-	 * EPC : 0xDF<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the minimum and maximum values of a discharging current in the independent status in units of 0.1A.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000–0x7FFE(0–3,276.6A)<br>
-	 * Minimum discharging current: Maximum discharging current<br>
-	 * <br>
-	 * Data type : unsigned short
-×2<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
-	 * Unit : 0.1A<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMinimumMaximUmDischargingCurrentIndependent() {return null;}
-	/**
-	 * Property name : Minimum/maxim um discharging current (Independent)<br>
-	 * <br>
-	 * EPC : 0xDF<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the minimum and maximum values of a discharging current in the independent status in units of 0.1A.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000–0x7FFE(0–3,276.6A)<br>
-	 * Minimum discharging current: Maximum discharging current<br>
-	 * <br>
-	 * Data type : unsigned short
-×2<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
-	 * Unit : 0.1A<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMinimumMaximUmDischargingCurrentIndependent(byte[] edt) {
-		if(edt == null || !(edt.length == 4)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Charging/dischar ging amount setting 1<br>
-	 * <br>
-	 * EPC : 0xE0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000001.0x3B9AC9FF (1.<br>
-	 * 999,999,999Wh):during charging (positive value), 0xFFFFFFFF. 0xC4653601 (-1.<br>
-	 * -999,999,999Wh):during discharging (negative value)<br>
-	 * <br>
-	 * Data type : signed long<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
-	 * Unit : Wh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setChargingDischarGingAmountSetting1(byte[] edt) {return false;}
-	/**
-	 * Property name : Charging/dischar ging amount setting 1<br>
-	 * <br>
-	 * EPC : 0xE0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000001.0x3B9AC9FF (1.<br>
-	 * 999,999,999Wh):during charging (positive value), 0xFFFFFFFF. 0xC4653601 (-1.<br>
-	 * -999,999,999Wh):during discharging (negative value)<br>
-	 * <br>
-	 * Data type : signed long<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
-	 * Unit : Wh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getChargingDischarGingAmountSetting1() {return null;}
-	/**
-	 * Property name : Charging/dischar ging amount setting 1<br>
-	 * <br>
-	 * EPC : 0xE0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000001.0x3B9AC9FF (1.<br>
-	 * 999,999,999Wh):during charging (positive value), 0xFFFFFFFF. 0xC4653601 (-1.<br>
-	 * -999,999,999Wh):during discharging (negative value)<br>
-	 * <br>
-	 * Data type : signed long<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
-	 * Unit : Wh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidChargingDischarGingAmountSetting1(byte[] edt) {
-		if(edt == null || !(edt.length == 4)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Charging/dischar ging amount setting 2<br>
-	 * <br>
-	 * EPC : 0xE1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0001.0x7FFD (0.1.3,276.6Ah):<br>
-	 * during charging (positive value), 0xFFFF.0x8001 (-0.1.<br>
-	 * -3,276.7Ah) :during discharging (negative value)<br>
-	 * <br>
-	 * Data type : signed short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : 0.1Ah<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setChargingDischarGingAmountSetting2(byte[] edt) {return false;}
-	/**
-	 * Property name : Charging/dischar ging amount setting 2<br>
-	 * <br>
-	 * EPC : 0xE1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0001.0x7FFD (0.1.3,276.6Ah):<br>
-	 * during charging (positive value), 0xFFFF.0x8001 (-0.1.<br>
-	 * -3,276.7Ah) :during discharging (negative value)<br>
-	 * <br>
-	 * Data type : signed short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : 0.1Ah<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getChargingDischarGingAmountSetting2() {return null;}
-	/**
-	 * Property name : Charging/dischar ging amount setting 2<br>
-	 * <br>
-	 * EPC : 0xE1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0001.0x7FFD (0.1.3,276.6Ah):<br>
-	 * during charging (positive value), 0xFFFF.0x8001 (-0.1.<br>
-	 * -3,276.7Ah) :during discharging (negative value)<br>
-	 * <br>
-	 * Data type : signed short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : 0.1Ah<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidChargingDischarGingAmountSetting2(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Remaining stored electricity 1<br>
+	 * Property name : Remaining battery capacity1<br>
 	 * <br>
 	 * EPC : 0xE2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the remaining stored electric energy in Wh.<br>
+	 * This property indicates the remaining capacity of the vehicle battery in Wh.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x00000000.0x3B9AC9FF (0.<br>
@@ -1369,7 +1513,8 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 4 bytes<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
 	 * Unit : Wh<br>
 	 * <br>
@@ -1378,14 +1523,14 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * Set - undefined<br>
 	 * Get - mandatory<br>
 	 */
-	protected abstract byte[] getRemainingStoredElectricity1();
+	protected abstract byte[] getRemainingBatteryCapacity1();
 	/**
-	 * Property name : Remaining stored electricity 1<br>
+	 * Property name : Remaining battery capacity1<br>
 	 * <br>
 	 * EPC : 0xE2<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the remaining stored electric energy in Wh.<br>
+	 * This property indicates the remaining capacity of the vehicle battery in Wh.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x00000000.0x3B9AC9FF (0.<br>
@@ -1393,7 +1538,8 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 4 bytes<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
 	 * Unit : Wh<br>
 	 * <br>
@@ -1402,24 +1548,25 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * Set - undefined<br>
 	 * Get - mandatory<br>
 	 */
-	protected boolean isValidRemainingStoredElectricity1(byte[] edt) {
+	protected boolean isValidRemainingBatteryCapacity1(byte[] edt) {
 		if(edt == null || !(edt.length == 4)) return false;
 		return true;
 	}
 	/**
-	 * Property name : Remaining stored electricity 2<br>
+	 * Property name : Remaining battery capacity2<br>
 	 * <br>
 	 * EPC : 0xE3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the remaining capacity in increments of 0.1Ah.<br>
+	 * This property indicates the remaining capacity of the vehicle battery in increments of 0.1Ah.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 bytes<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : 0.1Ah<br>
 	 * <br>
@@ -1428,21 +1575,22 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * Set - undefined<br>
 	 * Get - mandatory<br>
 	 */
-	protected abstract byte[] getRemainingStoredElectricity2();
+	protected abstract byte[] getRemainingBatteryCapacity2();
 	/**
-	 * Property name : Remaining stored electricity 2<br>
+	 * Property name : Remaining battery capacity2<br>
 	 * <br>
 	 * EPC : 0xE3<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the remaining capacity in increments of 0.1Ah.<br>
+	 * This property indicates the remaining capacity of the vehicle battery in increments of 0.1Ah.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 bytes<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : 0.1Ah<br>
 	 * <br>
@@ -1451,109 +1599,109 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * Set - undefined<br>
 	 * Get - mandatory<br>
 	 */
-	protected boolean isValidRemainingStoredElectricity2(byte[] edt) {
+	protected boolean isValidRemainingBatteryCapacity2(byte[] edt) {
 		if(edt == null || !(edt.length == 2)) return false;
 		return true;
 	}
 	/**
-	 * Property name : Remaining stored electricity 3 Battery state of health<br>
+	 * Property name : Remaining battery capacity3<br>
 	 * <br>
 	 * EPC : 0xE4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the charging rate of the battery in %.<br>
-	 * (0.100%)<br>
+	 * This property indicates the remaining battery capacity of the vehicle battery in %.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * This property indicates the battery state of health in %.<br>
-	 * (0.100%)<br>
+	 * 0x00.0x64 (0.100%)<br>
 	 * <br>
-	 * Data type : unsigned char unsigned char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 byte 1 byte<br>
+	 * Data size : 1
+byte<br>
 	 * <br>
-	 * Unit : % %<br>
+	 * Unit : %<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
 	 * Get - mandatory<br>
 	 */
-	protected abstract byte[] getRemainingStoredElectricity3BatteryStateOfHealth();
+	protected abstract byte[] getRemainingBatteryCapacity3();
 	/**
-	 * Property name : Remaining stored electricity 3 Battery state of health<br>
+	 * Property name : Remaining battery capacity3<br>
 	 * <br>
 	 * EPC : 0xE4<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the charging rate of the battery in %.<br>
-	 * (0.100%)<br>
+	 * This property indicates the remaining battery capacity of the vehicle battery in %.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * This property indicates the battery state of health in %.<br>
-	 * (0.100%)<br>
+	 * 0x00.0x64 (0.100%)<br>
 	 * <br>
-	 * Data type : unsigned char unsigned char<br>
+	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 byte 1 byte<br>
+	 * Data size : 1
+byte<br>
 	 * <br>
-	 * Unit : % %<br>
+	 * Unit : %<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
 	 * Get - mandatory<br>
 	 */
-	protected boolean isValidRemainingStoredElectricity3BatteryStateOfHealth(byte[] edt) {
+	protected boolean isValidRemainingBatteryCapacity3(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
 	/**
-	 * Property name : Battery type<br>
+	 * Property name : Deterioration status<br>
 	 * <br>
-	 * EPC : 0xE6<br>
+	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the battery type.<br>
+	 * This property indicates the deterioration status (soundness) of the vehicle battery in %.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Type=0x00.0xFF<br>
+	 * 0x00.0x64 (0.100%)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 byte<br>
+	 * Data size : 1
+byte<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : %<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
-	 * Get - mandatory<br>
+	 * Get - optional<br>
 	 */
-	protected abstract byte[] getBatteryType();
+	protected byte[] getDeteriorationStatus() {return null;}
 	/**
-	 * Property name : Battery type<br>
+	 * Property name : Deterioration status<br>
 	 * <br>
-	 * EPC : 0xE6<br>
+	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This property indicates the battery type.<br>
+	 * This property indicates the deterioration status (soundness) of the vehicle battery in %.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Type=0x00.0xFF<br>
+	 * 0x00.0x64 (0.100%)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 byte<br>
+	 * Data size : 1
+byte<br>
 	 * <br>
-	 * Unit : null<br>
+	 * Unit : %<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - undefined<br>
-	 * Get - mandatory<br>
+	 * Get - optional<br>
 	 */
-	protected boolean isValidBatteryType(byte[] edt) {
+	protected boolean isValidDeteriorationStatus(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
 		return true;
 	}
@@ -1571,7 +1719,8 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 4 bytes<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
 	 * Unit : Wh<br>
 	 * <br>
@@ -1595,7 +1744,8 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 4 bytes<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
 	 * Unit : Wh<br>
 	 * <br>
@@ -1619,7 +1769,8 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 4 bytes<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
 	 * Unit : Wh<br>
 	 * <br>
@@ -1646,7 +1797,8 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 4 bytes<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
 	 * Unit : Wh<br>
 	 * <br>
@@ -1670,7 +1822,8 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 4 bytes<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
 	 * Unit : Wh<br>
 	 * <br>
@@ -1694,7 +1847,8 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 4 bytes<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
 	 * Unit : Wh<br>
 	 * <br>
@@ -1716,11 +1870,12 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * This property specifies the charging capacity in increments of 0.1Ah.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000-0x7FFE (0-3,276.6Ah)<br>
+	 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 bytes<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : 0.1Ah<br>
 	 * <br>
@@ -1739,11 +1894,12 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * This property specifies the charging capacity in increments of 0.1Ah.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000-0x7FFE (0-3,276.6Ah)<br>
+	 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 bytes<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : 0.1Ah<br>
 	 * <br>
@@ -1762,11 +1918,12 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * This property specifies the charging capacity in increments of 0.1Ah.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000-0x7FFE (0-3,276.6Ah)<br>
+	 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 bytes<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : 0.1Ah<br>
 	 * <br>
@@ -1792,7 +1949,8 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 bytes<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : 0.1Ah<br>
 	 * <br>
@@ -1815,7 +1973,8 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 bytes<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : 0.1Ah<br>
 	 * <br>
@@ -1838,7 +1997,8 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 bytes<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : 0.1Ah<br>
 	 * <br>
@@ -1860,12 +2020,12 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * This property specifies the charge electric energy in W.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x3B9AC9FF (0.<br>
-	 * 999,999,999Wh)<br>
+	 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 4 bytes<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -1884,12 +2044,12 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * This property specifies the charge electric energy in W.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x3B9AC9FF (0.<br>
-	 * 999,999,999Wh)<br>
+	 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 4 bytes<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -1908,12 +2068,12 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * This property specifies the charge electric energy in W.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x3B9AC9FF (0.<br>
-	 * 999,999,999Wh)<br>
+	 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 4 bytes<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -1935,12 +2095,12 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * This property specifies the discharge electric energy in W.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x3B9AC9FF (0.<br>
-	 * 999,999,999Wh)<br>
+	 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 4 bytes<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -1959,12 +2119,12 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * This property specifies the discharge electric energy in W.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x3B9AC9FF (0.<br>
-	 * 999,999,999Wh)<br>
+	 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 4 bytes<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -1983,12 +2143,12 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * This property specifies the discharge electric energy in W.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x3B9AC9FF (0.<br>
-	 * 999,999,999Wh)<br>
+	 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
 	 * <br>
 	 * Data type : unsigned long<br>
 	 * <br>
-	 * Data size : 4 bytes<br>
+	 * Data size : 4
+bytes<br>
 	 * <br>
 	 * Unit : W<br>
 	 * <br>
@@ -2014,7 +2174,8 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 bytes<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : 0.1A<br>
 	 * <br>
@@ -2037,7 +2198,8 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 bytes<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : 0.1A<br>
 	 * <br>
@@ -2060,7 +2222,8 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 bytes<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : 0.1A<br>
 	 * <br>
@@ -2082,11 +2245,12 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * This property specifies the discharge current in increments of 0.1A.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.6,553.3A)<br>
+	 * 0x0000.0xFFFD(0.6,553.3A)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 bytes<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : 0.1A<br>
 	 * <br>
@@ -2105,11 +2269,12 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * This property specifies the discharge current in increments of 0.1A.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.6,553.3A)<br>
+	 * 0x0000.0xFFFD(0.6,553.3A)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 bytes<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : 0.1A<br>
 	 * <br>
@@ -2128,11 +2293,12 @@ Minimum/maxim um discharging power (Independent)<br>
 	 * This property specifies the discharge current in increments of 0.1A.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.6,553.3A)<br>
+	 * 0x0000.0xFFFD(0.6,553.3A)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
 	 * <br>
-	 * Data size : 2 bytes<br>
+	 * Data size : 2
+bytes<br>
 	 * <br>
 	 * Unit : 0.1A<br>
 	 * <br>
@@ -2145,55 +2311,6 @@ Minimum/maxim um discharging power (Independent)<br>
 		if(edt == null || !(edt.length == 2)) return false;
 		return true;
 	}
-	/**
-	 * Property name : Rated voltage (Independent)<br>
-	 * <br>
-	 * EPC : 0xEF<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the rated voltage of a battery in the independent status in volts.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000–0x7FFE (0–32,766V)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : V<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getRatedVoltageIndependent() {return null;}
-	/**
-	 * Property name : Rated voltage (Independent)<br>
-	 * <br>
-	 * EPC : 0xEF<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the rated voltage of a battery in the independent status in volts.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000–0x7FFE (0–32,766V)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : V<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidRatedVoltageIndependent(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
-		return true;
-	}
 
 	@Override
 	protected synchronized boolean setProperty(EchoProperty property) {
@@ -2201,11 +2318,9 @@ Minimum/maxim um discharging power (Independent)<br>
 		if(success) return success;
 
 		switch(property.epc) {
-		case EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING : return setMeasuredCumulativeDischargeElectricEnergyResetSetting(property.edt);
-		case EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING : return setMeasuredCumulativeChargeElectricEnergyResetSetting(property.edt);
+		case EPC_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING : return setCumulativeDischargeElectricEnergyResetSetting(property.edt);
+		case EPC_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING : return setCumulativeChargeElectricEnergyResetSetting(property.edt);
 		case EPC_OPERATION_MODE_SETTING : return setOperationModeSetting(property.edt);
-		case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING1 : return setChargingDischarGingAmountSetting1(property.edt);
-		case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING2 : return setChargingDischarGingAmountSetting2(property.edt);
 		case EPC_CHARGING_AMOUNT_SETTING1 : return setChargingAmountSetting1(property.edt);
 		case EPC_DISCHARGING_AMOUNT_SETTING1 : return setDischargingAmountSetting1(property.edt);
 		case EPC_CHARGING_AMOUNT_SETTING2 : return setChargingAmountSetting2(property.edt);
@@ -2224,30 +2339,34 @@ Minimum/maxim um discharging power (Independent)<br>
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_MINIMUM_MAXIM_UM_CHARGE_ELECTRIC_ENERGY : return getMinimumMaximUmChargeElectricEnergy();
-		case EPC_MINIMUM_MAXIM_UM_DISCHARGE_ELECTRIC_ENERGY : return getMinimumMaximUmDischargeElectricEnergy();
-		case EPC_MINIMUM_MAXIM_UM_CHARGE_CURRENT : return getMinimumMaximUmChargeCurrent();
-		case EPC_MINIMUM_MAXIM_UM_DISCHARGE_CURRENT : return getMinimumMaximUmDischargeCurrent();
-		case EPC_RATED_ELECTRIC_ENERGY : return getRatedElectricEnergy();
-		case EPC_RATED_CAPACITY : return getRatedCapacity();
+		case EPC_V2H_STORED_ELECTRICITY1 : return getV2hStoredElectricity1();
+		case EPC_V2H_STORED_ELECTRICITY2 : return getV2hStoredElectricity2();
+		case EPC_V2H_REMAINING_AVAILABLE_CAPACITY1 : return getV2hRemainingAvailableCapacity1();
+		case EPC_V2H_REMAINING_AVAILABLE_CAPACITY2 : return getV2hRemainingAvailableCapacity2();
+		case EPC_V2H_REMAINING_AVAILABLE_CAPACITY3 : return getV2hRemainingAvailableCapacity3();
+		case EPC_RATED_CHARGE_CAPACITY : return getRatedChargeCapacity();
+		case EPC_RATED_DISCHARGE_CAPACITY : return getRatedDischargeCapacity();
+		case EPC_CHARGEABLE_DISCHARGE_ABLE_STATUS : return getChargeableDischargeAbleStatus();
+		case EPC_MINIMUM_MAXIMUM_CHARGE_ELECTRIC_ENERGY : return getMinimumMaximumChargeElectricEnergy();
+		case EPC_MINIMUM_MAXIMUM_DISCHARGE_ELECTRIC_ENERGY : return getMinimumMaximumDischargeElectricEnergy();
+		case EPC_MINIMUM_MAXIMUM_CHARGE_CURRENT : return getMinimumMaximumChargeCurrent();
+		case EPC_MINIMUM_MAXIMUM_DISCHARGE_CURRENT : return getMinimumMaximumDischargeCurrent();
+		case EPC_USED_CAPACITY1 : return getUsedCapacity1();
+		case EPC_USED_CAPACITY2 : return getUsedCapacity2();
 		case EPC_RATED_VOLTAGE : return getRatedVoltage();
 		case EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARGE_ELECTRIC_ENERGY : return getMeasuredInstantaneousChargeDischargeElectricEnergy();
 		case EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARGE_CURRENT : return getMeasuredInstantaneousChargeDischargeCurrent();
 		case EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARGE_VOLTAGE : return getMeasuredInstantaneousChargeDischargeVoltage();
 		case EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY : return getMeasuredCumulativeDischargeElectricEnergy();
+		case EPC_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING : return getCumulativeDischargeElectricEnergyResetSetting();
 		case EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY : return getMeasuredCumulativeChargeElectricEnergy();
+		case EPC_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING : return getCumulativeChargeElectricEnergyResetSetting();
 		case EPC_OPERATION_MODE_SETTING : return getOperationModeSetting();
-		case EPC_SYSTEM_INTERCONN_ECTED_TYPE : return getSystemInterconnEctedType();
-		case EPC_MINIMUM_MAXIMUM_CHARGING_POWER_INDEPENDENT : return getMinimumMaximumChargingPowerIndependent();
-		case EPC_MINIMUM_MAXIM_UM_DISCHARGING_POWER_INDEPENDENT : return getMinimumMaximUmDischargingPowerIndependent();
-		case EPC_MINIMUM_MAXIM_UM_CHARGING_CURRENT_INDEPENDENT : return getMinimumMaximUmChargingCurrentIndependent();
-		case EPC_MINIMUM_MAXIM_UM_DISCHARGING_CURRENT_INDEPENDENT : return getMinimumMaximUmDischargingCurrentIndependent();
-		case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING1 : return getChargingDischarGingAmountSetting1();
-		case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING2 : return getChargingDischarGingAmountSetting2();
-		case EPC_REMAINING_STORED_ELECTRICITY1 : return getRemainingStoredElectricity1();
-		case EPC_REMAINING_STORED_ELECTRICITY2 : return getRemainingStoredElectricity2();
-		case EPC_REMAINING_STORED_ELECTRICITY3_BATTERY_STATE_OF_HEALTH : return getRemainingStoredElectricity3BatteryStateOfHealth();
-		case EPC_BATTERY_TYPE : return getBatteryType();
+		case EPC_SYSTEM_INTERCONNECTE_D_TYPE : return getSystemInterconnecteDType();
+		case EPC_REMAINING_BATTERY_CAPACITY1 : return getRemainingBatteryCapacity1();
+		case EPC_REMAINING_BATTERY_CAPACITY2 : return getRemainingBatteryCapacity2();
+		case EPC_REMAINING_BATTERY_CAPACITY3 : return getRemainingBatteryCapacity3();
+		case EPC_DETERIORATION_STATUS : return getDeteriorationStatus();
 		case EPC_CHARGING_AMOUNT_SETTING1 : return getChargingAmountSetting1();
 		case EPC_DISCHARGING_AMOUNT_SETTING1 : return getDischargingAmountSetting1();
 		case EPC_CHARGING_AMOUNT_SETTING2 : return getChargingAmountSetting2();
@@ -2256,7 +2375,6 @@ Minimum/maxim um discharging power (Independent)<br>
 		case EPC_DISCHARGE_ELECTRIC_ENERGY_SETTING : return getDischargeElectricEnergySetting();
 		case EPC_CHARGE_CURRENT_SETTING : return getChargeCurrentSetting();
 		case EPC_DISCHARGE_CURRENT_SETTING : return getDischargeCurrentSetting();
-		case EPC_RATED_VOLTAGE_INDEPENDENT : return getRatedVoltageIndependent();
 		default : return null;
 		}
 	}
@@ -2267,32 +2385,34 @@ Minimum/maxim um discharging power (Independent)<br>
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_MINIMUM_MAXIM_UM_CHARGE_ELECTRIC_ENERGY : return isValidMinimumMaximUmChargeElectricEnergy(property.edt);
-		case EPC_MINIMUM_MAXIM_UM_DISCHARGE_ELECTRIC_ENERGY : return isValidMinimumMaximUmDischargeElectricEnergy(property.edt);
-		case EPC_MINIMUM_MAXIM_UM_CHARGE_CURRENT : return isValidMinimumMaximUmChargeCurrent(property.edt);
-		case EPC_MINIMUM_MAXIM_UM_DISCHARGE_CURRENT : return isValidMinimumMaximUmDischargeCurrent(property.edt);
-		case EPC_RATED_ELECTRIC_ENERGY : return isValidRatedElectricEnergy(property.edt);
-		case EPC_RATED_CAPACITY : return isValidRatedCapacity(property.edt);
+		case EPC_V2H_STORED_ELECTRICITY1 : return isValidV2hStoredElectricity1(property.edt);
+		case EPC_V2H_STORED_ELECTRICITY2 : return isValidV2hStoredElectricity2(property.edt);
+		case EPC_V2H_REMAINING_AVAILABLE_CAPACITY1 : return isValidV2hRemainingAvailableCapacity1(property.edt);
+		case EPC_V2H_REMAINING_AVAILABLE_CAPACITY2 : return isValidV2hRemainingAvailableCapacity2(property.edt);
+		case EPC_V2H_REMAINING_AVAILABLE_CAPACITY3 : return isValidV2hRemainingAvailableCapacity3(property.edt);
+		case EPC_RATED_CHARGE_CAPACITY : return isValidRatedChargeCapacity(property.edt);
+		case EPC_RATED_DISCHARGE_CAPACITY : return isValidRatedDischargeCapacity(property.edt);
+		case EPC_CHARGEABLE_DISCHARGE_ABLE_STATUS : return isValidChargeableDischargeAbleStatus(property.edt);
+		case EPC_MINIMUM_MAXIMUM_CHARGE_ELECTRIC_ENERGY : return isValidMinimumMaximumChargeElectricEnergy(property.edt);
+		case EPC_MINIMUM_MAXIMUM_DISCHARGE_ELECTRIC_ENERGY : return isValidMinimumMaximumDischargeElectricEnergy(property.edt);
+		case EPC_MINIMUM_MAXIMUM_CHARGE_CURRENT : return isValidMinimumMaximumChargeCurrent(property.edt);
+		case EPC_MINIMUM_MAXIMUM_DISCHARGE_CURRENT : return isValidMinimumMaximumDischargeCurrent(property.edt);
+		case EPC_USED_CAPACITY1 : return isValidUsedCapacity1(property.edt);
+		case EPC_USED_CAPACITY2 : return isValidUsedCapacity2(property.edt);
 		case EPC_RATED_VOLTAGE : return isValidRatedVoltage(property.edt);
 		case EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARGE_ELECTRIC_ENERGY : return isValidMeasuredInstantaneousChargeDischargeElectricEnergy(property.edt);
 		case EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARGE_CURRENT : return isValidMeasuredInstantaneousChargeDischargeCurrent(property.edt);
 		case EPC_MEASURED_INSTANTANEOUS_CHARGE_DISCHARGE_VOLTAGE : return isValidMeasuredInstantaneousChargeDischargeVoltage(property.edt);
 		case EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY : return isValidMeasuredCumulativeDischargeElectricEnergy(property.edt);
-		case EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING : return isValidMeasuredCumulativeDischargeElectricEnergyResetSetting(property.edt);
+		case EPC_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING : return isValidCumulativeDischargeElectricEnergyResetSetting(property.edt);
 		case EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY : return isValidMeasuredCumulativeChargeElectricEnergy(property.edt);
-		case EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING : return isValidMeasuredCumulativeChargeElectricEnergyResetSetting(property.edt);
+		case EPC_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING : return isValidCumulativeChargeElectricEnergyResetSetting(property.edt);
 		case EPC_OPERATION_MODE_SETTING : return isValidOperationModeSetting(property.edt);
-		case EPC_SYSTEM_INTERCONN_ECTED_TYPE : return isValidSystemInterconnEctedType(property.edt);
-		case EPC_MINIMUM_MAXIMUM_CHARGING_POWER_INDEPENDENT : return isValidMinimumMaximumChargingPowerIndependent(property.edt);
-		case EPC_MINIMUM_MAXIM_UM_DISCHARGING_POWER_INDEPENDENT : return isValidMinimumMaximUmDischargingPowerIndependent(property.edt);
-		case EPC_MINIMUM_MAXIM_UM_CHARGING_CURRENT_INDEPENDENT : return isValidMinimumMaximUmChargingCurrentIndependent(property.edt);
-		case EPC_MINIMUM_MAXIM_UM_DISCHARGING_CURRENT_INDEPENDENT : return isValidMinimumMaximUmDischargingCurrentIndependent(property.edt);
-		case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING1 : return isValidChargingDischarGingAmountSetting1(property.edt);
-		case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING2 : return isValidChargingDischarGingAmountSetting2(property.edt);
-		case EPC_REMAINING_STORED_ELECTRICITY1 : return isValidRemainingStoredElectricity1(property.edt);
-		case EPC_REMAINING_STORED_ELECTRICITY2 : return isValidRemainingStoredElectricity2(property.edt);
-		case EPC_REMAINING_STORED_ELECTRICITY3_BATTERY_STATE_OF_HEALTH : return isValidRemainingStoredElectricity3BatteryStateOfHealth(property.edt);
-		case EPC_BATTERY_TYPE : return isValidBatteryType(property.edt);
+		case EPC_SYSTEM_INTERCONNECTE_D_TYPE : return isValidSystemInterconnecteDType(property.edt);
+		case EPC_REMAINING_BATTERY_CAPACITY1 : return isValidRemainingBatteryCapacity1(property.edt);
+		case EPC_REMAINING_BATTERY_CAPACITY2 : return isValidRemainingBatteryCapacity2(property.edt);
+		case EPC_REMAINING_BATTERY_CAPACITY3 : return isValidRemainingBatteryCapacity3(property.edt);
+		case EPC_DETERIORATION_STATUS : return isValidDeteriorationStatus(property.edt);
 		case EPC_CHARGING_AMOUNT_SETTING1 : return isValidChargingAmountSetting1(property.edt);
 		case EPC_DISCHARGING_AMOUNT_SETTING1 : return isValidDischargingAmountSetting1(property.edt);
 		case EPC_CHARGING_AMOUNT_SETTING2 : return isValidChargingAmountSetting2(property.edt);
@@ -2301,7 +2421,6 @@ Minimum/maxim um discharging power (Independent)<br>
 		case EPC_DISCHARGE_ELECTRIC_ENERGY_SETTING : return isValidDischargeElectricEnergySetting(property.edt);
 		case EPC_CHARGE_CURRENT_SETTING : return isValidChargeCurrentSetting(property.edt);
 		case EPC_DISCHARGE_CURRENT_SETTING : return isValidDischargeCurrentSetting(property.edt);
-		case EPC_RATED_VOLTAGE_INDEPENDENT : return isValidRatedVoltageIndependent(property.edt);
 		default : return false;
 		}
 	}
@@ -2349,20 +2468,14 @@ Minimum/maxim um discharging power (Independent)<br>
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING : 
-				onSetMeasuredCumulativeDischargeElectricEnergyResetSetting(eoj, tid, esv, property, success);
+			case EPC_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING : 
+				onSetCumulativeDischargeElectricEnergyResetSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING : 
-				onSetMeasuredCumulativeChargeElectricEnergyResetSetting(eoj, tid, esv, property, success);
+			case EPC_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING : 
+				onSetCumulativeChargeElectricEnergyResetSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_OPERATION_MODE_SETTING : 
 				onSetOperationModeSetting(eoj, tid, esv, property, success);
-				return true;
-			case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING1 : 
-				onSetChargingDischarGingAmountSetting1(eoj, tid, esv, property, success);
-				return true;
-			case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING2 : 
-				onSetChargingDischarGingAmountSetting2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_CHARGING_AMOUNT_SETTING1 : 
 				onSetChargingAmountSetting1(eoj, tid, esv, property, success);
@@ -2400,23 +2513,47 @@ Minimum/maxim um discharging power (Independent)<br>
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_MINIMUM_MAXIM_UM_CHARGE_ELECTRIC_ENERGY : 
-				onGetMinimumMaximUmChargeElectricEnergy(eoj, tid, esv, property, success);
+			case EPC_V2H_STORED_ELECTRICITY1 : 
+				onGetV2hStoredElectricity1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MINIMUM_MAXIM_UM_DISCHARGE_ELECTRIC_ENERGY : 
-				onGetMinimumMaximUmDischargeElectricEnergy(eoj, tid, esv, property, success);
+			case EPC_V2H_STORED_ELECTRICITY2 : 
+				onGetV2hStoredElectricity2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MINIMUM_MAXIM_UM_CHARGE_CURRENT : 
-				onGetMinimumMaximUmChargeCurrent(eoj, tid, esv, property, success);
+			case EPC_V2H_REMAINING_AVAILABLE_CAPACITY1 : 
+				onGetV2hRemainingAvailableCapacity1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MINIMUM_MAXIM_UM_DISCHARGE_CURRENT : 
-				onGetMinimumMaximUmDischargeCurrent(eoj, tid, esv, property, success);
+			case EPC_V2H_REMAINING_AVAILABLE_CAPACITY2 : 
+				onGetV2hRemainingAvailableCapacity2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_RATED_ELECTRIC_ENERGY : 
-				onGetRatedElectricEnergy(eoj, tid, esv, property, success);
+			case EPC_V2H_REMAINING_AVAILABLE_CAPACITY3 : 
+				onGetV2hRemainingAvailableCapacity3(eoj, tid, esv, property, success);
 				return true;
-			case EPC_RATED_CAPACITY : 
-				onGetRatedCapacity(eoj, tid, esv, property, success);
+			case EPC_RATED_CHARGE_CAPACITY : 
+				onGetRatedChargeCapacity(eoj, tid, esv, property, success);
+				return true;
+			case EPC_RATED_DISCHARGE_CAPACITY : 
+				onGetRatedDischargeCapacity(eoj, tid, esv, property, success);
+				return true;
+			case EPC_CHARGEABLE_DISCHARGE_ABLE_STATUS : 
+				onGetChargeableDischargeAbleStatus(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MINIMUM_MAXIMUM_CHARGE_ELECTRIC_ENERGY : 
+				onGetMinimumMaximumChargeElectricEnergy(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MINIMUM_MAXIMUM_DISCHARGE_ELECTRIC_ENERGY : 
+				onGetMinimumMaximumDischargeElectricEnergy(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MINIMUM_MAXIMUM_CHARGE_CURRENT : 
+				onGetMinimumMaximumChargeCurrent(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MINIMUM_MAXIMUM_DISCHARGE_CURRENT : 
+				onGetMinimumMaximumDischargeCurrent(eoj, tid, esv, property, success);
+				return true;
+			case EPC_USED_CAPACITY1 : 
+				onGetUsedCapacity1(eoj, tid, esv, property, success);
+				return true;
+			case EPC_USED_CAPACITY2 : 
+				onGetUsedCapacity2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_RATED_VOLTAGE : 
 				onGetRatedVoltage(eoj, tid, esv, property, success);
@@ -2433,44 +2570,32 @@ Minimum/maxim um discharging power (Independent)<br>
 			case EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY : 
 				onGetMeasuredCumulativeDischargeElectricEnergy(eoj, tid, esv, property, success);
 				return true;
+			case EPC_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING : 
+				onGetCumulativeDischargeElectricEnergyResetSetting(eoj, tid, esv, property, success);
+				return true;
 			case EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY : 
 				onGetMeasuredCumulativeChargeElectricEnergy(eoj, tid, esv, property, success);
+				return true;
+			case EPC_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING : 
+				onGetCumulativeChargeElectricEnergyResetSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_OPERATION_MODE_SETTING : 
 				onGetOperationModeSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_SYSTEM_INTERCONN_ECTED_TYPE : 
-				onGetSystemInterconnEctedType(eoj, tid, esv, property, success);
+			case EPC_SYSTEM_INTERCONNECTE_D_TYPE : 
+				onGetSystemInterconnecteDType(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MINIMUM_MAXIMUM_CHARGING_POWER_INDEPENDENT : 
-				onGetMinimumMaximumChargingPowerIndependent(eoj, tid, esv, property, success);
+			case EPC_REMAINING_BATTERY_CAPACITY1 : 
+				onGetRemainingBatteryCapacity1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MINIMUM_MAXIM_UM_DISCHARGING_POWER_INDEPENDENT : 
-				onGetMinimumMaximUmDischargingPowerIndependent(eoj, tid, esv, property, success);
+			case EPC_REMAINING_BATTERY_CAPACITY2 : 
+				onGetRemainingBatteryCapacity2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MINIMUM_MAXIM_UM_CHARGING_CURRENT_INDEPENDENT : 
-				onGetMinimumMaximUmChargingCurrentIndependent(eoj, tid, esv, property, success);
+			case EPC_REMAINING_BATTERY_CAPACITY3 : 
+				onGetRemainingBatteryCapacity3(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MINIMUM_MAXIM_UM_DISCHARGING_CURRENT_INDEPENDENT : 
-				onGetMinimumMaximUmDischargingCurrentIndependent(eoj, tid, esv, property, success);
-				return true;
-			case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING1 : 
-				onGetChargingDischarGingAmountSetting1(eoj, tid, esv, property, success);
-				return true;
-			case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING2 : 
-				onGetChargingDischarGingAmountSetting2(eoj, tid, esv, property, success);
-				return true;
-			case EPC_REMAINING_STORED_ELECTRICITY1 : 
-				onGetRemainingStoredElectricity1(eoj, tid, esv, property, success);
-				return true;
-			case EPC_REMAINING_STORED_ELECTRICITY2 : 
-				onGetRemainingStoredElectricity2(eoj, tid, esv, property, success);
-				return true;
-			case EPC_REMAINING_STORED_ELECTRICITY3_BATTERY_STATE_OF_HEALTH : 
-				onGetRemainingStoredElectricity3BatteryStateOfHealth(eoj, tid, esv, property, success);
-				return true;
-			case EPC_BATTERY_TYPE : 
-				onGetBatteryType(eoj, tid, esv, property, success);
+			case EPC_DETERIORATION_STATUS : 
+				onGetDeteriorationStatus(eoj, tid, esv, property, success);
 				return true;
 			case EPC_CHARGING_AMOUNT_SETTING1 : 
 				onGetChargingAmountSetting1(eoj, tid, esv, property, success);
@@ -2496,121 +2621,18 @@ Minimum/maxim um discharging power (Independent)<br>
 			case EPC_DISCHARGE_CURRENT_SETTING : 
 				onGetDischargeCurrentSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_RATED_VOLTAGE_INDEPENDENT : 
-				onGetRatedVoltageIndependent(eoj, tid, esv, property, success);
-				return true;
 			default :
 				return false;
 			}
 		}
 		
 		/**
-		 * Property name : Minimum/maxim um charge electric energy<br>
+		 * Property name : V2H stored electricity 1<br>
 		 * <br>
-		 * EPC : 0xC8<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the minimum/maximum electric energy for charging in W.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
-		 * Minimum : maximum<br>
-		 * <br>
-		 * Data type : unsigned long
-×2<br>
-		 * <br>
-		 * Data size : 8 bytes<br>
-		 * <br>
-		 * Unit : W<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMinimumMaximUmChargeElectricEnergy(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Minimum/maxim um discharge electric energy<br>
-		 * <br>
-		 * EPC : 0xC9<br>
+		 * EPC : 0xC0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the minimum/maximum electric energy for discharging in W.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
-		 * Minimum : maximum<br>
-		 * <br>
-		 * Data type : unsigned long
-×2<br>
-		 * <br>
-		 * Data size : 8 bytes<br>
-		 * <br>
-		 * Unit : W<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMinimumMaximUmDischargeElectricEnergy(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Minimum/maxim um charge current<br>
-		 * <br>
-		 * EPC : 0xCA<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the minimum/maximum current for charging in increments of 0.1A.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0x7FFE(0.3,276.6A)<br>
-		 * Minimum : maximum<br>
-		 * <br>
-		 * Data type : unsigned short
-×2<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.1A<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMinimumMaximUmChargeCurrent(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Minimum/maxim um discharge current<br>
-		 * <br>
-		 * EPC : 0xCB<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the minimum/maximum current for discharging in increments of 0.1A.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0x7FFE(0.3,276.6A)<br>
-		 * Minimum : maximum<br>
-		 * <br>
-		 * Data type : unsigned short
-×2<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.1A<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMinimumMaximUmDischargeCurrent(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Rated electric energy<br>
-		 * <br>
-		 * EPC : 0xD0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated electric energy of the battery in Wh.<br>
+		 * This property indicates the V2H stored electricity of the vehicle battery in Wh.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x3B9AC9FF (0.<br>
@@ -2618,53 +2640,356 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : Wh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Get - mandatory<br>
 		 */
-		protected void onGetRatedElectricEnergy(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetV2hStoredElectricity1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Rated capacity<br>
+		 * Property name : V2H stored electricity 2<br>
 		 * <br>
-		 * EPC : 0xD1<br>
+		 * EPC : 0xC1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the rated charging capacity of the battery in increments of 0.1Ah.<br>
+		 * This property indicates the V2H stored electricity of the vehicle battery in increments of 0.1Ah.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1Ah<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		protected void onGetV2hStoredElectricity2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : V2H remaining available capacity 1<br>
+		 * <br>
+		 * EPC : 0xC2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the V2H remaining available capacity of the vehicle battery in Wh.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00000000.0x3B9AC9FF (0.<br>
+		 * 999,999,999Wh)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4
+bytes<br>
+		 * <br>
+		 * Unit : Wh<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		protected void onGetV2hRemainingAvailableCapacity1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : V2H remaining available capacity 2<br>
+		 * <br>
+		 * EPC : 0xC3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the V2H remaining available capacity of the vehicle battery in increments of 0.1Ah.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2
+bytes<br>
+		 * <br>
+		 * Unit : 0.1Ah<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		protected void onGetV2hRemainingAvailableCapacity2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : V2H remaining available capacity 3<br>
+		 * <br>
+		 * EPC : 0xC4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the V2H remaining available capacity (%) of the vehicle battery.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+byte<br>
+		 * <br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		protected void onGetV2hRemainingAvailableCapacity3(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Rated charge capacity<br>
+		 * <br>
+		 * EPC : 0xC5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the rated charge capacity in W.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4
+bytes<br>
+		 * <br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		protected void onGetRatedChargeCapacity(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Rated discharge capacity<br>
+		 * <br>
+		 * EPC : 0xC6<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the rated discharge capacity in W.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4
+bytes<br>
+		 * <br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		protected void onGetRatedDischargeCapacity(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Chargeable/discharge able status<br>
+		 * <br>
+		 * EPC : 0xC7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates whether the electric vehicle charge/discharge system is chargeable or not.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Not chargeable nor dischargeable   = 0x40 Chargeable but not dischargeable = 0x41 Not chargeable but dischargeable = 0x42 Chargeable and dischargeable = 0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+byte<br>
+		 * <br>
+		 * Unit : —<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetChargeableDischargeAbleStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Minimum/maximum charge electric energy<br>
+		 * <br>
+		 * EPC : 0xC8<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the minimum/maximum charge electric energy to the charge-discharge system of the electric vehicle in W.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
+		 * Minimum charge electric energy: Maximum charge electric energy<br>
+		 * <br>
+		 * Data type : unsigned long
+×2<br>
+		 * <br>
+		 * Data size : 8
+bytes<br>
+		 * <br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetRatedCapacity(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetMinimumMaximumChargeElectricEnergy(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Minimum/maximum discharge electric energy<br>
+		 * <br>
+		 * EPC : 0xC9<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the minimum/maximum discharge electric energy from the electric vehicle charge/discharge system in W.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
+		 * Minimum discharge electric energy: Maximum discharge electric energy<br>
+		 * <br>
+		 * Data type : unsigned long
+×2<br>
+		 * <br>
+		 * Data size : 8
+bytes<br>
+		 * <br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
+		protected void onGetMinimumMaximumDischargeElectricEnergy(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Minimum/maximum charge current<br>
+		 * <br>
+		 * EPC : 0xCA<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the minimum/maximum charge current from the electric vehicle charge/discharge system in increments of 0.1A.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0x7FFE (0.3,276.6A)<br>
+		 * Minimum charge current: Maximum charge current<br>
+		 * <br>
+		 * Data type : unsigned short
+×2<br>
+		 * <br>
+		 * Data size : 4
+bytes<br>
+		 * <br>
+		 * Unit : 0.1A<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
+		protected void onGetMinimumMaximumChargeCurrent(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Minimum/maximum discharge current<br>
+		 * <br>
+		 * EPC : 0xCB<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the  minimum/maximum discharge current from the electric vehicle charge/discharge system in increments of 0.1A.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0x7FFE (0.3,276.6A)<br>
+		 * Minimum discharge current: Maximum discharge current<br>
+		 * <br>
+		 * Data type : unsigned short
+×2<br>
+		 * <br>
+		 * Data size : 4
+bytes<br>
+		 * <br>
+		 * Unit : 0.1A<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
+		protected void onGetMinimumMaximumDischargeCurrent(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Used capacity 1<br>
+		 * <br>
+		 * EPC : 0xD0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the capacity of the vehicle battery in Wh.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00000000.0x3B9AC9FF (0.<br>
+		 * 999,999,999Wh)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4
+bytes<br>
+		 * <br>
+		 * Unit : Wh<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		protected void onGetUsedCapacity1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Used capacity 2<br>
+		 * <br>
+		 * EPC : 0xD1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the capacity of the vehicle battery in increments of 0.1Ah.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2
+bytes<br>
+		 * <br>
+		 * Unit : 0.1Ah<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		protected void onGetUsedCapacity2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Rated voltage<br>
 		 * <br>
 		 * EPC : 0xD2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the rated voltage of the battery in volts.<br>
+		 * This property indicates the rated voltage of the vehicle battery in V.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0x7FFE (0.32,766V)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : V<br>
 		 * <br>
@@ -2680,16 +3005,17 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * EPC : 0xD3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured instantaneous charge/discharge electric energy in watts (positive/negative).<br>
+		 * This property indicates the instantaneous charge/discharge electric energy in ±W.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000001.0x3B9AC9FF (1.<br>
-		 * 999,999,999W) : during charging (positive value), 0xFFFFFFFF. 0xC4653601 (-1. -999,999,999W) :<br>
-		 * during discharging (negative value)<br>
+		 * 0x00000001. 0x3B9AC9FF (1.<br>
+		 * 999,999,999W): charge (positive), 0xFFFFFFFF.0xC4653601 (-1.<br>
+		 * -999,999,999W): discharge (negative)<br>
 		 * <br>
 		 * Data type : signed long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -2705,16 +3031,18 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * EPC : 0xD4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured instantaneous charge/discharge current in increments of 0.1A (positive/negative).<br>
+		 * This property indicates the instantaneous charge/discharge current in increments of<br>
+		 * ±0.1A.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0001.0x7FFE (0.1.3,276.6A) :<br>
-		 * during charging (positive value), 0xFFFF-0x8001 (-0.1. -3,276.7A) :<br>
-		 * during discharging (negative value)<br>
+		 * 0x0001.0x7FFE (0.1.3,276.6A): charge<br>
+		 * (positive), 0xFFFF .0x8001 (-0.1.-<br>
+		 * -3,276.7A): discharge (negative)<br>
 		 * <br>
 		 * Data type : signed short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1A<br>
 		 * <br>
@@ -2730,16 +3058,16 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * EPC : 0xD5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured instantaneous charge/discharge voltage in volts (positive/negative).<br>
+		 * This property indicates the instantaneous charge/discharge voltage in ±V.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0001.0x7FFE (1.32,766V) : during<br>
-		 * charging (positive value), 0xFFFF. 0x8001 (-1. -32,767V) : during<br>
-		 * discharging (negative value)<br>
+		 * 0x0001.0x7FFE (1.32,766V): charge (positive), 0xFFFF.0x8001 (-1.- -32,767V):<br>
+		 * discharge (negative)<br>
 		 * <br>
 		 * Data type : signed short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : V<br>
 		 * <br>
@@ -2755,18 +3083,19 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * EPC : 0xD6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured cumulative discharge electric energy in increments of 0.001kWh.<br>
+		 * This property indicates the cumulative discharge electric energy in increments of 0.001kWh.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x3B9AC9FF (0.<br>
-		 * 999,999.999kWh)<br>
+		 * 999,999.999kWh<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
-		 * Unit : 0.001k
-Wh<br>
+		 * Unit : 0.001
+kWh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2775,46 +3104,72 @@ Wh<br>
 		 */
 		protected void onGetMeasuredCumulativeDischargeElectricEnergy(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : “Measured cumulative discharge electric energy” reset setting<br>
+		 * Property name : Cumulative discharge electric energy reset setting<br>
 		 * <br>
 		 * EPC : 0xD7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Resets “Measured cumulative discharge electric energy” to zero.<br>
+		 * This property resets the cumulative discharge electric energy.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reset=0x00<br>
+		 * Reset = 0x00<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Data size : 1
+byte<br>
 		 * <br>
 		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
-		 * Get - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetMeasuredCumulativeDischargeElectricEnergyResetSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetCumulativeDischargeElectricEnergyResetSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Cumulative discharge electric energy reset setting<br>
+		 * <br>
+		 * EPC : 0xD7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property resets the cumulative discharge electric energy.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reset = 0x00<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+byte<br>
+		 * <br>
+		 * Unit : —<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onGetCumulativeDischargeElectricEnergyResetSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Measured cumulative charge electric energy<br>
 		 * <br>
 		 * EPC : 0xD8<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured cumulative charge electric energy in increments of 0.001kWh.<br>
+		 * This property indicates the cumulative charge electric energy in increments of 0.001kWh.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x3B9AC9FF (0.<br>
-		 * 999,999.999kWh)<br>
+		 * 0x00000000 . 0x3B9AC9FF (0.<br>
+		 * 999,999.999kWh<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
-		 * Unit : 0.001k
-Wh<br>
+		 * Unit : 0.001
+kWh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2823,42 +3178,68 @@ Wh<br>
 		 */
 		protected void onGetMeasuredCumulativeChargeElectricEnergy(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : “Measured cumulative charge electric energy” reset setting<br>
+		 * Property name : Cumulative charge electric energy reset setting<br>
 		 * <br>
 		 * EPC : 0xD9<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Resets “Measured cumulative charge electric energy” to zero.<br>
+		 * This property resets the cumulative charge electricity energy.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reset=0x00<br>
+		 * Reset = 0x00<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Data size : 1
+byte<br>
 		 * <br>
 		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
-		 * Get - undefined<br>
+		 * Get - optional<br>
 		 */
-		protected void onSetMeasuredCumulativeChargeElectricEnergyResetSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetCumulativeChargeElectricEnergyResetSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Cumulative charge electric energy reset setting<br>
+		 * <br>
+		 * EPC : 0xD9<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property resets the cumulative charge electricity energy.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reset = 0x00<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+byte<br>
+		 * <br>
+		 * Unit : —<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		protected void onGetCumulativeChargeElectricEnergyResetSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Operation mode setting<br>
 		 * <br>
 		 * EPC : 0xDA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Sets the battery to one of the following operation modes: “Rapid charging,” “Charging,” “Discharging,” “Standby,” “Test” or “Others.”<br>
+		 * This property sets the operation mode to Rapid charging, Charging, Discharging, Standby, Test, or Other.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Rapid charging=0x41, Charging=0x42, Discharging=0x43, Standby=0x44, Test=0x45, Others=0x40<br>
+		 * Rapid charging = 0x41, Charging = 0x42, Discharging = 0x43, Standby = 0x44, Test=0x45, Other = 0x40<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Data size : 1
+byte<br>
 		 * <br>
 		 * Unit : —<br>
 		 * <br>
@@ -2876,14 +3257,15 @@ Wh<br>
 		 * EPC : 0xDA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Sets the battery to one of the following operation modes: “Rapid charging,” “Charging,” “Discharging,” “Standby,” “Test” or “Others.”<br>
+		 * This property sets the operation mode to Rapid charging, Charging, Discharging, Standby, Test, or Other.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Rapid charging=0x41, Charging=0x42, Discharging=0x43, Standby=0x44, Test=0x45, Others=0x40<br>
+		 * Rapid charging = 0x41, Charging = 0x42, Discharging = 0x43, Standby = 0x44, Test=0x45, Other = 0x40<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Data size : 1
+byte<br>
 		 * <br>
 		 * Unit : —<br>
 		 * <br>
@@ -2896,19 +3278,22 @@ Wh<br>
 		 */
 		protected void onGetOperationModeSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : System-interconn ected type<br>
+		 * Property name : System-interconnecte d type<br>
 		 * <br>
 		 * EPC : 0xDB<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the status of connection with the current system (system interconnection status).<br>
+		 * This property indicates the system interconnection status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * System interconnection (reverse power flow acceptable) = 0x00, Independent type = 0x01, System-interconnected type (reverse power flow not acceptable) =0x02<br>
+		 * System interconnection(reverse power flow acceptable) = 0x00<br>
+		 * Independent type = 0x01<br>
+		 * System interconnection(reverse power flow not acceptable) = 0x02<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Data size : 1
+byte<br>
 		 * <br>
 		 * Unit : —<br>
 		 * <br>
@@ -2917,215 +3302,14 @@ Wh<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetSystemInterconnEctedType(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetSystemInterconnecteDType(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Minimum/maximum charging power (Independent)<br>
-		 * <br>
-		 * EPC : 0xDC<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the minimum and maximum values of charging power battery in watts in the dependent status.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000000–0x3B9AC9FF (0–999,999,999W)<br>
-		 * Minimum charging power:Maximum charging power<br>
-		 * <br>
-		 * Data type : unsigned long
-×2<br>
-		 * <br>
-		 * Data size : 8 bytes<br>
-		 * <br>
-		 * Unit : W<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMinimumMaximumChargingPowerIndependent(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : ￼
-Minimum/maxim um discharging power (Independent)<br>
-		 * <br>
-		 * EPC : 0xDD<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the minimum and maximum values of discharging power from the battery in the independent status in watts.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000000–0x3B9AC9FF (0–999,999,999W)<br>
-		 * Minimum discharging power: Maximum discharging power<br>
-		 * <br>
-		 * Data type : unsigned long
-×2<br>
-		 * <br>
-		 * Data size : 8 bytes<br>
-		 * <br>
-		 * Unit : W<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMinimumMaximUmDischargingPowerIndependent(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Minimum/maxim um charging current (Independent)<br>
-		 * <br>
-		 * EPC : 0xDE<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the minimum and maximum values of a charging current to the battery in the independent status in units of 0.1A.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000–0x7FFE(0–3,276.6A)<br>
-		 * Minimum charging current:Maximum charging current<br>
-		 * <br>
-		 * Data type : unsigned short
-×2<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.1A<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMinimumMaximUmChargingCurrentIndependent(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Minimum/maxim um discharging current (Independent)<br>
-		 * <br>
-		 * EPC : 0xDF<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the minimum and maximum values of a discharging current in the independent status in units of 0.1A.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000–0x7FFE(0–3,276.6A)<br>
-		 * Minimum discharging current: Maximum discharging current<br>
-		 * <br>
-		 * Data type : unsigned short
-×2<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.1A<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMinimumMaximUmDischargingCurrentIndependent(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Charging/dischar ging amount setting 1<br>
-		 * <br>
-		 * EPC : 0xE0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000001.0x3B9AC9FF (1.<br>
-		 * 999,999,999Wh):during charging (positive value), 0xFFFFFFFF. 0xC4653601 (-1.<br>
-		 * -999,999,999Wh):during discharging (negative value)<br>
-		 * <br>
-		 * Data type : signed long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : Wh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetChargingDischarGingAmountSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Charging/dischar ging amount setting 1<br>
-		 * <br>
-		 * EPC : 0xE0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000001.0x3B9AC9FF (1.<br>
-		 * 999,999,999Wh):during charging (positive value), 0xFFFFFFFF. 0xC4653601 (-1.<br>
-		 * -999,999,999Wh):during discharging (negative value)<br>
-		 * <br>
-		 * Data type : signed long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : Wh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetChargingDischarGingAmountSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Charging/dischar ging amount setting 2<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0001.0x7FFD (0.1.3,276.6Ah):<br>
-		 * during charging (positive value), 0xFFFF.0x8001 (-0.1.<br>
-		 * -3,276.7Ah) :during discharging (negative value)<br>
-		 * <br>
-		 * Data type : signed short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : 0.1Ah<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetChargingDischarGingAmountSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Charging/dischar ging amount setting 2<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0001.0x7FFD (0.1.3,276.6Ah):<br>
-		 * during charging (positive value), 0xFFFF.0x8001 (-0.1.<br>
-		 * -3,276.7Ah) :during discharging (negative value)<br>
-		 * <br>
-		 * Data type : signed short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : 0.1Ah<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetChargingDischarGingAmountSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Remaining stored electricity 1<br>
+		 * Property name : Remaining battery capacity1<br>
 		 * <br>
 		 * EPC : 0xE2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the remaining stored electric energy in Wh.<br>
+		 * This property indicates the remaining capacity of the vehicle battery in Wh.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x3B9AC9FF (0.<br>
@@ -3133,7 +3317,8 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : Wh<br>
 		 * <br>
@@ -3142,21 +3327,22 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * Set - undefined<br>
 		 * Get - mandatory<br>
 		 */
-		protected void onGetRemainingStoredElectricity1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetRemainingBatteryCapacity1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Remaining stored electricity 2<br>
+		 * Property name : Remaining battery capacity2<br>
 		 * <br>
 		 * EPC : 0xE3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the remaining capacity in increments of 0.1Ah.<br>
+		 * This property indicates the remaining capacity of the vehicle battery in increments of 0.1Ah.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1Ah<br>
 		 * <br>
@@ -3165,55 +3351,55 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * Set - undefined<br>
 		 * Get - mandatory<br>
 		 */
-		protected void onGetRemainingStoredElectricity2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetRemainingBatteryCapacity2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Remaining stored electricity 3 Battery state of health<br>
+		 * Property name : Remaining battery capacity3<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the charging rate of the battery in %.<br>
-		 * (0.100%)<br>
+		 * This property indicates the remaining battery capacity of the vehicle battery in %.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * This property indicates the battery state of health in %.<br>
-		 * (0.100%)<br>
-		 * <br>
-		 * Data type : unsigned char unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte 1 byte<br>
-		 * <br>
-		 * Unit : % %<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		protected void onGetRemainingStoredElectricity3BatteryStateOfHealth(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Battery type<br>
-		 * <br>
-		 * EPC : 0xE6<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the battery type.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Type=0x00.0xFF<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Data size : 1
+byte<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : %<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
 		 * Get - mandatory<br>
 		 */
-		protected void onGetBatteryType(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetRemainingBatteryCapacity3(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Deterioration status<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the deterioration status (soundness) of the vehicle battery in %.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+byte<br>
+		 * <br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
+		protected void onGetDeteriorationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Charging amount setting 1<br>
 		 * <br>
@@ -3228,7 +3414,8 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : Wh<br>
 		 * <br>
@@ -3252,7 +3439,8 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : Wh<br>
 		 * <br>
@@ -3276,7 +3464,8 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : Wh<br>
 		 * <br>
@@ -3300,7 +3489,8 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : Wh<br>
 		 * <br>
@@ -3319,11 +3509,12 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * This property specifies the charging capacity in increments of 0.1Ah.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0x7FFE (0-3,276.6Ah)<br>
+		 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1Ah<br>
 		 * <br>
@@ -3342,11 +3533,12 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * This property specifies the charging capacity in increments of 0.1Ah.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0x7FFE (0-3,276.6Ah)<br>
+		 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1Ah<br>
 		 * <br>
@@ -3369,7 +3561,8 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1Ah<br>
 		 * <br>
@@ -3392,7 +3585,8 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1Ah<br>
 		 * <br>
@@ -3411,12 +3605,12 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * This property specifies the charge electric energy in W.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x3B9AC9FF (0.<br>
-		 * 999,999,999Wh)<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -3435,12 +3629,12 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * This property specifies the charge electric energy in W.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x3B9AC9FF (0.<br>
-		 * 999,999,999Wh)<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -3459,12 +3653,12 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * This property specifies the discharge electric energy in W.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x3B9AC9FF (0.<br>
-		 * 999,999,999Wh)<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -3483,12 +3677,12 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * This property specifies the discharge electric energy in W.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x3B9AC9FF (0.<br>
-		 * 999,999,999Wh)<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -3511,7 +3705,8 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1A<br>
 		 * <br>
@@ -3534,7 +3729,8 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1A<br>
 		 * <br>
@@ -3553,11 +3749,12 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * This property specifies the discharge current in increments of 0.1A.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.6,553.3A)<br>
+		 * 0x0000.0xFFFD(0.6,553.3A)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1A<br>
 		 * <br>
@@ -3576,11 +3773,12 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * This property specifies the discharge current in increments of 0.1A.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.6,553.3A)<br>
+		 * 0x0000.0xFFFD(0.6,553.3A)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1A<br>
 		 * <br>
@@ -3590,29 +3788,6 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * Get - optional<br>
 		 */
 		protected void onGetDischargeCurrentSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Rated voltage (Independent)<br>
-		 * <br>
-		 * EPC : 0xEF<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated voltage of a battery in the independent status in volts.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000–0x7FFE (0–32,766V)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : V<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetRatedVoltageIndependent(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 	}
 
 	public static class Setter extends DeviceObject.Setter {
@@ -3661,55 +3836,57 @@ Minimum/maxim um discharging power (Independent)<br>
 		}
 		
 		/**
-		 * Property name : “Measured cumulative discharge electric energy” reset setting<br>
+		 * Property name : Cumulative discharge electric energy reset setting<br>
 		 * <br>
 		 * EPC : 0xD7<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Resets “Measured cumulative discharge electric energy” to zero.<br>
+		 * This property resets the cumulative discharge electric energy.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reset=0x00<br>
+		 * Reset = 0x00<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Data size : 1
+byte<br>
 		 * <br>
 		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
-		 * Get - undefined<br>
+		 * Get - optional<br>
 		 */
-		public Setter reqSetMeasuredCumulativeDischargeElectricEnergyResetSetting(byte[] edt) {
-			reqSetProperty(EPC_MEASURED_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING, edt);
+		public Setter reqSetCumulativeDischargeElectricEnergyResetSetting(byte[] edt) {
+			reqSetProperty(EPC_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Property name : “Measured cumulative charge electric energy” reset setting<br>
+		 * Property name : Cumulative charge electric energy reset setting<br>
 		 * <br>
 		 * EPC : 0xD9<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Resets “Measured cumulative charge electric energy” to zero.<br>
+		 * This property resets the cumulative charge electricity energy.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reset=0x00<br>
+		 * Reset = 0x00<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Data size : 1
+byte<br>
 		 * <br>
 		 * Unit : —<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
-		 * Get - undefined<br>
+		 * Get - optional<br>
 		 */
-		public Setter reqSetMeasuredCumulativeChargeElectricEnergyResetSetting(byte[] edt) {
-			reqSetProperty(EPC_MEASURED_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING, edt);
+		public Setter reqSetCumulativeChargeElectricEnergyResetSetting(byte[] edt) {
+			reqSetProperty(EPC_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3718,14 +3895,15 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * EPC : 0xDA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Sets the battery to one of the following operation modes: “Rapid charging,” “Charging,” “Discharging,” “Standby,” “Test” or “Others.”<br>
+		 * This property sets the operation mode to Rapid charging, Charging, Discharging, Standby, Test, or Other.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Rapid charging=0x41, Charging=0x42, Discharging=0x43, Standby=0x44, Test=0x45, Others=0x40<br>
+		 * Rapid charging = 0x41, Charging = 0x42, Discharging = 0x43, Standby = 0x44, Test=0x45, Other = 0x40<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Data size : 1
+byte<br>
 		 * <br>
 		 * Unit : —<br>
 		 * <br>
@@ -3738,62 +3916,6 @@ Minimum/maxim um discharging power (Independent)<br>
 		 */
 		public Setter reqSetOperationModeSetting(byte[] edt) {
 			reqSetProperty(EPC_OPERATION_MODE_SETTING, edt);
-			return this;
-		}
-		/**
-		 * Property name : Charging/dischar ging amount setting 1<br>
-		 * <br>
-		 * EPC : 0xE0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000001.0x3B9AC9FF (1.<br>
-		 * 999,999,999Wh):during charging (positive value), 0xFFFFFFFF. 0xC4653601 (-1.<br>
-		 * -999,999,999Wh):during discharging (negative value)<br>
-		 * <br>
-		 * Data type : signed long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : Wh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Setter reqSetChargingDischarGingAmountSetting1(byte[] edt) {
-			reqSetProperty(EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING1, edt);
-			return this;
-		}
-		/**
-		 * Property name : Charging/dischar ging amount setting 2<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0001.0x7FFD (0.1.3,276.6Ah):<br>
-		 * during charging (positive value), 0xFFFF.0x8001 (-0.1.<br>
-		 * -3,276.7Ah) :during discharging (negative value)<br>
-		 * <br>
-		 * Data type : signed short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : 0.1Ah<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Setter reqSetChargingDischarGingAmountSetting2(byte[] edt) {
-			reqSetProperty(EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -3810,7 +3932,8 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : Wh<br>
 		 * <br>
@@ -3837,7 +3960,8 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : Wh<br>
 		 * <br>
@@ -3859,11 +3983,12 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * This property specifies the charging capacity in increments of 0.1Ah.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0x7FFE (0-3,276.6Ah)<br>
+		 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1Ah<br>
 		 * <br>
@@ -3889,7 +4014,8 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1Ah<br>
 		 * <br>
@@ -3911,12 +4037,12 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * This property specifies the charge electric energy in W.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x3B9AC9FF (0.<br>
-		 * 999,999,999Wh)<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -3938,12 +4064,12 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * This property specifies the discharge electric energy in W.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x3B9AC9FF (0.<br>
-		 * 999,999,999Wh)<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -3969,7 +4095,8 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1A<br>
 		 * <br>
@@ -3991,11 +4118,12 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * This property specifies the discharge current in increments of 0.1A.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.6,553.3A)<br>
+		 * 0x0000.0xFFFD(0.6,553.3A)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1A<br>
 		 * <br>
@@ -4120,124 +4248,12 @@ Minimum/maxim um discharging power (Independent)<br>
 		}
 		
 		/**
-		 * Property name : Minimum/maxim um charge electric energy<br>
+		 * Property name : V2H stored electricity 1<br>
 		 * <br>
-		 * EPC : 0xC8<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the minimum/maximum electric energy for charging in W.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
-		 * Minimum : maximum<br>
-		 * <br>
-		 * Data type : unsigned long
-×2<br>
-		 * <br>
-		 * Data size : 8 bytes<br>
-		 * <br>
-		 * Unit : W<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMinimumMaximUmChargeElectricEnergy() {
-			reqGetProperty(EPC_MINIMUM_MAXIM_UM_CHARGE_ELECTRIC_ENERGY);
-			return this;
-		}
-		/**
-		 * Property name : Minimum/maxim um discharge electric energy<br>
-		 * <br>
-		 * EPC : 0xC9<br>
+		 * EPC : 0xC0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the minimum/maximum electric energy for discharging in W.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
-		 * Minimum : maximum<br>
-		 * <br>
-		 * Data type : unsigned long
-×2<br>
-		 * <br>
-		 * Data size : 8 bytes<br>
-		 * <br>
-		 * Unit : W<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMinimumMaximUmDischargeElectricEnergy() {
-			reqGetProperty(EPC_MINIMUM_MAXIM_UM_DISCHARGE_ELECTRIC_ENERGY);
-			return this;
-		}
-		/**
-		 * Property name : Minimum/maxim um charge current<br>
-		 * <br>
-		 * EPC : 0xCA<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the minimum/maximum current for charging in increments of 0.1A.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0x7FFE(0.3,276.6A)<br>
-		 * Minimum : maximum<br>
-		 * <br>
-		 * Data type : unsigned short
-×2<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.1A<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMinimumMaximUmChargeCurrent() {
-			reqGetProperty(EPC_MINIMUM_MAXIM_UM_CHARGE_CURRENT);
-			return this;
-		}
-		/**
-		 * Property name : Minimum/maxim um discharge current<br>
-		 * <br>
-		 * EPC : 0xCB<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the minimum/maximum current for discharging in increments of 0.1A.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0x7FFE(0.3,276.6A)<br>
-		 * Minimum : maximum<br>
-		 * <br>
-		 * Data type : unsigned short
-×2<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.1A<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMinimumMaximUmDischargeCurrent() {
-			reqGetProperty(EPC_MINIMUM_MAXIM_UM_DISCHARGE_CURRENT);
-			return this;
-		}
-		/**
-		 * Property name : Rated electric energy<br>
-		 * <br>
-		 * EPC : 0xD0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated electric energy of the battery in Wh.<br>
+		 * This property indicates the V2H stored electricity of the vehicle battery in Wh.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x3B9AC9FF (0.<br>
@@ -4245,43 +4261,381 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : Wh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Get - mandatory<br>
 		 */
-		public Getter reqGetRatedElectricEnergy() {
-			reqGetProperty(EPC_RATED_ELECTRIC_ENERGY);
+		public Getter reqGetV2hStoredElectricity1() {
+			reqGetProperty(EPC_V2H_STORED_ELECTRICITY1);
 			return this;
 		}
 		/**
-		 * Property name : Rated capacity<br>
+		 * Property name : V2H stored electricity 2<br>
 		 * <br>
-		 * EPC : 0xD1<br>
+		 * EPC : 0xC1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the rated charging capacity of the battery in increments of 0.1Ah.<br>
+		 * This property indicates the V2H stored electricity of the vehicle battery in increments of 0.1Ah.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1Ah<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Getter reqGetV2hStoredElectricity2() {
+			reqGetProperty(EPC_V2H_STORED_ELECTRICITY2);
+			return this;
+		}
+		/**
+		 * Property name : V2H remaining available capacity 1<br>
+		 * <br>
+		 * EPC : 0xC2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the V2H remaining available capacity of the vehicle battery in Wh.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00000000.0x3B9AC9FF (0.<br>
+		 * 999,999,999Wh)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4
+bytes<br>
+		 * <br>
+		 * Unit : Wh<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Getter reqGetV2hRemainingAvailableCapacity1() {
+			reqGetProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY1);
+			return this;
+		}
+		/**
+		 * Property name : V2H remaining available capacity 2<br>
+		 * <br>
+		 * EPC : 0xC3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the V2H remaining available capacity of the vehicle battery in increments of 0.1Ah.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2
+bytes<br>
+		 * <br>
+		 * Unit : 0.1Ah<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Getter reqGetV2hRemainingAvailableCapacity2() {
+			reqGetProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY2);
+			return this;
+		}
+		/**
+		 * Property name : V2H remaining available capacity 3<br>
+		 * <br>
+		 * EPC : 0xC4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the V2H remaining available capacity (%) of the vehicle battery.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+byte<br>
+		 * <br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Getter reqGetV2hRemainingAvailableCapacity3() {
+			reqGetProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY3);
+			return this;
+		}
+		/**
+		 * Property name : Rated charge capacity<br>
+		 * <br>
+		 * EPC : 0xC5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the rated charge capacity in W.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4
+bytes<br>
+		 * <br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Getter reqGetRatedChargeCapacity() {
+			reqGetProperty(EPC_RATED_CHARGE_CAPACITY);
+			return this;
+		}
+		/**
+		 * Property name : Rated discharge capacity<br>
+		 * <br>
+		 * EPC : 0xC6<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the rated discharge capacity in W.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4
+bytes<br>
+		 * <br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Getter reqGetRatedDischargeCapacity() {
+			reqGetProperty(EPC_RATED_DISCHARGE_CAPACITY);
+			return this;
+		}
+		/**
+		 * Property name : Chargeable/discharge able status<br>
+		 * <br>
+		 * EPC : 0xC7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates whether the electric vehicle charge/discharge system is chargeable or not.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Not chargeable nor dischargeable   = 0x40 Chargeable but not dischargeable = 0x41 Not chargeable but dischargeable = 0x42 Chargeable and dischargeable = 0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+byte<br>
+		 * <br>
+		 * Unit : —<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetChargeableDischargeAbleStatus() {
+			reqGetProperty(EPC_CHARGEABLE_DISCHARGE_ABLE_STATUS);
+			return this;
+		}
+		/**
+		 * Property name : Minimum/maximum charge electric energy<br>
+		 * <br>
+		 * EPC : 0xC8<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the minimum/maximum charge electric energy to the charge-discharge system of the electric vehicle in W.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
+		 * Minimum charge electric energy: Maximum charge electric energy<br>
+		 * <br>
+		 * Data type : unsigned long
+×2<br>
+		 * <br>
+		 * Data size : 8
+bytes<br>
+		 * <br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetRatedCapacity() {
-			reqGetProperty(EPC_RATED_CAPACITY);
+		public Getter reqGetMinimumMaximumChargeElectricEnergy() {
+			reqGetProperty(EPC_MINIMUM_MAXIMUM_CHARGE_ELECTRIC_ENERGY);
+			return this;
+		}
+		/**
+		 * Property name : Minimum/maximum discharge electric energy<br>
+		 * <br>
+		 * EPC : 0xC9<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the minimum/maximum discharge electric energy from the electric vehicle charge/discharge system in W.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
+		 * Minimum discharge electric energy: Maximum discharge electric energy<br>
+		 * <br>
+		 * Data type : unsigned long
+×2<br>
+		 * <br>
+		 * Data size : 8
+bytes<br>
+		 * <br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
+		public Getter reqGetMinimumMaximumDischargeElectricEnergy() {
+			reqGetProperty(EPC_MINIMUM_MAXIMUM_DISCHARGE_ELECTRIC_ENERGY);
+			return this;
+		}
+		/**
+		 * Property name : Minimum/maximum charge current<br>
+		 * <br>
+		 * EPC : 0xCA<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the minimum/maximum charge current from the electric vehicle charge/discharge system in increments of 0.1A.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0x7FFE (0.3,276.6A)<br>
+		 * Minimum charge current: Maximum charge current<br>
+		 * <br>
+		 * Data type : unsigned short
+×2<br>
+		 * <br>
+		 * Data size : 4
+bytes<br>
+		 * <br>
+		 * Unit : 0.1A<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
+		public Getter reqGetMinimumMaximumChargeCurrent() {
+			reqGetProperty(EPC_MINIMUM_MAXIMUM_CHARGE_CURRENT);
+			return this;
+		}
+		/**
+		 * Property name : Minimum/maximum discharge current<br>
+		 * <br>
+		 * EPC : 0xCB<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the  minimum/maximum discharge current from the electric vehicle charge/discharge system in increments of 0.1A.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0x7FFE (0.3,276.6A)<br>
+		 * Minimum discharge current: Maximum discharge current<br>
+		 * <br>
+		 * Data type : unsigned short
+×2<br>
+		 * <br>
+		 * Data size : 4
+bytes<br>
+		 * <br>
+		 * Unit : 0.1A<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
+		public Getter reqGetMinimumMaximumDischargeCurrent() {
+			reqGetProperty(EPC_MINIMUM_MAXIMUM_DISCHARGE_CURRENT);
+			return this;
+		}
+		/**
+		 * Property name : Used capacity 1<br>
+		 * <br>
+		 * EPC : 0xD0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the capacity of the vehicle battery in Wh.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00000000.0x3B9AC9FF (0.<br>
+		 * 999,999,999Wh)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4
+bytes<br>
+		 * <br>
+		 * Unit : Wh<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Getter reqGetUsedCapacity1() {
+			reqGetProperty(EPC_USED_CAPACITY1);
+			return this;
+		}
+		/**
+		 * Property name : Used capacity 2<br>
+		 * <br>
+		 * EPC : 0xD1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the capacity of the vehicle battery in increments of 0.1Ah.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2
+bytes<br>
+		 * <br>
+		 * Unit : 0.1Ah<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Getter reqGetUsedCapacity2() {
+			reqGetProperty(EPC_USED_CAPACITY2);
 			return this;
 		}
 		/**
@@ -4290,14 +4644,15 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * EPC : 0xD2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the rated voltage of the battery in volts.<br>
+		 * This property indicates the rated voltage of the vehicle battery in V.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0x7FFE (0.32,766V)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : V<br>
 		 * <br>
@@ -4316,16 +4671,17 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * EPC : 0xD3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured instantaneous charge/discharge electric energy in watts (positive/negative).<br>
+		 * This property indicates the instantaneous charge/discharge electric energy in ±W.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000001.0x3B9AC9FF (1.<br>
-		 * 999,999,999W) : during charging (positive value), 0xFFFFFFFF. 0xC4653601 (-1. -999,999,999W) :<br>
-		 * during discharging (negative value)<br>
+		 * 0x00000001. 0x3B9AC9FF (1.<br>
+		 * 999,999,999W): charge (positive), 0xFFFFFFFF.0xC4653601 (-1.<br>
+		 * -999,999,999W): discharge (negative)<br>
 		 * <br>
 		 * Data type : signed long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -4344,16 +4700,18 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * EPC : 0xD4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured instantaneous charge/discharge current in increments of 0.1A (positive/negative).<br>
+		 * This property indicates the instantaneous charge/discharge current in increments of<br>
+		 * ±0.1A.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0001.0x7FFE (0.1.3,276.6A) :<br>
-		 * during charging (positive value), 0xFFFF-0x8001 (-0.1. -3,276.7A) :<br>
-		 * during discharging (negative value)<br>
+		 * 0x0001.0x7FFE (0.1.3,276.6A): charge<br>
+		 * (positive), 0xFFFF .0x8001 (-0.1.-<br>
+		 * -3,276.7A): discharge (negative)<br>
 		 * <br>
 		 * Data type : signed short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1A<br>
 		 * <br>
@@ -4372,16 +4730,16 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * EPC : 0xD5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured instantaneous charge/discharge voltage in volts (positive/negative).<br>
+		 * This property indicates the instantaneous charge/discharge voltage in ±V.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0001.0x7FFE (1.32,766V) : during<br>
-		 * charging (positive value), 0xFFFF. 0x8001 (-1. -32,767V) : during<br>
-		 * discharging (negative value)<br>
+		 * 0x0001.0x7FFE (1.32,766V): charge (positive), 0xFFFF.0x8001 (-1.- -32,767V):<br>
+		 * discharge (negative)<br>
 		 * <br>
 		 * Data type : signed short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : V<br>
 		 * <br>
@@ -4400,18 +4758,19 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * EPC : 0xD6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured cumulative discharge electric energy in increments of 0.001kWh.<br>
+		 * This property indicates the cumulative discharge electric energy in increments of 0.001kWh.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x3B9AC9FF (0.<br>
-		 * 999,999.999kWh)<br>
+		 * 999,999.999kWh<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
-		 * Unit : 0.001k
-Wh<br>
+		 * Unit : 0.001
+kWh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4423,23 +4782,51 @@ Wh<br>
 			return this;
 		}
 		/**
+		 * Property name : Cumulative discharge electric energy reset setting<br>
+		 * <br>
+		 * EPC : 0xD7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property resets the cumulative discharge electric energy.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reset = 0x00<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+byte<br>
+		 * <br>
+		 * Unit : —<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Getter reqGetCumulativeDischargeElectricEnergyResetSetting() {
+			reqGetProperty(EPC_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING);
+			return this;
+		}
+		/**
 		 * Property name : Measured cumulative charge electric energy<br>
 		 * <br>
 		 * EPC : 0xD8<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured cumulative charge electric energy in increments of 0.001kWh.<br>
+		 * This property indicates the cumulative charge electric energy in increments of 0.001kWh.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x3B9AC9FF (0.<br>
-		 * 999,999.999kWh)<br>
+		 * 0x00000000 . 0x3B9AC9FF (0.<br>
+		 * 999,999.999kWh<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
-		 * Unit : 0.001k
-Wh<br>
+		 * Unit : 0.001
+kWh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4451,19 +4838,47 @@ Wh<br>
 			return this;
 		}
 		/**
+		 * Property name : Cumulative charge electric energy reset setting<br>
+		 * <br>
+		 * EPC : 0xD9<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property resets the cumulative charge electricity energy.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reset = 0x00<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+byte<br>
+		 * <br>
+		 * Unit : —<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Getter reqGetCumulativeChargeElectricEnergyResetSetting() {
+			reqGetProperty(EPC_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING);
+			return this;
+		}
+		/**
 		 * Property name : Operation mode setting<br>
 		 * <br>
 		 * EPC : 0xDA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Sets the battery to one of the following operation modes: “Rapid charging,” “Charging,” “Discharging,” “Standby,” “Test” or “Others.”<br>
+		 * This property sets the operation mode to Rapid charging, Charging, Discharging, Standby, Test, or Other.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Rapid charging=0x41, Charging=0x42, Discharging=0x43, Standby=0x44, Test=0x45, Others=0x40<br>
+		 * Rapid charging = 0x41, Charging = 0x42, Discharging = 0x43, Standby = 0x44, Test=0x45, Other = 0x40<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Data size : 1
+byte<br>
 		 * <br>
 		 * Unit : —<br>
 		 * <br>
@@ -4479,19 +4894,22 @@ Wh<br>
 			return this;
 		}
 		/**
-		 * Property name : System-interconn ected type<br>
+		 * Property name : System-interconnecte d type<br>
 		 * <br>
 		 * EPC : 0xDB<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the status of connection with the current system (system interconnection status).<br>
+		 * This property indicates the system interconnection status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * System interconnection (reverse power flow acceptable) = 0x00, Independent type = 0x01, System-interconnected type (reverse power flow not acceptable) =0x02<br>
+		 * System interconnection(reverse power flow acceptable) = 0x00<br>
+		 * Independent type = 0x01<br>
+		 * System interconnection(reverse power flow not acceptable) = 0x02<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Data size : 1
+byte<br>
 		 * <br>
 		 * Unit : —<br>
 		 * <br>
@@ -4500,186 +4918,17 @@ Wh<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetSystemInterconnEctedType() {
-			reqGetProperty(EPC_SYSTEM_INTERCONN_ECTED_TYPE);
+		public Getter reqGetSystemInterconnecteDType() {
+			reqGetProperty(EPC_SYSTEM_INTERCONNECTE_D_TYPE);
 			return this;
 		}
 		/**
-		 * Property name : Minimum/maximum charging power (Independent)<br>
-		 * <br>
-		 * EPC : 0xDC<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the minimum and maximum values of charging power battery in watts in the dependent status.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000000–0x3B9AC9FF (0–999,999,999W)<br>
-		 * Minimum charging power:Maximum charging power<br>
-		 * <br>
-		 * Data type : unsigned long
-×2<br>
-		 * <br>
-		 * Data size : 8 bytes<br>
-		 * <br>
-		 * Unit : W<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMinimumMaximumChargingPowerIndependent() {
-			reqGetProperty(EPC_MINIMUM_MAXIMUM_CHARGING_POWER_INDEPENDENT);
-			return this;
-		}
-		/**
-		 * Property name : ￼
-Minimum/maxim um discharging power (Independent)<br>
-		 * <br>
-		 * EPC : 0xDD<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the minimum and maximum values of discharging power from the battery in the independent status in watts.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000000–0x3B9AC9FF (0–999,999,999W)<br>
-		 * Minimum discharging power: Maximum discharging power<br>
-		 * <br>
-		 * Data type : unsigned long
-×2<br>
-		 * <br>
-		 * Data size : 8 bytes<br>
-		 * <br>
-		 * Unit : W<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMinimumMaximUmDischargingPowerIndependent() {
-			reqGetProperty(EPC_MINIMUM_MAXIM_UM_DISCHARGING_POWER_INDEPENDENT);
-			return this;
-		}
-		/**
-		 * Property name : Minimum/maxim um charging current (Independent)<br>
-		 * <br>
-		 * EPC : 0xDE<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the minimum and maximum values of a charging current to the battery in the independent status in units of 0.1A.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000–0x7FFE(0–3,276.6A)<br>
-		 * Minimum charging current:Maximum charging current<br>
-		 * <br>
-		 * Data type : unsigned short
-×2<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.1A<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMinimumMaximUmChargingCurrentIndependent() {
-			reqGetProperty(EPC_MINIMUM_MAXIM_UM_CHARGING_CURRENT_INDEPENDENT);
-			return this;
-		}
-		/**
-		 * Property name : Minimum/maxim um discharging current (Independent)<br>
-		 * <br>
-		 * EPC : 0xDF<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the minimum and maximum values of a discharging current in the independent status in units of 0.1A.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000–0x7FFE(0–3,276.6A)<br>
-		 * Minimum discharging current: Maximum discharging current<br>
-		 * <br>
-		 * Data type : unsigned short
-×2<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.1A<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMinimumMaximUmDischargingCurrentIndependent() {
-			reqGetProperty(EPC_MINIMUM_MAXIM_UM_DISCHARGING_CURRENT_INDEPENDENT);
-			return this;
-		}
-		/**
-		 * Property name : Charging/dischar ging amount setting 1<br>
-		 * <br>
-		 * EPC : 0xE0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000001.0x3B9AC9FF (1.<br>
-		 * 999,999,999Wh):during charging (positive value), 0xFFFFFFFF. 0xC4653601 (-1.<br>
-		 * -999,999,999Wh):during discharging (negative value)<br>
-		 * <br>
-		 * Data type : signed long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : Wh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetChargingDischarGingAmountSetting1() {
-			reqGetProperty(EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING1);
-			return this;
-		}
-		/**
-		 * Property name : Charging/dischar ging amount setting 2<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0001.0x7FFD (0.1.3,276.6Ah):<br>
-		 * during charging (positive value), 0xFFFF.0x8001 (-0.1.<br>
-		 * -3,276.7Ah) :during discharging (negative value)<br>
-		 * <br>
-		 * Data type : signed short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : 0.1Ah<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetChargingDischarGingAmountSetting2() {
-			reqGetProperty(EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING2);
-			return this;
-		}
-		/**
-		 * Property name : Remaining stored electricity 1<br>
+		 * Property name : Remaining battery capacity1<br>
 		 * <br>
 		 * EPC : 0xE2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the remaining stored electric energy in Wh.<br>
+		 * This property indicates the remaining capacity of the vehicle battery in Wh.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x3B9AC9FF (0.<br>
@@ -4687,7 +4936,8 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : Wh<br>
 		 * <br>
@@ -4696,24 +4946,25 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * Set - undefined<br>
 		 * Get - mandatory<br>
 		 */
-		public Getter reqGetRemainingStoredElectricity1() {
-			reqGetProperty(EPC_REMAINING_STORED_ELECTRICITY1);
+		public Getter reqGetRemainingBatteryCapacity1() {
+			reqGetProperty(EPC_REMAINING_BATTERY_CAPACITY1);
 			return this;
 		}
 		/**
-		 * Property name : Remaining stored electricity 2<br>
+		 * Property name : Remaining battery capacity2<br>
 		 * <br>
 		 * EPC : 0xE3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the remaining capacity in increments of 0.1Ah.<br>
+		 * This property indicates the remaining capacity of the vehicle battery in increments of 0.1Ah.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1Ah<br>
 		 * <br>
@@ -4722,62 +4973,62 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * Set - undefined<br>
 		 * Get - mandatory<br>
 		 */
-		public Getter reqGetRemainingStoredElectricity2() {
-			reqGetProperty(EPC_REMAINING_STORED_ELECTRICITY2);
+		public Getter reqGetRemainingBatteryCapacity2() {
+			reqGetProperty(EPC_REMAINING_BATTERY_CAPACITY2);
 			return this;
 		}
 		/**
-		 * Property name : Remaining stored electricity 3 Battery state of health<br>
+		 * Property name : Remaining battery capacity3<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the charging rate of the battery in %.<br>
-		 * (0.100%)<br>
+		 * This property indicates the remaining battery capacity of the vehicle battery in %.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * This property indicates the battery state of health in %.<br>
-		 * (0.100%)<br>
-		 * <br>
-		 * Data type : unsigned char unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte 1 byte<br>
-		 * <br>
-		 * Unit : % %<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		public Getter reqGetRemainingStoredElectricity3BatteryStateOfHealth() {
-			reqGetProperty(EPC_REMAINING_STORED_ELECTRICITY3_BATTERY_STATE_OF_HEALTH);
-			return this;
-		}
-		/**
-		 * Property name : Battery type<br>
-		 * <br>
-		 * EPC : 0xE6<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the battery type.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Type=0x00.0xFF<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Data size : 1
+byte<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : %<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
 		 * Get - mandatory<br>
 		 */
-		public Getter reqGetBatteryType() {
-			reqGetProperty(EPC_BATTERY_TYPE);
+		public Getter reqGetRemainingBatteryCapacity3() {
+			reqGetProperty(EPC_REMAINING_BATTERY_CAPACITY3);
+			return this;
+		}
+		/**
+		 * Property name : Deterioration status<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the deterioration status (soundness) of the vehicle battery in %.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+byte<br>
+		 * <br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
+		public Getter reqGetDeteriorationStatus() {
+			reqGetProperty(EPC_DETERIORATION_STATUS);
 			return this;
 		}
 		/**
@@ -4794,7 +5045,8 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : Wh<br>
 		 * <br>
@@ -4821,7 +5073,8 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : Wh<br>
 		 * <br>
@@ -4843,11 +5096,12 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * This property specifies the charging capacity in increments of 0.1Ah.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0x7FFE (0-3,276.6Ah)<br>
+		 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1Ah<br>
 		 * <br>
@@ -4873,7 +5127,8 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1Ah<br>
 		 * <br>
@@ -4895,12 +5150,12 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * This property specifies the charge electric energy in W.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x3B9AC9FF (0.<br>
-		 * 999,999,999Wh)<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -4922,12 +5177,12 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * This property specifies the discharge electric energy in W.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x3B9AC9FF (0.<br>
-		 * 999,999,999Wh)<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -4953,7 +5208,8 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1A<br>
 		 * <br>
@@ -4975,11 +5231,12 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * This property specifies the discharge current in increments of 0.1A.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.6,553.3A)<br>
+		 * 0x0000.0xFFFD(0.6,553.3A)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1A<br>
 		 * <br>
@@ -4990,32 +5247,6 @@ Minimum/maxim um discharging power (Independent)<br>
 		 */
 		public Getter reqGetDischargeCurrentSetting() {
 			reqGetProperty(EPC_DISCHARGE_CURRENT_SETTING);
-			return this;
-		}
-		/**
-		 * Property name : Rated voltage (Independent)<br>
-		 * <br>
-		 * EPC : 0xEF<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated voltage of a battery in the independent status in volts.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000–0x7FFE (0–32,766V)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : V<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetRatedVoltageIndependent() {
-			reqGetProperty(EPC_RATED_VOLTAGE_INDEPENDENT);
 			return this;
 		}
 	}
@@ -5129,124 +5360,12 @@ Minimum/maxim um discharging power (Independent)<br>
 		}
 		
 		/**
-		 * Property name : Minimum/maxim um charge electric energy<br>
+		 * Property name : V2H stored electricity 1<br>
 		 * <br>
-		 * EPC : 0xC8<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the minimum/maximum electric energy for charging in W.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
-		 * Minimum : maximum<br>
-		 * <br>
-		 * Data type : unsigned long
-×2<br>
-		 * <br>
-		 * Data size : 8 bytes<br>
-		 * <br>
-		 * Unit : W<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMinimumMaximUmChargeElectricEnergy() {
-			reqInformProperty(EPC_MINIMUM_MAXIM_UM_CHARGE_ELECTRIC_ENERGY);
-			return this;
-		}
-		/**
-		 * Property name : Minimum/maxim um discharge electric energy<br>
-		 * <br>
-		 * EPC : 0xC9<br>
+		 * EPC : 0xC0<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the minimum/maximum electric energy for discharging in W.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
-		 * Minimum : maximum<br>
-		 * <br>
-		 * Data type : unsigned long
-×2<br>
-		 * <br>
-		 * Data size : 8 bytes<br>
-		 * <br>
-		 * Unit : W<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMinimumMaximUmDischargeElectricEnergy() {
-			reqInformProperty(EPC_MINIMUM_MAXIM_UM_DISCHARGE_ELECTRIC_ENERGY);
-			return this;
-		}
-		/**
-		 * Property name : Minimum/maxim um charge current<br>
-		 * <br>
-		 * EPC : 0xCA<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the minimum/maximum current for charging in increments of 0.1A.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0x7FFE(0.3,276.6A)<br>
-		 * Minimum : maximum<br>
-		 * <br>
-		 * Data type : unsigned short
-×2<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.1A<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMinimumMaximUmChargeCurrent() {
-			reqInformProperty(EPC_MINIMUM_MAXIM_UM_CHARGE_CURRENT);
-			return this;
-		}
-		/**
-		 * Property name : Minimum/maxim um discharge current<br>
-		 * <br>
-		 * EPC : 0xCB<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the minimum/maximum current for discharging in increments of 0.1A.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0x7FFE(0.3,276.6A)<br>
-		 * Minimum : maximum<br>
-		 * <br>
-		 * Data type : unsigned short
-×2<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.1A<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMinimumMaximUmDischargeCurrent() {
-			reqInformProperty(EPC_MINIMUM_MAXIM_UM_DISCHARGE_CURRENT);
-			return this;
-		}
-		/**
-		 * Property name : Rated electric energy<br>
-		 * <br>
-		 * EPC : 0xD0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated electric energy of the battery in Wh.<br>
+		 * This property indicates the V2H stored electricity of the vehicle battery in Wh.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x3B9AC9FF (0.<br>
@@ -5254,43 +5373,381 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : Wh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Get - mandatory<br>
 		 */
-		public Informer reqInformRatedElectricEnergy() {
-			reqInformProperty(EPC_RATED_ELECTRIC_ENERGY);
+		public Informer reqInformV2hStoredElectricity1() {
+			reqInformProperty(EPC_V2H_STORED_ELECTRICITY1);
 			return this;
 		}
 		/**
-		 * Property name : Rated capacity<br>
+		 * Property name : V2H stored electricity 2<br>
 		 * <br>
-		 * EPC : 0xD1<br>
+		 * EPC : 0xC1<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the rated charging capacity of the battery in increments of 0.1Ah.<br>
+		 * This property indicates the V2H stored electricity of the vehicle battery in increments of 0.1Ah.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1Ah<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Informer reqInformV2hStoredElectricity2() {
+			reqInformProperty(EPC_V2H_STORED_ELECTRICITY2);
+			return this;
+		}
+		/**
+		 * Property name : V2H remaining available capacity 1<br>
+		 * <br>
+		 * EPC : 0xC2<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the V2H remaining available capacity of the vehicle battery in Wh.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00000000.0x3B9AC9FF (0.<br>
+		 * 999,999,999Wh)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4
+bytes<br>
+		 * <br>
+		 * Unit : Wh<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Informer reqInformV2hRemainingAvailableCapacity1() {
+			reqInformProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY1);
+			return this;
+		}
+		/**
+		 * Property name : V2H remaining available capacity 2<br>
+		 * <br>
+		 * EPC : 0xC3<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the V2H remaining available capacity of the vehicle battery in increments of 0.1Ah.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2
+bytes<br>
+		 * <br>
+		 * Unit : 0.1Ah<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Informer reqInformV2hRemainingAvailableCapacity2() {
+			reqInformProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY2);
+			return this;
+		}
+		/**
+		 * Property name : V2H remaining available capacity 3<br>
+		 * <br>
+		 * EPC : 0xC4<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the V2H remaining available capacity (%) of the vehicle battery.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+byte<br>
+		 * <br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Informer reqInformV2hRemainingAvailableCapacity3() {
+			reqInformProperty(EPC_V2H_REMAINING_AVAILABLE_CAPACITY3);
+			return this;
+		}
+		/**
+		 * Property name : Rated charge capacity<br>
+		 * <br>
+		 * EPC : 0xC5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the rated charge capacity in W.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4
+bytes<br>
+		 * <br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Informer reqInformRatedChargeCapacity() {
+			reqInformProperty(EPC_RATED_CHARGE_CAPACITY);
+			return this;
+		}
+		/**
+		 * Property name : Rated discharge capacity<br>
+		 * <br>
+		 * EPC : 0xC6<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the rated discharge capacity in W.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4
+bytes<br>
+		 * <br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Informer reqInformRatedDischargeCapacity() {
+			reqInformProperty(EPC_RATED_DISCHARGE_CAPACITY);
+			return this;
+		}
+		/**
+		 * Property name : Chargeable/discharge able status<br>
+		 * <br>
+		 * EPC : 0xC7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates whether the electric vehicle charge/discharge system is chargeable or not.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Not chargeable nor dischargeable   = 0x40 Chargeable but not dischargeable = 0x41 Not chargeable but dischargeable = 0x42 Chargeable and dischargeable = 0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+byte<br>
+		 * <br>
+		 * Unit : —<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformChargeableDischargeAbleStatus() {
+			reqInformProperty(EPC_CHARGEABLE_DISCHARGE_ABLE_STATUS);
+			return this;
+		}
+		/**
+		 * Property name : Minimum/maximum charge electric energy<br>
+		 * <br>
+		 * EPC : 0xC8<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the minimum/maximum charge electric energy to the charge-discharge system of the electric vehicle in W.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
+		 * Minimum charge electric energy: Maximum charge electric energy<br>
+		 * <br>
+		 * Data type : unsigned long
+×2<br>
+		 * <br>
+		 * Data size : 8
+bytes<br>
+		 * <br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformRatedCapacity() {
-			reqInformProperty(EPC_RATED_CAPACITY);
+		public Informer reqInformMinimumMaximumChargeElectricEnergy() {
+			reqInformProperty(EPC_MINIMUM_MAXIMUM_CHARGE_ELECTRIC_ENERGY);
+			return this;
+		}
+		/**
+		 * Property name : Minimum/maximum discharge electric energy<br>
+		 * <br>
+		 * EPC : 0xC9<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the minimum/maximum discharge electric energy from the electric vehicle charge/discharge system in W.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
+		 * Minimum discharge electric energy: Maximum discharge electric energy<br>
+		 * <br>
+		 * Data type : unsigned long
+×2<br>
+		 * <br>
+		 * Data size : 8
+bytes<br>
+		 * <br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
+		public Informer reqInformMinimumMaximumDischargeElectricEnergy() {
+			reqInformProperty(EPC_MINIMUM_MAXIMUM_DISCHARGE_ELECTRIC_ENERGY);
+			return this;
+		}
+		/**
+		 * Property name : Minimum/maximum charge current<br>
+		 * <br>
+		 * EPC : 0xCA<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the minimum/maximum charge current from the electric vehicle charge/discharge system in increments of 0.1A.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0x7FFE (0.3,276.6A)<br>
+		 * Minimum charge current: Maximum charge current<br>
+		 * <br>
+		 * Data type : unsigned short
+×2<br>
+		 * <br>
+		 * Data size : 4
+bytes<br>
+		 * <br>
+		 * Unit : 0.1A<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
+		public Informer reqInformMinimumMaximumChargeCurrent() {
+			reqInformProperty(EPC_MINIMUM_MAXIMUM_CHARGE_CURRENT);
+			return this;
+		}
+		/**
+		 * Property name : Minimum/maximum discharge current<br>
+		 * <br>
+		 * EPC : 0xCB<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the  minimum/maximum discharge current from the electric vehicle charge/discharge system in increments of 0.1A.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0x7FFE (0.3,276.6A)<br>
+		 * Minimum discharge current: Maximum discharge current<br>
+		 * <br>
+		 * Data type : unsigned short
+×2<br>
+		 * <br>
+		 * Data size : 4
+bytes<br>
+		 * <br>
+		 * Unit : 0.1A<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
+		public Informer reqInformMinimumMaximumDischargeCurrent() {
+			reqInformProperty(EPC_MINIMUM_MAXIMUM_DISCHARGE_CURRENT);
+			return this;
+		}
+		/**
+		 * Property name : Used capacity 1<br>
+		 * <br>
+		 * EPC : 0xD0<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the capacity of the vehicle battery in Wh.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00000000.0x3B9AC9FF (0.<br>
+		 * 999,999,999Wh)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * <br>
+		 * Data size : 4
+bytes<br>
+		 * <br>
+		 * Unit : Wh<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Informer reqInformUsedCapacity1() {
+			reqInformProperty(EPC_USED_CAPACITY1);
+			return this;
+		}
+		/**
+		 * Property name : Used capacity 2<br>
+		 * <br>
+		 * EPC : 0xD1<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the capacity of the vehicle battery in increments of 0.1Ah.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * <br>
+		 * Data size : 2
+bytes<br>
+		 * <br>
+		 * Unit : 0.1Ah<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - mandatory<br>
+		 */
+		public Informer reqInformUsedCapacity2() {
+			reqInformProperty(EPC_USED_CAPACITY2);
 			return this;
 		}
 		/**
@@ -5299,14 +5756,15 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * EPC : 0xD2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the rated voltage of the battery in volts.<br>
+		 * This property indicates the rated voltage of the vehicle battery in V.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0x7FFE (0.32,766V)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : V<br>
 		 * <br>
@@ -5325,16 +5783,17 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * EPC : 0xD3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured instantaneous charge/discharge electric energy in watts (positive/negative).<br>
+		 * This property indicates the instantaneous charge/discharge electric energy in ±W.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000001.0x3B9AC9FF (1.<br>
-		 * 999,999,999W) : during charging (positive value), 0xFFFFFFFF. 0xC4653601 (-1. -999,999,999W) :<br>
-		 * during discharging (negative value)<br>
+		 * 0x00000001. 0x3B9AC9FF (1.<br>
+		 * 999,999,999W): charge (positive), 0xFFFFFFFF.0xC4653601 (-1.<br>
+		 * -999,999,999W): discharge (negative)<br>
 		 * <br>
 		 * Data type : signed long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -5353,16 +5812,18 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * EPC : 0xD4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured instantaneous charge/discharge current in increments of 0.1A (positive/negative).<br>
+		 * This property indicates the instantaneous charge/discharge current in increments of<br>
+		 * ±0.1A.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0001.0x7FFE (0.1.3,276.6A) :<br>
-		 * during charging (positive value), 0xFFFF-0x8001 (-0.1. -3,276.7A) :<br>
-		 * during discharging (negative value)<br>
+		 * 0x0001.0x7FFE (0.1.3,276.6A): charge<br>
+		 * (positive), 0xFFFF .0x8001 (-0.1.-<br>
+		 * -3,276.7A): discharge (negative)<br>
 		 * <br>
 		 * Data type : signed short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1A<br>
 		 * <br>
@@ -5381,16 +5842,16 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * EPC : 0xD5<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured instantaneous charge/discharge voltage in volts (positive/negative).<br>
+		 * This property indicates the instantaneous charge/discharge voltage in ±V.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0001.0x7FFE (1.32,766V) : during<br>
-		 * charging (positive value), 0xFFFF. 0x8001 (-1. -32,767V) : during<br>
-		 * discharging (negative value)<br>
+		 * 0x0001.0x7FFE (1.32,766V): charge (positive), 0xFFFF.0x8001 (-1.- -32,767V):<br>
+		 * discharge (negative)<br>
 		 * <br>
 		 * Data type : signed short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : V<br>
 		 * <br>
@@ -5409,18 +5870,19 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * EPC : 0xD6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured cumulative discharge electric energy in increments of 0.001kWh.<br>
+		 * This property indicates the cumulative discharge electric energy in increments of 0.001kWh.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x3B9AC9FF (0.<br>
-		 * 999,999.999kWh)<br>
+		 * 999,999.999kWh<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
-		 * Unit : 0.001k
-Wh<br>
+		 * Unit : 0.001
+kWh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5432,23 +5894,51 @@ Wh<br>
 			return this;
 		}
 		/**
+		 * Property name : Cumulative discharge electric energy reset setting<br>
+		 * <br>
+		 * EPC : 0xD7<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property resets the cumulative discharge electric energy.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reset = 0x00<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+byte<br>
+		 * <br>
+		 * Unit : —<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Informer reqInformCumulativeDischargeElectricEnergyResetSetting() {
+			reqInformProperty(EPC_CUMULATIVE_DISCHARGE_ELECTRIC_ENERGY_RESET_SETTING);
+			return this;
+		}
+		/**
 		 * Property name : Measured cumulative charge electric energy<br>
 		 * <br>
 		 * EPC : 0xD8<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the measured cumulative charge electric energy in increments of 0.001kWh.<br>
+		 * This property indicates the cumulative charge electric energy in increments of 0.001kWh.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x3B9AC9FF (0.<br>
-		 * 999,999.999kWh)<br>
+		 * 0x00000000 . 0x3B9AC9FF (0.<br>
+		 * 999,999.999kWh<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
-		 * Unit : 0.001k
-Wh<br>
+		 * Unit : 0.001
+kWh<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -5460,19 +5950,47 @@ Wh<br>
 			return this;
 		}
 		/**
+		 * Property name : Cumulative charge electric energy reset setting<br>
+		 * <br>
+		 * EPC : 0xD9<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property resets the cumulative charge electricity energy.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reset = 0x00<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+byte<br>
+		 * <br>
+		 * Unit : —<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - optional<br>
+		 * Get - optional<br>
+		 */
+		public Informer reqInformCumulativeChargeElectricEnergyResetSetting() {
+			reqInformProperty(EPC_CUMULATIVE_CHARGE_ELECTRIC_ENERGY_RESET_SETTING);
+			return this;
+		}
+		/**
 		 * Property name : Operation mode setting<br>
 		 * <br>
 		 * EPC : 0xDA<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Sets the battery to one of the following operation modes: “Rapid charging,” “Charging,” “Discharging,” “Standby,” “Test” or “Others.”<br>
+		 * This property sets the operation mode to Rapid charging, Charging, Discharging, Standby, Test, or Other.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Rapid charging=0x41, Charging=0x42, Discharging=0x43, Standby=0x44, Test=0x45, Others=0x40<br>
+		 * Rapid charging = 0x41, Charging = 0x42, Discharging = 0x43, Standby = 0x44, Test=0x45, Other = 0x40<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Data size : 1
+byte<br>
 		 * <br>
 		 * Unit : —<br>
 		 * <br>
@@ -5488,19 +6006,22 @@ Wh<br>
 			return this;
 		}
 		/**
-		 * Property name : System-interconn ected type<br>
+		 * Property name : System-interconnecte d type<br>
 		 * <br>
 		 * EPC : 0xDB<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the status of connection with the current system (system interconnection status).<br>
+		 * This property indicates the system interconnection status.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * System interconnection (reverse power flow acceptable) = 0x00, Independent type = 0x01, System-interconnected type (reverse power flow not acceptable) =0x02<br>
+		 * System interconnection(reverse power flow acceptable) = 0x00<br>
+		 * Independent type = 0x01<br>
+		 * System interconnection(reverse power flow not acceptable) = 0x02<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Data size : 1
+byte<br>
 		 * <br>
 		 * Unit : —<br>
 		 * <br>
@@ -5509,186 +6030,17 @@ Wh<br>
 		 * Set - undefined<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformSystemInterconnEctedType() {
-			reqInformProperty(EPC_SYSTEM_INTERCONN_ECTED_TYPE);
+		public Informer reqInformSystemInterconnecteDType() {
+			reqInformProperty(EPC_SYSTEM_INTERCONNECTE_D_TYPE);
 			return this;
 		}
 		/**
-		 * Property name : Minimum/maximum charging power (Independent)<br>
-		 * <br>
-		 * EPC : 0xDC<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the minimum and maximum values of charging power battery in watts in the dependent status.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000000–0x3B9AC9FF (0–999,999,999W)<br>
-		 * Minimum charging power:Maximum charging power<br>
-		 * <br>
-		 * Data type : unsigned long
-×2<br>
-		 * <br>
-		 * Data size : 8 bytes<br>
-		 * <br>
-		 * Unit : W<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMinimumMaximumChargingPowerIndependent() {
-			reqInformProperty(EPC_MINIMUM_MAXIMUM_CHARGING_POWER_INDEPENDENT);
-			return this;
-		}
-		/**
-		 * Property name : ￼
-Minimum/maxim um discharging power (Independent)<br>
-		 * <br>
-		 * EPC : 0xDD<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the minimum and maximum values of discharging power from the battery in the independent status in watts.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000000–0x3B9AC9FF (0–999,999,999W)<br>
-		 * Minimum discharging power: Maximum discharging power<br>
-		 * <br>
-		 * Data type : unsigned long
-×2<br>
-		 * <br>
-		 * Data size : 8 bytes<br>
-		 * <br>
-		 * Unit : W<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMinimumMaximUmDischargingPowerIndependent() {
-			reqInformProperty(EPC_MINIMUM_MAXIM_UM_DISCHARGING_POWER_INDEPENDENT);
-			return this;
-		}
-		/**
-		 * Property name : Minimum/maxim um charging current (Independent)<br>
-		 * <br>
-		 * EPC : 0xDE<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the minimum and maximum values of a charging current to the battery in the independent status in units of 0.1A.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000–0x7FFE(0–3,276.6A)<br>
-		 * Minimum charging current:Maximum charging current<br>
-		 * <br>
-		 * Data type : unsigned short
-×2<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.1A<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMinimumMaximUmChargingCurrentIndependent() {
-			reqInformProperty(EPC_MINIMUM_MAXIM_UM_CHARGING_CURRENT_INDEPENDENT);
-			return this;
-		}
-		/**
-		 * Property name : Minimum/maxim um discharging current (Independent)<br>
-		 * <br>
-		 * EPC : 0xDF<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the minimum and maximum values of a discharging current in the independent status in units of 0.1A.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000–0x7FFE(0–3,276.6A)<br>
-		 * Minimum discharging current: Maximum discharging current<br>
-		 * <br>
-		 * Data type : unsigned short
-×2<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.1A<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMinimumMaximUmDischargingCurrentIndependent() {
-			reqInformProperty(EPC_MINIMUM_MAXIM_UM_DISCHARGING_CURRENT_INDEPENDENT);
-			return this;
-		}
-		/**
-		 * Property name : Charging/dischar ging amount setting 1<br>
-		 * <br>
-		 * EPC : 0xE0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Specifies the charge/discharge electric energy in Wh (positive/negative).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000001.0x3B9AC9FF (1.<br>
-		 * 999,999,999Wh):during charging (positive value), 0xFFFFFFFF. 0xC4653601 (-1.<br>
-		 * -999,999,999Wh):during discharging (negative value)<br>
-		 * <br>
-		 * Data type : signed long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : Wh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformChargingDischarGingAmountSetting1() {
-			reqInformProperty(EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING1);
-			return this;
-		}
-		/**
-		 * Property name : Charging/dischar ging amount setting 2<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Specifies the charging/discharging capacity in increments of 0.1Ah (positive/negative).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0001.0x7FFD (0.1.3,276.6Ah):<br>
-		 * during charging (positive value), 0xFFFF.0x8001 (-0.1.<br>
-		 * -3,276.7Ah) :during discharging (negative value)<br>
-		 * <br>
-		 * Data type : signed short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : 0.1Ah<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformChargingDischarGingAmountSetting2() {
-			reqInformProperty(EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING2);
-			return this;
-		}
-		/**
-		 * Property name : Remaining stored electricity 1<br>
+		 * Property name : Remaining battery capacity1<br>
 		 * <br>
 		 * EPC : 0xE2<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the remaining stored electric energy in Wh.<br>
+		 * This property indicates the remaining capacity of the vehicle battery in Wh.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x3B9AC9FF (0.<br>
@@ -5696,7 +6048,8 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : Wh<br>
 		 * <br>
@@ -5705,24 +6058,25 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * Set - undefined<br>
 		 * Get - mandatory<br>
 		 */
-		public Informer reqInformRemainingStoredElectricity1() {
-			reqInformProperty(EPC_REMAINING_STORED_ELECTRICITY1);
+		public Informer reqInformRemainingBatteryCapacity1() {
+			reqInformProperty(EPC_REMAINING_BATTERY_CAPACITY1);
 			return this;
 		}
 		/**
-		 * Property name : Remaining stored electricity 2<br>
+		 * Property name : Remaining battery capacity2<br>
 		 * <br>
 		 * EPC : 0xE3<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the remaining capacity in increments of 0.1Ah.<br>
+		 * This property indicates the remaining capacity of the vehicle battery in increments of 0.1Ah.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1Ah<br>
 		 * <br>
@@ -5731,62 +6085,62 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * Set - undefined<br>
 		 * Get - mandatory<br>
 		 */
-		public Informer reqInformRemainingStoredElectricity2() {
-			reqInformProperty(EPC_REMAINING_STORED_ELECTRICITY2);
+		public Informer reqInformRemainingBatteryCapacity2() {
+			reqInformProperty(EPC_REMAINING_BATTERY_CAPACITY2);
 			return this;
 		}
 		/**
-		 * Property name : Remaining stored electricity 3 Battery state of health<br>
+		 * Property name : Remaining battery capacity3<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * This property indicates the charging rate of the battery in %.<br>
-		 * (0.100%)<br>
+		 * This property indicates the remaining battery capacity of the vehicle battery in %.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * This property indicates the battery state of health in %.<br>
-		 * (0.100%)<br>
-		 * <br>
-		 * Data type : unsigned char unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte 1 byte<br>
-		 * <br>
-		 * Unit : % %<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		public Informer reqInformRemainingStoredElectricity3BatteryStateOfHealth() {
-			reqInformProperty(EPC_REMAINING_STORED_ELECTRICITY3_BATTERY_STATE_OF_HEALTH);
-			return this;
-		}
-		/**
-		 * Property name : Battery type<br>
-		 * <br>
-		 * EPC : 0xE6<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the battery type.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Type=0x00.0xFF<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Data size : 1
+byte<br>
 		 * <br>
-		 * Unit : null<br>
+		 * Unit : %<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - undefined<br>
 		 * Get - mandatory<br>
 		 */
-		public Informer reqInformBatteryType() {
-			reqInformProperty(EPC_BATTERY_TYPE);
+		public Informer reqInformRemainingBatteryCapacity3() {
+			reqInformProperty(EPC_REMAINING_BATTERY_CAPACITY3);
+			return this;
+		}
+		/**
+		 * Property name : Deterioration status<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents of property :<br>
+		 * This property indicates the deterioration status (soundness) of the vehicle battery in %.<br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * <br>
+		 * Data size : 1
+byte<br>
+		 * <br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - undefined<br>
+		 * Set - undefined<br>
+		 * Get - optional<br>
+		 */
+		public Informer reqInformDeteriorationStatus() {
+			reqInformProperty(EPC_DETERIORATION_STATUS);
 			return this;
 		}
 		/**
@@ -5803,7 +6157,8 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : Wh<br>
 		 * <br>
@@ -5830,7 +6185,8 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : Wh<br>
 		 * <br>
@@ -5852,11 +6208,12 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * This property specifies the charging capacity in increments of 0.1Ah.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0x7FFE (0-3,276.6Ah)<br>
+		 * 0x0000.0x7FFE (0.3,276.6Ah)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1Ah<br>
 		 * <br>
@@ -5882,7 +6239,8 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1Ah<br>
 		 * <br>
@@ -5904,12 +6262,12 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * This property specifies the charge electric energy in W.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x3B9AC9FF (0.<br>
-		 * 999,999,999Wh)<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -5931,12 +6289,12 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * This property specifies the discharge electric energy in W.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x3B9AC9FF (0.<br>
-		 * 999,999,999Wh)<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999,999W)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
 		 * <br>
-		 * Data size : 4 bytes<br>
+		 * Data size : 4
+bytes<br>
 		 * <br>
 		 * Unit : W<br>
 		 * <br>
@@ -5962,7 +6320,8 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1A<br>
 		 * <br>
@@ -5984,11 +6343,12 @@ Minimum/maxim um discharging power (Independent)<br>
 		 * This property specifies the discharge current in increments of 0.1A.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.6,553.3A)<br>
+		 * 0x0000.0xFFFD(0.6,553.3A)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
 		 * <br>
-		 * Data size : 2 bytes<br>
+		 * Data size : 2
+bytes<br>
 		 * <br>
 		 * Unit : 0.1A<br>
 		 * <br>
@@ -6001,35 +6361,9 @@ Minimum/maxim um discharging power (Independent)<br>
 			reqInformProperty(EPC_DISCHARGE_CURRENT_SETTING);
 			return this;
 		}
-		/**
-		 * Property name : Rated voltage (Independent)<br>
-		 * <br>
-		 * EPC : 0xEF<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated voltage of a battery in the independent status in volts.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000–0x7FFE (0–32,766V)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : V<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformRatedVoltageIndependent() {
-			reqInformProperty(EPC_RATED_VOLTAGE_INDEPENDENT);
-			return this;
-		}
 	}
 
-	public static class Proxy extends Battery {
+	public static class Proxy extends ElectricVehicle {
 		public Proxy(byte instanceCode) {
 			super();
 			mEchoInstanceCode = instanceCode;
@@ -6051,17 +6385,35 @@ Minimum/maxim um discharging power (Independent)<br>
 		@Override
 		protected byte[] getManufacturerCode() {return null;}
 		@Override
+		protected byte[] getV2hStoredElectricity1() {return null;}
+		@Override
+		protected byte[] getV2hStoredElectricity2() {return null;}
+		@Override
+		protected byte[] getV2hRemainingAvailableCapacity1() {return null;}
+		@Override
+		protected byte[] getV2hRemainingAvailableCapacity2() {return null;}
+		@Override
+		protected byte[] getV2hRemainingAvailableCapacity3() {return null;}
+		@Override
+		protected byte[] getRatedChargeCapacity() {return null;}
+		@Override
+		protected byte[] getRatedDischargeCapacity() {return null;}
+		@Override
+		protected byte[] getChargeableDischargeAbleStatus() {return null;}
+		@Override
+		protected byte[] getUsedCapacity1() {return null;}
+		@Override
+		protected byte[] getUsedCapacity2() {return null;}
+		@Override
 		protected boolean setOperationModeSetting(byte[] edt) {return false;}
 		@Override
 		protected byte[] getOperationModeSetting() {return null;}
 		@Override
-		protected byte[] getRemainingStoredElectricity1() {return null;}
+		protected byte[] getRemainingBatteryCapacity1() {return null;}
 		@Override
-		protected byte[] getRemainingStoredElectricity2() {return null;}
+		protected byte[] getRemainingBatteryCapacity2() {return null;}
 		@Override
-		protected byte[] getRemainingStoredElectricity3BatteryStateOfHealth() {return null;}
-		@Override
-		protected byte[] getBatteryType() {return null;}
+		protected byte[] getRemainingBatteryCapacity3() {return null;}
 	}
 	
 	public static Setter setG() {

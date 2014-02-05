@@ -30,7 +30,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 	public static final byte EPC_HOT_WATER_HEATING_STATUS = (byte)0xD0;
 	public static final byte EPC_SET_VALUE_OF_HOT_WATER_TEMPERATURE = (byte)0xD1;
 	public static final byte EPC_HOT_WATER_WARMER_SETTING = (byte)0xD2;
-	public static final byte EPC_GDURATION_OF_AUTOMATIC_OPERATION_H_SETTING = (byte)0xDA;
+	public static final byte EPC_DURATION_OF_AUTOMATIC_OPERATION_SETTING = (byte)0xDA;
 	public static final byte EPC_REMAINING_AUTOMATIC_OPERATION_TIME = (byte)0xDB;
 	public static final byte EPC_SET_VALUE_OF_BATH_TEMPERATURE = (byte)0xE1;
 	public static final byte EPC_BATH_WATER_HEATER_STATUS = (byte)0xE2;
@@ -59,6 +59,8 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		addGetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_HOT_WATER_HEATING_STATUS);
 		addGetProperty(EPC_BATH_WATER_HEATER_STATUS);
+		addSetProperty(EPC_BATH_AUTO_MODE_SETTING);
+		addGetProperty(EPC_BATH_AUTO_MODE_SETTING);
 	}
 	
 	@Override
@@ -72,17 +74,16 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This  property  indicates  the  ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit :  �<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -98,17 +99,16 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 	 * EPC : 0x80<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF<br>
-	 * status.<br>
+	 * This  property  indicates  the  ON/OFF status.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
-	 * Data size : 1 bytes<br>
+	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit :  �<br>
+	 * Unit : —<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -129,14 +129,13 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 	 * Value range (decimal notation) :<br>
 	 * Hot water heating status found<br>
 	 * = 0x41<br>
-	 * Hot water heating status not found =<br>
-	 * 0x42<br>
+	 * Hot water heating status not found = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -155,14 +154,13 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 	 * Value range (decimal notation) :<br>
 	 * Hot water heating status found<br>
 	 * = 0x41<br>
-	 * Hot water heating status not found =<br>
-	 * 0x42<br>
+	 * Hot water heating status not found = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -188,7 +186,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -211,7 +209,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -234,7 +232,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -246,8 +244,7 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		return true;
 	}
 	/**
-	 * Property name : Hot water
-Warmer setting<br>
+	 * Property name : Hot water Warmer setting<br>
 	 * <br>
 	 * EPC : 0xD2<br>
 	 * <br>
@@ -255,15 +252,14 @@ Warmer setting<br>
 	 * Hot water warmer setting<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Hot water warmer operation = 0x41<br>
-	 * Hot water warmer operation resetting<br>
+	 * Hot water warmer operation = 0x41 Hot water warmer operation resetting<br>
 	 * = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -272,8 +268,7 @@ Warmer setting<br>
 	 */
 	protected boolean setHotWaterWarmerSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : Hot water
-Warmer setting<br>
+	 * Property name : Hot water Warmer setting<br>
 	 * <br>
 	 * EPC : 0xD2<br>
 	 * <br>
@@ -281,15 +276,14 @@ Warmer setting<br>
 	 * Hot water warmer setting<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Hot water warmer operation = 0x41<br>
-	 * Hot water warmer operation resetting<br>
+	 * Hot water warmer operation = 0x41 Hot water warmer operation resetting<br>
 	 * = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -298,8 +292,7 @@ Warmer setting<br>
 	 */
 	protected byte[] getHotWaterWarmerSetting() {return null;}
 	/**
-	 * Property name : Hot water
-Warmer setting<br>
+	 * Property name : Hot water Warmer setting<br>
 	 * <br>
 	 * EPC : 0xD2<br>
 	 * <br>
@@ -307,15 +300,14 @@ Warmer setting<br>
 	 * Hot water warmer setting<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Hot water warmer operation = 0x41<br>
-	 * Hot water warmer operation resetting<br>
+	 * Hot water warmer operation = 0x41 Hot water warmer operation resetting<br>
 	 * = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -327,7 +319,7 @@ Warmer setting<br>
 		return true;
 	}
 	/**
-	 * Property name :  gDuration of automatic operation h setting<br>
+	 * Property name : “Duration of automatic operation” setting<br>
 	 * <br>
 	 * EPC : 0xDA<br>
 	 * <br>
@@ -335,23 +327,23 @@ Warmer setting<br>
 	 * Timer value (HH:MM)<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
+	 * Limitless: 0xFFFF<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char× 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean setGdurationOfAutomaticOperationHSetting(byte[] edt) {return false;}
+	protected boolean setDurationOfAutomaticOperationSetting(byte[] edt) {return false;}
 	/**
-	 * Property name :  gDuration of automatic operation h setting<br>
+	 * Property name : “Duration of automatic operation” setting<br>
 	 * <br>
 	 * EPC : 0xDA<br>
 	 * <br>
@@ -359,23 +351,23 @@ Warmer setting<br>
 	 * Timer value (HH:MM)<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
+	 * Limitless: 0xFFFF<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char× 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected byte[] getGdurationOfAutomaticOperationHSetting() {return null;}
+	protected byte[] getDurationOfAutomaticOperationSetting() {return null;}
 	/**
-	 * Property name :  gDuration of automatic operation h setting<br>
+	 * Property name : “Duration of automatic operation” setting<br>
 	 * <br>
 	 * EPC : 0xDA<br>
 	 * <br>
@@ -383,21 +375,21 @@ Warmer setting<br>
 	 * Timer value (HH:MM)<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
+	 * Limitless: 0xFFFF<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char× 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
 	 * Set - optional<br>
 	 * Get - optional<br>
 	 */
-	protected boolean isValidGdurationOfAutomaticOperationHSetting(byte[] edt) {
+	protected boolean isValidDurationOfAutomaticOperationSetting(byte[] edt) {
 		if(edt == null || !(edt.length == 2)) return false;
 		return true;
 	}
@@ -410,14 +402,14 @@ Warmer setting<br>
 	 * Timer value (HH:MM)<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59) Infinite: 0xFFFF<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
+	 * Infinite: 0xFFFF<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -434,14 +426,14 @@ Warmer setting<br>
 	 * Timer value (HH:MM)<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0 to 0x17: 0 to 0x3B<br>
-	 * (= 0 to 23): (= 0 to 59) Infinite: 0xFFFF<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
+	 * Infinite: 0xFFFF<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -467,7 +459,7 @@ Warmer setting<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -490,7 +482,7 @@ Warmer setting<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -513,7 +505,7 @@ Warmer setting<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : . C<br>
+	 * Unit : .C<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -533,14 +525,13 @@ Warmer setting<br>
 	 * This property indicates whether or not the bath water heater is heating bath water.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Heating = 0x41<br>
-	 * Not heating = 0x42<br>
+	 * Heating = 0x41 Not heating = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -557,14 +548,13 @@ Warmer setting<br>
 	 * This property indicates whether or not the bath water heater is heating bath water.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Heating = 0x41<br>
-	 * Not heating = 0x42<br>
+	 * Heating = 0x41 Not heating = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -584,21 +574,20 @@ Warmer setting<br>
 	 * Bath auto mode ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Auto ON = 0x41<br>
-	 * Auto OFF = 0x42<br>
+	 * Auto ON = 0x41 Auto OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
 	 */
-	protected boolean setBathAutoModeSetting(byte[] edt) {return false;}
+	protected abstract boolean setBathAutoModeSetting(byte[] edt);
 	/**
 	 * Property name : Bath auto mode setting<br>
 	 * <br>
@@ -608,21 +597,20 @@ Warmer setting<br>
 	 * Bath auto mode ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Auto ON = 0x41<br>
-	 * Auto OFF = 0x42<br>
+	 * Auto ON = 0x41 Auto OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
 	 */
-	protected byte[] getBathAutoModeSetting() {return null;}
+	protected abstract byte[] getBathAutoModeSetting();
 	/**
 	 * Property name : Bath auto mode setting<br>
 	 * <br>
@@ -632,19 +620,18 @@ Warmer setting<br>
 	 * Bath auto mode ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Auto ON = 0x41<br>
-	 * Auto OFF = 0x42<br>
+	 * Auto ON = 0x41 Auto OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Set - mandatory<br>
+	 * Get - mandatory<br>
 	 */
 	protected boolean isValidBathAutoModeSetting(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) return false;
@@ -659,14 +646,13 @@ Warmer setting<br>
 	 * Additional boil-up ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Additional boil-up ON = 0x41<br>
-	 * Additional boil-up OFF = 0x42<br>
+	 * Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -683,14 +669,13 @@ Warmer setting<br>
 	 * Additional boil-up ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Additional boil-up ON = 0x41<br>
-	 * Additional boil-up OFF = 0x42<br>
+	 * Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -707,14 +692,13 @@ Warmer setting<br>
 	 * Additional boil-up ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Additional boil-up ON = 0x41<br>
-	 * Additional boil-up OFF = 0x42<br>
+	 * Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -734,14 +718,13 @@ Warmer setting<br>
 	 * Hot water addition ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Hot water addition ON = 0x41<br>
-	 * Hot water addition OFF = 0x42<br>
+	 * Hot water addition ON = 0x41 Hot water addition OFF = 0x42<br>
 	 * <br>
-	 * Data type : unsigned<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -758,14 +741,13 @@ Warmer setting<br>
 	 * Hot water addition ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Hot water addition ON = 0x41<br>
-	 * Hot water addition OFF = 0x42<br>
+	 * Hot water addition ON = 0x41 Hot water addition OFF = 0x42<br>
 	 * <br>
-	 * Data type : unsigned<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -782,14 +764,13 @@ Warmer setting<br>
 	 * Hot water addition ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Hot water addition ON = 0x41<br>
-	 * Hot water addition OFF = 0x42<br>
+	 * Hot water addition ON = 0x41 Hot water addition OFF = 0x42<br>
 	 * <br>
-	 * Data type : unsigned<br>
+	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -806,20 +787,17 @@ Warmer setting<br>
 	 * EPC : 0xE6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Hot water temperature lowering<br>
-	 * ON/OFF<br>
+	 * Hot water temperature lowering ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Hot water temperature lowering ON =<br>
-	 * 0x41<br>
-	 * Hot water temperature lowering OFF =<br>
-	 * 0x42<br>
+	 * Hot water temperature lowering ON = 0x41<br>
+	 * Hot water temperature lowering OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -833,20 +811,17 @@ Warmer setting<br>
 	 * EPC : 0xE6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Hot water temperature lowering<br>
-	 * ON/OFF<br>
+	 * Hot water temperature lowering ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Hot water temperature lowering ON =<br>
-	 * 0x41<br>
-	 * Hot water temperature lowering OFF =<br>
-	 * 0x42<br>
+	 * Hot water temperature lowering ON = 0x41<br>
+	 * Hot water temperature lowering OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -860,20 +835,17 @@ Warmer setting<br>
 	 * EPC : 0xE6<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Hot water temperature lowering<br>
-	 * ON/OFF<br>
+	 * Hot water temperature lowering ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Hot water temperature lowering ON =<br>
-	 * 0x41<br>
-	 * Hot water temperature lowering OFF =<br>
-	 * 0x42<br>
+	 * Hot water temperature lowering ON = 0x41<br>
+	 * Hot water temperature lowering OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -885,8 +857,7 @@ Warmer setting<br>
 		return true;
 	}
 	/**
-	 * Property name : Bath hot water volume setting
-1<br>
+	 * Property name : Bath hot water volume setting 1<br>
 	 * <br>
 	 * EPC : 0xE7<br>
 	 * <br>
@@ -894,7 +865,7 @@ Warmer setting<br>
 	 * This property indicates bath hot water volume in liters.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00.0xFD (0 to 253 liters)<br>
+	 * 0x00.0xFD (0.253 liters)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -909,8 +880,7 @@ Warmer setting<br>
 	 */
 	protected boolean setBathHotWaterVolumeSetting1(byte[] edt) {return false;}
 	/**
-	 * Property name : Bath hot water volume setting
-1<br>
+	 * Property name : Bath hot water volume setting 1<br>
 	 * <br>
 	 * EPC : 0xE7<br>
 	 * <br>
@@ -918,7 +888,7 @@ Warmer setting<br>
 	 * This property indicates bath hot water volume in liters.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00.0xFD (0 to 253 liters)<br>
+	 * 0x00.0xFD (0.253 liters)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -933,8 +903,7 @@ Warmer setting<br>
 	 */
 	protected byte[] getBathHotWaterVolumeSetting1() {return null;}
 	/**
-	 * Property name : Bath hot water volume setting
-1<br>
+	 * Property name : Bath hot water volume setting 1<br>
 	 * <br>
 	 * EPC : 0xE7<br>
 	 * <br>
@@ -942,7 +911,7 @@ Warmer setting<br>
 	 * This property indicates bath hot water volume in liters.<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00.0xFD (0 to 253 liters)<br>
+	 * 0x00.0xFD (0.253 liters)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
@@ -960,14 +929,12 @@ Warmer setting<br>
 		return true;
 	}
 	/**
-	 * Property name : Bath hot water volume setting
-2<br>
+	 * Property name : Bath hot water volume setting 2<br>
 	 * <br>
 	 * EPC : 0xE8<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Specifies bath hot water volume<br>
-	 * (8-step).<br>
+	 * Specifies bath hot water volume (8-step).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x31.0x38<br>
@@ -976,7 +943,7 @@ Warmer setting<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -985,14 +952,12 @@ Warmer setting<br>
 	 */
 	protected boolean setBathHotWaterVolumeSetting2(byte[] edt) {return false;}
 	/**
-	 * Property name : Bath hot water volume setting
-2<br>
+	 * Property name : Bath hot water volume setting 2<br>
 	 * <br>
 	 * EPC : 0xE8<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Specifies bath hot water volume<br>
-	 * (8-step).<br>
+	 * Specifies bath hot water volume (8-step).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x31.0x38<br>
@@ -1001,7 +966,7 @@ Warmer setting<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1010,14 +975,12 @@ Warmer setting<br>
 	 */
 	protected byte[] getBathHotWaterVolumeSetting2() {return null;}
 	/**
-	 * Property name : Bath hot water volume setting
-2<br>
+	 * Property name : Bath hot water volume setting 2<br>
 	 * <br>
 	 * EPC : 0xE8<br>
 	 * <br>
 	 * Contents of property :<br>
-	 * Specifies bath hot water volume<br>
-	 * (8-step).<br>
+	 * Specifies bath hot water volume (8-step).<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x31.0x38<br>
@@ -1026,7 +989,7 @@ Warmer setting<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1038,8 +1001,7 @@ Warmer setting<br>
 		return true;
 	}
 	/**
-	 * Property name : Bath hot water volume setting
-3<br>
+	 * Property name : Bath hot water volume setting 3<br>
 	 * <br>
 	 * EPC : 0xEE<br>
 	 * <br>
@@ -1053,7 +1015,7 @@ Warmer setting<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : liters<br>
+	 * Unit : liter<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1062,8 +1024,7 @@ Warmer setting<br>
 	 */
 	protected boolean setBathHotWaterVolumeSetting3(byte[] edt) {return false;}
 	/**
-	 * Property name : Bath hot water volume setting
-3<br>
+	 * Property name : Bath hot water volume setting 3<br>
 	 * <br>
 	 * EPC : 0xEE<br>
 	 * <br>
@@ -1077,7 +1038,7 @@ Warmer setting<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : liters<br>
+	 * Unit : liter<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1086,8 +1047,7 @@ Warmer setting<br>
 	 */
 	protected byte[] getBathHotWaterVolumeSetting3() {return null;}
 	/**
-	 * Property name : Bath hot water volume setting
-3<br>
+	 * Property name : Bath hot water volume setting 3<br>
 	 * <br>
 	 * EPC : 0xEE<br>
 	 * <br>
@@ -1101,7 +1061,7 @@ Warmer setting<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : liters<br>
+	 * Unit : liter<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1127,7 +1087,7 @@ Warmer setting<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1150,7 +1110,7 @@ Warmer setting<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1173,7 +1133,7 @@ Warmer setting<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1193,14 +1153,13 @@ Warmer setting<br>
 	 * Shower hot water supply ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Shower hot water supply ON = 0x41<br>
-	 * Shower hot water supply OFF = 0x42<br>
+	 * Shower hot water supply ON = 0x41 Shower hot water supply OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1217,14 +1176,13 @@ Warmer setting<br>
 	 * Shower hot water supply ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Shower hot water supply ON = 0x41<br>
-	 * Shower hot water supply OFF = 0x42<br>
+	 * Shower hot water supply ON = 0x41 Shower hot water supply OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1250,7 +1208,7 @@ Warmer setting<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1273,7 +1231,7 @@ Warmer setting<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1293,14 +1251,13 @@ Warmer setting<br>
 	 * Reservation ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation ON = 0x41, reservation<br>
-	 * OFF = 0x42<br>
+	 * Reservation ON = 0x41, reservation OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1317,14 +1274,13 @@ Warmer setting<br>
 	 * Reservation ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation ON = 0x41, reservation<br>
-	 * OFF = 0x42<br>
+	 * Reservation ON = 0x41, reservation OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1341,14 +1297,13 @@ Warmer setting<br>
 	 * Reservation ON/OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation ON = 0x41, reservation<br>
-	 * OFF = 0x42<br>
+	 * Reservation ON = 0x41, reservation OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1370,11 +1325,11 @@ Warmer setting<br>
 	 * Value range (decimal notation) :<br>
 	 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1393,11 +1348,11 @@ Warmer setting<br>
 	 * Value range (decimal notation) :<br>
 	 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1416,11 +1371,11 @@ Warmer setting<br>
 	 * Value range (decimal notation) :<br>
 	 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1440,14 +1395,13 @@ Warmer setting<br>
 	 * Reservation ON/Reservation OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation ON = 0x41<br>
-	 * Reservation OFF = 0x42<br>
+	 * Reservation ON = 0x41 Reservation OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1464,14 +1418,13 @@ Warmer setting<br>
 	 * Reservation ON/Reservation OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation ON = 0x41<br>
-	 * Reservation OFF = 0x42<br>
+	 * Reservation ON = 0x41 Reservation OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1488,14 +1441,13 @@ Warmer setting<br>
 	 * Reservation ON/Reservation OFF<br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation ON = 0x41<br>
-	 * Reservation OFF = 0x42<br>
+	 * Reservation ON = 0x41 Reservation OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * <br>
 	 * Data size : 1 byte<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1507,8 +1459,7 @@ Warmer setting<br>
 		return true;
 	}
 	/**
-	 * Property name : Set value of ON
-timer time<br>
+	 * Property name : Set value of ON timer time<br>
 	 * <br>
 	 * EPC : 0x91<br>
 	 * <br>
@@ -1518,11 +1469,11 @@ timer time<br>
 	 * Value range (decimal notation) :<br>
 	 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1531,8 +1482,7 @@ timer time<br>
 	 */
 	protected boolean setSetValueOfOnTimerTime(byte[] edt) {return false;}
 	/**
-	 * Property name : Set value of ON
-timer time<br>
+	 * Property name : Set value of ON timer time<br>
 	 * <br>
 	 * EPC : 0x91<br>
 	 * <br>
@@ -1542,11 +1492,11 @@ timer time<br>
 	 * Value range (decimal notation) :<br>
 	 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1555,8 +1505,7 @@ timer time<br>
 	 */
 	protected byte[] getSetValueOfOnTimerTime() {return null;}
 	/**
-	 * Property name : Set value of ON
-timer time<br>
+	 * Property name : Set value of ON timer time<br>
 	 * <br>
 	 * EPC : 0x91<br>
 	 * <br>
@@ -1566,11 +1515,11 @@ timer time<br>
 	 * Value range (decimal notation) :<br>
 	 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1592,11 +1541,11 @@ timer time<br>
 	 * Value range (decimal notation) :<br>
 	 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1615,11 +1564,11 @@ timer time<br>
 	 * Value range (decimal notation) :<br>
 	 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1638,11 +1587,11 @@ timer time<br>
 	 * Value range (decimal notation) :<br>
 	 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 	 * <br>
-	 * Data type : unsigned char x 2<br>
+	 * Data type : unsigned char × 2<br>
 	 * <br>
 	 * Data size : 2 bytes<br>
 	 * <br>
-	 * Unit : .<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - undefined<br>
@@ -1662,7 +1611,7 @@ timer time<br>
 		switch(property.epc) {
 		case EPC_SET_VALUE_OF_HOT_WATER_TEMPERATURE : return setSetValueOfHotWaterTemperature(property.edt);
 		case EPC_HOT_WATER_WARMER_SETTING : return setHotWaterWarmerSetting(property.edt);
-		case EPC_GDURATION_OF_AUTOMATIC_OPERATION_H_SETTING : return setGdurationOfAutomaticOperationHSetting(property.edt);
+		case EPC_DURATION_OF_AUTOMATIC_OPERATION_SETTING : return setDurationOfAutomaticOperationSetting(property.edt);
 		case EPC_SET_VALUE_OF_BATH_TEMPERATURE : return setSetValueOfBathTemperature(property.edt);
 		case EPC_BATH_AUTO_MODE_SETTING : return setBathAutoModeSetting(property.edt);
 		case EPC_BATH_ADDITIONAL_BOIL_UP_OPERATION_SETTING : return setBathAdditionalBoilUpOperationSetting(property.edt);
@@ -1690,7 +1639,7 @@ timer time<br>
 		case EPC_HOT_WATER_HEATING_STATUS : return getHotWaterHeatingStatus();
 		case EPC_SET_VALUE_OF_HOT_WATER_TEMPERATURE : return getSetValueOfHotWaterTemperature();
 		case EPC_HOT_WATER_WARMER_SETTING : return getHotWaterWarmerSetting();
-		case EPC_GDURATION_OF_AUTOMATIC_OPERATION_H_SETTING : return getGdurationOfAutomaticOperationHSetting();
+		case EPC_DURATION_OF_AUTOMATIC_OPERATION_SETTING : return getDurationOfAutomaticOperationSetting();
 		case EPC_REMAINING_AUTOMATIC_OPERATION_TIME : return getRemainingAutomaticOperationTime();
 		case EPC_SET_VALUE_OF_BATH_TEMPERATURE : return getSetValueOfBathTemperature();
 		case EPC_BATH_WATER_HEATER_STATUS : return getBathWaterHeaterStatus();
@@ -1722,7 +1671,7 @@ timer time<br>
 		case EPC_HOT_WATER_HEATING_STATUS : return isValidHotWaterHeatingStatus(property.edt);
 		case EPC_SET_VALUE_OF_HOT_WATER_TEMPERATURE : return isValidSetValueOfHotWaterTemperature(property.edt);
 		case EPC_HOT_WATER_WARMER_SETTING : return isValidHotWaterWarmerSetting(property.edt);
-		case EPC_GDURATION_OF_AUTOMATIC_OPERATION_H_SETTING : return isValidGdurationOfAutomaticOperationHSetting(property.edt);
+		case EPC_DURATION_OF_AUTOMATIC_OPERATION_SETTING : return isValidDurationOfAutomaticOperationSetting(property.edt);
 		case EPC_REMAINING_AUTOMATIC_OPERATION_TIME : return isValidRemainingAutomaticOperationTime(property.edt);
 		case EPC_SET_VALUE_OF_BATH_TEMPERATURE : return isValidSetValueOfBathTemperature(property.edt);
 		case EPC_BATH_WATER_HEATER_STATUS : return isValidBathWaterHeaterStatus(property.edt);
@@ -1794,8 +1743,8 @@ timer time<br>
 			case EPC_HOT_WATER_WARMER_SETTING : 
 				onSetHotWaterWarmerSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GDURATION_OF_AUTOMATIC_OPERATION_H_SETTING : 
-				onSetGdurationOfAutomaticOperationHSetting(eoj, tid, esv, property, success);
+			case EPC_DURATION_OF_AUTOMATIC_OPERATION_SETTING : 
+				onSetDurationOfAutomaticOperationSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_SET_VALUE_OF_BATH_TEMPERATURE : 
 				onSetSetValueOfBathTemperature(eoj, tid, esv, property, success);
@@ -1860,8 +1809,8 @@ timer time<br>
 			case EPC_HOT_WATER_WARMER_SETTING : 
 				onGetHotWaterWarmerSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_GDURATION_OF_AUTOMATIC_OPERATION_H_SETTING : 
-				onGetGdurationOfAutomaticOperationHSetting(eoj, tid, esv, property, success);
+			case EPC_DURATION_OF_AUTOMATIC_OPERATION_SETTING : 
+				onGetDurationOfAutomaticOperationSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_REMAINING_AUTOMATIC_OPERATION_TIME : 
 				onGetRemainingAutomaticOperationTime(eoj, tid, esv, property, success);
@@ -1933,14 +1882,13 @@ timer time<br>
 		 * Value range (decimal notation) :<br>
 		 * Hot water heating status found<br>
 		 * = 0x41<br>
-		 * Hot water heating status not found =<br>
-		 * 0x42<br>
+		 * Hot water heating status not found = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1963,7 +1911,7 @@ timer time<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1986,7 +1934,7 @@ timer time<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -1995,8 +1943,7 @@ timer time<br>
 		 */
 		protected void onGetSetValueOfHotWaterTemperature(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Hot water
-Warmer setting<br>
+		 * Property name : Hot water Warmer setting<br>
 		 * <br>
 		 * EPC : 0xD2<br>
 		 * <br>
@@ -2004,15 +1951,14 @@ Warmer setting<br>
 		 * Hot water warmer setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Hot water warmer operation = 0x41<br>
-		 * Hot water warmer operation resetting<br>
+		 * Hot water warmer operation = 0x41 Hot water warmer operation resetting<br>
 		 * = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2021,8 +1967,7 @@ Warmer setting<br>
 		 */
 		protected void onSetHotWaterWarmerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Hot water
-Warmer setting<br>
+		 * Property name : Hot water Warmer setting<br>
 		 * <br>
 		 * EPC : 0xD2<br>
 		 * <br>
@@ -2030,15 +1975,14 @@ Warmer setting<br>
 		 * Hot water warmer setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Hot water warmer operation = 0x41<br>
-		 * Hot water warmer operation resetting<br>
+		 * Hot water warmer operation = 0x41 Hot water warmer operation resetting<br>
 		 * = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2047,7 +1991,7 @@ Warmer setting<br>
 		 */
 		protected void onGetHotWaterWarmerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name :  gDuration of automatic operation h setting<br>
+		 * Property name : “Duration of automatic operation” setting<br>
 		 * <br>
 		 * EPC : 0xDA<br>
 		 * <br>
@@ -2055,23 +1999,23 @@ Warmer setting<br>
 		 * Timer value (HH:MM)<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
+		 * Limitless: 0xFFFF<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char× 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onSetGdurationOfAutomaticOperationHSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetDurationOfAutomaticOperationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name :  gDuration of automatic operation h setting<br>
+		 * Property name : “Duration of automatic operation” setting<br>
 		 * <br>
 		 * EPC : 0xDA<br>
 		 * <br>
@@ -2079,21 +2023,21 @@ Warmer setting<br>
 		 * Timer value (HH:MM)<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
+		 * Limitless: 0xFFFF<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char× 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		protected void onGetGdurationOfAutomaticOperationHSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetDurationOfAutomaticOperationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Remaining automatic operation time<br>
 		 * <br>
@@ -2103,14 +2047,14 @@ Warmer setting<br>
 		 * Timer value (HH:MM)<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59) Infinite: 0xFFFF<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
+		 * Infinite: 0xFFFF<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2133,7 +2077,7 @@ Warmer setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2156,7 +2100,7 @@ Warmer setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2173,14 +2117,13 @@ Warmer setting<br>
 		 * This property indicates whether or not the bath water heater is heating bath water.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Heating = 0x41<br>
-		 * Not heating = 0x42<br>
+		 * Heating = 0x41 Not heating = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2197,19 +2140,18 @@ Warmer setting<br>
 		 * Bath auto mode ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Auto ON = 0x41<br>
-		 * Auto OFF = 0x42<br>
+		 * Auto ON = 0x41 Auto OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		protected void onSetBathAutoModeSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -2221,19 +2163,18 @@ Warmer setting<br>
 		 * Bath auto mode ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Auto ON = 0x41<br>
-		 * Auto OFF = 0x42<br>
+		 * Auto ON = 0x41 Auto OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		protected void onGetBathAutoModeSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -2245,14 +2186,13 @@ Warmer setting<br>
 		 * Additional boil-up ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Additional boil-up ON = 0x41<br>
-		 * Additional boil-up OFF = 0x42<br>
+		 * Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2269,14 +2209,13 @@ Warmer setting<br>
 		 * Additional boil-up ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Additional boil-up ON = 0x41<br>
-		 * Additional boil-up OFF = 0x42<br>
+		 * Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2293,14 +2232,13 @@ Warmer setting<br>
 		 * Hot water addition ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Hot water addition ON = 0x41<br>
-		 * Hot water addition OFF = 0x42<br>
+		 * Hot water addition ON = 0x41 Hot water addition OFF = 0x42<br>
 		 * <br>
-		 * Data type : unsigned<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2317,14 +2255,13 @@ Warmer setting<br>
 		 * Hot water addition ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Hot water addition ON = 0x41<br>
-		 * Hot water addition OFF = 0x42<br>
+		 * Hot water addition ON = 0x41 Hot water addition OFF = 0x42<br>
 		 * <br>
-		 * Data type : unsigned<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2338,20 +2275,17 @@ Warmer setting<br>
 		 * EPC : 0xE6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Hot water temperature lowering<br>
-		 * ON/OFF<br>
+		 * Hot water temperature lowering ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Hot water temperature lowering ON =<br>
-		 * 0x41<br>
-		 * Hot water temperature lowering OFF =<br>
-		 * 0x42<br>
+		 * Hot water temperature lowering ON = 0x41<br>
+		 * Hot water temperature lowering OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2365,20 +2299,17 @@ Warmer setting<br>
 		 * EPC : 0xE6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Hot water temperature lowering<br>
-		 * ON/OFF<br>
+		 * Hot water temperature lowering ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Hot water temperature lowering ON =<br>
-		 * 0x41<br>
-		 * Hot water temperature lowering OFF =<br>
-		 * 0x42<br>
+		 * Hot water temperature lowering ON = 0x41<br>
+		 * Hot water temperature lowering OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2387,8 +2318,7 @@ Warmer setting<br>
 		 */
 		protected void onGetBathWaterTemperatureLoweringOperationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Bath hot water volume setting
-1<br>
+		 * Property name : Bath hot water volume setting 1<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
@@ -2396,7 +2326,7 @@ Warmer setting<br>
 		 * This property indicates bath hot water volume in liters.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0xFD (0 to 253 liters)<br>
+		 * 0x00.0xFD (0.253 liters)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -2411,8 +2341,7 @@ Warmer setting<br>
 		 */
 		protected void onSetBathHotWaterVolumeSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Bath hot water volume setting
-1<br>
+		 * Property name : Bath hot water volume setting 1<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
@@ -2420,7 +2349,7 @@ Warmer setting<br>
 		 * This property indicates bath hot water volume in liters.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0xFD (0 to 253 liters)<br>
+		 * 0x00.0xFD (0.253 liters)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -2435,14 +2364,12 @@ Warmer setting<br>
 		 */
 		protected void onGetBathHotWaterVolumeSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Bath hot water volume setting
-2<br>
+		 * Property name : Bath hot water volume setting 2<br>
 		 * <br>
 		 * EPC : 0xE8<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Specifies bath hot water volume<br>
-		 * (8-step).<br>
+		 * Specifies bath hot water volume (8-step).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31.0x38<br>
@@ -2451,7 +2378,7 @@ Warmer setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2460,14 +2387,12 @@ Warmer setting<br>
 		 */
 		protected void onSetBathHotWaterVolumeSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Bath hot water volume setting
-2<br>
+		 * Property name : Bath hot water volume setting 2<br>
 		 * <br>
 		 * EPC : 0xE8<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Specifies bath hot water volume<br>
-		 * (8-step).<br>
+		 * Specifies bath hot water volume (8-step).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31.0x38<br>
@@ -2476,7 +2401,7 @@ Warmer setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2485,8 +2410,7 @@ Warmer setting<br>
 		 */
 		protected void onGetBathHotWaterVolumeSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Bath hot water volume setting
-3<br>
+		 * Property name : Bath hot water volume setting 3<br>
 		 * <br>
 		 * EPC : 0xEE<br>
 		 * <br>
@@ -2500,7 +2424,7 @@ Warmer setting<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : liters<br>
+		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2509,8 +2433,7 @@ Warmer setting<br>
 		 */
 		protected void onSetBathHotWaterVolumeSetting3(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Bath hot water volume setting
-3<br>
+		 * Property name : Bath hot water volume setting 3<br>
 		 * <br>
 		 * EPC : 0xEE<br>
 		 * <br>
@@ -2524,7 +2447,7 @@ Warmer setting<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : liters<br>
+		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2547,7 +2470,7 @@ Warmer setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2570,7 +2493,7 @@ Warmer setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2587,14 +2510,13 @@ Warmer setting<br>
 		 * Shower hot water supply ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Shower hot water supply ON = 0x41<br>
-		 * Shower hot water supply OFF = 0x42<br>
+		 * Shower hot water supply ON = 0x41 Shower hot water supply OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2617,7 +2539,7 @@ Warmer setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2634,14 +2556,13 @@ Warmer setting<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON = 0x41, reservation<br>
-		 * OFF = 0x42<br>
+		 * Reservation ON = 0x41, reservation OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2658,14 +2579,13 @@ Warmer setting<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON = 0x41, reservation<br>
-		 * OFF = 0x42<br>
+		 * Reservation ON = 0x41, reservation OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2684,11 +2604,11 @@ Warmer setting<br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2707,11 +2627,11 @@ Warmer setting<br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2728,14 +2648,13 @@ Warmer setting<br>
 		 * Reservation ON/Reservation OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON = 0x41<br>
-		 * Reservation OFF = 0x42<br>
+		 * Reservation ON = 0x41 Reservation OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2752,14 +2671,13 @@ Warmer setting<br>
 		 * Reservation ON/Reservation OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON = 0x41<br>
-		 * Reservation OFF = 0x42<br>
+		 * Reservation ON = 0x41 Reservation OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2768,8 +2686,7 @@ Warmer setting<br>
 		 */
 		protected void onGetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Set value of ON
-timer time<br>
+		 * Property name : Set value of ON timer time<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
@@ -2779,11 +2696,11 @@ timer time<br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2792,8 +2709,7 @@ timer time<br>
 		 */
 		protected void onSetSetValueOfOnTimerTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Set value of ON
-timer time<br>
+		 * Property name : Set value of ON timer time<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
@@ -2803,11 +2719,11 @@ timer time<br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2826,11 +2742,11 @@ timer time<br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2849,11 +2765,11 @@ timer time<br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2892,8 +2808,8 @@ timer time<br>
 			return (Setter)super.reqSetPowerSavingOperationSetting(edt);
 		}
 		@Override
-		public Setter reqSetPositionInformation(byte[] edt) {
-			return (Setter)super.reqSetPositionInformation(edt);
+		public Setter reqSetRemoteControlSetting(byte[] edt) {
+			return (Setter)super.reqSetRemoteControlSetting(edt);
 		}
 		@Override
 		public Setter reqSetCurrentTimeSetting(byte[] edt) {
@@ -2923,7 +2839,7 @@ timer time<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2935,8 +2851,7 @@ timer time<br>
 			return this;
 		}
 		/**
-		 * Property name : Hot water
-Warmer setting<br>
+		 * Property name : Hot water Warmer setting<br>
 		 * <br>
 		 * EPC : 0xD2<br>
 		 * <br>
@@ -2944,15 +2859,14 @@ Warmer setting<br>
 		 * Hot water warmer setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Hot water warmer operation = 0x41<br>
-		 * Hot water warmer operation resetting<br>
+		 * Hot water warmer operation = 0x41 Hot water warmer operation resetting<br>
 		 * = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -2964,7 +2878,7 @@ Warmer setting<br>
 			return this;
 		}
 		/**
-		 * Property name :  gDuration of automatic operation h setting<br>
+		 * Property name : “Duration of automatic operation” setting<br>
 		 * <br>
 		 * EPC : 0xDA<br>
 		 * <br>
@@ -2972,22 +2886,22 @@ Warmer setting<br>
 		 * Timer value (HH:MM)<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
+		 * Limitless: 0xFFFF<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char× 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Setter reqSetGdurationOfAutomaticOperationHSetting(byte[] edt) {
-			reqSetProperty(EPC_GDURATION_OF_AUTOMATIC_OPERATION_H_SETTING, edt);
+		public Setter reqSetDurationOfAutomaticOperationSetting(byte[] edt) {
+			reqSetProperty(EPC_DURATION_OF_AUTOMATIC_OPERATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3005,7 +2919,7 @@ Warmer setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3025,19 +2939,18 @@ Warmer setting<br>
 		 * Bath auto mode ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Auto ON = 0x41<br>
-		 * Auto OFF = 0x42<br>
+		 * Auto ON = 0x41 Auto OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		public Setter reqSetBathAutoModeSetting(byte[] edt) {
 			reqSetProperty(EPC_BATH_AUTO_MODE_SETTING, edt);
@@ -3052,14 +2965,13 @@ Warmer setting<br>
 		 * Additional boil-up ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Additional boil-up ON = 0x41<br>
-		 * Additional boil-up OFF = 0x42<br>
+		 * Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3079,14 +2991,13 @@ Warmer setting<br>
 		 * Hot water addition ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Hot water addition ON = 0x41<br>
-		 * Hot water addition OFF = 0x42<br>
+		 * Hot water addition ON = 0x41 Hot water addition OFF = 0x42<br>
 		 * <br>
-		 * Data type : unsigned<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3103,20 +3014,17 @@ Warmer setting<br>
 		 * EPC : 0xE6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Hot water temperature lowering<br>
-		 * ON/OFF<br>
+		 * Hot water temperature lowering ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Hot water temperature lowering ON =<br>
-		 * 0x41<br>
-		 * Hot water temperature lowering OFF =<br>
-		 * 0x42<br>
+		 * Hot water temperature lowering ON = 0x41<br>
+		 * Hot water temperature lowering OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3128,8 +3036,7 @@ Warmer setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Bath hot water volume setting
-1<br>
+		 * Property name : Bath hot water volume setting 1<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
@@ -3137,7 +3044,7 @@ Warmer setting<br>
 		 * This property indicates bath hot water volume in liters.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0xFD (0 to 253 liters)<br>
+		 * 0x00.0xFD (0.253 liters)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -3155,14 +3062,12 @@ Warmer setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Bath hot water volume setting
-2<br>
+		 * Property name : Bath hot water volume setting 2<br>
 		 * <br>
 		 * EPC : 0xE8<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Specifies bath hot water volume<br>
-		 * (8-step).<br>
+		 * Specifies bath hot water volume (8-step).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31.0x38<br>
@@ -3171,7 +3076,7 @@ Warmer setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3183,8 +3088,7 @@ Warmer setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Bath hot water volume setting
-3<br>
+		 * Property name : Bath hot water volume setting 3<br>
 		 * <br>
 		 * EPC : 0xEE<br>
 		 * <br>
@@ -3198,7 +3102,7 @@ Warmer setting<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : liters<br>
+		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3224,7 +3128,7 @@ Warmer setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3244,14 +3148,13 @@ Warmer setting<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON = 0x41, reservation<br>
-		 * OFF = 0x42<br>
+		 * Reservation ON = 0x41, reservation OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3273,11 +3176,11 @@ Warmer setting<br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3297,14 +3200,13 @@ Warmer setting<br>
 		 * Reservation ON/Reservation OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON = 0x41<br>
-		 * Reservation OFF = 0x42<br>
+		 * Reservation ON = 0x41 Reservation OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3316,8 +3218,7 @@ Warmer setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Set value of ON
-timer time<br>
+		 * Property name : Set value of ON timer time<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
@@ -3327,11 +3228,11 @@ timer time<br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3353,11 +3254,11 @@ timer time<br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3447,8 +3348,8 @@ timer time<br>
 			return (Getter)super.reqGetPowerSavingOperationSetting();
 		}
 		@Override
-		public Getter reqGetPositionInformation() {
-			return (Getter)super.reqGetPositionInformation();
+		public Getter reqGetRemoteControlSetting() {
+			return (Getter)super.reqGetRemoteControlSetting();
 		}
 		@Override
 		public Getter reqGetCurrentTimeSetting() {
@@ -3490,14 +3391,13 @@ timer time<br>
 		 * Value range (decimal notation) :<br>
 		 * Hot water heating status found<br>
 		 * = 0x41<br>
-		 * Hot water heating status not found =<br>
-		 * 0x42<br>
+		 * Hot water heating status not found = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3523,7 +3423,7 @@ timer time<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3535,8 +3435,7 @@ timer time<br>
 			return this;
 		}
 		/**
-		 * Property name : Hot water
-Warmer setting<br>
+		 * Property name : Hot water Warmer setting<br>
 		 * <br>
 		 * EPC : 0xD2<br>
 		 * <br>
@@ -3544,15 +3443,14 @@ Warmer setting<br>
 		 * Hot water warmer setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Hot water warmer operation = 0x41<br>
-		 * Hot water warmer operation resetting<br>
+		 * Hot water warmer operation = 0x41 Hot water warmer operation resetting<br>
 		 * = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3564,7 +3462,7 @@ Warmer setting<br>
 			return this;
 		}
 		/**
-		 * Property name :  gDuration of automatic operation h setting<br>
+		 * Property name : “Duration of automatic operation” setting<br>
 		 * <br>
 		 * EPC : 0xDA<br>
 		 * <br>
@@ -3572,22 +3470,22 @@ Warmer setting<br>
 		 * Timer value (HH:MM)<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
+		 * Limitless: 0xFFFF<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char× 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Getter reqGetGdurationOfAutomaticOperationHSetting() {
-			reqGetProperty(EPC_GDURATION_OF_AUTOMATIC_OPERATION_H_SETTING);
+		public Getter reqGetDurationOfAutomaticOperationSetting() {
+			reqGetProperty(EPC_DURATION_OF_AUTOMATIC_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -3599,14 +3497,14 @@ Warmer setting<br>
 		 * Timer value (HH:MM)<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59) Infinite: 0xFFFF<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
+		 * Infinite: 0xFFFF<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3632,7 +3530,7 @@ Warmer setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3652,14 +3550,13 @@ Warmer setting<br>
 		 * This property indicates whether or not the bath water heater is heating bath water.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Heating = 0x41<br>
-		 * Not heating = 0x42<br>
+		 * Heating = 0x41 Not heating = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3679,19 +3576,18 @@ Warmer setting<br>
 		 * Bath auto mode ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Auto ON = 0x41<br>
-		 * Auto OFF = 0x42<br>
+		 * Auto ON = 0x41 Auto OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		public Getter reqGetBathAutoModeSetting() {
 			reqGetProperty(EPC_BATH_AUTO_MODE_SETTING);
@@ -3706,14 +3602,13 @@ Warmer setting<br>
 		 * Additional boil-up ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Additional boil-up ON = 0x41<br>
-		 * Additional boil-up OFF = 0x42<br>
+		 * Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3733,14 +3628,13 @@ Warmer setting<br>
 		 * Hot water addition ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Hot water addition ON = 0x41<br>
-		 * Hot water addition OFF = 0x42<br>
+		 * Hot water addition ON = 0x41 Hot water addition OFF = 0x42<br>
 		 * <br>
-		 * Data type : unsigned<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3757,20 +3651,17 @@ Warmer setting<br>
 		 * EPC : 0xE6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Hot water temperature lowering<br>
-		 * ON/OFF<br>
+		 * Hot water temperature lowering ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Hot water temperature lowering ON =<br>
-		 * 0x41<br>
-		 * Hot water temperature lowering OFF =<br>
-		 * 0x42<br>
+		 * Hot water temperature lowering ON = 0x41<br>
+		 * Hot water temperature lowering OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3782,8 +3673,7 @@ Warmer setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Bath hot water volume setting
-1<br>
+		 * Property name : Bath hot water volume setting 1<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
@@ -3791,7 +3681,7 @@ Warmer setting<br>
 		 * This property indicates bath hot water volume in liters.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0xFD (0 to 253 liters)<br>
+		 * 0x00.0xFD (0.253 liters)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -3809,14 +3699,12 @@ Warmer setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Bath hot water volume setting
-2<br>
+		 * Property name : Bath hot water volume setting 2<br>
 		 * <br>
 		 * EPC : 0xE8<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Specifies bath hot water volume<br>
-		 * (8-step).<br>
+		 * Specifies bath hot water volume (8-step).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31.0x38<br>
@@ -3825,7 +3713,7 @@ Warmer setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3837,8 +3725,7 @@ Warmer setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Bath hot water volume setting
-3<br>
+		 * Property name : Bath hot water volume setting 3<br>
 		 * <br>
 		 * EPC : 0xEE<br>
 		 * <br>
@@ -3852,7 +3739,7 @@ Warmer setting<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : liters<br>
+		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3878,7 +3765,7 @@ Warmer setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3898,14 +3785,13 @@ Warmer setting<br>
 		 * Shower hot water supply ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Shower hot water supply ON = 0x41<br>
-		 * Shower hot water supply OFF = 0x42<br>
+		 * Shower hot water supply ON = 0x41 Shower hot water supply OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3931,7 +3817,7 @@ Warmer setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3951,14 +3837,13 @@ Warmer setting<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON = 0x41, reservation<br>
-		 * OFF = 0x42<br>
+		 * Reservation ON = 0x41, reservation OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -3980,11 +3865,11 @@ Warmer setting<br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4004,14 +3889,13 @@ Warmer setting<br>
 		 * Reservation ON/Reservation OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON = 0x41<br>
-		 * Reservation OFF = 0x42<br>
+		 * Reservation ON = 0x41 Reservation OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4023,8 +3907,7 @@ Warmer setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Set value of ON
-timer time<br>
+		 * Property name : Set value of ON timer time<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
@@ -4034,11 +3917,11 @@ timer time<br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4060,11 +3943,11 @@ timer time<br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4153,8 +4036,8 @@ timer time<br>
 			return (Informer)super.reqInformPowerSavingOperationSetting();
 		}
 		@Override
-		public Informer reqInformPositionInformation() {
-			return (Informer)super.reqInformPositionInformation();
+		public Informer reqInformRemoteControlSetting() {
+			return (Informer)super.reqInformRemoteControlSetting();
 		}
 		@Override
 		public Informer reqInformCurrentTimeSetting() {
@@ -4196,14 +4079,13 @@ timer time<br>
 		 * Value range (decimal notation) :<br>
 		 * Hot water heating status found<br>
 		 * = 0x41<br>
-		 * Hot water heating status not found =<br>
-		 * 0x42<br>
+		 * Hot water heating status not found = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4229,7 +4111,7 @@ timer time<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4241,8 +4123,7 @@ timer time<br>
 			return this;
 		}
 		/**
-		 * Property name : Hot water
-Warmer setting<br>
+		 * Property name : Hot water Warmer setting<br>
 		 * <br>
 		 * EPC : 0xD2<br>
 		 * <br>
@@ -4250,15 +4131,14 @@ Warmer setting<br>
 		 * Hot water warmer setting<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Hot water warmer operation = 0x41<br>
-		 * Hot water warmer operation resetting<br>
+		 * Hot water warmer operation = 0x41 Hot water warmer operation resetting<br>
 		 * = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4270,7 +4150,7 @@ Warmer setting<br>
 			return this;
 		}
 		/**
-		 * Property name :  gDuration of automatic operation h setting<br>
+		 * Property name : “Duration of automatic operation” setting<br>
 		 * <br>
 		 * EPC : 0xDA<br>
 		 * <br>
@@ -4278,22 +4158,22 @@ Warmer setting<br>
 		 * Timer value (HH:MM)<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59) Limitless: 0xFFFF<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
+		 * Limitless: 0xFFFF<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char× 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
 		 * Set - optional<br>
 		 * Get - optional<br>
 		 */
-		public Informer reqInformGdurationOfAutomaticOperationHSetting() {
-			reqInformProperty(EPC_GDURATION_OF_AUTOMATIC_OPERATION_H_SETTING);
+		public Informer reqInformDurationOfAutomaticOperationSetting() {
+			reqInformProperty(EPC_DURATION_OF_AUTOMATIC_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -4305,14 +4185,14 @@ Warmer setting<br>
 		 * Timer value (HH:MM)<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0 to 0x17: 0 to 0x3B<br>
-		 * (= 0 to 23): (= 0 to 59) Infinite: 0xFFFF<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
+		 * Infinite: 0xFFFF<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4338,7 +4218,7 @@ Warmer setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : . C<br>
+		 * Unit : .C<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4358,14 +4238,13 @@ Warmer setting<br>
 		 * This property indicates whether or not the bath water heater is heating bath water.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Heating = 0x41<br>
-		 * Not heating = 0x42<br>
+		 * Heating = 0x41 Not heating = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4385,19 +4264,18 @@ Warmer setting<br>
 		 * Bath auto mode ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Auto ON = 0x41<br>
-		 * Auto OFF = 0x42<br>
+		 * Auto ON = 0x41 Auto OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Set - mandatory<br>
+		 * Get - mandatory<br>
 		 */
 		public Informer reqInformBathAutoModeSetting() {
 			reqInformProperty(EPC_BATH_AUTO_MODE_SETTING);
@@ -4412,14 +4290,13 @@ Warmer setting<br>
 		 * Additional boil-up ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Additional boil-up ON = 0x41<br>
-		 * Additional boil-up OFF = 0x42<br>
+		 * Additional boil-up ON = 0x41 Additional boil-up OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4439,14 +4316,13 @@ Warmer setting<br>
 		 * Hot water addition ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Hot water addition ON = 0x41<br>
-		 * Hot water addition OFF = 0x42<br>
+		 * Hot water addition ON = 0x41 Hot water addition OFF = 0x42<br>
 		 * <br>
-		 * Data type : unsigned<br>
+		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4463,20 +4339,17 @@ Warmer setting<br>
 		 * EPC : 0xE6<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Hot water temperature lowering<br>
-		 * ON/OFF<br>
+		 * Hot water temperature lowering ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Hot water temperature lowering ON =<br>
-		 * 0x41<br>
-		 * Hot water temperature lowering OFF =<br>
-		 * 0x42<br>
+		 * Hot water temperature lowering ON = 0x41<br>
+		 * Hot water temperature lowering OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4488,8 +4361,7 @@ Warmer setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Bath hot water volume setting
-1<br>
+		 * Property name : Bath hot water volume setting 1<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
@@ -4497,7 +4369,7 @@ Warmer setting<br>
 		 * This property indicates bath hot water volume in liters.<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0xFD (0 to 253 liters)<br>
+		 * 0x00.0xFD (0.253 liters)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
@@ -4515,14 +4387,12 @@ Warmer setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Bath hot water volume setting
-2<br>
+		 * Property name : Bath hot water volume setting 2<br>
 		 * <br>
 		 * EPC : 0xE8<br>
 		 * <br>
 		 * Contents of property :<br>
-		 * Specifies bath hot water volume<br>
-		 * (8-step).<br>
+		 * Specifies bath hot water volume (8-step).<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31.0x38<br>
@@ -4531,7 +4401,7 @@ Warmer setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4543,8 +4413,7 @@ Warmer setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Bath hot water volume setting
-3<br>
+		 * Property name : Bath hot water volume setting 3<br>
 		 * <br>
 		 * EPC : 0xEE<br>
 		 * <br>
@@ -4558,7 +4427,7 @@ Warmer setting<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : liters<br>
+		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4584,7 +4453,7 @@ Warmer setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4604,14 +4473,13 @@ Warmer setting<br>
 		 * Shower hot water supply ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Shower hot water supply ON = 0x41<br>
-		 * Shower hot water supply OFF = 0x42<br>
+		 * Shower hot water supply ON = 0x41 Shower hot water supply OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4637,7 +4505,7 @@ Warmer setting<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4657,14 +4525,13 @@ Warmer setting<br>
 		 * Reservation ON/OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON = 0x41, reservation<br>
-		 * OFF = 0x42<br>
+		 * Reservation ON = 0x41, reservation OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4686,11 +4553,11 @@ Warmer setting<br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4710,14 +4577,13 @@ Warmer setting<br>
 		 * Reservation ON/Reservation OFF<br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON = 0x41<br>
-		 * Reservation OFF = 0x42<br>
+		 * Reservation ON = 0x41 Reservation OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * <br>
 		 * Data size : 1 byte<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4729,8 +4595,7 @@ Warmer setting<br>
 			return this;
 		}
 		/**
-		 * Property name : Set value of ON
-timer time<br>
+		 * Property name : Set value of ON timer time<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
@@ -4740,11 +4605,11 @@ timer time<br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4766,11 +4631,11 @@ timer time<br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23):(= 0.59)<br>
 		 * <br>
-		 * Data type : unsigned char x 2<br>
+		 * Data type : unsigned char × 2<br>
 		 * <br>
 		 * Data size : 2 bytes<br>
 		 * <br>
-		 * Unit : .<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - undefined<br>
@@ -4808,6 +4673,10 @@ timer time<br>
 		protected byte[] getHotWaterHeatingStatus() {return null;}
 		@Override
 		protected byte[] getBathWaterHeaterStatus() {return null;}
+		@Override
+		protected boolean setBathAutoModeSetting(byte[] edt) {return false;}
+		@Override
+		protected byte[] getBathAutoModeSetting() {return null;}
 	}
 	
 	public static Setter setG() {
