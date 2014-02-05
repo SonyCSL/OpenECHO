@@ -33,6 +33,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -60,8 +61,11 @@ public final class EchoSocket {
 	private static InetAddress sMulticastAddress;
 	private static ExecutorService sExecutors;
 	
-	// mServerSocket is for TCP.
+	// for TCP.
 	private static ServerSocket sServerSocket;
+	private static ExecutorService sConnectedTCPSocketThreads = Executors.newCachedThreadPool();
+	//  may be connected from same source many times.
+	//private static Map<String,LinkedList<Socket>> sConnectedTCPSockets;
 	
 	//private static HashMap<Short, ResponseListener> sListeners;
 	
@@ -92,9 +96,7 @@ public final class EchoSocket {
 					e.printStackTrace();
 				}
 			}
-			
 		}
-
 	}
 
 	public static void openSocket() throws IOException {
@@ -116,6 +118,8 @@ public final class EchoSocket {
 		sServerSocket.setSoTimeout(10);
 		sServerSocket.setReuseAddress(true);
 		sServerSocket.bind(new InetSocketAddress(PORT));
+		sConnectedTCPSocketThreads.shutdownNow();
+		
 	}
 	
 	public static void closeSocket() throws IOException {
@@ -141,7 +145,7 @@ public final class EchoSocket {
 			onReceiveUDPFrame(frame);
 		}
 	}
-	
+
 	private static void onReceiveUDPFrame(EchoFrame frame) {
 		Echo.getEventListener().receiveEvent(frame);
 		
@@ -196,11 +200,10 @@ public final class EchoSocket {
 		if(response.getESV() == EchoFrame.ESV_SET_NO_RES) {
 			return;
 		}
-
+		System.err.println(response);
 		try {
 			sendUDPFrame(response);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -209,7 +212,8 @@ public final class EchoSocket {
 		// check new node or instance
 		checkNewObjectInResponse(frame.copy());
 		EchoNode node = Echo.getNode(frame.getSrcEchoAddress());
-		EchoObject seoj = node.getInstance(frame.getSrcEchoClassCode(), frame.getSrcEchoInstanceCode());
+		EchoObject seoj = node.getInstance(frame.getSrcEchoClassCode(), 
+											frame.getSrcEchoInstanceCode());
 		
 		if(seoj == null) {return;}
 		seoj.setNode(node);
@@ -350,12 +354,11 @@ public final class EchoSocket {
 			f.setDstEchoAddress(SELF_ADDRESS);
 			sendFrameToSelfNode(f);
 		}
-		
 	}
 	
 	public static void sendTCPFrame(EchoFrame frame) throws IOException {
 		Echo.getEventListener().sendEvent(frame);
-		// will not be occured?
+		// will not occur?
 		if(frame.getDstEchoAddress().equals(SELF_ADDRESS)){
 			sendFrameToSelfNode(frame.copy());
 			return;
@@ -363,24 +366,18 @@ public final class EchoSocket {
 		byte[] data = frame.getFrameByteArray();
 		InetAddress address = InetAddress.getByName(frame.getDstEchoAddress());
 		Socket sock = new Socket(address,PORT);
-		// should write data length?
 		DataOutputStream out = new DataOutputStream(sock.getOutputStream());
 		out.write(data);
-		// 要求電文に対する応答電文は同一のコネクションで送信するものとする。
-		
+		// at first,read. 要求電文に対する応答電文は同一のコネクションで送信するものとする。
+		sConnectedTCPSocketThreads.execute(new TCPSocketThread(sock)); 
 	}
 	
 	public static void receiveUDP() throws IOException {
-
 		DatagramPacket packet = 
 				new DatagramPacket(
 						new byte[EchoSocket.UDP_MAX_PACKET_SIZE], 
 						EchoSocket.UDP_MAX_PACKET_SIZE);
 		sMulticastSocket.receive(packet);
-		//if(packet.getAddress().equals(sMulticastSocket.getInterface())) {
-		//	System.out.println("[multicast]");
-		//	return;
-		//}
 		Enumeration<InetAddress> enumIpAddr = sMulticastSocket.getNetworkInterface().getInetAddresses();
 		while(enumIpAddr.hasMoreElements()) {
 			InetAddress inetAddress = enumIpAddr.nextElement();
@@ -403,13 +400,11 @@ public final class EchoSocket {
 	
 	public static void receiveTCP() throws IOException {
 		Socket sock = sServerSocket.accept();
-		DataInputStream in = new DataInputStream(sock.getInputStream());
-		
+		sConnectedTCPSocketThreads.execute(new TCPSocketThread(sock));
 	}
 	
 	public static void startReceiverThread() {
 		sExecutors.execute(new Receiver());
-		
 	}
 	
 	public static void stopReceiverThread() {
@@ -424,11 +419,36 @@ public final class EchoSocket {
 	public static void pauseReceiverThread() {
 		
 	}
-	public static short nextTID() {
+	public static synchronized short nextTID() {
 		short ret = sNextTID;
 		sNextTID += 1;
 		//Echo::getStorage().get()->setNextTID(sNextTID);
 		return ret;
 	}
-
+	
+	private static class TCPSocketThread implements Runnable {
+		private Socket sock;
+		public TCPSocketThread(Socket s) {
+			sock = s;
+		}
+		// first state is recv.
+		@Override
+		public void run() {
+			// Thread.interrupt is called by executor.
+			try {
+				while (!Thread.interrupted() && sock.isConnected()) {
+					DataOutputStream out = new DataOutputStream(sock.getOutputStream());
+					DataInputStream in = new DataInputStream(sock.getInputStream());
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally{
+				try {
+					sock.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 }
