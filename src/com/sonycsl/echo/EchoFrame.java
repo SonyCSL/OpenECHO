@@ -15,6 +15,9 @@
  */
 package com.sonycsl.echo;
 
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.InetAddress;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -144,6 +147,48 @@ public final class EchoFrame {
 			}
 			mPropertyList.add(new EchoProperty(epc, pdc, edt));
 		}
+		
+	}
+	
+	public static EchoFrame getEchoFrameFromStream(String srcEchoAddress, DataInputStream in) throws IOException, InterruptedException {
+		
+		boolean validHeader = false;
+
+		byte ehd1 = 0;
+		byte ehd2 = 0;
+		while(!validHeader) {
+			while(in.available() < 11) {
+				Thread.sleep(10);
+			}
+			ehd1 = ehd2;
+			ehd2 = in.readByte();
+			if(ehd1 == EHD1 && ehd2 == EHD2) {
+				validHeader = true;
+				break;
+			} else {
+				continue;
+			}
+		}
+		ArrayList<Byte> data = new ArrayList<Byte>();
+		data.add(EHD1); data.add(EHD2);
+		for(int i = 0; i < 10; i++) {
+			data.add(in.readByte());
+		}
+		int propertyListSize = data.get(11) & 0xFF;
+		for(int i = 0; i < propertyListSize; i++) {
+			data.add(in.readByte()); // epc
+			int pdc = in.readUnsignedByte();
+			data.add((byte)pdc);
+			for(int j = 0; j < pdc; j++) {
+				data.add(in.readByte());
+			}
+		}
+		byte[] b = new byte[data.size()];
+		for(int i = 0; i < data.size(); i++) {
+			b[i] = data.get(i);
+		}
+		EchoFrame frame = new EchoFrame(srcEchoAddress, b);
+		return frame;
 		
 	}
 	

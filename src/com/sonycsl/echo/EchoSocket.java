@@ -26,6 +26,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -62,6 +63,8 @@ public final class EchoSocket {
 	//private static Map<String,LinkedList<Socket>> sConnectedTCPSockets;
 	
 	//private static HashMap<Short, ResponseListener> sListeners;
+	
+	private static HashMap<String, ArrayList<Socket>> sTCPSockets;
 	
 
 	private static short sNextTID = 0;
@@ -107,6 +110,9 @@ public final class EchoSocket {
 		sMulticastSocket.setLoopbackMode(true);
 		sMulticastSocket.setSoTimeout(10);
 
+		
+		sTCPSockets = new HashMap<String, ArrayList<Socket>>();
+		
 		sServerSocket = new ServerSocket();
 		sServerSocket.setSoTimeout(10);
 		sServerSocket.setReuseAddress(true);
@@ -222,6 +228,70 @@ public final class EchoSocket {
 			receiver.onReceive(seoj, frame);
 		}
 	}
+	
+
+	private static void onReceiveTCPFrame(EchoFrame frame, Socket socket) {
+		Echo.getEventListener().receiveEvent(frame);
+		
+		switch(frame.getESV()) {
+		case EchoFrame.ESV_SETI_SNA:
+		case EchoFrame.ESV_SET_RES: case EchoFrame.ESV_SETC_SNA:
+		case EchoFrame.ESV_GET_RES: case EchoFrame.ESV_GET_SNA:
+		case EchoFrame.ESV_INF: case EchoFrame.ESV_INF_SNA:
+		case EchoFrame.ESV_INFC_RES:
+			// not request
+			onReceiveNotRequest(frame);
+			break;
+		case EchoFrame.ESV_INFC:
+			onReceiveNotRequest(frame);
+		case EchoFrame.ESV_SETI: case EchoFrame.ESV_SETC:
+		case EchoFrame.ESV_GET:
+		case EchoFrame.ESV_INF_REQ:
+		case EchoFrame.ESV_SET_GET:
+			// request
+			EchoNode selfNode = Echo.getSelfNode();
+			if(selfNode == null) {
+				return;
+			}
+			if(frame.getDstEchoInstanceCode() == 0) {
+				if(frame.getDstEchoClassCode() == NodeProfile.ECHO_CLASS_CODE) {
+					EchoObject deoj = selfNode.getNodeProfile();
+					onReceiveTCPRequestFrame(deoj, frame, socket);
+				} else {
+					DeviceObject[] deojList = selfNode.getDevices(frame.getDstEchoClassCode());
+					for(DeviceObject deoj : deojList) {
+						onReceiveTCPRequestFrame(deoj, frame, socket);
+					}
+				}
+			} else {
+				EchoObject deoj = selfNode.getInstance(frame.getDstEchoClassCode(), frame.getDstEchoInstanceCode());
+				if(deoj == null) {return;}
+				onReceiveTCPRequestFrame(deoj, frame, socket);
+			}
+			break;
+		}
+	}
+	
+	private static void onReceiveTCPRequestFrame(EchoObject deoj, EchoFrame frame, Socket socket){
+		checkNewObjectInResponse(frame.copy());
+		EchoFrame request = frame.copy();
+		request.setDstEchoInstanceCode(deoj.getInstanceCode());
+		EchoFrame response = deoj.onReceiveRequest(request);
+
+		if(response.getESV() == EchoFrame.ESV_INF) {
+			response.setDstEchoAddress(MULTICAST_ADDRESS);
+		}
+		if(response.getESV() == EchoFrame.ESV_SET_NO_RES) {
+			return;
+		}
+		System.err.println(response);
+		try {
+			sendTCPFrame(response, socket);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	private static void checkNewObjectInResponse(EchoFrame frame) {
 		EchoNode node = Echo.getNode(frame.getSrcEchoAddress());
@@ -361,13 +431,40 @@ public final class EchoSocket {
 			sendFrameToSelfNode(frame.copy());
 			return;
 		}
-		byte[] data = frame.getFrameByteArray();
 		InetAddress address = InetAddress.getByName(frame.getDstEchoAddress());
-		Socket sock = new Socket(address,PORT);
-		DataOutputStream out = new DataOutputStream(sock.getOutputStream());
-		out.write(data);
+		
+		if(sTCPSockets.containsKey(frame.getDstEchoAddress())) {
+			ArrayList<Socket> list = sTCPSockets.get(frame.getDstEchoAddress());
+			// 既存のsocketを新しいものから試す．
+			for(int i = list.size() - 1; i >= 0; --i) {
+				Socket sock = list.get(i);
+				try {
+					sendTCPFrame(frame, sock);
+					return;
+				} catch(IOException e) {
+					closeTCPSocket(sock);
+					continue;
+				}
+			}
+		}
+		
+		// 既存のsocketが使えない場合
+
+		Socket sock;
+		sock = new Socket(address,PORT);
+		sendTCPFrame(frame, sock);
+		
 		// at first,read. 要求電文に対する応答電文は同一のコネクションで送信するものとする。
 		sConnectedTCPSocketThreads.execute(new TCPSocketThread(sock)); 
+		
+		
+	}
+	
+	public static void sendTCPFrame(EchoFrame frame, Socket socket) throws IOException {
+
+		byte[] data = frame.getFrameByteArray();
+		DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+		out.write(data);
 	}
 	
 	public static void receiveUDP() throws IOException {
@@ -398,6 +495,14 @@ public final class EchoSocket {
 	
 	public static void receiveTCP() throws IOException {
 		Socket sock = sServerSocket.accept();
+		String address = sock.getInetAddress().getHostAddress();
+		if(sTCPSockets.containsKey(address)) {
+			sTCPSockets.get(address).add(sock);
+		} else {
+			ArrayList<Socket> list = new ArrayList<Socket>();
+			list.add(sock);
+			sTCPSockets.put(address, list);
+		}
 		sConnectedTCPSocketThreads.execute(new TCPSocketThread(sock));
 	}
 	
@@ -424,6 +529,18 @@ public final class EchoSocket {
 		return ret;
 	}
 	
+	public static void closeTCPSocket(Socket socket) {
+
+		ArrayList<Socket> list = sTCPSockets.get(socket.getInetAddress().getHostAddress());
+		list.remove(socket);
+		try {
+			socket.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	private static class TCPSocketThread implements Runnable {
 		private Socket sock;
 		public TCPSocketThread(Socket s) {
@@ -435,19 +552,30 @@ public final class EchoSocket {
 			// Thread.interrupt is called by executor.
 			try {
 				System.err.println("Socket add" + sock.getInetAddress() + "[" + Thread.currentThread().getId() + "]");
+
+				//DataOutputStream out = new DataOutputStream(sock.getOutputStream());
+				DataInputStream in = new DataInputStream(sock.getInputStream());
 				while (!Thread.interrupted() && sock.isConnected()) {
-					DataOutputStream out = new DataOutputStream(sock.getOutputStream());
-					DataInputStream in = new DataInputStream(sock.getInputStream());
+					String address = sock.getInetAddress().getHostAddress();
+					try {
+						EchoFrame frame = EchoFrame.getEchoFrameFromStream(address, in);
+						if(frame != null) {
+							onReceiveTCPFrame(frame, sock);
+						}
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+						break;
+					}
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			} finally{
-				try {
-					System.err.println("Socket close" + sock.getInetAddress() + "[" + Thread.currentThread().getId() + "]");
-					sock.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				//try {
+				System.err.println("Socket close" + sock.getInetAddress() + "[" + Thread.currentThread().getId() + "]");
+				closeTCPSocket(sock);
+				//} catch (IOException e) {
+				//	e.printStackTrace();
+				//}
 			}
 		}
 	}
