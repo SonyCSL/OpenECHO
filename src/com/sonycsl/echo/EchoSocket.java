@@ -468,6 +468,11 @@ public final class EchoSocket {
 				new DatagramPacket(
 						new byte[EchoSocket.UDP_MAX_PACKET_SIZE],
 						EchoSocket.UDP_MAX_PACKET_SIZE);
+		// closed?
+		if(sMulticastSocket == null){
+			//System.err.println("sMulticastSocket has been closed.");
+			return;
+		}
 		sMulticastSocket.receive(packet);
 		Enumeration<InetAddress> enumIpAddr = sMulticastSocket.getNetworkInterface().getInetAddresses();
 		while(enumIpAddr.hasMoreElements()) {
@@ -489,6 +494,11 @@ public final class EchoSocket {
 	}
 
 	public static void receiveTCP() throws IOException {
+		// has been closed?
+		if(sServerSocket == null){
+			//System.err.println("TCP server socket has been closed.");
+			return;
+		}
 		Socket sock = sServerSocket.accept();
 		String address = sock.getInetAddress().getHostAddress();
 		if(sTCPSockets.containsKey(address)) {
