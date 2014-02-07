@@ -109,10 +109,6 @@ public final class Echo {
 		return sStarted;
 	}
 
-	@Deprecated
-	public static EchoNode getNode() {
-		return sSelfNode;
-	}
 	public static EchoNode getSelfNode() {
 		return sSelfNode;
 	}
@@ -167,36 +163,36 @@ public final class Echo {
 	}*/
 
 
-	@Deprecated
-	public static EchoObject getInstance(InetAddress address, byte classGroupCode, byte classCode, byte instanceCode) {
-		return getInstance(address, EchoUtils.getEchoClassCode(classGroupCode, classCode), instanceCode);
-	}
-
-	@Deprecated
-	public static EchoObject getInstance(InetAddress address, int objectCode){
-		return getInstance(address, EchoUtils.getEchoClassCodeFromObjectCode(objectCode), EchoUtils.getInstanceCodeFromObjectCode(objectCode));
-	}
-
-	@Deprecated
-	public static EchoObject getInstance(InetAddress address, short echoClassCode, byte instanceCode) {
-
-		if(sCleared) {
-			return null;
-		}
-		if(address == null) {
-			return null;
-		}
-		if(address.equals(sSelfNode.getAddressStr())) {
-			if(!sSelfNode.containsInstance(echoClassCode, instanceCode)) return null;
-			return sSelfNode.getInstance(echoClassCode, instanceCode);
-		} else if(sOtherNodes.containsKey(address)) {
-			EchoNode node = sOtherNodes.get(address);
-			if(!node.containsInstance(echoClassCode, instanceCode)) return null;
-			return node.getInstance(echoClassCode, instanceCode);
-		} else {
-			return null;
-		}
-	}
+//	@Deprecated
+//	public static EchoObject getInstance(InetAddress address, byte classGroupCode, byte classCode, byte instanceCode) {
+//		return getInstance(address, EchoUtils.getEchoClassCode(classGroupCode, classCode), instanceCode);
+//	}
+//
+//	@Deprecated
+//	public static EchoObject getInstance(InetAddress address, int objectCode){
+//		return getInstance(address, EchoUtils.getEchoClassCodeFromObjectCode(objectCode), EchoUtils.getInstanceCodeFromObjectCode(objectCode));
+//	}
+//
+//	@Deprecated
+//	public static EchoObject getInstance(InetAddress address, short echoClassCode, byte instanceCode) {
+//
+//		if(sCleared) {
+//			return null;
+//		}
+//		if(address == null) {
+//			return null;
+//		}
+//		if(address.equals(sSelfNode.getAddressStr())) {
+//			if(!sSelfNode.containsInstance(echoClassCode, instanceCode)) return null;
+//			return sSelfNode.getInstance(echoClassCode, instanceCode);
+//		} else if(sOtherNodes.containsKey(address)) {
+//			EchoNode node = sOtherNodes.get(address);
+//			if(!node.containsInstance(echoClassCode, instanceCode)) return null;
+//			return node.getInstance(echoClassCode, instanceCode);
+//		} else {
+//			return null;
+//		}
+//	}
 	/*
 	public synchronized static void updateNodeInstance(InetAddress address, byte classGroupCode, byte classCode, byte instanceCode) {
 

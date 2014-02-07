@@ -144,6 +144,7 @@ public final class EchoSocket {
 	}
 
 	private static void onReceiveUDPFrame(EchoFrame frame) {
+		checkNewObjectInResponse(frame.copy());
 		Echo.getEventListener().receiveEvent(frame);
 
 		switch(frame.getESV()) {
@@ -186,7 +187,6 @@ public final class EchoSocket {
 	}
 
 	private static void onReceiveUDPRequestFrame(EchoObject deoj, EchoFrame frame){
-		checkNewObjectInResponse(frame.copy());
 		EchoFrame request = frame.copy();
 		request.setDstEchoInstanceCode(deoj.getInstanceCode());
 		EchoFrame response = deoj.onReceiveRequest(request);
@@ -207,7 +207,7 @@ public final class EchoSocket {
 
 	private static void onReceiveNotRequest(EchoFrame frame) {
 		// check new node or instance
-		checkNewObjectInResponse(frame.copy());
+		//checkNewObjectInResponse(frame.copy());
 		EchoNode node = Echo.getNode(frame.getSrcEchoAddress());
 		EchoObject seoj = node.getInstance(frame.getSrcEchoClassCode(),
 											frame.getSrcEchoInstanceCode());
@@ -498,6 +498,8 @@ public final class EchoSocket {
 			list.add(sock);
 			sTCPSockets.put(address, list);
 		}
+		System.err.println("Socket add" + sock.getInetAddress() + "(income)");
+
 		sConnectedTCPSocketThreads.execute(new TCPSocketThread(sock));
 	}
 
@@ -524,6 +526,10 @@ public final class EchoSocket {
 		return ret;
 	}
 
+	public static short getNextTIDNoIncrement() {
+		return sNextTID;
+	}
+
 	public static void closeTCPSocket(Socket socket) {
 		System.err.println("Socket close" + socket.getInetAddress());
 		ArrayList<Socket> list = sTCPSockets.get(socket.getInetAddress().getHostAddress());
@@ -546,8 +552,6 @@ public final class EchoSocket {
 		public void run() {
 			// Thread.interrupt is called by executor.
 			try {
-
-
 				//DataOutputStream out = new DataOutputStream(sock.getOutputStream());
 				DataInputStream in = new DataInputStream(sock.getInputStream());
 				while (!Thread.interrupted() && sock.isConnected()) {
