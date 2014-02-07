@@ -84,12 +84,15 @@ public final class Echo {
 		if(sCleared) return;
 		sStarted = true;
 		EchoSocket.openSocket();
+		EchoSocket.startReceiverThread();
 		sSelfNode.getNodeProfile().inform().reqInformInstanceListNotification().send();
 	}
 	
 	public synchronized static void stop() throws IOException {
+		System.err.println("Echo stop");
 		//if(!EchoSocket.isClosed()) {
 			EchoSocket.closeSocket();
+			EchoSocket.stopReceiverThread();
 		//}
 		sStarted = false;
 		//sNodes.clear();
