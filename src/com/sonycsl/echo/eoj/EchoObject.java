@@ -561,7 +561,7 @@ public abstract class EchoObject {
 		}
 
 		@Override
-		EchoFrame sendTCP() throws IOException {
+		public EchoFrame sendTCP() throws IOException {
 
 			EchoFrame frame = new EchoFrame(mSrcEchoClassCode, mSrcEchoInstanceCode
 					, mDstEchoClassCode, mDstEchoInstanceCode
@@ -612,7 +612,7 @@ public abstract class EchoObject {
 		}
 
 		@Override
-		EchoFrame sendTCP() throws IOException {
+		public EchoFrame sendTCP() throws IOException {
 
 			EchoFrame frame = new EchoFrame(mSrcEchoClassCode, mSrcEchoInstanceCode
 					, mDstEchoClassCode, mDstEchoInstanceCode
@@ -689,7 +689,7 @@ public abstract class EchoObject {
 		}
 
 		@Override
-		EchoFrame sendTCP() throws IOException {
+		public EchoFrame sendTCP() throws IOException {
 
 			EchoFrame frame = new EchoFrame(mSrcEchoClassCode, mSrcEchoInstanceCode
 					, mDstEchoClassCode, mDstEchoInstanceCode
@@ -775,7 +775,7 @@ public abstract class EchoObject {
 		}
 
 		@Override
-		EchoFrame sendTCP() throws IOException {
+		public EchoFrame sendTCP() throws IOException {
 			EchoFrame frame = new EchoFrame(mSrcEchoClassCode, mSrcEchoInstanceCode
 					, mDstEchoClassCode, mDstEchoInstanceCode
 					, mDstEchoAddress, mESV);
