@@ -20,10 +20,6 @@ import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.EchoUtils;
 import com.sonycsl.echo.eoj.EchoObject;
-import com.sonycsl.echo.eoj.profile.NodeProfile.Getter;
-import com.sonycsl.echo.eoj.profile.NodeProfile.Informer;
-import com.sonycsl.echo.eoj.profile.NodeProfile.Setter;
-import com.sonycsl.echo.node.EchoNode;
 
 public abstract class DeviceObject extends EchoObject {
 
@@ -2142,4 +2138,36 @@ public abstract class DeviceObject extends EchoObject {
 			return this;
 		}
 	}
+
+
+	public static class Proxy extends DeviceObject {
+		private short mEchoClassCode;
+		public Proxy(short echoClassCode, byte instanceCode) {
+			super();
+			mEchoClassCode = echoClassCode;
+			mEchoInstanceCode = instanceCode;
+		}
+
+		@Override
+		public short getEchoClassCode() {
+			return mEchoClassCode;
+		}
+		@Override
+		public byte getInstanceCode() {
+			return mEchoInstanceCode;
+		}
+		@Override
+		protected byte[] getOperationStatus() {return null;}
+		@Override
+		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		@Override
+		protected byte[] getInstallationLocation() {return null;}
+		@Override
+		protected byte[] getStandardVersionInformation() {return null;}
+		@Override
+		protected byte[] getFaultStatus() {return null;}
+		@Override
+		protected byte[] getManufacturerCode() {return null;}
+	}
+	
 }

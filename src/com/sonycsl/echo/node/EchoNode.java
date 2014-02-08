@@ -310,7 +310,7 @@ public final class EchoNode {
 		case Switch.ECHO_CLASS_CODE: return new Switch.Proxy(instanceCode);
 		case Display.ECHO_CLASS_CODE: return new Display.Proxy(instanceCode);
 		case Television.ECHO_CLASS_CODE: return new Television.Proxy(instanceCode);
-		default: return null;
+		default: return new DeviceObject.Proxy(echoClassCode, instanceCode);
 		}
 	}
 	public static void putDeviceProxyCreator(short echoClassCode, DeviceProxyCreator creator) {
