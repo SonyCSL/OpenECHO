@@ -80,6 +80,11 @@ public final class Echo {
 		sSelfNode.onFound();
 		sSelfNode.getNodeProfile().onNew();
 		sSelfNode.getNodeProfile().onFound();
+
+		for(DeviceObject dev : devices) {
+			dev.onNew();
+			dev.onFound();
+		}
 		
 		sSelfNode.getNodeProfile().inform().reqInformInstanceListNotification().send();
 		return sSelfNode;

@@ -52,7 +52,10 @@ public final class EchoNode {
 		mAddress = EchoSocket.SELF_ADDRESS;
 		mNodeProfile = nodeProfile;
 		for(DeviceObject d : devices) {
-			addDevice(d);
+			if(isSelfNode()) {
+				d.allocateSelfDeviceInstanceCode();
+			}
+			mDevices.add(d);
 		}
 		
 	}
