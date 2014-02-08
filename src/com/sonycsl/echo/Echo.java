@@ -122,6 +122,11 @@ public final class Echo {
 		return sStarted;
 	}
 
+	// remain for back compatibility.
+	@Deprecated
+	public static EchoNode getNode() {
+		return getSelfNode();
+	}
 	public static EchoNode getSelfNode() {
 		return sSelfNode;
 	}
