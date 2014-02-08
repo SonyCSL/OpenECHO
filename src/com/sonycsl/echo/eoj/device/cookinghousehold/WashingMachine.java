@@ -43,6 +43,12 @@ public abstract class WashingMachine extends DeviceObject {
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewWashingMachine(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

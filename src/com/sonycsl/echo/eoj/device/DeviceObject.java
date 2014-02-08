@@ -70,6 +70,12 @@ public abstract class DeviceObject extends EchoObject {
 
 	
 	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewDeviceObject(this);
+	}
+
+	@Override
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 

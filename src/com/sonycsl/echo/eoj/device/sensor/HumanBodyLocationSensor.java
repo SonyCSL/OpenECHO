@@ -42,6 +42,12 @@ public abstract class HumanBodyLocationSensor extends DeviceObject {
 		addGetProperty(EPC_HUMAN_BODY_DETECTION_LOCATION1);
 		addGetProperty(EPC_HUMAN_BODY_DETECTION_LOCATION2);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewHumanBodyLocationSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

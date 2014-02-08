@@ -41,6 +41,12 @@ public abstract class GasLeakSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_GAS_LEAK_OCCURRENCE_STATUS);
 		addGetProperty(EPC_GAS_LEAK_OCCURRENCE_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewGasLeakSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

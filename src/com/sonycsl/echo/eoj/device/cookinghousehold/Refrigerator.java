@@ -72,6 +72,12 @@ public abstract class Refrigerator extends DeviceObject {
 		addGetProperty(EPC_DOOR_OPEN_CLOSE_STATUS);
 		addStatusChangeAnnouncementProperty(EPC_DOOR_OPEN_WARNING);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewRefrigerator(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

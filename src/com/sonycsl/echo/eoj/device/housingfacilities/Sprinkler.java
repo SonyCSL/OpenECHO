@@ -44,6 +44,12 @@ public abstract class Sprinkler extends DeviceObject {
 		addSetProperty(EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING);
 		addGetProperty(EPC_SPRINKLE_VALVE_OPEN_CLOSE_SETTING);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewSprinkler(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

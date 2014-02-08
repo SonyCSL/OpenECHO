@@ -47,6 +47,12 @@ public abstract class ElectricLock extends DeviceObject {
 		addGetProperty(EPC_LOCK_SETTING1);
 		addStatusChangeAnnouncementProperty(EPC_ALARM_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewElectricLock(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

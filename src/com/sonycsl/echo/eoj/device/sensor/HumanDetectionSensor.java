@@ -40,6 +40,12 @@ public abstract class HumanDetectionSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_HUMAN_DETECTION_STATUS);
 		addGetProperty(EPC_HUMAN_DETECTION_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewHumanDetectionSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

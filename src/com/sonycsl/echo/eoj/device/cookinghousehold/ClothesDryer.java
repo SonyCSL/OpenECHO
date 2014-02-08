@@ -43,6 +43,12 @@ public abstract class ClothesDryer extends DeviceObject {
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewClothesDryer(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

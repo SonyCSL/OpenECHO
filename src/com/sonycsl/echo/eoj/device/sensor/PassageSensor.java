@@ -41,6 +41,12 @@ public abstract class PassageSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_PASSAGE_DETECTION_DIRECTION);
 		addGetProperty(EPC_PASSAGE_DETECTION_DIRECTION);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewPassageSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

@@ -40,6 +40,12 @@ public abstract class CigaretteSmokeSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_SMOKE_CIGARETTE_DETECTION_STATUS);
 		addGetProperty(EPC_SMOKE_CIGARETTE_DETECTION_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewCigaretteSmokeSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

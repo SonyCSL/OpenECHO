@@ -40,6 +40,12 @@ public abstract class IlluminanceSensor extends DeviceObject {
 		addGetProperty(EPC_MEASURED_ILLUMINANCE_VALUE1);
 		addGetProperty(EPC_MEASURED_ILLUMINANCE_VALUE2);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewIlluminanceSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

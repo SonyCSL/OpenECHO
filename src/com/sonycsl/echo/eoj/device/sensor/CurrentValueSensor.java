@@ -41,6 +41,12 @@ public abstract class CurrentValueSensor extends DeviceObject {
 		addGetProperty(EPC_MEASURED_CURRENT_VALUE1);
 		addGetProperty(EPC_MEASURED_CURRENT_VALUE2);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewCurrentValueSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

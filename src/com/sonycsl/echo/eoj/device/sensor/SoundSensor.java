@@ -41,6 +41,12 @@ public abstract class SoundSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_SOUND_DETECTION_STATUS);
 		addGetProperty(EPC_SOUND_DETECTION_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewSoundSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

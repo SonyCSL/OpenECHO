@@ -62,6 +62,12 @@ public abstract class InstantaneousWaterHeater extends DeviceObject {
 		addSetProperty(EPC_BATH_AUTO_MODE_SETTING);
 		addGetProperty(EPC_BATH_AUTO_MODE_SETTING);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewInstantaneousWaterHeater(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

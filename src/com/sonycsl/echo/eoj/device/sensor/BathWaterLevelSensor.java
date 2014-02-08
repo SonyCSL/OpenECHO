@@ -41,6 +41,12 @@ public abstract class BathWaterLevelSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_BATH_WATER_LEVEL_OVER_DETECTION_STATUS);
 		addGetProperty(EPC_MEASURED_VALUE_OF_BATH_WATER_LEVEL);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewBathWaterLevelSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

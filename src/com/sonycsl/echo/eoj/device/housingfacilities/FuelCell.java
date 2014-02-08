@@ -55,6 +55,12 @@ public abstract class FuelCell extends DeviceObject {
 		addGetProperty(EPC_MEASURED_INSTANTANEOUS_POWER_GENERATION_OUTPUT);
 		addGetProperty(EPC_MEASURED_CUMULATIVE_POWER_GENERATION_OUTPUT);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewFuelCell(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

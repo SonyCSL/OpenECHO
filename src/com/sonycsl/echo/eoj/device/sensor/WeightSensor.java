@@ -40,6 +40,12 @@ public abstract class WeightSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_WEIGHT_DETECTION_STATUS);
 		addGetProperty(EPC_WEIGHT_DETECTION_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewWeightSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

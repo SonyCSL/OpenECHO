@@ -39,6 +39,12 @@ public abstract class Weighing extends DeviceObject {
 		addGetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_MEASURED_VALUE_OF_BODY_WEIGHT);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewWeighing(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

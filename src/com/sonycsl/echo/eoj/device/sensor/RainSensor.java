@@ -40,6 +40,12 @@ public abstract class RainSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_RAIN_DETECTION_STATUS);
 		addGetProperty(EPC_RAIN_DETECTION_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewRainSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

@@ -42,6 +42,12 @@ public abstract class OpenCloseSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS2);
 		addGetProperty(EPC_DEGREE_OF_OPENI_NG_DETECTION_STATUS2);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewOpenCloseSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

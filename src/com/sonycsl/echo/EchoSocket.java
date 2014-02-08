@@ -334,9 +334,11 @@ public final class EchoSocket {
 		}
 		if(seoj == null) {
 			if(flagNewNode) {
-				Echo.getEventListener().onNewNode(node);
+				//Echo.getEventListener().onNewNode(node);
+				node.onNew();
 			}
-			Echo.getEventListener().onFoundNode(node);
+			//Echo.getEventListener().onFoundNode(node);
+			node.onFound();
 			return;
 		}
 		if(seoj.getEchoClassCode() == NodeProfile.ECHO_CLASS_CODE
@@ -383,30 +385,40 @@ public final class EchoSocket {
 			}
 
 			if(flagNewNode) {
-				Echo.getEventListener().onNewNode(node);
+				//Echo.getEventListener().onNewNode(node);
+				node.onNew();
 			}
-			Echo.getEventListener().onFoundNode(node);
+			//Echo.getEventListener().onFoundNode(node);
+			node.onFound();
 			if(flagNewDevice) {
-				Echo.getEventListener().onNewEchoObject(seoj);
+				//Echo.getEventListener().onNewEchoObject(seoj);
+				seoj.onNew();
 			}
-			Echo.getEventListener().onFoundEchoObject(seoj);
+			//Echo.getEventListener().onFoundEchoObject(seoj);
+			seoj.onFound();
 			int foundDeviceListSize = foundDevices.size();
 			for(int i = 0; i < foundDeviceListSize; i++) {
 				if(flagNewDevices.get(i)) {
-					Echo.getEventListener().onNewEchoObject(foundDevices.get(i));
+					//Echo.getEventListener().onNewEchoObject(foundDevices.get(i));
+					foundDevices.get(i).onNew();
 				}
-				Echo.getEventListener().onFoundEchoObject(foundDevices.get(i));
+				//Echo.getEventListener().onFoundEchoObject(foundDevices.get(i));
+				foundDevices.get(i).onFound();
 			}
 		} else {
 			// seoj is DeviceObject
 			if(flagNewNode) {
-				Echo.getEventListener().onNewNode(node);
+				//Echo.getEventListener().onNewNode(node);
+				node.onNew();
 			}
-			Echo.getEventListener().onFoundNode(node);
+			//Echo.getEventListener().onFoundNode(node);
+			node.onFound();
 			if(flagNewDevice) {
-				Echo.getEventListener().onNewEchoObject(seoj);
+				//Echo.getEventListener().onNewEchoObject(seoj);
+				seoj.onNew();
 			}
-			Echo.getEventListener().onFoundEchoObject(seoj);
+			//Echo.getEventListener().onFoundEchoObject(seoj);
+			seoj.onFound();
 			return;
 		}
 	}

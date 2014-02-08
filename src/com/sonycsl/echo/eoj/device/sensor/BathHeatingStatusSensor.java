@@ -40,6 +40,12 @@ public abstract class BathHeatingStatusSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_BATH_HEATING_DETECTION_STATUS);
 		addGetProperty(EPC_BATH_HEATING_DETECTION_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewBathHeatingStatusSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

@@ -41,6 +41,12 @@ public abstract class WaterLevelSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_WATER_LEVEL_OVER_DETECTION_STATUS);
 		addGetProperty(EPC_MEASURED_VALUE_OF_WATER_LEVEL);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewWaterLevelSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

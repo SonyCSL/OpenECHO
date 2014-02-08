@@ -78,6 +78,12 @@ public abstract class Battery extends DeviceObject {
 		addGetProperty(EPC_REMAINING_STORED_ELECTRICITY3_BATTERY_STATE_OF_HEALTH);
 		addGetProperty(EPC_BATTERY_TYPE);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewBattery(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

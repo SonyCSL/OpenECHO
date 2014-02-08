@@ -38,6 +38,12 @@ public abstract class OxygenSensor extends DeviceObject {
 		addGetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_MEASURED_VALUE_OF_OXYGEN_CONCENTRATION);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewOxygenSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

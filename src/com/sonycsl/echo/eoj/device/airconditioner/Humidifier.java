@@ -49,6 +49,12 @@ public abstract class Humidifier extends DeviceObject {
 		addSetProperty(EPC_HUMIDIFYING_SETTING2);
 		addGetProperty(EPC_HUMIDIFYING_SETTING2);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewHumidifier(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

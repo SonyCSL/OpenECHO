@@ -41,6 +41,12 @@ public abstract class CrimePreventionSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_INVASION_OCCURRENCE_STATUS);
 		addGetProperty(EPC_INVASION_OCCURRENCE_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewCrimePreventionSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

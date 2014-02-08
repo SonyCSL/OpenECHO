@@ -42,6 +42,12 @@ public abstract class WattHourMeter extends DeviceObject {
 		addGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE);
 		addGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_UNIT);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewWattHourMeter(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

@@ -51,6 +51,12 @@ public abstract class ElectricToiletSeat extends DeviceObject {
 		addSetProperty(EPC_HEATER_SETTING_OF_TOILET_SEAT);
 		addGetProperty(EPC_HEATER_SETTING_OF_TOILET_SEAT);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewElectricToiletSeat(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

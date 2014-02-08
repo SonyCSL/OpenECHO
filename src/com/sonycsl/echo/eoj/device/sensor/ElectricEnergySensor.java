@@ -43,6 +43,12 @@ public abstract class ElectricEnergySensor extends DeviceObject {
 		addGetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewElectricEnergySensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

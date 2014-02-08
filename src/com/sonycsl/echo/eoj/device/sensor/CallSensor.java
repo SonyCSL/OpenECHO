@@ -41,6 +41,12 @@ public abstract class CallSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_CALL_STATUS);
 		addGetProperty(EPC_CALL_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewCallSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

@@ -89,6 +89,12 @@ public abstract class ElectricVehicle extends DeviceObject {
 		addGetProperty(EPC_REMAINING_BATTERY_CAPACITY2);
 		addGetProperty(EPC_REMAINING_BATTERY_CAPACITY3);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewElectricVehicle(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

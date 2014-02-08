@@ -46,6 +46,12 @@ public abstract class Display extends DeviceObject {
 		addSetProperty(EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER);
 		addGetProperty(EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewDisplay(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

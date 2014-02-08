@@ -52,6 +52,12 @@ public abstract class FanHeater extends DeviceObject {
 		addSetProperty(EPC_TEMPERATURE_SETTING_VALUE);
 		addGetProperty(EPC_TEMPERATURE_SETTING_VALUE);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewFanHeater(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

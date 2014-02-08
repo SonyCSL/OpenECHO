@@ -41,6 +41,12 @@ public abstract class EarthquakeSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_EARTHQUAKE_OCCURRENCE_STATUS);
 		addGetProperty(EPC_EARTHQUAKE_OCCURRENCE_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewEarthquakeSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

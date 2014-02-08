@@ -48,6 +48,12 @@ public abstract class PackageTypeCommercialAirConditionerOutdoorUnit extends Dev
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_MODE_SETTING);
 		addGetProperty(EPC_OPERATION_MODE_INFORMATION);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewPackageTypeCommercialAirConditionerOutdoorUnit(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

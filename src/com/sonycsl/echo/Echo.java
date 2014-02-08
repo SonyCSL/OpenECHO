@@ -74,8 +74,13 @@ public final class Echo {
 		EchoSocket.openSocket();
 		EchoSocket.startReceiverThread();
 
-		Echo.getEventListener().onNewNode(sSelfNode);
-		Echo.getEventListener().onFoundNode(sSelfNode);
+		//Echo.getEventListener().onNewNode(sSelfNode);
+		sSelfNode.onNew();
+		//Echo.getEventListener().onFoundNode(sSelfNode);
+		sSelfNode.onFound();
+		sSelfNode.getNodeProfile().onNew();
+		sSelfNode.getNodeProfile().onFound();
+		
 		sSelfNode.getNodeProfile().inform().reqInformInstanceListNotification().send();
 		return sSelfNode;
 	}
@@ -369,7 +374,9 @@ public final class Echo {
 		public void onNewElectricShutter(ElectricShutter device) {}
 		public void onNewElectricStormWindow(ElectricStormWindow device) {}
 		public void onNewElectricToiletSeat(ElectricToiletSeat device) {}
+		public void onNewElectricVehicle(ElectricVehicle device) {}
 		public void onNewElectricWaterHeater(ElectricWaterHeater device) {}
+		public void onNewEngineCogeneration(EngineCogeneration device) {}
 		public void onNewFloorHeater(FloorHeater device) {}
 		public void onNewFuelCell(FuelCell device) {}
 		public void onNewGasMeter(GasMeter device) {}
@@ -1133,9 +1140,23 @@ public final class Echo {
 		}
 
 		@Override
+		public void onNewElectricVehicle(ElectricVehicle device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewElectricVehicle(device);
+			}
+		}
+
+		@Override
 		public void onNewElectricWaterHeater(ElectricWaterHeater device) {
 			for(EventListener listener : sListeners) {
 				listener.onNewElectricWaterHeater(device);
+			}
+		}
+
+		@Override
+		public void onNewEngineCogeneration(EngineCogeneration device) {
+			for(EventListener listener : sListeners) {
+				listener.onNewEngineCogeneration(device);
 			}
 		}
 

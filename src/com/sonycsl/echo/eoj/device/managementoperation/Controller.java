@@ -36,6 +36,12 @@ public abstract class Controller extends DeviceObject {
 		addSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewController(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

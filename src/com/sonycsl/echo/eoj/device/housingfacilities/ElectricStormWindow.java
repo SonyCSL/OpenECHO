@@ -50,6 +50,12 @@ public abstract class ElectricStormWindow extends DeviceObject {
 		addGetProperty(EPC_ELECTRIC_LOCK_SETTING);
 		addStatusChangeAnnouncementProperty(EPC_OPEN_CLOSE_SETTING2);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewElectricStormWindow(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

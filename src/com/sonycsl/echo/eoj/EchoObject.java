@@ -58,6 +58,14 @@ public abstract class EchoObject {
 		setupPropertyMaps();
 	}
 	
+	public void onNew() {
+		Echo.getEventListener().onNewEchoObject(this);
+	}
+	
+	public void onFound() {
+		Echo.getEventListener().onNewEchoObject(this);
+	}
+	
 	protected void setupPropertyMaps() {}
 
 	protected final void addStatusChangeAnnouncementProperty(byte epc) {

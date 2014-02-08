@@ -38,6 +38,12 @@ public abstract class CO2Sensor extends DeviceObject {
 		addGetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewCO2Sensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

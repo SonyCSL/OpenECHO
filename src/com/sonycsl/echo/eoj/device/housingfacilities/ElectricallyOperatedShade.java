@@ -45,6 +45,12 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		addSetProperty(EPC_DEGREE_OF_OPENI_NG_LEVEL);
 		addGetProperty(EPC_DEGREE_OF_OPENI_NG_LEVEL);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewElectricallyOperatedShade(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

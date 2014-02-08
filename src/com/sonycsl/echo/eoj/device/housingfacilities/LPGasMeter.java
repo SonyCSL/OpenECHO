@@ -65,6 +65,12 @@ public abstract class LPGasMeter extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_CENTER_VALVE_SHUT_OFF_STATUS);
 		addStatusChangeAnnouncementProperty(EPC_RESIDUAL_VOLUME_CONTROL_WARNING);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewLPGasMeter(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

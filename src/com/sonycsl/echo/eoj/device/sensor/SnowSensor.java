@@ -40,6 +40,12 @@ public abstract class SnowSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_SNOW_DETECTION_STATUS);
 		addGetProperty(EPC_SNOW_DETECTION_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewSnowSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

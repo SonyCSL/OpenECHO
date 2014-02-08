@@ -49,6 +49,12 @@ public abstract class ElectricHeater extends DeviceObject {
 		addSetProperty(EPC_TEMPERATURE_SETTING);
 		addGetProperty(EPC_TEMPERATURE_SETTING);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewElectricHeater(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

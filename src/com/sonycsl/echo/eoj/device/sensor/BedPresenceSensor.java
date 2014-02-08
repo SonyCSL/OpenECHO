@@ -40,6 +40,12 @@ public abstract class BedPresenceSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_BED_PRESENCE_DETECTION_STATUS);
 		addGetProperty(EPC_BED_PRESENCE_DETECTION_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewBedPresenceSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

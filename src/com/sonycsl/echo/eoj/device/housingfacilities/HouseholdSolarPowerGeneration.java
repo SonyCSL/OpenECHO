@@ -49,6 +49,12 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 		addGetProperty(EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED);
 		addGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewHouseholdSolarPowerGeneration(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

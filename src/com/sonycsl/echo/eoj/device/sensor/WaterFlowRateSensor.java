@@ -39,6 +39,12 @@ public abstract class WaterFlowRateSensor extends DeviceObject {
 		addGetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_FLOW_RATE);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewWaterFlowRateSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

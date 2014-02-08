@@ -40,6 +40,12 @@ public abstract class AirPollutionSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_AIR_POLLUTION_DETECTION_STATUS);
 		addGetProperty(EPC_AIR_POLLUTION_DETECTION_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewAirPollutionSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

@@ -40,6 +40,12 @@ public abstract class CondensationSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_CONDENSATION_DETECTION_STATUS);
 		addGetProperty(EPC_CONDENSATION_DETECTION_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewCondensationSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

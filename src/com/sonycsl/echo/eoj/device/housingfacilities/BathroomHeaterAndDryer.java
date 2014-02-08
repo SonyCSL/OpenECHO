@@ -60,6 +60,12 @@ public abstract class BathroomHeaterAndDryer extends DeviceObject {
 		addSetProperty(EPC_BATHROOM_DRYER_OPERATION_SETTING);
 		addGetProperty(EPC_BATHROOM_DRYER_OPERATION_SETTING);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewBathroomHeaterAndDryer(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

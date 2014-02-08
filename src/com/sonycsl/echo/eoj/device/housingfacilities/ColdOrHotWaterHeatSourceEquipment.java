@@ -55,6 +55,12 @@ public abstract class ColdOrHotWaterHeatSourceEquipment extends DeviceObject {
 		addSetProperty(EPC_WATER_TEMPERATURE_SETTING2);
 		addGetProperty(EPC_WATER_TEMPERATURE_SETTING2);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewColdOrHotWaterHeatSourceEquipment(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

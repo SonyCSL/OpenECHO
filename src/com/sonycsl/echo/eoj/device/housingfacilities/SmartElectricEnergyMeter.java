@@ -59,6 +59,12 @@ public abstract class SmartElectricEnergyMeter extends DeviceObject {
 		addGetProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_AND_REVERSE_DIRECTIONS);
 		addGetProperty(EPC_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_MEASURED_AT_FIXED_TIME_NORMAL_DIRECTION);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewSmartElectricEnergyMeter(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

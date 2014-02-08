@@ -45,6 +45,12 @@ public abstract class ElectricHotWaterPot extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_NO_WATER_WARNING);
 		addStatusChangeAnnouncementProperty(EPC_HOT_WATER_DISCHARGE_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewElectricHotWaterPot(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

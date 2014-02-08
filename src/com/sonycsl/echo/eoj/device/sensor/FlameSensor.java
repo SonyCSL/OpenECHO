@@ -41,6 +41,12 @@ public abstract class FlameSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_FLAME_DETECTION_STATUS);
 		addGetProperty(EPC_FLAME_DETECTION_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewFlameSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

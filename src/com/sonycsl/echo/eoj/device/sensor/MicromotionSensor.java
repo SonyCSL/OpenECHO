@@ -43,6 +43,12 @@ public abstract class MicromotionSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_MICROMOTION_DETECTION_STATUS);
 		addGetProperty(EPC_MICROMOTION_DETECTION_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewMicromotionSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

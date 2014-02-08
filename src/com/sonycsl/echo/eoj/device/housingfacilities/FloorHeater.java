@@ -55,6 +55,12 @@ public abstract class FloorHeater extends DeviceObject {
 		addSetProperty(EPC_TEMPERATURE_SETTING2);
 		addGetProperty(EPC_TEMPERATURE_SETTING2);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewFloorHeater(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

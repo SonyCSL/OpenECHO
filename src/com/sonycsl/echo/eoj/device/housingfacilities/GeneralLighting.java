@@ -59,6 +59,12 @@ public abstract class GeneralLighting extends DeviceObject {
 		addSetProperty(EPC_LIGHTING_MODE_SETTING);
 		addGetProperty(EPC_LIGHTING_MODE_SETTING);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewGeneralLighting(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

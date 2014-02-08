@@ -40,6 +40,12 @@ public abstract class OdorSensor extends DeviceObject {
 		addGetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_MEASURED_ODOR_VALUE);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewOdorSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

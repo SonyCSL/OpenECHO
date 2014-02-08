@@ -38,6 +38,12 @@ public abstract class TemperatureSensor extends DeviceObject {
 		addGetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_MEASURED_TEMPERATURE_VALUE);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewTemperatureSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

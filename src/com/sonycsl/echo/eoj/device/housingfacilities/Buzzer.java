@@ -38,6 +38,12 @@ public abstract class Buzzer extends DeviceObject {
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewBuzzer(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

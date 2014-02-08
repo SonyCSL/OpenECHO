@@ -41,6 +41,12 @@ public abstract class ElectricLeakSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_ELECTRIC_LEAK_OCCURRENCE_STATUS);
 		addGetProperty(EPC_ELECTRIC_LEAK_OCCURRENCE_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewElectricLeakSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

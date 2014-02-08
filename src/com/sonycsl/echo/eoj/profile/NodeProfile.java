@@ -68,7 +68,12 @@ public abstract class NodeProfile extends ProfileObject {
 		return ECHO_CLASS_CODE;
 	}
 	
-	
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewNodeProfile(this);
+	}
 	
 	@Override
 	protected void setupPropertyMaps() {

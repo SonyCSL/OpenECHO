@@ -40,6 +40,12 @@ public abstract class MailingSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_MAILING_DETECTION_STATUS);
 		addGetProperty(EPC_MAILING_DETECTION_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewMailingSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

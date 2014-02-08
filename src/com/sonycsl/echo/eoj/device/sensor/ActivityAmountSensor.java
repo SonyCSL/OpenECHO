@@ -42,6 +42,12 @@ public abstract class ActivityAmountSensor extends DeviceObject {
 		addGetProperty(EPC_ACTIVITY_AMOUNT_LEVEL1);
 		addGetProperty(EPC_ACTIVITY_AMOUNT_LEVEL2);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewActivityAmountSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

@@ -49,6 +49,12 @@ public abstract class ElectricShutter extends DeviceObject {
 		addSetProperty(EPC_OPEN_CLOSE_SETTING2);
 		addGetProperty(EPC_OPEN_CLOSE_SETTING2);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewElectricShutter(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

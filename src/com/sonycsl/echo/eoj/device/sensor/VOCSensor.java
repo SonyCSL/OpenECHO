@@ -41,6 +41,12 @@ public abstract class VOCSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_VOC_DETECTION_STATUS);
 		addGetProperty(EPC_MEASURED_VALUE_OF_VOC_CONCENTRATION);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewVOCSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

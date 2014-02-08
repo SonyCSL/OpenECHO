@@ -47,6 +47,12 @@ public abstract class CookingHeater extends DeviceObject {
 		addGetProperty(EPC_HEATING_STATUS);
 		addSetProperty(EPC_ALL_STOP_SETTING);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewCookingHeater(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

@@ -80,6 +80,12 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 		addGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
 		addGetProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewPowerDistributionBoardMetering(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

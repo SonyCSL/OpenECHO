@@ -87,6 +87,12 @@ public abstract class PackageTypeCommercialAirConditionerIndoorUnit extends Devi
 		addGetProperty(EPC_TEMPERATURE_SETTING2);
 		addStatusChangeAnnouncementProperty(EPC_RELATIVE_HUMIDITY_SETTING_FOR_DEHUMIDIFICATIO_N_MODE2);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewPackageTypeCommercialAirConditionerIndoorUnit(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

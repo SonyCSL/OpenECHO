@@ -68,6 +68,12 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 		addSetProperty(EPC_AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING);
 		addGetProperty(EPC_AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewElectricWaterHeater(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

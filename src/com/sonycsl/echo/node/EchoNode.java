@@ -62,6 +62,14 @@ public final class EchoNode {
 		mAddress = address;
 		mNodeProfile = new NodeProfile.Proxy();
 	}
+
+	public void onNew() {
+		Echo.getEventListener().onNewNode(this);
+	}
+	
+	public void onFound() {
+		Echo.getEventListener().onNewNode(this);
+	}
 	
 	public boolean isSelfNode() {
 		return EchoSocket.SELF_ADDRESS.equals(mAddress);
@@ -102,6 +110,8 @@ public final class EchoNode {
 		
 		if(isSelfNode()) {
 			device.allocateSelfDeviceInstanceCode();
+			device.onNew();
+			device.onFound();
 		}
 		/*
 		short code = device.getEchoClassCode();
@@ -268,7 +278,9 @@ public final class EchoNode {
 		case ElectricShutter.ECHO_CLASS_CODE: return new ElectricShutter.Proxy(instanceCode);
 		case ElectricStormWindow.ECHO_CLASS_CODE: return new ElectricStormWindow.Proxy(instanceCode);
 		case ElectricToiletSeat.ECHO_CLASS_CODE: return new ElectricToiletSeat.Proxy(instanceCode);
+		case ElectricVehicle.ECHO_CLASS_CODE: return new ElectricVehicle.Proxy(instanceCode);
 		case ElectricWaterHeater.ECHO_CLASS_CODE: return new ElectricWaterHeater.Proxy(instanceCode);
+		case EngineCogeneration.ECHO_CLASS_CODE: return new EngineCogeneration.Proxy(instanceCode);
 		case FloorHeater.ECHO_CLASS_CODE: return new FloorHeater.Proxy(instanceCode);
 		case FuelCell.ECHO_CLASS_CODE: return new FuelCell.Proxy(instanceCode);
 		case GasMeter.ECHO_CLASS_CODE: return new GasMeter.Proxy(instanceCode);

@@ -48,6 +48,12 @@ public abstract class RiceCooker extends DeviceObject {
 		addSetProperty(EPC_RICE_COOKING_CONTROL_SETTING);
 		addGetProperty(EPC_RICE_COOKING_CONTROL_SETTING);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewRiceCooker(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

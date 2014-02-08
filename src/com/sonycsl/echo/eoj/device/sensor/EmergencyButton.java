@@ -40,6 +40,12 @@ public abstract class EmergencyButton extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_EMERGENCY_OCCURRENCE_STATUS);
 		addGetProperty(EPC_EMERGENCY_OCCURRENCE_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewEmergencyButton(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

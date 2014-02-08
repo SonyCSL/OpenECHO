@@ -39,6 +39,12 @@ public abstract class GasMeter extends DeviceObject {
 		addGetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_INTEGRAL_GAS_CONSUMPTION_MEASUREMENT_VALUE);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewGasMeter(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

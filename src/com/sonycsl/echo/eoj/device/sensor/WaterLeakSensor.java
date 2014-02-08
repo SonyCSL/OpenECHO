@@ -40,6 +40,12 @@ public abstract class WaterLeakSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_WATER_LEAK_DETECTION_STATUS);
 		addGetProperty(EPC_WATER_LEAK_DETECTION_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewWaterLeakSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

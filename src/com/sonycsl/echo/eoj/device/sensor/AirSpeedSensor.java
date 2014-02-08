@@ -39,6 +39,12 @@ public abstract class AirSpeedSensor extends DeviceObject {
 		addGetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_MEASURED_VALUE_OF_AIR_SPEED);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewAirSpeedSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

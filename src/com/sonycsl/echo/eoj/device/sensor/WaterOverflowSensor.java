@@ -40,6 +40,12 @@ public abstract class WaterOverflowSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_WATER_OVERFLOW_DETECTION_STATUS);
 		addGetProperty(EPC_WATER_OVERFLOW_DETECTION_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewWaterOverflowSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

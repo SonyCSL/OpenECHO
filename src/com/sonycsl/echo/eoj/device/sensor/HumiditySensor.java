@@ -38,6 +38,12 @@ public abstract class HumiditySensor extends DeviceObject {
 		addGetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_MEASURED_VALUE_OF_RELATIVE_HUMIDITY);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewHumiditySensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

@@ -50,6 +50,13 @@ public abstract class ProfileObject extends EchoObject {
 		addGetProperty(EPC_SET_PROPERTY_MAP);
 		addGetProperty(EPC_GET_PROPERTY_MAP);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewProfileObject(this);
+	}
+	
 	
 	@Override
 	protected synchronized boolean setProperty(EchoProperty property) {

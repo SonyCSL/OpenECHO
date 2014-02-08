@@ -41,6 +41,12 @@ public abstract class FirstAidSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_FIRST_AID_OCCURRENCE_STATUS);
 		addGetProperty(EPC_FIRST_AID_OCCURRENCE_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewFirstAidSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

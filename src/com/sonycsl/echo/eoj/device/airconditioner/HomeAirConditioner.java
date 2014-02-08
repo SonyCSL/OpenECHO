@@ -84,6 +84,12 @@ public abstract class HomeAirConditioner extends DeviceObject {
 		addSetProperty(EPC_SET_TEMPERATURE_VALUE);
 		addGetProperty(EPC_SET_TEMPERATURE_VALUE);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewHomeAirConditioner(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

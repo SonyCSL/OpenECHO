@@ -55,6 +55,12 @@ public abstract class SmartGasMeter extends DeviceObject {
 		addGetProperty(EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION);
 		addGetProperty(EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION_INFORMATION_WITH_DATE_AND_TIME);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewSmartGasMeter(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

@@ -41,6 +41,12 @@ public abstract class GasSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_GAS_DETECTION_STATUS);
 		addGetProperty(EPC_MEASURED_VALUE_OF_GAS_CONCENTRATION);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewGasSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

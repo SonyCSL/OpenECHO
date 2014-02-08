@@ -41,6 +41,12 @@ public abstract class VisitorSensor extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_VISITOR_DETECTION_STATUS);
 		addGetProperty(EPC_VISITOR_DETECTION_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewVisitorSensor(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {

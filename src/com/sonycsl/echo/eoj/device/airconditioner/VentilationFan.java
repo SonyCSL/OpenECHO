@@ -38,6 +38,12 @@ public abstract class VentilationFan extends DeviceObject {
 		addSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
 	}
+
+	@Override
+	public void onNew() {
+		super.onNew();
+		Echo.getEventListener().onNewVentilationFan(this);
+	}
 	
 	@Override
 	public short getEchoClassCode() {
