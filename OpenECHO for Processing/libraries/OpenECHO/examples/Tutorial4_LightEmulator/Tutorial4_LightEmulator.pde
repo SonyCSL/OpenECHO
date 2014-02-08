@@ -20,6 +20,8 @@ public class LightEmulator extends GeneralLighting {
   byte[] mLocation = {0x00}; // 機器の置き場所を格納する変数です。
   byte[] mFaultStatus = {0x42};  // 機器に問題が発生した時に、そのコードを格納します。
   byte[] mManufacturerCode = {0, 0, 0};  // ベンダー固有のメーカーコードです。
+  byte[] mLightingMode = {0x42}; // 照明のモードです。
+
 
   protected boolean setOperationStatus(byte[] edt) {
     mStatus[0] = edt[0] ;
@@ -60,6 +62,15 @@ public class LightEmulator extends GeneralLighting {
   }
   protected byte[] getManufacturerCode() {
     return mManufacturerCode;
+  }
+
+  protected byte[] getLightingModeSetting() {
+    return mLightingMode;
+  }
+
+  protected boolean setLightingModeSetting(byte[] edt) {
+    mLightingMode[0] = edt[0];
+    return true;
   }
 
   public String toString() {

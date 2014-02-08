@@ -45,6 +45,7 @@ public class iRemoconLight extends GeneralLighting {
   byte[] mVersion = {0x01, 0x01, 0x61, 0x00};
   byte[] mFaultStatus = {0x42};
   byte[] mManufacturerCode = {0,0,0};
+  byte[] mLightingMode = {0x42}; // 照明のモードです。
 
   protected boolean setOperationStatus(byte[] edt) {
     iRemoconSend( edt[0] == 0x30 ? SWITCH_ON : SWITCH_OFF ) ;
@@ -69,6 +70,12 @@ public class iRemoconLight extends GeneralLighting {
   protected byte[] getStandardVersionInformation() {return mVersion;}
   protected byte[] getFaultStatus() {  return mFaultStatus;}
   protected byte[] getManufacturerCode() {return mManufacturerCode;}
+  protected byte[] getLightingModeSetting() { return mLightingMode;}
+
+  protected boolean setLightingModeSetting(byte[] edt) {
+    mLightingMode[0] = edt[0];
+    return true;
+  }
 }
 
 ControlP5 cp5 ;
