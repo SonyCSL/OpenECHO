@@ -110,9 +110,11 @@ public final class EchoNode {
 	public void addDevice(DeviceObject device) {
 		if(device == null) return;
 		if(device.getNode() == this) return;
-		
+
+		mDevices.add(device);
 		if(isSelfNode()) {
 			device.allocateSelfDeviceInstanceCode();
+			device.setNode(this);
 			device.onNew();
 			device.onFound();
 		}
@@ -130,7 +132,6 @@ public final class EchoNode {
 		if(mInitialized) {
 			device.initialize(this);
 		}*/
-		mDevices.add(device);
 	}
 	
 	
