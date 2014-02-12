@@ -211,8 +211,11 @@ public final class EchoFrame {
 		mTID = tid;
 		
 		mPropertyList = new ArrayList<EchoProperty>();
-		for(EchoProperty property : propertyList) {
-			mPropertyList.add(property.copy());
+		// maybe udp sockets bug?
+		if(propertyList != null){
+			for(EchoProperty property : propertyList) {
+				mPropertyList.add(property.copy());
+			}
 		}
 	}
 	
