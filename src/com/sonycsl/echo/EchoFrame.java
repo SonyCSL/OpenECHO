@@ -74,7 +74,6 @@ public final class EchoFrame {
 	
 	protected List<EchoProperty> mPropertyList;
 	
-	
 
 
 	public EchoFrame(short srcEchoClassCode, byte srcEchoInstanceCode
@@ -96,6 +95,7 @@ public final class EchoFrame {
 		mPropertyList = new ArrayList<EchoProperty>();
 	}
 	
+	// This constructor may create invalid EchoFrame.
 	public EchoFrame(String srcEchoAddress, byte[] data) {
 		// receive frame
 		mSrcEchoAddress = srcEchoAddress;
@@ -147,7 +147,6 @@ public final class EchoFrame {
 			}
 			mPropertyList.add(new EchoProperty(epc, pdc, edt));
 		}
-		
 	}
 	
 	public static EchoFrame getEchoFrameFromStream(String srcEchoAddress, DataInputStream in) throws IOException, InterruptedException {
@@ -211,11 +210,8 @@ public final class EchoFrame {
 		mTID = tid;
 		
 		mPropertyList = new ArrayList<EchoProperty>();
-		// maybe udp sockets bug?
-		if(propertyList != null){
-			for(EchoProperty property : propertyList) {
-				mPropertyList.add(property.copy());
-			}
+		for(EchoProperty property : propertyList) {
+			mPropertyList.add(property.copy());
 		}
 	}
 	
@@ -337,6 +333,11 @@ public final class EchoFrame {
 			}
 			break;
 		}
+	}
+	
+	// TODO:checking valid or not improvement.
+	public boolean isValid(){
+		return mPropertyList != null;
 	}
 	
 	public void addProperty(EchoProperty property) {
