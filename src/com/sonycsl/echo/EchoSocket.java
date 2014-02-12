@@ -517,7 +517,10 @@ public final class EchoSocket {
 		InetAddress address = packet.getAddress();
 		String srcEchoAddress = address.getHostAddress();
 		EchoFrame frame = new EchoFrame(srcEchoAddress, data);
-		onReceiveUDPFrame(frame);
+		// It is invalid frame. i.e data is too small or coruppted.
+		if(frame.isValid()){
+			onReceiveUDPFrame(frame);
+		}
 	}
 
 	public static void receiveTCP() throws IOException {
