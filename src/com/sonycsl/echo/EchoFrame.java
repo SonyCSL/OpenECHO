@@ -149,24 +149,14 @@ public final class EchoFrame {
 		}
 	}
 	
-	public static EchoFrame getEchoFrameFromStream(String srcEchoAddress, DataInputStream in) throws IOException, InterruptedException {
+	public static EchoFrame getEchoFrameFromStream(String srcEchoAddress, DataInputStream in) throws IOException {
 		
-		boolean validHeader = false;
 
-		byte ehd1 = 0;
-		byte ehd2 = 0;
-		while(!validHeader) {
-			while(in.available() < 11) {
-				Thread.sleep(10);
-			}
-			ehd1 = ehd2;
-			ehd2 = in.readByte();
-			if(ehd1 == EHD1 && ehd2 == EHD2) {
-				validHeader = true;
-				break;
-			} else {
-				continue;
-			}
+		byte ehd1 =  in.readByte();
+		byte ehd2 = in.readByte();
+		if(ehd1 == EHD1 && ehd2 == EHD2) {
+		} else {
+			return null;
 		}
 		ArrayList<Byte> data = new ArrayList<Byte>();
 		data.add(EHD1); data.add(EHD2);
@@ -276,7 +266,7 @@ public final class EchoFrame {
 		for(int i = 0; i < propertyListSize; i++) {
 			size += mPropertyList.get(i).size();
 		}
-		if(size > EchoSocket.UDP_MAX_PACKET_SIZE) return null;
+		//if(size > Echo.UDP_MAX_PACKET_SIZE) return null;
 		ByteBuffer buffer = ByteBuffer.allocate(size);
 		buffer.order(ByteOrder.BIG_ENDIAN);
 		

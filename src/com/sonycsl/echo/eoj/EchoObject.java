@@ -63,7 +63,7 @@ public abstract class EchoObject {
 	}
 	
 	public void onFound() {
-		Echo.getEventListener().onNewEchoObject(this);
+		Echo.getEventListener().onFoundEchoObject(this);
 	}
 	
 	protected void setupPropertyMaps() {}
