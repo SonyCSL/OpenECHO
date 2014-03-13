@@ -71,7 +71,7 @@ public final class EchoNode {
 	}
 	
 	public void onFound() {
-		Echo.getEventListener().onNewNode(this);
+		Echo.getEventListener().onFoundNode(this);
 	}
 	
 	public boolean isSelfNode() {
