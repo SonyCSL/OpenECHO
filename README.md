@@ -11,10 +11,13 @@ OpenECHOは、[ECHONET Lite][]プロトコルをJavaで実装したライブラ�
 Processing版はProcessing/フォルダの下にあります。
 こちらはOpenECHO/ECHONET Liteの入門用としても最適です。チュートリアルがOpenECHO for Processing/Tutorial.pdfにありますのでぜひご利用ください。
 
+現在はECHONET Lite仕様書Ver.1.10、機器オブジェクト仕様Release Cに対応しています。
+
+本ライブラリの作成には、弊社から公開されている[ECHONET Liteデータベース][]を用いています。
 
 [ECHONET Lite]: http://www.echonet.gr.jp/ "ECHONET Lite"
 [株式会社ソニーコンピュータサイエンス研究所]: http://www.sonycsl.co.jp/ "株式会社ソニーコンピュータサイエンス研究所"
 [MITライセンス]: http://opensource.org/licenses/mit-license.php "MITライセンス"
 [Processing]: http://processing.org "Processing"
 [神奈川工科大学スマートハウス研究センター]: http://smarthouse-center.org/sdk/ "神奈川工科大学スマートハウス研究センター"
-
+[ECHONET Liteデータベース]: https://github.com/SonyCSL/ECHONETLite-ObjectDatabase "ECHONET Liteデータベース"
