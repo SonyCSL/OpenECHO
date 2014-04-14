@@ -36,6 +36,7 @@ OpenECHOは標準的なJavaの機能だけで実装されており、Windows, Li
 * [Kadecot (ARレイちゃん）によるECHONET Lite対応照明制御デモ (YouTube)](https://www.youtube.com/watch?v=id3cMefV9Oo)
 * [何かができたらとりあえずまとめるブログ openECHO！ホームネットワーク機器と化したラズパイ](http://ch.nicovideo.jp/issekiamp/blomaga/ar327030)
 * [MUDAなことをしよう。Raspberry Pi + OpenECHOでLチカ](http://make-muda.weblike.jp/2014/02/751/)
+* [手作り照明をECHONET Lite対応（笑）/ヒビコレ](http://magicbike.hatenablog.com/entries/2013/10/06)
 
 
 [ECHONET Lite]: http://www.echonet.gr.jp/ "ECHONET Lite"
