@@ -45,6 +45,7 @@
               <fileset dir="${build}" includes="com/sonycsl/echo/exception/*.class" />
               <fileset dir="${build}" includes="com/sonycsl/echo/node/*.class" />
               <fileset dir="${build}" includes="com/sonycsl/echo/processing/defaults/*.class" />
+              <fileset dir="${build}" includes="com/sonycsl/echo/protocol/*.class" />
               </jar>
           <!-- copy todir="${code}">
                <fileset dir="src/com/sonycsl/echo/samples" includes="*.java"/>
