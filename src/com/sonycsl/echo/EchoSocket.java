@@ -15,31 +15,9 @@
  */
 package com.sonycsl.echo;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.MulticastSocket;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.LinkedBlockingQueue;
 
-import com.sonycsl.echo.eoj.EchoObject;
-import com.sonycsl.echo.eoj.device.DeviceObject;
-import com.sonycsl.echo.eoj.profile.NodeProfile;
-import com.sonycsl.echo.node.EchoNode;
 import com.sonycsl.echo.protocol.EchoProtocol;
 import com.sonycsl.echo.protocol.EchoTCPProtocol;
 import com.sonycsl.echo.protocol.EchoUDPProtocol;
@@ -55,62 +33,24 @@ public final class EchoSocket {
 	public static final String MULTICAST_ADDRESS = "224.0.23.0";
 
 	
-	protected static Queue<EchoProtocol.Task> sTaskQueue = new ConcurrentLinkedQueue<EchoProtocol.Task>();
+	protected static LinkedBlockingQueue<EchoProtocol.Task> sTaskQueue = new LinkedBlockingQueue<EchoProtocol.Task>();
 
 	public static synchronized void enqueueTask(Task task) {
 		sTaskQueue.offer(task);
-	}
-	
-	public static synchronized Task dequeueTask() {
-		return sTaskQueue.poll();
 	}
 
 	private static EchoUDPProtocol sUDPProtocol = new EchoUDPProtocol();
 	private static EchoTCPProtocol sTCPProtocol = new EchoTCPProtocol();
 
-	private static Thread sRecvThread;
+	private static Thread udpThread;
 	private static Thread sTaskPerformerThread;
 	private static short sNextTID = 0;
+	private static boolean fPerformActive;
 
 	private EchoSocket() {
 	}
-	private static class Receiver implements Runnable {
-		@Override
-		public void run() {
-			while(!Thread.currentThread().isInterrupted()) {
-				receive();
-				//try {
-				//	Thread.sleep(10);
-				//} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-				//	e.printStackTrace();
-				//	break;
-				//}
-			}
-		}
-	}
-	
-	private static class TaskPerformer implements Runnable {
-
-		@Override
-		public void run() {
-			while(!Thread.currentThread().isInterrupted()) {
-				performTasks();
-				try {
-					Thread.sleep(10);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					break;
-				}
-			}
-			
-		}
-		
-	}
 
 	public static void openSocket() throws IOException {
-
 		sUDPProtocol.openUDP();
 		sTCPProtocol.openTCP();
 
@@ -122,32 +62,58 @@ public final class EchoSocket {
 	}
 
 	public static void startReceiverThread() {
-		//stopReceiverThread();
-		//sExecutors.execute(new Receiver());
-		if(sRecvThread == null){
-			sRecvThread = new Thread(new Receiver());
-			sRecvThread.start();
-		}else{
-			//System.err.println("There is already receiver thread.");
+		if (udpThread == null) {
+			udpThread = new Thread(new Runnable() {
+				@Override
+				public void run() {
+					while (sUDPProtocol.isOpened() ) {
+						//System.out.println("UDP receive");
+						sUDPProtocol.receive();
+					}
+				}
+			});
+			udpThread.start();
 		}
-		if(sTaskPerformerThread == null) {
-			sTaskPerformerThread = new Thread(new TaskPerformer());
+
+		if (sTaskPerformerThread == null) {
+			fPerformActive = true;
+			sTaskPerformerThread = new Thread(new Runnable() {
+				@Override
+				public void run() {
+					while( fPerformActive ) {
+						try {
+							//System.out.println( "perform" );
+							sTaskQueue.take().perform();
+						} catch (InterruptedException e) {
+							//e.printStackTrace();
+						}
+					}
+				}
+			});
 			sTaskPerformerThread.start();
 		}
 	}
 
 	public static void stopReceiverThread() {
-		//sExecutors.shutdown();
-		//sExecutors.shutdownNow();
-		if(sRecvThread != null){
-			sRecvThread.interrupt();
-			sRecvThread = null;
+		if (udpThread != null) {
+			udpThread.interrupt();
+			try {
+				udpThread.join();
+			} catch (Exception e) {
+			}
+			udpThread = null;
 		}
-		if(sTaskPerformerThread != null){
+
+		if (sTaskPerformerThread != null) {
+			fPerformActive = false;
 			sTaskPerformerThread.interrupt();
+			try {
+				sTaskPerformerThread.join();
+			} catch (Exception e) {
+			}
 			sTaskPerformerThread = null;
 		}
-		
+		System.out.println("All closed");
 	}
 
 	public static void resumeReceiverThread() {
@@ -175,44 +141,4 @@ public final class EchoSocket {
 	public static void sendTCPFrame(EchoFrame frame) throws IOException {
 		sTCPProtocol.sendTCP(frame);
 	}
-	
-	public static void receive() {
-		Thread udp = new Thread(new Runnable(){
-			@Override
-			public void run() {
-				sUDPProtocol.receive();
-			}
-		});
-		udp.start();
-
-		Thread tcp = new Thread(new Runnable(){
-			@Override
-			public void run() {
-				sTCPProtocol.receive();
-			}
-		});
-		tcp.start();
-		
-		try {
-			udp.join();
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
-			tcp.join();
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-	}
-	
-	public static void performTasks() {
-		EchoProtocol.Task task = null;
-		while((task = dequeueTask()) != null) {
-			task.perform();
-		}
-	}
-
 }

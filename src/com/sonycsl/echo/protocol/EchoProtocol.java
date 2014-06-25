@@ -1,10 +1,7 @@
 package com.sonycsl.echo.protocol;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
@@ -75,6 +72,7 @@ public abstract class EchoProtocol {
 		public void perform() {
 			if(mFrame.isValid()){
 				checkObjectInFrame(mFrame.copy());
+				Echo.getEventListener().receiveEvent(mFrame);
 
 				if(isReportFrame(mFrame)) {
 					onReceiveReport(mFrame);
