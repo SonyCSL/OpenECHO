@@ -61,7 +61,15 @@ public class EchoTCPProtocol extends EchoProtocol {
 	}
 	
 	public void closeTCP() throws IOException {
-		mSocketAcceptThread.interrupt();
+		if (mSocketAcceptThread != null) {
+			mSocketAcceptThread.interrupt();
+			try {
+				mSocketAcceptThread.join();
+			} catch (Exception e) {
+			}
+			mSocketAcceptThread = null;
+		}
+		
 		if(mServerSocket != null){
 			ServerSocket s = mServerSocket;
 			mServerSocket = null;
