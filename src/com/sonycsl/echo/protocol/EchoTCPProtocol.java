@@ -8,15 +8,11 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
@@ -30,7 +26,7 @@ public class EchoTCPProtocol extends EchoProtocol {
 
 	private static final int PORT = 3610;
 	
-	private static final int TIMEOUT = 5;
+	private static final int TIMEOUT = 0;
 
 	// for TCP.
 	private ServerSocket mServerSocket;
@@ -44,7 +40,7 @@ public class EchoTCPProtocol extends EchoProtocol {
 		mTCPSockets = new HashMap<String, ArrayList<Socket>>();
 
 		mServerSocket = new ServerSocket();
-		mServerSocket.setSoTimeout(10);
+		mServerSocket.setSoTimeout(0);
 		mServerSocket.setReuseAddress(true);
 		mServerSocket.bind(new InetSocketAddress(PORT));
 		//sConnectedTCPSocketThreads = Executors.newCachedThreadPool();
@@ -56,6 +52,7 @@ public class EchoTCPProtocol extends EchoProtocol {
 						accept();
 					} catch (IOException e) {
 						//e.printStackTrace();
+						break;
 					}
 				}
 			}
@@ -85,6 +82,10 @@ public class EchoTCPProtocol extends EchoProtocol {
 		}
 		// if we have no socket,there is no need to receive.
 		//stopReceiverThread();
+	}
+	
+	public boolean isOpened() {
+		return ( mServerSocket != null && !mServerSocket.isClosed() );
 	}
 	
 	
@@ -131,7 +132,7 @@ public class EchoTCPProtocol extends EchoProtocol {
 		} catch(SocketTimeoutException e) {
 			throw e;
 		} catch (IOException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			closeTCPSocket(socket);
 			throw e;
 		}
@@ -155,21 +156,39 @@ public class EchoTCPProtocol extends EchoProtocol {
 		}
 		System.err.println("Socket add" + sock.getInetAddress() + "(income)");
 
+		createReceiver( sock );
+
 		//sConnectedTCPSocketThreads.execute(new TCPSocketThread(sock));
 	}
+	
+	private void createReceiver( final Socket sock ) {
+		new Thread(new Runnable(){
+			@Override
+			public void run() {
+				while( sock != null && !sock.isClosed() ) {
+					try {
+						receive( sock );
+					} catch (IOException e) {
+						break;
+					}
+				}
+			}
+		}).start();
+	}
+	
 
 	public void closeTCPSocket(Socket socket) {
-		ArrayList<Socket> list = mTCPSockets.get(socket.getInetAddress().getHostAddress());
-		list.remove(socket);
-		
-		try {
-			socket.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if( socket != null && mTCPSockets != null ) {
+			ArrayList<Socket> list = mTCPSockets.get(socket.getInetAddress().getHostAddress());
+			list.remove(socket);
+			
+			try {
+				socket.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		System.err.println("close tcp socket");
-
 	}
 	
 	public static class TCPProtocolTask extends EchoProtocol.Task {
@@ -284,32 +303,5 @@ public class EchoTCPProtocol extends EchoProtocol {
 
 	@Override
 	public void receive() {
-		ArrayList<Thread> threadList = new ArrayList<Thread>();
-		for(Map.Entry<String,ArrayList<Socket>> entry : mTCPSockets.entrySet()){
-			for(final Socket s : entry.getValue()){
-				Thread t = new Thread(new Runnable(){
-					@Override
-					public void run() {
-						try {
-							receive(s);
-						} catch (IOException e) {
-							//e.printStackTrace();
-						}
-					}
-				});
-				t.start();
-				threadList.add(t);
-			}
-		}
-		for(Thread t : threadList) {
-			try {
-				t.join();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		
 	}
-
-
 }

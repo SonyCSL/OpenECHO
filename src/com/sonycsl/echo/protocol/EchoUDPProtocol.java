@@ -6,7 +6,6 @@ import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.SocketException;
 import java.util.Enumeration;
-import java.util.List;
 
 import com.sonycsl.echo.Echo;
 import com.sonycsl.echo.EchoFrame;
@@ -34,22 +33,20 @@ public class EchoUDPProtocol extends EchoProtocol {
 		mMulticastSocket.setNetworkInterface(EchoUtils.getNetworkInterface());
 		mMulticastSocket.joinGroup(mMulticastAddress);
 		mMulticastSocket.setLoopbackMode(true);
-		mMulticastSocket.setSoTimeout(10);
+		mMulticastSocket.setSoTimeout(0);
 	}
 
 	public void closeUDP() {
 
 		if(mMulticastSocket != null){
-			MulticastSocket s = mMulticastSocket;
-			mMulticastSocket = null;
 			try {
-				s.leaveGroup(mMulticastAddress);
+				mMulticastSocket.leaveGroup(mMulticastAddress);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			s.close();
-		}
-		
+			mMulticastSocket.close();
+			mMulticastSocket = null;
+		}		
 	}
 	
 
@@ -61,16 +58,20 @@ public class EchoUDPProtocol extends EchoProtocol {
 			sendToSelf(frame.copy());
 			return;
 		}
-		byte[] data = frame.getFrameByteArray();
-
-		InetAddress address = InetAddress.getByName(frame.getDstEchoAddress());
-		DatagramPacket packet = new DatagramPacket(data, data.length,
-				address, PORT);
-		mMulticastSocket.send(packet);
-		if(frame.getDstEchoAddress().equals(EchoSocket.MULTICAST_ADDRESS)) {
-			EchoFrame f = frame.copy();
-			f.setDstEchoAddress(EchoSocket.SELF_ADDRESS);
-			sendToSelf(f);
+		
+		if (mMulticastSocket != null) {
+			byte[] data = frame.getFrameByteArray();
+	
+			InetAddress address = InetAddress.getByName(frame.getDstEchoAddress());
+			DatagramPacket packet = new DatagramPacket(data, data.length,
+					address, PORT);
+	
+			mMulticastSocket.send(packet);
+			if(frame.getDstEchoAddress().equals(EchoSocket.MULTICAST_ADDRESS)) {
+				EchoFrame f = frame.copy();
+				f.setDstEchoAddress(EchoSocket.SELF_ADDRESS);
+				sendToSelf(f);
+			}
 		}
 	}
 	
@@ -79,11 +80,14 @@ public class EchoUDPProtocol extends EchoProtocol {
 		EchoSocket.enqueueTask(task);
 	}
 
+	public boolean isOpened() {
+		return ( mMulticastSocket != null && !mMulticastSocket.isClosed() );	
+	}
+	
+	private DatagramPacket rxPacket = new DatagramPacket(
+			new byte[UDP_MAX_PACKET_SIZE], UDP_MAX_PACKET_SIZE);
+
 	public void receive()  {
-		DatagramPacket packet =
-				new DatagramPacket(
-						new byte[UDP_MAX_PACKET_SIZE],
-						UDP_MAX_PACKET_SIZE);
 		// closed?
 		if(mMulticastSocket == null){
 			//System.err.println("sMulticastSocket has been closed.");
@@ -95,7 +99,7 @@ public class EchoUDPProtocol extends EchoProtocol {
 			return;
 		}
 		try {
-			mMulticastSocket.receive(packet);
+			mMulticastSocket.receive(rxPacket);
 		} catch (IOException e) {
 			//e.printStackTrace();
 			//try {
@@ -103,6 +107,9 @@ public class EchoUDPProtocol extends EchoProtocol {
 			//} catch (IOException e1) {
 			//	e1.printStackTrace();
 			//}
+			return;
+		}
+		if(mMulticastSocket == null){
 			return;
 		}
 		Enumeration<InetAddress> enumIpAddr;
@@ -119,18 +126,18 @@ public class EchoUDPProtocol extends EchoProtocol {
 		}
 		while(enumIpAddr.hasMoreElements()) {
 			InetAddress inetAddress = enumIpAddr.nextElement();
-			if (inetAddress.equals(packet.getAddress())) {
+			if (inetAddress.equals(rxPacket.getAddress())) {
 				// from self node
 				return;
 			}
 		}
-		byte[] data = new byte[packet.getLength()];
-		System.arraycopy(packet.getData(), 0, data, 0, packet.getLength());
+		byte[] data = new byte[rxPacket.getLength()];
+		System.arraycopy(rxPacket.getData(), 0, data, 0, rxPacket.getLength());
 
 		if(data.length < EchoFrame.MIN_FRAME_SIZE) {
 			return;
 		}
-		InetAddress address = packet.getAddress();
+		InetAddress address = rxPacket.getAddress();
 		String srcEchoAddress = address.getHostAddress();
 		EchoFrame frame = new EchoFrame(srcEchoAddress, data);
 		
