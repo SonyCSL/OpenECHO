@@ -13,132 +13,131 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.sonycsl.echo;
+
+import com.sonycsl.echo.protocol.EchoProtocol;
+import com.sonycsl.echo.protocol.EchoProtocol.Task;
+import com.sonycsl.echo.protocol.EchoTCPProtocol;
+import com.sonycsl.echo.protocol.EchoUDPProtocol;
 
 import java.io.IOException;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import com.sonycsl.echo.protocol.EchoProtocol;
-import com.sonycsl.echo.protocol.EchoTCPProtocol;
-import com.sonycsl.echo.protocol.EchoUDPProtocol;
-import com.sonycsl.echo.protocol.EchoProtocol.Task;
-
-
-
 public final class EchoSocket {
-	@SuppressWarnings("unused")
-	private static final String TAG = EchoSocket.class.getSimpleName();
+    @SuppressWarnings("unused")
+    private static final String TAG = EchoSocket.class.getSimpleName();
 
-	public static final String SELF_ADDRESS = "127.0.0.1";
-	public static final String MULTICAST_ADDRESS = "224.0.23.0";
+    public static final String SELF_ADDRESS = "127.0.0.1";
+    public static final String MULTICAST_ADDRESS = "224.0.23.0";
 
-	
-	protected static LinkedBlockingQueue<EchoProtocol.Task> sTaskQueue = new LinkedBlockingQueue<EchoProtocol.Task>();
+    protected static LinkedBlockingQueue<EchoProtocol.Task> sTaskQueue = new LinkedBlockingQueue<EchoProtocol.Task>();
 
-	public static synchronized void enqueueTask(Task task) {
-		sTaskQueue.offer(task);
-	}
+    public static synchronized void enqueueTask(Task task) {
+        sTaskQueue.offer(task);
+    }
 
-	private static EchoUDPProtocol sUDPProtocol = new EchoUDPProtocol();
-	private static EchoTCPProtocol sTCPProtocol = new EchoTCPProtocol();
+    private static EchoUDPProtocol sUDPProtocol = new EchoUDPProtocol();
+    private static EchoTCPProtocol sTCPProtocol = new EchoTCPProtocol();
 
-	private static Thread udpThread;
-	private static Thread sTaskPerformerThread;
-	private static short sNextTID = 0;
-	private static boolean fPerformActive;
+    private static Thread udpThread;
+    private static Thread sTaskPerformerThread;
+    private static short sNextTID = 0;
+    private static boolean fPerformActive;
 
-	private EchoSocket() {
-	}
+    private EchoSocket() {
+    }
 
-	public static void openSocket() throws IOException {
-		sUDPProtocol.openUDP();
-		sTCPProtocol.openTCP();
+    public static void openSocket() throws IOException {
+        sUDPProtocol.openUDP();
+        sTCPProtocol.openTCP();
+        startReceiverThread();
+    }
 
-	}
+    private static void startReceiverThread() {
+        if (udpThread == null) {
+            udpThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (sUDPProtocol.isOpened()) {
+                        // System.out.println("UDP receive");
+                        sUDPProtocol.receive();
+                    }
+                }
+            });
+            udpThread.start();
+        }
 
-	public static void closeSocket() throws IOException {
-		sTCPProtocol.closeTCP();
-		sUDPProtocol.closeUDP();
-	}
+        if (sTaskPerformerThread == null) {
+            fPerformActive = true;
+            sTaskPerformerThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (fPerformActive) {
+                        try {
+                            // System.out.println( "perform" );
+                            sTaskQueue.take().perform();
+                        } catch (InterruptedException e) {
+                            // e.printStackTrace();
+                        }
+                    }
+                }
+            });
+            sTaskPerformerThread.start();
+        }
+    }
 
-	public static void startReceiverThread() {
-		if (udpThread == null) {
-			udpThread = new Thread(new Runnable() {
-				@Override
-				public void run() {
-					while (sUDPProtocol.isOpened() ) {
-						//System.out.println("UDP receive");
-						sUDPProtocol.receive();
-					}
-				}
-			});
-			udpThread.start();
-		}
+    public static void closeSocket() throws IOException {
+        sTCPProtocol.closeTCP();
+        sUDPProtocol.closeUDP();
+        stopReceiverThread();
+    }
 
-		if (sTaskPerformerThread == null) {
-			fPerformActive = true;
-			sTaskPerformerThread = new Thread(new Runnable() {
-				@Override
-				public void run() {
-					while( fPerformActive ) {
-						try {
-							//System.out.println( "perform" );
-							sTaskQueue.take().perform();
-						} catch (InterruptedException e) {
-							//e.printStackTrace();
-						}
-					}
-				}
-			});
-			sTaskPerformerThread.start();
-		}
-	}
+    private static void stopReceiverThread() {
+        if (udpThread != null) {
+            udpThread.interrupt();
+            try {
+                udpThread.join();
+            } catch (Exception e) {
+            }
+            udpThread = null;
+        }
 
-	public static void stopReceiverThread() {
-		if (udpThread != null) {
-			udpThread.interrupt();
-			try {
-				udpThread.join();
-			} catch (Exception e) {
-			}
-			udpThread = null;
-		}
+        if (sTaskPerformerThread != null) {
+            fPerformActive = false;
+            sTaskPerformerThread.interrupt();
+            try {
+                sTaskPerformerThread.join();
+            } catch (Exception e) {
+            }
+            sTaskPerformerThread = null;
+        }
+    }
 
-		if (sTaskPerformerThread != null) {
-			fPerformActive = false;
-			sTaskPerformerThread.interrupt();
-			try {
-				sTaskPerformerThread.join();
-			} catch (Exception e) {
-			}
-			sTaskPerformerThread = null;
-		}
-		System.out.println("All closed");
-	}
+    public static void resumeReceiverThread() {
 
-	public static void resumeReceiverThread() {
+    }
 
-	}
+    public static void pauseReceiverThread() {
 
-	public static void pauseReceiverThread() {
+    }
 
-	}
-	public static synchronized short nextTID() {
-		short ret = sNextTID;
-		sNextTID += 1;
-		//Echo::getStorage().get()->setNextTID(sNextTID);
-		return ret;
-	}
+    public static synchronized short nextTID() {
+        short ret = sNextTID;
+        sNextTID += 1;
+        // Echo::getStorage().get()->setNextTID(sNextTID);
+        return ret;
+    }
 
-	public static short getNextTIDNoIncrement() {
-		return sNextTID;
-	}
-	
-	public static void sendUDPFrame(EchoFrame frame) throws IOException {
-		sUDPProtocol.sendUDP(frame);
-	}
-	
-	public static void sendTCPFrame(EchoFrame frame) throws IOException {
-		sTCPProtocol.sendTCP(frame);
-	}
+    public static short getNextTIDNoIncrement() {
+        return sNextTID;
+    }
+
+    public static void sendUDPFrame(EchoFrame frame) throws IOException {
+        sUDPProtocol.sendUDP(frame);
+    }
+
+    public static void sendTCPFrame(EchoFrame frame) throws IOException {
+        sTCPProtocol.sendTCP(frame);
+    }
 }
