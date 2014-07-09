@@ -31,7 +31,7 @@ Processing版はProcessing/フォルダの下にあります。
 OpenECHOは標準的なJavaの機能だけで実装されており、Windows, Linux, Mac, Androidなど様々な環境での動作実績があります。
 
 以下勝手にリンクしていますので、問題があればお知らせください。
-
+* [Howto : ArmadilloでECHONET Lite (まとめ)](http://armadillo.atmark-techno.com/howto/OpenECHO)
 * [KS Labo LED照明省エネコントローラ(スマートハウス実験)](http://www.tsh-world.co.jp/ks/product/radio/ks_hems.html)
 * [Kadecot (ARレイちゃん）によるECHONET Lite対応照明制御デモ (YouTube)](https://www.youtube.com/watch?v=id3cMefV9Oo)
 * [何かができたらとりあえずまとめるブログ openECHO！ホームネットワーク機器と化したラズパイ](http://ch.nicovideo.jp/issekiamp/blomaga/ar327030)
