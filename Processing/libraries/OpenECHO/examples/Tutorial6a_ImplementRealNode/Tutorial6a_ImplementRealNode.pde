@@ -95,7 +95,7 @@ void setup() {
       NodeProfile.getG().reqGetSelfNodeInstanceListS().send();
 
       EchoNode[] nodes = Echo.getNodes() ;
-      EchoNode local = Echo.getNode() ;
+      EchoNode local = Echo.getSelfNode() ;
 
       for ( EchoNode en : nodes ) {
         if ( en == local ) {
