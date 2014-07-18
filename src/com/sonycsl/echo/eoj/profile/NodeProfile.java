@@ -56,7 +56,7 @@ public abstract class NodeProfile extends ProfileObject {
 	public static final byte EPC_SELF_NODE_INSTANCE_LIST_S = (byte)0xD6;
 	public static final byte EPC_SELF_NODE_CLASS_LIST = (byte)0xD7; 
 	
-	public static final byte[] EDT_VERSION_INFORMATION = {(byte)0x01, (byte)0x01, (byte)0x01, (byte) 0x00};
+	public static final byte[] EDT_VERSION_INFORMATION = {(byte)0x01, (byte)0x0A, (byte)0x01, (byte) 0x00};
 	
 	@Override
 	public byte getInstanceCode() {

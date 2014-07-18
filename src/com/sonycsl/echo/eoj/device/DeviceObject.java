@@ -51,7 +51,7 @@ public abstract class DeviceObject extends EchoObject {
 	public static final byte[] EDT_OPERATION_STATUS_ON = {(byte)0x30};
 	public static final byte[] EDT_OPERATION_STATUS_OFF = {(byte)0x31};
 	
-	public static final byte[] EDT_STANDARD_VERSION_INFORMATION = {(byte)0x00, (byte)0x00, (byte)0x41, (byte)0x00};
+	public static final byte[] EDT_STANDARD_VERSION_INFORMATION = {(byte)0x00, (byte)0x00, (byte)0x43, (byte)0x00};
 	
 	protected byte mEchoInstanceCode = 0;
 	
