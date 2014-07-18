@@ -27,7 +27,7 @@ void setup() {
       // すべてのノード
       EchoNode[] nodes = Echo.getNodes() ;
       // 自分のノード
-      EchoNode local = Echo.getNode() ;
+      EchoNode local = Echo.getSelfNode() ;
 
       for ( EchoNode en : nodes ) {
         if ( en == local ) {
