@@ -1,6 +1,6 @@
 ###概要
 
-OpenECHOは、家電やセンサーデバイスなど、スマートハウスで用いられる機器のための通信プロトコルである[ECHONET Lite][]をJavaで実装したドライバライブラリです。
+OpenECHOは、家電やセンサーデバイスなど、スマートハウスで用いられる機器のための通信プロトコルである[ECHONET Lite][]をJavaで実装したドライバライブラリです([C++版][]もあります)。
 詳細規定が存在する全ての機器+コントローラの制御が可能です。ネットワーク上の機器を認識して通信することができるのみならず、機器クラスを継承することでオリジナルの機器ノードを作成することもできます。分電盤・コントローラ・エアコン・照明・蓄電池・エコキュート・電動ブラインドなどの実動実績があります（とりあえず動いたレベルですが）。
 現在、ECHONET Lite対応機器としてECHONETコンソーシアムに認証された機器のリストが[こちらにあります](http://www.echonet.gr.jp/kikaku_ninsyo/list_lite/equip_srch)。2014年4月時点ですでに160種類以上の機器が受理されている模様です。
 
@@ -40,6 +40,7 @@ OpenECHOは標準的なJavaの機能だけで実装されており、Windows, Li
 
 
 [ECHONET Lite]: http://www.echonet.gr.jp/ "ECHONET Lite"
+[C++版]: https://github.com/SonyCSL/OpenECHO-cpp "OpenECHO-cpp"
 [株式会社ソニーコンピュータサイエンス研究所]: http://www.sonycsl.co.jp/ "株式会社ソニーコンピュータサイエンス研究所"
 [MITライセンス]: http://opensource.org/licenses/mit-license.php "MITライセンス"
 [Processing]: http://processing.org "Processing"
