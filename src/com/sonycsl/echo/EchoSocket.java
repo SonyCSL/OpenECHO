@@ -22,6 +22,7 @@ import com.sonycsl.echo.protocol.EchoTCPProtocol;
 import com.sonycsl.echo.protocol.EchoUDPProtocol;
 
 import java.io.IOException;
+import java.net.NetworkInterface;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public final class EchoSocket {
@@ -50,6 +51,12 @@ public final class EchoSocket {
 
     public static void openSocket() throws IOException {
         sUDPProtocol.openUDP();
+        sTCPProtocol.openTCP();
+        startReceiverThread();
+    }
+
+    public static void openSocket(NetworkInterface nwif) throws IOException {
+        sUDPProtocol.openUDP(nwif);
         sTCPProtocol.openTCP();
         startReceiverThread();
     }
