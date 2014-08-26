@@ -114,6 +114,7 @@ import com.sonycsl.echo.node.EchoNode;
 
 import java.io.IOException;
 import java.io.PrintStream;
+import java.net.NetworkInterface;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -140,6 +141,26 @@ public final class Echo {
     private Echo() {
     }
 
+    public synchronized static EchoNode start(NodeProfile profile, DeviceObject[] devices,
+            NetworkInterface nwif) throws IOException {
+        if (sStarted)
+            return null;
+        if (!sCleared)
+            return null;
+
+        sStarted = true;
+        sCleared = false;
+
+        sSelfNode = new EchoNode(profile, devices);
+        profile.setNode(sSelfNode);
+        for (DeviceObject dev : devices) {
+            dev.setNode(sSelfNode);
+        }
+        EchoSocket.openSocket(nwif);
+
+        return postOpenSocket(devices);
+    }
+
     public synchronized static EchoNode start(NodeProfile profile, DeviceObject[] devices)
             throws IOException {
         if (sStarted)
@@ -157,6 +178,10 @@ public final class Echo {
         }
         EchoSocket.openSocket();
 
+        return postOpenSocket(devices);
+    }
+
+    private static EchoNode postOpenSocket(DeviceObject[] devices) throws IOException {
         // Echo.getEventListener().onNewNode(sSelfNode);
         sSelfNode.onNew();
         // Echo.getEventListener().onFoundNode(sSelfNode);
