@@ -106,6 +106,7 @@ public class EchoUDPProtocol extends EchoProtocol {
             return;
         }
         try {
+            rxPacket.setLength(rxPacket.getData().length);
             mMulticastSocket.receive(rxPacket);
         } catch (IOException e) {
             // e.printStackTrace();
