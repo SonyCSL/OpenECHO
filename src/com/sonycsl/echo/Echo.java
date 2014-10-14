@@ -975,6 +975,20 @@ public final class Echo {
         }
 
         @Override
+        public void onFoundNode(EchoNode node) {
+            for (EventListener listener : sListeners) {
+                listener.onFoundNode(node);
+            }
+        }
+
+        @Override
+        public void onFoundEchoObject(EchoObject eoj) {
+            for (EventListener listener : sListeners) {
+                listener.onFoundEchoObject(eoj);
+            }
+        }
+
+        @Override
         public void onNewNode(EchoNode node) {
             for (EventListener listener : sListeners) {
                 listener.onNewNode(node);
