@@ -22,7 +22,7 @@
      <property name="code" location="Processing/libraries/OpenECHO/code" />
      
      <target name="compile" description = "Compile for OpenECHO Processing library">
-          <javac srcdir="." destdir=".">
+          <javac srcdir="./src" destdir=".">
                <classpath>
                     <pathelement path="${classpath}"/>
                </classpath>
