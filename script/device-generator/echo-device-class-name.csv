@@ -1,0 +1,169 @@
+Group code,Class code,Class name,Echo class name,Whether or not detailed requirements are provided
+0x00,0x01,Gas leak sensor,GasLeakSensor,○
+0x00,0x02,Crime prevention sensor,CrimePreventionSensor,○
+0x00,0x03,Emergency button,EmergencyButton,○
+0x00,0x04,First-aid sensor,FirstAidSensor,○
+0x00,0x05,Earthquake sensor,EarthquakeSensor,○
+0x00,0x06,Electric leak sensor,ElectricLeakSensor,○
+0x00,0x07,Human detection sensor,HumanDetectionSensor,○
+0x00,0x08,Visitor sensor,VisitorSensor,○
+0x00,0x09,Call sensor,CallSensor,○
+0x00,0x0A,Condensation sensor,CondensationSensor,○
+0x00,0x0B,Air pollution sensor,AirPollutionSensor,○
+0x00,0x0C,Oxygen sensor,OxygenSensor,○
+0x00,0x0D,Illuminance sensor,IlluminanceSensor,○
+0x00,0x0E,Sound sensor,SoundSensor,○
+0x00,0x0F,Mailing sensor,MailingSensor,○
+0x00,0x10,Weight sensor,WeightSensor,○
+0x00,0x11,Temperature sensor,TemperatureSensor,○
+0x00,0x12,Humidity sensor,HumiditySensor,○
+0x00,0x13,Rain sensor,RainSensor,○
+0x00,0x14,Water level sensor,WaterLevelSensor,○
+0x00,0x15,Bath water level sensor,BathWaterLevelSensor,○
+0x00,0x16,Bath heating status sensor,BathHeatingStatusSensor,○
+0x00,0x17,Water leak sensor,WaterLeakSensor,○
+0x00,0x18,Water overflow sensor,WaterOverflowSensor,○
+0x00,0x19,Fire sensor,FireSensor,○
+0x00,0x1A,Cigarette smoke sensor,CigaretteSmokeSensor,○
+0x00,0x1B,CO2 sensor,CO2Sensor,○
+0x00,0x1C,Gas sensor,GasSensor,○
+0x00,0x1D,VOC sensor,VOCSensor,○
+0x00,0x1E,Differential pressure sensor,DifferentialPressureSensor,○
+0x00,0x1F,Air speed sensor,AirSpeedSensor,○
+0x00,0x20,Odor sensor,OdorSensor,○
+0x00,0x21,Flame sensor,FlameSensor,○
+0x00,0x22,Electric energy sensor,ElectricEnergySensor,○
+0x00,0x23,Current value sensor,CurrentValueSensor,○
+0x00,0x24,Daylight sensor,DaylightSensor,
+0x00,0x25,Water flow rate sensor,WaterFlowRateSensor,○
+0x00,0x26,Micromotion sensor,MicromotionSensor,○
+0x00,0x27,Passage sensor,PassageSensor,○
+0x00,0x28,Bed presence sensor,BedPresenceSensor,○
+0x00,0x29,Open/close sensor,OpenCloseSensor,○
+0x00,0x2A,Activity amount sensor,ActivityAmountSensor,○
+0x00,0x2B,Human body location sensor,HumanBodyLocationSensor,○
+0x00,0x2C,Snow sensor,SnowSensor,○
+0x01,0x30,Home air conditioner,HomeAirConditioner,○
+0x01,0x31,Cold blaster,ColdBlaster,
+0x01,0x32,Electric fan,ElectricFan,
+0x01,0x33,Ventilation fan,VentilationFan,○
+0x01,0x34,Air conditioner ventilation fan,AirConditionerVentilationFan,○
+0x01,0x35,Air cleaner,AirCleaner,○
+0x01,0x36,Cold blast fan,ColdBlastFan,
+0x01,0x37,Circulator,Circulator,
+0x01,0x38,Dehumidifier,Dehumidifier,
+0x01,0x39,Humidifier,Humidifier,○
+0x01,0x3A,Ceiling fan,Ceiling fan,
+0x01,0x3B,Electric Kotatsu,ElectricKotatsu,
+0x01,0x3C,Electric heating pad,ElectricHeatingPad,
+0x01,0x3D,Electric blanket,ElectricBlanket,
+0x01,0x3E,Space heater,SpaceHeater,
+0x01,0x3F,Panel heater,PanelHeater,
+0x01,0x40,Electric carpet,ElectricCarpet,
+0x01,0x41,Floor heater,FloorHeater,
+0x01,0x42,Electric heater,ElectricHeater,○
+0x01,0x43,Fan heater,FanHeater,○
+0x01,0x44,Battery charger,BatteryCharger,
+0x01,0x45,Package-type commercial air conditioner (indoor unit),PackageTypeCommercialAirConditionerIndoorUnit,○
+0x01,0x46,Package-type commercial air conditioner (outdoor unit),PackageTypeCommercialAirConditionerOutdoorUnit,○
+0x01,0x47,Package-type commercial air conditioner thermal storage unit,PackageTypeCommercialAirConditionerThermalStorageUnit,
+0x01,0x48,Commercial fan coil unit,CommercialFanCoilUnit,
+0x01,0x49,Commercial air conditioning cold source (chiller),CommercialAirConditioningColdSource,
+0x01,0x50,Commercial air conditioning hot source (boiler),CommercialAirConditioningHotSource,
+0x01,0x51,Air-conditioning VAV for commercial applications,AirConditioningVAVForCommercialApplications,
+0x01,0x52,Air handling unit (air-conditioning) for commercial applications,AirHandlingUnitForCommercialApplications,
+0x01,0x53,Unit-cooler,UnitCooler,
+0x01,0x54,Condensing unit for commercial applications,CondensingUnitForCommercialApplications,
+0x02,0x60,Electrically operated shade,ElectricallyOperatedShade,○
+0x02,0x61,Electrically operated shutter,ElectricShutter,○
+0x02,0x62,Electrically operated curtain,ElectricallyOperatedCurtain,
+0x02,0x63,Electrically operated storm window,ElectricStormWindow,○
+0x02,0x64,Electrically operated door,ElectricallyOperatedDoor,
+0x02,0x65,Electrically operated skylight,ElectricallyOperatedSkylight,
+0x02,0x66,Awning,Awning,
+0x02,0x67,Garden sprinkler,Sprinkler,○
+0x02,0x68,Fire sprinkler,FireSprinkler,
+0x02,0x69,Fountain,Fountain,
+0x02,0x6A,Instantaneous water heater,InstantaneousWaterHeater,
+0x02,0x6B,Electric water heater,ElectricWaterHeater,○
+0x02,0x6C,Solar water heater,SolarWaterHeater,
+0x02,0x6D,Circulation pump,CirculationPump,
+0x02,0x6E,Bidet-equipped toilet(with electrically warmed seat),ElectricToiletSeat,○
+0x02,0x6F,Electric key,ElectricLock,○
+0x02,0x70,Gas line valve,GasLineValve,
+0x02,0x71,Home sauna,HomeSauna,
+0x02,0x72,Hot water generator,InstantaneousWaterHeater,○
+0x02,0x73,Bathroom dryer,BathroomHeaterAndDryer,○
+0x02,0x74,Home elevator,HomeElevator,
+0x02,0x75,Electrically operated room divider,ElectricallyOperatedRoomDivider,
+0x02,0x76,Horizontal transfer,HorizontalTransfer,
+0x02,0x77,Electrically operated clothes-drying pole,ElectricallyOperatedClothesDryingPole,
+0x02,0x78,Septic tank,SepticTank,
+0x02,0x79,Home solar power generation,HouseholdSolarPowerGeneration,○
+0x02,0x7A,Cold / hot water heat source equipment,ColdOrHotWaterHeatSourceEquipment,○
+0x02,0x7B,Floor heater,FloorHeater,○
+0x02,0x7C,Fuel cell,FuelCell,○
+0x02,0x7D,Storage battery,Battery,○
+0x02,0x7E,Electric vehicle,ElectricVehicle,○
+0x02,0x7F,Engine cogeneration,EngineCogeneration,○
+0x02,0x80,Electric energy meter,WattHourMeter,○
+0x02,0x81,Water flow meter,WaterFlowmeter,○
+0x02,0x82,Gas meter,GasMeter,○
+0x02,0x83,LP gas meter,LPGasMeter,○
+0x02,0x84,Clock,Clock,
+0x02,0x85,Automatic door,AutomaticDoor,
+0x02,0x86,Commercial elevator,CommercialElevator,
+0x02,0x87,Distribution panel metering,PowerDistributionBoardMetering,○
+0x02,0x88,Smart electric energy meter,SmartElectricEnergyMeter,○
+0x02,0x89,Smart gas meter,SmartGasMeter,○
+0x02,0x90,General lighting class,GeneralLighting,○
+0x02,0x99,Emergency lighting,EmergencyLighting,
+0x02,0x9D,Equipment light,EquipmentLight,
+0x02,0xA0,Buzzer,Buzzer,○
+0x03,0xB0,Coffee machine,CoffeeMachine,
+0x03,0xB1,Coffee mill,CoffeeMill,
+0x03,0xB2,Electric hot water pot(electric thermos),ElectricHotWaterPot,○
+0x03,0xB3,Electric stove,ElectricStove,
+0x03,0xB4,Toaster,Toaster,
+0x03,0xB5,"Juicer, food mixer",JuicerFoodMixer,
+0x03,0xB6,Food processor,FoodProcessor,
+0x03,0xB7,Refrigerator,Refrigerator,○
+0x03,0xB8,Combination microwave oven(Electronic oven),CombinationMicrowaveOven,○
+0x03,0xB9,Cooking heater,CookingHeater,○
+0x03,0xBA,Oven,Oven,
+0x03,0xBB,Rice cooker,RiceCooker,○
+0x03,0xBC,Electronic jar,ElectronicJar,
+0x03,0xBD,Dish washer,Dishasher,
+0x03,0xBE,Dish dryer,DishDryer,
+0x03,0xBF,Electric rice card cooker,ElectricRiceCardCooker,
+0x03,0xC0,Keep-warm machine,KeepWarmMachine,
+0x03,0xC1,Rice mill,RiceMill,
+0x03,0xC2,Automatic bread cooker,AutomaticBreadCooker,
+0x03,0xC3,Slow cooker,SlowCooker,
+0x03,0xC4,Electric pickles cooker,ElectricPicklesCooker,
+0x03,0xC5,Washing machine,WashingMachine,○
+0x03,0xC6,Clothes dryer,ClothesDryer,○
+0x03,0xC7,Electric iron,ElectricIron,
+0x03,0xC8,Trouser press,TrouserPress,
+0x03,0xC9,Futon dryer,FutonDryer,
+0x03,0xCA,"Small article, shoes dryer",SmallArticleShoesDryer,
+0x03,0xCB,Electric vacuum cleaner (including central vacuum cleaner),ElectricVacuumCleaner,
+0x03,0xCC,Disposer,Disposer,
+0x03,0xCD,Electric mosquito catcher,ElectricMosquitoCatcher,
+0x03,0xCE,Commercial show case,CommercialShowCase,
+0x03,0xCF,Commercial refrigerator,CommercialRefrigerator,
+0x03,0xD0,Commercial hot case,CommercialHotCase,
+0x03,0xD1,Commercial fryer,CommercialFryer,
+0x03,0xD2,Commercial microwave oven,CommercialMicrowaveOven,
+0x03,0xD3,Washer and dryer,WasherAndDryer,○
+0x04,0x01,Weighing machine,Weighing,○
+0x04,0x02,Clinical thermometer,ClinicalThermometer,
+0x04,0x03,Blood pressure meter,BloodPressureMeter,
+0x04,0x04,Blood sugar meter,BloodSugarMeter,
+0x04,0x05,Body fat meter,BodyFatMeter,
+0x05,0xFC,Secure communication shared key setup node,SecureCommunicationSharedKeySetupNode,●
+0x05,0xFD,Switch (supporting JEM-A / HA terminals),Switch,○
+0x05,0xFE,Portable (mobile) terminal.,PortableTerminal,
+0x05,0xFF,Controller,Controller,
+0x06,0x01,Display,Display,○
+0x06,0x02,Television,Television,○
