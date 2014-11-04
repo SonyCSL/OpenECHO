@@ -39,7 +39,8 @@ public abstract class Battery extends DeviceObject {
 	public static final byte EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING_1 = (byte)0xE0;
 	public static final byte EPC_CHARGING_AMOUNT_SETTING_1 = (byte)0xE7;
 	public static final byte EPC_BATTERY_TYPE = (byte)0xE6;
-	public static final byte EPC_REMAINING_STORED_ELECTRICITY_3_BATTERY_STATE_OF_HEALTH = (byte)0xE4;
+	public static final byte EPC_BATTERY_STATE_OF_HEALTH = (byte)0xE5;
+	public static final byte EPC_REMAINING_STORED_ELECTRICITY_3 = (byte)0xE4;
 	public static final byte EPC_CHARGING_AMOUNT_SETTING_2 = (byte)0xE9;
 	public static final byte EPC_DISCHARGING_AMOUNT_SETTING_1 = (byte)0xE8;
 	public static final byte EPC_MINIMUM_MAXIM_UM_DISCHARGE_ELECTRIC_ENERGY = (byte)0xC9;
@@ -76,7 +77,7 @@ public abstract class Battery extends DeviceObject {
 		addGetProperty(EPC_REMAINING_STORED_ELECTRICITY_2);
 		addGetProperty(EPC_REMAINING_STORED_ELECTRICITY_1);
 		addGetProperty(EPC_BATTERY_TYPE);
-		addGetProperty(EPC_REMAINING_STORED_ELECTRICITY_3_BATTERY_STATE_OF_HEALTH);
+		addGetProperty(EPC_REMAINING_STORED_ELECTRICITY_3);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_MODE_SETTING);
 		addSetProperty(EPC_OPERATION_MODE_SETTING);
 		addGetProperty(EPC_OPERATION_MODE_SETTING);
@@ -461,42 +462,68 @@ public abstract class Battery extends DeviceObject {
 		return true;
 	}
 	/**
-	 * Property name : Remaining stored electricity 3 Battery state of health<br>
+	 * Property name : Battery state of health<br>
 	 * <br>
-	 * EPC : 0xE4<br>
+	 * EPC : 0xE5<br>
 	 * <br>
 	 * Contents :<br>
-	 * This property indicates the charging rate of the battery in %._x000a_(0.100%) <br>
+	 * This property indicates the battery state of health in % <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * This property indicates the battery state of health in %._x000a_(0.100%)<br>
+	 * (0〜100%)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * Data size : 1<br>
-	 * Unit : % %<br>
+	 * Unit : %<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - -<br>
 	 * Set      - -<br>
-	 * Get      - mandatory<br>
+	 * Get      - optional<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
-	protected abstract byte[] getRemainingStoredElectricity3BatteryStateOfHealth();
+	protected byte[] getBatteryStateOfHealth() {return null;}
 	/**
-	 * Property name : Remaining stored electricity 3 Battery state of health<br>
+	 * Property name : Battery state of health<br>
+	 * <br>
+	 * EPC : 0xE5<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the battery state of health in % <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * (0〜100%)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : %<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidBatteryStateOfHealth(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Remaining stored electricity 3<br>
 	 * <br>
 	 * EPC : 0xE4<br>
 	 * <br>
 	 * Contents :<br>
-	 * This property indicates the charging rate of the battery in %._x000a_(0.100%) <br>
+	 * This property indicates the charging rate of the battery in % <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * This property indicates the battery state of health in %._x000a_(0.100%)<br>
+	 * (0〜100%)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
 	 * Data size : 1<br>
-	 * Unit : % %<br>
+	 * Unit : %<br>
 	 * <br>
 	 * Access rule :<br>
 	 * Announce - -<br>
@@ -505,7 +532,30 @@ public abstract class Battery extends DeviceObject {
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean isValidRemainingStoredElectricity3BatteryStateOfHealth(byte[] edt) {
+	protected abstract byte[] getRemainingStoredElectricity3();
+	/**
+	 * Property name : Remaining stored electricity 3<br>
+	 * <br>
+	 * EPC : 0xE4<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the charging rate of the battery in % <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * (0〜100%)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : %<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidRemainingStoredElectricity3(byte[] edt) {
 		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
@@ -2174,7 +2224,8 @@ public abstract class Battery extends DeviceObject {
 		case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING_1 : return getChargingDischarGingAmountSetting1();
 		case EPC_CHARGING_AMOUNT_SETTING_1 : return getChargingAmountSetting1();
 		case EPC_BATTERY_TYPE : return getBatteryType();
-		case EPC_REMAINING_STORED_ELECTRICITY_3_BATTERY_STATE_OF_HEALTH : return getRemainingStoredElectricity3BatteryStateOfHealth();
+		case EPC_BATTERY_STATE_OF_HEALTH : return getBatteryStateOfHealth();
+		case EPC_REMAINING_STORED_ELECTRICITY_3 : return getRemainingStoredElectricity3();
 		case EPC_CHARGING_AMOUNT_SETTING_2 : return getChargingAmountSetting2();
 		case EPC_DISCHARGING_AMOUNT_SETTING_1 : return getDischargingAmountSetting1();
 		case EPC_MINIMUM_MAXIM_UM_DISCHARGE_ELECTRIC_ENERGY : return getMinimumMaximUmDischargeElectricEnergy();
@@ -2218,7 +2269,8 @@ public abstract class Battery extends DeviceObject {
 		case EPC_CHARGING_DISCHAR_GING_AMOUNT_SETTING_1 : return isValidChargingDischarGingAmountSetting1(property.edt);
 		case EPC_CHARGING_AMOUNT_SETTING_1 : return isValidChargingAmountSetting1(property.edt);
 		case EPC_BATTERY_TYPE : return isValidBatteryType(property.edt);
-		case EPC_REMAINING_STORED_ELECTRICITY_3_BATTERY_STATE_OF_HEALTH : return isValidRemainingStoredElectricity3BatteryStateOfHealth(property.edt);
+		case EPC_BATTERY_STATE_OF_HEALTH : return isValidBatteryStateOfHealth(property.edt);
+		case EPC_REMAINING_STORED_ELECTRICITY_3 : return isValidRemainingStoredElectricity3(property.edt);
 		case EPC_CHARGING_AMOUNT_SETTING_2 : return isValidChargingAmountSetting2(property.edt);
 		case EPC_DISCHARGING_AMOUNT_SETTING_1 : return isValidDischargingAmountSetting1(property.edt);
 		case EPC_MINIMUM_MAXIM_UM_DISCHARGE_ELECTRIC_ENERGY : return isValidMinimumMaximUmDischargeElectricEnergy(property.edt);
@@ -2365,8 +2417,11 @@ public abstract class Battery extends DeviceObject {
 			case EPC_BATTERY_TYPE : 
 				onGetBatteryType(eoj, tid, esv, property, success);
 				return true;
-			case EPC_REMAINING_STORED_ELECTRICITY_3_BATTERY_STATE_OF_HEALTH : 
-				onGetRemainingStoredElectricity3BatteryStateOfHealth(eoj, tid, esv, property, success);
+			case EPC_BATTERY_STATE_OF_HEALTH : 
+				onGetBatteryStateOfHealth(eoj, tid, esv, property, success);
+				return true;
+			case EPC_REMAINING_STORED_ELECTRICITY_3 : 
+				onGetRemainingStoredElectricity3(eoj, tid, esv, property, success);
 				return true;
 			case EPC_CHARGING_AMOUNT_SETTING_2 : 
 				onGetChargingAmountSetting2(eoj, tid, esv, property, success);
@@ -2660,19 +2715,42 @@ public abstract class Battery extends DeviceObject {
 		 */
 		protected void onGetBatteryType(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Remaining stored electricity 3 Battery state of health<br>
+		 * Property name : Battery state of health<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the battery state of health in % <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * (0〜100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetBatteryStateOfHealth(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Remaining stored electricity 3<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents :<br>
-		 * This property indicates the charging rate of the battery in %._x000a_(0.100%) <br>
+		 * This property indicates the charging rate of the battery in % <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * This property indicates the battery state of health in %._x000a_(0.100%)<br>
+		 * (0〜100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * Data size : 1<br>
-		 * Unit : % %<br>
+		 * Unit : %<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - -<br>
@@ -2681,7 +2759,7 @@ public abstract class Battery extends DeviceObject {
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetRemainingStoredElectricity3BatteryStateOfHealth(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetRemainingStoredElectricity3(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Charging amount setting 2<br>
 		 * <br>
@@ -4211,19 +4289,45 @@ public abstract class Battery extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : Remaining stored electricity 3 Battery state of health<br>
+		 * Property name : Battery state of health<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the battery state of health in % <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * (0〜100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetBatteryStateOfHealth() {
+			reqGetProperty(EPC_BATTERY_STATE_OF_HEALTH);
+			return this;
+		}
+		/**
+		 * Property name : Remaining stored electricity 3<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents :<br>
-		 * This property indicates the charging rate of the battery in %._x000a_(0.100%) <br>
+		 * This property indicates the charging rate of the battery in % <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * This property indicates the battery state of health in %._x000a_(0.100%)<br>
+		 * (0〜100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * Data size : 1<br>
-		 * Unit : % %<br>
+		 * Unit : %<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - -<br>
@@ -4232,8 +4336,8 @@ public abstract class Battery extends DeviceObject {
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetRemainingStoredElectricity3BatteryStateOfHealth() {
-			reqGetProperty(EPC_REMAINING_STORED_ELECTRICITY_3_BATTERY_STATE_OF_HEALTH);
+		public Getter reqGetRemainingStoredElectricity3() {
+			reqGetProperty(EPC_REMAINING_STORED_ELECTRICITY_3);
 			return this;
 		}
 		/**
@@ -5180,19 +5284,45 @@ public abstract class Battery extends DeviceObject {
 			return this;
 		}
 		/**
-		 * Property name : Remaining stored electricity 3 Battery state of health<br>
+		 * Property name : Battery state of health<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the battery state of health in % <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * (0〜100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformBatteryStateOfHealth() {
+			reqInformProperty(EPC_BATTERY_STATE_OF_HEALTH);
+			return this;
+		}
+		/**
+		 * Property name : Remaining stored electricity 3<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
 		 * Contents :<br>
-		 * This property indicates the charging rate of the battery in %._x000a_(0.100%) <br>
+		 * This property indicates the charging rate of the battery in % <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * This property indicates the battery state of health in %._x000a_(0.100%)<br>
+		 * (0〜100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
 		 * Data size : 1<br>
-		 * Unit : % %<br>
+		 * Unit : %<br>
 		 * <br>
 		 * Access rule :<br>
 		 * Announce - -<br>
@@ -5201,8 +5331,8 @@ public abstract class Battery extends DeviceObject {
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformRemainingStoredElectricity3BatteryStateOfHealth() {
-			reqInformProperty(EPC_REMAINING_STORED_ELECTRICITY_3_BATTERY_STATE_OF_HEALTH);
+		public Informer reqInformRemainingStoredElectricity3() {
+			reqInformProperty(EPC_REMAINING_STORED_ELECTRICITY_3);
 			return this;
 		}
 		/**
@@ -5900,7 +6030,7 @@ public abstract class Battery extends DeviceObject {
 		@Override
 		protected byte[] getBatteryType(){return null;}
 		@Override
-		protected byte[] getRemainingStoredElectricity3BatteryStateOfHealth(){return null;}
+		protected byte[] getRemainingStoredElectricity3(){return null;}
 		@Override
 		protected byte[] getStatusChangeAnnouncementPropertyMap(){return null;}
 		@Override
