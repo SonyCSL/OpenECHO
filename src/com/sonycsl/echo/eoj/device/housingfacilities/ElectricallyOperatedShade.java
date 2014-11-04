@@ -1,49 +1,56 @@
 /*
- * Copyright 2012 Sony Computer Science Laboratories, Inc. <info@kadecot.net>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2014 Sony Computer Science Laboratories, Inc.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.sonycsl.echo.eoj.device.housingfacilities;
 
 import com.sonycsl.echo.Echo;
-import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
-import com.sonycsl.echo.node.EchoNode;
 
 public abstract class ElectricallyOperatedShade extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x0260;
 
-	public static final byte EPC_OPEN_CLOSE_SETTING = (byte)0xE0;
-	public static final byte EPC_DEGREE_OF_OPENI_NG_LEVEL = (byte)0xE1;
-	public static final byte EPC_SET_VALUE_OF_SHADE_ANGLE = (byte)0xE2;
 	public static final byte EPC_SHADE_OPEN_CLOSE_SPEED = (byte)0xE3;
+	public static final byte EPC_SET_VALUE_OF_SHADE_ANGLE = (byte)0xE2;
+	public static final byte EPC_DEGREE_OF_OPENI_NG_LEVEL = (byte)0xE1;
+	public static final byte EPC_OPEN_CLOSE_SETTING = (byte)0xE0;
 
 	@Override
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
-		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
-		removeSetProperty(EPC_OPERATION_STATUS);
-		addGetProperty(EPC_OPERATION_STATUS);
+		addSetProperty(EPC_DEGREE_OF_OPENI_NG_LEVEL);
+		addGetProperty(EPC_DEGREE_OF_OPENI_NG_LEVEL);
 		addStatusChangeAnnouncementProperty(EPC_OPEN_CLOSE_SETTING);
 		addSetProperty(EPC_OPEN_CLOSE_SETTING);
 		addGetProperty(EPC_OPEN_CLOSE_SETTING);
-		addSetProperty(EPC_DEGREE_OF_OPENI_NG_LEVEL);
-		addGetProperty(EPC_DEGREE_OF_OPENI_NG_LEVEL);
+		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
+		removeSetProperty(EPC_OPERATION_STATUS);
+		addGetProperty(EPC_OPERATION_STATUS);
+
 	}
 
 	@Override
@@ -58,76 +65,240 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	}
 
 	/**
-	 * Property name : Operation status<br>
+	 * Property name : Shade open/close speed<br>
 	 * <br>
-	 * EPC : 0x80<br>
+	 * EPC : 0xE3<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * Low/Medium/High <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON=0x30, OFF=0x31<br>
+	 * Low = 0x41, Medium = 0x42, High = 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean setOperationStatus(byte[] edt) {return false;}
+	protected boolean setShadeOpenCloseSpeed(byte[] edt) {return false;}
 	/**
-	 * Property name : Operation status<br>
+	 * Property name : Shade open/close speed<br>
 	 * <br>
-	 * EPC : 0x80<br>
+	 * EPC : 0xE3<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * Low/Medium/High <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON=0x30, OFF=0x31<br>
+	 * Low = 0x41, Medium = 0x42, High = 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
-	protected abstract byte[] getOperationStatus();
+	protected byte[] getShadeOpenCloseSpeed() {return null;}
+	/**
+	 * Property name : Shade open/close speed<br>
+	 * <br>
+	 * EPC : 0xE3<br>
+	 * <br>
+	 * Contents :<br>
+	 * Low/Medium/High <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Low = 0x41, Medium = 0x42, High = 0x43<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidShadeOpenCloseSpeed(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Set value of shade angle<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents :<br>
+	 * Shade angle value <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0xB4 (0.180.)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : deg<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setSetValueOfShadeAngle(byte[] edt) {return false;}
+	/**
+	 * Property name : Set value of shade angle<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents :<br>
+	 * Shade angle value <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0xB4 (0.180.)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : deg<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getSetValueOfShadeAngle() {return null;}
+	/**
+	 * Property name : Set value of shade angle<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents :<br>
+	 * Shade angle value <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0xB4 (0.180.)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : deg<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidSetValueOfShadeAngle(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Degree-of-openi ng level<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x31 to 0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract boolean setDegreeOfOpeniNgLevel(byte[] edt);
+	/**
+	 * Property name : Degree-of-openi ng level<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x31 to 0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getDegreeOfOpeniNgLevel();
+	/**
+	 * Property name : Degree-of-openi ng level<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x31 to 0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidDegreeOfOpeniNgLevel(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
 	/**
 	 * Property name : Open/close setting<br>
 	 * <br>
 	 * EPC : 0xE0<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Open/close<br>
+	 * Contents :<br>
+	 * Open/close <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Open = 0x41, close = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -137,22 +308,20 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	 * <br>
 	 * EPC : 0xE0<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Open/close<br>
+	 * Contents :<br>
+	 * Open/close <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Open = 0x41, close = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -162,243 +331,97 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 	 * <br>
 	 * EPC : 0xE0<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Open/close<br>
+	 * Contents :<br>
+	 * Open/close <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Open = 0x41, close = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidOpenCloseSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 	/**
-	 * Property name : Degree-of-openi ng level<br>
+	 * Property name : Operation status<br>
 	 * <br>
-	 * EPC : 0xE1<br>
+	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x31 to 0x38<br>
+	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected abstract boolean setDegreeOfOpeniNgLevel(byte[] edt);
+	protected boolean setOperationStatus(byte[] edt) {return false;}
 	/**
-	 * Property name : Degree-of-openi ng level<br>
+	 * Property name : Operation status<br>
 	 * <br>
-	 * EPC : 0xE1<br>
+	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x31 to 0x38<br>
+	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected abstract byte[] getDegreeOfOpeniNgLevel();
+	protected abstract byte[] getOperationStatus();
 	/**
-	 * Property name : Degree-of-openi ng level<br>
+	 * Property name : Operation status<br>
 	 * <br>
-	 * EPC : 0xE1<br>
+	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x31 to 0x38<br>
+	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean isValidDegreeOfOpeniNgLevel(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Set value of shade angle<br>
-	 * <br>
-	 * EPC : 0xE2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Shade angle value<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0xB4 (0.180.)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : deg<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setSetValueOfShadeAngle(byte[] edt) {return false;}
-	/**
-	 * Property name : Set value of shade angle<br>
-	 * <br>
-	 * EPC : 0xE2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Shade angle value<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0xB4 (0.180.)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : deg<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getSetValueOfShadeAngle() {return null;}
-	/**
-	 * Property name : Set value of shade angle<br>
-	 * <br>
-	 * EPC : 0xE2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Shade angle value<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0xB4 (0.180.)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : deg<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidSetValueOfShadeAngle(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Shade open/close speed<br>
-	 * <br>
-	 * EPC : 0xE3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Low/Medium/High<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Low = 0x41, Medium = 0x42, High = 0x43<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setShadeOpenCloseSpeed(byte[] edt) {return false;}
-	/**
-	 * Property name : Shade open/close speed<br>
-	 * <br>
-	 * EPC : 0xE3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Low/Medium/High<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Low = 0x41, Medium = 0x42, High = 0x43<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getShadeOpenCloseSpeed() {return null;}
-	/**
-	 * Property name : Shade open/close speed<br>
-	 * <br>
-	 * EPC : 0xE3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Low/Medium/High<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Low = 0x41, Medium = 0x42, High = 0x43<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidShadeOpenCloseSpeed(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
+	protected boolean isValidOperationStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 
@@ -408,10 +431,11 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		if(success) return success;
 
 		switch(property.epc) {
-		case EPC_OPEN_CLOSE_SETTING : return setOpenCloseSetting(property.edt);
-		case EPC_DEGREE_OF_OPENI_NG_LEVEL : return setDegreeOfOpeniNgLevel(property.edt);
-		case EPC_SET_VALUE_OF_SHADE_ANGLE : return setSetValueOfShadeAngle(property.edt);
 		case EPC_SHADE_OPEN_CLOSE_SPEED : return setShadeOpenCloseSpeed(property.edt);
+		case EPC_SET_VALUE_OF_SHADE_ANGLE : return setSetValueOfShadeAngle(property.edt);
+		case EPC_DEGREE_OF_OPENI_NG_LEVEL : return setDegreeOfOpeniNgLevel(property.edt);
+		case EPC_OPEN_CLOSE_SETTING : return setOpenCloseSetting(property.edt);
+
 		default : return false;
 		}
 	}
@@ -422,10 +446,11 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_OPEN_CLOSE_SETTING : return getOpenCloseSetting();
-		case EPC_DEGREE_OF_OPENI_NG_LEVEL : return getDegreeOfOpeniNgLevel();
-		case EPC_SET_VALUE_OF_SHADE_ANGLE : return getSetValueOfShadeAngle();
 		case EPC_SHADE_OPEN_CLOSE_SPEED : return getShadeOpenCloseSpeed();
+		case EPC_SET_VALUE_OF_SHADE_ANGLE : return getSetValueOfShadeAngle();
+		case EPC_DEGREE_OF_OPENI_NG_LEVEL : return getDegreeOfOpeniNgLevel();
+		case EPC_OPEN_CLOSE_SETTING : return getOpenCloseSetting();
+
 		default : return null;
 		}
 	}
@@ -436,10 +461,11 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_OPEN_CLOSE_SETTING : return isValidOpenCloseSetting(property.edt);
-		case EPC_DEGREE_OF_OPENI_NG_LEVEL : return isValidDegreeOfOpeniNgLevel(property.edt);
-		case EPC_SET_VALUE_OF_SHADE_ANGLE : return isValidSetValueOfShadeAngle(property.edt);
 		case EPC_SHADE_OPEN_CLOSE_SPEED : return isValidShadeOpenCloseSpeed(property.edt);
+		case EPC_SET_VALUE_OF_SHADE_ANGLE : return isValidSetValueOfShadeAngle(property.edt);
+		case EPC_DEGREE_OF_OPENI_NG_LEVEL : return isValidDegreeOfOpeniNgLevel(property.edt);
+		case EPC_OPEN_CLOSE_SETTING : return isValidOpenCloseSetting(property.edt);
+
 		default : return false;
 		}
 	}
@@ -487,18 +513,19 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_OPEN_CLOSE_SETTING : 
-				onSetOpenCloseSetting(eoj, tid, esv, property, success);
-				return true;
-			case EPC_DEGREE_OF_OPENI_NG_LEVEL : 
-				onSetDegreeOfOpeniNgLevel(eoj, tid, esv, property, success);
+			case EPC_SHADE_OPEN_CLOSE_SPEED : 
+				onSetShadeOpenCloseSpeed(eoj, tid, esv, property, success);
 				return true;
 			case EPC_SET_VALUE_OF_SHADE_ANGLE : 
 				onSetSetValueOfShadeAngle(eoj, tid, esv, property, success);
 				return true;
-			case EPC_SHADE_OPEN_CLOSE_SPEED : 
-				onSetShadeOpenCloseSpeed(eoj, tid, esv, property, success);
+			case EPC_DEGREE_OF_OPENI_NG_LEVEL : 
+				onSetDegreeOfOpeniNgLevel(eoj, tid, esv, property, success);
 				return true;
+			case EPC_OPEN_CLOSE_SETTING : 
+				onSetOpenCloseSetting(eoj, tid, esv, property, success);
+				return true;
+
 			default :
 				return false;
 			}
@@ -511,44 +538,181 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_OPEN_CLOSE_SETTING : 
-				onGetOpenCloseSetting(eoj, tid, esv, property, success);
-				return true;
-			case EPC_DEGREE_OF_OPENI_NG_LEVEL : 
-				onGetDegreeOfOpeniNgLevel(eoj, tid, esv, property, success);
+			case EPC_SHADE_OPEN_CLOSE_SPEED : 
+				onGetShadeOpenCloseSpeed(eoj, tid, esv, property, success);
 				return true;
 			case EPC_SET_VALUE_OF_SHADE_ANGLE : 
 				onGetSetValueOfShadeAngle(eoj, tid, esv, property, success);
 				return true;
-			case EPC_SHADE_OPEN_CLOSE_SPEED : 
-				onGetShadeOpenCloseSpeed(eoj, tid, esv, property, success);
+			case EPC_DEGREE_OF_OPENI_NG_LEVEL : 
+				onGetDegreeOfOpeniNgLevel(eoj, tid, esv, property, success);
 				return true;
+			case EPC_OPEN_CLOSE_SETTING : 
+				onGetOpenCloseSetting(eoj, tid, esv, property, success);
+				return true;
+
 			default :
 				return false;
 			}
 		}
 		
 		/**
+		 * Property name : Shade open/close speed<br>
+		 * <br>
+		 * EPC : 0xE3<br>
+		 * <br>
+		 * Contents :<br>
+		 * Low/Medium/High <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Low = 0x41, Medium = 0x42, High = 0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetShadeOpenCloseSpeed(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Shade open/close speed<br>
+		 * <br>
+		 * EPC : 0xE3<br>
+		 * <br>
+		 * Contents :<br>
+		 * Low/Medium/High <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Low = 0x41, Medium = 0x42, High = 0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetShadeOpenCloseSpeed(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Set value of shade angle<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents :<br>
+		 * Shade angle value <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0xB4 (0.180.)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : deg<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetSetValueOfShadeAngle(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Set value of shade angle<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents :<br>
+		 * Shade angle value <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0xB4 (0.180.)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : deg<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetSetValueOfShadeAngle(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Degree-of-openi ng level<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetDegreeOfOpeniNgLevel(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Degree-of-openi ng level<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x31 to 0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetDegreeOfOpeniNgLevel(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
 		 * Property name : Open/close setting<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Open/close<br>
+		 * Contents :<br>
+		 * Open/close <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Open = 0x41, close = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
@@ -558,164 +722,71 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Open/close<br>
+		 * Contents :<br>
+		 * Open/close <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Open = 0x41, close = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetOpenCloseSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Degree-of-openi ng level<br>
+		 * Property name : Operation status<br>
 		 * <br>
-		 * EPC : 0xE1<br>
+		 * EPC : 0x80<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x31 to 0x38<br>
+		 * ON=0x30, OFF=0x31<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onSetDegreeOfOpeniNgLevel(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Degree-of-openi ng level<br>
+		 * Property name : Operation status<br>
 		 * <br>
-		 * EPC : 0xE1<br>
+		 * EPC : 0x80<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x31 to 0x38<br>
+		 * ON=0x30, OFF=0x31<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetDegreeOfOpeniNgLevel(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Set value of shade angle<br>
-		 * <br>
-		 * EPC : 0xE2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Shade angle value<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0xB4 (0.180.)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : deg<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetSetValueOfShadeAngle(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Set value of shade angle<br>
-		 * <br>
-		 * EPC : 0xE2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Shade angle value<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0xB4 (0.180.)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : deg<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetSetValueOfShadeAngle(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Shade open/close speed<br>
-		 * <br>
-		 * EPC : 0xE3<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Low/Medium/High<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Low = 0x41, Medium = 0x42, High = 0x43<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetShadeOpenCloseSpeed(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Shade open/close speed<br>
-		 * <br>
-		 * EPC : 0xE3<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Low/Medium/High<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Low = 0x41, Medium = 0x42, High = 0x43<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetShadeOpenCloseSpeed(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+
 	}
 
 	public static class Setter extends DeviceObject.Setter {
@@ -764,57 +835,29 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : Open/close setting<br>
+		 * Property name : Shade open/close speed<br>
 		 * <br>
-		 * EPC : 0xE0<br>
+		 * EPC : 0xE3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Open/close<br>
+		 * Contents :<br>
+		 * Low/Medium/High <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Open = 0x41, close = 0x42<br>
+		 * Low = 0x41, Medium = 0x42, High = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		public Setter reqSetOpenCloseSetting(byte[] edt) {
-			reqSetProperty(EPC_OPEN_CLOSE_SETTING, edt);
-			return this;
-		}
-		/**
-		 * Property name : Degree-of-openi ng level<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x31 to 0x38<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
-		 */
-		public Setter reqSetDegreeOfOpeniNgLevel(byte[] edt) {
-			reqSetProperty(EPC_DEGREE_OF_OPENI_NG_LEVEL, edt);
+		public Setter reqSetShadeOpenCloseSpeed(byte[] edt) {
+			reqSetProperty(EPC_SHADE_OPEN_CLOSE_SPEED, edt);
 			return this;
 		}
 		/**
@@ -822,53 +865,80 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		 * <br>
 		 * EPC : 0xE2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Shade angle value<br>
+		 * Contents :<br>
+		 * Shade angle value <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00.0xB4 (0.180.)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : deg<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetSetValueOfShadeAngle(byte[] edt) {
 			reqSetProperty(EPC_SET_VALUE_OF_SHADE_ANGLE, edt);
 			return this;
 		}
 		/**
-		 * Property name : Shade open/close speed<br>
+		 * Property name : Degree-of-openi ng level<br>
 		 * <br>
-		 * EPC : 0xE3<br>
+		 * EPC : 0xE1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Low/Medium/High<br>
+		 * Contents :<br>
+		 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Low = 0x41, Medium = 0x42, High = 0x43<br>
+		 * 0x31 to 0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Setter reqSetShadeOpenCloseSpeed(byte[] edt) {
-			reqSetProperty(EPC_SHADE_OPEN_CLOSE_SPEED, edt);
+		public Setter reqSetDegreeOfOpeniNgLevel(byte[] edt) {
+			reqSetProperty(EPC_DEGREE_OF_OPENI_NG_LEVEL, edt);
 			return this;
 		}
+		/**
+		 * Property name : Open/close setting<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Open/close <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Open = 0x41, close = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Setter reqSetOpenCloseSetting(byte[] edt) {
+			reqSetProperty(EPC_OPEN_CLOSE_SETTING, edt);
+			return this;
+		}
+
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
@@ -981,57 +1051,29 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : Open/close setting<br>
+		 * Property name : Shade open/close speed<br>
 		 * <br>
-		 * EPC : 0xE0<br>
+		 * EPC : 0xE3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Open/close<br>
+		 * Contents :<br>
+		 * Low/Medium/High <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Open = 0x41, close = 0x42<br>
+		 * Low = 0x41, Medium = 0x42, High = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetOpenCloseSetting() {
-			reqGetProperty(EPC_OPEN_CLOSE_SETTING);
-			return this;
-		}
-		/**
-		 * Property name : Degree-of-openi ng level<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x31 to 0x38<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
-		 */
-		public Getter reqGetDegreeOfOpeniNgLevel() {
-			reqGetProperty(EPC_DEGREE_OF_OPENI_NG_LEVEL);
+		public Getter reqGetShadeOpenCloseSpeed() {
+			reqGetProperty(EPC_SHADE_OPEN_CLOSE_SPEED);
 			return this;
 		}
 		/**
@@ -1039,53 +1081,80 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		 * <br>
 		 * EPC : 0xE2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Shade angle value<br>
+		 * Contents :<br>
+		 * Shade angle value <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00.0xB4 (0.180.)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : deg<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetSetValueOfShadeAngle() {
 			reqGetProperty(EPC_SET_VALUE_OF_SHADE_ANGLE);
 			return this;
 		}
 		/**
-		 * Property name : Shade open/close speed<br>
+		 * Property name : Degree-of-openi ng level<br>
 		 * <br>
-		 * EPC : 0xE3<br>
+		 * EPC : 0xE1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Low/Medium/High<br>
+		 * Contents :<br>
+		 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Low = 0x41, Medium = 0x42, High = 0x43<br>
+		 * 0x31 to 0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetShadeOpenCloseSpeed() {
-			reqGetProperty(EPC_SHADE_OPEN_CLOSE_SPEED);
+		public Getter reqGetDegreeOfOpeniNgLevel() {
+			reqGetProperty(EPC_DEGREE_OF_OPENI_NG_LEVEL);
 			return this;
 		}
+		/**
+		 * Property name : Open/close setting<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Open/close <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Open = 0x41, close = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetOpenCloseSetting() {
+			reqGetProperty(EPC_OPEN_CLOSE_SETTING);
+			return this;
+		}
+
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
@@ -1197,57 +1266,29 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : Open/close setting<br>
+		 * Property name : Shade open/close speed<br>
 		 * <br>
-		 * EPC : 0xE0<br>
+		 * EPC : 0xE3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Open/close<br>
+		 * Contents :<br>
+		 * Low/Medium/High <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Open = 0x41, close = 0x42<br>
+		 * Low = 0x41, Medium = 0x42, High = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformOpenCloseSetting() {
-			reqInformProperty(EPC_OPEN_CLOSE_SETTING);
-			return this;
-		}
-		/**
-		 * Property name : Degree-of-openi ng level<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x31 to 0x38<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
-		 */
-		public Informer reqInformDegreeOfOpeniNgLevel() {
-			reqInformProperty(EPC_DEGREE_OF_OPENI_NG_LEVEL);
+		public Informer reqInformShadeOpenCloseSpeed() {
+			reqInformProperty(EPC_SHADE_OPEN_CLOSE_SPEED);
 			return this;
 		}
 		/**
@@ -1255,53 +1296,80 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 		 * <br>
 		 * EPC : 0xE2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Shade angle value<br>
+		 * Contents :<br>
+		 * Shade angle value <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00.0xB4 (0.180.)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : deg<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformSetValueOfShadeAngle() {
 			reqInformProperty(EPC_SET_VALUE_OF_SHADE_ANGLE);
 			return this;
 		}
 		/**
-		 * Property name : Shade open/close speed<br>
+		 * Property name : Degree-of-openi ng level<br>
 		 * <br>
-		 * EPC : 0xE3<br>
+		 * EPC : 0xE1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Low/Medium/High<br>
+		 * Contents :<br>
+		 * Used to specify the Degree-of-opening level by selecting a level from among the 8 predefined levels, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Low = 0x41, Medium = 0x42, High = 0x43<br>
+		 * 0x31 to 0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformShadeOpenCloseSpeed() {
-			reqInformProperty(EPC_SHADE_OPEN_CLOSE_SPEED);
+		public Informer reqInformDegreeOfOpeniNgLevel() {
+			reqInformProperty(EPC_DEGREE_OF_OPENI_NG_LEVEL);
 			return this;
 		}
+		/**
+		 * Property name : Open/close setting<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Open/close <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Open = 0x41, close = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformOpenCloseSetting() {
+			reqInformProperty(EPC_OPEN_CLOSE_SETTING);
+			return this;
+		}
+
 	}
 
 	public static class Proxy extends ElectricallyOperatedShade {
@@ -1314,25 +1382,32 @@ public abstract class ElectricallyOperatedShade extends DeviceObject {
 			return mEchoInstanceCode;
 		}
 		@Override
-		protected byte[] getOperationStatus() {return null;}
+		protected boolean setDegreeOfOpeniNgLevel(byte[] edt){return false;}
 		@Override
-		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		protected byte[] getDegreeOfOpeniNgLevel(){return null;}
 		@Override
-		protected byte[] getInstallationLocation() {return null;}
+		protected boolean setOpenCloseSetting(byte[] edt){return false;}
 		@Override
-		protected byte[] getStandardVersionInformation() {return null;}
+		protected byte[] getOpenCloseSetting(){return null;}
 		@Override
-		protected byte[] getFaultStatus() {return null;}
+		protected byte[] getGetPropertyMap(){return null;}
 		@Override
-		protected byte[] getManufacturerCode() {return null;}
+		protected byte[] getSetPropertyMap(){return null;}
 		@Override
-		protected boolean setOpenCloseSetting(byte[] edt) {return false;}
+		protected byte[] getStatusChangeAnnouncementPropertyMap(){return null;}
 		@Override
-		protected byte[] getOpenCloseSetting() {return null;}
+		protected byte[] getOperationStatus(){return null;}
 		@Override
-		protected boolean setDegreeOfOpeniNgLevel(byte[] edt) {return false;}
+		protected boolean setInstallationLocation(byte[] edt){return false;}
 		@Override
-		protected byte[] getDegreeOfOpeniNgLevel() {return null;}
+		protected byte[] getInstallationLocation(){return null;}
+		@Override
+		protected byte[] getStandardVersionInformation(){return null;}
+		@Override
+		protected byte[] getFaultStatus(){return null;}
+		@Override
+		protected byte[] getManufacturerCode(){return null;}
+
 	}
 	
 	public static Setter setG() {

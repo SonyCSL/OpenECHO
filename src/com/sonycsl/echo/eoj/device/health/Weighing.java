@@ -1,43 +1,50 @@
 /*
- * Copyright 2012 Sony Computer Science Laboratories, Inc. <info@kadecot.net>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2014 Sony Computer Science Laboratories, Inc.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.sonycsl.echo.eoj.device.health;
 
 import com.sonycsl.echo.Echo;
-import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
-import com.sonycsl.echo.node.EchoNode;
 
 public abstract class Weighing extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x0401;
 
-	public static final byte EPC_MEASURED_VALUE_OF_BODY_WEIGHT = (byte)0xE0;
 	public static final byte EPC_MEASURED_VALUE_OF_BODY_FAT = (byte)0xE1;
+	public static final byte EPC_MEASURED_VALUE_OF_BODY_WEIGHT = (byte)0xE0;
 
 	@Override
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
+		addGetProperty(EPC_MEASURED_VALUE_OF_BODY_WEIGHT);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
-		addGetProperty(EPC_MEASURED_VALUE_OF_BODY_WEIGHT);
+
 	}
 
 	@Override
@@ -52,26 +59,122 @@ public abstract class Weighing extends DeviceObject {
 	}
 
 	/**
+	 * Property name : Measured value of body fat<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates measured value of body fat in units of 0.1%. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0x03E8 (0.100.0%)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : 0.001<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasuredValueOfBodyFat() {return null;}
+	/**
+	 * Property name : Measured value of body fat<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates measured value of body fat in units of 0.1%. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0x03E8 (0.100.0%)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : 0.001<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasuredValueOfBodyFat(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measured value of body weight<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates measured value of body weight in units of 0.1 kg. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.6553.3kg)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : 0.1 kg<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getMeasuredValueOfBodyWeight();
+	/**
+	 * Property name : Measured value of body weight<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates measured value of body weight in units of 0.1 kg. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.6553.3kg)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : 0.1 kg<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasuredValueOfBodyWeight(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
 	 * Property name : Operation status<br>
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status of the weighing machine operation<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status of the weighing machine operation <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -81,122 +184,48 @@ public abstract class Weighing extends DeviceObject {
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status of the weighing machine operation<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status of the weighing machine operation <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
 	protected abstract byte[] getOperationStatus();
 	/**
-	 * Property name : Measured value of body weight<br>
+	 * Property name : Operation status<br>
 	 * <br>
-	 * EPC : 0xE0<br>
+	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates measured value of body weight in units of 0.1 kg.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.6553.3kg)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : 0.1 kg<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected abstract byte[] getMeasuredValueOfBodyWeight();
-	/**
-	 * Property name : Measured value of body weight<br>
-	 * <br>
-	 * EPC : 0xE0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates measured value of body weight in units of 0.1 kg.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status of the weighing machine operation <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.6553.3kg)<br>
+	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : 0.1 kg<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean isValidMeasuredValueOfBodyWeight(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measured value of body fat<br>
-	 * <br>
-	 * EPC : 0xE1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates measured value of body fat in units of 0.1%.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0x03E8 (0.100.0%)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : 0.1%<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasuredValueOfBodyFat() {return null;}
-	/**
-	 * Property name : Measured value of body fat<br>
-	 * <br>
-	 * EPC : 0xE1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates measured value of body fat in units of 0.1%.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0x03E8 (0.100.0%)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : 0.1%<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasuredValueOfBodyFat(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
+	protected boolean isValidOperationStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 
@@ -206,6 +235,7 @@ public abstract class Weighing extends DeviceObject {
 		if(success) return success;
 
 		switch(property.epc) {
+
 		default : return false;
 		}
 	}
@@ -216,8 +246,9 @@ public abstract class Weighing extends DeviceObject {
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_MEASURED_VALUE_OF_BODY_WEIGHT : return getMeasuredValueOfBodyWeight();
 		case EPC_MEASURED_VALUE_OF_BODY_FAT : return getMeasuredValueOfBodyFat();
+		case EPC_MEASURED_VALUE_OF_BODY_WEIGHT : return getMeasuredValueOfBodyWeight();
+
 		default : return null;
 		}
 	}
@@ -228,8 +259,9 @@ public abstract class Weighing extends DeviceObject {
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_MEASURED_VALUE_OF_BODY_WEIGHT : return isValidMeasuredValueOfBodyWeight(property.edt);
 		case EPC_MEASURED_VALUE_OF_BODY_FAT : return isValidMeasuredValueOfBodyFat(property.edt);
+		case EPC_MEASURED_VALUE_OF_BODY_WEIGHT : return isValidMeasuredValueOfBodyWeight(property.edt);
+
 		default : return false;
 		}
 	}
@@ -277,6 +309,7 @@ public abstract class Weighing extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
+
 			default :
 				return false;
 			}
@@ -289,63 +322,111 @@ public abstract class Weighing extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_MEASURED_VALUE_OF_BODY_WEIGHT : 
-				onGetMeasuredValueOfBodyWeight(eoj, tid, esv, property, success);
-				return true;
 			case EPC_MEASURED_VALUE_OF_BODY_FAT : 
 				onGetMeasuredValueOfBodyFat(eoj, tid, esv, property, success);
 				return true;
+			case EPC_MEASURED_VALUE_OF_BODY_WEIGHT : 
+				onGetMeasuredValueOfBodyWeight(eoj, tid, esv, property, success);
+				return true;
+
 			default :
 				return false;
 			}
 		}
 		
 		/**
-		 * Property name : Measured value of body weight<br>
-		 * <br>
-		 * EPC : 0xE0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measured value of body weight in units of 0.1 kg.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.6553.3kg)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : 0.1 kg<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		protected void onGetMeasuredValueOfBodyWeight(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
 		 * Property name : Measured value of body fat<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measured value of body fat in units of 0.1%.<br>
+		 * Contents :<br>
+		 * This property indicates measured value of body fat in units of 0.1%. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0x03E8 (0.100.0%)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : 0.1%<br>
+		 * Data size : 2<br>
+		 * Unit : 0.001<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetMeasuredValueOfBodyFat(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measured value of body weight<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates measured value of body weight in units of 0.1 kg. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.6553.3kg)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : 0.1 kg<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasuredValueOfBodyWeight(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status of the weighing machine operation <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status of the weighing machine operation <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+
 	}
 
 	public static class Setter extends DeviceObject.Setter {
@@ -393,6 +474,7 @@ public abstract class Weighing extends DeviceObject {
 			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 		
+
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
@@ -505,57 +587,58 @@ public abstract class Weighing extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : Measured value of body weight<br>
-		 * <br>
-		 * EPC : 0xE0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measured value of body weight in units of 0.1 kg.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.6553.3kg)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : 0.1 kg<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		public Getter reqGetMeasuredValueOfBodyWeight() {
-			reqGetProperty(EPC_MEASURED_VALUE_OF_BODY_WEIGHT);
-			return this;
-		}
-		/**
 		 * Property name : Measured value of body fat<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measured value of body fat in units of 0.1%.<br>
+		 * Contents :<br>
+		 * This property indicates measured value of body fat in units of 0.1%. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0x03E8 (0.100.0%)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : 0.1%<br>
+		 * Data size : 2<br>
+		 * Unit : 0.001<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasuredValueOfBodyFat() {
 			reqGetProperty(EPC_MEASURED_VALUE_OF_BODY_FAT);
 			return this;
 		}
+		/**
+		 * Property name : Measured value of body weight<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates measured value of body weight in units of 0.1 kg. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.6553.3kg)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : 0.1 kg<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasuredValueOfBodyWeight() {
+			reqGetProperty(EPC_MEASURED_VALUE_OF_BODY_WEIGHT);
+			return this;
+		}
+
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
@@ -667,57 +750,58 @@ public abstract class Weighing extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : Measured value of body weight<br>
-		 * <br>
-		 * EPC : 0xE0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measured value of body weight in units of 0.1 kg.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.6553.3kg)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : 0.1 kg<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		public Informer reqInformMeasuredValueOfBodyWeight() {
-			reqInformProperty(EPC_MEASURED_VALUE_OF_BODY_WEIGHT);
-			return this;
-		}
-		/**
 		 * Property name : Measured value of body fat<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measured value of body fat in units of 0.1%.<br>
+		 * Contents :<br>
+		 * This property indicates measured value of body fat in units of 0.1%. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0x03E8 (0.100.0%)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : 0.1%<br>
+		 * Data size : 2<br>
+		 * Unit : 0.001<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasuredValueOfBodyFat() {
 			reqInformProperty(EPC_MEASURED_VALUE_OF_BODY_FAT);
 			return this;
 		}
+		/**
+		 * Property name : Measured value of body weight<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates measured value of body weight in units of 0.1 kg. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.6553.3kg)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : 0.1 kg<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasuredValueOfBodyWeight() {
+			reqInformProperty(EPC_MEASURED_VALUE_OF_BODY_WEIGHT);
+			return this;
+		}
+
 	}
 
 	public static class Proxy extends Weighing {
@@ -730,19 +814,26 @@ public abstract class Weighing extends DeviceObject {
 			return mEchoInstanceCode;
 		}
 		@Override
-		protected byte[] getOperationStatus() {return null;}
+		protected byte[] getGetPropertyMap(){return null;}
 		@Override
-		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		protected byte[] getMeasuredValueOfBodyWeight(){return null;}
 		@Override
-		protected byte[] getInstallationLocation() {return null;}
+		protected byte[] getSetPropertyMap(){return null;}
 		@Override
-		protected byte[] getStandardVersionInformation() {return null;}
+		protected byte[] getStatusChangeAnnouncementPropertyMap(){return null;}
 		@Override
-		protected byte[] getFaultStatus() {return null;}
+		protected byte[] getOperationStatus(){return null;}
 		@Override
-		protected byte[] getManufacturerCode() {return null;}
+		protected boolean setInstallationLocation(byte[] edt){return false;}
 		@Override
-		protected byte[] getMeasuredValueOfBodyWeight() {return null;}
+		protected byte[] getInstallationLocation(){return null;}
+		@Override
+		protected byte[] getStandardVersionInformation(){return null;}
+		@Override
+		protected byte[] getFaultStatus(){return null;}
+		@Override
+		protected byte[] getManufacturerCode(){return null;}
+
 	}
 	
 	public static Setter setG() {

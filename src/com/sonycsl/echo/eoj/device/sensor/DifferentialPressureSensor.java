@@ -1,27 +1,33 @@
 /*
- * Copyright 2012 Sony Computer Science Laboratories, Inc. <info@kadecot.net>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2014 Sony Computer Science Laboratories, Inc.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.sonycsl.echo.eoj.device.sensor;
 
 import com.sonycsl.echo.Echo;
-import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
-import com.sonycsl.echo.node.EchoNode;
 
 public abstract class DifferentialPressureSensor extends DeviceObject {
 	
@@ -33,10 +39,11 @@ public abstract class DifferentialPressureSensor extends DeviceObject {
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
+		addGetProperty(EPC_MEASURED_VALUE_OF_DIFFERENTIAL_PRESSURE);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
-		addGetProperty(EPC_MEASURED_VALUE_OF_DIFFERENTIAL_PRESSURE);
+
 	}
 
 	@Override
@@ -51,26 +58,73 @@ public abstract class DifferentialPressureSensor extends DeviceObject {
 	}
 
 	/**
+	 * Property name : Measured value of differential pressure<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates measured value of differential pressure in Pa. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x8001.0x7FFE (-32767.32766)<br>
+	 * <br>
+	 * Data type : signed short<br>
+	 * Data size : 2<br>
+	 * Unit : Pa<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getMeasuredValueOfDifferentialPressure();
+	/**
+	 * Property name : Measured value of differential pressure<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates measured value of differential pressure in Pa. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x8001.0x7FFE (-32767.32766)<br>
+	 * <br>
+	 * Data type : signed short<br>
+	 * Data size : 2<br>
+	 * Unit : Pa<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasuredValueOfDifferentialPressure(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
 	 * Property name : Operation status<br>
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -80,73 +134,48 @@ public abstract class DifferentialPressureSensor extends DeviceObject {
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
 	protected abstract byte[] getOperationStatus();
 	/**
-	 * Property name : Measured value of differential pressure<br>
+	 * Property name : Operation status<br>
 	 * <br>
-	 * EPC : 0xE0<br>
+	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates measured value of differential pressure in Pa.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x8001.0x7FFE (-32767.32766)<br>
-	 * <br>
-	 * Data type : signed short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : Pa<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected abstract byte[] getMeasuredValueOfDifferentialPressure();
-	/**
-	 * Property name : Measured value of differential pressure<br>
-	 * <br>
-	 * EPC : 0xE0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates measured value of differential pressure in Pa.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x8001.0x7FFE (-32767.32766)<br>
+	 * ON=0x30, OFF=0x31<br>
 	 * <br>
-	 * Data type : signed short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : Pa<br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean isValidMeasuredValueOfDifferentialPressure(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
+	protected boolean isValidOperationStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 
@@ -156,6 +185,7 @@ public abstract class DifferentialPressureSensor extends DeviceObject {
 		if(success) return success;
 
 		switch(property.epc) {
+
 		default : return false;
 		}
 	}
@@ -167,6 +197,7 @@ public abstract class DifferentialPressureSensor extends DeviceObject {
 		
 		switch(epc) {
 		case EPC_MEASURED_VALUE_OF_DIFFERENTIAL_PRESSURE : return getMeasuredValueOfDifferentialPressure();
+
 		default : return null;
 		}
 	}
@@ -178,6 +209,7 @@ public abstract class DifferentialPressureSensor extends DeviceObject {
 		
 		switch(property.epc) {
 		case EPC_MEASURED_VALUE_OF_DIFFERENTIAL_PRESSURE : return isValidMeasuredValueOfDifferentialPressure(property.edt);
+
 		default : return false;
 		}
 	}
@@ -225,6 +257,7 @@ public abstract class DifferentialPressureSensor extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
+
 			default :
 				return false;
 			}
@@ -240,6 +273,7 @@ public abstract class DifferentialPressureSensor extends DeviceObject {
 			case EPC_MEASURED_VALUE_OF_DIFFERENTIAL_PRESSURE : 
 				onGetMeasuredValueOfDifferentialPressure(eoj, tid, esv, property, success);
 				return true;
+
 			default :
 				return false;
 			}
@@ -250,24 +284,71 @@ public abstract class DifferentialPressureSensor extends DeviceObject {
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measured value of differential pressure in Pa.<br>
+		 * Contents :<br>
+		 * This property indicates measured value of differential pressure in Pa. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x8001.0x7FFE (-32767.32766)<br>
 		 * <br>
 		 * Data type : signed short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : Pa<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetMeasuredValueOfDifferentialPressure(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+
 	}
 
 	public static class Setter extends DeviceObject.Setter {
@@ -315,6 +396,7 @@ public abstract class DifferentialPressureSensor extends DeviceObject {
 			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 		
+
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
@@ -431,27 +513,28 @@ public abstract class DifferentialPressureSensor extends DeviceObject {
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measured value of differential pressure in Pa.<br>
+		 * Contents :<br>
+		 * This property indicates measured value of differential pressure in Pa. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x8001.0x7FFE (-32767.32766)<br>
 		 * <br>
 		 * Data type : signed short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : Pa<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasuredValueOfDifferentialPressure() {
 			reqGetProperty(EPC_MEASURED_VALUE_OF_DIFFERENTIAL_PRESSURE);
 			return this;
 		}
+
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
@@ -567,27 +650,28 @@ public abstract class DifferentialPressureSensor extends DeviceObject {
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measured value of differential pressure in Pa.<br>
+		 * Contents :<br>
+		 * This property indicates measured value of differential pressure in Pa. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x8001.0x7FFE (-32767.32766)<br>
 		 * <br>
 		 * Data type : signed short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : Pa<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasuredValueOfDifferentialPressure() {
 			reqInformProperty(EPC_MEASURED_VALUE_OF_DIFFERENTIAL_PRESSURE);
 			return this;
 		}
+
 	}
 
 	public static class Proxy extends DifferentialPressureSensor {
@@ -600,19 +684,26 @@ public abstract class DifferentialPressureSensor extends DeviceObject {
 			return mEchoInstanceCode;
 		}
 		@Override
-		protected byte[] getOperationStatus() {return null;}
+		protected byte[] getGetPropertyMap(){return null;}
 		@Override
-		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		protected byte[] getSetPropertyMap(){return null;}
 		@Override
-		protected byte[] getInstallationLocation() {return null;}
+		protected byte[] getMeasuredValueOfDifferentialPressure(){return null;}
 		@Override
-		protected byte[] getStandardVersionInformation() {return null;}
+		protected byte[] getStatusChangeAnnouncementPropertyMap(){return null;}
 		@Override
-		protected byte[] getFaultStatus() {return null;}
+		protected byte[] getOperationStatus(){return null;}
 		@Override
-		protected byte[] getManufacturerCode() {return null;}
+		protected boolean setInstallationLocation(byte[] edt){return false;}
 		@Override
-		protected byte[] getMeasuredValueOfDifferentialPressure() {return null;}
+		protected byte[] getInstallationLocation(){return null;}
+		@Override
+		protected byte[] getStandardVersionInformation(){return null;}
+		@Override
+		protected byte[] getFaultStatus(){return null;}
+		@Override
+		protected byte[] getManufacturerCode(){return null;}
+
 	}
 	
 	public static Setter setG() {

@@ -1,36 +1,42 @@
 /*
- * Copyright 2012 Sony Computer Science Laboratories, Inc. <info@kadecot.net>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2014 Sony Computer Science Laboratories, Inc.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.sonycsl.echo.eoj.device.sensor;
 
 import com.sonycsl.echo.Echo;
-import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
-import com.sonycsl.echo.node.EchoNode;
 
 public abstract class ElectricEnergySensor extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x0022;
 
-	public static final byte EPC_INTEGRAL_ELECTRIC_ENERGY = (byte)0xE0;
-	public static final byte EPC_MEDIUM_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY = (byte)0xE1;
-	public static final byte EPC_SMALL_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY = (byte)0xE2;
 	public static final byte EPC_LARGE_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY = (byte)0xE3;
+	public static final byte EPC_SMALL_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY = (byte)0xE2;
+	public static final byte EPC_MEDIUM_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY = (byte)0xE1;
+	public static final byte EPC_INTEGRAL_ELECTRIC_ENERGY = (byte)0xE0;
 	public static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG = (byte)0xE4;
 	public static final byte EPC_EFFECTIVE_VOLTAGE_VALUE = (byte)0xE5;
 
@@ -38,10 +44,11 @@ public abstract class ElectricEnergySensor extends DeviceObject {
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
+		addGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
-		addGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY);
+
 	}
 
 	@Override
@@ -56,26 +63,318 @@ public abstract class ElectricEnergySensor extends DeviceObject {
 	}
 
 	/**
+	 * Property name : Large-capacity sensor instantaneous electric energy<br>
+	 * <br>
+	 * EPC : 0xE3<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates instantaneous electric energy in units of 0.1 kW. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x8001.0x7FFE (-3276.7.3276.6)<br>
+	 * <br>
+	 * Data type : signed short<br>
+	 * Data size : 2<br>
+	 * Unit : 0.1 kW<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getLargeCapacitySensorInstantaneousElectricEnergy() {return null;}
+	/**
+	 * Property name : Large-capacity sensor instantaneous electric energy<br>
+	 * <br>
+	 * EPC : 0xE3<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates instantaneous electric energy in units of 0.1 kW. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x8001.0x7FFE (-3276.7.3276.6)<br>
+	 * <br>
+	 * Data type : signed short<br>
+	 * Data size : 2<br>
+	 * Unit : 0.1 kW<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidLargeCapacitySensorInstantaneousElectricEnergy(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Small-capacity sensor instantaneous electric energy<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates instantaneous electric energy in units of 0.1 W. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x8001.0x7FFE (-3276.7.3276.6)<br>
+	 * <br>
+	 * Data type : signed short<br>
+	 * Data size : 2<br>
+	 * Unit : 0.1 W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getSmallCapacitySensorInstantaneousElectricEnergy() {return null;}
+	/**
+	 * Property name : Small-capacity sensor instantaneous electric energy<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates instantaneous electric energy in units of 0.1 W. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x8001.0x7FFE (-3276.7.3276.6)<br>
+	 * <br>
+	 * Data type : signed short<br>
+	 * Data size : 2<br>
+	 * Unit : 0.1 W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidSmallCapacitySensorInstantaneousElectricEnergy(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Medium-capacity sensor instantaneous electric energy<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates measured instantaneous electric energy in W. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0xC4653601.0x3B9AC9FF (-999,999.999.999,999.999)<br>
+	 * <br>
+	 * Data type : signed long<br>
+	 * Data size : 4<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMediumCapacitySensorInstantaneousElectricEnergy() {return null;}
+	/**
+	 * Property name : Medium-capacity sensor instantaneous electric energy<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates measured instantaneous electric energy in W. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0xC4653601.0x3B9AC9FF (-999,999.999.999,999.999)<br>
+	 * <br>
+	 * Data type : signed long<br>
+	 * Data size : 4<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMediumCapacitySensorInstantaneousElectricEnergy(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Integral electric energy<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates integral electric energy in 0.001kWh. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0.0x3B9AC9FF (0.999,999.999 kWh)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * Data size : 4<br>
+	 * Unit : 0.001k_x000a_Wh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getIntegralElectricEnergy();
+	/**
+	 * Property name : Integral electric energy<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates integral electric energy in 0.001kWh. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0.0x3B9AC9FF (0.999,999.999 kWh)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * Data size : 4<br>
+	 * Unit : 0.001k_x000a_Wh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidIntegralElectricEnergy(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Integral electric energy measurement log<br>
+	 * <br>
+	 * EPC : 0xE4<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates measurement result log of integral electric energy (0.001kWh) for the past 24 hours in 30-minute sections. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0x3B9AC9F (0.999,999.999)_x000a_(0.999,999.999 kWh)<br>
+	 * <br>
+	 * Data type : unsigned long × 48<br>
+	 * Data size : 192<br>
+	 * Unit : 0.001k_x000a_Wh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getIntegralElectricEnergyMeasurementLog() {return null;}
+	/**
+	 * Property name : Integral electric energy measurement log<br>
+	 * <br>
+	 * EPC : 0xE4<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates measurement result log of integral electric energy (0.001kWh) for the past 24 hours in 30-minute sections. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0x3B9AC9F (0.999,999.999)_x000a_(0.999,999.999 kWh)<br>
+	 * <br>
+	 * Data type : unsigned long × 48<br>
+	 * Data size : 192<br>
+	 * Unit : 0.001k_x000a_Wh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidIntegralElectricEnergyMeasurementLog(byte[] edt) {
+		if(edt == null || !(edt.length == 192)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Effective voltage value<br>
+	 * <br>
+	 * EPC : 0xE5<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates effective voltage value in V. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533V)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : V<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getEffectiveVoltageValue() {return null;}
+	/**
+	 * Property name : Effective voltage value<br>
+	 * <br>
+	 * EPC : 0xE5<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates effective voltage value in V. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533V)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : V<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidEffectiveVoltageValue(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
 	 * Property name : Operation status<br>
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -85,326 +384,48 @@ public abstract class ElectricEnergySensor extends DeviceObject {
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
 	protected abstract byte[] getOperationStatus();
 	/**
-	 * Property name : Integral electric energy<br>
+	 * Property name : Operation status<br>
 	 * <br>
-	 * EPC : 0xE0<br>
+	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates integral electric energy in 0.001kWh.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0.0x3B9AC9FF (0.999,999.999 kWh)<br>
-	 * <br>
-	 * Data type : unsigned long<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
-	 * Unit : 0.001k
-Wh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected abstract byte[] getIntegralElectricEnergy();
-	/**
-	 * Property name : Integral electric energy<br>
-	 * <br>
-	 * EPC : 0xE0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates integral electric energy in 0.001kWh.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0.0x3B9AC9FF (0.999,999.999 kWh)<br>
+	 * ON=0x30, OFF=0x31<br>
 	 * <br>
-	 * Data type : unsigned long<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
-	 * Unit : 0.001k
-Wh<br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean isValidIntegralElectricEnergy(byte[] edt) {
-		if(edt == null || !(edt.length == 4)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Medium-capacity sensor instantaneous electric energy<br>
-	 * <br>
-	 * EPC : 0xE1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates measured instantaneous electric energy in W.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0xC4653601.0x3B9AC9FF (-999,999.999.999,999.999)<br>
-	 * <br>
-	 * Data type : signed long<br>
-	 * <br>
-	 * Data size : 4 byte<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMediumCapacitySensorInstantaneousElectricEnergy() {return null;}
-	/**
-	 * Property name : Medium-capacity sensor instantaneous electric energy<br>
-	 * <br>
-	 * EPC : 0xE1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates measured instantaneous electric energy in W.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0xC4653601.0x3B9AC9FF (-999,999.999.999,999.999)<br>
-	 * <br>
-	 * Data type : signed long<br>
-	 * <br>
-	 * Data size : 4 byte<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMediumCapacitySensorInstantaneousElectricEnergy(byte[] edt) {
-		if(edt == null || !(edt.length == 4)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Small-capacity sensor instantaneous electric energy<br>
-	 * <br>
-	 * EPC : 0xE2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates instantaneous electric energy in units of 0.1 W.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x8001.0x7FFE (-3276.7.3276.6)<br>
-	 * <br>
-	 * Data type : signed short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : 0.1 W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getSmallCapacitySensorInstantaneousElectricEnergy() {return null;}
-	/**
-	 * Property name : Small-capacity sensor instantaneous electric energy<br>
-	 * <br>
-	 * EPC : 0xE2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates instantaneous electric energy in units of 0.1 W.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x8001.0x7FFE (-3276.7.3276.6)<br>
-	 * <br>
-	 * Data type : signed short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : 0.1 W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidSmallCapacitySensorInstantaneousElectricEnergy(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Large-capacity sensor instantaneous electric energy<br>
-	 * <br>
-	 * EPC : 0xE3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates instantaneous electric energy in units of 0.1 kW.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x8001.0x7FFE (-3276.7.3276.6)<br>
-	 * <br>
-	 * Data type : signed short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : 0.1 kW<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getLargeCapacitySensorInstantaneousElectricEnergy() {return null;}
-	/**
-	 * Property name : Large-capacity sensor instantaneous electric energy<br>
-	 * <br>
-	 * EPC : 0xE3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates instantaneous electric energy in units of 0.1 kW.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x8001.0x7FFE (-3276.7.3276.6)<br>
-	 * <br>
-	 * Data type : signed short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : 0.1 kW<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidLargeCapacitySensorInstantaneousElectricEnergy(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Integral electric energy measurement log<br>
-	 * <br>
-	 * EPC : 0xE4<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates measurement result log of integral electric energy (0.001kWh) for the past 24 hours in 30-minute sections.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0.0x3B9AC9F (0.999,999.999)<br>
-	 * (0.999,999.999 kWh)<br>
-	 * <br>
-	 * Data type : unsigned long × 48<br>
-	 * <br>
-	 * Data size : 192
-bytes<br>
-	 * <br>
-	 * Unit : 0.001k
-Wh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getIntegralElectricEnergyMeasurementLog() {return null;}
-	/**
-	 * Property name : Integral electric energy measurement log<br>
-	 * <br>
-	 * EPC : 0xE4<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates measurement result log of integral electric energy (0.001kWh) for the past 24 hours in 30-minute sections.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0.0x3B9AC9F (0.999,999.999)<br>
-	 * (0.999,999.999 kWh)<br>
-	 * <br>
-	 * Data type : unsigned long × 48<br>
-	 * <br>
-	 * Data size : 192
-bytes<br>
-	 * <br>
-	 * Unit : 0.001k
-Wh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidIntegralElectricEnergyMeasurementLog(byte[] edt) {
-		if(edt == null || !(edt.length == 192)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Effective voltage value<br>
-	 * <br>
-	 * EPC : 0xE5<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates effective voltage value in V.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533V)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : V<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getEffectiveVoltageValue() {return null;}
-	/**
-	 * Property name : Effective voltage value<br>
-	 * <br>
-	 * EPC : 0xE5<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates effective voltage value in V.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533V)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : V<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidEffectiveVoltageValue(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
+	protected boolean isValidOperationStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 
@@ -414,6 +435,7 @@ Wh<br>
 		if(success) return success;
 
 		switch(property.epc) {
+
 		default : return false;
 		}
 	}
@@ -424,12 +446,13 @@ Wh<br>
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_INTEGRAL_ELECTRIC_ENERGY : return getIntegralElectricEnergy();
-		case EPC_MEDIUM_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY : return getMediumCapacitySensorInstantaneousElectricEnergy();
-		case EPC_SMALL_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY : return getSmallCapacitySensorInstantaneousElectricEnergy();
 		case EPC_LARGE_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY : return getLargeCapacitySensorInstantaneousElectricEnergy();
+		case EPC_SMALL_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY : return getSmallCapacitySensorInstantaneousElectricEnergy();
+		case EPC_MEDIUM_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY : return getMediumCapacitySensorInstantaneousElectricEnergy();
+		case EPC_INTEGRAL_ELECTRIC_ENERGY : return getIntegralElectricEnergy();
 		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG : return getIntegralElectricEnergyMeasurementLog();
 		case EPC_EFFECTIVE_VOLTAGE_VALUE : return getEffectiveVoltageValue();
+
 		default : return null;
 		}
 	}
@@ -440,12 +463,13 @@ Wh<br>
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_INTEGRAL_ELECTRIC_ENERGY : return isValidIntegralElectricEnergy(property.edt);
-		case EPC_MEDIUM_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY : return isValidMediumCapacitySensorInstantaneousElectricEnergy(property.edt);
-		case EPC_SMALL_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY : return isValidSmallCapacitySensorInstantaneousElectricEnergy(property.edt);
 		case EPC_LARGE_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY : return isValidLargeCapacitySensorInstantaneousElectricEnergy(property.edt);
+		case EPC_SMALL_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY : return isValidSmallCapacitySensorInstantaneousElectricEnergy(property.edt);
+		case EPC_MEDIUM_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY : return isValidMediumCapacitySensorInstantaneousElectricEnergy(property.edt);
+		case EPC_INTEGRAL_ELECTRIC_ENERGY : return isValidIntegralElectricEnergy(property.edt);
 		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG : return isValidIntegralElectricEnergyMeasurementLog(property.edt);
 		case EPC_EFFECTIVE_VOLTAGE_VALUE : return isValidEffectiveVoltageValue(property.edt);
+
 		default : return false;
 		}
 	}
@@ -493,6 +517,7 @@ Wh<br>
 			if(ret) return true;
 			
 			switch(property.epc) {
+
 			default :
 				return false;
 			}
@@ -505,17 +530,17 @@ Wh<br>
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_INTEGRAL_ELECTRIC_ENERGY : 
-				onGetIntegralElectricEnergy(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEDIUM_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY : 
-				onGetMediumCapacitySensorInstantaneousElectricEnergy(eoj, tid, esv, property, success);
+			case EPC_LARGE_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY : 
+				onGetLargeCapacitySensorInstantaneousElectricEnergy(eoj, tid, esv, property, success);
 				return true;
 			case EPC_SMALL_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY : 
 				onGetSmallCapacitySensorInstantaneousElectricEnergy(eoj, tid, esv, property, success);
 				return true;
-			case EPC_LARGE_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY : 
-				onGetLargeCapacitySensorInstantaneousElectricEnergy(eoj, tid, esv, property, success);
+			case EPC_MEDIUM_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY : 
+				onGetMediumCapacitySensorInstantaneousElectricEnergy(eoj, tid, esv, property, success);
+				return true;
+			case EPC_INTEGRAL_ELECTRIC_ENERGY : 
+				onGetIntegralElectricEnergy(eoj, tid, esv, property, success);
 				return true;
 			case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG : 
 				onGetIntegralElectricEnergyMeasurementLog(eoj, tid, esv, property, success);
@@ -523,128 +548,125 @@ Wh<br>
 			case EPC_EFFECTIVE_VOLTAGE_VALUE : 
 				onGetEffectiveVoltageValue(eoj, tid, esv, property, success);
 				return true;
+
 			default :
 				return false;
 			}
 		}
 		
 		/**
-		 * Property name : Integral electric energy<br>
+		 * Property name : Large-capacity sensor instantaneous electric energy<br>
 		 * <br>
-		 * EPC : 0xE0<br>
+		 * EPC : 0xE3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates integral electric energy in 0.001kWh.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0.0x3B9AC9FF (0.999,999.999 kWh)<br>
-		 * <br>
-		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.001k
-Wh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		protected void onGetIntegralElectricEnergy(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Medium-capacity sensor instantaneous electric energy<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measured instantaneous electric energy in W.<br>
+		 * Contents :<br>
+		 * This property indicates instantaneous electric energy in units of 0.1 kW. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xC4653601.0x3B9AC9FF (-999,999.999.999,999.999)<br>
+		 * 0x8001.0x7FFE (-3276.7.3276.6)<br>
 		 * <br>
-		 * Data type : signed long<br>
-		 * <br>
-		 * Data size : 4 byte<br>
-		 * <br>
-		 * Unit : W<br>
+		 * Data type : signed short<br>
+		 * Data size : 2<br>
+		 * Unit : 0.1 kW<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetMediumCapacitySensorInstantaneousElectricEnergy(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetLargeCapacitySensorInstantaneousElectricEnergy(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Small-capacity sensor instantaneous electric energy<br>
 		 * <br>
 		 * EPC : 0xE2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates instantaneous electric energy in units of 0.1 W.<br>
+		 * Contents :<br>
+		 * This property indicates instantaneous electric energy in units of 0.1 W. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x8001.0x7FFE (-3276.7.3276.6)<br>
 		 * <br>
 		 * Data type : signed short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : 0.1 W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetSmallCapacitySensorInstantaneousElectricEnergy(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Large-capacity sensor instantaneous electric energy<br>
+		 * Property name : Medium-capacity sensor instantaneous electric energy<br>
 		 * <br>
-		 * EPC : 0xE3<br>
+		 * EPC : 0xE1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates instantaneous electric energy in units of 0.1 kW.<br>
+		 * Contents :<br>
+		 * This property indicates measured instantaneous electric energy in W. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x8001.0x7FFE (-3276.7.3276.6)<br>
+		 * 0xC4653601.0x3B9AC9FF (-999,999.999.999,999.999)<br>
 		 * <br>
-		 * Data type : signed short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : 0.1 kW<br>
+		 * Data type : signed long<br>
+		 * Data size : 4<br>
+		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetLargeCapacitySensorInstantaneousElectricEnergy(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetMediumCapacitySensorInstantaneousElectricEnergy(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Integral electric energy<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates integral electric energy in 0.001kWh. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0.0x3B9AC9FF (0.999,999.999 kWh)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * Data size : 4<br>
+		 * Unit : 0.001k_x000a_Wh<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetIntegralElectricEnergy(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Integral electric energy measurement log<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measurement result log of integral electric energy (0.001kWh) for the past 24 hours in 30-minute sections.<br>
+		 * Contents :<br>
+		 * This property indicates measurement result log of integral electric energy (0.001kWh) for the past 24 hours in 30-minute sections. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0.0x3B9AC9F (0.999,999.999)<br>
-		 * (0.999,999.999 kWh)<br>
+		 * 0.0x3B9AC9F (0.999,999.999)_x000a_(0.999,999.999 kWh)<br>
 		 * <br>
 		 * Data type : unsigned long × 48<br>
-		 * <br>
-		 * Data size : 192
-bytes<br>
-		 * <br>
-		 * Unit : 0.001k
-Wh<br>
+		 * Data size : 192<br>
+		 * Unit : 0.001k_x000a_Wh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetIntegralElectricEnergyMeasurementLog(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -652,24 +674,71 @@ Wh<br>
 		 * <br>
 		 * EPC : 0xE5<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates effective voltage value in V.<br>
+		 * Contents :<br>
+		 * This property indicates effective voltage value in V. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFD (0.65533V)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : V<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetEffectiveVoltageValue(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+
 	}
 
 	public static class Setter extends DeviceObject.Setter {
@@ -717,6 +786,7 @@ Wh<br>
 			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 		
+
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
@@ -829,56 +899,29 @@ Wh<br>
 		}
 		
 		/**
-		 * Property name : Integral electric energy<br>
+		 * Property name : Large-capacity sensor instantaneous electric energy<br>
 		 * <br>
-		 * EPC : 0xE0<br>
+		 * EPC : 0xE3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates integral electric energy in 0.001kWh.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0.0x3B9AC9FF (0.999,999.999 kWh)<br>
-		 * <br>
-		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.001k
-Wh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		public Getter reqGetIntegralElectricEnergy() {
-			reqGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY);
-			return this;
-		}
-		/**
-		 * Property name : Medium-capacity sensor instantaneous electric energy<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measured instantaneous electric energy in W.<br>
+		 * Contents :<br>
+		 * This property indicates instantaneous electric energy in units of 0.1 kW. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xC4653601.0x3B9AC9FF (-999,999.999.999,999.999)<br>
+		 * 0x8001.0x7FFE (-3276.7.3276.6)<br>
 		 * <br>
-		 * Data type : signed long<br>
-		 * <br>
-		 * Data size : 4 byte<br>
-		 * <br>
-		 * Unit : W<br>
+		 * Data type : signed short<br>
+		 * Data size : 2<br>
+		 * Unit : 0.1 kW<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetMediumCapacitySensorInstantaneousElectricEnergy() {
-			reqGetProperty(EPC_MEDIUM_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY);
+		public Getter reqGetLargeCapacitySensorInstantaneousElectricEnergy() {
+			reqGetProperty(EPC_LARGE_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -886,51 +929,77 @@ Wh<br>
 		 * <br>
 		 * EPC : 0xE2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates instantaneous electric energy in units of 0.1 W.<br>
+		 * Contents :<br>
+		 * This property indicates instantaneous electric energy in units of 0.1 W. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x8001.0x7FFE (-3276.7.3276.6)<br>
 		 * <br>
 		 * Data type : signed short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : 0.1 W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetSmallCapacitySensorInstantaneousElectricEnergy() {
 			reqGetProperty(EPC_SMALL_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
-		 * Property name : Large-capacity sensor instantaneous electric energy<br>
+		 * Property name : Medium-capacity sensor instantaneous electric energy<br>
 		 * <br>
-		 * EPC : 0xE3<br>
+		 * EPC : 0xE1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates instantaneous electric energy in units of 0.1 kW.<br>
+		 * Contents :<br>
+		 * This property indicates measured instantaneous electric energy in W. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x8001.0x7FFE (-3276.7.3276.6)<br>
+		 * 0xC4653601.0x3B9AC9FF (-999,999.999.999,999.999)<br>
 		 * <br>
-		 * Data type : signed short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : 0.1 kW<br>
+		 * Data type : signed long<br>
+		 * Data size : 4<br>
+		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetLargeCapacitySensorInstantaneousElectricEnergy() {
-			reqGetProperty(EPC_LARGE_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY);
+		public Getter reqGetMediumCapacitySensorInstantaneousElectricEnergy() {
+			reqGetProperty(EPC_MEDIUM_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY);
+			return this;
+		}
+		/**
+		 * Property name : Integral electric energy<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates integral electric energy in 0.001kWh. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0.0x3B9AC9FF (0.999,999.999 kWh)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * Data size : 4<br>
+		 * Unit : 0.001k_x000a_Wh<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetIntegralElectricEnergy() {
+			reqGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -938,25 +1007,22 @@ Wh<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measurement result log of integral electric energy (0.001kWh) for the past 24 hours in 30-minute sections.<br>
+		 * Contents :<br>
+		 * This property indicates measurement result log of integral electric energy (0.001kWh) for the past 24 hours in 30-minute sections. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0.0x3B9AC9F (0.999,999.999)<br>
-		 * (0.999,999.999 kWh)<br>
+		 * 0.0x3B9AC9F (0.999,999.999)_x000a_(0.999,999.999 kWh)<br>
 		 * <br>
 		 * Data type : unsigned long × 48<br>
-		 * <br>
-		 * Data size : 192
-bytes<br>
-		 * <br>
-		 * Unit : 0.001k
-Wh<br>
+		 * Data size : 192<br>
+		 * Unit : 0.001k_x000a_Wh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetIntegralElectricEnergyMeasurementLog() {
 			reqGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG);
@@ -967,27 +1033,28 @@ Wh<br>
 		 * <br>
 		 * EPC : 0xE5<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates effective voltage value in V.<br>
+		 * Contents :<br>
+		 * This property indicates effective voltage value in V. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFD (0.65533V)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : V<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetEffectiveVoltageValue() {
 			reqGetProperty(EPC_EFFECTIVE_VOLTAGE_VALUE);
 			return this;
 		}
+
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
@@ -1099,56 +1166,29 @@ Wh<br>
 		}
 		
 		/**
-		 * Property name : Integral electric energy<br>
+		 * Property name : Large-capacity sensor instantaneous electric energy<br>
 		 * <br>
-		 * EPC : 0xE0<br>
+		 * EPC : 0xE3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates integral electric energy in 0.001kWh.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0.0x3B9AC9FF (0.999,999.999 kWh)<br>
-		 * <br>
-		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.001k
-Wh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		public Informer reqInformIntegralElectricEnergy() {
-			reqInformProperty(EPC_INTEGRAL_ELECTRIC_ENERGY);
-			return this;
-		}
-		/**
-		 * Property name : Medium-capacity sensor instantaneous electric energy<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measured instantaneous electric energy in W.<br>
+		 * Contents :<br>
+		 * This property indicates instantaneous electric energy in units of 0.1 kW. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0xC4653601.0x3B9AC9FF (-999,999.999.999,999.999)<br>
+		 * 0x8001.0x7FFE (-3276.7.3276.6)<br>
 		 * <br>
-		 * Data type : signed long<br>
-		 * <br>
-		 * Data size : 4 byte<br>
-		 * <br>
-		 * Unit : W<br>
+		 * Data type : signed short<br>
+		 * Data size : 2<br>
+		 * Unit : 0.1 kW<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformMediumCapacitySensorInstantaneousElectricEnergy() {
-			reqInformProperty(EPC_MEDIUM_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY);
+		public Informer reqInformLargeCapacitySensorInstantaneousElectricEnergy() {
+			reqInformProperty(EPC_LARGE_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -1156,51 +1196,77 @@ Wh<br>
 		 * <br>
 		 * EPC : 0xE2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates instantaneous electric energy in units of 0.1 W.<br>
+		 * Contents :<br>
+		 * This property indicates instantaneous electric energy in units of 0.1 W. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x8001.0x7FFE (-3276.7.3276.6)<br>
 		 * <br>
 		 * Data type : signed short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : 0.1 W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformSmallCapacitySensorInstantaneousElectricEnergy() {
 			reqInformProperty(EPC_SMALL_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
-		 * Property name : Large-capacity sensor instantaneous electric energy<br>
+		 * Property name : Medium-capacity sensor instantaneous electric energy<br>
 		 * <br>
-		 * EPC : 0xE3<br>
+		 * EPC : 0xE1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates instantaneous electric energy in units of 0.1 kW.<br>
+		 * Contents :<br>
+		 * This property indicates measured instantaneous electric energy in W. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x8001.0x7FFE (-3276.7.3276.6)<br>
+		 * 0xC4653601.0x3B9AC9FF (-999,999.999.999,999.999)<br>
 		 * <br>
-		 * Data type : signed short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : 0.1 kW<br>
+		 * Data type : signed long<br>
+		 * Data size : 4<br>
+		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformLargeCapacitySensorInstantaneousElectricEnergy() {
-			reqInformProperty(EPC_LARGE_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY);
+		public Informer reqInformMediumCapacitySensorInstantaneousElectricEnergy() {
+			reqInformProperty(EPC_MEDIUM_CAPACITY_SENSOR_INSTANTANEOUS_ELECTRIC_ENERGY);
+			return this;
+		}
+		/**
+		 * Property name : Integral electric energy<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates integral electric energy in 0.001kWh. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0.0x3B9AC9FF (0.999,999.999 kWh)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * Data size : 4<br>
+		 * Unit : 0.001k_x000a_Wh<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformIntegralElectricEnergy() {
+			reqInformProperty(EPC_INTEGRAL_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -1208,25 +1274,22 @@ Wh<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measurement result log of integral electric energy (0.001kWh) for the past 24 hours in 30-minute sections.<br>
+		 * Contents :<br>
+		 * This property indicates measurement result log of integral electric energy (0.001kWh) for the past 24 hours in 30-minute sections. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0.0x3B9AC9F (0.999,999.999)<br>
-		 * (0.999,999.999 kWh)<br>
+		 * 0.0x3B9AC9F (0.999,999.999)_x000a_(0.999,999.999 kWh)<br>
 		 * <br>
 		 * Data type : unsigned long × 48<br>
-		 * <br>
-		 * Data size : 192
-bytes<br>
-		 * <br>
-		 * Unit : 0.001k
-Wh<br>
+		 * Data size : 192<br>
+		 * Unit : 0.001k_x000a_Wh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformIntegralElectricEnergyMeasurementLog() {
 			reqInformProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG);
@@ -1237,27 +1300,28 @@ Wh<br>
 		 * <br>
 		 * EPC : 0xE5<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates effective voltage value in V.<br>
+		 * Contents :<br>
+		 * This property indicates effective voltage value in V. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFD (0.65533V)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : V<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformEffectiveVoltageValue() {
 			reqInformProperty(EPC_EFFECTIVE_VOLTAGE_VALUE);
 			return this;
 		}
+
 	}
 
 	public static class Proxy extends ElectricEnergySensor {
@@ -1270,19 +1334,26 @@ Wh<br>
 			return mEchoInstanceCode;
 		}
 		@Override
-		protected byte[] getOperationStatus() {return null;}
+		protected byte[] getIntegralElectricEnergy(){return null;}
 		@Override
-		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		protected byte[] getSetPropertyMap(){return null;}
 		@Override
-		protected byte[] getInstallationLocation() {return null;}
+		protected byte[] getStatusChangeAnnouncementPropertyMap(){return null;}
 		@Override
-		protected byte[] getStandardVersionInformation() {return null;}
+		protected byte[] getOperationStatus(){return null;}
 		@Override
-		protected byte[] getFaultStatus() {return null;}
+		protected boolean setInstallationLocation(byte[] edt){return false;}
 		@Override
-		protected byte[] getManufacturerCode() {return null;}
+		protected byte[] getInstallationLocation(){return null;}
 		@Override
-		protected byte[] getIntegralElectricEnergy() {return null;}
+		protected byte[] getStandardVersionInformation(){return null;}
+		@Override
+		protected byte[] getGetPropertyMap(){return null;}
+		@Override
+		protected byte[] getFaultStatus(){return null;}
+		@Override
+		protected byte[] getManufacturerCode(){return null;}
+
 	}
 	
 	public static Setter setG() {

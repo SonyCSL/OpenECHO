@@ -1,45 +1,52 @@
 /*
- * Copyright 2012 Sony Computer Science Laboratories, Inc. <info@kadecot.net>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2014 Sony Computer Science Laboratories, Inc.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.sonycsl.echo.eoj.device.sensor;
 
 import com.sonycsl.echo.Echo;
-import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
-import com.sonycsl.echo.node.EchoNode;
 
 public abstract class GasSensor extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x001C;
 
+	public static final byte EPC_MEASURED_VALUE_OF_GAS_CONCENTRATION = (byte)0xE0;
 	public static final byte EPC_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;
 	public static final byte EPC_GAS_DETECTION_STATUS = (byte)0xB1;
-	public static final byte EPC_MEASURED_VALUE_OF_GAS_CONCENTRATION = (byte)0xE0;
 
 	@Override
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
+		addGetProperty(EPC_MEASURED_VALUE_OF_GAS_CONCENTRATION);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
 		addStatusChangeAnnouncementProperty(EPC_GAS_DETECTION_STATUS);
-		addGetProperty(EPC_MEASURED_VALUE_OF_GAS_CONCENTRATION);
+
 	}
 
 	@Override
@@ -54,26 +61,73 @@ public abstract class GasSensor extends DeviceObject {
 	}
 
 	/**
+	 * Property name : Measured value of gas concentration<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates measured value of gas concentration in ppm. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : ppm<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getMeasuredValueOfGasConcentration();
+	/**
+	 * Property name : Measured value of gas concentration<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates measured value of gas concentration in ppm. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : ppm<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasuredValueOfGasConcentration(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
 	 * Property name : Operation status<br>
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -83,47 +137,71 @@ public abstract class GasSensor extends DeviceObject {
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
 	protected abstract byte[] getOperationStatus();
 	/**
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30, OFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidOperationStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
 	 * Property name : Detection threshold level<br>
 	 * <br>
 	 * EPC : 0xB0<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Specifies detection threshold level (8-step).<br>
+	 * Contents :<br>
+	 * Specifies detection threshold level (8-step). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean setDetectionThresholdLevel(byte[] edt) {return false;}
 	/**
@@ -131,22 +209,22 @@ public abstract class GasSensor extends DeviceObject {
 	 * <br>
 	 * EPC : 0xB0<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Specifies detection threshold level (8-step).<br>
+	 * Contents :<br>
+	 * Specifies detection threshold level (8-step). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getDetectionThresholdLevel() {return null;}
 	/**
@@ -154,25 +232,25 @@ public abstract class GasSensor extends DeviceObject {
 	 * <br>
 	 * EPC : 0xB0<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Specifies detection threshold level (8-step).<br>
+	 * Contents :<br>
+	 * Specifies detection threshold level (8-step). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidDetectionThresholdLevel(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 	/**
@@ -180,23 +258,20 @@ public abstract class GasSensor extends DeviceObject {
 	 * <br>
 	 * EPC : 0xB1<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates gas detection status.<br>
+	 * Contents :<br>
+	 * This property indicates gas detection status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Gas detection status found = 0x41 Gas detection status not found<br>
-	 * = 0x42<br>
+	 * Gas detection status found = 0x41 Gas detection status not found_x000a_= 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -206,77 +281,25 @@ public abstract class GasSensor extends DeviceObject {
 	 * <br>
 	 * EPC : 0xB1<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates gas detection status.<br>
+	 * Contents :<br>
+	 * This property indicates gas detection status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Gas detection status found = 0x41 Gas detection status not found<br>
-	 * = 0x42<br>
+	 * Gas detection status found = 0x41 Gas detection status not found_x000a_= 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidGasDetectionStatus(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measured value of gas concentration<br>
-	 * <br>
-	 * EPC : 0xE0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates measured value of gas concentration in ppm.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : ppm<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected abstract byte[] getMeasuredValueOfGasConcentration();
-	/**
-	 * Property name : Measured value of gas concentration<br>
-	 * <br>
-	 * EPC : 0xE0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates measured value of gas concentration in ppm.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : ppm<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected boolean isValidMeasuredValueOfGasConcentration(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 
@@ -287,6 +310,7 @@ public abstract class GasSensor extends DeviceObject {
 
 		switch(property.epc) {
 		case EPC_DETECTION_THRESHOLD_LEVEL : return setDetectionThresholdLevel(property.edt);
+
 		default : return false;
 		}
 	}
@@ -297,9 +321,10 @@ public abstract class GasSensor extends DeviceObject {
 		if(edt != null) return edt;
 		
 		switch(epc) {
+		case EPC_MEASURED_VALUE_OF_GAS_CONCENTRATION : return getMeasuredValueOfGasConcentration();
 		case EPC_DETECTION_THRESHOLD_LEVEL : return getDetectionThresholdLevel();
 		case EPC_GAS_DETECTION_STATUS : return getGasDetectionStatus();
-		case EPC_MEASURED_VALUE_OF_GAS_CONCENTRATION : return getMeasuredValueOfGasConcentration();
+
 		default : return null;
 		}
 	}
@@ -310,9 +335,10 @@ public abstract class GasSensor extends DeviceObject {
 		if(valid) return valid;
 		
 		switch(property.epc) {
+		case EPC_MEASURED_VALUE_OF_GAS_CONCENTRATION : return isValidMeasuredValueOfGasConcentration(property.edt);
 		case EPC_DETECTION_THRESHOLD_LEVEL : return isValidDetectionThresholdLevel(property.edt);
 		case EPC_GAS_DETECTION_STATUS : return isValidGasDetectionStatus(property.edt);
-		case EPC_MEASURED_VALUE_OF_GAS_CONCENTRATION : return isValidMeasuredValueOfGasConcentration(property.edt);
+
 		default : return false;
 		}
 	}
@@ -363,6 +389,7 @@ public abstract class GasSensor extends DeviceObject {
 			case EPC_DETECTION_THRESHOLD_LEVEL : 
 				onSetDetectionThresholdLevel(eoj, tid, esv, property, success);
 				return true;
+
 			default :
 				return false;
 			}
@@ -375,41 +402,111 @@ public abstract class GasSensor extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
+			case EPC_MEASURED_VALUE_OF_GAS_CONCENTRATION : 
+				onGetMeasuredValueOfGasConcentration(eoj, tid, esv, property, success);
+				return true;
 			case EPC_DETECTION_THRESHOLD_LEVEL : 
 				onGetDetectionThresholdLevel(eoj, tid, esv, property, success);
 				return true;
 			case EPC_GAS_DETECTION_STATUS : 
 				onGetGasDetectionStatus(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASURED_VALUE_OF_GAS_CONCENTRATION : 
-				onGetMeasuredValueOfGasConcentration(eoj, tid, esv, property, success);
-				return true;
+
 			default :
 				return false;
 			}
 		}
 		
 		/**
+		 * Property name : Measured value of gas concentration<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates measured value of gas concentration in ppm. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.65533)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : ppm<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasuredValueOfGasConcentration(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
 		 * Property name : Detection threshold level<br>
 		 * <br>
 		 * EPC : 0xB0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Specifies detection threshold level (8-step).<br>
+		 * Contents :<br>
+		 * Specifies detection threshold level (8-step). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onSetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -417,22 +514,22 @@ public abstract class GasSensor extends DeviceObject {
 		 * <br>
 		 * EPC : 0xB0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Specifies detection threshold level (8-step).<br>
+		 * Contents :<br>
+		 * Specifies detection threshold level (8-step). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -440,50 +537,25 @@ public abstract class GasSensor extends DeviceObject {
 		 * <br>
 		 * EPC : 0xB1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates gas detection status.<br>
+		 * Contents :<br>
+		 * This property indicates gas detection status. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Gas detection status found = 0x41 Gas detection status not found<br>
-		 * = 0x42<br>
+		 * Gas detection status found = 0x41 Gas detection status not found_x000a_= 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetGasDetectionStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measured value of gas concentration<br>
-		 * <br>
-		 * EPC : 0xE0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measured value of gas concentration in ppm.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : ppm<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		protected void onGetMeasuredValueOfGasConcentration(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+
 	}
 
 	public static class Setter extends DeviceObject.Setter {
@@ -536,27 +608,28 @@ public abstract class GasSensor extends DeviceObject {
 		 * <br>
 		 * EPC : 0xB0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Specifies detection threshold level (8-step).<br>
+		 * Contents :<br>
+		 * Specifies detection threshold level (8-step). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetDetectionThresholdLevel(byte[] edt) {
 			reqSetProperty(EPC_DETECTION_THRESHOLD_LEVEL, edt);
 			return this;
 		}
+
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
@@ -669,26 +742,52 @@ public abstract class GasSensor extends DeviceObject {
 		}
 		
 		/**
+		 * Property name : Measured value of gas concentration<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates measured value of gas concentration in ppm. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.65533)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : ppm<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasuredValueOfGasConcentration() {
+			reqGetProperty(EPC_MEASURED_VALUE_OF_GAS_CONCENTRATION);
+			return this;
+		}
+		/**
 		 * Property name : Detection threshold level<br>
 		 * <br>
 		 * EPC : 0xB0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Specifies detection threshold level (8-step).<br>
+		 * Contents :<br>
+		 * Specifies detection threshold level (8-step). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetDetectionThresholdLevel() {
 			reqGetProperty(EPC_DETECTION_THRESHOLD_LEVEL);
@@ -699,23 +798,20 @@ public abstract class GasSensor extends DeviceObject {
 		 * <br>
 		 * EPC : 0xB1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates gas detection status.<br>
+		 * Contents :<br>
+		 * This property indicates gas detection status. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Gas detection status found = 0x41 Gas detection status not found<br>
-		 * = 0x42<br>
+		 * Gas detection status found = 0x41 Gas detection status not found_x000a_= 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
@@ -723,32 +819,7 @@ public abstract class GasSensor extends DeviceObject {
 			reqGetProperty(EPC_GAS_DETECTION_STATUS);
 			return this;
 		}
-		/**
-		 * Property name : Measured value of gas concentration<br>
-		 * <br>
-		 * EPC : 0xE0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measured value of gas concentration in ppm.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : ppm<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		public Getter reqGetMeasuredValueOfGasConcentration() {
-			reqGetProperty(EPC_MEASURED_VALUE_OF_GAS_CONCENTRATION);
-			return this;
-		}
+
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
@@ -860,26 +931,52 @@ public abstract class GasSensor extends DeviceObject {
 		}
 		
 		/**
+		 * Property name : Measured value of gas concentration<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates measured value of gas concentration in ppm. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.65533)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : ppm<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasuredValueOfGasConcentration() {
+			reqInformProperty(EPC_MEASURED_VALUE_OF_GAS_CONCENTRATION);
+			return this;
+		}
+		/**
 		 * Property name : Detection threshold level<br>
 		 * <br>
 		 * EPC : 0xB0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Specifies detection threshold level (8-step).<br>
+		 * Contents :<br>
+		 * Specifies detection threshold level (8-step). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformDetectionThresholdLevel() {
 			reqInformProperty(EPC_DETECTION_THRESHOLD_LEVEL);
@@ -890,23 +987,20 @@ public abstract class GasSensor extends DeviceObject {
 		 * <br>
 		 * EPC : 0xB1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates gas detection status.<br>
+		 * Contents :<br>
+		 * This property indicates gas detection status. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Gas detection status found = 0x41 Gas detection status not found<br>
-		 * = 0x42<br>
+		 * Gas detection status found = 0x41 Gas detection status not found_x000a_= 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
@@ -914,32 +1008,7 @@ public abstract class GasSensor extends DeviceObject {
 			reqInformProperty(EPC_GAS_DETECTION_STATUS);
 			return this;
 		}
-		/**
-		 * Property name : Measured value of gas concentration<br>
-		 * <br>
-		 * EPC : 0xE0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measured value of gas concentration in ppm.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : ppm<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		public Informer reqInformMeasuredValueOfGasConcentration() {
-			reqInformProperty(EPC_MEASURED_VALUE_OF_GAS_CONCENTRATION);
-			return this;
-		}
+
 	}
 
 	public static class Proxy extends GasSensor {
@@ -952,19 +1021,26 @@ public abstract class GasSensor extends DeviceObject {
 			return mEchoInstanceCode;
 		}
 		@Override
-		protected byte[] getOperationStatus() {return null;}
+		protected byte[] getGetPropertyMap(){return null;}
 		@Override
-		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		protected byte[] getSetPropertyMap(){return null;}
 		@Override
-		protected byte[] getInstallationLocation() {return null;}
+		protected byte[] getMeasuredValueOfGasConcentration(){return null;}
 		@Override
-		protected byte[] getStandardVersionInformation() {return null;}
+		protected byte[] getStatusChangeAnnouncementPropertyMap(){return null;}
 		@Override
-		protected byte[] getFaultStatus() {return null;}
+		protected byte[] getOperationStatus(){return null;}
 		@Override
-		protected byte[] getManufacturerCode() {return null;}
+		protected boolean setInstallationLocation(byte[] edt){return false;}
 		@Override
-		protected byte[] getMeasuredValueOfGasConcentration() {return null;}
+		protected byte[] getInstallationLocation(){return null;}
+		@Override
+		protected byte[] getStandardVersionInformation(){return null;}
+		@Override
+		protected byte[] getFaultStatus(){return null;}
+		@Override
+		protected byte[] getManufacturerCode(){return null;}
+
 	}
 	
 	public static Setter setG() {

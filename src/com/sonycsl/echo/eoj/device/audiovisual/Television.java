@@ -1,36 +1,42 @@
 /*
- * Copyright 2012 Sony Computer Science Laboratories, Inc. <info@kadecot.net>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2014 Sony Computer Science Laboratories, Inc.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.sonycsl.echo.eoj.device.audiovisual;
 
 import com.sonycsl.echo.Echo;
-import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
-import com.sonycsl.echo.node.EchoNode;
 
 public abstract class Television extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x0602;
 
-	public static final byte EPC_DISPLAY_CONTROL_SETTING = (byte)0xB0;
-	public static final byte EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS = (byte)0xB1;
 	public static final byte EPC_SUPPORTED_CHARACTER_CODES = (byte)0xB2;
 	public static final byte EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER = (byte)0xB3;
+	public static final byte EPC_DISPLAY_CONTROL_SETTING = (byte)0xB0;
+	public static final byte EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS = (byte)0xB1;
 	public static final byte EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED = (byte)0xB4;
 
 	@Override
@@ -40,11 +46,12 @@ public abstract class Television extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		addSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
-		addStatusChangeAnnouncementProperty(EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS);
-		addGetProperty(EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS);
 		addGetProperty(EPC_SUPPORTED_CHARACTER_CODES);
 		addSetProperty(EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER);
+		addStatusChangeAnnouncementProperty(EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS);
+		addGetProperty(EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS);
 		addGetProperty(EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED);
+
 	}
 
 	@Override
@@ -63,24 +70,20 @@ public abstract class Television extends DeviceObject {
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-	 * = 0x01).<br>
+	 * Contents :<br>
+	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -90,51 +93,192 @@ byte<br>
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-	 * = 0x01).<br>
+	 * Contents :<br>
+	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
 	protected abstract byte[] getOperationStatus();
 	/**
-	 * Property name : Display control setting<br>
+	 * Property name : Operation status<br>
 	 * <br>
-	 * EPC : 0xB0<br>
+	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-	 * = 0x01).<br>
+	 * Contents :<br>
+	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidOperationStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Supported character codes<br>
+	 * <br>
+	 * EPC : 0xB2<br>
+	 * <br>
+	 * Contents :<br>
+	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * <br>
+	 * <br>
+	 * Data type : unsigned char×_x000a_2<br>
+	 * Data size : 2<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getSupportedCharacterCodes();
+	/**
+	 * Property name : Supported character codes<br>
+	 * <br>
+	 * EPC : 0xB2<br>
+	 * <br>
+	 * Contents :<br>
+	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * <br>
+	 * <br>
+	 * Data type : unsigned char×_x000a_2<br>
+	 * Data size : 2<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidSupportedCharacterCodes(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Character string to present to the user<br>
+	 * <br>
+	 * EPC : 0xB3<br>
+	 * <br>
+	 * Contents :<br>
+	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * <br>
+	 * <br>
+	 * Data type : unsigned char×_x000a_Max 247<br>
+	 * Data size : <= 247<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract boolean setCharacterStringToPresentToTheUser(byte[] edt);
+	/**
+	 * Property name : Character string to present to the user<br>
+	 * <br>
+	 * EPC : 0xB3<br>
+	 * <br>
+	 * Contents :<br>
+	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * <br>
+	 * <br>
+	 * Data type : unsigned char×_x000a_Max 247<br>
+	 * Data size : <= 247<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getCharacterStringToPresentToTheUser() {return null;}
+	/**
+	 * Property name : Character string to present to the user<br>
+	 * <br>
+	 * EPC : 0xB3<br>
+	 * <br>
+	 * Contents :<br>
+	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * <br>
+	 * <br>
+	 * Data type : unsigned char×_x000a_Max 247<br>
+	 * Data size : <= 247<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidCharacterStringToPresentToTheUser(byte[] edt) {
+		if(edt == null || !(edt.length <= 247)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Display control setting<br>
+	 * <br>
+	 * EPC : 0xB0<br>
+	 * <br>
+	 * Contents :<br>
+	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * <br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean setDisplayControlSetting(byte[] edt) {return false;}
 	/**
@@ -142,24 +286,22 @@ byte<br>
 	 * <br>
 	 * EPC : 0xB0<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-	 * = 0x01).<br>
+	 * Contents :<br>
+	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getDisplayControlSetting() {return null;}
 	/**
@@ -167,27 +309,25 @@ byte<br>
 	 * <br>
 	 * EPC : 0xB0<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-	 * = 0x01).<br>
+	 * Contents :<br>
+	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidDisplayControlSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 	/**
@@ -195,24 +335,20 @@ byte<br>
 	 * <br>
 	 * EPC : 0xB1<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-	 * = 0x01).<br>
+	 * Contents :<br>
+	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-byte<br>
-	 * <br>
-	 * Unit : null<br>
+	 * Data size : 1<br>
+	 * Unit : <br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -222,159 +358,25 @@ byte<br>
 	 * <br>
 	 * EPC : 0xB1<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-	 * = 0x01).<br>
+	 * Contents :<br>
+	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-byte<br>
-	 * <br>
-	 * Unit : null<br>
+	 * Data size : 1<br>
+	 * Unit : <br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidCharacterStringSettingAcceptanceStatus(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Supported character codes<br>
-	 * <br>
-	 * EPC : 0xB2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-	 * = 0x01).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * <br>
-	 * <br>
-	 * Data type : unsigned char×
-2<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected abstract byte[] getSupportedCharacterCodes();
-	/**
-	 * Property name : Supported character codes<br>
-	 * <br>
-	 * EPC : 0xB2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-	 * = 0x01).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * <br>
-	 * <br>
-	 * Data type : unsigned char×
-2<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected boolean isValidSupportedCharacterCodes(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Character string to present to the user<br>
-	 * <br>
-	 * EPC : 0xB3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * <br>
-	 * <br>
-	 * Data type : unsigned char×
-Max 247<br>
-	 * <br>
-	 * Data size : Max247 bytes<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - optional<br>
-	 */
-	protected abstract boolean setCharacterStringToPresentToTheUser(byte[] edt);
-	/**
-	 * Property name : Character string to present to the user<br>
-	 * <br>
-	 * EPC : 0xB3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * <br>
-	 * <br>
-	 * Data type : unsigned char×
-Max 247<br>
-	 * <br>
-	 * Data size : Max247 bytes<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getCharacterStringToPresentToTheUser() {return null;}
-	/**
-	 * Property name : Character string to present to the user<br>
-	 * <br>
-	 * EPC : 0xB3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * <br>
-	 * <br>
-	 * Data type : unsigned char×
-Max 247<br>
-	 * <br>
-	 * Data size : Max247 bytes<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidCharacterStringToPresentToTheUser(byte[] edt) {
-		if(edt == null || !(edt.length <= 247)) return false;
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 	/**
@@ -382,25 +384,22 @@ Max 247<br>
 	 * <br>
 	 * EPC : 0xB4<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-	 * = 0x01).<br>
+	 * Contents :<br>
+	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <br>
 	 * <br>
-	 * Data type : unsigned char×
-2<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
+	 * Data type : unsigned char×_x000a_2<br>
+	 * Data size : 2<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected abstract byte[] getLengthOfCharacterStringAccepted();
 	/**
@@ -408,28 +407,25 @@ bytes<br>
 	 * <br>
 	 * EPC : 0xB4<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-	 * = 0x01).<br>
+	 * Contents :<br>
+	 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * <br>
 	 * <br>
-	 * Data type : unsigned char×
-2<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
+	 * Data type : unsigned char×_x000a_2<br>
+	 * Data size : 2<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidLengthOfCharacterStringAccepted(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
+		if(edt == null || !(edt.length == 2)) {return false;};
 		return true;
 	}
 
@@ -439,8 +435,9 @@ bytes<br>
 		if(success) return success;
 
 		switch(property.epc) {
-		case EPC_DISPLAY_CONTROL_SETTING : return setDisplayControlSetting(property.edt);
 		case EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER : return setCharacterStringToPresentToTheUser(property.edt);
+		case EPC_DISPLAY_CONTROL_SETTING : return setDisplayControlSetting(property.edt);
+
 		default : return false;
 		}
 	}
@@ -451,11 +448,12 @@ bytes<br>
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_DISPLAY_CONTROL_SETTING : return getDisplayControlSetting();
-		case EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS : return getCharacterStringSettingAcceptanceStatus();
 		case EPC_SUPPORTED_CHARACTER_CODES : return getSupportedCharacterCodes();
 		case EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER : return getCharacterStringToPresentToTheUser();
+		case EPC_DISPLAY_CONTROL_SETTING : return getDisplayControlSetting();
+		case EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS : return getCharacterStringSettingAcceptanceStatus();
 		case EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED : return getLengthOfCharacterStringAccepted();
+
 		default : return null;
 		}
 	}
@@ -466,11 +464,12 @@ bytes<br>
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_DISPLAY_CONTROL_SETTING : return isValidDisplayControlSetting(property.edt);
-		case EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS : return isValidCharacterStringSettingAcceptanceStatus(property.edt);
 		case EPC_SUPPORTED_CHARACTER_CODES : return isValidSupportedCharacterCodes(property.edt);
 		case EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER : return isValidCharacterStringToPresentToTheUser(property.edt);
+		case EPC_DISPLAY_CONTROL_SETTING : return isValidDisplayControlSetting(property.edt);
+		case EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS : return isValidCharacterStringSettingAcceptanceStatus(property.edt);
 		case EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED : return isValidLengthOfCharacterStringAccepted(property.edt);
+
 		default : return false;
 		}
 	}
@@ -518,12 +517,13 @@ bytes<br>
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_DISPLAY_CONTROL_SETTING : 
-				onSetDisplayControlSetting(eoj, tid, esv, property, success);
-				return true;
 			case EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER : 
 				onSetCharacterStringToPresentToTheUser(eoj, tid, esv, property, success);
 				return true;
+			case EPC_DISPLAY_CONTROL_SETTING : 
+				onSetDisplayControlSetting(eoj, tid, esv, property, success);
+				return true;
+
 			default :
 				return false;
 			}
@@ -536,127 +536,94 @@ bytes<br>
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_DISPLAY_CONTROL_SETTING : 
-				onGetDisplayControlSetting(eoj, tid, esv, property, success);
-				return true;
-			case EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS : 
-				onGetCharacterStringSettingAcceptanceStatus(eoj, tid, esv, property, success);
-				return true;
 			case EPC_SUPPORTED_CHARACTER_CODES : 
 				onGetSupportedCharacterCodes(eoj, tid, esv, property, success);
 				return true;
 			case EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER : 
 				onGetCharacterStringToPresentToTheUser(eoj, tid, esv, property, success);
 				return true;
+			case EPC_DISPLAY_CONTROL_SETTING : 
+				onGetDisplayControlSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS : 
+				onGetCharacterStringSettingAcceptanceStatus(eoj, tid, esv, property, success);
+				return true;
 			case EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED : 
 				onGetLengthOfCharacterStringAccepted(eoj, tid, esv, property, success);
 				return true;
+
 			default :
 				return false;
 			}
 		}
 		
 		/**
-		 * Property name : Display control setting<br>
+		 * Property name : Operation status<br>
 		 * <br>
-		 * EPC : 0xB0<br>
+		 * EPC : 0x80<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-		 * = 0x01).<br>
+		 * Contents :<br>
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetDisplayControlSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Display control setting<br>
-		 * <br>
-		 * EPC : 0xB0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-		 * = 0x01).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * <br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetDisplayControlSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Character string setting acceptance status<br>
-		 * <br>
-		 * EPC : 0xB1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-		 * = 0x01).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * <br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
-		 * Unit : null<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetCharacterStringSettingAcceptanceStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * <br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Supported character codes<br>
 		 * <br>
 		 * EPC : 0xB2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-		 * = 0x01).<br>
+		 * Contents :<br>
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <br>
 		 * <br>
-		 * Data type : unsigned char×
-2<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
+		 * Data type : unsigned char×_x000a_2<br>
+		 * Data size : 2<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetSupportedCharacterCodes(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -664,23 +631,22 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xB3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
+		 * Contents :<br>
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <br>
 		 * <br>
-		 * Data type : unsigned char×
-Max 247<br>
-		 * <br>
-		 * Data size : Max247 bytes<br>
-		 * <br>
+		 * Data type : unsigned char×_x000a_Max 247<br>
+		 * Data size : <= 247<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onSetCharacterStringToPresentToTheUser(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -688,51 +654,117 @@ Max 247<br>
 		 * <br>
 		 * EPC : 0xB3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
+		 * Contents :<br>
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <br>
 		 * <br>
-		 * Data type : unsigned char×
-Max 247<br>
-		 * <br>
-		 * Data size : Max247 bytes<br>
-		 * <br>
+		 * Data type : unsigned char×_x000a_Max 247<br>
+		 * Data size : <= 247<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetCharacterStringToPresentToTheUser(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Display control setting<br>
+		 * <br>
+		 * EPC : 0xB0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * <br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetDisplayControlSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Display control setting<br>
+		 * <br>
+		 * EPC : 0xB0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * <br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetDisplayControlSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Character string setting acceptance status<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents :<br>
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * <br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : <br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetCharacterStringSettingAcceptanceStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Length of character string accepted<br>
 		 * <br>
 		 * EPC : 0xB4<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-		 * = 0x01).<br>
+		 * Contents :<br>
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <br>
 		 * <br>
-		 * Data type : unsigned char×
-2<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
+		 * Data type : unsigned char×_x000a_2<br>
+		 * Data size : 2<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetLengthOfCharacterStringAccepted(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+
 	}
 
 	public static class Setter extends DeviceObject.Setter {
@@ -781,60 +813,58 @@ bytes<br>
 		}
 		
 		/**
-		 * Property name : Display control setting<br>
-		 * <br>
-		 * EPC : 0xB0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-		 * = 0x01).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * <br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Setter reqSetDisplayControlSetting(byte[] edt) {
-			reqSetProperty(EPC_DISPLAY_CONTROL_SETTING, edt);
-			return this;
-		}
-		/**
 		 * Property name : Character string to present to the user<br>
 		 * <br>
 		 * EPC : 0xB3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
+		 * Contents :<br>
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <br>
 		 * <br>
-		 * Data type : unsigned char×
-Max 247<br>
-		 * <br>
-		 * Data size : Max247 bytes<br>
-		 * <br>
+		 * Data type : unsigned char×_x000a_Max 247<br>
+		 * Data size : <= 247<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetCharacterStringToPresentToTheUser(byte[] edt) {
 			reqSetProperty(EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER, edt);
 			return this;
 		}
+		/**
+		 * Property name : Display control setting<br>
+		 * <br>
+		 * EPC : 0xB0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * <br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Setter reqSetDisplayControlSetting(byte[] edt) {
+			reqSetProperty(EPC_DISPLAY_CONTROL_SETTING, edt);
+			return this;
+		}
+
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
@@ -947,87 +977,26 @@ Max 247<br>
 		}
 		
 		/**
-		 * Property name : Display control setting<br>
-		 * <br>
-		 * EPC : 0xB0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-		 * = 0x01).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * <br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetDisplayControlSetting() {
-			reqGetProperty(EPC_DISPLAY_CONTROL_SETTING);
-			return this;
-		}
-		/**
-		 * Property name : Character string setting acceptance status<br>
-		 * <br>
-		 * EPC : 0xB1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-		 * = 0x01).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * <br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
-		 * Unit : null<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 * <br>
-		 * <b>Announcement at status change</b><br>
-		 */
-		public Getter reqGetCharacterStringSettingAcceptanceStatus() {
-			reqGetProperty(EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS);
-			return this;
-		}
-		/**
 		 * Property name : Supported character codes<br>
 		 * <br>
 		 * EPC : 0xB2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-		 * = 0x01).<br>
+		 * Contents :<br>
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <br>
 		 * <br>
-		 * Data type : unsigned char×
-2<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
+		 * Data type : unsigned char×_x000a_2<br>
+		 * Data size : 2<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetSupportedCharacterCodes() {
 			reqGetProperty(EPC_SUPPORTED_CHARACTER_CODES);
@@ -1038,26 +1007,77 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xB3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
+		 * Contents :<br>
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <br>
 		 * <br>
-		 * Data type : unsigned char×
-Max 247<br>
-		 * <br>
-		 * Data size : Max247 bytes<br>
-		 * <br>
+		 * Data type : unsigned char×_x000a_Max 247<br>
+		 * Data size : <= 247<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetCharacterStringToPresentToTheUser() {
 			reqGetProperty(EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER);
+			return this;
+		}
+		/**
+		 * Property name : Display control setting<br>
+		 * <br>
+		 * EPC : 0xB0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * <br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetDisplayControlSetting() {
+			reqGetProperty(EPC_DISPLAY_CONTROL_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : Character string setting acceptance status<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents :<br>
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * <br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : <br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetCharacterStringSettingAcceptanceStatus() {
+			reqGetProperty(EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS);
 			return this;
 		}
 		/**
@@ -1065,30 +1085,28 @@ Max 247<br>
 		 * <br>
 		 * EPC : 0xB4<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-		 * = 0x01).<br>
+		 * Contents :<br>
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <br>
 		 * <br>
-		 * Data type : unsigned char×
-2<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
+		 * Data type : unsigned char×_x000a_2<br>
+		 * Data size : 2<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetLengthOfCharacterStringAccepted() {
 			reqGetProperty(EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED);
 			return this;
 		}
+
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
@@ -1200,87 +1218,26 @@ bytes<br>
 		}
 		
 		/**
-		 * Property name : Display control setting<br>
-		 * <br>
-		 * EPC : 0xB0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-		 * = 0x01).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * <br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformDisplayControlSetting() {
-			reqInformProperty(EPC_DISPLAY_CONTROL_SETTING);
-			return this;
-		}
-		/**
-		 * Property name : Character string setting acceptance status<br>
-		 * <br>
-		 * EPC : 0xB1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-		 * = 0x01).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * <br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
-		 * Unit : null<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 * <br>
-		 * <b>Announcement at status change</b><br>
-		 */
-		public Informer reqInformCharacterStringSettingAcceptanceStatus() {
-			reqInformProperty(EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS);
-			return this;
-		}
-		/**
 		 * Property name : Supported character codes<br>
 		 * <br>
 		 * EPC : 0xB2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-		 * = 0x01).<br>
+		 * Contents :<br>
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <br>
 		 * <br>
-		 * Data type : unsigned char×
-2<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
+		 * Data type : unsigned char×_x000a_2<br>
+		 * Data size : 2<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformSupportedCharacterCodes() {
 			reqInformProperty(EPC_SUPPORTED_CHARACTER_CODES);
@@ -1291,26 +1248,77 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xB3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
+		 * Contents :<br>
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <br>
 		 * <br>
-		 * Data type : unsigned char×
-Max 247<br>
-		 * <br>
-		 * Data size : Max247 bytes<br>
-		 * <br>
+		 * Data type : unsigned char×_x000a_Max 247<br>
+		 * Data size : <= 247<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformCharacterStringToPresentToTheUser() {
 			reqInformProperty(EPC_CHARACTER_STRING_TO_PRESENT_TO_THE_USER);
+			return this;
+		}
+		/**
+		 * Property name : Display control setting<br>
+		 * <br>
+		 * EPC : 0xB0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * <br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformDisplayControlSetting() {
+			reqInformProperty(EPC_DISPLAY_CONTROL_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : Character string setting acceptance status<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents :<br>
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * <br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : <br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformCharacterStringSettingAcceptanceStatus() {
+			reqInformProperty(EPC_CHARACTER_STRING_SETTING_ACCEPTANCE_STATUS);
 			return this;
 		}
 		/**
@@ -1318,30 +1326,28 @@ Max 247<br>
 		 * <br>
 		 * EPC : 0xB4<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code<br>
-		 * = 0x01).<br>
+		 * Contents :<br>
+		 * Refer to the section on the requirements for the display class (class group code = 0x06, class code_x000a_= 0x01). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * <br>
 		 * <br>
-		 * Data type : unsigned char×
-2<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
+		 * Data type : unsigned char×_x000a_2<br>
+		 * Data size : 2<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformLengthOfCharacterStringAccepted() {
 			reqInformProperty(EPC_LENGTH_OF_CHARACTER_STRING_ACCEPTED);
 			return this;
 		}
+
 	}
 
 	public static class Proxy extends Television {
@@ -1354,27 +1360,34 @@ bytes<br>
 			return mEchoInstanceCode;
 		}
 		@Override
-		protected byte[] getOperationStatus() {return null;}
+		protected byte[] getGetPropertyMap(){return null;}
 		@Override
-		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		protected byte[] getSetPropertyMap(){return null;}
 		@Override
-		protected byte[] getInstallationLocation() {return null;}
+		protected byte[] getStatusChangeAnnouncementPropertyMap(){return null;}
 		@Override
-		protected byte[] getStandardVersionInformation() {return null;}
+		protected boolean setOperationStatus(byte[] edt){return false;}
 		@Override
-		protected byte[] getFaultStatus() {return null;}
+		protected byte[] getOperationStatus(){return null;}
 		@Override
-		protected byte[] getManufacturerCode() {return null;}
+		protected boolean setInstallationLocation(byte[] edt){return false;}
 		@Override
-		protected boolean setOperationStatus(byte[] edt) {return false;}
+		protected byte[] getInstallationLocation(){return null;}
 		@Override
-		protected byte[] getCharacterStringSettingAcceptanceStatus() {return null;}
+		protected byte[] getStandardVersionInformation(){return null;}
 		@Override
-		protected byte[] getSupportedCharacterCodes() {return null;}
+		protected byte[] getFaultStatus(){return null;}
 		@Override
-		protected boolean setCharacterStringToPresentToTheUser(byte[] edt) {return false;}
+		protected byte[] getManufacturerCode(){return null;}
 		@Override
-		protected byte[] getLengthOfCharacterStringAccepted() {return null;}
+		protected byte[] getSupportedCharacterCodes(){return null;}
+		@Override
+		protected boolean setCharacterStringToPresentToTheUser(byte[] edt){return false;}
+		@Override
+		protected byte[] getCharacterStringSettingAcceptanceStatus(){return null;}
+		@Override
+		protected byte[] getLengthOfCharacterStringAccepted(){return null;}
+
 	}
 	
 	public static Setter setG() {

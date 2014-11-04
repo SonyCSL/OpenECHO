@@ -1,54 +1,61 @@
 /*
- * Copyright 2012 Sony Computer Science Laboratories, Inc. <info@kadecot.net>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2014 Sony Computer Science Laboratories, Inc.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.sonycsl.echo.eoj.device.housingfacilities;
 
 import com.sonycsl.echo.Echo;
-import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
-import com.sonycsl.echo.node.EchoNode;
 
 public abstract class ElectricStormWindow extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x0263;
 
-	public static final byte EPC_OPEN_CLOSE_SETTING1 = (byte)0xE0;
-	public static final byte EPC_EXTENT_OF_OPENING1 = (byte)0xE1;
-	public static final byte EPC_BLIND_ANGLE_SETTING = (byte)0xE2;
 	public static final byte EPC_SHUTTER_SPEED = (byte)0xE3;
-	public static final byte EPC_EXTENT_OF_OPENING2 = (byte)0xE4;
+	public static final byte EPC_BLIND_ANGLE_SETTING = (byte)0xE2;
+	public static final byte EPC_EXTENT_OF_OPENING_1 = (byte)0xE1;
+	public static final byte EPC_OPEN_CLOSE_SETTING_1 = (byte)0xE0;
+	public static final byte EPC_OPEN_CLOSE_SETTING_2 = (byte)0xE7;
+	public static final byte EPC_EXTENT_OF_OPENING_2 = (byte)0xE4;
 	public static final byte EPC_ELECTRIC_LOCK_SETTING = (byte)0xE5;
-	public static final byte EPC_OPEN_CLOSE_SETTING2 = (byte)0xE7;
 
 	@Override
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
-		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
-		removeSetProperty(EPC_OPERATION_STATUS);
-		addGetProperty(EPC_OPERATION_STATUS);
-		addStatusChangeAnnouncementProperty(EPC_OPEN_CLOSE_SETTING1);
-		addSetProperty(EPC_OPEN_CLOSE_SETTING1);
-		addGetProperty(EPC_OPEN_CLOSE_SETTING1);
+		addStatusChangeAnnouncementProperty(EPC_OPEN_CLOSE_SETTING_1);
+		addSetProperty(EPC_OPEN_CLOSE_SETTING_1);
+		addGetProperty(EPC_OPEN_CLOSE_SETTING_1);
+		addStatusChangeAnnouncementProperty(EPC_OPEN_CLOSE_SETTING_2);
 		addStatusChangeAnnouncementProperty(EPC_ELECTRIC_LOCK_SETTING);
 		addSetProperty(EPC_ELECTRIC_LOCK_SETTING);
 		addGetProperty(EPC_ELECTRIC_LOCK_SETTING);
-		addStatusChangeAnnouncementProperty(EPC_OPEN_CLOSE_SETTING2);
+		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
+		removeSetProperty(EPC_OPERATION_STATUS);
+		addGetProperty(EPC_OPERATION_STATUS);
+
 	}
 
 	@Override
@@ -63,76 +70,240 @@ public abstract class ElectricStormWindow extends DeviceObject {
 	}
 
 	/**
-	 * Property name : Operation status<br>
+	 * Property name : Shutter speed<br>
 	 * <br>
-	 * EPC : 0x80<br>
+	 * EPC : 0xE3<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * Low/medium/high <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON=0x30, OFF=0x31<br>
+	 * Low = 0x41, medium = 0x42, high = 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean setOperationStatus(byte[] edt) {return false;}
+	protected boolean setShutterSpeed(byte[] edt) {return false;}
 	/**
-	 * Property name : Operation status<br>
+	 * Property name : Shutter speed<br>
 	 * <br>
-	 * EPC : 0x80<br>
+	 * EPC : 0xE3<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * Low/medium/high <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON=0x30, OFF=0x31<br>
+	 * Low = 0x41, medium = 0x42, high = 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
-	protected abstract byte[] getOperationStatus();
+	protected byte[] getShutterSpeed() {return null;}
+	/**
+	 * Property name : Shutter speed<br>
+	 * <br>
+	 * EPC : 0xE3<br>
+	 * <br>
+	 * Contents :<br>
+	 * Low/medium/high <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Low = 0x41, medium = 0x42, high = 0x43<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidShutterSpeed(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Blind angle setting<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents :<br>
+	 * Blind angle <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0xB4 (0.180°)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : deg<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setBlindAngleSetting(byte[] edt) {return false;}
+	/**
+	 * Property name : Blind angle setting<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents :<br>
+	 * Blind angle <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0xB4 (0.180°)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : deg<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getBlindAngleSetting() {return null;}
+	/**
+	 * Property name : Blind angle setting<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents :<br>
+	 * Blind angle <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0xB4 (0.180°)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : deg<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidBlindAngleSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Extent of opening 1<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x31.0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setExtentOfOpening1(byte[] edt) {return false;}
+	/**
+	 * Property name : Extent of opening 1<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x31.0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getExtentOfOpening1() {return null;}
+	/**
+	 * Property name : Extent of opening 1<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x31.0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidExtentOfOpening1(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
 	/**
 	 * Property name : Open/close setting 1<br>
 	 * <br>
 	 * EPC : 0xE0<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Open(ed)/close(d)/stop(ped)<br>
+	 * Contents :<br>
+	 * Open(ed)/close(d)/stop(ped) <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -142,22 +313,20 @@ public abstract class ElectricStormWindow extends DeviceObject {
 	 * <br>
 	 * EPC : 0xE0<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Open(ed)/close(d)/stop(ped)<br>
+	 * Contents :<br>
+	 * Open(ed)/close(d)/stop(ped) <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -167,399 +336,25 @@ public abstract class ElectricStormWindow extends DeviceObject {
 	 * <br>
 	 * EPC : 0xE0<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Open(ed)/close(d)/stop(ped)<br>
+	 * Contents :<br>
+	 * Open(ed)/close(d)/stop(ped) <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidOpenCloseSetting1(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Extent of opening 1<br>
-	 * <br>
-	 * EPC : 0xE1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x31.0x38<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setExtentOfOpening1(byte[] edt) {return false;}
-	/**
-	 * Property name : Extent of opening 1<br>
-	 * <br>
-	 * EPC : 0xE1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x31.0x38<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getExtentOfOpening1() {return null;}
-	/**
-	 * Property name : Extent of opening 1<br>
-	 * <br>
-	 * EPC : 0xE1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x31.0x38<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidExtentOfOpening1(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Blind angle setting<br>
-	 * <br>
-	 * EPC : 0xE2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Blind angle<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0xB4 (0.180°)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : de g<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setBlindAngleSetting(byte[] edt) {return false;}
-	/**
-	 * Property name : Blind angle setting<br>
-	 * <br>
-	 * EPC : 0xE2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Blind angle<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0xB4 (0.180°)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : de g<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getBlindAngleSetting() {return null;}
-	/**
-	 * Property name : Blind angle setting<br>
-	 * <br>
-	 * EPC : 0xE2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Blind angle<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0xB4 (0.180°)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : de g<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidBlindAngleSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Shutter speed<br>
-	 * <br>
-	 * EPC : 0xE3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Low/medium/high<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Low = 0x41, medium = 0x42, high = 0x43<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setShutterSpeed(byte[] edt) {return false;}
-	/**
-	 * Property name : Shutter speed<br>
-	 * <br>
-	 * EPC : 0xE3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Low/medium/high<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Low = 0x41, medium = 0x42, high = 0x43<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getShutterSpeed() {return null;}
-	/**
-	 * Property name : Shutter speed<br>
-	 * <br>
-	 * EPC : 0xE3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Low/medium/high<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Low = 0x41, medium = 0x42, high = 0x43<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidShutterSpeed(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Extent of opening 2<br>
-	 * <br>
-	 * EPC : 0xE4<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0xFF (0.255)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setExtentOfOpening2(byte[] edt) {return false;}
-	/**
-	 * Property name : Extent of opening 2<br>
-	 * <br>
-	 * EPC : 0xE4<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0xFF (0.255)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getExtentOfOpening2() {return null;}
-	/**
-	 * Property name : Extent of opening 2<br>
-	 * <br>
-	 * EPC : 0xE4<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0xFF (0.255)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidExtentOfOpening2(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Electric lock setting<br>
-	 * <br>
-	 * EPC : 0xE5<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Activated = 0x41, deactivated = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char
-unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte
-1 byte<br>
-	 * <br>
-	 * Unit : ——<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
-	 * <br>
-	 * <b>Announcement at status change</b><br>
-	 */
-	protected abstract boolean setElectricLockSetting(byte[] edt);
-	/**
-	 * Property name : Electric lock setting<br>
-	 * <br>
-	 * EPC : 0xE5<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Activated = 0x41, deactivated = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char
-unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte
-1 byte<br>
-	 * <br>
-	 * Unit : ——<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
-	 * <br>
-	 * <b>Announcement at status change</b><br>
-	 */
-	protected abstract byte[] getElectricLockSetting();
-	/**
-	 * Property name : Electric lock setting<br>
-	 * <br>
-	 * EPC : 0xE5<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Activated = 0x41, deactivated = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char
-unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte
-1 byte<br>
-	 * <br>
-	 * Unit : ——<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
-	 * <br>
-	 * <b>Announcement at status change</b><br>
-	 */
-	protected boolean isValidElectricLockSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 	/**
@@ -567,22 +362,20 @@ unsigned char<br>
 	 * <br>
 	 * EPC : 0xE7<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Open/close<br>
+	 * Contents :<br>
+	 * Open/close <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Open = 0x41, close = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -592,22 +385,20 @@ unsigned char<br>
 	 * <br>
 	 * EPC : 0xE7<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Open/close<br>
+	 * Contents :<br>
+	 * Open/close <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Open = 0x41, close = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -617,27 +408,241 @@ unsigned char<br>
 	 * <br>
 	 * EPC : 0xE7<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Open/close<br>
+	 * Contents :<br>
+	 * Open/close <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Open = 0x41, close = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidOpenCloseSetting2(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Extent of opening 2<br>
+	 * <br>
+	 * EPC : 0xE4<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0xFF (0.255)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setExtentOfOpening2(byte[] edt) {return false;}
+	/**
+	 * Property name : Extent of opening 2<br>
+	 * <br>
+	 * EPC : 0xE4<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0xFF (0.255)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getExtentOfOpening2() {return null;}
+	/**
+	 * Property name : Extent of opening 2<br>
+	 * <br>
+	 * EPC : 0xE4<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0xFF (0.255)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidExtentOfOpening2(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Electric lock setting<br>
+	 * <br>
+	 * EPC : 0xE5<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify whether or not to activate the electric lock, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Activated = 0x41, deactivated = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract boolean setElectricLockSetting(byte[] edt);
+	/**
+	 * Property name : Electric lock setting<br>
+	 * <br>
+	 * EPC : 0xE5<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify whether or not to activate the electric lock, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Activated = 0x41, deactivated = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getElectricLockSetting();
+	/**
+	 * Property name : Electric lock setting<br>
+	 * <br>
+	 * EPC : 0xE5<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify whether or not to activate the electric lock, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Activated = 0x41, deactivated = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidElectricLockSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30, OFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setOperationStatus(byte[] edt) {return false;}
+	/**
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30, OFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getOperationStatus();
+	/**
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30, OFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidOperationStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 
@@ -647,13 +652,14 @@ unsigned char<br>
 		if(success) return success;
 
 		switch(property.epc) {
-		case EPC_OPEN_CLOSE_SETTING1 : return setOpenCloseSetting1(property.edt);
-		case EPC_EXTENT_OF_OPENING1 : return setExtentOfOpening1(property.edt);
-		case EPC_BLIND_ANGLE_SETTING : return setBlindAngleSetting(property.edt);
 		case EPC_SHUTTER_SPEED : return setShutterSpeed(property.edt);
-		case EPC_EXTENT_OF_OPENING2 : return setExtentOfOpening2(property.edt);
+		case EPC_BLIND_ANGLE_SETTING : return setBlindAngleSetting(property.edt);
+		case EPC_EXTENT_OF_OPENING_1 : return setExtentOfOpening1(property.edt);
+		case EPC_OPEN_CLOSE_SETTING_1 : return setOpenCloseSetting1(property.edt);
+		case EPC_OPEN_CLOSE_SETTING_2 : return setOpenCloseSetting2(property.edt);
+		case EPC_EXTENT_OF_OPENING_2 : return setExtentOfOpening2(property.edt);
 		case EPC_ELECTRIC_LOCK_SETTING : return setElectricLockSetting(property.edt);
-		case EPC_OPEN_CLOSE_SETTING2 : return setOpenCloseSetting2(property.edt);
+
 		default : return false;
 		}
 	}
@@ -664,13 +670,14 @@ unsigned char<br>
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_OPEN_CLOSE_SETTING1 : return getOpenCloseSetting1();
-		case EPC_EXTENT_OF_OPENING1 : return getExtentOfOpening1();
-		case EPC_BLIND_ANGLE_SETTING : return getBlindAngleSetting();
 		case EPC_SHUTTER_SPEED : return getShutterSpeed();
-		case EPC_EXTENT_OF_OPENING2 : return getExtentOfOpening2();
+		case EPC_BLIND_ANGLE_SETTING : return getBlindAngleSetting();
+		case EPC_EXTENT_OF_OPENING_1 : return getExtentOfOpening1();
+		case EPC_OPEN_CLOSE_SETTING_1 : return getOpenCloseSetting1();
+		case EPC_OPEN_CLOSE_SETTING_2 : return getOpenCloseSetting2();
+		case EPC_EXTENT_OF_OPENING_2 : return getExtentOfOpening2();
 		case EPC_ELECTRIC_LOCK_SETTING : return getElectricLockSetting();
-		case EPC_OPEN_CLOSE_SETTING2 : return getOpenCloseSetting2();
+
 		default : return null;
 		}
 	}
@@ -681,13 +688,14 @@ unsigned char<br>
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_OPEN_CLOSE_SETTING1 : return isValidOpenCloseSetting1(property.edt);
-		case EPC_EXTENT_OF_OPENING1 : return isValidExtentOfOpening1(property.edt);
-		case EPC_BLIND_ANGLE_SETTING : return isValidBlindAngleSetting(property.edt);
 		case EPC_SHUTTER_SPEED : return isValidShutterSpeed(property.edt);
-		case EPC_EXTENT_OF_OPENING2 : return isValidExtentOfOpening2(property.edt);
+		case EPC_BLIND_ANGLE_SETTING : return isValidBlindAngleSetting(property.edt);
+		case EPC_EXTENT_OF_OPENING_1 : return isValidExtentOfOpening1(property.edt);
+		case EPC_OPEN_CLOSE_SETTING_1 : return isValidOpenCloseSetting1(property.edt);
+		case EPC_OPEN_CLOSE_SETTING_2 : return isValidOpenCloseSetting2(property.edt);
+		case EPC_EXTENT_OF_OPENING_2 : return isValidExtentOfOpening2(property.edt);
 		case EPC_ELECTRIC_LOCK_SETTING : return isValidElectricLockSetting(property.edt);
-		case EPC_OPEN_CLOSE_SETTING2 : return isValidOpenCloseSetting2(property.edt);
+
 		default : return false;
 		}
 	}
@@ -735,27 +743,28 @@ unsigned char<br>
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_OPEN_CLOSE_SETTING1 : 
-				onSetOpenCloseSetting1(eoj, tid, esv, property, success);
-				return true;
-			case EPC_EXTENT_OF_OPENING1 : 
-				onSetExtentOfOpening1(eoj, tid, esv, property, success);
+			case EPC_SHUTTER_SPEED : 
+				onSetShutterSpeed(eoj, tid, esv, property, success);
 				return true;
 			case EPC_BLIND_ANGLE_SETTING : 
 				onSetBlindAngleSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_SHUTTER_SPEED : 
-				onSetShutterSpeed(eoj, tid, esv, property, success);
+			case EPC_EXTENT_OF_OPENING_1 : 
+				onSetExtentOfOpening1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_EXTENT_OF_OPENING2 : 
+			case EPC_OPEN_CLOSE_SETTING_1 : 
+				onSetOpenCloseSetting1(eoj, tid, esv, property, success);
+				return true;
+			case EPC_OPEN_CLOSE_SETTING_2 : 
+				onSetOpenCloseSetting2(eoj, tid, esv, property, success);
+				return true;
+			case EPC_EXTENT_OF_OPENING_2 : 
 				onSetExtentOfOpening2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ELECTRIC_LOCK_SETTING : 
 				onSetElectricLockSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_OPEN_CLOSE_SETTING2 : 
-				onSetOpenCloseSetting2(eoj, tid, esv, property, success);
-				return true;
+
 			default :
 				return false;
 			}
@@ -768,53 +777,190 @@ unsigned char<br>
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_OPEN_CLOSE_SETTING1 : 
-				onGetOpenCloseSetting1(eoj, tid, esv, property, success);
-				return true;
-			case EPC_EXTENT_OF_OPENING1 : 
-				onGetExtentOfOpening1(eoj, tid, esv, property, success);
+			case EPC_SHUTTER_SPEED : 
+				onGetShutterSpeed(eoj, tid, esv, property, success);
 				return true;
 			case EPC_BLIND_ANGLE_SETTING : 
 				onGetBlindAngleSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_SHUTTER_SPEED : 
-				onGetShutterSpeed(eoj, tid, esv, property, success);
+			case EPC_EXTENT_OF_OPENING_1 : 
+				onGetExtentOfOpening1(eoj, tid, esv, property, success);
 				return true;
-			case EPC_EXTENT_OF_OPENING2 : 
+			case EPC_OPEN_CLOSE_SETTING_1 : 
+				onGetOpenCloseSetting1(eoj, tid, esv, property, success);
+				return true;
+			case EPC_OPEN_CLOSE_SETTING_2 : 
+				onGetOpenCloseSetting2(eoj, tid, esv, property, success);
+				return true;
+			case EPC_EXTENT_OF_OPENING_2 : 
 				onGetExtentOfOpening2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ELECTRIC_LOCK_SETTING : 
 				onGetElectricLockSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_OPEN_CLOSE_SETTING2 : 
-				onGetOpenCloseSetting2(eoj, tid, esv, property, success);
-				return true;
+
 			default :
 				return false;
 			}
 		}
 		
 		/**
+		 * Property name : Shutter speed<br>
+		 * <br>
+		 * EPC : 0xE3<br>
+		 * <br>
+		 * Contents :<br>
+		 * Low/medium/high <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Low = 0x41, medium = 0x42, high = 0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetShutterSpeed(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Shutter speed<br>
+		 * <br>
+		 * EPC : 0xE3<br>
+		 * <br>
+		 * Contents :<br>
+		 * Low/medium/high <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Low = 0x41, medium = 0x42, high = 0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetShutterSpeed(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Blind angle setting<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents :<br>
+		 * Blind angle <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0xB4 (0.180°)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : deg<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetBlindAngleSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Blind angle setting<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents :<br>
+		 * Blind angle <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0xB4 (0.180°)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : deg<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetBlindAngleSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Extent of opening 1<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x31.0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetExtentOfOpening1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Extent of opening 1<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x31.0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetExtentOfOpening1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
 		 * Property name : Open/close setting 1<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Open(ed)/close(d)/stop(ped)<br>
+		 * Contents :<br>
+		 * Open(ed)/close(d)/stop(ped) <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : —<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
@@ -824,285 +970,43 @@ unsigned char<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Open(ed)/close(d)/stop(ped)<br>
+		 * Contents :<br>
+		 * Open(ed)/close(d)/stop(ped) <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : —<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetOpenCloseSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Extent of opening 1<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x31.0x38<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : —<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetExtentOfOpening1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Extent of opening 1<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x31.0x38<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : —<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetExtentOfOpening1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Blind angle setting<br>
-		 * <br>
-		 * EPC : 0xE2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Blind angle<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0xB4 (0.180°)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : de g<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetBlindAngleSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Blind angle setting<br>
-		 * <br>
-		 * EPC : 0xE2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Blind angle<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0xB4 (0.180°)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : de g<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetBlindAngleSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Shutter speed<br>
-		 * <br>
-		 * EPC : 0xE3<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Low/medium/high<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Low = 0x41, medium = 0x42, high = 0x43<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : —<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetShutterSpeed(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Shutter speed<br>
-		 * <br>
-		 * EPC : 0xE3<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Low/medium/high<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Low = 0x41, medium = 0x42, high = 0x43<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : —<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetShutterSpeed(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Extent of opening 2<br>
-		 * <br>
-		 * EPC : 0xE4<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0xFF (0.255)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : —<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetExtentOfOpening2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Extent of opening 2<br>
-		 * <br>
-		 * EPC : 0xE4<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0xFF (0.255)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : —<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetExtentOfOpening2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Electric lock setting<br>
-		 * <br>
-		 * EPC : 0xE5<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Activated = 0x41, deactivated = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char
-unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte
-1 byte<br>
-		 * <br>
-		 * Unit : ——<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
-		 * <br>
-		 * <b>Announcement at status change</b><br>
-		 */
-		protected void onSetElectricLockSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Electric lock setting<br>
-		 * <br>
-		 * EPC : 0xE5<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Activated = 0x41, deactivated = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char
-unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte
-1 byte<br>
-		 * <br>
-		 * Unit : ——<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
-		 * <br>
-		 * <b>Announcement at status change</b><br>
-		 */
-		protected void onGetElectricLockSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
 		 * Property name : Open/close setting 2<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Open/close<br>
+		 * Contents :<br>
+		 * Open/close <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Open = 0x41, close = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : —<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
@@ -1112,26 +1016,163 @@ unsigned char<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Open/close<br>
+		 * Contents :<br>
+		 * Open/close <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Open = 0x41, close = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : —<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetOpenCloseSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Extent of opening 2<br>
+		 * <br>
+		 * EPC : 0xE4<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0xFF (0.255)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetExtentOfOpening2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Extent of opening 2<br>
+		 * <br>
+		 * EPC : 0xE4<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0xFF (0.255)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetExtentOfOpening2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Electric lock setting<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify whether or not to activate the electric lock, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Activated = 0x41, deactivated = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetElectricLockSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Electric lock setting<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify whether or not to activate the electric lock, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Activated = 0x41, deactivated = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetElectricLockSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+
 	}
 
 	public static class Setter extends DeviceObject.Setter {
@@ -1180,57 +1221,29 @@ unsigned char<br>
 		}
 		
 		/**
-		 * Property name : Open/close setting 1<br>
+		 * Property name : Shutter speed<br>
 		 * <br>
-		 * EPC : 0xE0<br>
+		 * EPC : 0xE3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Open(ed)/close(d)/stop(ped)<br>
+		 * Contents :<br>
+		 * Low/medium/high <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br>
+		 * Low = 0x41, medium = 0x42, high = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : —<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		public Setter reqSetOpenCloseSetting1(byte[] edt) {
-			reqSetProperty(EPC_OPEN_CLOSE_SETTING1, edt);
-			return this;
-		}
-		/**
-		 * Property name : Extent of opening 1<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x31.0x38<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : —<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Setter reqSetExtentOfOpening1(byte[] edt) {
-			reqSetProperty(EPC_EXTENT_OF_OPENING1, edt);
+		public Setter reqSetShutterSpeed(byte[] edt) {
+			reqSetProperty(EPC_SHUTTER_SPEED, edt);
 			return this;
 		}
 		/**
@@ -1238,107 +1251,77 @@ unsigned char<br>
 		 * <br>
 		 * EPC : 0xE2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Blind angle<br>
+		 * Contents :<br>
+		 * Blind angle <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00.0xB4 (0.180°)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : de g<br>
+		 * Data size : 1<br>
+		 * Unit : deg<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetBlindAngleSetting(byte[] edt) {
 			reqSetProperty(EPC_BLIND_ANGLE_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Property name : Shutter speed<br>
+		 * Property name : Extent of opening 1<br>
 		 * <br>
-		 * EPC : 0xE3<br>
+		 * EPC : 0xE1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Low/medium/high<br>
+		 * Contents :<br>
+		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Low = 0x41, medium = 0x42, high = 0x43<br>
+		 * 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : —<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Setter reqSetShutterSpeed(byte[] edt) {
-			reqSetProperty(EPC_SHUTTER_SPEED, edt);
-			return this;
-		}
-		/**
-		 * Property name : Extent of opening 2<br>
-		 * <br>
-		 * EPC : 0xE4<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0xFF (0.255)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : —<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Setter reqSetExtentOfOpening2(byte[] edt) {
-			reqSetProperty(EPC_EXTENT_OF_OPENING2, edt);
-			return this;
-		}
-		/**
-		 * Property name : Electric lock setting<br>
-		 * <br>
-		 * EPC : 0xE5<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Activated = 0x41, deactivated = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char
-unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte
-1 byte<br>
-		 * <br>
-		 * Unit : ——<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		public Setter reqSetElectricLockSetting(byte[] edt) {
-			reqSetProperty(EPC_ELECTRIC_LOCK_SETTING, edt);
+		public Setter reqSetExtentOfOpening1(byte[] edt) {
+			reqSetProperty(EPC_EXTENT_OF_OPENING_1, edt);
+			return this;
+		}
+		/**
+		 * Property name : Open/close setting 1<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Open(ed)/close(d)/stop(ped) <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Setter reqSetOpenCloseSetting1(byte[] edt) {
+			reqSetProperty(EPC_OPEN_CLOSE_SETTING_1, edt);
 			return this;
 		}
 		/**
@@ -1346,29 +1329,80 @@ unsigned char<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Open/close<br>
+		 * Contents :<br>
+		 * Open/close <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Open = 0x41, close = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : —<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOpenCloseSetting2(byte[] edt) {
-			reqSetProperty(EPC_OPEN_CLOSE_SETTING2, edt);
+			reqSetProperty(EPC_OPEN_CLOSE_SETTING_2, edt);
 			return this;
 		}
+		/**
+		 * Property name : Extent of opening 2<br>
+		 * <br>
+		 * EPC : 0xE4<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0xFF (0.255)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Setter reqSetExtentOfOpening2(byte[] edt) {
+			reqSetProperty(EPC_EXTENT_OF_OPENING_2, edt);
+			return this;
+		}
+		/**
+		 * Property name : Electric lock setting<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify whether or not to activate the electric lock, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Activated = 0x41, deactivated = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Setter reqSetElectricLockSetting(byte[] edt) {
+			reqSetProperty(EPC_ELECTRIC_LOCK_SETTING, edt);
+			return this;
+		}
+
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
@@ -1481,57 +1515,29 @@ unsigned char<br>
 		}
 		
 		/**
-		 * Property name : Open/close setting 1<br>
+		 * Property name : Shutter speed<br>
 		 * <br>
-		 * EPC : 0xE0<br>
+		 * EPC : 0xE3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Open(ed)/close(d)/stop(ped)<br>
+		 * Contents :<br>
+		 * Low/medium/high <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br>
+		 * Low = 0x41, medium = 0x42, high = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : —<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetOpenCloseSetting1() {
-			reqGetProperty(EPC_OPEN_CLOSE_SETTING1);
-			return this;
-		}
-		/**
-		 * Property name : Extent of opening 1<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x31.0x38<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : —<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetExtentOfOpening1() {
-			reqGetProperty(EPC_EXTENT_OF_OPENING1);
+		public Getter reqGetShutterSpeed() {
+			reqGetProperty(EPC_SHUTTER_SPEED);
 			return this;
 		}
 		/**
@@ -1539,107 +1545,77 @@ unsigned char<br>
 		 * <br>
 		 * EPC : 0xE2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Blind angle<br>
+		 * Contents :<br>
+		 * Blind angle <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00.0xB4 (0.180°)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : de g<br>
+		 * Data size : 1<br>
+		 * Unit : deg<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetBlindAngleSetting() {
 			reqGetProperty(EPC_BLIND_ANGLE_SETTING);
 			return this;
 		}
 		/**
-		 * Property name : Shutter speed<br>
+		 * Property name : Extent of opening 1<br>
 		 * <br>
-		 * EPC : 0xE3<br>
+		 * EPC : 0xE1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Low/medium/high<br>
+		 * Contents :<br>
+		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Low = 0x41, medium = 0x42, high = 0x43<br>
+		 * 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : —<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetShutterSpeed() {
-			reqGetProperty(EPC_SHUTTER_SPEED);
-			return this;
-		}
-		/**
-		 * Property name : Extent of opening 2<br>
-		 * <br>
-		 * EPC : 0xE4<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0xFF (0.255)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : —<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetExtentOfOpening2() {
-			reqGetProperty(EPC_EXTENT_OF_OPENING2);
-			return this;
-		}
-		/**
-		 * Property name : Electric lock setting<br>
-		 * <br>
-		 * EPC : 0xE5<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Activated = 0x41, deactivated = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char
-unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte
-1 byte<br>
-		 * <br>
-		 * Unit : ——<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetElectricLockSetting() {
-			reqGetProperty(EPC_ELECTRIC_LOCK_SETTING);
+		public Getter reqGetExtentOfOpening1() {
+			reqGetProperty(EPC_EXTENT_OF_OPENING_1);
+			return this;
+		}
+		/**
+		 * Property name : Open/close setting 1<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Open(ed)/close(d)/stop(ped) <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetOpenCloseSetting1() {
+			reqGetProperty(EPC_OPEN_CLOSE_SETTING_1);
 			return this;
 		}
 		/**
@@ -1647,29 +1623,80 @@ unsigned char<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Open/close<br>
+		 * Contents :<br>
+		 * Open/close <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Open = 0x41, close = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : —<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOpenCloseSetting2() {
-			reqGetProperty(EPC_OPEN_CLOSE_SETTING2);
+			reqGetProperty(EPC_OPEN_CLOSE_SETTING_2);
 			return this;
 		}
+		/**
+		 * Property name : Extent of opening 2<br>
+		 * <br>
+		 * EPC : 0xE4<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0xFF (0.255)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetExtentOfOpening2() {
+			reqGetProperty(EPC_EXTENT_OF_OPENING_2);
+			return this;
+		}
+		/**
+		 * Property name : Electric lock setting<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify whether or not to activate the electric lock, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Activated = 0x41, deactivated = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetElectricLockSetting() {
+			reqGetProperty(EPC_ELECTRIC_LOCK_SETTING);
+			return this;
+		}
+
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
@@ -1781,57 +1808,29 @@ unsigned char<br>
 		}
 		
 		/**
-		 * Property name : Open/close setting 1<br>
+		 * Property name : Shutter speed<br>
 		 * <br>
-		 * EPC : 0xE0<br>
+		 * EPC : 0xE3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Open(ed)/close(d)/stop(ped)<br>
+		 * Contents :<br>
+		 * Low/medium/high <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br>
+		 * Low = 0x41, medium = 0x42, high = 0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : —<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformOpenCloseSetting1() {
-			reqInformProperty(EPC_OPEN_CLOSE_SETTING1);
-			return this;
-		}
-		/**
-		 * Property name : Extent of opening 1<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x31.0x38<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : —<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformExtentOfOpening1() {
-			reqInformProperty(EPC_EXTENT_OF_OPENING1);
+		public Informer reqInformShutterSpeed() {
+			reqInformProperty(EPC_SHUTTER_SPEED);
 			return this;
 		}
 		/**
@@ -1839,107 +1838,77 @@ unsigned char<br>
 		 * <br>
 		 * EPC : 0xE2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Blind angle<br>
+		 * Contents :<br>
+		 * Blind angle <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00.0xB4 (0.180°)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : de g<br>
+		 * Data size : 1<br>
+		 * Unit : deg<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformBlindAngleSetting() {
 			reqInformProperty(EPC_BLIND_ANGLE_SETTING);
 			return this;
 		}
 		/**
-		 * Property name : Shutter speed<br>
+		 * Property name : Extent of opening 1<br>
 		 * <br>
-		 * EPC : 0xE3<br>
+		 * EPC : 0xE1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Low/medium/high<br>
+		 * Contents :<br>
+		 * Used to specify the extent of opening by selecting a level from among the 8 predefined levels, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Low = 0x41, medium = 0x42, high = 0x43<br>
+		 * 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : —<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformShutterSpeed() {
-			reqInformProperty(EPC_SHUTTER_SPEED);
-			return this;
-		}
-		/**
-		 * Property name : Extent of opening 2<br>
-		 * <br>
-		 * EPC : 0xE4<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0xFF (0.255)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : —<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformExtentOfOpening2() {
-			reqInformProperty(EPC_EXTENT_OF_OPENING2);
-			return this;
-		}
-		/**
-		 * Property name : Electric lock setting<br>
-		 * <br>
-		 * EPC : 0xE5<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to activate the electric lock, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Activated = 0x41, deactivated = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char
-unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte
-1 byte<br>
-		 * <br>
-		 * Unit : ——<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformElectricLockSetting() {
-			reqInformProperty(EPC_ELECTRIC_LOCK_SETTING);
+		public Informer reqInformExtentOfOpening1() {
+			reqInformProperty(EPC_EXTENT_OF_OPENING_1);
+			return this;
+		}
+		/**
+		 * Property name : Open/close setting 1<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Open(ed)/close(d)/stop(ped) <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Open(ed) = 0x41, close(d) = 0x42, stop(ped) = 0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformOpenCloseSetting1() {
+			reqInformProperty(EPC_OPEN_CLOSE_SETTING_1);
 			return this;
 		}
 		/**
@@ -1947,29 +1916,80 @@ unsigned char<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Open/close<br>
+		 * Contents :<br>
+		 * Open/close <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Open = 0x41, close = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : —<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOpenCloseSetting2() {
-			reqInformProperty(EPC_OPEN_CLOSE_SETTING2);
+			reqInformProperty(EPC_OPEN_CLOSE_SETTING_2);
 			return this;
 		}
+		/**
+		 * Property name : Extent of opening 2<br>
+		 * <br>
+		 * EPC : 0xE4<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify the extent of opening by selecting a level from among the 256 predefined levels, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0xFF (0.255)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformExtentOfOpening2() {
+			reqInformProperty(EPC_EXTENT_OF_OPENING_2);
+			return this;
+		}
+		/**
+		 * Property name : Electric lock setting<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify whether or not to activate the electric lock, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Activated = 0x41, deactivated = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformElectricLockSetting() {
+			reqInformProperty(EPC_ELECTRIC_LOCK_SETTING);
+			return this;
+		}
+
 	}
 
 	public static class Proxy extends ElectricStormWindow {
@@ -1982,25 +2002,32 @@ unsigned char<br>
 			return mEchoInstanceCode;
 		}
 		@Override
-		protected byte[] getOperationStatus() {return null;}
+		protected boolean setOpenCloseSetting1(byte[] edt){return false;}
 		@Override
-		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		protected byte[] getOpenCloseSetting1(){return null;}
 		@Override
-		protected byte[] getInstallationLocation() {return null;}
+		protected byte[] getSetPropertyMap(){return null;}
 		@Override
-		protected byte[] getStandardVersionInformation() {return null;}
+		protected byte[] getStatusChangeAnnouncementPropertyMap(){return null;}
 		@Override
-		protected byte[] getFaultStatus() {return null;}
+		protected boolean setElectricLockSetting(byte[] edt){return false;}
 		@Override
-		protected byte[] getManufacturerCode() {return null;}
+		protected byte[] getElectricLockSetting(){return null;}
 		@Override
-		protected boolean setOpenCloseSetting1(byte[] edt) {return false;}
+		protected byte[] getOperationStatus(){return null;}
 		@Override
-		protected byte[] getOpenCloseSetting1() {return null;}
+		protected boolean setInstallationLocation(byte[] edt){return false;}
 		@Override
-		protected boolean setElectricLockSetting(byte[] edt) {return false;}
+		protected byte[] getInstallationLocation(){return null;}
 		@Override
-		protected byte[] getElectricLockSetting() {return null;}
+		protected byte[] getStandardVersionInformation(){return null;}
+		@Override
+		protected byte[] getGetPropertyMap(){return null;}
+		@Override
+		protected byte[] getFaultStatus(){return null;}
+		@Override
+		protected byte[] getManufacturerCode(){return null;}
+
 	}
 	
 	public static Setter setG() {

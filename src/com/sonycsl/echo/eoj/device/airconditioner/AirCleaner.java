@@ -1,37 +1,43 @@
 /*
- * Copyright 2012 Sony Computer Science Laboratories, Inc. <info@kadecot.net>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2014 Sony Computer Science Laboratories, Inc.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.sonycsl.echo.eoj.device.airconditioner;
 
 import com.sonycsl.echo.Echo;
-import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
-import com.sonycsl.echo.node.EchoNode;
 
 public abstract class AirCleaner extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x0135;
 
 	public static final byte EPC_FILTER_CHANGE_NOTICE = (byte)0xE1;
-	public static final byte EPC_AIR_FLOW_RATE_SETTING = (byte)0xA0;
 	public static final byte EPC_SMOKE_CIGARETTE_DETECTION_STATUS = (byte)0xC1;
-	public static final byte EPC_OPTICAL_CATALYST_OPERATION_SETTING = (byte)0xC2;
 	public static final byte EPC_AIR_POLLUTION_DETECTION_STATUS = (byte)0xC0;
+	public static final byte EPC_OPTICAL_CATALYST_OPERATION_SETTING = (byte)0xC2;
+	public static final byte EPC_AIR_FLOW_RATE_SETTING = (byte)0xA0;
 
 	@Override
 	protected void setupPropertyMaps() {
@@ -40,6 +46,7 @@ public abstract class AirCleaner extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		addSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
+
 	}
 
 	@Override
@@ -54,26 +61,315 @@ public abstract class AirCleaner extends DeviceObject {
 	}
 
 	/**
+	 * Property name : Filter change notice<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents :<br>
+	 * Filter change time notice found/not found <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Found = 0x41, Not found = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getFilterChangeNotice() {return null;}
+	/**
+	 * Property name : Filter change notice<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents :<br>
+	 * Filter change time notice found/not found <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Found = 0x41, Not found = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidFilterChangeNotice(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Smoke (cigarette) detection status<br>
+	 * <br>
+	 * EPC : 0xC1<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates smoke (cigarette) detection status. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Smoke (cigarette) detection status found = 0x41_x000a_Smoke (cigarette) detection status not found = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getSmokeCigaretteDetectionStatus() {return null;}
+	/**
+	 * Property name : Smoke (cigarette) detection status<br>
+	 * <br>
+	 * EPC : 0xC1<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates smoke (cigarette) detection status. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Smoke (cigarette) detection status found = 0x41_x000a_Smoke (cigarette) detection status not found = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidSmokeCigaretteDetectionStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Air pollution detection status<br>
+	 * <br>
+	 * EPC : 0xC0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates air pollution detection status <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Air pollution detected = 0x41_x000a_Air pollution non-detected = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getAirPollutionDetectionStatus() {return null;}
+	/**
+	 * Property name : Air pollution detection status<br>
+	 * <br>
+	 * EPC : 0xC0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates air pollution detection status <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Air pollution detected = 0x41_x000a_Air pollution non-detected = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidAirPollutionDetectionStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Optical catalyst operation setting<br>
+	 * <br>
+	 * EPC : 0xC2<br>
+	 * <br>
+	 * Contents :<br>
+	 * Optical catalyst ON/OFF status <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Optical catalyst ON = 0x41 Optical catalyst OFF = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setOpticalCatalystOperationSetting(byte[] edt) {return false;}
+	/**
+	 * Property name : Optical catalyst operation setting<br>
+	 * <br>
+	 * EPC : 0xC2<br>
+	 * <br>
+	 * Contents :<br>
+	 * Optical catalyst ON/OFF status <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Optical catalyst ON = 0x41 Optical catalyst OFF = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getOpticalCatalystOperationSetting() {return null;}
+	/**
+	 * Property name : Optical catalyst operation setting<br>
+	 * <br>
+	 * EPC : 0xC2<br>
+	 * <br>
+	 * Contents :<br>
+	 * Optical catalyst ON/OFF status <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Optical catalyst ON = 0x41 Optical catalyst OFF = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidOpticalCatalystOperationSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Air flow rate setting<br>
+	 * <br>
+	 * EPC : 0xA0<br>
+	 * <br>
+	 * Contents :<br>
+	 * Sets air flow rate level and air flow rate auto status. The ventilation air flow rate is specified (8-step). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Ventilation air flow rate auto status_x000a_= 0x41_x000a_Ventilation air flow rate level_x000a_= 0x31.0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setAirFlowRateSetting(byte[] edt) {return false;}
+	/**
+	 * Property name : Air flow rate setting<br>
+	 * <br>
+	 * EPC : 0xA0<br>
+	 * <br>
+	 * Contents :<br>
+	 * Sets air flow rate level and air flow rate auto status. The ventilation air flow rate is specified (8-step). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Ventilation air flow rate auto status_x000a_= 0x41_x000a_Ventilation air flow rate level_x000a_= 0x31.0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getAirFlowRateSetting() {return null;}
+	/**
+	 * Property name : Air flow rate setting<br>
+	 * <br>
+	 * EPC : 0xA0<br>
+	 * <br>
+	 * Contents :<br>
+	 * Sets air flow rate level and air flow rate auto status. The ventilation air flow rate is specified (8-step). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Ventilation air flow rate auto status_x000a_= 0x41_x000a_Ventilation air flow rate level_x000a_= 0x31.0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidAirFlowRateSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
 	 * Property name : Operation status<br>
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -83,328 +379,48 @@ public abstract class AirCleaner extends DeviceObject {
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
 	protected abstract byte[] getOperationStatus();
 	/**
-	 * Property name : Filter change notice<br>
+	 * Property name : Operation status<br>
 	 * <br>
-	 * EPC : 0xE1<br>
+	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Filter change time notice found/not found<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Found = 0x41, Not found = 0x42<br>
+	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected byte[] getFilterChangeNotice() {return null;}
-	/**
-	 * Property name : Filter change notice<br>
-	 * <br>
-	 * EPC : 0xE1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Filter change time notice found/not found<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Found = 0x41, Not found = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidFilterChangeNotice(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Air flow rate setting<br>
-	 * <br>
-	 * EPC : 0xA0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Sets air flow rate level and air flow rate auto status. The ventilation air flow rate is specified (8-step).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Ventilation air flow rate auto status<br>
-	 * = 0x41<br>
-	 * Ventilation air flow rate level<br>
-	 * = 0x31.0x38<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setAirFlowRateSetting(byte[] edt) {return false;}
-	/**
-	 * Property name : Air flow rate setting<br>
-	 * <br>
-	 * EPC : 0xA0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Sets air flow rate level and air flow rate auto status. The ventilation air flow rate is specified (8-step).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Ventilation air flow rate auto status<br>
-	 * = 0x41<br>
-	 * Ventilation air flow rate level<br>
-	 * = 0x31.0x38<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getAirFlowRateSetting() {return null;}
-	/**
-	 * Property name : Air flow rate setting<br>
-	 * <br>
-	 * EPC : 0xA0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Sets air flow rate level and air flow rate auto status. The ventilation air flow rate is specified (8-step).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Ventilation air flow rate auto status<br>
-	 * = 0x41<br>
-	 * Ventilation air flow rate level<br>
-	 * = 0x31.0x38<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidAirFlowRateSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Smoke (cigarette) detection status<br>
-	 * <br>
-	 * EPC : 0xC1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates smoke (cigarette) detection status.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Smoke (cigarette) detection status found = 0x41<br>
-	 * Smoke (cigarette) detection status not found = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getSmokeCigaretteDetectionStatus() {return null;}
-	/**
-	 * Property name : Smoke (cigarette) detection status<br>
-	 * <br>
-	 * EPC : 0xC1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates smoke (cigarette) detection status.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Smoke (cigarette) detection status found = 0x41<br>
-	 * Smoke (cigarette) detection status not found = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidSmokeCigaretteDetectionStatus(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Optical catalyst operation setting<br>
-	 * <br>
-	 * EPC : 0xC2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Optical catalyst ON/OFF status<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Optical catalyst ON = 0x41 Optical catalyst OFF = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setOpticalCatalystOperationSetting(byte[] edt) {return false;}
-	/**
-	 * Property name : Optical catalyst operation setting<br>
-	 * <br>
-	 * EPC : 0xC2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Optical catalyst ON/OFF status<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Optical catalyst ON = 0x41 Optical catalyst OFF = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getOpticalCatalystOperationSetting() {return null;}
-	/**
-	 * Property name : Optical catalyst operation setting<br>
-	 * <br>
-	 * EPC : 0xC2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Optical catalyst ON/OFF status<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Optical catalyst ON = 0x41 Optical catalyst OFF = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidOpticalCatalystOperationSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Air pollution detection status<br>
-	 * <br>
-	 * EPC : 0xC0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates air pollution detection status<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Air pollution detected = 0x41<br>
-	 * Air pollution non-detected = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getAirPollutionDetectionStatus() {return null;}
-	/**
-	 * Property name : Air pollution detection status<br>
-	 * <br>
-	 * EPC : 0xC0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates air pollution detection status<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Air pollution detected = 0x41<br>
-	 * Air pollution non-detected = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidAirPollutionDetectionStatus(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
+	protected boolean isValidOperationStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 
@@ -414,8 +430,9 @@ public abstract class AirCleaner extends DeviceObject {
 		if(success) return success;
 
 		switch(property.epc) {
-		case EPC_AIR_FLOW_RATE_SETTING : return setAirFlowRateSetting(property.edt);
 		case EPC_OPTICAL_CATALYST_OPERATION_SETTING : return setOpticalCatalystOperationSetting(property.edt);
+		case EPC_AIR_FLOW_RATE_SETTING : return setAirFlowRateSetting(property.edt);
+
 		default : return false;
 		}
 	}
@@ -427,10 +444,11 @@ public abstract class AirCleaner extends DeviceObject {
 		
 		switch(epc) {
 		case EPC_FILTER_CHANGE_NOTICE : return getFilterChangeNotice();
-		case EPC_AIR_FLOW_RATE_SETTING : return getAirFlowRateSetting();
 		case EPC_SMOKE_CIGARETTE_DETECTION_STATUS : return getSmokeCigaretteDetectionStatus();
-		case EPC_OPTICAL_CATALYST_OPERATION_SETTING : return getOpticalCatalystOperationSetting();
 		case EPC_AIR_POLLUTION_DETECTION_STATUS : return getAirPollutionDetectionStatus();
+		case EPC_OPTICAL_CATALYST_OPERATION_SETTING : return getOpticalCatalystOperationSetting();
+		case EPC_AIR_FLOW_RATE_SETTING : return getAirFlowRateSetting();
+
 		default : return null;
 		}
 	}
@@ -442,10 +460,11 @@ public abstract class AirCleaner extends DeviceObject {
 		
 		switch(property.epc) {
 		case EPC_FILTER_CHANGE_NOTICE : return isValidFilterChangeNotice(property.edt);
-		case EPC_AIR_FLOW_RATE_SETTING : return isValidAirFlowRateSetting(property.edt);
 		case EPC_SMOKE_CIGARETTE_DETECTION_STATUS : return isValidSmokeCigaretteDetectionStatus(property.edt);
-		case EPC_OPTICAL_CATALYST_OPERATION_SETTING : return isValidOpticalCatalystOperationSetting(property.edt);
 		case EPC_AIR_POLLUTION_DETECTION_STATUS : return isValidAirPollutionDetectionStatus(property.edt);
+		case EPC_OPTICAL_CATALYST_OPERATION_SETTING : return isValidOpticalCatalystOperationSetting(property.edt);
+		case EPC_AIR_FLOW_RATE_SETTING : return isValidAirFlowRateSetting(property.edt);
+
 		default : return false;
 		}
 	}
@@ -493,12 +512,13 @@ public abstract class AirCleaner extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_AIR_FLOW_RATE_SETTING : 
-				onSetAirFlowRateSetting(eoj, tid, esv, property, success);
-				return true;
 			case EPC_OPTICAL_CATALYST_OPERATION_SETTING : 
 				onSetOpticalCatalystOperationSetting(eoj, tid, esv, property, success);
 				return true;
+			case EPC_AIR_FLOW_RATE_SETTING : 
+				onSetAirFlowRateSetting(eoj, tid, esv, property, success);
+				return true;
+
 			default :
 				return false;
 			}
@@ -514,18 +534,19 @@ public abstract class AirCleaner extends DeviceObject {
 			case EPC_FILTER_CHANGE_NOTICE : 
 				onGetFilterChangeNotice(eoj, tid, esv, property, success);
 				return true;
-			case EPC_AIR_FLOW_RATE_SETTING : 
-				onGetAirFlowRateSetting(eoj, tid, esv, property, success);
-				return true;
 			case EPC_SMOKE_CIGARETTE_DETECTION_STATUS : 
 				onGetSmokeCigaretteDetectionStatus(eoj, tid, esv, property, success);
-				return true;
-			case EPC_OPTICAL_CATALYST_OPERATION_SETTING : 
-				onGetOpticalCatalystOperationSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_AIR_POLLUTION_DETECTION_STATUS : 
 				onGetAirPollutionDetectionStatus(eoj, tid, esv, property, success);
 				return true;
+			case EPC_OPTICAL_CATALYST_OPERATION_SETTING : 
+				onGetOpticalCatalystOperationSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_AIR_FLOW_RATE_SETTING : 
+				onGetAirFlowRateSetting(eoj, tid, esv, property, success);
+				return true;
+
 			default :
 				return false;
 			}
@@ -536,121 +557,91 @@ public abstract class AirCleaner extends DeviceObject {
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Filter change time notice found/not found<br>
+		 * Contents :<br>
+		 * Filter change time notice found/not found <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Found = 0x41, Not found = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetFilterChangeNotice(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Air flow rate setting<br>
-		 * <br>
-		 * EPC : 0xA0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Sets air flow rate level and air flow rate auto status. The ventilation air flow rate is specified (8-step).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Ventilation air flow rate auto status<br>
-		 * = 0x41<br>
-		 * Ventilation air flow rate level<br>
-		 * = 0x31.0x38<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Air flow rate setting<br>
-		 * <br>
-		 * EPC : 0xA0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Sets air flow rate level and air flow rate auto status. The ventilation air flow rate is specified (8-step).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Ventilation air flow rate auto status<br>
-		 * = 0x41<br>
-		 * Ventilation air flow rate level<br>
-		 * = 0x31.0x38<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Smoke (cigarette) detection status<br>
 		 * <br>
 		 * EPC : 0xC1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates smoke (cigarette) detection status.<br>
+		 * Contents :<br>
+		 * This property indicates smoke (cigarette) detection status. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Smoke (cigarette) detection status found = 0x41<br>
-		 * Smoke (cigarette) detection status not found = 0x42<br>
+		 * Smoke (cigarette) detection status found = 0x41_x000a_Smoke (cigarette) detection status not found = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetSmokeCigaretteDetectionStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Air pollution detection status<br>
+		 * <br>
+		 * EPC : 0xC0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates air pollution detection status <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Air pollution detected = 0x41_x000a_Air pollution non-detected = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetAirPollutionDetectionStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Optical catalyst operation setting<br>
 		 * <br>
 		 * EPC : 0xC2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Optical catalyst ON/OFF status<br>
+		 * Contents :<br>
+		 * Optical catalyst ON/OFF status <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Optical catalyst ON = 0x41 Optical catalyst OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onSetOpticalCatalystOperationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -658,48 +649,117 @@ public abstract class AirCleaner extends DeviceObject {
 		 * <br>
 		 * EPC : 0xC2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Optical catalyst ON/OFF status<br>
+		 * Contents :<br>
+		 * Optical catalyst ON/OFF status <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Optical catalyst ON = 0x41 Optical catalyst OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetOpticalCatalystOperationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Air pollution detection status<br>
+		 * Property name : Air flow rate setting<br>
 		 * <br>
-		 * EPC : 0xC0<br>
+		 * EPC : 0xA0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates air pollution detection status<br>
+		 * Contents :<br>
+		 * Sets air flow rate level and air flow rate auto status. The ventilation air flow rate is specified (8-step). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Air pollution detected = 0x41<br>
-		 * Air pollution non-detected = 0x42<br>
+		 * Ventilation air flow rate auto status_x000a_= 0x41_x000a_Ventilation air flow rate level_x000a_= 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetAirPollutionDetectionStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Air flow rate setting<br>
+		 * <br>
+		 * EPC : 0xA0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Sets air flow rate level and air flow rate auto status. The ventilation air flow rate is specified (8-step). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Ventilation air flow rate auto status_x000a_= 0x41_x000a_Ventilation air flow rate level_x000a_= 0x31.0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetAirFlowRateSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+
 	}
 
 	public static class Setter extends DeviceObject.Setter {
@@ -748,60 +808,58 @@ public abstract class AirCleaner extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : Air flow rate setting<br>
-		 * <br>
-		 * EPC : 0xA0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Sets air flow rate level and air flow rate auto status. The ventilation air flow rate is specified (8-step).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Ventilation air flow rate auto status<br>
-		 * = 0x41<br>
-		 * Ventilation air flow rate level<br>
-		 * = 0x31.0x38<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Setter reqSetAirFlowRateSetting(byte[] edt) {
-			reqSetProperty(EPC_AIR_FLOW_RATE_SETTING, edt);
-			return this;
-		}
-		/**
 		 * Property name : Optical catalyst operation setting<br>
 		 * <br>
 		 * EPC : 0xC2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Optical catalyst ON/OFF status<br>
+		 * Contents :<br>
+		 * Optical catalyst ON/OFF status <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Optical catalyst ON = 0x41 Optical catalyst OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOpticalCatalystOperationSetting(byte[] edt) {
 			reqSetProperty(EPC_OPTICAL_CATALYST_OPERATION_SETTING, edt);
 			return this;
 		}
+		/**
+		 * Property name : Air flow rate setting<br>
+		 * <br>
+		 * EPC : 0xA0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Sets air flow rate level and air flow rate auto status. The ventilation air flow rate is specified (8-step). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Ventilation air flow rate auto status_x000a_= 0x41_x000a_Ventilation air flow rate level_x000a_= 0x31.0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Setter reqSetAirFlowRateSetting(byte[] edt) {
+			reqSetProperty(EPC_AIR_FLOW_RATE_SETTING, edt);
+			return this;
+		}
+
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
@@ -918,54 +976,25 @@ public abstract class AirCleaner extends DeviceObject {
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Filter change time notice found/not found<br>
+		 * Contents :<br>
+		 * Filter change time notice found/not found <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Found = 0x41, Not found = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetFilterChangeNotice() {
 			reqGetProperty(EPC_FILTER_CHANGE_NOTICE);
-			return this;
-		}
-		/**
-		 * Property name : Air flow rate setting<br>
-		 * <br>
-		 * EPC : 0xA0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Sets air flow rate level and air flow rate auto status. The ventilation air flow rate is specified (8-step).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Ventilation air flow rate auto status<br>
-		 * = 0x41<br>
-		 * Ventilation air flow rate level<br>
-		 * = 0x31.0x38<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetAirFlowRateSetting() {
-			reqGetProperty(EPC_AIR_FLOW_RATE_SETTING);
 			return this;
 		}
 		/**
@@ -973,52 +1002,25 @@ public abstract class AirCleaner extends DeviceObject {
 		 * <br>
 		 * EPC : 0xC1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates smoke (cigarette) detection status.<br>
+		 * Contents :<br>
+		 * This property indicates smoke (cigarette) detection status. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Smoke (cigarette) detection status found = 0x41<br>
-		 * Smoke (cigarette) detection status not found = 0x42<br>
+		 * Smoke (cigarette) detection status found = 0x41_x000a_Smoke (cigarette) detection status not found = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetSmokeCigaretteDetectionStatus() {
 			reqGetProperty(EPC_SMOKE_CIGARETTE_DETECTION_STATUS);
-			return this;
-		}
-		/**
-		 * Property name : Optical catalyst operation setting<br>
-		 * <br>
-		 * EPC : 0xC2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Optical catalyst ON/OFF status<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Optical catalyst ON = 0x41 Optical catalyst OFF = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetOpticalCatalystOperationSetting() {
-			reqGetProperty(EPC_OPTICAL_CATALYST_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -1026,28 +1028,80 @@ public abstract class AirCleaner extends DeviceObject {
 		 * <br>
 		 * EPC : 0xC0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates air pollution detection status<br>
+		 * Contents :<br>
+		 * This property indicates air pollution detection status <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Air pollution detected = 0x41<br>
-		 * Air pollution non-detected = 0x42<br>
+		 * Air pollution detected = 0x41_x000a_Air pollution non-detected = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetAirPollutionDetectionStatus() {
 			reqGetProperty(EPC_AIR_POLLUTION_DETECTION_STATUS);
 			return this;
 		}
+		/**
+		 * Property name : Optical catalyst operation setting<br>
+		 * <br>
+		 * EPC : 0xC2<br>
+		 * <br>
+		 * Contents :<br>
+		 * Optical catalyst ON/OFF status <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Optical catalyst ON = 0x41 Optical catalyst OFF = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetOpticalCatalystOperationSetting() {
+			reqGetProperty(EPC_OPTICAL_CATALYST_OPERATION_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : Air flow rate setting<br>
+		 * <br>
+		 * EPC : 0xA0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Sets air flow rate level and air flow rate auto status. The ventilation air flow rate is specified (8-step). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Ventilation air flow rate auto status_x000a_= 0x41_x000a_Ventilation air flow rate level_x000a_= 0x31.0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetAirFlowRateSetting() {
+			reqGetProperty(EPC_AIR_FLOW_RATE_SETTING);
+			return this;
+		}
+
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
@@ -1163,54 +1217,25 @@ public abstract class AirCleaner extends DeviceObject {
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Filter change time notice found/not found<br>
+		 * Contents :<br>
+		 * Filter change time notice found/not found <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Found = 0x41, Not found = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformFilterChangeNotice() {
 			reqInformProperty(EPC_FILTER_CHANGE_NOTICE);
-			return this;
-		}
-		/**
-		 * Property name : Air flow rate setting<br>
-		 * <br>
-		 * EPC : 0xA0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Sets air flow rate level and air flow rate auto status. The ventilation air flow rate is specified (8-step).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Ventilation air flow rate auto status<br>
-		 * = 0x41<br>
-		 * Ventilation air flow rate level<br>
-		 * = 0x31.0x38<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformAirFlowRateSetting() {
-			reqInformProperty(EPC_AIR_FLOW_RATE_SETTING);
 			return this;
 		}
 		/**
@@ -1218,52 +1243,25 @@ public abstract class AirCleaner extends DeviceObject {
 		 * <br>
 		 * EPC : 0xC1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates smoke (cigarette) detection status.<br>
+		 * Contents :<br>
+		 * This property indicates smoke (cigarette) detection status. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Smoke (cigarette) detection status found = 0x41<br>
-		 * Smoke (cigarette) detection status not found = 0x42<br>
+		 * Smoke (cigarette) detection status found = 0x41_x000a_Smoke (cigarette) detection status not found = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformSmokeCigaretteDetectionStatus() {
 			reqInformProperty(EPC_SMOKE_CIGARETTE_DETECTION_STATUS);
-			return this;
-		}
-		/**
-		 * Property name : Optical catalyst operation setting<br>
-		 * <br>
-		 * EPC : 0xC2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Optical catalyst ON/OFF status<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Optical catalyst ON = 0x41 Optical catalyst OFF = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformOpticalCatalystOperationSetting() {
-			reqInformProperty(EPC_OPTICAL_CATALYST_OPERATION_SETTING);
 			return this;
 		}
 		/**
@@ -1271,28 +1269,80 @@ public abstract class AirCleaner extends DeviceObject {
 		 * <br>
 		 * EPC : 0xC0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates air pollution detection status<br>
+		 * Contents :<br>
+		 * This property indicates air pollution detection status <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Air pollution detected = 0x41<br>
-		 * Air pollution non-detected = 0x42<br>
+		 * Air pollution detected = 0x41_x000a_Air pollution non-detected = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformAirPollutionDetectionStatus() {
 			reqInformProperty(EPC_AIR_POLLUTION_DETECTION_STATUS);
 			return this;
 		}
+		/**
+		 * Property name : Optical catalyst operation setting<br>
+		 * <br>
+		 * EPC : 0xC2<br>
+		 * <br>
+		 * Contents :<br>
+		 * Optical catalyst ON/OFF status <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Optical catalyst ON = 0x41 Optical catalyst OFF = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformOpticalCatalystOperationSetting() {
+			reqInformProperty(EPC_OPTICAL_CATALYST_OPERATION_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : Air flow rate setting<br>
+		 * <br>
+		 * EPC : 0xA0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Sets air flow rate level and air flow rate auto status. The ventilation air flow rate is specified (8-step). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Ventilation air flow rate auto status_x000a_= 0x41_x000a_Ventilation air flow rate level_x000a_= 0x31.0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformAirFlowRateSetting() {
+			reqInformProperty(EPC_AIR_FLOW_RATE_SETTING);
+			return this;
+		}
+
 	}
 
 	public static class Proxy extends AirCleaner {
@@ -1305,19 +1355,26 @@ public abstract class AirCleaner extends DeviceObject {
 			return mEchoInstanceCode;
 		}
 		@Override
-		protected byte[] getOperationStatus() {return null;}
+		protected byte[] getGetPropertyMap(){return null;}
 		@Override
-		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		protected byte[] getStatusChangeAnnouncementPropertyMap(){return null;}
 		@Override
-		protected byte[] getInstallationLocation() {return null;}
+		protected byte[] getSetPropertyMap(){return null;}
 		@Override
-		protected byte[] getStandardVersionInformation() {return null;}
+		protected boolean setOperationStatus(byte[] edt){return false;}
 		@Override
-		protected byte[] getFaultStatus() {return null;}
+		protected byte[] getOperationStatus(){return null;}
 		@Override
-		protected byte[] getManufacturerCode() {return null;}
+		protected boolean setInstallationLocation(byte[] edt){return false;}
 		@Override
-		protected boolean setOperationStatus(byte[] edt) {return false;}
+		protected byte[] getInstallationLocation(){return null;}
+		@Override
+		protected byte[] getStandardVersionInformation(){return null;}
+		@Override
+		protected byte[] getFaultStatus(){return null;}
+		@Override
+		protected byte[] getManufacturerCode(){return null;}
+
 	}
 	
 	public static Setter setG() {

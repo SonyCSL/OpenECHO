@@ -1,59 +1,66 @@
 /*
- * Copyright 2012 Sony Computer Science Laboratories, Inc. <info@kadecot.net>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2014 Sony Computer Science Laboratories, Inc.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.sonycsl.echo.eoj.device.housingfacilities;
 
 import com.sonycsl.echo.Echo;
-import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
-import com.sonycsl.echo.node.EchoNode;
 
 public abstract class FuelCell extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x027C;
 
+	public static final byte EPC_MEASURED_CUMULATIVE_POWER_GENERATION_OUTPUT = (byte)0xC5;
+	public static final byte EPC_MEASURED_INSTANTANEOUS_POWER_GENERATION_OUTPUT = (byte)0xC4;
+	public static final byte EPC_MEASURED_INSTANTANEOUS_GAS_CONSUMPTION = (byte)0xC7;
+	public static final byte EPC_CUMULATIVE_POWER_GENERATION_OUTPUT_RESET_SETTING = (byte)0xC6;
 	public static final byte EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER = (byte)0xC1;
 	public static final byte EPC_RATED_POWER_GENERATION_OUTPUT = (byte)0xC2;
-	public static final byte EPC_HEATING_VALUE_OF_HOT_WATER_STORAGE_TANK = (byte)0xC3;
-	public static final byte EPC_MEASURED_INSTANTANEOUS_POWER_GENERATION_OUTPUT = (byte)0xC4;
-	public static final byte EPC_MEASURED_CUMULATIVE_POWER_GENERATION_OUTPUT = (byte)0xC5;
-	public static final byte EPC_CUMULATIVE_POWER_GENERATION_OUTPUT_RESET_SETTING = (byte)0xC6;
-	public static final byte EPC_MEASURED_INSTANTANEOUS_GAS_CONSUMPTION = (byte)0xC7;
-	public static final byte EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION = (byte)0xC8;
 	public static final byte EPC_CUMULATIVE_GAS_CONSUMPTION_RESET_SETTING = (byte)0xC9;
-	public static final byte EPC_POWER_GENERATION_SETTING = (byte)0xCA;
-	public static final byte EPC_POWER_GENERATION_STATUS = (byte)0xCB;
-	public static final byte EPC_MEASURED_IN_HOUSE_INSTANTANEOUS_POWER_CONSUMPTION = (byte)0xCC;
-	public static final byte EPC_MEASURED_IN_HOUSE_CUMULATIVE_POWER_CONSUMPTION = (byte)0xCD;
-	public static final byte EPC_IN_HOUSE_CUMULATIVE_POWER_CONSUMPTION_RESET = (byte)0xCE;
+	public static final byte EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION = (byte)0xC8;
+	public static final byte EPC_HEATING_VALUE_OF_HOT_WATER_STORAGE_TANK = (byte)0xC3;
 	public static final byte EPC_SYSTEM_INTERCONNECTED_TYPE = (byte)0xD0;
-	public static final byte EPC_MEASURED_REMAINING_HOT_WATER_AMOUNT = (byte)0xE1;
 	public static final byte EPC_TANK_CAPACITY = (byte)0xE2;
+	public static final byte EPC_MEASURED_REMAINING_HOT_WATER_AMOUNT = (byte)0xE1;
+	public static final byte EPC_IN_HOUSE_CUMULATIVE_POWER_CONSUMPTION_RESET = (byte)0xCE;
+	public static final byte EPC_MEASURED_IN_HOUSE_CUMULATIVE_POWER_CONSUMPTION = (byte)0xCD;
+	public static final byte EPC_POWER_GENERATION_SETTING = (byte)0xCA;
+	public static final byte EPC_MEASURED_IN_HOUSE_INSTANTANEOUS_POWER_CONSUMPTION = (byte)0xCC;
+	public static final byte EPC_POWER_GENERATION_STATUS = (byte)0xCB;
 
 	@Override
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
+		addGetProperty(EPC_MEASURED_CUMULATIVE_POWER_GENERATION_OUTPUT);
+		addGetProperty(EPC_MEASURED_INSTANTANEOUS_POWER_GENERATION_OUTPUT);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
-		addGetProperty(EPC_MEASURED_INSTANTANEOUS_POWER_GENERATION_OUTPUT);
-		addGetProperty(EPC_MEASURED_CUMULATIVE_POWER_GENERATION_OUTPUT);
+
 	}
 
 	@Override
@@ -68,26 +75,465 @@ public abstract class FuelCell extends DeviceObject {
 	}
 
 	/**
+	 * Property name : Measured cumulative power generation output<br>
+	 * <br>
+	 * EPC : 0xC5<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the cumulative power generation output in units of 0.001kWh. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0.0x3B9AC9FF (0.999,999.999kWh)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * Data size : 4<br>
+	 * Unit : 0.001_x000a_kWh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getMeasuredCumulativePowerGenerationOutput();
+	/**
+	 * Property name : Measured cumulative power generation output<br>
+	 * <br>
+	 * EPC : 0xC5<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the cumulative power generation output in units of 0.001kWh. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0.0x3B9AC9FF (0.999,999.999kWh)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * Data size : 4<br>
+	 * Unit : 0.001_x000a_kWh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasuredCumulativePowerGenerationOutput(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measured instantaneous power generation output<br>
+	 * <br>
+	 * EPC : 0xC4<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the instantaneous power generation output in watts. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533W)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getMeasuredInstantaneousPowerGenerationOutput();
+	/**
+	 * Property name : Measured instantaneous power generation output<br>
+	 * <br>
+	 * EPC : 0xC4<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the instantaneous power generation output in watts. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533W)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasuredInstantaneousPowerGenerationOutput(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measured instantaneous gas consumption<br>
+	 * <br>
+	 * EPC : 0xC7<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the instantaneous gas consumption in units of 0.001m3/h. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0.0xFFFD (0.65.533m3)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : 0.001_x000a_m3/h<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasuredInstantaneousGasConsumption() {return null;}
+	/**
+	 * Property name : Measured instantaneous gas consumption<br>
+	 * <br>
+	 * EPC : 0xC7<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the instantaneous gas consumption in units of 0.001m3/h. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0.0xFFFD (0.65.533m3)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : 0.001_x000a_m3/h<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasuredInstantaneousGasConsumption(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Cumulative power generation output reset setting<br>
+	 * <br>
+	 * EPC : 0xC6<br>
+	 * <br>
+	 * Contents :<br>
+	 * Resets the cumulative power generation output by writing 0x00. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reset=0x00<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - -<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setCumulativePowerGenerationOutputResetSetting(byte[] edt) {return false;}
+	/**
+	 * Property name : Cumulative power generation output reset setting<br>
+	 * <br>
+	 * EPC : 0xC6<br>
+	 * <br>
+	 * Contents :<br>
+	 * Resets the cumulative power generation output by writing 0x00. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reset=0x00<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - -<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidCumulativePowerGenerationOutputResetSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measured temperature of water in water heater<br>
+	 * <br>
+	 * EPC : 0xC1<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the current temperature of the water in the water heater in °C. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64 (0.100°C)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : °C<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasuredTemperatureOfWaterInWaterHeater() {return null;}
+	/**
+	 * Property name : Measured temperature of water in water heater<br>
+	 * <br>
+	 * EPC : 0xC1<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the current temperature of the water in the water heater in °C. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64 (0.100°C)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : °C<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasuredTemperatureOfWaterInWaterHeater(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Rated power generation output<br>
+	 * <br>
+	 * EPC : 0xC2<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the rated power generation output in watts. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533W)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getRatedPowerGenerationOutput() {return null;}
+	/**
+	 * Property name : Rated power generation output<br>
+	 * <br>
+	 * EPC : 0xC2<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the rated power generation output in watts. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533W)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidRatedPowerGenerationOutput(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Cumulative gas consumption reset setting<br>
+	 * <br>
+	 * EPC : 0xC9<br>
+	 * <br>
+	 * Contents :<br>
+	 * Resets the cumulative gas consumption by writing 0x00. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reset=0x00<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - -<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setCumulativeGasConsumptionResetSetting(byte[] edt) {return false;}
+	/**
+	 * Property name : Cumulative gas consumption reset setting<br>
+	 * <br>
+	 * EPC : 0xC9<br>
+	 * <br>
+	 * Contents :<br>
+	 * Resets the cumulative gas consumption by writing 0x00. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reset=0x00<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - -<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidCumulativeGasConsumptionResetSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measured cumulative gas consumption<br>
+	 * <br>
+	 * EPC : 0xC8<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the cumulative gas consumption in units of 0.001m3. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0.0x3B9AC9FF (0.999,999.999m3)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * Data size : 4<br>
+	 * Unit : 0.001_x000a_m3<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasuredCumulativeGasConsumption() {return null;}
+	/**
+	 * Property name : Measured cumulative gas consumption<br>
+	 * <br>
+	 * EPC : 0xC8<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the cumulative gas consumption in units of 0.001m3. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0.0x3B9AC9FF (0.999,999.999m3)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * Data size : 4<br>
+	 * Unit : 0.001_x000a_m3<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasuredCumulativeGasConsumption(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Heating value of hot water storage tank<br>
+	 * <br>
+	 * EPC : 0xC3<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the heating value of the hot water storage tank in MJ. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533MJ)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : MJ<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getHeatingValueOfHotWaterStorageTank() {return null;}
+	/**
+	 * Property name : Heating value of hot water storage tank<br>
+	 * <br>
+	 * EPC : 0xC3<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the heating value of the hot water storage tank in MJ. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533MJ)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : MJ<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidHeatingValueOfHotWaterStorageTank(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
 	 * Property name : Operation status<br>
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -97,728 +543,48 @@ public abstract class FuelCell extends DeviceObject {
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
 	protected abstract byte[] getOperationStatus();
 	/**
-	 * Property name : Measured temperature of water in water heater<br>
+	 * Property name : Operation status<br>
 	 * <br>
-	 * EPC : 0xC1<br>
+	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the current temperature of the water in the water heater in .C.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64 (0.100.C)<br>
+	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : .C<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasuredTemperatureOfWaterInWaterHeater() {return null;}
-	/**
-	 * Property name : Measured temperature of water in water heater<br>
-	 * <br>
-	 * EPC : 0xC1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the current temperature of the water in the water heater in .C.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64 (0.100.C)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : .C<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasuredTemperatureOfWaterInWaterHeater(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Rated power generation output<br>
-	 * <br>
-	 * EPC : 0xC2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the rated power generation output in watts.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533W)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getRatedPowerGenerationOutput() {return null;}
-	/**
-	 * Property name : Rated power generation output<br>
-	 * <br>
-	 * EPC : 0xC2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the rated power generation output in watts.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533W)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidRatedPowerGenerationOutput(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Heating value of hot water storage tank<br>
-	 * <br>
-	 * EPC : 0xC3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the heating value of the hot water storage tank in MJ.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533MJ)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
-	 * Unit : MJ<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getHeatingValueOfHotWaterStorageTank() {return null;}
-	/**
-	 * Property name : Heating value of hot water storage tank<br>
-	 * <br>
-	 * EPC : 0xC3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the heating value of the hot water storage tank in MJ.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533MJ)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
-	 * Unit : MJ<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidHeatingValueOfHotWaterStorageTank(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measured instantaneous power generation output<br>
-	 * <br>
-	 * EPC : 0xC4<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the instantaneous power generation output in watts.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533W)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected abstract byte[] getMeasuredInstantaneousPowerGenerationOutput();
-	/**
-	 * Property name : Measured instantaneous power generation output<br>
-	 * <br>
-	 * EPC : 0xC4<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the instantaneous power generation output in watts.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533W)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected boolean isValidMeasuredInstantaneousPowerGenerationOutput(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measured cumulative power generation output<br>
-	 * <br>
-	 * EPC : 0xC5<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the cumulative power generation output in units of 0.001kWh.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0.0x3B9AC9FF (0.999,999.999kWh)<br>
-	 * <br>
-	 * Data type : unsigned long<br>
-	 * <br>
-	 * Data size : 4
-bytes<br>
-	 * <br>
-	 * Unit : 0.001
-kWh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected abstract byte[] getMeasuredCumulativePowerGenerationOutput();
-	/**
-	 * Property name : Measured cumulative power generation output<br>
-	 * <br>
-	 * EPC : 0xC5<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the cumulative power generation output in units of 0.001kWh.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0.0x3B9AC9FF (0.999,999.999kWh)<br>
-	 * <br>
-	 * Data type : unsigned long<br>
-	 * <br>
-	 * Data size : 4
-bytes<br>
-	 * <br>
-	 * Unit : 0.001
-kWh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected boolean isValidMeasuredCumulativePowerGenerationOutput(byte[] edt) {
-		if(edt == null || !(edt.length == 4)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Cumulative power generation output reset setting<br>
-	 * <br>
-	 * EPC : 0xC6<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Resets the cumulative power generation output by writing 0x00.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Reset=0x00<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - undefined<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean setCumulativePowerGenerationOutputResetSetting(byte[] edt) {return false;}
-	/**
-	 * Property name : Cumulative power generation output reset setting<br>
-	 * <br>
-	 * EPC : 0xC6<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Resets the cumulative power generation output by writing 0x00.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Reset=0x00<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : .<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - undefined<br>
-	 */
-	protected boolean isValidCumulativePowerGenerationOutputResetSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measured instantaneous gas consumption<br>
-	 * <br>
-	 * EPC : 0xC7<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the instantaneous gas consumption in units of 0.001m3/h.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0.0xFFFD (0.65.533m3)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
-	 * Unit : 0.001
-m3/h<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasuredInstantaneousGasConsumption() {return null;}
-	/**
-	 * Property name : Measured instantaneous gas consumption<br>
-	 * <br>
-	 * EPC : 0xC7<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the instantaneous gas consumption in units of 0.001m3/h.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0.0xFFFD (0.65.533m3)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
-	 * Unit : 0.001
-m3/h<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasuredInstantaneousGasConsumption(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measured cumulative gas consumption<br>
-	 * <br>
-	 * EPC : 0xC8<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the cumulative gas consumption in units of 0.001m3.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0.0x3B9AC9FF (0.999,999.999m3)<br>
-	 * <br>
-	 * Data type : unsigned long<br>
-	 * <br>
-	 * Data size : 4
-bytes<br>
-	 * <br>
-	 * Unit : 0.001
-m3<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasuredCumulativeGasConsumption() {return null;}
-	/**
-	 * Property name : Measured cumulative gas consumption<br>
-	 * <br>
-	 * EPC : 0xC8<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the cumulative gas consumption in units of 0.001m3.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0.0x3B9AC9FF (0.999,999.999m3)<br>
-	 * <br>
-	 * Data type : unsigned long<br>
-	 * <br>
-	 * Data size : 4
-bytes<br>
-	 * <br>
-	 * Unit : 0.001
-m3<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasuredCumulativeGasConsumption(byte[] edt) {
-		if(edt == null || !(edt.length == 4)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Cumulative gas consumption reset setting<br>
-	 * <br>
-	 * EPC : 0xC9<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Resets the cumulative gas consumption by writing 0x00.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Reset=0x00<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : .<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - undefined<br>
-	 */
-	protected boolean setCumulativeGasConsumptionResetSetting(byte[] edt) {return false;}
-	/**
-	 * Property name : Cumulative gas consumption reset setting<br>
-	 * <br>
-	 * EPC : 0xC9<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Resets the cumulative gas consumption by writing 0x00.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Reset=0x00<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : .<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - undefined<br>
-	 */
-	protected boolean isValidCumulativeGasConsumptionResetSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Power generation setting<br>
-	 * <br>
-	 * EPC : 0xCA<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property instructs the start or stop of power generation.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Power generation ON=0x41, Power generation OFF=0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : .<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - undefined<br>
-	 */
-	protected boolean setPowerGenerationSetting(byte[] edt) {return false;}
-	/**
-	 * Property name : Power generation setting<br>
-	 * <br>
-	 * EPC : 0xCA<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property instructs the start or stop of power generation.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Power generation ON=0x41, Power generation OFF=0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : .<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - undefined<br>
-	 */
-	protected boolean isValidPowerGenerationSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Power generation status<br>
-	 * <br>
-	 * EPC : 0xCB<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the power generation status.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * generating =0x41, stopped=0x42, starting=0x43, stopping=0x44, idling=0x45<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : null<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getPowerGenerationStatus() {return null;}
-	/**
-	 * Property name : Power generation status<br>
-	 * <br>
-	 * EPC : 0xCB<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the power generation status.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * generating =0x41, stopped=0x42, starting=0x43, stopping=0x44, idling=0x45<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : null<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidPowerGenerationStatus(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measured in-house instantaneous power consumption<br>
-	 * <br>
-	 * EPC : 0xCC<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measured in-house instantaneous power consumption in watts.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000-0xFFFD (0-65,533W)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasuredInHouseInstantaneousPowerConsumption() {return null;}
-	/**
-	 * Property name : Measured in-house instantaneous power consumption<br>
-	 * <br>
-	 * EPC : 0xCC<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measured in-house instantaneous power consumption in watts.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000-0xFFFD (0-65,533W)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasuredInHouseInstantaneousPowerConsumption(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measured in-house cumulative power consumption<br>
-	 * <br>
-	 * EPC : 0xCD<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measured in-house cumulative power consumption in units of 0.001kWh.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000000-0x3B9AC9FF (0-999,999.999kWh)<br>
-	 * <br>
-	 * Data type : unsigned long<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
-	 * Unit : 0.001 kWh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasuredInHouseCumulativePowerConsumption() {return null;}
-	/**
-	 * Property name : Measured in-house cumulative power consumption<br>
-	 * <br>
-	 * EPC : 0xCD<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measured in-house cumulative power consumption in units of 0.001kWh.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000000-0x3B9AC9FF (0-999,999.999kWh)<br>
-	 * <br>
-	 * Data type : unsigned long<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
-	 * Unit : 0.001 kWh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasuredInHouseCumulativePowerConsumption(byte[] edt) {
-		if(edt == null || !(edt.length == 4)) return false;
-		return true;
-	}
-	/**
-	 * Property name : In-house cumulative power consumption reset<br>
-	 * <br>
-	 * EPC : 0xCE<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property is set to 0x00 to reset the in-house cumulative power consumption.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Reset=0x00<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : null<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - undefined<br>
-	 */
-	protected boolean setInHouseCumulativePowerConsumptionReset(byte[] edt) {return false;}
-	/**
-	 * Property name : In-house cumulative power consumption reset<br>
-	 * <br>
-	 * EPC : 0xCE<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property is set to 0x00 to reset the in-house cumulative power consumption.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Reset=0x00<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : null<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - undefined<br>
-	 */
-	protected boolean isValidInHouseCumulativePowerConsumptionReset(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
+	protected boolean isValidOperationStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 	/**
@@ -826,23 +592,22 @@ m3<br>
 	 * <br>
 	 * EPC : 0xD0<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the system interconnection status<br>
+	 * Contents :<br>
+	 * This property indicates the system interconnection status <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01<br>
-	 * System-linked type    (reverse power flow not acceptable) =0x02<br>
+	 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01_x000a_System-linked type    (reverse power flow not acceptable) =0x02<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getSystemInterconnectedType() {return null;}
 	/**
@@ -850,77 +615,25 @@ m3<br>
 	 * <br>
 	 * EPC : 0xD0<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the system interconnection status<br>
+	 * Contents :<br>
+	 * This property indicates the system interconnection status <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01<br>
-	 * System-linked type    (reverse power flow not acceptable) =0x02<br>
+	 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01_x000a_System-linked type    (reverse power flow not acceptable) =0x02<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidSystemInterconnectedType(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measured remaining hot water amount<br>
-	 * <br>
-	 * EPC : 0xE1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measured amount of the remaining hot water in liters.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533 liters)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
-	 * Unit : liter<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasuredRemainingHotWaterAmount() {return null;}
-	/**
-	 * Property name : Measured remaining hot water amount<br>
-	 * <br>
-	 * EPC : 0xE1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measured amount of the remaining hot water in liters.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533 liters)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
-	 * Unit : liter<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasuredRemainingHotWaterAmount(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 	/**
@@ -928,23 +641,22 @@ bytes<br>
 	 * <br>
 	 * EPC : 0xE2<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the tank capacity in liters.<br>
+	 * Contents :<br>
+	 * This property indicates the tank capacity in liters. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x0000.0xFFFD (0.65533 liters)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
+	 * Data size : 2<br>
 	 * Unit : liter<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getTankCapacity() {return null;}
 	/**
@@ -952,26 +664,319 @@ bytes<br>
 	 * <br>
 	 * EPC : 0xE2<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the tank capacity in liters.<br>
+	 * Contents :<br>
+	 * This property indicates the tank capacity in liters. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x0000.0xFFFD (0.65533 liters)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
+	 * Data size : 2<br>
 	 * Unit : liter<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidTankCapacity(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measured remaining hot water amount<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measured amount of the remaining hot water in liters. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533 liters)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : liter<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasuredRemainingHotWaterAmount() {return null;}
+	/**
+	 * Property name : Measured remaining hot water amount<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measured amount of the remaining hot water in liters. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533 liters)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : liter<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasuredRemainingHotWaterAmount(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : In-house cumulative power consumption reset<br>
+	 * <br>
+	 * EPC : 0xCE<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property is set to 0x00 to reset the in-house cumulative power consumption. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reset=0x00<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : <br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - -<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setInHouseCumulativePowerConsumptionReset(byte[] edt) {return false;}
+	/**
+	 * Property name : In-house cumulative power consumption reset<br>
+	 * <br>
+	 * EPC : 0xCE<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property is set to 0x00 to reset the in-house cumulative power consumption. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reset=0x00<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : <br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - -<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidInHouseCumulativePowerConsumptionReset(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measured in-house cumulative power consumption<br>
+	 * <br>
+	 * EPC : 0xCD<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measured in-house cumulative power consumption in units of 0.001kWh. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000-0x3B9AC9FF (0-999,999.999kWh)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * Data size : 4<br>
+	 * Unit : 0.001 kWh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasuredInHouseCumulativePowerConsumption() {return null;}
+	/**
+	 * Property name : Measured in-house cumulative power consumption<br>
+	 * <br>
+	 * EPC : 0xCD<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measured in-house cumulative power consumption in units of 0.001kWh. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000-0x3B9AC9FF (0-999,999.999kWh)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * Data size : 4<br>
+	 * Unit : 0.001 kWh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasuredInHouseCumulativePowerConsumption(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Power generation setting<br>
+	 * <br>
+	 * EPC : 0xCA<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property instructs the start or stop of power generation. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Power generation ON=0x41, Power generation OFF=0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - -<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setPowerGenerationSetting(byte[] edt) {return false;}
+	/**
+	 * Property name : Power generation setting<br>
+	 * <br>
+	 * EPC : 0xCA<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property instructs the start or stop of power generation. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Power generation ON=0x41, Power generation OFF=0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - -<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidPowerGenerationSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measured in-house instantaneous power consumption<br>
+	 * <br>
+	 * EPC : 0xCC<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measured in-house instantaneous power consumption in watts. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000-0xFFFD (0-65,533W)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasuredInHouseInstantaneousPowerConsumption() {return null;}
+	/**
+	 * Property name : Measured in-house instantaneous power consumption<br>
+	 * <br>
+	 * EPC : 0xCC<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measured in-house instantaneous power consumption in watts. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000-0xFFFD (0-65,533W)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasuredInHouseInstantaneousPowerConsumption(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Power generation status<br>
+	 * <br>
+	 * EPC : 0xCB<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the power generation status. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * generating =0x41, stopped=0x42, starting=0x43, stopping=0x44, idling=0x45<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : <br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getPowerGenerationStatus() {return null;}
+	/**
+	 * Property name : Power generation status<br>
+	 * <br>
+	 * EPC : 0xCB<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the power generation status. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * generating =0x41, stopped=0x42, starting=0x43, stopping=0x44, idling=0x45<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : <br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidPowerGenerationStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 
@@ -983,8 +988,9 @@ bytes<br>
 		switch(property.epc) {
 		case EPC_CUMULATIVE_POWER_GENERATION_OUTPUT_RESET_SETTING : return setCumulativePowerGenerationOutputResetSetting(property.edt);
 		case EPC_CUMULATIVE_GAS_CONSUMPTION_RESET_SETTING : return setCumulativeGasConsumptionResetSetting(property.edt);
-		case EPC_POWER_GENERATION_SETTING : return setPowerGenerationSetting(property.edt);
 		case EPC_IN_HOUSE_CUMULATIVE_POWER_CONSUMPTION_RESET : return setInHouseCumulativePowerConsumptionReset(property.edt);
+		case EPC_POWER_GENERATION_SETTING : return setPowerGenerationSetting(property.edt);
+
 		default : return false;
 		}
 	}
@@ -995,19 +1001,20 @@ bytes<br>
 		if(edt != null) return edt;
 		
 		switch(epc) {
+		case EPC_MEASURED_CUMULATIVE_POWER_GENERATION_OUTPUT : return getMeasuredCumulativePowerGenerationOutput();
+		case EPC_MEASURED_INSTANTANEOUS_POWER_GENERATION_OUTPUT : return getMeasuredInstantaneousPowerGenerationOutput();
+		case EPC_MEASURED_INSTANTANEOUS_GAS_CONSUMPTION : return getMeasuredInstantaneousGasConsumption();
 		case EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER : return getMeasuredTemperatureOfWaterInWaterHeater();
 		case EPC_RATED_POWER_GENERATION_OUTPUT : return getRatedPowerGenerationOutput();
-		case EPC_HEATING_VALUE_OF_HOT_WATER_STORAGE_TANK : return getHeatingValueOfHotWaterStorageTank();
-		case EPC_MEASURED_INSTANTANEOUS_POWER_GENERATION_OUTPUT : return getMeasuredInstantaneousPowerGenerationOutput();
-		case EPC_MEASURED_CUMULATIVE_POWER_GENERATION_OUTPUT : return getMeasuredCumulativePowerGenerationOutput();
-		case EPC_MEASURED_INSTANTANEOUS_GAS_CONSUMPTION : return getMeasuredInstantaneousGasConsumption();
 		case EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION : return getMeasuredCumulativeGasConsumption();
-		case EPC_POWER_GENERATION_STATUS : return getPowerGenerationStatus();
-		case EPC_MEASURED_IN_HOUSE_INSTANTANEOUS_POWER_CONSUMPTION : return getMeasuredInHouseInstantaneousPowerConsumption();
-		case EPC_MEASURED_IN_HOUSE_CUMULATIVE_POWER_CONSUMPTION : return getMeasuredInHouseCumulativePowerConsumption();
+		case EPC_HEATING_VALUE_OF_HOT_WATER_STORAGE_TANK : return getHeatingValueOfHotWaterStorageTank();
 		case EPC_SYSTEM_INTERCONNECTED_TYPE : return getSystemInterconnectedType();
-		case EPC_MEASURED_REMAINING_HOT_WATER_AMOUNT : return getMeasuredRemainingHotWaterAmount();
 		case EPC_TANK_CAPACITY : return getTankCapacity();
+		case EPC_MEASURED_REMAINING_HOT_WATER_AMOUNT : return getMeasuredRemainingHotWaterAmount();
+		case EPC_MEASURED_IN_HOUSE_CUMULATIVE_POWER_CONSUMPTION : return getMeasuredInHouseCumulativePowerConsumption();
+		case EPC_MEASURED_IN_HOUSE_INSTANTANEOUS_POWER_CONSUMPTION : return getMeasuredInHouseInstantaneousPowerConsumption();
+		case EPC_POWER_GENERATION_STATUS : return getPowerGenerationStatus();
+
 		default : return null;
 		}
 	}
@@ -1018,23 +1025,24 @@ bytes<br>
 		if(valid) return valid;
 		
 		switch(property.epc) {
+		case EPC_MEASURED_CUMULATIVE_POWER_GENERATION_OUTPUT : return isValidMeasuredCumulativePowerGenerationOutput(property.edt);
+		case EPC_MEASURED_INSTANTANEOUS_POWER_GENERATION_OUTPUT : return isValidMeasuredInstantaneousPowerGenerationOutput(property.edt);
+		case EPC_MEASURED_INSTANTANEOUS_GAS_CONSUMPTION : return isValidMeasuredInstantaneousGasConsumption(property.edt);
+		case EPC_CUMULATIVE_POWER_GENERATION_OUTPUT_RESET_SETTING : return isValidCumulativePowerGenerationOutputResetSetting(property.edt);
 		case EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER : return isValidMeasuredTemperatureOfWaterInWaterHeater(property.edt);
 		case EPC_RATED_POWER_GENERATION_OUTPUT : return isValidRatedPowerGenerationOutput(property.edt);
-		case EPC_HEATING_VALUE_OF_HOT_WATER_STORAGE_TANK : return isValidHeatingValueOfHotWaterStorageTank(property.edt);
-		case EPC_MEASURED_INSTANTANEOUS_POWER_GENERATION_OUTPUT : return isValidMeasuredInstantaneousPowerGenerationOutput(property.edt);
-		case EPC_MEASURED_CUMULATIVE_POWER_GENERATION_OUTPUT : return isValidMeasuredCumulativePowerGenerationOutput(property.edt);
-		case EPC_CUMULATIVE_POWER_GENERATION_OUTPUT_RESET_SETTING : return isValidCumulativePowerGenerationOutputResetSetting(property.edt);
-		case EPC_MEASURED_INSTANTANEOUS_GAS_CONSUMPTION : return isValidMeasuredInstantaneousGasConsumption(property.edt);
-		case EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION : return isValidMeasuredCumulativeGasConsumption(property.edt);
 		case EPC_CUMULATIVE_GAS_CONSUMPTION_RESET_SETTING : return isValidCumulativeGasConsumptionResetSetting(property.edt);
-		case EPC_POWER_GENERATION_SETTING : return isValidPowerGenerationSetting(property.edt);
-		case EPC_POWER_GENERATION_STATUS : return isValidPowerGenerationStatus(property.edt);
-		case EPC_MEASURED_IN_HOUSE_INSTANTANEOUS_POWER_CONSUMPTION : return isValidMeasuredInHouseInstantaneousPowerConsumption(property.edt);
-		case EPC_MEASURED_IN_HOUSE_CUMULATIVE_POWER_CONSUMPTION : return isValidMeasuredInHouseCumulativePowerConsumption(property.edt);
-		case EPC_IN_HOUSE_CUMULATIVE_POWER_CONSUMPTION_RESET : return isValidInHouseCumulativePowerConsumptionReset(property.edt);
+		case EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION : return isValidMeasuredCumulativeGasConsumption(property.edt);
+		case EPC_HEATING_VALUE_OF_HOT_WATER_STORAGE_TANK : return isValidHeatingValueOfHotWaterStorageTank(property.edt);
 		case EPC_SYSTEM_INTERCONNECTED_TYPE : return isValidSystemInterconnectedType(property.edt);
-		case EPC_MEASURED_REMAINING_HOT_WATER_AMOUNT : return isValidMeasuredRemainingHotWaterAmount(property.edt);
 		case EPC_TANK_CAPACITY : return isValidTankCapacity(property.edt);
+		case EPC_MEASURED_REMAINING_HOT_WATER_AMOUNT : return isValidMeasuredRemainingHotWaterAmount(property.edt);
+		case EPC_IN_HOUSE_CUMULATIVE_POWER_CONSUMPTION_RESET : return isValidInHouseCumulativePowerConsumptionReset(property.edt);
+		case EPC_MEASURED_IN_HOUSE_CUMULATIVE_POWER_CONSUMPTION : return isValidMeasuredInHouseCumulativePowerConsumption(property.edt);
+		case EPC_POWER_GENERATION_SETTING : return isValidPowerGenerationSetting(property.edt);
+		case EPC_MEASURED_IN_HOUSE_INSTANTANEOUS_POWER_CONSUMPTION : return isValidMeasuredInHouseInstantaneousPowerConsumption(property.edt);
+		case EPC_POWER_GENERATION_STATUS : return isValidPowerGenerationStatus(property.edt);
+
 		default : return false;
 		}
 	}
@@ -1088,12 +1096,13 @@ bytes<br>
 			case EPC_CUMULATIVE_GAS_CONSUMPTION_RESET_SETTING : 
 				onSetCumulativeGasConsumptionResetSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_POWER_GENERATION_SETTING : 
-				onSetPowerGenerationSetting(eoj, tid, esv, property, success);
-				return true;
 			case EPC_IN_HOUSE_CUMULATIVE_POWER_CONSUMPTION_RESET : 
 				onSetInHouseCumulativePowerConsumptionReset(eoj, tid, esv, property, success);
 				return true;
+			case EPC_POWER_GENERATION_SETTING : 
+				onSetPowerGenerationSetting(eoj, tid, esv, property, success);
+				return true;
+
 			default :
 				return false;
 			}
@@ -1106,71 +1115,164 @@ bytes<br>
 			if(ret) return true;
 			
 			switch(property.epc) {
+			case EPC_MEASURED_CUMULATIVE_POWER_GENERATION_OUTPUT : 
+				onGetMeasuredCumulativePowerGenerationOutput(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASURED_INSTANTANEOUS_POWER_GENERATION_OUTPUT : 
+				onGetMeasuredInstantaneousPowerGenerationOutput(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASURED_INSTANTANEOUS_GAS_CONSUMPTION : 
+				onGetMeasuredInstantaneousGasConsumption(eoj, tid, esv, property, success);
+				return true;
 			case EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER : 
 				onGetMeasuredTemperatureOfWaterInWaterHeater(eoj, tid, esv, property, success);
 				return true;
 			case EPC_RATED_POWER_GENERATION_OUTPUT : 
 				onGetRatedPowerGenerationOutput(eoj, tid, esv, property, success);
 				return true;
-			case EPC_HEATING_VALUE_OF_HOT_WATER_STORAGE_TANK : 
-				onGetHeatingValueOfHotWaterStorageTank(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASURED_INSTANTANEOUS_POWER_GENERATION_OUTPUT : 
-				onGetMeasuredInstantaneousPowerGenerationOutput(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASURED_CUMULATIVE_POWER_GENERATION_OUTPUT : 
-				onGetMeasuredCumulativePowerGenerationOutput(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASURED_INSTANTANEOUS_GAS_CONSUMPTION : 
-				onGetMeasuredInstantaneousGasConsumption(eoj, tid, esv, property, success);
-				return true;
 			case EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION : 
 				onGetMeasuredCumulativeGasConsumption(eoj, tid, esv, property, success);
 				return true;
-			case EPC_POWER_GENERATION_STATUS : 
-				onGetPowerGenerationStatus(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASURED_IN_HOUSE_INSTANTANEOUS_POWER_CONSUMPTION : 
-				onGetMeasuredInHouseInstantaneousPowerConsumption(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASURED_IN_HOUSE_CUMULATIVE_POWER_CONSUMPTION : 
-				onGetMeasuredInHouseCumulativePowerConsumption(eoj, tid, esv, property, success);
+			case EPC_HEATING_VALUE_OF_HOT_WATER_STORAGE_TANK : 
+				onGetHeatingValueOfHotWaterStorageTank(eoj, tid, esv, property, success);
 				return true;
 			case EPC_SYSTEM_INTERCONNECTED_TYPE : 
 				onGetSystemInterconnectedType(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASURED_REMAINING_HOT_WATER_AMOUNT : 
-				onGetMeasuredRemainingHotWaterAmount(eoj, tid, esv, property, success);
-				return true;
 			case EPC_TANK_CAPACITY : 
 				onGetTankCapacity(eoj, tid, esv, property, success);
 				return true;
+			case EPC_MEASURED_REMAINING_HOT_WATER_AMOUNT : 
+				onGetMeasuredRemainingHotWaterAmount(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASURED_IN_HOUSE_CUMULATIVE_POWER_CONSUMPTION : 
+				onGetMeasuredInHouseCumulativePowerConsumption(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASURED_IN_HOUSE_INSTANTANEOUS_POWER_CONSUMPTION : 
+				onGetMeasuredInHouseInstantaneousPowerConsumption(eoj, tid, esv, property, success);
+				return true;
+			case EPC_POWER_GENERATION_STATUS : 
+				onGetPowerGenerationStatus(eoj, tid, esv, property, success);
+				return true;
+
 			default :
 				return false;
 			}
 		}
 		
 		/**
+		 * Property name : Measured cumulative power generation output<br>
+		 * <br>
+		 * EPC : 0xC5<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the cumulative power generation output in units of 0.001kWh. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0.0x3B9AC9FF (0.999,999.999kWh)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * Data size : 4<br>
+		 * Unit : 0.001_x000a_kWh<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasuredCumulativePowerGenerationOutput(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measured instantaneous power generation output<br>
+		 * <br>
+		 * EPC : 0xC4<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the instantaneous power generation output in watts. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasuredInstantaneousPowerGenerationOutput(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measured instantaneous gas consumption<br>
+		 * <br>
+		 * EPC : 0xC7<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the instantaneous gas consumption in units of 0.001m3/h. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0.0xFFFD (0.65.533m3)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : 0.001_x000a_m3/h<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasuredInstantaneousGasConsumption(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Cumulative power generation output reset setting<br>
+		 * <br>
+		 * EPC : 0xC6<br>
+		 * <br>
+		 * Contents :<br>
+		 * Resets the cumulative power generation output by writing 0x00. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reset=0x00<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - -<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetCumulativePowerGenerationOutputResetSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
 		 * Property name : Measured temperature of water in water heater<br>
 		 * <br>
 		 * EPC : 0xC1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the current temperature of the water in the water heater in .C.<br>
+		 * Contents :<br>
+		 * This property indicates the current temperature of the water in the water heater in °C. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100.C)<br>
+		 * 0x00.0x64 (0.100°C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .C<br>
+		 * Data size : 1<br>
+		 * Unit : °C<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetMeasuredTemperatureOfWaterInWaterHeater(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -1178,381 +1280,324 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xC2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated power generation output in watts.<br>
+		 * Contents :<br>
+		 * This property indicates the rated power generation output in watts. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFD (0.65533W)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetRatedPowerGenerationOutput(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Heating value of hot water storage tank<br>
-		 * <br>
-		 * EPC : 0xC3<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the heating value of the hot water storage tank in MJ.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533MJ)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
-		 * Unit : MJ<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetHeatingValueOfHotWaterStorageTank(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measured instantaneous power generation output<br>
-		 * <br>
-		 * EPC : 0xC4<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the instantaneous power generation output in watts.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533W)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
-		 * Unit : W<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		protected void onGetMeasuredInstantaneousPowerGenerationOutput(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measured cumulative power generation output<br>
-		 * <br>
-		 * EPC : 0xC5<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the cumulative power generation output in units of 0.001kWh.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0.0x3B9AC9FF (0.999,999.999kWh)<br>
-		 * <br>
-		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4
-bytes<br>
-		 * <br>
-		 * Unit : 0.001
-kWh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		protected void onGetMeasuredCumulativePowerGenerationOutput(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Cumulative power generation output reset setting<br>
-		 * <br>
-		 * EPC : 0xC6<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Resets the cumulative power generation output by writing 0x00.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Reset=0x00<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - undefined<br>
-		 */
-		protected void onSetCumulativePowerGenerationOutputResetSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measured instantaneous gas consumption<br>
-		 * <br>
-		 * EPC : 0xC7<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the instantaneous gas consumption in units of 0.001m3/h.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0.0xFFFD (0.65.533m3)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
-		 * Unit : 0.001
-m3/h<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasuredInstantaneousGasConsumption(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measured cumulative gas consumption<br>
-		 * <br>
-		 * EPC : 0xC8<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the cumulative gas consumption in units of 0.001m3.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0.0x3B9AC9FF (0.999,999.999m3)<br>
-		 * <br>
-		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4
-bytes<br>
-		 * <br>
-		 * Unit : 0.001
-m3<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasuredCumulativeGasConsumption(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Cumulative gas consumption reset setting<br>
 		 * <br>
 		 * EPC : 0xC9<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Resets the cumulative gas consumption by writing 0x00.<br>
+		 * Contents :<br>
+		 * Resets the cumulative gas consumption by writing 0x00. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Reset=0x00<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - undefined<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - -<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onSetCumulativeGasConsumptionResetSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Power generation setting<br>
+		 * Property name : Measured cumulative gas consumption<br>
 		 * <br>
-		 * EPC : 0xCA<br>
+		 * EPC : 0xC8<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property instructs the start or stop of power generation.<br>
+		 * Contents :<br>
+		 * This property indicates the cumulative gas consumption in units of 0.001m3. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Power generation ON=0x41, Power generation OFF=0x42<br>
+		 * 0x0.0x3B9AC9FF (0.999,999.999m3)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * Data size : 4<br>
+		 * Unit : 0.001_x000a_m3<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasuredCumulativeGasConsumption(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Heating value of hot water storage tank<br>
+		 * <br>
+		 * EPC : 0xC3<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the heating value of the hot water storage tank in MJ. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.65533MJ)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : MJ<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetHeatingValueOfHotWaterStorageTank(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - undefined<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onSetPowerGenerationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Power generation status<br>
+		 * Property name : Operation status<br>
 		 * <br>
-		 * EPC : 0xCB<br>
+		 * EPC : 0x80<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the power generation status.<br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * generating =0x41, stopped=0x42, starting=0x43, stopping=0x44, idling=0x45<br>
+		 * ON=0x30, OFF=0x31<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : null<br>
+		 * Data size : 1<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetPowerGenerationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measured in-house instantaneous power consumption<br>
-		 * <br>
-		 * EPC : 0xCC<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured in-house instantaneous power consumption in watts.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000-0xFFFD (0-65,533W)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : W<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasuredInHouseInstantaneousPowerConsumption(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measured in-house cumulative power consumption<br>
-		 * <br>
-		 * EPC : 0xCD<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured in-house cumulative power consumption in units of 0.001kWh.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000000-0x3B9AC9FF (0-999,999.999kWh)<br>
-		 * <br>
-		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.001 kWh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasuredInHouseCumulativePowerConsumption(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : In-house cumulative power consumption reset<br>
-		 * <br>
-		 * EPC : 0xCE<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property is set to 0x00 to reset the in-house cumulative power consumption.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Reset=0x00<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : null<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - undefined<br>
-		 */
-		protected void onSetInHouseCumulativePowerConsumptionReset(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : System interconnected type<br>
 		 * <br>
 		 * EPC : 0xD0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the system interconnection status<br>
+		 * Contents :<br>
+		 * This property indicates the system interconnection status <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01<br>
-		 * System-linked type    (reverse power flow not acceptable) =0x02<br>
+		 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01_x000a_System-linked type    (reverse power flow not acceptable) =0x02<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetSystemInterconnectedType(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measured remaining hot water amount<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured amount of the remaining hot water in liters.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533 liters)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
-		 * Unit : liter<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasuredRemainingHotWaterAmount(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Tank capacity<br>
 		 * <br>
 		 * EPC : 0xE2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the tank capacity in liters.<br>
+		 * Contents :<br>
+		 * This property indicates the tank capacity in liters. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFD (0.65533 liters)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetTankCapacity(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measured remaining hot water amount<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measured amount of the remaining hot water in liters. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.65533 liters)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasuredRemainingHotWaterAmount(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : In-house cumulative power consumption reset<br>
+		 * <br>
+		 * EPC : 0xCE<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property is set to 0x00 to reset the in-house cumulative power consumption. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reset=0x00<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : <br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - -<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetInHouseCumulativePowerConsumptionReset(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measured in-house cumulative power consumption<br>
+		 * <br>
+		 * EPC : 0xCD<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measured in-house cumulative power consumption in units of 0.001kWh. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00000000-0x3B9AC9FF (0-999,999.999kWh)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * Data size : 4<br>
+		 * Unit : 0.001 kWh<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasuredInHouseCumulativePowerConsumption(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Power generation setting<br>
+		 * <br>
+		 * EPC : 0xCA<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property instructs the start or stop of power generation. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Power generation ON=0x41, Power generation OFF=0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - -<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetPowerGenerationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measured in-house instantaneous power consumption<br>
+		 * <br>
+		 * EPC : 0xCC<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measured in-house instantaneous power consumption in watts. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000-0xFFFD (0-65,533W)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasuredInHouseInstantaneousPowerConsumption(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Power generation status<br>
+		 * <br>
+		 * EPC : 0xCB<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the power generation status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * generating =0x41, stopped=0x42, starting=0x43, stopping=0x44, idling=0x45<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : <br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetPowerGenerationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+
 	}
 
 	public static class Setter extends DeviceObject.Setter {
@@ -1605,22 +1650,22 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xC6<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Resets the cumulative power generation output by writing 0x00.<br>
+		 * Contents :<br>
+		 * Resets the cumulative power generation output by writing 0x00. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Reset=0x00<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - undefined<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - -<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetCumulativePowerGenerationOutputResetSetting(byte[] edt) {
 			reqSetProperty(EPC_CUMULATIVE_POWER_GENERATION_OUTPUT_RESET_SETTING, edt);
@@ -1631,51 +1676,25 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xC9<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Resets the cumulative gas consumption by writing 0x00.<br>
+		 * Contents :<br>
+		 * Resets the cumulative gas consumption by writing 0x00. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Reset=0x00<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - undefined<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - -<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetCumulativeGasConsumptionResetSetting(byte[] edt) {
 			reqSetProperty(EPC_CUMULATIVE_GAS_CONSUMPTION_RESET_SETTING, edt);
-			return this;
-		}
-		/**
-		 * Property name : Power generation setting<br>
-		 * <br>
-		 * EPC : 0xCA<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property instructs the start or stop of power generation.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Power generation ON=0x41, Power generation OFF=0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - undefined<br>
-		 */
-		public Setter reqSetPowerGenerationSetting(byte[] edt) {
-			reqSetProperty(EPC_POWER_GENERATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1683,27 +1702,54 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xCE<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property is set to 0x00 to reset the in-house cumulative power consumption.<br>
+		 * Contents :<br>
+		 * This property is set to 0x00 to reset the in-house cumulative power consumption. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Reset=0x00<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : null<br>
+		 * Data size : 1<br>
+		 * Unit : <br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - undefined<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - -<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetInHouseCumulativePowerConsumptionReset(byte[] edt) {
 			reqSetProperty(EPC_IN_HOUSE_CUMULATIVE_POWER_CONSUMPTION_RESET, edt);
 			return this;
 		}
+		/**
+		 * Property name : Power generation setting<br>
+		 * <br>
+		 * EPC : 0xCA<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property instructs the start or stop of power generation. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Power generation ON=0x41, Power generation OFF=0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - -<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Setter reqSetPowerGenerationSetting(byte[] edt) {
+			reqSetProperty(EPC_POWER_GENERATION_SETTING, edt);
+			return this;
+		}
+
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
@@ -1816,26 +1862,104 @@ bytes<br>
 		}
 		
 		/**
+		 * Property name : Measured cumulative power generation output<br>
+		 * <br>
+		 * EPC : 0xC5<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the cumulative power generation output in units of 0.001kWh. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0.0x3B9AC9FF (0.999,999.999kWh)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * Data size : 4<br>
+		 * Unit : 0.001_x000a_kWh<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasuredCumulativePowerGenerationOutput() {
+			reqGetProperty(EPC_MEASURED_CUMULATIVE_POWER_GENERATION_OUTPUT);
+			return this;
+		}
+		/**
+		 * Property name : Measured instantaneous power generation output<br>
+		 * <br>
+		 * EPC : 0xC4<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the instantaneous power generation output in watts. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasuredInstantaneousPowerGenerationOutput() {
+			reqGetProperty(EPC_MEASURED_INSTANTANEOUS_POWER_GENERATION_OUTPUT);
+			return this;
+		}
+		/**
+		 * Property name : Measured instantaneous gas consumption<br>
+		 * <br>
+		 * EPC : 0xC7<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the instantaneous gas consumption in units of 0.001m3/h. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0.0xFFFD (0.65.533m3)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : 0.001_x000a_m3/h<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasuredInstantaneousGasConsumption() {
+			reqGetProperty(EPC_MEASURED_INSTANTANEOUS_GAS_CONSUMPTION);
+			return this;
+		}
+		/**
 		 * Property name : Measured temperature of water in water heater<br>
 		 * <br>
 		 * EPC : 0xC1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the current temperature of the water in the water heater in .C.<br>
+		 * Contents :<br>
+		 * This property indicates the current temperature of the water in the water heater in °C. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100.C)<br>
+		 * 0x00.0x64 (0.100°C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .C<br>
+		 * Data size : 1<br>
+		 * Unit : °C<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasuredTemperatureOfWaterInWaterHeater() {
 			reqGetProperty(EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER);
@@ -1846,136 +1970,25 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xC2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated power generation output in watts.<br>
+		 * Contents :<br>
+		 * This property indicates the rated power generation output in watts. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFD (0.65533W)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetRatedPowerGenerationOutput() {
 			reqGetProperty(EPC_RATED_POWER_GENERATION_OUTPUT);
-			return this;
-		}
-		/**
-		 * Property name : Heating value of hot water storage tank<br>
-		 * <br>
-		 * EPC : 0xC3<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the heating value of the hot water storage tank in MJ.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533MJ)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
-		 * Unit : MJ<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetHeatingValueOfHotWaterStorageTank() {
-			reqGetProperty(EPC_HEATING_VALUE_OF_HOT_WATER_STORAGE_TANK);
-			return this;
-		}
-		/**
-		 * Property name : Measured instantaneous power generation output<br>
-		 * <br>
-		 * EPC : 0xC4<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the instantaneous power generation output in watts.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533W)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
-		 * Unit : W<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		public Getter reqGetMeasuredInstantaneousPowerGenerationOutput() {
-			reqGetProperty(EPC_MEASURED_INSTANTANEOUS_POWER_GENERATION_OUTPUT);
-			return this;
-		}
-		/**
-		 * Property name : Measured cumulative power generation output<br>
-		 * <br>
-		 * EPC : 0xC5<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the cumulative power generation output in units of 0.001kWh.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0.0x3B9AC9FF (0.999,999.999kWh)<br>
-		 * <br>
-		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4
-bytes<br>
-		 * <br>
-		 * Unit : 0.001
-kWh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		public Getter reqGetMeasuredCumulativePowerGenerationOutput() {
-			reqGetProperty(EPC_MEASURED_CUMULATIVE_POWER_GENERATION_OUTPUT);
-			return this;
-		}
-		/**
-		 * Property name : Measured instantaneous gas consumption<br>
-		 * <br>
-		 * EPC : 0xC7<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the instantaneous gas consumption in units of 0.001m3/h.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0.0xFFFD (0.65.533m3)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
-		 * Unit : 0.001
-m3/h<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasuredInstantaneousGasConsumption() {
-			reqGetProperty(EPC_MEASURED_INSTANTANEOUS_GAS_CONSUMPTION);
 			return this;
 		}
 		/**
@@ -1983,105 +1996,51 @@ m3/h<br>
 		 * <br>
 		 * EPC : 0xC8<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the cumulative gas consumption in units of 0.001m3.<br>
+		 * Contents :<br>
+		 * This property indicates the cumulative gas consumption in units of 0.001m3. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0.0x3B9AC9FF (0.999,999.999m3)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4
-bytes<br>
-		 * <br>
-		 * Unit : 0.001
-m3<br>
+		 * Data size : 4<br>
+		 * Unit : 0.001_x000a_m3<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasuredCumulativeGasConsumption() {
 			reqGetProperty(EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION);
 			return this;
 		}
 		/**
-		 * Property name : Power generation status<br>
+		 * Property name : Heating value of hot water storage tank<br>
 		 * <br>
-		 * EPC : 0xCB<br>
+		 * EPC : 0xC3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the power generation status.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * generating =0x41, stopped=0x42, starting=0x43, stopping=0x44, idling=0x45<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : null<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetPowerGenerationStatus() {
-			reqGetProperty(EPC_POWER_GENERATION_STATUS);
-			return this;
-		}
-		/**
-		 * Property name : Measured in-house instantaneous power consumption<br>
-		 * <br>
-		 * EPC : 0xCC<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured in-house instantaneous power consumption in watts.<br>
+		 * Contents :<br>
+		 * This property indicates the heating value of the hot water storage tank in MJ. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0xFFFD (0-65,533W)<br>
+		 * 0x0000.0xFFFD (0.65533MJ)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : W<br>
+		 * Data size : 2<br>
+		 * Unit : MJ<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetMeasuredInHouseInstantaneousPowerConsumption() {
-			reqGetProperty(EPC_MEASURED_IN_HOUSE_INSTANTANEOUS_POWER_CONSUMPTION);
-			return this;
-		}
-		/**
-		 * Property name : Measured in-house cumulative power consumption<br>
-		 * <br>
-		 * EPC : 0xCD<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured in-house cumulative power consumption in units of 0.001kWh.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000000-0x3B9AC9FF (0-999,999.999kWh)<br>
-		 * <br>
-		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.001 kWh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasuredInHouseCumulativePowerConsumption() {
-			reqGetProperty(EPC_MEASURED_IN_HOUSE_CUMULATIVE_POWER_CONSUMPTION);
+		public Getter reqGetHeatingValueOfHotWaterStorageTank() {
+			reqGetProperty(EPC_HEATING_VALUE_OF_HOT_WATER_STORAGE_TANK);
 			return this;
 		}
 		/**
@@ -2089,53 +2048,25 @@ m3<br>
 		 * <br>
 		 * EPC : 0xD0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the system interconnection status<br>
+		 * Contents :<br>
+		 * This property indicates the system interconnection status <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01<br>
-		 * System-linked type    (reverse power flow not acceptable) =0x02<br>
+		 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01_x000a_System-linked type    (reverse power flow not acceptable) =0x02<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetSystemInterconnectedType() {
 			reqGetProperty(EPC_SYSTEM_INTERCONNECTED_TYPE);
-			return this;
-		}
-		/**
-		 * Property name : Measured remaining hot water amount<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured amount of the remaining hot water in liters.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533 liters)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
-		 * Unit : liter<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasuredRemainingHotWaterAmount() {
-			reqGetProperty(EPC_MEASURED_REMAINING_HOT_WATER_AMOUNT);
 			return this;
 		}
 		/**
@@ -2143,28 +2074,132 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xE2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the tank capacity in liters.<br>
+		 * Contents :<br>
+		 * This property indicates the tank capacity in liters. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFD (0.65533 liters)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetTankCapacity() {
 			reqGetProperty(EPC_TANK_CAPACITY);
 			return this;
 		}
+		/**
+		 * Property name : Measured remaining hot water amount<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measured amount of the remaining hot water in liters. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.65533 liters)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasuredRemainingHotWaterAmount() {
+			reqGetProperty(EPC_MEASURED_REMAINING_HOT_WATER_AMOUNT);
+			return this;
+		}
+		/**
+		 * Property name : Measured in-house cumulative power consumption<br>
+		 * <br>
+		 * EPC : 0xCD<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measured in-house cumulative power consumption in units of 0.001kWh. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00000000-0x3B9AC9FF (0-999,999.999kWh)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * Data size : 4<br>
+		 * Unit : 0.001 kWh<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasuredInHouseCumulativePowerConsumption() {
+			reqGetProperty(EPC_MEASURED_IN_HOUSE_CUMULATIVE_POWER_CONSUMPTION);
+			return this;
+		}
+		/**
+		 * Property name : Measured in-house instantaneous power consumption<br>
+		 * <br>
+		 * EPC : 0xCC<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measured in-house instantaneous power consumption in watts. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000-0xFFFD (0-65,533W)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasuredInHouseInstantaneousPowerConsumption() {
+			reqGetProperty(EPC_MEASURED_IN_HOUSE_INSTANTANEOUS_POWER_CONSUMPTION);
+			return this;
+		}
+		/**
+		 * Property name : Power generation status<br>
+		 * <br>
+		 * EPC : 0xCB<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the power generation status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * generating =0x41, stopped=0x42, starting=0x43, stopping=0x44, idling=0x45<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : <br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetPowerGenerationStatus() {
+			reqGetProperty(EPC_POWER_GENERATION_STATUS);
+			return this;
+		}
+
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
@@ -2276,26 +2311,104 @@ bytes<br>
 		}
 		
 		/**
+		 * Property name : Measured cumulative power generation output<br>
+		 * <br>
+		 * EPC : 0xC5<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the cumulative power generation output in units of 0.001kWh. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0.0x3B9AC9FF (0.999,999.999kWh)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * Data size : 4<br>
+		 * Unit : 0.001_x000a_kWh<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasuredCumulativePowerGenerationOutput() {
+			reqInformProperty(EPC_MEASURED_CUMULATIVE_POWER_GENERATION_OUTPUT);
+			return this;
+		}
+		/**
+		 * Property name : Measured instantaneous power generation output<br>
+		 * <br>
+		 * EPC : 0xC4<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the instantaneous power generation output in watts. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.65533W)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasuredInstantaneousPowerGenerationOutput() {
+			reqInformProperty(EPC_MEASURED_INSTANTANEOUS_POWER_GENERATION_OUTPUT);
+			return this;
+		}
+		/**
+		 * Property name : Measured instantaneous gas consumption<br>
+		 * <br>
+		 * EPC : 0xC7<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the instantaneous gas consumption in units of 0.001m3/h. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0.0xFFFD (0.65.533m3)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : 0.001_x000a_m3/h<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasuredInstantaneousGasConsumption() {
+			reqInformProperty(EPC_MEASURED_INSTANTANEOUS_GAS_CONSUMPTION);
+			return this;
+		}
+		/**
 		 * Property name : Measured temperature of water in water heater<br>
 		 * <br>
 		 * EPC : 0xC1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the current temperature of the water in the water heater in .C.<br>
+		 * Contents :<br>
+		 * This property indicates the current temperature of the water in the water heater in °C. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100.C)<br>
+		 * 0x00.0x64 (0.100°C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .C<br>
+		 * Data size : 1<br>
+		 * Unit : °C<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasuredTemperatureOfWaterInWaterHeater() {
 			reqInformProperty(EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER);
@@ -2306,136 +2419,25 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xC2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated power generation output in watts.<br>
+		 * Contents :<br>
+		 * This property indicates the rated power generation output in watts. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFD (0.65533W)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformRatedPowerGenerationOutput() {
 			reqInformProperty(EPC_RATED_POWER_GENERATION_OUTPUT);
-			return this;
-		}
-		/**
-		 * Property name : Heating value of hot water storage tank<br>
-		 * <br>
-		 * EPC : 0xC3<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the heating value of the hot water storage tank in MJ.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533MJ)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
-		 * Unit : MJ<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformHeatingValueOfHotWaterStorageTank() {
-			reqInformProperty(EPC_HEATING_VALUE_OF_HOT_WATER_STORAGE_TANK);
-			return this;
-		}
-		/**
-		 * Property name : Measured instantaneous power generation output<br>
-		 * <br>
-		 * EPC : 0xC4<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the instantaneous power generation output in watts.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533W)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
-		 * Unit : W<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		public Informer reqInformMeasuredInstantaneousPowerGenerationOutput() {
-			reqInformProperty(EPC_MEASURED_INSTANTANEOUS_POWER_GENERATION_OUTPUT);
-			return this;
-		}
-		/**
-		 * Property name : Measured cumulative power generation output<br>
-		 * <br>
-		 * EPC : 0xC5<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the cumulative power generation output in units of 0.001kWh.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0.0x3B9AC9FF (0.999,999.999kWh)<br>
-		 * <br>
-		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4
-bytes<br>
-		 * <br>
-		 * Unit : 0.001
-kWh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		public Informer reqInformMeasuredCumulativePowerGenerationOutput() {
-			reqInformProperty(EPC_MEASURED_CUMULATIVE_POWER_GENERATION_OUTPUT);
-			return this;
-		}
-		/**
-		 * Property name : Measured instantaneous gas consumption<br>
-		 * <br>
-		 * EPC : 0xC7<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the instantaneous gas consumption in units of 0.001m3/h.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0.0xFFFD (0.65.533m3)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
-		 * Unit : 0.001
-m3/h<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasuredInstantaneousGasConsumption() {
-			reqInformProperty(EPC_MEASURED_INSTANTANEOUS_GAS_CONSUMPTION);
 			return this;
 		}
 		/**
@@ -2443,105 +2445,51 @@ m3/h<br>
 		 * <br>
 		 * EPC : 0xC8<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the cumulative gas consumption in units of 0.001m3.<br>
+		 * Contents :<br>
+		 * This property indicates the cumulative gas consumption in units of 0.001m3. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0.0x3B9AC9FF (0.999,999.999m3)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4
-bytes<br>
-		 * <br>
-		 * Unit : 0.001
-m3<br>
+		 * Data size : 4<br>
+		 * Unit : 0.001_x000a_m3<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasuredCumulativeGasConsumption() {
 			reqInformProperty(EPC_MEASURED_CUMULATIVE_GAS_CONSUMPTION);
 			return this;
 		}
 		/**
-		 * Property name : Power generation status<br>
+		 * Property name : Heating value of hot water storage tank<br>
 		 * <br>
-		 * EPC : 0xCB<br>
+		 * EPC : 0xC3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the power generation status.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * generating =0x41, stopped=0x42, starting=0x43, stopping=0x44, idling=0x45<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : null<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformPowerGenerationStatus() {
-			reqInformProperty(EPC_POWER_GENERATION_STATUS);
-			return this;
-		}
-		/**
-		 * Property name : Measured in-house instantaneous power consumption<br>
-		 * <br>
-		 * EPC : 0xCC<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured in-house instantaneous power consumption in watts.<br>
+		 * Contents :<br>
+		 * This property indicates the heating value of the hot water storage tank in MJ. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000-0xFFFD (0-65,533W)<br>
+		 * 0x0000.0xFFFD (0.65533MJ)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : W<br>
+		 * Data size : 2<br>
+		 * Unit : MJ<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformMeasuredInHouseInstantaneousPowerConsumption() {
-			reqInformProperty(EPC_MEASURED_IN_HOUSE_INSTANTANEOUS_POWER_CONSUMPTION);
-			return this;
-		}
-		/**
-		 * Property name : Measured in-house cumulative power consumption<br>
-		 * <br>
-		 * EPC : 0xCD<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured in-house cumulative power consumption in units of 0.001kWh.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000000-0x3B9AC9FF (0-999,999.999kWh)<br>
-		 * <br>
-		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.001 kWh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasuredInHouseCumulativePowerConsumption() {
-			reqInformProperty(EPC_MEASURED_IN_HOUSE_CUMULATIVE_POWER_CONSUMPTION);
+		public Informer reqInformHeatingValueOfHotWaterStorageTank() {
+			reqInformProperty(EPC_HEATING_VALUE_OF_HOT_WATER_STORAGE_TANK);
 			return this;
 		}
 		/**
@@ -2549,53 +2497,25 @@ m3<br>
 		 * <br>
 		 * EPC : 0xD0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the system interconnection status<br>
+		 * Contents :<br>
+		 * This property indicates the system interconnection status <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01<br>
-		 * System-linked type    (reverse power flow not acceptable) =0x02<br>
+		 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01_x000a_System-linked type    (reverse power flow not acceptable) =0x02<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformSystemInterconnectedType() {
 			reqInformProperty(EPC_SYSTEM_INTERCONNECTED_TYPE);
-			return this;
-		}
-		/**
-		 * Property name : Measured remaining hot water amount<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured amount of the remaining hot water in liters.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533 liters)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
-		 * Unit : liter<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasuredRemainingHotWaterAmount() {
-			reqInformProperty(EPC_MEASURED_REMAINING_HOT_WATER_AMOUNT);
 			return this;
 		}
 		/**
@@ -2603,28 +2523,132 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xE2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the tank capacity in liters.<br>
+		 * Contents :<br>
+		 * This property indicates the tank capacity in liters. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFD (0.65533 liters)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformTankCapacity() {
 			reqInformProperty(EPC_TANK_CAPACITY);
 			return this;
 		}
+		/**
+		 * Property name : Measured remaining hot water amount<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measured amount of the remaining hot water in liters. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.65533 liters)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasuredRemainingHotWaterAmount() {
+			reqInformProperty(EPC_MEASURED_REMAINING_HOT_WATER_AMOUNT);
+			return this;
+		}
+		/**
+		 * Property name : Measured in-house cumulative power consumption<br>
+		 * <br>
+		 * EPC : 0xCD<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measured in-house cumulative power consumption in units of 0.001kWh. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00000000-0x3B9AC9FF (0-999,999.999kWh)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * Data size : 4<br>
+		 * Unit : 0.001 kWh<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasuredInHouseCumulativePowerConsumption() {
+			reqInformProperty(EPC_MEASURED_IN_HOUSE_CUMULATIVE_POWER_CONSUMPTION);
+			return this;
+		}
+		/**
+		 * Property name : Measured in-house instantaneous power consumption<br>
+		 * <br>
+		 * EPC : 0xCC<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measured in-house instantaneous power consumption in watts. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000-0xFFFD (0-65,533W)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasuredInHouseInstantaneousPowerConsumption() {
+			reqInformProperty(EPC_MEASURED_IN_HOUSE_INSTANTANEOUS_POWER_CONSUMPTION);
+			return this;
+		}
+		/**
+		 * Property name : Power generation status<br>
+		 * <br>
+		 * EPC : 0xCB<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the power generation status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * generating =0x41, stopped=0x42, starting=0x43, stopping=0x44, idling=0x45<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : <br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformPowerGenerationStatus() {
+			reqInformProperty(EPC_POWER_GENERATION_STATUS);
+			return this;
+		}
+
 	}
 
 	public static class Proxy extends FuelCell {
@@ -2637,21 +2661,28 @@ bytes<br>
 			return mEchoInstanceCode;
 		}
 		@Override
-		protected byte[] getOperationStatus() {return null;}
+		protected byte[] getMeasuredCumulativePowerGenerationOutput(){return null;}
 		@Override
-		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		protected byte[] getMeasuredInstantaneousPowerGenerationOutput(){return null;}
 		@Override
-		protected byte[] getInstallationLocation() {return null;}
+		protected byte[] getStatusChangeAnnouncementPropertyMap(){return null;}
 		@Override
-		protected byte[] getStandardVersionInformation() {return null;}
+		protected byte[] getSetPropertyMap(){return null;}
 		@Override
-		protected byte[] getFaultStatus() {return null;}
+		protected byte[] getOperationStatus(){return null;}
 		@Override
-		protected byte[] getManufacturerCode() {return null;}
+		protected boolean setInstallationLocation(byte[] edt){return false;}
 		@Override
-		protected byte[] getMeasuredInstantaneousPowerGenerationOutput() {return null;}
+		protected byte[] getInstallationLocation(){return null;}
 		@Override
-		protected byte[] getMeasuredCumulativePowerGenerationOutput() {return null;}
+		protected byte[] getStandardVersionInformation(){return null;}
+		@Override
+		protected byte[] getGetPropertyMap(){return null;}
+		@Override
+		protected byte[] getFaultStatus(){return null;}
+		@Override
+		protected byte[] getManufacturerCode(){return null;}
+
 	}
 	
 	public static Setter setG() {

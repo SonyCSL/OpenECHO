@@ -1,39 +1,45 @@
 /*
- * Copyright 2012 Sony Computer Science Laboratories, Inc. <info@kadecot.net>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2014 Sony Computer Science Laboratories, Inc.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.sonycsl.echo.eoj.device.cookinghousehold;
 
 import com.sonycsl.echo.Echo;
-import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
-import com.sonycsl.echo.node.EchoNode;
 
 public abstract class ClothesDryer extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x03C6;
 
-	public static final byte EPC_DOOR_COVER_OPEN_CLOSE_STATUS = (byte)0xB0;
-	public static final byte EPC_DRYING_SETTING = (byte)0xB2;
 	public static final byte EPC_DRYING_STATUS = (byte)0xE1;
 	public static final byte EPC_REMAINING_DRYING_TIME = (byte)0xE6;
-	public static final byte EPC_ON_TIMER_RESERVATION_SETTING = (byte)0x90;
+	public static final byte EPC_DRYING_SETTING = (byte)0xB2;
+	public static final byte EPC_DOOR_COVER_OPEN_CLOSE_STATUS = (byte)0xB0;
+	public static final byte EPC_RELATIVE_X000A_TIME_BASED_ON_TIMER_SETTING = (byte)0x92;
 	public static final byte EPC_ON_TIMER_SETTING = (byte)0x91;
-	public static final byte EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING = (byte)0x92;
+	public static final byte EPC_ON_TIMER_RESERVATION_SETTING = (byte)0x90;
 
 	@Override
 	protected void setupPropertyMaps() {
@@ -42,6 +48,7 @@ public abstract class ClothesDryer extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
+
 	}
 
 	@Override
@@ -56,27 +63,122 @@ public abstract class ClothesDryer extends DeviceObject {
 	}
 
 	/**
+	 * Property name : Drying status<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents :<br>
+	 * Drying status <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Drying in progress=0x41 Drying suspended=0x42_x000a_Drying completed/stopped=0x43<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getDryingStatus() {return null;}
+	/**
+	 * Property name : Drying status<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents :<br>
+	 * Drying status <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Drying in progress=0x41 Drying suspended=0x42_x000a_Drying completed/stopped=0x43<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidDryingStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Remaining drying time<br>
+	 * <br>
+	 * EPC : 0xE6<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the remaining drying time in the “HH:MM:SS” format. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0x17: 0.0x3B : 0.0x3B (=0.23):(=0.59):(=0.59)<br>
+	 * <br>
+	 * Data type : unsigned char_x000a_×3<br>
+	 * Data size : 3<br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getRemainingDryingTime() {return null;}
+	/**
+	 * Property name : Remaining drying time<br>
+	 * <br>
+	 * EPC : 0xE6<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the remaining drying time in the “HH:MM:SS” format. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0x17: 0.0x3B : 0.0x3B (=0.23):(=0.59):(=0.59)<br>
+	 * <br>
+	 * Data type : unsigned char_x000a_×3<br>
+	 * Data size : 3<br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidRemainingDryingTime(byte[] edt) {
+		if(edt == null || !(edt.length == 3)) {return false;};
+		return true;
+	}
+	/**
 	 * Property name : Operation status<br>
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -86,76 +188,48 @@ byte<br>
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
 	protected abstract byte[] getOperationStatus();
 	/**
-	 * Property name : Door/cover open/close status<br>
+	 * Property name : Operation status<br>
 	 * <br>
-	 * EPC : 0xB0<br>
+	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the status  of the door or cover as to whether it is open or closed.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Door/cover open = 0x41 Door/cover closed = 0x42<br>
+	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected byte[] getDoorCoverOpenCloseStatus() {return null;}
-	/**
-	 * Property name : Door/cover open/close status<br>
-	 * <br>
-	 * EPC : 0xB0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the status  of the door or cover as to whether it is open or closed.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Door/cover open = 0x41 Door/cover closed = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-byte<br>
-	 * <br>
-	 * Unit : .<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidDoorCoverOpenCloseStatus(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
+	protected boolean isValidOperationStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 	/**
@@ -163,23 +237,22 @@ byte<br>
 	 * <br>
 	 * EPC : 0xB2<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Drying setting<br>
+	 * Contents :<br>
+	 * Drying setting <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Start/restart drying=0x41, Suspend drying=0x42, Stop drying=0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean setDryingSetting(byte[] edt) {return false;}
 	/**
@@ -187,23 +260,22 @@ byte<br>
 	 * <br>
 	 * EPC : 0xB2<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Drying setting<br>
+	 * Contents :<br>
+	 * Drying setting <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Start/restart drying=0x41, Suspend drying=0x42, Stop drying=0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getDryingSetting() {return null;}
 	/**
@@ -211,207 +283,146 @@ byte<br>
 	 * <br>
 	 * EPC : 0xB2<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Drying setting<br>
+	 * Contents :<br>
+	 * Drying setting <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Start/restart drying=0x41, Suspend drying=0x42, Stop drying=0x43<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidDryingSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 	/**
-	 * Property name : Drying status<br>
+	 * Property name : Door/cover open/close status<br>
 	 * <br>
-	 * EPC : 0xE1<br>
+	 * EPC : 0xB0<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Drying status<br>
+	 * Contents :<br>
+	 * This property indicates the status  of the door or cover as to whether it is open or closed. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Drying in progress=0x41 Drying suspended=0x42<br>
-	 * Drying completed/stopped=0x43<br>
+	 * Door/cover open = 0x41 Door/cover closed = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected byte[] getDryingStatus() {return null;}
+	protected byte[] getDoorCoverOpenCloseStatus() {return null;}
 	/**
-	 * Property name : Drying status<br>
+	 * Property name : Door/cover open/close status<br>
 	 * <br>
-	 * EPC : 0xE1<br>
+	 * EPC : 0xB0<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Drying status<br>
+	 * Contents :<br>
+	 * This property indicates the status  of the door or cover as to whether it is open or closed. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Drying in progress=0x41 Drying suspended=0x42<br>
-	 * Drying completed/stopped=0x43<br>
+	 * Door/cover open = 0x41 Door/cover closed = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean isValidDryingStatus(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
+	protected boolean isValidDoorCoverOpenCloseStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 	/**
-	 * Property name : Remaining drying time<br>
+	 * Property name : Relative_x000a_time-based ON timer setting<br>
 	 * <br>
-	 * EPC : 0xE6<br>
+	 * EPC : 0x92<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the remaining drying time in the “HH:MM:SS” format.<br>
+	 * Contents :<br>
+	 * Timer value    HH:MM <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0.0x17: 0.0x3B : 0.0x3B (=0.23):(=0.59):(=0.59)<br>
+	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 	 * <br>
-	 * Data type : unsigned char
-×3<br>
-	 * <br>
-	 * Data size : 3
-bytes<br>
-	 * <br>
+	 * Data type : unsigned char_x000a_×2<br>
+	 * Data size : 2<br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected byte[] getRemainingDryingTime() {return null;}
+	protected boolean setRelativeX000ATimeBasedOnTimerSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : Remaining drying time<br>
+	 * Property name : Relative_x000a_time-based ON timer setting<br>
 	 * <br>
-	 * EPC : 0xE6<br>
+	 * EPC : 0x92<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the remaining drying time in the “HH:MM:SS” format.<br>
+	 * Contents :<br>
+	 * Timer value    HH:MM <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0.0x17: 0.0x3B : 0.0x3B (=0.23):(=0.59):(=0.59)<br>
+	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 	 * <br>
-	 * Data type : unsigned char
-×3<br>
-	 * <br>
-	 * Data size : 3
-bytes<br>
-	 * <br>
+	 * Data type : unsigned char_x000a_×2<br>
+	 * Data size : 2<br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean isValidRemainingDryingTime(byte[] edt) {
-		if(edt == null || !(edt.length == 3)) return false;
-		return true;
-	}
+	protected byte[] getRelativeX000ATimeBasedOnTimerSetting() {return null;}
 	/**
-	 * Property name : ON timer reservation setting<br>
+	 * Property name : Relative_x000a_time-based ON timer setting<br>
 	 * <br>
-	 * EPC : 0x90<br>
+	 * EPC : 0x92<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Reservation ON/OFF<br>
+	 * Contents :<br>
+	 * Timer value    HH:MM <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Reservation ON=0x41 Reservation OFF=0x42<br>
+	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-byte<br>
-	 * <br>
+	 * Data type : unsigned char_x000a_×2<br>
+	 * Data size : 2<br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean setOnTimerReservationSetting(byte[] edt) {return false;}
-	/**
-	 * Property name : ON timer reservation setting<br>
-	 * <br>
-	 * EPC : 0x90<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Reservation ON/OFF<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Reservation ON=0x41 Reservation OFF=0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-byte<br>
-	 * <br>
-	 * Unit : .<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getOnTimerReservationSetting() {return null;}
-	/**
-	 * Property name : ON timer reservation setting<br>
-	 * <br>
-	 * EPC : 0x90<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Reservation ON/OFF<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Reservation ON=0x41 Reservation OFF=0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-byte<br>
-	 * <br>
-	 * Unit : .<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidOnTimerReservationSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
+	protected boolean isValidRelativeX000ATimeBasedOnTimerSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
 		return true;
 	}
 	/**
@@ -419,24 +430,22 @@ byte<br>
 	 * <br>
 	 * EPC : 0x91<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Timer value    HH:MM<br>
+	 * Contents :<br>
+	 * Timer value    HH:MM <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 	 * <br>
-	 * Data type : unsigned char
-×2<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
+	 * Data type : unsigned char_x000a_×2<br>
+	 * Data size : 2<br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean setOnTimerSetting(byte[] edt) {return false;}
 	/**
@@ -444,24 +453,22 @@ bytes<br>
 	 * <br>
 	 * EPC : 0x91<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Timer value    HH:MM<br>
+	 * Contents :<br>
+	 * Timer value    HH:MM <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 	 * <br>
-	 * Data type : unsigned char
-×2<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
+	 * Data type : unsigned char_x000a_×2<br>
+	 * Data size : 2<br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getOnTimerSetting() {return null;}
 	/**
@@ -469,108 +476,97 @@ bytes<br>
 	 * <br>
 	 * EPC : 0x91<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Timer value    HH:MM<br>
+	 * Contents :<br>
+	 * Timer value    HH:MM <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 	 * <br>
-	 * Data type : unsigned char
-×2<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
+	 * Data type : unsigned char_x000a_×2<br>
+	 * Data size : 2<br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidOnTimerSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
+		if(edt == null || !(edt.length == 2)) {return false;};
 		return true;
 	}
 	/**
-	 * Property name : Relative
-time-based ON timer setting<br>
+	 * Property name : ON timer reservation setting<br>
 	 * <br>
-	 * EPC : 0x92<br>
+	 * EPC : 0x90<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Timer value    HH:MM<br>
+	 * Contents :<br>
+	 * Reservation ON/OFF <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
+	 * Reservation ON=0x41 Reservation OFF=0x42<br>
 	 * <br>
-	 * Data type : unsigned char
-×2<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean setRelativeTimeBasedOnTimerSetting(byte[] edt) {return false;}
+	protected boolean setOnTimerReservationSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : Relative
-time-based ON timer setting<br>
+	 * Property name : ON timer reservation setting<br>
 	 * <br>
-	 * EPC : 0x92<br>
+	 * EPC : 0x90<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Timer value    HH:MM<br>
+	 * Contents :<br>
+	 * Reservation ON/OFF <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
+	 * Reservation ON=0x41 Reservation OFF=0x42<br>
 	 * <br>
-	 * Data type : unsigned char
-×2<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected byte[] getRelativeTimeBasedOnTimerSetting() {return null;}
+	protected byte[] getOnTimerReservationSetting() {return null;}
 	/**
-	 * Property name : Relative
-time-based ON timer setting<br>
+	 * Property name : ON timer reservation setting<br>
 	 * <br>
-	 * EPC : 0x92<br>
+	 * EPC : 0x90<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Timer value    HH:MM<br>
+	 * Contents :<br>
+	 * Reservation ON/OFF <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
+	 * Reservation ON=0x41 Reservation OFF=0x42<br>
 	 * <br>
-	 * Data type : unsigned char
-×2<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean isValidRelativeTimeBasedOnTimerSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
+	protected boolean isValidOnTimerReservationSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 
@@ -581,9 +577,10 @@ bytes<br>
 
 		switch(property.epc) {
 		case EPC_DRYING_SETTING : return setDryingSetting(property.edt);
-		case EPC_ON_TIMER_RESERVATION_SETTING : return setOnTimerReservationSetting(property.edt);
+		case EPC_RELATIVE_X000A_TIME_BASED_ON_TIMER_SETTING : return setRelativeX000ATimeBasedOnTimerSetting(property.edt);
 		case EPC_ON_TIMER_SETTING : return setOnTimerSetting(property.edt);
-		case EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING : return setRelativeTimeBasedOnTimerSetting(property.edt);
+		case EPC_ON_TIMER_RESERVATION_SETTING : return setOnTimerReservationSetting(property.edt);
+
 		default : return false;
 		}
 	}
@@ -594,13 +591,14 @@ bytes<br>
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_DOOR_COVER_OPEN_CLOSE_STATUS : return getDoorCoverOpenCloseStatus();
-		case EPC_DRYING_SETTING : return getDryingSetting();
 		case EPC_DRYING_STATUS : return getDryingStatus();
 		case EPC_REMAINING_DRYING_TIME : return getRemainingDryingTime();
-		case EPC_ON_TIMER_RESERVATION_SETTING : return getOnTimerReservationSetting();
+		case EPC_DRYING_SETTING : return getDryingSetting();
+		case EPC_DOOR_COVER_OPEN_CLOSE_STATUS : return getDoorCoverOpenCloseStatus();
+		case EPC_RELATIVE_X000A_TIME_BASED_ON_TIMER_SETTING : return getRelativeX000ATimeBasedOnTimerSetting();
 		case EPC_ON_TIMER_SETTING : return getOnTimerSetting();
-		case EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING : return getRelativeTimeBasedOnTimerSetting();
+		case EPC_ON_TIMER_RESERVATION_SETTING : return getOnTimerReservationSetting();
+
 		default : return null;
 		}
 	}
@@ -611,13 +609,14 @@ bytes<br>
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_DOOR_COVER_OPEN_CLOSE_STATUS : return isValidDoorCoverOpenCloseStatus(property.edt);
-		case EPC_DRYING_SETTING : return isValidDryingSetting(property.edt);
 		case EPC_DRYING_STATUS : return isValidDryingStatus(property.edt);
 		case EPC_REMAINING_DRYING_TIME : return isValidRemainingDryingTime(property.edt);
-		case EPC_ON_TIMER_RESERVATION_SETTING : return isValidOnTimerReservationSetting(property.edt);
+		case EPC_DRYING_SETTING : return isValidDryingSetting(property.edt);
+		case EPC_DOOR_COVER_OPEN_CLOSE_STATUS : return isValidDoorCoverOpenCloseStatus(property.edt);
+		case EPC_RELATIVE_X000A_TIME_BASED_ON_TIMER_SETTING : return isValidRelativeX000ATimeBasedOnTimerSetting(property.edt);
 		case EPC_ON_TIMER_SETTING : return isValidOnTimerSetting(property.edt);
-		case EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING : return isValidRelativeTimeBasedOnTimerSetting(property.edt);
+		case EPC_ON_TIMER_RESERVATION_SETTING : return isValidOnTimerReservationSetting(property.edt);
+
 		default : return false;
 		}
 	}
@@ -668,15 +667,16 @@ bytes<br>
 			case EPC_DRYING_SETTING : 
 				onSetDryingSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_ON_TIMER_RESERVATION_SETTING : 
-				onSetOnTimerReservationSetting(eoj, tid, esv, property, success);
+			case EPC_RELATIVE_X000A_TIME_BASED_ON_TIMER_SETTING : 
+				onSetRelativeX000ATimeBasedOnTimerSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ON_TIMER_SETTING : 
 				onSetOnTimerSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING : 
-				onSetRelativeTimeBasedOnTimerSetting(eoj, tid, esv, property, success);
+			case EPC_ON_TIMER_RESERVATION_SETTING : 
+				onSetOnTimerReservationSetting(eoj, tid, esv, property, success);
 				return true;
+
 			default :
 				return false;
 			}
@@ -689,127 +689,54 @@ bytes<br>
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_DOOR_COVER_OPEN_CLOSE_STATUS : 
-				onGetDoorCoverOpenCloseStatus(eoj, tid, esv, property, success);
-				return true;
-			case EPC_DRYING_SETTING : 
-				onGetDryingSetting(eoj, tid, esv, property, success);
-				return true;
 			case EPC_DRYING_STATUS : 
 				onGetDryingStatus(eoj, tid, esv, property, success);
 				return true;
 			case EPC_REMAINING_DRYING_TIME : 
 				onGetRemainingDryingTime(eoj, tid, esv, property, success);
 				return true;
-			case EPC_ON_TIMER_RESERVATION_SETTING : 
-				onGetOnTimerReservationSetting(eoj, tid, esv, property, success);
+			case EPC_DRYING_SETTING : 
+				onGetDryingSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_DOOR_COVER_OPEN_CLOSE_STATUS : 
+				onGetDoorCoverOpenCloseStatus(eoj, tid, esv, property, success);
+				return true;
+			case EPC_RELATIVE_X000A_TIME_BASED_ON_TIMER_SETTING : 
+				onGetRelativeX000ATimeBasedOnTimerSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ON_TIMER_SETTING : 
 				onGetOnTimerSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING : 
-				onGetRelativeTimeBasedOnTimerSetting(eoj, tid, esv, property, success);
+			case EPC_ON_TIMER_RESERVATION_SETTING : 
+				onGetOnTimerReservationSetting(eoj, tid, esv, property, success);
 				return true;
+
 			default :
 				return false;
 			}
 		}
 		
 		/**
-		 * Property name : Door/cover open/close status<br>
-		 * <br>
-		 * EPC : 0xB0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the status  of the door or cover as to whether it is open or closed.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Door/cover open = 0x41 Door/cover closed = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
-		 * Unit : .<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetDoorCoverOpenCloseStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Drying setting<br>
-		 * <br>
-		 * EPC : 0xB2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Drying setting<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Start/restart drying=0x41, Suspend drying=0x42, Stop drying=0x43<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
-		 * Unit : .<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetDryingSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Drying setting<br>
-		 * <br>
-		 * EPC : 0xB2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Drying setting<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Start/restart drying=0x41, Suspend drying=0x42, Stop drying=0x43<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
-		 * Unit : .<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetDryingSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
 		 * Property name : Drying status<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Drying status<br>
+		 * Contents :<br>
+		 * Drying status <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Drying in progress=0x41 Drying suspended=0x42<br>
-		 * Drying completed/stopped=0x43<br>
+		 * Drying in progress=0x41 Drying suspended=0x42_x000a_Drying completed/stopped=0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetDryingStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -817,97 +744,206 @@ byte<br>
 		 * <br>
 		 * EPC : 0xE6<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the remaining drying time in the “HH:MM:SS” format.<br>
+		 * Contents :<br>
+		 * This property indicates the remaining drying time in the “HH:MM:SS” format. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B : 0.0x3B (=0.23):(=0.59):(=0.59)<br>
 		 * <br>
-		 * Data type : unsigned char
-×3<br>
-		 * <br>
-		 * Data size : 3
-bytes<br>
-		 * <br>
+		 * Data type : unsigned char_x000a_×3<br>
+		 * Data size : 3<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetRemainingDryingTime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : ON timer reservation setting<br>
+		 * Property name : Operation status<br>
 		 * <br>
-		 * EPC : 0x90<br>
+		 * EPC : 0x80<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Reservation ON/OFF<br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON=0x41 Reservation OFF=0x42<br>
+		 * ON=0x30, OFF=0x31<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onSetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : ON timer reservation setting<br>
+		 * Property name : Operation status<br>
 		 * <br>
-		 * EPC : 0x90<br>
+		 * EPC : 0x80<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Reservation ON/OFF<br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON=0x41 Reservation OFF=0x42<br>
+		 * ON=0x30, OFF=0x31<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Drying setting<br>
+		 * <br>
+		 * EPC : 0xB2<br>
+		 * <br>
+		 * Contents :<br>
+		 * Drying setting <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Start/restart drying=0x41, Suspend drying=0x42, Stop drying=0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetDryingSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Drying setting<br>
+		 * <br>
+		 * EPC : 0xB2<br>
+		 * <br>
+		 * Contents :<br>
+		 * Drying setting <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Start/restart drying=0x41, Suspend drying=0x42, Stop drying=0x43<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetDryingSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Door/cover open/close status<br>
+		 * <br>
+		 * EPC : 0xB0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the status  of the door or cover as to whether it is open or closed. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Door/cover open = 0x41 Door/cover closed = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetDoorCoverOpenCloseStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Relative_x000a_time-based ON timer setting<br>
+		 * <br>
+		 * EPC : 0x92<br>
+		 * <br>
+		 * Contents :<br>
+		 * Timer value    HH:MM <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
+		 * <br>
+		 * Data type : unsigned char_x000a_×2<br>
+		 * Data size : 2<br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetRelativeX000ATimeBasedOnTimerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Relative_x000a_time-based ON timer setting<br>
+		 * <br>
+		 * EPC : 0x92<br>
+		 * <br>
+		 * Contents :<br>
+		 * Timer value    HH:MM <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
+		 * <br>
+		 * Data type : unsigned char_x000a_×2<br>
+		 * Data size : 2<br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetRelativeX000ATimeBasedOnTimerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : ON timer setting<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Timer value    HH:MM<br>
+		 * Contents :<br>
+		 * Timer value    HH:MM <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
-		 * Data type : unsigned char
-×2<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
+		 * Data type : unsigned char_x000a_×2<br>
+		 * Data size : 2<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onSetOnTimerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -915,78 +951,71 @@ bytes<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Timer value    HH:MM<br>
+		 * Contents :<br>
+		 * Timer value    HH:MM <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
-		 * Data type : unsigned char
-×2<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
+		 * Data type : unsigned char_x000a_×2<br>
+		 * Data size : 2<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetOnTimerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Relative
-time-based ON timer setting<br>
+		 * Property name : ON timer reservation setting<br>
 		 * <br>
-		 * EPC : 0x92<br>
+		 * EPC : 0x90<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Timer value    HH:MM<br>
+		 * Contents :<br>
+		 * Reservation ON/OFF <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
+		 * Reservation ON=0x41 Reservation OFF=0x42<br>
 		 * <br>
-		 * Data type : unsigned char
-×2<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onSetRelativeTimeBasedOnTimerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Relative
-time-based ON timer setting<br>
+		 * Property name : ON timer reservation setting<br>
 		 * <br>
-		 * EPC : 0x92<br>
+		 * EPC : 0x90<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Timer value    HH:MM<br>
+		 * Contents :<br>
+		 * Reservation ON/OFF <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
+		 * Reservation ON=0x41 Reservation OFF=0x42<br>
 		 * <br>
-		 * Data type : unsigned char
-×2<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetRelativeTimeBasedOnTimerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+
 	}
 
 	public static class Setter extends DeviceObject.Setter {
@@ -1039,53 +1068,51 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xB2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Drying setting<br>
+		 * Contents :<br>
+		 * Drying setting <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Start/restart drying=0x41, Suspend drying=0x42, Stop drying=0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetDryingSetting(byte[] edt) {
 			reqSetProperty(EPC_DRYING_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Property name : ON timer reservation setting<br>
+		 * Property name : Relative_x000a_time-based ON timer setting<br>
 		 * <br>
-		 * EPC : 0x90<br>
+		 * EPC : 0x92<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Reservation ON/OFF<br>
+		 * Contents :<br>
+		 * Timer value    HH:MM <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON=0x41 Reservation OFF=0x42<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
+		 * Data type : unsigned char_x000a_×2<br>
+		 * Data size : 2<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Setter reqSetOnTimerReservationSetting(byte[] edt) {
-			reqSetProperty(EPC_ON_TIMER_RESERVATION_SETTING, edt);
+		public Setter reqSetRelativeX000ATimeBasedOnTimerSetting(byte[] edt) {
+			reqSetProperty(EPC_RELATIVE_X000A_TIME_BASED_ON_TIMER_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1093,58 +1120,54 @@ byte<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Timer value    HH:MM<br>
+		 * Contents :<br>
+		 * Timer value    HH:MM <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
-		 * Data type : unsigned char
-×2<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
+		 * Data type : unsigned char_x000a_×2<br>
+		 * Data size : 2<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOnTimerSetting(byte[] edt) {
 			reqSetProperty(EPC_ON_TIMER_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Property name : Relative
-time-based ON timer setting<br>
+		 * Property name : ON timer reservation setting<br>
 		 * <br>
-		 * EPC : 0x92<br>
+		 * EPC : 0x90<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Timer value    HH:MM<br>
+		 * Contents :<br>
+		 * Reservation ON/OFF <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
+		 * Reservation ON=0x41 Reservation OFF=0x42<br>
 		 * <br>
-		 * Data type : unsigned char
-×2<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Setter reqSetRelativeTimeBasedOnTimerSetting(byte[] edt) {
-			reqSetProperty(EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING, edt);
+		public Setter reqSetOnTimerReservationSetting(byte[] edt) {
+			reqSetProperty(EPC_ON_TIMER_RESERVATION_SETTING, edt);
 			return this;
 		}
+
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
@@ -1257,82 +1280,26 @@ bytes<br>
 		}
 		
 		/**
-		 * Property name : Door/cover open/close status<br>
-		 * <br>
-		 * EPC : 0xB0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the status  of the door or cover as to whether it is open or closed.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Door/cover open = 0x41 Door/cover closed = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
-		 * Unit : .<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetDoorCoverOpenCloseStatus() {
-			reqGetProperty(EPC_DOOR_COVER_OPEN_CLOSE_STATUS);
-			return this;
-		}
-		/**
-		 * Property name : Drying setting<br>
-		 * <br>
-		 * EPC : 0xB2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Drying setting<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Start/restart drying=0x41, Suspend drying=0x42, Stop drying=0x43<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
-		 * Unit : .<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetDryingSetting() {
-			reqGetProperty(EPC_DRYING_SETTING);
-			return this;
-		}
-		/**
 		 * Property name : Drying status<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Drying status<br>
+		 * Contents :<br>
+		 * Drying status <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Drying in progress=0x41 Drying suspended=0x42<br>
-		 * Drying completed/stopped=0x43<br>
+		 * Drying in progress=0x41 Drying suspended=0x42_x000a_Drying completed/stopped=0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetDryingStatus() {
 			reqGetProperty(EPC_DRYING_STATUS);
@@ -1343,54 +1310,103 @@ byte<br>
 		 * <br>
 		 * EPC : 0xE6<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the remaining drying time in the “HH:MM:SS” format.<br>
+		 * Contents :<br>
+		 * This property indicates the remaining drying time in the “HH:MM:SS” format. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B : 0.0x3B (=0.23):(=0.59):(=0.59)<br>
 		 * <br>
-		 * Data type : unsigned char
-×3<br>
-		 * <br>
-		 * Data size : 3
-bytes<br>
-		 * <br>
+		 * Data type : unsigned char_x000a_×3<br>
+		 * Data size : 3<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetRemainingDryingTime() {
 			reqGetProperty(EPC_REMAINING_DRYING_TIME);
 			return this;
 		}
 		/**
-		 * Property name : ON timer reservation setting<br>
+		 * Property name : Drying setting<br>
 		 * <br>
-		 * EPC : 0x90<br>
+		 * EPC : 0xB2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Reservation ON/OFF<br>
+		 * Contents :<br>
+		 * Drying setting <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON=0x41 Reservation OFF=0x42<br>
+		 * Start/restart drying=0x41, Suspend drying=0x42, Stop drying=0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetOnTimerReservationSetting() {
-			reqGetProperty(EPC_ON_TIMER_RESERVATION_SETTING);
+		public Getter reqGetDryingSetting() {
+			reqGetProperty(EPC_DRYING_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : Door/cover open/close status<br>
+		 * <br>
+		 * EPC : 0xB0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the status  of the door or cover as to whether it is open or closed. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Door/cover open = 0x41 Door/cover closed = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetDoorCoverOpenCloseStatus() {
+			reqGetProperty(EPC_DOOR_COVER_OPEN_CLOSE_STATUS);
+			return this;
+		}
+		/**
+		 * Property name : Relative_x000a_time-based ON timer setting<br>
+		 * <br>
+		 * EPC : 0x92<br>
+		 * <br>
+		 * Contents :<br>
+		 * Timer value    HH:MM <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
+		 * <br>
+		 * Data type : unsigned char_x000a_×2<br>
+		 * Data size : 2<br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetRelativeX000ATimeBasedOnTimerSetting() {
+			reqGetProperty(EPC_RELATIVE_X000A_TIME_BASED_ON_TIMER_SETTING);
 			return this;
 		}
 		/**
@@ -1398,58 +1414,54 @@ byte<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Timer value    HH:MM<br>
+		 * Contents :<br>
+		 * Timer value    HH:MM <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
-		 * Data type : unsigned char
-×2<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
+		 * Data type : unsigned char_x000a_×2<br>
+		 * Data size : 2<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOnTimerSetting() {
 			reqGetProperty(EPC_ON_TIMER_SETTING);
 			return this;
 		}
 		/**
-		 * Property name : Relative
-time-based ON timer setting<br>
+		 * Property name : ON timer reservation setting<br>
 		 * <br>
-		 * EPC : 0x92<br>
+		 * EPC : 0x90<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Timer value    HH:MM<br>
+		 * Contents :<br>
+		 * Reservation ON/OFF <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
+		 * Reservation ON=0x41 Reservation OFF=0x42<br>
 		 * <br>
-		 * Data type : unsigned char
-×2<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetRelativeTimeBasedOnTimerSetting() {
-			reqGetProperty(EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING);
+		public Getter reqGetOnTimerReservationSetting() {
+			reqGetProperty(EPC_ON_TIMER_RESERVATION_SETTING);
 			return this;
 		}
+
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
@@ -1561,82 +1573,26 @@ bytes<br>
 		}
 		
 		/**
-		 * Property name : Door/cover open/close status<br>
-		 * <br>
-		 * EPC : 0xB0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the status  of the door or cover as to whether it is open or closed.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Door/cover open = 0x41 Door/cover closed = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
-		 * Unit : .<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformDoorCoverOpenCloseStatus() {
-			reqInformProperty(EPC_DOOR_COVER_OPEN_CLOSE_STATUS);
-			return this;
-		}
-		/**
-		 * Property name : Drying setting<br>
-		 * <br>
-		 * EPC : 0xB2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Drying setting<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Start/restart drying=0x41, Suspend drying=0x42, Stop drying=0x43<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
-		 * Unit : .<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformDryingSetting() {
-			reqInformProperty(EPC_DRYING_SETTING);
-			return this;
-		}
-		/**
 		 * Property name : Drying status<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Drying status<br>
+		 * Contents :<br>
+		 * Drying status <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Drying in progress=0x41 Drying suspended=0x42<br>
-		 * Drying completed/stopped=0x43<br>
+		 * Drying in progress=0x41 Drying suspended=0x42_x000a_Drying completed/stopped=0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformDryingStatus() {
 			reqInformProperty(EPC_DRYING_STATUS);
@@ -1647,54 +1603,103 @@ byte<br>
 		 * <br>
 		 * EPC : 0xE6<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the remaining drying time in the “HH:MM:SS” format.<br>
+		 * Contents :<br>
+		 * This property indicates the remaining drying time in the “HH:MM:SS” format. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B : 0.0x3B (=0.23):(=0.59):(=0.59)<br>
 		 * <br>
-		 * Data type : unsigned char
-×3<br>
-		 * <br>
-		 * Data size : 3
-bytes<br>
-		 * <br>
+		 * Data type : unsigned char_x000a_×3<br>
+		 * Data size : 3<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformRemainingDryingTime() {
 			reqInformProperty(EPC_REMAINING_DRYING_TIME);
 			return this;
 		}
 		/**
-		 * Property name : ON timer reservation setting<br>
+		 * Property name : Drying setting<br>
 		 * <br>
-		 * EPC : 0x90<br>
+		 * EPC : 0xB2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Reservation ON/OFF<br>
+		 * Contents :<br>
+		 * Drying setting <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON=0x41 Reservation OFF=0x42<br>
+		 * Start/restart drying=0x41, Suspend drying=0x42, Stop drying=0x43<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformOnTimerReservationSetting() {
-			reqInformProperty(EPC_ON_TIMER_RESERVATION_SETTING);
+		public Informer reqInformDryingSetting() {
+			reqInformProperty(EPC_DRYING_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : Door/cover open/close status<br>
+		 * <br>
+		 * EPC : 0xB0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the status  of the door or cover as to whether it is open or closed. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Door/cover open = 0x41 Door/cover closed = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformDoorCoverOpenCloseStatus() {
+			reqInformProperty(EPC_DOOR_COVER_OPEN_CLOSE_STATUS);
+			return this;
+		}
+		/**
+		 * Property name : Relative_x000a_time-based ON timer setting<br>
+		 * <br>
+		 * EPC : 0x92<br>
+		 * <br>
+		 * Contents :<br>
+		 * Timer value    HH:MM <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
+		 * <br>
+		 * Data type : unsigned char_x000a_×2<br>
+		 * Data size : 2<br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformRelativeX000ATimeBasedOnTimerSetting() {
+			reqInformProperty(EPC_RELATIVE_X000A_TIME_BASED_ON_TIMER_SETTING);
 			return this;
 		}
 		/**
@@ -1702,58 +1707,54 @@ byte<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Timer value    HH:MM<br>
+		 * Contents :<br>
+		 * Timer value    HH:MM <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
 		 * <br>
-		 * Data type : unsigned char
-×2<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
+		 * Data type : unsigned char_x000a_×2<br>
+		 * Data size : 2<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOnTimerSetting() {
 			reqInformProperty(EPC_ON_TIMER_SETTING);
 			return this;
 		}
 		/**
-		 * Property name : Relative
-time-based ON timer setting<br>
+		 * Property name : ON timer reservation setting<br>
 		 * <br>
-		 * EPC : 0x92<br>
+		 * EPC : 0x90<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Timer value    HH:MM<br>
+		 * Contents :<br>
+		 * Reservation ON/OFF <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0.0x17: 0.0x3B (=0.23):(=0.59)<br>
+		 * Reservation ON=0x41 Reservation OFF=0x42<br>
 		 * <br>
-		 * Data type : unsigned char
-×2<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformRelativeTimeBasedOnTimerSetting() {
-			reqInformProperty(EPC_RELATIVE_TIME_BASED_ON_TIMER_SETTING);
+		public Informer reqInformOnTimerReservationSetting() {
+			reqInformProperty(EPC_ON_TIMER_RESERVATION_SETTING);
 			return this;
 		}
+
 	}
 
 	public static class Proxy extends ClothesDryer {
@@ -1766,17 +1767,24 @@ bytes<br>
 			return mEchoInstanceCode;
 		}
 		@Override
-		protected byte[] getOperationStatus() {return null;}
+		protected byte[] getGetPropertyMap(){return null;}
 		@Override
-		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		protected byte[] getStatusChangeAnnouncementPropertyMap(){return null;}
 		@Override
-		protected byte[] getInstallationLocation() {return null;}
+		protected byte[] getSetPropertyMap(){return null;}
 		@Override
-		protected byte[] getStandardVersionInformation() {return null;}
+		protected byte[] getOperationStatus(){return null;}
 		@Override
-		protected byte[] getFaultStatus() {return null;}
+		protected boolean setInstallationLocation(byte[] edt){return false;}
 		@Override
-		protected byte[] getManufacturerCode() {return null;}
+		protected byte[] getInstallationLocation(){return null;}
+		@Override
+		protected byte[] getStandardVersionInformation(){return null;}
+		@Override
+		protected byte[] getFaultStatus(){return null;}
+		@Override
+		protected byte[] getManufacturerCode(){return null;}
+
 	}
 	
 	public static Setter setG() {

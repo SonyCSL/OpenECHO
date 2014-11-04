@@ -1,39 +1,45 @@
 /*
- * Copyright 2012 Sony Computer Science Laboratories, Inc. <info@kadecot.net>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2014 Sony Computer Science Laboratories, Inc.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.sonycsl.echo.eoj.device.airconditioner;
 
 import com.sonycsl.echo.Echo;
-import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
-import com.sonycsl.echo.node.EchoNode;
 
 public abstract class AirConditionerVentilationFan extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x0134;
 
-	public static final byte EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY = (byte)0xB4;
-	public static final byte EPC_VENTILATION_AUTO_SETTING = (byte)0xBF;
-	public static final byte EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY = (byte)0xBA;
-	public static final byte EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE = (byte)0xA0;
 	public static final byte EPC_HEAT_EXCHANGER_OPERATION_SETTING = (byte)0xE0;
-	public static final byte EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION = (byte)0xC0;
 	public static final byte EPC_SMOKE_CIGARETTE_DETECTION_STATUS = (byte)0xC1;
+	public static final byte EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION = (byte)0xC0;
+	public static final byte EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE = (byte)0xA0;
+	public static final byte EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY = (byte)0xBA;
+	public static final byte EPC_VENTILATION_AUTO_SETTING = (byte)0xBF;
+	public static final byte EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY = (byte)0xB4;
 
 	@Override
 	protected void setupPropertyMaps() {
@@ -42,6 +48,7 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		addSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
+
 	}
 
 	@Override
@@ -56,26 +63,387 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 	}
 
 	/**
+	 * Property name : Heat exchanger operation setting<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates ON/OFF status of heat exchanger. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Heat exchanger ON = 0x41, OFF=0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setHeatExchangerOperationSetting(byte[] edt) {return false;}
+	/**
+	 * Property name : Heat exchanger operation setting<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates ON/OFF status of heat exchanger. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Heat exchanger ON = 0x41, OFF=0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getHeatExchangerOperationSetting() {return null;}
+	/**
+	 * Property name : Heat exchanger operation setting<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates ON/OFF status of heat exchanger. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Heat exchanger ON = 0x41, OFF=0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidHeatExchangerOperationSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Smoke (cigarette) detection status<br>
+	 * <br>
+	 * EPC : 0xC1<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates smoke (cigarette) detection status. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Smoke (cigarette) detection status found = 0x41_x000a_Smoke (cigarette) detection status not found = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getSmokeCigaretteDetectionStatus() {return null;}
+	/**
+	 * Property name : Smoke (cigarette) detection status<br>
+	 * <br>
+	 * EPC : 0xC1<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates smoke (cigarette) detection status. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Smoke (cigarette) detection status found = 0x41_x000a_Smoke (cigarette) detection status not found = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidSmokeCigaretteDetectionStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measured value of CO2 concentration<br>
+	 * <br>
+	 * EPC : 0xC0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates measured value of CO2 concentration in ppm. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533 ppm)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : ppm<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasuredValueOfCo2Concentration() {return null;}
+	/**
+	 * Property name : Measured value of CO2 concentration<br>
+	 * <br>
+	 * EPC : 0xC0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates measured value of CO2 concentration in ppm. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533 ppm)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : ppm<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasuredValueOfCo2Concentration(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Set value of ventilation air flow rate<br>
+	 * <br>
+	 * EPC : 0xA0<br>
+	 * <br>
+	 * Contents :<br>
+	 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Ventilation air flow rate auto status_x000a_= 0x41_x000a_Ventilation air flow rate level_x000a_= 0x31.0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setSetValueOfVentilationAirFlowRate(byte[] edt) {return false;}
+	/**
+	 * Property name : Set value of ventilation air flow rate<br>
+	 * <br>
+	 * EPC : 0xA0<br>
+	 * <br>
+	 * Contents :<br>
+	 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Ventilation air flow rate auto status_x000a_= 0x41_x000a_Ventilation air flow rate level_x000a_= 0x31.0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getSetValueOfVentilationAirFlowRate() {return null;}
+	/**
+	 * Property name : Set value of ventilation air flow rate<br>
+	 * <br>
+	 * EPC : 0xA0<br>
+	 * <br>
+	 * Contents :<br>
+	 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Ventilation air flow rate auto status_x000a_= 0x41_x000a_Ventilation air flow rate level_x000a_= 0x31.0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidSetValueOfVentilationAirFlowRate(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measured value of room relative humidity<br>
+	 * <br>
+	 * EPC : 0xBA<br>
+	 * <br>
+	 * Contents :<br>
+	 * Measured value of room relative humidity <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64 (0.100%)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : %<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasuredValueOfRoomRelativeHumidity() {return null;}
+	/**
+	 * Property name : Measured value of room relative humidity<br>
+	 * <br>
+	 * EPC : 0xBA<br>
+	 * <br>
+	 * Contents :<br>
+	 * Measured value of room relative humidity <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64 (0.100%)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : %<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasuredValueOfRoomRelativeHumidity(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Ventilation auto setting<br>
+	 * <br>
+	 * EPC : 0xBF<br>
+	 * <br>
+	 * Contents :<br>
+	 * Auto/Non-auto <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Auto = 0x41, Non-auto = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setVentilationAutoSetting(byte[] edt) {return false;}
+	/**
+	 * Property name : Ventilation auto setting<br>
+	 * <br>
+	 * EPC : 0xBF<br>
+	 * <br>
+	 * Contents :<br>
+	 * Auto/Non-auto <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Auto = 0x41, Non-auto = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getVentilationAutoSetting() {return null;}
+	/**
+	 * Property name : Ventilation auto setting<br>
+	 * <br>
+	 * EPC : 0xBF<br>
+	 * <br>
+	 * Contents :<br>
+	 * Auto/Non-auto <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Auto = 0x41, Non-auto = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidVentilationAutoSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
 	 * Property name : Operation status<br>
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -85,47 +453,71 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
 	protected abstract byte[] getOperationStatus();
 	/**
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30, OFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidOperationStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
 	 * Property name : Set value of room relative humidity<br>
 	 * <br>
 	 * EPC : 0xB4<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Set value of relative humidity at auto ventilating operation.<br>
+	 * Contents :<br>
+	 * Set value of relative humidity at auto ventilating operation. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x00.0x64, (0.100%)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : %<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean setSetValueOfRoomRelativeHumidity(byte[] edt) {return false;}
 	/**
@@ -133,22 +525,22 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 	 * <br>
 	 * EPC : 0xB4<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Set value of relative humidity at auto ventilating operation.<br>
+	 * Contents :<br>
+	 * Set value of relative humidity at auto ventilating operation. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x00.0x64, (0.100%)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : %<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getSetValueOfRoomRelativeHumidity() {return null;}
 	/**
@@ -156,399 +548,25 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 	 * <br>
 	 * EPC : 0xB4<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Set value of relative humidity at auto ventilating operation.<br>
+	 * Contents :<br>
+	 * Set value of relative humidity at auto ventilating operation. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x00.0x64, (0.100%)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : %<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidSetValueOfRoomRelativeHumidity(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Ventilation auto setting<br>
-	 * <br>
-	 * EPC : 0xBF<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Auto/Non-auto<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Auto = 0x41, Non-auto = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setVentilationAutoSetting(byte[] edt) {return false;}
-	/**
-	 * Property name : Ventilation auto setting<br>
-	 * <br>
-	 * EPC : 0xBF<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Auto/Non-auto<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Auto = 0x41, Non-auto = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getVentilationAutoSetting() {return null;}
-	/**
-	 * Property name : Ventilation auto setting<br>
-	 * <br>
-	 * EPC : 0xBF<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Auto/Non-auto<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Auto = 0x41, Non-auto = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidVentilationAutoSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measured value of room relative humidity<br>
-	 * <br>
-	 * EPC : 0xBA<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Measured value of room relative humidity<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64 (0.100%)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : %<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasuredValueOfRoomRelativeHumidity() {return null;}
-	/**
-	 * Property name : Measured value of room relative humidity<br>
-	 * <br>
-	 * EPC : 0xBA<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Measured value of room relative humidity<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64 (0.100%)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : %<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasuredValueOfRoomRelativeHumidity(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Set value of ventilation air flow rate<br>
-	 * <br>
-	 * EPC : 0xA0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Ventilation air flow rate auto status<br>
-	 * = 0x41<br>
-	 * Ventilation air flow rate level<br>
-	 * = 0x31.0x38<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setSetValueOfVentilationAirFlowRate(byte[] edt) {return false;}
-	/**
-	 * Property name : Set value of ventilation air flow rate<br>
-	 * <br>
-	 * EPC : 0xA0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Ventilation air flow rate auto status<br>
-	 * = 0x41<br>
-	 * Ventilation air flow rate level<br>
-	 * = 0x31.0x38<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getSetValueOfVentilationAirFlowRate() {return null;}
-	/**
-	 * Property name : Set value of ventilation air flow rate<br>
-	 * <br>
-	 * EPC : 0xA0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Ventilation air flow rate auto status<br>
-	 * = 0x41<br>
-	 * Ventilation air flow rate level<br>
-	 * = 0x31.0x38<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidSetValueOfVentilationAirFlowRate(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Heat exchanger operation setting<br>
-	 * <br>
-	 * EPC : 0xE0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates ON/OFF status of heat exchanger.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Heat exchanger ON = 0x41, OFF=0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setHeatExchangerOperationSetting(byte[] edt) {return false;}
-	/**
-	 * Property name : Heat exchanger operation setting<br>
-	 * <br>
-	 * EPC : 0xE0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates ON/OFF status of heat exchanger.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Heat exchanger ON = 0x41, OFF=0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getHeatExchangerOperationSetting() {return null;}
-	/**
-	 * Property name : Heat exchanger operation setting<br>
-	 * <br>
-	 * EPC : 0xE0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates ON/OFF status of heat exchanger.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Heat exchanger ON = 0x41, OFF=0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidHeatExchangerOperationSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measured value of CO2 concentration<br>
-	 * <br>
-	 * EPC : 0xC0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates measured value of CO2 concentration in ppm.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533 ppm)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : ppm<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasuredValueOfCo2Concentration() {return null;}
-	/**
-	 * Property name : Measured value of CO2 concentration<br>
-	 * <br>
-	 * EPC : 0xC0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates measured value of CO2 concentration in ppm.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533 ppm)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : ppm<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasuredValueOfCo2Concentration(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Smoke (cigarette) detection status<br>
-	 * <br>
-	 * EPC : 0xC1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates smoke (cigarette) detection status.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Smoke (cigarette) detection status found = 0x41<br>
-	 * Smoke (cigarette) detection status not found = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getSmokeCigaretteDetectionStatus() {return null;}
-	/**
-	 * Property name : Smoke (cigarette) detection status<br>
-	 * <br>
-	 * EPC : 0xC1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates smoke (cigarette) detection status.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Smoke (cigarette) detection status found = 0x41<br>
-	 * Smoke (cigarette) detection status not found = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidSmokeCigaretteDetectionStatus(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 
@@ -558,10 +576,11 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		if(success) return success;
 
 		switch(property.epc) {
-		case EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY : return setSetValueOfRoomRelativeHumidity(property.edt);
-		case EPC_VENTILATION_AUTO_SETTING : return setVentilationAutoSetting(property.edt);
-		case EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE : return setSetValueOfVentilationAirFlowRate(property.edt);
 		case EPC_HEAT_EXCHANGER_OPERATION_SETTING : return setHeatExchangerOperationSetting(property.edt);
+		case EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE : return setSetValueOfVentilationAirFlowRate(property.edt);
+		case EPC_VENTILATION_AUTO_SETTING : return setVentilationAutoSetting(property.edt);
+		case EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY : return setSetValueOfRoomRelativeHumidity(property.edt);
+
 		default : return false;
 		}
 	}
@@ -572,13 +591,14 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY : return getSetValueOfRoomRelativeHumidity();
-		case EPC_VENTILATION_AUTO_SETTING : return getVentilationAutoSetting();
-		case EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY : return getMeasuredValueOfRoomRelativeHumidity();
-		case EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE : return getSetValueOfVentilationAirFlowRate();
 		case EPC_HEAT_EXCHANGER_OPERATION_SETTING : return getHeatExchangerOperationSetting();
-		case EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION : return getMeasuredValueOfCo2Concentration();
 		case EPC_SMOKE_CIGARETTE_DETECTION_STATUS : return getSmokeCigaretteDetectionStatus();
+		case EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION : return getMeasuredValueOfCo2Concentration();
+		case EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE : return getSetValueOfVentilationAirFlowRate();
+		case EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY : return getMeasuredValueOfRoomRelativeHumidity();
+		case EPC_VENTILATION_AUTO_SETTING : return getVentilationAutoSetting();
+		case EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY : return getSetValueOfRoomRelativeHumidity();
+
 		default : return null;
 		}
 	}
@@ -589,13 +609,14 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY : return isValidSetValueOfRoomRelativeHumidity(property.edt);
-		case EPC_VENTILATION_AUTO_SETTING : return isValidVentilationAutoSetting(property.edt);
-		case EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY : return isValidMeasuredValueOfRoomRelativeHumidity(property.edt);
-		case EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE : return isValidSetValueOfVentilationAirFlowRate(property.edt);
 		case EPC_HEAT_EXCHANGER_OPERATION_SETTING : return isValidHeatExchangerOperationSetting(property.edt);
-		case EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION : return isValidMeasuredValueOfCo2Concentration(property.edt);
 		case EPC_SMOKE_CIGARETTE_DETECTION_STATUS : return isValidSmokeCigaretteDetectionStatus(property.edt);
+		case EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION : return isValidMeasuredValueOfCo2Concentration(property.edt);
+		case EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE : return isValidSetValueOfVentilationAirFlowRate(property.edt);
+		case EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY : return isValidMeasuredValueOfRoomRelativeHumidity(property.edt);
+		case EPC_VENTILATION_AUTO_SETTING : return isValidVentilationAutoSetting(property.edt);
+		case EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY : return isValidSetValueOfRoomRelativeHumidity(property.edt);
+
 		default : return false;
 		}
 	}
@@ -643,18 +664,19 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY : 
-				onSetSetValueOfRoomRelativeHumidity(eoj, tid, esv, property, success);
-				return true;
-			case EPC_VENTILATION_AUTO_SETTING : 
-				onSetVentilationAutoSetting(eoj, tid, esv, property, success);
+			case EPC_HEAT_EXCHANGER_OPERATION_SETTING : 
+				onSetHeatExchangerOperationSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE : 
 				onSetSetValueOfVentilationAirFlowRate(eoj, tid, esv, property, success);
 				return true;
-			case EPC_HEAT_EXCHANGER_OPERATION_SETTING : 
-				onSetHeatExchangerOperationSetting(eoj, tid, esv, property, success);
+			case EPC_VENTILATION_AUTO_SETTING : 
+				onSetVentilationAutoSetting(eoj, tid, esv, property, success);
 				return true;
+			case EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY : 
+				onSetSetValueOfRoomRelativeHumidity(eoj, tid, esv, property, success);
+				return true;
+
 			default :
 				return false;
 			}
@@ -667,220 +689,54 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY : 
-				onGetSetValueOfRoomRelativeHumidity(eoj, tid, esv, property, success);
-				return true;
-			case EPC_VENTILATION_AUTO_SETTING : 
-				onGetVentilationAutoSetting(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY : 
-				onGetMeasuredValueOfRoomRelativeHumidity(eoj, tid, esv, property, success);
-				return true;
-			case EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE : 
-				onGetSetValueOfVentilationAirFlowRate(eoj, tid, esv, property, success);
-				return true;
 			case EPC_HEAT_EXCHANGER_OPERATION_SETTING : 
 				onGetHeatExchangerOperationSetting(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION : 
-				onGetMeasuredValueOfCo2Concentration(eoj, tid, esv, property, success);
 				return true;
 			case EPC_SMOKE_CIGARETTE_DETECTION_STATUS : 
 				onGetSmokeCigaretteDetectionStatus(eoj, tid, esv, property, success);
 				return true;
+			case EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION : 
+				onGetMeasuredValueOfCo2Concentration(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE : 
+				onGetSetValueOfVentilationAirFlowRate(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY : 
+				onGetMeasuredValueOfRoomRelativeHumidity(eoj, tid, esv, property, success);
+				return true;
+			case EPC_VENTILATION_AUTO_SETTING : 
+				onGetVentilationAutoSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY : 
+				onGetSetValueOfRoomRelativeHumidity(eoj, tid, esv, property, success);
+				return true;
+
 			default :
 				return false;
 			}
 		}
 		
 		/**
-		 * Property name : Set value of room relative humidity<br>
-		 * <br>
-		 * EPC : 0xB4<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Set value of relative humidity at auto ventilating operation.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64, (0.100%)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : %<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetSetValueOfRoomRelativeHumidity(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Set value of room relative humidity<br>
-		 * <br>
-		 * EPC : 0xB4<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Set value of relative humidity at auto ventilating operation.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64, (0.100%)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : %<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetSetValueOfRoomRelativeHumidity(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Ventilation auto setting<br>
-		 * <br>
-		 * EPC : 0xBF<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Auto/Non-auto<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Auto = 0x41, Non-auto = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetVentilationAutoSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Ventilation auto setting<br>
-		 * <br>
-		 * EPC : 0xBF<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Auto/Non-auto<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Auto = 0x41, Non-auto = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetVentilationAutoSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measured value of room relative humidity<br>
-		 * <br>
-		 * EPC : 0xBA<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Measured value of room relative humidity<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100%)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : %<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasuredValueOfRoomRelativeHumidity(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Set value of ventilation air flow rate<br>
-		 * <br>
-		 * EPC : 0xA0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Ventilation air flow rate auto status<br>
-		 * = 0x41<br>
-		 * Ventilation air flow rate level<br>
-		 * = 0x31.0x38<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetSetValueOfVentilationAirFlowRate(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Set value of ventilation air flow rate<br>
-		 * <br>
-		 * EPC : 0xA0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Ventilation air flow rate auto status<br>
-		 * = 0x41<br>
-		 * Ventilation air flow rate level<br>
-		 * = 0x31.0x38<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetSetValueOfVentilationAirFlowRate(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
 		 * Property name : Heat exchanger operation setting<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates ON/OFF status of heat exchanger.<br>
+		 * Contents :<br>
+		 * This property indicates ON/OFF status of heat exchanger. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Heat exchanger ON = 0x41, OFF=0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onSetHeatExchangerOperationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -888,71 +744,278 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates ON/OFF status of heat exchanger.<br>
+		 * Contents :<br>
+		 * This property indicates ON/OFF status of heat exchanger. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Heat exchanger ON = 0x41, OFF=0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetHeatExchangerOperationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measured value of CO2 concentration<br>
-		 * <br>
-		 * EPC : 0xC0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measured value of CO2 concentration in ppm.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533 ppm)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : ppm<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasuredValueOfCo2Concentration(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Smoke (cigarette) detection status<br>
 		 * <br>
 		 * EPC : 0xC1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates smoke (cigarette) detection status.<br>
+		 * Contents :<br>
+		 * This property indicates smoke (cigarette) detection status. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Smoke (cigarette) detection status found = 0x41<br>
-		 * Smoke (cigarette) detection status not found = 0x42<br>
+		 * Smoke (cigarette) detection status found = 0x41_x000a_Smoke (cigarette) detection status not found = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetSmokeCigaretteDetectionStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measured value of CO2 concentration<br>
+		 * <br>
+		 * EPC : 0xC0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates measured value of CO2 concentration in ppm. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.65533 ppm)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : ppm<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasuredValueOfCo2Concentration(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Set value of ventilation air flow rate<br>
+		 * <br>
+		 * EPC : 0xA0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Ventilation air flow rate auto status_x000a_= 0x41_x000a_Ventilation air flow rate level_x000a_= 0x31.0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetSetValueOfVentilationAirFlowRate(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Set value of ventilation air flow rate<br>
+		 * <br>
+		 * EPC : 0xA0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Ventilation air flow rate auto status_x000a_= 0x41_x000a_Ventilation air flow rate level_x000a_= 0x31.0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetSetValueOfVentilationAirFlowRate(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measured value of room relative humidity<br>
+		 * <br>
+		 * EPC : 0xBA<br>
+		 * <br>
+		 * Contents :<br>
+		 * Measured value of room relative humidity <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasuredValueOfRoomRelativeHumidity(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Ventilation auto setting<br>
+		 * <br>
+		 * EPC : 0xBF<br>
+		 * <br>
+		 * Contents :<br>
+		 * Auto/Non-auto <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Auto = 0x41, Non-auto = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetVentilationAutoSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Ventilation auto setting<br>
+		 * <br>
+		 * EPC : 0xBF<br>
+		 * <br>
+		 * Contents :<br>
+		 * Auto/Non-auto <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Auto = 0x41, Non-auto = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetVentilationAutoSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Set value of room relative humidity<br>
+		 * <br>
+		 * EPC : 0xB4<br>
+		 * <br>
+		 * Contents :<br>
+		 * Set value of relative humidity at auto ventilating operation. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64, (0.100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetSetValueOfRoomRelativeHumidity(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Set value of room relative humidity<br>
+		 * <br>
+		 * EPC : 0xB4<br>
+		 * <br>
+		 * Contents :<br>
+		 * Set value of relative humidity at auto ventilating operation. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64, (0.100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetSetValueOfRoomRelativeHumidity(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+
 	}
 
 	public static class Setter extends DeviceObject.Setter {
@@ -1001,55 +1064,29 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : Set value of room relative humidity<br>
+		 * Property name : Heat exchanger operation setting<br>
 		 * <br>
-		 * EPC : 0xB4<br>
+		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Set value of relative humidity at auto ventilating operation.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64, (0.100%)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : %<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Setter reqSetSetValueOfRoomRelativeHumidity(byte[] edt) {
-			reqSetProperty(EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY, edt);
-			return this;
-		}
-		/**
-		 * Property name : Ventilation auto setting<br>
-		 * <br>
-		 * EPC : 0xBF<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Auto/Non-auto<br>
+		 * Contents :<br>
+		 * This property indicates ON/OFF status of heat exchanger. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Auto = 0x41, Non-auto = 0x42<br>
+		 * Heat exchanger ON = 0x41, OFF=0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Setter reqSetVentilationAutoSetting(byte[] edt) {
-			reqSetProperty(EPC_VENTILATION_AUTO_SETTING, edt);
+		public Setter reqSetHeatExchangerOperationSetting(byte[] edt) {
+			reqSetProperty(EPC_HEAT_EXCHANGER_OPERATION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -1057,56 +1094,80 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		 * <br>
 		 * EPC : 0xA0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>
+		 * Contents :<br>
+		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Ventilation air flow rate auto status<br>
-		 * = 0x41<br>
-		 * Ventilation air flow rate level<br>
-		 * = 0x31.0x38<br>
+		 * Ventilation air flow rate auto status_x000a_= 0x41_x000a_Ventilation air flow rate level_x000a_= 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetSetValueOfVentilationAirFlowRate(byte[] edt) {
 			reqSetProperty(EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE, edt);
 			return this;
 		}
 		/**
-		 * Property name : Heat exchanger operation setting<br>
+		 * Property name : Ventilation auto setting<br>
 		 * <br>
-		 * EPC : 0xE0<br>
+		 * EPC : 0xBF<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates ON/OFF status of heat exchanger.<br>
+		 * Contents :<br>
+		 * Auto/Non-auto <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Heat exchanger ON = 0x41, OFF=0x42<br>
+		 * Auto = 0x41, Non-auto = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Setter reqSetHeatExchangerOperationSetting(byte[] edt) {
-			reqSetProperty(EPC_HEAT_EXCHANGER_OPERATION_SETTING, edt);
+		public Setter reqSetVentilationAutoSetting(byte[] edt) {
+			reqSetProperty(EPC_VENTILATION_AUTO_SETTING, edt);
 			return this;
 		}
+		/**
+		 * Property name : Set value of room relative humidity<br>
+		 * <br>
+		 * EPC : 0xB4<br>
+		 * <br>
+		 * Contents :<br>
+		 * Set value of relative humidity at auto ventilating operation. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64, (0.100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Setter reqSetSetValueOfRoomRelativeHumidity(byte[] edt) {
+			reqSetProperty(EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY, edt);
+			return this;
+		}
+
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
@@ -1219,162 +1280,29 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : Set value of room relative humidity<br>
-		 * <br>
-		 * EPC : 0xB4<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Set value of relative humidity at auto ventilating operation.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64, (0.100%)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : %<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetSetValueOfRoomRelativeHumidity() {
-			reqGetProperty(EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY);
-			return this;
-		}
-		/**
-		 * Property name : Ventilation auto setting<br>
-		 * <br>
-		 * EPC : 0xBF<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Auto/Non-auto<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Auto = 0x41, Non-auto = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetVentilationAutoSetting() {
-			reqGetProperty(EPC_VENTILATION_AUTO_SETTING);
-			return this;
-		}
-		/**
-		 * Property name : Measured value of room relative humidity<br>
-		 * <br>
-		 * EPC : 0xBA<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Measured value of room relative humidity<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100%)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : %<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasuredValueOfRoomRelativeHumidity() {
-			reqGetProperty(EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY);
-			return this;
-		}
-		/**
-		 * Property name : Set value of ventilation air flow rate<br>
-		 * <br>
-		 * EPC : 0xA0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Ventilation air flow rate auto status<br>
-		 * = 0x41<br>
-		 * Ventilation air flow rate level<br>
-		 * = 0x31.0x38<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetSetValueOfVentilationAirFlowRate() {
-			reqGetProperty(EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE);
-			return this;
-		}
-		/**
 		 * Property name : Heat exchanger operation setting<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates ON/OFF status of heat exchanger.<br>
+		 * Contents :<br>
+		 * This property indicates ON/OFF status of heat exchanger. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Heat exchanger ON = 0x41, OFF=0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetHeatExchangerOperationSetting() {
 			reqGetProperty(EPC_HEAT_EXCHANGER_OPERATION_SETTING);
-			return this;
-		}
-		/**
-		 * Property name : Measured value of CO2 concentration<br>
-		 * <br>
-		 * EPC : 0xC0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measured value of CO2 concentration in ppm.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533 ppm)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : ppm<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasuredValueOfCo2Concentration() {
-			reqGetProperty(EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION);
 			return this;
 		}
 		/**
@@ -1382,28 +1310,158 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		 * <br>
 		 * EPC : 0xC1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates smoke (cigarette) detection status.<br>
+		 * Contents :<br>
+		 * This property indicates smoke (cigarette) detection status. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Smoke (cigarette) detection status found = 0x41<br>
-		 * Smoke (cigarette) detection status not found = 0x42<br>
+		 * Smoke (cigarette) detection status found = 0x41_x000a_Smoke (cigarette) detection status not found = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetSmokeCigaretteDetectionStatus() {
 			reqGetProperty(EPC_SMOKE_CIGARETTE_DETECTION_STATUS);
 			return this;
 		}
+		/**
+		 * Property name : Measured value of CO2 concentration<br>
+		 * <br>
+		 * EPC : 0xC0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates measured value of CO2 concentration in ppm. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.65533 ppm)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : ppm<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasuredValueOfCo2Concentration() {
+			reqGetProperty(EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION);
+			return this;
+		}
+		/**
+		 * Property name : Set value of ventilation air flow rate<br>
+		 * <br>
+		 * EPC : 0xA0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Ventilation air flow rate auto status_x000a_= 0x41_x000a_Ventilation air flow rate level_x000a_= 0x31.0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetSetValueOfVentilationAirFlowRate() {
+			reqGetProperty(EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE);
+			return this;
+		}
+		/**
+		 * Property name : Measured value of room relative humidity<br>
+		 * <br>
+		 * EPC : 0xBA<br>
+		 * <br>
+		 * Contents :<br>
+		 * Measured value of room relative humidity <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasuredValueOfRoomRelativeHumidity() {
+			reqGetProperty(EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY);
+			return this;
+		}
+		/**
+		 * Property name : Ventilation auto setting<br>
+		 * <br>
+		 * EPC : 0xBF<br>
+		 * <br>
+		 * Contents :<br>
+		 * Auto/Non-auto <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Auto = 0x41, Non-auto = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetVentilationAutoSetting() {
+			reqGetProperty(EPC_VENTILATION_AUTO_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : Set value of room relative humidity<br>
+		 * <br>
+		 * EPC : 0xB4<br>
+		 * <br>
+		 * Contents :<br>
+		 * Set value of relative humidity at auto ventilating operation. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64, (0.100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetSetValueOfRoomRelativeHumidity() {
+			reqGetProperty(EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY);
+			return this;
+		}
+
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
@@ -1515,162 +1573,29 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : Set value of room relative humidity<br>
-		 * <br>
-		 * EPC : 0xB4<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Set value of relative humidity at auto ventilating operation.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64, (0.100%)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : %<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformSetValueOfRoomRelativeHumidity() {
-			reqInformProperty(EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY);
-			return this;
-		}
-		/**
-		 * Property name : Ventilation auto setting<br>
-		 * <br>
-		 * EPC : 0xBF<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Auto/Non-auto<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Auto = 0x41, Non-auto = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformVentilationAutoSetting() {
-			reqInformProperty(EPC_VENTILATION_AUTO_SETTING);
-			return this;
-		}
-		/**
-		 * Property name : Measured value of room relative humidity<br>
-		 * <br>
-		 * EPC : 0xBA<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Measured value of room relative humidity<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100%)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : %<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasuredValueOfRoomRelativeHumidity() {
-			reqInformProperty(EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY);
-			return this;
-		}
-		/**
-		 * Property name : Set value of ventilation air flow rate<br>
-		 * <br>
-		 * EPC : 0xA0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Ventilation air flow rate auto status<br>
-		 * = 0x41<br>
-		 * Ventilation air flow rate level<br>
-		 * = 0x31.0x38<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformSetValueOfVentilationAirFlowRate() {
-			reqInformProperty(EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE);
-			return this;
-		}
-		/**
 		 * Property name : Heat exchanger operation setting<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates ON/OFF status of heat exchanger.<br>
+		 * Contents :<br>
+		 * This property indicates ON/OFF status of heat exchanger. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Heat exchanger ON = 0x41, OFF=0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformHeatExchangerOperationSetting() {
 			reqInformProperty(EPC_HEAT_EXCHANGER_OPERATION_SETTING);
-			return this;
-		}
-		/**
-		 * Property name : Measured value of CO2 concentration<br>
-		 * <br>
-		 * EPC : 0xC0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measured value of CO2 concentration in ppm.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533 ppm)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : ppm<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasuredValueOfCo2Concentration() {
-			reqInformProperty(EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION);
 			return this;
 		}
 		/**
@@ -1678,28 +1603,158 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 		 * <br>
 		 * EPC : 0xC1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates smoke (cigarette) detection status.<br>
+		 * Contents :<br>
+		 * This property indicates smoke (cigarette) detection status. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Smoke (cigarette) detection status found = 0x41<br>
-		 * Smoke (cigarette) detection status not found = 0x42<br>
+		 * Smoke (cigarette) detection status found = 0x41_x000a_Smoke (cigarette) detection status not found = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformSmokeCigaretteDetectionStatus() {
 			reqInformProperty(EPC_SMOKE_CIGARETTE_DETECTION_STATUS);
 			return this;
 		}
+		/**
+		 * Property name : Measured value of CO2 concentration<br>
+		 * <br>
+		 * EPC : 0xC0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates measured value of CO2 concentration in ppm. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.65533 ppm)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : ppm<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasuredValueOfCo2Concentration() {
+			reqInformProperty(EPC_MEASURED_VALUE_OF_CO2_CONCENTRATION);
+			return this;
+		}
+		/**
+		 * Property name : Set value of ventilation air flow rate<br>
+		 * <br>
+		 * EPC : 0xA0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Ventilation air flow rate auto status_x000a_= 0x41_x000a_Ventilation air flow rate level_x000a_= 0x31.0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformSetValueOfVentilationAirFlowRate() {
+			reqInformProperty(EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE);
+			return this;
+		}
+		/**
+		 * Property name : Measured value of room relative humidity<br>
+		 * <br>
+		 * EPC : 0xBA<br>
+		 * <br>
+		 * Contents :<br>
+		 * Measured value of room relative humidity <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasuredValueOfRoomRelativeHumidity() {
+			reqInformProperty(EPC_MEASURED_VALUE_OF_ROOM_RELATIVE_HUMIDITY);
+			return this;
+		}
+		/**
+		 * Property name : Ventilation auto setting<br>
+		 * <br>
+		 * EPC : 0xBF<br>
+		 * <br>
+		 * Contents :<br>
+		 * Auto/Non-auto <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Auto = 0x41, Non-auto = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformVentilationAutoSetting() {
+			reqInformProperty(EPC_VENTILATION_AUTO_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : Set value of room relative humidity<br>
+		 * <br>
+		 * EPC : 0xB4<br>
+		 * <br>
+		 * Contents :<br>
+		 * Set value of relative humidity at auto ventilating operation. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64, (0.100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformSetValueOfRoomRelativeHumidity() {
+			reqInformProperty(EPC_SET_VALUE_OF_ROOM_RELATIVE_HUMIDITY);
+			return this;
+		}
+
 	}
 
 	public static class Proxy extends AirConditionerVentilationFan {
@@ -1712,19 +1767,26 @@ public abstract class AirConditionerVentilationFan extends DeviceObject {
 			return mEchoInstanceCode;
 		}
 		@Override
-		protected byte[] getOperationStatus() {return null;}
+		protected byte[] getGetPropertyMap(){return null;}
 		@Override
-		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		protected byte[] getSetPropertyMap(){return null;}
 		@Override
-		protected byte[] getInstallationLocation() {return null;}
+		protected byte[] getStatusChangeAnnouncementPropertyMap(){return null;}
 		@Override
-		protected byte[] getStandardVersionInformation() {return null;}
+		protected boolean setOperationStatus(byte[] edt){return false;}
 		@Override
-		protected byte[] getFaultStatus() {return null;}
+		protected byte[] getOperationStatus(){return null;}
 		@Override
-		protected byte[] getManufacturerCode() {return null;}
+		protected boolean setInstallationLocation(byte[] edt){return false;}
 		@Override
-		protected boolean setOperationStatus(byte[] edt) {return false;}
+		protected byte[] getInstallationLocation(){return null;}
+		@Override
+		protected byte[] getStandardVersionInformation(){return null;}
+		@Override
+		protected byte[] getFaultStatus(){return null;}
+		@Override
+		protected byte[] getManufacturerCode(){return null;}
+
 	}
 	
 	public static Setter setG() {

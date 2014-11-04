@@ -1,84 +1,91 @@
 /*
- * Copyright 2012 Sony Computer Science Laboratories, Inc. <info@kadecot.net>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2014 Sony Computer Science Laboratories, Inc.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.sonycsl.echo.eoj.device.housingfacilities;
 
 import com.sonycsl.echo.Echo;
-import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
-import com.sonycsl.echo.node.EchoNode;
 
 public abstract class PowerDistributionBoardMetering extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x0287;
 
-	public static final byte EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION = (byte)0xC0;
-	public static final byte EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION = (byte)0xC1;
-	public static final byte EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY = (byte)0xC2;
-	public static final byte EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION = (byte)0xC3;
-	public static final byte EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION = (byte)0xC4;
 	public static final byte EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED = (byte)0xC5;
-	public static final byte EPC_MEASURED_INSTANTANEO_US_AMOUNT_OF_ELECTRIC_ENERGY = (byte)0xC6;
+	public static final byte EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION_ = (byte)0xC4;
 	public static final byte EPC_MEASURED_INSTANTANEOUS_CURRENTS = (byte)0xC7;
+	public static final byte EPC_MEASURED_INSTANTANEO_US_AMOUNT_OF_ELECTRIC_ENERGY = (byte)0xC6;
+	public static final byte EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION_ = (byte)0xC1;
+	public static final byte EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION_ = (byte)0xC0;
+	public static final byte EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION_ = (byte)0xC3;
+	public static final byte EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY = (byte)0xC2;
+	public static final byte EPC_MEASUREMENT_CHANNEL_26 = (byte)0xE9;
+	public static final byte EPC_MEASUREMENT_CHANNEL_25 = (byte)0xE8;
 	public static final byte EPC_MEASURED_INSTANTANEOUS_VOLTAGES = (byte)0xC8;
-	public static final byte EPC_MEASUREMENT_CHANNEL1 = (byte)0xD0;
-	public static final byte EPC_MEASUREMENT_CHANNEL2 = (byte)0xD1;
-	public static final byte EPC_MEASUREMENT_CHANNEL3 = (byte)0xD2;
-	public static final byte EPC_MEASUREMENT_CHANNEL4 = (byte)0xD3;
-	public static final byte EPC_MEASUREMENT_CHANNEL5 = (byte)0xD4;
-	public static final byte EPC_MEASUREMENT_CHANNEL6 = (byte)0xD5;
-	public static final byte EPC_MEASUREMENT_CHANNEL7 = (byte)0xD6;
-	public static final byte EPC_MEASUREMENT_CHANNEL8 = (byte)0xD7;
-	public static final byte EPC_MEASUREMENT_CHANNEL9 = (byte)0xD8;
-	public static final byte EPC_MEASUREMENT_CHANNEL10 = (byte)0xD9;
-	public static final byte EPC_MEASUREMENT_CHANNEL11 = (byte)0xDA;
-	public static final byte EPC_MEASUREMENT_CHANNEL12 = (byte)0xDB;
-	public static final byte EPC_MEASUREMENT_CHANNEL13 = (byte)0xDC;
-	public static final byte EPC_MEASUREMENT_CHANNEL14 = (byte)0xDD;
-	public static final byte EPC_MEASUREMENT_CHANNEL15 = (byte)0xDE;
-	public static final byte EPC_MEASUREMENT_CHANNEL16 = (byte)0xDF;
-	public static final byte EPC_MEASUREMENT_CHANNEL17 = (byte)0xE0;
-	public static final byte EPC_MEASUREMENT_CHANNEL18 = (byte)0xE1;
-	public static final byte EPC_MEASUREMENT_CHANNEL19 = (byte)0xE2;
-	public static final byte EPC_MEASUREMENT_CHANNEL20 = (byte)0xE3;
-	public static final byte EPC_MEASUREMENT_CHANNEL21 = (byte)0xE4;
-	public static final byte EPC_MEASUREMENT_CHANNEL22 = (byte)0xE5;
-	public static final byte EPC_MEASUREMENT_CHANNEL23 = (byte)0xE6;
-	public static final byte EPC_MEASUREMENT_CHANNEL24 = (byte)0xE7;
-	public static final byte EPC_MEASUREMENT_CHANNEL25 = (byte)0xE8;
-	public static final byte EPC_MEASUREMENT_CHANNEL26 = (byte)0xE9;
-	public static final byte EPC_MEASUREMENT_CHANNEL27 = (byte)0xEA;
-	public static final byte EPC_MEASUREMENT_CHANNEL28 = (byte)0xEB;
-	public static final byte EPC_MEASUREMENT_CHANNEL29 = (byte)0xEC;
-	public static final byte EPC_MEASUREMENT_CHANNEL30 = (byte)0xED;
-	public static final byte EPC_MEASUREMENT_CHANNEL31 = (byte)0xEE;
-	public static final byte EPC_MEASUREMENT_CHANNEL32 = (byte)0xEF;
+	public static final byte EPC_MEASUREMENT_CHANNEL_17 = (byte)0xE0;
+	public static final byte EPC_MEASUREMENT_CHANNEL_19 = (byte)0xE2;
+	public static final byte EPC_MEASUREMENT_CHANNEL_24 = (byte)0xE7;
+	public static final byte EPC_MEASUREMENT_CHANNEL_23 = (byte)0xE6;
+	public static final byte EPC_MEASUREMENT_CHANNEL_22 = (byte)0xE5;
+	public static final byte EPC_MEASUREMENT_CHANNEL_20 = (byte)0xE3;
+	public static final byte EPC_MEASUREMENT_CHANNEL_21 = (byte)0xE4;
+	public static final byte EPC_MEASUREMENT_CHANNEL_11 = (byte)0xDA;
+	public static final byte EPC_MEASUREMENT_CHANNEL_12 = (byte)0xDB;
+	public static final byte EPC_MEASUREMENT_CHANNEL_13 = (byte)0xDC;
+	public static final byte EPC_MEASUREMENT_CHANNEL_15 = (byte)0xDE;
+	public static final byte EPC_MEASUREMENT_CHANNEL_16 = (byte)0xDF;
+	public static final byte EPC_MEASUREMENT_CHANNEL_14 = (byte)0xDD;
+	public static final byte EPC_MEASUREMENT_CHANNEL_1 = (byte)0xD0;
+	public static final byte EPC_MEASUREMENT_CHANNEL_2 = (byte)0xD1;
+	public static final byte EPC_MEASUREMENT_CHANNEL_3 = (byte)0xD2;
+	public static final byte EPC_MEASUREMENT_CHANNEL_4 = (byte)0xD3;
+	public static final byte EPC_MEASUREMENT_CHANNEL_5 = (byte)0xD4;
+	public static final byte EPC_MEASUREMENT_CHANNEL_6 = (byte)0xD5;
+	public static final byte EPC_MEASUREMENT_CHANNEL_7 = (byte)0xD6;
+	public static final byte EPC_MEASUREMENT_CHANNEL_8 = (byte)0xD7;
+	public static final byte EPC_MEASUREMENT_CHANNEL_9 = (byte)0xD8;
+	public static final byte EPC_MEASUREMENT_CHANNEL_10 = (byte)0xD9;
+	public static final byte EPC_MEASUREMENT_CHANNEL_18 = (byte)0xE1;
+	public static final byte EPC_MEASUREMENT_CHANNEL_29 = (byte)0xEC;
+	public static final byte EPC_MEASUREMENT_CHANNEL_28 = (byte)0xEB;
+	public static final byte EPC_MEASUREMENT_CHANNEL_27 = (byte)0xEA;
+	public static final byte EPC_MEASUREMENT_CHANNEL_32 = (byte)0xEF;
+	public static final byte EPC_MEASUREMENT_CHANNEL_31 = (byte)0xEE;
+	public static final byte EPC_MEASUREMENT_CHANNEL_30 = (byte)0xED;
 
 	@Override
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
+		addGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION_);
+		addGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION_);
+		addGetProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
-		addGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
-		addGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
-		addGetProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY);
+
 	}
 
 	@Override
@@ -93,27 +100,1076 @@ public abstract class PowerDistributionBoardMetering extends DeviceObject {
 	}
 
 	/**
+	 * Property name : Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved<br>
+	 * <br>
+	 * EPC : 0xC5<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x63 ( 0.99)_x000a_0: current day_x000a_1. 99: previous day.day that precedes the current day by 99 days<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : <br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(byte[] edt) {return false;}
+	/**
+	 * Property name : Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved<br>
+	 * <br>
+	 * EPC : 0xC5<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x63 ( 0.99)_x000a_0: current day_x000a_1. 99: previous day.day that precedes the current day by 99 days<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : <br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved() {return null;}
+	/**
+	 * Property name : Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved<br>
+	 * <br>
+	 * EPC : 0xC5<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x63 ( 0.99)_x000a_0: current day_x000a_1. 99: previous day.day that precedes the current day by 99 days<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : <br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Historical data of measured cumulative amounts of electric energy_x000a_(reverse direction)<br>
+	 * <br>
+	 * EPC : 0xC4<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0x0063 :_x000a_0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
+	 * <br>
+	 * Data type : unsigned short_x000a_+unsign ed_x000a_long_x000a_×48<br>
+	 * Data size : 194<br>
+	 * Unit : kWh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000AReverseDirection() {return null;}
+	/**
+	 * Property name : Historical data of measured cumulative amounts of electric energy_x000a_(reverse direction)<br>
+	 * <br>
+	 * EPC : 0xC4<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0x0063 :_x000a_0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
+	 * <br>
+	 * Data type : unsigned short_x000a_+unsign ed_x000a_long_x000a_×48<br>
+	 * Data size : 194<br>
+	 * Unit : kWh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000AReverseDirection(byte[] edt) {
+		if(edt == null || !(edt.length == 194)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measured instantaneous currents<br>
+	 * <br>
+	 * EPC : 0xC7<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measured effective instantaneous R and T phase currents in amperes._x000a_In the case of a single-phase,_x000a_two-wire system, 0x7FFE shall be used for the T phase. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x8001-0x7FFD (R phase)_x000a_: 0x8001-0x7FFD (T phase)_x000a_(-3,276.7.3,276.5):_x000a_(-3,276.7.3,276.5)<br>
+	 * <br>
+	 * Data type : signed short_x000a_×2<br>
+	 * Data size : 4<br>
+	 * Unit : 0.1_x000a_A<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasuredInstantaneousCurrents() {return null;}
+	/**
+	 * Property name : Measured instantaneous currents<br>
+	 * <br>
+	 * EPC : 0xC7<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measured effective instantaneous R and T phase currents in amperes._x000a_In the case of a single-phase,_x000a_two-wire system, 0x7FFE shall be used for the T phase. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x8001-0x7FFD (R phase)_x000a_: 0x8001-0x7FFD (T phase)_x000a_(-3,276.7.3,276.5):_x000a_(-3,276.7.3,276.5)<br>
+	 * <br>
+	 * Data type : signed short_x000a_×2<br>
+	 * Data size : 4<br>
+	 * Unit : 0.1_x000a_A<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasuredInstantaneousCurrents(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measured instantaneo us amount of electric energy<br>
+	 * <br>
+	 * EPC : 0xC6<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measured effective instantaneous amount of electric energy in watts. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x80000001.0x7FFFFFFD_x000a_(-2,147,483,647.2,147,483,645)<br>
+	 * <br>
+	 * Data type : signed long<br>
+	 * Data size : 4<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasuredInstantaneoUsAmountOfElectricEnergy() {return null;}
+	/**
+	 * Property name : Measured instantaneo us amount of electric energy<br>
+	 * <br>
+	 * EPC : 0xC6<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measured effective instantaneous amount of electric energy in watts. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x80000001.0x7FFFFFFD_x000a_(-2,147,483,647.2,147,483,645)<br>
+	 * <br>
+	 * Data type : signed long<br>
+	 * Data size : 4<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasuredInstantaneoUsAmountOfElectricEnergy(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measured cumulative amount of electric energy (reverse direction)<br>
+	 * <br>
+	 * EPC : 0xC1<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * Data size : 4<br>
+	 * Unit : kWh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getMeasuredCumulativeAmountOfElectricEnergyReverseDirection();
+	/**
+	 * Property name : Measured cumulative amount of electric energy (reverse direction)<br>
+	 * <br>
+	 * EPC : 0xC1<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * Data size : 4<br>
+	 * Unit : kWh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasuredCumulativeAmountOfElectricEnergyReverseDirection(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measured cumulative amount of electric energy (normal direction)<br>
+	 * <br>
+	 * EPC : 0xC0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * Data size : 4<br>
+	 * Unit : kWh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getMeasuredCumulativeAmountOfElectricEnergyNormalDirection();
+	/**
+	 * Property name : Measured cumulative amount of electric energy (normal direction)<br>
+	 * <br>
+	 * EPC : 0xC0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * Data size : 4<br>
+	 * Unit : kWh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasuredCumulativeAmountOfElectricEnergyNormalDirection(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Historical data of measured cumulative amounts of electric energy_x000a_(normal direction)<br>
+	 * <br>
+	 * EPC : 0xC3<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0x0063 :_x000a_0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
+	 * <br>
+	 * Data type : unsigned short_x000a_+unsign ed_x000a_long_x000a_×48<br>
+	 * Data size : 194<br>
+	 * Unit : kWh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000ANormalDirection() {return null;}
+	/**
+	 * Property name : Historical data of measured cumulative amounts of electric energy_x000a_(normal direction)<br>
+	 * <br>
+	 * EPC : 0xC3<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0x0063 :_x000a_0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
+	 * <br>
+	 * Data type : unsigned short_x000a_+unsign ed_x000a_long_x000a_×48<br>
+	 * Data size : 194<br>
+	 * Unit : kWh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000ANormalDirection(byte[] edt) {
+		if(edt == null || !(edt.length == 194)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Unit for cumulative amounts of electric energy<br>
+	 * <br>
+	 * EPC : 0xC2<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00: 1kWh 0x01: 0.1kWh_x000a_0x02: 0.01kWh_x000a_0x03: 0.001kWh (Initial value) 0x04: 0.0001kWh_x000a_0x0A: 10kWh 0x0B: 100kWh_x000a_0x0C: 1000kWh_x000a_0x0D: 10000kWh<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getUnitForCumulativeAmountsOfElectricEnergy();
+	/**
+	 * Property name : Unit for cumulative amounts of electric energy<br>
+	 * <br>
+	 * EPC : 0xC2<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00: 1kWh 0x01: 0.1kWh_x000a_0x02: 0.01kWh_x000a_0x03: 0.001kWh (Initial value) 0x04: 0.0001kWh_x000a_0x0A: 10kWh 0x0B: 100kWh_x000a_0x0C: 1000kWh_x000a_0x0D: 10000kWh<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidUnitForCumulativeAmountsOfElectricEnergy(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measurement channel 26<br>
+	 * <br>
+	 * EPC : 0xE9<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 26 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasurementChannel26() {return null;}
+	/**
+	 * Property name : Measurement channel 26<br>
+	 * <br>
+	 * EPC : 0xE9<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 26 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasurementChannel26(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measurement channel 25<br>
+	 * <br>
+	 * EPC : 0xE8<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 25 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasurementChannel25() {return null;}
+	/**
+	 * Property name : Measurement channel 25<br>
+	 * <br>
+	 * EPC : 0xE8<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 25 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasurementChannel25(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measured instantaneous voltages<br>
+	 * <br>
+	 * EPC : 0xC8<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system, 0xFFFE shall be used for the S(N)-T voltage. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (between R and S(N)) :_x000a_0x0000.0xFFFD (between S(N) and T)_x000a_(0.6,553.3) : (0.6,553.3)<br>
+	 * <br>
+	 * Data type : unsigned short_x000a_×2<br>
+	 * Data size : 4<br>
+	 * Unit : 0.1_x000a_V<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasuredInstantaneousVoltages() {return null;}
+	/**
+	 * Property name : Measured instantaneous voltages<br>
+	 * <br>
+	 * EPC : 0xC8<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system, 0xFFFE shall be used for the S(N)-T voltage. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (between R and S(N)) :_x000a_0x0000.0xFFFD (between S(N) and T)_x000a_(0.6,553.3) : (0.6,553.3)<br>
+	 * <br>
+	 * Data type : unsigned short_x000a_×2<br>
+	 * Data size : 4<br>
+	 * Unit : 0.1_x000a_V<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasuredInstantaneousVoltages(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measurement channel 17<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 17 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasurementChannel17() {return null;}
+	/**
+	 * Property name : Measurement channel 17<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 17 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasurementChannel17(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measurement channel 19<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 19 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasurementChannel19() {return null;}
+	/**
+	 * Property name : Measurement channel 19<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 19 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasurementChannel19(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measurement channel 24<br>
+	 * <br>
+	 * EPC : 0xE7<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 24 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasurementChannel24() {return null;}
+	/**
+	 * Property name : Measurement channel 24<br>
+	 * <br>
+	 * EPC : 0xE7<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 24 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasurementChannel24(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measurement channel 23<br>
+	 * <br>
+	 * EPC : 0xE6<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 23 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasurementChannel23() {return null;}
+	/**
+	 * Property name : Measurement channel 23<br>
+	 * <br>
+	 * EPC : 0xE6<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 23 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasurementChannel23(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measurement channel 22<br>
+	 * <br>
+	 * EPC : 0xE5<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 22 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasurementChannel22() {return null;}
+	/**
+	 * Property name : Measurement channel 22<br>
+	 * <br>
+	 * EPC : 0xE5<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 22 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasurementChannel22(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measurement channel 20<br>
+	 * <br>
+	 * EPC : 0xE3<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 20 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasurementChannel20() {return null;}
+	/**
+	 * Property name : Measurement channel 20<br>
+	 * <br>
+	 * EPC : 0xE3<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 20 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasurementChannel20(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measurement channel 21<br>
+	 * <br>
+	 * EPC : 0xE4<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 21 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasurementChannel21() {return null;}
+	/**
+	 * Property name : Measurement channel 21<br>
+	 * <br>
+	 * EPC : 0xE4<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 21 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasurementChannel21(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measurement channel 11<br>
+	 * <br>
+	 * EPC : 0xDA<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 11 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasurementChannel11() {return null;}
+	/**
+	 * Property name : Measurement channel 11<br>
+	 * <br>
+	 * EPC : 0xDA<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 11 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasurementChannel11(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measurement channel 12<br>
+	 * <br>
+	 * EPC : 0xDB<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 12 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasurementChannel12() {return null;}
+	/**
+	 * Property name : Measurement channel 12<br>
+	 * <br>
+	 * EPC : 0xDB<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 12 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasurementChannel12(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measurement channel 13<br>
+	 * <br>
+	 * EPC : 0xDC<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 13 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasurementChannel13() {return null;}
+	/**
+	 * Property name : Measurement channel 13<br>
+	 * <br>
+	 * EPC : 0xDC<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 13 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasurementChannel13(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
+		return true;
+	}
+	/**
 	 * Property name : Operation status<br>
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -123,1478 +1179,48 @@ byte<br>
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
 	protected abstract byte[] getOperationStatus();
 	/**
-	 * Property name : Measured cumulative amount of electric energy (normal direction)<br>
+	 * Property name : Operation status<br>
 	 * <br>
-	 * EPC : 0xC0<br>
+	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
-	 * <br>
-	 * Data type : unsigned long<br>
-	 * <br>
-	 * Data size : 4
-bytes<br>
-	 * <br>
-	 * Unit : kWh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected abstract byte[] getMeasuredCumulativeAmountOfElectricEnergyNormalDirection();
-	/**
-	 * Property name : Measured cumulative amount of electric energy (normal direction)<br>
-	 * <br>
-	 * EPC : 0xC0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
-	 * <br>
-	 * Data type : unsigned long<br>
-	 * <br>
-	 * Data size : 4
-bytes<br>
-	 * <br>
-	 * Unit : kWh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected boolean isValidMeasuredCumulativeAmountOfElectricEnergyNormalDirection(byte[] edt) {
-		if(edt == null || !(edt.length == 4)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measured cumulative amount of electric energy (reverse direction)<br>
-	 * <br>
-	 * EPC : 0xC1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
-	 * <br>
-	 * Data type : unsigned long<br>
-	 * <br>
-	 * Data size : 4
-bytes<br>
-	 * <br>
-	 * Unit : kWh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected abstract byte[] getMeasuredCumulativeAmountOfElectricEnergyReverseDirection();
-	/**
-	 * Property name : Measured cumulative amount of electric energy (reverse direction)<br>
-	 * <br>
-	 * EPC : 0xC1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
-	 * <br>
-	 * Data type : unsigned long<br>
-	 * <br>
-	 * Data size : 4
-bytes<br>
-	 * <br>
-	 * Unit : kWh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected boolean isValidMeasuredCumulativeAmountOfElectricEnergyReverseDirection(byte[] edt) {
-		if(edt == null || !(edt.length == 4)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Unit for cumulative amounts of electric energy<br>
-	 * <br>
-	 * EPC : 0xC2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00: 1kWh 0x01: 0.1kWh<br>
-	 * 0x02: 0.01kWh<br>
-	 * 0x03: 0.001kWh (Initial value) 0x04: 0.0001kWh<br>
-	 * 0x0A: 10kWh 0x0B: 100kWh<br>
-	 * 0x0C: 1000kWh<br>
-	 * 0x0D: 10000kWh<br>
+	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-bytes<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : .<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected abstract byte[] getUnitForCumulativeAmountsOfElectricEnergy();
-	/**
-	 * Property name : Unit for cumulative amounts of electric energy<br>
-	 * <br>
-	 * EPC : 0xC2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00: 1kWh 0x01: 0.1kWh<br>
-	 * 0x02: 0.01kWh<br>
-	 * 0x03: 0.001kWh (Initial value) 0x04: 0.0001kWh<br>
-	 * 0x0A: 10kWh 0x0B: 100kWh<br>
-	 * 0x0C: 1000kWh<br>
-	 * 0x0D: 10000kWh<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-bytes<br>
-	 * <br>
-	 * Unit : .<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected boolean isValidUnitForCumulativeAmountsOfElectricEnergy(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Historical data of measured cumulative amounts of electric energy
-(normal direction)<br>
-	 * <br>
-	 * EPC : 0xC3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0x0063 :<br>
-	 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
-	 * <br>
-	 * Data type : unsigned short
-+unsign ed
-long
-×48<br>
-	 * <br>
-	 * Data size : 194
-bytes<br>
-	 * <br>
-	 * Unit : kWh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection() {return null;}
-	/**
-	 * Property name : Historical data of measured cumulative amounts of electric energy
-(normal direction)<br>
-	 * <br>
-	 * EPC : 0xC3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0x0063 :<br>
-	 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
-	 * <br>
-	 * Data type : unsigned short
-+unsign ed
-long
-×48<br>
-	 * <br>
-	 * Data size : 194
-bytes<br>
-	 * <br>
-	 * Unit : kWh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection(byte[] edt) {
-		if(edt == null || !(edt.length == 194)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Historical data of measured cumulative amounts of electric energy
-(reverse direction)<br>
-	 * <br>
-	 * EPC : 0xC4<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0x0063 :<br>
-	 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
-	 * <br>
-	 * Data type : unsigned short
-+unsign ed
-long
-×48<br>
-	 * <br>
-	 * Data size : 194
-bytes<br>
-	 * <br>
-	 * Unit : kWh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection() {return null;}
-	/**
-	 * Property name : Historical data of measured cumulative amounts of electric energy
-(reverse direction)<br>
-	 * <br>
-	 * EPC : 0xC4<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0x0063 :<br>
-	 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
-	 * <br>
-	 * Data type : unsigned short
-+unsign ed
-long
-×48<br>
-	 * <br>
-	 * Data size : 194
-bytes<br>
-	 * <br>
-	 * Unit : kWh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection(byte[] edt) {
-		if(edt == null || !(edt.length == 194)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved<br>
-	 * <br>
-	 * EPC : 0xC5<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0x63 ( 0.99)<br>
-	 * 0: current day<br>
-	 * 1. 99: previous day.day that precedes the current day by 99 days<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-byte<br>
-	 * <br>
-	 * Unit : null<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(byte[] edt) {return false;}
-	/**
-	 * Property name : Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved<br>
-	 * <br>
-	 * EPC : 0xC5<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0x63 ( 0.99)<br>
-	 * 0: current day<br>
-	 * 1. 99: previous day.day that precedes the current day by 99 days<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-byte<br>
-	 * <br>
-	 * Unit : null<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved() {return null;}
-	/**
-	 * Property name : Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved<br>
-	 * <br>
-	 * EPC : 0xC5<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0x63 ( 0.99)<br>
-	 * 0: current day<br>
-	 * 1. 99: previous day.day that precedes the current day by 99 days<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1
-byte<br>
-	 * <br>
-	 * Unit : null<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measured instantaneo us amount of electric energy<br>
-	 * <br>
-	 * EPC : 0xC6<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measured effective instantaneous amount of electric energy in watts.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x80000001.0x7FFFFFFD<br>
-	 * (-2,147,483,647.2,147,483,645)<br>
-	 * <br>
-	 * Data type : signed long<br>
-	 * <br>
-	 * Data size : 4
-bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasuredInstantaneoUsAmountOfElectricEnergy() {return null;}
-	/**
-	 * Property name : Measured instantaneo us amount of electric energy<br>
-	 * <br>
-	 * EPC : 0xC6<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measured effective instantaneous amount of electric energy in watts.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x80000001.0x7FFFFFFD<br>
-	 * (-2,147,483,647.2,147,483,645)<br>
-	 * <br>
-	 * Data type : signed long<br>
-	 * <br>
-	 * Data size : 4
-bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasuredInstantaneoUsAmountOfElectricEnergy(byte[] edt) {
-		if(edt == null || !(edt.length == 4)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measured instantaneous currents<br>
-	 * <br>
-	 * EPC : 0xC7<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measured effective instantaneous R and T phase currents in amperes.<br>
-	 * In the case of a single-phase,<br>
-	 * two-wire system, 0x7FFE shall be used for the T phase.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x8001-0x7FFD (R phase)<br>
-	 * : 0x8001-0x7FFD (T phase)<br>
-	 * (-3,276.7.3,276.5):<br>
-	 * (-3,276.7.3,276.5)<br>
-	 * <br>
-	 * Data type : signed short
-×2<br>
-	 * <br>
-	 * Data size : 4
-bytes<br>
-	 * <br>
-	 * Unit : 0.1
-A<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasuredInstantaneousCurrents() {return null;}
-	/**
-	 * Property name : Measured instantaneous currents<br>
-	 * <br>
-	 * EPC : 0xC7<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measured effective instantaneous R and T phase currents in amperes.<br>
-	 * In the case of a single-phase,<br>
-	 * two-wire system, 0x7FFE shall be used for the T phase.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x8001-0x7FFD (R phase)<br>
-	 * : 0x8001-0x7FFD (T phase)<br>
-	 * (-3,276.7.3,276.5):<br>
-	 * (-3,276.7.3,276.5)<br>
-	 * <br>
-	 * Data type : signed short
-×2<br>
-	 * <br>
-	 * Data size : 4
-bytes<br>
-	 * <br>
-	 * Unit : 0.1
-A<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasuredInstantaneousCurrents(byte[] edt) {
-		if(edt == null || !(edt.length == 4)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measured instantaneous voltages<br>
-	 * <br>
-	 * EPC : 0xC8<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system, 0xFFFE shall be used for the S(N)-T voltage.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (between R and S(N)) :<br>
-	 * 0x0000.0xFFFD (between S(N) and T)<br>
-	 * (0.6,553.3) : (0.6,553.3)<br>
-	 * <br>
-	 * Data type : unsigned short
-×2<br>
-	 * <br>
-	 * Data size : 4
-bytes<br>
-	 * <br>
-	 * Unit : 0.1
-V<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasuredInstantaneousVoltages() {return null;}
-	/**
-	 * Property name : Measured instantaneous voltages<br>
-	 * <br>
-	 * EPC : 0xC8<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system, 0xFFFE shall be used for the S(N)-T voltage.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (between R and S(N)) :<br>
-	 * 0x0000.0xFFFD (between S(N) and T)<br>
-	 * (0.6,553.3) : (0.6,553.3)<br>
-	 * <br>
-	 * Data type : unsigned short
-×2<br>
-	 * <br>
-	 * Data size : 4
-bytes<br>
-	 * <br>
-	 * Unit : 0.1
-V<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasuredInstantaneousVoltages(byte[] edt) {
-		if(edt == null || !(edt.length == 4)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measurement channel 1<br>
-	 * <br>
-	 * EPC : 0xD0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 1 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasurementChannel1() {return null;}
-	/**
-	 * Property name : Measurement channel 1<br>
-	 * <br>
-	 * EPC : 0xD0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 1 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasurementChannel1(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measurement channel 2<br>
-	 * <br>
-	 * EPC : 0xD1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 2 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasurementChannel2() {return null;}
-	/**
-	 * Property name : Measurement channel 2<br>
-	 * <br>
-	 * EPC : 0xD1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 2 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasurementChannel2(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measurement channel 3<br>
-	 * <br>
-	 * EPC : 0xD2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 3 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasurementChannel3() {return null;}
-	/**
-	 * Property name : Measurement channel 3<br>
-	 * <br>
-	 * EPC : 0xD2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 3 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasurementChannel3(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measurement channel 4<br>
-	 * <br>
-	 * EPC : 0xD3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 4 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasurementChannel4() {return null;}
-	/**
-	 * Property name : Measurement channel 4<br>
-	 * <br>
-	 * EPC : 0xD3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 4 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasurementChannel4(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measurement channel 5<br>
-	 * <br>
-	 * EPC : 0xD4<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 5 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasurementChannel5() {return null;}
-	/**
-	 * Property name : Measurement channel 5<br>
-	 * <br>
-	 * EPC : 0xD4<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 5 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasurementChannel5(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measurement channel 6<br>
-	 * <br>
-	 * EPC : 0xD5<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 6 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasurementChannel6() {return null;}
-	/**
-	 * Property name : Measurement channel 6<br>
-	 * <br>
-	 * EPC : 0xD5<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 6 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasurementChannel6(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measurement channel 7<br>
-	 * <br>
-	 * EPC : 0xD6<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 7 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasurementChannel7() {return null;}
-	/**
-	 * Property name : Measurement channel 7<br>
-	 * <br>
-	 * EPC : 0xD6<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 7 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasurementChannel7(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measurement channel 8<br>
-	 * <br>
-	 * EPC : 0xD7<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 8 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasurementChannel8() {return null;}
-	/**
-	 * Property name : Measurement channel 8<br>
-	 * <br>
-	 * EPC : 0xD7<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 8 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasurementChannel8(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measurement channel 9<br>
-	 * <br>
-	 * EPC : 0xD8<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 9 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasurementChannel9() {return null;}
-	/**
-	 * Property name : Measurement channel 9<br>
-	 * <br>
-	 * EPC : 0xD8<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 9 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasurementChannel9(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measurement channel 10<br>
-	 * <br>
-	 * EPC : 0xD9<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 10 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasurementChannel10() {return null;}
-	/**
-	 * Property name : Measurement channel 10<br>
-	 * <br>
-	 * EPC : 0xD9<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 10 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasurementChannel10(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measurement channel 11<br>
-	 * <br>
-	 * EPC : 0xDA<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 11 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasurementChannel11() {return null;}
-	/**
-	 * Property name : Measurement channel 11<br>
-	 * <br>
-	 * EPC : 0xDA<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 11 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasurementChannel11(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measurement channel 12<br>
-	 * <br>
-	 * EPC : 0xDB<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 12 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasurementChannel12() {return null;}
-	/**
-	 * Property name : Measurement channel 12<br>
-	 * <br>
-	 * EPC : 0xDB<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 12 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasurementChannel12(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measurement channel 13<br>
-	 * <br>
-	 * EPC : 0xDC<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 13 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasurementChannel13() {return null;}
-	/**
-	 * Property name : Measurement channel 13<br>
-	 * <br>
-	 * EPC : 0xDC<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 13 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasurementChannel13(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measurement channel 14<br>
-	 * <br>
-	 * EPC : 0xDD<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 14 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasurementChannel14() {return null;}
-	/**
-	 * Property name : Measurement channel 14<br>
-	 * <br>
-	 * EPC : 0xDD<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 14 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasurementChannel14(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
+	protected boolean isValidOperationStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 	/**
@@ -1602,30 +1228,22 @@ bytes<br>
 	 * <br>
 	 * EPC : 0xDE<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 15 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 15 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getMeasurementChannel15() {return null;}
 	/**
@@ -1633,33 +1251,25 @@ bytes<br>
 	 * <br>
 	 * EPC : 0xDE<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 15 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 15 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidMeasurementChannel15(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
+		if(edt == null || !(edt.length == 8)) {return false;};
 		return true;
 	}
 	/**
@@ -1667,30 +1277,22 @@ bytes<br>
 	 * <br>
 	 * EPC : 0xDF<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 16 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 16 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getMeasurementChannel16() {return null;}
 	/**
@@ -1698,98 +1300,564 @@ bytes<br>
 	 * <br>
 	 * EPC : 0xDF<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 16 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 16 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidMeasurementChannel16(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
+		if(edt == null || !(edt.length == 8)) {return false;};
 		return true;
 	}
 	/**
-	 * Property name : Measurement channel 17<br>
+	 * Property name : Measurement channel 14<br>
 	 * <br>
-	 * EPC : 0xE0<br>
+	 * EPC : 0xDD<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 17 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 14 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected byte[] getMeasurementChannel17() {return null;}
+	protected byte[] getMeasurementChannel14() {return null;}
 	/**
-	 * Property name : Measurement channel 17<br>
+	 * Property name : Measurement channel 14<br>
 	 * <br>
-	 * EPC : 0xE0<br>
+	 * EPC : 0xDD<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 17 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 14 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean isValidMeasurementChannel17(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
+	protected boolean isValidMeasurementChannel14(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measurement channel 1<br>
+	 * <br>
+	 * EPC : 0xD0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 1 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasurementChannel1() {return null;}
+	/**
+	 * Property name : Measurement channel 1<br>
+	 * <br>
+	 * EPC : 0xD0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 1 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasurementChannel1(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measurement channel 2<br>
+	 * <br>
+	 * EPC : 0xD1<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 2 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasurementChannel2() {return null;}
+	/**
+	 * Property name : Measurement channel 2<br>
+	 * <br>
+	 * EPC : 0xD1<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 2 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasurementChannel2(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measurement channel 3<br>
+	 * <br>
+	 * EPC : 0xD2<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 3 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasurementChannel3() {return null;}
+	/**
+	 * Property name : Measurement channel 3<br>
+	 * <br>
+	 * EPC : 0xD2<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 3 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasurementChannel3(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measurement channel 4<br>
+	 * <br>
+	 * EPC : 0xD3<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 4 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasurementChannel4() {return null;}
+	/**
+	 * Property name : Measurement channel 4<br>
+	 * <br>
+	 * EPC : 0xD3<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 4 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasurementChannel4(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measurement channel 5<br>
+	 * <br>
+	 * EPC : 0xD4<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 5 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasurementChannel5() {return null;}
+	/**
+	 * Property name : Measurement channel 5<br>
+	 * <br>
+	 * EPC : 0xD4<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 5 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasurementChannel5(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measurement channel 6<br>
+	 * <br>
+	 * EPC : 0xD5<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 6 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasurementChannel6() {return null;}
+	/**
+	 * Property name : Measurement channel 6<br>
+	 * <br>
+	 * EPC : 0xD5<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 6 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasurementChannel6(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measurement channel 7<br>
+	 * <br>
+	 * EPC : 0xD6<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 7 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasurementChannel7() {return null;}
+	/**
+	 * Property name : Measurement channel 7<br>
+	 * <br>
+	 * EPC : 0xD6<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 7 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasurementChannel7(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measurement channel 8<br>
+	 * <br>
+	 * EPC : 0xD7<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 8 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasurementChannel8() {return null;}
+	/**
+	 * Property name : Measurement channel 8<br>
+	 * <br>
+	 * EPC : 0xD7<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 8 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasurementChannel8(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measurement channel 9<br>
+	 * <br>
+	 * EPC : 0xD8<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 9 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasurementChannel9() {return null;}
+	/**
+	 * Property name : Measurement channel 9<br>
+	 * <br>
+	 * EPC : 0xD8<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 9 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasurementChannel9(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measurement channel 10<br>
+	 * <br>
+	 * EPC : 0xD9<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 10 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasurementChannel10() {return null;}
+	/**
+	 * Property name : Measurement channel 10<br>
+	 * <br>
+	 * EPC : 0xD9<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 10 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasurementChannel10(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
 		return true;
 	}
 	/**
@@ -1797,30 +1865,22 @@ bytes<br>
 	 * <br>
 	 * EPC : 0xE1<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 18 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 18 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getMeasurementChannel18() {return null;}
 	/**
@@ -1828,683 +1888,25 @@ bytes<br>
 	 * <br>
 	 * EPC : 0xE1<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 18 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 18 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidMeasurementChannel18(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measurement channel 19<br>
-	 * <br>
-	 * EPC : 0xE2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 19 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasurementChannel19() {return null;}
-	/**
-	 * Property name : Measurement channel 19<br>
-	 * <br>
-	 * EPC : 0xE2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 19 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasurementChannel19(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measurement channel 20<br>
-	 * <br>
-	 * EPC : 0xE3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 20 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasurementChannel20() {return null;}
-	/**
-	 * Property name : Measurement channel 20<br>
-	 * <br>
-	 * EPC : 0xE3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 20 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasurementChannel20(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measurement channel 21<br>
-	 * <br>
-	 * EPC : 0xE4<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 21 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasurementChannel21() {return null;}
-	/**
-	 * Property name : Measurement channel 21<br>
-	 * <br>
-	 * EPC : 0xE4<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 21 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasurementChannel21(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measurement channel 22<br>
-	 * <br>
-	 * EPC : 0xE5<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 22 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasurementChannel22() {return null;}
-	/**
-	 * Property name : Measurement channel 22<br>
-	 * <br>
-	 * EPC : 0xE5<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 22 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasurementChannel22(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measurement channel 23<br>
-	 * <br>
-	 * EPC : 0xE6<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 23 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasurementChannel23() {return null;}
-	/**
-	 * Property name : Measurement channel 23<br>
-	 * <br>
-	 * EPC : 0xE6<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 23 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasurementChannel23(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measurement channel 24<br>
-	 * <br>
-	 * EPC : 0xE7<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 24 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasurementChannel24() {return null;}
-	/**
-	 * Property name : Measurement channel 24<br>
-	 * <br>
-	 * EPC : 0xE7<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 24 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasurementChannel24(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measurement channel 25<br>
-	 * <br>
-	 * EPC : 0xE8<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 25 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasurementChannel25() {return null;}
-	/**
-	 * Property name : Measurement channel 25<br>
-	 * <br>
-	 * EPC : 0xE8<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 25 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasurementChannel25(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measurement channel 26<br>
-	 * <br>
-	 * EPC : 0xE9<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 26 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasurementChannel26() {return null;}
-	/**
-	 * Property name : Measurement channel 26<br>
-	 * <br>
-	 * EPC : 0xE9<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 26 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasurementChannel26(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measurement channel 27<br>
-	 * <br>
-	 * EPC : 0xEA<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 27 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasurementChannel27() {return null;}
-	/**
-	 * Property name : Measurement channel 27<br>
-	 * <br>
-	 * EPC : 0xEA<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 27 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasurementChannel27(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measurement channel 28<br>
-	 * <br>
-	 * EPC : 0xEB<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 28 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasurementChannel28() {return null;}
-	/**
-	 * Property name : Measurement channel 28<br>
-	 * <br>
-	 * EPC : 0xEB<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 28 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
-	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasurementChannel28(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
+		if(edt == null || !(edt.length == 8)) {return false;};
 		return true;
 	}
 	/**
@@ -2512,30 +1914,22 @@ bytes<br>
 	 * <br>
 	 * EPC : 0xEC<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 29 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 29 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getMeasurementChannel29() {return null;}
 	/**
@@ -2543,163 +1937,123 @@ bytes<br>
 	 * <br>
 	 * EPC : 0xEC<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 29 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 29 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidMeasurementChannel29(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
+		if(edt == null || !(edt.length == 8)) {return false;};
 		return true;
 	}
 	/**
-	 * Property name : Measurement channel 30<br>
+	 * Property name : Measurement channel 28<br>
 	 * <br>
-	 * EPC : 0xED<br>
+	 * EPC : 0xEB<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 30 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 28 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected byte[] getMeasurementChannel30() {return null;}
+	protected byte[] getMeasurementChannel28() {return null;}
 	/**
-	 * Property name : Measurement channel 30<br>
+	 * Property name : Measurement channel 28<br>
 	 * <br>
-	 * EPC : 0xED<br>
+	 * EPC : 0xEB<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 30 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 28 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean isValidMeasurementChannel30(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
+	protected boolean isValidMeasurementChannel28(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
 		return true;
 	}
 	/**
-	 * Property name : Measurement channel 31<br>
+	 * Property name : Measurement channel 27<br>
 	 * <br>
-	 * EPC : 0xEE<br>
+	 * EPC : 0xEA<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 31 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 27 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected byte[] getMeasurementChannel31() {return null;}
+	protected byte[] getMeasurementChannel27() {return null;}
 	/**
-	 * Property name : Measurement channel 31<br>
+	 * Property name : Measurement channel 27<br>
 	 * <br>
-	 * EPC : 0xEE<br>
+	 * EPC : 0xEA<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 31 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 27 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean isValidMeasurementChannel31(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
+	protected boolean isValidMeasurementChannel27(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
 		return true;
 	}
 	/**
@@ -2707,30 +2061,22 @@ bytes<br>
 	 * <br>
 	 * EPC : 0xEF<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 32 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 32 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getMeasurementChannel32() {return null;}
 	/**
@@ -2738,33 +2084,123 @@ bytes<br>
 	 * <br>
 	 * EPC : 0xEF<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measurement data for Measurement channel 32 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 32 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Data format for the electric energy: same as 0xC0<br>
-	 * Unit: same as 0xC2<br>
-	 * Data format for the currents: same as 0xC7<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 	 * <br>
-	 * Data type : unsigned long
-+
-signed short
-×2<br>
-	 * <br>
-	 * Data size : 8
-bytes<br>
-	 * <br>
-	 * Unit : kWh
-+ 0.1A
-×2<br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidMeasurementChannel32(byte[] edt) {
-		if(edt == null || !(edt.length == 8)) return false;
+		if(edt == null || !(edt.length == 8)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measurement channel 31<br>
+	 * <br>
+	 * EPC : 0xEE<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 31 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasurementChannel31() {return null;}
+	/**
+	 * Property name : Measurement channel 31<br>
+	 * <br>
+	 * EPC : 0xEE<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 31 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasurementChannel31(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measurement channel 30<br>
+	 * <br>
+	 * EPC : 0xED<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 30 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasurementChannel30() {return null;}
+	/**
+	 * Property name : Measurement channel 30<br>
+	 * <br>
+	 * EPC : 0xED<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the measurement data for Measurement channel 30 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+	 * Data size : 8<br>
+	 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasurementChannel30(byte[] edt) {
+		if(edt == null || !(edt.length == 8)) {return false;};
 		return true;
 	}
 
@@ -2775,6 +2211,7 @@ bytes<br>
 
 		switch(property.epc) {
 		case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED : return setDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(property.edt);
+
 		default : return false;
 		}
 	}
@@ -2785,47 +2222,48 @@ bytes<br>
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION : return getMeasuredCumulativeAmountOfElectricEnergyNormalDirection();
-		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION : return getMeasuredCumulativeAmountOfElectricEnergyReverseDirection();
-		case EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY : return getUnitForCumulativeAmountsOfElectricEnergy();
-		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION : return getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection();
-		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION : return getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection();
 		case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED : return getDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved();
-		case EPC_MEASURED_INSTANTANEO_US_AMOUNT_OF_ELECTRIC_ENERGY : return getMeasuredInstantaneoUsAmountOfElectricEnergy();
+		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION_ : return getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000AReverseDirection();
 		case EPC_MEASURED_INSTANTANEOUS_CURRENTS : return getMeasuredInstantaneousCurrents();
+		case EPC_MEASURED_INSTANTANEO_US_AMOUNT_OF_ELECTRIC_ENERGY : return getMeasuredInstantaneoUsAmountOfElectricEnergy();
+		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION_ : return getMeasuredCumulativeAmountOfElectricEnergyReverseDirection();
+		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION_ : return getMeasuredCumulativeAmountOfElectricEnergyNormalDirection();
+		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION_ : return getHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000ANormalDirection();
+		case EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY : return getUnitForCumulativeAmountsOfElectricEnergy();
+		case EPC_MEASUREMENT_CHANNEL_26 : return getMeasurementChannel26();
+		case EPC_MEASUREMENT_CHANNEL_25 : return getMeasurementChannel25();
 		case EPC_MEASURED_INSTANTANEOUS_VOLTAGES : return getMeasuredInstantaneousVoltages();
-		case EPC_MEASUREMENT_CHANNEL1 : return getMeasurementChannel1();
-		case EPC_MEASUREMENT_CHANNEL2 : return getMeasurementChannel2();
-		case EPC_MEASUREMENT_CHANNEL3 : return getMeasurementChannel3();
-		case EPC_MEASUREMENT_CHANNEL4 : return getMeasurementChannel4();
-		case EPC_MEASUREMENT_CHANNEL5 : return getMeasurementChannel5();
-		case EPC_MEASUREMENT_CHANNEL6 : return getMeasurementChannel6();
-		case EPC_MEASUREMENT_CHANNEL7 : return getMeasurementChannel7();
-		case EPC_MEASUREMENT_CHANNEL8 : return getMeasurementChannel8();
-		case EPC_MEASUREMENT_CHANNEL9 : return getMeasurementChannel9();
-		case EPC_MEASUREMENT_CHANNEL10 : return getMeasurementChannel10();
-		case EPC_MEASUREMENT_CHANNEL11 : return getMeasurementChannel11();
-		case EPC_MEASUREMENT_CHANNEL12 : return getMeasurementChannel12();
-		case EPC_MEASUREMENT_CHANNEL13 : return getMeasurementChannel13();
-		case EPC_MEASUREMENT_CHANNEL14 : return getMeasurementChannel14();
-		case EPC_MEASUREMENT_CHANNEL15 : return getMeasurementChannel15();
-		case EPC_MEASUREMENT_CHANNEL16 : return getMeasurementChannel16();
-		case EPC_MEASUREMENT_CHANNEL17 : return getMeasurementChannel17();
-		case EPC_MEASUREMENT_CHANNEL18 : return getMeasurementChannel18();
-		case EPC_MEASUREMENT_CHANNEL19 : return getMeasurementChannel19();
-		case EPC_MEASUREMENT_CHANNEL20 : return getMeasurementChannel20();
-		case EPC_MEASUREMENT_CHANNEL21 : return getMeasurementChannel21();
-		case EPC_MEASUREMENT_CHANNEL22 : return getMeasurementChannel22();
-		case EPC_MEASUREMENT_CHANNEL23 : return getMeasurementChannel23();
-		case EPC_MEASUREMENT_CHANNEL24 : return getMeasurementChannel24();
-		case EPC_MEASUREMENT_CHANNEL25 : return getMeasurementChannel25();
-		case EPC_MEASUREMENT_CHANNEL26 : return getMeasurementChannel26();
-		case EPC_MEASUREMENT_CHANNEL27 : return getMeasurementChannel27();
-		case EPC_MEASUREMENT_CHANNEL28 : return getMeasurementChannel28();
-		case EPC_MEASUREMENT_CHANNEL29 : return getMeasurementChannel29();
-		case EPC_MEASUREMENT_CHANNEL30 : return getMeasurementChannel30();
-		case EPC_MEASUREMENT_CHANNEL31 : return getMeasurementChannel31();
-		case EPC_MEASUREMENT_CHANNEL32 : return getMeasurementChannel32();
+		case EPC_MEASUREMENT_CHANNEL_17 : return getMeasurementChannel17();
+		case EPC_MEASUREMENT_CHANNEL_19 : return getMeasurementChannel19();
+		case EPC_MEASUREMENT_CHANNEL_24 : return getMeasurementChannel24();
+		case EPC_MEASUREMENT_CHANNEL_23 : return getMeasurementChannel23();
+		case EPC_MEASUREMENT_CHANNEL_22 : return getMeasurementChannel22();
+		case EPC_MEASUREMENT_CHANNEL_20 : return getMeasurementChannel20();
+		case EPC_MEASUREMENT_CHANNEL_21 : return getMeasurementChannel21();
+		case EPC_MEASUREMENT_CHANNEL_11 : return getMeasurementChannel11();
+		case EPC_MEASUREMENT_CHANNEL_12 : return getMeasurementChannel12();
+		case EPC_MEASUREMENT_CHANNEL_13 : return getMeasurementChannel13();
+		case EPC_MEASUREMENT_CHANNEL_15 : return getMeasurementChannel15();
+		case EPC_MEASUREMENT_CHANNEL_16 : return getMeasurementChannel16();
+		case EPC_MEASUREMENT_CHANNEL_14 : return getMeasurementChannel14();
+		case EPC_MEASUREMENT_CHANNEL_1 : return getMeasurementChannel1();
+		case EPC_MEASUREMENT_CHANNEL_2 : return getMeasurementChannel2();
+		case EPC_MEASUREMENT_CHANNEL_3 : return getMeasurementChannel3();
+		case EPC_MEASUREMENT_CHANNEL_4 : return getMeasurementChannel4();
+		case EPC_MEASUREMENT_CHANNEL_5 : return getMeasurementChannel5();
+		case EPC_MEASUREMENT_CHANNEL_6 : return getMeasurementChannel6();
+		case EPC_MEASUREMENT_CHANNEL_7 : return getMeasurementChannel7();
+		case EPC_MEASUREMENT_CHANNEL_8 : return getMeasurementChannel8();
+		case EPC_MEASUREMENT_CHANNEL_9 : return getMeasurementChannel9();
+		case EPC_MEASUREMENT_CHANNEL_10 : return getMeasurementChannel10();
+		case EPC_MEASUREMENT_CHANNEL_18 : return getMeasurementChannel18();
+		case EPC_MEASUREMENT_CHANNEL_29 : return getMeasurementChannel29();
+		case EPC_MEASUREMENT_CHANNEL_28 : return getMeasurementChannel28();
+		case EPC_MEASUREMENT_CHANNEL_27 : return getMeasurementChannel27();
+		case EPC_MEASUREMENT_CHANNEL_32 : return getMeasurementChannel32();
+		case EPC_MEASUREMENT_CHANNEL_31 : return getMeasurementChannel31();
+		case EPC_MEASUREMENT_CHANNEL_30 : return getMeasurementChannel30();
+
 		default : return null;
 		}
 	}
@@ -2836,47 +2274,48 @@ bytes<br>
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION : return isValidMeasuredCumulativeAmountOfElectricEnergyNormalDirection(property.edt);
-		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION : return isValidMeasuredCumulativeAmountOfElectricEnergyReverseDirection(property.edt);
-		case EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY : return isValidUnitForCumulativeAmountsOfElectricEnergy(property.edt);
-		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION : return isValidHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection(property.edt);
-		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION : return isValidHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection(property.edt);
 		case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED : return isValidDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(property.edt);
-		case EPC_MEASURED_INSTANTANEO_US_AMOUNT_OF_ELECTRIC_ENERGY : return isValidMeasuredInstantaneoUsAmountOfElectricEnergy(property.edt);
+		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION_ : return isValidHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000AReverseDirection(property.edt);
 		case EPC_MEASURED_INSTANTANEOUS_CURRENTS : return isValidMeasuredInstantaneousCurrents(property.edt);
+		case EPC_MEASURED_INSTANTANEO_US_AMOUNT_OF_ELECTRIC_ENERGY : return isValidMeasuredInstantaneoUsAmountOfElectricEnergy(property.edt);
+		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION_ : return isValidMeasuredCumulativeAmountOfElectricEnergyReverseDirection(property.edt);
+		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION_ : return isValidMeasuredCumulativeAmountOfElectricEnergyNormalDirection(property.edt);
+		case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION_ : return isValidHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000ANormalDirection(property.edt);
+		case EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY : return isValidUnitForCumulativeAmountsOfElectricEnergy(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_26 : return isValidMeasurementChannel26(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_25 : return isValidMeasurementChannel25(property.edt);
 		case EPC_MEASURED_INSTANTANEOUS_VOLTAGES : return isValidMeasuredInstantaneousVoltages(property.edt);
-		case EPC_MEASUREMENT_CHANNEL1 : return isValidMeasurementChannel1(property.edt);
-		case EPC_MEASUREMENT_CHANNEL2 : return isValidMeasurementChannel2(property.edt);
-		case EPC_MEASUREMENT_CHANNEL3 : return isValidMeasurementChannel3(property.edt);
-		case EPC_MEASUREMENT_CHANNEL4 : return isValidMeasurementChannel4(property.edt);
-		case EPC_MEASUREMENT_CHANNEL5 : return isValidMeasurementChannel5(property.edt);
-		case EPC_MEASUREMENT_CHANNEL6 : return isValidMeasurementChannel6(property.edt);
-		case EPC_MEASUREMENT_CHANNEL7 : return isValidMeasurementChannel7(property.edt);
-		case EPC_MEASUREMENT_CHANNEL8 : return isValidMeasurementChannel8(property.edt);
-		case EPC_MEASUREMENT_CHANNEL9 : return isValidMeasurementChannel9(property.edt);
-		case EPC_MEASUREMENT_CHANNEL10 : return isValidMeasurementChannel10(property.edt);
-		case EPC_MEASUREMENT_CHANNEL11 : return isValidMeasurementChannel11(property.edt);
-		case EPC_MEASUREMENT_CHANNEL12 : return isValidMeasurementChannel12(property.edt);
-		case EPC_MEASUREMENT_CHANNEL13 : return isValidMeasurementChannel13(property.edt);
-		case EPC_MEASUREMENT_CHANNEL14 : return isValidMeasurementChannel14(property.edt);
-		case EPC_MEASUREMENT_CHANNEL15 : return isValidMeasurementChannel15(property.edt);
-		case EPC_MEASUREMENT_CHANNEL16 : return isValidMeasurementChannel16(property.edt);
-		case EPC_MEASUREMENT_CHANNEL17 : return isValidMeasurementChannel17(property.edt);
-		case EPC_MEASUREMENT_CHANNEL18 : return isValidMeasurementChannel18(property.edt);
-		case EPC_MEASUREMENT_CHANNEL19 : return isValidMeasurementChannel19(property.edt);
-		case EPC_MEASUREMENT_CHANNEL20 : return isValidMeasurementChannel20(property.edt);
-		case EPC_MEASUREMENT_CHANNEL21 : return isValidMeasurementChannel21(property.edt);
-		case EPC_MEASUREMENT_CHANNEL22 : return isValidMeasurementChannel22(property.edt);
-		case EPC_MEASUREMENT_CHANNEL23 : return isValidMeasurementChannel23(property.edt);
-		case EPC_MEASUREMENT_CHANNEL24 : return isValidMeasurementChannel24(property.edt);
-		case EPC_MEASUREMENT_CHANNEL25 : return isValidMeasurementChannel25(property.edt);
-		case EPC_MEASUREMENT_CHANNEL26 : return isValidMeasurementChannel26(property.edt);
-		case EPC_MEASUREMENT_CHANNEL27 : return isValidMeasurementChannel27(property.edt);
-		case EPC_MEASUREMENT_CHANNEL28 : return isValidMeasurementChannel28(property.edt);
-		case EPC_MEASUREMENT_CHANNEL29 : return isValidMeasurementChannel29(property.edt);
-		case EPC_MEASUREMENT_CHANNEL30 : return isValidMeasurementChannel30(property.edt);
-		case EPC_MEASUREMENT_CHANNEL31 : return isValidMeasurementChannel31(property.edt);
-		case EPC_MEASUREMENT_CHANNEL32 : return isValidMeasurementChannel32(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_17 : return isValidMeasurementChannel17(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_19 : return isValidMeasurementChannel19(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_24 : return isValidMeasurementChannel24(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_23 : return isValidMeasurementChannel23(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_22 : return isValidMeasurementChannel22(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_20 : return isValidMeasurementChannel20(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_21 : return isValidMeasurementChannel21(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_11 : return isValidMeasurementChannel11(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_12 : return isValidMeasurementChannel12(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_13 : return isValidMeasurementChannel13(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_15 : return isValidMeasurementChannel15(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_16 : return isValidMeasurementChannel16(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_14 : return isValidMeasurementChannel14(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_1 : return isValidMeasurementChannel1(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_2 : return isValidMeasurementChannel2(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_3 : return isValidMeasurementChannel3(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_4 : return isValidMeasurementChannel4(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_5 : return isValidMeasurementChannel5(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_6 : return isValidMeasurementChannel6(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_7 : return isValidMeasurementChannel7(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_8 : return isValidMeasurementChannel8(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_9 : return isValidMeasurementChannel9(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_10 : return isValidMeasurementChannel10(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_18 : return isValidMeasurementChannel18(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_29 : return isValidMeasurementChannel29(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_28 : return isValidMeasurementChannel28(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_27 : return isValidMeasurementChannel27(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_32 : return isValidMeasurementChannel32(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_31 : return isValidMeasurementChannel31(property.edt);
+		case EPC_MEASUREMENT_CHANNEL_30 : return isValidMeasurementChannel30(property.edt);
+
 		default : return false;
 		}
 	}
@@ -2927,6 +2366,7 @@ bytes<br>
 			case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED : 
 				onSetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(eoj, tid, esv, property, success);
 				return true;
+
 			default :
 				return false;
 			}
@@ -2939,293 +2379,156 @@ bytes<br>
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION : 
-				onGetMeasuredCumulativeAmountOfElectricEnergyNormalDirection(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION : 
-				onGetMeasuredCumulativeAmountOfElectricEnergyReverseDirection(eoj, tid, esv, property, success);
-				return true;
-			case EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY : 
-				onGetUnitForCumulativeAmountsOfElectricEnergy(eoj, tid, esv, property, success);
-				return true;
-			case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION : 
-				onGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection(eoj, tid, esv, property, success);
-				return true;
-			case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION : 
-				onGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection(eoj, tid, esv, property, success);
-				return true;
 			case EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED : 
 				onGetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASURED_INSTANTANEO_US_AMOUNT_OF_ELECTRIC_ENERGY : 
-				onGetMeasuredInstantaneoUsAmountOfElectricEnergy(eoj, tid, esv, property, success);
+			case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION_ : 
+				onGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000AReverseDirection(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MEASURED_INSTANTANEOUS_CURRENTS : 
 				onGetMeasuredInstantaneousCurrents(eoj, tid, esv, property, success);
 				return true;
+			case EPC_MEASURED_INSTANTANEO_US_AMOUNT_OF_ELECTRIC_ENERGY : 
+				onGetMeasuredInstantaneoUsAmountOfElectricEnergy(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION_ : 
+				onGetMeasuredCumulativeAmountOfElectricEnergyReverseDirection(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION_ : 
+				onGetMeasuredCumulativeAmountOfElectricEnergyNormalDirection(eoj, tid, esv, property, success);
+				return true;
+			case EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION_ : 
+				onGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000ANormalDirection(eoj, tid, esv, property, success);
+				return true;
+			case EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY : 
+				onGetUnitForCumulativeAmountsOfElectricEnergy(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASUREMENT_CHANNEL_26 : 
+				onGetMeasurementChannel26(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASUREMENT_CHANNEL_25 : 
+				onGetMeasurementChannel25(eoj, tid, esv, property, success);
+				return true;
 			case EPC_MEASURED_INSTANTANEOUS_VOLTAGES : 
 				onGetMeasuredInstantaneousVoltages(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL1 : 
-				onGetMeasurementChannel1(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASUREMENT_CHANNEL2 : 
-				onGetMeasurementChannel2(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASUREMENT_CHANNEL3 : 
-				onGetMeasurementChannel3(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASUREMENT_CHANNEL4 : 
-				onGetMeasurementChannel4(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASUREMENT_CHANNEL5 : 
-				onGetMeasurementChannel5(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASUREMENT_CHANNEL6 : 
-				onGetMeasurementChannel6(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASUREMENT_CHANNEL7 : 
-				onGetMeasurementChannel7(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASUREMENT_CHANNEL8 : 
-				onGetMeasurementChannel8(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASUREMENT_CHANNEL9 : 
-				onGetMeasurementChannel9(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASUREMENT_CHANNEL10 : 
-				onGetMeasurementChannel10(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASUREMENT_CHANNEL11 : 
-				onGetMeasurementChannel11(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASUREMENT_CHANNEL12 : 
-				onGetMeasurementChannel12(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASUREMENT_CHANNEL13 : 
-				onGetMeasurementChannel13(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASUREMENT_CHANNEL14 : 
-				onGetMeasurementChannel14(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASUREMENT_CHANNEL15 : 
-				onGetMeasurementChannel15(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASUREMENT_CHANNEL16 : 
-				onGetMeasurementChannel16(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASUREMENT_CHANNEL17 : 
+			case EPC_MEASUREMENT_CHANNEL_17 : 
 				onGetMeasurementChannel17(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL18 : 
-				onGetMeasurementChannel18(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASUREMENT_CHANNEL19 : 
+			case EPC_MEASUREMENT_CHANNEL_19 : 
 				onGetMeasurementChannel19(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL20 : 
-				onGetMeasurementChannel20(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASUREMENT_CHANNEL21 : 
-				onGetMeasurementChannel21(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASUREMENT_CHANNEL22 : 
-				onGetMeasurementChannel22(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASUREMENT_CHANNEL23 : 
-				onGetMeasurementChannel23(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASUREMENT_CHANNEL24 : 
+			case EPC_MEASUREMENT_CHANNEL_24 : 
 				onGetMeasurementChannel24(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL25 : 
-				onGetMeasurementChannel25(eoj, tid, esv, property, success);
+			case EPC_MEASUREMENT_CHANNEL_23 : 
+				onGetMeasurementChannel23(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL26 : 
-				onGetMeasurementChannel26(eoj, tid, esv, property, success);
+			case EPC_MEASUREMENT_CHANNEL_22 : 
+				onGetMeasurementChannel22(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL27 : 
-				onGetMeasurementChannel27(eoj, tid, esv, property, success);
+			case EPC_MEASUREMENT_CHANNEL_20 : 
+				onGetMeasurementChannel20(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL28 : 
-				onGetMeasurementChannel28(eoj, tid, esv, property, success);
+			case EPC_MEASUREMENT_CHANNEL_21 : 
+				onGetMeasurementChannel21(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL29 : 
+			case EPC_MEASUREMENT_CHANNEL_11 : 
+				onGetMeasurementChannel11(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASUREMENT_CHANNEL_12 : 
+				onGetMeasurementChannel12(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASUREMENT_CHANNEL_13 : 
+				onGetMeasurementChannel13(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASUREMENT_CHANNEL_15 : 
+				onGetMeasurementChannel15(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASUREMENT_CHANNEL_16 : 
+				onGetMeasurementChannel16(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASUREMENT_CHANNEL_14 : 
+				onGetMeasurementChannel14(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASUREMENT_CHANNEL_1 : 
+				onGetMeasurementChannel1(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASUREMENT_CHANNEL_2 : 
+				onGetMeasurementChannel2(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASUREMENT_CHANNEL_3 : 
+				onGetMeasurementChannel3(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASUREMENT_CHANNEL_4 : 
+				onGetMeasurementChannel4(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASUREMENT_CHANNEL_5 : 
+				onGetMeasurementChannel5(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASUREMENT_CHANNEL_6 : 
+				onGetMeasurementChannel6(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASUREMENT_CHANNEL_7 : 
+				onGetMeasurementChannel7(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASUREMENT_CHANNEL_8 : 
+				onGetMeasurementChannel8(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASUREMENT_CHANNEL_9 : 
+				onGetMeasurementChannel9(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASUREMENT_CHANNEL_10 : 
+				onGetMeasurementChannel10(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASUREMENT_CHANNEL_18 : 
+				onGetMeasurementChannel18(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASUREMENT_CHANNEL_29 : 
 				onGetMeasurementChannel29(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL30 : 
-				onGetMeasurementChannel30(eoj, tid, esv, property, success);
+			case EPC_MEASUREMENT_CHANNEL_28 : 
+				onGetMeasurementChannel28(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL31 : 
-				onGetMeasurementChannel31(eoj, tid, esv, property, success);
+			case EPC_MEASUREMENT_CHANNEL_27 : 
+				onGetMeasurementChannel27(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASUREMENT_CHANNEL32 : 
+			case EPC_MEASUREMENT_CHANNEL_32 : 
 				onGetMeasurementChannel32(eoj, tid, esv, property, success);
 				return true;
+			case EPC_MEASUREMENT_CHANNEL_31 : 
+				onGetMeasurementChannel31(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASUREMENT_CHANNEL_30 : 
+				onGetMeasurementChannel30(eoj, tid, esv, property, success);
+				return true;
+
 			default :
 				return false;
 			}
 		}
 		
 		/**
-		 * Property name : Measured cumulative amount of electric energy (normal direction)<br>
-		 * <br>
-		 * EPC : 0xC0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
-		 * <br>
-		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4
-bytes<br>
-		 * <br>
-		 * Unit : kWh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		protected void onGetMeasuredCumulativeAmountOfElectricEnergyNormalDirection(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measured cumulative amount of electric energy (reverse direction)<br>
-		 * <br>
-		 * EPC : 0xC1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
-		 * <br>
-		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4
-bytes<br>
-		 * <br>
-		 * Unit : kWh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		protected void onGetMeasuredCumulativeAmountOfElectricEnergyReverseDirection(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Unit for cumulative amounts of electric energy<br>
-		 * <br>
-		 * EPC : 0xC2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00: 1kWh 0x01: 0.1kWh<br>
-		 * 0x02: 0.01kWh<br>
-		 * 0x03: 0.001kWh (Initial value) 0x04: 0.0001kWh<br>
-		 * 0x0A: 10kWh 0x0B: 100kWh<br>
-		 * 0x0C: 1000kWh<br>
-		 * 0x0D: 10000kWh<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-bytes<br>
-		 * <br>
-		 * Unit : .<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		protected void onGetUnitForCumulativeAmountsOfElectricEnergy(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Historical data of measured cumulative amounts of electric energy
-(normal direction)<br>
-		 * <br>
-		 * EPC : 0xC3<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0x0063 :<br>
-		 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
-		 * <br>
-		 * Data type : unsigned short
-+unsign ed
-long
-×48<br>
-		 * <br>
-		 * Data size : 194
-bytes<br>
-		 * <br>
-		 * Unit : kWh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Historical data of measured cumulative amounts of electric energy
-(reverse direction)<br>
-		 * <br>
-		 * EPC : 0xC4<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0x0063 :<br>
-		 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
-		 * <br>
-		 * Data type : unsigned short
-+unsign ed
-long
-×48<br>
-		 * <br>
-		 * Data size : 194
-bytes<br>
-		 * <br>
-		 * Unit : kWh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
 		 * Property name : Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved<br>
 		 * <br>
 		 * EPC : 0xC5<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
+		 * Contents :<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0x63 ( 0.99)<br>
-		 * 0: current day<br>
-		 * 1. 99: previous day.day that precedes the current day by 99 days<br>
+		 * 0x00.0x63 ( 0.99)_x000a_0: current day_x000a_1. 99: previous day.day that precedes the current day by 99 days<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
-		 * Unit : null<br>
+		 * Data size : 1<br>
+		 * Unit : <br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onSetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -3233,729 +2536,390 @@ byte<br>
 		 * <br>
 		 * EPC : 0xC5<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
+		 * Contents :<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0x63 ( 0.99)<br>
-		 * 0: current day<br>
-		 * 1. 99: previous day.day that precedes the current day by 99 days<br>
+		 * 0x00.0x63 ( 0.99)_x000a_0: current day_x000a_1. 99: previous day.day that precedes the current day by 99 days<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
-		 * Unit : null<br>
+		 * Data size : 1<br>
+		 * Unit : <br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Measured instantaneo us amount of electric energy<br>
+		 * Property name : Historical data of measured cumulative amounts of electric energy_x000a_(reverse direction)<br>
 		 * <br>
-		 * EPC : 0xC6<br>
+		 * EPC : 0xC4<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured effective instantaneous amount of electric energy in watts.<br>
+		 * Contents :<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x80000001.0x7FFFFFFD<br>
-		 * (-2,147,483,647.2,147,483,645)<br>
+		 * 0x0000.0x0063 :_x000a_0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
 		 * <br>
-		 * Data type : signed long<br>
-		 * <br>
-		 * Data size : 4
-bytes<br>
-		 * <br>
-		 * Unit : W<br>
+		 * Data type : unsigned short_x000a_+unsign ed_x000a_long_x000a_×48<br>
+		 * Data size : 194<br>
+		 * Unit : kWh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetMeasuredInstantaneoUsAmountOfElectricEnergy(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000AReverseDirection(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Measured instantaneous currents<br>
 		 * <br>
 		 * EPC : 0xC7<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured effective instantaneous R and T phase currents in amperes.<br>
-		 * In the case of a single-phase,<br>
-		 * two-wire system, 0x7FFE shall be used for the T phase.<br>
+		 * Contents :<br>
+		 * This property indicates the measured effective instantaneous R and T phase currents in amperes._x000a_In the case of a single-phase,_x000a_two-wire system, 0x7FFE shall be used for the T phase. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x8001-0x7FFD (R phase)<br>
-		 * : 0x8001-0x7FFD (T phase)<br>
-		 * (-3,276.7.3,276.5):<br>
-		 * (-3,276.7.3,276.5)<br>
+		 * 0x8001-0x7FFD (R phase)_x000a_: 0x8001-0x7FFD (T phase)_x000a_(-3,276.7.3,276.5):_x000a_(-3,276.7.3,276.5)<br>
 		 * <br>
-		 * Data type : signed short
-×2<br>
-		 * <br>
-		 * Data size : 4
-bytes<br>
-		 * <br>
-		 * Unit : 0.1
-A<br>
+		 * Data type : signed short_x000a_×2<br>
+		 * Data size : 4<br>
+		 * Unit : 0.1_x000a_A<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetMeasuredInstantaneousCurrents(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measured instantaneo us amount of electric energy<br>
+		 * <br>
+		 * EPC : 0xC6<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measured effective instantaneous amount of electric energy in watts. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x80000001.0x7FFFFFFD_x000a_(-2,147,483,647.2,147,483,645)<br>
+		 * <br>
+		 * Data type : signed long<br>
+		 * Data size : 4<br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasuredInstantaneoUsAmountOfElectricEnergy(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measured cumulative amount of electric energy (reverse direction)<br>
+		 * <br>
+		 * EPC : 0xC1<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * Data size : 4<br>
+		 * Unit : kWh<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasuredCumulativeAmountOfElectricEnergyReverseDirection(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measured cumulative amount of electric energy (normal direction)<br>
+		 * <br>
+		 * EPC : 0xC0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * Data size : 4<br>
+		 * Unit : kWh<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasuredCumulativeAmountOfElectricEnergyNormalDirection(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Historical data of measured cumulative amounts of electric energy_x000a_(normal direction)<br>
+		 * <br>
+		 * EPC : 0xC3<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0x0063 :_x000a_0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
+		 * <br>
+		 * Data type : unsigned short_x000a_+unsign ed_x000a_long_x000a_×48<br>
+		 * Data size : 194<br>
+		 * Unit : kWh<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000ANormalDirection(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Unit for cumulative amounts of electric energy<br>
+		 * <br>
+		 * EPC : 0xC2<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00: 1kWh 0x01: 0.1kWh_x000a_0x02: 0.01kWh_x000a_0x03: 0.001kWh (Initial value) 0x04: 0.0001kWh_x000a_0x0A: 10kWh 0x0B: 100kWh_x000a_0x0C: 1000kWh_x000a_0x0D: 10000kWh<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetUnitForCumulativeAmountsOfElectricEnergy(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measurement channel 26<br>
+		 * <br>
+		 * EPC : 0xE9<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 26 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasurementChannel26(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measurement channel 25<br>
+		 * <br>
+		 * EPC : 0xE8<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 25 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasurementChannel25(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Measured instantaneous voltages<br>
 		 * <br>
 		 * EPC : 0xC8<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system, 0xFFFE shall be used for the S(N)-T voltage.<br>
+		 * Contents :<br>
+		 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system, 0xFFFE shall be used for the S(N)-T voltage. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (between R and S(N)) :<br>
-		 * 0x0000.0xFFFD (between S(N) and T)<br>
-		 * (0.6,553.3) : (0.6,553.3)<br>
+		 * 0x0000.0xFFFD (between R and S(N)) :_x000a_0x0000.0xFFFD (between S(N) and T)_x000a_(0.6,553.3) : (0.6,553.3)<br>
 		 * <br>
-		 * Data type : unsigned short
-×2<br>
-		 * <br>
-		 * Data size : 4
-bytes<br>
-		 * <br>
-		 * Unit : 0.1
-V<br>
+		 * Data type : unsigned short_x000a_×2<br>
+		 * Data size : 4<br>
+		 * Unit : 0.1_x000a_V<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetMeasuredInstantaneousVoltages(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measurement channel 1<br>
-		 * <br>
-		 * EPC : 0xD0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 1 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasurementChannel1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measurement channel 2<br>
-		 * <br>
-		 * EPC : 0xD1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 2 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasurementChannel2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measurement channel 3<br>
-		 * <br>
-		 * EPC : 0xD2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 3 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasurementChannel3(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measurement channel 4<br>
-		 * <br>
-		 * EPC : 0xD3<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 4 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasurementChannel4(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measurement channel 5<br>
-		 * <br>
-		 * EPC : 0xD4<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 5 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasurementChannel5(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measurement channel 6<br>
-		 * <br>
-		 * EPC : 0xD5<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 6 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasurementChannel6(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measurement channel 7<br>
-		 * <br>
-		 * EPC : 0xD6<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 7 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasurementChannel7(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measurement channel 8<br>
-		 * <br>
-		 * EPC : 0xD7<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 8 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasurementChannel8(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measurement channel 9<br>
-		 * <br>
-		 * EPC : 0xD8<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 9 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasurementChannel9(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measurement channel 10<br>
-		 * <br>
-		 * EPC : 0xD9<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 10 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasurementChannel10(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measurement channel 11<br>
-		 * <br>
-		 * EPC : 0xDA<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 11 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasurementChannel11(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measurement channel 12<br>
-		 * <br>
-		 * EPC : 0xDB<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 12 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasurementChannel12(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measurement channel 13<br>
-		 * <br>
-		 * EPC : 0xDC<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 13 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasurementChannel13(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measurement channel 14<br>
-		 * <br>
-		 * EPC : 0xDD<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 14 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasurementChannel14(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measurement channel 15<br>
-		 * <br>
-		 * EPC : 0xDE<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 15 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasurementChannel15(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measurement channel 16<br>
-		 * <br>
-		 * EPC : 0xDF<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 16 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasurementChannel16(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Measurement channel 17<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 17 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 17 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetMeasurementChannel17(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measurement channel 18<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 18 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasurementChannel18(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Measurement channel 19<br>
 		 * <br>
 		 * EPC : 0xE2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 19 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 19 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetMeasurementChannel19(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measurement channel 24<br>
+		 * <br>
+		 * EPC : 0xE7<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 24 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasurementChannel24(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measurement channel 23<br>
+		 * <br>
+		 * EPC : 0xE6<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 23 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasurementChannel23(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measurement channel 22<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 22 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasurementChannel22(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Measurement channel 20<br>
 		 * <br>
 		 * EPC : 0xE3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 20 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 20 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetMeasurementChannel20(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -3963,373 +2927,600 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 21 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 21 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetMeasurementChannel21(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Measurement channel 22<br>
+		 * Property name : Measurement channel 11<br>
 		 * <br>
-		 * EPC : 0xE5<br>
+		 * EPC : 0xDA<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 22 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 11 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetMeasurementChannel22(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetMeasurementChannel11(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Measurement channel 23<br>
+		 * Property name : Measurement channel 12<br>
 		 * <br>
-		 * EPC : 0xE6<br>
+		 * EPC : 0xDB<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 23 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 12 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetMeasurementChannel23(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetMeasurementChannel12(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Measurement channel 24<br>
+		 * Property name : Measurement channel 13<br>
 		 * <br>
-		 * EPC : 0xE7<br>
+		 * EPC : 0xDC<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 24 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 13 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetMeasurementChannel24(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetMeasurementChannel13(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Measurement channel 25<br>
+		 * Property name : Operation status<br>
 		 * <br>
-		 * EPC : 0xE8<br>
+		 * EPC : 0x80<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 25 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * ON=0x30, OFF=0x31<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetMeasurementChannel25(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Measurement channel 26<br>
+		 * Property name : Operation status<br>
 		 * <br>
-		 * EPC : 0xE9<br>
+		 * EPC : 0x80<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 26 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * ON=0x30, OFF=0x31<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetMeasurementChannel26(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Measurement channel 27<br>
+		 * Property name : Measurement channel 15<br>
 		 * <br>
-		 * EPC : 0xEA<br>
+		 * EPC : 0xDE<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 27 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 15 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetMeasurementChannel27(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetMeasurementChannel15(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Measurement channel 28<br>
+		 * Property name : Measurement channel 16<br>
 		 * <br>
-		 * EPC : 0xEB<br>
+		 * EPC : 0xDF<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 28 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 16 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetMeasurementChannel28(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetMeasurementChannel16(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measurement channel 14<br>
+		 * <br>
+		 * EPC : 0xDD<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 14 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasurementChannel14(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measurement channel 1<br>
+		 * <br>
+		 * EPC : 0xD0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 1 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasurementChannel1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measurement channel 2<br>
+		 * <br>
+		 * EPC : 0xD1<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 2 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasurementChannel2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measurement channel 3<br>
+		 * <br>
+		 * EPC : 0xD2<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 3 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasurementChannel3(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measurement channel 4<br>
+		 * <br>
+		 * EPC : 0xD3<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 4 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasurementChannel4(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measurement channel 5<br>
+		 * <br>
+		 * EPC : 0xD4<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 5 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasurementChannel5(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measurement channel 6<br>
+		 * <br>
+		 * EPC : 0xD5<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 6 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasurementChannel6(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measurement channel 7<br>
+		 * <br>
+		 * EPC : 0xD6<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 7 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasurementChannel7(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measurement channel 8<br>
+		 * <br>
+		 * EPC : 0xD7<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 8 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasurementChannel8(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measurement channel 9<br>
+		 * <br>
+		 * EPC : 0xD8<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 9 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasurementChannel9(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measurement channel 10<br>
+		 * <br>
+		 * EPC : 0xD9<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 10 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasurementChannel10(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measurement channel 18<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 18 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasurementChannel18(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Measurement channel 29<br>
 		 * <br>
 		 * EPC : 0xEC<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 29 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 29 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetMeasurementChannel29(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Measurement channel 30<br>
+		 * Property name : Measurement channel 28<br>
 		 * <br>
-		 * EPC : 0xED<br>
+		 * EPC : 0xEB<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 30 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 28 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetMeasurementChannel30(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetMeasurementChannel28(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Measurement channel 31<br>
+		 * Property name : Measurement channel 27<br>
 		 * <br>
-		 * EPC : 0xEE<br>
+		 * EPC : 0xEA<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 31 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 27 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetMeasurementChannel31(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetMeasurementChannel27(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Measurement channel 32<br>
 		 * <br>
 		 * EPC : 0xEF<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 32 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 32 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetMeasurementChannel32(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measurement channel 31<br>
+		 * <br>
+		 * EPC : 0xEE<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 31 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasurementChannel31(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measurement channel 30<br>
+		 * <br>
+		 * EPC : 0xED<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 30 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasurementChannel30(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+
 	}
 
 	public static class Setter extends DeviceObject.Setter {
@@ -4382,30 +3573,28 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xC5<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
+		 * Contents :<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0x63 ( 0.99)<br>
-		 * 0: current day<br>
-		 * 1. 99: previous day.day that precedes the current day by 99 days<br>
+		 * 0x00.0x63 ( 0.99)_x000a_0: current day_x000a_1. 99: previous day.day that precedes the current day by 99 days<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
-		 * Unit : null<br>
+		 * Data size : 1<br>
+		 * Unit : <br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved(byte[] edt) {
 			reqSetProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED, edt);
 			return this;
 		}
+
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
@@ -4518,210 +3707,55 @@ byte<br>
 		}
 		
 		/**
-		 * Property name : Measured cumulative amount of electric energy (normal direction)<br>
-		 * <br>
-		 * EPC : 0xC0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
-		 * <br>
-		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4
-bytes<br>
-		 * <br>
-		 * Unit : kWh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		public Getter reqGetMeasuredCumulativeAmountOfElectricEnergyNormalDirection() {
-			reqGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
-			return this;
-		}
-		/**
-		 * Property name : Measured cumulative amount of electric energy (reverse direction)<br>
-		 * <br>
-		 * EPC : 0xC1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
-		 * <br>
-		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4
-bytes<br>
-		 * <br>
-		 * Unit : kWh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		public Getter reqGetMeasuredCumulativeAmountOfElectricEnergyReverseDirection() {
-			reqGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
-			return this;
-		}
-		/**
-		 * Property name : Unit for cumulative amounts of electric energy<br>
-		 * <br>
-		 * EPC : 0xC2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00: 1kWh 0x01: 0.1kWh<br>
-		 * 0x02: 0.01kWh<br>
-		 * 0x03: 0.001kWh (Initial value) 0x04: 0.0001kWh<br>
-		 * 0x0A: 10kWh 0x0B: 100kWh<br>
-		 * 0x0C: 1000kWh<br>
-		 * 0x0D: 10000kWh<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-bytes<br>
-		 * <br>
-		 * Unit : .<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		public Getter reqGetUnitForCumulativeAmountsOfElectricEnergy() {
-			reqGetProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY);
-			return this;
-		}
-		/**
-		 * Property name : Historical data of measured cumulative amounts of electric energy
-(normal direction)<br>
-		 * <br>
-		 * EPC : 0xC3<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0x0063 :<br>
-		 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
-		 * <br>
-		 * Data type : unsigned short
-+unsign ed
-long
-×48<br>
-		 * <br>
-		 * Data size : 194
-bytes<br>
-		 * <br>
-		 * Unit : kWh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection() {
-			reqGetProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
-			return this;
-		}
-		/**
-		 * Property name : Historical data of measured cumulative amounts of electric energy
-(reverse direction)<br>
-		 * <br>
-		 * EPC : 0xC4<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0x0063 :<br>
-		 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
-		 * <br>
-		 * Data type : unsigned short
-+unsign ed
-long
-×48<br>
-		 * <br>
-		 * Data size : 194
-bytes<br>
-		 * <br>
-		 * Unit : kWh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection() {
-			reqGetProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
-			return this;
-		}
-		/**
 		 * Property name : Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved<br>
 		 * <br>
 		 * EPC : 0xC5<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
+		 * Contents :<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0x63 ( 0.99)<br>
-		 * 0: current day<br>
-		 * 1. 99: previous day.day that precedes the current day by 99 days<br>
+		 * 0x00.0x63 ( 0.99)_x000a_0: current day_x000a_1. 99: previous day.day that precedes the current day by 99 days<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
-		 * Unit : null<br>
+		 * Data size : 1<br>
+		 * Unit : <br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved() {
 			reqGetProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED);
 			return this;
 		}
 		/**
-		 * Property name : Measured instantaneo us amount of electric energy<br>
+		 * Property name : Historical data of measured cumulative amounts of electric energy_x000a_(reverse direction)<br>
 		 * <br>
-		 * EPC : 0xC6<br>
+		 * EPC : 0xC4<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured effective instantaneous amount of electric energy in watts.<br>
+		 * Contents :<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x80000001.0x7FFFFFFD<br>
-		 * (-2,147,483,647.2,147,483,645)<br>
+		 * 0x0000.0x0063 :_x000a_0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
 		 * <br>
-		 * Data type : signed long<br>
-		 * <br>
-		 * Data size : 4
-bytes<br>
-		 * <br>
-		 * Unit : W<br>
+		 * Data type : unsigned short_x000a_+unsign ed_x000a_long_x000a_×48<br>
+		 * Data size : 194<br>
+		 * Unit : kWh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetMeasuredInstantaneoUsAmountOfElectricEnergy() {
-			reqGetProperty(EPC_MEASURED_INSTANTANEO_US_AMOUNT_OF_ELECTRIC_ENERGY);
+		public Getter reqGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000AReverseDirection() {
+			reqGetProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION_);
 			return this;
 		}
 		/**
@@ -4729,914 +3763,155 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xC7<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured effective instantaneous R and T phase currents in amperes.<br>
-		 * In the case of a single-phase,<br>
-		 * two-wire system, 0x7FFE shall be used for the T phase.<br>
+		 * Contents :<br>
+		 * This property indicates the measured effective instantaneous R and T phase currents in amperes._x000a_In the case of a single-phase,_x000a_two-wire system, 0x7FFE shall be used for the T phase. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x8001-0x7FFD (R phase)<br>
-		 * : 0x8001-0x7FFD (T phase)<br>
-		 * (-3,276.7.3,276.5):<br>
-		 * (-3,276.7.3,276.5)<br>
+		 * 0x8001-0x7FFD (R phase)_x000a_: 0x8001-0x7FFD (T phase)_x000a_(-3,276.7.3,276.5):_x000a_(-3,276.7.3,276.5)<br>
 		 * <br>
-		 * Data type : signed short
-×2<br>
-		 * <br>
-		 * Data size : 4
-bytes<br>
-		 * <br>
-		 * Unit : 0.1
-A<br>
+		 * Data type : signed short_x000a_×2<br>
+		 * Data size : 4<br>
+		 * Unit : 0.1_x000a_A<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasuredInstantaneousCurrents() {
 			reqGetProperty(EPC_MEASURED_INSTANTANEOUS_CURRENTS);
 			return this;
 		}
 		/**
-		 * Property name : Measured instantaneous voltages<br>
+		 * Property name : Measured instantaneo us amount of electric energy<br>
 		 * <br>
-		 * EPC : 0xC8<br>
+		 * EPC : 0xC6<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system, 0xFFFE shall be used for the S(N)-T voltage.<br>
+		 * Contents :<br>
+		 * This property indicates the measured effective instantaneous amount of electric energy in watts. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (between R and S(N)) :<br>
-		 * 0x0000.0xFFFD (between S(N) and T)<br>
-		 * (0.6,553.3) : (0.6,553.3)<br>
+		 * 0x80000001.0x7FFFFFFD_x000a_(-2,147,483,647.2,147,483,645)<br>
 		 * <br>
-		 * Data type : unsigned short
-×2<br>
-		 * <br>
-		 * Data size : 4
-bytes<br>
-		 * <br>
-		 * Unit : 0.1
-V<br>
+		 * Data type : signed long<br>
+		 * Data size : 4<br>
+		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetMeasuredInstantaneousVoltages() {
-			reqGetProperty(EPC_MEASURED_INSTANTANEOUS_VOLTAGES);
+		public Getter reqGetMeasuredInstantaneoUsAmountOfElectricEnergy() {
+			reqGetProperty(EPC_MEASURED_INSTANTANEO_US_AMOUNT_OF_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
-		 * Property name : Measurement channel 1<br>
+		 * Property name : Measured cumulative amount of electric energy (reverse direction)<br>
 		 * <br>
-		 * EPC : 0xD0<br>
+		 * EPC : 0xC1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 1 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long<br>
+		 * Data size : 4<br>
+		 * Unit : kWh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetMeasurementChannel1() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL1);
+		public Getter reqGetMeasuredCumulativeAmountOfElectricEnergyReverseDirection() {
+			reqGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION_);
 			return this;
 		}
 		/**
-		 * Property name : Measurement channel 2<br>
+		 * Property name : Measured cumulative amount of electric energy (normal direction)<br>
 		 * <br>
-		 * EPC : 0xD1<br>
+		 * EPC : 0xC0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 2 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long<br>
+		 * Data size : 4<br>
+		 * Unit : kWh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetMeasurementChannel2() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL2);
+		public Getter reqGetMeasuredCumulativeAmountOfElectricEnergyNormalDirection() {
+			reqGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION_);
 			return this;
 		}
 		/**
-		 * Property name : Measurement channel 3<br>
+		 * Property name : Historical data of measured cumulative amounts of electric energy_x000a_(normal direction)<br>
 		 * <br>
-		 * EPC : 0xD2<br>
+		 * EPC : 0xC3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 3 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * 0x0000.0x0063 :_x000a_0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned short_x000a_+unsign ed_x000a_long_x000a_×48<br>
+		 * Data size : 194<br>
+		 * Unit : kWh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetMeasurementChannel3() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL3);
+		public Getter reqGetHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000ANormalDirection() {
+			reqGetProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION_);
 			return this;
 		}
 		/**
-		 * Property name : Measurement channel 4<br>
+		 * Property name : Unit for cumulative amounts of electric energy<br>
 		 * <br>
-		 * EPC : 0xD3<br>
+		 * EPC : 0xC2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 4 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasurementChannel4() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL4);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 5<br>
-		 * <br>
-		 * EPC : 0xD4<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 5 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * 0x00: 1kWh 0x01: 0.1kWh_x000a_0x02: 0.01kWh_x000a_0x03: 0.001kWh (Initial value) 0x04: 0.0001kWh_x000a_0x0A: 10kWh 0x0B: 100kWh_x000a_0x0C: 1000kWh_x000a_0x0D: 10000kWh<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetMeasurementChannel5() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL5);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 6<br>
-		 * <br>
-		 * EPC : 0xD5<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 6 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasurementChannel6() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL6);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 7<br>
-		 * <br>
-		 * EPC : 0xD6<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 7 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasurementChannel7() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL7);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 8<br>
-		 * <br>
-		 * EPC : 0xD7<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 8 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasurementChannel8() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL8);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 9<br>
-		 * <br>
-		 * EPC : 0xD8<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 9 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasurementChannel9() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL9);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 10<br>
-		 * <br>
-		 * EPC : 0xD9<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 10 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasurementChannel10() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL10);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 11<br>
-		 * <br>
-		 * EPC : 0xDA<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 11 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasurementChannel11() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL11);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 12<br>
-		 * <br>
-		 * EPC : 0xDB<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 12 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasurementChannel12() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL12);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 13<br>
-		 * <br>
-		 * EPC : 0xDC<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 13 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasurementChannel13() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL13);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 14<br>
-		 * <br>
-		 * EPC : 0xDD<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 14 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasurementChannel14() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL14);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 15<br>
-		 * <br>
-		 * EPC : 0xDE<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 15 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasurementChannel15() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL15);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 16<br>
-		 * <br>
-		 * EPC : 0xDF<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 16 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasurementChannel16() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL16);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 17<br>
-		 * <br>
-		 * EPC : 0xE0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 17 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasurementChannel17() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL17);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 18<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 18 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasurementChannel18() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL18);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 19<br>
-		 * <br>
-		 * EPC : 0xE2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 19 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasurementChannel19() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL19);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 20<br>
-		 * <br>
-		 * EPC : 0xE3<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 20 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasurementChannel20() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL20);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 21<br>
-		 * <br>
-		 * EPC : 0xE4<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 21 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasurementChannel21() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL21);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 22<br>
-		 * <br>
-		 * EPC : 0xE5<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 22 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasurementChannel22() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL22);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 23<br>
-		 * <br>
-		 * EPC : 0xE6<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 23 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasurementChannel23() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL23);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 24<br>
-		 * <br>
-		 * EPC : 0xE7<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 24 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasurementChannel24() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL24);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 25<br>
-		 * <br>
-		 * EPC : 0xE8<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 25 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasurementChannel25() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL25);
+		public Getter reqGetUnitForCumulativeAmountsOfElectricEnergy() {
+			reqGetProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -5644,101 +3919,701 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xE9<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 26 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 26 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel26() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL26);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_26);
 			return this;
 		}
 		/**
-		 * Property name : Measurement channel 27<br>
+		 * Property name : Measurement channel 25<br>
 		 * <br>
-		 * EPC : 0xEA<br>
+		 * EPC : 0xE8<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 27 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 25 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetMeasurementChannel27() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL27);
+		public Getter reqGetMeasurementChannel25() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_25);
 			return this;
 		}
 		/**
-		 * Property name : Measurement channel 28<br>
+		 * Property name : Measured instantaneous voltages<br>
 		 * <br>
-		 * EPC : 0xEB<br>
+		 * EPC : 0xC8<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 28 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system, 0xFFFE shall be used for the S(N)-T voltage. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * 0x0000.0xFFFD (between R and S(N)) :_x000a_0x0000.0xFFFD (between S(N) and T)_x000a_(0.6,553.3) : (0.6,553.3)<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned short_x000a_×2<br>
+		 * Data size : 4<br>
+		 * Unit : 0.1_x000a_V<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetMeasurementChannel28() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL28);
+		public Getter reqGetMeasuredInstantaneousVoltages() {
+			reqGetProperty(EPC_MEASURED_INSTANTANEOUS_VOLTAGES);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 17<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 17 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel17() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_17);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 19<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 19 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel19() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_19);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 24<br>
+		 * <br>
+		 * EPC : 0xE7<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 24 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel24() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_24);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 23<br>
+		 * <br>
+		 * EPC : 0xE6<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 23 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel23() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_23);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 22<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 22 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel22() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_22);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 20<br>
+		 * <br>
+		 * EPC : 0xE3<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 20 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel20() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_20);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 21<br>
+		 * <br>
+		 * EPC : 0xE4<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 21 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel21() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_21);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 11<br>
+		 * <br>
+		 * EPC : 0xDA<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 11 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel11() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_11);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 12<br>
+		 * <br>
+		 * EPC : 0xDB<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 12 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel12() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_12);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 13<br>
+		 * <br>
+		 * EPC : 0xDC<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 13 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel13() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_13);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 15<br>
+		 * <br>
+		 * EPC : 0xDE<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 15 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel15() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_15);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 16<br>
+		 * <br>
+		 * EPC : 0xDF<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 16 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel16() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_16);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 14<br>
+		 * <br>
+		 * EPC : 0xDD<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 14 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel14() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_14);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 1<br>
+		 * <br>
+		 * EPC : 0xD0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 1 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel1() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_1);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 2<br>
+		 * <br>
+		 * EPC : 0xD1<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 2 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel2() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_2);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 3<br>
+		 * <br>
+		 * EPC : 0xD2<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 3 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel3() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_3);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 4<br>
+		 * <br>
+		 * EPC : 0xD3<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 4 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel4() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_4);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 5<br>
+		 * <br>
+		 * EPC : 0xD4<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 5 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel5() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_5);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 6<br>
+		 * <br>
+		 * EPC : 0xD5<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 6 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel6() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_6);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 7<br>
+		 * <br>
+		 * EPC : 0xD6<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 7 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel7() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_7);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 8<br>
+		 * <br>
+		 * EPC : 0xD7<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 8 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel8() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_8);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 9<br>
+		 * <br>
+		 * EPC : 0xD8<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 9 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel9() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_9);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 10<br>
+		 * <br>
+		 * EPC : 0xD9<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 10 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel10() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_10);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 18<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 18 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel18() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_18);
 			return this;
 		}
 		/**
@@ -5746,101 +4621,77 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xEC<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 29 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 29 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel29() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL29);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_29);
 			return this;
 		}
 		/**
-		 * Property name : Measurement channel 30<br>
+		 * Property name : Measurement channel 28<br>
 		 * <br>
-		 * EPC : 0xED<br>
+		 * EPC : 0xEB<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 30 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 28 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetMeasurementChannel30() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL30);
+		public Getter reqGetMeasurementChannel28() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_28);
 			return this;
 		}
 		/**
-		 * Property name : Measurement channel 31<br>
+		 * Property name : Measurement channel 27<br>
 		 * <br>
-		 * EPC : 0xEE<br>
+		 * EPC : 0xEA<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 31 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 27 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetMeasurementChannel31() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL31);
+		public Getter reqGetMeasurementChannel27() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_27);
 			return this;
 		}
 		/**
@@ -5848,35 +4699,80 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xEF<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 32 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 32 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasurementChannel32() {
-			reqGetProperty(EPC_MEASUREMENT_CHANNEL32);
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_32);
 			return this;
 		}
+		/**
+		 * Property name : Measurement channel 31<br>
+		 * <br>
+		 * EPC : 0xEE<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 31 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel31() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_31);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 30<br>
+		 * <br>
+		 * EPC : 0xED<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 30 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasurementChannel30() {
+			reqGetProperty(EPC_MEASUREMENT_CHANNEL_30);
+			return this;
+		}
+
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
@@ -5988,210 +4884,55 @@ bytes<br>
 		}
 		
 		/**
-		 * Property name : Measured cumulative amount of electric energy (normal direction)<br>
-		 * <br>
-		 * EPC : 0xC0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
-		 * <br>
-		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4
-bytes<br>
-		 * <br>
-		 * Unit : kWh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		public Informer reqInformMeasuredCumulativeAmountOfElectricEnergyNormalDirection() {
-			reqInformProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
-			return this;
-		}
-		/**
-		 * Property name : Measured cumulative amount of electric energy (reverse direction)<br>
-		 * <br>
-		 * EPC : 0xC1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
-		 * <br>
-		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4
-bytes<br>
-		 * <br>
-		 * Unit : kWh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		public Informer reqInformMeasuredCumulativeAmountOfElectricEnergyReverseDirection() {
-			reqInformProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
-			return this;
-		}
-		/**
-		 * Property name : Unit for cumulative amounts of electric energy<br>
-		 * <br>
-		 * EPC : 0xC2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00: 1kWh 0x01: 0.1kWh<br>
-		 * 0x02: 0.01kWh<br>
-		 * 0x03: 0.001kWh (Initial value) 0x04: 0.0001kWh<br>
-		 * 0x0A: 10kWh 0x0B: 100kWh<br>
-		 * 0x0C: 1000kWh<br>
-		 * 0x0D: 10000kWh<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-bytes<br>
-		 * <br>
-		 * Unit : .<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		public Informer reqInformUnitForCumulativeAmountsOfElectricEnergy() {
-			reqInformProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY);
-			return this;
-		}
-		/**
-		 * Property name : Historical data of measured cumulative amounts of electric energy
-(normal direction)<br>
-		 * <br>
-		 * EPC : 0xC3<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0x0063 :<br>
-		 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
-		 * <br>
-		 * Data type : unsigned short
-+unsign ed
-long
-×48<br>
-		 * <br>
-		 * Data size : 194
-bytes<br>
-		 * <br>
-		 * Unit : kWh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyNormalDirection() {
-			reqInformProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION);
-			return this;
-		}
-		/**
-		 * Property name : Historical data of measured cumulative amounts of electric energy
-(reverse direction)<br>
-		 * <br>
-		 * EPC : 0xC4<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0x0063 :<br>
-		 * 0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
-		 * <br>
-		 * Data type : unsigned short
-+unsign ed
-long
-×48<br>
-		 * <br>
-		 * Data size : 194
-bytes<br>
-		 * <br>
-		 * Unit : kWh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyReverseDirection() {
-			reqInformProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION);
-			return this;
-		}
-		/**
 		 * Property name : Day for which the historical data of measured cumulative amounts of electric energy is to be retrieved<br>
 		 * <br>
 		 * EPC : 0xC5<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved.<br>
+		 * Contents :<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy (which consists of 48 pieces of half-hourly data for the preceding 24 hours) is to be retrieved. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0x63 ( 0.99)<br>
-		 * 0: current day<br>
-		 * 1. 99: previous day.day that precedes the current day by 99 days<br>
+		 * 0x00.0x63 ( 0.99)_x000a_0: current day_x000a_1. 99: previous day.day that precedes the current day by 99 days<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1
-byte<br>
-		 * <br>
-		 * Unit : null<br>
+		 * Data size : 1<br>
+		 * Unit : <br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformDayForWhichTheHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyIsToBeRetrieved() {
 			reqInformProperty(EPC_DAY_FOR_WHICH_THE_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_IS_TO_BE_RETRIEVED);
 			return this;
 		}
 		/**
-		 * Property name : Measured instantaneo us amount of electric energy<br>
+		 * Property name : Historical data of measured cumulative amounts of electric energy_x000a_(reverse direction)<br>
 		 * <br>
-		 * EPC : 0xC6<br>
+		 * EPC : 0xC4<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured effective instantaneous amount of electric energy in watts.<br>
+		 * Contents :<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x80000001.0x7FFFFFFD<br>
-		 * (-2,147,483,647.2,147,483,645)<br>
+		 * 0x0000.0x0063 :_x000a_0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
 		 * <br>
-		 * Data type : signed long<br>
-		 * <br>
-		 * Data size : 4
-bytes<br>
-		 * <br>
-		 * Unit : W<br>
+		 * Data type : unsigned short_x000a_+unsign ed_x000a_long_x000a_×48<br>
+		 * Data size : 194<br>
+		 * Unit : kWh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformMeasuredInstantaneoUsAmountOfElectricEnergy() {
-			reqInformProperty(EPC_MEASURED_INSTANTANEO_US_AMOUNT_OF_ELECTRIC_ENERGY);
+		public Informer reqInformHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000AReverseDirection() {
+			reqInformProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_REVERSE_DIRECTION_);
 			return this;
 		}
 		/**
@@ -6199,914 +4940,155 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xC7<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured effective instantaneous R and T phase currents in amperes.<br>
-		 * In the case of a single-phase,<br>
-		 * two-wire system, 0x7FFE shall be used for the T phase.<br>
+		 * Contents :<br>
+		 * This property indicates the measured effective instantaneous R and T phase currents in amperes._x000a_In the case of a single-phase,_x000a_two-wire system, 0x7FFE shall be used for the T phase. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x8001-0x7FFD (R phase)<br>
-		 * : 0x8001-0x7FFD (T phase)<br>
-		 * (-3,276.7.3,276.5):<br>
-		 * (-3,276.7.3,276.5)<br>
+		 * 0x8001-0x7FFD (R phase)_x000a_: 0x8001-0x7FFD (T phase)_x000a_(-3,276.7.3,276.5):_x000a_(-3,276.7.3,276.5)<br>
 		 * <br>
-		 * Data type : signed short
-×2<br>
-		 * <br>
-		 * Data size : 4
-bytes<br>
-		 * <br>
-		 * Unit : 0.1
-A<br>
+		 * Data type : signed short_x000a_×2<br>
+		 * Data size : 4<br>
+		 * Unit : 0.1_x000a_A<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasuredInstantaneousCurrents() {
 			reqInformProperty(EPC_MEASURED_INSTANTANEOUS_CURRENTS);
 			return this;
 		}
 		/**
-		 * Property name : Measured instantaneous voltages<br>
+		 * Property name : Measured instantaneo us amount of electric energy<br>
 		 * <br>
-		 * EPC : 0xC8<br>
+		 * EPC : 0xC6<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system, 0xFFFE shall be used for the S(N)-T voltage.<br>
+		 * Contents :<br>
+		 * This property indicates the measured effective instantaneous amount of electric energy in watts. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (between R and S(N)) :<br>
-		 * 0x0000.0xFFFD (between S(N) and T)<br>
-		 * (0.6,553.3) : (0.6,553.3)<br>
+		 * 0x80000001.0x7FFFFFFD_x000a_(-2,147,483,647.2,147,483,645)<br>
 		 * <br>
-		 * Data type : unsigned short
-×2<br>
-		 * <br>
-		 * Data size : 4
-bytes<br>
-		 * <br>
-		 * Unit : 0.1
-V<br>
+		 * Data type : signed long<br>
+		 * Data size : 4<br>
+		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformMeasuredInstantaneousVoltages() {
-			reqInformProperty(EPC_MEASURED_INSTANTANEOUS_VOLTAGES);
+		public Informer reqInformMeasuredInstantaneoUsAmountOfElectricEnergy() {
+			reqInformProperty(EPC_MEASURED_INSTANTANEO_US_AMOUNT_OF_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
-		 * Property name : Measurement channel 1<br>
+		 * Property name : Measured cumulative amount of electric energy (reverse direction)<br>
 		 * <br>
-		 * EPC : 0xD0<br>
+		 * EPC : 0xC1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 1 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long<br>
+		 * Data size : 4<br>
+		 * Unit : kWh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformMeasurementChannel1() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL1);
+		public Informer reqInformMeasuredCumulativeAmountOfElectricEnergyReverseDirection() {
+			reqInformProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_REVERSE_DIRECTION_);
 			return this;
 		}
 		/**
-		 * Property name : Measurement channel 2<br>
+		 * Property name : Measured cumulative amount of electric energy (normal direction)<br>
 		 * <br>
-		 * EPC : 0xD1<br>
+		 * EPC : 0xC0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 2 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measured cumulative amount of electric  energy using an 8-digit decimal notation number. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long<br>
+		 * Data size : 4<br>
+		 * Unit : kWh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformMeasurementChannel2() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL2);
+		public Informer reqInformMeasuredCumulativeAmountOfElectricEnergyNormalDirection() {
+			reqInformProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRIC_ENERGY_NORMAL_DIRECTION_);
 			return this;
 		}
 		/**
-		 * Property name : Measurement channel 3<br>
+		 * Property name : Historical data of measured cumulative amounts of electric energy_x000a_(normal direction)<br>
 		 * <br>
-		 * EPC : 0xD2<br>
+		 * EPC : 0xC3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 3 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the day for which the historical data of measured cumulative amounts of electric energy is to be retrieved and the historical data of measured cumulative amounts of electric energy (8 digits), which consists of 48 pieces of half-hourly data for the preceding 24 hours. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * 0x0000.0x0063 :_x000a_0x00000000.0x05F5E0FF (0.99) : (0.99,999,999)<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned short_x000a_+unsign ed_x000a_long_x000a_×48<br>
+		 * Data size : 194<br>
+		 * Unit : kWh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformMeasurementChannel3() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL3);
+		public Informer reqInformHistoricalDataOfMeasuredCumulativeAmountsOfElectricEnergyX000ANormalDirection() {
+			reqInformProperty(EPC_HISTORICAL_DATA_OF_MEASURED_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY_X000A_NORMAL_DIRECTION_);
 			return this;
 		}
 		/**
-		 * Property name : Measurement channel 4<br>
+		 * Property name : Unit for cumulative amounts of electric energy<br>
 		 * <br>
-		 * EPC : 0xD3<br>
+		 * EPC : 0xC2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 4 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasurementChannel4() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL4);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 5<br>
-		 * <br>
-		 * EPC : 0xD4<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 5 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the unit (multiplying factor) used for the measured cumulative amount of electric energy and the historical data of measured cumulative amounts of electric energy. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * 0x00: 1kWh 0x01: 0.1kWh_x000a_0x02: 0.01kWh_x000a_0x03: 0.001kWh (Initial value) 0x04: 0.0001kWh_x000a_0x0A: 10kWh 0x0B: 100kWh_x000a_0x0C: 1000kWh_x000a_0x0D: 10000kWh<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformMeasurementChannel5() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL5);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 6<br>
-		 * <br>
-		 * EPC : 0xD5<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 6 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasurementChannel6() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL6);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 7<br>
-		 * <br>
-		 * EPC : 0xD6<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 7 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasurementChannel7() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL7);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 8<br>
-		 * <br>
-		 * EPC : 0xD7<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 8 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasurementChannel8() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL8);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 9<br>
-		 * <br>
-		 * EPC : 0xD8<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 9 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasurementChannel9() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL9);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 10<br>
-		 * <br>
-		 * EPC : 0xD9<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 10 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasurementChannel10() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL10);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 11<br>
-		 * <br>
-		 * EPC : 0xDA<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 11 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasurementChannel11() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL11);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 12<br>
-		 * <br>
-		 * EPC : 0xDB<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 12 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasurementChannel12() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL12);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 13<br>
-		 * <br>
-		 * EPC : 0xDC<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 13 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasurementChannel13() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL13);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 14<br>
-		 * <br>
-		 * EPC : 0xDD<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 14 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasurementChannel14() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL14);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 15<br>
-		 * <br>
-		 * EPC : 0xDE<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 15 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasurementChannel15() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL15);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 16<br>
-		 * <br>
-		 * EPC : 0xDF<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 16 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasurementChannel16() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL16);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 17<br>
-		 * <br>
-		 * EPC : 0xE0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 17 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasurementChannel17() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL17);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 18<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 18 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasurementChannel18() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL18);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 19<br>
-		 * <br>
-		 * EPC : 0xE2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 19 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasurementChannel19() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL19);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 20<br>
-		 * <br>
-		 * EPC : 0xE3<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 20 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasurementChannel20() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL20);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 21<br>
-		 * <br>
-		 * EPC : 0xE4<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 21 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasurementChannel21() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL21);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 22<br>
-		 * <br>
-		 * EPC : 0xE5<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 22 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasurementChannel22() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL22);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 23<br>
-		 * <br>
-		 * EPC : 0xE6<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 23 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasurementChannel23() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL23);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 24<br>
-		 * <br>
-		 * EPC : 0xE7<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 24 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasurementChannel24() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL24);
-			return this;
-		}
-		/**
-		 * Property name : Measurement channel 25<br>
-		 * <br>
-		 * EPC : 0xE8<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 25 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
-		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasurementChannel25() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL25);
+		public Informer reqInformUnitForCumulativeAmountsOfElectricEnergy() {
+			reqInformProperty(EPC_UNIT_FOR_CUMULATIVE_AMOUNTS_OF_ELECTRIC_ENERGY);
 			return this;
 		}
 		/**
@@ -7114,101 +5096,701 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xE9<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 26 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 26 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel26() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL26);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_26);
 			return this;
 		}
 		/**
-		 * Property name : Measurement channel 27<br>
+		 * Property name : Measurement channel 25<br>
 		 * <br>
-		 * EPC : 0xEA<br>
+		 * EPC : 0xE8<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 27 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 25 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformMeasurementChannel27() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL27);
+		public Informer reqInformMeasurementChannel25() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_25);
 			return this;
 		}
 		/**
-		 * Property name : Measurement channel 28<br>
+		 * Property name : Measured instantaneous voltages<br>
 		 * <br>
-		 * EPC : 0xEB<br>
+		 * EPC : 0xC8<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 28 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measured effective instantaneous R-S(N) and S(N)-T voltages in volts. In the case of a single-phase, two-wire system, 0xFFFE shall be used for the S(N)-T voltage. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * 0x0000.0xFFFD (between R and S(N)) :_x000a_0x0000.0xFFFD (between S(N) and T)_x000a_(0.6,553.3) : (0.6,553.3)<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned short_x000a_×2<br>
+		 * Data size : 4<br>
+		 * Unit : 0.1_x000a_V<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformMeasurementChannel28() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL28);
+		public Informer reqInformMeasuredInstantaneousVoltages() {
+			reqInformProperty(EPC_MEASURED_INSTANTANEOUS_VOLTAGES);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 17<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 17 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel17() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_17);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 19<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 19 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel19() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_19);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 24<br>
+		 * <br>
+		 * EPC : 0xE7<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 24 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel24() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_24);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 23<br>
+		 * <br>
+		 * EPC : 0xE6<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 23 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel23() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_23);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 22<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 22 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel22() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_22);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 20<br>
+		 * <br>
+		 * EPC : 0xE3<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 20 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel20() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_20);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 21<br>
+		 * <br>
+		 * EPC : 0xE4<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 21 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel21() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_21);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 11<br>
+		 * <br>
+		 * EPC : 0xDA<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 11 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel11() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_11);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 12<br>
+		 * <br>
+		 * EPC : 0xDB<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 12 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel12() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_12);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 13<br>
+		 * <br>
+		 * EPC : 0xDC<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 13 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel13() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_13);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 15<br>
+		 * <br>
+		 * EPC : 0xDE<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 15 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel15() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_15);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 16<br>
+		 * <br>
+		 * EPC : 0xDF<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 16 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel16() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_16);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 14<br>
+		 * <br>
+		 * EPC : 0xDD<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 14 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel14() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_14);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 1<br>
+		 * <br>
+		 * EPC : 0xD0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 1 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel1() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_1);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 2<br>
+		 * <br>
+		 * EPC : 0xD1<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 2 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel2() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_2);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 3<br>
+		 * <br>
+		 * EPC : 0xD2<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 3 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel3() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_3);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 4<br>
+		 * <br>
+		 * EPC : 0xD3<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 4 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel4() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_4);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 5<br>
+		 * <br>
+		 * EPC : 0xD4<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 5 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel5() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_5);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 6<br>
+		 * <br>
+		 * EPC : 0xD5<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 6 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel6() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_6);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 7<br>
+		 * <br>
+		 * EPC : 0xD6<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 7 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel7() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_7);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 8<br>
+		 * <br>
+		 * EPC : 0xD7<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 8 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel8() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_8);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 9<br>
+		 * <br>
+		 * EPC : 0xD8<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 9 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel9() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_9);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 10<br>
+		 * <br>
+		 * EPC : 0xD9<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 10 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel10() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_10);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 18<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 18 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel18() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_18);
 			return this;
 		}
 		/**
@@ -7216,101 +5798,77 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xEC<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 29 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 29 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel29() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL29);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_29);
 			return this;
 		}
 		/**
-		 * Property name : Measurement channel 30<br>
+		 * Property name : Measurement channel 28<br>
 		 * <br>
-		 * EPC : 0xED<br>
+		 * EPC : 0xEB<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 30 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 28 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformMeasurementChannel30() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL30);
+		public Informer reqInformMeasurementChannel28() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_28);
 			return this;
 		}
 		/**
-		 * Property name : Measurement channel 31<br>
+		 * Property name : Measurement channel 27<br>
 		 * <br>
-		 * EPC : 0xEE<br>
+		 * EPC : 0xEA<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 31 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 27 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformMeasurementChannel31() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL31);
+		public Informer reqInformMeasurementChannel27() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_27);
 			return this;
 		}
 		/**
@@ -7318,35 +5876,80 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xEF<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measurement data for Measurement channel 32 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)).<br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 32 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Data format for the electric energy: same as 0xC0<br>
-		 * Unit: same as 0xC2<br>
-		 * Data format for the currents: same as 0xC7<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
 		 * <br>
-		 * Data type : unsigned long
-+
-signed short
-×2<br>
-		 * <br>
-		 * Data size : 8
-bytes<br>
-		 * <br>
-		 * Unit : kWh
-+ 0.1A
-×2<br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasurementChannel32() {
-			reqInformProperty(EPC_MEASUREMENT_CHANNEL32);
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_32);
 			return this;
 		}
+		/**
+		 * Property name : Measurement channel 31<br>
+		 * <br>
+		 * EPC : 0xEE<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 31 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel31() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_31);
+			return this;
+		}
+		/**
+		 * Property name : Measurement channel 30<br>
+		 * <br>
+		 * EPC : 0xED<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measurement data for Measurement channel 30 (cumulative amount of electric energy (kWh) and effective instantaneous R and T phase currents (amperes)). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Data format for the electric energy: same as 0xC0_x000a_Unit: same as 0xC2_x000a_Data format for the currents: same as 0xC7<br>
+		 * <br>
+		 * Data type : unsigned long_x000a_+_x000a_signed short_x000a_×2<br>
+		 * Data size : 8<br>
+		 * Unit : kWh_x000a_+ 0.1A_x000a_×2<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasurementChannel30() {
+			reqInformProperty(EPC_MEASUREMENT_CHANNEL_30);
+			return this;
+		}
+
 	}
 
 	public static class Proxy extends PowerDistributionBoardMetering {
@@ -7359,23 +5962,30 @@ bytes<br>
 			return mEchoInstanceCode;
 		}
 		@Override
-		protected byte[] getOperationStatus() {return null;}
+		protected byte[] getMeasuredCumulativeAmountOfElectricEnergyReverseDirection(){return null;}
 		@Override
-		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		protected byte[] getMeasuredCumulativeAmountOfElectricEnergyNormalDirection(){return null;}
 		@Override
-		protected byte[] getInstallationLocation() {return null;}
+		protected byte[] getUnitForCumulativeAmountsOfElectricEnergy(){return null;}
 		@Override
-		protected byte[] getStandardVersionInformation() {return null;}
+		protected byte[] getSetPropertyMap(){return null;}
 		@Override
-		protected byte[] getFaultStatus() {return null;}
+		protected byte[] getStandardVersionInformation(){return null;}
 		@Override
-		protected byte[] getManufacturerCode() {return null;}
+		protected byte[] getOperationStatus(){return null;}
 		@Override
-		protected byte[] getMeasuredCumulativeAmountOfElectricEnergyNormalDirection() {return null;}
+		protected byte[] getGetPropertyMap(){return null;}
 		@Override
-		protected byte[] getMeasuredCumulativeAmountOfElectricEnergyReverseDirection() {return null;}
+		protected byte[] getStatusChangeAnnouncementPropertyMap(){return null;}
 		@Override
-		protected byte[] getUnitForCumulativeAmountsOfElectricEnergy() {return null;}
+		protected boolean setInstallationLocation(byte[] edt){return false;}
+		@Override
+		protected byte[] getInstallationLocation(){return null;}
+		@Override
+		protected byte[] getFaultStatus(){return null;}
+		@Override
+		protected byte[] getManufacturerCode(){return null;}
+
 	}
 	
 	public static Setter setG() {

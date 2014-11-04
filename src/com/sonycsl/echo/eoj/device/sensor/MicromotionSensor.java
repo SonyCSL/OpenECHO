@@ -1,37 +1,43 @@
 /*
- * Copyright 2012 Sony Computer Science Laboratories, Inc. <info@kadecot.net>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2014 Sony Computer Science Laboratories, Inc.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.sonycsl.echo.eoj.device.sensor;
 
 import com.sonycsl.echo.Echo;
-import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
-import com.sonycsl.echo.node.EchoNode;
 
 public abstract class MicromotionSensor extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x0026;
 
-	public static final byte EPC_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;
-	public static final byte EPC_MICROMOTION_DETECTION_STATUS = (byte)0xB1;
-	public static final byte EPC_DETECTION_COUNTER = (byte)0xB2;
 	public static final byte EPC_SAMPLING_COUNT = (byte)0xBC;
 	public static final byte EPC_SAMPLING_CYCLE = (byte)0xBD;
+	public static final byte EPC_DETECTION_COUNTER = (byte)0xB2;
+	public static final byte EPC_DETECTION_THRESHOLD_LEVEL = (byte)0xB0;
+	public static final byte EPC_MICROMOTION_DETECTION_STATUS = (byte)0xB1;
 
 	@Override
 	protected void setupPropertyMaps() {
@@ -42,6 +48,7 @@ public abstract class MicromotionSensor extends DeviceObject {
 		addGetProperty(EPC_OPERATION_STATUS);
 		addStatusChangeAnnouncementProperty(EPC_MICROMOTION_DETECTION_STATUS);
 		addGetProperty(EPC_MICROMOTION_DETECTION_STATUS);
+
 	}
 
 	@Override
@@ -56,26 +63,168 @@ public abstract class MicromotionSensor extends DeviceObject {
 	}
 
 	/**
+	 * Property name : Sampling count<br>
+	 * <br>
+	 * EPC : 0xBC<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates micromotion detection sampling count. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFE (0.65534)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setSamplingCount(byte[] edt) {return false;}
+	/**
+	 * Property name : Sampling count<br>
+	 * <br>
+	 * EPC : 0xBC<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates micromotion detection sampling count. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFE (0.65534)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getSamplingCount() {return null;}
+	/**
+	 * Property name : Sampling count<br>
+	 * <br>
+	 * EPC : 0xBC<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates micromotion detection sampling count. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFE (0.65534)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidSamplingCount(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Sampling cycle<br>
+	 * <br>
+	 * EPC : 0xBD<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates micromotion detection sampling cycle. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFE (0.65534)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : msec<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setSamplingCycle(byte[] edt) {return false;}
+	/**
+	 * Property name : Sampling cycle<br>
+	 * <br>
+	 * EPC : 0xBD<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates micromotion detection sampling cycle. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFE (0.65534)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : msec<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getSamplingCycle() {return null;}
+	/**
+	 * Property name : Sampling cycle<br>
+	 * <br>
+	 * EPC : 0xBD<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates micromotion detection sampling cycle. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFE (0.65534)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : msec<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidSamplingCycle(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
 	 * Property name : Operation status<br>
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -85,47 +234,143 @@ public abstract class MicromotionSensor extends DeviceObject {
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
 	protected abstract byte[] getOperationStatus();
 	/**
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30, OFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidOperationStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Detection counter<br>
+	 * <br>
+	 * EPC : 0xB2<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates micromotion detection count. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFE (0.65534)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setDetectionCounter(byte[] edt) {return false;}
+	/**
+	 * Property name : Detection counter<br>
+	 * <br>
+	 * EPC : 0xB2<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates micromotion detection count. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFE (0.65534)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getDetectionCounter() {return null;}
+	/**
+	 * Property name : Detection counter<br>
+	 * <br>
+	 * EPC : 0xB2<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates micromotion detection count. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFE (0.65534)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidDetectionCounter(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
 	 * Property name : Detection threshold level<br>
 	 * <br>
 	 * EPC : 0xB0<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Specifies detection threshold level (8-step).<br>
+	 * Contents :<br>
+	 * Specifies detection threshold level (8-step). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean setDetectionThresholdLevel(byte[] edt) {return false;}
 	/**
@@ -133,22 +378,22 @@ public abstract class MicromotionSensor extends DeviceObject {
 	 * <br>
 	 * EPC : 0xB0<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Specifies detection threshold level (8-step).<br>
+	 * Contents :<br>
+	 * Specifies detection threshold level (8-step). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getDetectionThresholdLevel() {return null;}
 	/**
@@ -156,25 +401,25 @@ public abstract class MicromotionSensor extends DeviceObject {
 	 * <br>
 	 * EPC : 0xB0<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Specifies detection threshold level (8-step).<br>
+	 * Contents :<br>
+	 * Specifies detection threshold level (8-step). <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidDetectionThresholdLevel(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 	/**
@@ -182,22 +427,20 @@ public abstract class MicromotionSensor extends DeviceObject {
 	 * <br>
 	 * EPC : 0xB1<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates whether micromotion is detected or not.<br>
+	 * Contents :<br>
+	 * This property indicates whether micromotion is detected or not. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Micromotion detected = 0x41 Micromotion not detected = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -207,243 +450,25 @@ public abstract class MicromotionSensor extends DeviceObject {
 	 * <br>
 	 * EPC : 0xB1<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates whether micromotion is detected or not.<br>
+	 * Contents :<br>
+	 * This property indicates whether micromotion is detected or not. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Micromotion detected = 0x41 Micromotion not detected = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidMicromotionDetectionStatus(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Detection counter<br>
-	 * <br>
-	 * EPC : 0xB2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates micromotion detection count.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFE (0.65534)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setDetectionCounter(byte[] edt) {return false;}
-	/**
-	 * Property name : Detection counter<br>
-	 * <br>
-	 * EPC : 0xB2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates micromotion detection count.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFE (0.65534)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getDetectionCounter() {return null;}
-	/**
-	 * Property name : Detection counter<br>
-	 * <br>
-	 * EPC : 0xB2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates micromotion detection count.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFE (0.65534)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidDetectionCounter(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Sampling count<br>
-	 * <br>
-	 * EPC : 0xBC<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates micromotion detection sampling count.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFE (0.65534)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setSamplingCount(byte[] edt) {return false;}
-	/**
-	 * Property name : Sampling count<br>
-	 * <br>
-	 * EPC : 0xBC<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates micromotion detection sampling count.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFE (0.65534)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getSamplingCount() {return null;}
-	/**
-	 * Property name : Sampling count<br>
-	 * <br>
-	 * EPC : 0xBC<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates micromotion detection sampling count.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFE (0.65534)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidSamplingCount(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Sampling cycle<br>
-	 * <br>
-	 * EPC : 0xBD<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates micromotion detection sampling cycle.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFE (0.65534)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : msec<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setSamplingCycle(byte[] edt) {return false;}
-	/**
-	 * Property name : Sampling cycle<br>
-	 * <br>
-	 * EPC : 0xBD<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates micromotion detection sampling cycle.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFE (0.65534)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : msec<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getSamplingCycle() {return null;}
-	/**
-	 * Property name : Sampling cycle<br>
-	 * <br>
-	 * EPC : 0xBD<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates micromotion detection sampling cycle.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFE (0.65534)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : msec<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidSamplingCycle(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 
@@ -453,10 +478,11 @@ public abstract class MicromotionSensor extends DeviceObject {
 		if(success) return success;
 
 		switch(property.epc) {
-		case EPC_DETECTION_THRESHOLD_LEVEL : return setDetectionThresholdLevel(property.edt);
-		case EPC_DETECTION_COUNTER : return setDetectionCounter(property.edt);
 		case EPC_SAMPLING_COUNT : return setSamplingCount(property.edt);
 		case EPC_SAMPLING_CYCLE : return setSamplingCycle(property.edt);
+		case EPC_DETECTION_COUNTER : return setDetectionCounter(property.edt);
+		case EPC_DETECTION_THRESHOLD_LEVEL : return setDetectionThresholdLevel(property.edt);
+
 		default : return false;
 		}
 	}
@@ -467,11 +493,12 @@ public abstract class MicromotionSensor extends DeviceObject {
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_DETECTION_THRESHOLD_LEVEL : return getDetectionThresholdLevel();
-		case EPC_MICROMOTION_DETECTION_STATUS : return getMicromotionDetectionStatus();
-		case EPC_DETECTION_COUNTER : return getDetectionCounter();
 		case EPC_SAMPLING_COUNT : return getSamplingCount();
 		case EPC_SAMPLING_CYCLE : return getSamplingCycle();
+		case EPC_DETECTION_COUNTER : return getDetectionCounter();
+		case EPC_DETECTION_THRESHOLD_LEVEL : return getDetectionThresholdLevel();
+		case EPC_MICROMOTION_DETECTION_STATUS : return getMicromotionDetectionStatus();
+
 		default : return null;
 		}
 	}
@@ -482,11 +509,12 @@ public abstract class MicromotionSensor extends DeviceObject {
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_DETECTION_THRESHOLD_LEVEL : return isValidDetectionThresholdLevel(property.edt);
-		case EPC_MICROMOTION_DETECTION_STATUS : return isValidMicromotionDetectionStatus(property.edt);
-		case EPC_DETECTION_COUNTER : return isValidDetectionCounter(property.edt);
 		case EPC_SAMPLING_COUNT : return isValidSamplingCount(property.edt);
 		case EPC_SAMPLING_CYCLE : return isValidSamplingCycle(property.edt);
+		case EPC_DETECTION_COUNTER : return isValidDetectionCounter(property.edt);
+		case EPC_DETECTION_THRESHOLD_LEVEL : return isValidDetectionThresholdLevel(property.edt);
+		case EPC_MICROMOTION_DETECTION_STATUS : return isValidMicromotionDetectionStatus(property.edt);
+
 		default : return false;
 		}
 	}
@@ -534,18 +562,19 @@ public abstract class MicromotionSensor extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_DETECTION_THRESHOLD_LEVEL : 
-				onSetDetectionThresholdLevel(eoj, tid, esv, property, success);
-				return true;
-			case EPC_DETECTION_COUNTER : 
-				onSetDetectionCounter(eoj, tid, esv, property, success);
-				return true;
 			case EPC_SAMPLING_COUNT : 
 				onSetSamplingCount(eoj, tid, esv, property, success);
 				return true;
 			case EPC_SAMPLING_CYCLE : 
 				onSetSamplingCycle(eoj, tid, esv, property, success);
 				return true;
+			case EPC_DETECTION_COUNTER : 
+				onSetDetectionCounter(eoj, tid, esv, property, success);
+				return true;
+			case EPC_DETECTION_THRESHOLD_LEVEL : 
+				onSetDetectionThresholdLevel(eoj, tid, esv, property, success);
+				return true;
+
 			default :
 				return false;
 			}
@@ -558,164 +587,48 @@ public abstract class MicromotionSensor extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_DETECTION_THRESHOLD_LEVEL : 
-				onGetDetectionThresholdLevel(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MICROMOTION_DETECTION_STATUS : 
-				onGetMicromotionDetectionStatus(eoj, tid, esv, property, success);
-				return true;
-			case EPC_DETECTION_COUNTER : 
-				onGetDetectionCounter(eoj, tid, esv, property, success);
-				return true;
 			case EPC_SAMPLING_COUNT : 
 				onGetSamplingCount(eoj, tid, esv, property, success);
 				return true;
 			case EPC_SAMPLING_CYCLE : 
 				onGetSamplingCycle(eoj, tid, esv, property, success);
 				return true;
+			case EPC_DETECTION_COUNTER : 
+				onGetDetectionCounter(eoj, tid, esv, property, success);
+				return true;
+			case EPC_DETECTION_THRESHOLD_LEVEL : 
+				onGetDetectionThresholdLevel(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MICROMOTION_DETECTION_STATUS : 
+				onGetMicromotionDetectionStatus(eoj, tid, esv, property, success);
+				return true;
+
 			default :
 				return false;
 			}
 		}
 		
 		/**
-		 * Property name : Detection threshold level<br>
-		 * <br>
-		 * EPC : 0xB0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Specifies detection threshold level (8-step).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x31.0x38<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Detection threshold level<br>
-		 * <br>
-		 * EPC : 0xB0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Specifies detection threshold level (8-step).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x31.0x38<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Micromotion detection status<br>
-		 * <br>
-		 * EPC : 0xB1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates whether micromotion is detected or not.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Micromotion detected = 0x41 Micromotion not detected = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 * <br>
-		 * <b>Announcement at status change</b><br>
-		 */
-		protected void onGetMicromotionDetectionStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Detection counter<br>
-		 * <br>
-		 * EPC : 0xB2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates micromotion detection count.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFE (0.65534)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetDetectionCounter(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Detection counter<br>
-		 * <br>
-		 * EPC : 0xB2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates micromotion detection count.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFE (0.65534)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetDetectionCounter(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
 		 * Property name : Sampling count<br>
 		 * <br>
 		 * EPC : 0xBC<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates micromotion detection sampling count.<br>
+		 * Contents :<br>
+		 * This property indicates micromotion detection sampling count. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFE (0.65534)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onSetSamplingCount(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -723,22 +636,22 @@ public abstract class MicromotionSensor extends DeviceObject {
 		 * <br>
 		 * EPC : 0xBC<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates micromotion detection sampling count.<br>
+		 * Contents :<br>
+		 * This property indicates micromotion detection sampling count. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFE (0.65534)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetSamplingCount(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -746,22 +659,22 @@ public abstract class MicromotionSensor extends DeviceObject {
 		 * <br>
 		 * EPC : 0xBD<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates micromotion detection sampling cycle.<br>
+		 * Contents :<br>
+		 * This property indicates micromotion detection sampling cycle. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFE (0.65534)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : msec<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onSetSamplingCycle(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -769,24 +682,186 @@ public abstract class MicromotionSensor extends DeviceObject {
 		 * <br>
 		 * EPC : 0xBD<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates micromotion detection sampling cycle.<br>
+		 * Contents :<br>
+		 * This property indicates micromotion detection sampling cycle. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFE (0.65534)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : msec<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetSamplingCycle(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Detection counter<br>
+		 * <br>
+		 * EPC : 0xB2<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates micromotion detection count. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFE (0.65534)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetDetectionCounter(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Detection counter<br>
+		 * <br>
+		 * EPC : 0xB2<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates micromotion detection count. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFE (0.65534)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetDetectionCounter(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Detection threshold level<br>
+		 * <br>
+		 * EPC : 0xB0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Specifies detection threshold level (8-step). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x31.0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Detection threshold level<br>
+		 * <br>
+		 * EPC : 0xB0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Specifies detection threshold level (8-step). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x31.0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetDetectionThresholdLevel(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Micromotion detection status<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates whether micromotion is detected or not. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Micromotion detected = 0x41 Micromotion not detected = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMicromotionDetectionStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+
 	}
 
 	public static class Setter extends DeviceObject.Setter {
@@ -835,78 +910,26 @@ public abstract class MicromotionSensor extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : Detection threshold level<br>
-		 * <br>
-		 * EPC : 0xB0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Specifies detection threshold level (8-step).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x31.0x38<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Setter reqSetDetectionThresholdLevel(byte[] edt) {
-			reqSetProperty(EPC_DETECTION_THRESHOLD_LEVEL, edt);
-			return this;
-		}
-		/**
-		 * Property name : Detection counter<br>
-		 * <br>
-		 * EPC : 0xB2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates micromotion detection count.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFE (0.65534)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Setter reqSetDetectionCounter(byte[] edt) {
-			reqSetProperty(EPC_DETECTION_COUNTER, edt);
-			return this;
-		}
-		/**
 		 * Property name : Sampling count<br>
 		 * <br>
 		 * EPC : 0xBC<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates micromotion detection sampling count.<br>
+		 * Contents :<br>
+		 * This property indicates micromotion detection sampling count. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFE (0.65534)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetSamplingCount(byte[] edt) {
 			reqSetProperty(EPC_SAMPLING_COUNT, edt);
@@ -917,27 +940,80 @@ public abstract class MicromotionSensor extends DeviceObject {
 		 * <br>
 		 * EPC : 0xBD<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates micromotion detection sampling cycle.<br>
+		 * Contents :<br>
+		 * This property indicates micromotion detection sampling cycle. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFE (0.65534)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : msec<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetSamplingCycle(byte[] edt) {
 			reqSetProperty(EPC_SAMPLING_CYCLE, edt);
 			return this;
 		}
+		/**
+		 * Property name : Detection counter<br>
+		 * <br>
+		 * EPC : 0xB2<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates micromotion detection count. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFE (0.65534)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Setter reqSetDetectionCounter(byte[] edt) {
+			reqSetProperty(EPC_DETECTION_COUNTER, edt);
+			return this;
+		}
+		/**
+		 * Property name : Detection threshold level<br>
+		 * <br>
+		 * EPC : 0xB0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Specifies detection threshold level (8-step). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x31.0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Setter reqSetDetectionThresholdLevel(byte[] edt) {
+			reqSetProperty(EPC_DETECTION_THRESHOLD_LEVEL, edt);
+			return this;
+		}
+
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
@@ -1050,106 +1126,26 @@ public abstract class MicromotionSensor extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : Detection threshold level<br>
-		 * <br>
-		 * EPC : 0xB0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Specifies detection threshold level (8-step).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x31.0x38<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetDetectionThresholdLevel() {
-			reqGetProperty(EPC_DETECTION_THRESHOLD_LEVEL);
-			return this;
-		}
-		/**
-		 * Property name : Micromotion detection status<br>
-		 * <br>
-		 * EPC : 0xB1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates whether micromotion is detected or not.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Micromotion detected = 0x41 Micromotion not detected = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 * <br>
-		 * <b>Announcement at status change</b><br>
-		 */
-		public Getter reqGetMicromotionDetectionStatus() {
-			reqGetProperty(EPC_MICROMOTION_DETECTION_STATUS);
-			return this;
-		}
-		/**
-		 * Property name : Detection counter<br>
-		 * <br>
-		 * EPC : 0xB2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates micromotion detection count.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFE (0.65534)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetDetectionCounter() {
-			reqGetProperty(EPC_DETECTION_COUNTER);
-			return this;
-		}
-		/**
 		 * Property name : Sampling count<br>
 		 * <br>
 		 * EPC : 0xBC<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates micromotion detection sampling count.<br>
+		 * Contents :<br>
+		 * This property indicates micromotion detection sampling count. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFE (0.65534)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetSamplingCount() {
 			reqGetProperty(EPC_SAMPLING_COUNT);
@@ -1160,27 +1156,106 @@ public abstract class MicromotionSensor extends DeviceObject {
 		 * <br>
 		 * EPC : 0xBD<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates micromotion detection sampling cycle.<br>
+		 * Contents :<br>
+		 * This property indicates micromotion detection sampling cycle. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFE (0.65534)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : msec<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetSamplingCycle() {
 			reqGetProperty(EPC_SAMPLING_CYCLE);
 			return this;
 		}
+		/**
+		 * Property name : Detection counter<br>
+		 * <br>
+		 * EPC : 0xB2<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates micromotion detection count. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFE (0.65534)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetDetectionCounter() {
+			reqGetProperty(EPC_DETECTION_COUNTER);
+			return this;
+		}
+		/**
+		 * Property name : Detection threshold level<br>
+		 * <br>
+		 * EPC : 0xB0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Specifies detection threshold level (8-step). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x31.0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetDetectionThresholdLevel() {
+			reqGetProperty(EPC_DETECTION_THRESHOLD_LEVEL);
+			return this;
+		}
+		/**
+		 * Property name : Micromotion detection status<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates whether micromotion is detected or not. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Micromotion detected = 0x41 Micromotion not detected = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMicromotionDetectionStatus() {
+			reqGetProperty(EPC_MICROMOTION_DETECTION_STATUS);
+			return this;
+		}
+
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
@@ -1292,106 +1367,26 @@ public abstract class MicromotionSensor extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : Detection threshold level<br>
-		 * <br>
-		 * EPC : 0xB0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Specifies detection threshold level (8-step).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x31.0x38<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformDetectionThresholdLevel() {
-			reqInformProperty(EPC_DETECTION_THRESHOLD_LEVEL);
-			return this;
-		}
-		/**
-		 * Property name : Micromotion detection status<br>
-		 * <br>
-		 * EPC : 0xB1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates whether micromotion is detected or not.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Micromotion detected = 0x41 Micromotion not detected = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 * <br>
-		 * <b>Announcement at status change</b><br>
-		 */
-		public Informer reqInformMicromotionDetectionStatus() {
-			reqInformProperty(EPC_MICROMOTION_DETECTION_STATUS);
-			return this;
-		}
-		/**
-		 * Property name : Detection counter<br>
-		 * <br>
-		 * EPC : 0xB2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates micromotion detection count.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFE (0.65534)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformDetectionCounter() {
-			reqInformProperty(EPC_DETECTION_COUNTER);
-			return this;
-		}
-		/**
 		 * Property name : Sampling count<br>
 		 * <br>
 		 * EPC : 0xBC<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates micromotion detection sampling count.<br>
+		 * Contents :<br>
+		 * This property indicates micromotion detection sampling count. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFE (0.65534)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformSamplingCount() {
 			reqInformProperty(EPC_SAMPLING_COUNT);
@@ -1402,27 +1397,106 @@ public abstract class MicromotionSensor extends DeviceObject {
 		 * <br>
 		 * EPC : 0xBD<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates micromotion detection sampling cycle.<br>
+		 * Contents :<br>
+		 * This property indicates micromotion detection sampling cycle. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFE (0.65534)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : msec<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformSamplingCycle() {
 			reqInformProperty(EPC_SAMPLING_CYCLE);
 			return this;
 		}
+		/**
+		 * Property name : Detection counter<br>
+		 * <br>
+		 * EPC : 0xB2<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates micromotion detection count. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFE (0.65534)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformDetectionCounter() {
+			reqInformProperty(EPC_DETECTION_COUNTER);
+			return this;
+		}
+		/**
+		 * Property name : Detection threshold level<br>
+		 * <br>
+		 * EPC : 0xB0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Specifies detection threshold level (8-step). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x31.0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformDetectionThresholdLevel() {
+			reqInformProperty(EPC_DETECTION_THRESHOLD_LEVEL);
+			return this;
+		}
+		/**
+		 * Property name : Micromotion detection status<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates whether micromotion is detected or not. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Micromotion detected = 0x41 Micromotion not detected = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMicromotionDetectionStatus() {
+			reqInformProperty(EPC_MICROMOTION_DETECTION_STATUS);
+			return this;
+		}
+
 	}
 
 	public static class Proxy extends MicromotionSensor {
@@ -1435,19 +1509,26 @@ public abstract class MicromotionSensor extends DeviceObject {
 			return mEchoInstanceCode;
 		}
 		@Override
-		protected byte[] getOperationStatus() {return null;}
+		protected byte[] getGetPropertyMap(){return null;}
 		@Override
-		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		protected byte[] getSetPropertyMap(){return null;}
 		@Override
-		protected byte[] getInstallationLocation() {return null;}
+		protected byte[] getStatusChangeAnnouncementPropertyMap(){return null;}
 		@Override
-		protected byte[] getStandardVersionInformation() {return null;}
+		protected byte[] getOperationStatus(){return null;}
 		@Override
-		protected byte[] getFaultStatus() {return null;}
+		protected boolean setInstallationLocation(byte[] edt){return false;}
 		@Override
-		protected byte[] getManufacturerCode() {return null;}
+		protected byte[] getInstallationLocation(){return null;}
 		@Override
-		protected byte[] getMicromotionDetectionStatus() {return null;}
+		protected byte[] getStandardVersionInformation(){return null;}
+		@Override
+		protected byte[] getFaultStatus(){return null;}
+		@Override
+		protected byte[] getManufacturerCode(){return null;}
+		@Override
+		protected byte[] getMicromotionDetectionStatus(){return null;}
+
 	}
 	
 	public static Setter setG() {

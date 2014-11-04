@@ -1,45 +1,52 @@
 /*
- * Copyright 2012 Sony Computer Science Laboratories, Inc. <info@kadecot.net>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2014 Sony Computer Science Laboratories, Inc.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.sonycsl.echo.eoj.device.sensor;
 
 import com.sonycsl.echo.Echo;
-import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
-import com.sonycsl.echo.node.EchoNode;
 
 public abstract class CurrentValueSensor extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x0023;
 
-	public static final byte EPC_MEASURED_CURRENT_VALUE1 = (byte)0xE0;
+	public static final byte EPC_MEASURED_CURRENT_VALUE_2 = (byte)0xE2;
 	public static final byte EPC_RATED_VOLTAGE_TO_BE_MEASURED = (byte)0xE1;
-	public static final byte EPC_MEASURED_CURRENT_VALUE2 = (byte)0xE2;
+	public static final byte EPC_MEASURED_CURRENT_VALUE_1 = (byte)0xE0;
 
 	@Override
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
+		addGetProperty(EPC_MEASURED_CURRENT_VALUE_2);
+		addGetProperty(EPC_MEASURED_CURRENT_VALUE_1);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
-		addGetProperty(EPC_MEASURED_CURRENT_VALUE1);
-		addGetProperty(EPC_MEASURED_CURRENT_VALUE2);
+
 	}
 
 	@Override
@@ -54,26 +61,171 @@ public abstract class CurrentValueSensor extends DeviceObject {
 	}
 
 	/**
+	 * Property name : Measured current value 2<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates measured current value in mA. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x80000001.0x7FFFFFFFE_x000a_(-2,147,483,647.2,147,483,646mA)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * Data size : 4<br>
+	 * Unit : mA<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getMeasuredCurrentValue2();
+	/**
+	 * Property name : Measured current value 2<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates measured current value in mA. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x80000001.0x7FFFFFFFE_x000a_(-2,147,483,647.2,147,483,646mA)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * Data size : 4<br>
+	 * Unit : mA<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasuredCurrentValue2(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Rated voltage to be measured<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents :<br>
+	 * Rated voltage value to be measured by current sensor <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533V)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : V<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getRatedVoltageToBeMeasured() {return null;}
+	/**
+	 * Property name : Rated voltage to be measured<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents :<br>
+	 * Rated voltage value to be measured by current sensor <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533V)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : V<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidRatedVoltageToBeMeasured(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measured current value 1<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates measured current value in mA. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0xFFFFFFFD (0._x000a_4,294,967,293mA)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * Data size : 4<br>
+	 * Unit : mA<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getMeasuredCurrentValue1();
+	/**
+	 * Property name : Measured current value 1<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates measured current value in mA. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0xFFFFFFFD (0._x000a_4,294,967,293mA)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * Data size : 4<br>
+	 * Unit : mA<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasuredCurrentValue1(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) {return false;};
+		return true;
+	}
+	/**
 	 * Property name : Operation status<br>
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -83,175 +235,48 @@ public abstract class CurrentValueSensor extends DeviceObject {
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
 	protected abstract byte[] getOperationStatus();
 	/**
-	 * Property name : Measured current value 1<br>
+	 * Property name : Operation status<br>
 	 * <br>
-	 * EPC : 0xE0<br>
+	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates measured current value in mA.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0xFFFFFFFD (0.<br>
-	 * 4,294,967,293mA)<br>
-	 * <br>
-	 * Data type : unsigned long<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
-	 * Unit : mA<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected abstract byte[] getMeasuredCurrentValue1();
-	/**
-	 * Property name : Measured current value 1<br>
-	 * <br>
-	 * EPC : 0xE0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates measured current value in mA.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0xFFFFFFFD (0.<br>
-	 * 4,294,967,293mA)<br>
+	 * ON=0x30, OFF=0x31<br>
 	 * <br>
-	 * Data type : unsigned long<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
-	 * Unit : mA<br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean isValidMeasuredCurrentValue1(byte[] edt) {
-		if(edt == null || !(edt.length == 4)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Rated voltage to be measured<br>
-	 * <br>
-	 * EPC : 0xE1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Rated voltage value to be measured by current sensor<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533V)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : V<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getRatedVoltageToBeMeasured() {return null;}
-	/**
-	 * Property name : Rated voltage to be measured<br>
-	 * <br>
-	 * EPC : 0xE1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Rated voltage value to be measured by current sensor<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533V)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : V<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidRatedVoltageToBeMeasured(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measured current value 2<br>
-	 * <br>
-	 * EPC : 0xE2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates measured current value in mA.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x80000001.0x7FFFFFFFE<br>
-	 * (-2,147,483,647.2,147,483,646mA)<br>
-	 * <br>
-	 * Data type : unsigned long<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
-	 * Unit : mA<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected abstract byte[] getMeasuredCurrentValue2();
-	/**
-	 * Property name : Measured current value 2<br>
-	 * <br>
-	 * EPC : 0xE2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates measured current value in mA.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x80000001.0x7FFFFFFFE<br>
-	 * (-2,147,483,647.2,147,483,646mA)<br>
-	 * <br>
-	 * Data type : unsigned long<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
-	 * Unit : mA<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected boolean isValidMeasuredCurrentValue2(byte[] edt) {
-		if(edt == null || !(edt.length == 4)) return false;
+	protected boolean isValidOperationStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 
@@ -261,6 +286,7 @@ public abstract class CurrentValueSensor extends DeviceObject {
 		if(success) return success;
 
 		switch(property.epc) {
+
 		default : return false;
 		}
 	}
@@ -271,9 +297,10 @@ public abstract class CurrentValueSensor extends DeviceObject {
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_MEASURED_CURRENT_VALUE1 : return getMeasuredCurrentValue1();
+		case EPC_MEASURED_CURRENT_VALUE_2 : return getMeasuredCurrentValue2();
 		case EPC_RATED_VOLTAGE_TO_BE_MEASURED : return getRatedVoltageToBeMeasured();
-		case EPC_MEASURED_CURRENT_VALUE2 : return getMeasuredCurrentValue2();
+		case EPC_MEASURED_CURRENT_VALUE_1 : return getMeasuredCurrentValue1();
+
 		default : return null;
 		}
 	}
@@ -284,9 +311,10 @@ public abstract class CurrentValueSensor extends DeviceObject {
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_MEASURED_CURRENT_VALUE1 : return isValidMeasuredCurrentValue1(property.edt);
+		case EPC_MEASURED_CURRENT_VALUE_2 : return isValidMeasuredCurrentValue2(property.edt);
 		case EPC_RATED_VOLTAGE_TO_BE_MEASURED : return isValidRatedVoltageToBeMeasured(property.edt);
-		case EPC_MEASURED_CURRENT_VALUE2 : return isValidMeasuredCurrentValue2(property.edt);
+		case EPC_MEASURED_CURRENT_VALUE_1 : return isValidMeasuredCurrentValue1(property.edt);
+
 		default : return false;
 		}
 	}
@@ -334,6 +362,7 @@ public abstract class CurrentValueSensor extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
+
 			default :
 				return false;
 			}
@@ -346,91 +375,137 @@ public abstract class CurrentValueSensor extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_MEASURED_CURRENT_VALUE1 : 
-				onGetMeasuredCurrentValue1(eoj, tid, esv, property, success);
+			case EPC_MEASURED_CURRENT_VALUE_2 : 
+				onGetMeasuredCurrentValue2(eoj, tid, esv, property, success);
 				return true;
 			case EPC_RATED_VOLTAGE_TO_BE_MEASURED : 
 				onGetRatedVoltageToBeMeasured(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASURED_CURRENT_VALUE2 : 
-				onGetMeasuredCurrentValue2(eoj, tid, esv, property, success);
+			case EPC_MEASURED_CURRENT_VALUE_1 : 
+				onGetMeasuredCurrentValue1(eoj, tid, esv, property, success);
 				return true;
+
 			default :
 				return false;
 			}
 		}
 		
 		/**
-		 * Property name : Measured current value 1<br>
+		 * Property name : Measured current value 2<br>
 		 * <br>
-		 * EPC : 0xE0<br>
+		 * EPC : 0xE2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measured current value in mA.<br>
+		 * Contents :<br>
+		 * This property indicates measured current value in mA. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0xFFFFFFFD (0.<br>
-		 * 4,294,967,293mA)<br>
+		 * 0x80000001.0x7FFFFFFFE_x000a_(-2,147,483,647.2,147,483,646mA)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
+		 * Data size : 4<br>
 		 * Unit : mA<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetMeasuredCurrentValue1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetMeasuredCurrentValue2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Rated voltage to be measured<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Rated voltage value to be measured by current sensor<br>
+		 * Contents :<br>
+		 * Rated voltage value to be measured by current sensor <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFD (0.65533V)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : V<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetRatedVoltageToBeMeasured(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Measured current value 2<br>
+		 * Property name : Measured current value 1<br>
 		 * <br>
-		 * EPC : 0xE2<br>
+		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measured current value in mA.<br>
+		 * Contents :<br>
+		 * This property indicates measured current value in mA. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x80000001.0x7FFFFFFFE<br>
-		 * (-2,147,483,647.2,147,483,646mA)<br>
+		 * 0x00000000.0xFFFFFFFD (0._x000a_4,294,967,293mA)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
+		 * Data size : 4<br>
 		 * Unit : mA<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetMeasuredCurrentValue2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetMeasuredCurrentValue1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+
 	}
 
 	public static class Setter extends DeviceObject.Setter {
@@ -478,6 +553,7 @@ public abstract class CurrentValueSensor extends DeviceObject {
 			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 		
+
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
@@ -590,30 +666,29 @@ public abstract class CurrentValueSensor extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : Measured current value 1<br>
+		 * Property name : Measured current value 2<br>
 		 * <br>
-		 * EPC : 0xE0<br>
+		 * EPC : 0xE2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measured current value in mA.<br>
+		 * Contents :<br>
+		 * This property indicates measured current value in mA. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0xFFFFFFFD (0.<br>
-		 * 4,294,967,293mA)<br>
+		 * 0x80000001.0x7FFFFFFFE_x000a_(-2,147,483,647.2,147,483,646mA)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
+		 * Data size : 4<br>
 		 * Unit : mA<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetMeasuredCurrentValue1() {
-			reqGetProperty(EPC_MEASURED_CURRENT_VALUE1);
+		public Getter reqGetMeasuredCurrentValue2() {
+			reqGetProperty(EPC_MEASURED_CURRENT_VALUE_2);
 			return this;
 		}
 		/**
@@ -621,54 +696,54 @@ public abstract class CurrentValueSensor extends DeviceObject {
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Rated voltage value to be measured by current sensor<br>
+		 * Contents :<br>
+		 * Rated voltage value to be measured by current sensor <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFD (0.65533V)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : V<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetRatedVoltageToBeMeasured() {
 			reqGetProperty(EPC_RATED_VOLTAGE_TO_BE_MEASURED);
 			return this;
 		}
 		/**
-		 * Property name : Measured current value 2<br>
+		 * Property name : Measured current value 1<br>
 		 * <br>
-		 * EPC : 0xE2<br>
+		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measured current value in mA.<br>
+		 * Contents :<br>
+		 * This property indicates measured current value in mA. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x80000001.0x7FFFFFFFE<br>
-		 * (-2,147,483,647.2,147,483,646mA)<br>
+		 * 0x00000000.0xFFFFFFFD (0._x000a_4,294,967,293mA)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
+		 * Data size : 4<br>
 		 * Unit : mA<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetMeasuredCurrentValue2() {
-			reqGetProperty(EPC_MEASURED_CURRENT_VALUE2);
+		public Getter reqGetMeasuredCurrentValue1() {
+			reqGetProperty(EPC_MEASURED_CURRENT_VALUE_1);
 			return this;
 		}
+
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
@@ -780,30 +855,29 @@ public abstract class CurrentValueSensor extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : Measured current value 1<br>
+		 * Property name : Measured current value 2<br>
 		 * <br>
-		 * EPC : 0xE0<br>
+		 * EPC : 0xE2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measured current value in mA.<br>
+		 * Contents :<br>
+		 * This property indicates measured current value in mA. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0xFFFFFFFD (0.<br>
-		 * 4,294,967,293mA)<br>
+		 * 0x80000001.0x7FFFFFFFE_x000a_(-2,147,483,647.2,147,483,646mA)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
+		 * Data size : 4<br>
 		 * Unit : mA<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformMeasuredCurrentValue1() {
-			reqInformProperty(EPC_MEASURED_CURRENT_VALUE1);
+		public Informer reqInformMeasuredCurrentValue2() {
+			reqInformProperty(EPC_MEASURED_CURRENT_VALUE_2);
 			return this;
 		}
 		/**
@@ -811,54 +885,54 @@ public abstract class CurrentValueSensor extends DeviceObject {
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Rated voltage value to be measured by current sensor<br>
+		 * Contents :<br>
+		 * Rated voltage value to be measured by current sensor <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFD (0.65533V)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : V<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformRatedVoltageToBeMeasured() {
 			reqInformProperty(EPC_RATED_VOLTAGE_TO_BE_MEASURED);
 			return this;
 		}
 		/**
-		 * Property name : Measured current value 2<br>
+		 * Property name : Measured current value 1<br>
 		 * <br>
-		 * EPC : 0xE2<br>
+		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates measured current value in mA.<br>
+		 * Contents :<br>
+		 * This property indicates measured current value in mA. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x80000001.0x7FFFFFFFE<br>
-		 * (-2,147,483,647.2,147,483,646mA)<br>
+		 * 0x00000000.0xFFFFFFFD (0._x000a_4,294,967,293mA)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
+		 * Data size : 4<br>
 		 * Unit : mA<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformMeasuredCurrentValue2() {
-			reqInformProperty(EPC_MEASURED_CURRENT_VALUE2);
+		public Informer reqInformMeasuredCurrentValue1() {
+			reqInformProperty(EPC_MEASURED_CURRENT_VALUE_1);
 			return this;
 		}
+
 	}
 
 	public static class Proxy extends CurrentValueSensor {
@@ -871,21 +945,28 @@ public abstract class CurrentValueSensor extends DeviceObject {
 			return mEchoInstanceCode;
 		}
 		@Override
-		protected byte[] getOperationStatus() {return null;}
+		protected byte[] getMeasuredCurrentValue2(){return null;}
 		@Override
-		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		protected byte[] getMeasuredCurrentValue1(){return null;}
 		@Override
-		protected byte[] getInstallationLocation() {return null;}
+		protected byte[] getGetPropertyMap(){return null;}
 		@Override
-		protected byte[] getStandardVersionInformation() {return null;}
+		protected byte[] getSetPropertyMap(){return null;}
 		@Override
-		protected byte[] getFaultStatus() {return null;}
+		protected byte[] getStatusChangeAnnouncementPropertyMap(){return null;}
 		@Override
-		protected byte[] getManufacturerCode() {return null;}
+		protected byte[] getOperationStatus(){return null;}
 		@Override
-		protected byte[] getMeasuredCurrentValue1() {return null;}
+		protected boolean setInstallationLocation(byte[] edt){return false;}
 		@Override
-		protected byte[] getMeasuredCurrentValue2() {return null;}
+		protected byte[] getInstallationLocation(){return null;}
+		@Override
+		protected byte[] getStandardVersionInformation(){return null;}
+		@Override
+		protected byte[] getFaultStatus(){return null;}
+		@Override
+		protected byte[] getManufacturerCode(){return null;}
+
 	}
 	
 	public static Setter setG() {

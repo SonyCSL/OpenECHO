@@ -1,72 +1,79 @@
 /*
- * Copyright 2012 Sony Computer Science Laboratories, Inc. <info@kadecot.net>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2014 Sony Computer Science Laboratories, Inc.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.sonycsl.echo.eoj.device.housingfacilities;
 
 import com.sonycsl.echo.Echo;
-import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
-import com.sonycsl.echo.node.EchoNode;
 
 public abstract class ElectricWaterHeater extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x026B;
 
-	public static final byte EPC_AUTOMATIC_WATER_HEATING_SETTING = (byte)0xB0;
-	public static final byte EPC_AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING = (byte)0xB1;
+	public static final byte EPC__AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING = (byte)0xE3;
+	public static final byte EPC_TANK_CAPACITY = (byte)0xE2;
+	public static final byte EPC_MEASURED_AMOUNT_OF_WATER_REMAINING_IN_TANK = (byte)0xE1;
+	public static final byte EPC_BATH_WATER_VOLUME_SETTING = (byte)0xE0;
+	public static final byte EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER = (byte)0xC1;
+	public static final byte EPC__DAYTIME_REHEATING_PERMISSION_SETTING = (byte)0xC0;
+	public static final byte EPC__ADDITION_OF_HOT_WATER_FUNCTION_SETTING = (byte)0xE5;
+	public static final byte EPC_ALARM_STATUS = (byte)0xC2;
+	public static final byte EPC_BATH_WATER_VOLUME_SETTING_2 = (byte)0xE8;
+	public static final byte EPC_BATH_WATER_VOLUME_SETTING_1 = (byte)0xE7;
+	public static final byte EPC__SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING = (byte)0xE6;
+	public static final byte EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_SUMMERTIME = (byte)0xDD;
+	public static final byte EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_WINTERTIME = (byte)0xDB;
+	public static final byte EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_X000A_IN_BETWEEN_SEASONS = (byte)0xDC;
+	public static final byte EPC_ON_TIMER_SETTING = (byte)0x91;
+	public static final byte EPC__TEMPERATURE_OF_SUPPLIED_WATER_SETTING = (byte)0xD1;
+	public static final byte EPC_BATH_WATER_TEMPERATURE_SETTING = (byte)0xD3;
+	public static final byte EPC_BATH_WATER_VOLUME_SETTING_4 = (byte)0xD4;
+	public static final byte EPC_BATH_WATER_VOLUME_SETTING_4_MAXIMUM_SETTABLE_LEVEL = (byte)0xD5;
 	public static final byte EPC_WATER_HEATER_STATUS = (byte)0xB2;
 	public static final byte EPC_WATER_HEATING_TEMPERATURE_SETTING = (byte)0xB3;
-	public static final byte EPC_DAYTIME_REHEATING_PERMISSION_SETTING = (byte)0xC0;
-	public static final byte EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER = (byte)0xC1;
-	public static final byte EPC_ALARM_STATUS = (byte)0xC2;
-	public static final byte EPC_TEMPERATURE_OF_SUPPLIED_WATER_SETTING = (byte)0xD1;
-	public static final byte EPC_BATH_WATER_TEMPERATURE_SETTING = (byte)0xD3;
-	public static final byte EPC_BATH_WATER_VOLUME_SETTING = (byte)0xE0;
-	public static final byte EPC_MEASURED_AMOUNT_OF_WATER_REMAINING_IN_TANK = (byte)0xE1;
-	public static final byte EPC_TANK_CAPACITY = (byte)0xE2;
-	public static final byte EPC_AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING = (byte)0xE3;
-	public static final byte EPC_ADDITION_OF_HOT_WATER_FUNCTION_SETTING = (byte)0xE5;
-	public static final byte EPC_SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING = (byte)0xE6;
-	public static final byte EPC_BATH_WATER_VOLUME_SETTING1 = (byte)0xE7;
-	public static final byte EPC_BATH_WATER_VOLUME_SETTING2 = (byte)0xE8;
-	public static final byte EPC_BATH_WATER_VOLUME_SETTING3 = (byte)0xEE;
-	public static final byte EPC_BATH_WATER_VOLUME_SETTING4 = (byte)0xD4;
-	public static final byte EPC_BATH_WATER_VOLUME_SETTING4_MAXIMUM_SETTABLE_LEVEL = (byte)0xD5;
+	public static final byte EPC__AUTOMATIC_WATER_HEATING_SETTING = (byte)0xB0;
+	public static final byte EPC__AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING = (byte)0xB1;
+	public static final byte EPC_BATH_WATER_VOLUME_SETTING_3 = (byte)0xEE;
 	public static final byte EPC_ON_TIMER_RESERVATION_SETTING = (byte)0x90;
-	public static final byte EPC_ON_TIMER_SETTING = (byte)0x91;
-	public static final byte EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_WINTERTIME = (byte)0xDB;
-	public static final byte EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_IN_BETWEEN_SEASONS = (byte)0xDC;
-	public static final byte EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_SUMMERTIME = (byte)0xDD;
 
 	@Override
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
+		addSetProperty(EPC__AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING);
+		addGetProperty(EPC__AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING);
+		addStatusChangeAnnouncementProperty(EPC_ALARM_STATUS);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
-		addSetProperty(EPC_AUTOMATIC_WATER_HEATING_SETTING);
-		addGetProperty(EPC_AUTOMATIC_WATER_HEATING_SETTING);
 		addSetProperty(EPC_WATER_HEATING_TEMPERATURE_SETTING);
 		addGetProperty(EPC_WATER_HEATING_TEMPERATURE_SETTING);
-		addStatusChangeAnnouncementProperty(EPC_ALARM_STATUS);
-		addSetProperty(EPC_AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING);
-		addGetProperty(EPC_AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING);
+		addSetProperty(EPC__AUTOMATIC_WATER_HEATING_SETTING);
+		addGetProperty(EPC__AUTOMATIC_WATER_HEATING_SETTING);
+
 	}
 
 	@Override
@@ -81,399 +88,245 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 	}
 
 	/**
-	 * Property name : Operation status<br>
+	 * Property name : “Automatic bath water heating” mode setting<br>
 	 * <br>
-	 * EPC : 0x80<br>
+	 * EPC : 0xE3<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * Used to specify whether or not to use the “automatic bath water heating” mode, and to acquire the current setting. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON=0x30, OFF=0x31<br>
+	 * “Automatic bath water heating” mode ON = 0x41_x000a_“Automatic bath water heating” mode OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean setOperationStatus(byte[] edt) {return false;}
+	protected abstract boolean setAutomaticBathWaterHeatingModeSetting(byte[] edt);
 	/**
-	 * Property name : Operation status<br>
+	 * Property name : “Automatic bath water heating” mode setting<br>
 	 * <br>
-	 * EPC : 0x80<br>
+	 * EPC : 0xE3<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * Used to specify whether or not to use the “automatic bath water heating” mode, and to acquire the current setting. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * ON=0x30, OFF=0x31<br>
+	 * “Automatic bath water heating” mode ON = 0x41_x000a_“Automatic bath water heating” mode OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
-	protected abstract byte[] getOperationStatus();
+	protected abstract byte[] getAutomaticBathWaterHeatingModeSetting();
 	/**
-	 * Property name : “Automatic water heating” setting<br>
+	 * Property name : “Automatic bath water heating” mode setting<br>
 	 * <br>
-	 * EPC : 0xB0<br>
+	 * EPC : 0xE3<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting.<br>
+	 * Contents :<br>
+	 * Used to specify whether or not to use the “automatic bath water heating” mode, and to acquire the current setting. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic water heating function used: 0x41<br>
-	 * Non-automatic water heating function stopped: 0x43<br>
-	 * Non-automatic water heating function used: 0x42<br>
+	 * “Automatic bath water heating” mode ON = 0x41_x000a_“Automatic bath water heating” mode OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected abstract boolean setAutomaticWaterHeatingSetting(byte[] edt);
-	/**
-	 * Property name : “Automatic water heating” setting<br>
-	 * <br>
-	 * EPC : 0xB0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Automatic water heating function used: 0x41<br>
-	 * Non-automatic water heating function stopped: 0x43<br>
-	 * Non-automatic water heating function used: 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
-	 */
-	protected abstract byte[] getAutomaticWaterHeatingSetting();
-	/**
-	 * Property name : “Automatic water heating” setting<br>
-	 * <br>
-	 * EPC : 0xB0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Automatic water heating function used: 0x41<br>
-	 * Non-automatic water heating function stopped: 0x43<br>
-	 * Non-automatic water heating function used: 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
-	 */
-	protected boolean isValidAutomaticWaterHeatingSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
+	protected boolean isValidAutomaticBathWaterHeatingModeSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 	/**
-	 * Property name : “Automatic water temperature control” setting<br>
+	 * Property name : Tank capacity<br>
 	 * <br>
-	 * EPC : 0xB1<br>
+	 * EPC : 0xE2<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting.<br>
+	 * Contents :<br>
+	 * This property indicates the tank capacity in liters. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic water temperature control function used: 0x41<br>
-	 * Automatic water temperature control function not used: 0x42<br>
+	 * 0x0000.0xFFFD (0.65533 liters)<br>
 	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : liter<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean setAutomaticWaterTemperatureControlSetting(byte[] edt) {return false;}
+	protected byte[] getTankCapacity() {return null;}
 	/**
-	 * Property name : “Automatic water temperature control” setting<br>
+	 * Property name : Tank capacity<br>
 	 * <br>
-	 * EPC : 0xB1<br>
+	 * EPC : 0xE2<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Automatic water temperature control function used: 0x41<br>
-	 * Automatic water temperature control function not used: 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getAutomaticWaterTemperatureControlSetting() {return null;}
-	/**
-	 * Property name : “Automatic water temperature control” setting<br>
-	 * <br>
-	 * EPC : 0xB1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting.<br>
+	 * Contents :<br>
+	 * This property indicates the tank capacity in liters. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Automatic water temperature control function used: 0x41<br>
-	 * Automatic water temperature control function not used: 0x42<br>
+	 * 0x0000.0xFFFD (0.65533 liters)<br>
 	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : liter<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean isValidAutomaticWaterTemperatureControlSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
+	protected boolean isValidTankCapacity(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
 		return true;
 	}
 	/**
-	 * Property name : Water heater status<br>
+	 * Property name : Measured amount of water remaining in tank<br>
 	 * <br>
-	 * EPC : 0xB2<br>
+	 * EPC : 0xE1<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the current status of the water heater in terms of whether it is heating water or not.<br>
+	 * Contents :<br>
+	 * This property indicates the measured amount of water left in the tank in liters. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Heating = 0x41 Not heating = 0x42<br>
+	 * 0x0000.0xFFFD (0.65533 liters)<br>
 	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : liter<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected byte[] getWaterHeaterStatus() {return null;}
+	protected byte[] getMeasuredAmountOfWaterRemainingInTank() {return null;}
 	/**
-	 * Property name : Water heater status<br>
+	 * Property name : Measured amount of water remaining in tank<br>
 	 * <br>
-	 * EPC : 0xB2<br>
+	 * EPC : 0xE1<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the current status of the water heater in terms of whether it is heating water or not.<br>
+	 * Contents :<br>
+	 * This property indicates the measured amount of water left in the tank in liters. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Heating = 0x41 Not heating = 0x42<br>
+	 * 0x0000.0xFFFD (0.65533 liters)<br>
 	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : liter<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean isValidWaterHeaterStatus(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
+	protected boolean isValidMeasuredAmountOfWaterRemainingInTank(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
 		return true;
 	}
 	/**
-	 * Property name : Water heating temperature setting<br>
+	 * Property name : Bath water volume setting<br>
 	 * <br>
-	 * EPC : 0xB3<br>
+	 * EPC : 0xE0<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify (in °C) the temperature of heated water to achieve, and to acquire the current setting.<br>
+	 * Contents :<br>
+	 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64 (0.100°C)<br>
+	 * 0x00.0x64 (0.100%)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : .C<br>
+	 * Data size : 1<br>
+	 * Unit : %<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected abstract boolean setWaterHeatingTemperatureSetting(byte[] edt);
+	protected boolean setBathWaterVolumeSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : Water heating temperature setting<br>
+	 * Property name : Bath water volume setting<br>
 	 * <br>
-	 * EPC : 0xB3<br>
+	 * EPC : 0xE0<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify (in °C) the temperature of heated water to achieve, and to acquire the current setting.<br>
+	 * Contents :<br>
+	 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64 (0.100°C)<br>
+	 * 0x00.0x64 (0.100%)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : .C<br>
+	 * Data size : 1<br>
+	 * Unit : %<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected abstract byte[] getWaterHeatingTemperatureSetting();
+	protected byte[] getBathWaterVolumeSetting() {return null;}
 	/**
-	 * Property name : Water heating temperature setting<br>
+	 * Property name : Bath water volume setting<br>
 	 * <br>
-	 * EPC : 0xB3<br>
+	 * EPC : 0xE0<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify (in °C) the temperature of heated water to achieve, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64 (0.100°C)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : .C<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
-	 */
-	protected boolean isValidWaterHeatingTemperatureSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : “Daytime reheating permission” setting<br>
-	 * <br>
-	 * EPC : 0xC0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting.<br>
+	 * Contents :<br>
+	 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br>
+	 * 0x00.0x64 (0.100%)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
+	 * Data size : 1<br>
+	 * Unit : %<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean setDaytimeReheatingPermissionSetting(byte[] edt) {return false;}
-	/**
-	 * Property name : “Daytime reheating permission” setting<br>
-	 * <br>
-	 * EPC : 0xC0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getDaytimeReheatingPermissionSetting() {return null;}
-	/**
-	 * Property name : “Daytime reheating permission” setting<br>
-	 * <br>
-	 * EPC : 0xC0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidDaytimeReheatingPermissionSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
+	protected boolean isValidBathWaterVolumeSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 	/**
@@ -481,22 +334,22 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 	 * <br>
 	 * EPC : 0xC1<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the current temperature of the water in the water heater.<br>
+	 * Contents :<br>
+	 * This property indicates the current temperature of the water in the water heater. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x00.0x64 (0.100°C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : .C<br>
+	 * Data size : 1<br>
+	 * Unit : °C<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getMeasuredTemperatureOfWaterInWaterHeater() {return null;}
 	/**
@@ -504,25 +357,169 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 	 * <br>
 	 * EPC : 0xC1<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the current temperature of the water in the water heater.<br>
+	 * Contents :<br>
+	 * This property indicates the current temperature of the water in the water heater. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x00.0x64 (0.100°C)<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : .C<br>
+	 * Data size : 1<br>
+	 * Unit : °C<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidMeasuredTemperatureOfWaterInWaterHeater(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : “Daytime reheating permission” setting<br>
+	 * <br>
+	 * EPC : 0xC0<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setDaytimeReheatingPermissionSetting(byte[] edt) {return false;}
+	/**
+	 * Property name : “Daytime reheating permission” setting<br>
+	 * <br>
+	 * EPC : 0xC0<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getDaytimeReheatingPermissionSetting() {return null;}
+	/**
+	 * Property name : “Daytime reheating permission” setting<br>
+	 * <br>
+	 * EPC : 0xC0<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidDaytimeReheatingPermissionSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : “Addition of hot water” function setting<br>
+	 * <br>
+	 * EPC : 0xE5<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * “Addition of hot water” function ON = 0x41_x000a_“Addition of hot water” function OFF_x000a_= 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setAdditionOfHotWaterFunctionSetting(byte[] edt) {return false;}
+	/**
+	 * Property name : “Addition of hot water” function setting<br>
+	 * <br>
+	 * EPC : 0xE5<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * “Addition of hot water” function ON = 0x41_x000a_“Addition of hot water” function OFF_x000a_= 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getAdditionOfHotWaterFunctionSetting() {return null;}
+	/**
+	 * Property name : “Addition of hot water” function setting<br>
+	 * <br>
+	 * EPC : 0xE5<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * “Addition of hot water” function ON = 0x41_x000a_“Addition of hot water” function OFF_x000a_= 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidAdditionOfHotWaterFunctionSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 	/**
@@ -530,32 +527,20 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 	 * <br>
 	 * EPC : 0xC2<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the status of an alarm.<br>
+	 * Contents :<br>
+	 * This property indicates the status of an alarm. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * First byte:<br>
-	 * Bit 0: Out of hot water<br>
-	 * 0 Normal<br>
-	 * 1 Alarm Bit 1: Water leaking<br>
-	 * 0 Normal<br>
-	 * 1 Alarm Bit 2: Water frozen<br>
-	 * 0 Normal<br>
-	 * 1 Alarm<br>
-	 * Bits 3-7: reserved for future use<br>
-	 * 2-4 bytes:<br>
-	 * reserved for future use<br>
+	 * First byte:_x000a_Bit 0: Out of hot water_x000a_0 Normal_x000a_1 Alarm Bit 1: Water leaking_x000a_0 Normal_x000a_1 Alarm Bit 2: Water frozen_x000a_0 Normal_x000a_1 Alarm_x000a_Bits 3-7: reserved for future use_x000a_2-4 bytes:_x000a_reserved for future use<br>
 	 * <br>
 	 * Data type : unsigned char × 2<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
+	 * Data size : 4<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -565,651 +550,25 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 	 * <br>
 	 * EPC : 0xC2<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the status of an alarm.<br>
+	 * Contents :<br>
+	 * This property indicates the status of an alarm. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * First byte:<br>
-	 * Bit 0: Out of hot water<br>
-	 * 0 Normal<br>
-	 * 1 Alarm Bit 1: Water leaking<br>
-	 * 0 Normal<br>
-	 * 1 Alarm Bit 2: Water frozen<br>
-	 * 0 Normal<br>
-	 * 1 Alarm<br>
-	 * Bits 3-7: reserved for future use<br>
-	 * 2-4 bytes:<br>
-	 * reserved for future use<br>
+	 * First byte:_x000a_Bit 0: Out of hot water_x000a_0 Normal_x000a_1 Alarm Bit 1: Water leaking_x000a_0 Normal_x000a_1 Alarm Bit 2: Water frozen_x000a_0 Normal_x000a_1 Alarm_x000a_Bits 3-7: reserved for future use_x000a_2-4 bytes:_x000a_reserved for future use<br>
 	 * <br>
 	 * Data type : unsigned char × 2<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
+	 * Data size : 4<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidAlarmStatus(byte[] edt) {
-		if(edt == null || !(edt.length == 4)) return false;
-		return true;
-	}
-	/**
-	 * Property name : “Temperature of supplied water” setting<br>
-	 * <br>
-	 * EPC : 0xD1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify the temperature of water supplied from the water heater in °C, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64 (0.100°C)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : .C<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setTemperatureOfSuppliedWaterSetting(byte[] edt) {return false;}
-	/**
-	 * Property name : “Temperature of supplied water” setting<br>
-	 * <br>
-	 * EPC : 0xD1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify the temperature of water supplied from the water heater in °C, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64 (0.100°C)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : .C<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getTemperatureOfSuppliedWaterSetting() {return null;}
-	/**
-	 * Property name : “Temperature of supplied water” setting<br>
-	 * <br>
-	 * EPC : 0xD1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify the temperature of water supplied from the water heater in °C, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64 (0.100°C)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : .C<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidTemperatureOfSuppliedWaterSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Bath water temperature setting<br>
-	 * <br>
-	 * EPC : 0xD3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify (in °C) the temperature up to which the water heater will heat bath water, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64 (0.100°C)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : .C<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setBathWaterTemperatureSetting(byte[] edt) {return false;}
-	/**
-	 * Property name : Bath water temperature setting<br>
-	 * <br>
-	 * EPC : 0xD3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify (in °C) the temperature up to which the water heater will heat bath water, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64 (0.100°C)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : .C<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getBathWaterTemperatureSetting() {return null;}
-	/**
-	 * Property name : Bath water temperature setting<br>
-	 * <br>
-	 * EPC : 0xD3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify (in °C) the temperature up to which the water heater will heat bath water, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64 (0.100°C)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : .C<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidBathWaterTemperatureSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Bath water volume setting<br>
-	 * <br>
-	 * EPC : 0xE0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64 (0.100%)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : %<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setBathWaterVolumeSetting(byte[] edt) {return false;}
-	/**
-	 * Property name : Bath water volume setting<br>
-	 * <br>
-	 * EPC : 0xE0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64 (0.100%)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : %<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getBathWaterVolumeSetting() {return null;}
-	/**
-	 * Property name : Bath water volume setting<br>
-	 * <br>
-	 * EPC : 0xE0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64 (0.100%)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : %<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidBathWaterVolumeSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measured amount of water remaining in tank<br>
-	 * <br>
-	 * EPC : 0xE1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measured amount of water left in the tank in liters.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533 liters)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : liter<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasuredAmountOfWaterRemainingInTank() {return null;}
-	/**
-	 * Property name : Measured amount of water remaining in tank<br>
-	 * <br>
-	 * EPC : 0xE1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the measured amount of water left in the tank in liters.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533 liters)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : liter<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasuredAmountOfWaterRemainingInTank(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Tank capacity<br>
-	 * <br>
-	 * EPC : 0xE2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the tank capacity in liters.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533 liters)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : liter<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getTankCapacity() {return null;}
-	/**
-	 * Property name : Tank capacity<br>
-	 * <br>
-	 * EPC : 0xE2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the tank capacity in liters.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533 liters)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : liter<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidTankCapacity(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
-		return true;
-	}
-	/**
-	 * Property name : “Automatic bath water heating” mode setting<br>
-	 * <br>
-	 * EPC : 0xE3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify whether or not to use the “automatic bath water heating” mode, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * “Automatic bath water heating” mode ON = 0x41<br>
-	 * “Automatic bath water heating” mode OFF = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
-	 */
-	protected abstract boolean setAutomaticBathWaterHeatingModeSetting(byte[] edt);
-	/**
-	 * Property name : “Automatic bath water heating” mode setting<br>
-	 * <br>
-	 * EPC : 0xE3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify whether or not to use the “automatic bath water heating” mode, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * “Automatic bath water heating” mode ON = 0x41<br>
-	 * “Automatic bath water heating” mode OFF = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
-	 */
-	protected abstract byte[] getAutomaticBathWaterHeatingModeSetting();
-	/**
-	 * Property name : “Automatic bath water heating” mode setting<br>
-	 * <br>
-	 * EPC : 0xE3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify whether or not to use the “automatic bath water heating” mode, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * “Automatic bath water heating” mode ON = 0x41<br>
-	 * “Automatic bath water heating” mode OFF = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
-	 */
-	protected boolean isValidAutomaticBathWaterHeatingModeSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : “Addition of hot water” function setting<br>
-	 * <br>
-	 * EPC : 0xE5<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * “Addition of hot water” function ON = 0x41<br>
-	 * “Addition of hot water” function OFF<br>
-	 * = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setAdditionOfHotWaterFunctionSetting(byte[] edt) {return false;}
-	/**
-	 * Property name : “Addition of hot water” function setting<br>
-	 * <br>
-	 * EPC : 0xE5<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * “Addition of hot water” function ON = 0x41<br>
-	 * “Addition of hot water” function OFF<br>
-	 * = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getAdditionOfHotWaterFunctionSetting() {return null;}
-	/**
-	 * Property name : “Addition of hot water” function setting<br>
-	 * <br>
-	 * EPC : 0xE5<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * “Addition of hot water” function ON = 0x41<br>
-	 * “Addition of hot water” function OFF<br>
-	 * = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidAdditionOfHotWaterFunctionSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : “Slight bath water temperature lowering” function setting<br>
-	 * <br>
-	 * EPC : 0xE6<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify whether or not to use the “slight bath water temperature lowering” function, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * “Slight bath water temperature lowering” function ON = 0x41<br>
-	 * “Slight bath water temperature lowering” function OFF = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setSlightBathWaterTemperatureLoweringFunctionSetting(byte[] edt) {return false;}
-	/**
-	 * Property name : “Slight bath water temperature lowering” function setting<br>
-	 * <br>
-	 * EPC : 0xE6<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify whether or not to use the “slight bath water temperature lowering” function, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * “Slight bath water temperature lowering” function ON = 0x41<br>
-	 * “Slight bath water temperature lowering” function OFF = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getSlightBathWaterTemperatureLoweringFunctionSetting() {return null;}
-	/**
-	 * Property name : “Slight bath water temperature lowering” function setting<br>
-	 * <br>
-	 * EPC : 0xE6<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify whether or not to use the “slight bath water temperature lowering” function, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * “Slight bath water temperature lowering” function ON = 0x41<br>
-	 * “Slight bath water temperature lowering” function OFF = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidSlightBathWaterTemperatureLoweringFunctionSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Bath water volume setting 1<br>
-	 * <br>
-	 * EPC : 0xE7<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0xFD (0.253 liters)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : liter<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setBathWaterVolumeSetting1(byte[] edt) {return false;}
-	/**
-	 * Property name : Bath water volume setting 1<br>
-	 * <br>
-	 * EPC : 0xE7<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0xFD (0.253 liters)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : liter<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getBathWaterVolumeSetting1() {return null;}
-	/**
-	 * Property name : Bath water volume setting 1<br>
-	 * <br>
-	 * EPC : 0xE7<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0xFD (0.253 liters)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : liter<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidBathWaterVolumeSetting1(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
+		if(edt == null || !(edt.length == 4)) {return false;};
 		return true;
 	}
 	/**
@@ -1217,22 +576,22 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 	 * <br>
 	 * EPC : 0xE8<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
+	 * Contents :<br>
+	 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean setBathWaterVolumeSetting2(byte[] edt) {return false;}
 	/**
@@ -1240,22 +599,22 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 	 * <br>
 	 * EPC : 0xE8<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
+	 * Contents :<br>
+	 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getBathWaterVolumeSetting2() {return null;}
 	/**
@@ -1263,473 +622,169 @@ public abstract class ElectricWaterHeater extends DeviceObject {
 	 * <br>
 	 * EPC : 0xE8<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
+	 * Contents :<br>
+	 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x31.0x38<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidBathWaterVolumeSetting2(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 	/**
-	 * Property name : Bath water volume setting 3<br>
+	 * Property name : Bath water volume setting 1<br>
 	 * <br>
-	 * EPC : 0xEE<br>
+	 * EPC : 0xE7<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>
+	 * Contents :<br>
+	 * Used to specify the bath water volume in liters, and to acquire the current setting. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533 liters)<br>
+	 * 0x00.0xFD (0.253 liters)<br>
 	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
 	 * Unit : liter<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean setBathWaterVolumeSetting3(byte[] edt) {return false;}
+	protected boolean setBathWaterVolumeSetting1(byte[] edt) {return false;}
 	/**
-	 * Property name : Bath water volume setting 3<br>
+	 * Property name : Bath water volume setting 1<br>
 	 * <br>
-	 * EPC : 0xEE<br>
+	 * EPC : 0xE7<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>
+	 * Contents :<br>
+	 * Used to specify the bath water volume in liters, and to acquire the current setting. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533 liters)<br>
+	 * 0x00.0xFD (0.253 liters)<br>
 	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
 	 * Unit : liter<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected byte[] getBathWaterVolumeSetting3() {return null;}
+	protected byte[] getBathWaterVolumeSetting1() {return null;}
 	/**
-	 * Property name : Bath water volume setting 3<br>
+	 * Property name : Bath water volume setting 1<br>
 	 * <br>
-	 * EPC : 0xEE<br>
+	 * EPC : 0xE7<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>
+	 * Contents :<br>
+	 * Used to specify the bath water volume in liters, and to acquire the current setting. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533 liters)<br>
+	 * 0x00.0xFD (0.253 liters)<br>
 	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
 	 * Unit : liter<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean isValidBathWaterVolumeSetting3(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
+	protected boolean isValidBathWaterVolumeSetting1(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 	/**
-	 * Property name : Bath water volume setting 4<br>
+	 * Property name : “Slight bath water temperature lowering” function setting<br>
 	 * <br>
-	 * EPC : 0xD4<br>
+	 * EPC : 0xE6<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * ￼<br>
-	 * The bath hot water volume is specified by the number of steps.<br>
+	 * Contents :<br>
+	 * Used to specify whether or not to use the “slight bath water temperature lowering” function, and to acquire the current setting. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x01-0xFF<br>
+	 * “Slight bath water temperature lowering” function ON = 0x41_x000a_“Slight bath water temperature lowering” function OFF = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : null<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setBathWaterVolumeSetting4(byte[] edt) {return false;}
-	/**
-	 * Property name : Bath water volume setting 4<br>
-	 * <br>
-	 * EPC : 0xD4<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * ￼<br>
-	 * The bath hot water volume is specified by the number of steps.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x01-0xFF<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : null<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getBathWaterVolumeSetting4() {return null;}
-	/**
-	 * Property name : Bath water volume setting 4<br>
-	 * <br>
-	 * EPC : 0xD4<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * ￼<br>
-	 * The bath hot water volume is specified by the number of steps.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x01-0xFF<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : null<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidBathWaterVolumeSetting4(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Bath water volume setting 4- Maximum settable level<br>
-	 * <br>
-	 * EPC : 0xD5<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * ￼<br>
-	 * The maximum settable level is the top step of Bath water volume setting 4.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x01-0xFF<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : null<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getBathWaterVolumeSetting4MaximumSettableLevel() {return null;}
-	/**
-	 * Property name : Bath water volume setting 4- Maximum settable level<br>
-	 * <br>
-	 * EPC : 0xD5<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * ￼<br>
-	 * The maximum settable level is the top step of Bath water volume setting 4.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x01-0xFF<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : null<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidBathWaterVolumeSetting4MaximumSettableLevel(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : ON timer reservation setting<br>
-	 * <br>
-	 * EPC : 0x90<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Reservation ON/OFF<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Reservation ON = 0x41 Reservation OFF = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : liter<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setOnTimerReservationSetting(byte[] edt) {return false;}
-	/**
-	 * Property name : ON timer reservation setting<br>
-	 * <br>
-	 * EPC : 0x90<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Reservation ON/OFF<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Reservation ON = 0x41 Reservation OFF = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : liter<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getOnTimerReservationSetting() {return null;}
-	/**
-	 * Property name : ON timer reservation setting<br>
-	 * <br>
-	 * EPC : 0x90<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Reservation ON/OFF<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Reservation ON = 0x41 Reservation OFF = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : liter<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidOnTimerReservationSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : ON timer setting<br>
-	 * <br>
-	 * EPC : 0x91<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * ON timer setting (HH:MM)<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
-	 * <br>
-	 * Data type : unsigned char × 2<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean setOnTimerSetting(byte[] edt) {return false;}
+	protected boolean setSlightBathWaterTemperatureLoweringFunctionSetting(byte[] edt) {return false;}
 	/**
-	 * Property name : ON timer setting<br>
+	 * Property name : “Slight bath water temperature lowering” function setting<br>
 	 * <br>
-	 * EPC : 0x91<br>
+	 * EPC : 0xE6<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * ON timer setting (HH:MM)<br>
+	 * Contents :<br>
+	 * Used to specify whether or not to use the “slight bath water temperature lowering” function, and to acquire the current setting. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
+	 * “Slight bath water temperature lowering” function ON = 0x41_x000a_“Slight bath water temperature lowering” function OFF = 0x42<br>
 	 * <br>
-	 * Data type : unsigned char × 2<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected byte[] getOnTimerSetting() {return null;}
+	protected byte[] getSlightBathWaterTemperatureLoweringFunctionSetting() {return null;}
 	/**
-	 * Property name : ON timer setting<br>
+	 * Property name : “Slight bath water temperature lowering” function setting<br>
 	 * <br>
-	 * EPC : 0x91<br>
+	 * EPC : 0xE6<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * ON timer setting (HH:MM)<br>
+	 * Contents :<br>
+	 * Used to specify whether or not to use the “slight bath water temperature lowering” function, and to acquire the current setting. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
+	 * “Slight bath water temperature lowering” function ON = 0x41_x000a_“Slight bath water temperature lowering” function OFF = 0x42<br>
 	 * <br>
-	 * Data type : unsigned char × 2<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean isValidOnTimerSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Rated power consumption of H/P unit in wintertime<br>
-	 * <br>
-	 * EPC : 0xDB<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the rated power consumption of the heat pump in wintertime (December to March)<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD(0.65,533)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getRatedPowerConsumptionOfHPUnitInWintertime() {return null;}
-	/**
-	 * Property name : Rated power consumption of H/P unit in wintertime<br>
-	 * <br>
-	 * EPC : 0xDB<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the rated power consumption of the heat pump in wintertime (December to March)<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD(0.65,533)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidRatedPowerConsumptionOfHPUnitInWintertime(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Rated power consumption of H/P unit in
-in-between seasons<br>
-	 * <br>
-	 * EPC : 0xDC<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the rated power consumption of the heat pump in<br>
-	 * in-between seasons (April, May, October, November)<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD(0.65,533)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getRatedPowerConsumptionOfHPUnitInInBetweenSeasons() {return null;}
-	/**
-	 * Property name : Rated power consumption of H/P unit in
-in-between seasons<br>
-	 * <br>
-	 * EPC : 0xDC<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the rated power consumption of the heat pump in<br>
-	 * in-between seasons (April, May, October, November)<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD(0.65,533)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidRatedPowerConsumptionOfHPUnitInInBetweenSeasons(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
+	protected boolean isValidSlightBathWaterTemperatureLoweringFunctionSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 	/**
@@ -1737,23 +792,22 @@ bytes<br>
 	 * <br>
 	 * EPC : 0xDD<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the rated power consumption of the heat pump in summertime (June to September)<br>
+	 * Contents :<br>
+	 * This property indicates the rated power consumption of the heat pump in summertime (June to September) <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x0000.0xFFFD(0.65,533)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
+	 * Data size : 2<br>
 	 * Unit : W<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getRatedPowerConsumptionOfHPUnitInSummertime() {return null;}
 	/**
@@ -1761,26 +815,941 @@ bytes<br>
 	 * <br>
 	 * EPC : 0xDD<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the rated power consumption of the heat pump in summertime (June to September)<br>
+	 * Contents :<br>
+	 * This property indicates the rated power consumption of the heat pump in summertime (June to September) <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * 0x0000.0xFFFD(0.65,533)<br>
 	 * <br>
 	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2
-bytes<br>
-	 * <br>
+	 * Data size : 2<br>
 	 * Unit : W<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidRatedPowerConsumptionOfHPUnitInSummertime(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Rated power consumption of H/P unit in wintertime<br>
+	 * <br>
+	 * EPC : 0xDB<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the rated power consumption of the heat pump in wintertime (December to March) <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD(0.65,533)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getRatedPowerConsumptionOfHPUnitInWintertime() {return null;}
+	/**
+	 * Property name : Rated power consumption of H/P unit in wintertime<br>
+	 * <br>
+	 * EPC : 0xDB<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the rated power consumption of the heat pump in wintertime (December to March) <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD(0.65,533)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidRatedPowerConsumptionOfHPUnitInWintertime(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Rated power consumption of H/P unit in_x000a_in-between seasons<br>
+	 * <br>
+	 * EPC : 0xDC<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the rated power consumption of the heat pump in_x000a_in-between seasons (April, May, October, November) <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD(0.65,533)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getRatedPowerConsumptionOfHPUnitInX000AInBetweenSeasons() {return null;}
+	/**
+	 * Property name : Rated power consumption of H/P unit in_x000a_in-between seasons<br>
+	 * <br>
+	 * EPC : 0xDC<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the rated power consumption of the heat pump in_x000a_in-between seasons (April, May, October, November) <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD(0.65,533)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidRatedPowerConsumptionOfHPUnitInX000AInBetweenSeasons(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30, OFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setOperationStatus(byte[] edt) {return false;}
+	/**
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30, OFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getOperationStatus();
+	/**
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30, OFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidOperationStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : ON timer setting<br>
+	 * <br>
+	 * EPC : 0x91<br>
+	 * <br>
+	 * Contents :<br>
+	 * ON timer setting (HH:MM) <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
+	 * <br>
+	 * Data type : unsigned char × 2<br>
+	 * Data size : 2<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setOnTimerSetting(byte[] edt) {return false;}
+	/**
+	 * Property name : ON timer setting<br>
+	 * <br>
+	 * EPC : 0x91<br>
+	 * <br>
+	 * Contents :<br>
+	 * ON timer setting (HH:MM) <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
+	 * <br>
+	 * Data type : unsigned char × 2<br>
+	 * Data size : 2<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getOnTimerSetting() {return null;}
+	/**
+	 * Property name : ON timer setting<br>
+	 * <br>
+	 * EPC : 0x91<br>
+	 * <br>
+	 * Contents :<br>
+	 * ON timer setting (HH:MM) <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
+	 * <br>
+	 * Data type : unsigned char × 2<br>
+	 * Data size : 2<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidOnTimerSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : “Temperature of supplied water” setting<br>
+	 * <br>
+	 * EPC : 0xD1<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify the temperature of water supplied from the water heater in °C, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64 (0.100°C)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : °C<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setTemperatureOfSuppliedWaterSetting(byte[] edt) {return false;}
+	/**
+	 * Property name : “Temperature of supplied water” setting<br>
+	 * <br>
+	 * EPC : 0xD1<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify the temperature of water supplied from the water heater in °C, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64 (0.100°C)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : °C<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getTemperatureOfSuppliedWaterSetting() {return null;}
+	/**
+	 * Property name : “Temperature of supplied water” setting<br>
+	 * <br>
+	 * EPC : 0xD1<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify the temperature of water supplied from the water heater in °C, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64 (0.100°C)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : °C<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidTemperatureOfSuppliedWaterSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Bath water temperature setting<br>
+	 * <br>
+	 * EPC : 0xD3<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify (in °C) the temperature up to which the water heater will heat bath water, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64 (0.100°C)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : °C<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setBathWaterTemperatureSetting(byte[] edt) {return false;}
+	/**
+	 * Property name : Bath water temperature setting<br>
+	 * <br>
+	 * EPC : 0xD3<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify (in °C) the temperature up to which the water heater will heat bath water, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64 (0.100°C)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : °C<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getBathWaterTemperatureSetting() {return null;}
+	/**
+	 * Property name : Bath water temperature setting<br>
+	 * <br>
+	 * EPC : 0xD3<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify (in °C) the temperature up to which the water heater will heat bath water, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64 (0.100°C)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : °C<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidBathWaterTemperatureSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Bath water volume setting 4<br>
+	 * <br>
+	 * EPC : 0xD4<br>
+	 * <br>
+	 * Contents :<br>
+	 * The bath hot water volume is specified by the number of steps. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x01-0xFF<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : <br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setBathWaterVolumeSetting4(byte[] edt) {return false;}
+	/**
+	 * Property name : Bath water volume setting 4<br>
+	 * <br>
+	 * EPC : 0xD4<br>
+	 * <br>
+	 * Contents :<br>
+	 * The bath hot water volume is specified by the number of steps. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x01-0xFF<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : <br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getBathWaterVolumeSetting4() {return null;}
+	/**
+	 * Property name : Bath water volume setting 4<br>
+	 * <br>
+	 * EPC : 0xD4<br>
+	 * <br>
+	 * Contents :<br>
+	 * The bath hot water volume is specified by the number of steps. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x01-0xFF<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : <br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidBathWaterVolumeSetting4(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Bath water volume setting 4- Maximum settable level<br>
+	 * <br>
+	 * EPC : 0xD5<br>
+	 * <br>
+	 * Contents :<br>
+	 * ￼The maximum settable level is the top step of Bath water volume setting 4. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x01-0xFF<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : <br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getBathWaterVolumeSetting4MaximumSettableLevel() {return null;}
+	/**
+	 * Property name : Bath water volume setting 4- Maximum settable level<br>
+	 * <br>
+	 * EPC : 0xD5<br>
+	 * <br>
+	 * Contents :<br>
+	 * ￼The maximum settable level is the top step of Bath water volume setting 4. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x01-0xFF<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : <br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidBathWaterVolumeSetting4MaximumSettableLevel(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Water heater status<br>
+	 * <br>
+	 * EPC : 0xB2<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the current status of the water heater in terms of whether it is heating water or not. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Heating = 0x41 Not heating = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getWaterHeaterStatus() {return null;}
+	/**
+	 * Property name : Water heater status<br>
+	 * <br>
+	 * EPC : 0xB2<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the current status of the water heater in terms of whether it is heating water or not. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Heating = 0x41 Not heating = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidWaterHeaterStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Water heating temperature setting<br>
+	 * <br>
+	 * EPC : 0xB3<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify (in °C) the temperature of heated water to achieve, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64 (0.100°C)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : °C<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract boolean setWaterHeatingTemperatureSetting(byte[] edt);
+	/**
+	 * Property name : Water heating temperature setting<br>
+	 * <br>
+	 * EPC : 0xB3<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify (in °C) the temperature of heated water to achieve, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64 (0.100°C)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : °C<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getWaterHeatingTemperatureSetting();
+	/**
+	 * Property name : Water heating temperature setting<br>
+	 * <br>
+	 * EPC : 0xB3<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify (in °C) the temperature of heated water to achieve, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64 (0.100°C)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : °C<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidWaterHeatingTemperatureSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : “Automatic water heating” setting<br>
+	 * <br>
+	 * EPC : 0xB0<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic water heating function used: 0x41_x000a_Non-automatic water heating function stopped: 0x43_x000a_Non-automatic water heating function used: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract boolean setAutomaticWaterHeatingSetting(byte[] edt);
+	/**
+	 * Property name : “Automatic water heating” setting<br>
+	 * <br>
+	 * EPC : 0xB0<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic water heating function used: 0x41_x000a_Non-automatic water heating function stopped: 0x43_x000a_Non-automatic water heating function used: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getAutomaticWaterHeatingSetting();
+	/**
+	 * Property name : “Automatic water heating” setting<br>
+	 * <br>
+	 * EPC : 0xB0<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic water heating function used: 0x41_x000a_Non-automatic water heating function stopped: 0x43_x000a_Non-automatic water heating function used: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidAutomaticWaterHeatingSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : “Automatic water temperature control” setting<br>
+	 * <br>
+	 * EPC : 0xB1<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic water temperature control function used: 0x41_x000a_Automatic water temperature control function not used: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setAutomaticWaterTemperatureControlSetting(byte[] edt) {return false;}
+	/**
+	 * Property name : “Automatic water temperature control” setting<br>
+	 * <br>
+	 * EPC : 0xB1<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic water temperature control function used: 0x41_x000a_Automatic water temperature control function not used: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getAutomaticWaterTemperatureControlSetting() {return null;}
+	/**
+	 * Property name : “Automatic water temperature control” setting<br>
+	 * <br>
+	 * EPC : 0xB1<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Automatic water temperature control function used: 0x41_x000a_Automatic water temperature control function not used: 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidAutomaticWaterTemperatureControlSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Bath water volume setting 3<br>
+	 * <br>
+	 * EPC : 0xEE<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify the bath water volume in liters, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533 liters)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : liter<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setBathWaterVolumeSetting3(byte[] edt) {return false;}
+	/**
+	 * Property name : Bath water volume setting 3<br>
+	 * <br>
+	 * EPC : 0xEE<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify the bath water volume in liters, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533 liters)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : liter<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getBathWaterVolumeSetting3() {return null;}
+	/**
+	 * Property name : Bath water volume setting 3<br>
+	 * <br>
+	 * EPC : 0xEE<br>
+	 * <br>
+	 * Contents :<br>
+	 * Used to specify the bath water volume in liters, and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533 liters)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : liter<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidBathWaterVolumeSetting3(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : ON timer reservation setting<br>
+	 * <br>
+	 * EPC : 0x90<br>
+	 * <br>
+	 * Contents :<br>
+	 * Reservation ON/OFF <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reservation ON = 0x41 Reservation OFF = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : liter<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setOnTimerReservationSetting(byte[] edt) {return false;}
+	/**
+	 * Property name : ON timer reservation setting<br>
+	 * <br>
+	 * EPC : 0x90<br>
+	 * <br>
+	 * Contents :<br>
+	 * Reservation ON/OFF <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reservation ON = 0x41 Reservation OFF = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : liter<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getOnTimerReservationSetting() {return null;}
+	/**
+	 * Property name : ON timer reservation setting<br>
+	 * <br>
+	 * EPC : 0x90<br>
+	 * <br>
+	 * Contents :<br>
+	 * Reservation ON/OFF <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reservation ON = 0x41 Reservation OFF = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : liter<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidOnTimerReservationSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 
@@ -1790,22 +1759,23 @@ bytes<br>
 		if(success) return success;
 
 		switch(property.epc) {
-		case EPC_AUTOMATIC_WATER_HEATING_SETTING : return setAutomaticWaterHeatingSetting(property.edt);
-		case EPC_AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING : return setAutomaticWaterTemperatureControlSetting(property.edt);
-		case EPC_WATER_HEATING_TEMPERATURE_SETTING : return setWaterHeatingTemperatureSetting(property.edt);
-		case EPC_DAYTIME_REHEATING_PERMISSION_SETTING : return setDaytimeReheatingPermissionSetting(property.edt);
-		case EPC_TEMPERATURE_OF_SUPPLIED_WATER_SETTING : return setTemperatureOfSuppliedWaterSetting(property.edt);
-		case EPC_BATH_WATER_TEMPERATURE_SETTING : return setBathWaterTemperatureSetting(property.edt);
+		case EPC__AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING : return setAutomaticBathWaterHeatingModeSetting(property.edt);
 		case EPC_BATH_WATER_VOLUME_SETTING : return setBathWaterVolumeSetting(property.edt);
-		case EPC_AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING : return setAutomaticBathWaterHeatingModeSetting(property.edt);
-		case EPC_ADDITION_OF_HOT_WATER_FUNCTION_SETTING : return setAdditionOfHotWaterFunctionSetting(property.edt);
-		case EPC_SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING : return setSlightBathWaterTemperatureLoweringFunctionSetting(property.edt);
-		case EPC_BATH_WATER_VOLUME_SETTING1 : return setBathWaterVolumeSetting1(property.edt);
-		case EPC_BATH_WATER_VOLUME_SETTING2 : return setBathWaterVolumeSetting2(property.edt);
-		case EPC_BATH_WATER_VOLUME_SETTING3 : return setBathWaterVolumeSetting3(property.edt);
-		case EPC_BATH_WATER_VOLUME_SETTING4 : return setBathWaterVolumeSetting4(property.edt);
-		case EPC_ON_TIMER_RESERVATION_SETTING : return setOnTimerReservationSetting(property.edt);
+		case EPC__DAYTIME_REHEATING_PERMISSION_SETTING : return setDaytimeReheatingPermissionSetting(property.edt);
+		case EPC__ADDITION_OF_HOT_WATER_FUNCTION_SETTING : return setAdditionOfHotWaterFunctionSetting(property.edt);
+		case EPC_BATH_WATER_VOLUME_SETTING_2 : return setBathWaterVolumeSetting2(property.edt);
+		case EPC_BATH_WATER_VOLUME_SETTING_1 : return setBathWaterVolumeSetting1(property.edt);
+		case EPC__SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING : return setSlightBathWaterTemperatureLoweringFunctionSetting(property.edt);
 		case EPC_ON_TIMER_SETTING : return setOnTimerSetting(property.edt);
+		case EPC__TEMPERATURE_OF_SUPPLIED_WATER_SETTING : return setTemperatureOfSuppliedWaterSetting(property.edt);
+		case EPC_BATH_WATER_TEMPERATURE_SETTING : return setBathWaterTemperatureSetting(property.edt);
+		case EPC_BATH_WATER_VOLUME_SETTING_4 : return setBathWaterVolumeSetting4(property.edt);
+		case EPC_WATER_HEATING_TEMPERATURE_SETTING : return setWaterHeatingTemperatureSetting(property.edt);
+		case EPC__AUTOMATIC_WATER_HEATING_SETTING : return setAutomaticWaterHeatingSetting(property.edt);
+		case EPC__AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING : return setAutomaticWaterTemperatureControlSetting(property.edt);
+		case EPC_BATH_WATER_VOLUME_SETTING_3 : return setBathWaterVolumeSetting3(property.edt);
+		case EPC_ON_TIMER_RESERVATION_SETTING : return setOnTimerReservationSetting(property.edt);
+
 		default : return false;
 		}
 	}
@@ -1816,31 +1786,32 @@ bytes<br>
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_AUTOMATIC_WATER_HEATING_SETTING : return getAutomaticWaterHeatingSetting();
-		case EPC_AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING : return getAutomaticWaterTemperatureControlSetting();
+		case EPC__AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING : return getAutomaticBathWaterHeatingModeSetting();
+		case EPC_TANK_CAPACITY : return getTankCapacity();
+		case EPC_MEASURED_AMOUNT_OF_WATER_REMAINING_IN_TANK : return getMeasuredAmountOfWaterRemainingInTank();
+		case EPC_BATH_WATER_VOLUME_SETTING : return getBathWaterVolumeSetting();
+		case EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER : return getMeasuredTemperatureOfWaterInWaterHeater();
+		case EPC__DAYTIME_REHEATING_PERMISSION_SETTING : return getDaytimeReheatingPermissionSetting();
+		case EPC__ADDITION_OF_HOT_WATER_FUNCTION_SETTING : return getAdditionOfHotWaterFunctionSetting();
+		case EPC_ALARM_STATUS : return getAlarmStatus();
+		case EPC_BATH_WATER_VOLUME_SETTING_2 : return getBathWaterVolumeSetting2();
+		case EPC_BATH_WATER_VOLUME_SETTING_1 : return getBathWaterVolumeSetting1();
+		case EPC__SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING : return getSlightBathWaterTemperatureLoweringFunctionSetting();
+		case EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_SUMMERTIME : return getRatedPowerConsumptionOfHPUnitInSummertime();
+		case EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_WINTERTIME : return getRatedPowerConsumptionOfHPUnitInWintertime();
+		case EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_X000A_IN_BETWEEN_SEASONS : return getRatedPowerConsumptionOfHPUnitInX000AInBetweenSeasons();
+		case EPC_ON_TIMER_SETTING : return getOnTimerSetting();
+		case EPC__TEMPERATURE_OF_SUPPLIED_WATER_SETTING : return getTemperatureOfSuppliedWaterSetting();
+		case EPC_BATH_WATER_TEMPERATURE_SETTING : return getBathWaterTemperatureSetting();
+		case EPC_BATH_WATER_VOLUME_SETTING_4 : return getBathWaterVolumeSetting4();
+		case EPC_BATH_WATER_VOLUME_SETTING_4_MAXIMUM_SETTABLE_LEVEL : return getBathWaterVolumeSetting4MaximumSettableLevel();
 		case EPC_WATER_HEATER_STATUS : return getWaterHeaterStatus();
 		case EPC_WATER_HEATING_TEMPERATURE_SETTING : return getWaterHeatingTemperatureSetting();
-		case EPC_DAYTIME_REHEATING_PERMISSION_SETTING : return getDaytimeReheatingPermissionSetting();
-		case EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER : return getMeasuredTemperatureOfWaterInWaterHeater();
-		case EPC_ALARM_STATUS : return getAlarmStatus();
-		case EPC_TEMPERATURE_OF_SUPPLIED_WATER_SETTING : return getTemperatureOfSuppliedWaterSetting();
-		case EPC_BATH_WATER_TEMPERATURE_SETTING : return getBathWaterTemperatureSetting();
-		case EPC_BATH_WATER_VOLUME_SETTING : return getBathWaterVolumeSetting();
-		case EPC_MEASURED_AMOUNT_OF_WATER_REMAINING_IN_TANK : return getMeasuredAmountOfWaterRemainingInTank();
-		case EPC_TANK_CAPACITY : return getTankCapacity();
-		case EPC_AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING : return getAutomaticBathWaterHeatingModeSetting();
-		case EPC_ADDITION_OF_HOT_WATER_FUNCTION_SETTING : return getAdditionOfHotWaterFunctionSetting();
-		case EPC_SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING : return getSlightBathWaterTemperatureLoweringFunctionSetting();
-		case EPC_BATH_WATER_VOLUME_SETTING1 : return getBathWaterVolumeSetting1();
-		case EPC_BATH_WATER_VOLUME_SETTING2 : return getBathWaterVolumeSetting2();
-		case EPC_BATH_WATER_VOLUME_SETTING3 : return getBathWaterVolumeSetting3();
-		case EPC_BATH_WATER_VOLUME_SETTING4 : return getBathWaterVolumeSetting4();
-		case EPC_BATH_WATER_VOLUME_SETTING4_MAXIMUM_SETTABLE_LEVEL : return getBathWaterVolumeSetting4MaximumSettableLevel();
+		case EPC__AUTOMATIC_WATER_HEATING_SETTING : return getAutomaticWaterHeatingSetting();
+		case EPC__AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING : return getAutomaticWaterTemperatureControlSetting();
+		case EPC_BATH_WATER_VOLUME_SETTING_3 : return getBathWaterVolumeSetting3();
 		case EPC_ON_TIMER_RESERVATION_SETTING : return getOnTimerReservationSetting();
-		case EPC_ON_TIMER_SETTING : return getOnTimerSetting();
-		case EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_WINTERTIME : return getRatedPowerConsumptionOfHPUnitInWintertime();
-		case EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_IN_BETWEEN_SEASONS : return getRatedPowerConsumptionOfHPUnitInInBetweenSeasons();
-		case EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_SUMMERTIME : return getRatedPowerConsumptionOfHPUnitInSummertime();
+
 		default : return null;
 		}
 	}
@@ -1851,31 +1822,32 @@ bytes<br>
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_AUTOMATIC_WATER_HEATING_SETTING : return isValidAutomaticWaterHeatingSetting(property.edt);
-		case EPC_AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING : return isValidAutomaticWaterTemperatureControlSetting(property.edt);
+		case EPC__AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING : return isValidAutomaticBathWaterHeatingModeSetting(property.edt);
+		case EPC_TANK_CAPACITY : return isValidTankCapacity(property.edt);
+		case EPC_MEASURED_AMOUNT_OF_WATER_REMAINING_IN_TANK : return isValidMeasuredAmountOfWaterRemainingInTank(property.edt);
+		case EPC_BATH_WATER_VOLUME_SETTING : return isValidBathWaterVolumeSetting(property.edt);
+		case EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER : return isValidMeasuredTemperatureOfWaterInWaterHeater(property.edt);
+		case EPC__DAYTIME_REHEATING_PERMISSION_SETTING : return isValidDaytimeReheatingPermissionSetting(property.edt);
+		case EPC__ADDITION_OF_HOT_WATER_FUNCTION_SETTING : return isValidAdditionOfHotWaterFunctionSetting(property.edt);
+		case EPC_ALARM_STATUS : return isValidAlarmStatus(property.edt);
+		case EPC_BATH_WATER_VOLUME_SETTING_2 : return isValidBathWaterVolumeSetting2(property.edt);
+		case EPC_BATH_WATER_VOLUME_SETTING_1 : return isValidBathWaterVolumeSetting1(property.edt);
+		case EPC__SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING : return isValidSlightBathWaterTemperatureLoweringFunctionSetting(property.edt);
+		case EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_SUMMERTIME : return isValidRatedPowerConsumptionOfHPUnitInSummertime(property.edt);
+		case EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_WINTERTIME : return isValidRatedPowerConsumptionOfHPUnitInWintertime(property.edt);
+		case EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_X000A_IN_BETWEEN_SEASONS : return isValidRatedPowerConsumptionOfHPUnitInX000AInBetweenSeasons(property.edt);
+		case EPC_ON_TIMER_SETTING : return isValidOnTimerSetting(property.edt);
+		case EPC__TEMPERATURE_OF_SUPPLIED_WATER_SETTING : return isValidTemperatureOfSuppliedWaterSetting(property.edt);
+		case EPC_BATH_WATER_TEMPERATURE_SETTING : return isValidBathWaterTemperatureSetting(property.edt);
+		case EPC_BATH_WATER_VOLUME_SETTING_4 : return isValidBathWaterVolumeSetting4(property.edt);
+		case EPC_BATH_WATER_VOLUME_SETTING_4_MAXIMUM_SETTABLE_LEVEL : return isValidBathWaterVolumeSetting4MaximumSettableLevel(property.edt);
 		case EPC_WATER_HEATER_STATUS : return isValidWaterHeaterStatus(property.edt);
 		case EPC_WATER_HEATING_TEMPERATURE_SETTING : return isValidWaterHeatingTemperatureSetting(property.edt);
-		case EPC_DAYTIME_REHEATING_PERMISSION_SETTING : return isValidDaytimeReheatingPermissionSetting(property.edt);
-		case EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER : return isValidMeasuredTemperatureOfWaterInWaterHeater(property.edt);
-		case EPC_ALARM_STATUS : return isValidAlarmStatus(property.edt);
-		case EPC_TEMPERATURE_OF_SUPPLIED_WATER_SETTING : return isValidTemperatureOfSuppliedWaterSetting(property.edt);
-		case EPC_BATH_WATER_TEMPERATURE_SETTING : return isValidBathWaterTemperatureSetting(property.edt);
-		case EPC_BATH_WATER_VOLUME_SETTING : return isValidBathWaterVolumeSetting(property.edt);
-		case EPC_MEASURED_AMOUNT_OF_WATER_REMAINING_IN_TANK : return isValidMeasuredAmountOfWaterRemainingInTank(property.edt);
-		case EPC_TANK_CAPACITY : return isValidTankCapacity(property.edt);
-		case EPC_AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING : return isValidAutomaticBathWaterHeatingModeSetting(property.edt);
-		case EPC_ADDITION_OF_HOT_WATER_FUNCTION_SETTING : return isValidAdditionOfHotWaterFunctionSetting(property.edt);
-		case EPC_SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING : return isValidSlightBathWaterTemperatureLoweringFunctionSetting(property.edt);
-		case EPC_BATH_WATER_VOLUME_SETTING1 : return isValidBathWaterVolumeSetting1(property.edt);
-		case EPC_BATH_WATER_VOLUME_SETTING2 : return isValidBathWaterVolumeSetting2(property.edt);
-		case EPC_BATH_WATER_VOLUME_SETTING3 : return isValidBathWaterVolumeSetting3(property.edt);
-		case EPC_BATH_WATER_VOLUME_SETTING4 : return isValidBathWaterVolumeSetting4(property.edt);
-		case EPC_BATH_WATER_VOLUME_SETTING4_MAXIMUM_SETTABLE_LEVEL : return isValidBathWaterVolumeSetting4MaximumSettableLevel(property.edt);
+		case EPC__AUTOMATIC_WATER_HEATING_SETTING : return isValidAutomaticWaterHeatingSetting(property.edt);
+		case EPC__AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING : return isValidAutomaticWaterTemperatureControlSetting(property.edt);
+		case EPC_BATH_WATER_VOLUME_SETTING_3 : return isValidBathWaterVolumeSetting3(property.edt);
 		case EPC_ON_TIMER_RESERVATION_SETTING : return isValidOnTimerReservationSetting(property.edt);
-		case EPC_ON_TIMER_SETTING : return isValidOnTimerSetting(property.edt);
-		case EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_WINTERTIME : return isValidRatedPowerConsumptionOfHPUnitInWintertime(property.edt);
-		case EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_IN_BETWEEN_SEASONS : return isValidRatedPowerConsumptionOfHPUnitInInBetweenSeasons(property.edt);
-		case EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_SUMMERTIME : return isValidRatedPowerConsumptionOfHPUnitInSummertime(property.edt);
+
 		default : return false;
 		}
 	}
@@ -1923,54 +1895,55 @@ bytes<br>
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_AUTOMATIC_WATER_HEATING_SETTING : 
-				onSetAutomaticWaterHeatingSetting(eoj, tid, esv, property, success);
+			case EPC__AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING : 
+				onSetAutomaticBathWaterHeatingModeSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING : 
-				onSetAutomaticWaterTemperatureControlSetting(eoj, tid, esv, property, success);
+			case EPC_BATH_WATER_VOLUME_SETTING : 
+				onSetBathWaterVolumeSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_WATER_HEATING_TEMPERATURE_SETTING : 
-				onSetWaterHeatingTemperatureSetting(eoj, tid, esv, property, success);
-				return true;
-			case EPC_DAYTIME_REHEATING_PERMISSION_SETTING : 
+			case EPC__DAYTIME_REHEATING_PERMISSION_SETTING : 
 				onSetDaytimeReheatingPermissionSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_TEMPERATURE_OF_SUPPLIED_WATER_SETTING : 
+			case EPC__ADDITION_OF_HOT_WATER_FUNCTION_SETTING : 
+				onSetAdditionOfHotWaterFunctionSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_BATH_WATER_VOLUME_SETTING_2 : 
+				onSetBathWaterVolumeSetting2(eoj, tid, esv, property, success);
+				return true;
+			case EPC_BATH_WATER_VOLUME_SETTING_1 : 
+				onSetBathWaterVolumeSetting1(eoj, tid, esv, property, success);
+				return true;
+			case EPC__SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING : 
+				onSetSlightBathWaterTemperatureLoweringFunctionSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ON_TIMER_SETTING : 
+				onSetOnTimerSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC__TEMPERATURE_OF_SUPPLIED_WATER_SETTING : 
 				onSetTemperatureOfSuppliedWaterSetting(eoj, tid, esv, property, success);
 				return true;
 			case EPC_BATH_WATER_TEMPERATURE_SETTING : 
 				onSetBathWaterTemperatureSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_BATH_WATER_VOLUME_SETTING : 
-				onSetBathWaterVolumeSetting(eoj, tid, esv, property, success);
-				return true;
-			case EPC_AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING : 
-				onSetAutomaticBathWaterHeatingModeSetting(eoj, tid, esv, property, success);
-				return true;
-			case EPC_ADDITION_OF_HOT_WATER_FUNCTION_SETTING : 
-				onSetAdditionOfHotWaterFunctionSetting(eoj, tid, esv, property, success);
-				return true;
-			case EPC_SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING : 
-				onSetSlightBathWaterTemperatureLoweringFunctionSetting(eoj, tid, esv, property, success);
-				return true;
-			case EPC_BATH_WATER_VOLUME_SETTING1 : 
-				onSetBathWaterVolumeSetting1(eoj, tid, esv, property, success);
-				return true;
-			case EPC_BATH_WATER_VOLUME_SETTING2 : 
-				onSetBathWaterVolumeSetting2(eoj, tid, esv, property, success);
-				return true;
-			case EPC_BATH_WATER_VOLUME_SETTING3 : 
-				onSetBathWaterVolumeSetting3(eoj, tid, esv, property, success);
-				return true;
-			case EPC_BATH_WATER_VOLUME_SETTING4 : 
+			case EPC_BATH_WATER_VOLUME_SETTING_4 : 
 				onSetBathWaterVolumeSetting4(eoj, tid, esv, property, success);
+				return true;
+			case EPC_WATER_HEATING_TEMPERATURE_SETTING : 
+				onSetWaterHeatingTemperatureSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC__AUTOMATIC_WATER_HEATING_SETTING : 
+				onSetAutomaticWaterHeatingSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC__AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING : 
+				onSetAutomaticWaterTemperatureControlSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_BATH_WATER_VOLUME_SETTING_3 : 
+				onSetBathWaterVolumeSetting3(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ON_TIMER_RESERVATION_SETTING : 
 				onSetOnTimerReservationSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_ON_TIMER_SETTING : 
-				onSetOnTimerSetting(eoj, tid, esv, property, success);
-				return true;
+
 			default :
 				return false;
 			}
@@ -1983,11 +1956,62 @@ bytes<br>
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_AUTOMATIC_WATER_HEATING_SETTING : 
-				onGetAutomaticWaterHeatingSetting(eoj, tid, esv, property, success);
+			case EPC__AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING : 
+				onGetAutomaticBathWaterHeatingModeSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING : 
-				onGetAutomaticWaterTemperatureControlSetting(eoj, tid, esv, property, success);
+			case EPC_TANK_CAPACITY : 
+				onGetTankCapacity(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASURED_AMOUNT_OF_WATER_REMAINING_IN_TANK : 
+				onGetMeasuredAmountOfWaterRemainingInTank(eoj, tid, esv, property, success);
+				return true;
+			case EPC_BATH_WATER_VOLUME_SETTING : 
+				onGetBathWaterVolumeSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER : 
+				onGetMeasuredTemperatureOfWaterInWaterHeater(eoj, tid, esv, property, success);
+				return true;
+			case EPC__DAYTIME_REHEATING_PERMISSION_SETTING : 
+				onGetDaytimeReheatingPermissionSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC__ADDITION_OF_HOT_WATER_FUNCTION_SETTING : 
+				onGetAdditionOfHotWaterFunctionSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ALARM_STATUS : 
+				onGetAlarmStatus(eoj, tid, esv, property, success);
+				return true;
+			case EPC_BATH_WATER_VOLUME_SETTING_2 : 
+				onGetBathWaterVolumeSetting2(eoj, tid, esv, property, success);
+				return true;
+			case EPC_BATH_WATER_VOLUME_SETTING_1 : 
+				onGetBathWaterVolumeSetting1(eoj, tid, esv, property, success);
+				return true;
+			case EPC__SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING : 
+				onGetSlightBathWaterTemperatureLoweringFunctionSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_SUMMERTIME : 
+				onGetRatedPowerConsumptionOfHPUnitInSummertime(eoj, tid, esv, property, success);
+				return true;
+			case EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_WINTERTIME : 
+				onGetRatedPowerConsumptionOfHPUnitInWintertime(eoj, tid, esv, property, success);
+				return true;
+			case EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_X000A_IN_BETWEEN_SEASONS : 
+				onGetRatedPowerConsumptionOfHPUnitInX000AInBetweenSeasons(eoj, tid, esv, property, success);
+				return true;
+			case EPC_ON_TIMER_SETTING : 
+				onGetOnTimerSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC__TEMPERATURE_OF_SUPPLIED_WATER_SETTING : 
+				onGetTemperatureOfSuppliedWaterSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_BATH_WATER_TEMPERATURE_SETTING : 
+				onGetBathWaterTemperatureSetting(eoj, tid, esv, property, success);
+				return true;
+			case EPC_BATH_WATER_VOLUME_SETTING_4 : 
+				onGetBathWaterVolumeSetting4(eoj, tid, esv, property, success);
+				return true;
+			case EPC_BATH_WATER_VOLUME_SETTING_4_MAXIMUM_SETTABLE_LEVEL : 
+				onGetBathWaterVolumeSetting4MaximumSettableLevel(eoj, tid, esv, property, success);
 				return true;
 			case EPC_WATER_HEATER_STATUS : 
 				onGetWaterHeaterStatus(eoj, tid, esv, property, success);
@@ -1995,551 +2019,45 @@ bytes<br>
 			case EPC_WATER_HEATING_TEMPERATURE_SETTING : 
 				onGetWaterHeatingTemperatureSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_DAYTIME_REHEATING_PERMISSION_SETTING : 
-				onGetDaytimeReheatingPermissionSetting(eoj, tid, esv, property, success);
+			case EPC__AUTOMATIC_WATER_HEATING_SETTING : 
+				onGetAutomaticWaterHeatingSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER : 
-				onGetMeasuredTemperatureOfWaterInWaterHeater(eoj, tid, esv, property, success);
+			case EPC__AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING : 
+				onGetAutomaticWaterTemperatureControlSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_ALARM_STATUS : 
-				onGetAlarmStatus(eoj, tid, esv, property, success);
-				return true;
-			case EPC_TEMPERATURE_OF_SUPPLIED_WATER_SETTING : 
-				onGetTemperatureOfSuppliedWaterSetting(eoj, tid, esv, property, success);
-				return true;
-			case EPC_BATH_WATER_TEMPERATURE_SETTING : 
-				onGetBathWaterTemperatureSetting(eoj, tid, esv, property, success);
-				return true;
-			case EPC_BATH_WATER_VOLUME_SETTING : 
-				onGetBathWaterVolumeSetting(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASURED_AMOUNT_OF_WATER_REMAINING_IN_TANK : 
-				onGetMeasuredAmountOfWaterRemainingInTank(eoj, tid, esv, property, success);
-				return true;
-			case EPC_TANK_CAPACITY : 
-				onGetTankCapacity(eoj, tid, esv, property, success);
-				return true;
-			case EPC_AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING : 
-				onGetAutomaticBathWaterHeatingModeSetting(eoj, tid, esv, property, success);
-				return true;
-			case EPC_ADDITION_OF_HOT_WATER_FUNCTION_SETTING : 
-				onGetAdditionOfHotWaterFunctionSetting(eoj, tid, esv, property, success);
-				return true;
-			case EPC_SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING : 
-				onGetSlightBathWaterTemperatureLoweringFunctionSetting(eoj, tid, esv, property, success);
-				return true;
-			case EPC_BATH_WATER_VOLUME_SETTING1 : 
-				onGetBathWaterVolumeSetting1(eoj, tid, esv, property, success);
-				return true;
-			case EPC_BATH_WATER_VOLUME_SETTING2 : 
-				onGetBathWaterVolumeSetting2(eoj, tid, esv, property, success);
-				return true;
-			case EPC_BATH_WATER_VOLUME_SETTING3 : 
+			case EPC_BATH_WATER_VOLUME_SETTING_3 : 
 				onGetBathWaterVolumeSetting3(eoj, tid, esv, property, success);
-				return true;
-			case EPC_BATH_WATER_VOLUME_SETTING4 : 
-				onGetBathWaterVolumeSetting4(eoj, tid, esv, property, success);
-				return true;
-			case EPC_BATH_WATER_VOLUME_SETTING4_MAXIMUM_SETTABLE_LEVEL : 
-				onGetBathWaterVolumeSetting4MaximumSettableLevel(eoj, tid, esv, property, success);
 				return true;
 			case EPC_ON_TIMER_RESERVATION_SETTING : 
 				onGetOnTimerReservationSetting(eoj, tid, esv, property, success);
 				return true;
-			case EPC_ON_TIMER_SETTING : 
-				onGetOnTimerSetting(eoj, tid, esv, property, success);
-				return true;
-			case EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_WINTERTIME : 
-				onGetRatedPowerConsumptionOfHPUnitInWintertime(eoj, tid, esv, property, success);
-				return true;
-			case EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_IN_BETWEEN_SEASONS : 
-				onGetRatedPowerConsumptionOfHPUnitInInBetweenSeasons(eoj, tid, esv, property, success);
-				return true;
-			case EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_SUMMERTIME : 
-				onGetRatedPowerConsumptionOfHPUnitInSummertime(eoj, tid, esv, property, success);
-				return true;
+
 			default :
 				return false;
 			}
 		}
 		
 		/**
-		 * Property name : “Automatic water heating” setting<br>
-		 * <br>
-		 * EPC : 0xB0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Automatic water heating function used: 0x41<br>
-		 * Non-automatic water heating function stopped: 0x43<br>
-		 * Non-automatic water heating function used: 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
-		 */
-		protected void onSetAutomaticWaterHeatingSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : “Automatic water heating” setting<br>
-		 * <br>
-		 * EPC : 0xB0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Automatic water heating function used: 0x41<br>
-		 * Non-automatic water heating function stopped: 0x43<br>
-		 * Non-automatic water heating function used: 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
-		 */
-		protected void onGetAutomaticWaterHeatingSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : “Automatic water temperature control” setting<br>
-		 * <br>
-		 * EPC : 0xB1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Automatic water temperature control function used: 0x41<br>
-		 * Automatic water temperature control function not used: 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetAutomaticWaterTemperatureControlSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : “Automatic water temperature control” setting<br>
-		 * <br>
-		 * EPC : 0xB1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Automatic water temperature control function used: 0x41<br>
-		 * Automatic water temperature control function not used: 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetAutomaticWaterTemperatureControlSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Water heater status<br>
-		 * <br>
-		 * EPC : 0xB2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the current status of the water heater in terms of whether it is heating water or not.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Heating = 0x41 Not heating = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetWaterHeaterStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Water heating temperature setting<br>
-		 * <br>
-		 * EPC : 0xB3<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify (in °C) the temperature of heated water to achieve, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100°C)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .C<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
-		 */
-		protected void onSetWaterHeatingTemperatureSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Water heating temperature setting<br>
-		 * <br>
-		 * EPC : 0xB3<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify (in °C) the temperature of heated water to achieve, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100°C)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .C<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
-		 */
-		protected void onGetWaterHeatingTemperatureSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : “Daytime reheating permission” setting<br>
-		 * <br>
-		 * EPC : 0xC0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetDaytimeReheatingPermissionSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : “Daytime reheating permission” setting<br>
-		 * <br>
-		 * EPC : 0xC0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetDaytimeReheatingPermissionSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measured temperature of water in water heater<br>
-		 * <br>
-		 * EPC : 0xC1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the current temperature of the water in the water heater.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100°C)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .C<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasuredTemperatureOfWaterInWaterHeater(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Alarm status<br>
-		 * <br>
-		 * EPC : 0xC2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the status of an alarm.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * First byte:<br>
-		 * Bit 0: Out of hot water<br>
-		 * 0 Normal<br>
-		 * 1 Alarm Bit 1: Water leaking<br>
-		 * 0 Normal<br>
-		 * 1 Alarm Bit 2: Water frozen<br>
-		 * 0 Normal<br>
-		 * 1 Alarm<br>
-		 * Bits 3-7: reserved for future use<br>
-		 * 2-4 bytes:<br>
-		 * reserved for future use<br>
-		 * <br>
-		 * Data type : unsigned char × 2<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 * <br>
-		 * <b>Announcement at status change</b><br>
-		 */
-		protected void onGetAlarmStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : “Temperature of supplied water” setting<br>
-		 * <br>
-		 * EPC : 0xD1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the temperature of water supplied from the water heater in °C, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100°C)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .C<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetTemperatureOfSuppliedWaterSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : “Temperature of supplied water” setting<br>
-		 * <br>
-		 * EPC : 0xD1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the temperature of water supplied from the water heater in °C, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100°C)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .C<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetTemperatureOfSuppliedWaterSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Bath water temperature setting<br>
-		 * <br>
-		 * EPC : 0xD3<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify (in °C) the temperature up to which the water heater will heat bath water, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100°C)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .C<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetBathWaterTemperatureSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Bath water temperature setting<br>
-		 * <br>
-		 * EPC : 0xD3<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify (in °C) the temperature up to which the water heater will heat bath water, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100°C)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .C<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetBathWaterTemperatureSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Bath water volume setting<br>
-		 * <br>
-		 * EPC : 0xE0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100%)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : %<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetBathWaterVolumeSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Bath water volume setting<br>
-		 * <br>
-		 * EPC : 0xE0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100%)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : %<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetBathWaterVolumeSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measured amount of water remaining in tank<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured amount of water left in the tank in liters.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533 liters)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : liter<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetMeasuredAmountOfWaterRemainingInTank(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Tank capacity<br>
-		 * <br>
-		 * EPC : 0xE2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the tank capacity in liters.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533 liters)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : liter<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetTankCapacity(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
 		 * Property name : “Automatic bath water heating” mode setting<br>
 		 * <br>
 		 * EPC : 0xE3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to use the “automatic bath water heating” mode, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Used to specify whether or not to use the “automatic bath water heating” mode, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * “Automatic bath water heating” mode ON = 0x41<br>
-		 * “Automatic bath water heating” mode OFF = 0x42<br>
+		 * “Automatic bath water heating” mode ON = 0x41_x000a_“Automatic bath water heating” mode OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onSetAutomaticBathWaterHeatingModeSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -2547,48 +2065,206 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xE3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to use the “automatic bath water heating” mode, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Used to specify whether or not to use the “automatic bath water heating” mode, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * “Automatic bath water heating” mode ON = 0x41<br>
-		 * “Automatic bath water heating” mode OFF = 0x42<br>
+		 * “Automatic bath water heating” mode ON = 0x41_x000a_“Automatic bath water heating” mode OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetAutomaticBathWaterHeatingModeSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Tank capacity<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the tank capacity in liters. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.65533 liters)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetTankCapacity(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measured amount of water remaining in tank<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measured amount of water left in the tank in liters. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.65533 liters)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasuredAmountOfWaterRemainingInTank(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Bath water volume setting<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetBathWaterVolumeSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Bath water volume setting<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetBathWaterVolumeSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Measured temperature of water in water heater<br>
+		 * <br>
+		 * EPC : 0xC1<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the current temperature of the water in the water heater. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100°C)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : °C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetMeasuredTemperatureOfWaterInWaterHeater(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : “Daytime reheating permission” setting<br>
+		 * <br>
+		 * EPC : 0xC0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetDaytimeReheatingPermissionSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : “Daytime reheating permission” setting<br>
+		 * <br>
+		 * EPC : 0xC0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetDaytimeReheatingPermissionSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : “Addition of hot water” function setting<br>
 		 * <br>
 		 * EPC : 0xE5<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * “Addition of hot water” function ON = 0x41<br>
-		 * “Addition of hot water” function OFF<br>
-		 * = 0x42<br>
+		 * “Addition of hot water” function ON = 0x41_x000a_“Addition of hot water” function OFF_x000a_= 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onSetAdditionOfHotWaterFunctionSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -2596,141 +2272,68 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xE5<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * “Addition of hot water” function ON = 0x41<br>
-		 * “Addition of hot water” function OFF<br>
-		 * = 0x42<br>
+		 * “Addition of hot water” function ON = 0x41_x000a_“Addition of hot water” function OFF_x000a_= 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetAdditionOfHotWaterFunctionSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : “Slight bath water temperature lowering” function setting<br>
+		 * Property name : Alarm status<br>
 		 * <br>
-		 * EPC : 0xE6<br>
+		 * EPC : 0xC2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to use the “slight bath water temperature lowering” function, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * This property indicates the status of an alarm. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * “Slight bath water temperature lowering” function ON = 0x41<br>
-		 * “Slight bath water temperature lowering” function OFF = 0x42<br>
+		 * First byte:_x000a_Bit 0: Out of hot water_x000a_0 Normal_x000a_1 Alarm Bit 1: Water leaking_x000a_0 Normal_x000a_1 Alarm Bit 2: Water frozen_x000a_0 Normal_x000a_1 Alarm_x000a_Bits 3-7: reserved for future use_x000a_2-4 bytes:_x000a_reserved for future use<br>
 		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data type : unsigned char × 2<br>
+		 * Data size : 4<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onSetSlightBathWaterTemperatureLoweringFunctionSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : “Slight bath water temperature lowering” function setting<br>
-		 * <br>
-		 * EPC : 0xE6<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to use the “slight bath water temperature lowering” function, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * “Slight bath water temperature lowering” function ON = 0x41<br>
-		 * “Slight bath water temperature lowering” function OFF = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetSlightBathWaterTemperatureLoweringFunctionSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Bath water volume setting 1<br>
-		 * <br>
-		 * EPC : 0xE7<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0xFD (0.253 liters)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : liter<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetBathWaterVolumeSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Bath water volume setting 1<br>
-		 * <br>
-		 * EPC : 0xE7<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0xFD (0.253 liters)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : liter<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetBathWaterVolumeSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetAlarmStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Bath water volume setting 2<br>
 		 * <br>
 		 * EPC : 0xE8<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onSetBathWaterVolumeSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -2738,209 +2341,252 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xE8<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetBathWaterVolumeSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Bath water volume setting 3<br>
+		 * Property name : Bath water volume setting 1<br>
 		 * <br>
-		 * EPC : 0xEE<br>
+		 * EPC : 0xE7<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Used to specify the bath water volume in liters, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533 liters)<br>
+		 * 0x00.0xFD (0.253 liters)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetBathWaterVolumeSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Bath water volume setting 1<br>
+		 * <br>
+		 * EPC : 0xE7<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify the bath water volume in liters, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0xFD (0.253 liters)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetBathWaterVolumeSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : “Slight bath water temperature lowering” function setting<br>
+		 * <br>
+		 * EPC : 0xE6<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify whether or not to use the “slight bath water temperature lowering” function, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * “Slight bath water temperature lowering” function ON = 0x41_x000a_“Slight bath water temperature lowering” function OFF = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetSlightBathWaterTemperatureLoweringFunctionSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : “Slight bath water temperature lowering” function setting<br>
+		 * <br>
+		 * EPC : 0xE6<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify whether or not to use the “slight bath water temperature lowering” function, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * “Slight bath water temperature lowering” function ON = 0x41_x000a_“Slight bath water temperature lowering” function OFF = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetSlightBathWaterTemperatureLoweringFunctionSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Rated power consumption of H/P unit in summertime<br>
+		 * <br>
+		 * EPC : 0xDD<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the rated power consumption of the heat pump in summertime (June to September) <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD(0.65,533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : liter<br>
+		 * Data size : 2<br>
+		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onSetBathWaterVolumeSetting3(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetRatedPowerConsumptionOfHPUnitInSummertime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Bath water volume setting 3<br>
+		 * Property name : Rated power consumption of H/P unit in wintertime<br>
 		 * <br>
-		 * EPC : 0xEE<br>
+		 * EPC : 0xDB<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * This property indicates the rated power consumption of the heat pump in wintertime (December to March) <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533 liters)<br>
+		 * 0x0000.0xFFFD(0.65,533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : liter<br>
+		 * Data size : 2<br>
+		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetBathWaterVolumeSetting3(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetRatedPowerConsumptionOfHPUnitInWintertime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Bath water volume setting 4<br>
+		 * Property name : Rated power consumption of H/P unit in_x000a_in-between seasons<br>
 		 * <br>
-		 * EPC : 0xD4<br>
+		 * EPC : 0xDC<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * ￼<br>
-		 * The bath hot water volume is specified by the number of steps.<br>
+		 * Contents :<br>
+		 * This property indicates the rated power consumption of the heat pump in_x000a_in-between seasons (April, May, October, November) <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x01-0xFF<br>
+		 * 0x0000.0xFFFD(0.65,533)<br>
 		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : null<br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onSetBathWaterVolumeSetting4(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetRatedPowerConsumptionOfHPUnitInX000AInBetweenSeasons(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Bath water volume setting 4<br>
+		 * Property name : Operation status<br>
 		 * <br>
-		 * EPC : 0xD4<br>
+		 * EPC : 0x80<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * ￼<br>
-		 * The bath hot water volume is specified by the number of steps.<br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x01-0xFF<br>
+		 * ON=0x30, OFF=0x31<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : null<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetBathWaterVolumeSetting4(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Bath water volume setting 4- Maximum settable level<br>
+		 * Property name : Operation status<br>
 		 * <br>
-		 * EPC : 0xD5<br>
+		 * EPC : 0x80<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * ￼<br>
-		 * The maximum settable level is the top step of Bath water volume setting 4.<br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x01-0xFF<br>
+		 * ON=0x30, OFF=0x31<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : null<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetBathWaterVolumeSetting4MaximumSettableLevel(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : ON timer reservation setting<br>
-		 * <br>
-		 * EPC : 0x90<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Reservation ON/OFF<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Reservation ON = 0x41 Reservation OFF = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : liter<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : ON timer reservation setting<br>
-		 * <br>
-		 * EPC : 0x90<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Reservation ON/OFF<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Reservation ON = 0x41 Reservation OFF = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : liter<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : ON timer setting<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * ON timer setting (HH:MM)<br>
+		 * Contents :<br>
+		 * ON timer setting (HH:MM) <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char × 2<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onSetOnTimerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -2948,98 +2594,439 @@ bytes<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * ON timer setting (HH:MM)<br>
+		 * Contents :<br>
+		 * ON timer setting (HH:MM) <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char × 2<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetOnTimerSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Rated power consumption of H/P unit in wintertime<br>
+		 * Property name : “Temperature of supplied water” setting<br>
 		 * <br>
-		 * EPC : 0xDB<br>
+		 * EPC : 0xD1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated power consumption of the heat pump in wintertime (December to March)<br>
+		 * Contents :<br>
+		 * Used to specify the temperature of water supplied from the water heater in °C, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD(0.65,533)<br>
+		 * 0x00.0x64 (0.100°C)<br>
 		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
-		 * Unit : W<br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : °C<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetRatedPowerConsumptionOfHPUnitInWintertime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetTemperatureOfSuppliedWaterSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Rated power consumption of H/P unit in
-in-between seasons<br>
+		 * Property name : “Temperature of supplied water” setting<br>
 		 * <br>
-		 * EPC : 0xDC<br>
+		 * EPC : 0xD1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated power consumption of the heat pump in<br>
-		 * in-between seasons (April, May, October, November)<br>
+		 * Contents :<br>
+		 * Used to specify the temperature of water supplied from the water heater in °C, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD(0.65,533)<br>
+		 * 0x00.0x64 (0.100°C)<br>
 		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
-		 * Unit : W<br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : °C<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetRatedPowerConsumptionOfHPUnitInInBetweenSeasons(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetTemperatureOfSuppliedWaterSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Rated power consumption of H/P unit in summertime<br>
+		 * Property name : Bath water temperature setting<br>
 		 * <br>
-		 * EPC : 0xDD<br>
+		 * EPC : 0xD3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated power consumption of the heat pump in summertime (June to September)<br>
+		 * Contents :<br>
+		 * Used to specify (in °C) the temperature up to which the water heater will heat bath water, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD(0.65,533)<br>
+		 * 0x00.0x64 (0.100°C)<br>
 		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
-		 * Unit : W<br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : °C<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetRatedPowerConsumptionOfHPUnitInSummertime(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetBathWaterTemperatureSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Bath water temperature setting<br>
+		 * <br>
+		 * EPC : 0xD3<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify (in °C) the temperature up to which the water heater will heat bath water, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100°C)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : °C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetBathWaterTemperatureSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Bath water volume setting 4<br>
+		 * <br>
+		 * EPC : 0xD4<br>
+		 * <br>
+		 * Contents :<br>
+		 * The bath hot water volume is specified by the number of steps. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01-0xFF<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : <br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetBathWaterVolumeSetting4(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Bath water volume setting 4<br>
+		 * <br>
+		 * EPC : 0xD4<br>
+		 * <br>
+		 * Contents :<br>
+		 * The bath hot water volume is specified by the number of steps. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01-0xFF<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : <br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetBathWaterVolumeSetting4(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Bath water volume setting 4- Maximum settable level<br>
+		 * <br>
+		 * EPC : 0xD5<br>
+		 * <br>
+		 * Contents :<br>
+		 * ￼The maximum settable level is the top step of Bath water volume setting 4. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01-0xFF<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : <br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetBathWaterVolumeSetting4MaximumSettableLevel(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Water heater status<br>
+		 * <br>
+		 * EPC : 0xB2<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the current status of the water heater in terms of whether it is heating water or not. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Heating = 0x41 Not heating = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetWaterHeaterStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Water heating temperature setting<br>
+		 * <br>
+		 * EPC : 0xB3<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify (in °C) the temperature of heated water to achieve, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100°C)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : °C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetWaterHeatingTemperatureSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Water heating temperature setting<br>
+		 * <br>
+		 * EPC : 0xB3<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify (in °C) the temperature of heated water to achieve, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100°C)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : °C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetWaterHeatingTemperatureSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : “Automatic water heating” setting<br>
+		 * <br>
+		 * EPC : 0xB0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic water heating function used: 0x41_x000a_Non-automatic water heating function stopped: 0x43_x000a_Non-automatic water heating function used: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetAutomaticWaterHeatingSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : “Automatic water heating” setting<br>
+		 * <br>
+		 * EPC : 0xB0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic water heating function used: 0x41_x000a_Non-automatic water heating function stopped: 0x43_x000a_Non-automatic water heating function used: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetAutomaticWaterHeatingSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : “Automatic water temperature control” setting<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic water temperature control function used: 0x41_x000a_Automatic water temperature control function not used: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetAutomaticWaterTemperatureControlSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : “Automatic water temperature control” setting<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic water temperature control function used: 0x41_x000a_Automatic water temperature control function not used: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetAutomaticWaterTemperatureControlSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Bath water volume setting 3<br>
+		 * <br>
+		 * EPC : 0xEE<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify the bath water volume in liters, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.65533 liters)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetBathWaterVolumeSetting3(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Bath water volume setting 3<br>
+		 * <br>
+		 * EPC : 0xEE<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify the bath water volume in liters, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.65533 liters)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetBathWaterVolumeSetting3(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : ON timer reservation setting<br>
+		 * <br>
+		 * EPC : 0x90<br>
+		 * <br>
+		 * Contents :<br>
+		 * Reservation ON/OFF <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation ON = 0x41 Reservation OFF = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : ON timer reservation setting<br>
+		 * <br>
+		 * EPC : 0x90<br>
+		 * <br>
+		 * Contents :<br>
+		 * Reservation ON/OFF <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation ON = 0x41 Reservation OFF = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetOnTimerReservationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+
 	}
 
 	public static class Setter extends DeviceObject.Setter {
@@ -3088,162 +3075,29 @@ bytes<br>
 		}
 		
 		/**
-		 * Property name : “Automatic water heating” setting<br>
+		 * Property name : “Automatic bath water heating” mode setting<br>
 		 * <br>
-		 * EPC : 0xB0<br>
+		 * EPC : 0xE3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Used to specify whether or not to use the “automatic bath water heating” mode, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic water heating function used: 0x41<br>
-		 * Non-automatic water heating function stopped: 0x43<br>
-		 * Non-automatic water heating function used: 0x42<br>
+		 * “Automatic bath water heating” mode ON = 0x41_x000a_“Automatic bath water heating” mode OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Setter reqSetAutomaticWaterHeatingSetting(byte[] edt) {
-			reqSetProperty(EPC_AUTOMATIC_WATER_HEATING_SETTING, edt);
-			return this;
-		}
-		/**
-		 * Property name : “Automatic water temperature control” setting<br>
-		 * <br>
-		 * EPC : 0xB1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Automatic water temperature control function used: 0x41<br>
-		 * Automatic water temperature control function not used: 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Setter reqSetAutomaticWaterTemperatureControlSetting(byte[] edt) {
-			reqSetProperty(EPC_AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING, edt);
-			return this;
-		}
-		/**
-		 * Property name : Water heating temperature setting<br>
-		 * <br>
-		 * EPC : 0xB3<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify (in °C) the temperature of heated water to achieve, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100°C)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .C<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
-		 */
-		public Setter reqSetWaterHeatingTemperatureSetting(byte[] edt) {
-			reqSetProperty(EPC_WATER_HEATING_TEMPERATURE_SETTING, edt);
-			return this;
-		}
-		/**
-		 * Property name : “Daytime reheating permission” setting<br>
-		 * <br>
-		 * EPC : 0xC0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Setter reqSetDaytimeReheatingPermissionSetting(byte[] edt) {
-			reqSetProperty(EPC_DAYTIME_REHEATING_PERMISSION_SETTING, edt);
-			return this;
-		}
-		/**
-		 * Property name : “Temperature of supplied water” setting<br>
-		 * <br>
-		 * EPC : 0xD1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the temperature of water supplied from the water heater in °C, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100°C)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .C<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Setter reqSetTemperatureOfSuppliedWaterSetting(byte[] edt) {
-			reqSetProperty(EPC_TEMPERATURE_OF_SUPPLIED_WATER_SETTING, edt);
-			return this;
-		}
-		/**
-		 * Property name : Bath water temperature setting<br>
-		 * <br>
-		 * EPC : 0xD3<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify (in °C) the temperature up to which the water heater will heat bath water, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100°C)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .C<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Setter reqSetBathWaterTemperatureSetting(byte[] edt) {
-			reqSetProperty(EPC_BATH_WATER_TEMPERATURE_SETTING, edt);
+		public Setter reqSetAutomaticBathWaterHeatingModeSetting(byte[] edt) {
+			reqSetProperty(EPC__AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3251,52 +3105,51 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : %<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetBathWaterVolumeSetting(byte[] edt) {
 			reqSetProperty(EPC_BATH_WATER_VOLUME_SETTING, edt);
 			return this;
 		}
 		/**
-		 * Property name : “Automatic bath water heating” mode setting<br>
+		 * Property name : “Daytime reheating permission” setting<br>
 		 * <br>
-		 * EPC : 0xE3<br>
+		 * EPC : 0xC0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to use the “automatic bath water heating” mode, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * “Automatic bath water heating” mode ON = 0x41<br>
-		 * “Automatic bath water heating” mode OFF = 0x42<br>
+		 * Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Setter reqSetAutomaticBathWaterHeatingModeSetting(byte[] edt) {
-			reqSetProperty(EPC_AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING, edt);
+		public Setter reqSetDaytimeReheatingPermissionSetting(byte[] edt) {
+			reqSetProperty(EPC__DAYTIME_REHEATING_PERMISSION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3304,80 +3157,25 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xE5<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * “Addition of hot water” function ON = 0x41<br>
-		 * “Addition of hot water” function OFF<br>
-		 * = 0x42<br>
+		 * “Addition of hot water” function ON = 0x41_x000a_“Addition of hot water” function OFF_x000a_= 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetAdditionOfHotWaterFunctionSetting(byte[] edt) {
-			reqSetProperty(EPC_ADDITION_OF_HOT_WATER_FUNCTION_SETTING, edt);
-			return this;
-		}
-		/**
-		 * Property name : “Slight bath water temperature lowering” function setting<br>
-		 * <br>
-		 * EPC : 0xE6<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to use the “slight bath water temperature lowering” function, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * “Slight bath water temperature lowering” function ON = 0x41<br>
-		 * “Slight bath water temperature lowering” function OFF = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Setter reqSetSlightBathWaterTemperatureLoweringFunctionSetting(byte[] edt) {
-			reqSetProperty(EPC_SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING, edt);
-			return this;
-		}
-		/**
-		 * Property name : Bath water volume setting 1<br>
-		 * <br>
-		 * EPC : 0xE7<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0xFD (0.253 liters)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : liter<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Setter reqSetBathWaterVolumeSetting1(byte[] edt) {
-			reqSetProperty(EPC_BATH_WATER_VOLUME_SETTING1, edt);
+			reqSetProperty(EPC__ADDITION_OF_HOT_WATER_FUNCTION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3385,104 +3183,77 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xE8<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetBathWaterVolumeSetting2(byte[] edt) {
-			reqSetProperty(EPC_BATH_WATER_VOLUME_SETTING2, edt);
+			reqSetProperty(EPC_BATH_WATER_VOLUME_SETTING_2, edt);
 			return this;
 		}
 		/**
-		 * Property name : Bath water volume setting 3<br>
+		 * Property name : Bath water volume setting 1<br>
 		 * <br>
-		 * EPC : 0xEE<br>
+		 * EPC : 0xE7<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Used to specify the bath water volume in liters, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533 liters)<br>
+		 * 0x00.0xFD (0.253 liters)<br>
 		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
 		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Setter reqSetBathWaterVolumeSetting3(byte[] edt) {
-			reqSetProperty(EPC_BATH_WATER_VOLUME_SETTING3, edt);
+		public Setter reqSetBathWaterVolumeSetting1(byte[] edt) {
+			reqSetProperty(EPC_BATH_WATER_VOLUME_SETTING_1, edt);
 			return this;
 		}
 		/**
-		 * Property name : Bath water volume setting 4<br>
+		 * Property name : “Slight bath water temperature lowering” function setting<br>
 		 * <br>
-		 * EPC : 0xD4<br>
+		 * EPC : 0xE6<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * ￼<br>
-		 * The bath hot water volume is specified by the number of steps.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x01-0xFF<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : null<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Setter reqSetBathWaterVolumeSetting4(byte[] edt) {
-			reqSetProperty(EPC_BATH_WATER_VOLUME_SETTING4, edt);
-			return this;
-		}
-		/**
-		 * Property name : ON timer reservation setting<br>
-		 * <br>
-		 * EPC : 0x90<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Reservation ON/OFF<br>
+		 * Contents :<br>
+		 * Used to specify whether or not to use the “slight bath water temperature lowering” function, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Reservation ON = 0x41 Reservation OFF = 0x42<br>
+		 * “Slight bath water temperature lowering” function ON = 0x41_x000a_“Slight bath water temperature lowering” function OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : liter<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Setter reqSetOnTimerReservationSetting(byte[] edt) {
-			reqSetProperty(EPC_ON_TIMER_RESERVATION_SETTING, edt);
+		public Setter reqSetSlightBathWaterTemperatureLoweringFunctionSetting(byte[] edt) {
+			reqSetProperty(EPC__SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING, edt);
 			return this;
 		}
 		/**
@@ -3490,27 +3261,236 @@ bytes<br>
 		 * <br>
 		 * EPC : 0x91<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * ON timer setting (HH:MM)<br>
+		 * Contents :<br>
+		 * ON timer setting (HH:MM) <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
 		 * <br>
 		 * Data type : unsigned char × 2<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetOnTimerSetting(byte[] edt) {
 			reqSetProperty(EPC_ON_TIMER_SETTING, edt);
 			return this;
 		}
+		/**
+		 * Property name : “Temperature of supplied water” setting<br>
+		 * <br>
+		 * EPC : 0xD1<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify the temperature of water supplied from the water heater in °C, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100°C)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : °C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Setter reqSetTemperatureOfSuppliedWaterSetting(byte[] edt) {
+			reqSetProperty(EPC__TEMPERATURE_OF_SUPPLIED_WATER_SETTING, edt);
+			return this;
+		}
+		/**
+		 * Property name : Bath water temperature setting<br>
+		 * <br>
+		 * EPC : 0xD3<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify (in °C) the temperature up to which the water heater will heat bath water, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100°C)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : °C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Setter reqSetBathWaterTemperatureSetting(byte[] edt) {
+			reqSetProperty(EPC_BATH_WATER_TEMPERATURE_SETTING, edt);
+			return this;
+		}
+		/**
+		 * Property name : Bath water volume setting 4<br>
+		 * <br>
+		 * EPC : 0xD4<br>
+		 * <br>
+		 * Contents :<br>
+		 * The bath hot water volume is specified by the number of steps. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01-0xFF<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : <br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Setter reqSetBathWaterVolumeSetting4(byte[] edt) {
+			reqSetProperty(EPC_BATH_WATER_VOLUME_SETTING_4, edt);
+			return this;
+		}
+		/**
+		 * Property name : Water heating temperature setting<br>
+		 * <br>
+		 * EPC : 0xB3<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify (in °C) the temperature of heated water to achieve, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100°C)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : °C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Setter reqSetWaterHeatingTemperatureSetting(byte[] edt) {
+			reqSetProperty(EPC_WATER_HEATING_TEMPERATURE_SETTING, edt);
+			return this;
+		}
+		/**
+		 * Property name : “Automatic water heating” setting<br>
+		 * <br>
+		 * EPC : 0xB0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic water heating function used: 0x41_x000a_Non-automatic water heating function stopped: 0x43_x000a_Non-automatic water heating function used: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Setter reqSetAutomaticWaterHeatingSetting(byte[] edt) {
+			reqSetProperty(EPC__AUTOMATIC_WATER_HEATING_SETTING, edt);
+			return this;
+		}
+		/**
+		 * Property name : “Automatic water temperature control” setting<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Automatic water temperature control function used: 0x41_x000a_Automatic water temperature control function not used: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Setter reqSetAutomaticWaterTemperatureControlSetting(byte[] edt) {
+			reqSetProperty(EPC__AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING, edt);
+			return this;
+		}
+		/**
+		 * Property name : Bath water volume setting 3<br>
+		 * <br>
+		 * EPC : 0xEE<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify the bath water volume in liters, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.65533 liters)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Setter reqSetBathWaterVolumeSetting3(byte[] edt) {
+			reqSetProperty(EPC_BATH_WATER_VOLUME_SETTING_3, edt);
+			return this;
+		}
+		/**
+		 * Property name : ON timer reservation setting<br>
+		 * <br>
+		 * EPC : 0x90<br>
+		 * <br>
+		 * Contents :<br>
+		 * Reservation ON/OFF <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reservation ON = 0x41 Reservation OFF = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Setter reqSetOnTimerReservationSetting(byte[] edt) {
+			reqSetProperty(EPC_ON_TIMER_RESERVATION_SETTING, edt);
+			return this;
+		}
+
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
@@ -3623,58 +3603,497 @@ bytes<br>
 		}
 		
 		/**
-		 * Property name : “Automatic water heating” setting<br>
+		 * Property name : “Automatic bath water heating” mode setting<br>
 		 * <br>
-		 * EPC : 0xB0<br>
+		 * EPC : 0xE3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Used to specify whether or not to use the “automatic bath water heating” mode, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic water heating function used: 0x41<br>
-		 * Non-automatic water heating function stopped: 0x43<br>
-		 * Non-automatic water heating function used: 0x42<br>
+		 * “Automatic bath water heating” mode ON = 0x41_x000a_“Automatic bath water heating” mode OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetAutomaticWaterHeatingSetting() {
-			reqGetProperty(EPC_AUTOMATIC_WATER_HEATING_SETTING);
+		public Getter reqGetAutomaticBathWaterHeatingModeSetting() {
+			reqGetProperty(EPC__AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING);
 			return this;
 		}
 		/**
-		 * Property name : “Automatic water temperature control” setting<br>
+		 * Property name : Tank capacity<br>
 		 * <br>
-		 * EPC : 0xB1<br>
+		 * EPC : 0xE2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * This property indicates the tank capacity in liters. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic water temperature control function used: 0x41<br>
-		 * Automatic water temperature control function not used: 0x42<br>
+		 * 0x0000.0xFFFD (0.65533 liters)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetTankCapacity() {
+			reqGetProperty(EPC_TANK_CAPACITY);
+			return this;
+		}
+		/**
+		 * Property name : Measured amount of water remaining in tank<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measured amount of water left in the tank in liters. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.65533 liters)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasuredAmountOfWaterRemainingInTank() {
+			reqGetProperty(EPC_MEASURED_AMOUNT_OF_WATER_REMAINING_IN_TANK);
+			return this;
+		}
+		/**
+		 * Property name : Bath water volume setting<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : %<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
 		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetBathWaterVolumeSetting() {
+			reqGetProperty(EPC_BATH_WATER_VOLUME_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : Measured temperature of water in water heater<br>
+		 * <br>
+		 * EPC : 0xC1<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the current temperature of the water in the water heater. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100°C)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : °C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetMeasuredTemperatureOfWaterInWaterHeater() {
+			reqGetProperty(EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER);
+			return this;
+		}
+		/**
+		 * Property name : “Daytime reheating permission” setting<br>
+		 * <br>
+		 * EPC : 0xC0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetAutomaticWaterTemperatureControlSetting() {
-			reqGetProperty(EPC_AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING);
+		public Getter reqGetDaytimeReheatingPermissionSetting() {
+			reqGetProperty(EPC__DAYTIME_REHEATING_PERMISSION_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : “Addition of hot water” function setting<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * “Addition of hot water” function ON = 0x41_x000a_“Addition of hot water” function OFF_x000a_= 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetAdditionOfHotWaterFunctionSetting() {
+			reqGetProperty(EPC__ADDITION_OF_HOT_WATER_FUNCTION_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : Alarm status<br>
+		 * <br>
+		 * EPC : 0xC2<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the status of an alarm. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * First byte:_x000a_Bit 0: Out of hot water_x000a_0 Normal_x000a_1 Alarm Bit 1: Water leaking_x000a_0 Normal_x000a_1 Alarm Bit 2: Water frozen_x000a_0 Normal_x000a_1 Alarm_x000a_Bits 3-7: reserved for future use_x000a_2-4 bytes:_x000a_reserved for future use<br>
+		 * <br>
+		 * Data type : unsigned char × 2<br>
+		 * Data size : 4<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetAlarmStatus() {
+			reqGetProperty(EPC_ALARM_STATUS);
+			return this;
+		}
+		/**
+		 * Property name : Bath water volume setting 2<br>
+		 * <br>
+		 * EPC : 0xE8<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x31.0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetBathWaterVolumeSetting2() {
+			reqGetProperty(EPC_BATH_WATER_VOLUME_SETTING_2);
+			return this;
+		}
+		/**
+		 * Property name : Bath water volume setting 1<br>
+		 * <br>
+		 * EPC : 0xE7<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify the bath water volume in liters, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0xFD (0.253 liters)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetBathWaterVolumeSetting1() {
+			reqGetProperty(EPC_BATH_WATER_VOLUME_SETTING_1);
+			return this;
+		}
+		/**
+		 * Property name : “Slight bath water temperature lowering” function setting<br>
+		 * <br>
+		 * EPC : 0xE6<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify whether or not to use the “slight bath water temperature lowering” function, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * “Slight bath water temperature lowering” function ON = 0x41_x000a_“Slight bath water temperature lowering” function OFF = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetSlightBathWaterTemperatureLoweringFunctionSetting() {
+			reqGetProperty(EPC__SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : Rated power consumption of H/P unit in summertime<br>
+		 * <br>
+		 * EPC : 0xDD<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the rated power consumption of the heat pump in summertime (June to September) <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD(0.65,533)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetRatedPowerConsumptionOfHPUnitInSummertime() {
+			reqGetProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_SUMMERTIME);
+			return this;
+		}
+		/**
+		 * Property name : Rated power consumption of H/P unit in wintertime<br>
+		 * <br>
+		 * EPC : 0xDB<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the rated power consumption of the heat pump in wintertime (December to March) <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD(0.65,533)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetRatedPowerConsumptionOfHPUnitInWintertime() {
+			reqGetProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_WINTERTIME);
+			return this;
+		}
+		/**
+		 * Property name : Rated power consumption of H/P unit in_x000a_in-between seasons<br>
+		 * <br>
+		 * EPC : 0xDC<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the rated power consumption of the heat pump in_x000a_in-between seasons (April, May, October, November) <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD(0.65,533)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetRatedPowerConsumptionOfHPUnitInX000AInBetweenSeasons() {
+			reqGetProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_X000A_IN_BETWEEN_SEASONS);
+			return this;
+		}
+		/**
+		 * Property name : ON timer setting<br>
+		 * <br>
+		 * EPC : 0x91<br>
+		 * <br>
+		 * Contents :<br>
+		 * ON timer setting (HH:MM) <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
+		 * <br>
+		 * Data type : unsigned char × 2<br>
+		 * Data size : 2<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetOnTimerSetting() {
+			reqGetProperty(EPC_ON_TIMER_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : “Temperature of supplied water” setting<br>
+		 * <br>
+		 * EPC : 0xD1<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify the temperature of water supplied from the water heater in °C, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100°C)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : °C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetTemperatureOfSuppliedWaterSetting() {
+			reqGetProperty(EPC__TEMPERATURE_OF_SUPPLIED_WATER_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : Bath water temperature setting<br>
+		 * <br>
+		 * EPC : 0xD3<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify (in °C) the temperature up to which the water heater will heat bath water, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100°C)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : °C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetBathWaterTemperatureSetting() {
+			reqGetProperty(EPC_BATH_WATER_TEMPERATURE_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : Bath water volume setting 4<br>
+		 * <br>
+		 * EPC : 0xD4<br>
+		 * <br>
+		 * Contents :<br>
+		 * The bath hot water volume is specified by the number of steps. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01-0xFF<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : <br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetBathWaterVolumeSetting4() {
+			reqGetProperty(EPC_BATH_WATER_VOLUME_SETTING_4);
+			return this;
+		}
+		/**
+		 * Property name : Bath water volume setting 4- Maximum settable level<br>
+		 * <br>
+		 * EPC : 0xD5<br>
+		 * <br>
+		 * Contents :<br>
+		 * ￼The maximum settable level is the top step of Bath water volume setting 4. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01-0xFF<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : <br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetBathWaterVolumeSetting4MaximumSettableLevel() {
+			reqGetProperty(EPC_BATH_WATER_VOLUME_SETTING_4_MAXIMUM_SETTABLE_LEVEL);
 			return this;
 		}
 		/**
@@ -3682,22 +4101,22 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xB2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the current status of the water heater in terms of whether it is heating water or not.<br>
+		 * Contents :<br>
+		 * This property indicates the current status of the water heater in terms of whether it is heating water or not. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Heating = 0x41 Not heating = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetWaterHeaterStatus() {
 			reqGetProperty(EPC_WATER_HEATER_STATUS);
@@ -3708,379 +4127,77 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xB3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify (in °C) the temperature of heated water to achieve, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Used to specify (in °C) the temperature of heated water to achieve, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00.0x64 (0.100°C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .C<br>
+		 * Data size : 1<br>
+		 * Unit : °C<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetWaterHeatingTemperatureSetting() {
 			reqGetProperty(EPC_WATER_HEATING_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
-		 * Property name : “Daytime reheating permission” setting<br>
+		 * Property name : “Automatic water heating” setting<br>
 		 * <br>
-		 * EPC : 0xC0<br>
+		 * EPC : 0xB0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br>
+		 * Automatic water heating function used: 0x41_x000a_Non-automatic water heating function stopped: 0x43_x000a_Non-automatic water heating function used: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetDaytimeReheatingPermissionSetting() {
-			reqGetProperty(EPC_DAYTIME_REHEATING_PERMISSION_SETTING);
-			return this;
-		}
-		/**
-		 * Property name : Measured temperature of water in water heater<br>
-		 * <br>
-		 * EPC : 0xC1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the current temperature of the water in the water heater.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100°C)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .C<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasuredTemperatureOfWaterInWaterHeater() {
-			reqGetProperty(EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER);
-			return this;
-		}
-		/**
-		 * Property name : Alarm status<br>
-		 * <br>
-		 * EPC : 0xC2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the status of an alarm.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * First byte:<br>
-		 * Bit 0: Out of hot water<br>
-		 * 0 Normal<br>
-		 * 1 Alarm Bit 1: Water leaking<br>
-		 * 0 Normal<br>
-		 * 1 Alarm Bit 2: Water frozen<br>
-		 * 0 Normal<br>
-		 * 1 Alarm<br>
-		 * Bits 3-7: reserved for future use<br>
-		 * 2-4 bytes:<br>
-		 * reserved for future use<br>
-		 * <br>
-		 * Data type : unsigned char × 2<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetAlarmStatus() {
-			reqGetProperty(EPC_ALARM_STATUS);
+		public Getter reqGetAutomaticWaterHeatingSetting() {
+			reqGetProperty(EPC__AUTOMATIC_WATER_HEATING_SETTING);
 			return this;
 		}
 		/**
-		 * Property name : “Temperature of supplied water” setting<br>
+		 * Property name : “Automatic water temperature control” setting<br>
 		 * <br>
-		 * EPC : 0xD1<br>
+		 * EPC : 0xB1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the temperature of water supplied from the water heater in °C, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100°C)<br>
+		 * Automatic water temperature control function used: 0x41_x000a_Automatic water temperature control function not used: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .C<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetTemperatureOfSuppliedWaterSetting() {
-			reqGetProperty(EPC_TEMPERATURE_OF_SUPPLIED_WATER_SETTING);
-			return this;
-		}
-		/**
-		 * Property name : Bath water temperature setting<br>
-		 * <br>
-		 * EPC : 0xD3<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify (in °C) the temperature up to which the water heater will heat bath water, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100°C)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .C<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetBathWaterTemperatureSetting() {
-			reqGetProperty(EPC_BATH_WATER_TEMPERATURE_SETTING);
-			return this;
-		}
-		/**
-		 * Property name : Bath water volume setting<br>
-		 * <br>
-		 * EPC : 0xE0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100%)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : %<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetBathWaterVolumeSetting() {
-			reqGetProperty(EPC_BATH_WATER_VOLUME_SETTING);
-			return this;
-		}
-		/**
-		 * Property name : Measured amount of water remaining in tank<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured amount of water left in the tank in liters.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533 liters)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : liter<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasuredAmountOfWaterRemainingInTank() {
-			reqGetProperty(EPC_MEASURED_AMOUNT_OF_WATER_REMAINING_IN_TANK);
-			return this;
-		}
-		/**
-		 * Property name : Tank capacity<br>
-		 * <br>
-		 * EPC : 0xE2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the tank capacity in liters.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533 liters)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : liter<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetTankCapacity() {
-			reqGetProperty(EPC_TANK_CAPACITY);
-			return this;
-		}
-		/**
-		 * Property name : “Automatic bath water heating” mode setting<br>
-		 * <br>
-		 * EPC : 0xE3<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to use the “automatic bath water heating” mode, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * “Automatic bath water heating” mode ON = 0x41<br>
-		 * “Automatic bath water heating” mode OFF = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetAutomaticBathWaterHeatingModeSetting() {
-			reqGetProperty(EPC_AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING);
-			return this;
-		}
-		/**
-		 * Property name : “Addition of hot water” function setting<br>
-		 * <br>
-		 * EPC : 0xE5<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * “Addition of hot water” function ON = 0x41<br>
-		 * “Addition of hot water” function OFF<br>
-		 * = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetAdditionOfHotWaterFunctionSetting() {
-			reqGetProperty(EPC_ADDITION_OF_HOT_WATER_FUNCTION_SETTING);
-			return this;
-		}
-		/**
-		 * Property name : “Slight bath water temperature lowering” function setting<br>
-		 * <br>
-		 * EPC : 0xE6<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to use the “slight bath water temperature lowering” function, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * “Slight bath water temperature lowering” function ON = 0x41<br>
-		 * “Slight bath water temperature lowering” function OFF = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetSlightBathWaterTemperatureLoweringFunctionSetting() {
-			reqGetProperty(EPC_SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING);
-			return this;
-		}
-		/**
-		 * Property name : Bath water volume setting 1<br>
-		 * <br>
-		 * EPC : 0xE7<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0xFD (0.253 liters)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : liter<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetBathWaterVolumeSetting1() {
-			reqGetProperty(EPC_BATH_WATER_VOLUME_SETTING1);
-			return this;
-		}
-		/**
-		 * Property name : Bath water volume setting 2<br>
-		 * <br>
-		 * EPC : 0xE8<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x31.0x38<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetBathWaterVolumeSetting2() {
-			reqGetProperty(EPC_BATH_WATER_VOLUME_SETTING2);
+		public Getter reqGetAutomaticWaterTemperatureControlSetting() {
+			reqGetProperty(EPC__AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING);
 			return this;
 		}
 		/**
@@ -4088,79 +4205,25 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xEE<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Used to specify the bath water volume in liters, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFD (0.65533 liters)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetBathWaterVolumeSetting3() {
-			reqGetProperty(EPC_BATH_WATER_VOLUME_SETTING3);
-			return this;
-		}
-		/**
-		 * Property name : Bath water volume setting 4<br>
-		 * <br>
-		 * EPC : 0xD4<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * ￼<br>
-		 * The bath hot water volume is specified by the number of steps.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x01-0xFF<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : null<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetBathWaterVolumeSetting4() {
-			reqGetProperty(EPC_BATH_WATER_VOLUME_SETTING4);
-			return this;
-		}
-		/**
-		 * Property name : Bath water volume setting 4- Maximum settable level<br>
-		 * <br>
-		 * EPC : 0xD5<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * ￼<br>
-		 * The maximum settable level is the top step of Bath water volume setting 4.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x01-0xFF<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : null<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetBathWaterVolumeSetting4MaximumSettableLevel() {
-			reqGetProperty(EPC_BATH_WATER_VOLUME_SETTING4_MAXIMUM_SETTABLE_LEVEL);
+			reqGetProperty(EPC_BATH_WATER_VOLUME_SETTING_3);
 			return this;
 		}
 		/**
@@ -4168,136 +4231,28 @@ bytes<br>
 		 * <br>
 		 * EPC : 0x90<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Reservation ON/OFF<br>
+		 * Contents :<br>
+		 * Reservation ON/OFF <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Reservation ON = 0x41 Reservation OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetOnTimerReservationSetting() {
 			reqGetProperty(EPC_ON_TIMER_RESERVATION_SETTING);
 			return this;
 		}
-		/**
-		 * Property name : ON timer setting<br>
-		 * <br>
-		 * EPC : 0x91<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * ON timer setting (HH:MM)<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
-		 * <br>
-		 * Data type : unsigned char × 2<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetOnTimerSetting() {
-			reqGetProperty(EPC_ON_TIMER_SETTING);
-			return this;
-		}
-		/**
-		 * Property name : Rated power consumption of H/P unit in wintertime<br>
-		 * <br>
-		 * EPC : 0xDB<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated power consumption of the heat pump in wintertime (December to March)<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD(0.65,533)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
-		 * Unit : W<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetRatedPowerConsumptionOfHPUnitInWintertime() {
-			reqGetProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_WINTERTIME);
-			return this;
-		}
-		/**
-		 * Property name : Rated power consumption of H/P unit in
-in-between seasons<br>
-		 * <br>
-		 * EPC : 0xDC<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated power consumption of the heat pump in<br>
-		 * in-between seasons (April, May, October, November)<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD(0.65,533)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
-		 * Unit : W<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetRatedPowerConsumptionOfHPUnitInInBetweenSeasons() {
-			reqGetProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_IN_BETWEEN_SEASONS);
-			return this;
-		}
-		/**
-		 * Property name : Rated power consumption of H/P unit in summertime<br>
-		 * <br>
-		 * EPC : 0xDD<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated power consumption of the heat pump in summertime (June to September)<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD(0.65,533)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
-		 * Unit : W<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetRatedPowerConsumptionOfHPUnitInSummertime() {
-			reqGetProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_SUMMERTIME);
-			return this;
-		}
+
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
@@ -4409,58 +4364,497 @@ bytes<br>
 		}
 		
 		/**
-		 * Property name : “Automatic water heating” setting<br>
+		 * Property name : “Automatic bath water heating” mode setting<br>
 		 * <br>
-		 * EPC : 0xB0<br>
+		 * EPC : 0xE3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Used to specify whether or not to use the “automatic bath water heating” mode, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic water heating function used: 0x41<br>
-		 * Non-automatic water heating function stopped: 0x43<br>
-		 * Non-automatic water heating function used: 0x42<br>
+		 * “Automatic bath water heating” mode ON = 0x41_x000a_“Automatic bath water heating” mode OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformAutomaticWaterHeatingSetting() {
-			reqInformProperty(EPC_AUTOMATIC_WATER_HEATING_SETTING);
+		public Informer reqInformAutomaticBathWaterHeatingModeSetting() {
+			reqInformProperty(EPC__AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING);
 			return this;
 		}
 		/**
-		 * Property name : “Automatic water temperature control” setting<br>
+		 * Property name : Tank capacity<br>
 		 * <br>
-		 * EPC : 0xB1<br>
+		 * EPC : 0xE2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * This property indicates the tank capacity in liters. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Automatic water temperature control function used: 0x41<br>
-		 * Automatic water temperature control function not used: 0x42<br>
+		 * 0x0000.0xFFFD (0.65533 liters)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformTankCapacity() {
+			reqInformProperty(EPC_TANK_CAPACITY);
+			return this;
+		}
+		/**
+		 * Property name : Measured amount of water remaining in tank<br>
+		 * <br>
+		 * EPC : 0xE1<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the measured amount of water left in the tank in liters. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD (0.65533 liters)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasuredAmountOfWaterRemainingInTank() {
+			reqInformProperty(EPC_MEASURED_AMOUNT_OF_WATER_REMAINING_IN_TANK);
+			return this;
+		}
+		/**
+		 * Property name : Bath water volume setting<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100%)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : %<br>
 		 * <br>
-		 * Data size : 1 byte<br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
 		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformBathWaterVolumeSetting() {
+			reqInformProperty(EPC_BATH_WATER_VOLUME_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : Measured temperature of water in water heater<br>
+		 * <br>
+		 * EPC : 0xC1<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the current temperature of the water in the water heater. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100°C)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : °C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformMeasuredTemperatureOfWaterInWaterHeater() {
+			reqInformProperty(EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER);
+			return this;
+		}
+		/**
+		 * Property name : “Daytime reheating permission” setting<br>
+		 * <br>
+		 * EPC : 0xC0<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformAutomaticWaterTemperatureControlSetting() {
-			reqInformProperty(EPC_AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING);
+		public Informer reqInformDaytimeReheatingPermissionSetting() {
+			reqInformProperty(EPC__DAYTIME_REHEATING_PERMISSION_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : “Addition of hot water” function setting<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * “Addition of hot water” function ON = 0x41_x000a_“Addition of hot water” function OFF_x000a_= 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformAdditionOfHotWaterFunctionSetting() {
+			reqInformProperty(EPC__ADDITION_OF_HOT_WATER_FUNCTION_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : Alarm status<br>
+		 * <br>
+		 * EPC : 0xC2<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the status of an alarm. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * First byte:_x000a_Bit 0: Out of hot water_x000a_0 Normal_x000a_1 Alarm Bit 1: Water leaking_x000a_0 Normal_x000a_1 Alarm Bit 2: Water frozen_x000a_0 Normal_x000a_1 Alarm_x000a_Bits 3-7: reserved for future use_x000a_2-4 bytes:_x000a_reserved for future use<br>
+		 * <br>
+		 * Data type : unsigned char × 2<br>
+		 * Data size : 4<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformAlarmStatus() {
+			reqInformProperty(EPC_ALARM_STATUS);
+			return this;
+		}
+		/**
+		 * Property name : Bath water volume setting 2<br>
+		 * <br>
+		 * EPC : 0xE8<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x31.0x38<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformBathWaterVolumeSetting2() {
+			reqInformProperty(EPC_BATH_WATER_VOLUME_SETTING_2);
+			return this;
+		}
+		/**
+		 * Property name : Bath water volume setting 1<br>
+		 * <br>
+		 * EPC : 0xE7<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify the bath water volume in liters, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0xFD (0.253 liters)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : liter<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformBathWaterVolumeSetting1() {
+			reqInformProperty(EPC_BATH_WATER_VOLUME_SETTING_1);
+			return this;
+		}
+		/**
+		 * Property name : “Slight bath water temperature lowering” function setting<br>
+		 * <br>
+		 * EPC : 0xE6<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify whether or not to use the “slight bath water temperature lowering” function, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * “Slight bath water temperature lowering” function ON = 0x41_x000a_“Slight bath water temperature lowering” function OFF = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformSlightBathWaterTemperatureLoweringFunctionSetting() {
+			reqInformProperty(EPC__SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : Rated power consumption of H/P unit in summertime<br>
+		 * <br>
+		 * EPC : 0xDD<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the rated power consumption of the heat pump in summertime (June to September) <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD(0.65,533)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformRatedPowerConsumptionOfHPUnitInSummertime() {
+			reqInformProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_SUMMERTIME);
+			return this;
+		}
+		/**
+		 * Property name : Rated power consumption of H/P unit in wintertime<br>
+		 * <br>
+		 * EPC : 0xDB<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the rated power consumption of the heat pump in wintertime (December to March) <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD(0.65,533)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformRatedPowerConsumptionOfHPUnitInWintertime() {
+			reqInformProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_WINTERTIME);
+			return this;
+		}
+		/**
+		 * Property name : Rated power consumption of H/P unit in_x000a_in-between seasons<br>
+		 * <br>
+		 * EPC : 0xDC<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the rated power consumption of the heat pump in_x000a_in-between seasons (April, May, October, November) <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000.0xFFFD(0.65,533)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformRatedPowerConsumptionOfHPUnitInX000AInBetweenSeasons() {
+			reqInformProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_X000A_IN_BETWEEN_SEASONS);
+			return this;
+		}
+		/**
+		 * Property name : ON timer setting<br>
+		 * <br>
+		 * EPC : 0x91<br>
+		 * <br>
+		 * Contents :<br>
+		 * ON timer setting (HH:MM) <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
+		 * <br>
+		 * Data type : unsigned char × 2<br>
+		 * Data size : 2<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformOnTimerSetting() {
+			reqInformProperty(EPC_ON_TIMER_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : “Temperature of supplied water” setting<br>
+		 * <br>
+		 * EPC : 0xD1<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify the temperature of water supplied from the water heater in °C, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100°C)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : °C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformTemperatureOfSuppliedWaterSetting() {
+			reqInformProperty(EPC__TEMPERATURE_OF_SUPPLIED_WATER_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : Bath water temperature setting<br>
+		 * <br>
+		 * EPC : 0xD3<br>
+		 * <br>
+		 * Contents :<br>
+		 * Used to specify (in °C) the temperature up to which the water heater will heat bath water, and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100°C)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : °C<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformBathWaterTemperatureSetting() {
+			reqInformProperty(EPC_BATH_WATER_TEMPERATURE_SETTING);
+			return this;
+		}
+		/**
+		 * Property name : Bath water volume setting 4<br>
+		 * <br>
+		 * EPC : 0xD4<br>
+		 * <br>
+		 * Contents :<br>
+		 * The bath hot water volume is specified by the number of steps. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01-0xFF<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : <br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformBathWaterVolumeSetting4() {
+			reqInformProperty(EPC_BATH_WATER_VOLUME_SETTING_4);
+			return this;
+		}
+		/**
+		 * Property name : Bath water volume setting 4- Maximum settable level<br>
+		 * <br>
+		 * EPC : 0xD5<br>
+		 * <br>
+		 * Contents :<br>
+		 * ￼The maximum settable level is the top step of Bath water volume setting 4. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01-0xFF<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : <br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformBathWaterVolumeSetting4MaximumSettableLevel() {
+			reqInformProperty(EPC_BATH_WATER_VOLUME_SETTING_4_MAXIMUM_SETTABLE_LEVEL);
 			return this;
 		}
 		/**
@@ -4468,22 +4862,22 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xB2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the current status of the water heater in terms of whether it is heating water or not.<br>
+		 * Contents :<br>
+		 * This property indicates the current status of the water heater in terms of whether it is heating water or not. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Heating = 0x41 Not heating = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformWaterHeaterStatus() {
 			reqInformProperty(EPC_WATER_HEATER_STATUS);
@@ -4494,379 +4888,77 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xB3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify (in °C) the temperature of heated water to achieve, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Used to specify (in °C) the temperature of heated water to achieve, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00.0x64 (0.100°C)<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .C<br>
+		 * Data size : 1<br>
+		 * Unit : °C<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformWaterHeatingTemperatureSetting() {
 			reqInformProperty(EPC_WATER_HEATING_TEMPERATURE_SETTING);
 			return this;
 		}
 		/**
-		 * Property name : “Daytime reheating permission” setting<br>
+		 * Property name : “Automatic water heating” setting<br>
 		 * <br>
-		 * EPC : 0xC0<br>
+		 * EPC : 0xB0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to permit daytime reheating, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Used to specify whether or not to use the automatic water heating function, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Daytime reheating permitted: 0x41 Daytime reheating not permitted: 0x42<br>
+		 * Automatic water heating function used: 0x41_x000a_Non-automatic water heating function stopped: 0x43_x000a_Non-automatic water heating function used: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformDaytimeReheatingPermissionSetting() {
-			reqInformProperty(EPC_DAYTIME_REHEATING_PERMISSION_SETTING);
-			return this;
-		}
-		/**
-		 * Property name : Measured temperature of water in water heater<br>
-		 * <br>
-		 * EPC : 0xC1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the current temperature of the water in the water heater.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100°C)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .C<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasuredTemperatureOfWaterInWaterHeater() {
-			reqInformProperty(EPC_MEASURED_TEMPERATURE_OF_WATER_IN_WATER_HEATER);
-			return this;
-		}
-		/**
-		 * Property name : Alarm status<br>
-		 * <br>
-		 * EPC : 0xC2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the status of an alarm.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * First byte:<br>
-		 * Bit 0: Out of hot water<br>
-		 * 0 Normal<br>
-		 * 1 Alarm Bit 1: Water leaking<br>
-		 * 0 Normal<br>
-		 * 1 Alarm Bit 2: Water frozen<br>
-		 * 0 Normal<br>
-		 * 1 Alarm<br>
-		 * Bits 3-7: reserved for future use<br>
-		 * 2-4 bytes:<br>
-		 * reserved for future use<br>
-		 * <br>
-		 * Data type : unsigned char × 2<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
 		 * <br>
 		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformAlarmStatus() {
-			reqInformProperty(EPC_ALARM_STATUS);
+		public Informer reqInformAutomaticWaterHeatingSetting() {
+			reqInformProperty(EPC__AUTOMATIC_WATER_HEATING_SETTING);
 			return this;
 		}
 		/**
-		 * Property name : “Temperature of supplied water” setting<br>
+		 * Property name : “Automatic water temperature control” setting<br>
 		 * <br>
-		 * EPC : 0xD1<br>
+		 * EPC : 0xB1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the temperature of water supplied from the water heater in °C, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Used to specify whether or not to use the automatic water temperature control function, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100°C)<br>
+		 * Automatic water temperature control function used: 0x41_x000a_Automatic water temperature control function not used: 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .C<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformTemperatureOfSuppliedWaterSetting() {
-			reqInformProperty(EPC_TEMPERATURE_OF_SUPPLIED_WATER_SETTING);
-			return this;
-		}
-		/**
-		 * Property name : Bath water temperature setting<br>
-		 * <br>
-		 * EPC : 0xD3<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify (in °C) the temperature up to which the water heater will heat bath water, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100°C)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .C<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformBathWaterTemperatureSetting() {
-			reqInformProperty(EPC_BATH_WATER_TEMPERATURE_SETTING);
-			return this;
-		}
-		/**
-		 * Property name : Bath water volume setting<br>
-		 * <br>
-		 * EPC : 0xE0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify (in %) the volume of bath water the bathtub will contain upon completion of heating, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100%)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : %<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformBathWaterVolumeSetting() {
-			reqInformProperty(EPC_BATH_WATER_VOLUME_SETTING);
-			return this;
-		}
-		/**
-		 * Property name : Measured amount of water remaining in tank<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the measured amount of water left in the tank in liters.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533 liters)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : liter<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasuredAmountOfWaterRemainingInTank() {
-			reqInformProperty(EPC_MEASURED_AMOUNT_OF_WATER_REMAINING_IN_TANK);
-			return this;
-		}
-		/**
-		 * Property name : Tank capacity<br>
-		 * <br>
-		 * EPC : 0xE2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the tank capacity in liters.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533 liters)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : liter<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformTankCapacity() {
-			reqInformProperty(EPC_TANK_CAPACITY);
-			return this;
-		}
-		/**
-		 * Property name : “Automatic bath water heating” mode setting<br>
-		 * <br>
-		 * EPC : 0xE3<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to use the “automatic bath water heating” mode, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * “Automatic bath water heating” mode ON = 0x41<br>
-		 * “Automatic bath water heating” mode OFF = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - mandatory<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformAutomaticBathWaterHeatingModeSetting() {
-			reqInformProperty(EPC_AUTOMATIC_BATH_WATER_HEATING_MODE_SETTING);
-			return this;
-		}
-		/**
-		 * Property name : “Addition of hot water” function setting<br>
-		 * <br>
-		 * EPC : 0xE5<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to use the function to add hot water to the bath water in the bathtub, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * “Addition of hot water” function ON = 0x41<br>
-		 * “Addition of hot water” function OFF<br>
-		 * = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformAdditionOfHotWaterFunctionSetting() {
-			reqInformProperty(EPC_ADDITION_OF_HOT_WATER_FUNCTION_SETTING);
-			return this;
-		}
-		/**
-		 * Property name : “Slight bath water temperature lowering” function setting<br>
-		 * <br>
-		 * EPC : 0xE6<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify whether or not to use the “slight bath water temperature lowering” function, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * “Slight bath water temperature lowering” function ON = 0x41<br>
-		 * “Slight bath water temperature lowering” function OFF = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformSlightBathWaterTemperatureLoweringFunctionSetting() {
-			reqInformProperty(EPC_SLIGHT_BATH_WATER_TEMPERATURE_LOWERING_FUNCTION_SETTING);
-			return this;
-		}
-		/**
-		 * Property name : Bath water volume setting 1<br>
-		 * <br>
-		 * EPC : 0xE7<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0xFD (0.253 liters)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : liter<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformBathWaterVolumeSetting1() {
-			reqInformProperty(EPC_BATH_WATER_VOLUME_SETTING1);
-			return this;
-		}
-		/**
-		 * Property name : Bath water volume setting 2<br>
-		 * <br>
-		 * EPC : 0xE8<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the bath water volume by selecting a level from among the 8 predefined levels, and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x31.0x38<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformBathWaterVolumeSetting2() {
-			reqInformProperty(EPC_BATH_WATER_VOLUME_SETTING2);
+		public Informer reqInformAutomaticWaterTemperatureControlSetting() {
+			reqInformProperty(EPC__AUTOMATIC_WATER_TEMPERATURE_CONTROL_SETTING);
 			return this;
 		}
 		/**
@@ -4874,79 +4966,25 @@ bytes<br>
 		 * <br>
 		 * EPC : 0xEE<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Used to specify the bath water volume in liters, and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Used to specify the bath water volume in liters, and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFD (0.65533 liters)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformBathWaterVolumeSetting3() {
-			reqInformProperty(EPC_BATH_WATER_VOLUME_SETTING3);
-			return this;
-		}
-		/**
-		 * Property name : Bath water volume setting 4<br>
-		 * <br>
-		 * EPC : 0xD4<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * ￼<br>
-		 * The bath hot water volume is specified by the number of steps.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x01-0xFF<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : null<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformBathWaterVolumeSetting4() {
-			reqInformProperty(EPC_BATH_WATER_VOLUME_SETTING4);
-			return this;
-		}
-		/**
-		 * Property name : Bath water volume setting 4- Maximum settable level<br>
-		 * <br>
-		 * EPC : 0xD5<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * ￼<br>
-		 * The maximum settable level is the top step of Bath water volume setting 4.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x01-0xFF<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : null<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformBathWaterVolumeSetting4MaximumSettableLevel() {
-			reqInformProperty(EPC_BATH_WATER_VOLUME_SETTING4_MAXIMUM_SETTABLE_LEVEL);
+			reqInformProperty(EPC_BATH_WATER_VOLUME_SETTING_3);
 			return this;
 		}
 		/**
@@ -4954,136 +4992,28 @@ bytes<br>
 		 * <br>
 		 * EPC : 0x90<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Reservation ON/OFF<br>
+		 * Contents :<br>
+		 * Reservation ON/OFF <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Reservation ON = 0x41 Reservation OFF = 0x42<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : liter<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformOnTimerReservationSetting() {
 			reqInformProperty(EPC_ON_TIMER_RESERVATION_SETTING);
 			return this;
 		}
-		/**
-		 * Property name : ON timer setting<br>
-		 * <br>
-		 * EPC : 0x91<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * ON timer setting (HH:MM)<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0.0x17: 0.0x3B (= 0.23): (= 0.59)<br>
-		 * <br>
-		 * Data type : unsigned char × 2<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformOnTimerSetting() {
-			reqInformProperty(EPC_ON_TIMER_SETTING);
-			return this;
-		}
-		/**
-		 * Property name : Rated power consumption of H/P unit in wintertime<br>
-		 * <br>
-		 * EPC : 0xDB<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated power consumption of the heat pump in wintertime (December to March)<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD(0.65,533)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
-		 * Unit : W<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformRatedPowerConsumptionOfHPUnitInWintertime() {
-			reqInformProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_WINTERTIME);
-			return this;
-		}
-		/**
-		 * Property name : Rated power consumption of H/P unit in
-in-between seasons<br>
-		 * <br>
-		 * EPC : 0xDC<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated power consumption of the heat pump in<br>
-		 * in-between seasons (April, May, October, November)<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD(0.65,533)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
-		 * Unit : W<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformRatedPowerConsumptionOfHPUnitInInBetweenSeasons() {
-			reqInformProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_IN_BETWEEN_SEASONS);
-			return this;
-		}
-		/**
-		 * Property name : Rated power consumption of H/P unit in summertime<br>
-		 * <br>
-		 * EPC : 0xDD<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated power consumption of the heat pump in summertime (June to September)<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD(0.65,533)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2
-bytes<br>
-		 * <br>
-		 * Unit : W<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformRatedPowerConsumptionOfHPUnitInSummertime() {
-			reqInformProperty(EPC_RATED_POWER_CONSUMPTION_OF_H_P_UNIT_IN_SUMMERTIME);
-			return this;
-		}
+
 	}
 
 	public static class Proxy extends ElectricWaterHeater {
@@ -5096,29 +5026,36 @@ bytes<br>
 			return mEchoInstanceCode;
 		}
 		@Override
-		protected byte[] getOperationStatus() {return null;}
+		protected boolean setAutomaticBathWaterHeatingModeSetting(byte[] edt){return false;}
 		@Override
-		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		protected byte[] getAutomaticBathWaterHeatingModeSetting(){return null;}
 		@Override
-		protected byte[] getInstallationLocation() {return null;}
+		protected byte[] getSetPropertyMap(){return null;}
 		@Override
-		protected byte[] getStandardVersionInformation() {return null;}
+		protected byte[] getStatusChangeAnnouncementPropertyMap(){return null;}
 		@Override
-		protected byte[] getFaultStatus() {return null;}
+		protected byte[] getOperationStatus(){return null;}
 		@Override
-		protected byte[] getManufacturerCode() {return null;}
+		protected boolean setInstallationLocation(byte[] edt){return false;}
 		@Override
-		protected boolean setAutomaticWaterHeatingSetting(byte[] edt) {return false;}
+		protected byte[] getInstallationLocation(){return null;}
 		@Override
-		protected byte[] getAutomaticWaterHeatingSetting() {return null;}
+		protected byte[] getStandardVersionInformation(){return null;}
 		@Override
-		protected boolean setWaterHeatingTemperatureSetting(byte[] edt) {return false;}
+		protected byte[] getGetPropertyMap(){return null;}
 		@Override
-		protected byte[] getWaterHeatingTemperatureSetting() {return null;}
+		protected byte[] getFaultStatus(){return null;}
 		@Override
-		protected boolean setAutomaticBathWaterHeatingModeSetting(byte[] edt) {return false;}
+		protected boolean setWaterHeatingTemperatureSetting(byte[] edt){return false;}
 		@Override
-		protected byte[] getAutomaticBathWaterHeatingModeSetting() {return null;}
+		protected byte[] getWaterHeatingTemperatureSetting(){return null;}
+		@Override
+		protected boolean setAutomaticWaterHeatingSetting(byte[] edt){return false;}
+		@Override
+		protected byte[] getAutomaticWaterHeatingSetting(){return null;}
+		@Override
+		protected byte[] getManufacturerCode(){return null;}
+
 	}
 	
 	public static Setter setG() {

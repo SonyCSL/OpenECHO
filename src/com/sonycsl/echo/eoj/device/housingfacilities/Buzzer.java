@@ -1,34 +1,40 @@
 /*
- * Copyright 2012 Sony Computer Science Laboratories, Inc. <info@kadecot.net>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2014 Sony Computer Science Laboratories, Inc.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.sonycsl.echo.eoj.device.housingfacilities;
 
 import com.sonycsl.echo.Echo;
-import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
-import com.sonycsl.echo.node.EchoNode;
 
 public abstract class Buzzer extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x02A0;
 
-	public static final byte EPC_SOUND_GENERATION_SETTING = (byte)0xB1;
 	public static final byte EPC_BUZZER_SOUND_TYPE = (byte)0xE0;
+	public static final byte EPC_SOUND_GENERATION_SETTING = (byte)0xB1;
 
 	@Override
 	protected void setupPropertyMaps() {
@@ -37,6 +43,7 @@ public abstract class Buzzer extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
+
 	}
 
 	@Override
@@ -51,26 +58,96 @@ public abstract class Buzzer extends DeviceObject {
 	}
 
 	/**
+	 * Property name : Buzzer sound type<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates 8 different types of buzzer sound. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x31.0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setBuzzerSoundType(byte[] edt) {return false;}
+	/**
+	 * Property name : Buzzer sound type<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates 8 different types of buzzer sound. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x31.0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getBuzzerSoundType() {return null;}
+	/**
+	 * Property name : Buzzer sound type<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates 8 different types of buzzer sound. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x31.0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidBuzzerSoundType(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
 	 * Property name : Operation status<br>
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF status.<br>
+	 * Contents :<br>
+	 * This  property  indicates  the  ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -80,47 +157,71 @@ public abstract class Buzzer extends DeviceObject {
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF status.<br>
+	 * Contents :<br>
+	 * This  property  indicates  the  ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
 	protected abstract byte[] getOperationStatus();
 	/**
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents :<br>
+	 * This  property  indicates  the  ON/OFF status. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30, OFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidOperationStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
 	 * Property name : Sound generation setting<br>
 	 * <br>
 	 * EPC : 0xB1<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates buzzer sound generation setting.<br>
+	 * Contents :<br>
+	 * This property indicates buzzer sound generation setting. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Buzzer enabled = 0x41, buzzer disabled = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean setSoundGenerationSetting(byte[] edt) {return false;}
 	/**
@@ -128,22 +229,22 @@ public abstract class Buzzer extends DeviceObject {
 	 * <br>
 	 * EPC : 0xB1<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates buzzer sound generation setting.<br>
+	 * Contents :<br>
+	 * This property indicates buzzer sound generation setting. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Buzzer enabled = 0x41, buzzer disabled = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getSoundGenerationSetting() {return null;}
 	/**
@@ -151,97 +252,25 @@ public abstract class Buzzer extends DeviceObject {
 	 * <br>
 	 * EPC : 0xB1<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates buzzer sound generation setting.<br>
+	 * Contents :<br>
+	 * This property indicates buzzer sound generation setting. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * Buzzer enabled = 0x41, buzzer disabled = 0x42<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidSoundGenerationSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Buzzer sound type<br>
-	 * <br>
-	 * EPC : 0xE0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates 8 different types of buzzer sound.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x31.0x38<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setBuzzerSoundType(byte[] edt) {return false;}
-	/**
-	 * Property name : Buzzer sound type<br>
-	 * <br>
-	 * EPC : 0xE0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates 8 different types of buzzer sound.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x31.0x38<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getBuzzerSoundType() {return null;}
-	/**
-	 * Property name : Buzzer sound type<br>
-	 * <br>
-	 * EPC : 0xE0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates 8 different types of buzzer sound.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x31.0x38<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidBuzzerSoundType(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 
@@ -251,8 +280,9 @@ public abstract class Buzzer extends DeviceObject {
 		if(success) return success;
 
 		switch(property.epc) {
-		case EPC_SOUND_GENERATION_SETTING : return setSoundGenerationSetting(property.edt);
 		case EPC_BUZZER_SOUND_TYPE : return setBuzzerSoundType(property.edt);
+		case EPC_SOUND_GENERATION_SETTING : return setSoundGenerationSetting(property.edt);
+
 		default : return false;
 		}
 	}
@@ -263,8 +293,9 @@ public abstract class Buzzer extends DeviceObject {
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_SOUND_GENERATION_SETTING : return getSoundGenerationSetting();
 		case EPC_BUZZER_SOUND_TYPE : return getBuzzerSoundType();
+		case EPC_SOUND_GENERATION_SETTING : return getSoundGenerationSetting();
+
 		default : return null;
 		}
 	}
@@ -275,8 +306,9 @@ public abstract class Buzzer extends DeviceObject {
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_SOUND_GENERATION_SETTING : return isValidSoundGenerationSetting(property.edt);
 		case EPC_BUZZER_SOUND_TYPE : return isValidBuzzerSoundType(property.edt);
+		case EPC_SOUND_GENERATION_SETTING : return isValidSoundGenerationSetting(property.edt);
+
 		default : return false;
 		}
 	}
@@ -324,12 +356,13 @@ public abstract class Buzzer extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_SOUND_GENERATION_SETTING : 
-				onSetSoundGenerationSetting(eoj, tid, esv, property, success);
-				return true;
 			case EPC_BUZZER_SOUND_TYPE : 
 				onSetBuzzerSoundType(eoj, tid, esv, property, success);
 				return true;
+			case EPC_SOUND_GENERATION_SETTING : 
+				onSetSoundGenerationSetting(eoj, tid, esv, property, success);
+				return true;
+
 			default :
 				return false;
 			}
@@ -342,84 +375,39 @@ public abstract class Buzzer extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_SOUND_GENERATION_SETTING : 
-				onGetSoundGenerationSetting(eoj, tid, esv, property, success);
-				return true;
 			case EPC_BUZZER_SOUND_TYPE : 
 				onGetBuzzerSoundType(eoj, tid, esv, property, success);
 				return true;
+			case EPC_SOUND_GENERATION_SETTING : 
+				onGetSoundGenerationSetting(eoj, tid, esv, property, success);
+				return true;
+
 			default :
 				return false;
 			}
 		}
 		
 		/**
-		 * Property name : Sound generation setting<br>
-		 * <br>
-		 * EPC : 0xB1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates buzzer sound generation setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Buzzer enabled = 0x41, buzzer disabled = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetSoundGenerationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Sound generation setting<br>
-		 * <br>
-		 * EPC : 0xB1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates buzzer sound generation setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Buzzer enabled = 0x41, buzzer disabled = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetSoundGenerationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
 		 * Property name : Buzzer sound type<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates 8 different types of buzzer sound.<br>
+		 * Contents :<br>
+		 * This property indicates 8 different types of buzzer sound. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onSetBuzzerSoundType(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -427,24 +415,117 @@ public abstract class Buzzer extends DeviceObject {
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates 8 different types of buzzer sound.<br>
+		 * Contents :<br>
+		 * This property indicates 8 different types of buzzer sound. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetBuzzerSoundType(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This  property  indicates  the  ON/OFF status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This  property  indicates  the  ON/OFF status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Sound generation setting<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates buzzer sound generation setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Buzzer enabled = 0x41, buzzer disabled = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetSoundGenerationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Sound generation setting<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates buzzer sound generation setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Buzzer enabled = 0x41, buzzer disabled = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetSoundGenerationSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+
 	}
 
 	public static class Setter extends DeviceObject.Setter {
@@ -493,57 +574,58 @@ public abstract class Buzzer extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : Sound generation setting<br>
-		 * <br>
-		 * EPC : 0xB1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates buzzer sound generation setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Buzzer enabled = 0x41, buzzer disabled = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Setter reqSetSoundGenerationSetting(byte[] edt) {
-			reqSetProperty(EPC_SOUND_GENERATION_SETTING, edt);
-			return this;
-		}
-		/**
 		 * Property name : Buzzer sound type<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates 8 different types of buzzer sound.<br>
+		 * Contents :<br>
+		 * This property indicates 8 different types of buzzer sound. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetBuzzerSoundType(byte[] edt) {
 			reqSetProperty(EPC_BUZZER_SOUND_TYPE, edt);
 			return this;
 		}
+		/**
+		 * Property name : Sound generation setting<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates buzzer sound generation setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Buzzer enabled = 0x41, buzzer disabled = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Setter reqSetSoundGenerationSetting(byte[] edt) {
+			reqSetProperty(EPC_SOUND_GENERATION_SETTING, edt);
+			return this;
+		}
+
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
@@ -656,57 +738,58 @@ public abstract class Buzzer extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : Sound generation setting<br>
-		 * <br>
-		 * EPC : 0xB1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates buzzer sound generation setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Buzzer enabled = 0x41, buzzer disabled = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetSoundGenerationSetting() {
-			reqGetProperty(EPC_SOUND_GENERATION_SETTING);
-			return this;
-		}
-		/**
 		 * Property name : Buzzer sound type<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates 8 different types of buzzer sound.<br>
+		 * Contents :<br>
+		 * This property indicates 8 different types of buzzer sound. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetBuzzerSoundType() {
 			reqGetProperty(EPC_BUZZER_SOUND_TYPE);
 			return this;
 		}
+		/**
+		 * Property name : Sound generation setting<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates buzzer sound generation setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Buzzer enabled = 0x41, buzzer disabled = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetSoundGenerationSetting() {
+			reqGetProperty(EPC_SOUND_GENERATION_SETTING);
+			return this;
+		}
+
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
@@ -818,57 +901,58 @@ public abstract class Buzzer extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : Sound generation setting<br>
-		 * <br>
-		 * EPC : 0xB1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates buzzer sound generation setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Buzzer enabled = 0x41, buzzer disabled = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformSoundGenerationSetting() {
-			reqInformProperty(EPC_SOUND_GENERATION_SETTING);
-			return this;
-		}
-		/**
 		 * Property name : Buzzer sound type<br>
 		 * <br>
 		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates 8 different types of buzzer sound.<br>
+		 * Contents :<br>
+		 * This property indicates 8 different types of buzzer sound. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformBuzzerSoundType() {
 			reqInformProperty(EPC_BUZZER_SOUND_TYPE);
 			return this;
 		}
+		/**
+		 * Property name : Sound generation setting<br>
+		 * <br>
+		 * EPC : 0xB1<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates buzzer sound generation setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Buzzer enabled = 0x41, buzzer disabled = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformSoundGenerationSetting() {
+			reqInformProperty(EPC_SOUND_GENERATION_SETTING);
+			return this;
+		}
+
 	}
 
 	public static class Proxy extends Buzzer {
@@ -881,17 +965,24 @@ public abstract class Buzzer extends DeviceObject {
 			return mEchoInstanceCode;
 		}
 		@Override
-		protected byte[] getOperationStatus() {return null;}
+		protected byte[] getGetPropertyMap(){return null;}
 		@Override
-		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		protected byte[] getSetPropertyMap(){return null;}
 		@Override
-		protected byte[] getInstallationLocation() {return null;}
+		protected byte[] getStatusChangeAnnouncementPropertyMap(){return null;}
 		@Override
-		protected byte[] getStandardVersionInformation() {return null;}
+		protected byte[] getOperationStatus(){return null;}
 		@Override
-		protected byte[] getFaultStatus() {return null;}
+		protected boolean setInstallationLocation(byte[] edt){return false;}
 		@Override
-		protected byte[] getManufacturerCode() {return null;}
+		protected byte[] getInstallationLocation(){return null;}
+		@Override
+		protected byte[] getStandardVersionInformation(){return null;}
+		@Override
+		protected byte[] getFaultStatus(){return null;}
+		@Override
+		protected byte[] getManufacturerCode(){return null;}
+
 	}
 	
 	public static Setter setG() {

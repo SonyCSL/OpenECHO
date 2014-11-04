@@ -1,34 +1,40 @@
 /*
- * Copyright 2012 Sony Computer Science Laboratories, Inc. <info@kadecot.net>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2014 Sony Computer Science Laboratories, Inc.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.sonycsl.echo.eoj.device.airconditioner;
 
 import com.sonycsl.echo.Echo;
-import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
-import com.sonycsl.echo.node.EchoNode;
 
 public abstract class VentilationFan extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x0133;
 
-	public static final byte EPC_VENTILATION_AUTO_SETTING = (byte)0xBF;
 	public static final byte EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE = (byte)0xA0;
+	public static final byte EPC_VENTILATION_AUTO_SETTING = (byte)0xBF;
 
 	@Override
 	protected void setupPropertyMaps() {
@@ -37,6 +43,7 @@ public abstract class VentilationFan extends DeviceObject {
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		addSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
+
 	}
 
 	@Override
@@ -51,26 +58,168 @@ public abstract class VentilationFan extends DeviceObject {
 	}
 
 	/**
+	 * Property name : Set value of ventilation air flow rate<br>
+	 * <br>
+	 * EPC : 0xA0<br>
+	 * <br>
+	 * Contents :<br>
+	 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Ventilation air flow rate auto status_x000a_= 0x41_x000a_Ventilation air flow rate level_x000a_= 0x31.0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setSetValueOfVentilationAirFlowRate(byte[] edt) {return false;}
+	/**
+	 * Property name : Set value of ventilation air flow rate<br>
+	 * <br>
+	 * EPC : 0xA0<br>
+	 * <br>
+	 * Contents :<br>
+	 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Ventilation air flow rate auto status_x000a_= 0x41_x000a_Ventilation air flow rate level_x000a_= 0x31.0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getSetValueOfVentilationAirFlowRate() {return null;}
+	/**
+	 * Property name : Set value of ventilation air flow rate<br>
+	 * <br>
+	 * EPC : 0xA0<br>
+	 * <br>
+	 * Contents :<br>
+	 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Ventilation air flow rate auto status_x000a_= 0x41_x000a_Ventilation air flow rate level_x000a_= 0x31.0x38<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidSetValueOfVentilationAirFlowRate(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Ventilation auto setting<br>
+	 * <br>
+	 * EPC : 0xBF<br>
+	 * <br>
+	 * Contents :<br>
+	 * Auto/Non-auto <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Auto = 0x41, Non-auto = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setVentilationAutoSetting(byte[] edt) {return false;}
+	/**
+	 * Property name : Ventilation auto setting<br>
+	 * <br>
+	 * EPC : 0xBF<br>
+	 * <br>
+	 * Contents :<br>
+	 * Auto/Non-auto <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Auto = 0x41, Non-auto = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getVentilationAutoSetting() {return null;}
+	/**
+	 * Property name : Ventilation auto setting<br>
+	 * <br>
+	 * EPC : 0xBF<br>
+	 * <br>
+	 * Contents :<br>
+	 * Auto/Non-auto <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Auto = 0x41, Non-auto = 0x42<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidVentilationAutoSetting(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
 	 * Property name : Operation status<br>
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF status.<br>
+	 * Contents :<br>
+	 * This  property  indicates  the  ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -80,177 +229,48 @@ public abstract class VentilationFan extends DeviceObject {
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This  property  indicates  the  ON/OFF status.<br>
+	 * Contents :<br>
+	 * This  property  indicates  the  ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - mandatory<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
 	protected abstract byte[] getOperationStatus();
 	/**
-	 * Property name : Ventilation auto setting<br>
+	 * Property name : Operation status<br>
 	 * <br>
-	 * EPC : 0xBF<br>
+	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * Auto/Non-auto<br>
+	 * Contents :<br>
+	 * This  property  indicates  the  ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * Auto = 0x41, Non-auto = 0x42<br>
+	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - mandatory<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected boolean setVentilationAutoSetting(byte[] edt) {return false;}
-	/**
-	 * Property name : Ventilation auto setting<br>
-	 * <br>
-	 * EPC : 0xBF<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Auto/Non-auto<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Auto = 0x41, Non-auto = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getVentilationAutoSetting() {return null;}
-	/**
-	 * Property name : Ventilation auto setting<br>
-	 * <br>
-	 * EPC : 0xBF<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Auto/Non-auto<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Auto = 0x41, Non-auto = 0x42<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidVentilationAutoSetting(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Set value of ventilation air flow rate<br>
-	 * <br>
-	 * EPC : 0xA0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Ventilation air flow rate auto status<br>
-	 * = 0x41<br>
-	 * Ventilation air flow rate level<br>
-	 * = 0x31.0x38<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setSetValueOfVentilationAirFlowRate(byte[] edt) {return false;}
-	/**
-	 * Property name : Set value of ventilation air flow rate<br>
-	 * <br>
-	 * EPC : 0xA0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Ventilation air flow rate auto status<br>
-	 * = 0x41<br>
-	 * Ventilation air flow rate level<br>
-	 * = 0x31.0x38<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getSetValueOfVentilationAirFlowRate() {return null;}
-	/**
-	 * Property name : Set value of ventilation air flow rate<br>
-	 * <br>
-	 * EPC : 0xA0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Ventilation air flow rate auto status<br>
-	 * = 0x41<br>
-	 * Ventilation air flow rate level<br>
-	 * = 0x31.0x38<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidSetValueOfVentilationAirFlowRate(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
+	protected boolean isValidOperationStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 
@@ -260,8 +280,9 @@ public abstract class VentilationFan extends DeviceObject {
 		if(success) return success;
 
 		switch(property.epc) {
-		case EPC_VENTILATION_AUTO_SETTING : return setVentilationAutoSetting(property.edt);
 		case EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE : return setSetValueOfVentilationAirFlowRate(property.edt);
+		case EPC_VENTILATION_AUTO_SETTING : return setVentilationAutoSetting(property.edt);
+
 		default : return false;
 		}
 	}
@@ -272,8 +293,9 @@ public abstract class VentilationFan extends DeviceObject {
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_VENTILATION_AUTO_SETTING : return getVentilationAutoSetting();
 		case EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE : return getSetValueOfVentilationAirFlowRate();
+		case EPC_VENTILATION_AUTO_SETTING : return getVentilationAutoSetting();
+
 		default : return null;
 		}
 	}
@@ -284,8 +306,9 @@ public abstract class VentilationFan extends DeviceObject {
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_VENTILATION_AUTO_SETTING : return isValidVentilationAutoSetting(property.edt);
 		case EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE : return isValidSetValueOfVentilationAirFlowRate(property.edt);
+		case EPC_VENTILATION_AUTO_SETTING : return isValidVentilationAutoSetting(property.edt);
+
 		default : return false;
 		}
 	}
@@ -333,12 +356,13 @@ public abstract class VentilationFan extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_VENTILATION_AUTO_SETTING : 
-				onSetVentilationAutoSetting(eoj, tid, esv, property, success);
-				return true;
 			case EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE : 
 				onSetSetValueOfVentilationAirFlowRate(eoj, tid, esv, property, success);
 				return true;
+			case EPC_VENTILATION_AUTO_SETTING : 
+				onSetVentilationAutoSetting(eoj, tid, esv, property, success);
+				return true;
+
 			default :
 				return false;
 			}
@@ -351,87 +375,39 @@ public abstract class VentilationFan extends DeviceObject {
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_VENTILATION_AUTO_SETTING : 
-				onGetVentilationAutoSetting(eoj, tid, esv, property, success);
-				return true;
 			case EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE : 
 				onGetSetValueOfVentilationAirFlowRate(eoj, tid, esv, property, success);
 				return true;
+			case EPC_VENTILATION_AUTO_SETTING : 
+				onGetVentilationAutoSetting(eoj, tid, esv, property, success);
+				return true;
+
 			default :
 				return false;
 			}
 		}
 		
 		/**
-		 * Property name : Ventilation auto setting<br>
-		 * <br>
-		 * EPC : 0xBF<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Auto/Non-auto<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Auto = 0x41, Non-auto = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetVentilationAutoSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Ventilation auto setting<br>
-		 * <br>
-		 * EPC : 0xBF<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Auto/Non-auto<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Auto = 0x41, Non-auto = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetVentilationAutoSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
 		 * Property name : Set value of ventilation air flow rate<br>
 		 * <br>
 		 * EPC : 0xA0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>
+		 * Contents :<br>
+		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Ventilation air flow rate auto status<br>
-		 * = 0x41<br>
-		 * Ventilation air flow rate level<br>
-		 * = 0x31.0x38<br>
+		 * Ventilation air flow rate auto status_x000a_= 0x41_x000a_Ventilation air flow rate level_x000a_= 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onSetSetValueOfVentilationAirFlowRate(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -439,27 +415,117 @@ public abstract class VentilationFan extends DeviceObject {
 		 * <br>
 		 * EPC : 0xA0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>
+		 * Contents :<br>
+		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Ventilation air flow rate auto status<br>
-		 * = 0x41<br>
-		 * Ventilation air flow rate level<br>
-		 * = 0x31.0x38<br>
+		 * Ventilation air flow rate auto status_x000a_= 0x41_x000a_Ventilation air flow rate level_x000a_= 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetSetValueOfVentilationAirFlowRate(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Ventilation auto setting<br>
+		 * <br>
+		 * EPC : 0xBF<br>
+		 * <br>
+		 * Contents :<br>
+		 * Auto/Non-auto <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Auto = 0x41, Non-auto = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetVentilationAutoSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Ventilation auto setting<br>
+		 * <br>
+		 * EPC : 0xBF<br>
+		 * <br>
+		 * Contents :<br>
+		 * Auto/Non-auto <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Auto = 0x41, Non-auto = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetVentilationAutoSetting(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This  property  indicates  the  ON/OFF status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This  property  indicates  the  ON/OFF status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - mandatory<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+
 	}
 
 	public static class Setter extends DeviceObject.Setter {
@@ -508,60 +574,58 @@ public abstract class VentilationFan extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : Ventilation auto setting<br>
-		 * <br>
-		 * EPC : 0xBF<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Auto/Non-auto<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Auto = 0x41, Non-auto = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Setter reqSetVentilationAutoSetting(byte[] edt) {
-			reqSetProperty(EPC_VENTILATION_AUTO_SETTING, edt);
-			return this;
-		}
-		/**
 		 * Property name : Set value of ventilation air flow rate<br>
 		 * <br>
 		 * EPC : 0xA0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>
+		 * Contents :<br>
+		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Ventilation air flow rate auto status<br>
-		 * = 0x41<br>
-		 * Ventilation air flow rate level<br>
-		 * = 0x31.0x38<br>
+		 * Ventilation air flow rate auto status_x000a_= 0x41_x000a_Ventilation air flow rate level_x000a_= 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetSetValueOfVentilationAirFlowRate(byte[] edt) {
 			reqSetProperty(EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE, edt);
 			return this;
 		}
+		/**
+		 * Property name : Ventilation auto setting<br>
+		 * <br>
+		 * EPC : 0xBF<br>
+		 * <br>
+		 * Contents :<br>
+		 * Auto/Non-auto <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Auto = 0x41, Non-auto = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Setter reqSetVentilationAutoSetting(byte[] edt) {
+			reqSetProperty(EPC_VENTILATION_AUTO_SETTING, edt);
+			return this;
+		}
+
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
@@ -674,60 +738,58 @@ public abstract class VentilationFan extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : Ventilation auto setting<br>
-		 * <br>
-		 * EPC : 0xBF<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Auto/Non-auto<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Auto = 0x41, Non-auto = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetVentilationAutoSetting() {
-			reqGetProperty(EPC_VENTILATION_AUTO_SETTING);
-			return this;
-		}
-		/**
 		 * Property name : Set value of ventilation air flow rate<br>
 		 * <br>
 		 * EPC : 0xA0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>
+		 * Contents :<br>
+		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Ventilation air flow rate auto status<br>
-		 * = 0x41<br>
-		 * Ventilation air flow rate level<br>
-		 * = 0x31.0x38<br>
+		 * Ventilation air flow rate auto status_x000a_= 0x41_x000a_Ventilation air flow rate level_x000a_= 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetSetValueOfVentilationAirFlowRate() {
 			reqGetProperty(EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE);
 			return this;
 		}
+		/**
+		 * Property name : Ventilation auto setting<br>
+		 * <br>
+		 * EPC : 0xBF<br>
+		 * <br>
+		 * Contents :<br>
+		 * Auto/Non-auto <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Auto = 0x41, Non-auto = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetVentilationAutoSetting() {
+			reqGetProperty(EPC_VENTILATION_AUTO_SETTING);
+			return this;
+		}
+
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
@@ -839,60 +901,58 @@ public abstract class VentilationFan extends DeviceObject {
 		}
 		
 		/**
-		 * Property name : Ventilation auto setting<br>
-		 * <br>
-		 * EPC : 0xBF<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Auto/Non-auto<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Auto = 0x41, Non-auto = 0x42<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformVentilationAutoSetting() {
-			reqInformProperty(EPC_VENTILATION_AUTO_SETTING);
-			return this;
-		}
-		/**
 		 * Property name : Set value of ventilation air flow rate<br>
 		 * <br>
 		 * EPC : 0xA0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step).<br>
+		 * Contents :<br>
+		 * Sets ventilation air flow rate level and ventilation air flow rate auto status. This property specifies ventilation air flow rate level (8-step). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * Ventilation air flow rate auto status<br>
-		 * = 0x41<br>
-		 * Ventilation air flow rate level<br>
-		 * = 0x31.0x38<br>
+		 * Ventilation air flow rate auto status_x000a_= 0x41_x000a_Ventilation air flow rate level_x000a_= 0x31.0x38<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformSetValueOfVentilationAirFlowRate() {
 			reqInformProperty(EPC_SET_VALUE_OF_VENTILATION_AIR_FLOW_RATE);
 			return this;
 		}
+		/**
+		 * Property name : Ventilation auto setting<br>
+		 * <br>
+		 * EPC : 0xBF<br>
+		 * <br>
+		 * Contents :<br>
+		 * Auto/Non-auto <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Auto = 0x41, Non-auto = 0x42<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformVentilationAutoSetting() {
+			reqInformProperty(EPC_VENTILATION_AUTO_SETTING);
+			return this;
+		}
+
 	}
 
 	public static class Proxy extends VentilationFan {
@@ -905,19 +965,26 @@ public abstract class VentilationFan extends DeviceObject {
 			return mEchoInstanceCode;
 		}
 		@Override
-		protected byte[] getOperationStatus() {return null;}
+		protected byte[] getGetPropertyMap(){return null;}
 		@Override
-		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		protected byte[] getSetPropertyMap(){return null;}
 		@Override
-		protected byte[] getInstallationLocation() {return null;}
+		protected byte[] getStatusChangeAnnouncementPropertyMap(){return null;}
 		@Override
-		protected byte[] getStandardVersionInformation() {return null;}
+		protected boolean setOperationStatus(byte[] edt){return false;}
 		@Override
-		protected byte[] getFaultStatus() {return null;}
+		protected byte[] getOperationStatus(){return null;}
 		@Override
-		protected byte[] getManufacturerCode() {return null;}
+		protected boolean setInstallationLocation(byte[] edt){return false;}
 		@Override
-		protected boolean setOperationStatus(byte[] edt) {return false;}
+		protected byte[] getInstallationLocation(){return null;}
+		@Override
+		protected byte[] getStandardVersionInformation(){return null;}
+		@Override
+		protected byte[] getFaultStatus(){return null;}
+		@Override
+		protected byte[] getManufacturerCode(){return null;}
+
 	}
 	
 	public static Setter setG() {

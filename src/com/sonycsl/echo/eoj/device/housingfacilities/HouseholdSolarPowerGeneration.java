@@ -1,53 +1,60 @@
 /*
- * Copyright 2012 Sony Computer Science Laboratories, Inc. <info@kadecot.net>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2014 Sony Computer Science Laboratories, Inc.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.sonycsl.echo.eoj.device.housingfacilities;
 
 import com.sonycsl.echo.Echo;
-import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
-import com.sonycsl.echo.node.EchoNode;
 
 public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x0279;
 
-	public static final byte EPC_SYSTEM_INTERCONN_ECTED_TYPE = (byte)0xD0;
-	public static final byte EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED = (byte)0xE0;
-	public static final byte EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED = (byte)0xE1;
-	public static final byte EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED = (byte)0xE2;
 	public static final byte EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD = (byte)0xE3;
-	public static final byte EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD = (byte)0xE4;
-	public static final byte EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1 = (byte)0xE5;
-	public static final byte EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2 = (byte)0xE6;
+	public static final byte EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED = (byte)0xE2;
+	public static final byte EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED = (byte)0xE1;
+	public static final byte EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED = (byte)0xE0;
 	public static final byte EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD = (byte)0xE7;
-	public static final byte EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED = (byte)0xE8;
-	public static final byte EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT = (byte)0xE9;
+	public static final byte EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_2 = (byte)0xE6;
+	public static final byte EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_1 = (byte)0xE5;
+	public static final byte EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD = (byte)0xE4;
+	public static final byte EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT_ = (byte)0xE9;
+	public static final byte EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED_ = (byte)0xE8;
+	public static final byte EPC_SYSTEM_INTERCONN_ECTED_TYPE = (byte)0xD0;
 
 	@Override
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
+		addGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED);
+		addGetProperty(EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
-		addGetProperty(EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED);
-		addGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED);
+
 	}
 
 	@Override
@@ -62,26 +69,629 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	}
 
 	/**
+	 * Property name : Measured cumulative amount of electricity sold<br>
+	 * <br>
+	 * EPC : 0xE3<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates integral value of sold power in 0.001 kWh. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * Data size : 4<br>
+	 * Unit : 0.001_x000a_kWh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getMeasuredCumulativeAmountOfElectricitySold() {return null;}
+	/**
+	 * Property name : Measured cumulative amount of electricity sold<br>
+	 * <br>
+	 * EPC : 0xE3<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates integral value of sold power in 0.001 kWh. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * Data size : 4<br>
+	 * Unit : 0.001_x000a_kWh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasuredCumulativeAmountOfElectricitySold(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Resetting cumulative amount of electricity generated<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents :<br>
+	 * Resets integral generated electric energy by setting 0x00. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reset = 0x00<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - -<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setResettingCumulativeAmountOfElectricityGenerated(byte[] edt) {return false;}
+	/**
+	 * Property name : Resetting cumulative amount of electricity generated<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents :<br>
+	 * Resets integral generated electric energy by setting 0x00. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reset = 0x00<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - -<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidResettingCumulativeAmountOfElectricityGenerated(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measured cumulative amount of electricity generated<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates integral electric energy in 0.001 kWh. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * Data size : 4<br>
+	 * Unit : 0.001_x000a_kWh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getMeasuredCumulativeAmountOfElectricityGenerated();
+	/**
+	 * Property name : Measured cumulative amount of electricity generated<br>
+	 * <br>
+	 * EPC : 0xE1<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates integral electric energy in 0.001 kWh. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * Data size : 4<br>
+	 * Unit : 0.001_x000a_kWh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasuredCumulativeAmountOfElectricityGenerated(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Measured instantaneous amount of electricity generated<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates instantaneous generated power in W. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getMeasuredInstantaneousAmountOfElectricityGenerated();
+	/**
+	 * Property name : Measured instantaneous amount of electricity generated<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates instantaneous generated power in W. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidMeasuredInstantaneousAmountOfElectricityGenerated(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Limit setting for the amount of electricity sold<br>
+	 * <br>
+	 * EPC : 0xE7<br>
+	 * <br>
+	 * Contents :<br>
+	 * Specifies, in watts, the amount of electricity sold and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setLimitSettingForTheAmountOfElectricitySold(byte[] edt) {return false;}
+	/**
+	 * Property name : Limit setting for the amount of electricity sold<br>
+	 * <br>
+	 * EPC : 0xE7<br>
+	 * <br>
+	 * Contents :<br>
+	 * Specifies, in watts, the amount of electricity sold and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getLimitSettingForTheAmountOfElectricitySold() {return null;}
+	/**
+	 * Property name : Limit setting for the amount of electricity sold<br>
+	 * <br>
+	 * EPC : 0xE7<br>
+	 * <br>
+	 * Contents :<br>
+	 * Specifies, in watts, the amount of electricity sold and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidLimitSettingForTheAmountOfElectricitySold(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Power generation output limit setting 2<br>
+	 * <br>
+	 * EPC : 0xE6<br>
+	 * <br>
+	 * Contents :<br>
+	 * Specifies the power generation output in watts and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setPowerGenerationOutputLimitSetting2(byte[] edt) {return false;}
+	/**
+	 * Property name : Power generation output limit setting 2<br>
+	 * <br>
+	 * EPC : 0xE6<br>
+	 * <br>
+	 * Contents :<br>
+	 * Specifies the power generation output in watts and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getPowerGenerationOutputLimitSetting2() {return null;}
+	/**
+	 * Property name : Power generation output limit setting 2<br>
+	 * <br>
+	 * EPC : 0xE6<br>
+	 * <br>
+	 * Contents :<br>
+	 * Specifies the power generation output in watts and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000.0xFFFD (0.65533)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidPowerGenerationOutputLimitSetting2(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Power generation output limit setting 1<br>
+	 * <br>
+	 * EPC : 0xE5<br>
+	 * <br>
+	 * Contents :<br>
+	 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64 (0.100%)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : %<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setPowerGenerationOutputLimitSetting1(byte[] edt) {return false;}
+	/**
+	 * Property name : Power generation output limit setting 1<br>
+	 * <br>
+	 * EPC : 0xE5<br>
+	 * <br>
+	 * Contents :<br>
+	 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64 (0.100%)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : %<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getPowerGenerationOutputLimitSetting1() {return null;}
+	/**
+	 * Property name : Power generation output limit setting 1<br>
+	 * <br>
+	 * EPC : 0xE5<br>
+	 * <br>
+	 * Contents :<br>
+	 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00.0x64 (0.100%)<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : %<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidPowerGenerationOutputLimitSetting1(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Resetting cumulative amount of electricity sold<br>
+	 * <br>
+	 * EPC : 0xE4<br>
+	 * <br>
+	 * Contents :<br>
+	 * Resets integral sold electric energy by setting 0x00. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reset = 0x00<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - -<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setResettingCumulativeAmountOfElectricitySold(byte[] edt) {return false;}
+	/**
+	 * Property name : Resetting cumulative amount of electricity sold<br>
+	 * <br>
+	 * EPC : 0xE4<br>
+	 * <br>
+	 * Contents :<br>
+	 * Resets integral sold electric energy by setting 0x00. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * Reset = 0x00<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - -<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidResettingCumulativeAmountOfElectricitySold(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Rated power generation output (Independent)<br>
+	 * <br>
+	 * EPC : 0xE9<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the rated power output in the independent status in watts. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000–0xFFFD (0–65,533)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setRatedPowerGenerationOutputIndependent(byte[] edt) {return false;}
+	/**
+	 * Property name : Rated power generation output (Independent)<br>
+	 * <br>
+	 * EPC : 0xE9<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the rated power output in the independent status in watts. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000–0xFFFD (0–65,533)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getRatedPowerGenerationOutputIndependent() {return null;}
+	/**
+	 * Property name : Rated power generation output (Independent)<br>
+	 * <br>
+	 * EPC : 0xE9<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the rated power output in the independent status in watts. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000–0xFFFD (0–65,533)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidRatedPowerGenerationOutputIndependent(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Rated power generation output(System-interconnected)<br>
+	 * <br>
+	 * EPC : 0xE8<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the rated power output in the system-interconnected status in watts. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000–0xFFFD (0–65,533)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean setRatedPowerGenerationOutputSystemInterconnected(byte[] edt) {return false;}
+	/**
+	 * Property name : Rated power generation output(System-interconnected)<br>
+	 * <br>
+	 * EPC : 0xE8<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the rated power output in the system-interconnected status in watts. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000–0xFFFD (0–65,533)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getRatedPowerGenerationOutputSystemInterconnected() {return null;}
+	/**
+	 * Property name : Rated power generation output(System-interconnected)<br>
+	 * <br>
+	 * EPC : 0xE8<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the rated power output in the system-interconnected status in watts. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x0000–0xFFFD (0–65,533)<br>
+	 * <br>
+	 * Data type : unsigned short<br>
+	 * Data size : 2<br>
+	 * Unit : W<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidRatedPowerGenerationOutputSystemInterconnected(byte[] edt) {
+		if(edt == null || !(edt.length == 2)) {return false;};
+		return true;
+	}
+	/**
 	 * Property name : Operation status<br>
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -91,48 +701,71 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
 	protected abstract byte[] getOperationStatus();
 	/**
+	 * Property name : Operation status<br>
+	 * <br>
+	 * EPC : 0x80<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * ON=0x30, OFF=0x31<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidOperationStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
 	 * Property name : System-interconn ected type<br>
 	 * <br>
 	 * EPC : 0xD0<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates system interconnection status<br>
+	 * Contents :<br>
+	 * This property indicates system interconnection status <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01<br>
-	 * System-linked   type    (reverse power flow not acceptable) =0x02<br>
+	 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01_x000a_System-linked   type    (reverse power flow not acceptable) =0x02<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected byte[] getSystemInterconnEctedType() {return null;}
 	/**
@@ -140,635 +773,25 @@ public abstract class HouseholdSolarPowerGeneration extends DeviceObject {
 	 * <br>
 	 * EPC : 0xD0<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates system interconnection status<br>
+	 * Contents :<br>
+	 * This property indicates system interconnection status <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01<br>
-	 * System-linked   type    (reverse power flow not acceptable) =0x02<br>
+	 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01_x000a_System-linked   type    (reverse power flow not acceptable) =0x02<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
+	 * Data size : 1<br>
 	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
 	protected boolean isValidSystemInterconnEctedType(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measured instantaneous amount of electricity generated<br>
-	 * <br>
-	 * EPC : 0xE0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates instantaneous generated power in W.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected abstract byte[] getMeasuredInstantaneousAmountOfElectricityGenerated();
-	/**
-	 * Property name : Measured instantaneous amount of electricity generated<br>
-	 * <br>
-	 * EPC : 0xE0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates instantaneous generated power in W.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected boolean isValidMeasuredInstantaneousAmountOfElectricityGenerated(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measured cumulative amount of electricity generated<br>
-	 * <br>
-	 * EPC : 0xE1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates integral electric energy in 0.001 kWh.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
-	 * <br>
-	 * Data type : unsigned long<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
-	 * Unit : 0.001
-kWh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected abstract byte[] getMeasuredCumulativeAmountOfElectricityGenerated();
-	/**
-	 * Property name : Measured cumulative amount of electricity generated<br>
-	 * <br>
-	 * EPC : 0xE1<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates integral electric energy in 0.001 kWh.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
-	 * <br>
-	 * Data type : unsigned long<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
-	 * Unit : 0.001
-kWh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected boolean isValidMeasuredCumulativeAmountOfElectricityGenerated(byte[] edt) {
-		if(edt == null || !(edt.length == 4)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Resetting cumulative amount of electricity generated<br>
-	 * <br>
-	 * EPC : 0xE2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Resets integral generated electric energy by setting 0x00.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Reset = 0x00<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - undefined<br>
-	 */
-	protected boolean setResettingCumulativeAmountOfElectricityGenerated(byte[] edt) {return false;}
-	/**
-	 * Property name : Resetting cumulative amount of electricity generated<br>
-	 * <br>
-	 * EPC : 0xE2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Resets integral generated electric energy by setting 0x00.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Reset = 0x00<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - undefined<br>
-	 */
-	protected boolean isValidResettingCumulativeAmountOfElectricityGenerated(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Measured cumulative amount of electricity sold<br>
-	 * <br>
-	 * EPC : 0xE3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates integral value of sold power in 0.001 kWh.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
-	 * <br>
-	 * Data type : unsigned long<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
-	 * Unit : 0.001
-kWh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getMeasuredCumulativeAmountOfElectricitySold() {return null;}
-	/**
-	 * Property name : Measured cumulative amount of electricity sold<br>
-	 * <br>
-	 * EPC : 0xE3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates integral value of sold power in 0.001 kWh.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
-	 * <br>
-	 * Data type : unsigned long<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
-	 * Unit : 0.001
-kWh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidMeasuredCumulativeAmountOfElectricitySold(byte[] edt) {
-		if(edt == null || !(edt.length == 4)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Resetting cumulative amount of electricity sold<br>
-	 * <br>
-	 * EPC : 0xE4<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Resets integral sold electric energy by setting 0x00.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Reset = 0x00<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - undefined<br>
-	 */
-	protected boolean setResettingCumulativeAmountOfElectricitySold(byte[] edt) {return false;}
-	/**
-	 * Property name : Resetting cumulative amount of electricity sold<br>
-	 * <br>
-	 * EPC : 0xE4<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Resets integral sold electric energy by setting 0x00.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * Reset = 0x00<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : -<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - undefined<br>
-	 */
-	protected boolean isValidResettingCumulativeAmountOfElectricitySold(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Power generation output limit setting 1<br>
-	 * <br>
-	 * EPC : 0xE5<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64 (0.100%)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : %<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setPowerGenerationOutputLimitSetting1(byte[] edt) {return false;}
-	/**
-	 * Property name : Power generation output limit setting 1<br>
-	 * <br>
-	 * EPC : 0xE5<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64 (0.100%)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : %<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getPowerGenerationOutputLimitSetting1() {return null;}
-	/**
-	 * Property name : Power generation output limit setting 1<br>
-	 * <br>
-	 * EPC : 0xE5<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00.0x64 (0.100%)<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : %<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidPowerGenerationOutputLimitSetting1(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Power generation output limit setting 2<br>
-	 * <br>
-	 * EPC : 0xE6<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Specifies the power generation output in watts and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setPowerGenerationOutputLimitSetting2(byte[] edt) {return false;}
-	/**
-	 * Property name : Power generation output limit setting 2<br>
-	 * <br>
-	 * EPC : 0xE6<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Specifies the power generation output in watts and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getPowerGenerationOutputLimitSetting2() {return null;}
-	/**
-	 * Property name : Power generation output limit setting 2<br>
-	 * <br>
-	 * EPC : 0xE6<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Specifies the power generation output in watts and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidPowerGenerationOutputLimitSetting2(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Limit setting for the amount of electricity sold<br>
-	 * <br>
-	 * EPC : 0xE7<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Specifies, in watts, the amount of electricity sold and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setLimitSettingForTheAmountOfElectricitySold(byte[] edt) {return false;}
-	/**
-	 * Property name : Limit setting for the amount of electricity sold<br>
-	 * <br>
-	 * EPC : 0xE7<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Specifies, in watts, the amount of electricity sold and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getLimitSettingForTheAmountOfElectricitySold() {return null;}
-	/**
-	 * Property name : Limit setting for the amount of electricity sold<br>
-	 * <br>
-	 * EPC : 0xE7<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * Specifies, in watts, the amount of electricity sold and to acquire the current setting.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000.0xFFFD (0.65533)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidLimitSettingForTheAmountOfElectricitySold(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Rated power generation output(System-interconnected)<br>
-	 * <br>
-	 * EPC : 0xE8<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the rated power output in the system-interconnected status in watts.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000–0xFFFD (0–65,533)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setRatedPowerGenerationOutputSystemInterconnected(byte[] edt) {return false;}
-	/**
-	 * Property name : Rated power generation output(System-interconnected)<br>
-	 * <br>
-	 * EPC : 0xE8<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the rated power output in the system-interconnected status in watts.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000–0xFFFD (0–65,533)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getRatedPowerGenerationOutputSystemInterconnected() {return null;}
-	/**
-	 * Property name : Rated power generation output(System-interconnected)<br>
-	 * <br>
-	 * EPC : 0xE8<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the rated power output in the system-interconnected status in watts.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000–0xFFFD (0–65,533)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidRatedPowerGenerationOutputSystemInterconnected(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Rated power generation output (Independent)<br>
-	 * <br>
-	 * EPC : 0xE9<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the rated power output in the independent status in watts.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000–0xFFFD (0–65,533)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean setRatedPowerGenerationOutputIndependent(byte[] edt) {return false;}
-	/**
-	 * Property name : Rated power generation output (Independent)<br>
-	 * <br>
-	 * EPC : 0xE9<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the rated power output in the independent status in watts.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000–0xFFFD (0–65,533)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getRatedPowerGenerationOutputIndependent() {return null;}
-	/**
-	 * Property name : Rated power generation output (Independent)<br>
-	 * <br>
-	 * EPC : 0xE9<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the rated power output in the independent status in watts.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x0000–0xFFFD (0–65,533)<br>
-	 * <br>
-	 * Data type : unsigned short<br>
-	 * <br>
-	 * Data size : 2 bytes<br>
-	 * <br>
-	 * Unit : W<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidRatedPowerGenerationOutputIndependent(byte[] edt) {
-		if(edt == null || !(edt.length == 2)) return false;
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 
@@ -779,12 +802,13 @@ kWh<br>
 
 		switch(property.epc) {
 		case EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED : return setResettingCumulativeAmountOfElectricityGenerated(property.edt);
-		case EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD : return setResettingCumulativeAmountOfElectricitySold(property.edt);
-		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1 : return setPowerGenerationOutputLimitSetting1(property.edt);
-		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2 : return setPowerGenerationOutputLimitSetting2(property.edt);
 		case EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD : return setLimitSettingForTheAmountOfElectricitySold(property.edt);
-		case EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED : return setRatedPowerGenerationOutputSystemInterconnected(property.edt);
-		case EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT : return setRatedPowerGenerationOutputIndependent(property.edt);
+		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_2 : return setPowerGenerationOutputLimitSetting2(property.edt);
+		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_1 : return setPowerGenerationOutputLimitSetting1(property.edt);
+		case EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD : return setResettingCumulativeAmountOfElectricitySold(property.edt);
+		case EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT_ : return setRatedPowerGenerationOutputIndependent(property.edt);
+		case EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED_ : return setRatedPowerGenerationOutputSystemInterconnected(property.edt);
+
 		default : return false;
 		}
 	}
@@ -795,15 +819,16 @@ kWh<br>
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_SYSTEM_INTERCONN_ECTED_TYPE : return getSystemInterconnEctedType();
-		case EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED : return getMeasuredInstantaneousAmountOfElectricityGenerated();
-		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED : return getMeasuredCumulativeAmountOfElectricityGenerated();
 		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD : return getMeasuredCumulativeAmountOfElectricitySold();
-		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1 : return getPowerGenerationOutputLimitSetting1();
-		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2 : return getPowerGenerationOutputLimitSetting2();
+		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED : return getMeasuredCumulativeAmountOfElectricityGenerated();
+		case EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED : return getMeasuredInstantaneousAmountOfElectricityGenerated();
 		case EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD : return getLimitSettingForTheAmountOfElectricitySold();
-		case EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED : return getRatedPowerGenerationOutputSystemInterconnected();
-		case EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT : return getRatedPowerGenerationOutputIndependent();
+		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_2 : return getPowerGenerationOutputLimitSetting2();
+		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_1 : return getPowerGenerationOutputLimitSetting1();
+		case EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT_ : return getRatedPowerGenerationOutputIndependent();
+		case EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED_ : return getRatedPowerGenerationOutputSystemInterconnected();
+		case EPC_SYSTEM_INTERCONN_ECTED_TYPE : return getSystemInterconnEctedType();
+
 		default : return null;
 		}
 	}
@@ -814,17 +839,18 @@ kWh<br>
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_SYSTEM_INTERCONN_ECTED_TYPE : return isValidSystemInterconnEctedType(property.edt);
-		case EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED : return isValidMeasuredInstantaneousAmountOfElectricityGenerated(property.edt);
-		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED : return isValidMeasuredCumulativeAmountOfElectricityGenerated(property.edt);
-		case EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED : return isValidResettingCumulativeAmountOfElectricityGenerated(property.edt);
 		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD : return isValidMeasuredCumulativeAmountOfElectricitySold(property.edt);
-		case EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD : return isValidResettingCumulativeAmountOfElectricitySold(property.edt);
-		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1 : return isValidPowerGenerationOutputLimitSetting1(property.edt);
-		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2 : return isValidPowerGenerationOutputLimitSetting2(property.edt);
+		case EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED : return isValidResettingCumulativeAmountOfElectricityGenerated(property.edt);
+		case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED : return isValidMeasuredCumulativeAmountOfElectricityGenerated(property.edt);
+		case EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED : return isValidMeasuredInstantaneousAmountOfElectricityGenerated(property.edt);
 		case EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD : return isValidLimitSettingForTheAmountOfElectricitySold(property.edt);
-		case EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED : return isValidRatedPowerGenerationOutputSystemInterconnected(property.edt);
-		case EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT : return isValidRatedPowerGenerationOutputIndependent(property.edt);
+		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_2 : return isValidPowerGenerationOutputLimitSetting2(property.edt);
+		case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_1 : return isValidPowerGenerationOutputLimitSetting1(property.edt);
+		case EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD : return isValidResettingCumulativeAmountOfElectricitySold(property.edt);
+		case EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT_ : return isValidRatedPowerGenerationOutputIndependent(property.edt);
+		case EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED_ : return isValidRatedPowerGenerationOutputSystemInterconnected(property.edt);
+		case EPC_SYSTEM_INTERCONN_ECTED_TYPE : return isValidSystemInterconnEctedType(property.edt);
+
 		default : return false;
 		}
 	}
@@ -875,24 +901,25 @@ kWh<br>
 			case EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED : 
 				onSetResettingCumulativeAmountOfElectricityGenerated(eoj, tid, esv, property, success);
 				return true;
-			case EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD : 
-				onSetResettingCumulativeAmountOfElectricitySold(eoj, tid, esv, property, success);
-				return true;
-			case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1 : 
-				onSetPowerGenerationOutputLimitSetting1(eoj, tid, esv, property, success);
-				return true;
-			case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2 : 
-				onSetPowerGenerationOutputLimitSetting2(eoj, tid, esv, property, success);
-				return true;
 			case EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD : 
 				onSetLimitSettingForTheAmountOfElectricitySold(eoj, tid, esv, property, success);
 				return true;
-			case EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED : 
-				onSetRatedPowerGenerationOutputSystemInterconnected(eoj, tid, esv, property, success);
+			case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_2 : 
+				onSetPowerGenerationOutputLimitSetting2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT : 
+			case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_1 : 
+				onSetPowerGenerationOutputLimitSetting1(eoj, tid, esv, property, success);
+				return true;
+			case EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD : 
+				onSetResettingCumulativeAmountOfElectricitySold(eoj, tid, esv, property, success);
+				return true;
+			case EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT_ : 
 				onSetRatedPowerGenerationOutputIndependent(eoj, tid, esv, property, success);
 				return true;
+			case EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED_ : 
+				onSetRatedPowerGenerationOutputSystemInterconnected(eoj, tid, esv, property, success);
+				return true;
+
 			default :
 				return false;
 			}
@@ -905,292 +932,152 @@ kWh<br>
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_SYSTEM_INTERCONN_ECTED_TYPE : 
-				onGetSystemInterconnEctedType(eoj, tid, esv, property, success);
-				return true;
-			case EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED : 
-				onGetMeasuredInstantaneousAmountOfElectricityGenerated(eoj, tid, esv, property, success);
+			case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD : 
+				onGetMeasuredCumulativeAmountOfElectricitySold(eoj, tid, esv, property, success);
 				return true;
 			case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED : 
 				onGetMeasuredCumulativeAmountOfElectricityGenerated(eoj, tid, esv, property, success);
 				return true;
-			case EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD : 
-				onGetMeasuredCumulativeAmountOfElectricitySold(eoj, tid, esv, property, success);
-				return true;
-			case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1 : 
-				onGetPowerGenerationOutputLimitSetting1(eoj, tid, esv, property, success);
-				return true;
-			case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2 : 
-				onGetPowerGenerationOutputLimitSetting2(eoj, tid, esv, property, success);
+			case EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED : 
+				onGetMeasuredInstantaneousAmountOfElectricityGenerated(eoj, tid, esv, property, success);
 				return true;
 			case EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD : 
 				onGetLimitSettingForTheAmountOfElectricitySold(eoj, tid, esv, property, success);
 				return true;
-			case EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED : 
-				onGetRatedPowerGenerationOutputSystemInterconnected(eoj, tid, esv, property, success);
+			case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_2 : 
+				onGetPowerGenerationOutputLimitSetting2(eoj, tid, esv, property, success);
 				return true;
-			case EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT : 
+			case EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_1 : 
+				onGetPowerGenerationOutputLimitSetting1(eoj, tid, esv, property, success);
+				return true;
+			case EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT_ : 
 				onGetRatedPowerGenerationOutputIndependent(eoj, tid, esv, property, success);
 				return true;
+			case EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED_ : 
+				onGetRatedPowerGenerationOutputSystemInterconnected(eoj, tid, esv, property, success);
+				return true;
+			case EPC_SYSTEM_INTERCONN_ECTED_TYPE : 
+				onGetSystemInterconnEctedType(eoj, tid, esv, property, success);
+				return true;
+
 			default :
 				return false;
 			}
 		}
 		
 		/**
-		 * Property name : System-interconn ected type<br>
+		 * Property name : Measured cumulative amount of electricity sold<br>
 		 * <br>
-		 * EPC : 0xD0<br>
+		 * EPC : 0xE3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates system interconnection status<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01<br>
-		 * System-linked   type    (reverse power flow not acceptable) =0x02<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetSystemInterconnEctedType(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measured instantaneous amount of electricity generated<br>
-		 * <br>
-		 * EPC : 0xE0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates instantaneous generated power in W.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : W<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		protected void onGetMeasuredInstantaneousAmountOfElectricityGenerated(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Measured cumulative amount of electricity generated<br>
-		 * <br>
-		 * EPC : 0xE1<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates integral electric energy in 0.001 kWh.<br>
+		 * Contents :<br>
+		 * This property indicates integral value of sold power in 0.001 kWh. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.001
-kWh<br>
+		 * Data size : 4<br>
+		 * Unit : 0.001_x000a_kWh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetMeasuredCumulativeAmountOfElectricityGenerated(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetMeasuredCumulativeAmountOfElectricitySold(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Resetting cumulative amount of electricity generated<br>
 		 * <br>
 		 * EPC : 0xE2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Resets integral generated electric energy by setting 0x00.<br>
+		 * Contents :<br>
+		 * Resets integral generated electric energy by setting 0x00. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Reset = 0x00<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - undefined<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - -<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onSetResettingCumulativeAmountOfElectricityGenerated(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Measured cumulative amount of electricity sold<br>
+		 * Property name : Measured cumulative amount of electricity generated<br>
 		 * <br>
-		 * EPC : 0xE3<br>
+		 * EPC : 0xE1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates integral value of sold power in 0.001 kWh.<br>
+		 * Contents :<br>
+		 * This property indicates integral electric energy in 0.001 kWh. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.001
-kWh<br>
+		 * Data size : 4<br>
+		 * Unit : 0.001_x000a_kWh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetMeasuredCumulativeAmountOfElectricitySold(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetMeasuredCumulativeAmountOfElectricityGenerated(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Resetting cumulative amount of electricity sold<br>
+		 * Property name : Measured instantaneous amount of electricity generated<br>
 		 * <br>
-		 * EPC : 0xE4<br>
+		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Resets integral sold electric energy by setting 0x00.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Reset = 0x00<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - undefined<br>
-		 */
-		protected void onSetResettingCumulativeAmountOfElectricitySold(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Power generation output limit setting 1<br>
-		 * <br>
-		 * EPC : 0xE5<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100%)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : %<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onSetPowerGenerationOutputLimitSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Power generation output limit setting 1<br>
-		 * <br>
-		 * EPC : 0xE5<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100%)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : %<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetPowerGenerationOutputLimitSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Power generation output limit setting 2<br>
-		 * <br>
-		 * EPC : 0xE6<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Specifies the power generation output in watts and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * This property indicates instantaneous generated power in W. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFD (0.65533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onSetPowerGenerationOutputLimitSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Power generation output limit setting 2<br>
-		 * <br>
-		 * EPC : 0xE6<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Specifies the power generation output in watts and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : W<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		protected void onGetPowerGenerationOutputLimitSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetMeasuredInstantaneousAmountOfElectricityGenerated(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Limit setting for the amount of electricity sold<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Specifies, in watts, the amount of electricity sold and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Specifies, in watts, the amount of electricity sold and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFD (0.65533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onSetLimitSettingForTheAmountOfElectricitySold(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -1198,91 +1085,160 @@ kWh<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Specifies, in watts, the amount of electricity sold and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Specifies, in watts, the amount of electricity sold and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFD (0.65533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetLimitSettingForTheAmountOfElectricitySold(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Rated power generation output(System-interconnected)<br>
+		 * Property name : Power generation output limit setting 2<br>
 		 * <br>
-		 * EPC : 0xE8<br>
+		 * EPC : 0xE6<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated power output in the system-interconnected status in watts.<br>
+		 * Contents :<br>
+		 * Specifies the power generation output in watts and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000–0xFFFD (0–65,533)<br>
+		 * 0x0000.0xFFFD (0.65533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onSetRatedPowerGenerationOutputSystemInterconnected(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onSetPowerGenerationOutputLimitSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
-		 * Property name : Rated power generation output(System-interconnected)<br>
+		 * Property name : Power generation output limit setting 2<br>
 		 * <br>
-		 * EPC : 0xE8<br>
+		 * EPC : 0xE6<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated power output in the system-interconnected status in watts.<br>
+		 * Contents :<br>
+		 * Specifies the power generation output in watts and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000–0xFFFD (0–65,533)<br>
+		 * 0x0000.0xFFFD (0.65533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		protected void onGetRatedPowerGenerationOutputSystemInterconnected(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		protected void onGetPowerGenerationOutputLimitSetting2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Power generation output limit setting 1<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents :<br>
+		 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetPowerGenerationOutputLimitSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Power generation output limit setting 1<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents :<br>
+		 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetPowerGenerationOutputLimitSetting1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Resetting cumulative amount of electricity sold<br>
+		 * <br>
+		 * EPC : 0xE4<br>
+		 * <br>
+		 * Contents :<br>
+		 * Resets integral sold electric energy by setting 0x00. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reset = 0x00<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - -<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetResettingCumulativeAmountOfElectricitySold(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Rated power generation output (Independent)<br>
 		 * <br>
 		 * EPC : 0xE9<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated power output in the independent status in watts.<br>
+		 * Contents :<br>
+		 * This property indicates the rated power output in the independent status in watts. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000–0xFFFD (0–65,533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onSetRatedPowerGenerationOutputIndependent(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
@@ -1290,24 +1246,140 @@ kWh<br>
 		 * <br>
 		 * EPC : 0xE9<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated power output in the independent status in watts.<br>
+		 * Contents :<br>
+		 * This property indicates the rated power output in the independent status in watts. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000–0xFFFD (0–65,533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetRatedPowerGenerationOutputIndependent(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Rated power generation output(System-interconnected)<br>
+		 * <br>
+		 * EPC : 0xE8<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the rated power output in the system-interconnected status in watts. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000–0xFFFD (0–65,533)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetRatedPowerGenerationOutputSystemInterconnected(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Rated power generation output(System-interconnected)<br>
+		 * <br>
+		 * EPC : 0xE8<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the rated power output in the system-interconnected status in watts. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000–0xFFFD (0–65,533)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetRatedPowerGenerationOutputSystemInterconnected(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : System-interconn ected type<br>
+		 * <br>
+		 * EPC : 0xD0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates system interconnection status <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01_x000a_System-linked   type    (reverse power flow not acceptable) =0x02<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetSystemInterconnEctedType(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+
 	}
 
 	public static class Setter extends DeviceObject.Setter {
@@ -1360,103 +1432,25 @@ kWh<br>
 		 * <br>
 		 * EPC : 0xE2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Resets integral generated electric energy by setting 0x00.<br>
+		 * Contents :<br>
+		 * Resets integral generated electric energy by setting 0x00. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * Reset = 0x00<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : -<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - undefined<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - -<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetResettingCumulativeAmountOfElectricityGenerated(byte[] edt) {
 			reqSetProperty(EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED, edt);
-			return this;
-		}
-		/**
-		 * Property name : Resetting cumulative amount of electricity sold<br>
-		 * <br>
-		 * EPC : 0xE4<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Resets integral sold electric energy by setting 0x00.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * Reset = 0x00<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - undefined<br>
-		 */
-		public Setter reqSetResettingCumulativeAmountOfElectricitySold(byte[] edt) {
-			reqSetProperty(EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD, edt);
-			return this;
-		}
-		/**
-		 * Property name : Power generation output limit setting 1<br>
-		 * <br>
-		 * EPC : 0xE5<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100%)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : %<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Setter reqSetPowerGenerationOutputLimitSetting1(byte[] edt) {
-			reqSetProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1, edt);
-			return this;
-		}
-		/**
-		 * Property name : Power generation output limit setting 2<br>
-		 * <br>
-		 * EPC : 0xE6<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Specifies the power generation output in watts and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533)<br>
-		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : W<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Setter reqSetPowerGenerationOutputLimitSetting2(byte[] edt) {
-			reqSetProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2, edt);
 			return this;
 		}
 		/**
@@ -1464,51 +1458,103 @@ kWh<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Specifies, in watts, the amount of electricity sold and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Specifies, in watts, the amount of electricity sold and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFD (0.65533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetLimitSettingForTheAmountOfElectricitySold(byte[] edt) {
 			reqSetProperty(EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD, edt);
 			return this;
 		}
 		/**
-		 * Property name : Rated power generation output(System-interconnected)<br>
+		 * Property name : Power generation output limit setting 2<br>
 		 * <br>
-		 * EPC : 0xE8<br>
+		 * EPC : 0xE6<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated power output in the system-interconnected status in watts.<br>
+		 * Contents :<br>
+		 * Specifies the power generation output in watts and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000–0xFFFD (0–65,533)<br>
+		 * 0x0000.0xFFFD (0.65533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Setter reqSetRatedPowerGenerationOutputSystemInterconnected(byte[] edt) {
-			reqSetProperty(EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED, edt);
+		public Setter reqSetPowerGenerationOutputLimitSetting2(byte[] edt) {
+			reqSetProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_2, edt);
+			return this;
+		}
+		/**
+		 * Property name : Power generation output limit setting 1<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents :<br>
+		 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Setter reqSetPowerGenerationOutputLimitSetting1(byte[] edt) {
+			reqSetProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_1, edt);
+			return this;
+		}
+		/**
+		 * Property name : Resetting cumulative amount of electricity sold<br>
+		 * <br>
+		 * EPC : 0xE4<br>
+		 * <br>
+		 * Contents :<br>
+		 * Resets integral sold electric energy by setting 0x00. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * Reset = 0x00<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - -<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Setter reqSetResettingCumulativeAmountOfElectricitySold(byte[] edt) {
+			reqSetProperty(EPC_RESETTING_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD, edt);
 			return this;
 		}
 		/**
@@ -1516,27 +1562,54 @@ kWh<br>
 		 * <br>
 		 * EPC : 0xE9<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated power output in the independent status in watts.<br>
+		 * Contents :<br>
+		 * This property indicates the rated power output in the independent status in watts. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000–0xFFFD (0–65,533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Setter reqSetRatedPowerGenerationOutputIndependent(byte[] edt) {
-			reqSetProperty(EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT, edt);
+			reqSetProperty(EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT_, edt);
 			return this;
 		}
+		/**
+		 * Property name : Rated power generation output(System-interconnected)<br>
+		 * <br>
+		 * EPC : 0xE8<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the rated power output in the system-interconnected status in watts. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000–0xFFFD (0–65,533)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Setter reqSetRatedPowerGenerationOutputSystemInterconnected(byte[] edt) {
+			reqSetProperty(EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED_, edt);
+			return this;
+		}
+
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
@@ -1649,56 +1722,29 @@ kWh<br>
 		}
 		
 		/**
-		 * Property name : System-interconn ected type<br>
+		 * Property name : Measured cumulative amount of electricity sold<br>
 		 * <br>
-		 * EPC : 0xD0<br>
+		 * EPC : 0xE3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates system interconnection status<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01<br>
-		 * System-linked   type    (reverse power flow not acceptable) =0x02<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetSystemInterconnEctedType() {
-			reqGetProperty(EPC_SYSTEM_INTERCONN_ECTED_TYPE);
-			return this;
-		}
-		/**
-		 * Property name : Measured instantaneous amount of electricity generated<br>
-		 * <br>
-		 * EPC : 0xE0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates instantaneous generated power in W.<br>
+		 * Contents :<br>
+		 * This property indicates integral value of sold power in 0.001 kWh. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533)<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
 		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : W<br>
+		 * Data type : unsigned long<br>
+		 * Data size : 4<br>
+		 * Unit : 0.001_x000a_kWh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetMeasuredInstantaneousAmountOfElectricityGenerated() {
-			reqGetProperty(EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED);
+		public Getter reqGetMeasuredCumulativeAmountOfElectricitySold() {
+			reqGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD);
 			return this;
 		}
 		/**
@@ -1706,105 +1752,51 @@ kWh<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates integral electric energy in 0.001 kWh.<br>
+		 * Contents :<br>
+		 * This property indicates integral electric energy in 0.001 kWh. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.001
-kWh<br>
+		 * Data size : 4<br>
+		 * Unit : 0.001_x000a_kWh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetMeasuredCumulativeAmountOfElectricityGenerated() {
 			reqGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED);
 			return this;
 		}
 		/**
-		 * Property name : Measured cumulative amount of electricity sold<br>
+		 * Property name : Measured instantaneous amount of electricity generated<br>
 		 * <br>
-		 * EPC : 0xE3<br>
+		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates integral value of sold power in 0.001 kWh.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
-		 * <br>
-		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.001
-kWh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetMeasuredCumulativeAmountOfElectricitySold() {
-			reqGetProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD);
-			return this;
-		}
-		/**
-		 * Property name : Power generation output limit setting 1<br>
-		 * <br>
-		 * EPC : 0xE5<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100%)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : %<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Getter reqGetPowerGenerationOutputLimitSetting1() {
-			reqGetProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1);
-			return this;
-		}
-		/**
-		 * Property name : Power generation output limit setting 2<br>
-		 * <br>
-		 * EPC : 0xE6<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Specifies the power generation output in watts and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * This property indicates instantaneous generated power in W. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFD (0.65533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetPowerGenerationOutputLimitSetting2() {
-			reqGetProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2);
+		public Getter reqGetMeasuredInstantaneousAmountOfElectricityGenerated() {
+			reqGetProperty(EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED);
 			return this;
 		}
 		/**
@@ -1812,51 +1804,77 @@ kWh<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Specifies, in watts, the amount of electricity sold and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Specifies, in watts, the amount of electricity sold and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFD (0.65533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetLimitSettingForTheAmountOfElectricitySold() {
 			reqGetProperty(EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD);
 			return this;
 		}
 		/**
-		 * Property name : Rated power generation output(System-interconnected)<br>
+		 * Property name : Power generation output limit setting 2<br>
 		 * <br>
-		 * EPC : 0xE8<br>
+		 * EPC : 0xE6<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated power output in the system-interconnected status in watts.<br>
+		 * Contents :<br>
+		 * Specifies the power generation output in watts and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000–0xFFFD (0–65,533)<br>
+		 * 0x0000.0xFFFD (0.65533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetRatedPowerGenerationOutputSystemInterconnected() {
-			reqGetProperty(EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED);
+		public Getter reqGetPowerGenerationOutputLimitSetting2() {
+			reqGetProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_2);
+			return this;
+		}
+		/**
+		 * Property name : Power generation output limit setting 1<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents :<br>
+		 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetPowerGenerationOutputLimitSetting1() {
+			reqGetProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_1);
 			return this;
 		}
 		/**
@@ -1864,27 +1882,80 @@ kWh<br>
 		 * <br>
 		 * EPC : 0xE9<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated power output in the independent status in watts.<br>
+		 * Contents :<br>
+		 * This property indicates the rated power output in the independent status in watts. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000–0xFFFD (0–65,533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetRatedPowerGenerationOutputIndependent() {
-			reqGetProperty(EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT);
+			reqGetProperty(EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT_);
 			return this;
 		}
+		/**
+		 * Property name : Rated power generation output(System-interconnected)<br>
+		 * <br>
+		 * EPC : 0xE8<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the rated power output in the system-interconnected status in watts. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000–0xFFFD (0–65,533)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetRatedPowerGenerationOutputSystemInterconnected() {
+			reqGetProperty(EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED_);
+			return this;
+		}
+		/**
+		 * Property name : System-interconn ected type<br>
+		 * <br>
+		 * EPC : 0xD0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates system interconnection status <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01_x000a_System-linked   type    (reverse power flow not acceptable) =0x02<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Getter reqGetSystemInterconnEctedType() {
+			reqGetProperty(EPC_SYSTEM_INTERCONN_ECTED_TYPE);
+			return this;
+		}
+
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
@@ -1996,56 +2067,29 @@ kWh<br>
 		}
 		
 		/**
-		 * Property name : System-interconn ected type<br>
+		 * Property name : Measured cumulative amount of electricity sold<br>
 		 * <br>
-		 * EPC : 0xD0<br>
+		 * EPC : 0xE3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates system interconnection status<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01<br>
-		 * System-linked   type    (reverse power flow not acceptable) =0x02<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : -<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformSystemInterconnEctedType() {
-			reqInformProperty(EPC_SYSTEM_INTERCONN_ECTED_TYPE);
-			return this;
-		}
-		/**
-		 * Property name : Measured instantaneous amount of electricity generated<br>
-		 * <br>
-		 * EPC : 0xE0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates instantaneous generated power in W.<br>
+		 * Contents :<br>
+		 * This property indicates integral value of sold power in 0.001 kWh. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000.0xFFFD (0.65533)<br>
+		 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
 		 * <br>
-		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
-		 * Unit : W<br>
+		 * Data type : unsigned long<br>
+		 * Data size : 4<br>
+		 * Unit : 0.001_x000a_kWh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformMeasuredInstantaneousAmountOfElectricityGenerated() {
-			reqInformProperty(EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED);
+		public Informer reqInformMeasuredCumulativeAmountOfElectricitySold() {
+			reqInformProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD);
 			return this;
 		}
 		/**
@@ -2053,105 +2097,51 @@ kWh<br>
 		 * <br>
 		 * EPC : 0xE1<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates integral electric energy in 0.001 kWh.<br>
+		 * Contents :<br>
+		 * This property indicates integral electric energy in 0.001 kWh. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
 		 * <br>
 		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.001
-kWh<br>
+		 * Data size : 4<br>
+		 * Unit : 0.001_x000a_kWh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformMeasuredCumulativeAmountOfElectricityGenerated() {
 			reqInformProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_GENERATED);
 			return this;
 		}
 		/**
-		 * Property name : Measured cumulative amount of electricity sold<br>
+		 * Property name : Measured instantaneous amount of electricity generated<br>
 		 * <br>
-		 * EPC : 0xE3<br>
+		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates integral value of sold power in 0.001 kWh.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x3B9AC9FF (0.999,999.999 kWh)<br>
-		 * <br>
-		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.001
-kWh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformMeasuredCumulativeAmountOfElectricitySold() {
-			reqInformProperty(EPC_MEASURED_CUMULATIVE_AMOUNT_OF_ELECTRICITY_SOLD);
-			return this;
-		}
-		/**
-		 * Property name : Power generation output limit setting 1<br>
-		 * <br>
-		 * EPC : 0xE5<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting.<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00.0x64 (0.100%)<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : %<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
-		 */
-		public Informer reqInformPowerGenerationOutputLimitSetting1() {
-			reqInformProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING1);
-			return this;
-		}
-		/**
-		 * Property name : Power generation output limit setting 2<br>
-		 * <br>
-		 * EPC : 0xE6<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * Specifies the power generation output in watts and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * This property indicates instantaneous generated power in W. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFD (0.65533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformPowerGenerationOutputLimitSetting2() {
-			reqInformProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING2);
+		public Informer reqInformMeasuredInstantaneousAmountOfElectricityGenerated() {
+			reqInformProperty(EPC_MEASURED_INSTANTANEOUS_AMOUNT_OF_ELECTRICITY_GENERATED);
 			return this;
 		}
 		/**
@@ -2159,51 +2149,77 @@ kWh<br>
 		 * <br>
 		 * EPC : 0xE7<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * Specifies, in watts, the amount of electricity sold and to acquire the current setting.<br>
+		 * Contents :<br>
+		 * Specifies, in watts, the amount of electricity sold and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000.0xFFFD (0.65533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformLimitSettingForTheAmountOfElectricitySold() {
 			reqInformProperty(EPC_LIMIT_SETTING_FOR_THE_AMOUNT_OF_ELECTRICITY_SOLD);
 			return this;
 		}
 		/**
-		 * Property name : Rated power generation output(System-interconnected)<br>
+		 * Property name : Power generation output limit setting 2<br>
 		 * <br>
-		 * EPC : 0xE8<br>
+		 * EPC : 0xE6<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated power output in the system-interconnected status in watts.<br>
+		 * Contents :<br>
+		 * Specifies the power generation output in watts and to acquire the current setting. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x0000–0xFFFD (0–65,533)<br>
+		 * 0x0000.0xFFFD (0.65533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformRatedPowerGenerationOutputSystemInterconnected() {
-			reqInformProperty(EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED);
+		public Informer reqInformPowerGenerationOutputLimitSetting2() {
+			reqInformProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_2);
+			return this;
+		}
+		/**
+		 * Property name : Power generation output limit setting 1<br>
+		 * <br>
+		 * EPC : 0xE5<br>
+		 * <br>
+		 * Contents :<br>
+		 * Specifies the power generation output as a percentage of the rated power generation output and to acquire the current setting. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00.0x64 (0.100%)<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : %<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformPowerGenerationOutputLimitSetting1() {
+			reqInformProperty(EPC_POWER_GENERATION_OUTPUT_LIMIT_SETTING_1);
 			return this;
 		}
 		/**
@@ -2211,27 +2227,80 @@ kWh<br>
 		 * <br>
 		 * EPC : 0xE9<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates the rated power output in the independent status in watts.<br>
+		 * Contents :<br>
+		 * This property indicates the rated power output in the independent status in watts. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x0000–0xFFFD (0–65,533)<br>
 		 * <br>
 		 * Data type : unsigned short<br>
-		 * <br>
-		 * Data size : 2 bytes<br>
-		 * <br>
+		 * Data size : 2<br>
 		 * Unit : W<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - optional<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformRatedPowerGenerationOutputIndependent() {
-			reqInformProperty(EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT);
+			reqInformProperty(EPC_RATED_POWER_GENERATION_OUTPUT_INDEPENDENT_);
 			return this;
 		}
+		/**
+		 * Property name : Rated power generation output(System-interconnected)<br>
+		 * <br>
+		 * EPC : 0xE8<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the rated power output in the system-interconnected status in watts. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x0000–0xFFFD (0–65,533)<br>
+		 * <br>
+		 * Data type : unsigned short<br>
+		 * Data size : 2<br>
+		 * Unit : W<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformRatedPowerGenerationOutputSystemInterconnected() {
+			reqInformProperty(EPC_RATED_POWER_GENERATION_OUTPUT_SYSTEM_INTERCONNECTED_);
+			return this;
+		}
+		/**
+		 * Property name : System-interconn ected type<br>
+		 * <br>
+		 * EPC : 0xD0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates system interconnection status <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * System-linked type (reverse power flow acceptable) = 0x00 Independent type = 0x01_x000a_System-linked   type    (reverse power flow not acceptable) =0x02<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		public Informer reqInformSystemInterconnEctedType() {
+			reqInformProperty(EPC_SYSTEM_INTERCONN_ECTED_TYPE);
+			return this;
+		}
+
 	}
 
 	public static class Proxy extends HouseholdSolarPowerGeneration {
@@ -2244,21 +2313,28 @@ kWh<br>
 			return mEchoInstanceCode;
 		}
 		@Override
-		protected byte[] getOperationStatus() {return null;}
+		protected byte[] getMeasuredCumulativeAmountOfElectricityGenerated(){return null;}
 		@Override
-		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		protected byte[] getMeasuredInstantaneousAmountOfElectricityGenerated(){return null;}
 		@Override
-		protected byte[] getInstallationLocation() {return null;}
+		protected byte[] getSetPropertyMap(){return null;}
 		@Override
-		protected byte[] getStandardVersionInformation() {return null;}
+		protected byte[] getStatusChangeAnnouncementPropertyMap(){return null;}
 		@Override
-		protected byte[] getFaultStatus() {return null;}
+		protected byte[] getOperationStatus(){return null;}
 		@Override
-		protected byte[] getManufacturerCode() {return null;}
+		protected boolean setInstallationLocation(byte[] edt){return false;}
 		@Override
-		protected byte[] getMeasuredInstantaneousAmountOfElectricityGenerated() {return null;}
+		protected byte[] getInstallationLocation(){return null;}
 		@Override
-		protected byte[] getMeasuredCumulativeAmountOfElectricityGenerated() {return null;}
+		protected byte[] getStandardVersionInformation(){return null;}
+		@Override
+		protected byte[] getGetPropertyMap(){return null;}
+		@Override
+		protected byte[] getFaultStatus(){return null;}
+		@Override
+		protected byte[] getManufacturerCode(){return null;}
+
 	}
 	
 	public static Setter setG() {

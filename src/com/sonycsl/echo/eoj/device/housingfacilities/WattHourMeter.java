@@ -1,46 +1,53 @@
 /*
- * Copyright 2012 Sony Computer Science Laboratories, Inc. <info@kadecot.net>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2014 Sony Computer Science Laboratories, Inc.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.sonycsl.echo.eoj.device.housingfacilities;
 
 import com.sonycsl.echo.Echo;
-import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.eoj.EchoObject;
 import com.sonycsl.echo.eoj.device.DeviceObject;
-import com.sonycsl.echo.node.EchoNode;
 
 public abstract class WattHourMeter extends DeviceObject {
 	
 	public static final short ECHO_CLASS_CODE = (short)0x0280;
 
-	public static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE = (byte)0xE0;
+	public static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG_1 = (byte)0xE3;
 	public static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_UNIT = (byte)0xE2;
-	public static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG1 = (byte)0xE3;
-	public static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG2 = (byte)0xE4;
+	public static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE = (byte)0xE0;
+	public static final byte EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG_2 = (byte)0xE4;
 
 	@Override
 	protected void setupPropertyMaps() {
 		super.setupPropertyMaps();
 		
+		addGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_UNIT);
+		addGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE);
 		addStatusChangeAnnouncementProperty(EPC_OPERATION_STATUS);
 		removeSetProperty(EPC_OPERATION_STATUS);
 		addGetProperty(EPC_OPERATION_STATUS);
-		addGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE);
-		addGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_UNIT);
+
 	}
 
 	@Override
@@ -55,26 +62,220 @@ public abstract class WattHourMeter extends DeviceObject {
 	}
 
 	/**
+	 * Property name : Integral electric energy measurement log 1<br>
+	 * <br>
+	 * EPC : 0xE3<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates integral electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
+	 * <br>
+	 * Data type : unsigned long × 48<br>
+	 * Data size : 192<br>
+	 * Unit : 0.1 or_x000a_0.01_x000a_kWh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getIntegralElectricEnergyMeasurementLog1() {return null;}
+	/**
+	 * Property name : Integral electric energy measurement log 1<br>
+	 * <br>
+	 * EPC : 0xE3<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates integral electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
+	 * <br>
+	 * Data type : unsigned long × 48<br>
+	 * Data size : 192<br>
+	 * Unit : 0.1 or_x000a_0.01_x000a_kWh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidIntegralElectricEnergyMeasurementLog1(byte[] edt) {
+		if(edt == null || !(edt.length == 192)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Integral electric energy unit<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates number of decimal places of integral electric energy (0xE0). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x01 :   0.1kWh_x000a_0x02 :   0.01kWh<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getIntegralElectricEnergyUnit();
+	/**
+	 * Property name : Integral electric energy unit<br>
+	 * <br>
+	 * EPC : 0xE2<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates number of decimal places of integral electric energy (0xE0). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x01 :   0.1kWh_x000a_0x02 :   0.01kWh<br>
+	 * <br>
+	 * Data type : unsigned char<br>
+	 * Data size : 1<br>
+	 * Unit : .<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidIntegralElectricEnergyUnit(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Integral electric energy measurement value<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates integral electric energy in decimal (8 digits). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * Data size : 4<br>
+	 * Unit : 0.1 or_x000a_0.01_x000a_kWh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected abstract byte[] getIntegralElectricEnergyMeasurementValue();
+	/**
+	 * Property name : Integral electric energy measurement value<br>
+	 * <br>
+	 * EPC : 0xE0<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates integral electric energy in decimal (8 digits). <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
+	 * <br>
+	 * Data type : unsigned long<br>
+	 * Data size : 4<br>
+	 * Unit : 0.1 or_x000a_0.01_x000a_kWh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidIntegralElectricEnergyMeasurementValue(byte[] edt) {
+		if(edt == null || !(edt.length == 4)) {return false;};
+		return true;
+	}
+	/**
+	 * Property name : Integral electric energy measurement log 2<br>
+	 * <br>
+	 * EPC : 0xE4<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates integral electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_×48_x000a_×45<br>
+	 * Data size : 8640<br>
+	 * Unit : 0.1 or_x000a_0.01_x000a_kWh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected byte[] getIntegralElectricEnergyMeasurementLog2() {return null;}
+	/**
+	 * Property name : Integral electric energy measurement log 2<br>
+	 * <br>
+	 * EPC : 0xE4<br>
+	 * <br>
+	 * Contents :<br>
+	 * This property indicates integral electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments. <br>
+	 * <br>
+	 * Value range (decimal notation) :<br>
+	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
+	 * <br>
+	 * Data type : unsigned long_x000a_×48_x000a_×45<br>
+	 * Data size : 8640<br>
+	 * Unit : 0.1 or_x000a_0.01_x000a_kWh<br>
+	 * <br>
+	 * Access rule :<br>
+	 * Announce - -<br>
+	 * Set      - -<br>
+	 * Get      - optional<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
+	 */
+	protected boolean isValidIntegralElectricEnergyMeasurementLog2(byte[] edt) {
+		if(edt == null || !(edt.length == 8640)) {return false;};
+		return true;
+	}
+	/**
 	 * Property name : Operation status<br>
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
@@ -84,244 +285,48 @@ public abstract class WattHourMeter extends DeviceObject {
 	 * <br>
 	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates the ON/OFF status.<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
 	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : —<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - optional<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
 	 * <br>
 	 * <b>Announcement at status change</b><br>
 	 */
 	protected abstract byte[] getOperationStatus();
 	/**
-	 * Property name : Integral electric energy measurement value<br>
+	 * Property name : Operation status<br>
 	 * <br>
-	 * EPC : 0xE0<br>
+	 * EPC : 0x80<br>
 	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates integral electric energy in decimal (8 digits).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
-	 * <br>
-	 * Data type : unsigned long<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
-	 * Unit : 0.1 or
-0.01
-kWh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected abstract byte[] getIntegralElectricEnergyMeasurementValue();
-	/**
-	 * Property name : Integral electric energy measurement value<br>
-	 * <br>
-	 * EPC : 0xE0<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates integral electric energy in decimal (8 digits).<br>
+	 * Contents :<br>
+	 * This property indicates the ON/OFF status. <br>
 	 * <br>
 	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
-	 * <br>
-	 * Data type : unsigned long<br>
-	 * <br>
-	 * Data size : 4 bytes<br>
-	 * <br>
-	 * Unit : 0.1 or
-0.01
-kWh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected boolean isValidIntegralElectricEnergyMeasurementValue(byte[] edt) {
-		if(edt == null || !(edt.length == 4)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Integral electric energy unit<br>
-	 * <br>
-	 * EPC : 0xE2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates number of decimal places of integral electric energy (0xE0).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x01 :   0.1kWh<br>
-	 * 0x02 :   0.01kWh<br>
+	 * ON=0x30, OFF=0x31<br>
 	 * <br>
 	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : .<br>
+	 * Data size : 1<br>
+	 * Unit : -<br>
 	 * <br>
 	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
+	 * Announce - -<br>
+	 * Set      - optional<br>
+	 * Get      - mandatory<br>
+	 * <br>
+	 * <b>Announcement at status change</b><br>
 	 */
-	protected abstract byte[] getIntegralElectricEnergyUnit();
-	/**
-	 * Property name : Integral electric energy unit<br>
-	 * <br>
-	 * EPC : 0xE2<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates number of decimal places of integral electric energy (0xE0).<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x01 :   0.1kWh<br>
-	 * 0x02 :   0.01kWh<br>
-	 * <br>
-	 * Data type : unsigned char<br>
-	 * <br>
-	 * Data size : 1 byte<br>
-	 * <br>
-	 * Unit : .<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - mandatory<br>
-	 */
-	protected boolean isValidIntegralElectricEnergyUnit(byte[] edt) {
-		if(edt == null || !(edt.length == 1)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Integral electric energy measurement log 1<br>
-	 * <br>
-	 * EPC : 0xE3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates integral electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
-	 * <br>
-	 * Data type : unsigned long × 48<br>
-	 * <br>
-	 * Data size : 192
-bytes<br>
-	 * <br>
-	 * Unit : 0.1 or
-0.01
-kWh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getIntegralElectricEnergyMeasurementLog1() {return null;}
-	/**
-	 * Property name : Integral electric energy measurement log 1<br>
-	 * <br>
-	 * EPC : 0xE3<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates integral electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
-	 * <br>
-	 * Data type : unsigned long × 48<br>
-	 * <br>
-	 * Data size : 192
-bytes<br>
-	 * <br>
-	 * Unit : 0.1 or
-0.01
-kWh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidIntegralElectricEnergyMeasurementLog1(byte[] edt) {
-		if(edt == null || !(edt.length == 192)) return false;
-		return true;
-	}
-	/**
-	 * Property name : Integral electric energy measurement log 2<br>
-	 * <br>
-	 * EPC : 0xE4<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates integral electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
-	 * <br>
-	 * Data type : unsigned long
-×48
-×45<br>
-	 * <br>
-	 * Data size : 192
-bytes
-× 45<br>
-	 * <br>
-	 * Unit : 0.1 or
-0.01
-kWh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected byte[] getIntegralElectricEnergyMeasurementLog2() {return null;}
-	/**
-	 * Property name : Integral electric energy measurement log 2<br>
-	 * <br>
-	 * EPC : 0xE4<br>
-	 * <br>
-	 * Contents of property :<br>
-	 * This property indicates integral electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments.<br>
-	 * <br>
-	 * Value range (decimal notation) :<br>
-	 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
-	 * <br>
-	 * Data type : unsigned long
-×48
-×45<br>
-	 * <br>
-	 * Data size : 192
-bytes
-× 45<br>
-	 * <br>
-	 * Unit : 0.1 or
-0.01
-kWh<br>
-	 * <br>
-	 * Access rule :<br>
-	 * Announce - undefined<br>
-	 * Set - undefined<br>
-	 * Get - optional<br>
-	 */
-	protected boolean isValidIntegralElectricEnergyMeasurementLog2(byte[] edt) {
-		if(edt == null || !(edt.length == 192)) return false;
+	protected boolean isValidOperationStatus(byte[] edt) {
+		if(edt == null || !(edt.length == 1)) {return false;};
 		return true;
 	}
 
@@ -331,6 +336,7 @@ kWh<br>
 		if(success) return success;
 
 		switch(property.epc) {
+
 		default : return false;
 		}
 	}
@@ -341,10 +347,11 @@ kWh<br>
 		if(edt != null) return edt;
 		
 		switch(epc) {
-		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE : return getIntegralElectricEnergyMeasurementValue();
+		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG_1 : return getIntegralElectricEnergyMeasurementLog1();
 		case EPC_INTEGRAL_ELECTRIC_ENERGY_UNIT : return getIntegralElectricEnergyUnit();
-		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG1 : return getIntegralElectricEnergyMeasurementLog1();
-		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG2 : return getIntegralElectricEnergyMeasurementLog2();
+		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE : return getIntegralElectricEnergyMeasurementValue();
+		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG_2 : return getIntegralElectricEnergyMeasurementLog2();
+
 		default : return null;
 		}
 	}
@@ -355,10 +362,11 @@ kWh<br>
 		if(valid) return valid;
 		
 		switch(property.epc) {
-		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE : return isValidIntegralElectricEnergyMeasurementValue(property.edt);
+		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG_1 : return isValidIntegralElectricEnergyMeasurementLog1(property.edt);
 		case EPC_INTEGRAL_ELECTRIC_ENERGY_UNIT : return isValidIntegralElectricEnergyUnit(property.edt);
-		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG1 : return isValidIntegralElectricEnergyMeasurementLog1(property.edt);
-		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG2 : return isValidIntegralElectricEnergyMeasurementLog2(property.edt);
+		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE : return isValidIntegralElectricEnergyMeasurementValue(property.edt);
+		case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG_2 : return isValidIntegralElectricEnergyMeasurementLog2(property.edt);
+
 		default : return false;
 		}
 	}
@@ -406,6 +414,7 @@ kWh<br>
 			if(ret) return true;
 			
 			switch(property.epc) {
+
 			default :
 				return false;
 			}
@@ -418,127 +427,163 @@ kWh<br>
 			if(ret) return true;
 			
 			switch(property.epc) {
-			case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE : 
-				onGetIntegralElectricEnergyMeasurementValue(eoj, tid, esv, property, success);
+			case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG_1 : 
+				onGetIntegralElectricEnergyMeasurementLog1(eoj, tid, esv, property, success);
 				return true;
 			case EPC_INTEGRAL_ELECTRIC_ENERGY_UNIT : 
 				onGetIntegralElectricEnergyUnit(eoj, tid, esv, property, success);
 				return true;
-			case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG1 : 
-				onGetIntegralElectricEnergyMeasurementLog1(eoj, tid, esv, property, success);
+			case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE : 
+				onGetIntegralElectricEnergyMeasurementValue(eoj, tid, esv, property, success);
 				return true;
-			case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG2 : 
+			case EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG_2 : 
 				onGetIntegralElectricEnergyMeasurementLog2(eoj, tid, esv, property, success);
 				return true;
+
 			default :
 				return false;
 			}
 		}
 		
 		/**
-		 * Property name : Integral electric energy measurement value<br>
-		 * <br>
-		 * EPC : 0xE0<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates integral electric energy in decimal (8 digits).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
-		 * <br>
-		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.1 or
-0.01
-kWh<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		protected void onGetIntegralElectricEnergyMeasurementValue(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
-		 * Property name : Integral electric energy unit<br>
-		 * <br>
-		 * EPC : 0xE2<br>
-		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates number of decimal places of integral electric energy (0xE0).<br>
-		 * <br>
-		 * Value range (decimal notation) :<br>
-		 * 0x01 :   0.1kWh<br>
-		 * 0x02 :   0.01kWh<br>
-		 * <br>
-		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
-		 * Unit : .<br>
-		 * <br>
-		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
-		 */
-		protected void onGetIntegralElectricEnergyUnit(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
-		/**
 		 * Property name : Integral electric energy measurement log 1<br>
 		 * <br>
 		 * EPC : 0xE3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates integral electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours.<br>
+		 * Contents :<br>
+		 * This property indicates integral electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
 		 * Data type : unsigned long × 48<br>
-		 * <br>
-		 * Data size : 192
-bytes<br>
-		 * <br>
-		 * Unit : 0.1 or
-0.01
-kWh<br>
+		 * Data size : 192<br>
+		 * Unit : 0.1 or_x000a_0.01_x000a_kWh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetIntegralElectricEnergyMeasurementLog1(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Integral electric energy unit<br>
+		 * <br>
+		 * EPC : 0xE2<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates number of decimal places of integral electric energy (0xE0). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x01 :   0.1kWh_x000a_0x02 :   0.01kWh<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : .<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetIntegralElectricEnergyUnit(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Integral electric energy measurement value<br>
+		 * <br>
+		 * EPC : 0xE0<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates integral electric energy in decimal (8 digits). <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
+		 * <br>
+		 * Data type : unsigned long<br>
+		 * Data size : 4<br>
+		 * Unit : 0.1 or_x000a_0.01_x000a_kWh<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetIntegralElectricEnergyMeasurementValue(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
 		/**
 		 * Property name : Integral electric energy measurement log 2<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates integral electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments.<br>
+		 * Contents :<br>
+		 * This property indicates integral electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
-		 * Data type : unsigned long
-×48
-×45<br>
-		 * <br>
-		 * Data size : 192
-bytes
-× 45<br>
-		 * <br>
-		 * Unit : 0.1 or
-0.01
-kWh<br>
+		 * Data type : unsigned long_x000a_×48_x000a_×45<br>
+		 * Data size : 8640<br>
+		 * Unit : 0.1 or_x000a_0.01_x000a_kWh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		protected void onGetIntegralElectricEnergyMeasurementLog2(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onSetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+		/**
+		 * Property name : Operation status<br>
+		 * <br>
+		 * EPC : 0x80<br>
+		 * <br>
+		 * Contents :<br>
+		 * This property indicates the ON/OFF status. <br>
+		 * <br>
+		 * Value range (decimal notation) :<br>
+		 * ON=0x30, OFF=0x31<br>
+		 * <br>
+		 * Data type : unsigned char<br>
+		 * Data size : 1<br>
+		 * Unit : -<br>
+		 * <br>
+		 * Access rule :<br>
+		 * Announce - -<br>
+		 * Set      - optional<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
+		 */
+		protected void onGetOperationStatus(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {}
+
 	}
 
 	public static class Setter extends DeviceObject.Setter {
@@ -586,6 +631,7 @@ kWh<br>
 			return (Setter)super.reqSetPowerLimitSetting(edt);
 		}
 		
+
 	}
 	
 	public static class Getter extends DeviceObject.Getter {
@@ -698,31 +744,29 @@ kWh<br>
 		}
 		
 		/**
-		 * Property name : Integral electric energy measurement value<br>
+		 * Property name : Integral electric energy measurement log 1<br>
 		 * <br>
-		 * EPC : 0xE0<br>
+		 * EPC : 0xE3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates integral electric energy in decimal (8 digits).<br>
+		 * Contents :<br>
+		 * This property indicates integral electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
-		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.1 or
-0.01
-kWh<br>
+		 * Data type : unsigned long × 48<br>
+		 * Data size : 192<br>
+		 * Unit : 0.1 or_x000a_0.01_x000a_kWh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetIntegralElectricEnergyMeasurementValue() {
-			reqGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE);
+		public Getter reqGetIntegralElectricEnergyMeasurementLog1() {
+			reqGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG_1);
 			return this;
 		}
 		/**
@@ -730,55 +774,51 @@ kWh<br>
 		 * <br>
 		 * EPC : 0xE2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates number of decimal places of integral electric energy (0xE0).<br>
+		 * Contents :<br>
+		 * This property indicates number of decimal places of integral electric energy (0xE0). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x01 :   0.1kWh<br>
-		 * 0x02 :   0.01kWh<br>
+		 * 0x01 :   0.1kWh_x000a_0x02 :   0.01kWh<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetIntegralElectricEnergyUnit() {
 			reqGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_UNIT);
 			return this;
 		}
 		/**
-		 * Property name : Integral electric energy measurement log 1<br>
+		 * Property name : Integral electric energy measurement value<br>
 		 * <br>
-		 * EPC : 0xE3<br>
+		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates integral electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours.<br>
+		 * Contents :<br>
+		 * This property indicates integral electric energy in decimal (8 digits). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
-		 * Data type : unsigned long × 48<br>
-		 * <br>
-		 * Data size : 192
-bytes<br>
-		 * <br>
-		 * Unit : 0.1 or
-0.01
-kWh<br>
+		 * Data type : unsigned long<br>
+		 * Data size : 4<br>
+		 * Unit : 0.1 or_x000a_0.01_x000a_kWh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Getter reqGetIntegralElectricEnergyMeasurementLog1() {
-			reqGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG1);
+		public Getter reqGetIntegralElectricEnergyMeasurementValue() {
+			reqGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE);
 			return this;
 		}
 		/**
@@ -786,33 +826,28 @@ kWh<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates integral electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments.<br>
+		 * Contents :<br>
+		 * This property indicates integral electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
-		 * Data type : unsigned long
-×48
-×45<br>
-		 * <br>
-		 * Data size : 192
-bytes
-× 45<br>
-		 * <br>
-		 * Unit : 0.1 or
-0.01
-kWh<br>
+		 * Data type : unsigned long_x000a_×48_x000a_×45<br>
+		 * Data size : 8640<br>
+		 * Unit : 0.1 or_x000a_0.01_x000a_kWh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Getter reqGetIntegralElectricEnergyMeasurementLog2() {
-			reqGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG2);
+			reqGetProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG_2);
 			return this;
 		}
+
 	}
 	
 	public static class Informer extends DeviceObject.Informer {
@@ -924,31 +959,29 @@ kWh<br>
 		}
 		
 		/**
-		 * Property name : Integral electric energy measurement value<br>
+		 * Property name : Integral electric energy measurement log 1<br>
 		 * <br>
-		 * EPC : 0xE0<br>
+		 * EPC : 0xE3<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates integral electric energy in decimal (8 digits).<br>
+		 * Contents :<br>
+		 * This property indicates integral electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
-		 * Data type : unsigned long<br>
-		 * <br>
-		 * Data size : 4 bytes<br>
-		 * <br>
-		 * Unit : 0.1 or
-0.01
-kWh<br>
+		 * Data type : unsigned long × 48<br>
+		 * Data size : 192<br>
+		 * Unit : 0.1 or_x000a_0.01_x000a_kWh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformIntegralElectricEnergyMeasurementValue() {
-			reqInformProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE);
+		public Informer reqInformIntegralElectricEnergyMeasurementLog1() {
+			reqInformProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG_1);
 			return this;
 		}
 		/**
@@ -956,55 +989,51 @@ kWh<br>
 		 * <br>
 		 * EPC : 0xE2<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates number of decimal places of integral electric energy (0xE0).<br>
+		 * Contents :<br>
+		 * This property indicates number of decimal places of integral electric energy (0xE0). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
-		 * 0x01 :   0.1kWh<br>
-		 * 0x02 :   0.01kWh<br>
+		 * 0x01 :   0.1kWh_x000a_0x02 :   0.01kWh<br>
 		 * <br>
 		 * Data type : unsigned char<br>
-		 * <br>
-		 * Data size : 1 byte<br>
-		 * <br>
+		 * Data size : 1<br>
 		 * Unit : .<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - mandatory<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformIntegralElectricEnergyUnit() {
 			reqInformProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_UNIT);
 			return this;
 		}
 		/**
-		 * Property name : Integral electric energy measurement log 1<br>
+		 * Property name : Integral electric energy measurement value<br>
 		 * <br>
-		 * EPC : 0xE3<br>
+		 * EPC : 0xE0<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates integral electric energy (8 digits) measurement result log in 30-minute segments for past 24 hours.<br>
+		 * Contents :<br>
+		 * This property indicates integral electric energy in decimal (8 digits). <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
-		 * Data type : unsigned long × 48<br>
-		 * <br>
-		 * Data size : 192
-bytes<br>
-		 * <br>
-		 * Unit : 0.1 or
-0.01
-kWh<br>
+		 * Data type : unsigned long<br>
+		 * Data size : 4<br>
+		 * Unit : 0.1 or_x000a_0.01_x000a_kWh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - mandatory<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
-		public Informer reqInformIntegralElectricEnergyMeasurementLog1() {
-			reqInformProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG1);
+		public Informer reqInformIntegralElectricEnergyMeasurementValue() {
+			reqInformProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_VALUE);
 			return this;
 		}
 		/**
@@ -1012,33 +1041,28 @@ kWh<br>
 		 * <br>
 		 * EPC : 0xE4<br>
 		 * <br>
-		 * Contents of property :<br>
-		 * This property indicates integral electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments.<br>
+		 * Contents :<br>
+		 * This property indicates integral electric energy (8 digits) measurement result log for past 24 hours as one-day data in 30-minute segments. <br>
 		 * <br>
 		 * Value range (decimal notation) :<br>
 		 * 0x00000000.0x05F5E0FF (0.99,999,999)<br>
 		 * <br>
-		 * Data type : unsigned long
-×48
-×45<br>
-		 * <br>
-		 * Data size : 192
-bytes
-× 45<br>
-		 * <br>
-		 * Unit : 0.1 or
-0.01
-kWh<br>
+		 * Data type : unsigned long_x000a_×48_x000a_×45<br>
+		 * Data size : 8640<br>
+		 * Unit : 0.1 or_x000a_0.01_x000a_kWh<br>
 		 * <br>
 		 * Access rule :<br>
-		 * Announce - undefined<br>
-		 * Set - undefined<br>
-		 * Get - optional<br>
+		 * Announce - -<br>
+		 * Set      - -<br>
+		 * Get      - optional<br>
+		 * <br>
+		 * <b>Announcement at status change</b><br>
 		 */
 		public Informer reqInformIntegralElectricEnergyMeasurementLog2() {
-			reqInformProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG2);
+			reqInformProperty(EPC_INTEGRAL_ELECTRIC_ENERGY_MEASUREMENT_LOG_2);
 			return this;
 		}
+
 	}
 
 	public static class Proxy extends WattHourMeter {
@@ -1051,21 +1075,28 @@ kWh<br>
 			return mEchoInstanceCode;
 		}
 		@Override
-		protected byte[] getOperationStatus() {return null;}
+		protected byte[] getIntegralElectricEnergyUnit(){return null;}
 		@Override
-		protected boolean setInstallationLocation(byte[] edt) {return false;}
+		protected byte[] getSetPropertyMap(){return null;}
 		@Override
-		protected byte[] getInstallationLocation() {return null;}
+		protected byte[] getIntegralElectricEnergyMeasurementValue(){return null;}
 		@Override
-		protected byte[] getStandardVersionInformation() {return null;}
+		protected byte[] getGetPropertyMap(){return null;}
 		@Override
-		protected byte[] getFaultStatus() {return null;}
+		protected byte[] getStatusChangeAnnouncementPropertyMap(){return null;}
 		@Override
-		protected byte[] getManufacturerCode() {return null;}
+		protected byte[] getOperationStatus(){return null;}
 		@Override
-		protected byte[] getIntegralElectricEnergyMeasurementValue() {return null;}
+		protected boolean setInstallationLocation(byte[] edt){return false;}
 		@Override
-		protected byte[] getIntegralElectricEnergyUnit() {return null;}
+		protected byte[] getInstallationLocation(){return null;}
+		@Override
+		protected byte[] getStandardVersionInformation(){return null;}
+		@Override
+		protected byte[] getFaultStatus(){return null;}
+		@Override
+		protected byte[] getManufacturerCode(){return null;}
+
 	}
 	
 	public static Setter setG() {
