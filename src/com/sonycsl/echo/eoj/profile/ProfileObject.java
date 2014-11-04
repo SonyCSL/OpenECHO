@@ -1,33 +1,33 @@
 /*
- * Copyright 2012 Sony Computer Science Laboratories, Inc. <info@kadecot.net>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2014 Sony Computer Science Laboratories, Inc.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.sonycsl.echo.eoj.profile;
 
-import java.util.HashSet;
-import java.util.Iterator;
-
 import com.sonycsl.echo.Echo;
-import com.sonycsl.echo.EchoFrame;
 import com.sonycsl.echo.EchoProperty;
 import com.sonycsl.echo.EchoSocket;
 import com.sonycsl.echo.EchoUtils;
 import com.sonycsl.echo.eoj.EchoObject;
-import com.sonycsl.echo.eoj.EchoObject.Getter;
-import com.sonycsl.echo.eoj.EchoObject.Informer;
-import com.sonycsl.echo.eoj.device.DeviceObject.Setter;
-import com.sonycsl.echo.node.EchoNode;
 
 public abstract class ProfileObject extends EchoObject {
 
@@ -105,54 +105,6 @@ public abstract class ProfileObject extends EchoObject {
 		default : return false;
 		}
 	}
-/*
-	@Override
-	protected boolean onReceiveProperty(EchoProperty property) {
-		boolean ret = super.onReceiveProperty(property);
-		if(ret) return ret;
-		
-		switch(property.epc) {
-		case EPC_STATUS_CHANGE_ANNOUNCEMENT_PROPERTY_MAP :
-			onReceiveStatusChangeAnnouncementPropertyMap(property.edt);
-			return true;
-		case EPC_SET_PROPERTY_MAP :
-			onReceiveSetPropertyMap(property.edt);
-			return true;
-		case EPC_GET_PROPERTY_MAP :
-			onReceiveGetPropertyMap(property.edt);
-			return true;
-		default :
-			return false;
-		}
-	}*/
-
-	private void onReceiveStatusChangeAnnouncementPropertyMap(byte[] edt) {
-		byte[] properties = EchoUtils.propertyMapToProperties(edt);
-		if(properties == null || properties.length == 0) return;
-		clearStatusChangeAnnouncementProperties();
-		for(byte p : properties) {
-			addStatusChangeAnnouncementProperty(p);
-		}
-	}
-
-	private void onReceiveSetPropertyMap(byte[] edt) {
-		byte[] properties = EchoUtils.propertyMapToProperties(edt);
-		if(properties == null || properties.length == 0) return;
-		clearSetProperties();
-		for(byte p : properties) {
-			addSetProperty(p);
-		}
-	}
-	
-	private void onReceiveGetPropertyMap(byte[] edt) {
-		byte[] properties = EchoUtils.propertyMapToProperties(edt);
-		if(properties == null || properties.length == 0) return;
-		clearGetProperties();
-		for(byte p : properties) {
-			addGetProperty(p);
-		}
-	}
-
 
 	/**
 	 * Indicates an encountered abnormality (sensor trouble, etc.).<br>
@@ -467,12 +419,7 @@ public abstract class ProfileObject extends EchoObject {
 		 * Get : mandatory
 		 */
 		protected void onGetStatusChangeAnnouncementPropertyMap(EchoObject eoj, short tid, byte esv, EchoProperty property, boolean success) {
-			if(success) {
-				byte[] properties = EchoUtils.propertyMapToProperties(property.edt);
-				for(byte p : properties) {
-					
-				}
-			}
+
 		}
 		/**
 		 * See “ECHONET Device Objects: Detailed Specifications”.<br><br>
